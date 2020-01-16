@@ -6,8 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
-
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
@@ -27,22 +25,18 @@ class AutoRestRequiredOptionalTestServiceConfiguration(Configuration):
     :type optional_global_query: int
     """
 
-    def __init__(self, required_global_path: str, required_global_query: str, optional_global_query: Optional[int] = None, **kwargs):
+    def __init__(self, required_global_path, required_global_query, optional_global_query=None, **kwargs):
         if required_global_path is None:
             raise ValueError("Parameter 'required_global_path' must not be None.")
         if required_global_query is None:
             raise ValueError("Parameter 'required_global_query' must not be None.")
-
         super(AutoRestRequiredOptionalTestServiceConfiguration, self).__init__(**kwargs)
 
         self.required_global_path = required_global_path
         self.required_global_query = required_global_query
         self.optional_global_query = optional_global_query
         self._configure(**kwargs)
-
         self.user_agent_policy.add_user_agent('azsdk-python-autorestrequiredoptionaltestservice/{}'.format(VERSION))
-
-
 
     def _configure(self, **kwargs):
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)

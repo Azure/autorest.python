@@ -17,14 +17,13 @@ from .. import models
 class AutoRestParameterizedHostTestClient(object):
     """Test Infrastructure for AutoRest
 
-
     :ivar paths: PathsOperations operations
     :vartype paths: custombaseurl.aio.operations_async.PathsOperations
     :param host: A string value that is used as a global part of the parameterized host
     :type host: str
     """
 
-    def __init__(self, host: str, **kwargs):
+    def __init__(self, host, **kwargs):
         base_url = 'http://{accountName}{host}'
         self._config = AutoRestParameterizedHostTestClientConfiguration(host, **kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)

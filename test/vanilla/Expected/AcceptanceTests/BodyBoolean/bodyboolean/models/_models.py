@@ -6,10 +6,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
-
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
+
 
 class ErrorException(HttpResponseError):
     """Server responded with exception of type: 'Error'.
@@ -40,9 +39,9 @@ class Error(Model):
     """Error.
 
     :param status:
-	:type status: int
+    :type status: int
     :param message:
-	:type message: str
+    :type message: str
     """
     _EXCEPTION_TYPE = ErrorException
 
@@ -55,4 +54,3 @@ class Error(Model):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
-

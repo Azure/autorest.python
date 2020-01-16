@@ -6,16 +6,15 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import datetime
-from typing import Dict, List, Optional, Union
-
 from msrest.serialization import Model
+
 
 class Bar(Model):
     """The URIs that are used to perform a retrieval of a public blob, queue or table object.
 
-    :param recursive_point: The URIs that are used to perform a retrieval of a public blob, queue or table object.
-	:type recursive_point: ~storage.models.Endpoints
+    :param recursive_point: The URIs that are used to perform a retrieval of a
+     public blob, queue or table object.
+    :type recursive_point: ~storage.models.Endpoints
     """
 
     _attribute_map = {
@@ -26,15 +25,21 @@ class Bar(Model):
         super(Bar, self).__init__(**kwargs)
         self.recursive_point = kwargs.get('recursive_point', None)
 
+
 class CheckNameAvailabilityResult(Model):
     """The CheckNameAvailability operation response.
 
-    :param name_available: Gets a boolean value that indicates whether the name is available for you to use. If true, the name is available. If false, the name has already been taken or invalid and cannot be used.
-	:type name_available: bool
-    :param reason: Gets the reason that a storage account name could not be used. The Reason element is only returned if NameAvailable is false. Possible values include: 'AccountNameInvalid', 'AlreadyExists'.
-	:type reason: str or ~storage.models.Reason
-    :param message: Gets an error message explaining the Reason value in more detail.
-	:type message: str
+    :param name_available: Gets a boolean value that indicates whether the name is
+     available for you to use. If true, the name is available. If false, the name has
+     already been taken or invalid and cannot be used.
+    :type name_available: bool
+    :param reason: Gets the reason that a storage account name could not be used.
+     The Reason element is only returned if NameAvailable is false. Possible values
+     include: 'AccountNameInvalid', 'AlreadyExists'.
+    :type reason: str or ~storage.models.Reason
+    :param message: Gets an error message explaining the Reason value in more
+     detail.
+    :type message: str
     """
 
     _attribute_map = {
@@ -49,13 +54,15 @@ class CheckNameAvailabilityResult(Model):
         self.reason = kwargs.get('reason', None)
         self.message = kwargs.get('message', None)
 
+
 class CustomDomain(Model):
     """The custom domain assigned to this storage account. This can be set via Update.
 
     :param name: Gets or sets the custom domain name. Name is the CNAME source.
-	:type name: str
-    :param use_sub_domain: Indicates whether indirect CName validation is enabled. Default value is false. This should only be set on updates.
-	:type use_sub_domain: bool
+    :type name: str
+    :param use_sub_domain: Indicates whether indirect CName validation is enabled.
+     Default value is false. This should only be set on updates.
+    :type use_sub_domain: bool
     """
 
     _attribute_map = {
@@ -68,19 +75,22 @@ class CustomDomain(Model):
         self.name = kwargs.get('name', None)
         self.use_sub_domain = kwargs.get('use_sub_domain', None)
 
+
 class Endpoints(Model):
     """The URIs that are used to perform a retrieval of a public blob, queue or table object.
 
     :param blob: Gets the blob endpoint.
-	:type blob: str
+    :type blob: str
     :param queue: Gets the queue endpoint.
-	:type queue: str
+    :type queue: str
     :param table: Gets the table endpoint.
-	:type table: str
-    :param dummy_end_point: The URIs that are used to perform a retrieval of a public blob, queue or table object.
-	:type dummy_end_point: ~storage.models.Endpoints
-    :param foo_point: The URIs that are used to perform a retrieval of a public blob, queue or table object.
-	:type foo_point: ~storage.models.Foo
+    :type table: str
+    :param dummy_end_point: The URIs that are used to perform a retrieval of a
+     public blob, queue or table object.
+    :type dummy_end_point: ~storage.models.Endpoints
+    :param foo_point: The URIs that are used to perform a retrieval of a public
+     blob, queue or table object.
+    :type foo_point: ~storage.models.Foo
     """
 
     _attribute_map = {
@@ -99,11 +109,13 @@ class Endpoints(Model):
         self.dummy_end_point = kwargs.get('dummy_end_point', None)
         self.foo_point = kwargs.get('foo_point', None)
 
+
 class Foo(Model):
     """The URIs that are used to perform a retrieval of a public blob, queue or table object.
 
-    :param bar_point: The URIs that are used to perform a retrieval of a public blob, queue or table object.
-	:type bar_point: ~storage.models.Bar
+    :param bar_point: The URIs that are used to perform a retrieval of a public
+     blob, queue or table object.
+    :type bar_point: ~storage.models.Bar
     """
 
     _attribute_map = {
@@ -114,6 +126,7 @@ class Foo(Model):
         super(Foo, self).__init__(**kwargs)
         self.bar_point = kwargs.get('bar_point', None)
 
+
 class Resource(Model):
     """Resource.
 
@@ -122,15 +135,15 @@ class Resource(Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Resource Id.
-	:vartype id: str
+    :vartype id: str
     :ivar name: Resource name.
-	:vartype name: str
+    :vartype name: str
     :ivar type: Resource type.
-	:vartype type: str
+    :vartype type: str
     :param location: Required. Resource location.
-	:type location: str
+    :type location: str
     :param tags: A set of tags. Resource tags.
-	:type tags: dict[str, str]
+    :type tags: dict[str, str]
     """
 
     _validation = {
@@ -156,6 +169,7 @@ class Resource(Model):
         self.location = kwargs.get('location', None)
         self.tags = kwargs.get('tags', None)
 
+
 class StorageAccount(Resource):
     """The storage account.
 
@@ -164,17 +178,17 @@ class StorageAccount(Resource):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Resource Id.
-	:vartype id: str
+    :vartype id: str
     :ivar name: Resource name.
-	:vartype name: str
+    :vartype name: str
     :ivar type: Resource type.
-	:vartype type: str
+    :vartype type: str
     :param location: Required. Resource location.
-	:type location: str
+    :type location: str
     :param tags: A set of tags. Resource tags.
-	:type tags: dict[str, str]
+    :type tags: dict[str, str]
     :param properties:
-	:type properties: ~storage.models.StorageAccountProperties
+    :type properties: ~storage.models.StorageAccountProperties
     """
 
     _validation = {
@@ -197,15 +211,16 @@ class StorageAccount(Resource):
         super(StorageAccount, self).__init__(**kwargs)
         self.properties = kwargs.get('properties', None)
 
+
 class StorageAccountCheckNameAvailabilityParameters(Model):
     """StorageAccountCheckNameAvailabilityParameters.
 
     All required parameters must be populated in order to send to Azure.
 
-    :param name: Required. 
-	:type name: str
+    :param name: Required.
+    :type name: str
     :param type:
-	:type type: str
+    :type type: str
     """
 
     _validation = {
@@ -222,6 +237,7 @@ class StorageAccountCheckNameAvailabilityParameters(Model):
         self.name = kwargs.get('name', None)
         self.type = kwargs.get('type', "Microsoft.Storage/storageAccounts")
 
+
 class StorageAccountCreateParameters(Resource):
     """The parameters to provide for the account.
 
@@ -230,17 +246,17 @@ class StorageAccountCreateParameters(Resource):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Resource Id.
-	:vartype id: str
+    :vartype id: str
     :ivar name: Resource name.
-	:vartype name: str
+    :vartype name: str
     :ivar type: Resource type.
-	:vartype type: str
+    :vartype type: str
     :param location: Required. Resource location.
-	:type location: str
+    :type location: str
     :param tags: A set of tags. Resource tags.
-	:type tags: dict[str, str]
+    :type tags: dict[str, str]
     :param properties:
-	:type properties: ~storage.models.StorageAccountPropertiesCreateParameters
+    :type properties: ~storage.models.StorageAccountPropertiesCreateParameters
     """
 
     _validation = {
@@ -263,13 +279,14 @@ class StorageAccountCreateParameters(Resource):
         super(StorageAccountCreateParameters, self).__init__(**kwargs)
         self.properties = kwargs.get('properties', None)
 
+
 class StorageAccountKeys(Model):
     """The access keys for the storage account.
 
     :param key1: Gets the value of key 1.
-	:type key1: str
+    :type key1: str
     :param key2: Gets the value of key 1.
-	:type key2: str
+    :type key2: str
     """
 
     _attribute_map = {
@@ -282,13 +299,15 @@ class StorageAccountKeys(Model):
         self.key1 = kwargs.get('key1', None)
         self.key2 = kwargs.get('key2', None)
 
+
 class StorageAccountListResult(Model):
     """The list storage accounts operation response.
 
     :param value: Gets the list of storage accounts and their properties.
-	:type value: list[~storage.models.StorageAccount]
-    :param next_link: Gets the link to the next set of results. Currently this will always be empty as the API does not support pagination.
-	:type next_link: str
+    :type value: list[~storage.models.StorageAccount]
+    :param next_link: Gets the link to the next set of results. Currently this will
+     always be empty as the API does not support pagination.
+    :type next_link: str
     """
 
     _attribute_map = {
@@ -301,31 +320,49 @@ class StorageAccountListResult(Model):
         self.value = kwargs.get('value', None)
         self.next_link = kwargs.get('next_link', None)
 
+
 class StorageAccountProperties(Model):
     """StorageAccountProperties.
 
-    :param provisioning_state: Gets the status of the storage account at the time the operation was called. Possible values include: 'Creating', 'ResolvingDNS', 'Succeeded'.
-	:type provisioning_state: str or ~storage.models.ProvisioningState
-    :param account_type: Gets or sets the account type. Possible values include: 'Standard_LRS', 'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
-	:type account_type: str or ~storage.models.AccountType
-    :param primary_endpoints: The URIs that are used to perform a retrieval of a public blob, queue or table object.
-	:type primary_endpoints: ~storage.models.Endpoints
-    :param primary_location: Gets the location of the primary for the storage account.
-	:type primary_location: str
-    :param status_of_primary: Gets the status indicating whether the primary location of the storage account is available or unavailable. Possible values include: 'Available', 'Unavailable'.
-	:type status_of_primary: str or ~storage.models.AccountStatus
-    :param last_geo_failover_time: Gets the timestamp of the most recent instance of a failover to the secondary location. Only the most recent timestamp is retained. This element is not returned if there has never been a failover instance. Only available if the accountType is StandardGRS or StandardRAGRS.
-	:type last_geo_failover_time: ~datetime.datetime
-    :param secondary_location: Gets the location of the geo replicated secondary for the storage account. Only available if the accountType is StandardGRS or StandardRAGRS.
-	:type secondary_location: str
-    :param status_of_secondary: Gets the status indicating whether the primary location of the storage account is available or unavailable. Possible values include: 'Available', 'Unavailable'.
-	:type status_of_secondary: str or ~storage.models.AccountStatus
-    :param creation_time: Gets the creation date and time of the storage account in UTC.
-	:type creation_time: ~datetime.datetime
-    :param custom_domain: The custom domain assigned to this storage account. This can be set via Update.
-	:type custom_domain: ~storage.models.CustomDomain
-    :param secondary_endpoints: The URIs that are used to perform a retrieval of a public blob, queue or table object.
-	:type secondary_endpoints: ~storage.models.Endpoints
+    :param provisioning_state: Gets the status of the storage account at the time
+     the operation was called. Possible values include: 'Creating', 'ResolvingDNS',
+     'Succeeded'.
+    :type provisioning_state: str or ~storage.models.ProvisioningState
+    :param account_type: Gets or sets the account type. Possible values include:
+     'Standard_LRS', 'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
+    :type account_type: str or ~storage.models.AccountType
+    :param primary_endpoints: The URIs that are used to perform a retrieval of a
+     public blob, queue or table object.
+    :type primary_endpoints: ~storage.models.Endpoints
+    :param primary_location: Gets the location of the primary for the storage
+     account.
+    :type primary_location: str
+    :param status_of_primary: Gets the status indicating whether the primary
+     location of the storage account is available or unavailable. Possible values
+     include: 'Available', 'Unavailable'.
+    :type status_of_primary: str or ~storage.models.AccountStatus
+    :param last_geo_failover_time: Gets the timestamp of the most recent instance of
+     a failover to the secondary location. Only the most recent timestamp is
+     retained. This element is not returned if there has never been a failover
+     instance. Only available if the accountType is StandardGRS or StandardRAGRS.
+    :type last_geo_failover_time: ~datetime.datetime
+    :param secondary_location: Gets the location of the geo replicated secondary for
+     the storage account. Only available if the accountType is StandardGRS or
+     StandardRAGRS.
+    :type secondary_location: str
+    :param status_of_secondary: Gets the status indicating whether the primary
+     location of the storage account is available or unavailable. Possible values
+     include: 'Available', 'Unavailable'.
+    :type status_of_secondary: str or ~storage.models.AccountStatus
+    :param creation_time: Gets the creation date and time of the storage account in
+     UTC.
+    :type creation_time: ~datetime.datetime
+    :param custom_domain: The custom domain assigned to this storage account. This
+     can be set via Update.
+    :type custom_domain: ~storage.models.CustomDomain
+    :param secondary_endpoints: The URIs that are used to perform a retrieval of a
+     public blob, queue or table object.
+    :type secondary_endpoints: ~storage.models.Endpoints
     """
 
     _attribute_map = {
@@ -356,11 +393,13 @@ class StorageAccountProperties(Model):
         self.custom_domain = kwargs.get('custom_domain', None)
         self.secondary_endpoints = kwargs.get('secondary_endpoints', None)
 
+
 class StorageAccountPropertiesCreateParameters(Model):
     """StorageAccountPropertiesCreateParameters.
 
-    :param account_type: Gets or sets the account type. Possible values include: 'Standard_LRS', 'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
-	:type account_type: str or ~storage.models.AccountType
+    :param account_type: Gets or sets the account type. Possible values include:
+     'Standard_LRS', 'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
+    :type account_type: str or ~storage.models.AccountType
     """
 
     _attribute_map = {
@@ -371,13 +410,16 @@ class StorageAccountPropertiesCreateParameters(Model):
         super(StorageAccountPropertiesCreateParameters, self).__init__(**kwargs)
         self.account_type = kwargs.get('account_type', None)
 
+
 class StorageAccountPropertiesUpdateParameters(Model):
     """StorageAccountPropertiesUpdateParameters.
 
-    :param account_type: Gets or sets the account type. Possible values include: 'Standard_LRS', 'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
-	:type account_type: str or ~storage.models.AccountType
-    :param custom_domain: The custom domain assigned to this storage account. This can be set via Update.
-	:type custom_domain: ~storage.models.CustomDomain
+    :param account_type: Gets or sets the account type. Possible values include:
+     'Standard_LRS', 'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
+    :type account_type: str or ~storage.models.AccountType
+    :param custom_domain: The custom domain assigned to this storage account. This
+     can be set via Update.
+    :type custom_domain: ~storage.models.CustomDomain
     """
 
     _attribute_map = {
@@ -390,11 +432,12 @@ class StorageAccountPropertiesUpdateParameters(Model):
         self.account_type = kwargs.get('account_type', None)
         self.custom_domain = kwargs.get('custom_domain', None)
 
+
 class StorageAccountRegenerateKeyParameters(Model):
     """StorageAccountRegenerateKeyParameters.
 
     :param key_name:  Possible values include: 'key1', 'key2'.
-	:type key_name: str or ~storage.models.KeyName
+    :type key_name: str or ~storage.models.KeyName
     """
 
     _attribute_map = {
@@ -405,6 +448,7 @@ class StorageAccountRegenerateKeyParameters(Model):
         super(StorageAccountRegenerateKeyParameters, self).__init__(**kwargs)
         self.key_name = kwargs.get('key_name', None)
 
+
 class StorageAccountUpdateParameters(Resource):
     """The parameters to update on the account.
 
@@ -413,17 +457,17 @@ class StorageAccountUpdateParameters(Resource):
     All required parameters must be populated in order to send to Azure.
 
     :ivar id: Resource Id.
-	:vartype id: str
+    :vartype id: str
     :ivar name: Resource name.
-	:vartype name: str
+    :vartype name: str
     :ivar type: Resource type.
-	:vartype type: str
+    :vartype type: str
     :param location: Required. Resource location.
-	:type location: str
+    :type location: str
     :param tags: A set of tags. Resource tags.
-	:type tags: dict[str, str]
+    :type tags: dict[str, str]
     :param properties:
-	:type properties: ~storage.models.StorageAccountPropertiesUpdateParameters
+    :type properties: ~storage.models.StorageAccountPropertiesUpdateParameters
     """
 
     _validation = {
@@ -446,11 +490,12 @@ class StorageAccountUpdateParameters(Resource):
         super(StorageAccountUpdateParameters, self).__init__(**kwargs)
         self.properties = kwargs.get('properties', None)
 
+
 class SubResource(Model):
     """SubResource.
 
     :param id: Resource Id.
-	:type id: str
+    :type id: str
     """
 
     _attribute_map = {
@@ -461,17 +506,21 @@ class SubResource(Model):
         super(SubResource, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
 
+
 class Usage(Model):
     """Describes Storage Resource Usage.
 
-    :param unit: Gets the unit of measurement. Possible values include: 'Count', 'Bytes', 'Seconds', 'Percent', 'CountsPerSecond', 'BytesPerSecond'.
-	:type unit: str or ~storage.models.UsageUnit
-    :param current_value: Gets the current count of the allocated resources in the subscription.
-	:type current_value: int
-    :param limit: Gets the maximum count of the resources that can be allocated in the subscription.
-	:type limit: int
+    :param unit: Gets the unit of measurement. Possible values include: 'Count',
+     'Bytes', 'Seconds', 'Percent', 'CountsPerSecond', 'BytesPerSecond'.
+    :type unit: str or ~storage.models.UsageUnit
+    :param current_value: Gets the current count of the allocated resources in the
+     subscription.
+    :type current_value: int
+    :param limit: Gets the maximum count of the resources that can be allocated in
+     the subscription.
+    :type limit: int
     :param name: The Usage Names.
-	:type name: ~storage.models.UsageName
+    :type name: ~storage.models.UsageName
     """
 
     _attribute_map = {
@@ -488,11 +537,12 @@ class Usage(Model):
         self.limit = kwargs.get('limit', None)
         self.name = kwargs.get('name', None)
 
+
 class UsageListResult(Model):
     """The List Usages operation response.
 
     :param value: Gets or sets the list Storage Resource Usages.
-	:type value: list[~storage.models.Usage]
+    :type value: list[~storage.models.Usage]
     """
 
     _attribute_map = {
@@ -503,13 +553,14 @@ class UsageListResult(Model):
         super(UsageListResult, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
 
+
 class UsageName(Model):
     """The Usage Names.
 
     :param value: Gets a string describing the resource name.
-	:type value: str
+    :type value: str
     :param localized_value: Gets a localized string describing the resource name.
-	:type localized_value: str
+    :type localized_value: str
     """
 
     _attribute_map = {
@@ -521,4 +572,3 @@ class UsageName(Model):
         super(UsageName, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
         self.localized_value = kwargs.get('localized_value', None)
-

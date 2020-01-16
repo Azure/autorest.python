@@ -16,18 +16,13 @@ class XMSErrorResponseExtensionsConfiguration(Configuration):
     """Configuration for XMSErrorResponseExtensions
     Note that all parameters used to create this instance are saved as instance
     attributes.
-
     """
 
     def __init__(self, **kwargs):
-
         super(XMSErrorResponseExtensionsConfiguration, self).__init__(**kwargs)
 
         self._configure(**kwargs)
-
         self.user_agent_policy.add_user_agent('azsdk-python-xmserrorresponseextensions/{}'.format(VERSION))
-
-
 
     def _configure(self, **kwargs):
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)

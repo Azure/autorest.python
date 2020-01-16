@@ -16,18 +16,13 @@ class AutoRestRFC1123DateTimeTestServiceConfiguration(Configuration):
     """Configuration for AutoRestRFC1123DateTimeTestService
     Note that all parameters used to create this instance are saved as instance
     attributes.
-
     """
 
     def __init__(self, **kwargs):
-
         super(AutoRestRFC1123DateTimeTestServiceConfiguration, self).__init__(**kwargs)
 
         self._configure(**kwargs)
-
         self.user_agent_policy.add_user_agent('azsdk-python-autorestrfc1123datetimetestservice/{}'.format(VERSION))
-
-
 
     def _configure(self, **kwargs):
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)

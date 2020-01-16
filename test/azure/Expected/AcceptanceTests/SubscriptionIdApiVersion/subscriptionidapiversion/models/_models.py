@@ -6,10 +6,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
-
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
+
 
 class ErrorException(HttpResponseError):
     """Server responded with exception of type: 'Error'.
@@ -40,9 +39,9 @@ class Error(Model):
     """Error.
 
     :param code:
-	:type code: int
+    :type code: int
     :param message:
-	:type message: str
+    :type message: str
     """
     _EXCEPTION_TYPE = ErrorException
 
@@ -56,13 +55,14 @@ class Error(Model):
         self.code = kwargs.get('code', None)
         self.message = kwargs.get('message', None)
 
+
 class SampleResourceGroup(Model):
     """SampleResourceGroup.
 
     :param name: resource group name 'testgroup101'.
-	:type name: str
+    :type name: str
     :param location: resource group location 'West US'.
-	:type location: str
+    :type location: str
     """
 
     _attribute_map = {
@@ -74,4 +74,3 @@ class SampleResourceGroup(Model):
         super(SampleResourceGroup, self).__init__(**kwargs)
         self.name = kwargs.get('name', None)
         self.location = kwargs.get('location', None)
-

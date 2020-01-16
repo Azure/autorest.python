@@ -6,10 +6,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import List, Optional
+from typing import List
 
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
+
 
 class ChildProduct(Model):
     """The product documentation.
@@ -19,9 +20,9 @@ class ChildProduct(Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar const_property: Required. Constant string. Default value: "constant".
-	:vartype const_property: str
+    :vartype const_property: str
     :param count: Count.
-	:type count: int
+    :type count: int
     """
 
     _validation = {
@@ -35,9 +36,10 @@ class ChildProduct(Model):
 
     const_property = "constant"
 
-    def __init__(self, *, count: Optional[int] = None, **kwargs) -> None:
+    def __init__(self, *, count: int=None, **kwargs) -> None:
         super(ChildProduct, self).__init__(**kwargs)
         self.count = count
+
 
 class ConstantProduct(Model):
     """The product documentation.
@@ -47,9 +49,9 @@ class ConstantProduct(Model):
     All required parameters must be populated in order to send to Azure.
 
     :ivar const_property: Required. Constant string. Default value: "constant".
-	:vartype const_property: str
+    :vartype const_property: str
     :ivar const_property2: Required. Constant string2. Default value: "constant2".
-	:vartype const_property2: str
+    :vartype const_property2: str
     """
 
     _validation = {
@@ -67,6 +69,7 @@ class ConstantProduct(Model):
 
     def __init__(self, **kwargs) -> None:
         super(ConstantProduct, self).__init__(**kwargs)
+
 
 class ErrorException(HttpResponseError):
     """Server responded with exception of type: 'Error'.
@@ -97,11 +100,11 @@ class Error(Model):
     """Error.
 
     :param code:
-	:type code: int
+    :type code: int
     :param message:
-	:type message: str
+    :type message: str
     :param fields:
-	:type fields: str
+    :type fields: str
     """
     _EXCEPTION_TYPE = ErrorException
 
@@ -111,11 +114,12 @@ class Error(Model):
         'fields': {'key': 'fields', 'type': 'str'},
     }
 
-    def __init__(self, *, code: Optional[int] = None, message: Optional[str] = None, fields: Optional[str] = None, **kwargs) -> None:
+    def __init__(self, *, code: int=None, message: str=None, fields: str=None, **kwargs) -> None:
         super(Error, self).__init__(**kwargs)
         self.code = code
         self.message = message
         self.fields = fields
+
 
 class Product(Model):
     """The product documentation.
@@ -125,21 +129,22 @@ class Product(Model):
     All required parameters must be populated in order to send to Azure.
 
     :param display_names: Non required array of unique items from 0 to 6 elements.
-	:type display_names: list[str]
+    :type display_names: list[str]
     :param capacity: Non required int betwen 0 and 100 exclusive.
-	:type capacity: int
+    :type capacity: int
     :param image: Image URL representing the product.
-	:type image: str
+    :type image: str
     :param child: Required. The product documentation.
-	:type child: ~validation.models.ChildProduct
+    :type child: ~validation.models.ChildProduct
     :param const_child: Required. The product documentation.
-	:type const_child: ~validation.models.ConstantProduct
+    :type const_child: ~validation.models.ConstantProduct
     :ivar const_int: Required. Constant int. Default value: "0".
-	:vartype const_int: float
+    :vartype const_int: float
     :ivar const_string: Required. Constant string. Default value: "constant".
-	:vartype const_string: str
-    :ivar const_string_as_enum: Constant string as Enum. Default value: "constant_string_as_enum".
-	:vartype const_string_as_enum: str
+    :vartype const_string: str
+    :ivar const_string_as_enum: Constant string as Enum. Default value:
+     "constant_string_as_enum".
+    :vartype const_string_as_enum: str
     """
 
     _validation = {
@@ -168,11 +173,10 @@ class Product(Model):
     const_string = "constant"
     const_string_as_enum = "constant_string_as_enum"
 
-    def __init__(self, *, child: "ChildProduct", const_child: "ConstantProduct", display_names: Optional[List[str]] = None, capacity: Optional[int] = None, image: Optional[str] = None, **kwargs) -> None:
+    def __init__(self, *, child: "ChildProduct", const_child: "ConstantProduct", display_names: List[str]=None, capacity: int=None, image: str=None, **kwargs) -> None:
         super(Product, self).__init__(**kwargs)
         self.display_names = display_names
         self.capacity = capacity
         self.image = image
         self.child = child
         self.const_child = const_child
-

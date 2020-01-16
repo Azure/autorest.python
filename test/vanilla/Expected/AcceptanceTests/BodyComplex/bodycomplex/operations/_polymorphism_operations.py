@@ -9,7 +9,6 @@ import warnings
 
 from azure.core.exceptions import map_error
 from azure.core.tracing.decorator import distributed_trace
-from msrest.serialization import Model
 
 from .. import models
 
@@ -34,13 +33,12 @@ class PolymorphismOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace
     def get_valid(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "Fish"
         """Get complex types that are polymorphic.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Fish or the result of cls(response)
@@ -80,11 +78,9 @@ class PolymorphismOperations(object):
 
     @distributed_trace
     def put_valid(self, complex_body, cls=None, **kwargs):
-        # type: ("Fish", Optional[Any], **Any) -> None
         """Put complex types that are polymorphic.
 
         FIXME: add operation.summary
-
 
         :param complex_body: Please put a salmon that looks like this:
     {
@@ -123,7 +119,6 @@ class PolymorphismOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -159,11 +154,9 @@ class PolymorphismOperations(object):
 
     @distributed_trace
     def get_dot_syntax(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "DotFish"
         """Get complex types that are polymorphic, JSON key contains a dot.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DotFish or the result of cls(response)
@@ -203,11 +196,9 @@ class PolymorphismOperations(object):
 
     @distributed_trace
     def get_composed_with_discriminator(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "DotFishMarket"
         """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, with discriminator specified. Deserialization must NOT fail and use the discriminator type specified on the wire..
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DotFishMarket or the result of cls(response)
@@ -247,11 +238,9 @@ class PolymorphismOperations(object):
 
     @distributed_trace
     def get_composed_without_discriminator(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "DotFishMarket"
         """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, without discriminator specified on wire. Deserialization must NOT fail and use the explicit type of the property..
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DotFishMarket or the result of cls(response)
@@ -291,11 +280,9 @@ class PolymorphismOperations(object):
 
     @distributed_trace
     def get_complicated(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "Salmon"
         """Get complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Salmon or the result of cls(response)
@@ -335,18 +322,15 @@ class PolymorphismOperations(object):
 
     @distributed_trace
     def put_complicated(self, complex_body, cls=None, **kwargs):
-        # type: ("Salmon", Optional[Any], **Any) -> None
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties.
 
         FIXME: add operation.summary
-
 
         :param complex_body: 
         :type complex_body: ~bodycomplex.models.Salmon
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -382,11 +366,9 @@ class PolymorphismOperations(object):
 
     @distributed_trace
     def put_missing_discriminator(self, complex_body, cls=None, **kwargs):
-        # type: ("Salmon", Optional[Any], **Any) -> "Salmon"
         """Put complex types that are polymorphic, omitting the discriminator.
 
         FIXME: add operation.summary
-
 
         :param complex_body: 
         :type complex_body: ~bodycomplex.models.Salmon
@@ -432,11 +414,9 @@ class PolymorphismOperations(object):
 
     @distributed_trace
     def put_valid_missing_required(self, complex_body, cls=None, **kwargs):
-        # type: ("Fish", Optional[Any], **Any) -> None
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the request should not be allowed from the client.
 
         FIXME: add operation.summary
-
 
         :param complex_body: Please put a salmon that looks like this:
     {
@@ -475,7 +455,6 @@ class PolymorphismOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -508,4 +487,3 @@ class PolymorphismOperations(object):
           return cls(response, None, {})
 
     put_valid_missing_required.metadata = {'url': '/complex/polymorphism/missingrequired/invalid'}
-

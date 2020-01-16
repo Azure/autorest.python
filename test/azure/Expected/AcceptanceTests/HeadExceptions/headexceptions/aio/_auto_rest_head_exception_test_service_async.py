@@ -6,8 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
-
 from azure.mgmt.core import AsyncARMPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -18,7 +16,6 @@ from .operations_async import HeadExceptionOperations
 class AutoRestHeadExceptionTestService(object):
     """Test Infrastructure for AutoRest
 
-
     :ivar head_exception: HeadExceptionOperations operations
     :vartype head_exception: headexceptions.aio.operations_async.HeadExceptionOperations
     :param credential: Credential needed for the client to connect to Azure.
@@ -26,7 +23,7 @@ class AutoRestHeadExceptionTestService(object):
     :param str base_url: Service URL
     """
 
-    def __init__(self, credential: "TokenCredential", base_url: Optional[str] = None, **kwargs):
+    def __init__(self, credential, base_url=None, **kwargs):
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestHeadExceptionTestServiceConfiguration(credential, **kwargs)

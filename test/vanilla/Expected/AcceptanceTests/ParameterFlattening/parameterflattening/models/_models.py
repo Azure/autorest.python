@@ -6,9 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Dict
-
 from msrest.serialization import Model
+
 
 class AvailabilitySetUpdateParameters(Model):
     """AvailabilitySetUpdateParameters.
@@ -16,7 +15,7 @@ class AvailabilitySetUpdateParameters(Model):
     All required parameters must be populated in order to send to Azure.
 
     :param tags: Required. A set of tags. A description about the set of tags.
-	:type tags: dict[str, str]
+    :type tags: dict[str, str]
     """
 
     _validation = {
@@ -30,4 +29,3 @@ class AvailabilitySetUpdateParameters(Model):
     def __init__(self, **kwargs):
         super(AvailabilitySetUpdateParameters, self).__init__(**kwargs)
         self.tags = kwargs.get('tags', None)
-

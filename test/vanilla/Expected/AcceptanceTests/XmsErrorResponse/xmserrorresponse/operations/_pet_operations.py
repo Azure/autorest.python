@@ -33,13 +33,12 @@ class PetOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace
     def get_pet_by_id(self, pet_id, cls=None, **kwargs):
-        # type: (str, Optional[Any], **Any) -> Union["Pet", None]
         """Gets pets by id..
 
         FIXME: add operation.summary
-
 
         :param pet_id: pet id
         :type pet_id: str
@@ -92,11 +91,9 @@ class PetOperations(object):
 
     @distributed_trace
     def do_something(self, what_action, cls=None, **kwargs):
-        # type: (str, Optional[Any], **Any) -> "PetAction"
         """Asks pet to do something.
 
         FIXME: add operation.summary
-
 
         :param what_action: what action the pet should do
         :type what_action: str
@@ -142,4 +139,3 @@ class PetOperations(object):
 
         return deserialized
     do_something.metadata = {'url': '/errorStatusCodes/Pets/doSomething/{whatAction}'}
-

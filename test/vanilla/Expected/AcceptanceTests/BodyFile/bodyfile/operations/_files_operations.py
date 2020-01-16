@@ -33,18 +33,16 @@ class FilesOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace
     def get_file(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
         """Get file.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyfile.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -80,16 +78,13 @@ class FilesOperations(object):
 
     @distributed_trace
     def get_file_large(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
         """Get a large file.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyfile.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -125,16 +120,13 @@ class FilesOperations(object):
 
     @distributed_trace
     def get_empty_file(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
         """Get empty file.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyfile.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -167,4 +159,3 @@ class FilesOperations(object):
 
         return deserialized
     get_empty_file.metadata = {'url': '/files/stream/empty'}
-

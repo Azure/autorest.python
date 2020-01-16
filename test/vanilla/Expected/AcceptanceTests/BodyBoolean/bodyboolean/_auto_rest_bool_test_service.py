@@ -17,14 +17,12 @@ from . import models
 class AutoRestBoolTestService(object):
     """Test Infrastructure for AutoRest
 
-
     :ivar bool_model: BoolOperations operations
     :vartype bool_model: bodyboolean.operations.BoolOperations
     :param str base_url: Service URL
     """
 
     def __init__(self, base_url=None, **kwargs):
-        # type: (Optional[str], **Any) -> None
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestBoolTestServiceConfiguration(**kwargs)
@@ -38,14 +36,11 @@ class AutoRestBoolTestService(object):
             self._client, self._config, self._serialize, self._deserialize)
 
     def close(self):
-        # type: () -> None
         self._client.close()
 
     def __enter__(self):
-        # type: () -> AutoRestBoolTestService
         self._client.__enter__()
         return self
 
     def __exit__(self, *exc_details):
-        # type: (Any) -> None
         self._client.__exit__(*exc_details)

@@ -10,13 +10,14 @@ from typing import Dict
 
 from msrest.serialization import Model
 
+
 class AvailabilitySetUpdateParameters(Model):
     """AvailabilitySetUpdateParameters.
 
     All required parameters must be populated in order to send to Azure.
 
     :param tags: Required. A set of tags. A description about the set of tags.
-	:type tags: dict[str, str]
+    :type tags: dict[str, str]
     """
 
     _validation = {
@@ -30,4 +31,3 @@ class AvailabilitySetUpdateParameters(Model):
     def __init__(self, *, tags: Dict[str, str], **kwargs) -> None:
         super(AvailabilitySetUpdateParameters, self).__init__(**kwargs)
         self.tags = tags
-

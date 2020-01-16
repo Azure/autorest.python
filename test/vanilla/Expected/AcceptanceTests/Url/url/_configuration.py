@@ -6,8 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
-
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
@@ -26,19 +24,14 @@ class AutoRestUrlTestServiceConfiguration(Configuration):
     """
 
     def __init__(self, global_string_path, global_string_query=None, **kwargs):
-        # type: (str, str, **Any) -> None
         if global_string_path is None:
             raise ValueError("Parameter 'global_string_path' must not be None.")
-
         super(AutoRestUrlTestServiceConfiguration, self).__init__(**kwargs)
 
         self.global_string_path = global_string_path
         self.global_string_query = global_string_query
         self._configure(**kwargs)
-
         self.user_agent_policy.add_user_agent('azsdk-python-autoresturltestservice/{}'.format(VERSION))
-
-
 
     def _configure(self, **kwargs):
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)

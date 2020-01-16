@@ -6,8 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
-
 from azure.core import AsyncPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -19,13 +17,12 @@ from .. import models
 class AutoRestSwaggerBATFileService(object):
     """Test Infrastructure for AutoRest Swagger BAT
 
-
     :ivar files: FilesOperations operations
     :vartype files: bodyfile.aio.operations_async.FilesOperations
     :param str base_url: Service URL
     """
 
-    def __init__(self, base_url: Optional[str] = None, **kwargs):
+    def __init__(self, base_url=None, **kwargs):
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestSwaggerBATFileServiceConfiguration(**kwargs)

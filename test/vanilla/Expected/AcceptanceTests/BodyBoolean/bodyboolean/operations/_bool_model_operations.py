@@ -33,13 +33,12 @@ class BoolOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace
     def get_true(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> bool
         """Get true Boolean value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -79,16 +78,13 @@ class BoolOperations(object):
 
     @distributed_trace
     def put_true(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
         """Set Boolean value true.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyboolean.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -125,11 +121,9 @@ class BoolOperations(object):
 
     @distributed_trace
     def get_false(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> bool
         """Get false Boolean value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -169,16 +163,13 @@ class BoolOperations(object):
 
     @distributed_trace
     def put_false(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
         """Set Boolean value false.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyboolean.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -215,11 +206,9 @@ class BoolOperations(object):
 
     @distributed_trace
     def get_null(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> bool
         """Get null Boolean value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -259,11 +248,9 @@ class BoolOperations(object):
 
     @distributed_trace
     def get_invalid(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> bool
         """Get invalid Boolean value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -300,4 +287,3 @@ class BoolOperations(object):
 
         return deserialized
     get_invalid.metadata = {'url': '/bool/invalid'}
-

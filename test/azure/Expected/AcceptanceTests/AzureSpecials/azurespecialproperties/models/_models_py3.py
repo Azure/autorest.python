@@ -6,10 +6,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
-
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
+
 
 class ErrorException(HttpResponseError):
     """Server responded with exception of type: 'Error'.
@@ -44,11 +43,11 @@ class Error(Model):
     All required parameters must be populated in order to send to Azure.
 
     :param status:
-	:type status: int
+    :type status: int
     :ivar constant_id: Required.  Default value: "1".
-	:vartype constant_id: float
+    :vartype constant_id: float
     :param message:
-	:type message: str
+    :type message: str
     """
     _EXCEPTION_TYPE = ErrorException
 
@@ -64,18 +63,19 @@ class Error(Model):
 
     constant_id = 1
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs) -> None:
+    def __init__(self, *, status: int=None, message: str=None, **kwargs) -> None:
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
+
 
 class OdataFilter(Model):
     """OdataFilter.
 
     :param id:
-	:type id: int
+    :type id: int
     :param name:
-	:type name: str
+    :type name: str
     """
 
     _attribute_map = {
@@ -83,8 +83,7 @@ class OdataFilter(Model):
         'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, *, id: Optional[int] = None, name: Optional[str] = None, **kwargs) -> None:
+    def __init__(self, *, id: int=None, name: str=None, **kwargs) -> None:
         super(OdataFilter, self).__init__(**kwargs)
         self.id = id
         self.name = name
-

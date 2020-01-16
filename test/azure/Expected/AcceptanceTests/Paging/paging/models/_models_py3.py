@@ -6,17 +6,18 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import List, Optional, Union
+from typing import List, Union
 
 from msrest.serialization import Model
+
 
 class OdataProductResult(Model):
     """OdataProductResult.
 
     :param values:
-	:type values: list[~paging.models.Product]
+    :type values: list[~paging.models.Product]
     :param odatanext_link:
-	:type odatanext_link: str
+    :type odatanext_link: str
     """
 
     _attribute_map = {
@@ -24,48 +25,53 @@ class OdataProductResult(Model):
         'odatanext_link': {'key': 'odata\\.nextLink', 'type': 'str'},
     }
 
-    def __init__(self, *, values: Optional[List["Product"]] = None, odatanext_link: Optional[str] = None, **kwargs) -> None:
+    def __init__(self, *, values: List["Product"]=None, odatanext_link: str=None, **kwargs) -> None:
         super(OdataProductResult, self).__init__(**kwargs)
         self.values = values
         self.odatanext_link = odatanext_link
 
+
 class OperationResult(Model):
     """OperationResult.
 
-    :param status: The status of the request. Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'.
-	:type status: str or ~paging.models.OperationResultStatus
+    :param status: The status of the request. Possible values include: 'Succeeded',
+     'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
+     'Deleting', 'Deleted', 'OK'.
+    :type status: str or ~paging.models.OperationResultStatus
     """
 
     _attribute_map = {
         'status': {'key': 'status', 'type': 'str'},
     }
 
-    def __init__(self, *, status: Optional[Union[str, "OperationResultStatus"]] = None, **kwargs) -> None:
+    def __init__(self, *, status: Union[str, "OperationResultStatus"]=None, **kwargs) -> None:
         super(OperationResult, self).__init__(**kwargs)
         self.status = status
+
 
 class Product(Model):
     """Product.
 
     :param properties:
-	:type properties: ~paging.models.ProductProperties
+    :type properties: ~paging.models.ProductProperties
     """
 
     _attribute_map = {
         'properties': {'key': 'properties', 'type': 'ProductProperties'},
     }
 
-    def __init__(self, *, properties: Optional["ProductProperties"] = None, **kwargs) -> None:
+    def __init__(self, *, properties: "ProductProperties"=None, **kwargs) -> None:
         super(Product, self).__init__(**kwargs)
         self.properties = properties
+
 
 class ProductProperties(Model):
     """ProductProperties.
 
     :param id:
-	:type id: int
+    :type id: int
     :param name:
-	:type name: str
+    :type name: str
     """
 
     _attribute_map = {
@@ -73,18 +79,19 @@ class ProductProperties(Model):
         'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, *, id: Optional[int] = None, name: Optional[str] = None, **kwargs) -> None:
+    def __init__(self, *, id: int=None, name: str=None, **kwargs) -> None:
         super(ProductProperties, self).__init__(**kwargs)
         self.id = id
         self.name = name
+
 
 class ProductResult(Model):
     """ProductResult.
 
     :param values:
-	:type values: list[~paging.models.Product]
+    :type values: list[~paging.models.Product]
     :param next_link:
-	:type next_link: str
+    :type next_link: str
     """
 
     _attribute_map = {
@@ -92,18 +99,19 @@ class ProductResult(Model):
         'next_link': {'key': 'nextLink', 'type': 'str'},
     }
 
-    def __init__(self, *, values: Optional[List["Product"]] = None, next_link: Optional[str] = None, **kwargs) -> None:
+    def __init__(self, *, values: List["Product"]=None, next_link: str=None, **kwargs) -> None:
         super(ProductResult, self).__init__(**kwargs)
         self.values = values
         self.next_link = next_link
+
 
 class ProductResultValue(Model):
     """ProductResultValue.
 
     :param value:
-	:type value: list[~paging.models.Product]
+    :type value: list[~paging.models.Product]
     :param next_link:
-	:type next_link: str
+    :type next_link: str
     """
 
     _attribute_map = {
@@ -111,8 +119,7 @@ class ProductResultValue(Model):
         'next_link': {'key': 'nextLink', 'type': 'str'},
     }
 
-    def __init__(self, *, value: Optional[List["Product"]] = None, next_link: Optional[str] = None, **kwargs) -> None:
+    def __init__(self, *, value: List["Product"]=None, next_link: str=None, **kwargs) -> None:
         super(ProductResultValue, self).__init__(**kwargs)
         self.value = value
         self.next_link = next_link
-

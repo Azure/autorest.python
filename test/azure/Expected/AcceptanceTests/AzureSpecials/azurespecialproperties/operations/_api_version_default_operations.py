@@ -34,18 +34,16 @@ class ApiVersionDefaultOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace
     def get_method_global_valid(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
         """GET method with api-version modeled in global settings..
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azurespecialproperties.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -78,16 +76,13 @@ class ApiVersionDefaultOperations(object):
 
     @distributed_trace
     def get_method_global_not_provided_valid(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
         """GET method with api-version modeled in global settings..
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azurespecialproperties.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -120,16 +115,13 @@ class ApiVersionDefaultOperations(object):
 
     @distributed_trace
     def get_path_global_valid(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
         """GET method with api-version modeled in global settings..
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azurespecialproperties.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -162,16 +154,13 @@ class ApiVersionDefaultOperations(object):
 
     @distributed_trace
     def get_swagger_global_valid(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
         """GET method with api-version modeled in global settings..
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azurespecialproperties.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -201,4 +190,3 @@ class ApiVersionDefaultOperations(object):
           return cls(response, None, {})
 
     get_swagger_global_valid.metadata = {'url': '/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview'}
-

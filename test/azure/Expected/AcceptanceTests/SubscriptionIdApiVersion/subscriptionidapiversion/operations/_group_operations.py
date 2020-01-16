@@ -34,13 +34,12 @@ class GroupOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace
     def get_sample_resource_group(self, resource_group_name, cls=None, **kwargs):
-        # type: (str, Optional[Any], **Any) -> "SampleResourceGroup"
         """Provides a resouce group with name 'testgroup101' and location 'West US'..
 
         FIXME: add operation.summary
-
 
         :param resource_group_name: Resource Group name 'testgroup101'.
         :type resource_group_name: str
@@ -85,4 +84,3 @@ class GroupOperations(object):
 
         return deserialized
     get_sample_resource_group.metadata = {'url': '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}'}
-

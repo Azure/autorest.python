@@ -16,19 +16,13 @@ class AutoRestDateTestServiceConfiguration(Configuration):
     """Configuration for AutoRestDateTestService
     Note that all parameters used to create this instance are saved as instance
     attributes.
-
     """
 
     def __init__(self, **kwargs):
-        # type: (**Any) -> None
-
         super(AutoRestDateTestServiceConfiguration, self).__init__(**kwargs)
 
         self._configure(**kwargs)
-
         self.user_agent_policy.add_user_agent('azsdk-python-autorestdatetestservice/{}'.format(VERSION))
-
-
 
     def _configure(self, **kwargs):
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)

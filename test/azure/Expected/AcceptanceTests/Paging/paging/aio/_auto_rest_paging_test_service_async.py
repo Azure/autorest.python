@@ -6,8 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
-
 from azure.mgmt.core import AsyncARMPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -19,7 +17,6 @@ from .. import models
 class AutoRestPagingTestService(object):
     """Long-running Operation for AutoRest
 
-
     :ivar paging: PagingOperations operations
     :vartype paging: paging.aio.operations_async.PagingOperations
     :param credential: Credential needed for the client to connect to Azure.
@@ -27,7 +24,7 @@ class AutoRestPagingTestService(object):
     :param str base_url: Service URL
     """
 
-    def __init__(self, credential: "TokenCredential", base_url: Optional[str] = None, **kwargs):
+    def __init__(self, credential, base_url=None, **kwargs):
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestPagingTestServiceConfiguration(credential, **kwargs)

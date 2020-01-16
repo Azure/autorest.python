@@ -17,7 +17,6 @@ from . import models
 class MicrosoftAzureTestUrl(object):
     """Some cool documentation.
 
-
     :ivar group: GroupOperations operations
     :vartype group: subscriptionidapiversion.operations.GroupOperations
     :param credential: Credential needed for the client to connect to Azure.
@@ -28,7 +27,6 @@ class MicrosoftAzureTestUrl(object):
     """
 
     def __init__(self, credential, subscription_id, base_url=None, **kwargs):
-        # type: ("TokenCredential", str, Optional[str], **Any) -> None
         if not base_url:
             base_url = 'https://management.azure.com'
         self._config = MicrosoftAzureTestUrlConfiguration(credential, subscription_id, **kwargs)
@@ -42,14 +40,11 @@ class MicrosoftAzureTestUrl(object):
             self._client, self._config, self._serialize, self._deserialize)
 
     def close(self):
-        # type: () -> None
         self._client.close()
 
     def __enter__(self):
-        # type: () -> MicrosoftAzureTestUrl
         self._client.__enter__()
         return self
 
     def __exit__(self, *exc_details):
-        # type: (Any) -> None
         self._client.__exit__(*exc_details)

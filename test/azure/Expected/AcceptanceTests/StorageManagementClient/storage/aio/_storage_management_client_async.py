@@ -6,8 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
-
 from azure.mgmt.core import AsyncARMPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -20,7 +18,6 @@ from .. import models
 class StorageManagementClient(object):
     """
 
-
     :ivar storage_accounts: StorageAccountsOperations operations
     :vartype storage_accounts: storage.aio.operations_async.StorageAccountsOperations
     :ivar usage: UsageOperations operations
@@ -32,7 +29,7 @@ class StorageManagementClient(object):
     :param str base_url: Service URL
     """
 
-    def __init__(self, credential: "TokenCredential", subscription_id: str, base_url: Optional[str] = None, **kwargs):
+    def __init__(self, credential, subscription_id, base_url=None, **kwargs):
         if not base_url:
             base_url = 'https://management.azure.com'
         self._config = StorageManagementClientConfiguration(credential, subscription_id, **kwargs)

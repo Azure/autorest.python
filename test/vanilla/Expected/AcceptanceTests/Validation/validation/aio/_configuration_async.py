@@ -21,18 +21,14 @@ class AutoRestValidationTestConfiguration(Configuration):
     :type subscription_id: str
     """
 
-    def __init__(self, subscription_id: str, **kwargs):
+    def __init__(self, subscription_id, **kwargs):
         if subscription_id is None:
             raise ValueError("Parameter 'subscription_id' must not be None.")
-
         super(AutoRestValidationTestConfiguration, self).__init__(**kwargs)
 
         self.subscription_id = subscription_id
         self._configure(**kwargs)
-
         self.user_agent_policy.add_user_agent('azsdk-python-autorestvalidationtest/{}'.format(VERSION))
-
-
 
     def _configure(self, **kwargs):
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)

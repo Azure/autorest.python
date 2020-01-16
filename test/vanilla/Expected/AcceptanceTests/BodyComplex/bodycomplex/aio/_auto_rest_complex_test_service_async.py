@@ -6,8 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
-
 from azure.core import AsyncPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -26,7 +24,6 @@ from .. import models
 
 class AutoRestComplexTestService(object):
     """Test Infrastructure for AutoRest
-
 
     :ivar basic: BasicOperations operations
     :vartype basic: bodycomplex.aio.operations_async.BasicOperations
@@ -49,7 +46,7 @@ class AutoRestComplexTestService(object):
     :param str base_url: Service URL
     """
 
-    def __init__(self, base_url: Optional[str] = None, **kwargs):
+    def __init__(self, base_url=None, **kwargs):
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestComplexTestServiceConfiguration(**kwargs)

@@ -6,20 +6,23 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
+
 
 class BaseProduct(Model):
     """The product documentation.
 
     All required parameters must be populated in order to send to Azure.
 
-    :param product_id: Required. Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
-	:type product_id: str
+    :param product_id: Required. Unique identifier representing a specific product
+     for a given latitude & longitude. For example, uberX in San Francisco will have
+     a different product_id than uberX in Los Angeles.
+    :type product_id: str
     :param description: Description of product.
-	:type description: str
+    :type description: str
     """
 
     _validation = {
@@ -31,10 +34,11 @@ class BaseProduct(Model):
         'description': {'key': 'base_product_description', 'type': 'str'},
     }
 
-    def __init__(self, *, product_id: str, description: Optional[str] = None, **kwargs) -> None:
+    def __init__(self, *, product_id: str, description: str=None, **kwargs) -> None:
         super(BaseProduct, self).__init__(**kwargs)
         self.product_id = product_id
         self.description = description
+
 
 class ErrorException(HttpResponseError):
     """Server responded with exception of type: 'Error'.
@@ -65,11 +69,11 @@ class Error(Model):
     """Error.
 
     :param status:
-	:type status: int
+    :type status: int
     :param message:
-	:type message: str
+    :type message: str
     :param parent_error:
-	:type parent_error: ~modelflattening.models.Error
+    :type parent_error: ~modelflattening.models.Error
     """
     _EXCEPTION_TYPE = ErrorException
 
@@ -79,11 +83,12 @@ class Error(Model):
         'parent_error': {'key': 'parentError', 'type': 'Error'},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, parent_error: Optional["Error"] = None, **kwargs) -> None:
+    def __init__(self, *, status: int=None, message: str=None, parent_error: "Error"=None, **kwargs) -> None:
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
         self.parent_error = parent_error
+
 
 class Resource(Model):
     """Resource.
@@ -91,15 +96,16 @@ class Resource(Model):
     Variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar id: Resource Id.
-	:vartype id: str
+    :vartype id: str
     :ivar type: Resource Type.
-	:vartype type: str
-    :param tags: A set of tags. Dictionary of <components·schemas·resource·properties·tags·additionalproperties>.
-	:type tags: dict[str, str]
+    :vartype type: str
+    :param tags: A set of tags. Dictionary of
+     <components·schemas·resource·properties·tags·additionalproperties>.
+    :type tags: dict[str, str]
     :param location: Resource Location.
-	:type location: str
+    :type location: str
     :ivar name: Resource Name.
-	:vartype name: str
+    :vartype name: str
     """
 
     _validation = {
@@ -116,7 +122,7 @@ class Resource(Model):
         'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, *, tags: Optional[Dict[str, str]] = None, location: Optional[str] = None, **kwargs) -> None:
+    def __init__(self, *, tags: Dict[str, str]=None, location: str=None, **kwargs) -> None:
         super(Resource, self).__init__(**kwargs)
         self.id = None
         self.type = None
@@ -124,23 +130,25 @@ class Resource(Model):
         self.location = location
         self.name = None
 
+
 class FlattenedProduct(Resource):
     """Flattened product.
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar id: Resource Id.
-	:vartype id: str
+    :vartype id: str
     :ivar type: Resource Type.
-	:vartype type: str
-    :param tags: A set of tags. Dictionary of <components·schemas·resource·properties·tags·additionalproperties>.
-	:type tags: dict[str, str]
+    :vartype type: str
+    :param tags: A set of tags. Dictionary of
+     <components·schemas·resource·properties·tags·additionalproperties>.
+    :type tags: dict[str, str]
     :param location: Resource Location.
-	:type location: str
+    :type location: str
     :ivar name: Resource Name.
-	:vartype name: str
+    :vartype name: str
     :param properties:
-	:type properties: ~modelflattening.models.FlattenedProductProperties
+    :type properties: ~modelflattening.models.FlattenedProductProperties
     """
 
     _validation = {
@@ -158,9 +166,10 @@ class FlattenedProduct(Resource):
         'properties': {'key': 'properties', 'type': 'FlattenedProductProperties'},
     }
 
-    def __init__(self, *, tags: Optional[Dict[str, str]] = None, location: Optional[str] = None, properties: Optional["FlattenedProductProperties"] = None, **kwargs) -> None:
+    def __init__(self, *, tags: Dict[str, str]=None, location: str=None, properties: "FlattenedProductProperties"=None, **kwargs) -> None:
         super(FlattenedProduct, self).__init__(tags=tags, location=location, **kwargs)
         self.properties = properties
+
 
 class FlattenedProductProperties(Model):
     """FlattenedProductProperties.
@@ -168,13 +177,16 @@ class FlattenedProductProperties(Model):
     Variables are only populated by the server, and will be ignored when sending a request.
 
     :param pname:
-	:type pname: str
+    :type pname: str
     :param type:
-	:type type: str
-    :ivar provisioning_state_values:  Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'.
-	:vartype provisioning_state_values: str or ~modelflattening.models.FlattenedProductPropertiesProvisioningStateValues
+    :type type: str
+    :ivar provisioning_state_values:  Possible values include: 'Succeeded',
+     'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
+     'Deleting', 'Deleted', 'OK'.
+    :vartype provisioning_state_values: str or
+     ~modelflattening.models.FlattenedProductPropertiesProvisioningStateValues
     :param provisioning_state:
-	:type provisioning_state: str
+    :type provisioning_state: str
     """
 
     _validation = {
@@ -188,35 +200,37 @@ class FlattenedProductProperties(Model):
         'provisioning_state': {'key': 'provisioningState', 'type': 'str'},
     }
 
-    def __init__(self, *, pname: Optional[str] = None, type: Optional[str] = None, provisioning_state: Optional[str] = None, **kwargs) -> None:
+    def __init__(self, *, pname: str=None, type: str=None, provisioning_state: str=None, **kwargs) -> None:
         super(FlattenedProductProperties, self).__init__(**kwargs)
         self.pname = pname
         self.type = type
         self.provisioning_state_values = None
         self.provisioning_state = provisioning_state
 
+
 class GenericUrl(Model):
     """The Generic URL.
 
     :param generic_value: Generic URL value.
-	:type generic_value: str
+    :type generic_value: str
     """
 
     _attribute_map = {
         'generic_value': {'key': 'generic_value', 'type': 'str'},
     }
 
-    def __init__(self, *, generic_value: Optional[str] = None, **kwargs) -> None:
+    def __init__(self, *, generic_value: str=None, **kwargs) -> None:
         super(GenericUrl, self).__init__(**kwargs)
         self.generic_value = generic_value
+
 
 class ProductUrl(GenericUrl):
     """The product URL.
 
     :param generic_value: Generic URL value.
-	:type generic_value: str
+    :type generic_value: str
     :param odatavalue: URL value.
-	:type odatavalue: str
+    :type odatavalue: str
     """
 
     _attribute_map = {
@@ -224,34 +238,36 @@ class ProductUrl(GenericUrl):
         'odatavalue': {'key': '@odata\\.value', 'type': 'str'},
     }
 
-    def __init__(self, *, generic_value: Optional[str] = None, odatavalue: Optional[str] = None, **kwargs) -> None:
+    def __init__(self, *, generic_value: str=None, odatavalue: str=None, **kwargs) -> None:
         super(ProductUrl, self).__init__(generic_value=generic_value, **kwargs)
         self.odatavalue = odatavalue
+
 
 class ProductWrapper(Model):
     """The wrapped produc.
 
     :param property: The wrapped produc.
-	:type property: ~modelflattening.models.WrappedProduct
+    :type property: ~modelflattening.models.WrappedProduct
     """
 
     _attribute_map = {
         'property': {'key': 'property', 'type': 'WrappedProduct'},
     }
 
-    def __init__(self, *, property: Optional["WrappedProduct"] = None, **kwargs) -> None:
+    def __init__(self, *, property: "WrappedProduct"=None, **kwargs) -> None:
         super(ProductWrapper, self).__init__(**kwargs)
         self.property = property
+
 
 class ResourceCollection(Model):
     """ResourceCollection.
 
     :param productresource: Flattened product.
-	:type productresource: ~modelflattening.models.FlattenedProduct
+    :type productresource: ~modelflattening.models.FlattenedProduct
     :param arrayofresources:
-	:type arrayofresources: list[~modelflattening.models.FlattenedProduct]
+    :type arrayofresources: list[~modelflattening.models.FlattenedProduct]
     :param dictionaryofresources: Dictionary of :code:`<FlattenedProduct>`.
-	:type dictionaryofresources: dict[str, ~modelflattening.models.FlattenedProduct]
+    :type dictionaryofresources: dict[str, ~modelflattening.models.FlattenedProduct]
     """
 
     _attribute_map = {
@@ -260,23 +276,26 @@ class ResourceCollection(Model):
         'dictionaryofresources': {'key': 'dictionaryofresources', 'type': '{FlattenedProduct}'},
     }
 
-    def __init__(self, *, productresource: Optional["FlattenedProduct"] = None, arrayofresources: Optional[List["FlattenedProduct"]] = None, dictionaryofresources: Optional[Dict[str, "FlattenedProduct"]] = None, **kwargs) -> None:
+    def __init__(self, *, productresource: "FlattenedProduct"=None, arrayofresources: List["FlattenedProduct"]=None, dictionaryofresources: Dict[str, "FlattenedProduct"]=None, **kwargs) -> None:
         super(ResourceCollection, self).__init__(**kwargs)
         self.productresource = productresource
         self.arrayofresources = arrayofresources
         self.dictionaryofresources = dictionaryofresources
+
 
 class SimpleProduct(BaseProduct):
     """The product documentation.
 
     All required parameters must be populated in order to send to Azure.
 
-    :param product_id: Required. Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
-	:type product_id: str
+    :param product_id: Required. Unique identifier representing a specific product
+     for a given latitude & longitude. For example, uberX in San Francisco will have
+     a different product_id than uberX in Los Angeles.
+    :type product_id: str
     :param description: Description of product.
-	:type description: str
+    :type description: str
     :param details: The product documentation.
-	:type details: ~modelflattening.models.SimpleProductProperties
+    :type details: ~modelflattening.models.SimpleProductProperties
     """
 
     _validation = {
@@ -289,9 +308,10 @@ class SimpleProduct(BaseProduct):
         'details': {'key': 'details', 'type': 'SimpleProductProperties'},
     }
 
-    def __init__(self, *, product_id: str, description: Optional[str] = None, details: Optional["SimpleProductProperties"] = None, **kwargs) -> None:
+    def __init__(self, *, product_id: str, description: str=None, details: "SimpleProductProperties"=None, **kwargs) -> None:
         super(SimpleProduct, self).__init__(product_id=product_id, description=description, **kwargs)
         self.details = details
+
 
 class SimpleProductProperties(Model):
     """The product documentation.
@@ -301,11 +321,12 @@ class SimpleProductProperties(Model):
     All required parameters must be populated in order to send to Azure.
 
     :param max_product_display_name: Required. Display name of product.
-	:type max_product_display_name: str
-    :ivar capacity: Required. Capacity of product. For example, 4 people. Default value: "Large".
-	:vartype capacity: str
+    :type max_product_display_name: str
+    :ivar capacity: Required. Capacity of product. For example, 4 people. Default
+     value: "Large".
+    :vartype capacity: str
     :param max_product_image: The product URL.
-	:type max_product_image: ~modelflattening.models.ProductUrl
+    :type max_product_image: ~modelflattening.models.ProductUrl
     """
 
     _validation = {
@@ -321,23 +342,23 @@ class SimpleProductProperties(Model):
 
     capacity = "Large"
 
-    def __init__(self, *, max_product_display_name: str, max_product_image: Optional["ProductUrl"] = None, **kwargs) -> None:
+    def __init__(self, *, max_product_display_name: str, max_product_image: "ProductUrl"=None, **kwargs) -> None:
         super(SimpleProductProperties, self).__init__(**kwargs)
         self.max_product_display_name = max_product_display_name
         self.max_product_image = max_product_image
+
 
 class WrappedProduct(Model):
     """The wrapped produc.
 
     :param value: the product value.
-	:type value: str
+    :type value: str
     """
 
     _attribute_map = {
         'value': {'key': 'value', 'type': 'str'},
     }
 
-    def __init__(self, *, value: Optional[str] = None, **kwargs) -> None:
+    def __init__(self, *, value: str=None, **kwargs) -> None:
         super(WrappedProduct, self).__init__(**kwargs)
         self.value = value
-

@@ -16,18 +16,13 @@ class PetStoreIncConfiguration(Configuration):
     """Configuration for PetStoreInc
     Note that all parameters used to create this instance are saved as instance
     attributes.
-
     """
 
     def __init__(self, **kwargs):
-
         super(PetStoreIncConfiguration, self).__init__(**kwargs)
 
         self._configure(**kwargs)
-
         self.user_agent_policy.add_user_agent('azsdk-python-petstoreinc/{}'.format(VERSION))
-
-
 
     def _configure(self, **kwargs):
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)

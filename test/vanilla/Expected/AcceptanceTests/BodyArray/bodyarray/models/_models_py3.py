@@ -6,10 +6,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
-
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
+
 
 class ErrorException(HttpResponseError):
     """Server responded with exception of type: 'Error'.
@@ -40,9 +39,9 @@ class Error(Model):
     """Error.
 
     :param status:
-	:type status: int
+    :type status: int
     :param message:
-	:type message: str
+    :type message: str
     """
     _EXCEPTION_TYPE = ErrorException
 
@@ -51,18 +50,19 @@ class Error(Model):
         'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs) -> None:
+    def __init__(self, *, status: int=None, message: str=None, **kwargs) -> None:
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
+
 
 class Product(Model):
     """Product.
 
     :param integer:
-	:type integer: int
+    :type integer: int
     :param string:
-	:type string: str
+    :type string: str
     """
 
     _attribute_map = {
@@ -70,8 +70,7 @@ class Product(Model):
         'string': {'key': 'string', 'type': 'str'},
     }
 
-    def __init__(self, *, integer: Optional[int] = None, string: Optional[str] = None, **kwargs) -> None:
+    def __init__(self, *, integer: int=None, string: str=None, **kwargs) -> None:
         super(Product, self).__init__(**kwargs)
         self.integer = integer
         self.string = string
-

@@ -6,9 +6,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional, Union
+from typing import Union
 
 from msrest.serialization import Model
+
 
 class Pet(Model):
     """Pet.
@@ -16,11 +17,14 @@ class Pet(Model):
     All required parameters must be populated in order to send to Azure.
 
     :param name:
-	:type name: str
-    :param days_of_week: Type of Pet. Possible values include: 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'. Default value: "Friday".
-	:type days_of_week: str or ~extensibleenumsswagger.models.DaysOfWeekExtensibleEnum
+    :type name: str
+    :param days_of_week: Type of Pet. Possible values include: 'Monday', 'Tuesday',
+     'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'. Default value:
+     "Friday".
+    :type days_of_week: str or
+     ~extensibleenumsswagger.models.DaysOfWeekExtensibleEnum
     :param int_enum: Required.  Possible values include: '1', '2', '3'.
-	:type int_enum: str or ~extensibleenumsswagger.models.IntEnum
+    :type int_enum: str or ~extensibleenumsswagger.models.IntEnum
     """
 
     _validation = {
@@ -33,9 +37,8 @@ class Pet(Model):
         'int_enum': {'key': 'IntEnum', 'type': 'str'},
     }
 
-    def __init__(self, *, int_enum: Union[str, "IntEnum"], name: Optional[str] = None, days_of_week: Optional[Union[str, "DaysOfWeekExtensibleEnum"]] = "Friday", **kwargs) -> None:
+    def __init__(self, *, int_enum: Union[str, "IntEnum"], name: str=None, days_of_week: Union[str, "DaysOfWeekExtensibleEnum"]="Friday", **kwargs) -> None:
         super(Pet, self).__init__(**kwargs)
         self.name = name
         self.days_of_week = days_of_week
         self.int_enum = int_enum
-

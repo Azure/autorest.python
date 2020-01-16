@@ -9,7 +9,6 @@ import warnings
 
 from azure.core.exceptions import map_error
 from azure.core.tracing.decorator import distributed_trace
-from msrest.serialization import Model
 
 from .. import models
 
@@ -34,13 +33,12 @@ class BasicOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace
     def get_valid(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "Basic"
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
@@ -80,18 +78,15 @@ class BasicOperations(object):
 
     @distributed_trace
     def put_valid(self, complex_body, cls=None, **kwargs):
-        # type: ("Basic", Optional[Any], **Any) -> None
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         FIXME: add operation.summary
-
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}
         :type complex_body: ~bodycomplex.models.Basic
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -129,11 +124,9 @@ class BasicOperations(object):
 
     @distributed_trace
     def get_invalid(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "Basic"
         """Get a basic complex type that is invalid for the local strong type.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
@@ -173,11 +166,9 @@ class BasicOperations(object):
 
     @distributed_trace
     def get_empty(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "Basic"
         """Get a basic complex type that is empty.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
@@ -217,11 +208,9 @@ class BasicOperations(object):
 
     @distributed_trace
     def get_null(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "Basic"
         """Get a basic complex type whose properties are null.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
@@ -261,11 +250,9 @@ class BasicOperations(object):
 
     @distributed_trace
     def get_not_provided(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "Basic"
         """Get a basic complex type while the server doesn't provide a response payload.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
@@ -302,4 +289,3 @@ class BasicOperations(object):
 
         return deserialized
     get_not_provided.metadata = {'url': '/complex/basic/notprovided'}
-

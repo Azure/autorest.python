@@ -6,8 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
-
 from azure.mgmt.core import AsyncARMPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -22,7 +20,6 @@ from .. import models
 class AutoRestLongRunningOperationTestService(object):
     """Long-running Operation for AutoRest
 
-
     :ivar lros: LROsOperations operations
     :vartype lros: lro.aio.operations_async.LROsOperations
     :ivar lro_retrys: LRORetrysOperations operations
@@ -36,7 +33,7 @@ class AutoRestLongRunningOperationTestService(object):
     :param str base_url: Service URL
     """
 
-    def __init__(self, credential: "TokenCredential", base_url: Optional[str] = None, **kwargs):
+    def __init__(self, credential, base_url=None, **kwargs):
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestLongRunningOperationTestServiceConfiguration(credential, **kwargs)

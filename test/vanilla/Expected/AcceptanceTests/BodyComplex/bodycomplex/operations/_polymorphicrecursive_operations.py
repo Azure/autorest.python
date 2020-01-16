@@ -9,7 +9,6 @@ import warnings
 
 from azure.core.exceptions import map_error
 from azure.core.tracing.decorator import distributed_trace
-from msrest.serialization import Model
 
 from .. import models
 
@@ -34,13 +33,12 @@ class PolymorphicrecursiveOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace
     def get_valid(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "Fish"
         """Get complex types that are polymorphic and have recursive references.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Fish or the result of cls(response)
@@ -80,11 +78,9 @@ class PolymorphicrecursiveOperations(object):
 
     @distributed_trace
     def put_valid(self, complex_body, cls=None, **kwargs):
-        # type: ("Fish", Optional[Any], **Any) -> None
         """Put complex types that are polymorphic and have recursive references.
 
         FIXME: add operation.summary
-
 
         :param complex_body: Please put a salmon that looks like this:
     {
@@ -123,7 +119,6 @@ class PolymorphicrecursiveOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -156,4 +151,3 @@ class PolymorphicrecursiveOperations(object):
           return cls(response, None, {})
 
     put_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}
-

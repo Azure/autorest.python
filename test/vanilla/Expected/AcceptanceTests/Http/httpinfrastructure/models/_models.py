@@ -6,10 +6,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
-
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
+
 
 class MyExceptionException(HttpResponseError):
     """Server responded with exception of type: 'MyException'.
@@ -40,7 +39,7 @@ class MyException(Model):
     """MyException.
 
     :param status_code:
-	:type status_code: str
+    :type status_code: str
     """
     _EXCEPTION_TYPE = MyExceptionException
 
@@ -51,6 +50,7 @@ class MyException(Model):
     def __init__(self, **kwargs):
         super(MyException, self).__init__(**kwargs)
         self.status_code = kwargs.get('status_code', None)
+
 
 class BException(MyExceptionException):
     """Server responded with exception of type: 'B'.
@@ -81,9 +81,9 @@ class B(MyException):
     """B.
 
     :param status_code:
-	:type status_code: str
+    :type status_code: str
     :param text_status_code:
-	:type text_status_code: str
+    :type text_status_code: str
     """
     _EXCEPTION_TYPE = BException
 
@@ -96,11 +96,12 @@ class B(MyException):
         super(B, self).__init__(**kwargs)
         self.text_status_code = kwargs.get('text_status_code', None)
 
+
 class C(Model):
     """C.
 
     :param http_code:
-	:type http_code: str
+    :type http_code: str
     """
 
     _attribute_map = {
@@ -111,11 +112,12 @@ class C(Model):
         super(C, self).__init__(**kwargs)
         self.http_code = kwargs.get('http_code', None)
 
+
 class D(Model):
     """D.
 
     :param http_status_code:
-	:type http_status_code: str
+    :type http_status_code: str
     """
 
     _attribute_map = {
@@ -125,6 +127,7 @@ class D(Model):
     def __init__(self, **kwargs):
         super(D, self).__init__(**kwargs)
         self.http_status_code = kwargs.get('http_status_code', None)
+
 
 class ErrorException(HttpResponseError):
     """Server responded with exception of type: 'Error'.
@@ -155,9 +158,9 @@ class Error(Model):
     """Error.
 
     :param status:
-	:type status: int
+    :type status: int
     :param message:
-	:type message: str
+    :type message: str
     """
     _EXCEPTION_TYPE = ErrorException
 
@@ -170,4 +173,3 @@ class Error(Model):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
-

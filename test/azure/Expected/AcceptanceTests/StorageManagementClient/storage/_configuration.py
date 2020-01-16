@@ -24,22 +24,17 @@ class StorageManagementClientConfiguration(Configuration):
     """
 
     def __init__(self, credential, subscription_id, **kwargs):
-        # type: ("TokenCredential", str, **Any) -> None
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
         if subscription_id is None:
             raise ValueError("Parameter 'subscription_id' must not be None.")
-
         super(StorageManagementClientConfiguration, self).__init__(**kwargs)
 
         self.credential = credential
         self.subscription_id = subscription_id
         self.credential_scopes = ['https://management.azure.com/.default']
         self._configure(**kwargs)
-
         self.user_agent_policy.add_user_agent('azsdk-python-storagemanagementclient/{}'.format(VERSION))
-
-
 
     def _configure(self, **kwargs):
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)

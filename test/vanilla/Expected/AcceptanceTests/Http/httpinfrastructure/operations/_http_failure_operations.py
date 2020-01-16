@@ -33,13 +33,12 @@ class HttpFailureOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace
     def get_empty_error(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> bool
         """Get empty error form server.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -79,11 +78,9 @@ class HttpFailureOperations(object):
 
     @distributed_trace
     def get_no_model_error(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> bool
         """Get empty error form server.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -123,11 +120,9 @@ class HttpFailureOperations(object):
 
     @distributed_trace
     def get_no_model_empty(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> bool
         """Get empty response from server.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -164,4 +159,3 @@ class HttpFailureOperations(object):
 
         return deserialized
     get_no_model_empty.metadata = {'url': '/http/failure/nomodel/empty'}
-

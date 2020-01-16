@@ -7,10 +7,11 @@
 # --------------------------------------------------------------------------
 
 import datetime
-from typing import Dict, List, Optional, Union
+from typing import Dict, List, Union
 
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
+
 
 class AccessPolicy(Model):
     """An Access policy
@@ -18,11 +19,11 @@ class AccessPolicy(Model):
     All required parameters must be populated in order to send to Azure.
 
     :param start: Required. the date-time the policy is active.
-	:type start: ~datetime.datetime
+    :type start: ~datetime.datetime
     :param expiry: Required. the date-time the policy expires.
-	:type expiry: ~datetime.datetime
+    :type expiry: ~datetime.datetime
     :param permission: Required. the permissions for the acl policy.
-	:type permission: str
+    :type permission: str
     """
 
     _validation = {
@@ -43,13 +44,14 @@ class AccessPolicy(Model):
         self.expiry = expiry
         self.permission = permission
 
+
 class AppleBarrel(Model):
     """A barrel of apples.
 
     :param good_apples:
-	:type good_apples: list[str]
+    :type good_apples: list[str]
     :param bad_apples:
-	:type bad_apples: list[str]
+    :type bad_apples: list[str]
     """
 
     _attribute_map = {
@@ -57,20 +59,21 @@ class AppleBarrel(Model):
         'bad_apples': {'key': 'BadApples', 'type': '[str]'},
     }
 
-    def __init__(self, *, good_apples: Optional[List[str]] = None, bad_apples: Optional[List[str]] = None, **kwargs) -> None:
+    def __init__(self, *, good_apples: List[str]=None, bad_apples: List[str]=None, **kwargs) -> None:
         super(AppleBarrel, self).__init__(**kwargs)
         self.good_apples = good_apples
         self.bad_apples = bad_apples
+
 
 class Banana(Model):
     """A banana.
 
     :param name:
-	:type name: str
+    :type name: str
     :param flavor:
-	:type flavor: str
+    :type flavor: str
     :param expiration: The time at which you should reconsider eating this banana.
-	:type expiration: ~datetime.datetime
+    :type expiration: ~datetime.datetime
     """
 
     _attribute_map = {
@@ -79,27 +82,29 @@ class Banana(Model):
         'expiration': {'key': 'expiration', 'type': 'iso-8601'},
     }
 
-    def __init__(self, *, name: Optional[str] = None, flavor: Optional[str] = None, expiration: Optional[datetime.datetime] = None, **kwargs) -> None:
+    def __init__(self, *, name: str=None, flavor: str=None, expiration: datetime.datetime=None, **kwargs) -> None:
         super(Banana, self).__init__(**kwargs)
         self.name = name
         self.flavor = flavor
         self.expiration = expiration
+
 
 class Blob(Model):
     """An Azure Storage blob
 
     All required parameters must be populated in order to send to Azure.
 
-    :param name: Required. 
-	:type name: str
-    :param deleted: Required. 
-	:type deleted: bool
-    :param snapshot: Required. 
-	:type snapshot: str
+    :param name: Required.
+    :type name: str
+    :param deleted: Required.
+    :type deleted: bool
+    :param snapshot: Required.
+    :type snapshot: str
     :param properties: Required. Properties of a blob.
-	:type properties: ~xmlservice.models.BlobProperties
-    :param metadata: Dictionary of <paths·xml-headers·get·responses·200·headers·custom_header·schema>.
-	:type metadata: dict[str, str]
+    :type properties: ~xmlservice.models.BlobProperties
+    :param metadata: Dictionary of <paths·xml-
+     headers·get·responses·200·headers·custom_header·schema>.
+    :type metadata: dict[str, str]
     """
 
     _validation = {
@@ -117,7 +122,7 @@ class Blob(Model):
         'metadata': {'key': 'Metadata', 'type': '{str}'},
     }
 
-    def __init__(self, *, name: str, deleted: bool, snapshot: str, properties: "BlobProperties", metadata: Optional[Dict[str, str]] = None, **kwargs) -> None:
+    def __init__(self, *, name: str, deleted: bool, snapshot: str, properties: "BlobProperties", metadata: Dict[str, str]=None, **kwargs) -> None:
         super(Blob, self).__init__(**kwargs)
         self.name = name
         self.deleted = deleted
@@ -125,13 +130,14 @@ class Blob(Model):
         self.properties = properties
         self.metadata = metadata
 
+
 class BlobPrefix(Model):
     """BlobPrefix.
 
     All required parameters must be populated in order to send to Azure.
 
-    :param name: Required. 
-	:type name: str
+    :param name: Required.
+    :type name: str
     """
 
     _validation = {
@@ -146,67 +152,73 @@ class BlobPrefix(Model):
         super(BlobPrefix, self).__init__(**kwargs)
         self.name = name
 
+
 class BlobProperties(Model):
     """Properties of a blob
 
     All required parameters must be populated in order to send to Azure.
 
-    :param last_modified: Required. 
-	:type last_modified: ~datetime.datetime
-    :param etag: Required. 
-	:type etag: str
+    :param last_modified: Required.
+    :type last_modified: ~datetime.datetime
+    :param etag: Required.
+    :type etag: str
     :param content_length: Size in bytes.
-	:type content_length: long
+    :type content_length: long
     :param content_type:
-	:type content_type: str
+    :type content_type: str
     :param content_encoding:
-	:type content_encoding: str
+    :type content_encoding: str
     :param content_language:
-	:type content_language: str
+    :type content_language: str
     :param content_md5:
-	:type content_md5: str
+    :type content_md5: str
     :param content_disposition:
-	:type content_disposition: str
+    :type content_disposition: str
     :param cache_control:
-	:type cache_control: str
+    :type cache_control: str
     :param blob_sequence_number:
-	:type blob_sequence_number: int
-    :param blob_type:  Possible values include: 'BlockBlob', 'PageBlob', 'AppendBlob'.
-	:type blob_type: str or ~xmlservice.models.BlobType
+    :type blob_sequence_number: int
+    :param blob_type:  Possible values include: 'BlockBlob', 'PageBlob',
+     'AppendBlob'.
+    :type blob_type: str or ~xmlservice.models.BlobType
     :param lease_status:  Possible values include: 'locked', 'unlocked'.
-	:type lease_status: str or ~xmlservice.models.LeaseStatusType
-    :param lease_state:  Possible values include: 'available', 'leased', 'expired', 'breaking', 'broken'.
-	:type lease_state: str or ~xmlservice.models.LeaseStateType
+    :type lease_status: str or ~xmlservice.models.LeaseStatusType
+    :param lease_state:  Possible values include: 'available', 'leased', 'expired',
+     'breaking', 'broken'.
+    :type lease_state: str or ~xmlservice.models.LeaseStateType
     :param lease_duration:  Possible values include: 'infinite', 'fixed'.
-	:type lease_duration: str or ~xmlservice.models.LeaseDurationType
+    :type lease_duration: str or ~xmlservice.models.LeaseDurationType
     :param copy_id:
-	:type copy_id: str
-    :param copy_status:  Possible values include: 'pending', 'success', 'aborted', 'failed'.
-	:type copy_status: str or ~xmlservice.models.CopyStatusType
+    :type copy_id: str
+    :param copy_status:  Possible values include: 'pending', 'success', 'aborted',
+     'failed'.
+    :type copy_status: str or ~xmlservice.models.CopyStatusType
     :param copy_source:
-	:type copy_source: str
+    :type copy_source: str
     :param copy_progress:
-	:type copy_progress: str
+    :type copy_progress: str
     :param copy_completion_time:
-	:type copy_completion_time: ~datetime.datetime
+    :type copy_completion_time: ~datetime.datetime
     :param copy_status_description:
-	:type copy_status_description: str
+    :type copy_status_description: str
     :param server_encrypted:
-	:type server_encrypted: bool
+    :type server_encrypted: bool
     :param incremental_copy:
-	:type incremental_copy: bool
+    :type incremental_copy: bool
     :param destination_snapshot:
-	:type destination_snapshot: str
+    :type destination_snapshot: str
     :param deleted_time:
-	:type deleted_time: ~datetime.datetime
+    :type deleted_time: ~datetime.datetime
     :param remaining_retention_days:
-	:type remaining_retention_days: int
-    :param access_tier:  Possible values include: 'P4', 'P6', 'P10', 'P20', 'P30', 'P40', 'P50', 'Hot', 'Cool', 'Archive'.
-	:type access_tier: str or ~xmlservice.models.AccessTier
+    :type remaining_retention_days: int
+    :param access_tier:  Possible values include: 'P4', 'P6', 'P10', 'P20', 'P30',
+     'P40', 'P50', 'Hot', 'Cool', 'Archive'.
+    :type access_tier: str or ~xmlservice.models.AccessTier
     :param access_tier_inferred:
-	:type access_tier_inferred: bool
-    :param archive_status:  Possible values include: 'rehydrate-pending-to-hot', 'rehydrate-pending-to-cool'.
-	:type archive_status: str or ~xmlservice.models.ArchiveStatus
+    :type access_tier_inferred: bool
+    :param archive_status:  Possible values include: 'rehydrate-pending-to-hot',
+     'rehydrate-pending-to-cool'.
+    :type archive_status: str or ~xmlservice.models.ArchiveStatus
     """
 
     _validation = {
@@ -245,7 +257,7 @@ class BlobProperties(Model):
         'archive_status': {'key': 'ArchiveStatus', 'type': 'str'},
     }
 
-    def __init__(self, *, last_modified: datetime.datetime, etag: str, content_length: Optional[int] = None, content_type: Optional[str] = None, content_encoding: Optional[str] = None, content_language: Optional[str] = None, content_md5: Optional[str] = None, content_disposition: Optional[str] = None, cache_control: Optional[str] = None, blob_sequence_number: Optional[int] = None, blob_type: Optional[Union[str, "BlobType"]] = None, lease_status: Optional[Union[str, "LeaseStatusType"]] = None, lease_state: Optional[Union[str, "LeaseStateType"]] = None, lease_duration: Optional[Union[str, "LeaseDurationType"]] = None, copy_id: Optional[str] = None, copy_status: Optional[Union[str, "CopyStatusType"]] = None, copy_source: Optional[str] = None, copy_progress: Optional[str] = None, copy_completion_time: Optional[datetime.datetime] = None, copy_status_description: Optional[str] = None, server_encrypted: Optional[bool] = None, incremental_copy: Optional[bool] = None, destination_snapshot: Optional[str] = None, deleted_time: Optional[datetime.datetime] = None, remaining_retention_days: Optional[int] = None, access_tier: Optional[Union[str, "AccessTier"]] = None, access_tier_inferred: Optional[bool] = None, archive_status: Optional[Union[str, "ArchiveStatus"]] = None, **kwargs) -> None:
+    def __init__(self, *, last_modified: datetime.datetime, etag: str, content_length: int=None, content_type: str=None, content_encoding: str=None, content_language: str=None, content_md5: str=None, content_disposition: str=None, cache_control: str=None, blob_sequence_number: int=None, blob_type: Union[str, "BlobType"]=None, lease_status: Union[str, "LeaseStatusType"]=None, lease_state: Union[str, "LeaseStateType"]=None, lease_duration: Union[str, "LeaseDurationType"]=None, copy_id: str=None, copy_status: Union[str, "CopyStatusType"]=None, copy_source: str=None, copy_progress: str=None, copy_completion_time: datetime.datetime=None, copy_status_description: str=None, server_encrypted: bool=None, incremental_copy: bool=None, destination_snapshot: str=None, deleted_time: datetime.datetime=None, remaining_retention_days: int=None, access_tier: Union[str, "AccessTier"]=None, access_tier_inferred: bool=None, archive_status: Union[str, "ArchiveStatus"]=None, **kwargs) -> None:
         super(BlobProperties, self).__init__(**kwargs)
         self.last_modified = last_modified
         self.etag = etag
@@ -276,13 +288,14 @@ class BlobProperties(Model):
         self.access_tier_inferred = access_tier_inferred
         self.archive_status = archive_status
 
+
 class Blobs(Model):
     """Blobs.
 
     :param blob_prefix:
-	:type blob_prefix: list[~xmlservice.models.BlobPrefix]
+    :type blob_prefix: list[~xmlservice.models.BlobPrefix]
     :param blob:
-	:type blob: list[~xmlservice.models.Blob]
+    :type blob: list[~xmlservice.models.Blob]
     """
 
     _attribute_map = {
@@ -290,52 +303,56 @@ class Blobs(Model):
         'blob': {'key': 'Blob', 'type': '[Blob]'},
     }
 
-    def __init__(self, *, blob_prefix: Optional[List["BlobPrefix"]] = None, blob: Optional[List["Blob"]] = None, **kwargs) -> None:
+    def __init__(self, *, blob_prefix: List["BlobPrefix"]=None, blob: List["Blob"]=None, **kwargs) -> None:
         super(Blobs, self).__init__(**kwargs)
         self.blob_prefix = blob_prefix
         self.blob = blob
+
 
 class ComplexTypeNoMeta(Model):
     """I am a complex type with no XML node
 
     :param id: The id of the res.
-	:type id: str
+    :type id: str
     """
 
     _attribute_map = {
         'id': {'key': 'ID', 'type': 'str'},
     }
 
-    def __init__(self, *, id: Optional[str] = None, **kwargs) -> None:
+    def __init__(self, *, id: str=None, **kwargs) -> None:
         super(ComplexTypeNoMeta, self).__init__(**kwargs)
         self.id = id
+
 
 class ComplexTypeWithMeta(Model):
     """I am a complex type with XML node
 
     :param id: The id of the res.
-	:type id: str
+    :type id: str
     """
 
     _attribute_map = {
         'id': {'key': 'ID', 'type': 'str'},
     }
 
-    def __init__(self, *, id: Optional[str] = None, **kwargs) -> None:
+    def __init__(self, *, id: str=None, **kwargs) -> None:
         super(ComplexTypeWithMeta, self).__init__(**kwargs)
         self.id = id
+
 
 class Container(Model):
     """An Azure Storage container
 
     All required parameters must be populated in order to send to Azure.
 
-    :param name: Required. 
-	:type name: str
+    :param name: Required.
+    :type name: str
     :param properties: Required. Properties of a container.
-	:type properties: ~xmlservice.models.ContainerProperties
-    :param metadata: Dictionary of <paths·xml-headers·get·responses·200·headers·custom_header·schema>.
-	:type metadata: dict[str, str]
+    :type properties: ~xmlservice.models.ContainerProperties
+    :param metadata: Dictionary of <paths·xml-
+     headers·get·responses·200·headers·custom_header·schema>.
+    :type metadata: dict[str, str]
     """
 
     _validation = {
@@ -349,29 +366,31 @@ class Container(Model):
         'metadata': {'key': 'Metadata', 'type': '{str}'},
     }
 
-    def __init__(self, *, name: str, properties: "ContainerProperties", metadata: Optional[Dict[str, str]] = None, **kwargs) -> None:
+    def __init__(self, *, name: str, properties: "ContainerProperties", metadata: Dict[str, str]=None, **kwargs) -> None:
         super(Container, self).__init__(**kwargs)
         self.name = name
         self.properties = properties
         self.metadata = metadata
+
 
 class ContainerProperties(Model):
     """Properties of a container
 
     All required parameters must be populated in order to send to Azure.
 
-    :param last_modified: Required. 
-	:type last_modified: ~datetime.datetime
-    :param etag: Required. 
-	:type etag: str
+    :param last_modified: Required.
+    :type last_modified: ~datetime.datetime
+    :param etag: Required.
+    :type etag: str
     :param lease_status:  Possible values include: 'locked', 'unlocked'.
-	:type lease_status: str or ~xmlservice.models.LeaseStatusType
-    :param lease_state:  Possible values include: 'available', 'leased', 'expired', 'breaking', 'broken'.
-	:type lease_state: str or ~xmlservice.models.LeaseStateType
+    :type lease_status: str or ~xmlservice.models.LeaseStatusType
+    :param lease_state:  Possible values include: 'available', 'leased', 'expired',
+     'breaking', 'broken'.
+    :type lease_state: str or ~xmlservice.models.LeaseStateType
     :param lease_duration:  Possible values include: 'infinite', 'fixed'.
-	:type lease_duration: str or ~xmlservice.models.LeaseDurationType
+    :type lease_duration: str or ~xmlservice.models.LeaseDurationType
     :param public_access:  Possible values include: 'container', 'blob'.
-	:type public_access: str or ~xmlservice.models.PublicAccessType
+    :type public_access: str or ~xmlservice.models.PublicAccessType
     """
 
     _validation = {
@@ -388,7 +407,7 @@ class ContainerProperties(Model):
         'public_access': {'key': 'PublicAccess', 'type': 'str'},
     }
 
-    def __init__(self, *, last_modified: datetime.datetime, etag: str, lease_status: Optional[Union[str, "LeaseStatusType"]] = None, lease_state: Optional[Union[str, "LeaseStateType"]] = None, lease_duration: Optional[Union[str, "LeaseDurationType"]] = None, public_access: Optional[Union[str, "PublicAccessType"]] = None, **kwargs) -> None:
+    def __init__(self, *, last_modified: datetime.datetime, etag: str, lease_status: Union[str, "LeaseStatusType"]=None, lease_state: Union[str, "LeaseStateType"]=None, lease_duration: Union[str, "LeaseDurationType"]=None, public_access: Union[str, "PublicAccessType"]=None, **kwargs) -> None:
         super(ContainerProperties, self).__init__(**kwargs)
         self.last_modified = last_modified
         self.etag = etag
@@ -397,21 +416,31 @@ class ContainerProperties(Model):
         self.lease_duration = lease_duration
         self.public_access = public_access
 
+
 class CorsRule(Model):
     """CORS is an HTTP feature that enables a web application running under one domain to access resources in another domain. Web browsers implement a security restriction known as same-origin policy that prevents a web page from calling APIs in a different domain; CORS provides a secure way to allow one domain (the origin domain) to call APIs in another domain
 
     All required parameters must be populated in order to send to Azure.
 
-    :param allowed_origins: Required. The origin domains that are permitted to make a request against the storage service via CORS. The origin domain is the domain from which the request originates. Note that the origin must be an exact case-sensitive match with the origin that the user age sends to the service. You can also use the wildcard character '*' to allow all origin domains to make requests via CORS.
-	:type allowed_origins: str
-    :param allowed_methods: Required. The methods (HTTP request verbs) that the origin domain may use for a CORS request. (comma separated).
-	:type allowed_methods: str
-    :param allowed_headers: Required. the request headers that the origin domain may specify on the CORS request.
-	:type allowed_headers: str
-    :param exposed_headers: Required. The response headers that may be sent in the response to the CORS request and exposed by the browser to the request issuer.
-	:type exposed_headers: str
-    :param max_age_in_seconds: Required. The maximum amount time that a browser should cache the preflight OPTIONS request.
-	:type max_age_in_seconds: int
+    :param allowed_origins: Required. The origin domains that are permitted to make
+     a request against the storage service via CORS. The origin domain is the domain
+     from which the request originates. Note that the origin must be an exact case-
+     sensitive match with the origin that the user age sends to the service. You can
+     also use the wildcard character '*' to allow all origin domains to make requests
+     via CORS.
+    :type allowed_origins: str
+    :param allowed_methods: Required. The methods (HTTP request verbs) that the
+     origin domain may use for a CORS request. (comma separated).
+    :type allowed_methods: str
+    :param allowed_headers: Required. the request headers that the origin domain may
+     specify on the CORS request.
+    :type allowed_headers: str
+    :param exposed_headers: Required. The response headers that may be sent in the
+     response to the CORS request and exposed by the browser to the request issuer.
+    :type exposed_headers: str
+    :param max_age_in_seconds: Required. The maximum amount time that a browser
+     should cache the preflight OPTIONS request.
+    :type max_age_in_seconds: int
     """
 
     _validation = {
@@ -437,6 +466,7 @@ class CorsRule(Model):
         self.allowed_headers = allowed_headers
         self.exposed_headers = exposed_headers
         self.max_age_in_seconds = max_age_in_seconds
+
 
 class ErrorException(HttpResponseError):
     """Server responded with exception of type: 'Error'.
@@ -467,9 +497,9 @@ class Error(Model):
     """Error.
 
     :param status:
-	:type status: int
+    :type status: int
     :param message:
-	:type message: str
+    :type message: str
     """
     _EXCEPTION_TYPE = ErrorException
 
@@ -478,62 +508,65 @@ class Error(Model):
         'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs) -> None:
+    def __init__(self, *, status: int=None, message: str=None, **kwargs) -> None:
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
+
 
 class JSONInput(Model):
     """JSONInput.
 
     :param id:
-	:type id: int
+    :type id: int
     """
 
     _attribute_map = {
         'id': {'key': 'id', 'type': 'int'},
     }
 
-    def __init__(self, *, id: Optional[int] = None, **kwargs) -> None:
+    def __init__(self, *, id: int=None, **kwargs) -> None:
         super(JSONInput, self).__init__(**kwargs)
         self.id = id
+
 
 class JSONOutput(Model):
     """JSONOutput.
 
     :param id:
-	:type id: int
+    :type id: int
     """
 
     _attribute_map = {
         'id': {'key': 'id', 'type': 'int'},
     }
 
-    def __init__(self, *, id: Optional[int] = None, **kwargs) -> None:
+    def __init__(self, *, id: int=None, **kwargs) -> None:
         super(JSONOutput, self).__init__(**kwargs)
         self.id = id
+
 
 class ListBlobsResponse(Model):
     """An enumeration of blobs
 
     All required parameters must be populated in order to send to Azure.
 
-    :param service_endpoint: Required. 
-	:type service_endpoint: str
-    :param container_name: Required. 
-	:type container_name: str
-    :param prefix: Required. 
-	:type prefix: str
-    :param marker: Required. 
-	:type marker: str
-    :param max_results: Required. 
-	:type max_results: int
-    :param delimiter: Required. 
-	:type delimiter: str
-    :param blobs: Required. 
-	:type blobs: ~xmlservice.models.Blobs
-    :param next_marker: Required. 
-	:type next_marker: str
+    :param service_endpoint: Required.
+    :type service_endpoint: str
+    :param container_name: Required.
+    :type container_name: str
+    :param prefix: Required.
+    :type prefix: str
+    :param marker: Required.
+    :type marker: str
+    :param max_results: Required.
+    :type max_results: int
+    :param delimiter: Required.
+    :type delimiter: str
+    :param blobs: Required.
+    :type blobs: ~xmlservice.models.Blobs
+    :param next_marker: Required.
+    :type next_marker: str
     """
 
     _validation = {
@@ -569,23 +602,24 @@ class ListBlobsResponse(Model):
         self.blobs = blobs
         self.next_marker = next_marker
 
+
 class ListContainersResponse(Model):
     """An enumeration of containers
 
     All required parameters must be populated in order to send to Azure.
 
-    :param service_endpoint: Required. 
-	:type service_endpoint: str
-    :param prefix: Required. 
-	:type prefix: str
+    :param service_endpoint: Required.
+    :type service_endpoint: str
+    :param prefix: Required.
+    :type prefix: str
     :param marker:
-	:type marker: str
-    :param max_results: Required. 
-	:type max_results: int
+    :type marker: str
+    :param max_results: Required.
+    :type max_results: int
     :param containers:
-	:type containers: list[~xmlservice.models.Container]
-    :param next_marker: Required. 
-	:type next_marker: str
+    :type containers: list[~xmlservice.models.Container]
+    :param next_marker: Required.
+    :type next_marker: str
     """
 
     _validation = {
@@ -604,7 +638,7 @@ class ListContainersResponse(Model):
         'next_marker': {'key': 'NextMarker', 'type': 'str'},
     }
 
-    def __init__(self, *, service_endpoint: str, prefix: str, max_results: int, next_marker: str, marker: Optional[str] = None, containers: Optional[List["Container"]] = None, **kwargs) -> None:
+    def __init__(self, *, service_endpoint: str, prefix: str, max_results: int, next_marker: str, marker: str=None, containers: List["Container"]=None, **kwargs) -> None:
         super(ListContainersResponse, self).__init__(**kwargs)
         self.service_endpoint = service_endpoint
         self.prefix = prefix
@@ -613,21 +647,22 @@ class ListContainersResponse(Model):
         self.containers = containers
         self.next_marker = next_marker
 
+
 class Logging(Model):
     """Azure Analytics Logging settings.
 
     All required parameters must be populated in order to send to Azure.
 
     :param version: Required. The version of Storage Analytics to configure.
-	:type version: str
+    :type version: str
     :param delete: Required. Indicates whether all delete requests should be logged.
-	:type delete: bool
+    :type delete: bool
     :param read: Required. Indicates whether all read requests should be logged.
-	:type read: bool
+    :type read: bool
     :param write: Required. Indicates whether all write requests should be logged.
-	:type write: bool
+    :type write: bool
     :param retention_policy: Required. the retention policy.
-	:type retention_policy: ~xmlservice.models.RetentionPolicy
+    :type retention_policy: ~xmlservice.models.RetentionPolicy
     """
 
     _validation = {
@@ -654,19 +689,22 @@ class Logging(Model):
         self.write = write
         self.retention_policy = retention_policy
 
+
 class Metrics(Model):
     """Metrics.
 
     All required parameters must be populated in order to send to Azure.
 
     :param version: The version of Storage Analytics to configure.
-	:type version: str
-    :param enabled: Required. Indicates whether metrics are enabled for the Blob service.
-	:type enabled: bool
-    :param include_apis: Indicates whether metrics should generate summary statistics for called API operations.
-	:type include_apis: bool
+    :type version: str
+    :param enabled: Required. Indicates whether metrics are enabled for the Blob
+     service.
+    :type enabled: bool
+    :param include_apis: Indicates whether metrics should generate summary
+     statistics for called API operations.
+    :type include_apis: bool
     :param retention_policy: the retention policy.
-	:type retention_policy: ~xmlservice.models.RetentionPolicy
+    :type retention_policy: ~xmlservice.models.RetentionPolicy
     """
 
     _validation = {
@@ -680,22 +718,25 @@ class Metrics(Model):
         'retention_policy': {'key': 'RetentionPolicy', 'type': 'RetentionPolicy'},
     }
 
-    def __init__(self, *, enabled: bool, version: Optional[str] = None, include_apis: Optional[bool] = None, retention_policy: Optional["RetentionPolicy"] = None, **kwargs) -> None:
+    def __init__(self, *, enabled: bool, version: str=None, include_apis: bool=None, retention_policy: "RetentionPolicy"=None, **kwargs) -> None:
         super(Metrics, self).__init__(**kwargs)
         self.version = version
         self.enabled = enabled
         self.include_apis = include_apis
         self.retention_policy = retention_policy
 
+
 class RetentionPolicy(Model):
     """the retention policy
 
     All required parameters must be populated in order to send to Azure.
 
-    :param enabled: Required. Indicates whether a retention policy is enabled for the storage service.
-	:type enabled: bool
-    :param days: Indicates the number of days that metrics or logging or soft-deleted data should be retained. All data older than this value will be deleted.
-	:type days: int
+    :param enabled: Required. Indicates whether a retention policy is enabled for
+     the storage service.
+    :type enabled: bool
+    :param days: Indicates the number of days that metrics or logging or soft-
+     deleted data should be retained. All data older than this value will be deleted.
+    :type days: int
     """
 
     _validation = {
@@ -708,18 +749,19 @@ class RetentionPolicy(Model):
         'days': {'key': 'Days', 'type': 'int'},
     }
 
-    def __init__(self, *, enabled: bool, days: Optional[int] = None, **kwargs) -> None:
+    def __init__(self, *, enabled: bool, days: int=None, **kwargs) -> None:
         super(RetentionPolicy, self).__init__(**kwargs)
         self.enabled = enabled
         self.days = days
+
 
 class RootWithRefAndMeta(Model):
     """I am root, and I ref a model WITH meta
 
     :param ref_to_model: I am a complex type with XML node.
-	:type ref_to_model: ~xmlservice.models.ComplexTypeWithMeta
+    :type ref_to_model: ~xmlservice.models.ComplexTypeWithMeta
     :param something: Something else (just to avoid flattening).
-	:type something: str
+    :type something: str
     """
 
     _attribute_map = {
@@ -727,18 +769,19 @@ class RootWithRefAndMeta(Model):
         'something': {'key': 'Something', 'type': 'str'},
     }
 
-    def __init__(self, *, ref_to_model: Optional["ComplexTypeWithMeta"] = None, something: Optional[str] = None, **kwargs) -> None:
+    def __init__(self, *, ref_to_model: "ComplexTypeWithMeta"=None, something: str=None, **kwargs) -> None:
         super(RootWithRefAndMeta, self).__init__(**kwargs)
         self.ref_to_model = ref_to_model
         self.something = something
+
 
 class RootWithRefAndNoMeta(Model):
     """I am root, and I ref a model with no meta
 
     :param ref_to_model: I am a complex type with no XML node.
-	:type ref_to_model: ~xmlservice.models.ComplexTypeNoMeta
+    :type ref_to_model: ~xmlservice.models.ComplexTypeNoMeta
     :param something: Something else (just to avoid flattening).
-	:type something: str
+    :type something: str
     """
 
     _attribute_map = {
@@ -746,10 +789,11 @@ class RootWithRefAndNoMeta(Model):
         'something': {'key': 'Something', 'type': 'str'},
     }
 
-    def __init__(self, *, ref_to_model: Optional["ComplexTypeNoMeta"] = None, something: Optional[str] = None, **kwargs) -> None:
+    def __init__(self, *, ref_to_model: "ComplexTypeNoMeta"=None, something: str=None, **kwargs) -> None:
         super(RootWithRefAndNoMeta, self).__init__(**kwargs)
         self.ref_to_model = ref_to_model
         self.something = something
+
 
 class SignedIdentifier(Model):
     """signed identifier
@@ -757,9 +801,9 @@ class SignedIdentifier(Model):
     All required parameters must be populated in order to send to Azure.
 
     :param id: Required. a unique id.
-	:type id: str
+    :type id: str
     :param access_policy: Required. An Access policy.
-	:type access_policy: ~xmlservice.models.AccessPolicy
+    :type access_policy: ~xmlservice.models.AccessPolicy
     """
 
     _validation = {
@@ -777,15 +821,16 @@ class SignedIdentifier(Model):
         self.id = id
         self.access_policy = access_policy
 
+
 class Slide(Model):
     """A slide in a slideshow
 
     :param type:
-	:type type: str
+    :type type: str
     :param title:
-	:type title: str
+    :type title: str
     :param items:
-	:type items: list[str]
+    :type items: list[str]
     """
 
     _attribute_map = {
@@ -794,23 +839,24 @@ class Slide(Model):
         'items': {'key': 'items', 'type': '[str]'},
     }
 
-    def __init__(self, *, type: Optional[str] = None, title: Optional[str] = None, items: Optional[List[str]] = None, **kwargs) -> None:
+    def __init__(self, *, type: str=None, title: str=None, items: List[str]=None, **kwargs) -> None:
         super(Slide, self).__init__(**kwargs)
         self.type = type
         self.title = title
         self.items = items
 
+
 class Slideshow(Model):
     """Data about a slideshow
 
     :param title:
-	:type title: str
+    :type title: str
     :param date_property:
-	:type date_property: str
+    :type date_property: str
     :param author:
-	:type author: str
+    :type author: str
     :param slides:
-	:type slides: list[~xmlservice.models.Slide]
+    :type slides: list[~xmlservice.models.Slide]
     """
 
     _attribute_map = {
@@ -820,28 +866,31 @@ class Slideshow(Model):
         'slides': {'key': 'slides', 'type': '[Slide]'},
     }
 
-    def __init__(self, *, title: Optional[str] = None, date_property: Optional[str] = None, author: Optional[str] = None, slides: Optional[List["Slide"]] = None, **kwargs) -> None:
+    def __init__(self, *, title: str=None, date_property: str=None, author: str=None, slides: List["Slide"]=None, **kwargs) -> None:
         super(Slideshow, self).__init__(**kwargs)
         self.title = title
         self.date_property = date_property
         self.author = author
         self.slides = slides
 
+
 class StorageServiceProperties(Model):
     """Storage Service Properties.
 
     :param logging: Azure Analytics Logging settings.
-	:type logging: ~xmlservice.models.Logging
+    :type logging: ~xmlservice.models.Logging
     :param hour_metrics:
-	:type hour_metrics: ~xmlservice.models.Metrics
+    :type hour_metrics: ~xmlservice.models.Metrics
     :param minute_metrics:
-	:type minute_metrics: ~xmlservice.models.Metrics
+    :type minute_metrics: ~xmlservice.models.Metrics
     :param cors: The set of CORS rules.
-	:type cors: list[~xmlservice.models.CorsRule]
-    :param default_service_version: The default version to use for requests to the Blob service if an incoming request's version is not specified. Possible values include version 2008-10-27 and all more recent versions.
-	:type default_service_version: str
+    :type cors: list[~xmlservice.models.CorsRule]
+    :param default_service_version: The default version to use for requests to the
+     Blob service if an incoming request's version is not specified. Possible values
+     include version 2008-10-27 and all more recent versions.
+    :type default_service_version: str
     :param delete_retention_policy: the retention policy.
-	:type delete_retention_policy: ~xmlservice.models.RetentionPolicy
+    :type delete_retention_policy: ~xmlservice.models.RetentionPolicy
     """
 
     _attribute_map = {
@@ -853,7 +902,7 @@ class StorageServiceProperties(Model):
         'delete_retention_policy': {'key': 'DeleteRetentionPolicy', 'type': 'RetentionPolicy'},
     }
 
-    def __init__(self, *, logging: Optional["Logging"] = None, hour_metrics: Optional["Metrics"] = None, minute_metrics: Optional["Metrics"] = None, cors: Optional[List["CorsRule"]] = None, default_service_version: Optional[str] = None, delete_retention_policy: Optional["RetentionPolicy"] = None, **kwargs) -> None:
+    def __init__(self, *, logging: "Logging"=None, hour_metrics: "Metrics"=None, minute_metrics: "Metrics"=None, cors: List["CorsRule"]=None, default_service_version: str=None, delete_retention_policy: "RetentionPolicy"=None, **kwargs) -> None:
         super(StorageServiceProperties, self).__init__(**kwargs)
         self.logging = logging
         self.hour_metrics = hour_metrics
@@ -861,4 +910,3 @@ class StorageServiceProperties(Model):
         self.cors = cors
         self.default_service_version = default_service_version
         self.delete_retention_policy = delete_retention_policy
-

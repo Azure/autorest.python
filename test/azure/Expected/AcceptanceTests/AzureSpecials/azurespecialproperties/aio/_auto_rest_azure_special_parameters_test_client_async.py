@@ -6,8 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
-
 from azure.mgmt.core import AsyncARMPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -25,7 +23,6 @@ from .. import models
 
 class AutoRestAzureSpecialParametersTestClient(object):
     """Test Infrastructure for AutoRest
-
 
     :ivar x_ms_client_request_id: XMsClientRequestIdOperations operations
     :vartype x_ms_client_request_id: azurespecialproperties.aio.operations_async.XMsClientRequestIdOperations
@@ -50,7 +47,7 @@ class AutoRestAzureSpecialParametersTestClient(object):
     :param str base_url: Service URL
     """
 
-    def __init__(self, credential: "TokenCredential", subscription_id: str, base_url: Optional[str] = None, **kwargs):
+    def __init__(self, credential, subscription_id, base_url=None, **kwargs):
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestAzureSpecialParametersTestClientConfiguration(credential, subscription_id, **kwargs)

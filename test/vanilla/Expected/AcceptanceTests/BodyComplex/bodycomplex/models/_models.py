@@ -6,17 +6,15 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import datetime
-from typing import Dict, List, Optional, Union
-
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
+
 
 class ArrayWrapper(Model):
     """ArrayWrapper.
 
     :param array:
-	:type array: list[str]
+    :type array: list[str]
     """
 
     _attribute_map = {
@@ -27,15 +25,17 @@ class ArrayWrapper(Model):
         super(ArrayWrapper, self).__init__(**kwargs)
         self.array = kwargs.get('array', None)
 
+
 class Basic(Model):
     """Basic.
 
     :param id: Basic Id.
-	:type id: int
-    :param name: Name property with a very long description that does not fit on a single line and a line break.
-	:type name: str
+    :type id: int
+    :param name: Name property with a very long description that does not fit on a
+     single line and a line break.
+    :type name: str
     :param color:  Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'.
-	:type color: str or ~bodycomplex.models.CMYKColors
+    :type color: str or ~bodycomplex.models.CMYKColors
     """
 
     _attribute_map = {
@@ -50,13 +50,14 @@ class Basic(Model):
         self.name = kwargs.get('name', None)
         self.color = kwargs.get('color', None)
 
+
 class BooleanWrapper(Model):
     """BooleanWrapper.
 
     :param field_true:
-	:type field_true: bool
+    :type field_true: bool
     :param field_false:
-	:type field_false: bool
+    :type field_false: bool
     """
 
     _attribute_map = {
@@ -69,11 +70,12 @@ class BooleanWrapper(Model):
         self.field_true = kwargs.get('field_true', None)
         self.field_false = kwargs.get('field_false', None)
 
+
 class ByteWrapper(Model):
     """ByteWrapper.
 
     :param field:
-	:type field: bytearray
+    :type field: bytearray
     """
 
     _attribute_map = {
@@ -84,13 +86,14 @@ class ByteWrapper(Model):
         super(ByteWrapper, self).__init__(**kwargs)
         self.field = kwargs.get('field', None)
 
+
 class Pet(Model):
     """Pet.
 
     :param id:
-	:type id: int
+    :type id: int
     :param name:
-	:type name: str
+    :type name: str
     """
 
     _attribute_map = {
@@ -103,17 +106,18 @@ class Pet(Model):
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
 
+
 class Cat(Pet):
     """Cat.
 
     :param id:
-	:type id: int
+    :type id: int
     :param name:
-	:type name: str
+    :type name: str
     :param color:
-	:type color: str
+    :type color: str
     :param hates:
-	:type hates: list[~bodycomplex.models.Dog]
+    :type hates: list[~bodycomplex.models.Dog]
     """
 
     _attribute_map = {
@@ -128,6 +132,7 @@ class Cat(Pet):
         self.color = kwargs.get('color', None)
         self.hates = kwargs.get('hates', None)
 
+
 class Fish(Model):
     """Fish.
 
@@ -136,14 +141,14 @@ class Fish(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server. 
-	:type fishtype: str
+    :param fishtype: Required. Constant filled by server.
+    :type fishtype: str
     :param species:
-	:type species: str
-    :param length: Required. 
-	:type length: float
+    :type species: str
+    :param length: Required.
+    :type length: float
     :param siblings:
-	:type siblings: list[~bodycomplex.models.Fish]
+    :type siblings: list[~bodycomplex.models.Fish]
     """
 
     _validation = {
@@ -169,6 +174,7 @@ class Fish(Model):
         self.length = kwargs.get('length', None)
         self.siblings = kwargs.get('siblings', None)
 
+
 class Shark(Fish):
     """Shark.
 
@@ -177,18 +183,18 @@ class Shark(Fish):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server. 
-	:type fishtype: str
+    :param fishtype: Required. Constant filled by server.
+    :type fishtype: str
     :param species:
-	:type species: str
-    :param length: Required. 
-	:type length: float
+    :type species: str
+    :param length: Required.
+    :type length: float
     :param siblings:
-	:type siblings: list[~bodycomplex.models.Fish]
+    :type siblings: list[~bodycomplex.models.Fish]
     :param age:
-	:type age: int
-    :param birthday: Required. 
-	:type birthday: ~datetime.datetime
+    :type age: int
+    :param birthday: Required.
+    :type birthday: ~datetime.datetime
     """
 
     _validation = {
@@ -216,23 +222,24 @@ class Shark(Fish):
         self.age = kwargs.get('age', None)
         self.birthday = kwargs.get('birthday', None)
 
+
 class Cookiecuttershark(Shark):
     """Cookiecuttershark.
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server. 
-	:type fishtype: str
+    :param fishtype: Required. Constant filled by server.
+    :type fishtype: str
     :param species:
-	:type species: str
-    :param length: Required. 
-	:type length: float
+    :type species: str
+    :param length: Required.
+    :type length: float
     :param siblings:
-	:type siblings: list[~bodycomplex.models.Fish]
+    :type siblings: list[~bodycomplex.models.Fish]
     :param age:
-	:type age: int
-    :param birthday: Required. 
-	:type birthday: ~datetime.datetime
+    :type age: int
+    :param birthday: Required.
+    :type birthday: ~datetime.datetime
     """
 
     _validation = {
@@ -254,13 +261,14 @@ class Cookiecuttershark(Shark):
         super(Cookiecuttershark, self).__init__(**kwargs)
         self.fishtype = 'cookiecuttershark'
 
+
 class Datetimerfc1123Wrapper(Model):
     """Datetimerfc1123Wrapper.
 
     :param field:
-	:type field: ~datetime.datetime
+    :type field: ~datetime.datetime
     :param now:
-	:type now: ~datetime.datetime
+    :type now: ~datetime.datetime
     """
 
     _attribute_map = {
@@ -273,13 +281,14 @@ class Datetimerfc1123Wrapper(Model):
         self.field = kwargs.get('field', None)
         self.now = kwargs.get('now', None)
 
+
 class DatetimeWrapper(Model):
     """DatetimeWrapper.
 
     :param field:
-	:type field: ~datetime.datetime
+    :type field: ~datetime.datetime
     :param now:
-	:type now: ~datetime.datetime
+    :type now: ~datetime.datetime
     """
 
     _attribute_map = {
@@ -292,13 +301,14 @@ class DatetimeWrapper(Model):
         self.field = kwargs.get('field', None)
         self.now = kwargs.get('now', None)
 
+
 class DateWrapper(Model):
     """DateWrapper.
 
     :param field:
-	:type field: ~datetime.date
+    :type field: ~datetime.date
     :param leap:
-	:type leap: ~datetime.date
+    :type leap: ~datetime.date
     """
 
     _attribute_map = {
@@ -311,11 +321,13 @@ class DateWrapper(Model):
         self.field = kwargs.get('field', None)
         self.leap = kwargs.get('leap', None)
 
+
 class DictionaryWrapper(Model):
     """DictionaryWrapper.
 
-    :param default_program: Dictionary of <components·schemas·dictionary_wrapper·properties·defaultprogram·additionalproperties>.
-	:type default_program: dict[str, str]
+    :param default_program: Dictionary of
+     <components·schemas·dictionary_wrapper·properties·defaultprogram·additionalproperties>.
+    :type default_program: dict[str, str]
     """
 
     _attribute_map = {
@@ -326,15 +338,16 @@ class DictionaryWrapper(Model):
         super(DictionaryWrapper, self).__init__(**kwargs)
         self.default_program = kwargs.get('default_program', None)
 
+
 class Dog(Pet):
     """Dog.
 
     :param id:
-	:type id: int
+    :type id: int
     :param name:
-	:type name: str
+    :type name: str
     :param food:
-	:type food: str
+    :type food: str
     """
 
     _attribute_map = {
@@ -347,6 +360,7 @@ class Dog(Pet):
         super(Dog, self).__init__(**kwargs)
         self.food = kwargs.get('food', None)
 
+
 class DotFish(Model):
     """DotFish.
 
@@ -355,10 +369,10 @@ class DotFish(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server. 
-	:type fishtype: str
+    :param fishtype: Required. Constant filled by server.
+    :type fishtype: str
     :param species:
-	:type species: str
+    :type species: str
     """
 
     _validation = {
@@ -379,17 +393,18 @@ class DotFish(Model):
         self.fishtype = None
         self.species = kwargs.get('species', None)
 
+
 class DotFishMarket(Model):
     """DotFishMarket.
 
     :param sample_salmon:
-	:type sample_salmon: ~bodycomplex.models.DotSalmon
+    :type sample_salmon: ~bodycomplex.models.DotSalmon
     :param salmons:
-	:type salmons: list[~bodycomplex.models.DotSalmon]
+    :type salmons: list[~bodycomplex.models.DotSalmon]
     :param sample_fish:
-	:type sample_fish: ~bodycomplex.models.DotFish
+    :type sample_fish: ~bodycomplex.models.DotFish
     :param fishes:
-	:type fishes: list[~bodycomplex.models.DotFish]
+    :type fishes: list[~bodycomplex.models.DotFish]
     """
 
     _attribute_map = {
@@ -406,19 +421,20 @@ class DotFishMarket(Model):
         self.sample_fish = kwargs.get('sample_fish', None)
         self.fishes = kwargs.get('fishes', None)
 
+
 class DotSalmon(DotFish):
     """DotSalmon.
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server. 
-	:type fishtype: str
+    :param fishtype: Required. Constant filled by server.
+    :type fishtype: str
     :param species:
-	:type species: str
+    :type species: str
     :param location:
-	:type location: str
+    :type location: str
     :param iswild:
-	:type iswild: bool
+    :type iswild: bool
     """
 
     _validation = {
@@ -438,13 +454,17 @@ class DotSalmon(DotFish):
         self.location = kwargs.get('location', None)
         self.iswild = kwargs.get('iswild', None)
 
+
 class DoubleWrapper(Model):
     """DoubleWrapper.
 
     :param field1:
-	:type field1: float
-    :param field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
-	:type field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose: float
+    :type field1: float
+    :param
+     field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
+    :type
+     field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
+     float
     """
 
     _attribute_map = {
@@ -457,11 +477,12 @@ class DoubleWrapper(Model):
         self.field1 = kwargs.get('field1', None)
         self.field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose = kwargs.get('field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose', None)
 
+
 class DurationWrapper(Model):
     """DurationWrapper.
 
     :param field:
-	:type field: ~datetime.timedelta
+    :type field: ~datetime.timedelta
     """
 
     _attribute_map = {
@@ -471,6 +492,7 @@ class DurationWrapper(Model):
     def __init__(self, **kwargs):
         super(DurationWrapper, self).__init__(**kwargs)
         self.field = kwargs.get('field', None)
+
 
 class ErrorException(HttpResponseError):
     """Server responded with exception of type: 'Error'.
@@ -501,9 +523,9 @@ class Error(Model):
     """Error.
 
     :param status:
-	:type status: int
+    :type status: int
     :param message:
-	:type message: str
+    :type message: str
     """
     _EXCEPTION_TYPE = ErrorException
 
@@ -517,13 +539,14 @@ class Error(Model):
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
 
+
 class FloatWrapper(Model):
     """FloatWrapper.
 
     :param field1:
-	:type field1: float
+    :type field1: float
     :param field2:
-	:type field2: float
+    :type field2: float
     """
 
     _attribute_map = {
@@ -536,27 +559,29 @@ class FloatWrapper(Model):
         self.field1 = kwargs.get('field1', None)
         self.field2 = kwargs.get('field2', None)
 
+
 class Goblinshark(Shark):
     """Goblinshark.
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server. 
-	:type fishtype: str
+    :param fishtype: Required. Constant filled by server.
+    :type fishtype: str
     :param species:
-	:type species: str
-    :param length: Required. 
-	:type length: float
+    :type species: str
+    :param length: Required.
+    :type length: float
     :param siblings:
-	:type siblings: list[~bodycomplex.models.Fish]
+    :type siblings: list[~bodycomplex.models.Fish]
     :param age:
-	:type age: int
-    :param birthday: Required. 
-	:type birthday: ~datetime.datetime
+    :type age: int
+    :param birthday: Required.
+    :type birthday: ~datetime.datetime
     :param jawsize:
-	:type jawsize: int
-    :param color: Colors possible. Possible values include: 'pink', 'gray', 'brown', 'RED'. Default value: "gray".
-	:type color: str or ~bodycomplex.models.GoblinSharkColor
+    :type jawsize: int
+    :param color: Colors possible. Possible values include: 'pink', 'gray', 'brown',
+     'RED'. Default value: "gray".
+    :type color: str or ~bodycomplex.models.GoblinSharkColor
     """
 
     _validation = {
@@ -582,13 +607,14 @@ class Goblinshark(Shark):
         self.jawsize = kwargs.get('jawsize', None)
         self.color = kwargs.get('color', "gray")
 
+
 class IntWrapper(Model):
     """IntWrapper.
 
     :param field1:
-	:type field1: int
+    :type field1: int
     :param field2:
-	:type field2: int
+    :type field2: int
     """
 
     _attribute_map = {
@@ -601,13 +627,14 @@ class IntWrapper(Model):
         self.field1 = kwargs.get('field1', None)
         self.field2 = kwargs.get('field2', None)
 
+
 class LongWrapper(Model):
     """LongWrapper.
 
     :param field1:
-	:type field1: long
+    :type field1: long
     :param field2:
-	:type field2: long
+    :type field2: long
     """
 
     _attribute_map = {
@@ -620,11 +647,12 @@ class LongWrapper(Model):
         self.field1 = kwargs.get('field1', None)
         self.field2 = kwargs.get('field2', None)
 
+
 class MyBaseHelperType(Model):
     """MyBaseHelperType.
 
     :param prop_bh1:
-	:type prop_bh1: str
+    :type prop_bh1: str
     """
 
     _attribute_map = {
@@ -635,6 +663,7 @@ class MyBaseHelperType(Model):
         super(MyBaseHelperType, self).__init__(**kwargs)
         self.prop_bh1 = kwargs.get('prop_bh1', None)
 
+
 class MyBaseType(Model):
     """MyBaseType.
 
@@ -643,12 +672,12 @@ class MyBaseType(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param kind: Required. Constant filled by server. 
-	:type kind: str
+    :param kind: Required. Constant filled by server.
+    :type kind: str
     :param prop_b1:
-	:type prop_b1: str
+    :type prop_b1: str
     :param helper:
-	:type helper: ~bodycomplex.models.MyBaseHelperType
+    :type helper: ~bodycomplex.models.MyBaseHelperType
     """
 
     _validation = {
@@ -671,19 +700,20 @@ class MyBaseType(Model):
         self.prop_b1 = kwargs.get('prop_b1', None)
         self.helper = kwargs.get('helper', None)
 
+
 class MyDerivedType(MyBaseType):
     """MyDerivedType.
 
     All required parameters must be populated in order to send to Azure.
 
-    :param kind: Required. Constant filled by server. 
-	:type kind: str
+    :param kind: Required. Constant filled by server.
+    :type kind: str
     :param prop_b1:
-	:type prop_b1: str
+    :type prop_b1: str
     :param helper:
-	:type helper: ~bodycomplex.models.MyBaseHelperType
+    :type helper: ~bodycomplex.models.MyBaseHelperType
     :param prop_d1:
-	:type prop_d1: str
+    :type prop_d1: str
     """
 
     _validation = {
@@ -702,15 +732,16 @@ class MyDerivedType(MyBaseType):
         self.kind = 'Kind1'
         self.prop_d1 = kwargs.get('prop_d1', None)
 
+
 class ReadonlyObj(Model):
     """ReadonlyObj.
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar id:
-	:vartype id: str
+    :vartype id: str
     :param size:
-	:type size: int
+    :type size: int
     """
 
     _validation = {
@@ -727,6 +758,7 @@ class ReadonlyObj(Model):
         self.id = None
         self.size = kwargs.get('size', None)
 
+
 class Salmon(Fish):
     """Salmon.
 
@@ -735,18 +767,18 @@ class Salmon(Fish):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server. 
-	:type fishtype: str
+    :param fishtype: Required. Constant filled by server.
+    :type fishtype: str
     :param species:
-	:type species: str
-    :param length: Required. 
-	:type length: float
+    :type species: str
+    :param length: Required.
+    :type length: float
     :param siblings:
-	:type siblings: list[~bodycomplex.models.Fish]
+    :type siblings: list[~bodycomplex.models.Fish]
     :param location:
-	:type location: str
+    :type location: str
     :param iswild:
-	:type iswild: bool
+    :type iswild: bool
     """
 
     _validation = {
@@ -773,25 +805,26 @@ class Salmon(Fish):
         self.location = kwargs.get('location', None)
         self.iswild = kwargs.get('iswild', None)
 
+
 class Sawshark(Shark):
     """Sawshark.
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server. 
-	:type fishtype: str
+    :param fishtype: Required. Constant filled by server.
+    :type fishtype: str
     :param species:
-	:type species: str
-    :param length: Required. 
-	:type length: float
+    :type species: str
+    :param length: Required.
+    :type length: float
     :param siblings:
-	:type siblings: list[~bodycomplex.models.Fish]
+    :type siblings: list[~bodycomplex.models.Fish]
     :param age:
-	:type age: int
-    :param birthday: Required. 
-	:type birthday: ~datetime.datetime
+    :type age: int
+    :param birthday: Required.
+    :type birthday: ~datetime.datetime
     :param picture:
-	:type picture: bytearray
+    :type picture: bytearray
     """
 
     _validation = {
@@ -815,19 +848,20 @@ class Sawshark(Shark):
         self.fishtype = 'sawshark'
         self.picture = kwargs.get('picture', None)
 
+
 class Siamese(Cat):
     """Siamese.
 
     :param id:
-	:type id: int
+    :type id: int
     :param name:
-	:type name: str
+    :type name: str
     :param color:
-	:type color: str
+    :type color: str
     :param hates:
-	:type hates: list[~bodycomplex.models.Dog]
+    :type hates: list[~bodycomplex.models.Dog]
     :param breed:
-	:type breed: str
+    :type breed: str
     """
 
     _attribute_map = {
@@ -842,27 +876,29 @@ class Siamese(Cat):
         super(Siamese, self).__init__(**kwargs)
         self.breed = kwargs.get('breed', None)
 
+
 class SmartSalmon(Salmon):
     """SmartSalmon.
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server. 
-	:type fishtype: str
+    :param fishtype: Required. Constant filled by server.
+    :type fishtype: str
     :param species:
-	:type species: str
-    :param length: Required. 
-	:type length: float
+    :type species: str
+    :param length: Required.
+    :type length: float
     :param siblings:
-	:type siblings: list[~bodycomplex.models.Fish]
+    :type siblings: list[~bodycomplex.models.Fish]
     :param location:
-	:type location: str
+    :type location: str
     :param iswild:
-	:type iswild: bool
-    :param additional_properties: Unmatched properties from the message are deserialized to this collection.
-	:type additional_properties: dict[str, object]
+    :type iswild: bool
+    :param additional_properties: Unmatched properties from the message are
+     deserialized to this collection.
+    :type additional_properties: dict[str, object]
     :param college_degree:
-	:type college_degree: str
+    :type college_degree: str
     """
 
     _validation = {
@@ -887,15 +923,16 @@ class SmartSalmon(Salmon):
         self.additional_properties = kwargs.get('additional_properties', None)
         self.college_degree = kwargs.get('college_degree', None)
 
+
 class StringWrapper(Model):
     """StringWrapper.
 
     :param field:
-	:type field: str
+    :type field: str
     :param empty:
-	:type empty: str
+    :type empty: str
     :param null:
-	:type null: str
+    :type null: str
     """
 
     _attribute_map = {
@@ -909,4 +946,3 @@ class StringWrapper(Model):
         self.field = kwargs.get('field', None)
         self.empty = kwargs.get('empty', None)
         self.null = kwargs.get('null', None)
-

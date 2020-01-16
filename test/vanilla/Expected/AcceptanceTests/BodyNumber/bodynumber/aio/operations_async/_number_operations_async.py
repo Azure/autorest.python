@@ -33,12 +33,12 @@ class NumberOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace_async
     async def get_null(self, cls=None, **kwargs):
         """Get null Number value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -82,7 +82,6 @@ class NumberOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: float
@@ -124,7 +123,6 @@ class NumberOperations:
         """Get invalid double Number value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -168,7 +166,6 @@ class NumberOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: float
@@ -206,18 +203,16 @@ class NumberOperations:
     get_invalid_decimal.metadata = {'url': '/number/invaliddecimal'}
 
     @distributed_trace_async
-    async def put_big_float(self, number_body: float, cls=None, **kwargs):
+    async def put_big_float(self, number_body, cls=None, **kwargs):
         """Put big float value 3.402823e+20.
 
         FIXME: add operation.summary
-
 
         :param number_body: 
         :type number_body: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodynumber.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -257,7 +252,6 @@ class NumberOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: float
@@ -295,18 +289,16 @@ class NumberOperations:
     get_big_float.metadata = {'url': '/number/big/float/3.402823e+20'}
 
     @distributed_trace_async
-    async def put_big_double(self, number_body: float, cls=None, **kwargs):
+    async def put_big_double(self, number_body, cls=None, **kwargs):
         """Put big double value 2.5976931e+101.
 
         FIXME: add operation.summary
-
 
         :param number_body: 
         :type number_body: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodynumber.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -345,7 +337,6 @@ class NumberOperations:
         """Get big double value 2.5976931e+101.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -389,11 +380,9 @@ class NumberOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodynumber.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -433,7 +422,6 @@ class NumberOperations:
         """Get big double value 99999999.99.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -477,11 +465,9 @@ class NumberOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodynumber.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -522,7 +508,6 @@ class NumberOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: float
@@ -560,18 +545,16 @@ class NumberOperations:
     get_big_double_negative_decimal.metadata = {'url': '/number/big/double/-99999999.99'}
 
     @distributed_trace_async
-    async def put_big_decimal(self, number_body: float, cls=None, **kwargs):
+    async def put_big_decimal(self, number_body, cls=None, **kwargs):
         """Put big decimal value 2.5976931e+101.
 
         FIXME: add operation.summary
-
 
         :param number_body: 
         :type number_body: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodynumber.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -610,7 +593,6 @@ class NumberOperations:
         """Get big decimal value 2.5976931e+101.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -654,11 +636,9 @@ class NumberOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodynumber.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -698,7 +678,6 @@ class NumberOperations:
         """Get big decimal value 99999999.99.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -742,11 +721,9 @@ class NumberOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodynumber.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -787,7 +764,6 @@ class NumberOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: float
@@ -825,18 +801,16 @@ class NumberOperations:
     get_big_decimal_negative_decimal.metadata = {'url': '/number/big/decimal/-99999999.99'}
 
     @distributed_trace_async
-    async def put_small_float(self, number_body: float, cls=None, **kwargs):
+    async def put_small_float(self, number_body, cls=None, **kwargs):
         """Put small float value 3.402823e-20.
 
         FIXME: add operation.summary
-
 
         :param number_body: 
         :type number_body: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodynumber.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -876,7 +850,6 @@ class NumberOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: float
@@ -914,18 +887,16 @@ class NumberOperations:
     get_small_float.metadata = {'url': '/number/small/float/3.402823e-20'}
 
     @distributed_trace_async
-    async def put_small_double(self, number_body: float, cls=None, **kwargs):
+    async def put_small_double(self, number_body, cls=None, **kwargs):
         """Put small double value 2.5976931e-101.
 
         FIXME: add operation.summary
-
 
         :param number_body: 
         :type number_body: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodynumber.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -965,7 +936,6 @@ class NumberOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: float
@@ -1003,18 +973,16 @@ class NumberOperations:
     get_small_double.metadata = {'url': '/number/small/double/2.5976931e-101'}
 
     @distributed_trace_async
-    async def put_small_decimal(self, number_body: float, cls=None, **kwargs):
+    async def put_small_decimal(self, number_body, cls=None, **kwargs):
         """Put small decimal value 2.5976931e-101.
 
         FIXME: add operation.summary
-
 
         :param number_body: 
         :type number_body: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodynumber.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -1054,7 +1022,6 @@ class NumberOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: float
@@ -1090,4 +1057,3 @@ class NumberOperations:
 
         return deserialized
     get_small_decimal.metadata = {'url': '/number/small/decimal/2.5976931e-101'}
-

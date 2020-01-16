@@ -21,19 +21,15 @@ class AutoRestHeadTestServiceConfiguration(Configuration):
     :type credential: azure.core.credentials.TokenCredential
     """
 
-    def __init__(self, credential: "TokenCredential", **kwargs):
+    def __init__(self, credential, **kwargs):
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
-
         super(AutoRestHeadTestServiceConfiguration, self).__init__(**kwargs)
 
         self.credential = credential
         self.credential_scopes = ['https://management.azure.com/.default']
         self._configure(**kwargs)
-
         self.user_agent_policy.add_user_agent('azsdk-python-autorestheadtestservice/{}'.format(VERSION))
-
-
 
     def _configure(self, **kwargs):
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)

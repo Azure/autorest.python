@@ -16,18 +16,13 @@ class AutoRestSwaggerBATFileServiceConfiguration(Configuration):
     """Configuration for AutoRestSwaggerBATFileService
     Note that all parameters used to create this instance are saved as instance
     attributes.
-
     """
 
     def __init__(self, **kwargs):
-
         super(AutoRestSwaggerBATFileServiceConfiguration, self).__init__(**kwargs)
 
         self._configure(**kwargs)
-
         self.user_agent_policy.add_user_agent('azsdk-python-autorestswaggerbatfileservice/{}'.format(VERSION))
-
-
 
     def _configure(self, **kwargs):
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)
