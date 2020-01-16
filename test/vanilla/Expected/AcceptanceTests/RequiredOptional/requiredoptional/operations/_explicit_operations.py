@@ -33,19 +33,18 @@ class ExplicitOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace
     def post_required_integer_parameter(self, body_parameter, cls=None, **kwargs):
         """Test explicitly required integer. Please put null and the client library should throw before the request is sent..
 
         FIXME: add operation.summary
 
-
         :param body_parameter: 
         :type body_parameter: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -85,13 +84,11 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-
         :param body_parameter: 
         :type body_parameter: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -134,13 +131,11 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-
         :param value: 
         :type value: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -181,13 +176,11 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-
         :param value: 
         :type value: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -231,13 +224,11 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-
         :param header_parameter: MISSING·PARAMETER-DESCRIPTION
         :type header_parameter: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -274,13 +265,11 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-
         :param header_parameter: MISSING·PARAMETER-DESCRIPTION
         :type header_parameter: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -318,13 +307,11 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-
         :param body_parameter: 
         :type body_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -364,13 +351,11 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-
         :param body_parameter: 
         :type body_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -413,13 +398,11 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-
         :param value: 
         :type value: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -460,13 +443,11 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-
         :param value: 
         :type value: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -510,13 +491,11 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-
         :param header_parameter: MISSING·PARAMETER-DESCRIPTION
         :type header_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -553,13 +532,11 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-
         :param body_parameter: MISSING·PARAMETER-DESCRIPTION
         :type body_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -597,13 +574,11 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-
         :param body_parameter: 
         :type body_parameter: ~requiredoptional.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -643,13 +618,11 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-
         :param body_parameter: 
         :type body_parameter: ~requiredoptional.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -692,13 +665,11 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-
         :param value: 
         :type value: ~requiredoptional.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -739,13 +710,11 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-
         :param value: 
         :type value: ~requiredoptional.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -789,13 +758,11 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-
         :param body_parameter: 
         :type body_parameter: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -835,13 +802,11 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-
         :param body_parameter: 
         :type body_parameter: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -884,13 +849,11 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-
         :param value: 
         :type value: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -931,13 +894,11 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-
         :param value: 
         :type value: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -981,13 +942,11 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-
         :param header_parameter: MISSING·PARAMETER-DESCRIPTION
         :type header_parameter: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -1024,13 +983,11 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-
         :param header_parameter: MISSING·PARAMETER-DESCRIPTION
         :type header_parameter: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -1061,4 +1018,3 @@ class ExplicitOperations(object):
           return cls(response, None, {})
 
     post_optional_array_header.metadata = {'url': '/reqopt/optional/array/header'}
-

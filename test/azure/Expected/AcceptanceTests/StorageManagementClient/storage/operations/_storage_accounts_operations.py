@@ -38,12 +38,12 @@ class StorageAccountsOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace
     def check_name_availability(self, account_name, cls=None, **kwargs):
         """Checks that account name is valid and is not in use..
 
         FIXME: add operation.summary
-
 
         :param account_name: The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
         :type account_name: ~storage.models.StorageAccountCheckNameAvailabilityParameters
@@ -184,12 +184,12 @@ class StorageAccountsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_create.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
+
     @distributed_trace
     def delete(self, resource_group_name, account_name, cls=None, **kwargs):
         """Deletes a storage account in Microsoft Azure..
 
         FIXME: add operation.summary
-
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
@@ -198,7 +198,6 @@ class StorageAccountsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azure.mgmt.core.ARMError
         """
         error_map = kwargs.pop('error_map', {})
@@ -240,7 +239,6 @@ class StorageAccountsOperations(object):
         """Returns the properties for the specified storage account including but not limited to name, account type, location, and account status. The ListKeys operation should be used to retrieve storage keys..
 
         FIXME: add operation.summary
-
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
@@ -294,7 +292,6 @@ class StorageAccountsOperations(object):
         """Updates the account type or tags for a storage account. It can also be used to add a custom domain (note that custom domains cannot be added via the Create operation). Only one custom domain is supported per storage account. This API can only be used to update one of tags, accountType, or customDomain per call. To update multiple of these properties, call the API multiple times with one change per call. This call does not change the storage keys for the account. If you want to change storage account keys, use the RegenerateKey operation. The location and name of the storage account cannot be changed after creation..
 
         FIXME: add operation.summary
-
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
@@ -354,7 +351,6 @@ class StorageAccountsOperations(object):
         """Lists the access keys for the specified storage account..
 
         FIXME: add operation.summary
-
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
@@ -466,6 +462,7 @@ class StorageAccountsOperations(object):
         )
     list.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts'}
 
+
     @distributed_trace
     def list_by_resource_group(self, resource_group_name, cls=None, **kwargs):
         """Lists all the storage accounts available under the given resource group. Note that storage keys are not returned; use the ListKeys operation for this..
@@ -532,12 +529,12 @@ class StorageAccountsOperations(object):
         )
     list_by_resource_group.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts'}
 
+
     @distributed_trace
     def regenerate_key(self, resource_group_name, account_name, key_name=None, cls=None, **kwargs):
         """Regenerates the access keys for the specified storage account..
 
         FIXME: add operation.summary
-
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
@@ -592,4 +589,3 @@ class StorageAccountsOperations(object):
 
         return deserialized
     regenerate_key.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey'}
-

@@ -17,14 +17,12 @@ from . import models
 class AutoRestParameterFlattening(object):
     """Resource Flattening for AutoRest
 
-
     :ivar availability_sets: AvailabilitySetsOperations operations
     :vartype availability_sets: parameterflattening.operations.AvailabilitySetsOperations
     :param str base_url: Service URL
     """
 
     def __init__(self, base_url=None, **kwargs):
-
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestParameterFlatteningConfiguration(**kwargs)

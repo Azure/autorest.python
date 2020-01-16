@@ -9,11 +9,12 @@
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
 
+
 class Animal(Model):
     """Animal.
 
     :param ani_type:
-	:type ani_type: str
+    :type ani_type: str
     """
 
     _attribute_map = {
@@ -24,11 +25,12 @@ class Animal(Model):
         super(Animal, self).__init__(**kwargs)
         self.ani_type = ani_type
 
+
 class BaseError(Model):
     """BaseError.
 
     :param some_base_prop:
-	:type some_base_prop: str
+    :type some_base_prop: str
     """
 
     _attribute_map = {
@@ -38,6 +40,7 @@ class BaseError(Model):
     def __init__(self, *, some_base_prop: str=None, **kwargs) -> None:
         super(BaseError, self).__init__(**kwargs)
         self.some_base_prop = some_base_prop
+
 
 class NotFoundErrorBaseException(HttpResponseError):
     """Server responded with exception of type: 'NotFoundErrorBase'.
@@ -73,11 +76,11 @@ class NotFoundErrorBase(BaseError):
     All required parameters must be populated in order to send to Azure.
 
     :param some_base_prop:
-	:type some_base_prop: str
+    :type some_base_prop: str
     :param reason:
-	:type reason: str
-    :param what_not_found: Required. Constant filled by server. 
-	:type what_not_found: str
+    :type reason: str
+    :param what_not_found: Required. Constant filled by server.
+    :type what_not_found: str
     """
     _EXCEPTION_TYPE = NotFoundErrorBaseException
 
@@ -99,6 +102,7 @@ class NotFoundErrorBase(BaseError):
         super(NotFoundErrorBase, self).__init__(some_base_prop=some_base_prop, **kwargs)
         self.reason = reason
         self.what_not_found = 'NotFoundErrorBase'
+
 
 class AnimalNotFoundException(NotFoundErrorBaseException):
     """Server responded with exception of type: 'AnimalNotFound'.
@@ -131,13 +135,13 @@ class AnimalNotFound(NotFoundErrorBase):
     All required parameters must be populated in order to send to Azure.
 
     :param some_base_prop:
-	:type some_base_prop: str
+    :type some_base_prop: str
     :param reason:
-	:type reason: str
-    :param what_not_found: Required. Constant filled by server. 
-	:type what_not_found: str
+    :type reason: str
+    :param what_not_found: Required. Constant filled by server.
+    :type what_not_found: str
     :param name:
-	:type name: str
+    :type name: str
     """
     _EXCEPTION_TYPE = AnimalNotFoundException
 
@@ -156,6 +160,7 @@ class AnimalNotFound(NotFoundErrorBase):
         super(AnimalNotFound, self).__init__(some_base_prop=some_base_prop, reason=reason, **kwargs)
         self.what_not_found = 'AnimalNotFound'
         self.name = name
+
 
 class LinkNotFoundException(NotFoundErrorBaseException):
     """Server responded with exception of type: 'LinkNotFound'.
@@ -188,13 +193,13 @@ class LinkNotFound(NotFoundErrorBase):
     All required parameters must be populated in order to send to Azure.
 
     :param some_base_prop:
-	:type some_base_prop: str
+    :type some_base_prop: str
     :param reason:
-	:type reason: str
-    :param what_not_found: Required. Constant filled by server. 
-	:type what_not_found: str
+    :type reason: str
+    :param what_not_found: Required. Constant filled by server.
+    :type what_not_found: str
     :param what_sub_address:
-	:type what_sub_address: str
+    :type what_sub_address: str
     """
     _EXCEPTION_TYPE = LinkNotFoundException
 
@@ -214,15 +219,16 @@ class LinkNotFound(NotFoundErrorBase):
         self.what_not_found = 'InvalidResourceLink'
         self.what_sub_address = what_sub_address
 
+
 class Pet(Animal):
     """Pet.
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
     :param ani_type:
-	:type ani_type: str
+    :type ani_type: str
     :ivar name: Gets the Pet by id.
-	:vartype name: str
+    :vartype name: str
     """
 
     _validation = {
@@ -237,11 +243,12 @@ class Pet(Animal):
     def __init__(self, *, ani_type: str=None, **kwargs) -> None:
         super(Pet, self).__init__(ani_type=ani_type, **kwargs)
 
+
 class PetAction(Model):
     """PetAction.
 
     :param action_response: action feedback.
-	:type action_response: str
+    :type action_response: str
     """
 
     _attribute_map = {
@@ -251,6 +258,7 @@ class PetAction(Model):
     def __init__(self, *, action_response: str=None, **kwargs) -> None:
         super(PetAction, self).__init__(**kwargs)
         self.action_response = action_response
+
 
 class PetActionErrorException(HttpResponseError):
     """Server responded with exception of type: 'PetActionError'.
@@ -285,10 +293,10 @@ class PetActionError(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param error_type: Required. Constant filled by server. 
-	:type error_type: str
+    :param error_type: Required. Constant filled by server.
+    :type error_type: str
     :param error_message: the error message.
-	:type error_message: str
+    :type error_message: str
     """
     _EXCEPTION_TYPE = PetActionErrorException
 
@@ -309,6 +317,7 @@ class PetActionError(Model):
         super(PetActionError, self).__init__(**kwargs)
         self.error_type = 'None'
         self.error_message = error_message
+
 
 class PetSadErrorException(PetActionErrorException):
     """Server responded with exception of type: 'PetSadError'.
@@ -343,12 +352,12 @@ class PetSadError(PetActionError):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param error_type: Required. Constant filled by server. 
-	:type error_type: str
+    :param error_type: Required. Constant filled by server.
+    :type error_type: str
     :param error_message: the error message.
-	:type error_message: str
+    :type error_message: str
     :param reason: why is the pet sad.
-	:type reason: str
+    :type reason: str
     """
     _EXCEPTION_TYPE = PetSadErrorException
 
@@ -370,6 +379,7 @@ class PetSadError(PetActionError):
         super(PetSadError, self).__init__(error_message=error_message, **kwargs)
         self.error_type = 'PetSadError'
         self.reason = reason
+
 
 class PetHungryOrThirstyErrorException(PetSadErrorException):
     """Server responded with exception of type: 'PetHungryOrThirstyError'.
@@ -401,14 +411,14 @@ class PetHungryOrThirstyError(PetSadError):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param error_type: Required. Constant filled by server. 
-	:type error_type: str
+    :param error_type: Required. Constant filled by server.
+    :type error_type: str
     :param error_message: the error message.
-	:type error_message: str
+    :type error_message: str
     :param reason: why is the pet sad.
-	:type reason: str
+    :type reason: str
     :param hungry_or_thirsty: is the pet hungry or thirsty or both.
-	:type hungry_or_thirsty: str
+    :type hungry_or_thirsty: str
     """
     _EXCEPTION_TYPE = PetHungryOrThirstyErrorException
 
@@ -427,4 +437,3 @@ class PetHungryOrThirstyError(PetSadError):
         super(PetHungryOrThirstyError, self).__init__(error_message=error_message, reason=reason, **kwargs)
         self.error_type = 'PetHungryOrThirstyError'
         self.hungry_or_thirsty = hungry_or_thirsty
-

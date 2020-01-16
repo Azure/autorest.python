@@ -34,19 +34,18 @@ class HeaderOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace
     def custom_named_request_id(self, foo_client_request_id, cls=None, **kwargs):
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
         FIXME: add operation.summary
 
-
         :param foo_client_request_id: The fooRequestId
         :type foo_client_request_id: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azurespecialproperties.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -87,13 +86,11 @@ class HeaderOperations(object):
 
         FIXME: add operation.summary
 
-
         :param foo_client_request_id: The fooRequestId
         :type foo_client_request_id: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azurespecialproperties.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -134,13 +131,11 @@ class HeaderOperations(object):
 
         FIXME: add operation.summary
 
-
         :param foo_client_request_id: The fooRequestId
         :type foo_client_request_id: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azurespecialproperties.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -176,4 +171,3 @@ class HeaderOperations(object):
 
         return 200 <= response.status_code <= 299
     custom_named_request_id_head.metadata = {'url': '/azurespecials/customNamedRequestIdHead'}
-

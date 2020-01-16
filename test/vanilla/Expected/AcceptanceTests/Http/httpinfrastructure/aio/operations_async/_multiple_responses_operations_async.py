@@ -33,12 +33,12 @@ class MultipleResponsesOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace_async
     async def get200_model204_no_model_default_error200_valid(self, cls=None, **kwargs):
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: MyException or  or the result of cls(response)
@@ -84,7 +84,6 @@ class MultipleResponsesOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: MyException or  or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
@@ -128,7 +127,6 @@ class MultipleResponsesOperations:
         """Send a 201 response with valid payload: {'statusCode': '201'}.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: MyException or  or the result of cls(response)
@@ -174,7 +172,6 @@ class MultipleResponsesOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: MyException or  or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
@@ -219,7 +216,6 @@ class MultipleResponsesOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: MyException or  or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
@@ -263,7 +259,6 @@ class MultipleResponsesOperations:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: MyException or B or the result of cls(response)
@@ -312,7 +307,6 @@ class MultipleResponsesOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: MyException or B or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
@@ -360,7 +354,6 @@ class MultipleResponsesOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: MyException or B or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
@@ -407,7 +400,6 @@ class MultipleResponsesOperations:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: MyException or C or D or the result of cls(response)
@@ -459,7 +451,6 @@ class MultipleResponsesOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: MyException or C or D or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
@@ -509,7 +500,6 @@ class MultipleResponsesOperations:
         """Send a 200 response with valid payload: {'httpStatusCode': '404'}.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: MyException or C or D or the result of cls(response)
@@ -561,7 +551,6 @@ class MultipleResponsesOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: MyException or C or D or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
@@ -612,11 +601,9 @@ class MultipleResponsesOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -652,11 +639,9 @@ class MultipleResponsesOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -692,11 +677,9 @@ class MultipleResponsesOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -732,11 +715,9 @@ class MultipleResponsesOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
@@ -772,11 +753,9 @@ class MultipleResponsesOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
@@ -812,11 +791,9 @@ class MultipleResponsesOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
@@ -852,11 +829,9 @@ class MultipleResponsesOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
@@ -891,7 +866,6 @@ class MultipleResponsesOperations:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
@@ -935,7 +909,6 @@ class MultipleResponsesOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
@@ -978,11 +951,9 @@ class MultipleResponsesOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.MyExceptionException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -1018,11 +989,9 @@ class MultipleResponsesOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.MyExceptionException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -1058,11 +1027,9 @@ class MultipleResponsesOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
@@ -1098,11 +1065,9 @@ class MultipleResponsesOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
@@ -1138,11 +1103,9 @@ class MultipleResponsesOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
@@ -1178,11 +1141,9 @@ class MultipleResponsesOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
@@ -1217,7 +1178,6 @@ class MultipleResponsesOperations:
         """Send a 200 response with no payload, when a payload is expected - client should return a null object of thde type for model A.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
@@ -1261,7 +1221,6 @@ class MultipleResponsesOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
@@ -1303,7 +1262,6 @@ class MultipleResponsesOperations:
         """Send a 200 response with invalid payload {'statusCodeInvalid': '200'}.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
@@ -1347,7 +1305,6 @@ class MultipleResponsesOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
@@ -1389,7 +1346,6 @@ class MultipleResponsesOperations:
         """Send a 200 response with payload {'statusCode': '400'}.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
@@ -1433,7 +1389,6 @@ class MultipleResponsesOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
@@ -1476,7 +1431,6 @@ class MultipleResponsesOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
@@ -1512,4 +1466,3 @@ class MultipleResponsesOperations:
 
         return deserialized
     get200_model_a202_valid.metadata = {'url': '/http/payloads/200/A/response/202/valid'}
-

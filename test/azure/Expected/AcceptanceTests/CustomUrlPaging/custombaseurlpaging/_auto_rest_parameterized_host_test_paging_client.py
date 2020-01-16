@@ -17,7 +17,6 @@ from . import models
 class AutoRestParameterizedHostTestPagingClient(object):
     """Test Infrastructure for AutoRest
 
-
     :ivar paging: PagingOperations operations
     :vartype paging: custombaseurlpaging.operations.PagingOperations
     :param credential: Credential needed for the client to connect to Azure.
@@ -27,7 +26,6 @@ class AutoRestParameterizedHostTestPagingClient(object):
     """
 
     def __init__(self, credential, host, **kwargs):
-
         base_url = 'http://{accountName}{host}'
         self._config = AutoRestParameterizedHostTestPagingClientConfiguration(credential, host, **kwargs)
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)

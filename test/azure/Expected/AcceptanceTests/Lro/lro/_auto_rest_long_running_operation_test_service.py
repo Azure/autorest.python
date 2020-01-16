@@ -20,7 +20,6 @@ from . import models
 class AutoRestLongRunningOperationTestService(object):
     """Long-running Operation for AutoRest
 
-
     :ivar lros: LROsOperations operations
     :vartype lros: lro.operations.LROsOperations
     :ivar lro_retrys: LRORetrysOperations operations
@@ -35,7 +34,6 @@ class AutoRestLongRunningOperationTestService(object):
     """
 
     def __init__(self, credential, base_url=None, **kwargs):
-
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestLongRunningOperationTestServiceConfiguration(credential, **kwargs)

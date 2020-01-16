@@ -33,12 +33,12 @@ class ArrayOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace_async
     async def get_null(self, cls=None, **kwargs):
         """Get null array value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -82,7 +82,6 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: list[int]
@@ -124,7 +123,6 @@ class ArrayOperations:
         """Get empty array value [].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -168,13 +166,11 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param array_body: 
         :type array_body: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyarray.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -213,7 +209,6 @@ class ArrayOperations:
         """Get boolean array value [true, false, false, true].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -257,13 +252,11 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param array_body: 
         :type array_body: list[bool]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyarray.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -302,7 +295,6 @@ class ArrayOperations:
         """Get boolean array value [true, null, false].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -346,7 +338,6 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: list[bool]
@@ -388,7 +379,6 @@ class ArrayOperations:
         """Get integer array value [1, -1, 3, 300].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -432,13 +422,11 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param array_body: 
         :type array_body: list[int]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyarray.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -477,7 +465,6 @@ class ArrayOperations:
         """Get integer array value [1, null, 0].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -521,7 +508,6 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: list[int]
@@ -563,7 +549,6 @@ class ArrayOperations:
         """Get integer array value [1, -1, 3, 300].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -607,13 +592,11 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param array_body: 
         :type array_body: list[long]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyarray.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -652,7 +635,6 @@ class ArrayOperations:
         """Get long array value [1, null, 0].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -696,7 +678,6 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: list[long]
@@ -738,7 +719,6 @@ class ArrayOperations:
         """Get float array value [0, -0.01, 1.2e20].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -782,13 +762,11 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param array_body: 
         :type array_body: list[float]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyarray.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -827,7 +805,6 @@ class ArrayOperations:
         """Get float array value [0.0, null, -1.2e20].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -871,7 +848,6 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: list[float]
@@ -913,7 +889,6 @@ class ArrayOperations:
         """Get float array value [0, -0.01, 1.2e20].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -957,13 +932,11 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param array_body: 
         :type array_body: list[float]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyarray.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -1002,7 +975,6 @@ class ArrayOperations:
         """Get float array value [0.0, null, -1.2e20].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -1046,7 +1018,6 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: list[float]
@@ -1088,7 +1059,6 @@ class ArrayOperations:
         """Get string array value ['foo1', 'foo2', 'foo3'].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -1132,13 +1102,11 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param array_body: 
         :type array_body: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyarray.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -1177,7 +1145,6 @@ class ArrayOperations:
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -1221,13 +1188,11 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param array_body: 
         :type array_body: list[str or ~bodyarray.models.foo_enum]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyarray.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -1266,7 +1231,6 @@ class ArrayOperations:
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -1310,13 +1274,11 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param array_body: 
         :type array_body: list[str or ~bodyarray.models.enum0]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyarray.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -1355,7 +1317,6 @@ class ArrayOperations:
         """Get string array value ['foo', null, 'foo2'].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -1399,7 +1360,6 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: list[str]
@@ -1441,7 +1401,6 @@ class ArrayOperations:
         """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -1485,13 +1444,11 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param array_body: 
         :type array_body: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyarray.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -1530,7 +1487,6 @@ class ArrayOperations:
         """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'foo'].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -1574,7 +1530,6 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: list[~datetime.date]
@@ -1617,13 +1572,11 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param array_body: 
         :type array_body: list[~datetime.date]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyarray.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -1662,7 +1615,6 @@ class ArrayOperations:
         """Get date array value ['2012-01-01', null, '1776-07-04'].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -1706,7 +1658,6 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: list[~datetime.date]
@@ -1748,7 +1699,6 @@ class ArrayOperations:
         """Get date-time array value ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00', '1492-10-12T10:15:01-08:00'].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -1792,13 +1742,11 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param array_body: 
         :type array_body: list[~datetime.datetime]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyarray.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -1837,7 +1785,6 @@ class ArrayOperations:
         """Get date array value ['2000-12-01t00:00:01z', null].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -1881,7 +1828,6 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: list[~datetime.datetime]
@@ -1923,7 +1869,6 @@ class ArrayOperations:
         """Get date-time array value ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12 Oct 1492 10:15:01 GMT'].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -1967,13 +1912,11 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param array_body: 
         :type array_body: list[~datetime.datetime]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyarray.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -2012,7 +1955,6 @@ class ArrayOperations:
         """Get duration array value ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -2056,13 +1998,11 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param array_body: 
         :type array_body: list[~datetime.timedelta]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyarray.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -2101,7 +2041,6 @@ class ArrayOperations:
         """Get byte array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each item encoded in base64.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -2145,13 +2084,11 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param array_body: 
         :type array_body: list[bytearray]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyarray.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -2190,7 +2127,6 @@ class ArrayOperations:
         """Get byte array value [hex(AB, AC, AD), null] with the first item base64 encoded.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -2234,7 +2170,6 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: list[bytes]
@@ -2276,7 +2211,6 @@ class ArrayOperations:
         """Get array of complex type null value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -2320,7 +2254,6 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
@@ -2362,7 +2295,6 @@ class ArrayOperations:
         """Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5, 'string': '6'}].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -2406,7 +2338,6 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
@@ -2448,7 +2379,6 @@ class ArrayOperations:
         """Get array of complex type with [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'}, {'integer': 5, 'string': '6'}].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -2492,13 +2422,11 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param array_body: 
         :type array_body: list[~bodyarray.models.Product]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyarray.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -2537,7 +2465,6 @@ class ArrayOperations:
         """Get a null array.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -2581,7 +2508,6 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: list[list[str]]
@@ -2623,7 +2549,6 @@ class ArrayOperations:
         """Get an array of array of strings [['1', '2', '3'], null, ['7', '8', '9']].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -2667,7 +2592,6 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: list[list[str]]
@@ -2709,7 +2633,6 @@ class ArrayOperations:
         """Get an array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -2753,13 +2676,11 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param array_body: 
         :type array_body: list[list[str]]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyarray.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -2798,7 +2719,6 @@ class ArrayOperations:
         """Get an array of Dictionaries with value null.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -2842,7 +2762,6 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: list[dict[str, str]]
@@ -2884,7 +2803,6 @@ class ArrayOperations:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3': 'three'}, null, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -2928,7 +2846,6 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: list[dict[str, str]]
@@ -2970,7 +2887,6 @@ class ArrayOperations:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3': 'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -3014,13 +2930,11 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param array_body: 
         :type array_body: list[dict[str, str]]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyarray.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -3053,4 +2967,3 @@ class ArrayOperations:
           return cls(response, None, {})
 
     put_dictionary_valid.metadata = {'url': '/array/dictionary/valid'}
-

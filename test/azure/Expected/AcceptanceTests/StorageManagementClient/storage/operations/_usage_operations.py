@@ -35,12 +35,12 @@ class UsageOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace
     def list(self, cls=None, **kwargs):
         """Gets the current usage count and the limit for the resources under the subscription..
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: UsageListResult or the result of cls(response)
@@ -82,4 +82,3 @@ class UsageOperations(object):
 
         return deserialized
     list.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages'}
-

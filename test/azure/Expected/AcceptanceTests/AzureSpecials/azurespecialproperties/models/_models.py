@@ -9,6 +9,7 @@
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
 
+
 class ErrorException(HttpResponseError):
     """Server responded with exception of type: 'Error'.
 
@@ -42,11 +43,11 @@ class Error(Model):
     All required parameters must be populated in order to send to Azure.
 
     :param status:
-	:type status: int
+    :type status: int
     :ivar constant_id: Required.  Default value: "1".
-	:vartype constant_id: float
+    :vartype constant_id: float
     :param message:
-	:type message: str
+    :type message: str
     """
     _EXCEPTION_TYPE = ErrorException
 
@@ -67,13 +68,14 @@ class Error(Model):
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
 
+
 class OdataFilter(Model):
     """OdataFilter.
 
     :param id:
-	:type id: int
+    :type id: int
     :param name:
-	:type name: str
+    :type name: str
     """
 
     _attribute_map = {
@@ -85,4 +87,3 @@ class OdataFilter(Model):
         super(OdataFilter, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
-

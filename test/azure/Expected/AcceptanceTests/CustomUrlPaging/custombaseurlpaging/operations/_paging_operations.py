@@ -36,6 +36,7 @@ class PagingOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace
     def get_pages_partial_url(self, account_name, cls=None, **kwargs):
         """A paging operation that combines custom url, paging and partial URL and expect to concat after host.
@@ -106,6 +107,7 @@ class PagingOperations(object):
             get_next, extract_data
         )
     get_pages_partial_url.metadata = {'url': '/paging/customurl/partialnextlink'}
+
 
     @distributed_trace
     def get_pages_partial_url_operation(self, account_name, cls=None, **kwargs):

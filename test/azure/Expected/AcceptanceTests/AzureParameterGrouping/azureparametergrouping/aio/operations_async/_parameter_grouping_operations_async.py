@@ -33,12 +33,12 @@ class ParameterGroupingOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace_async
     async def post_required(self, path, body, custom_header=None, query=None, cls=None, **kwargs):
         """Post a bunch of required parameters grouped.
 
         FIXME: add operation.summary
-
 
         :param path: Path parameter
         :type path: str
@@ -51,7 +51,6 @@ class ParameterGroupingOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azureparametergrouping.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -99,7 +98,6 @@ class ParameterGroupingOperations:
 
         FIXME: add operation.summary
 
-
         :param custom_header: MISSING·PARAMETER-DESCRIPTION
         :type custom_header: str
         :param query: Query parameter with default
@@ -107,7 +105,6 @@ class ParameterGroupingOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azureparametergrouping.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -147,7 +144,6 @@ class ParameterGroupingOperations:
 
         FIXME: add operation.summary
 
-
         :param header_one: MISSING·PARAMETER-DESCRIPTION
         :type header_one: str
         :param query_one: Query parameter with default
@@ -159,7 +155,6 @@ class ParameterGroupingOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azureparametergrouping.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -203,7 +198,6 @@ class ParameterGroupingOperations:
 
         FIXME: add operation.summary
 
-
         :param header_one: MISSING·PARAMETER-DESCRIPTION
         :type header_one: str
         :param query_one: Query parameter with default
@@ -211,7 +205,6 @@ class ParameterGroupingOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azureparametergrouping.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -244,4 +237,3 @@ class ParameterGroupingOperations:
           return cls(response, None, {})
 
     post_shared_parameter_group_object.metadata = {'url': '/parameterGrouping/sharedParameterGroupObject'}
-

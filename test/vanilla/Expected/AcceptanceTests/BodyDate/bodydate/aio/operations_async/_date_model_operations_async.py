@@ -33,12 +33,12 @@ class DateOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace_async
     async def get_null(self, cls=None, **kwargs):
         """Get null date value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -82,7 +82,6 @@ class DateOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: ~datetime.date
@@ -124,7 +123,6 @@ class DateOperations:
         """Get overflow date value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -168,7 +166,6 @@ class DateOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: ~datetime.date
@@ -211,13 +208,11 @@ class DateOperations:
 
         FIXME: add operation.summary
 
-
         :param date_body: 
         :type date_body: ~datetime.date
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodydate.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -256,7 +251,6 @@ class DateOperations:
         """Get max date value 9999-12-31.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -300,13 +294,11 @@ class DateOperations:
 
         FIXME: add operation.summary
 
-
         :param date_body: 
         :type date_body: ~datetime.date
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodydate.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -346,7 +338,6 @@ class DateOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: ~datetime.date
@@ -382,4 +373,3 @@ class DateOperations:
 
         return deserialized
     get_min_date.metadata = {'url': '/date/min'}
-

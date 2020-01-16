@@ -33,12 +33,12 @@ class DurationOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace
     def get_null(self, cls=None, **kwargs):
         """Get null duration value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -82,13 +82,11 @@ class DurationOperations(object):
 
         FIXME: add operation.summary
 
-
         :param duration_body: 
         :type duration_body: ~datetime.timedelta
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyduration.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -127,7 +125,6 @@ class DurationOperations(object):
         """Get a positive duration value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -171,7 +168,6 @@ class DurationOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: ~datetime.timedelta
@@ -207,4 +203,3 @@ class DurationOperations(object):
 
         return deserialized
     get_invalid.metadata = {'url': '/duration/invalid'}
-

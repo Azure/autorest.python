@@ -9,6 +9,7 @@
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
 
+
 class ErrorException(HttpResponseError):
     """Server responded with exception of type: 'Error'.
 
@@ -38,9 +39,9 @@ class Error(Model):
     """Error.
 
     :param status:
-	:type status: int
+    :type status: int
     :param message:
-	:type message: str
+    :type message: str
     """
     _EXCEPTION_TYPE = ErrorException
 
@@ -54,6 +55,7 @@ class Error(Model):
         self.status = status
         self.message = message
 
+
 class RefColorConstant(Model):
     """RefColorConstant.
 
@@ -61,10 +63,11 @@ class RefColorConstant(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar color_constant: Required. Referenced Color Constant Description. Default value: "green-color".
-	:vartype color_constant: str
+    :ivar color_constant: Required. Referenced Color Constant Description. Default
+     value: "green-color".
+    :vartype color_constant: str
     :param field1: Sample string.
-	:type field1: str
+    :type field1: str
     """
 
     _validation = {
@@ -81,4 +84,3 @@ class RefColorConstant(Model):
     def __init__(self, *, field1: str=None, **kwargs) -> None:
         super(RefColorConstant, self).__init__(**kwargs)
         self.field1 = field1
-

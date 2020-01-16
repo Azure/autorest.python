@@ -20,15 +20,11 @@ class AutoRestComplexTestServiceConfiguration(Configuration):
     """
 
     def __init__(self, **kwargs):
-
-
         super(AutoRestComplexTestServiceConfiguration, self).__init__(**kwargs)
 
+        self.api_version = "2016-02-29"
         self._configure(**kwargs)
-
         self.user_agent_policy.add_user_agent('azsdk-python-autorestcomplextestservice/{}'.format(VERSION))
-
-
 
     def _configure(self, **kwargs):
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)

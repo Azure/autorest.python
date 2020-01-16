@@ -8,13 +8,14 @@
 
 from msrest.serialization import Model
 
+
 class OdataProductResult(Model):
     """OdataProductResult.
 
     :param values:
-	:type values: list[~paging.models.Product]
+    :type values: list[~paging.models.Product]
     :param odatanext_link:
-	:type odatanext_link: str
+    :type odatanext_link: str
     """
 
     _attribute_map = {
@@ -27,11 +28,14 @@ class OdataProductResult(Model):
         self.values = kwargs.get('values', None)
         self.odatanext_link = kwargs.get('odatanext_link', None)
 
+
 class OperationResult(Model):
     """OperationResult.
 
-    :param status: The status of the request. Possible values include: 'Succeeded', 'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'.
-	:type status: str or ~paging.models.OperationResultStatus
+    :param status: The status of the request. Possible values include: 'Succeeded',
+     'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
+     'Deleting', 'Deleted', 'OK'.
+    :type status: str or ~paging.models.OperationResultStatus
     """
 
     _attribute_map = {
@@ -42,11 +46,12 @@ class OperationResult(Model):
         super(OperationResult, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
 
+
 class Product(Model):
     """Product.
 
     :param properties:
-	:type properties: ~paging.models.ProductProperties
+    :type properties: ~paging.models.ProductProperties
     """
 
     _attribute_map = {
@@ -57,13 +62,14 @@ class Product(Model):
         super(Product, self).__init__(**kwargs)
         self.properties = kwargs.get('properties', None)
 
+
 class ProductProperties(Model):
     """ProductProperties.
 
     :param id:
-	:type id: int
+    :type id: int
     :param name:
-	:type name: str
+    :type name: str
     """
 
     _attribute_map = {
@@ -76,13 +82,14 @@ class ProductProperties(Model):
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
 
+
 class ProductResult(Model):
     """ProductResult.
 
     :param values:
-	:type values: list[~paging.models.Product]
+    :type values: list[~paging.models.Product]
     :param next_link:
-	:type next_link: str
+    :type next_link: str
     """
 
     _attribute_map = {
@@ -95,13 +102,14 @@ class ProductResult(Model):
         self.values = kwargs.get('values', None)
         self.next_link = kwargs.get('next_link', None)
 
+
 class ProductResultValue(Model):
     """ProductResultValue.
 
     :param value:
-	:type value: list[~paging.models.Product]
+    :type value: list[~paging.models.Product]
     :param next_link:
-	:type next_link: str
+    :type next_link: str
     """
 
     _attribute_map = {
@@ -113,4 +121,3 @@ class ProductResultValue(Model):
         super(ProductResultValue, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
         self.next_link = kwargs.get('next_link', None)
-

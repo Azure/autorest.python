@@ -17,7 +17,6 @@ from . import models
 class AutoRestParameterizedCustomHostTestClient(object):
     """Test Infrastructure for AutoRest
 
-
     :ivar paths: PathsOperations operations
     :vartype paths: custombaseurlmoreoptions.operations.PathsOperations
     :param subscription_id: The subscription id with value 'test12'.
@@ -27,7 +26,6 @@ class AutoRestParameterizedCustomHostTestClient(object):
     """
 
     def __init__(self, subscription_id, dns_suffix, **kwargs):
-
         base_url = '{vault}{secret}{dnsSuffix}'
         self._config = AutoRestParameterizedCustomHostTestClientConfiguration(subscription_id, dns_suffix, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)

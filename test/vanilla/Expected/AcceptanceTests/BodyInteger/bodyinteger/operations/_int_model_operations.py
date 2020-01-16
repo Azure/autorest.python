@@ -33,12 +33,12 @@ class IntOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace
     def get_null(self, cls=None, **kwargs):
         """Get null Int value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -82,7 +82,6 @@ class IntOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: int
@@ -124,7 +123,6 @@ class IntOperations(object):
         """Get overflow Int32 value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -168,7 +166,6 @@ class IntOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: int
@@ -210,7 +207,6 @@ class IntOperations(object):
         """Get overflow Int64 value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -254,7 +250,6 @@ class IntOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: long
@@ -297,13 +292,11 @@ class IntOperations(object):
 
         FIXME: add operation.summary
 
-
         :param int_body: 
         :type int_body: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyinteger.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -343,13 +336,11 @@ class IntOperations(object):
 
         FIXME: add operation.summary
 
-
         :param int_body: 
         :type int_body: long
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyinteger.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -389,13 +380,11 @@ class IntOperations(object):
 
         FIXME: add operation.summary
 
-
         :param int_body: 
         :type int_body: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyinteger.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -435,13 +424,11 @@ class IntOperations(object):
 
         FIXME: add operation.summary
 
-
         :param int_body: 
         :type int_body: long
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyinteger.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -480,7 +467,6 @@ class IntOperations(object):
         """Get datetime encoded as Unix time value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -524,13 +510,11 @@ class IntOperations(object):
 
         FIXME: add operation.summary
 
-
         :param int_body: 
         :type int_body: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodyinteger.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -569,7 +553,6 @@ class IntOperations(object):
         """Get invalid Unix time value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -613,7 +596,6 @@ class IntOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: ~datetime.datetime
@@ -649,4 +631,3 @@ class IntOperations(object):
 
         return deserialized
     get_null_unix_time.metadata = {'url': '/int/nullunixtime'}
-

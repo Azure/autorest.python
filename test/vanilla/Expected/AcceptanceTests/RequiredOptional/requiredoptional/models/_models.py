@@ -9,11 +9,12 @@
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
 
+
 class ArrayOptionalWrapper(Model):
     """ArrayOptionalWrapper.
 
     :param value:
-	:type value: list[str]
+    :type value: list[str]
     """
 
     _attribute_map = {
@@ -24,13 +25,14 @@ class ArrayOptionalWrapper(Model):
         super(ArrayOptionalWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
 
+
 class ArrayWrapper(Model):
     """ArrayWrapper.
 
     All required parameters must be populated in order to send to Azure.
 
-    :param value: Required. 
-	:type value: list[str]
+    :param value: Required.
+    :type value: list[str]
     """
 
     _validation = {
@@ -45,11 +47,12 @@ class ArrayWrapper(Model):
         super(ArrayWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
 
+
 class ClassOptionalWrapper(Model):
     """ClassOptionalWrapper.
 
     :param value:
-	:type value: ~requiredoptional.models.Product
+    :type value: ~requiredoptional.models.Product
     """
 
     _attribute_map = {
@@ -60,13 +63,14 @@ class ClassOptionalWrapper(Model):
         super(ClassOptionalWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
 
+
 class ClassWrapper(Model):
     """ClassWrapper.
 
     All required parameters must be populated in order to send to Azure.
 
-    :param value: Required. 
-	:type value: ~requiredoptional.models.Product
+    :param value: Required.
+    :type value: ~requiredoptional.models.Product
     """
 
     _validation = {
@@ -80,6 +84,7 @@ class ClassWrapper(Model):
     def __init__(self, **kwargs):
         super(ClassWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
+
 
 class ErrorException(HttpResponseError):
     """Server responded with exception of type: 'Error'.
@@ -110,9 +115,9 @@ class Error(Model):
     """Error.
 
     :param status:
-	:type status: int
+    :type status: int
     :param message:
-	:type message: str
+    :type message: str
     """
     _EXCEPTION_TYPE = ErrorException
 
@@ -126,11 +131,12 @@ class Error(Model):
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
 
+
 class IntOptionalWrapper(Model):
     """IntOptionalWrapper.
 
     :param value:
-	:type value: int
+    :type value: int
     """
 
     _attribute_map = {
@@ -141,13 +147,14 @@ class IntOptionalWrapper(Model):
         super(IntOptionalWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
 
+
 class IntWrapper(Model):
     """IntWrapper.
 
     All required parameters must be populated in order to send to Azure.
 
-    :param value: Required. 
-	:type value: int
+    :param value: Required.
+    :type value: int
     """
 
     _validation = {
@@ -162,15 +169,16 @@ class IntWrapper(Model):
         super(IntWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
 
+
 class Product(Model):
     """Product.
 
     All required parameters must be populated in order to send to Azure.
 
-    :param id: Required. 
-	:type id: int
+    :param id: Required.
+    :type id: int
     :param name:
-	:type name: str
+    :type name: str
     """
 
     _validation = {
@@ -187,11 +195,12 @@ class Product(Model):
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
 
+
 class StringOptionalWrapper(Model):
     """StringOptionalWrapper.
 
     :param value:
-	:type value: str
+    :type value: str
     """
 
     _attribute_map = {
@@ -202,13 +211,14 @@ class StringOptionalWrapper(Model):
         super(StringOptionalWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
 
+
 class StringWrapper(Model):
     """StringWrapper.
 
     All required parameters must be populated in order to send to Azure.
 
-    :param value: Required. 
-	:type value: str
+    :param value: Required.
+    :type value: str
     """
 
     _validation = {
@@ -222,4 +232,3 @@ class StringWrapper(Model):
     def __init__(self, **kwargs):
         super(StringWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
-

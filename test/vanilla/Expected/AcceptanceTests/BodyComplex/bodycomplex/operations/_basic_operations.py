@@ -33,12 +33,12 @@ class BasicOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace
     def get_valid(self, cls=None, **kwargs):
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
@@ -82,13 +82,11 @@ class BasicOperations(object):
 
         FIXME: add operation.summary
 
-
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}
         :type complex_body: ~bodycomplex.models.Basic
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -129,7 +127,6 @@ class BasicOperations(object):
         """Get a basic complex type that is invalid for the local strong type.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
@@ -173,7 +170,6 @@ class BasicOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
         :rtype: ~bodycomplex.models.Basic
@@ -215,7 +211,6 @@ class BasicOperations(object):
         """Get a basic complex type whose properties are null.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
@@ -259,7 +254,6 @@ class BasicOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
         :rtype: ~bodycomplex.models.Basic
@@ -295,4 +289,3 @@ class BasicOperations(object):
 
         return deserialized
     get_not_provided.metadata = {'url': '/complex/basic/notprovided'}
-

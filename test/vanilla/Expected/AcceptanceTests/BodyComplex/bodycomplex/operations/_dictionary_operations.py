@@ -33,12 +33,12 @@ class DictionaryOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace
     def get_valid(self, cls=None, **kwargs):
         """Get complex types with dictionary property.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DictionaryWrapper or the result of cls(response)
@@ -82,13 +82,11 @@ class DictionaryOperations(object):
 
         FIXME: add operation.summary
 
-
         :param default_program: Dictionary of <components·schemas·dictionary_wrapper·properties·defaultprogram·additionalproperties>
         :type default_program: dict[str, str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -128,7 +126,6 @@ class DictionaryOperations(object):
         """Get complex types with dictionary property which is empty.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DictionaryWrapper or the result of cls(response)
@@ -172,13 +169,11 @@ class DictionaryOperations(object):
 
         FIXME: add operation.summary
 
-
         :param default_program: Dictionary of <components·schemas·dictionary_wrapper·properties·defaultprogram·additionalproperties>
         :type default_program: dict[str, str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -218,7 +213,6 @@ class DictionaryOperations(object):
         """Get complex types with dictionary property which is null.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DictionaryWrapper or the result of cls(response)
@@ -262,7 +256,6 @@ class DictionaryOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DictionaryWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DictionaryWrapper
@@ -298,4 +291,3 @@ class DictionaryOperations(object):
 
         return deserialized
     get_not_provided.metadata = {'url': '/complex/dictionary/typed/notprovided'}
-

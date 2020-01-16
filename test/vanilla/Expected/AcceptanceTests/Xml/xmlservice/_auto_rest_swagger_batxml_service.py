@@ -17,14 +17,12 @@ from . import models
 class AutoRestSwaggerBATXMLService(object):
     """Test Infrastructure for AutoRest Swagger BAT
 
-
     :ivar xml: XmlOperations operations
     :vartype xml: xmlservice.operations.XmlOperations
     :param str base_url: Service URL
     """
 
     def __init__(self, base_url=None, **kwargs):
-
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestSwaggerBATXMLServiceConfiguration(**kwargs)

@@ -33,12 +33,12 @@ class PetsOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace_async
     async def create_ap_true(self, create_parameters, cls=None, **kwargs):
         """Create a Pet which contains more properties than what is defined..
 
         FIXME: add operation.summary
-
 
         :param create_parameters: 
         :type create_parameters: ~additionalproperties.models.PetAPTrue
@@ -88,7 +88,6 @@ class PetsOperations:
 
         FIXME: add operation.summary
 
-
         :param create_parameters: 
         :type create_parameters: ~additionalproperties.models.CatAPTrue
         :param callable cls: A custom type or function that will be passed the direct response
@@ -136,7 +135,6 @@ class PetsOperations:
         """Create a Pet which contains more properties than what is defined..
 
         FIXME: add operation.summary
-
 
         :param create_parameters: 
         :type create_parameters: ~additionalproperties.models.PetAPObject
@@ -186,7 +184,6 @@ class PetsOperations:
 
         FIXME: add operation.summary
 
-
         :param create_parameters: 
         :type create_parameters: ~additionalproperties.models.PetAPString
         :param callable cls: A custom type or function that will be passed the direct response
@@ -234,7 +231,6 @@ class PetsOperations:
         """Create a Pet which contains more properties than what is defined..
 
         FIXME: add operation.summary
-
 
         :param create_parameters: 
         :type create_parameters: ~additionalproperties.models.PetAPInProperties
@@ -284,7 +280,6 @@ class PetsOperations:
 
         FIXME: add operation.summary
 
-
         :param create_parameters: 
         :type create_parameters: ~additionalproperties.models.PetAPInPropertiesWithAPString
         :param callable cls: A custom type or function that will be passed the direct response
@@ -326,4 +321,3 @@ class PetsOperations:
 
         return deserialized
     create_ap_in_properties_with_ap_string.metadata = {'url': '/additionalProperties/in/properties/with/additionalProperties/string'}
-

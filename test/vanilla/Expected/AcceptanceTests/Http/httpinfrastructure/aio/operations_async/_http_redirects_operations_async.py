@@ -33,17 +33,16 @@ class HttpRedirectsOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace_async
     async def head300(self, cls=None, **kwargs):
         """Return 300 status code and redirect to /http/success/200.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -82,7 +81,6 @@ class HttpRedirectsOperations:
         """Return 300 status code and redirect to /http/success/200.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or  or the result of cls(response)
@@ -130,11 +128,9 @@ class HttpRedirectsOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -174,11 +170,9 @@ class HttpRedirectsOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -218,11 +212,9 @@ class HttpRedirectsOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -269,11 +261,9 @@ class HttpRedirectsOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -313,11 +303,9 @@ class HttpRedirectsOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -357,11 +345,9 @@ class HttpRedirectsOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -408,11 +394,9 @@ class HttpRedirectsOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -460,11 +444,9 @@ class HttpRedirectsOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -504,11 +486,9 @@ class HttpRedirectsOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -548,11 +528,9 @@ class HttpRedirectsOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -592,11 +570,9 @@ class HttpRedirectsOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -644,11 +620,9 @@ class HttpRedirectsOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -696,11 +670,9 @@ class HttpRedirectsOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -748,11 +720,9 @@ class HttpRedirectsOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -793,4 +763,3 @@ class HttpRedirectsOperations:
           return cls(response, None, response_headers)
 
     delete307.metadata = {'url': '/http/redirect/307'}
-

@@ -33,12 +33,12 @@ class ByteOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace_async
     async def get_null(self, cls=None, **kwargs):
         """Get null byte value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -82,7 +82,6 @@ class ByteOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: bytearray
@@ -124,7 +123,6 @@ class ByteOperations:
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -168,13 +166,11 @@ class ByteOperations:
 
         FIXME: add operation.summary
 
-
         :param byte_body: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
         :type byte_body: bytearray
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodybyte.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -214,7 +210,6 @@ class ByteOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: bytearray
@@ -250,4 +245,3 @@ class ByteOperations:
 
         return deserialized
     get_invalid.metadata = {'url': '/byte/invalid'}
-

@@ -25,7 +25,8 @@ class ModelBaseSerializer:
             str=str,
             init_line=self.init_line,
             init_args=self.init_args,
-            prop_documentation_string=ModelBaseSerializer.prop_documentation_string
+            prop_documentation_string=ModelBaseSerializer.prop_documentation_string,
+            prop_type_documentation_string=ModelBaseSerializer.prop_type_documentation_string
         )
 
     def imports(self) -> FileImport:
@@ -35,7 +36,7 @@ class ModelBaseSerializer:
         return file_import
 
     @staticmethod
-    def prop_documentation_string(prop: Property, namespace) -> str:
+    def prop_documentation_string(prop: Property) -> str:
         # building the param line of the property doc
         if prop.constant or prop.readonly:
             param_doc_string = ":ivar {}:".format(prop.name)
@@ -55,7 +56,6 @@ class ModelBaseSerializer:
             description += " Default value: \"{}\".".format(prop.schema.value) # type: ignore
         if prop.is_discriminator:
             description += "Constant filled by server. "
-
         if isinstance(prop.schema, EnumSchema):
             values = ["\'" + v.value + "\'" for v in prop.schema.values]
             description += " Possible values include: {}.".format(", ".join(values))
@@ -63,14 +63,17 @@ class ModelBaseSerializer:
                 description += " Default value: \"{}\".".format(prop.schema.default_value)
         if description:
             param_doc_string += " " + description
+        return param_doc_string
 
+    @staticmethod
+    def prop_type_documentation_string(prop: Property, namespace: str) -> str:
         # building the type line of the property doc
         if prop.constant or prop.readonly:
             type_doc_string = ":vartype {}: ".format(prop.name)
         else:
             type_doc_string = ":type {}: ".format(prop.name)
         type_doc_string += prop.schema.get_python_type(namespace)
-        return param_doc_string + "\n\t" + type_doc_string
+        return type_doc_string
 
     @staticmethod
     @abstractmethod

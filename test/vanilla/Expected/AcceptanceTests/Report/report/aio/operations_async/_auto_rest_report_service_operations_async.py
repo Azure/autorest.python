@@ -20,7 +20,6 @@ class AutoRestReportServiceOperationsMixin:
 
         FIXME: add operation.summary
 
-
         :param qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in for Python). The only effect is, that generators that run all tests several times, can distinguish the generated reports.
         :type qualifier: str
         :param callable cls: A custom type or function that will be passed the direct response
@@ -60,13 +59,11 @@ class AutoRestReportServiceOperationsMixin:
 
         return deserialized
     get_report.metadata = {'url': '/report'}
-
     @distributed_trace_async
     async def get_optional_report(self, qualifier=None, cls=None, **kwargs):
         """Get optional test coverage report.
 
         FIXME: add operation.summary
-
 
         :param qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in for Python). The only effect is, that generators that run all tests several times, can distinguish the generated reports.
         :type qualifier: str
@@ -107,4 +104,3 @@ class AutoRestReportServiceOperationsMixin:
 
         return deserialized
     get_optional_report.metadata = {'url': '/report/optional'}
-

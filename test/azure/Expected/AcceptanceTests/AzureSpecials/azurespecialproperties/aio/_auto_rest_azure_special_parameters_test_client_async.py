@@ -24,7 +24,6 @@ from .. import models
 class AutoRestAzureSpecialParametersTestClient(object):
     """Test Infrastructure for AutoRest
 
-
     :ivar x_ms_client_request_id: XMsClientRequestIdOperations operations
     :vartype x_ms_client_request_id: azurespecialproperties.aio.operations_async.XMsClientRequestIdOperations
     :ivar subscription_in_credentials: SubscriptionInCredentialsOperations operations
@@ -49,7 +48,6 @@ class AutoRestAzureSpecialParametersTestClient(object):
     """
 
     def __init__(self, credential, subscription_id, base_url=None, **kwargs):
-
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestAzureSpecialParametersTestClientConfiguration(credential, subscription_id, **kwargs)

@@ -33,12 +33,12 @@ class DatetimeOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace_async
     async def get_null(self, cls=None, **kwargs):
         """Get null datetime value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -82,7 +82,6 @@ class DatetimeOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: ~datetime.datetime
@@ -124,7 +123,6 @@ class DatetimeOperations:
         """Get overflow datetime value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -168,7 +166,6 @@ class DatetimeOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: ~datetime.datetime
@@ -211,13 +208,11 @@ class DatetimeOperations:
 
         FIXME: add operation.summary
 
-
         :param datetime_body: 
         :type datetime_body: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodydatetime.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -257,13 +252,11 @@ class DatetimeOperations:
 
         FIXME: add operation.summary
 
-
         :param datetime_body: 
         :type datetime_body: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodydatetime.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -302,7 +295,6 @@ class DatetimeOperations:
         """Get max datetime value 9999-12-31t23:59:59.999z.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -346,7 +338,6 @@ class DatetimeOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: ~datetime.datetime
@@ -388,7 +379,6 @@ class DatetimeOperations:
         """Get max datetime value 9999-12-31T23:59:59.9999999Z.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -432,13 +422,11 @@ class DatetimeOperations:
 
         FIXME: add operation.summary
 
-
         :param datetime_body: 
         :type datetime_body: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodydatetime.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -477,7 +465,6 @@ class DatetimeOperations:
         """Get max datetime value with positive num offset 9999-12-31t23:59:59.999+14:00.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -521,7 +508,6 @@ class DatetimeOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: ~datetime.datetime
@@ -564,13 +550,11 @@ class DatetimeOperations:
 
         FIXME: add operation.summary
 
-
         :param datetime_body: 
         :type datetime_body: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodydatetime.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -609,7 +593,6 @@ class DatetimeOperations:
         """Get max datetime value with positive num offset 9999-12-31T23:59:59.999-14:00.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -653,7 +636,6 @@ class DatetimeOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: ~datetime.datetime
@@ -696,13 +678,11 @@ class DatetimeOperations:
 
         FIXME: add operation.summary
 
-
         :param datetime_body: 
         :type datetime_body: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodydatetime.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -741,7 +721,6 @@ class DatetimeOperations:
         """Get min datetime value 0001-01-01T00:00:00Z.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -785,13 +764,11 @@ class DatetimeOperations:
 
         FIXME: add operation.summary
 
-
         :param datetime_body: 
         :type datetime_body: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodydatetime.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -830,7 +807,6 @@ class DatetimeOperations:
         """Get min datetime value 0001-01-01T00:00:00+14:00.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -874,13 +850,11 @@ class DatetimeOperations:
 
         FIXME: add operation.summary
 
-
         :param datetime_body: 
         :type datetime_body: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodydatetime.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -920,7 +894,6 @@ class DatetimeOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: ~datetime.datetime
@@ -956,4 +929,3 @@ class DatetimeOperations:
 
         return deserialized
     get_local_negative_offset_min_date_time.metadata = {'url': '/datetime/min/localnegativeoffset'}
-

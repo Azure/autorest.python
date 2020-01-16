@@ -17,14 +17,12 @@ from .. import models
 class AutoRestDateTestService(object):
     """Test Infrastructure for AutoRest
 
-
     :ivar date_model: DateOperations operations
     :vartype date_model: bodydate.aio.operations_async.DateOperations
     :param str base_url: Service URL
     """
 
     def __init__(self, base_url=None, **kwargs):
-
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestDateTestServiceConfiguration(**kwargs)

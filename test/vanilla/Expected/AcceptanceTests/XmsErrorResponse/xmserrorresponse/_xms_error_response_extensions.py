@@ -17,14 +17,12 @@ from . import models
 class XMSErrorResponseExtensions(object):
     """
 
-
     :ivar pet: PetOperations operations
     :vartype pet: xmserrorresponse.operations.PetOperations
     :param str base_url: Service URL
     """
 
     def __init__(self, base_url=None, **kwargs):
-
         if not base_url:
             base_url = 'http://localhost'
         self._config = XMSErrorResponseExtensionsConfiguration(**kwargs)

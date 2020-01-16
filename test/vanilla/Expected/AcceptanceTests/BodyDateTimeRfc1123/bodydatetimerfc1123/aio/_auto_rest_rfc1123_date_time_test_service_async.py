@@ -17,14 +17,12 @@ from .. import models
 class AutoRestRFC1123DateTimeTestService(object):
     """Test Infrastructure for AutoRest
 
-
     :ivar datetimerfc1123: Datetimerfc1123Operations operations
     :vartype datetimerfc1123: bodydatetimerfc1123.aio.operations_async.Datetimerfc1123Operations
     :param str base_url: Service URL
     """
 
     def __init__(self, base_url=None, **kwargs):
-
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestRFC1123DateTimeTestServiceConfiguration(**kwargs)
