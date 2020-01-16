@@ -16,11 +16,13 @@ class AutoRestComplexTestServiceConfiguration(Configuration):
     """Configuration for AutoRestComplexTestService
     Note that all parameters used to create this instance are saved as instance
     attributes.
+
     """
 
     def __init__(self, **kwargs):
         super(AutoRestComplexTestServiceConfiguration, self).__init__(**kwargs)
 
+        self.api_version = "2016-02-29"
         self._configure(**kwargs)
         self.user_agent_policy.add_user_agent('azsdk-python-autorestcomplextestservice/{}'.format(VERSION))
 
