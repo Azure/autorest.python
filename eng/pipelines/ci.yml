@@ -58,6 +58,10 @@ jobs:
         displayName: 'Pylint'
 
       - script: |
+          mypy autorest
+        displayName: 'Mypy'
+
+      - script: |
           pytest test/unittests
         displayName: 'Unit tests'
 

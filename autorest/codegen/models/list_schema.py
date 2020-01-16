@@ -3,15 +3,15 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Dict
+from typing import Any, Dict, Optional, Union
 from .base_schema import BaseSchema
 
 
 class ListSchema(BaseSchema):
     def __init__(
         self,
-        yaml_data,
-        element_type,
+        yaml_data: Dict[str, Any],
+        element_type: BaseSchema,
         *,
         max_items: int = None,
         min_items: int = None,
@@ -24,17 +24,17 @@ class ListSchema(BaseSchema):
         self.unique_items = unique_items
 
 
-    def get_serialization_type(self):
+    def get_serialization_type(self) -> str:
         return '[{}]'.format(self.element_type.get_serialization_type())
 
-    def get_python_type_annotation(self):
+    def get_python_type_annotation(self) -> str:
         return f'List[{self.element_type.get_python_type_annotation()}]'
 
-    def get_python_type(self, namespace):
+    def get_python_type(self, namespace: str) -> str:
         return f'list[{self.element_type.get_python_type(namespace)}]'
 
-    def get_validation_map(self):
-        validation_map = {}
+    def get_validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
+        validation_map: Dict[str, Union[bool, int, str]] = {}
         if self.max_items:
             validation_map['max_items'] = self.max_items
             validation_map['min_items'] = self.min_items or 0
@@ -45,7 +45,7 @@ class ListSchema(BaseSchema):
         return validation_map or None
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "SequenceType":
+    def from_yaml(cls, yaml_data: Dict[str, Any], **kwargs) -> "ListSchema":
         # TODO: for items, if the type is a primitive is it listed in type instead of $ref?
         element_schema = yaml_data['elementType']
 

@@ -5,10 +5,11 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableSequence
 import logging
-from typing import List, Callable
+from typing import cast, List, Callable
 
 from .parameter import Parameter, ParameterLocation
 from .constant_schema import ConstantSchema
+from .object_schema import ObjectSchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -46,7 +47,7 @@ class ParameterList(MutableSequence):
             parameter for parameter in self.parameters if parameter.location == location
         ])
 
-    def get_from_predicate(self, predicate: Callable[[Parameter], bool]):
+    def get_from_predicate(self, predicate: Callable[[Parameter], bool]) -> List[Parameter]:
         return [
             parameter for parameter in self.parameters if predicate(parameter)
         ]
@@ -55,7 +56,7 @@ class ParameterList(MutableSequence):
         return self.get_from_predicate(lambda parameter: parameter.location == location)
 
     @property
-    def has_body(self):
+    def has_body(self) -> bool:
         return self.has_any_location(ParameterLocation.Body)
 
     @property
@@ -109,7 +110,7 @@ class ParameterList(MutableSequence):
         return signature_parameters
 
     @property
-    def method_signature(self):
+    def method_signature(self) -> str:
         signature = ", ".join([
             parameter.for_method_signature for parameter in self.method
         ])
@@ -118,14 +119,14 @@ class ParameterList(MutableSequence):
         return signature
 
     @property
-    def is_flattened(self):
+    def is_flattened(self) -> bool:
         return self.has_any_location(ParameterLocation.Flattened)
 
-    def build_flattened_object(self):
+    def build_flattened_object(self) -> str:
         if not self.is_flattened:
             raise ValueError("This method can't be called if the operation doesn't need parameter flattening")
 
         parameters = self.get_from_location(ParameterLocation.Flattened)
         parameter_string = ",".join([f"{param.serialized_name}={param.serialized_name}" for param in parameters])
-
-        return f"{self.body.serialized_name} = models.{self.body.schema.name}({parameter_string})"
+        object_schema = cast(ObjectSchema, self.body.schema)
+        return f"{self.body.serialized_name} = models.{object_schema.name}({parameter_string})"

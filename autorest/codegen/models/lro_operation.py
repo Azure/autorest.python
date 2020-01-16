@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 import logging
 from typing import Dict, List, Any, Optional
+from .imports import FileImport
 from .operation import Operation
 from .parameter import Parameter
 from .schema_response import SchemaResponse
@@ -52,7 +53,7 @@ class LROOperation(Operation):
             _LOGGER.warning("Multiple schema types in responses: %s", response_types)
         self.lro_response = response_types.pop() if response_types else None
 
-    def imports(self, code_model, async_mode):
+    def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = super().imports(code_model, async_mode)
 
         if async_mode:

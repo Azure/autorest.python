@@ -142,7 +142,7 @@ class CodeGenerator(Plugin):
             )
             license_header += "\n# --------------------------------------------------------------------------"
 
-        options = {
+        options: Dict[str, Any] = {
             'azure_arm': azure_arm,
             'credential': (
                 self._autorestapi.get_boolean_value("add-credentials", False) or
@@ -153,6 +153,7 @@ class CodeGenerator(Plugin):
             'license_header': license_header,
             'keep_version_file': self._autorestapi.get_boolean_value("keep-version-file", False),
             'no_async': self._autorestapi.get_boolean_value("no-async", False),
+            'no_namespace_folders': self._autorestapi.get_boolean_value("no-namespace-folders", False),
             'payload-flattening-threshold': self._autorestapi.get_value("payload-flattening-threshold") or 0,
             'basic_setup_py': self._autorestapi.get_boolean_value("basic-setup-py", False),
             'package_version': self._autorestapi.get_value("package-version"),

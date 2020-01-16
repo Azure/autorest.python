@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, Optional
+from typing import Any, Dict
 from .base_schema import BaseSchema
 
 class DictionarySchema(BaseSchema):
@@ -36,7 +36,7 @@ class DictionarySchema(BaseSchema):
         """
         return f'Dict[str, {self.element_type.get_python_type_annotation()}]'
 
-    def get_python_type(self, namespace: Optional[str] = None) -> str:
+    def get_python_type(self, namespace: str) -> str:
         """The python type used for RST syntax input and type annotation.
 
         :param str namespace: Optional. The namespace for the models.
@@ -44,7 +44,7 @@ class DictionarySchema(BaseSchema):
         return 'dict[str, {}]'.format(self.element_type.get_python_type(namespace))
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs: Any) -> "DictionarySchema":
+    def from_yaml(cls, yaml_data: Dict[str, Any], **kwargs: Any) -> "DictionarySchema":
         """Constructs a DictionarySchema from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this schema

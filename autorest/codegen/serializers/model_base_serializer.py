@@ -4,22 +4,22 @@
 # license information.
 # --------------------------------------------------------------------------
 from abc import abstractmethod
-from typing import List
-from ..models import EnumSchema, ObjectSchema
+from typing import cast, List
+from jinja2 import Environment
+from ..models import EnumSchema, ObjectSchema, CodeModel, Property, ConstantSchema
 from ..models.imports import FileImport
 from .import_serializer import FileImportSerializer
 
 class ModelBaseSerializer:
-    def __init__(self, code_model, env):
+    def __init__(self, code_model: CodeModel, env: Environment):
         self.code_model = code_model
         self.env = env
-        self._model_file = None
 
 
-    def serialize(self):
+    def serialize(self) -> str:
         # Generate the models
         template = self.env.get_template("model_container.py.jinja2")
-        self._model_file = template.render(
+        return template.render(
             code_model=self.code_model,
             imports=FileImportSerializer(self.imports()),
             str=str,
@@ -29,18 +29,14 @@ class ModelBaseSerializer:
             prop_type_documentation_string=ModelBaseSerializer.prop_type_documentation_string
         )
 
-    def imports(self):
+    def imports(self) -> FileImport:
         file_import = FileImport()
         for model in self.code_model.sorted_schemas:
             file_import.merge(model.imports())
         return file_import
 
-    @property
-    def model_file(self):
-        return self._model_file
-
     @staticmethod
-    def prop_documentation_string(prop):
+    def prop_documentation_string(prop: Property) -> str:
         # building the param line of the property doc
         if prop.constant or prop.readonly:
             param_doc_string = ":ivar {}:".format(prop.name)
@@ -57,7 +53,8 @@ class ModelBaseSerializer:
             else:
                 description = "Required. "
         if prop.constant:
-            description += " Default value: \"{}\".".format(prop.schema.value)
+            constant_prop = cast(ConstantSchema, prop.schema)
+            description += " Default value: \"{}\".".format(constant_prop.value)
         if prop.is_discriminator:
             description += "Constant filled by server. "
         if isinstance(prop.schema, EnumSchema):
@@ -70,7 +67,7 @@ class ModelBaseSerializer:
         return param_doc_string
 
     @staticmethod
-    def prop_type_documentation_string(prop, namespace):
+    def prop_type_documentation_string(prop: Property, namespace: str) -> str:
         # building the type line of the property doc
         if prop.constant or prop.readonly:
             type_doc_string = ":vartype {}: ".format(prop.name)

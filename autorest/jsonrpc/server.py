@@ -20,7 +20,7 @@ def GetPluginNames():
     return ["codegen", "m2r", "namer"]
 
 @dispatcher.add_method
-def Process(plugin_name, session_id):
+def Process(plugin_name: str, session_id):
     # pylint: disable=import-outside-toplevel
     """JSON-RPC process call.
     """
@@ -31,9 +31,9 @@ def Process(plugin_name, session_id):
         if plugin_name == "m2r":
             from ..m2r import M2R as PluginToLoad
         elif plugin_name == "namer":
-            from ..namer import Namer as PluginToLoad
+            from ..namer import Namer as PluginToLoad # type: ignore
         elif plugin_name == "codegen":
-            from ..codegen import CodeGenerator as PluginToLoad
+            from ..codegen import CodeGenerator as PluginToLoad # type: ignore
         else:
             _LOGGER.fatal("Unknown plugin name %s", plugin_name)
             raise RuntimeError(f"Unknown plugin name {plugin_name}")

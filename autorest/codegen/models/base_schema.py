@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from abc import ABC, abstractmethod
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional, Union
 
 from .base_model import BaseModel
 from .imports import FileImport
@@ -21,10 +21,10 @@ class BaseSchema(BaseModel, ABC):
         self.default_value = yaml_data.get('defaultValue', None)
 
     @classmethod
-    def from_yaml(cls, yaml_data, **kwargs):  # pylint: disable=unused-argument
+    def from_yaml(cls, yaml_data: Dict[str, Any], **kwargs) -> "BaseSchema":  # pylint: disable=unused-argument
         return cls(yaml_data=yaml_data)
 
-    def imports(self):  # pylint: disable=no-self-use
+    def imports(self) -> FileImport:  # pylint: disable=no-self-use
         return FileImport()
 
     @abstractmethod
@@ -49,14 +49,15 @@ class BaseSchema(BaseModel, ABC):
         """
         ...
 
+    @abstractmethod
     def get_python_type_annotation(self) -> str:
         """The python type used for type annotation
 
         Special case for enum, for instance: Union[str, "EnumName"]
         """
-        return self.get_python_type(None)
+        ...
 
-    def get_declaration(self, value) -> str: # pylint: disable=no-self-use
+    def get_declaration(self, value: Any) -> str: # pylint: disable=no-self-use
         """Return the current value from YAML as a Python string that represents the constant.
 
         Example, if schema is "bytearray" and value is "foo",
@@ -69,8 +70,8 @@ class BaseSchema(BaseModel, ABC):
         """
         return str(value)
 
-    def get_validation_map(self) -> Dict[str, Any]: # pylint: disable=no-self-use
+    def get_validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]: # pylint: disable=no-self-use
         return None
 
-    def get_serialization_constraints(self) -> List[str]: # pylint: disable=no-self-use
+    def get_serialization_constraints(self) -> Optional[List[str]]: # pylint: disable=no-self-use
         return None

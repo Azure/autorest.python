@@ -7,7 +7,8 @@ import json
 import os
 import logging
 import sys
-from typing import BinaryIO
+from pathlib import Path
+from typing import Any, BinaryIO, List, Union
 
 from jsonrpc.jsonrpc2 import JSONRPC20Request
 
@@ -27,7 +28,7 @@ def read_message(stream: BinaryIO = sys.stdin.buffer) -> str:
     try:
         bytes_size = int(order.split(b":")[1].strip())
     except Exception as err:
-        raise ValueError(f"Was unable to read length from {order}") from err
+        raise ValueError(f"Was unable to read length from {order}") from err # type: ignore
     # Double new line, so read another emptyline and ignore it
     stream.readline()
 
@@ -35,11 +36,11 @@ def read_message(stream: BinaryIO = sys.stdin.buffer) -> str:
     _LOGGER.debug("Trying to read the message")
     message = stream.read(bytes_size)
     assert isinstance(message, bytes)
-    message = message.decode('utf-8')
-    _LOGGER.debug("Received a %d bytes message", len(message))
+    message_str = message.decode('utf-8')
+    _LOGGER.debug("Received a %d bytes message", len(message_str))
     #_LOGGER.debug("Read %s", message)
 
-    return message
+    return message_str
 
 
 def write_message(message: str, stream: BinaryIO = sys.stdout.buffer) -> None:
@@ -58,7 +59,7 @@ class StdStreamAutorestAPI(AutorestAPI):
         super().__init__()
         self.session_id = session_id
 
-    def write_file(self, filename: str, file_content: str) -> None:
+    def write_file(self, filename: Union[str, Path], file_content: str) -> None:
         _LOGGER.debug("Writing a file: %s", filename)
         filename = os.fspath(filename)
         request = JSONRPC20Request(
@@ -73,7 +74,7 @@ class StdStreamAutorestAPI(AutorestAPI):
         )
         write_message(request.json)
 
-    def read_file(self, filename: str) -> str:
+    def read_file(self, filename: Union[str, Path]) -> str:
         _LOGGER.debug("Asking content for file %s", filename)
         filename = os.fspath(filename)
         request = JSONRPC20Request(
@@ -87,7 +88,7 @@ class StdStreamAutorestAPI(AutorestAPI):
         write_message(request.json)
         return json.loads(read_message())["result"]
 
-    def list_inputs(self):
+    def list_inputs(self) -> List[str]:
         _LOGGER.debug("Calling list inputs to Autorest")
         request = JSONRPC20Request(
             method="ListInputs",
@@ -100,7 +101,7 @@ class StdStreamAutorestAPI(AutorestAPI):
         write_message(request.json)
         return json.loads(read_message())["result"]
 
-    def get_value(self, key):
+    def get_value(self, key: str) -> Any:
         _LOGGER.debug("Calling get value to Autorest: %s", key)
         request = JSONRPC20Request(
             method="GetValue",
