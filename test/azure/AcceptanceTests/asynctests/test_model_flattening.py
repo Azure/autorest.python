@@ -55,7 +55,6 @@ async def client():
 
 class TestModelFlatteningTests(object):
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     @pytest.mark.asyncio
     async def test_flattening_array(self, client):
 
@@ -90,7 +89,6 @@ class TestModelFlatteningTests(object):
 
         await client.put_array(resourceArray)
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     @pytest.mark.asyncio
     async def test_flattening_dictionary(self, client):
 
@@ -129,7 +127,6 @@ class TestModelFlatteningTests(object):
 
         await client.put_dictionary(resourceDictionary)
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     @pytest.mark.asyncio
     async def test_flattening_complex_object(self, client):
 
@@ -212,7 +209,6 @@ class TestModelFlatteningTests(object):
 
         await client.put_resource_collection(resourceComplexObject)
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     @pytest.mark.asyncio
     async def test_model_flattening_simple(self, client):
 
@@ -229,7 +225,6 @@ class TestModelFlatteningTests(object):
         result.additional_properties = {} # Not the purpose of this test. This enables the ==.
         assert result ==  simple_product
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     @pytest.mark.asyncio
     async def test_model_flattening_with_parameter_flattening(self, client):
 
