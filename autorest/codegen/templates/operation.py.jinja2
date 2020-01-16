@@ -70,8 +70,8 @@
 {% if operation.parameters.is_flattened %}
     {{ operation.parameters.build_flattened_object() }}
 {% endif %}
-{% if operation.parameters.constant %}
-    {% for constant_parameter in operation.parameters.constant %}
+{% if operation.parameters.constant|selectattr("implementation", "equalto", "Method") %}
+    {% for constant_parameter in operation.parameters.constant|selectattr("implementation", "equalto", "Method") %}
     {{ constant_parameter.serialized_name }} = {{ constant_parameter.schema.get_constant_value() }}
     {% endfor %}
 {% endif %}
