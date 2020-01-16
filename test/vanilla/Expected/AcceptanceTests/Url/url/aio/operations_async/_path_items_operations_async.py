@@ -33,7 +33,7 @@ class PathItemsOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
-    
+
     @distributed_trace_async
     async def get_all_with_values(self, path_item_string_path, local_string_path, path_item_string_query=None, local_string_query=None, cls=None, **kwargs):
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
@@ -91,7 +91,7 @@ class PathItemsOperations:
           return cls(response, None, {})
 
     get_all_with_values.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery'}
-    
+
     @distributed_trace_async
     async def get_global_query_null(self, path_item_string_path, local_string_path, path_item_string_query=None, local_string_query=None, cls=None, **kwargs):
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
@@ -149,7 +149,7 @@ class PathItemsOperations:
           return cls(response, None, {})
 
     get_global_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery'}
-    
+
     @distributed_trace_async
     async def get_global_and_local_query_null(self, path_item_string_path, local_string_path, path_item_string_query=None, local_string_query=None, cls=None, **kwargs):
         """send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
@@ -207,7 +207,7 @@ class PathItemsOperations:
           return cls(response, None, {})
 
     get_global_and_local_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null'}
-    
+
     @distributed_trace_async
     async def get_local_path_item_query_null(self, path_item_string_path, local_string_path, path_item_string_query=None, local_string_query=None, cls=None, **kwargs):
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery=null, localStringQuery=null.

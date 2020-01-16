@@ -33,7 +33,7 @@ class HttpFailureOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
-    
+
     @distributed_trace_async
     async def get_empty_error(self, cls=None, **kwargs):
         """Get empty error form server.
@@ -75,7 +75,7 @@ class HttpFailureOperations:
 
         return deserialized
     get_empty_error.metadata = {'url': '/http/failure/emptybody/error'}
-    
+
     @distributed_trace_async
     async def get_no_model_error(self, cls=None, **kwargs):
         """Get empty error form server.
@@ -117,7 +117,7 @@ class HttpFailureOperations:
 
         return deserialized
     get_no_model_error.metadata = {'url': '/http/failure/nomodel/error'}
-    
+
     @distributed_trace_async
     async def get_no_model_empty(self, cls=None, **kwargs):
         """Get empty response from server.

@@ -34,7 +34,7 @@ class OdataOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
-    
+
     @distributed_trace_async
     async def get_with_filter(self, filter=None, top=None, orderby=None, cls=None, **kwargs):
         """Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'.

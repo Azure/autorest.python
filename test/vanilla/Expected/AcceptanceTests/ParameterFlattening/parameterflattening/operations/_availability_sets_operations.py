@@ -33,7 +33,7 @@ class AvailabilitySetsOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
-    
+
     @distributed_trace
     def update(self, resource_group_name, availability_set_name, tags, cls=None, **kwargs):
         """Updates the tags for an availability set..

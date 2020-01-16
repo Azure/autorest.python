@@ -33,7 +33,7 @@ class ReadonlypropertyOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
-    
+
     @distributed_trace_async
     async def get_valid(self, cls=None, **kwargs):
         """Get complex types that have readonly properties.
@@ -75,7 +75,7 @@ class ReadonlypropertyOperations:
 
         return deserialized
     get_valid.metadata = {'url': '/complex/readonlyproperty/valid'}
-    
+
     @distributed_trace_async
     async def put_valid(self, size=None, cls=None, **kwargs):
         """Put complex types that have readonly properties.

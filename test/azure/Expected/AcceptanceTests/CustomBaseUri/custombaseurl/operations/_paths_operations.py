@@ -33,7 +33,7 @@ class PathsOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
-    
+
     @distributed_trace
     def get_empty(self, account_name, cls=None, **kwargs):
         """Get a 200 to test a valid base uri.

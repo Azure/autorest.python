@@ -33,7 +33,7 @@ class FlattencomplexOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
-    
+
     @distributed_trace
     def get_valid(self, cls=None, **kwargs):
         """MISSING·OPERATION-DESCRIPTION.

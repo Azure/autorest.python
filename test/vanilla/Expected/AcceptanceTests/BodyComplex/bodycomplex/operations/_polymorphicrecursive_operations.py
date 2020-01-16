@@ -33,7 +33,7 @@ class PolymorphicrecursiveOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
-    
+
     @distributed_trace
     def get_valid(self, cls=None, **kwargs):
         """Get complex types that are polymorphic and have recursive references.
@@ -75,7 +75,7 @@ class PolymorphicrecursiveOperations(object):
 
         return deserialized
     get_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}
-    
+
     @distributed_trace
     def put_valid(self, complex_body, cls=None, **kwargs):
         """Put complex types that are polymorphic and have recursive references.

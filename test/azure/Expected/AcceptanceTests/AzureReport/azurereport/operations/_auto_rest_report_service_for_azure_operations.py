@@ -14,7 +14,6 @@ from .. import models
 
 
 class AutoRestReportServiceForAzureOperationsMixin(object):
-    
     @distributed_trace
     def get_report(self, qualifier=None, cls=None, **kwargs):
         """Get test coverage report.

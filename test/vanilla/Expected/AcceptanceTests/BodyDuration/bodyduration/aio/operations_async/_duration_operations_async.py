@@ -33,7 +33,7 @@ class DurationOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
-    
+
     @distributed_trace_async
     async def get_null(self, cls=None, **kwargs):
         """Get null duration value.
@@ -75,7 +75,7 @@ class DurationOperations:
 
         return deserialized
     get_null.metadata = {'url': '/duration/null'}
-    
+
     @distributed_trace_async
     async def put_positive_duration(self, duration_body, cls=None, **kwargs):
         """Put a positive duration value.
@@ -119,7 +119,7 @@ class DurationOperations:
           return cls(response, None, {})
 
     put_positive_duration.metadata = {'url': '/duration/positiveduration'}
-    
+
     @distributed_trace_async
     async def get_positive_duration(self, cls=None, **kwargs):
         """Get a positive duration value.
@@ -161,7 +161,7 @@ class DurationOperations:
 
         return deserialized
     get_positive_duration.metadata = {'url': '/duration/positiveduration'}
-    
+
     @distributed_trace_async
     async def get_invalid(self, cls=None, **kwargs):
         """Get an invalid duration value.

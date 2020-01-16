@@ -33,7 +33,7 @@ class PetOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
-    
+
     @distributed_trace
     def get_pet_by_id(self, pet_id, cls=None, **kwargs):
         """Gets pets by id..
@@ -88,7 +88,7 @@ class PetOperations(object):
 
         return deserialized
     get_pet_by_id.metadata = {'url': '/errorStatusCodes/Pets/{petId}/GetPet'}
-    
+
     @distributed_trace
     def do_something(self, what_action, cls=None, **kwargs):
         """Asks pet to do something.

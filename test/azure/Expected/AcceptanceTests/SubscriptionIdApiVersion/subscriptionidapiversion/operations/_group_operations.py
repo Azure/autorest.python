@@ -34,7 +34,7 @@ class GroupOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
-    
+
     @distributed_trace
     def get_sample_resource_group(self, resource_group_name, cls=None, **kwargs):
         """Provides a resouce group with name 'testgroup101' and location 'West US'..

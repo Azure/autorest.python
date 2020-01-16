@@ -33,7 +33,7 @@ class DateOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
-    
+
     @distributed_trace_async
     async def get_null(self, cls=None, **kwargs):
         """Get null date value.
@@ -75,7 +75,7 @@ class DateOperations:
 
         return deserialized
     get_null.metadata = {'url': '/date/null'}
-    
+
     @distributed_trace_async
     async def get_invalid_date(self, cls=None, **kwargs):
         """Get invalid date value.
@@ -117,7 +117,7 @@ class DateOperations:
 
         return deserialized
     get_invalid_date.metadata = {'url': '/date/invaliddate'}
-    
+
     @distributed_trace_async
     async def get_overflow_date(self, cls=None, **kwargs):
         """Get overflow date value.
@@ -159,7 +159,7 @@ class DateOperations:
 
         return deserialized
     get_overflow_date.metadata = {'url': '/date/overflowdate'}
-    
+
     @distributed_trace_async
     async def get_underflow_date(self, cls=None, **kwargs):
         """Get underflow date value.
@@ -201,7 +201,7 @@ class DateOperations:
 
         return deserialized
     get_underflow_date.metadata = {'url': '/date/underflowdate'}
-    
+
     @distributed_trace_async
     async def put_max_date(self, date_body, cls=None, **kwargs):
         """Put max date value 9999-12-31.
@@ -245,7 +245,7 @@ class DateOperations:
           return cls(response, None, {})
 
     put_max_date.metadata = {'url': '/date/max'}
-    
+
     @distributed_trace_async
     async def get_max_date(self, cls=None, **kwargs):
         """Get max date value 9999-12-31.
@@ -287,7 +287,7 @@ class DateOperations:
 
         return deserialized
     get_max_date.metadata = {'url': '/date/max'}
-    
+
     @distributed_trace_async
     async def put_min_date(self, date_body, cls=None, **kwargs):
         """Put min date value 0000-01-01.
@@ -331,7 +331,7 @@ class DateOperations:
           return cls(response, None, {})
 
     put_min_date.metadata = {'url': '/date/min'}
-    
+
     @distributed_trace_async
     async def get_min_date(self, cls=None, **kwargs):
         """Get min date value 0000-01-01.

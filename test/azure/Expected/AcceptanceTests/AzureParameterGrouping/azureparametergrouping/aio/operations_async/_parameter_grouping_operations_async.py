@@ -33,7 +33,7 @@ class ParameterGroupingOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
-    
+
     @distributed_trace_async
     async def post_required(self, path, body, custom_header=None, query=None, cls=None, **kwargs):
         """Post a bunch of required parameters grouped.
@@ -91,7 +91,7 @@ class ParameterGroupingOperations:
           return cls(response, None, {})
 
     post_required.metadata = {'url': '/parameterGrouping/postRequired/{path}'}
-    
+
     @distributed_trace_async
     async def post_optional(self, custom_header=None, query=None, cls=None, **kwargs):
         """Post a bunch of optional parameters grouped.
@@ -137,7 +137,7 @@ class ParameterGroupingOperations:
           return cls(response, None, {})
 
     post_optional.metadata = {'url': '/parameterGrouping/postOptional'}
-    
+
     @distributed_trace_async
     async def post_multi_param_groups(self, header_one=None, query_one=None, header_two=None, query_two=None, cls=None, **kwargs):
         """Post parameters from multiple different parameter groups.
@@ -191,7 +191,7 @@ class ParameterGroupingOperations:
           return cls(response, None, {})
 
     post_multi_param_groups.metadata = {'url': '/parameterGrouping/postMultipleParameterGroups'}
-    
+
     @distributed_trace_async
     async def post_shared_parameter_group_object(self, header_one=None, query_one=None, cls=None, **kwargs):
         """Post parameters with a shared parameter group object.

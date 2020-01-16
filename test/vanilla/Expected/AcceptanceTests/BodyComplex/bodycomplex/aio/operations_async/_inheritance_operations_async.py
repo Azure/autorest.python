@@ -33,7 +33,7 @@ class InheritanceOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
-    
+
     @distributed_trace_async
     async def get_valid(self, cls=None, **kwargs):
         """Get complex types that extend others.
@@ -75,7 +75,7 @@ class InheritanceOperations:
 
         return deserialized
     get_valid.metadata = {'url': '/complex/inheritance/valid'}
-    
+
     @distributed_trace_async
     async def put_valid(self, complex_body, cls=None, **kwargs):
         """Put complex types that extend others.

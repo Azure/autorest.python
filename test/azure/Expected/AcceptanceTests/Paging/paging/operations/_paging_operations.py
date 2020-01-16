@@ -38,6 +38,7 @@ class PagingOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace
     def get_no_item_name_pages(self, cls=None, **kwargs):
         """A paging operation that must return result of the default 'value' node..
@@ -96,6 +97,7 @@ class PagingOperations(object):
             get_next, extract_data
         )
     get_no_item_name_pages.metadata = {'url': '/paging/noitemname'}
+
 
     @distributed_trace
     def get_null_next_link_name_pages(self, cls=None, **kwargs):
@@ -156,6 +158,7 @@ class PagingOperations(object):
         )
     get_null_next_link_name_pages.metadata = {'url': '/paging/nullnextlink'}
 
+
     @distributed_trace
     def get_single_pages(self, cls=None, **kwargs):
         """A paging operation that finishes on the first call without a nextlink.
@@ -214,6 +217,7 @@ class PagingOperations(object):
             get_next, extract_data
         )
     get_single_pages.metadata = {'url': '/paging/single'}
+
 
     @distributed_trace
     def get_multiple_pages(self, client_request_id=None, maxresults=None, timeout=None, cls=None, **kwargs):
@@ -286,6 +290,7 @@ class PagingOperations(object):
         )
     get_multiple_pages.metadata = {'url': '/paging/multiple'}
 
+
     @distributed_trace
     def get_odata_multiple_pages(self, client_request_id=None, maxresults=None, timeout=None, cls=None, **kwargs):
         """A paging operation that includes a nextLink in odata format that has 10 pages.
@@ -356,6 +361,7 @@ class PagingOperations(object):
             get_next, extract_data
         )
     get_odata_multiple_pages.metadata = {'url': '/paging/multiple/odata'}
+
 
     @distributed_trace
     def get_multiple_pages_with_offset(self, offset, client_request_id=None, maxresults=None, timeout=None, cls=None, **kwargs):
@@ -434,6 +440,7 @@ class PagingOperations(object):
         )
     get_multiple_pages_with_offset.metadata = {'url': '/paging/multiple/withpath/{offset}'}
 
+
     @distributed_trace
     def get_multiple_pages_retry_first(self, cls=None, **kwargs):
         """A paging operation that fails on the first call with 500 and then retries and then get a response including a nextLink that has 10 pages.
@@ -492,6 +499,7 @@ class PagingOperations(object):
             get_next, extract_data
         )
     get_multiple_pages_retry_first.metadata = {'url': '/paging/multiple/retryfirst'}
+
 
     @distributed_trace
     def get_multiple_pages_retry_second(self, cls=None, **kwargs):
@@ -552,6 +560,7 @@ class PagingOperations(object):
         )
     get_multiple_pages_retry_second.metadata = {'url': '/paging/multiple/retrysecond'}
 
+
     @distributed_trace
     def get_single_pages_failure(self, cls=None, **kwargs):
         """A paging operation that receives a 400 on the first call.
@@ -610,6 +619,7 @@ class PagingOperations(object):
             get_next, extract_data
         )
     get_single_pages_failure.metadata = {'url': '/paging/single/failure'}
+
 
     @distributed_trace
     def get_multiple_pages_failure(self, cls=None, **kwargs):
@@ -670,6 +680,7 @@ class PagingOperations(object):
         )
     get_multiple_pages_failure.metadata = {'url': '/paging/multiple/failure'}
 
+
     @distributed_trace
     def get_multiple_pages_failure_uri(self, cls=None, **kwargs):
         """A paging operation that receives an invalid nextLink.
@@ -728,6 +739,7 @@ class PagingOperations(object):
             get_next, extract_data
         )
     get_multiple_pages_failure_uri.metadata = {'url': '/paging/multiple/failureuri'}
+
 
     @distributed_trace
     def get_multiple_pages_fragment_next_link(self, api_version, tenant, cls=None, **kwargs):
@@ -802,6 +814,7 @@ class PagingOperations(object):
         )
     get_multiple_pages_fragment_next_link.metadata = {'url': '/paging/multiple/fragment/{tenant}'}
 
+
     @distributed_trace
     def get_multiple_pages_fragment_with_grouping_next_link(self, api_version, tenant, cls=None, **kwargs):
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
@@ -875,8 +888,8 @@ class PagingOperations(object):
         )
     get_multiple_pages_fragment_with_grouping_next_link.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}'}
 
-    
 
+    
     def _get_multiple_pages_lro_initial(self, client_request_id=None, maxresults=None, timeout=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
 
@@ -915,6 +928,7 @@ class PagingOperations(object):
 
         return deserialized
     _get_multiple_pages_lro_initial.metadata = {'url': '/paging/multiple/lro'}
+
     @distributed_trace
     def begin_get_multiple_pages_lro(self, client_request_id=None, maxresults=None, timeout=None, cls=None, polling=True, **kwargs):
         """A long-running paging operation that includes a nextLink that has 10 pages.

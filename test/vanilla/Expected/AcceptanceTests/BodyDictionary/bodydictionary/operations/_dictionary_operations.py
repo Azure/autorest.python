@@ -33,7 +33,7 @@ class DictionaryOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
-    
+
     @distributed_trace
     def get_null(self, cls=None, **kwargs):
         """Get null dictionary value.
@@ -75,7 +75,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_null.metadata = {'url': '/dictionary/null'}
-    
+
     @distributed_trace
     def get_empty(self, cls=None, **kwargs):
         """Get empty dictionary value {}.
@@ -117,7 +117,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_empty.metadata = {'url': '/dictionary/empty'}
-    
+
     @distributed_trace
     def put_empty(self, array_body, cls=None, **kwargs):
         """Set dictionary value empty {}.
@@ -161,7 +161,7 @@ class DictionaryOperations(object):
           return cls(response, None, {})
 
     put_empty.metadata = {'url': '/dictionary/empty'}
-    
+
     @distributed_trace
     def get_null_value(self, cls=None, **kwargs):
         """Get Dictionary with null value.
@@ -203,7 +203,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_null_value.metadata = {'url': '/dictionary/nullvalue'}
-    
+
     @distributed_trace
     def get_null_key(self, cls=None, **kwargs):
         """Get Dictionary with null key.
@@ -245,7 +245,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_null_key.metadata = {'url': '/dictionary/nullkey'}
-    
+
     @distributed_trace
     def get_empty_string_key(self, cls=None, **kwargs):
         """Get Dictionary with key as empty string.
@@ -287,7 +287,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_empty_string_key.metadata = {'url': '/dictionary/keyemptystring'}
-    
+
     @distributed_trace
     def get_invalid(self, cls=None, **kwargs):
         """Get invalid Dictionary value.
@@ -329,7 +329,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_invalid.metadata = {'url': '/dictionary/invalid'}
-    
+
     @distributed_trace
     def get_boolean_tfft(self, cls=None, **kwargs):
         """Get boolean dictionary value {"0": true, "1": false, "2": false, "3": true }.
@@ -371,7 +371,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_boolean_tfft.metadata = {'url': '/dictionary/prim/boolean/tfft'}
-    
+
     @distributed_trace
     def put_boolean_tfft(self, array_body, cls=None, **kwargs):
         """Set dictionary value empty {"0": true, "1": false, "2": false, "3": true }.
@@ -415,7 +415,7 @@ class DictionaryOperations(object):
           return cls(response, None, {})
 
     put_boolean_tfft.metadata = {'url': '/dictionary/prim/boolean/tfft'}
-    
+
     @distributed_trace
     def get_boolean_invalid_null(self, cls=None, **kwargs):
         """Get boolean dictionary value {"0": true, "1": null, "2": false }.
@@ -457,7 +457,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_boolean_invalid_null.metadata = {'url': '/dictionary/prim/boolean/true.null.false'}
-    
+
     @distributed_trace
     def get_boolean_invalid_string(self, cls=None, **kwargs):
         """Get boolean dictionary value '{"0": true, "1": "boolean", "2": false}'.
@@ -499,7 +499,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_boolean_invalid_string.metadata = {'url': '/dictionary/prim/boolean/true.boolean.false'}
-    
+
     @distributed_trace
     def get_integer_valid(self, cls=None, **kwargs):
         """Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}.
@@ -541,7 +541,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_integer_valid.metadata = {'url': '/dictionary/prim/integer/1.-1.3.300'}
-    
+
     @distributed_trace
     def put_integer_valid(self, array_body, cls=None, **kwargs):
         """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
@@ -585,7 +585,7 @@ class DictionaryOperations(object):
           return cls(response, None, {})
 
     put_integer_valid.metadata = {'url': '/dictionary/prim/integer/1.-1.3.300'}
-    
+
     @distributed_trace
     def get_int_invalid_null(self, cls=None, **kwargs):
         """Get integer dictionary value {"0": 1, "1": null, "2": 0}.
@@ -627,7 +627,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_int_invalid_null.metadata = {'url': '/dictionary/prim/integer/1.null.zero'}
-    
+
     @distributed_trace
     def get_int_invalid_string(self, cls=None, **kwargs):
         """Get integer dictionary value {"0": 1, "1": "integer", "2": 0}.
@@ -669,7 +669,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_int_invalid_string.metadata = {'url': '/dictionary/prim/integer/1.integer.0'}
-    
+
     @distributed_trace
     def get_long_valid(self, cls=None, **kwargs):
         """Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}.
@@ -711,7 +711,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_long_valid.metadata = {'url': '/dictionary/prim/long/1.-1.3.300'}
-    
+
     @distributed_trace
     def put_long_valid(self, array_body, cls=None, **kwargs):
         """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
@@ -755,7 +755,7 @@ class DictionaryOperations(object):
           return cls(response, None, {})
 
     put_long_valid.metadata = {'url': '/dictionary/prim/long/1.-1.3.300'}
-    
+
     @distributed_trace
     def get_long_invalid_null(self, cls=None, **kwargs):
         """Get long dictionary value {"0": 1, "1": null, "2": 0}.
@@ -797,7 +797,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_long_invalid_null.metadata = {'url': '/dictionary/prim/long/1.null.zero'}
-    
+
     @distributed_trace
     def get_long_invalid_string(self, cls=None, **kwargs):
         """Get long dictionary value {"0": 1, "1": "integer", "2": 0}.
@@ -839,7 +839,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_long_invalid_string.metadata = {'url': '/dictionary/prim/long/1.integer.0'}
-    
+
     @distributed_trace
     def get_float_valid(self, cls=None, **kwargs):
         """Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
@@ -881,7 +881,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_float_valid.metadata = {'url': '/dictionary/prim/float/0--0.01-1.2e20'}
-    
+
     @distributed_trace
     def put_float_valid(self, array_body, cls=None, **kwargs):
         """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
@@ -925,7 +925,7 @@ class DictionaryOperations(object):
           return cls(response, None, {})
 
     put_float_valid.metadata = {'url': '/dictionary/prim/float/0--0.01-1.2e20'}
-    
+
     @distributed_trace
     def get_float_invalid_null(self, cls=None, **kwargs):
         """Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}.
@@ -967,7 +967,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_float_invalid_null.metadata = {'url': '/dictionary/prim/float/0.0-null-1.2e20'}
-    
+
     @distributed_trace
     def get_float_invalid_string(self, cls=None, **kwargs):
         """Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}.
@@ -1009,7 +1009,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_float_invalid_string.metadata = {'url': '/dictionary/prim/float/1.number.0'}
-    
+
     @distributed_trace
     def get_double_valid(self, cls=None, **kwargs):
         """Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
@@ -1051,7 +1051,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_double_valid.metadata = {'url': '/dictionary/prim/double/0--0.01-1.2e20'}
-    
+
     @distributed_trace
     def put_double_valid(self, array_body, cls=None, **kwargs):
         """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
@@ -1095,7 +1095,7 @@ class DictionaryOperations(object):
           return cls(response, None, {})
 
     put_double_valid.metadata = {'url': '/dictionary/prim/double/0--0.01-1.2e20'}
-    
+
     @distributed_trace
     def get_double_invalid_null(self, cls=None, **kwargs):
         """Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}.
@@ -1137,7 +1137,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_double_invalid_null.metadata = {'url': '/dictionary/prim/double/0.0-null-1.2e20'}
-    
+
     @distributed_trace
     def get_double_invalid_string(self, cls=None, **kwargs):
         """Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}.
@@ -1179,7 +1179,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_double_invalid_string.metadata = {'url': '/dictionary/prim/double/1.number.0'}
-    
+
     @distributed_trace
     def get_string_valid(self, cls=None, **kwargs):
         """Get string dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
@@ -1221,7 +1221,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_string_valid.metadata = {'url': '/dictionary/prim/string/foo1.foo2.foo3'}
-    
+
     @distributed_trace
     def put_string_valid(self, array_body, cls=None, **kwargs):
         """Set dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
@@ -1265,7 +1265,7 @@ class DictionaryOperations(object):
           return cls(response, None, {})
 
     put_string_valid.metadata = {'url': '/dictionary/prim/string/foo1.foo2.foo3'}
-    
+
     @distributed_trace
     def get_string_with_null(self, cls=None, **kwargs):
         """Get string dictionary value {"0": "foo", "1": null, "2": "foo2"}.
@@ -1307,7 +1307,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_string_with_null.metadata = {'url': '/dictionary/prim/string/foo.null.foo2'}
-    
+
     @distributed_trace
     def get_string_with_invalid(self, cls=None, **kwargs):
         """Get string dictionary value {"0": "foo", "1": 123, "2": "foo2"}.
@@ -1349,7 +1349,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_string_with_invalid.metadata = {'url': '/dictionary/prim/string/foo.123.foo2'}
-    
+
     @distributed_trace
     def get_date_valid(self, cls=None, **kwargs):
         """Get integer dictionary value {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
@@ -1391,7 +1391,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_date_valid.metadata = {'url': '/dictionary/prim/date/valid'}
-    
+
     @distributed_trace
     def put_date_valid(self, array_body, cls=None, **kwargs):
         """Set dictionary value  {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
@@ -1435,7 +1435,7 @@ class DictionaryOperations(object):
           return cls(response, None, {})
 
     put_date_valid.metadata = {'url': '/dictionary/prim/date/valid'}
-    
+
     @distributed_trace
     def get_date_invalid_null(self, cls=None, **kwargs):
         """Get date dictionary value {"0": "2012-01-01", "1": null, "2": "1776-07-04"}.
@@ -1477,7 +1477,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_date_invalid_null.metadata = {'url': '/dictionary/prim/date/invalidnull'}
-    
+
     @distributed_trace
     def get_date_invalid_chars(self, cls=None, **kwargs):
         """Get date dictionary value {"0": "2011-03-22", "1": "date"}.
@@ -1519,7 +1519,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_date_invalid_chars.metadata = {'url': '/dictionary/prim/date/invalidchars'}
-    
+
     @distributed_trace
     def get_date_time_valid(self, cls=None, **kwargs):
         """Get date-time dictionary value {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2": "1492-10-12T10:15:01-08:00"}.
@@ -1561,7 +1561,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_date_time_valid.metadata = {'url': '/dictionary/prim/date-time/valid'}
-    
+
     @distributed_trace
     def put_date_time_valid(self, array_body, cls=None, **kwargs):
         """Set dictionary value  {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2": "1492-10-12T10:15:01-08:00"}.
@@ -1605,7 +1605,7 @@ class DictionaryOperations(object):
           return cls(response, None, {})
 
     put_date_time_valid.metadata = {'url': '/dictionary/prim/date-time/valid'}
-    
+
     @distributed_trace
     def get_date_time_invalid_null(self, cls=None, **kwargs):
         """Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": null}.
@@ -1647,7 +1647,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_date_time_invalid_null.metadata = {'url': '/dictionary/prim/date-time/invalidnull'}
-    
+
     @distributed_trace
     def get_date_time_invalid_chars(self, cls=None, **kwargs):
         """Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": "date-time"}.
@@ -1689,7 +1689,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_date_time_invalid_chars.metadata = {'url': '/dictionary/prim/date-time/invalidchars'}
-    
+
     @distributed_trace
     def get_date_time_rfc1123_valid(self, cls=None, **kwargs):
         """Get date-time-rfc1123 dictionary value {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980 00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
@@ -1731,7 +1731,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_date_time_rfc1123_valid.metadata = {'url': '/dictionary/prim/date-time-rfc1123/valid'}
-    
+
     @distributed_trace
     def put_date_time_rfc1123_valid(self, array_body, cls=None, **kwargs):
         """Set dictionary value empty {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980 00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
@@ -1775,7 +1775,7 @@ class DictionaryOperations(object):
           return cls(response, None, {})
 
     put_date_time_rfc1123_valid.metadata = {'url': '/dictionary/prim/date-time-rfc1123/valid'}
-    
+
     @distributed_trace
     def get_duration_valid(self, cls=None, **kwargs):
         """Get duration dictionary value {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
@@ -1817,7 +1817,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_duration_valid.metadata = {'url': '/dictionary/prim/duration/valid'}
-    
+
     @distributed_trace
     def put_duration_valid(self, array_body, cls=None, **kwargs):
         """Set dictionary value  {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
@@ -1861,7 +1861,7 @@ class DictionaryOperations(object):
           return cls(response, None, {})
 
     put_duration_valid.metadata = {'url': '/dictionary/prim/duration/valid'}
-    
+
     @distributed_trace
     def get_byte_valid(self, cls=None, **kwargs):
         """Get byte dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)} with each item encoded in base64.
@@ -1903,7 +1903,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_byte_valid.metadata = {'url': '/dictionary/prim/byte/valid'}
-    
+
     @distributed_trace
     def put_byte_valid(self, array_body, cls=None, **kwargs):
         """Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)} with each elementencoded in base 64.
@@ -1947,7 +1947,7 @@ class DictionaryOperations(object):
           return cls(response, None, {})
 
     put_byte_valid.metadata = {'url': '/dictionary/prim/byte/valid'}
-    
+
     @distributed_trace
     def get_byte_invalid_null(self, cls=None, **kwargs):
         """Get byte dictionary value {"0": hex(FF FF FF FA), "1": null} with the first item base64 encoded.
@@ -1989,7 +1989,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_byte_invalid_null.metadata = {'url': '/dictionary/prim/byte/invalidnull'}
-    
+
     @distributed_trace
     def get_base64_url(self, cls=None, **kwargs):
         """Get base64url dictionary value {"0": "a string that gets encoded with base64url", "1": "test string", "2": "Lorem ipsum"}.
@@ -2031,7 +2031,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_base64_url.metadata = {'url': '/dictionary/prim/base64url/valid'}
-    
+
     @distributed_trace
     def get_complex_null(self, cls=None, **kwargs):
         """Get dictionary of complex type null value.
@@ -2073,7 +2073,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_complex_null.metadata = {'url': '/dictionary/complex/null'}
-    
+
     @distributed_trace
     def get_complex_empty(self, cls=None, **kwargs):
         """Get empty dictionary of complex type {}.
@@ -2115,7 +2115,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_complex_empty.metadata = {'url': '/dictionary/complex/empty'}
-    
+
     @distributed_trace
     def get_complex_item_null(self, cls=None, **kwargs):
         """Get dictionary of complex type with null item {"0": {"integer": 1, "string": "2"}, "1": null, "2": {"integer": 5, "string": "6"}}.
@@ -2157,7 +2157,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_complex_item_null.metadata = {'url': '/dictionary/complex/itemnull'}
-    
+
     @distributed_trace
     def get_complex_item_empty(self, cls=None, **kwargs):
         """Get dictionary of complex type with empty item {"0": {"integer": 1, "string": "2"}, "1:" {}, "2": {"integer": 5, "string": "6"}}.
@@ -2199,7 +2199,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_complex_item_empty.metadata = {'url': '/dictionary/complex/itemempty'}
-    
+
     @distributed_trace
     def get_complex_valid(self, cls=None, **kwargs):
         """Get dictionary of complex type with {"0": {"integer": 1, "string": "2"}, "1": {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
@@ -2241,7 +2241,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_complex_valid.metadata = {'url': '/dictionary/complex/valid'}
-    
+
     @distributed_trace
     def put_complex_valid(self, array_body, cls=None, **kwargs):
         """Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1": {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
@@ -2285,7 +2285,7 @@ class DictionaryOperations(object):
           return cls(response, None, {})
 
     put_complex_valid.metadata = {'url': '/dictionary/complex/valid'}
-    
+
     @distributed_trace
     def get_array_null(self, cls=None, **kwargs):
         """Get a null array.
@@ -2327,7 +2327,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_array_null.metadata = {'url': '/dictionary/array/null'}
-    
+
     @distributed_trace
     def get_array_empty(self, cls=None, **kwargs):
         """Get an empty dictionary {}.
@@ -2369,7 +2369,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_array_empty.metadata = {'url': '/dictionary/array/empty'}
-    
+
     @distributed_trace
     def get_array_item_null(self, cls=None, **kwargs):
         """Get an dictionary of array of strings {"0": ["1", "2", "3"], "1": null, "2": ["7", "8", "9"]}.
@@ -2411,7 +2411,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_array_item_null.metadata = {'url': '/dictionary/array/itemnull'}
-    
+
     @distributed_trace
     def get_array_item_empty(self, cls=None, **kwargs):
         """Get an array of array of strings [{"0": ["1", "2", "3"], "1": [], "2": ["7", "8", "9"]}.
@@ -2453,7 +2453,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_array_item_empty.metadata = {'url': '/dictionary/array/itemempty'}
-    
+
     @distributed_trace
     def get_array_valid(self, cls=None, **kwargs):
         """Get an array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8", "9"]}.
@@ -2495,7 +2495,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_array_valid.metadata = {'url': '/dictionary/array/valid'}
-    
+
     @distributed_trace
     def put_array_valid(self, array_body, cls=None, **kwargs):
         """Put An array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8", "9"]}.
@@ -2539,7 +2539,7 @@ class DictionaryOperations(object):
           return cls(response, None, {})
 
     put_array_valid.metadata = {'url': '/dictionary/array/valid'}
-    
+
     @distributed_trace
     def get_dictionary_null(self, cls=None, **kwargs):
         """Get an dictionaries of dictionaries with value null.
@@ -2581,7 +2581,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_dictionary_null.metadata = {'url': '/dictionary/dictionary/null'}
-    
+
     @distributed_trace
     def get_dictionary_empty(self, cls=None, **kwargs):
         """Get an dictionaries of dictionaries of type <string, string> with value {}.
@@ -2623,7 +2623,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_dictionary_empty.metadata = {'url': '/dictionary/dictionary/empty'}
-    
+
     @distributed_trace
     def get_dictionary_item_null(self, cls=None, **kwargs):
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2": "two", "3": "three"}, "1": null, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
@@ -2665,7 +2665,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_dictionary_item_null.metadata = {'url': '/dictionary/dictionary/itemnull'}
-    
+
     @distributed_trace
     def get_dictionary_item_empty(self, cls=None, **kwargs):
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2": "two", "3": "three"}, "1": {}, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
@@ -2707,7 +2707,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_dictionary_item_empty.metadata = {'url': '/dictionary/dictionary/itemempty'}
-    
+
     @distributed_trace
     def get_dictionary_valid(self, cls=None, **kwargs):
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2": "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
@@ -2749,7 +2749,7 @@ class DictionaryOperations(object):
 
         return deserialized
     get_dictionary_valid.metadata = {'url': '/dictionary/dictionary/valid'}
-    
+
     @distributed_trace
     def put_dictionary_valid(self, array_body, cls=None, **kwargs):
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2": "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8": "eight", "9": "nine"}}.

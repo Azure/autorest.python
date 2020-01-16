@@ -33,7 +33,7 @@ class ImplicitOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
-    
+
     @distributed_trace
     def get_required_path(self, path_parameter, cls=None, **kwargs):
         """Test implicitly required path parameter.
@@ -77,7 +77,7 @@ class ImplicitOperations(object):
           return cls(response, None, {})
 
     get_required_path.metadata = {'url': '/reqopt/implicit/required/path/{pathParameter}'}
-    
+
     @distributed_trace
     def put_optional_query(self, query_parameter=None, cls=None, **kwargs):
         """Test implicitly optional query parameter.
@@ -119,7 +119,7 @@ class ImplicitOperations(object):
           return cls(response, None, {})
 
     put_optional_query.metadata = {'url': '/reqopt/implicit/optional/query'}
-    
+
     @distributed_trace
     def put_optional_header(self, query_parameter=None, cls=None, **kwargs):
         """Test implicitly optional header parameter.
@@ -161,7 +161,7 @@ class ImplicitOperations(object):
           return cls(response, None, {})
 
     put_optional_header.metadata = {'url': '/reqopt/implicit/optional/header'}
-    
+
     @distributed_trace
     def put_optional_body(self, body_parameter=None, cls=None, **kwargs):
         """Test implicitly optional body parameter.
@@ -208,7 +208,7 @@ class ImplicitOperations(object):
           return cls(response, None, {})
 
     put_optional_body.metadata = {'url': '/reqopt/implicit/optional/body'}
-    
+
     @distributed_trace
     def get_required_global_path(self, cls=None, **kwargs):
         """Test implicitly required path parameter.
@@ -250,7 +250,7 @@ class ImplicitOperations(object):
           return cls(response, None, {})
 
     get_required_global_path.metadata = {'url': '/reqopt/global/required/path/{required-global-path}'}
-    
+
     @distributed_trace
     def get_required_global_query(self, cls=None, **kwargs):
         """Test implicitly required query parameter.
@@ -289,7 +289,7 @@ class ImplicitOperations(object):
           return cls(response, None, {})
 
     get_required_global_query.metadata = {'url': '/reqopt/global/required/query'}
-    
+
     @distributed_trace
     def get_optional_global_query(self, cls=None, **kwargs):
         """Test implicitly optional query parameter.

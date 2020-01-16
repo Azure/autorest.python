@@ -35,7 +35,7 @@ class UsageOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
-    
+
     @distributed_trace_async
     async def list(self, cls=None, **kwargs):
         """Gets the current usage count and the limit for the resources under the subscription..

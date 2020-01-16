@@ -34,7 +34,7 @@ class ApiVersionLocalOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
-    
+
     @distributed_trace_async
     async def get_method_local_valid(self, cls=None, **kwargs):
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
@@ -73,7 +73,7 @@ class ApiVersionLocalOperations:
           return cls(response, None, {})
 
     get_method_local_valid.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/local/2.0'}
-    
+
     @distributed_trace_async
     async def get_method_local_null(self, cls=None, **kwargs):
         """Get method with api-version modeled in the method.  pass in api-version = null to succeed.
@@ -112,7 +112,7 @@ class ApiVersionLocalOperations:
           return cls(response, None, {})
 
     get_method_local_null.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/local/null'}
-    
+
     @distributed_trace_async
     async def get_path_local_valid(self, cls=None, **kwargs):
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
@@ -151,7 +151,7 @@ class ApiVersionLocalOperations:
           return cls(response, None, {})
 
     get_path_local_valid.metadata = {'url': '/azurespecials/apiVersion/path/string/none/query/local/2.0'}
-    
+
     @distributed_trace_async
     async def get_swagger_local_valid(self, cls=None, **kwargs):
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.

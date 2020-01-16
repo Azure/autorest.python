@@ -33,7 +33,7 @@ class QueriesOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
-    
+
     @distributed_trace
     def array_string_multi_null(self, array_query=None, cls=None, **kwargs):
         """Get a null array of string using the multi-array format.
@@ -75,7 +75,7 @@ class QueriesOperations(object):
           return cls(response, None, {})
 
     array_string_multi_null.metadata = {'url': '/queries/array/multi/string/null'}
-    
+
     @distributed_trace
     def array_string_multi_empty(self, array_query=None, cls=None, **kwargs):
         """Get an empty array [] of string using the multi-array format.
@@ -117,7 +117,7 @@ class QueriesOperations(object):
           return cls(response, None, {})
 
     array_string_multi_empty.metadata = {'url': '/queries/array/multi/string/empty'}
-    
+
     @distributed_trace
     def array_string_multi_valid(self, array_query=None, cls=None, **kwargs):
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the mult-array format.

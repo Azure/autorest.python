@@ -14,7 +14,6 @@ from ... import models
 
 
 class AutoRestReportServiceOperationsMixin:
-    
     @distributed_trace_async
     async def get_report(self, qualifier=None, cls=None, **kwargs):
         """Get test coverage report.
@@ -60,7 +59,6 @@ class AutoRestReportServiceOperationsMixin:
 
         return deserialized
     get_report.metadata = {'url': '/report'}
-    
     @distributed_trace_async
     async def get_optional_report(self, qualifier=None, cls=None, **kwargs):
         """Get optional test coverage report.

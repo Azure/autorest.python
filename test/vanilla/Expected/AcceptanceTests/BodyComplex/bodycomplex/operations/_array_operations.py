@@ -33,7 +33,7 @@ class ArrayOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
-    
+
     @distributed_trace
     def get_valid(self, cls=None, **kwargs):
         """Get complex types with array property.
@@ -75,7 +75,7 @@ class ArrayOperations(object):
 
         return deserialized
     get_valid.metadata = {'url': '/complex/array/valid'}
-    
+
     @distributed_trace
     def put_valid(self, array=None, cls=None, **kwargs):
         """Put complex types with array property.
@@ -120,7 +120,7 @@ class ArrayOperations(object):
           return cls(response, None, {})
 
     put_valid.metadata = {'url': '/complex/array/valid'}
-    
+
     @distributed_trace
     def get_empty(self, cls=None, **kwargs):
         """Get complex types with array property which is empty.
@@ -162,7 +162,7 @@ class ArrayOperations(object):
 
         return deserialized
     get_empty.metadata = {'url': '/complex/array/empty'}
-    
+
     @distributed_trace
     def put_empty(self, array=None, cls=None, **kwargs):
         """Put complex types with array property which is empty.
@@ -207,7 +207,7 @@ class ArrayOperations(object):
           return cls(response, None, {})
 
     put_empty.metadata = {'url': '/complex/array/empty'}
-    
+
     @distributed_trace
     def get_not_provided(self, cls=None, **kwargs):
         """Get complex types with array property while server doesn't provide a response payload.

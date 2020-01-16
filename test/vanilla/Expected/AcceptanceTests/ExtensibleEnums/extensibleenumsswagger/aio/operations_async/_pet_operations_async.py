@@ -33,7 +33,7 @@ class PetOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
-    
+
     @distributed_trace_async
     async def get_by_pet_id(self, pet_id, cls=None, **kwargs):
         """MISSING·OPERATION-DESCRIPTION.
@@ -81,7 +81,7 @@ class PetOperations:
 
         return deserialized
     get_by_pet_id.metadata = {'url': '/extensibleenums/pet/{petId}'}
-    
+
     @distributed_trace_async
     async def add_pet(self, pet_param=None, cls=None, **kwargs):
         """MISSING·OPERATION-DESCRIPTION.

@@ -33,7 +33,7 @@ class HttpRetryOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
-    
+
     @distributed_trace
     def head408(self, cls=None, **kwargs):
         """Return 408 status code, then 200 after retry.
@@ -71,7 +71,7 @@ class HttpRetryOperations(object):
           return cls(response, None, {})
 
     head408.metadata = {'url': '/http/retry/408'}
-    
+
     @distributed_trace
     def put500(self, cls=None, **kwargs):
         """Return 500 status code, then 200 after retry.
@@ -117,7 +117,7 @@ class HttpRetryOperations(object):
           return cls(response, None, {})
 
     put500.metadata = {'url': '/http/retry/500'}
-    
+
     @distributed_trace
     def patch500(self, cls=None, **kwargs):
         """Return 500 status code, then 200 after retry.
@@ -163,7 +163,7 @@ class HttpRetryOperations(object):
           return cls(response, None, {})
 
     patch500.metadata = {'url': '/http/retry/500'}
-    
+
     @distributed_trace
     def get502(self, cls=None, **kwargs):
         """Return 502 status code, then 200 after retry.
@@ -201,7 +201,7 @@ class HttpRetryOperations(object):
           return cls(response, None, {})
 
     get502.metadata = {'url': '/http/retry/502'}
-    
+
     @distributed_trace
     def options502(self, cls=None, **kwargs):
         """Return 502 status code, then 200 after retry.
@@ -243,7 +243,7 @@ class HttpRetryOperations(object):
 
         return deserialized
     options502.metadata = {'url': '/http/retry/502'}
-    
+
     @distributed_trace
     def post503(self, cls=None, **kwargs):
         """Return 503 status code, then 200 after retry.
@@ -289,7 +289,7 @@ class HttpRetryOperations(object):
           return cls(response, None, {})
 
     post503.metadata = {'url': '/http/retry/503'}
-    
+
     @distributed_trace
     def delete503(self, cls=None, **kwargs):
         """Return 503 status code, then 200 after retry.
@@ -335,7 +335,7 @@ class HttpRetryOperations(object):
           return cls(response, None, {})
 
     delete503.metadata = {'url': '/http/retry/503'}
-    
+
     @distributed_trace
     def put504(self, cls=None, **kwargs):
         """Return 504 status code, then 200 after retry.
@@ -381,7 +381,7 @@ class HttpRetryOperations(object):
           return cls(response, None, {})
 
     put504.metadata = {'url': '/http/retry/504'}
-    
+
     @distributed_trace
     def patch504(self, cls=None, **kwargs):
         """Return 504 status code, then 200 after retry.

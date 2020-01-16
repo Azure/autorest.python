@@ -33,7 +33,7 @@ class EnumOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
-    
+
     @distributed_trace_async
     async def get_not_expandable(self, cls=None, **kwargs):
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'..
@@ -75,7 +75,7 @@ class EnumOperations:
 
         return deserialized
     get_not_expandable.metadata = {'url': '/string/enum/notExpandable'}
-    
+
     @distributed_trace_async
     async def put_not_expandable(self, string_body, cls=None, **kwargs):
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
@@ -119,7 +119,7 @@ class EnumOperations:
           return cls(response, None, {})
 
     put_not_expandable.metadata = {'url': '/string/enum/notExpandable'}
-    
+
     @distributed_trace_async
     async def get_referenced(self, cls=None, **kwargs):
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'..
@@ -161,7 +161,7 @@ class EnumOperations:
 
         return deserialized
     get_referenced.metadata = {'url': '/string/enum/Referenced'}
-    
+
     @distributed_trace_async
     async def put_referenced(self, enum_string_body, cls=None, **kwargs):
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
@@ -205,7 +205,7 @@ class EnumOperations:
           return cls(response, None, {})
 
     put_referenced.metadata = {'url': '/string/enum/Referenced'}
-    
+
     @distributed_trace_async
     async def get_referenced_constant(self, cls=None, **kwargs):
         """Get value 'green-color' from the constant..
@@ -247,7 +247,7 @@ class EnumOperations:
 
         return deserialized
     get_referenced_constant.metadata = {'url': '/string/enum/ReferencedConstant'}
-    
+
     @distributed_trace_async
     async def put_referenced_constant(self, field1=None, cls=None, **kwargs):
         """Sends value 'green-color' from a constant.
