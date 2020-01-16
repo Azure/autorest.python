@@ -17,6 +17,7 @@ class ParameterLocation(Enum):
     Header = "header"
     Uri = "uri"
     Other = "other"
+    Flattened = "flattened"
 
 
 class ParameterStyle(Enum):

@@ -2237,7 +2237,7 @@ class ArrayOperations(object):
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
-        :rtype: list[bytearray]
+        :rtype: list[bytes]
         :raises: ~bodyarray.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
