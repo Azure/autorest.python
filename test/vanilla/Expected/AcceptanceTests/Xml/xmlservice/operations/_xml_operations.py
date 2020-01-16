@@ -33,12 +33,12 @@ class XmlOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace
     def get_complex_type_ref_no_meta(self, cls=None, **kwargs):
         """Get a complex type that has a ref to a complex type with no XML node.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: RootWithRefAndNoMeta or the result of cls(response)
@@ -82,13 +82,11 @@ class XmlOperations(object):
 
         FIXME: add operation.summary
 
-
         :param model: 
         :type model: ~xmlservice.models.RootWithRefAndNoMeta
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
@@ -127,7 +125,6 @@ class XmlOperations(object):
         """Get a complex type that has a ref to a complex type with XML node.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: RootWithRefAndMeta or the result of cls(response)
@@ -171,13 +168,11 @@ class XmlOperations(object):
 
         FIXME: add operation.summary
 
-
         :param model: 
         :type model: ~xmlservice.models.RootWithRefAndMeta
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
@@ -216,7 +211,6 @@ class XmlOperations(object):
         """Get a simple XML document.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Slideshow or the result of cls(response)
@@ -260,13 +254,11 @@ class XmlOperations(object):
 
         FIXME: add operation.summary
 
-
         :param slideshow: 
         :type slideshow: ~xmlservice.models.Slideshow
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~xmlservice.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -305,7 +297,6 @@ class XmlOperations(object):
         """Get an XML document with multiple wrapped lists.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: AppleBarrel or the result of cls(response)
@@ -349,13 +340,11 @@ class XmlOperations(object):
 
         FIXME: add operation.summary
 
-
         :param wrapped_lists: 
         :type wrapped_lists: ~xmlservice.models.AppleBarrel
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~xmlservice.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -395,11 +384,9 @@ class XmlOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
@@ -437,7 +424,6 @@ class XmlOperations(object):
         """Get an empty list..
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Slideshow or the result of cls(response)
@@ -481,13 +467,11 @@ class XmlOperations(object):
 
         FIXME: add operation.summary
 
-
         :param slideshow: 
         :type slideshow: ~xmlservice.models.Slideshow
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
@@ -526,7 +510,6 @@ class XmlOperations(object):
         """Gets some empty wrapped lists..
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: AppleBarrel or the result of cls(response)
@@ -570,13 +553,11 @@ class XmlOperations(object):
 
         FIXME: add operation.summary
 
-
         :param apple_barrel: 
         :type apple_barrel: ~xmlservice.models.AppleBarrel
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
@@ -615,7 +596,6 @@ class XmlOperations(object):
         """Gets a list as the root element..
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -659,13 +639,11 @@ class XmlOperations(object):
 
         FIXME: add operation.summary
 
-
         :param bananas: 
         :type bananas: list[~xmlservice.models.Banana]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
@@ -704,7 +682,6 @@ class XmlOperations(object):
         """Gets a list with a single item..
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -748,13 +725,11 @@ class XmlOperations(object):
 
         FIXME: add operation.summary
 
-
         :param bananas: 
         :type bananas: list[~xmlservice.models.Banana]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
@@ -793,7 +768,6 @@ class XmlOperations(object):
         """Gets an empty list as the root element..
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -837,13 +811,11 @@ class XmlOperations(object):
 
         FIXME: add operation.summary
 
-
         :param bananas: 
         :type bananas: list[~xmlservice.models.Banana]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
@@ -882,7 +854,6 @@ class XmlOperations(object):
         """Gets an XML document with an empty child element..
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Banana or the result of cls(response)
@@ -926,13 +897,11 @@ class XmlOperations(object):
 
         FIXME: add operation.summary
 
-
         :param banana: 
         :type banana: ~xmlservice.models.Banana
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
@@ -971,7 +940,6 @@ class XmlOperations(object):
         """Lists containers in a storage account..
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ListContainersResponse or the result of cls(response)
@@ -1016,7 +984,6 @@ class XmlOperations(object):
         """Gets storage service properties..
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: StorageServiceProperties or the result of cls(response)
@@ -1064,13 +1031,11 @@ class XmlOperations(object):
 
         FIXME: add operation.summary
 
-
         :param properties: 
         :type properties: ~xmlservice.models.StorageServiceProperties
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
@@ -1113,7 +1078,6 @@ class XmlOperations(object):
         """Gets storage ACLs for a container..
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -1161,13 +1125,11 @@ class XmlOperations(object):
 
         FIXME: add operation.summary
 
-
         :param properties: 
         :type properties: list[~xmlservice.models.SignedIdentifier]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
@@ -1210,7 +1172,6 @@ class XmlOperations(object):
         """Lists blobs in a storage container..
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ListBlobsResponse or the result of cls(response)
@@ -1258,13 +1219,11 @@ class XmlOperations(object):
 
         FIXME: add operation.summary
 
-
         :param id: 
         :type id: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
@@ -1305,7 +1264,6 @@ class XmlOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: JSONOutput or the result of cls(response)
         :rtype: ~xmlservice.models.JSONOutput
@@ -1341,4 +1299,3 @@ class XmlOperations(object):
 
         return deserialized
     json_output.metadata = {'url': '/xml/jsonoutput'}
-

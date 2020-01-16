@@ -34,12 +34,12 @@ class OdataOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace_async
     async def get_with_filter(self, filter=None, top=None, orderby=None, cls=None, **kwargs):
         """Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'.
 
         FIXME: add operation.summary
-
 
         :param filter: The filter parameter with value '$filter=id gt 5 and name eq 'foo''.
         :type filter: str
@@ -50,7 +50,6 @@ class OdataOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azurespecialproperties.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -86,4 +85,3 @@ class OdataOperations:
           return cls(response, None, {})
 
     get_with_filter.metadata = {'url': '/azurespecials/odata/filter'}
-

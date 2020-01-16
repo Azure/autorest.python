@@ -37,6 +37,7 @@ class LROsCustomHeaderOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     
     def _put_async_retry_succeeded_initial(self, product=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
@@ -126,6 +127,7 @@ class LROsCustomHeaderOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_retry_succeeded.metadata = {'url': '/lro/customheader/putasync/retry/succeeded'}
 
+
     
     def _put201_creating_succeeded200_initial(self, product=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
@@ -212,6 +214,7 @@ class LROsCustomHeaderOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put201_creating_succeeded200.metadata = {'url': '/lro/customheader/put/201/creating/succeeded/200'}
 
+
     
     def _post202_retry200_initial(self, product=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
@@ -289,6 +292,7 @@ class LROsCustomHeaderOperations(object):
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post202_retry200.metadata = {'url': '/lro/customheader/post/202/retry/200'}
+
 
     
     def _post_async_retry_succeeded_initial(self, product=None, cls=None, **kwargs):

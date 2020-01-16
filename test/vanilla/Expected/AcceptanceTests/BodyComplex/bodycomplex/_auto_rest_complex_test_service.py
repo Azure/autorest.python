@@ -25,7 +25,6 @@ from . import models
 class AutoRestComplexTestService(object):
     """Test Infrastructure for AutoRest
 
-
     :ivar basic: BasicOperations operations
     :vartype basic: bodycomplex.operations.BasicOperations
     :ivar primitive: PrimitiveOperations operations
@@ -48,7 +47,6 @@ class AutoRestComplexTestService(object):
     """
 
     def __init__(self, base_url=None, **kwargs):
-
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestComplexTestServiceConfiguration(**kwargs)

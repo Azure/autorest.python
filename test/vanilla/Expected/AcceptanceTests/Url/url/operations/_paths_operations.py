@@ -33,17 +33,16 @@ class PathsOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace
     def get_boolean_true(self, cls=None, **kwargs):
         """Get true Boolean value on path.
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -84,11 +83,9 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -129,11 +126,9 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -174,11 +169,9 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -219,11 +212,9 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -264,11 +255,9 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -309,11 +298,9 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -354,11 +341,9 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -399,11 +384,9 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -444,11 +427,9 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -489,11 +470,9 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -534,11 +513,9 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -579,11 +556,9 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -624,11 +599,9 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -669,13 +642,11 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-
         :param string_path: null string value
         :type string_path: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -715,13 +686,11 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-
         :param enum_path: send the value green
         :type enum_path: str or ~url.models.UriColor
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -761,13 +730,11 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-
         :param enum_path: send the value green
         :type enum_path: str or ~url.models.UriColor
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -807,13 +774,11 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-
         :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
         :type byte_path: bytearray
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -853,11 +818,9 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -898,13 +861,11 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-
         :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
         :type byte_path: bytearray
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -944,11 +905,9 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -989,13 +948,11 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-
         :param date_path: null as date (should throw)
         :type date_path: ~datetime.date
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -1035,11 +992,9 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -1080,13 +1035,11 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-
         :param date_time_path: null as date-time
         :type date_time_path: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -1126,13 +1079,11 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-
         :param base64_url_path: base64url encoded value
         :type base64_url_path: bytes
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -1172,13 +1123,11 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-
         :param array_path: an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format
         :type array_path: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -1218,13 +1167,11 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-
         :param unix_time_url_path: Unix time encoded value
         :type unix_time_url_path: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -1257,4 +1204,3 @@ class PathsOperations(object):
           return cls(response, None, {})
 
     unix_time_url.metadata = {'url': '/paths/int/1460505600/{unixTimeUrlPath}'}
-

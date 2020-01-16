@@ -2,6 +2,8 @@
 {% set basename = model.base_model.name if model.base_model and model.base_model.name|length else "" %}
 {# actual template starts here #}
 {% if model.is_exception %}
+
+
 {% if model.base_model and model.base_model.is_exception %}
 class {{ exception_name }}({{ basename }}Exception):
 {% else %}
@@ -29,9 +31,9 @@ class {{ exception_name }}(HttpResponseError):
         if error is None:
             error = deserialize.dependencies[model_name]()
         return error._EXCEPTION_TYPE(response, error)
-
-
 {% endif %}
+
+
 {% if basename %}
 class {{ model.name }}({{ basename }}):
 {% else %}
@@ -54,7 +56,8 @@ class {{ model.name }}(Model):
 
     {% if model.properties != None %}
         {% for p in model.properties %}
-    {{ prop_documentation_string(p, code_model.namespace) }}
+    {{ prop_documentation_string(p) | wordwrap(width=80, break_long_words=False, wrapstring='\n     ') }}
+    {{ prop_type_documentation_string(p, code_model.namespace) | wordwrap(width=80, break_long_words=False, wrapstring='\n     ') }}
         {% endfor %}
     {% endif %}
     """
@@ -95,4 +98,3 @@ class {{ model.name }}(Model):
     {% for arg in init_args(model) %}
         {{ arg }}
     {% endfor %}
-{{ "\n" }}

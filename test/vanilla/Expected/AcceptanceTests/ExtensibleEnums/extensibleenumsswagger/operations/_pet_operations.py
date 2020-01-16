@@ -33,12 +33,12 @@ class PetOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace
     def get_by_pet_id(self, pet_id, cls=None, **kwargs):
         """MISSING·OPERATION-DESCRIPTION.
 
         FIXME: add operation.summary
-
 
         :param pet_id: Pet id
         :type pet_id: str
@@ -88,7 +88,6 @@ class PetOperations(object):
 
         FIXME: add operation.summary
 
-
         :param pet_param: 
         :type pet_param: ~extensibleenumsswagger.models.Pet
         :param callable cls: A custom type or function that will be passed the direct response
@@ -133,4 +132,3 @@ class PetOperations(object):
 
         return deserialized
     add_pet.metadata = {'url': '/extensibleenums/pet/addPet'}
-

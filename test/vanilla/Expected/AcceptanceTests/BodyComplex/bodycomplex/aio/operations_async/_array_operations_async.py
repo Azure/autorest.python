@@ -33,12 +33,12 @@ class ArrayOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace_async
     async def get_valid(self, cls=None, **kwargs):
         """Get complex types with array property.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ArrayWrapper or the result of cls(response)
@@ -82,13 +82,11 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param array: 
         :type array: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -128,7 +126,6 @@ class ArrayOperations:
         """Get complex types with array property which is empty.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ArrayWrapper or the result of cls(response)
@@ -172,13 +169,11 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param array: 
         :type array: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -219,7 +214,6 @@ class ArrayOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ArrayWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
@@ -255,4 +249,3 @@ class ArrayOperations:
 
         return deserialized
     get_not_provided.metadata = {'url': '/complex/array/notprovided'}
-

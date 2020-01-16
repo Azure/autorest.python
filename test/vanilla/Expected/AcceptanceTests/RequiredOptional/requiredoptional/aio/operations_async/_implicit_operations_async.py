@@ -33,19 +33,18 @@ class ImplicitOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace_async
     async def get_required_path(self, path_parameter, cls=None, **kwargs):
         """Test implicitly required path parameter.
 
         FIXME: add operation.summary
 
-
         :param path_parameter: MISSING·PARAMETER-DESCRIPTION
         :type path_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -85,13 +84,11 @@ class ImplicitOperations:
 
         FIXME: add operation.summary
 
-
         :param query_parameter: MISSING·PARAMETER-DESCRIPTION
         :type query_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -129,13 +126,11 @@ class ImplicitOperations:
 
         FIXME: add operation.summary
 
-
         :param query_parameter: MISSING·PARAMETER-DESCRIPTION
         :type query_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -173,13 +168,11 @@ class ImplicitOperations:
 
         FIXME: add operation.summary
 
-
         :param body_parameter: 
         :type body_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -222,11 +215,9 @@ class ImplicitOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -266,11 +257,9 @@ class ImplicitOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -307,11 +296,9 @@ class ImplicitOperations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -342,4 +329,3 @@ class ImplicitOperations:
           return cls(response, None, {})
 
     get_optional_global_query.metadata = {'url': '/reqopt/global/optional/query'}
-

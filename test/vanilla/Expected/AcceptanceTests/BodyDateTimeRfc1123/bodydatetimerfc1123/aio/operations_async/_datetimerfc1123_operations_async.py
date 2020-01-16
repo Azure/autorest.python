@@ -33,12 +33,12 @@ class Datetimerfc1123Operations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace_async
     async def get_null(self, cls=None, **kwargs):
         """Get null datetime value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -82,7 +82,6 @@ class Datetimerfc1123Operations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: ~datetime.datetime
@@ -124,7 +123,6 @@ class Datetimerfc1123Operations:
         """Get overflow datetime value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -168,7 +166,6 @@ class Datetimerfc1123Operations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: ~datetime.datetime
@@ -211,13 +208,11 @@ class Datetimerfc1123Operations:
 
         FIXME: add operation.summary
 
-
         :param datetime_body: 
         :type datetime_body: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodydatetimerfc1123.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -256,7 +251,6 @@ class Datetimerfc1123Operations:
         """Get max datetime value fri, 31 dec 9999 23:59:59 gmt.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -300,7 +294,6 @@ class Datetimerfc1123Operations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: ~datetime.datetime
@@ -343,13 +336,11 @@ class Datetimerfc1123Operations:
 
         FIXME: add operation.summary
 
-
         :param datetime_body: 
         :type datetime_body: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodydatetimerfc1123.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -389,7 +380,6 @@ class Datetimerfc1123Operations:
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: ~datetime.datetime
@@ -425,4 +415,3 @@ class Datetimerfc1123Operations:
 
         return deserialized
     get_utc_min_date_time.metadata = {'url': '/datetimerfc1123/min'}
-

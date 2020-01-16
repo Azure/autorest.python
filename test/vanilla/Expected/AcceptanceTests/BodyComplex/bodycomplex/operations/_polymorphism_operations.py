@@ -33,12 +33,12 @@ class PolymorphismOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace
     def get_valid(self, cls=None, **kwargs):
         """Get complex types that are polymorphic.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Fish or the result of cls(response)
@@ -82,7 +82,6 @@ class PolymorphismOperations(object):
 
         FIXME: add operation.summary
 
-
         :param complex_body: Please put a salmon that looks like this:
     {
             'fishtype':'Salmon',
@@ -120,7 +119,6 @@ class PolymorphismOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -159,7 +157,6 @@ class PolymorphismOperations(object):
         """Get complex types that are polymorphic, JSON key contains a dot.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DotFish or the result of cls(response)
@@ -203,7 +200,6 @@ class PolymorphismOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DotFishMarket or the result of cls(response)
         :rtype: ~bodycomplex.models.DotFishMarket
@@ -245,7 +241,6 @@ class PolymorphismOperations(object):
         """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, without discriminator specified on wire. Deserialization must NOT fail and use the explicit type of the property..
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DotFishMarket or the result of cls(response)
@@ -289,7 +284,6 @@ class PolymorphismOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Salmon or the result of cls(response)
         :rtype: ~bodycomplex.models.Salmon
@@ -332,13 +326,11 @@ class PolymorphismOperations(object):
 
         FIXME: add operation.summary
 
-
         :param complex_body: 
         :type complex_body: ~bodycomplex.models.Salmon
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -377,7 +369,6 @@ class PolymorphismOperations(object):
         """Put complex types that are polymorphic, omitting the discriminator.
 
         FIXME: add operation.summary
-
 
         :param complex_body: 
         :type complex_body: ~bodycomplex.models.Salmon
@@ -427,7 +418,6 @@ class PolymorphismOperations(object):
 
         FIXME: add operation.summary
 
-
         :param complex_body: Please put a salmon that looks like this:
     {
             'fishtype':'Salmon',
@@ -465,7 +455,6 @@ class PolymorphismOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -498,4 +487,3 @@ class PolymorphismOperations(object):
           return cls(response, None, {})
 
     put_valid_missing_required.metadata = {'url': '/complex/polymorphism/missingrequired/invalid'}
-

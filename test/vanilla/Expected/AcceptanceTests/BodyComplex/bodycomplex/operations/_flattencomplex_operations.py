@@ -33,12 +33,12 @@ class FlattencomplexOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace
     def get_valid(self, cls=None, **kwargs):
         """MISSING·OPERATION-DESCRIPTION.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: MyBaseType or the result of cls(response)
@@ -75,4 +75,3 @@ class FlattencomplexOperations(object):
 
         return deserialized
     get_valid.metadata = {'url': '/complex/flatten/valid'}
-

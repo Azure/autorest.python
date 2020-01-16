@@ -8,13 +8,14 @@
 
 from msrest.serialization import Model
 
+
 class Error(Model):
     """Error.
 
     :param status:
-	:type status: int
+    :type status: int
     :param message:
-	:type message: str
+    :type message: str
     """
 
     _attribute_map = {
@@ -27,11 +28,12 @@ class Error(Model):
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
 
+
 class Product(Model):
     """Product.
 
     :param properties:
-	:type properties: ~custombaseurlpaging.models.ProductProperties
+    :type properties: ~custombaseurlpaging.models.ProductProperties
     """
 
     _attribute_map = {
@@ -42,13 +44,14 @@ class Product(Model):
         super(Product, self).__init__(**kwargs)
         self.properties = kwargs.get('properties', None)
 
+
 class ProductProperties(Model):
     """ProductProperties.
 
     :param id:
-	:type id: int
+    :type id: int
     :param name:
-	:type name: str
+    :type name: str
     """
 
     _attribute_map = {
@@ -61,13 +64,14 @@ class ProductProperties(Model):
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
 
+
 class ProductResult(Model):
     """ProductResult.
 
     :param values:
-	:type values: list[~custombaseurlpaging.models.Product]
+    :type values: list[~custombaseurlpaging.models.Product]
     :param next_link:
-	:type next_link: str
+    :type next_link: str
     """
 
     _attribute_map = {
@@ -79,4 +83,3 @@ class ProductResult(Model):
         super(ProductResult, self).__init__(**kwargs)
         self.values = kwargs.get('values', None)
         self.next_link = kwargs.get('next_link', None)
-

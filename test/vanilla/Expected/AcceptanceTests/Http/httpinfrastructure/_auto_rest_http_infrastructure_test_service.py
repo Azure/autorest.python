@@ -23,7 +23,6 @@ from . import models
 class AutoRestHttpInfrastructureTestService(object):
     """Test Infrastructure for AutoRest
 
-
     :ivar http_failure: HttpFailureOperations operations
     :vartype http_failure: httpinfrastructure.operations.HttpFailureOperations
     :ivar http_success: HttpSuccessOperations operations
@@ -42,7 +41,6 @@ class AutoRestHttpInfrastructureTestService(object):
     """
 
     def __init__(self, base_url=None, **kwargs):
-
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestHttpInfrastructureTestServiceConfiguration(**kwargs)

@@ -9,6 +9,7 @@
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
 
+
 class ErrorException(HttpResponseError):
     """Server responded with exception of type: 'Error'.
 
@@ -38,9 +39,9 @@ class Error(Model):
     """Error.
 
     :param status:
-	:type status: int
+    :type status: int
     :param message:
-	:type message: str
+    :type message: str
     """
     _EXCEPTION_TYPE = ErrorException
 
@@ -54,13 +55,14 @@ class Error(Model):
         self.status = status
         self.message = message
 
+
 class Product(Model):
     """Product.
 
     :param integer:
-	:type integer: int
+    :type integer: int
     :param string:
-	:type string: str
+    :type string: str
     """
 
     _attribute_map = {
@@ -72,4 +74,3 @@ class Product(Model):
         super(Product, self).__init__(**kwargs)
         self.integer = integer
         self.string = string
-

@@ -33,12 +33,12 @@ class NumberOperations(object):
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace
     def get_null(self, cls=None, **kwargs):
         """Get null Number value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -82,7 +82,6 @@ class NumberOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: float
@@ -124,7 +123,6 @@ class NumberOperations(object):
         """Get invalid double Number value.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -168,7 +166,6 @@ class NumberOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: float
@@ -211,13 +208,11 @@ class NumberOperations(object):
 
         FIXME: add operation.summary
 
-
         :param number_body: 
         :type number_body: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodynumber.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -256,7 +251,6 @@ class NumberOperations(object):
         """Get big float value 3.402823e+20.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -300,13 +294,11 @@ class NumberOperations(object):
 
         FIXME: add operation.summary
 
-
         :param number_body: 
         :type number_body: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodynumber.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -345,7 +337,6 @@ class NumberOperations(object):
         """Get big double value 2.5976931e+101.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -389,11 +380,9 @@ class NumberOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodynumber.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -433,7 +422,6 @@ class NumberOperations(object):
         """Get big double value 99999999.99.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -477,11 +465,9 @@ class NumberOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodynumber.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -521,7 +507,6 @@ class NumberOperations(object):
         """Get big double value -99999999.99.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -565,13 +550,11 @@ class NumberOperations(object):
 
         FIXME: add operation.summary
 
-
         :param number_body: 
         :type number_body: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodynumber.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -610,7 +593,6 @@ class NumberOperations(object):
         """Get big decimal value 2.5976931e+101.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -654,11 +636,9 @@ class NumberOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodynumber.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -698,7 +678,6 @@ class NumberOperations(object):
         """Get big decimal value 99999999.99.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -742,11 +721,9 @@ class NumberOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodynumber.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -786,7 +763,6 @@ class NumberOperations(object):
         """Get big decimal value -99999999.99.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -830,13 +806,11 @@ class NumberOperations(object):
 
         FIXME: add operation.summary
 
-
         :param number_body: 
         :type number_body: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodynumber.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -875,7 +849,6 @@ class NumberOperations(object):
         """Get big double value 3.402823e-20.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -919,13 +892,11 @@ class NumberOperations(object):
 
         FIXME: add operation.summary
 
-
         :param number_body: 
         :type number_body: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodynumber.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -964,7 +935,6 @@ class NumberOperations(object):
         """Get big double value 2.5976931e-101.
 
         FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
@@ -1008,13 +978,11 @@ class NumberOperations(object):
 
         FIXME: add operation.summary
 
-
         :param number_body: 
         :type number_body: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~bodynumber.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -1054,7 +1022,6 @@ class NumberOperations(object):
 
         FIXME: add operation.summary
 
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
         :rtype: float
@@ -1090,4 +1057,3 @@ class NumberOperations(object):
 
         return deserialized
     get_small_decimal.metadata = {'url': '/number/small/decimal/2.5976931e-101'}
-

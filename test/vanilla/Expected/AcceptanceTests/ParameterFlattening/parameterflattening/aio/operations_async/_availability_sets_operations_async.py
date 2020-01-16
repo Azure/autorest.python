@@ -33,12 +33,12 @@ class AvailabilitySetsOperations:
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
+
     @distributed_trace_async
     async def update(self, resource_group_name, availability_set_name, tags, cls=None, **kwargs):
         """Updates the tags for an availability set..
 
         FIXME: add operation.summary
-
 
         :param resource_group_name: The name of the resource group.
         :type resource_group_name: str
@@ -49,7 +49,6 @@ class AvailabilitySetsOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
@@ -88,4 +87,3 @@ class AvailabilitySetsOperations:
           return cls(response, None, {})
 
     update.metadata = {'url': '/parameterFlattening/{resourceGroupName}/{availabilitySetName}'}
-
