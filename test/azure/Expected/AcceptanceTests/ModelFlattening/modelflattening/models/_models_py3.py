@@ -18,8 +18,8 @@ class BaseProduct(Model):
     All required parameters must be populated in order to send to Azure.
 
     :param product_id: Required. Unique identifier representing a specific product
-	 for a given latitude & longitude. For example, uberX in San Francisco will have
-	 a different product_id than uberX in Los Angeles.
+     for a given latitude & longitude. For example, uberX in San Francisco will have
+     a different product_id than uberX in Los Angeles.
     :type product_id: str
     :param description: Description of product.
     :type description: str
@@ -100,7 +100,7 @@ class Resource(Model):
     :ivar type: Resource Type.
     :vartype type: str
     :param tags: A set of tags. Dictionary of
-	 <components·schemas·resource·properties·tags·additionalproperties>.
+     <components·schemas·resource·properties·tags·additionalproperties>.
     :type tags: dict[str, str]
     :param location: Resource Location.
     :type location: str
@@ -141,7 +141,7 @@ class FlattenedProduct(Resource):
     :ivar type: Resource Type.
     :vartype type: str
     :param tags: A set of tags. Dictionary of
-	 <components·schemas·resource·properties·tags·additionalproperties>.
+     <components·schemas·resource·properties·tags·additionalproperties>.
     :type tags: dict[str, str]
     :param location: Resource Location.
     :type location: str
@@ -181,10 +181,10 @@ class FlattenedProductProperties(Model):
     :param type:
     :type type: str
     :ivar provisioning_state_values:  Possible values include: 'Succeeded',
-	 'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
-	 'Deleting', 'Deleted', 'OK'.
+     'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
+     'Deleting', 'Deleted', 'OK'.
     :vartype provisioning_state_values: str or
-	 ~modelflattening.models.FlattenedProductPropertiesProvisioningStateValues
+     ~modelflattening.models.FlattenedProductPropertiesProvisioningStateValues
     :param provisioning_state:
     :type provisioning_state: str
     """
@@ -289,8 +289,8 @@ class SimpleProduct(BaseProduct):
     All required parameters must be populated in order to send to Azure.
 
     :param product_id: Required. Unique identifier representing a specific product
-	 for a given latitude & longitude. For example, uberX in San Francisco will have
-	 a different product_id than uberX in Los Angeles.
+     for a given latitude & longitude. For example, uberX in San Francisco will have
+     a different product_id than uberX in Los Angeles.
     :type product_id: str
     :param description: Description of product.
     :type description: str
@@ -323,7 +323,7 @@ class SimpleProductProperties(Model):
     :param max_product_display_name: Required. Display name of product.
     :type max_product_display_name: str
     :ivar capacity: Required. Capacity of product. For example, 4 people. Default
-	 value: "Large".
+     value: "Large".
     :vartype capacity: str
     :param max_product_image: The product URL.
     :type max_product_image: ~modelflattening.models.ProductUrl

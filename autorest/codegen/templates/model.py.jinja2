@@ -39,7 +39,7 @@ class {{ model.name }}({{ basename }}):
 {% else %}
 class {{ model.name }}(Model):
 {% endif %}
-    """{{ model.description | wordwrap(width=80, break_long_words=False) | replace('\n', '\n\t') }}
+    """{{ model.description }}
     {% if model.discriminator_name %}
 
     You probably want to use the sub-classes and not this class directly. Known
@@ -56,8 +56,8 @@ class {{ model.name }}(Model):
 
     {% if model.properties != None %}
         {% for p in model.properties %}
-    {{ prop_documentation_string(p) | wordwrap(width=80, break_long_words=False) | replace('\n', '\n\t ')}}
-    {{ prop_type_documentation_string(p, code_model.namespace) | wordwrap(width=80, break_long_words=False) | replace('\n', '\n\t ')}}
+    {{ prop_documentation_string(p) | wordwrap(width=80, break_long_words=False, wrapstring='\n     ') }}
+    {{ prop_type_documentation_string(p, code_model.namespace) | wordwrap(width=80, break_long_words=False, wrapstring='\n     ') }}
         {% endfor %}
     {% endif %}
     """

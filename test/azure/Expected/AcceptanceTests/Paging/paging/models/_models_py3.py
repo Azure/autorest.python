@@ -35,8 +35,8 @@ class OperationResult(Model):
     """OperationResult.
 
     :param status: The status of the request. Possible values include: 'Succeeded',
-	 'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
-	 'Deleting', 'Deleted', 'OK'.
+     'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
+     'Deleting', 'Deleted', 'OK'.
     :type status: str or ~paging.models.OperationResultStatus
     """
 

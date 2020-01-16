@@ -15,8 +15,8 @@ class OperationResult(Model):
     """OperationResult.
 
     :param status: The status of the request. Possible values include: 'Succeeded',
-	 'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
-	 'Deleting', 'Deleted', 'OK'.
+     'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
+     'Deleting', 'Deleted', 'OK'.
     :type status: str or ~lro.models.OperationResultStatus
     :param error:
     :type error: ~lro.models.OperationResultError
@@ -63,7 +63,7 @@ class Resource(Model):
     :ivar type: Resource Type.
     :vartype type: str
     :param tags: A set of tags. Dictionary of
-	 <components·schemas·resource·properties·tags·additionalproperties>.
+     <components·schemas·resource·properties·tags·additionalproperties>.
     :type tags: dict[str, str]
     :param location: Resource Location.
     :type location: str
@@ -104,7 +104,7 @@ class Product(Resource):
     :ivar type: Resource Type.
     :vartype type: str
     :param tags: A set of tags. Dictionary of
-	 <components·schemas·resource·properties·tags·additionalproperties>.
+     <components·schemas·resource·properties·tags·additionalproperties>.
     :type tags: dict[str, str]
     :param location: Resource Location.
     :type location: str
@@ -142,10 +142,10 @@ class ProductProperties(Model):
     :param provisioning_state:
     :type provisioning_state: str
     :ivar provisioning_state_values:  Possible values include: 'Succeeded',
-	 'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
-	 'Deleting', 'Deleted', 'OK'.
+     'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
+     'Deleting', 'Deleted', 'OK'.
     :vartype provisioning_state_values: str or
-	 ~lro.models.ProductPropertiesProvisioningStateValues
+     ~lro.models.ProductPropertiesProvisioningStateValues
     """
 
     _validation = {
@@ -238,10 +238,10 @@ class SubProductProperties(Model):
     :param provisioning_state:
     :type provisioning_state: str
     :ivar provisioning_state_values:  Possible values include: 'Succeeded',
-	 'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
-	 'Deleting', 'Deleted', 'OK'.
+     'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
+     'Deleting', 'Deleted', 'OK'.
     :vartype provisioning_state_values: str or
-	 ~lro.models.SubProductPropertiesProvisioningStateValues
+     ~lro.models.SubProductPropertiesProvisioningStateValues
     """
 
     _validation = {

@@ -32,7 +32,7 @@ class Basic(Model):
     :param id: Basic Id.
     :type id: int
     :param name: Name property with a very long description that does not fit on a
-	 single line and a line break.
+     single line and a line break.
     :type name: str
     :param color:  Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'.
     :type color: str or ~bodycomplex.models.CMYKColors
@@ -326,7 +326,7 @@ class DictionaryWrapper(Model):
     """DictionaryWrapper.
 
     :param default_program: Dictionary of
-	 <components·schemas·dictionary_wrapper·properties·defaultprogram·additionalproperties>.
+     <components·schemas·dictionary_wrapper·properties·defaultprogram·additionalproperties>.
     :type default_program: dict[str, str]
     """
 
@@ -461,10 +461,10 @@ class DoubleWrapper(Model):
     :param field1:
     :type field1: float
     :param
-	 field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
+     field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
     :type
-	 field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
-	 float
+     field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
+     float
     """
 
     _attribute_map = {
@@ -580,7 +580,7 @@ class Goblinshark(Shark):
     :param jawsize:
     :type jawsize: int
     :param color: Colors possible. Possible values include: 'pink', 'gray', 'brown',
-	 'RED'. Default value: "gray".
+     'RED'. Default value: "gray".
     :type color: str or ~bodycomplex.models.GoblinSharkColor
     """
 
@@ -895,7 +895,7 @@ class SmartSalmon(Salmon):
     :param iswild:
     :type iswild: bool
     :param additional_properties: Unmatched properties from the message are
-	 deserialized to this collection.
+     deserialized to this collection.
     :type additional_properties: dict[str, object]
     :param college_degree:
     :type college_degree: str

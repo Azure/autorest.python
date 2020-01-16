@@ -20,7 +20,7 @@ class PetAPTrue(Model):
     All required parameters must be populated in order to send to Azure.
 
     :param additional_properties: Unmatched properties from the message are
-	 deserialized to this collection.
+     deserialized to this collection.
     :type additional_properties: dict[str, object]
     :param id: Required.
     :type id: int
@@ -58,7 +58,7 @@ class CatAPTrue(PetAPTrue):
     All required parameters must be populated in order to send to Azure.
 
     :param additional_properties: Unmatched properties from the message are
-	 deserialized to this collection.
+     deserialized to this collection.
     :type additional_properties: dict[str, object]
     :param id: Required.
     :type id: int
@@ -148,7 +148,7 @@ class PetAPInProperties(Model):
     :ivar status:
     :vartype status: bool
     :param additional_properties: Dictionary of
-	 <components·schemas·petapinproperties·properties·additionalproperties·additionalproperties>.
+     <components·schemas·petapinproperties·properties·additionalproperties·additionalproperties>.
     :type additional_properties: dict[str, float]
     """
 
@@ -180,7 +180,7 @@ class PetAPInPropertiesWithAPString(Model):
     All required parameters must be populated in order to send to Azure.
 
     :param additional_properties: Unmatched properties from the message are
-	 deserialized to this collection.
+     deserialized to this collection.
     :type additional_properties: dict[str, str]
     :param id: Required.
     :type id: int
@@ -191,7 +191,7 @@ class PetAPInPropertiesWithAPString(Model):
     :param odatalocation: Required.
     :type odatalocation: str
     :param additional_properties1: Dictionary of
-	 <components·schemas·petapinproperties·properties·additionalproperties·additionalproperties>.
+     <components·schemas·petapinproperties·properties·additionalproperties·additionalproperties>.
     :type additional_properties1: dict[str, float]
     """
 
@@ -228,7 +228,7 @@ class PetAPObject(Model):
     All required parameters must be populated in order to send to Azure.
 
     :param additional_properties: Unmatched properties from the message are
-	 deserialized to this collection.
+     deserialized to this collection.
     :type additional_properties: dict[str, object]
     :param id: Required.
     :type id: int
@@ -266,7 +266,7 @@ class PetAPString(Model):
     All required parameters must be populated in order to send to Azure.
 
     :param additional_properties: Unmatched properties from the message are
-	 deserialized to this collection.
+     deserialized to this collection.
     :type additional_properties: dict[str, str]
     :param id: Required.
     :type id: int

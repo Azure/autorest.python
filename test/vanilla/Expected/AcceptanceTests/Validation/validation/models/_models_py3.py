@@ -143,7 +143,7 @@ class Product(Model):
     :ivar const_string: Required. Constant string. Default value: "constant".
     :vartype const_string: str
     :ivar const_string_as_enum: Constant string as Enum. Default value:
-	 "constant_string_as_enum".
+     "constant_string_as_enum".
     :vartype const_string_as_enum: str
     """
 
