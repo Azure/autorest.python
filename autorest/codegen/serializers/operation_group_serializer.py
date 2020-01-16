@@ -60,13 +60,13 @@ class OperationGroupSerializer:
                     for r in operation.responses
                 ])
                 response = f"Union[{response_parameters_string}]"
-        if not operation.method_parameters:
+        if not operation.parameters.method:
             if lro:
                 return f"# type: (Optional[Any], Optional[bool], **Any) -> {response}"
             return f"# type: (Optional[Any], **Any) -> {response}"
         parameters_typing = [
             p.schema.type_annotation if p.required else f"Optional[{p.schema.type_annotation}]"
-            for p in operation.method_parameters
+            for p in operation.parameters.method
         ]
         if lro:
             return f"# type: ({', '.join(parameters_typing)}, Optional[Any], Optional[bool], **Any) -> {response}"

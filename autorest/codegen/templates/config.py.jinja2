@@ -1,6 +1,5 @@
 {% set version_import = ".._version" if async_mode else "._version" %}
 {% set async_prefix = "Async" if async_mode else "" %}
-{% set method_signature = code_model.global_parameters|join(', ', attribute='async_method_signature') ~ (", " if code_model.global_parameters else "")
 if async_mode else code_model.global_parameters|join(', ', attribute='sync_method_signature') ~ (", " if code_model.global_parameters else "")%}
 {% set init_typing_comment = ("# type: (") ~ code_model.global_parameters|map(attribute='schema')|join(', ', attribute='type_annotation') ~ (", " if code_model.global_parameters else "") ~ ("**Any) -> None") %}
 {% set credential_scopes = "*self.credential_scopes, " if code_model.options['credential_scopes'] else "" %}
@@ -27,7 +26,7 @@ class {{ code_model.class_name }}Configuration(Configuration):
 {% endfor %}
     """
 
-    def __init__(self{{ code_model.global_parameters.method_signature }}, **kwargs):
+    def __init__(self{{ code_model.global_parameters.async_method_signature if async_mode else code_model.global_parameters.sync_method_signature }}, **kwargs):
     {% if not async_mode %}
     {{ init_typing_comment }}
     {% endif %}

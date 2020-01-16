@@ -2,8 +2,6 @@
 {% import 'operation_tools.jinja2' as op_tools %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
 {% set request_as_xml = ", is_xml=False" if "xml" in operation.request_content_type else "" %}
-{% set method_signature = (", " if operation.method_parameters else "") ~ operation.method_parameters|join(', ', attribute='async_method_signature')
-if async_mode else (", " if operation.method_parameters else "") ~ operation.method_parameters|join(', ', attribute='sync_method_signature')%}
 {% macro return_docstring() %}
 {% if operation.responses | selectattr('has_body') | first %}
 :return: {{ operation.responses|map(attribute='schema')|map(attribute='name')|join(' or ') }} or the result of cls(response)
@@ -22,7 +20,7 @@ if async_mode else (", " if operation.method_parameters else "") ~ operation.met
 {% else %}
 
 {% endif %}
-def {{ operation.python_name }}(self{{ operation.parameters.method_signature }}, cls=None, **kwargs):
+def {{ operation.python_name }}(self{{ operation.parameters.async_method_signature if async_mode else operation.parameters.sync_method_signature }}, cls=None, **kwargs):
 {% if not async_mode %}
     {{ operation_typing_comment(operation) }}
 {% endif %}
