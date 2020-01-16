@@ -35,15 +35,15 @@ class AvailabilitySetsOperations(object):
         self._config = config
 
     @distributed_trace
-    def update(self, resource_group_name, availability_set_name, tags, cls=None, **kwargs):
+    def update(self, resource_group_name, avset, tags, cls=None, **kwargs):
         """Updates the tags for an availability set..
 
         FIXME: add operation.summary
 
         :param resource_group_name: The name of the resource group.
         :type resource_group_name: str
-        :param availability_set_name: The name of the storage availability set.
-        :type availability_set_name: str
+        :param avset: The name of the storage availability set.
+        :type avset: str
         :param tags: A description about the set of tags.
         :type tags: dict[str, str]
         :param callable cls: A custom type or function that will be passed the direct response
@@ -58,7 +58,7 @@ class AvailabilitySetsOperations(object):
         url = self.update.metadata['url']
         path_format_arguments = {
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
-            'availabilitySetName': self._serialize.url("availability_set_name", availability_set_name, 'str', max_length=80, min_length=0),
+            'availabilitySetName': self._serialize.url("avset", avset, 'str', max_length=80, min_length=0),
         }
         url = self._client.format_url(url, **path_format_arguments)
 

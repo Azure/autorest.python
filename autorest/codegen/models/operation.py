@@ -4,13 +4,13 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Any, Optional, Union
 
 from .base_model import BaseModel
 from .imports import FileImport, ImportType
 from .schema_response import SchemaResponse
-from .parameter import Parameter, ParameterLocation, ParameterStyle
-from .constant_schema import ConstantSchema
+from .parameter import Parameter, ParameterStyle
+from .parameter_list import ParameterList
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -27,40 +27,31 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         description: str,
         url: str,
         method: str,
-        parameters: List[Parameter] = None,
-        responses: List[SchemaResponse] = None,
-        exceptions: List[SchemaResponse] = None,
-        media_types: List[str] = None,
+        parameters: Optional[List[Parameter]] = None,
+        responses: Optional[List[SchemaResponse]] = None,
+        exceptions: Optional[List[SchemaResponse]] = None,
+        media_types: Optional[List[str]] = None,
         want_description_docstring: Optional[bool] = True,
         want_tracing: Optional[bool] = True
     ) -> None:
         super().__init__(yaml_data)
-        if responses is None:
-            responses = []
-        if exceptions is None:
-            exceptions = []
-        if media_types is None:
-            media_types = []
-
         self.name = name
         self.description = description
         self.url = url
         self.method = method
-        self.parameters = parameters
-        self.responses = responses
-        self.exceptions = exceptions
-        self.media_types = media_types
+        self.parameters = ParameterList(parameters)
+        self.responses = responses or []
+        self.exceptions = exceptions or []
+        self.media_types = media_types or []
         self.want_description_docstring = want_description_docstring
         self.want_tracing = want_tracing
 
     @property
-    def python_name(self):
+    def python_name(self) -> str:
         return self.name
 
     @staticmethod
-    def _suggest_content_type(
-        media_types: List[str]
-    ) -> str:
+    def _suggest_content_type(media_types: List[str]) -> str:
         """Return the prefered media-type.
 
         Assumes "media_types" attributes as a list exist.
@@ -78,7 +69,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         return ",".join(media_types)
 
     @property
-    def accept_content_type(self):
+    def accept_content_type(self) -> str:
         media_types = set(
             media_type
             for response in self.responses
@@ -87,81 +78,19 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         return self._suggest_content_type(list(media_types))
 
     @property
-    def request_content_type(self):
+    def request_content_type(self) -> str:
         return self._suggest_content_type(self.media_types)
 
     @property
-    def is_stream_request(self):
+    def is_stream_request(self) -> bool:
         """Is the request is a stream, like an upload."""
         # FIXME look for input
         return False
 
     @property
-    def is_stream_response(self):
+    def is_stream_response(self) -> bool:
         """Is the response expected to be streamable, like a download."""
         return any(response.is_stream_response for response in self.responses)
-
-    @property
-    def has_request_body(self):
-        return any(parameter.location == ParameterLocation.Body for parameter in self.parameters)
-
-    @property
-    def body_parameter(self) -> Parameter:
-        if not self.has_request_body:
-            raise ValueError(f"There is no body parameter for operation {self.name}")
-        # Should we check if there is two body? Modeler role right?
-        return [
-            parameter for parameter in self.parameters if parameter.location == ParameterLocation.Body
-        ][0]
-
-    @property
-    def path_parameters(self) -> List[Parameter]:
-        return [
-            parameter for parameter in self.parameters
-            if parameter.location in [ParameterLocation.Uri, ParameterLocation.Path] and
-            parameter.rest_api_name != "$host"
-        ]
-
-    @property
-    def query_parameters(self) -> List[Parameter]:
-        return [
-            parameter for parameter in self.parameters if parameter.location == ParameterLocation.Query
-        ]
-
-    @property
-    def headers_parameters(self) -> List[Parameter]:
-        return [
-            parameter for parameter in self.parameters if parameter.location == ParameterLocation.Header
-        ]
-
-    @property
-    def constant_parameters(self) -> List[Parameter]:
-        return [
-            parameter for parameter in self.parameters if isinstance(parameter.schema, ConstantSchema)
-        ]
-
-    @property
-    def method_parameters(self) -> List[Parameter]:
-        """The list of parameter used in method signature.
-        """
-        def is_parameter_in_signature(parameter):
-            """A predicate to tell if this parmater deserves to be in the signature.
-            """
-            return not (isinstance(parameter.schema, ConstantSchema) or parameter.implementation == "Client")
-
-        signature_parameters_required = []
-        signature_parameters_optional = []
-        for parameter in self.parameters:
-            if is_parameter_in_signature(parameter):
-                if parameter.required:
-                    signature_parameters_required.append(parameter)
-                else:
-                    signature_parameters_optional.append(parameter)
-
-        signature_parameters = signature_parameters_required + signature_parameters_optional
-        if self.is_flattened:
-            signature_parameters.remove(self.body_parameter)
-        return signature_parameters
 
     @staticmethod
     def build_serialize_data_call(parameter: Parameter, function_name: str) -> str:
@@ -195,12 +124,12 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         f"""'{parameter.schema.get_serialization_type()}'{optional_parameters_string})""")
 
     @property
-    def serialization_context(self):
+    def serialization_context(self) -> str:
         # FIXME Do the serialization context (XML)
         return ""
 
     @property
-    def has_response_body(self):
+    def has_response_body(self) -> bool:
         """Tell if at least one response has a body.
         """
         return any(response.has_body or response.is_stream_response for response in self.responses)
@@ -212,11 +141,11 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         raise ValueError(f"Incorrect status code {status_code}, operation {self.name}")
 
     @property
-    def any_response_has_headers(self):
+    def any_response_has_headers(self) -> bool:
         return any(response.has_headers for response in self.responses)
 
     @property
-    def success_status_code(self) -> List[int]:
+    def success_status_code(self) -> List[Union[str, int]]:
         """The list of all successfull status code.
         """
         return [
@@ -227,7 +156,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         ]
 
     @property
-    def default_exception(self) -> SchemaResponse:
+    def default_exception(self) -> Optional[SchemaResponse]:
         default_excp = [
             excp
             for excp in self.exceptions
@@ -246,7 +175,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
             if list(excp.status_codes) != ["default"]
         ]
 
-    def imports(self, code_model, async_mode):
+    def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = FileImport()
 
         # Exceptions
@@ -273,7 +202,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
             file_import.add_import("warnings", ImportType.STDLIB)
 
         # Models
-        if self.has_request_body or self.has_response_body or self.exceptions:
+        if self.parameters.has_body or self.has_response_body or self.exceptions:
             if async_mode:
                 file_import.add_from_import("...", "models", ImportType.LOCAL)
             else:
@@ -281,26 +210,8 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
 
         return file_import
 
-
-    @property
-    def is_flattened(self):
-        return bool([
-            parameter for parameter in self.parameters if parameter.location == ParameterLocation.Other
-        ])
-
-    def build_flattened_object(self):
-        if not self.is_flattened:
-            raise ValueError("This method can't be called if the operation doesn't need parameter flattening")
-
-        parameters = [
-            parameter for parameter in self.parameters if parameter.location == ParameterLocation.Other
-        ]
-        parameter_string = ",".join([f"{param.serialized_name}={param.serialized_name}" for param in parameters])
-
-        return f"{self.body_parameter.serialized_name} = models.{self.body_parameter.schema.name}({parameter_string})"
-
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, str]) -> "Operation":
+    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "Operation":
         name = yaml_data["language"]["python"]["name"]
         _LOGGER.debug("Parsing %s operation", name)
 

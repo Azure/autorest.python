@@ -34,7 +34,7 @@ class OperationGroup(BaseModel):
         self.class_name = class_name
         self.operations = operations
 
-    def imports(self, async_mode):
+    def imports(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
         for operation in self.operations:
             file_import.merge(operation.imports(self.code_model, async_mode))
@@ -54,7 +54,7 @@ class OperationGroup(BaseModel):
         return file_import
 
     @property
-    def is_empty_operation_group(self):
+    def is_empty_operation_group(self) -> bool:
         """The operation group with no name is the direct client methods.
         """
         return not self.yaml_data['language']['default']['name']

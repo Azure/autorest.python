@@ -3,9 +3,10 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Set
 from .base_schema import BaseSchema
 from .imports import FileImport, ImportType
+from .primitive_schemas import StringSchema
 
 
 class EnumValue:
@@ -51,7 +52,7 @@ class EnumSchema(BaseSchema):
         self,
         yaml_data: Dict[str, Any],
         description: str,
-        enum_type: "StringSchema",
+        enum_type: StringSchema,
         values: List["EnumValue"]
     ):
         super(EnumSchema, self).__init__(yaml_data)
@@ -84,7 +85,7 @@ class EnumSchema(BaseSchema):
         return f"str or ~{namespace}.models.{self.enum_type}"
 
     @staticmethod
-    def _get_enum_values(yaml_data: Dict[str, Any]) -> List["EnumValue"]:
+    def _get_enum_values(yaml_data: List[Dict[str, Any]]) -> List["EnumValue"]:
         """Creates the list of values for this enum.
 
         :param yaml_data: yaml data about the enum's values
@@ -93,7 +94,7 @@ class EnumSchema(BaseSchema):
         :rtype: list[~autorest.models.EnumValue]
         """
         values = []
-        seen_enums = set()
+        seen_enums: Set[str] = set()
 
         for enum in yaml_data:
             enum_name = enum['language']['python']['name']
@@ -104,7 +105,7 @@ class EnumSchema(BaseSchema):
         return values
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, str], **kwargs) -> "EnumSchema":
+    def from_yaml(cls, yaml_data: Dict[str, Any], **kwargs) -> "EnumSchema":
         """Constructs an EnumSchema from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this schema

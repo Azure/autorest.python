@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from abc import ABC, abstractmethod
 from enum import Enum
-from typing import List
+from typing import Any, List, Optional, Union
 import logging
 from pathlib import Path
 
@@ -85,7 +85,7 @@ class AutorestAPI(ABC):
             self._handler = None
 
     @abstractmethod
-    def write_file(self, filename: str, file_content: str) -> None:
+    def write_file(self, filename: Union[str, Path], file_content: str) -> None:
         """Ask autorest to write the content to the current path.
 
         pathlib.Path object are acceptable but must be relative.
@@ -95,7 +95,7 @@ class AutorestAPI(ABC):
         """
 
     @abstractmethod
-    def read_file(self, filename: str) -> str:
+    def read_file(self, filename: Union[str, Path]) -> str:
         """Ask autorest to read a file for me.
 
         pathlib.Path object are acceptable but must be relative.
@@ -111,7 +111,7 @@ class AutorestAPI(ABC):
         """
 
     @abstractmethod
-    def get_value(self, key: str) -> str:
+    def get_value(self, key: str) -> Any:
         """Get a value from configuration.
         """
 
@@ -120,7 +120,7 @@ class AutorestAPI(ABC):
         """Send a log message to autorest.
         """
 
-    def get_boolean_value(self, key: str, default: bool = None) -> bool:
+    def get_boolean_value(self, key: str, default: bool = None) -> Optional[bool]:
         """Check if value is present on the line, and interpret it as bool if it was.
 
         If value is not not on the line, return the "default".

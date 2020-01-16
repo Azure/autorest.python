@@ -13,6 +13,7 @@ from .models.code_model import CodeModel
 from .models import build_schema
 from .models.operation_group import OperationGroup
 from .models.parameter import Parameter
+from .models.parameter_list import ParameterList
 from .serializers import JinjaSerializer
 
 
@@ -66,9 +67,9 @@ class CodeGenerator(Plugin):
 
 
         # Global parameters
-        code_model.global_parameters = [
+        code_model.global_parameters = ParameterList([
             Parameter.from_yaml(param) for param in yaml_code_model.get('globalParameters', [])
-        ]
+        ], implementation="Client")
 
         # Custom URL
         dollar_host = [parameter for parameter in code_model.global_parameters if parameter.rest_api_name == "$host"]
@@ -141,7 +142,7 @@ class CodeGenerator(Plugin):
             )
             license_header += "\n# --------------------------------------------------------------------------"
 
-        options = {
+        options: Dict[str, Any] = {
             'azure_arm': azure_arm,
             'credential': (
                 self._autorestapi.get_boolean_value("add-credentials", False) or
@@ -152,6 +153,7 @@ class CodeGenerator(Plugin):
             'license_header': license_header,
             'keep_version_file': self._autorestapi.get_boolean_value("keep-version-file", False),
             'no_async': self._autorestapi.get_boolean_value("no-async", False),
+            'no_namespace_folders': self._autorestapi.get_boolean_value("no-namespace-folders", False),
             'payload-flattening-threshold': self._autorestapi.get_value("payload-flattening-threshold") or 0,
             'basic_setup_py': self._autorestapi.get_boolean_value("basic-setup-py", False),
             'package_version': self._autorestapi.get_value("package-version"),

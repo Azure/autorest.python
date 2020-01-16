@@ -8,6 +8,7 @@ from typing import Dict, Optional, List, Any
 from .imports import FileImport, ImportType
 
 from .base_model import BaseModel
+from .base_schema import BaseSchema
 
 
 class ParameterLocation(Enum):
@@ -17,6 +18,7 @@ class ParameterLocation(Enum):
     Header = "header"
     Uri = "uri"
     Other = "other"
+    Flattened = "flattened"
 
 
 class ParameterStyle(Enum):
@@ -36,7 +38,7 @@ class Parameter(BaseModel):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        schema: Optional[Any],
+        schema: BaseSchema,
         rest_api_name: str,
         serialized_name: str,
         description: str,
@@ -60,33 +62,33 @@ class Parameter(BaseModel):
         self.style = style
 
     @property
-    def implementation(self):
+    def implementation(self) -> str:
         # https://github.com/Azure/autorest.modelerfour/issues/81
         if self.serialized_name == "api_version":
             return "Method"
         return self._implementation
 
     @property
-    def sync_method_signature(self):
+    def sync_method_signature(self) -> str:
         if self.required:
             return self.serialized_name
         return f"{self.serialized_name}=None"
 
     @property
-    def async_method_signature(self):
+    def async_method_signature(self) -> str:
         if self.required:
             return f"{self.serialized_name}: {self.schema.type_annotation}"
         return f"{self.serialized_name}: Optional[{self.schema.type_annotation}] = None"
 
     @property
-    def full_serialized_name(self):
+    def full_serialized_name(self) -> str:
         origin_name = self.serialized_name
         if self.implementation == "Client":
             origin_name = f"self._config.{self.serialized_name}"
         return origin_name
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, str]) -> "SchemaResponse":
+    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "Parameter":
 
         http_protocol = yaml_data["protocol"]["http"]
         return cls(

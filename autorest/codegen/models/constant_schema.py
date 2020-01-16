@@ -6,7 +6,7 @@
 import logging
 from typing import Dict, Any, Optional
 from .base_schema import BaseSchema
-from .primitive_schemas import get_primitive_schema
+from .primitive_schemas import get_primitive_schema, PrimitiveSchema
 from .imports import FileImport
 
 _LOGGER = logging.getLogger(__name__)
@@ -23,17 +23,17 @@ class ConstantSchema(BaseSchema):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
+        schema: PrimitiveSchema,
         value: Optional[str],
-        schema: Optional["PrimitiveSchema"]
     ):
         super(ConstantSchema, self).__init__(yaml_data)
         self.value = value
         self.schema = schema
 
-    def get_declaration(self, value):
+    def get_declaration(self, value: Any):
         raise TypeError('Should not call get_declaration on a ConstantSchema. Call get_constant_value instead')
 
-    def get_constant_value(self):
+    def get_constant_value(self) -> str:
         """This string is used directly in template, as-is
         """
         if self.value is None:
@@ -48,12 +48,16 @@ class ConstantSchema(BaseSchema):
         """
         return self.schema.get_serialization_type()
 
-    def get_python_type(self, namespace: Optional[str] = None) -> str:
+    def get_python_type(self, namespace: str) -> str:
         """The python type used for RST syntax input and type annotation.
 
         :param str namespace: Optional. The namespace for the models.
         """
         return self.schema.get_python_type(namespace)
+
+    @property
+    def type_annotation(self) -> str:
+        return self.schema.type_annotation
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any], **kwargs) -> "ConstantSchema":
@@ -69,8 +73,8 @@ class ConstantSchema(BaseSchema):
         _LOGGER.debug("Parsing %s constant", name)
         return cls(
             yaml_data=yaml_data,
-            value=yaml_data.get("value", {}).get("value", None),
-            schema=get_primitive_schema(yaml_data['valueType'])
+            schema=get_primitive_schema(yaml_data['valueType']),
+            value=yaml_data.get("value", {}).get("value", None)
         )
 
     def imports(self) -> FileImport:

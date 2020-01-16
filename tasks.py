@@ -1,6 +1,12 @@
+# -------------------------------------------------------------------------
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License. See License.txt in the project root for
+# license information.
+# --------------------------------------------------------------------------
+from multiprocessing import Pool
 import os
 from colorama import init, Fore
-from invoke import task
+from invoke import task, run
 
 init()
 _AUTOREST_CMD_LINE = "autorest-beta"
@@ -68,6 +74,7 @@ def regen_expected(c, opts, debug):
     output_dir = "{}/{}".format(opts['output_base_dir'], opts['output_dir']) if opts.get('output_base_dir') else opts['output_dir']
     keys = opts['mappings'].keys()
 
+    cmds = []
     for key in keys:
         opts_mappings_value = opts['mappings'][key]
         key = key.strip()
@@ -124,11 +131,22 @@ def regen_expected(c, opts, debug):
 
         cmd_line = '{} {}'.format(_AUTOREST_CMD_LINE, " ".join(args))
         print(Fore.YELLOW + f'Queuing up: {cmd_line}')
-        result = c.run(cmd_line, warn=True)
-        if result.ok:
-            print(Fore.GREEN + 'Call done with success')
-        else:
-            print(Fore.RED + f'Call failed with {result.return_code}')
+        cmds.append(cmd_line)
+
+    if len(cmds) == 1:
+        run_autorest(cmds[0])
+    else:
+        # Execute actual taks in parallel
+        with Pool() as pool:
+            pool.map(run_autorest, cmds)
+
+def run_autorest(cmd_line):
+    result = run(cmd_line, warn=True, hide=True)
+    if result.ok or result.return_code is None:
+        print(Fore.GREEN + f'Call "{cmd_line}" done with success')
+    else:
+        print(Fore.RED + f'Call "{cmd_line}" failed with {result.return_code}\n{result.stdout}\n{result.stderr}')
+    return result
 
 
 @task

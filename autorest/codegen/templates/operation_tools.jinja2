@@ -15,8 +15,8 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
 {% macro query_parameters(operation) %}
 # Construct parameters
 query_parameters = {}
-{% if operation.query_parameters %}
-    {% for query_parameter in operation.query_parameters %}
+{% if operation.parameters.query %}
+    {% for query_parameter in operation.parameters.query %}
         {%if query_parameter.required %}
 query_parameters['{{ query_parameter.rest_api_name }}'] = {{ operation.build_serialize_data_call(query_parameter, "query") }}
         {% else %}
@@ -30,8 +30,8 @@ if {{ query_parameter.full_serialized_name }} is not None:
 {% macro header_parameters(code_model, operation) %}
 # Construct headers
 header_parameters = {}
-{% if operation.headers_parameters %}
-    {% for header_parameter in operation.headers_parameters %}
+{% if operation.parameters.headers %}
+    {% for header_parameter in operation.parameters.headers %}
         {%if header_parameter.required %}
 header_parameters['{{ header_parameter.rest_api_name }}'] = {{ operation.build_serialize_data_call(header_parameter, "header") }}
         {% else %}
@@ -43,7 +43,7 @@ if {{ header_parameter.full_serialized_name }} is not None:
 {% if operation.has_response_body %}
 header_parameters['Accept'] = '{{ operation.accept_content_type }}'
 {% endif %}
-{% if operation.has_request_body %}
+{% if operation.parameters.has_body %}
 header_parameters['Content-Type'] = '{{ operation.request_content_type }}'
 {% endif %}
 {% if code_model.options['azure_arm'] %}

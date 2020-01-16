@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from typing import Any, Dict
 from .base_model import BaseModel
 from .code_model import CodeModel, CredentialSchema
 from .object_schema import ObjectSchema
@@ -17,6 +18,8 @@ from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
 from .parameter import Parameter
 from .operation import Operation
+from .property import Property
+from .operation_group import OperationGroup
 
 
 __all__ = [
@@ -35,19 +38,22 @@ __all__ = [
     "LROOperation",
     "Operation",
     "PagingOperation",
-    "Parameter"
+    "Parameter",
+    "OperationGroup",
+    "Property"
 ]
 
-# TODO: should this be in models.__init__ or CodeModel
-def build_schema(yaml_data, **kwargs):
-    code_model = kwargs.get('code_model')
+def build_schema(yaml_data: Dict[str, Any], **kwargs) -> BaseSchema:
+    code_model = kwargs.get('code_model', None)
+    if not code_model:
+        raise ValueError("CodeModel not passed through kwargs")
     yaml_id = id(yaml_data)
     try:
         return code_model.lookup_schema(yaml_id)
     except KeyError:
         # Not created yet, let's create it and add it to the index
         pass
-
+    schema: BaseSchema
     schema_type = yaml_data['type']
     if schema_type == 'constant':
         schema = ConstantSchema.from_yaml(yaml_data=yaml_data)
@@ -68,7 +74,7 @@ def build_schema(yaml_data, **kwargs):
     elif schema_type in ['object', 'and']:
         # To avoid infinite loop, create the right instance in memory,
         # put it in the index, and then parse the object.
-        schema = ObjectSchema(yaml_data, None, None)
+        schema = ObjectSchema(yaml_data, "_", "")
         code_model.schemas[yaml_id] = schema
         schema.fill_instance_from_yaml(yaml_data, **kwargs)
 

@@ -8,11 +8,11 @@ if async_mode else (", " if operation.method_parameters else "") ~ operation.met
 {% macro return_docstring() %}
 {% if operation.responses | selectattr('has_body') | first %}
 :return: {{ operation.responses|map(attribute='schema')|map(attribute='name')|join(' or ') }} or the result of cls(response)
-    :rtype: {% for response in operation.responses %}{{response.schema.get_python_type(code_model.namespace) if response.has_body else "None"}}{% if not loop.last %} or {% endif %}{% endfor %}
+:rtype: {% for response in operation.responses %}{{response.schema.get_python_type(code_model.namespace) if response.has_body else "None"}}{% if not loop.last %} or {% endif %}{% endfor %}
 {% else %}
 :return: None or the result of cls(response)
-    :rtype: None
-{% endif %}
+:rtype: None
+{%- endif -%}
 {% endmacro %}
 {% macro exception_name() %}{{ operation.default_exception.schema.name }}Exception{% endmacro %}
 {% set core_excep_name = 'ARMError' if code_model.options['azure_arm'] else 'HttpResponseError' %}
@@ -22,26 +22,26 @@ if async_mode else (", " if operation.method_parameters else "") ~ operation.met
 {% else %}
 
 {% endif %}
-{{ keywords.def }} {{ operation.python_name }}(self{{ method_signature }}, cls=None, **kwargs):
+{{ keywords.def }} {{ operation.python_name }}(self{{ operation.parameters.method_signature }}, cls=None, **kwargs):
 {% if not async_mode %}
     {{ operation_typing_comment(operation) }}
 {% endif %}
 {% if operation.want_description_docstring %}
     """{{operation.description.strip() }}.
 
-    {{ "FIXME: add operation.summary\n" }}
+    FIXME: add operation.summary
 
 {% if operation.deprecated -%}
     .. warning::
        This method is deprecated
 
 {% endif -%}
-{% for parameter in operation.method_parameters %}
+{% for parameter in operation.parameters.method %}
     :param {{ parameter.serialized_name }}: {{ parameter.description }}
     :type {{ parameter.serialized_name }}: {{ parameter.schema.get_python_type(code_model.namespace) }}
 {% endfor %}
     :param callable cls: A custom type or function that will be passed the direct response
-    {{ return_docstring() }}
+    {{ return_docstring()|indent }}
     {% if not operation.default_exception %}
         {% if code_model.options['azure_arm'] %}
     :raises: ~azure.mgmt.core.ARMError
@@ -72,20 +72,20 @@ if async_mode else (", " if operation.method_parameters else "") ~ operation.met
 {% else %}
     error_map = kwargs.pop('error_map', {})
 {% endif %}
-{% if operation.is_flattened %}
-    {{ operation.build_flattened_object() }}
+{% if operation.parameters.is_flattened %}
+    {{ operation.parameters.build_flattened_object() }}
 {% endif %}
-{% if operation.constant_parameters %}
-    {% for constant_parameter in operation.constant_parameters %}
+{% if operation.parameters.constant|selectattr("implementation", "equalto", "Method") %}
+    {% for constant_parameter in operation.parameters.constant|selectattr("implementation", "equalto", "Method") %}
     {{ constant_parameter.serialized_name }} = {{ constant_parameter.schema.get_constant_value() }}
     {% endfor %}
 {% endif %}
 
     # Construct URL
     url = self.{{ operation.python_name }}.metadata['url']
-{% if operation.path_parameters %}
+{% if operation.parameters.path %}
     path_format_arguments = {
-{% for path_parameter in operation.path_parameters %}
+{% for path_parameter in operation.parameters.path %}
         '{{ path_parameter.rest_api_name }}': {{ operation.build_serialize_data_call(path_parameter, "url") }},
 {% endfor %}
     }
@@ -96,18 +96,18 @@ if async_mode else (", " if operation.method_parameters else "") ~ operation.met
 
     {{ op_tools.header_parameters(code_model, operation)|indent }}
 
-{% if operation.has_request_body %}
+{% if operation.parameters.has_body %}
     # Construct body
-    {% if not operation.body_parameter.is_stream %}
-        {% if operation.body_parameter.required %}
-    body_content = self._serialize.body({{ operation.body_parameter.serialized_name }}, '{{ operation.body_parameter.schema.get_serialization_type() }}'{{ request_as_xml }}{{ operation.serialization_context }})
+    {% if not operation.parameters.body.is_stream %}
+        {% if operation.parameters.body.required %}
+    body_content = self._serialize.body({{ operation.parameters.body.serialized_name }}, '{{ operation.parameters.body.schema.get_serialization_type() }}'{{ request_as_xml }}{{ operation.serialization_context }})
         {% else %}
-    if {{ operation.body_parameter.serialized_name }} is not None:
-        body_content = self._serialize.body({{ operation.body_parameter.serialized_name }}, '{{ operation.body_parameter.schema.get_serialization_type() }}'{{ request_as_xml }}{{ operation.serialization_context }})
+    if {{ operation.parameters.body.serialized_name }} is not None:
+        body_content = self._serialize.body({{ operation.parameters.body.serialized_name }}, '{{ operation.parameters.body.schema.get_serialization_type() }}'{{ request_as_xml }}{{ operation.serialization_context }})
     else:
         body_content = None
         {% endif %}
-    {% elif operation.body_parameter.is_form_data %}
+    {% elif operation.parameters.body.is_form_data %}
     # Construct form data
     form_data_content = {
     ###foreach (var parameter in Model.LocalParameters)
@@ -125,7 +125,7 @@ if async_mode else (", " if operation.method_parameters else "") ~ operation.met
     request = self._client.{{ operation.method }}(url, query_parameters, header_parameters, form_content=form_data_content)
 {% elif operation.is_stream_request %}
     request = self._client.{{ operation.method }}(url, query_parameters, header_parameters, stream_content={{ parameter.serialized_name }})
-{% elif operation.has_request_body %}
+{% elif operation.parameters.has_body %}
     request = self._client.{{ operation.method }}(url, query_parameters, header_parameters, body_content)
 {% else %}
     request = self._client.{{ operation.method }}(url, query_parameters, header_parameters)

@@ -3,11 +3,12 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from ..models.imports import ImportType
+from typing import Dict, Set, Optional
+from ..models.imports import ImportType, FileImport
 
 
 class FileImportSerializer:
-    def __init__(self, file_import):
+    def __init__(self, file_import: FileImport):
         self._file_import = file_import
 
     def __str__(self):
@@ -18,7 +19,7 @@ class FileImportSerializer:
         return "\n\n".join(import_clause)
 
     @staticmethod
-    def _serialize_package(package_name, module_list):
+    def _serialize_package(package_name: str, module_list: Set[Optional[str]]) -> str:
         buffer = []
         if None in module_list:
             buffer.append(f"import {package_name}")
@@ -32,7 +33,7 @@ class FileImportSerializer:
         return "\n".join(buffer)
 
     @staticmethod
-    def _serialize_type(import_type_dict):
+    def _serialize_type(import_type_dict: Dict[str, Set[Optional[str]]]) -> str:
         """Serialize a given import type."""
         import_list = []
         for package_name in sorted(list(import_type_dict.keys())):

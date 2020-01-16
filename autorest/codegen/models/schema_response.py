@@ -6,6 +6,7 @@
 from typing import Dict, Optional, List, Union, Any
 
 from .base_model import BaseModel
+from .base_schema import BaseSchema
 
 
 class HeaderResponse:
@@ -18,7 +19,7 @@ class SchemaResponse(BaseModel):
     def __init__(
         self,
         yaml_data: Dict[str, Any],
-        schema: Optional[Any],
+        schema: Optional[BaseSchema],
         media_types: List[str],
         status_codes: List[Union[str, int]],
         headers: List[HeaderResponse],
@@ -32,24 +33,24 @@ class SchemaResponse(BaseModel):
         self.binary = binary
 
     @property
-    def has_body(self):
+    def has_body(self) -> bool:
         """Tell if that response defines a body.
         """
         return bool(self.schema)
 
     @property
-    def has_headers(self):
+    def has_headers(self) -> bool:
         """Tell if that response defines headers.
         """
         return bool(self.headers)
 
     @property
-    def is_stream_response(self):
+    def is_stream_response(self) -> bool:
         """Is the response expected to be streamable, like a download."""
         return self.binary
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, str]) -> "SchemaResponse":
+    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "SchemaResponse":
 
         return cls(
             yaml_data=yaml_data,
