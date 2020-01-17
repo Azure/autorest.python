@@ -145,14 +145,22 @@ class FlattenedProduct(Resource):
     :type location: str
     :ivar name: Resource Name.
     :vartype name: str
-    :param properties:
-    :type properties: ~modelflattening.models.FlattenedProductProperties
+    :param pname:
+    :type pname: str
+    :ivar provisioning_state_values:  Possible values include: 'Succeeded',
+     'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
+     'Deleting', 'Deleted', 'OK'.
+    :vartype provisioning_state_values: str or
+     ~modelflattening.models.FlattenedProductPropertiesProvisioningStateValues
+    :param provisioning_state:
+    :type provisioning_state: str
     """
 
     _validation = {
         'id': {'readonly': True},
         'type': {'readonly': True},
         'name': {'readonly': True},
+        'provisioning_state_values': {'readonly': True},
     }
 
     _attribute_map = {
@@ -161,12 +169,16 @@ class FlattenedProduct(Resource):
         'tags': {'key': 'tags', 'type': '{str}'},
         'location': {'key': 'location', 'type': 'str'},
         'name': {'key': 'name', 'type': 'str'},
-        'properties': {'key': 'properties', 'type': 'FlattenedProductProperties'},
+        'pname': {'key': 'properties.p\\.name', 'type': 'str'},
+        'provisioning_state_values': {'key': 'properties.provisioningStateValues', 'type': 'str'},
+        'provisioning_state': {'key': 'properties.provisioningState', 'type': 'str'},
     }
 
     def __init__(self, **kwargs):
         super(FlattenedProduct, self).__init__(**kwargs)
-        self.properties = kwargs.get('properties', None)
+        self.pname = kwargs.get('pname', None)
+        self.provisioning_state_values = None
+        self.provisioning_state = kwargs.get('provisioning_state', None)
 
 
 class FlattenedProductProperties(Model):
@@ -244,17 +256,17 @@ class ProductUrl(GenericUrl):
 class ProductWrapper(Model):
     """The wrapped produc.
 
-    :param property: The wrapped produc.
-    :type property: ~modelflattening.models.WrappedProduct
+    :param value: the product value.
+    :type value: str
     """
 
     _attribute_map = {
-        'property': {'key': 'property', 'type': 'WrappedProduct'},
+        'value': {'key': 'property.value', 'type': 'str'},
     }
 
     def __init__(self, **kwargs):
         super(ProductWrapper, self).__init__(**kwargs)
-        self.property = kwargs.get('property', None)
+        self.value = kwargs.get('value', None)
 
 
 class ResourceCollection(Model):
@@ -284,6 +296,8 @@ class ResourceCollection(Model):
 class SimpleProduct(BaseProduct):
     """The product documentation.
 
+    Variables are only populated by the server, and will be ignored when sending a request.
+
     All required parameters must be populated in order to send to Azure.
 
     :param product_id: Required. Unique identifier representing a specific product
@@ -292,23 +306,34 @@ class SimpleProduct(BaseProduct):
     :type product_id: str
     :param description: Description of product.
     :type description: str
-    :param details: The product documentation.
-    :type details: ~modelflattening.models.SimpleProductProperties
+    :param max_product_display_name: Display name of product.
+    :type max_product_display_name: str
+    :ivar capacity: Capacity of product. For example, 4 people. Default value:
+     "Large".
+    :vartype capacity: str
+    :param odatavalue: URL value.
+    :type odatavalue: str
     """
 
     _validation = {
         'product_id': {'required': True},
+        'capacity': {'constant': True},
     }
 
     _attribute_map = {
         'product_id': {'key': 'base_product_id', 'type': 'str'},
         'description': {'key': 'base_product_description', 'type': 'str'},
-        'details': {'key': 'details', 'type': 'SimpleProductProperties'},
+        'max_product_display_name': {'key': 'details.max_product_display_name', 'type': 'str'},
+        'capacity': {'key': 'details.max_product_capacity', 'type': 'str'},
+        'odatavalue': {'key': 'details.max_product_image.@odata\\.value', 'type': 'str'},
     }
+
+    capacity = "Large"
 
     def __init__(self, **kwargs):
         super(SimpleProduct, self).__init__(**kwargs)
-        self.details = kwargs.get('details', None)
+        self.max_product_display_name = kwargs.get('max_product_display_name', None)
+        self.odatavalue = kwargs.get('odatavalue', None)
 
 
 class SimpleProductProperties(Model):
@@ -323,8 +348,8 @@ class SimpleProductProperties(Model):
     :ivar capacity: Required. Capacity of product. For example, 4 people. Default
      value: "Large".
     :vartype capacity: str
-    :param max_product_image: The product URL.
-    :type max_product_image: ~modelflattening.models.ProductUrl
+    :param odatavalue: URL value.
+    :type odatavalue: str
     """
 
     _validation = {
@@ -335,7 +360,7 @@ class SimpleProductProperties(Model):
     _attribute_map = {
         'max_product_display_name': {'key': 'max_product_display_name', 'type': 'str'},
         'capacity': {'key': 'max_product_capacity', 'type': 'str'},
-        'max_product_image': {'key': 'max_product_image', 'type': 'ProductUrl'},
+        'odatavalue': {'key': 'max_product_image.@odata\\.value', 'type': 'str'},
     }
 
     capacity = "Large"
@@ -343,7 +368,7 @@ class SimpleProductProperties(Model):
     def __init__(self, **kwargs):
         super(SimpleProductProperties, self).__init__(**kwargs)
         self.max_product_display_name = kwargs.get('max_product_display_name', None)
-        self.max_product_image = kwargs.get('max_product_image', None)
+        self.odatavalue = kwargs.get('odatavalue', None)
 
 
 class WrappedProduct(Model):
