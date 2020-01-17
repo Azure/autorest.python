@@ -37,7 +37,7 @@ class OdataOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_with_filter(self, filter: Optional[str] = None, top: Optional[int] = None, orderby: Optional[str] = None, cls=None, **kwargs):
+    async def get_with_filter(self, filter: Optional[str] = None, top: Optional[int] = None, orderby: Optional[str] = None, cls=None, **kwargs) -> None:
         """Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'.
 
         FIXME: add operation.summary

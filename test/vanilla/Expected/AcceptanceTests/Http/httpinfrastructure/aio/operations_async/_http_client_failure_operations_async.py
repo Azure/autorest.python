@@ -36,7 +36,7 @@ class HttpClientFailureOperations:
         self._config = config
 
     @distributed_trace_async
-    async def head400(self, cls=None, **kwargs):
+    async def head400(self, cls=None, **kwargs) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -74,7 +74,7 @@ class HttpClientFailureOperations:
     head400.metadata = {'url': '/http/failure/client/400'}
 
     @distributed_trace_async
-    async def get400(self, cls=None, **kwargs):
+    async def get400(self, cls=None, **kwargs) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -112,7 +112,7 @@ class HttpClientFailureOperations:
     get400.metadata = {'url': '/http/failure/client/400'}
 
     @distributed_trace_async
-    async def options400(self, cls=None, **kwargs):
+    async def options400(self, cls=None, **kwargs) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -150,7 +150,7 @@ class HttpClientFailureOperations:
     options400.metadata = {'url': '/http/failure/client/400'}
 
     @distributed_trace_async
-    async def put400(self, cls=None, **kwargs):
+    async def put400(self, cls=None, **kwargs) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -196,7 +196,7 @@ class HttpClientFailureOperations:
     put400.metadata = {'url': '/http/failure/client/400'}
 
     @distributed_trace_async
-    async def patch400(self, cls=None, **kwargs):
+    async def patch400(self, cls=None, **kwargs) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -242,7 +242,7 @@ class HttpClientFailureOperations:
     patch400.metadata = {'url': '/http/failure/client/400'}
 
     @distributed_trace_async
-    async def post400(self, cls=None, **kwargs):
+    async def post400(self, cls=None, **kwargs) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -288,7 +288,7 @@ class HttpClientFailureOperations:
     post400.metadata = {'url': '/http/failure/client/400'}
 
     @distributed_trace_async
-    async def delete400(self, cls=None, **kwargs):
+    async def delete400(self, cls=None, **kwargs) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -334,7 +334,7 @@ class HttpClientFailureOperations:
     delete400.metadata = {'url': '/http/failure/client/400'}
 
     @distributed_trace_async
-    async def head401(self, cls=None, **kwargs):
+    async def head401(self, cls=None, **kwargs) -> None:
         """Return 401 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -372,7 +372,7 @@ class HttpClientFailureOperations:
     head401.metadata = {'url': '/http/failure/client/401'}
 
     @distributed_trace_async
-    async def get402(self, cls=None, **kwargs):
+    async def get402(self, cls=None, **kwargs) -> None:
         """Return 402 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -410,7 +410,7 @@ class HttpClientFailureOperations:
     get402.metadata = {'url': '/http/failure/client/402'}
 
     @distributed_trace_async
-    async def options403(self, cls=None, **kwargs):
+    async def options403(self, cls=None, **kwargs) -> None:
         """Return 403 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -448,7 +448,7 @@ class HttpClientFailureOperations:
     options403.metadata = {'url': '/http/failure/client/403'}
 
     @distributed_trace_async
-    async def get403(self, cls=None, **kwargs):
+    async def get403(self, cls=None, **kwargs) -> None:
         """Return 403 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -486,7 +486,7 @@ class HttpClientFailureOperations:
     get403.metadata = {'url': '/http/failure/client/403'}
 
     @distributed_trace_async
-    async def put404(self, cls=None, **kwargs):
+    async def put404(self, cls=None, **kwargs) -> None:
         """Return 404 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -532,7 +532,7 @@ class HttpClientFailureOperations:
     put404.metadata = {'url': '/http/failure/client/404'}
 
     @distributed_trace_async
-    async def patch405(self, cls=None, **kwargs):
+    async def patch405(self, cls=None, **kwargs) -> None:
         """Return 405 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -578,7 +578,7 @@ class HttpClientFailureOperations:
     patch405.metadata = {'url': '/http/failure/client/405'}
 
     @distributed_trace_async
-    async def post406(self, cls=None, **kwargs):
+    async def post406(self, cls=None, **kwargs) -> None:
         """Return 406 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -624,7 +624,7 @@ class HttpClientFailureOperations:
     post406.metadata = {'url': '/http/failure/client/406'}
 
     @distributed_trace_async
-    async def delete407(self, cls=None, **kwargs):
+    async def delete407(self, cls=None, **kwargs) -> None:
         """Return 407 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -670,7 +670,7 @@ class HttpClientFailureOperations:
     delete407.metadata = {'url': '/http/failure/client/407'}
 
     @distributed_trace_async
-    async def put409(self, cls=None, **kwargs):
+    async def put409(self, cls=None, **kwargs) -> None:
         """Return 409 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -716,7 +716,7 @@ class HttpClientFailureOperations:
     put409.metadata = {'url': '/http/failure/client/409'}
 
     @distributed_trace_async
-    async def head410(self, cls=None, **kwargs):
+    async def head410(self, cls=None, **kwargs) -> None:
         """Return 410 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -754,7 +754,7 @@ class HttpClientFailureOperations:
     head410.metadata = {'url': '/http/failure/client/410'}
 
     @distributed_trace_async
-    async def get411(self, cls=None, **kwargs):
+    async def get411(self, cls=None, **kwargs) -> None:
         """Return 411 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -792,7 +792,7 @@ class HttpClientFailureOperations:
     get411.metadata = {'url': '/http/failure/client/411'}
 
     @distributed_trace_async
-    async def options412(self, cls=None, **kwargs):
+    async def options412(self, cls=None, **kwargs) -> None:
         """Return 412 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -830,7 +830,7 @@ class HttpClientFailureOperations:
     options412.metadata = {'url': '/http/failure/client/412'}
 
     @distributed_trace_async
-    async def get412(self, cls=None, **kwargs):
+    async def get412(self, cls=None, **kwargs) -> None:
         """Return 412 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -868,7 +868,7 @@ class HttpClientFailureOperations:
     get412.metadata = {'url': '/http/failure/client/412'}
 
     @distributed_trace_async
-    async def put413(self, cls=None, **kwargs):
+    async def put413(self, cls=None, **kwargs) -> None:
         """Return 413 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -914,7 +914,7 @@ class HttpClientFailureOperations:
     put413.metadata = {'url': '/http/failure/client/413'}
 
     @distributed_trace_async
-    async def patch414(self, cls=None, **kwargs):
+    async def patch414(self, cls=None, **kwargs) -> None:
         """Return 414 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -960,7 +960,7 @@ class HttpClientFailureOperations:
     patch414.metadata = {'url': '/http/failure/client/414'}
 
     @distributed_trace_async
-    async def post415(self, cls=None, **kwargs):
+    async def post415(self, cls=None, **kwargs) -> None:
         """Return 415 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -1006,7 +1006,7 @@ class HttpClientFailureOperations:
     post415.metadata = {'url': '/http/failure/client/415'}
 
     @distributed_trace_async
-    async def get416(self, cls=None, **kwargs):
+    async def get416(self, cls=None, **kwargs) -> None:
         """Return 416 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -1044,7 +1044,7 @@ class HttpClientFailureOperations:
     get416.metadata = {'url': '/http/failure/client/416'}
 
     @distributed_trace_async
-    async def delete417(self, cls=None, **kwargs):
+    async def delete417(self, cls=None, **kwargs) -> None:
         """Return 417 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -1090,7 +1090,7 @@ class HttpClientFailureOperations:
     delete417.metadata = {'url': '/http/failure/client/417'}
 
     @distributed_trace_async
-    async def head429(self, cls=None, **kwargs):
+    async def head429(self, cls=None, **kwargs) -> None:
         """Return 429 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary

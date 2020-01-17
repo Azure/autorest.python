@@ -892,7 +892,7 @@ class PagingOperations:
 
 
     
-    async def _get_multiple_pages_lro_initial(self, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: Optional[int] = None, cls=None, **kwargs):
+    async def _get_multiple_pages_lro_initial(self, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: Optional[int] = None, cls=None, **kwargs) -> "ProductResult":
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

@@ -36,7 +36,7 @@ class PathItemsOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_all_with_values(self, path_item_string_path: str, local_string_path: str, path_item_string_query: Optional[str] = None, local_string_query: Optional[str] = None, cls=None, **kwargs):
+    async def get_all_with_values(self, path_item_string_path: str, local_string_path: str, path_item_string_query: Optional[str] = None, local_string_query: Optional[str] = None, cls=None, **kwargs) -> None:
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
         FIXME: add operation.summary
@@ -94,7 +94,7 @@ class PathItemsOperations:
     get_all_with_values.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery'}
 
     @distributed_trace_async
-    async def get_global_query_null(self, path_item_string_path: str, local_string_path: str, path_item_string_query: Optional[str] = None, local_string_query: Optional[str] = None, cls=None, **kwargs):
+    async def get_global_query_null(self, path_item_string_path: str, local_string_path: str, path_item_string_query: Optional[str] = None, local_string_query: Optional[str] = None, cls=None, **kwargs) -> None:
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
         FIXME: add operation.summary
@@ -152,7 +152,7 @@ class PathItemsOperations:
     get_global_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery'}
 
     @distributed_trace_async
-    async def get_global_and_local_query_null(self, path_item_string_path: str, local_string_path: str, path_item_string_query: Optional[str] = None, local_string_query: Optional[str] = None, cls=None, **kwargs):
+    async def get_global_and_local_query_null(self, path_item_string_path: str, local_string_path: str, path_item_string_query: Optional[str] = None, local_string_query: Optional[str] = None, cls=None, **kwargs) -> None:
         """send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
 
         FIXME: add operation.summary
@@ -210,7 +210,7 @@ class PathItemsOperations:
     get_global_and_local_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null'}
 
     @distributed_trace_async
-    async def get_local_path_item_query_null(self, path_item_string_path: str, local_string_path: str, path_item_string_query: Optional[str] = None, local_string_query: Optional[str] = None, cls=None, **kwargs):
+    async def get_local_path_item_query_null(self, path_item_string_path: str, local_string_path: str, path_item_string_query: Optional[str] = None, local_string_query: Optional[str] = None, cls=None, **kwargs) -> None:
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery=null, localStringQuery=null.
 
         FIXME: add operation.summary

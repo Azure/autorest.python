@@ -37,7 +37,7 @@ class ReadonlypropertyOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_valid(self, cls=None, **kwargs):
+    async def get_valid(self, cls=None, **kwargs) -> "ReadonlyObj":
         """Get complex types that have readonly properties.
 
         FIXME: add operation.summary
@@ -79,7 +79,7 @@ class ReadonlypropertyOperations:
     get_valid.metadata = {'url': '/complex/readonlyproperty/valid'}
 
     @distributed_trace_async
-    async def put_valid(self, size: Optional[int] = None, cls=None, **kwargs):
+    async def put_valid(self, size: Optional[int] = None, cls=None, **kwargs) -> None:
         """Put complex types that have readonly properties.
 
         FIXME: add operation.summary

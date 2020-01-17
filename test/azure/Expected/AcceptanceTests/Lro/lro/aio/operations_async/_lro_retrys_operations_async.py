@@ -41,7 +41,7 @@ class LRORetrysOperations:
         self._config = config
 
     
-    async def _put201_creating_succeeded200_initial(self, product: Optional["Product"] = None, cls=None, **kwargs):
+    async def _put201_creating_succeeded200_initial(self, product: Optional["Product"] = None, cls=None, **kwargs) -> Union["Product", "Product"]:
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -128,7 +128,7 @@ class LRORetrysOperations:
 
 
     
-    async def _put_async_relative_retry_succeeded_initial(self, product: Optional["Product"] = None, cls=None, **kwargs):
+    async def _put_async_relative_retry_succeeded_initial(self, product: Optional["Product"] = None, cls=None, **kwargs) -> "Product":
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -218,7 +218,7 @@ class LRORetrysOperations:
 
 
     
-    async def _delete_provisioning202_accepted200_succeeded_initial(self, cls=None, **kwargs):
+    async def _delete_provisioning202_accepted200_succeeded_initial(self, cls=None, **kwargs) -> Union["Product", "Product"]:
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -301,7 +301,7 @@ class LRORetrysOperations:
 
 
     
-    async def _delete202_retry200_initial(self, cls=None, **kwargs):
+    async def _delete202_retry200_initial(self, cls=None, **kwargs) -> None:
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -370,7 +370,7 @@ class LRORetrysOperations:
 
 
     
-    async def _delete_async_relative_retry_succeeded_initial(self, cls=None, **kwargs):
+    async def _delete_async_relative_retry_succeeded_initial(self, cls=None, **kwargs) -> None:
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -440,7 +440,7 @@ class LRORetrysOperations:
 
 
     
-    async def _post202_retry200_initial(self, product: Optional["Product"] = None, cls=None, **kwargs):
+    async def _post202_retry200_initial(self, product: Optional["Product"] = None, cls=None, **kwargs) -> None:
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -519,7 +519,7 @@ class LRORetrysOperations:
 
 
     
-    async def _post_async_relative_retry_succeeded_initial(self, product: Optional["Product"] = None, cls=None, **kwargs):
+    async def _post_async_relative_retry_succeeded_initial(self, product: Optional["Product"] = None, cls=None, **kwargs) -> None:
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

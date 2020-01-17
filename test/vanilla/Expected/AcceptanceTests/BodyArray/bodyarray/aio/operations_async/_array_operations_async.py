@@ -38,7 +38,7 @@ class ArrayOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_null(self, cls=None, **kwargs):
+    async def get_null(self, cls=None, **kwargs) -> List[int]:
         """Get null array value.
 
         FIXME: add operation.summary
@@ -80,7 +80,7 @@ class ArrayOperations:
     get_null.metadata = {'url': '/array/null'}
 
     @distributed_trace_async
-    async def get_invalid(self, cls=None, **kwargs):
+    async def get_invalid(self, cls=None, **kwargs) -> List[int]:
         """Get invalid array [1, 2, 3.
 
         FIXME: add operation.summary
@@ -122,7 +122,7 @@ class ArrayOperations:
     get_invalid.metadata = {'url': '/array/invalid'}
 
     @distributed_trace_async
-    async def get_empty(self, cls=None, **kwargs):
+    async def get_empty(self, cls=None, **kwargs) -> List[int]:
         """Get empty array value [].
 
         FIXME: add operation.summary
@@ -164,7 +164,7 @@ class ArrayOperations:
     get_empty.metadata = {'url': '/array/empty'}
 
     @distributed_trace_async
-    async def put_empty(self, array_body: List[str], cls=None, **kwargs):
+    async def put_empty(self, array_body: List[str], cls=None, **kwargs) -> None:
         """Set array value empty [].
 
         FIXME: add operation.summary
@@ -208,7 +208,7 @@ class ArrayOperations:
     put_empty.metadata = {'url': '/array/empty'}
 
     @distributed_trace_async
-    async def get_boolean_tfft(self, cls=None, **kwargs):
+    async def get_boolean_tfft(self, cls=None, **kwargs) -> List[bool]:
         """Get boolean array value [true, false, false, true].
 
         FIXME: add operation.summary
@@ -250,7 +250,7 @@ class ArrayOperations:
     get_boolean_tfft.metadata = {'url': '/array/prim/boolean/tfft'}
 
     @distributed_trace_async
-    async def put_boolean_tfft(self, array_body: List[bool], cls=None, **kwargs):
+    async def put_boolean_tfft(self, array_body: List[bool], cls=None, **kwargs) -> None:
         """Set array value empty [true, false, false, true].
 
         FIXME: add operation.summary
@@ -294,7 +294,7 @@ class ArrayOperations:
     put_boolean_tfft.metadata = {'url': '/array/prim/boolean/tfft'}
 
     @distributed_trace_async
-    async def get_boolean_invalid_null(self, cls=None, **kwargs):
+    async def get_boolean_invalid_null(self, cls=None, **kwargs) -> List[bool]:
         """Get boolean array value [true, null, false].
 
         FIXME: add operation.summary
@@ -336,7 +336,7 @@ class ArrayOperations:
     get_boolean_invalid_null.metadata = {'url': '/array/prim/boolean/true.null.false'}
 
     @distributed_trace_async
-    async def get_boolean_invalid_string(self, cls=None, **kwargs):
+    async def get_boolean_invalid_string(self, cls=None, **kwargs) -> List[bool]:
         """Get boolean array value [true, 'boolean', false].
 
         FIXME: add operation.summary
@@ -378,7 +378,7 @@ class ArrayOperations:
     get_boolean_invalid_string.metadata = {'url': '/array/prim/boolean/true.boolean.false'}
 
     @distributed_trace_async
-    async def get_integer_valid(self, cls=None, **kwargs):
+    async def get_integer_valid(self, cls=None, **kwargs) -> List[int]:
         """Get integer array value [1, -1, 3, 300].
 
         FIXME: add operation.summary
@@ -420,7 +420,7 @@ class ArrayOperations:
     get_integer_valid.metadata = {'url': '/array/prim/integer/1.-1.3.300'}
 
     @distributed_trace_async
-    async def put_integer_valid(self, array_body: List[int], cls=None, **kwargs):
+    async def put_integer_valid(self, array_body: List[int], cls=None, **kwargs) -> None:
         """Set array value empty [1, -1, 3, 300].
 
         FIXME: add operation.summary
@@ -464,7 +464,7 @@ class ArrayOperations:
     put_integer_valid.metadata = {'url': '/array/prim/integer/1.-1.3.300'}
 
     @distributed_trace_async
-    async def get_int_invalid_null(self, cls=None, **kwargs):
+    async def get_int_invalid_null(self, cls=None, **kwargs) -> List[int]:
         """Get integer array value [1, null, 0].
 
         FIXME: add operation.summary
@@ -506,7 +506,7 @@ class ArrayOperations:
     get_int_invalid_null.metadata = {'url': '/array/prim/integer/1.null.zero'}
 
     @distributed_trace_async
-    async def get_int_invalid_string(self, cls=None, **kwargs):
+    async def get_int_invalid_string(self, cls=None, **kwargs) -> List[int]:
         """Get integer array value [1, 'integer', 0].
 
         FIXME: add operation.summary
@@ -548,7 +548,7 @@ class ArrayOperations:
     get_int_invalid_string.metadata = {'url': '/array/prim/integer/1.integer.0'}
 
     @distributed_trace_async
-    async def get_long_valid(self, cls=None, **kwargs):
+    async def get_long_valid(self, cls=None, **kwargs) -> List[int]:
         """Get integer array value [1, -1, 3, 300].
 
         FIXME: add operation.summary
@@ -590,7 +590,7 @@ class ArrayOperations:
     get_long_valid.metadata = {'url': '/array/prim/long/1.-1.3.300'}
 
     @distributed_trace_async
-    async def put_long_valid(self, array_body: List[int], cls=None, **kwargs):
+    async def put_long_valid(self, array_body: List[int], cls=None, **kwargs) -> None:
         """Set array value empty [1, -1, 3, 300].
 
         FIXME: add operation.summary
@@ -634,7 +634,7 @@ class ArrayOperations:
     put_long_valid.metadata = {'url': '/array/prim/long/1.-1.3.300'}
 
     @distributed_trace_async
-    async def get_long_invalid_null(self, cls=None, **kwargs):
+    async def get_long_invalid_null(self, cls=None, **kwargs) -> List[int]:
         """Get long array value [1, null, 0].
 
         FIXME: add operation.summary
@@ -676,7 +676,7 @@ class ArrayOperations:
     get_long_invalid_null.metadata = {'url': '/array/prim/long/1.null.zero'}
 
     @distributed_trace_async
-    async def get_long_invalid_string(self, cls=None, **kwargs):
+    async def get_long_invalid_string(self, cls=None, **kwargs) -> List[int]:
         """Get long array value [1, 'integer', 0].
 
         FIXME: add operation.summary
@@ -718,7 +718,7 @@ class ArrayOperations:
     get_long_invalid_string.metadata = {'url': '/array/prim/long/1.integer.0'}
 
     @distributed_trace_async
-    async def get_float_valid(self, cls=None, **kwargs):
+    async def get_float_valid(self, cls=None, **kwargs) -> List[float]:
         """Get float array value [0, -0.01, 1.2e20].
 
         FIXME: add operation.summary
@@ -760,7 +760,7 @@ class ArrayOperations:
     get_float_valid.metadata = {'url': '/array/prim/float/0--0.01-1.2e20'}
 
     @distributed_trace_async
-    async def put_float_valid(self, array_body: List[float], cls=None, **kwargs):
+    async def put_float_valid(self, array_body: List[float], cls=None, **kwargs) -> None:
         """Set array value [0, -0.01, 1.2e20].
 
         FIXME: add operation.summary
@@ -804,7 +804,7 @@ class ArrayOperations:
     put_float_valid.metadata = {'url': '/array/prim/float/0--0.01-1.2e20'}
 
     @distributed_trace_async
-    async def get_float_invalid_null(self, cls=None, **kwargs):
+    async def get_float_invalid_null(self, cls=None, **kwargs) -> List[float]:
         """Get float array value [0.0, null, -1.2e20].
 
         FIXME: add operation.summary
@@ -846,7 +846,7 @@ class ArrayOperations:
     get_float_invalid_null.metadata = {'url': '/array/prim/float/0.0-null-1.2e20'}
 
     @distributed_trace_async
-    async def get_float_invalid_string(self, cls=None, **kwargs):
+    async def get_float_invalid_string(self, cls=None, **kwargs) -> List[float]:
         """Get boolean array value [1.0, 'number', 0.0].
 
         FIXME: add operation.summary
@@ -888,7 +888,7 @@ class ArrayOperations:
     get_float_invalid_string.metadata = {'url': '/array/prim/float/1.number.0'}
 
     @distributed_trace_async
-    async def get_double_valid(self, cls=None, **kwargs):
+    async def get_double_valid(self, cls=None, **kwargs) -> List[float]:
         """Get float array value [0, -0.01, 1.2e20].
 
         FIXME: add operation.summary
@@ -930,7 +930,7 @@ class ArrayOperations:
     get_double_valid.metadata = {'url': '/array/prim/double/0--0.01-1.2e20'}
 
     @distributed_trace_async
-    async def put_double_valid(self, array_body: List[float], cls=None, **kwargs):
+    async def put_double_valid(self, array_body: List[float], cls=None, **kwargs) -> None:
         """Set array value [0, -0.01, 1.2e20].
 
         FIXME: add operation.summary
@@ -974,7 +974,7 @@ class ArrayOperations:
     put_double_valid.metadata = {'url': '/array/prim/double/0--0.01-1.2e20'}
 
     @distributed_trace_async
-    async def get_double_invalid_null(self, cls=None, **kwargs):
+    async def get_double_invalid_null(self, cls=None, **kwargs) -> List[float]:
         """Get float array value [0.0, null, -1.2e20].
 
         FIXME: add operation.summary
@@ -1016,7 +1016,7 @@ class ArrayOperations:
     get_double_invalid_null.metadata = {'url': '/array/prim/double/0.0-null-1.2e20'}
 
     @distributed_trace_async
-    async def get_double_invalid_string(self, cls=None, **kwargs):
+    async def get_double_invalid_string(self, cls=None, **kwargs) -> List[float]:
         """Get boolean array value [1.0, 'number', 0.0].
 
         FIXME: add operation.summary
@@ -1058,7 +1058,7 @@ class ArrayOperations:
     get_double_invalid_string.metadata = {'url': '/array/prim/double/1.number.0'}
 
     @distributed_trace_async
-    async def get_string_valid(self, cls=None, **kwargs):
+    async def get_string_valid(self, cls=None, **kwargs) -> List[str]:
         """Get string array value ['foo1', 'foo2', 'foo3'].
 
         FIXME: add operation.summary
@@ -1100,7 +1100,7 @@ class ArrayOperations:
     get_string_valid.metadata = {'url': '/array/prim/string/foo1.foo2.foo3'}
 
     @distributed_trace_async
-    async def put_string_valid(self, array_body: List[str], cls=None, **kwargs):
+    async def put_string_valid(self, array_body: List[str], cls=None, **kwargs) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         FIXME: add operation.summary
@@ -1144,7 +1144,7 @@ class ArrayOperations:
     put_string_valid.metadata = {'url': '/array/prim/string/foo1.foo2.foo3'}
 
     @distributed_trace_async
-    async def get_enum_valid(self, cls=None, **kwargs):
+    async def get_enum_valid(self, cls=None, **kwargs) -> List[Union[str, "foo_enum"]]:
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
         FIXME: add operation.summary
@@ -1186,7 +1186,7 @@ class ArrayOperations:
     get_enum_valid.metadata = {'url': '/array/prim/enum/foo1.foo2.foo3'}
 
     @distributed_trace_async
-    async def put_enum_valid(self, array_body: List[Union[str, "foo_enum"]], cls=None, **kwargs):
+    async def put_enum_valid(self, array_body: List[Union[str, "foo_enum"]], cls=None, **kwargs) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         FIXME: add operation.summary
@@ -1230,7 +1230,7 @@ class ArrayOperations:
     put_enum_valid.metadata = {'url': '/array/prim/enum/foo1.foo2.foo3'}
 
     @distributed_trace_async
-    async def get_string_enum_valid(self, cls=None, **kwargs):
+    async def get_string_enum_valid(self, cls=None, **kwargs) -> List[Union[str, "enum0"]]:
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
         FIXME: add operation.summary
@@ -1272,7 +1272,7 @@ class ArrayOperations:
     get_string_enum_valid.metadata = {'url': '/array/prim/string-enum/foo1.foo2.foo3'}
 
     @distributed_trace_async
-    async def put_string_enum_valid(self, array_body: List[Union[str, "enum0"]], cls=None, **kwargs):
+    async def put_string_enum_valid(self, array_body: List[Union[str, "enum0"]], cls=None, **kwargs) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         FIXME: add operation.summary
@@ -1316,7 +1316,7 @@ class ArrayOperations:
     put_string_enum_valid.metadata = {'url': '/array/prim/string-enum/foo1.foo2.foo3'}
 
     @distributed_trace_async
-    async def get_string_with_null(self, cls=None, **kwargs):
+    async def get_string_with_null(self, cls=None, **kwargs) -> List[str]:
         """Get string array value ['foo', null, 'foo2'].
 
         FIXME: add operation.summary
@@ -1358,7 +1358,7 @@ class ArrayOperations:
     get_string_with_null.metadata = {'url': '/array/prim/string/foo.null.foo2'}
 
     @distributed_trace_async
-    async def get_string_with_invalid(self, cls=None, **kwargs):
+    async def get_string_with_invalid(self, cls=None, **kwargs) -> List[str]:
         """Get string array value ['foo', 123, 'foo2'].
 
         FIXME: add operation.summary
@@ -1400,7 +1400,7 @@ class ArrayOperations:
     get_string_with_invalid.metadata = {'url': '/array/prim/string/foo.123.foo2'}
 
     @distributed_trace_async
-    async def get_uuid_valid(self, cls=None, **kwargs):
+    async def get_uuid_valid(self, cls=None, **kwargs) -> List[str]:
         """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
         FIXME: add operation.summary
@@ -1442,7 +1442,7 @@ class ArrayOperations:
     get_uuid_valid.metadata = {'url': '/array/prim/uuid/valid'}
 
     @distributed_trace_async
-    async def put_uuid_valid(self, array_body: List[str], cls=None, **kwargs):
+    async def put_uuid_valid(self, array_body: List[str], cls=None, **kwargs) -> None:
         """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
         FIXME: add operation.summary
@@ -1486,7 +1486,7 @@ class ArrayOperations:
     put_uuid_valid.metadata = {'url': '/array/prim/uuid/valid'}
 
     @distributed_trace_async
-    async def get_uuid_invalid_chars(self, cls=None, **kwargs):
+    async def get_uuid_invalid_chars(self, cls=None, **kwargs) -> List[str]:
         """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'foo'].
 
         FIXME: add operation.summary
@@ -1528,7 +1528,7 @@ class ArrayOperations:
     get_uuid_invalid_chars.metadata = {'url': '/array/prim/uuid/invalidchars'}
 
     @distributed_trace_async
-    async def get_date_valid(self, cls=None, **kwargs):
+    async def get_date_valid(self, cls=None, **kwargs) -> List[datetime.date]:
         """Get integer array value ['2000-12-01', '1980-01-02', '1492-10-12'].
 
         FIXME: add operation.summary
@@ -1570,7 +1570,7 @@ class ArrayOperations:
     get_date_valid.metadata = {'url': '/array/prim/date/valid'}
 
     @distributed_trace_async
-    async def put_date_valid(self, array_body: List[datetime.date], cls=None, **kwargs):
+    async def put_date_valid(self, array_body: List[datetime.date], cls=None, **kwargs) -> None:
         """Set array value  ['2000-12-01', '1980-01-02', '1492-10-12'].
 
         FIXME: add operation.summary
@@ -1614,7 +1614,7 @@ class ArrayOperations:
     put_date_valid.metadata = {'url': '/array/prim/date/valid'}
 
     @distributed_trace_async
-    async def get_date_invalid_null(self, cls=None, **kwargs):
+    async def get_date_invalid_null(self, cls=None, **kwargs) -> List[datetime.date]:
         """Get date array value ['2012-01-01', null, '1776-07-04'].
 
         FIXME: add operation.summary
@@ -1656,7 +1656,7 @@ class ArrayOperations:
     get_date_invalid_null.metadata = {'url': '/array/prim/date/invalidnull'}
 
     @distributed_trace_async
-    async def get_date_invalid_chars(self, cls=None, **kwargs):
+    async def get_date_invalid_chars(self, cls=None, **kwargs) -> List[datetime.date]:
         """Get date array value ['2011-03-22', 'date'].
 
         FIXME: add operation.summary
@@ -1698,7 +1698,7 @@ class ArrayOperations:
     get_date_invalid_chars.metadata = {'url': '/array/prim/date/invalidchars'}
 
     @distributed_trace_async
-    async def get_date_time_valid(self, cls=None, **kwargs):
+    async def get_date_time_valid(self, cls=None, **kwargs) -> List[datetime.datetime]:
         """Get date-time array value ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00', '1492-10-12T10:15:01-08:00'].
 
         FIXME: add operation.summary
@@ -1740,7 +1740,7 @@ class ArrayOperations:
     get_date_time_valid.metadata = {'url': '/array/prim/date-time/valid'}
 
     @distributed_trace_async
-    async def put_date_time_valid(self, array_body: List[datetime.datetime], cls=None, **kwargs):
+    async def put_date_time_valid(self, array_body: List[datetime.datetime], cls=None, **kwargs) -> None:
         """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00', '1492-10-12T10:15:01-08:00'].
 
         FIXME: add operation.summary
@@ -1784,7 +1784,7 @@ class ArrayOperations:
     put_date_time_valid.metadata = {'url': '/array/prim/date-time/valid'}
 
     @distributed_trace_async
-    async def get_date_time_invalid_null(self, cls=None, **kwargs):
+    async def get_date_time_invalid_null(self, cls=None, **kwargs) -> List[datetime.datetime]:
         """Get date array value ['2000-12-01t00:00:01z', null].
 
         FIXME: add operation.summary
@@ -1826,7 +1826,7 @@ class ArrayOperations:
     get_date_time_invalid_null.metadata = {'url': '/array/prim/date-time/invalidnull'}
 
     @distributed_trace_async
-    async def get_date_time_invalid_chars(self, cls=None, **kwargs):
+    async def get_date_time_invalid_chars(self, cls=None, **kwargs) -> List[datetime.datetime]:
         """Get date array value ['2000-12-01t00:00:01z', 'date-time'].
 
         FIXME: add operation.summary
@@ -1868,7 +1868,7 @@ class ArrayOperations:
     get_date_time_invalid_chars.metadata = {'url': '/array/prim/date-time/invalidchars'}
 
     @distributed_trace_async
-    async def get_date_time_rfc1123_valid(self, cls=None, **kwargs):
+    async def get_date_time_rfc1123_valid(self, cls=None, **kwargs) -> List[datetime.datetime]:
         """Get date-time array value ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12 Oct 1492 10:15:01 GMT'].
 
         FIXME: add operation.summary
@@ -1910,7 +1910,7 @@ class ArrayOperations:
     get_date_time_rfc1123_valid.metadata = {'url': '/array/prim/date-time-rfc1123/valid'}
 
     @distributed_trace_async
-    async def put_date_time_rfc1123_valid(self, array_body: List[datetime.datetime], cls=None, **kwargs):
+    async def put_date_time_rfc1123_valid(self, array_body: List[datetime.datetime], cls=None, **kwargs) -> None:
         """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12 Oct 1492 10:15:01 GMT'].
 
         FIXME: add operation.summary
@@ -1954,7 +1954,7 @@ class ArrayOperations:
     put_date_time_rfc1123_valid.metadata = {'url': '/array/prim/date-time-rfc1123/valid'}
 
     @distributed_trace_async
-    async def get_duration_valid(self, cls=None, **kwargs):
+    async def get_duration_valid(self, cls=None, **kwargs) -> List[datetime.timedelta]:
         """Get duration array value ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
         FIXME: add operation.summary
@@ -1996,7 +1996,7 @@ class ArrayOperations:
     get_duration_valid.metadata = {'url': '/array/prim/duration/valid'}
 
     @distributed_trace_async
-    async def put_duration_valid(self, array_body: List[datetime.timedelta], cls=None, **kwargs):
+    async def put_duration_valid(self, array_body: List[datetime.timedelta], cls=None, **kwargs) -> None:
         """Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
         FIXME: add operation.summary
@@ -2040,7 +2040,7 @@ class ArrayOperations:
     put_duration_valid.metadata = {'url': '/array/prim/duration/valid'}
 
     @distributed_trace_async
-    async def get_byte_valid(self, cls=None, **kwargs):
+    async def get_byte_valid(self, cls=None, **kwargs) -> List[bytearray]:
         """Get byte array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each item encoded in base64.
 
         FIXME: add operation.summary
@@ -2082,7 +2082,7 @@ class ArrayOperations:
     get_byte_valid.metadata = {'url': '/array/prim/byte/valid'}
 
     @distributed_trace_async
-    async def put_byte_valid(self, array_body: List[bytearray], cls=None, **kwargs):
+    async def put_byte_valid(self, array_body: List[bytearray], cls=None, **kwargs) -> None:
         """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each elementencoded in base 64.
 
         FIXME: add operation.summary
@@ -2126,7 +2126,7 @@ class ArrayOperations:
     put_byte_valid.metadata = {'url': '/array/prim/byte/valid'}
 
     @distributed_trace_async
-    async def get_byte_invalid_null(self, cls=None, **kwargs):
+    async def get_byte_invalid_null(self, cls=None, **kwargs) -> List[bytearray]:
         """Get byte array value [hex(AB, AC, AD), null] with the first item base64 encoded.
 
         FIXME: add operation.summary
@@ -2168,7 +2168,7 @@ class ArrayOperations:
     get_byte_invalid_null.metadata = {'url': '/array/prim/byte/invalidnull'}
 
     @distributed_trace_async
-    async def get_base64_url(self, cls=None, **kwargs):
+    async def get_base64_url(self, cls=None, **kwargs) -> List[bytes]:
         """Get array value ['a string that gets encoded with base64url', 'test string' 'Lorem ipsum'] with the items base64url encoded.
 
         FIXME: add operation.summary
@@ -2210,7 +2210,7 @@ class ArrayOperations:
     get_base64_url.metadata = {'url': '/array/prim/base64url/valid'}
 
     @distributed_trace_async
-    async def get_complex_null(self, cls=None, **kwargs):
+    async def get_complex_null(self, cls=None, **kwargs) -> List["Product"]:
         """Get array of complex type null value.
 
         FIXME: add operation.summary
@@ -2252,7 +2252,7 @@ class ArrayOperations:
     get_complex_null.metadata = {'url': '/array/complex/null'}
 
     @distributed_trace_async
-    async def get_complex_empty(self, cls=None, **kwargs):
+    async def get_complex_empty(self, cls=None, **kwargs) -> List["Product"]:
         """Get empty array of complex type [].
 
         FIXME: add operation.summary
@@ -2294,7 +2294,7 @@ class ArrayOperations:
     get_complex_empty.metadata = {'url': '/array/complex/empty'}
 
     @distributed_trace_async
-    async def get_complex_item_null(self, cls=None, **kwargs):
+    async def get_complex_item_null(self, cls=None, **kwargs) -> List["Product"]:
         """Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5, 'string': '6'}].
 
         FIXME: add operation.summary
@@ -2336,7 +2336,7 @@ class ArrayOperations:
     get_complex_item_null.metadata = {'url': '/array/complex/itemnull'}
 
     @distributed_trace_async
-    async def get_complex_item_empty(self, cls=None, **kwargs):
+    async def get_complex_item_empty(self, cls=None, **kwargs) -> List["Product"]:
         """Get array of complex type with empty item [{'integer': 1 'string': '2'}, {}, {'integer': 5, 'string': '6'}].
 
         FIXME: add operation.summary
@@ -2378,7 +2378,7 @@ class ArrayOperations:
     get_complex_item_empty.metadata = {'url': '/array/complex/itemempty'}
 
     @distributed_trace_async
-    async def get_complex_valid(self, cls=None, **kwargs):
+    async def get_complex_valid(self, cls=None, **kwargs) -> List["Product"]:
         """Get array of complex type with [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'}, {'integer': 5, 'string': '6'}].
 
         FIXME: add operation.summary
@@ -2420,7 +2420,7 @@ class ArrayOperations:
     get_complex_valid.metadata = {'url': '/array/complex/valid'}
 
     @distributed_trace_async
-    async def put_complex_valid(self, array_body: List["Product"], cls=None, **kwargs):
+    async def put_complex_valid(self, array_body: List["Product"], cls=None, **kwargs) -> None:
         """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'}, {'integer': 5, 'string': '6'}].
 
         FIXME: add operation.summary
@@ -2464,7 +2464,7 @@ class ArrayOperations:
     put_complex_valid.metadata = {'url': '/array/complex/valid'}
 
     @distributed_trace_async
-    async def get_array_null(self, cls=None, **kwargs):
+    async def get_array_null(self, cls=None, **kwargs) -> List[List[str]]:
         """Get a null array.
 
         FIXME: add operation.summary
@@ -2506,7 +2506,7 @@ class ArrayOperations:
     get_array_null.metadata = {'url': '/array/array/null'}
 
     @distributed_trace_async
-    async def get_array_empty(self, cls=None, **kwargs):
+    async def get_array_empty(self, cls=None, **kwargs) -> List[List[str]]:
         """Get an empty array [].
 
         FIXME: add operation.summary
@@ -2548,7 +2548,7 @@ class ArrayOperations:
     get_array_empty.metadata = {'url': '/array/array/empty'}
 
     @distributed_trace_async
-    async def get_array_item_null(self, cls=None, **kwargs):
+    async def get_array_item_null(self, cls=None, **kwargs) -> List[List[str]]:
         """Get an array of array of strings [['1', '2', '3'], null, ['7', '8', '9']].
 
         FIXME: add operation.summary
@@ -2590,7 +2590,7 @@ class ArrayOperations:
     get_array_item_null.metadata = {'url': '/array/array/itemnull'}
 
     @distributed_trace_async
-    async def get_array_item_empty(self, cls=None, **kwargs):
+    async def get_array_item_empty(self, cls=None, **kwargs) -> List[List[str]]:
         """Get an array of array of strings [['1', '2', '3'], [], ['7', '8', '9']].
 
         FIXME: add operation.summary
@@ -2632,7 +2632,7 @@ class ArrayOperations:
     get_array_item_empty.metadata = {'url': '/array/array/itemempty'}
 
     @distributed_trace_async
-    async def get_array_valid(self, cls=None, **kwargs):
+    async def get_array_valid(self, cls=None, **kwargs) -> List[List[str]]:
         """Get an array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
 
         FIXME: add operation.summary
@@ -2674,7 +2674,7 @@ class ArrayOperations:
     get_array_valid.metadata = {'url': '/array/array/valid'}
 
     @distributed_trace_async
-    async def put_array_valid(self, array_body: List[List[str]], cls=None, **kwargs):
+    async def put_array_valid(self, array_body: List[List[str]], cls=None, **kwargs) -> None:
         """Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
 
         FIXME: add operation.summary
@@ -2718,7 +2718,7 @@ class ArrayOperations:
     put_array_valid.metadata = {'url': '/array/array/valid'}
 
     @distributed_trace_async
-    async def get_dictionary_null(self, cls=None, **kwargs):
+    async def get_dictionary_null(self, cls=None, **kwargs) -> List[Dict[str, str]]:
         """Get an array of Dictionaries with value null.
 
         FIXME: add operation.summary
@@ -2760,7 +2760,7 @@ class ArrayOperations:
     get_dictionary_null.metadata = {'url': '/array/dictionary/null'}
 
     @distributed_trace_async
-    async def get_dictionary_empty(self, cls=None, **kwargs):
+    async def get_dictionary_empty(self, cls=None, **kwargs) -> List[Dict[str, str]]:
         """Get an array of Dictionaries of type <string, string> with value [].
 
         FIXME: add operation.summary
@@ -2802,7 +2802,7 @@ class ArrayOperations:
     get_dictionary_empty.metadata = {'url': '/array/dictionary/empty'}
 
     @distributed_trace_async
-    async def get_dictionary_item_null(self, cls=None, **kwargs):
+    async def get_dictionary_item_null(self, cls=None, **kwargs) -> List[Dict[str, str]]:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3': 'three'}, null, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         FIXME: add operation.summary
@@ -2844,7 +2844,7 @@ class ArrayOperations:
     get_dictionary_item_null.metadata = {'url': '/array/dictionary/itemnull'}
 
     @distributed_trace_async
-    async def get_dictionary_item_empty(self, cls=None, **kwargs):
+    async def get_dictionary_item_empty(self, cls=None, **kwargs) -> List[Dict[str, str]]:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3': 'three'}, {}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         FIXME: add operation.summary
@@ -2886,7 +2886,7 @@ class ArrayOperations:
     get_dictionary_item_empty.metadata = {'url': '/array/dictionary/itemempty'}
 
     @distributed_trace_async
-    async def get_dictionary_valid(self, cls=None, **kwargs):
+    async def get_dictionary_valid(self, cls=None, **kwargs) -> List[Dict[str, str]]:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3': 'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         FIXME: add operation.summary
@@ -2928,7 +2928,7 @@ class ArrayOperations:
     get_dictionary_valid.metadata = {'url': '/array/dictionary/valid'}
 
     @distributed_trace_async
-    async def put_dictionary_valid(self, array_body: List[Dict[str, str]], cls=None, **kwargs):
+    async def put_dictionary_valid(self, array_body: List[Dict[str, str]], cls=None, **kwargs) -> None:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3': 'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         FIXME: add operation.summary

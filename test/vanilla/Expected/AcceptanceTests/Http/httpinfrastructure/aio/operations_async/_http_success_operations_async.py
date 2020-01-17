@@ -36,7 +36,7 @@ class HttpSuccessOperations:
         self._config = config
 
     @distributed_trace_async
-    async def head200(self, cls=None, **kwargs):
+    async def head200(self, cls=None, **kwargs) -> None:
         """Return 200 status code if successful.
 
         FIXME: add operation.summary
@@ -74,7 +74,7 @@ class HttpSuccessOperations:
     head200.metadata = {'url': '/http/success/200'}
 
     @distributed_trace_async
-    async def get200(self, cls=None, **kwargs):
+    async def get200(self, cls=None, **kwargs) -> bool:
         """Get 200 success.
 
         FIXME: add operation.summary
@@ -116,7 +116,7 @@ class HttpSuccessOperations:
     get200.metadata = {'url': '/http/success/200'}
 
     @distributed_trace_async
-    async def options200(self, cls=None, **kwargs):
+    async def options200(self, cls=None, **kwargs) -> bool:
         """Options 200 success.
 
         FIXME: add operation.summary
@@ -158,7 +158,7 @@ class HttpSuccessOperations:
     options200.metadata = {'url': '/http/success/200'}
 
     @distributed_trace_async
-    async def put200(self, cls=None, **kwargs):
+    async def put200(self, cls=None, **kwargs) -> None:
         """Put boolean value true returning 200 success.
 
         FIXME: add operation.summary
@@ -204,7 +204,7 @@ class HttpSuccessOperations:
     put200.metadata = {'url': '/http/success/200'}
 
     @distributed_trace_async
-    async def patch200(self, cls=None, **kwargs):
+    async def patch200(self, cls=None, **kwargs) -> None:
         """Patch true Boolean value in request returning 200.
 
         FIXME: add operation.summary
@@ -250,7 +250,7 @@ class HttpSuccessOperations:
     patch200.metadata = {'url': '/http/success/200'}
 
     @distributed_trace_async
-    async def post200(self, cls=None, **kwargs):
+    async def post200(self, cls=None, **kwargs) -> None:
         """Post bollean value true in request that returns a 200.
 
         FIXME: add operation.summary
@@ -296,7 +296,7 @@ class HttpSuccessOperations:
     post200.metadata = {'url': '/http/success/200'}
 
     @distributed_trace_async
-    async def delete200(self, cls=None, **kwargs):
+    async def delete200(self, cls=None, **kwargs) -> None:
         """Delete simple boolean value true returns 200.
 
         FIXME: add operation.summary
@@ -342,7 +342,7 @@ class HttpSuccessOperations:
     delete200.metadata = {'url': '/http/success/200'}
 
     @distributed_trace_async
-    async def put201(self, cls=None, **kwargs):
+    async def put201(self, cls=None, **kwargs) -> None:
         """Put true Boolean value in request returns 201.
 
         FIXME: add operation.summary
@@ -388,7 +388,7 @@ class HttpSuccessOperations:
     put201.metadata = {'url': '/http/success/201'}
 
     @distributed_trace_async
-    async def post201(self, cls=None, **kwargs):
+    async def post201(self, cls=None, **kwargs) -> None:
         """Post true Boolean value in request returns 201 (Created).
 
         FIXME: add operation.summary
@@ -434,7 +434,7 @@ class HttpSuccessOperations:
     post201.metadata = {'url': '/http/success/201'}
 
     @distributed_trace_async
-    async def put202(self, cls=None, **kwargs):
+    async def put202(self, cls=None, **kwargs) -> None:
         """Put true Boolean value in request returns 202 (Accepted).
 
         FIXME: add operation.summary
@@ -480,7 +480,7 @@ class HttpSuccessOperations:
     put202.metadata = {'url': '/http/success/202'}
 
     @distributed_trace_async
-    async def patch202(self, cls=None, **kwargs):
+    async def patch202(self, cls=None, **kwargs) -> None:
         """Patch true Boolean value in request returns 202.
 
         FIXME: add operation.summary
@@ -526,7 +526,7 @@ class HttpSuccessOperations:
     patch202.metadata = {'url': '/http/success/202'}
 
     @distributed_trace_async
-    async def post202(self, cls=None, **kwargs):
+    async def post202(self, cls=None, **kwargs) -> None:
         """Post true Boolean value in request returns 202 (Accepted).
 
         FIXME: add operation.summary
@@ -572,7 +572,7 @@ class HttpSuccessOperations:
     post202.metadata = {'url': '/http/success/202'}
 
     @distributed_trace_async
-    async def delete202(self, cls=None, **kwargs):
+    async def delete202(self, cls=None, **kwargs) -> None:
         """Delete true Boolean value in request returns 202 (accepted).
 
         FIXME: add operation.summary
@@ -618,7 +618,7 @@ class HttpSuccessOperations:
     delete202.metadata = {'url': '/http/success/202'}
 
     @distributed_trace_async
-    async def head204(self, cls=None, **kwargs):
+    async def head204(self, cls=None, **kwargs) -> None:
         """Return 204 status code if successful.
 
         FIXME: add operation.summary
@@ -656,7 +656,7 @@ class HttpSuccessOperations:
     head204.metadata = {'url': '/http/success/204'}
 
     @distributed_trace_async
-    async def put204(self, cls=None, **kwargs):
+    async def put204(self, cls=None, **kwargs) -> None:
         """Put true Boolean value in request returns 204 (no content).
 
         FIXME: add operation.summary
@@ -702,7 +702,7 @@ class HttpSuccessOperations:
     put204.metadata = {'url': '/http/success/204'}
 
     @distributed_trace_async
-    async def patch204(self, cls=None, **kwargs):
+    async def patch204(self, cls=None, **kwargs) -> None:
         """Patch true Boolean value in request returns 204 (no content).
 
         FIXME: add operation.summary
@@ -748,7 +748,7 @@ class HttpSuccessOperations:
     patch204.metadata = {'url': '/http/success/204'}
 
     @distributed_trace_async
-    async def post204(self, cls=None, **kwargs):
+    async def post204(self, cls=None, **kwargs) -> None:
         """Post true Boolean value in request returns 204 (no content).
 
         FIXME: add operation.summary
@@ -794,7 +794,7 @@ class HttpSuccessOperations:
     post204.metadata = {'url': '/http/success/204'}
 
     @distributed_trace_async
-    async def delete204(self, cls=None, **kwargs):
+    async def delete204(self, cls=None, **kwargs) -> None:
         """Delete true Boolean value in request returns 204 (no content).
 
         FIXME: add operation.summary
@@ -840,7 +840,7 @@ class HttpSuccessOperations:
     delete204.metadata = {'url': '/http/success/204'}
 
     @distributed_trace_async
-    async def head404(self, cls=None, **kwargs):
+    async def head404(self, cls=None, **kwargs) -> None:
         """Return 404 status code.
 
         FIXME: add operation.summary

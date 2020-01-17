@@ -17,7 +17,7 @@ from ... import models
 
 class AutoRestResourceFlatteningTestServiceOperationsMixin:
     @distributed_trace_async
-    async def put_array(self, resource_array: Optional[List["Resource"]] = None, cls=None, **kwargs):
+    async def put_array(self, resource_array: Optional[List["Resource"]] = None, cls=None, **kwargs) -> None:
         """Put External Resource as an Array.
 
         FIXME: add operation.summary
@@ -63,7 +63,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
     put_array.metadata = {'url': '/model-flatten/array'}
     @distributed_trace_async
-    async def get_array(self, cls=None, **kwargs):
+    async def get_array(self, cls=None, **kwargs) -> List["FlattenedProduct"]:
         """Get External Resource as an Array.
 
         FIXME: add operation.summary
@@ -104,7 +104,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         return deserialized
     get_array.metadata = {'url': '/model-flatten/array'}
     @distributed_trace_async
-    async def put_wrapped_array(self, resource_array: Optional[List["WrappedProduct"]] = None, cls=None, **kwargs):
+    async def put_wrapped_array(self, resource_array: Optional[List["WrappedProduct"]] = None, cls=None, **kwargs) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened is not removed if it's referenced in an array.
 
         FIXME: add operation.summary
@@ -150,7 +150,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
     put_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}
     @distributed_trace_async
-    async def get_wrapped_array(self, cls=None, **kwargs):
+    async def get_wrapped_array(self, cls=None, **kwargs) -> List["ProductWrapper"]:
         """No need to have a route in Express server for this operation. Used to verify the type flattened is not removed if it's referenced in an array.
 
         FIXME: add operation.summary
@@ -191,7 +191,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         return deserialized
     get_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}
     @distributed_trace_async
-    async def put_dictionary(self, resource_dictionary: Optional[Dict[str, "FlattenedProduct"]] = None, cls=None, **kwargs):
+    async def put_dictionary(self, resource_dictionary: Optional[Dict[str, "FlattenedProduct"]] = None, cls=None, **kwargs) -> None:
         """Put External Resource as a Dictionary.
 
         FIXME: add operation.summary
@@ -237,7 +237,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
     put_dictionary.metadata = {'url': '/model-flatten/dictionary'}
     @distributed_trace_async
-    async def get_dictionary(self, cls=None, **kwargs):
+    async def get_dictionary(self, cls=None, **kwargs) -> Dict[str, "FlattenedProduct"]:
         """Get External Resource as a Dictionary.
 
         FIXME: add operation.summary
@@ -278,7 +278,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         return deserialized
     get_dictionary.metadata = {'url': '/model-flatten/dictionary'}
     @distributed_trace_async
-    async def put_resource_collection(self, resource_complex_object: Optional["ResourceCollection"] = None, cls=None, **kwargs):
+    async def put_resource_collection(self, resource_complex_object: Optional["ResourceCollection"] = None, cls=None, **kwargs) -> None:
         """Put External Resource as a ResourceCollection.
 
         FIXME: add operation.summary
@@ -324,7 +324,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
     put_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}
     @distributed_trace_async
-    async def get_resource_collection(self, cls=None, **kwargs):
+    async def get_resource_collection(self, cls=None, **kwargs) -> "ResourceCollection":
         """Get External Resource as a ResourceCollection.
 
         FIXME: add operation.summary
@@ -365,7 +365,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         return deserialized
     get_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}
     @distributed_trace_async
-    async def put_simple_product(self, simple_body_product: Optional["SimpleProduct"] = None, cls=None, **kwargs):
+    async def put_simple_product(self, simple_body_product: Optional["SimpleProduct"] = None, cls=None, **kwargs) -> "SimpleProduct":
         """Put Simple Product with client flattening true on the model.
 
         FIXME: add operation.summary
@@ -415,7 +415,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         return deserialized
     put_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
     @distributed_trace_async
-    async def post_flattened_simple_product(self, simple_body_product: Optional["SimpleProduct"] = None, cls=None, **kwargs):
+    async def post_flattened_simple_product(self, simple_body_product: Optional["SimpleProduct"] = None, cls=None, **kwargs) -> "SimpleProduct":
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         FIXME: add operation.summary
@@ -465,7 +465,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         return deserialized
     post_flattened_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
     @distributed_trace_async
-    async def put_simple_product_with_grouping(self, name: str, simple_body_product: Optional["SimpleProduct"] = None, cls=None, **kwargs):
+    async def put_simple_product_with_grouping(self, name: str, simple_body_product: Optional["SimpleProduct"] = None, cls=None, **kwargs) -> "SimpleProduct":
         """Put Simple Product with client flattening true on the model.
 
         FIXME: add operation.summary

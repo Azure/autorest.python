@@ -36,7 +36,7 @@ class PathsOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_empty(self, vault: str, secret: str, key_name: str, key_version: Optional[str] = None, cls=None, **kwargs):
+    async def get_empty(self, vault: str, secret: str, key_name: str, key_version: Optional[str] = None, cls=None, **kwargs) -> None:
         """Get a 200 to test a valid base uri.
 
         FIXME: add operation.summary

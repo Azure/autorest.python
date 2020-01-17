@@ -16,7 +16,7 @@ from ... import models
 
 class AutoRestReportServiceForAzureOperationsMixin:
     @distributed_trace_async
-    async def get_report(self, qualifier: Optional[str] = None, cls=None, **kwargs):
+    async def get_report(self, qualifier: Optional[str] = None, cls=None, **kwargs) -> Dict[str, int]:
         """Get test coverage report.
 
         FIXME: add operation.summary

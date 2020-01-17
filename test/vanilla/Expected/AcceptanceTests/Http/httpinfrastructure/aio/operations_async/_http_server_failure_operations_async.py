@@ -36,7 +36,7 @@ class HttpServerFailureOperations:
         self._config = config
 
     @distributed_trace_async
-    async def head501(self, cls=None, **kwargs):
+    async def head501(self, cls=None, **kwargs) -> None:
         """Return 501 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -74,7 +74,7 @@ class HttpServerFailureOperations:
     head501.metadata = {'url': '/http/failure/server/501'}
 
     @distributed_trace_async
-    async def get501(self, cls=None, **kwargs):
+    async def get501(self, cls=None, **kwargs) -> None:
         """Return 501 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -112,7 +112,7 @@ class HttpServerFailureOperations:
     get501.metadata = {'url': '/http/failure/server/501'}
 
     @distributed_trace_async
-    async def post505(self, cls=None, **kwargs):
+    async def post505(self, cls=None, **kwargs) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -158,7 +158,7 @@ class HttpServerFailureOperations:
     post505.metadata = {'url': '/http/failure/server/505'}
 
     @distributed_trace_async
-    async def delete505(self, cls=None, **kwargs):
+    async def delete505(self, cls=None, **kwargs) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary

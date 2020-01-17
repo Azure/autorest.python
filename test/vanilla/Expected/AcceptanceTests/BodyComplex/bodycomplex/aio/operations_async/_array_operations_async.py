@@ -37,7 +37,7 @@ class ArrayOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_valid(self, cls=None, **kwargs):
+    async def get_valid(self, cls=None, **kwargs) -> "ArrayWrapper":
         """Get complex types with array property.
 
         FIXME: add operation.summary
@@ -79,7 +79,7 @@ class ArrayOperations:
     get_valid.metadata = {'url': '/complex/array/valid'}
 
     @distributed_trace_async
-    async def put_valid(self, array: Optional[List[str]] = None, cls=None, **kwargs):
+    async def put_valid(self, array: Optional[List[str]] = None, cls=None, **kwargs) -> None:
         """Put complex types with array property.
 
         FIXME: add operation.summary
@@ -124,7 +124,7 @@ class ArrayOperations:
     put_valid.metadata = {'url': '/complex/array/valid'}
 
     @distributed_trace_async
-    async def get_empty(self, cls=None, **kwargs):
+    async def get_empty(self, cls=None, **kwargs) -> "ArrayWrapper":
         """Get complex types with array property which is empty.
 
         FIXME: add operation.summary
@@ -166,7 +166,7 @@ class ArrayOperations:
     get_empty.metadata = {'url': '/complex/array/empty'}
 
     @distributed_trace_async
-    async def put_empty(self, array: Optional[List[str]] = None, cls=None, **kwargs):
+    async def put_empty(self, array: Optional[List[str]] = None, cls=None, **kwargs) -> None:
         """Put complex types with array property which is empty.
 
         FIXME: add operation.summary
@@ -211,7 +211,7 @@ class ArrayOperations:
     put_empty.metadata = {'url': '/complex/array/empty'}
 
     @distributed_trace_async
-    async def get_not_provided(self, cls=None, **kwargs):
+    async def get_not_provided(self, cls=None, **kwargs) -> "ArrayWrapper":
         """Get complex types with array property while server doesn't provide a response payload.
 
         FIXME: add operation.summary
