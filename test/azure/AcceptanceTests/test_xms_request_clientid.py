@@ -64,4 +64,4 @@ class TestXmsRequestClientId(object):
             pass
 
     def test_xms_request_client_id_in_client(self, client):
-        client.x_ms_client_request_id.get(request_id=False)
+        client.x_ms_client_request_id.get(request_id=None)
