@@ -41,7 +41,7 @@ class HttpFailureOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: bool or the result of cls(response)
         :rtype: bool
         :raises: ~httpinfrastructure.models.ErrorException:
         """
@@ -83,7 +83,7 @@ class HttpFailureOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: bool or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.HttpResponseError
         """
@@ -125,7 +125,7 @@ class HttpFailureOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: bool or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.HttpResponseError
         """

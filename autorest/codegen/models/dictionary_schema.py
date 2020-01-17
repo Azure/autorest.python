@@ -36,6 +36,10 @@ class DictionarySchema(BaseSchema):
         """
         return f'Dict[str, {self.element_type.get_python_type_annotation()}]'
 
+    @property
+    def docstring_text(self) -> str:
+        return "dict"
+
     def get_python_type(self, namespace: str) -> str:
         """The python type used for RST syntax input and type annotation.
 

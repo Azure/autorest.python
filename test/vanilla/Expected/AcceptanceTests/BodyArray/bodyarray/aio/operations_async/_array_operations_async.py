@@ -41,7 +41,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[int]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -83,7 +83,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[int]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -125,7 +125,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[int]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -211,7 +211,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[bool]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -297,7 +297,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[bool]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -339,7 +339,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[bool]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -381,7 +381,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[int]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -467,7 +467,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[int]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -509,7 +509,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[int]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -551,7 +551,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[long]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -637,7 +637,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[long]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -679,7 +679,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[long]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -721,7 +721,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[float]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -807,7 +807,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[float]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -849,7 +849,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[float]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -891,7 +891,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[float]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -977,7 +977,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[float]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -1019,7 +1019,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[float]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -1061,7 +1061,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[str]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -1147,7 +1147,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[str or ~bodyarray.models.foo_enum]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -1233,7 +1233,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[str or ~bodyarray.models.enum0]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -1319,7 +1319,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[str]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -1361,7 +1361,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[str]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -1403,7 +1403,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[str]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -1489,7 +1489,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[str]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -1531,7 +1531,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[~datetime.date]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -1617,7 +1617,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[~datetime.date]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -1659,7 +1659,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[~datetime.date]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -1701,7 +1701,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -1787,7 +1787,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -1829,7 +1829,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -1871,7 +1871,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -1957,7 +1957,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[~datetime.timedelta]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -2043,7 +2043,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[bytearray]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -2129,7 +2129,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[bytearray]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -2171,7 +2171,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[bytes]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -2213,7 +2213,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -2255,7 +2255,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -2297,7 +2297,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -2339,7 +2339,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -2381,7 +2381,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -2467,7 +2467,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -2509,7 +2509,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -2551,7 +2551,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -2593,7 +2593,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -2635,7 +2635,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -2721,7 +2721,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -2763,7 +2763,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -2805,7 +2805,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -2847,7 +2847,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~bodyarray.models.ErrorException:
         """
@@ -2889,7 +2889,7 @@ class ArrayOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~bodyarray.models.ErrorException:
         """

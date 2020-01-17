@@ -5,7 +5,6 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict, List, Optional, Set
 from .base_schema import BaseSchema
-from .primitive_schemas import StringSchema
 
 
 class EnumValue:
@@ -51,7 +50,7 @@ class EnumSchema(BaseSchema):
         self,
         yaml_data: Dict[str, Any],
         description: str,
-        enum_type: StringSchema,
+        enum_type: str,
         values: List["EnumValue"]
     ):
         super(EnumSchema, self).__init__(yaml_data)
@@ -74,6 +73,10 @@ class EnumSchema(BaseSchema):
         :rtype: str
         """
         return f'Union[str, \"{self.enum_type}\"]'
+
+    @property
+    def docstring_text(self) -> str:
+        return self.enum_type
 
     def get_python_type(self, namespace: str) -> str:
         """The python type used for RST syntax input and type annotation.

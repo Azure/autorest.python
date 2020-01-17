@@ -31,6 +31,10 @@ class PrimitiveSchema(BaseSchema):
     def get_python_type_annotation(self) -> str:
         return self.get_python_type(None)
 
+    @property
+    def docstring_text(self) -> str:
+        return self.get_python_type(None)
+
 
 class AnySchema(PrimitiveSchema):
     def get_serialization_type(self) -> str:
@@ -152,6 +156,10 @@ class DatetimeSchema(PrimitiveSchema):
     def get_python_type_annotation(self) -> str:
         return "datetime.datetime"
 
+    @property
+    def docstring_text(self) -> str:
+        return "datetime"
+
     def get_declaration(self, value: datetime.datetime) -> str:
         """Could be discussed, since technically I should return a datetime object,
         but msrest will do fine.
@@ -169,6 +177,10 @@ class UnixTimeSchema(PrimitiveSchema):
 
     def get_python_type_annotation(self) -> str:
         return "datetime.datetime"
+
+    @property
+    def docstring_text(self) -> str:
+        return "datetime"
 
     def get_declaration(self, value: datetime.datetime) -> str:
         """Could be discussed, since technically I should return a datetime object,
@@ -188,6 +200,10 @@ class DateSchema(PrimitiveSchema):
     def get_python_type_annotation(self):
         return "datetime.date"
 
+    @property
+    def docstring_text(self) -> str:
+        return "date"
+
     def get_declaration(self, value: datetime.date) -> str:
         """Could be discussed, since technically I should return a datetime object,
         but msrest will do fine.
@@ -205,6 +221,10 @@ class DurationSchema(PrimitiveSchema):
 
     def get_python_type_annotation(self) -> str:
         return "datetime.timedelta"
+
+    @property
+    def docstring_text(self) -> str:
+        return "timedelta"
 
     def get_declaration(self, value: datetime.timedelta) -> str:
         """Could be discussed, since technically I should return a datetime object,

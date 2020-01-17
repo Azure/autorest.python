@@ -33,6 +33,10 @@ class ListSchema(BaseSchema):
     def get_python_type(self, namespace: str) -> str:
         return f'list[{self.element_type.get_python_type(namespace)}]'
 
+    @property
+    def docstring_text(self) -> str:
+        return "list"
+
     def get_validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
         validation_map: Dict[str, Union[bool, int, str]] = {}
         if self.max_items:

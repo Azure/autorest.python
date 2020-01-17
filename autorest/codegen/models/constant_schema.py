@@ -47,6 +47,10 @@ class ConstantSchema(BaseSchema):
         """
         return self.schema.get_serialization_type()
 
+    @property
+    def docstring_text(self) -> str:
+        return "constant"
+
     def get_python_type(self, namespace: str) -> str:
         """The python type used for RST syntax input and type annotation.
 

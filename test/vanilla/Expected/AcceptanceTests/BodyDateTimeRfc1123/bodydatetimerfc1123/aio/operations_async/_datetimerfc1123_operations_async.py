@@ -41,7 +41,7 @@ class Datetimerfc1123Operations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~bodydatetimerfc1123.models.ErrorException:
         """
@@ -83,7 +83,7 @@ class Datetimerfc1123Operations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~bodydatetimerfc1123.models.ErrorException:
         """
@@ -125,7 +125,7 @@ class Datetimerfc1123Operations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~bodydatetimerfc1123.models.ErrorException:
         """
@@ -167,7 +167,7 @@ class Datetimerfc1123Operations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~bodydatetimerfc1123.models.ErrorException:
         """
@@ -253,7 +253,7 @@ class Datetimerfc1123Operations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~bodydatetimerfc1123.models.ErrorException:
         """
@@ -295,7 +295,7 @@ class Datetimerfc1123Operations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~bodydatetimerfc1123.models.ErrorException:
         """
@@ -381,7 +381,7 @@ class Datetimerfc1123Operations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~bodydatetimerfc1123.models.ErrorException:
         """
