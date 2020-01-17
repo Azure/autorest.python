@@ -2,6 +2,14 @@
 {% import 'operation_tools.jinja2' as op_tools %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
 {% set request_as_xml = ", is_xml=False" if "xml" in operation.request_content_type else "" %}
+{% set async_return_type_annotation =
+        " -> " ~
+        ("Union[" if operation.responses | selectattr('has_body') | list | length > 1 else "") ~
+        (operation.responses | selectattr('has_body') | map(attribute='schema') | join(', ', attribute='type_annotation')) ~
+        ("]" if operation.responses | selectattr('has_body') | list | length > 1 else "")
+    if operation.responses | selectattr('has_body') | first
+    else " -> None"
+%}
 {% macro return_docstring() %}
 {% if operation.responses | selectattr('has_body') | first %}
 :return: {{ operation.responses|map(attribute='schema')|map(attribute='name')|join(' or ') }} or the result of cls(response)
@@ -20,7 +28,7 @@
 {% else %}
 
 {% endif %}
-def {{ operation.python_name }}(self{{ operation.parameters.async_method_signature if async_mode else operation.parameters.sync_method_signature }}, cls=None, **kwargs):
+def {{ operation.python_name }}(self{{ operation.parameters.async_method_signature if async_mode else operation.parameters.sync_method_signature }}, cls=None, **kwargs){{ async_return_type_annotation if async_mode else "" }}:
 {% if not async_mode %}
     {{ operation_typing_comment(operation) }}
 {% endif %}

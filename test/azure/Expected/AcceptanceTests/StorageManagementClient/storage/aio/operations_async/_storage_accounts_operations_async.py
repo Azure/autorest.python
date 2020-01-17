@@ -142,7 +142,7 @@ class StorageAccountsOperations:
     _create_initial.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
     @distributed_trace_async
-    async def create(self, resource_group_name: str, account_name: str, parameters: "StorageAccountCreateParameters", cls=None, polling=True, **kwargs):
+    async def create(self, resource_group_name: str, account_name: str, parameters: "StorageAccountCreateParameters", cls=None, polling=True, **kwargs) -> "StorageAccount":
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts cannot be updated with this API and should instead use the Update Storage Account API. If an account is already created and subsequent PUT request is issued with exact same set of properties, then HTTP 200 would be returned..
 
         FIXME: add operation.summary
@@ -403,7 +403,7 @@ class StorageAccountsOperations:
     list_keys.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys'}
 
     @distributed_trace
-    def list(self, cls=None, **kwargs):
+    def list(self, cls=None, **kwargs) -> "StorageAccountListResult":
         """Lists all the storage accounts available under the subscription. Note that storage keys are not returned; use the ListKeys operation for this..
 
         FIXME: add operation.summary
@@ -467,7 +467,7 @@ class StorageAccountsOperations:
 
 
     @distributed_trace
-    def list_by_resource_group(self, resource_group_name: str, cls=None, **kwargs):
+    def list_by_resource_group(self, resource_group_name: str, cls=None, **kwargs) -> "StorageAccountListResult":
         """Lists all the storage accounts available under the given resource group. Note that storage keys are not returned; use the ListKeys operation for this..
 
         FIXME: add operation.summary

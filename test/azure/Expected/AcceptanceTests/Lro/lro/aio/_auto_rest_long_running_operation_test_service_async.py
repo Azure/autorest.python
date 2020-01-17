@@ -35,7 +35,7 @@ class AutoRestLongRunningOperationTestService(object):
     :param str base_url: Service URL
     """
 
-    def __init__(self, credential: "TokenCredential", base_url: Optional[str] = None, **kwargs):
+    def __init__(self, credential: "TokenCredential", base_url: Optional[str] = None, **kwargs) -> None:
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestLongRunningOperationTestServiceConfiguration(credential, **kwargs)
@@ -54,12 +54,12 @@ class AutoRestLongRunningOperationTestService(object):
         self.lr_os_custom_header = LROsCustomHeaderOperations(
             self._client, self._config, self._serialize, self._deserialize)
 
-    async def close(self):
+    async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self):
+    async def __aenter__(self) -> "AutoRestLongRunningOperationTestService":
         await self._client.__aenter__()
         return self
 
-    async def __aexit__(self, *exc_details):
+    async def __aexit__(self, *exc_details) -> None:
         await self._client.__aexit__(*exc_details)

@@ -34,7 +34,7 @@ class AutoRestUrlTestService(object):
     :param str base_url: Service URL
     """
 
-    def __init__(self, global_string_path: str, global_string_query: Optional[str] = None, base_url: Optional[str] = None, **kwargs):
+    def __init__(self, global_string_path: str, global_string_query: Optional[str] = None, base_url: Optional[str] = None, **kwargs) -> None:
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestUrlTestServiceConfiguration(global_string_path, global_string_query, **kwargs)
@@ -51,12 +51,12 @@ class AutoRestUrlTestService(object):
         self.path_items = PathItemsOperations(
             self._client, self._config, self._serialize, self._deserialize)
 
-    async def close(self):
+    async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self):
+    async def __aenter__(self) -> "AutoRestUrlTestService":
         await self._client.__aenter__()
         return self
 
-    async def __aexit__(self, *exc_details):
+    async def __aexit__(self, *exc_details) -> None:
         await self._client.__aexit__(*exc_details)

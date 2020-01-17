@@ -44,7 +44,7 @@ class {{ code_model.class_name }}({{ base_class }}):
     {% endif %}
     """
 
-    def __init__(self{{ method_signature }}, **kwargs):
+    def __init__(self{{ method_signature }}, **kwargs){{ " -> None" if async_mode else "" }}:
         {% if not async_mode %}
         {{ init_typing_comment }}
         {% endif %}
@@ -73,20 +73,20 @@ class {{ code_model.class_name }}({{ base_class }}):
             self._client, self._config, self._serialize, self._deserialize)
         {% endfor %}
 
-    {{ keywords.def }} close(self):
+    {{ keywords.def }} close(self){{ " -> None" if async_mode else "" }}:
         {% if not async_mode %}
         # type: () -> None
         {% endif %}
         {{ keywords.await }}self._client.close()
 
-    {{ keywords.def }} __{{ keywords.async_prefix }}enter__(self):
+    {{ keywords.def }} __{{ keywords.async_prefix }}enter__(self){{ (" -> \"" + code_model.class_name + "\"") if async_mode else "" }}:
         {% if not async_mode %}
         # type: () -> {{ code_model.class_name }}
         {% endif %}
         {{ keywords.await }}self._client.__{{ keywords.async_prefix }}enter__()
         return self
 
-    {{ keywords.def }} __{{ keywords.async_prefix }}exit__(self, *exc_details):
+    {{ keywords.def }} __{{ keywords.async_prefix }}exit__(self, *exc_details){{ " -> None" if async_mode else "" }}:
         {% if not async_mode %}
         # type: (Any) -> None
         {% endif %}

@@ -87,7 +87,7 @@ class LROSADsOperations:
     _put_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/put/400'}
 
     @distributed_trace_async
-    async def put_non_retry400(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs):
+    async def put_non_retry400(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs) -> Union["Product", "Product"]:
         """Long running put request, service returns a 400 to the initial request.
 
         FIXME: add operation.summary
@@ -174,7 +174,7 @@ class LROSADsOperations:
     _put_non_retry201_creating400_initial.metadata = {'url': '/lro/nonretryerror/put/201/creating/400'}
 
     @distributed_trace_async
-    async def put_non_retry201_creating400(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs):
+    async def put_non_retry201_creating400(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs) -> Union["Product", "Product"]:
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201 response code.
 
         FIXME: add operation.summary
@@ -261,7 +261,7 @@ class LROSADsOperations:
     _put_non_retry201_creating400_invalid_json_initial.metadata = {'url': '/lro/nonretryerror/put/201/creating/400/invalidjson'}
 
     @distributed_trace_async
-    async def put_non_retry201_creating400_invalid_json(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs):
+    async def put_non_retry201_creating400_invalid_json(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs) -> Union["Product", "Product"]:
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201 response code.
 
         FIXME: add operation.summary
@@ -347,7 +347,7 @@ class LROSADsOperations:
     _put_async_relative_retry400_initial.metadata = {'url': '/lro/nonretryerror/putasync/retry/400'}
 
     @distributed_trace_async
-    async def put_async_relative_retry400(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs):
+    async def put_async_relative_retry400(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs) -> "Product":
         """Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         FIXME: add operation.summary
@@ -426,7 +426,7 @@ class LROSADsOperations:
     _delete_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/delete/400'}
 
     @distributed_trace_async
-    async def delete_non_retry400(self, cls=None, polling=True, **kwargs):
+    async def delete_non_retry400(self, cls=None, polling=True, **kwargs) -> None:
         """Long running delete request, service returns a 400 with an error body.
 
         FIXME: add operation.summary
@@ -495,7 +495,7 @@ class LROSADsOperations:
     _delete202_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/delete/202/retry/400'}
 
     @distributed_trace_async
-    async def delete202_non_retry400(self, cls=None, polling=True, **kwargs):
+    async def delete202_non_retry400(self, cls=None, polling=True, **kwargs) -> None:
         """Long running delete request, service returns a 202 with a location header.
 
         FIXME: add operation.summary
@@ -565,7 +565,7 @@ class LROSADsOperations:
     _delete_async_relative_retry400_initial.metadata = {'url': '/lro/nonretryerror/deleteasync/retry/400'}
 
     @distributed_trace_async
-    async def delete_async_relative_retry400(self, cls=None, polling=True, **kwargs):
+    async def delete_async_relative_retry400(self, cls=None, polling=True, **kwargs) -> None:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         FIXME: add operation.summary
@@ -641,7 +641,7 @@ class LROSADsOperations:
     _post_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/post/400'}
 
     @distributed_trace_async
-    async def post_non_retry400(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs):
+    async def post_non_retry400(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs) -> None:
         """Long running post request, service returns a 400 with no error body.
 
         FIXME: add operation.summary
@@ -720,7 +720,7 @@ class LROSADsOperations:
     _post202_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/post/202/retry/400'}
 
     @distributed_trace_async
-    async def post202_non_retry400(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs):
+    async def post202_non_retry400(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs) -> None:
         """Long running post request, service returns a 202 with a location header.
 
         FIXME: add operation.summary
@@ -800,7 +800,7 @@ class LROSADsOperations:
     _post_async_relative_retry400_initial.metadata = {'url': '/lro/nonretryerror/postasync/retry/400'}
 
     @distributed_trace_async
-    async def post_async_relative_retry400(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs):
+    async def post_async_relative_retry400(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs) -> None:
         """Long running post request, service returns a 202 to the initial request Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         FIXME: add operation.summary
@@ -884,7 +884,7 @@ class LROSADsOperations:
     _put_error201_no_provisioning_state_payload_initial.metadata = {'url': '/lro/error/put/201/noprovisioningstatepayload'}
 
     @distributed_trace_async
-    async def put_error201_no_provisioning_state_payload(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs):
+    async def put_error201_no_provisioning_state_payload(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs) -> Union["Product", "Product"]:
         """Long running put request, service returns a 201 to the initial request with no payload.
 
         FIXME: add operation.summary
@@ -970,7 +970,7 @@ class LROSADsOperations:
     _put_async_relative_retry_no_status_initial.metadata = {'url': '/lro/error/putasync/retry/nostatus'}
 
     @distributed_trace_async
-    async def put_async_relative_retry_no_status(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs):
+    async def put_async_relative_retry_no_status(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs) -> "Product":
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         FIXME: add operation.summary
@@ -1060,7 +1060,7 @@ class LROSADsOperations:
     _put_async_relative_retry_no_status_payload_initial.metadata = {'url': '/lro/error/putasync/retry/nostatuspayload'}
 
     @distributed_trace_async
-    async def put_async_relative_retry_no_status_payload(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs):
+    async def put_async_relative_retry_no_status_payload(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs) -> "Product":
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         FIXME: add operation.summary
@@ -1135,7 +1135,7 @@ class LROSADsOperations:
     _delete204_succeeded_initial.metadata = {'url': '/lro/error/delete/204/nolocation'}
 
     @distributed_trace_async
-    async def delete204_succeeded(self, cls=None, polling=True, **kwargs):
+    async def delete204_succeeded(self, cls=None, polling=True, **kwargs) -> None:
         """Long running delete request, service returns a 204 to the initial request, indicating success..
 
         FIXME: add operation.summary
@@ -1205,7 +1205,7 @@ class LROSADsOperations:
     _delete_async_relative_retry_no_status_initial.metadata = {'url': '/lro/error/deleteasync/retry/nostatus'}
 
     @distributed_trace_async
-    async def delete_async_relative_retry_no_status(self, cls=None, polling=True, **kwargs):
+    async def delete_async_relative_retry_no_status(self, cls=None, polling=True, **kwargs) -> None:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         FIXME: add operation.summary
@@ -1281,7 +1281,7 @@ class LROSADsOperations:
     _post202_no_location_initial.metadata = {'url': '/lro/error/post/202/nolocation'}
 
     @distributed_trace_async
-    async def post202_no_location(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs):
+    async def post202_no_location(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs) -> None:
         """Long running post request, service returns a 202 to the initial request, without a location header..
 
         FIXME: add operation.summary
@@ -1361,7 +1361,7 @@ class LROSADsOperations:
     _post_async_relative_retry_no_payload_initial.metadata = {'url': '/lro/error/postasync/retry/nopayload'}
 
     @distributed_trace_async
-    async def post_async_relative_retry_no_payload(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs):
+    async def post_async_relative_retry_no_payload(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs) -> None:
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         FIXME: add operation.summary
@@ -1442,7 +1442,7 @@ class LROSADsOperations:
     _put200_invalid_json_initial.metadata = {'url': '/lro/error/put/200/invalidjson'}
 
     @distributed_trace_async
-    async def put200_invalid_json(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs):
+    async def put200_invalid_json(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs) -> "Product":
         """Long running put request, service returns a 200 to the initial request, with an entity that is not a valid json.
 
         FIXME: add operation.summary
@@ -1528,7 +1528,7 @@ class LROSADsOperations:
     _put_async_relative_retry_invalid_header_initial.metadata = {'url': '/lro/error/putasync/retry/invalidheader'}
 
     @distributed_trace_async
-    async def put_async_relative_retry_invalid_header(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs):
+    async def put_async_relative_retry_invalid_header(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs) -> "Product":
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header is invalid..
 
         FIXME: add operation.summary
@@ -1618,7 +1618,7 @@ class LROSADsOperations:
     _put_async_relative_retry_invalid_json_polling_initial.metadata = {'url': '/lro/error/putasync/retry/invalidjsonpolling'}
 
     @distributed_trace_async
-    async def put_async_relative_retry_invalid_json_polling(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs):
+    async def put_async_relative_retry_invalid_json_polling(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs) -> "Product":
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         FIXME: add operation.summary
@@ -1697,7 +1697,7 @@ class LROSADsOperations:
     _delete202_retry_invalid_header_initial.metadata = {'url': '/lro/error/delete/202/retry/invalidheader'}
 
     @distributed_trace_async
-    async def delete202_retry_invalid_header(self, cls=None, polling=True, **kwargs):
+    async def delete202_retry_invalid_header(self, cls=None, polling=True, **kwargs) -> None:
         """Long running delete request, service returns a 202 to the initial request receing a reponse with an invalid 'Location' and 'Retry-After' headers.
 
         FIXME: add operation.summary
@@ -1767,7 +1767,7 @@ class LROSADsOperations:
     _delete_async_relative_retry_invalid_header_initial.metadata = {'url': '/lro/error/deleteasync/retry/invalidheader'}
 
     @distributed_trace_async
-    async def delete_async_relative_retry_invalid_header(self, cls=None, polling=True, **kwargs):
+    async def delete_async_relative_retry_invalid_header(self, cls=None, polling=True, **kwargs) -> None:
         """Long running delete request, service returns a 202 to the initial request. The endpoint indicated in the Azure-AsyncOperation header is invalid.
 
         FIXME: add operation.summary
@@ -1837,7 +1837,7 @@ class LROSADsOperations:
     _delete_async_relative_retry_invalid_json_polling_initial.metadata = {'url': '/lro/error/deleteasync/retry/invalidjsonpolling'}
 
     @distributed_trace_async
-    async def delete_async_relative_retry_invalid_json_polling(self, cls=None, polling=True, **kwargs):
+    async def delete_async_relative_retry_invalid_json_polling(self, cls=None, polling=True, **kwargs) -> None:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         FIXME: add operation.summary
@@ -1913,7 +1913,7 @@ class LROSADsOperations:
     _post202_retry_invalid_header_initial.metadata = {'url': '/lro/error/post/202/retry/invalidheader'}
 
     @distributed_trace_async
-    async def post202_retry_invalid_header(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs):
+    async def post202_retry_invalid_header(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs) -> None:
         """Long running post request, service returns a 202 to the initial request, with invalid 'Location' and 'Retry-After' headers..
 
         FIXME: add operation.summary
@@ -1993,7 +1993,7 @@ class LROSADsOperations:
     _post_async_relative_retry_invalid_header_initial.metadata = {'url': '/lro/error/postasync/retry/invalidheader'}
 
     @distributed_trace_async
-    async def post_async_relative_retry_invalid_header(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs):
+    async def post_async_relative_retry_invalid_header(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs) -> None:
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header is invalid..
 
         FIXME: add operation.summary
@@ -2073,7 +2073,7 @@ class LROSADsOperations:
     _post_async_relative_retry_invalid_json_polling_initial.metadata = {'url': '/lro/error/postasync/retry/invalidjsonpolling'}
 
     @distributed_trace_async
-    async def post_async_relative_retry_invalid_json_polling(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs):
+    async def post_async_relative_retry_invalid_json_polling(self, product: Optional["Product"] = None, cls=None, polling=True, **kwargs) -> None:
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         FIXME: add operation.summary
