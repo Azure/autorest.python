@@ -32,7 +32,7 @@ namespace AutoRest.Python
                     "yield", "async", "await",
                     // Though the following word is not python keyword, but it will cause trouble if we use them as variable, field, etc.
                     "int","bool","bytearray","date","datetime","float",
-                    "long","object","decimal","str","timedelta", "mro"
+                    "long","object","decimal","str","timedelta", "mro", "self"
                 });
         }
 
