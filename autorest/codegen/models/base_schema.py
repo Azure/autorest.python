@@ -43,6 +43,7 @@ class BaseSchema(BaseModel, ABC):
         ...
 
     @property
+    @abstractmethod
     def docstring_type(self) -> str:
         """The python type used for RST syntax input.
 
