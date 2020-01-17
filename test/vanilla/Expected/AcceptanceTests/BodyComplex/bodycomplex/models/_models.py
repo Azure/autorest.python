@@ -679,8 +679,8 @@ class MyBaseType(Model):
     :type kind: str
     :param prop_b1:
     :type prop_b1: str
-    :param helper:
-    :type helper: ~bodycomplex.models.MyBaseHelperType
+    :param prop_bh1:
+    :type prop_bh1: str
     """
 
     _validation = {
@@ -690,7 +690,7 @@ class MyBaseType(Model):
     _attribute_map = {
         'kind': {'key': 'kind', 'type': 'str'},
         'prop_b1': {'key': 'propB1', 'type': 'str'},
-        'helper': {'key': 'helper', 'type': 'MyBaseHelperType'},
+        'prop_bh1': {'key': 'helper.propBH1', 'type': 'str'},
     }
 
     _subtype_map = {
@@ -701,7 +701,7 @@ class MyBaseType(Model):
         super(MyBaseType, self).__init__(**kwargs)
         self.kind = None
         self.prop_b1 = kwargs.get('prop_b1', None)
-        self.helper = kwargs.get('helper', None)
+        self.prop_bh1 = kwargs.get('prop_bh1', None)
 
 
 class MyDerivedType(MyBaseType):
@@ -713,8 +713,8 @@ class MyDerivedType(MyBaseType):
     :type kind: str
     :param prop_b1:
     :type prop_b1: str
-    :param helper:
-    :type helper: ~bodycomplex.models.MyBaseHelperType
+    :param prop_bh1:
+    :type prop_bh1: str
     :param prop_d1:
     :type prop_d1: str
     """
@@ -726,7 +726,7 @@ class MyDerivedType(MyBaseType):
     _attribute_map = {
         'kind': {'key': 'kind', 'type': 'str'},
         'prop_b1': {'key': 'propB1', 'type': 'str'},
-        'helper': {'key': 'helper', 'type': 'MyBaseHelperType'},
+        'prop_bh1': {'key': 'helper.propBH1', 'type': 'str'},
         'prop_d1': {'key': 'propD1', 'type': 'str'},
     }
 

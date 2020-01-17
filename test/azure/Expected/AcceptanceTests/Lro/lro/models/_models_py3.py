@@ -128,14 +128,20 @@ class Product(Resource):
     :type location: str
     :ivar name: Resource Name.
     :vartype name: str
-    :param properties:
-    :type properties: ~lro.models.ProductProperties
+    :param provisioning_state:
+    :type provisioning_state: str
+    :ivar provisioning_state_values:  Possible values include: 'Succeeded',
+     'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
+     'Deleting', 'Deleted', 'OK'.
+    :vartype provisioning_state_values: str or
+     ~lro.models.ProductPropertiesProvisioningStateValues
     """
 
     _validation = {
         'id': {'readonly': True},
         'type': {'readonly': True},
         'name': {'readonly': True},
+        'provisioning_state_values': {'readonly': True},
     }
 
     _attribute_map = {
@@ -144,7 +150,8 @@ class Product(Resource):
         'tags': {'key': 'tags', 'type': '{str}'},
         'location': {'key': 'location', 'type': 'str'},
         'name': {'key': 'name', 'type': 'str'},
-        'properties': {'key': 'properties', 'type': 'ProductProperties'},
+        'provisioning_state': {'key': 'properties.provisioningState', 'type': 'str'},
+        'provisioning_state_values': {'key': 'properties.provisioningStateValues', 'type': 'str'},
     }
 
     def __init__(
@@ -152,11 +159,11 @@ class Product(Resource):
         *,
         tags: Optional[Dict[str, str]] = None,
         location: Optional[str] = None,
-        properties: Optional["ProductProperties"] = None,
+        provisioning_state: Optional[str] = None,
         **kwargs
     ) -> None:
         super(Product, self).__init__(tags=tags, location=location, **kwargs)
-        self.properties = properties
+        self.provisioning_state = provisioning_state
 
 
 class ProductProperties(Model):
@@ -248,27 +255,34 @@ class SubProduct(SubResource):
 
     :ivar id: Sub Resource Id.
     :vartype id: str
-    :param properties:
-    :type properties: ~lro.models.SubProductProperties
+    :param provisioning_state:
+    :type provisioning_state: str
+    :ivar provisioning_state_values:  Possible values include: 'Succeeded',
+     'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
+     'Deleting', 'Deleted', 'OK'.
+    :vartype provisioning_state_values: str or
+     ~lro.models.SubProductPropertiesProvisioningStateValues
     """
 
     _validation = {
         'id': {'readonly': True},
+        'provisioning_state_values': {'readonly': True},
     }
 
     _attribute_map = {
         'id': {'key': 'id', 'type': 'str'},
-        'properties': {'key': 'properties', 'type': 'SubProductProperties'},
+        'provisioning_state': {'key': 'properties.provisioningState', 'type': 'str'},
+        'provisioning_state_values': {'key': 'properties.provisioningStateValues', 'type': 'str'},
     }
 
     def __init__(
         self,
         *,
-        properties: Optional["SubProductProperties"] = None,
+        provisioning_state: Optional[str] = None,
         **kwargs
     ) -> None:
         super(SubProduct, self).__init__(**kwargs)
-        self.properties = properties
+        self.provisioning_state = provisioning_state
 
 
 class SubProductProperties(Model):

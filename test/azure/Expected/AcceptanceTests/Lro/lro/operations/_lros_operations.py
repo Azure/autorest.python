@@ -1379,11 +1379,11 @@ class LROsOperations(object):
 
 
     
-    def _put_sub_resource_initial(self, properties=None, cls=None, **kwargs):
+    def _put_sub_resource_initial(self, provisioning_state=None, cls=None, **kwargs):
 
-        # type: (Optional["SubProductProperties"], Optional[Any], **Any) -> "SubProduct"
+        # type: (Optional[str], Optional[Any], **Any) -> "SubProduct"
         error_map = kwargs.pop('error_map', {})
-        product = models.SubProduct(properties=properties)
+        product = models.SubProduct(provisioning_state=provisioning_state)
 
         # Construct URL
         url = self._put_sub_resource_initial.metadata['url']
@@ -1423,16 +1423,16 @@ class LROsOperations(object):
     _put_sub_resource_initial.metadata = {'url': '/lro/putsubresource/202/200'}
 
     @distributed_trace
-    def put_sub_resource(self, properties=None, cls=None, polling=True, **kwargs):
+    def put_sub_resource(self, provisioning_state=None, cls=None, polling=True, **kwargs):
 
-        # type: (Optional["SubProductProperties"], Optional[Any], Optional[bool], **Any) -> "SubProduct"
+        # type: (Optional[str], Optional[Any], Optional[bool], **Any) -> "SubProduct"
         """Long running put request with sub resource..
 
         FIXME: add operation.summary
 
 
-        :param properties: 
-        :type properties: ~lro.models.SubProductProperties
+        :param provisioning_state: 
+        :type provisioning_state: str
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -1442,7 +1442,7 @@ class LROsOperations(object):
         :raises ~azure.mgmt.core.ARMError:
         """
         raw_result = self._put_sub_resource_initial(
-            properties=properties,
+            provisioning_state=provisioning_state,
             cls=lambda x,y,z: x,
             **kwargs
         )
@@ -1466,11 +1466,11 @@ class LROsOperations(object):
 
 
     
-    def _put_async_sub_resource_initial(self, properties=None, cls=None, **kwargs):
+    def _put_async_sub_resource_initial(self, provisioning_state=None, cls=None, **kwargs):
 
-        # type: (Optional["SubProductProperties"], Optional[Any], **Any) -> "SubProduct"
+        # type: (Optional[str], Optional[Any], **Any) -> "SubProduct"
         error_map = kwargs.pop('error_map', {})
-        product = models.SubProduct(properties=properties)
+        product = models.SubProduct(provisioning_state=provisioning_state)
 
         # Construct URL
         url = self._put_async_sub_resource_initial.metadata['url']
@@ -1510,16 +1510,16 @@ class LROsOperations(object):
     _put_async_sub_resource_initial.metadata = {'url': '/lro/putsubresourceasync/202/200'}
 
     @distributed_trace
-    def put_async_sub_resource(self, properties=None, cls=None, polling=True, **kwargs):
+    def put_async_sub_resource(self, provisioning_state=None, cls=None, polling=True, **kwargs):
 
-        # type: (Optional["SubProductProperties"], Optional[Any], Optional[bool], **Any) -> "SubProduct"
+        # type: (Optional[str], Optional[Any], Optional[bool], **Any) -> "SubProduct"
         """Long running put request with sub resource..
 
         FIXME: add operation.summary
 
 
-        :param properties: 
-        :type properties: ~lro.models.SubProductProperties
+        :param provisioning_state: 
+        :type provisioning_state: str
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -1529,7 +1529,7 @@ class LROsOperations(object):
         :raises ~azure.mgmt.core.ARMError:
         """
         raw_result = self._put_async_sub_resource_initial(
-            properties=properties,
+            provisioning_state=provisioning_state,
             cls=lambda x,y,z: x,
             **kwargs
         )

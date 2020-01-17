@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import cast, Any, Dict, Union
+from typing import cast, Any, Dict, Union, List, Optional
 
 from .base_model import BaseModel
 from .constant_schema import ConstantSchema
@@ -19,12 +19,14 @@ class Property(BaseModel):
         schema: BaseSchema,
         original_swagger_name: str,
         *,
+        flattened_names: Optional[List[str]] = None,
         description: str = None
     ):
         super().__init__(yaml_data)
         self.name = name
         self.schema = schema
         self.original_swagger_name = original_swagger_name
+        self.flattened_names = flattened_names or []
 
         self.required: bool = yaml_data.get('required', False)
         self.readonly: bool = yaml_data.get('readOnly', False)
@@ -59,6 +61,8 @@ class Property(BaseModel):
     def escaped_swagger_name(self) -> str:
         """Return the RestAPI name correctly escaped for serialization.
         """
+        if self.flattened_names:
+            return ".".join(n.replace('.', '\\\\.') for n in self.flattened_names)
         return self.original_swagger_name.replace('.', '\\\\.')
 
     @classmethod
@@ -70,10 +74,11 @@ class Property(BaseModel):
             name = 'additional_properties1'
         schema = build_schema(yaml_data=yaml_data['schema'], **kwargs)
         return cls(
+            yaml_data=yaml_data,
             name=name,
             schema=schema,
             original_swagger_name=yaml_data['serializedName'],
-            yaml_data=yaml_data
+            flattened_names=yaml_data.get('flattenedNames', []),
         )
 
     def imports(self) -> FileImport:
