@@ -1,5 +1,7 @@
 # Change Log
 
+### 2020-01-17 - 4.0.74
+
 ### 2019-06-12 - 4.0.71
 
 - no-async flag to skip async code generation
