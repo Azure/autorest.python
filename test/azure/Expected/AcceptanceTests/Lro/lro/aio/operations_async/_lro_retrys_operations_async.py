@@ -39,9 +39,8 @@ class LRORetrysOperations:
         self._config = config
 
     
-    async def _put201_creating_succeeded200_initial(self, provisioning_state=None, cls=None, **kwargs):
+    async def _put201_creating_succeeded200_initial(self, product=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
-        product = models.Product(provisioning_state=provisioning_state)
 
         # Construct URL
         url = self._put201_creating_succeeded200_initial.metadata['url']
@@ -86,14 +85,14 @@ class LRORetrysOperations:
     _put201_creating_succeeded200_initial.metadata = {'url': '/lro/retryerror/put/201/creating/succeeded/200'}
 
     @distributed_trace_async
-    async def put201_creating_succeeded200(self, provisioning_state=None, cls=None, polling=True, **kwargs):
+    async def put201_creating_succeeded200(self, product=None, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a 500, then a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         FIXME: add operation.summary
 
 
-        :param provisioning_state: MISSING·SCHEMA-DESCRIPTION-STRING
-        :type provisioning_state: str
+        :param product: Product to put
+        :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -103,7 +102,7 @@ class LRORetrysOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         raw_result = await self._put201_creating_succeeded200_initial(
-            provisioning_state=provisioning_state,
+            product=product,
             cls=lambda x,y,z: x,
             **kwargs
         )
@@ -127,9 +126,8 @@ class LRORetrysOperations:
 
 
     
-    async def _put_async_relative_retry_succeeded_initial(self, provisioning_state=None, cls=None, **kwargs):
+    async def _put_async_relative_retry_succeeded_initial(self, product=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
-        product = models.Product(provisioning_state=provisioning_state)
 
         # Construct URL
         url = self._put_async_relative_retry_succeeded_initial.metadata['url']
@@ -173,14 +171,14 @@ class LRORetrysOperations:
     _put_async_relative_retry_succeeded_initial.metadata = {'url': '/lro/retryerror/putasync/retry/succeeded'}
 
     @distributed_trace_async
-    async def put_async_relative_retry_succeeded(self, provisioning_state=None, cls=None, polling=True, **kwargs):
+    async def put_async_relative_retry_succeeded(self, product=None, cls=None, polling=True, **kwargs):
         """Long running put request, service returns a 500, then a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         FIXME: add operation.summary
 
 
-        :param provisioning_state: MISSING·SCHEMA-DESCRIPTION-STRING
-        :type provisioning_state: str
+        :param product: Product to put
+        :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -190,7 +188,7 @@ class LRORetrysOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         raw_result = await self._put_async_relative_retry_succeeded_initial(
-            provisioning_state=provisioning_state,
+            product=product,
             cls=lambda x,y,z: x,
             **kwargs
         )
@@ -440,9 +438,8 @@ class LRORetrysOperations:
 
 
     
-    async def _post202_retry200_initial(self, provisioning_state=None, cls=None, **kwargs):
+    async def _post202_retry200_initial(self, product=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
-        product = models.Product(provisioning_state=provisioning_state)
 
         # Construct URL
         url = self._post202_retry200_initial.metadata['url']
@@ -482,14 +479,14 @@ class LRORetrysOperations:
     _post202_retry200_initial.metadata = {'url': '/lro/retryerror/post/202/retry/200'}
 
     @distributed_trace_async
-    async def post202_retry200(self, provisioning_state=None, cls=None, polling=True, **kwargs):
+    async def post202_retry200(self, product=None, cls=None, polling=True, **kwargs):
         """Long running post request, service returns a 500, then a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
         FIXME: add operation.summary
 
 
-        :param provisioning_state: MISSING·SCHEMA-DESCRIPTION-STRING
-        :type provisioning_state: str
+        :param product: Product to put
+        :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -499,7 +496,7 @@ class LRORetrysOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         raw_result = await self._post202_retry200_initial(
-            provisioning_state=provisioning_state,
+            product=product,
             cls=lambda x,y,z: x,
             **kwargs
         )
@@ -520,9 +517,8 @@ class LRORetrysOperations:
 
 
     
-    async def _post_async_relative_retry_succeeded_initial(self, provisioning_state=None, cls=None, **kwargs):
+    async def _post_async_relative_retry_succeeded_initial(self, product=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
-        product = models.Product(provisioning_state=provisioning_state)
 
         # Construct URL
         url = self._post_async_relative_retry_succeeded_initial.metadata['url']
@@ -563,14 +559,14 @@ class LRORetrysOperations:
     _post_async_relative_retry_succeeded_initial.metadata = {'url': '/lro/retryerror/postasync/retry/succeeded'}
 
     @distributed_trace_async
-    async def post_async_relative_retry_succeeded(self, provisioning_state=None, cls=None, polling=True, **kwargs):
+    async def post_async_relative_retry_succeeded(self, product=None, cls=None, polling=True, **kwargs):
         """Long running post request, service returns a 500, then a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         FIXME: add operation.summary
 
 
-        :param provisioning_state: MISSING·SCHEMA-DESCRIPTION-STRING
-        :type provisioning_state: str
+        :param product: Product to put
+        :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -580,7 +576,7 @@ class LRORetrysOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         raw_result = await self._post_async_relative_retry_succeeded_initial(
-            provisioning_state=provisioning_state,
+            product=product,
             cls=lambda x,y,z: x,
             **kwargs
         )

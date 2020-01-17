@@ -93,9 +93,8 @@ class StorageAccountsOperations(object):
     check_name_availability.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability'}
 
     
-    def _create_initial(self, resource_group_name, account_name, account_type=None, cls=None, **kwargs):
+    def _create_initial(self, resource_group_name, account_name, parameters, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
-        parameters = models.StorageAccountCreateParameters(account_type=account_type)
 
         # Construct URL
         url = self._create_initial.metadata['url']
@@ -140,7 +139,7 @@ class StorageAccountsOperations(object):
     _create_initial.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
     @distributed_trace
-    def begin_create(self, resource_group_name, account_name, account_type=None, cls=None, polling=True, **kwargs):
+    def begin_create(self, resource_group_name, account_name, parameters, cls=None, polling=True, **kwargs):
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts cannot be updated with this API and should instead use the Update Storage Account API. If an account is already created and subsequent PUT request is issued with exact same set of properties, then HTTP 200 would be returned..
 
         FIXME: add operation.summary
@@ -150,8 +149,8 @@ class StorageAccountsOperations(object):
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
         :type account_name: str
-        :param account_type: Gets or sets the account type.
-        :type account_type: str or ~storage.models.AccountType
+        :param parameters: The parameters to provide for the created account.
+        :type parameters: ~storage.models.StorageAccountCreateParameters
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -163,7 +162,7 @@ class StorageAccountsOperations(object):
         raw_result = self._create_initial(
             resource_group_name=resource_group_name,
             account_name=account_name,
-            account_type=account_type,
+            parameters=parameters,
             cls=lambda x,y,z: x,
             **kwargs
         )

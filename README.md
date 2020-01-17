@@ -24,7 +24,7 @@ AutoRest needs the below config to pick this up as a plug-in - see https://githu
 ``` yaml
 version: 3.0.6185
 use-extension:
-  "@autorest/modelerfour": "4.3.121"
+  "@autorest/modelerfour": "4.3.127"
 
 modelerfour:
   flatten-models: true
