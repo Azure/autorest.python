@@ -16,6 +16,7 @@ class AutoRestComplexTestServiceConfiguration(Configuration):
     """Configuration for AutoRestComplexTestService
     Note that all parameters used to create this instance are saved as instance
     attributes.
+
     """
 
     def __init__(self, **kwargs):

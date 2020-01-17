@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 import datetime
-from typing import Dict, List, Union
+from typing import Dict, List, Optional, Union
 
 from msrest.serialization import Model
 
@@ -24,7 +24,7 @@ class Bar(Model):
         'recursive_point': {'key': 'RecursivePoint', 'type': 'Endpoints'},
     }
 
-    def __init__(self, *, recursive_point: "Endpoints"=None, **kwargs) -> None:
+    def __init__(self, *, recursive_point: Optional["Endpoints"] = None, **kwargs) -> None:
         super(Bar, self).__init__(**kwargs)
         self.recursive_point = recursive_point
 
@@ -51,7 +51,7 @@ class CheckNameAvailabilityResult(Model):
         'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, *, name_available: bool=None, reason: Union[str, "Reason"]=None, message: str=None, **kwargs) -> None:
+    def __init__(self, *, name_available: Optional[bool] = None, reason: Optional[Union[str, "Reason"]] = None, message: Optional[str] = None, **kwargs) -> None:
         super(CheckNameAvailabilityResult, self).__init__(**kwargs)
         self.name_available = name_available
         self.reason = reason
@@ -73,7 +73,7 @@ class CustomDomain(Model):
         'use_sub_domain': {'key': 'useSubDomain', 'type': 'bool'},
     }
 
-    def __init__(self, *, name: str=None, use_sub_domain: bool=None, **kwargs) -> None:
+    def __init__(self, *, name: Optional[str] = None, use_sub_domain: Optional[bool] = None, **kwargs) -> None:
         super(CustomDomain, self).__init__(**kwargs)
         self.name = name
         self.use_sub_domain = use_sub_domain
@@ -104,7 +104,7 @@ class Endpoints(Model):
         'foo_point': {'key': 'FooPoint', 'type': 'Foo'},
     }
 
-    def __init__(self, *, blob: str=None, queue: str=None, table: str=None, dummy_end_point: "Endpoints"=None, foo_point: "Foo"=None, **kwargs) -> None:
+    def __init__(self, *, blob: Optional[str] = None, queue: Optional[str] = None, table: Optional[str] = None, dummy_end_point: Optional["Endpoints"] = None, foo_point: Optional["Foo"] = None, **kwargs) -> None:
         super(Endpoints, self).__init__(**kwargs)
         self.blob = blob
         self.queue = queue
@@ -125,7 +125,7 @@ class Foo(Model):
         'bar_point': {'key': 'Bar\\.Point', 'type': 'Bar'},
     }
 
-    def __init__(self, *, bar_point: "Bar"=None, **kwargs) -> None:
+    def __init__(self, *, bar_point: Optional["Bar"] = None, **kwargs) -> None:
         super(Foo, self).__init__(**kwargs)
         self.bar_point = bar_point
 
@@ -164,7 +164,7 @@ class Resource(Model):
         'tags': {'key': 'tags', 'type': '{str}'},
     }
 
-    def __init__(self, *, location: str, tags: Dict[str, str]=None, **kwargs) -> None:
+    def __init__(self, *, location: str, tags: Optional[Dict[str, str]] = None, **kwargs) -> None:
         super(Resource, self).__init__(**kwargs)
         self.id = None
         self.name = None
@@ -210,7 +210,7 @@ class StorageAccount(Resource):
         'properties': {'key': 'properties', 'type': 'StorageAccountProperties'},
     }
 
-    def __init__(self, *, location: str, tags: Dict[str, str]=None, properties: "StorageAccountProperties"=None, **kwargs) -> None:
+    def __init__(self, *, location: str, tags: Optional[Dict[str, str]] = None, properties: Optional["StorageAccountProperties"] = None, **kwargs) -> None:
         super(StorageAccount, self).__init__(location=location, tags=tags, **kwargs)
         self.properties = properties
 
@@ -235,7 +235,7 @@ class StorageAccountCheckNameAvailabilityParameters(Model):
         'type': {'key': 'type', 'type': 'str'},
     }
 
-    def __init__(self, *, name: str, type: str="Microsoft.Storage/storageAccounts", **kwargs) -> None:
+    def __init__(self, *, name: str, type: Optional[str] = "Microsoft.Storage/storageAccounts", **kwargs) -> None:
         super(StorageAccountCheckNameAvailabilityParameters, self).__init__(**kwargs)
         self.name = name
         self.type = type
@@ -278,7 +278,7 @@ class StorageAccountCreateParameters(Resource):
         'properties': {'key': 'properties', 'type': 'StorageAccountPropertiesCreateParameters'},
     }
 
-    def __init__(self, *, location: str, tags: Dict[str, str]=None, properties: "StorageAccountPropertiesCreateParameters"=None, **kwargs) -> None:
+    def __init__(self, *, location: str, tags: Optional[Dict[str, str]] = None, properties: Optional["StorageAccountPropertiesCreateParameters"] = None, **kwargs) -> None:
         super(StorageAccountCreateParameters, self).__init__(location=location, tags=tags, **kwargs)
         self.properties = properties
 
@@ -297,7 +297,7 @@ class StorageAccountKeys(Model):
         'key2': {'key': 'key2', 'type': 'str'},
     }
 
-    def __init__(self, *, key1: str=None, key2: str=None, **kwargs) -> None:
+    def __init__(self, *, key1: Optional[str] = None, key2: Optional[str] = None, **kwargs) -> None:
         super(StorageAccountKeys, self).__init__(**kwargs)
         self.key1 = key1
         self.key2 = key2
@@ -318,7 +318,7 @@ class StorageAccountListResult(Model):
         'next_link': {'key': 'nextLink', 'type': 'str'},
     }
 
-    def __init__(self, *, value: List["StorageAccount"]=None, next_link: str=None, **kwargs) -> None:
+    def __init__(self, *, value: Optional[List["StorageAccount"]] = None, next_link: Optional[str] = None, **kwargs) -> None:
         super(StorageAccountListResult, self).__init__(**kwargs)
         self.value = value
         self.next_link = next_link
@@ -382,7 +382,7 @@ class StorageAccountProperties(Model):
         'secondary_endpoints': {'key': 'secondaryEndpoints', 'type': 'Endpoints'},
     }
 
-    def __init__(self, *, provisioning_state: Union[str, "ProvisioningState"]=None, account_type: Union[str, "AccountType"]=None, primary_endpoints: "Endpoints"=None, primary_location: str=None, status_of_primary: Union[str, "AccountStatus"]=None, last_geo_failover_time: datetime.datetime=None, secondary_location: str=None, status_of_secondary: Union[str, "AccountStatus"]=None, creation_time: datetime.datetime=None, custom_domain: "CustomDomain"=None, secondary_endpoints: "Endpoints"=None, **kwargs) -> None:
+    def __init__(self, *, provisioning_state: Optional[Union[str, "ProvisioningState"]] = None, account_type: Optional[Union[str, "AccountType"]] = None, primary_endpoints: Optional["Endpoints"] = None, primary_location: Optional[str] = None, status_of_primary: Optional[Union[str, "AccountStatus"]] = None, last_geo_failover_time: Optional[datetime.datetime] = None, secondary_location: Optional[str] = None, status_of_secondary: Optional[Union[str, "AccountStatus"]] = None, creation_time: Optional[datetime.datetime] = None, custom_domain: Optional["CustomDomain"] = None, secondary_endpoints: Optional["Endpoints"] = None, **kwargs) -> None:
         super(StorageAccountProperties, self).__init__(**kwargs)
         self.provisioning_state = provisioning_state
         self.account_type = account_type
@@ -409,7 +409,7 @@ class StorageAccountPropertiesCreateParameters(Model):
         'account_type': {'key': 'accountType', 'type': 'str'},
     }
 
-    def __init__(self, *, account_type: Union[str, "AccountType"]=None, **kwargs) -> None:
+    def __init__(self, *, account_type: Optional[Union[str, "AccountType"]] = None, **kwargs) -> None:
         super(StorageAccountPropertiesCreateParameters, self).__init__(**kwargs)
         self.account_type = account_type
 
@@ -430,7 +430,7 @@ class StorageAccountPropertiesUpdateParameters(Model):
         'custom_domain': {'key': 'customDomain', 'type': 'CustomDomain'},
     }
 
-    def __init__(self, *, account_type: Union[str, "AccountType"]=None, custom_domain: "CustomDomain"=None, **kwargs) -> None:
+    def __init__(self, *, account_type: Optional[Union[str, "AccountType"]] = None, custom_domain: Optional["CustomDomain"] = None, **kwargs) -> None:
         super(StorageAccountPropertiesUpdateParameters, self).__init__(**kwargs)
         self.account_type = account_type
         self.custom_domain = custom_domain
@@ -447,7 +447,7 @@ class StorageAccountRegenerateKeyParameters(Model):
         'key_name': {'key': 'keyName', 'type': 'str'},
     }
 
-    def __init__(self, *, key_name: Union[str, "KeyName"]=None, **kwargs) -> None:
+    def __init__(self, *, key_name: Optional[Union[str, "KeyName"]] = None, **kwargs) -> None:
         super(StorageAccountRegenerateKeyParameters, self).__init__(**kwargs)
         self.key_name = key_name
 
@@ -489,7 +489,7 @@ class StorageAccountUpdateParameters(Resource):
         'properties': {'key': 'properties', 'type': 'StorageAccountPropertiesUpdateParameters'},
     }
 
-    def __init__(self, *, location: str, tags: Dict[str, str]=None, properties: "StorageAccountPropertiesUpdateParameters"=None, **kwargs) -> None:
+    def __init__(self, *, location: str, tags: Optional[Dict[str, str]] = None, properties: Optional["StorageAccountPropertiesUpdateParameters"] = None, **kwargs) -> None:
         super(StorageAccountUpdateParameters, self).__init__(location=location, tags=tags, **kwargs)
         self.properties = properties
 
@@ -505,7 +505,7 @@ class SubResource(Model):
         'id': {'key': 'id', 'type': 'str'},
     }
 
-    def __init__(self, *, id: str=None, **kwargs) -> None:
+    def __init__(self, *, id: Optional[str] = None, **kwargs) -> None:
         super(SubResource, self).__init__(**kwargs)
         self.id = id
 
@@ -533,7 +533,7 @@ class Usage(Model):
         'name': {'key': 'name', 'type': 'UsageName'},
     }
 
-    def __init__(self, *, unit: Union[str, "UsageUnit"]=None, current_value: int=None, limit: int=None, name: "UsageName"=None, **kwargs) -> None:
+    def __init__(self, *, unit: Optional[Union[str, "UsageUnit"]] = None, current_value: Optional[int] = None, limit: Optional[int] = None, name: Optional["UsageName"] = None, **kwargs) -> None:
         super(Usage, self).__init__(**kwargs)
         self.unit = unit
         self.current_value = current_value
@@ -552,7 +552,7 @@ class UsageListResult(Model):
         'value': {'key': 'value', 'type': '[Usage]'},
     }
 
-    def __init__(self, *, value: List["Usage"]=None, **kwargs) -> None:
+    def __init__(self, *, value: Optional[List["Usage"]] = None, **kwargs) -> None:
         super(UsageListResult, self).__init__(**kwargs)
         self.value = value
 
@@ -571,7 +571,7 @@ class UsageName(Model):
         'localized_value': {'key': 'localizedValue', 'type': 'str'},
     }
 
-    def __init__(self, *, value: str=None, localized_value: str=None, **kwargs) -> None:
+    def __init__(self, *, value: Optional[str] = None, localized_value: Optional[str] = None, **kwargs) -> None:
         super(UsageName, self).__init__(**kwargs)
         self.value = value
         self.localized_value = localized_value

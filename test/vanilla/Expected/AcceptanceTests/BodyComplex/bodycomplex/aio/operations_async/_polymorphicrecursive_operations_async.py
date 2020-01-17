@@ -9,6 +9,7 @@ import warnings
 
 from azure.core.exceptions import map_error
 from azure.core.tracing.decorator_async import distributed_trace_async
+from msrest.serialization import Model
 
 from ... import models
 
@@ -77,7 +78,7 @@ class PolymorphicrecursiveOperations:
     get_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}
 
     @distributed_trace_async
-    async def put_valid(self, complex_body, cls=None, **kwargs):
+    async def put_valid(self, complex_body: "Fish", cls=None, **kwargs):
         """Put complex types that are polymorphic and have recursive references.
 
         FIXME: add operation.summary

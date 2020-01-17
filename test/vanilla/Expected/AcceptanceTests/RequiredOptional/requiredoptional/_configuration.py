@@ -6,6 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import Optional
+
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
@@ -26,6 +28,7 @@ class AutoRestRequiredOptionalTestServiceConfiguration(Configuration):
     """
 
     def __init__(self, required_global_path, required_global_query, optional_global_query=None, **kwargs):
+    # type: (str, str, int, **Any) -> None
         if required_global_path is None:
             raise ValueError("Parameter 'required_global_path' must not be None.")
         if required_global_query is None:

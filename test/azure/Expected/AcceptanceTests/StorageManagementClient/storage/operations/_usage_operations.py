@@ -38,6 +38,7 @@ class UsageOperations(object):
 
     @distributed_trace
     def list(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> "UsageListResult"
         """Gets the current usage count and the limit for the resources under the subscription..
 
         FIXME: add operation.summary

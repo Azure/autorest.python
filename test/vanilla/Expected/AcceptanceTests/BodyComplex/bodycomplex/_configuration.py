@@ -16,9 +16,11 @@ class AutoRestComplexTestServiceConfiguration(Configuration):
     """Configuration for AutoRestComplexTestService
     Note that all parameters used to create this instance are saved as instance
     attributes.
+
     """
 
     def __init__(self, **kwargs):
+    # type: (str, **Any) -> None
         super(AutoRestComplexTestServiceConfiguration, self).__init__(**kwargs)
 
         self.api_version = "2016-02-29"

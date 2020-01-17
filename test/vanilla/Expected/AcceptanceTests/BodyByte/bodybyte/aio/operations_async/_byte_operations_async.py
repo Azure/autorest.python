@@ -161,7 +161,7 @@ class ByteOperations:
     get_non_ascii.metadata = {'url': '/byte/nonAscii'}
 
     @distributed_trace_async
-    async def put_non_ascii(self, byte_body, cls=None, **kwargs):
+    async def put_non_ascii(self, byte_body: bytearray, cls=None, **kwargs):
         """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         FIXME: add operation.summary

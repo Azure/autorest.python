@@ -36,6 +36,7 @@ class PetOperations(object):
 
     @distributed_trace
     def get_pet_by_id(self, pet_id, cls=None, **kwargs):
+        # type: (str, Optional[Any], **Any) -> Union["Pet", None]
         """Gets pets by id..
 
         FIXME: add operation.summary
@@ -91,6 +92,7 @@ class PetOperations(object):
 
     @distributed_trace
     def do_something(self, what_action, cls=None, **kwargs):
+        # type: (str, Optional[Any], **Any) -> "PetAction"
         """Asks pet to do something.
 
         FIXME: add operation.summary

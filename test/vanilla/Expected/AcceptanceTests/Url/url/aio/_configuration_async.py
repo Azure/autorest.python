@@ -6,6 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import Optional
+
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
@@ -23,7 +25,7 @@ class AutoRestUrlTestServiceConfiguration(Configuration):
     :type global_string_query: str
     """
 
-    def __init__(self, global_string_path, global_string_query=None, **kwargs):
+    def __init__(self, global_string_path: str, global_string_query: Optional[str] = None, **kwargs):
         if global_string_path is None:
             raise ValueError("Parameter 'global_string_path' must not be None.")
         super(AutoRestUrlTestServiceConfiguration, self).__init__(**kwargs)

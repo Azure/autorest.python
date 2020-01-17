@@ -19,6 +19,7 @@ class AutoRestSwaggerBATdictionaryServiceConfiguration(Configuration):
     """
 
     def __init__(self, **kwargs):
+    # type: (**Any) -> None
         super(AutoRestSwaggerBATdictionaryServiceConfiguration, self).__init__(**kwargs)
 
         self._configure(**kwargs)

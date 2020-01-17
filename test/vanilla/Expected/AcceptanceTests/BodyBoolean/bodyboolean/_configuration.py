@@ -19,6 +19,7 @@ class AutoRestBoolTestServiceConfiguration(Configuration):
     """
 
     def __init__(self, **kwargs):
+    # type: (**Any) -> None
         super(AutoRestBoolTestServiceConfiguration, self).__init__(**kwargs)
 
         self._configure(**kwargs)

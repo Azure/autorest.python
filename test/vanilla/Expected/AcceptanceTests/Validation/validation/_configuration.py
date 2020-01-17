@@ -22,6 +22,7 @@ class AutoRestValidationTestConfiguration(Configuration):
     """
 
     def __init__(self, subscription_id, **kwargs):
+    # type: (str, str, **Any) -> None
         if subscription_id is None:
             raise ValueError("Parameter 'subscription_id' must not be None.")
         super(AutoRestValidationTestConfiguration, self).__init__(**kwargs)

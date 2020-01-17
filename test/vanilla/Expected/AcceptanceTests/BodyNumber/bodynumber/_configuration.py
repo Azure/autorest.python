@@ -19,6 +19,7 @@ class AutoRestNumberTestServiceConfiguration(Configuration):
     """
 
     def __init__(self, **kwargs):
+    # type: (**Any) -> None
         super(AutoRestNumberTestServiceConfiguration, self).__init__(**kwargs)
 
         self._configure(**kwargs)
