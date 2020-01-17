@@ -16,13 +16,14 @@ class BaseSchema(BaseModel, ABC):
     :param yaml_data: the yaml data for this schema
     :type yaml_data: dict[str, Any]
     """
-    def __init__(self, yaml_data: Dict[str, Any]):
+    def __init__(self, namespace: str, yaml_data: Dict[str, Any]):
         super().__init__(yaml_data)
+        self.namespace = namespace
         self.default_value = yaml_data.get('defaultValue', None)
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], **kwargs) -> "BaseSchema":  # pylint: disable=unused-argument
-        return cls(yaml_data=yaml_data)
+    def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs) -> "BaseSchema":  # pylint: disable=unused-argument
+        return cls(namespace=namespace, yaml_data=yaml_data)
 
     def imports(self) -> FileImport:  # pylint: disable=no-self-use
         return FileImport()

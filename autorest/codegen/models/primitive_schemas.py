@@ -41,8 +41,8 @@ class AnySchema(PrimitiveSchema):
 
 
 class NumberSchema(PrimitiveSchema):
-    def __init__(self, yaml_data: Dict[str, Any]):
-        super(NumberSchema, self).__init__(yaml_data)
+    def __init__(self, namespace: str, yaml_data: Dict[str, Any]):
+        super(NumberSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.precision = cast(int, yaml_data['precision'])
         self.multiple = cast(int, yaml_data.get('multipleOf'))
         self.maximum = cast(int, yaml_data.get('maximum'))
@@ -99,8 +99,8 @@ class NumberSchema(PrimitiveSchema):
 
 
 class StringSchema(PrimitiveSchema):
-    def __init__(self, yaml_data: Dict[str, Any]):
-        super(StringSchema, self).__init__(yaml_data)
+    def __init__(self, namespace: str, yaml_data: Dict[str, Any]):
+        super(StringSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.max_length = cast(int, yaml_data.get('maxLength'))
         self.min_length = cast(int, (
             yaml_data.get('minLength', 0)
@@ -131,8 +131,8 @@ class StringSchema(PrimitiveSchema):
 
 
 class DatetimeSchema(PrimitiveSchema):
-    def __init__(self, yaml_data):
-        super(DatetimeSchema, self).__init__(yaml_data)
+    def __init__(self, namespace: str, yaml_data: Dict[str, Any]):
+        super(DatetimeSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.format = self.Formats(yaml_data['format'])
 
     class Formats(str, Enum):
@@ -214,8 +214,8 @@ class DurationSchema(PrimitiveSchema):
 
 
 class ByteArraySchema(PrimitiveSchema):
-    def __init__(self, yaml_data: Dict[str, Any]):
-        super(ByteArraySchema, self).__init__(yaml_data)
+    def __init__(self, namespace: str, yaml_data: Dict[str, Any]):
+        super(ByteArraySchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.format = self.Formats(yaml_data['format'])
 
     class Formats(str, Enum):
@@ -238,7 +238,7 @@ class ByteArraySchema(PrimitiveSchema):
         return f'bytearray("{value}", encoding="utf-8")'
 
 
-def get_primitive_schema(yaml_data: Dict[str, Any]) -> "PrimitiveSchema":
+def get_primitive_schema(namespace: str, yaml_data: Dict[str, Any]) -> "PrimitiveSchema":
     mapping = {
         'integer': NumberSchema,
         'number': NumberSchema,
@@ -251,5 +251,8 @@ def get_primitive_schema(yaml_data: Dict[str, Any]) -> "PrimitiveSchema":
         'any': AnySchema
     }
     schema_type = yaml_data['type']
-    primitive_schema = cast(PrimitiveSchema, mapping.get(schema_type, PrimitiveSchema).from_yaml(yaml_data=yaml_data))
+    primitive_schema = cast(
+        PrimitiveSchema,
+        mapping.get(schema_type, PrimitiveSchema).from_yaml(namespace=namespace, yaml_data=yaml_data)
+    )
     return primitive_schema

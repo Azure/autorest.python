@@ -10,6 +10,7 @@ from .base_schema import BaseSchema
 class ListSchema(BaseSchema):
     def __init__(
         self,
+        namespace: str,
         yaml_data: Dict[str, Any],
         element_type: BaseSchema,
         *,
@@ -17,7 +18,7 @@ class ListSchema(BaseSchema):
         min_items: int = None,
         unique_items: int = None
     ):
-        super(ListSchema, self).__init__(yaml_data)
+        super(ListSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.element_type = element_type
         self.max_items = max_items
         self.min_items = min_items
@@ -45,7 +46,7 @@ class ListSchema(BaseSchema):
         return validation_map or None
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], **kwargs) -> "ListSchema":
+    def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs) -> "ListSchema":
         # TODO: for items, if the type is a primitive is it listed in type instead of $ref?
         element_schema = yaml_data['elementType']
 
@@ -56,6 +57,7 @@ class ListSchema(BaseSchema):
         )
 
         return cls(
+            namespace=namespace,
             yaml_data=yaml_data,
             element_type=element_type,
             max_items=yaml_data.get('maxItems'),
