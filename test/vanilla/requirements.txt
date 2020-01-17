@@ -3,7 +3,7 @@ pytest
 pytest-cov
 pytest-asyncio;python_full_version>="3.5.2"
 msrest>=0.6.10
-azure-core>=1.1.0
+azure-core>=1.2.0
 aiohttp;python_full_version>="3.5.2"
 -e ./Expected/AcceptanceTests/AdditionalProperties
 -e ./Expected/AcceptanceTests/BodyArray
