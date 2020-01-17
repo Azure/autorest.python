@@ -583,7 +583,7 @@ class Goblinshark(Shark):
     :param jawsize:
     :type jawsize: int
     :param color: Colors possible. Possible values include: 'pink', 'gray', 'brown',
-     'RED'. Default value: "gray".
+     'RED', 'red'. Default value: "gray".
     :type color: str or ~bodycomplex.models.GoblinSharkColor
     """
 
