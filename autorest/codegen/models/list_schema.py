@@ -31,8 +31,9 @@ class ListSchema(BaseSchema):
     def get_python_type_annotation(self) -> str:
         return f'List[{self.element_type.get_python_type_annotation()}]'
 
-    def get_python_type(self, namespace: str) -> str:
-        return f'list[{self.element_type.get_python_type(namespace)}]'
+    @property
+    def docstring_type(self) -> str:
+        return f'list[{self.element_type.docstring_type}]'
 
     def get_validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
         validation_map: Dict[str, Union[bool, int, str]] = {}

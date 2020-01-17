@@ -43,12 +43,13 @@ class DictionarySchema(BaseSchema):
         """
         return f'Dict[str, {self.element_type.get_python_type_annotation()}]'
 
-    def get_python_type(self, namespace: str) -> str:
+    @property
+    def docstring_type(self) -> str:
         """The python type used for RST syntax input and type annotation.
 
         :param str namespace: Optional. The namespace for the models.
         """
-        return 'dict[str, {}]'.format(self.element_type.get_python_type(namespace))
+        return 'dict[str, {}]'.format(self.element_type.docstring_type)
 
     @classmethod
     def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs: Any) -> "DictionarySchema":

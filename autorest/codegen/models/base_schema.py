@@ -42,8 +42,8 @@ class BaseSchema(BaseModel, ABC):
         """
         ...
 
-    @abstractmethod
-    def get_python_type(self, namespace: str) -> str:
+    @property
+    def rst_type(self) -> str:
         """The python type used for RST syntax input.
 
         Special case for enum, for instance: 'str or ~namespace.EnumName'

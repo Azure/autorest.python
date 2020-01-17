@@ -25,18 +25,20 @@ class PrimitiveSchema(BaseSchema):
     def get_serialization_type(self) -> str:
         return self._to_python_type()
 
-    def get_python_type(self, namespace: str = None) -> str:
+    @property
+    def docstring_type(self) -> str:
         return self._to_python_type()
 
     def get_python_type_annotation(self) -> str:
-        return self.get_python_type(None)
+        return self.docstring_type(None)
 
 
 class AnySchema(PrimitiveSchema):
     def get_serialization_type(self) -> str:
         return 'object'
 
-    def get_python_type(self, namespace: str = None) -> str:
+    @property
+    def docstring_type(self) -> str:
         return 'object'
 
 
@@ -84,7 +86,8 @@ class NumberSchema(PrimitiveSchema):
             return "int"
         return "float"
 
-    def get_python_type(self, namespace: str = None) -> str:
+    @property
+    def docstring_type(self) -> str:
         if self.yaml_data['type'] == "integer":
             if self.precision == 64:
                 return "long"
@@ -92,7 +95,7 @@ class NumberSchema(PrimitiveSchema):
         return "float"
 
     def get_python_type_annotation(self) -> str:
-        python_type = self.get_python_type(None)
+        python_type = self.docstring_type
         if python_type == "long":
             return "int"
         return python_type
@@ -146,7 +149,8 @@ class DatetimeSchema(PrimitiveSchema):
         }
         return formats_to_attribute_type[self.format]
 
-    def get_python_type(self, namespace: str = None) -> str:
+    @property
+    def docstring_type(self) -> str:
         return "~"+self.get_python_type_annotation()
 
     def get_python_type_annotation(self) -> str:
@@ -164,7 +168,8 @@ class UnixTimeSchema(PrimitiveSchema):
     def get_serialization_type(self) -> str:
         return "unix-time"
 
-    def get_python_type(self, namespace: str = None) -> str:
+    @property
+    def docstring_type(self) -> str:
         return "~"+self.get_python_type_annotation()
 
     def get_python_type_annotation(self) -> str:
@@ -182,7 +187,8 @@ class DateSchema(PrimitiveSchema):
     def get_serialization_type(self) -> str:
         return "date"
 
-    def get_python_type(self, namespace: str = None) -> str:
+    @property
+    def docstring_type(self) -> str:
         return "~"+self.get_python_type_annotation()
 
     def get_python_type_annotation(self):
@@ -200,7 +206,8 @@ class DurationSchema(PrimitiveSchema):
     def get_serialization_type(self) -> str:
         return "duration"
 
-    def get_python_type(self, namespace: str = None) -> str:
+    @property
+    def docstring_type(self) -> str:
         return "~"+self.get_python_type_annotation()
 
     def get_python_type_annotation(self) -> str:
@@ -227,7 +234,8 @@ class ByteArraySchema(PrimitiveSchema):
             return "base64"
         return "bytearray"
 
-    def get_python_type(self, namespace: Optional[str] = None) -> str:
+    @property
+    def docstring_type(self) -> str:
         if self.format == ByteArraySchema.Formats.base64url:
             return "bytes"
         return "bytearray"

@@ -76,12 +76,11 @@ class EnumSchema(BaseSchema):
         """
         return f'Union[str, \"{self.enum_type}\"]'
 
-    def get_python_type(self, namespace: str) -> str:
+    @property
+    def docstring_type(self) -> str:
         """The python type used for RST syntax input and type annotation.
-
-        :param str namespace: The namespace for this enum.
         """
-        return f"str or ~{namespace}.models.{self.enum_type}"
+        return f"str or ~{self.namespace}.models.{self.enum_type}"
 
     @staticmethod
     def _get_enum_values(yaml_data: List[Dict[str, Any]]) -> List["EnumValue"]:
