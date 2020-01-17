@@ -42,7 +42,14 @@ class PetAPTrue(Model):
         'status': {'key': 'status', 'type': 'bool'},
     }
 
-    def __init__(self, *, id: int, additional_properties: Optional[Dict[str, object]] = None, name: Optional[str] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        id: int,
+        additional_properties: Optional[Dict[str, object]] = None,
+        name: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(PetAPTrue, self).__init__(**kwargs)
         self.additional_properties = additional_properties
         self.id = id
@@ -83,7 +90,15 @@ class CatAPTrue(PetAPTrue):
         'friendly': {'key': 'friendly', 'type': 'bool'},
     }
 
-    def __init__(self, *, id: int, additional_properties: Optional[Dict[str, object]] = None, name: Optional[str] = None, friendly: Optional[bool] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        id: int,
+        additional_properties: Optional[Dict[str, object]] = None,
+        name: Optional[str] = None,
+        friendly: Optional[bool] = None,
+        **kwargs
+    ) -> None:
         super(CatAPTrue, self).__init__(additional_properties=additional_properties, id=id, name=name, **kwargs)
         self.friendly = friendly
 
@@ -128,7 +143,13 @@ class Error(Model):
         'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        status: Optional[int] = None,
+        message: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -164,7 +185,14 @@ class PetAPInProperties(Model):
         'additional_properties': {'key': 'additionalProperties', 'type': '{float}'},
     }
 
-    def __init__(self, *, id: int, name: Optional[str] = None, additional_properties: Optional[Dict[str, float]] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        id: int,
+        name: Optional[str] = None,
+        additional_properties: Optional[Dict[str, float]] = None,
+        **kwargs
+    ) -> None:
         super(PetAPInProperties, self).__init__(**kwargs)
         self.id = id
         self.name = name
@@ -210,7 +238,16 @@ class PetAPInPropertiesWithAPString(Model):
         'additional_properties1': {'key': 'additionalProperties', 'type': '{float}'},
     }
 
-    def __init__(self, *, id: int, odatalocation: str, additional_properties: Optional[Dict[str, str]] = None, name: Optional[str] = None, additional_properties1: Optional[Dict[str, float]] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        id: int,
+        odatalocation: str,
+        additional_properties: Optional[Dict[str, str]] = None,
+        name: Optional[str] = None,
+        additional_properties1: Optional[Dict[str, float]] = None,
+        **kwargs
+    ) -> None:
         super(PetAPInPropertiesWithAPString, self).__init__(**kwargs)
         self.additional_properties = additional_properties
         self.id = id
@@ -250,7 +287,14 @@ class PetAPObject(Model):
         'status': {'key': 'status', 'type': 'bool'},
     }
 
-    def __init__(self, *, id: int, additional_properties: Optional[Dict[str, object]] = None, name: Optional[str] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        id: int,
+        additional_properties: Optional[Dict[str, object]] = None,
+        name: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(PetAPObject, self).__init__(**kwargs)
         self.additional_properties = additional_properties
         self.id = id
@@ -288,7 +332,14 @@ class PetAPString(Model):
         'status': {'key': 'status', 'type': 'bool'},
     }
 
-    def __init__(self, *, id: int, additional_properties: Optional[Dict[str, str]] = None, name: Optional[str] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        id: int,
+        additional_properties: Optional[Dict[str, str]] = None,
+        name: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(PetAPString, self).__init__(**kwargs)
         self.additional_properties = additional_properties
         self.id = id

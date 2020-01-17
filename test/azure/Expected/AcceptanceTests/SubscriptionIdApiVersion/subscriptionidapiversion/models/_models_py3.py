@@ -52,7 +52,13 @@ class Error(Model):
         'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, *, code: Optional[int] = None, message: Optional[str] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        code: Optional[int] = None,
+        message: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(Error, self).__init__(**kwargs)
         self.code = code
         self.message = message
@@ -72,7 +78,13 @@ class SampleResourceGroup(Model):
         'location': {'key': 'location', 'type': 'str'},
     }
 
-    def __init__(self, *, name: Optional[str] = None, location: Optional[str] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        name: Optional[str] = None,
+        location: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(SampleResourceGroup, self).__init__(**kwargs)
         self.name = name
         self.location = location

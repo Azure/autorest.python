@@ -23,7 +23,12 @@ class Animal(Model):
         'ani_type': {'key': 'aniType', 'type': 'str'},
     }
 
-    def __init__(self, *, ani_type: Optional[str] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        ani_type: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(Animal, self).__init__(**kwargs)
         self.ani_type = ani_type
 
@@ -39,7 +44,12 @@ class BaseError(Model):
         'some_base_prop': {'key': 'someBaseProp', 'type': 'str'},
     }
 
-    def __init__(self, *, some_base_prop: Optional[str] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        some_base_prop: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(BaseError, self).__init__(**kwargs)
         self.some_base_prop = some_base_prop
 
@@ -100,7 +110,13 @@ class NotFoundErrorBase(BaseError):
         'what_not_found': {'AnimalNotFound': 'AnimalNotFound', 'InvalidResourceLink': 'LinkNotFound'}
     }
 
-    def __init__(self, *, some_base_prop: Optional[str] = None, reason: Optional[str] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        some_base_prop: Optional[str] = None,
+        reason: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(NotFoundErrorBase, self).__init__(some_base_prop=some_base_prop, **kwargs)
         self.reason = reason
         self.what_not_found = 'NotFoundErrorBase'
@@ -158,7 +174,14 @@ class AnimalNotFound(NotFoundErrorBase):
         'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, *, some_base_prop: Optional[str] = None, reason: Optional[str] = None, name: Optional[str] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        some_base_prop: Optional[str] = None,
+        reason: Optional[str] = None,
+        name: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(AnimalNotFound, self).__init__(some_base_prop=some_base_prop, reason=reason, **kwargs)
         self.what_not_found = 'AnimalNotFound'
         self.name = name
@@ -216,7 +239,14 @@ class LinkNotFound(NotFoundErrorBase):
         'what_sub_address': {'key': 'whatSubAddress', 'type': 'str'},
     }
 
-    def __init__(self, *, some_base_prop: Optional[str] = None, reason: Optional[str] = None, what_sub_address: Optional[str] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        some_base_prop: Optional[str] = None,
+        reason: Optional[str] = None,
+        what_sub_address: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(LinkNotFound, self).__init__(some_base_prop=some_base_prop, reason=reason, **kwargs)
         self.what_not_found = 'InvalidResourceLink'
         self.what_sub_address = what_sub_address
@@ -242,7 +272,12 @@ class Pet(Animal):
         'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, *, ani_type: Optional[str] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        ani_type: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(Pet, self).__init__(ani_type=ani_type, **kwargs)
 
 
@@ -257,7 +292,12 @@ class PetAction(Model):
         'action_response': {'key': 'actionResponse', 'type': 'str'},
     }
 
-    def __init__(self, *, action_response: Optional[str] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        action_response: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(PetAction, self).__init__(**kwargs)
         self.action_response = action_response
 
@@ -315,7 +355,12 @@ class PetActionError(Model):
         'error_type': {'PetSadError': 'PetSadError'}
     }
 
-    def __init__(self, *, error_message: Optional[str] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        error_message: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(PetActionError, self).__init__(**kwargs)
         self.error_type = 'None'
         self.error_message = error_message
@@ -377,7 +422,13 @@ class PetSadError(PetActionError):
         'error_type': {'PetHungryOrThirstyError': 'PetHungryOrThirstyError'}
     }
 
-    def __init__(self, *, error_message: Optional[str] = None, reason: Optional[str] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        error_message: Optional[str] = None,
+        reason: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(PetSadError, self).__init__(error_message=error_message, **kwargs)
         self.error_type = 'PetSadError'
         self.reason = reason
@@ -435,7 +486,14 @@ class PetHungryOrThirstyError(PetSadError):
         'hungry_or_thirsty': {'key': 'hungryOrThirsty', 'type': 'str'},
     }
 
-    def __init__(self, *, error_message: Optional[str] = None, reason: Optional[str] = None, hungry_or_thirsty: Optional[str] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        error_message: Optional[str] = None,
+        reason: Optional[str] = None,
+        hungry_or_thirsty: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(PetHungryOrThirstyError, self).__init__(error_message=error_message, reason=reason, **kwargs)
         self.error_type = 'PetHungryOrThirstyError'
         self.hungry_or_thirsty = hungry_or_thirsty

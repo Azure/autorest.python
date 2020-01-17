@@ -65,7 +65,13 @@ class Error(Model):
 
     constant_id = 1
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        status: Optional[int] = None,
+        message: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -85,7 +91,13 @@ class OdataFilter(Model):
         'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, *, id: Optional[int] = None, name: Optional[str] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        id: Optional[int] = None,
+        name: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(OdataFilter, self).__init__(**kwargs)
         self.id = id
         self.name = name

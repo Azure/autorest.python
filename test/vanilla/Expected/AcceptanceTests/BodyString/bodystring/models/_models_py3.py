@@ -52,7 +52,13 @@ class Error(Model):
         'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        status: Optional[int] = None,
+        message: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -83,6 +89,11 @@ class RefColorConstant(Model):
 
     color_constant = "green-color"
 
-    def __init__(self, *, field1: Optional[str] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        field1: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(RefColorConstant, self).__init__(**kwargs)
         self.field1 = field1

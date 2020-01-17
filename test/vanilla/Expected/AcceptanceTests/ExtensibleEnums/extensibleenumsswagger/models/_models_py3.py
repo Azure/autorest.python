@@ -37,7 +37,14 @@ class Pet(Model):
         'int_enum': {'key': 'IntEnum', 'type': 'str'},
     }
 
-    def __init__(self, *, int_enum: Union[str, "IntEnum"], name: Optional[str] = None, days_of_week: Optional[Union[str, "DaysOfWeekExtensibleEnum"]] = "Friday", **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        int_enum: Union[str, "IntEnum"],
+        name: Optional[str] = None,
+        days_of_week: Optional[Union[str, "DaysOfWeekExtensibleEnum"]] = "Friday",
+        **kwargs
+    ) -> None:
         super(Pet, self).__init__(**kwargs)
         self.name = name
         self.days_of_week = days_of_week

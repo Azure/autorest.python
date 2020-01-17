@@ -25,7 +25,13 @@ class Error(Model):
         'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        status: Optional[int] = None,
+        message: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -42,7 +48,12 @@ class Product(Model):
         'properties': {'key': 'properties', 'type': 'ProductProperties'},
     }
 
-    def __init__(self, *, properties: Optional["ProductProperties"] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        properties: Optional["ProductProperties"] = None,
+        **kwargs
+    ) -> None:
         super(Product, self).__init__(**kwargs)
         self.properties = properties
 
@@ -61,7 +72,13 @@ class ProductProperties(Model):
         'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, *, id: Optional[int] = None, name: Optional[str] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        id: Optional[int] = None,
+        name: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(ProductProperties, self).__init__(**kwargs)
         self.id = id
         self.name = name
@@ -81,7 +98,13 @@ class ProductResult(Model):
         'next_link': {'key': 'nextLink', 'type': 'str'},
     }
 
-    def __init__(self, *, values: Optional[List["Product"]] = None, next_link: Optional[str] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        values: Optional[List["Product"]] = None,
+        next_link: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(ProductResult, self).__init__(**kwargs)
         self.values = values
         self.next_link = next_link
