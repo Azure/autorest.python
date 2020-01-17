@@ -43,7 +43,8 @@ class StorageAccountsOperations:
         self._config = config
 
     @distributed_trace_async
-    async def check_name_availability(self, account_name: "StorageAccountCheckNameAvailabilityParameters", cls=None, **kwargs) -> "CheckNameAvailabilityResult":
+    async def check_name_availability(self, account_name: "StorageAccountCheckNameAvailabilityParameters", *, cls=None, **kwargs) -> "CheckNameAvailabilityResult":
+
         """Checks that account name is valid and is not in use..
 
         FIXME: add operation.summary
@@ -96,7 +97,8 @@ class StorageAccountsOperations:
     check_name_availability.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability'}
 
     
-    async def _create_initial(self, resource_group_name: str, account_name: str, parameters: "StorageAccountCreateParameters", cls=None, **kwargs) -> "StorageAccount":
+    async def _create_initial(self, resource_group_name: str, account_name: str, parameters: "StorageAccountCreateParameters", *, cls=None, **kwargs) -> "StorageAccount":
+
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -142,7 +144,8 @@ class StorageAccountsOperations:
     _create_initial.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
     @distributed_trace_async
-    async def create(self, resource_group_name: str, account_name: str, parameters: "StorageAccountCreateParameters", cls=None, polling=True, **kwargs) -> "StorageAccount":
+    async def create(self, resource_group_name: str, account_name: str, parameters: "StorageAccountCreateParameters", *, cls=None, polling: Optional[bool] = True, **kwargs) -> "StorageAccount":
+
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts cannot be updated with this API and should instead use the Update Storage Account API. If an account is already created and subsequent PUT request is issued with exact same set of properties, then HTTP 200 would be returned..
 
         FIXME: add operation.summary
@@ -189,7 +192,8 @@ class StorageAccountsOperations:
 
 
     @distributed_trace_async
-    async def delete(self, resource_group_name: str, account_name: str, cls=None, **kwargs) -> None:
+    async def delete(self, resource_group_name: str, account_name: str, *, cls=None, **kwargs) -> None:
+
         """Deletes a storage account in Microsoft Azure..
 
         FIXME: add operation.summary
@@ -238,7 +242,8 @@ class StorageAccountsOperations:
     delete.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
     @distributed_trace_async
-    async def get_properties(self, resource_group_name: str, account_name: str, cls=None, **kwargs) -> "StorageAccount":
+    async def get_properties(self, resource_group_name: str, account_name: str, *, cls=None, **kwargs) -> "StorageAccount":
+
         """Returns the properties for the specified storage account including but not limited to name, account type, location, and account status. The ListKeys operation should be used to retrieve storage keys..
 
         FIXME: add operation.summary
@@ -291,7 +296,8 @@ class StorageAccountsOperations:
     get_properties.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
     @distributed_trace_async
-    async def update(self, resource_group_name: str, account_name: str, parameters: "StorageAccountUpdateParameters", cls=None, **kwargs) -> "StorageAccount":
+    async def update(self, resource_group_name: str, account_name: str, parameters: "StorageAccountUpdateParameters", *, cls=None, **kwargs) -> "StorageAccount":
+
         """Updates the account type or tags for a storage account. It can also be used to add a custom domain (note that custom domains cannot be added via the Create operation). Only one custom domain is supported per storage account. This API can only be used to update one of tags, accountType, or customDomain per call. To update multiple of these properties, call the API multiple times with one change per call. This call does not change the storage keys for the account. If you want to change storage account keys, use the RegenerateKey operation. The location and name of the storage account cannot be changed after creation..
 
         FIXME: add operation.summary
@@ -350,7 +356,8 @@ class StorageAccountsOperations:
     update.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
     @distributed_trace_async
-    async def list_keys(self, resource_group_name: str, account_name: str, cls=None, **kwargs) -> "StorageAccountKeys":
+    async def list_keys(self, resource_group_name: str, account_name: str, *, cls=None, **kwargs) -> "StorageAccountKeys":
+
         """Lists the access keys for the specified storage account..
 
         FIXME: add operation.summary
@@ -403,7 +410,8 @@ class StorageAccountsOperations:
     list_keys.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys'}
 
     @distributed_trace
-    def list(self, cls=None, **kwargs) -> "StorageAccountListResult":
+    async def list(self, *, cls=None, **kwargs) -> "StorageAccountListResult":
+
         """Lists all the storage accounts available under the subscription. Note that storage keys are not returned; use the ListKeys operation for this..
 
         FIXME: add operation.summary
@@ -467,7 +475,8 @@ class StorageAccountsOperations:
 
 
     @distributed_trace
-    def list_by_resource_group(self, resource_group_name: str, cls=None, **kwargs) -> "StorageAccountListResult":
+    async def list_by_resource_group(self, resource_group_name: str, *, cls=None, **kwargs) -> "StorageAccountListResult":
+
         """Lists all the storage accounts available under the given resource group. Note that storage keys are not returned; use the ListKeys operation for this..
 
         FIXME: add operation.summary
@@ -534,7 +543,8 @@ class StorageAccountsOperations:
 
 
     @distributed_trace_async
-    async def regenerate_key(self, resource_group_name: str, account_name: str, key_name: Optional[Union[str, "KeyName"]] = None, cls=None, **kwargs) -> "StorageAccountKeys":
+    async def regenerate_key(self, resource_group_name: str, account_name: str, key_name: Optional[Union[str, "KeyName"]] = None, *, cls=None, **kwargs) -> "StorageAccountKeys":
+
         """Regenerates the access keys for the specified storage account..
 
         FIXME: add operation.summary

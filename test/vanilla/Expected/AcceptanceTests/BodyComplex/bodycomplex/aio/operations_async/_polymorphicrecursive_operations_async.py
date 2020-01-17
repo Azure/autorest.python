@@ -36,7 +36,8 @@ class PolymorphicrecursiveOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_valid(self, cls=None, **kwargs) -> "Fish":
+    async def get_valid(self, *, cls=None, **kwargs) -> "Fish":
+
         """Get complex types that are polymorphic and have recursive references.
 
         FIXME: add operation.summary
@@ -78,7 +79,8 @@ class PolymorphicrecursiveOperations:
     get_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}
 
     @distributed_trace_async
-    async def put_valid(self, complex_body: "Fish", cls=None, **kwargs) -> None:
+    async def put_valid(self, complex_body: "Fish", *, cls=None, **kwargs) -> None:
+
         """Put complex types that are polymorphic and have recursive references.
 
         FIXME: add operation.summary

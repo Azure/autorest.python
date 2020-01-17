@@ -36,6 +36,7 @@ class ByteOperations(object):
 
     @distributed_trace
     def get_null(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> bytearray
         """Get null byte value.
 
@@ -79,6 +80,7 @@ class ByteOperations(object):
 
     @distributed_trace
     def get_empty(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> bytearray
         """Get empty byte value ''.
 
@@ -122,6 +124,7 @@ class ByteOperations(object):
 
     @distributed_trace
     def get_non_ascii(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> bytearray
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
@@ -165,6 +168,7 @@ class ByteOperations(object):
 
     @distributed_trace
     def put_non_ascii(self, byte_body, cls=None, **kwargs):
+
         # type: (bytearray, Optional[Any], **Any) -> None
         """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
@@ -210,6 +214,7 @@ class ByteOperations(object):
 
     @distributed_trace
     def get_invalid(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> bytearray
         """Get invalid byte value ':::SWAGGER::::'.
 

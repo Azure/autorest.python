@@ -38,6 +38,7 @@ class XMsClientRequestIdOperations(object):
 
     @distributed_trace
     def get(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Get method that overwrites x-ms-client-request header with value 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0..
 
@@ -78,6 +79,7 @@ class XMsClientRequestIdOperations(object):
 
     @distributed_trace
     def param_get(self, x_ms_client_request_id, cls=None, **kwargs):
+
         # type: (str, Optional[Any], **Any) -> None
         """Get method that overwrites x-ms-client-request header with value 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0..
 

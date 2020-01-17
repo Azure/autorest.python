@@ -17,6 +17,7 @@ from .. import models
 class AutoRestReportServiceOperationsMixin(object):
     @distributed_trace
     def get_report(self, qualifier=None, cls=None, **kwargs):
+
         # type: (Optional[str], Optional[Any], **Any) -> Dict[str, int]
         """Get test coverage report.
 
@@ -63,6 +64,7 @@ class AutoRestReportServiceOperationsMixin(object):
     get_report.metadata = {'url': '/report'}
     @distributed_trace
     def get_optional_report(self, qualifier=None, cls=None, **kwargs):
+
         # type: (Optional[str], Optional[Any], **Any) -> Dict[str, int]
         """Get optional test coverage report.
 

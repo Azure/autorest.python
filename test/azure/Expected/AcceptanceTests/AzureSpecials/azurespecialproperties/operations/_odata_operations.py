@@ -38,6 +38,7 @@ class OdataOperations(object):
 
     @distributed_trace
     def get_with_filter(self, filter=None, top=None, orderby=None, cls=None, **kwargs):
+
         # type: (Optional[str], Optional[int], Optional[str], Optional[Any], **Any) -> None
         """Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'.
 

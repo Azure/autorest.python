@@ -37,6 +37,7 @@ class DateOperations(object):
 
     @distributed_trace
     def get_null(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> datetime.date
         """Get null date value.
 
@@ -80,6 +81,7 @@ class DateOperations(object):
 
     @distributed_trace
     def get_invalid_date(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> datetime.date
         """Get invalid date value.
 
@@ -123,6 +125,7 @@ class DateOperations(object):
 
     @distributed_trace
     def get_overflow_date(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> datetime.date
         """Get overflow date value.
 
@@ -166,6 +169,7 @@ class DateOperations(object):
 
     @distributed_trace
     def get_underflow_date(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> datetime.date
         """Get underflow date value.
 
@@ -209,6 +213,7 @@ class DateOperations(object):
 
     @distributed_trace
     def put_max_date(self, date_body, cls=None, **kwargs):
+
         # type: (datetime.date, Optional[Any], **Any) -> None
         """Put max date value 9999-12-31.
 
@@ -254,6 +259,7 @@ class DateOperations(object):
 
     @distributed_trace
     def get_max_date(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> datetime.date
         """Get max date value 9999-12-31.
 
@@ -297,6 +303,7 @@ class DateOperations(object):
 
     @distributed_trace
     def put_min_date(self, date_body, cls=None, **kwargs):
+
         # type: (datetime.date, Optional[Any], **Any) -> None
         """Put min date value 0000-01-01.
 
@@ -342,6 +349,7 @@ class DateOperations(object):
 
     @distributed_trace
     def get_min_date(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> datetime.date
         """Get min date value 0000-01-01.
 

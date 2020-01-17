@@ -37,6 +37,7 @@ class PathItemsOperations(object):
 
     @distributed_trace
     def get_all_with_values(self, path_item_string_path, local_string_path, path_item_string_query=None, local_string_query=None, cls=None, **kwargs):
+
         # type: (str, str, Optional[str], Optional[str], Optional[Any], **Any) -> None
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
@@ -96,6 +97,7 @@ class PathItemsOperations(object):
 
     @distributed_trace
     def get_global_query_null(self, path_item_string_path, local_string_path, path_item_string_query=None, local_string_query=None, cls=None, **kwargs):
+
         # type: (str, str, Optional[str], Optional[str], Optional[Any], **Any) -> None
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
@@ -155,6 +157,7 @@ class PathItemsOperations(object):
 
     @distributed_trace
     def get_global_and_local_query_null(self, path_item_string_path, local_string_path, path_item_string_query=None, local_string_query=None, cls=None, **kwargs):
+
         # type: (str, str, Optional[str], Optional[str], Optional[Any], **Any) -> None
         """send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
 
@@ -214,6 +217,7 @@ class PathItemsOperations(object):
 
     @distributed_trace
     def get_local_path_item_query_null(self, path_item_string_path, local_string_path, path_item_string_query=None, local_string_query=None, cls=None, **kwargs):
+
         # type: (str, str, Optional[str], Optional[str], Optional[Any], **Any) -> None
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery=null, localStringQuery=null.
 

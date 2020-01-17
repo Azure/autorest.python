@@ -36,7 +36,8 @@ class HttpRedirectsOperations:
         self._config = config
 
     @distributed_trace_async
-    async def head300(self, cls=None, **kwargs) -> None:
+    async def head300(self, *, cls=None, **kwargs) -> None:
+
         """Return 300 status code and redirect to /http/success/200.
 
         FIXME: add operation.summary
@@ -78,7 +79,8 @@ class HttpRedirectsOperations:
     head300.metadata = {'url': '/http/redirect/300'}
 
     @distributed_trace_async
-    async def get300(self, cls=None, **kwargs) -> List[str]:
+    async def get300(self, *, cls=None, **kwargs) -> List[str]:
+
         """Return 300 status code and redirect to /http/success/200.
 
         FIXME: add operation.summary
@@ -124,7 +126,8 @@ class HttpRedirectsOperations:
     get300.metadata = {'url': '/http/redirect/300'}
 
     @distributed_trace_async
-    async def head301(self, cls=None, **kwargs) -> None:
+    async def head301(self, *, cls=None, **kwargs) -> None:
+
         """Return 301 status code and redirect to /http/success/200.
 
         FIXME: add operation.summary
@@ -166,7 +169,8 @@ class HttpRedirectsOperations:
     head301.metadata = {'url': '/http/redirect/301'}
 
     @distributed_trace_async
-    async def get301(self, cls=None, **kwargs) -> None:
+    async def get301(self, *, cls=None, **kwargs) -> None:
+
         """Return 301 status code and redirect to /http/success/200.
 
         FIXME: add operation.summary
@@ -208,7 +212,8 @@ class HttpRedirectsOperations:
     get301.metadata = {'url': '/http/redirect/301'}
 
     @distributed_trace_async
-    async def put301(self, cls=None, **kwargs) -> None:
+    async def put301(self, *, cls=None, **kwargs) -> None:
+
         """Put true Boolean value in request returns 301.  This request should not be automatically redirected, but should return the received 301 to the caller for evaluation.
 
         FIXME: add operation.summary
@@ -257,7 +262,8 @@ class HttpRedirectsOperations:
     put301.metadata = {'url': '/http/redirect/301'}
 
     @distributed_trace_async
-    async def head302(self, cls=None, **kwargs) -> None:
+    async def head302(self, *, cls=None, **kwargs) -> None:
+
         """Return 302 status code and redirect to /http/success/200.
 
         FIXME: add operation.summary
@@ -299,7 +305,8 @@ class HttpRedirectsOperations:
     head302.metadata = {'url': '/http/redirect/302'}
 
     @distributed_trace_async
-    async def get302(self, cls=None, **kwargs) -> None:
+    async def get302(self, *, cls=None, **kwargs) -> None:
+
         """Return 302 status code and redirect to /http/success/200.
 
         FIXME: add operation.summary
@@ -341,7 +348,8 @@ class HttpRedirectsOperations:
     get302.metadata = {'url': '/http/redirect/302'}
 
     @distributed_trace_async
-    async def patch302(self, cls=None, **kwargs) -> None:
+    async def patch302(self, *, cls=None, **kwargs) -> None:
+
         """Patch true Boolean value in request returns 302.  This request should not be automatically redirected, but should return the received 302 to the caller for evaluation.
 
         FIXME: add operation.summary
@@ -390,7 +398,8 @@ class HttpRedirectsOperations:
     patch302.metadata = {'url': '/http/redirect/302'}
 
     @distributed_trace_async
-    async def post303(self, cls=None, **kwargs) -> None:
+    async def post303(self, *, cls=None, **kwargs) -> None:
+
         """Post true Boolean value in request returns 303.  This request should be automatically redirected usign a get, ultimately returning a 200 status code.
 
         FIXME: add operation.summary
@@ -440,7 +449,8 @@ class HttpRedirectsOperations:
     post303.metadata = {'url': '/http/redirect/303'}
 
     @distributed_trace_async
-    async def head307(self, cls=None, **kwargs) -> None:
+    async def head307(self, *, cls=None, **kwargs) -> None:
+
         """Redirect with 307, resulting in a 200 success.
 
         FIXME: add operation.summary
@@ -482,7 +492,8 @@ class HttpRedirectsOperations:
     head307.metadata = {'url': '/http/redirect/307'}
 
     @distributed_trace_async
-    async def get307(self, cls=None, **kwargs) -> None:
+    async def get307(self, *, cls=None, **kwargs) -> None:
+
         """Redirect get with 307, resulting in a 200 success.
 
         FIXME: add operation.summary
@@ -524,7 +535,8 @@ class HttpRedirectsOperations:
     get307.metadata = {'url': '/http/redirect/307'}
 
     @distributed_trace_async
-    async def options307(self, cls=None, **kwargs) -> None:
+    async def options307(self, *, cls=None, **kwargs) -> None:
+
         """options redirected with 307, resulting in a 200 after redirect.
 
         FIXME: add operation.summary
@@ -566,7 +578,8 @@ class HttpRedirectsOperations:
     options307.metadata = {'url': '/http/redirect/307'}
 
     @distributed_trace_async
-    async def put307(self, cls=None, **kwargs) -> None:
+    async def put307(self, *, cls=None, **kwargs) -> None:
+
         """Put redirected with 307, resulting in a 200 after redirect.
 
         FIXME: add operation.summary
@@ -616,7 +629,8 @@ class HttpRedirectsOperations:
     put307.metadata = {'url': '/http/redirect/307'}
 
     @distributed_trace_async
-    async def patch307(self, cls=None, **kwargs) -> None:
+    async def patch307(self, *, cls=None, **kwargs) -> None:
+
         """Patch redirected with 307, resulting in a 200 after redirect.
 
         FIXME: add operation.summary
@@ -666,7 +680,8 @@ class HttpRedirectsOperations:
     patch307.metadata = {'url': '/http/redirect/307'}
 
     @distributed_trace_async
-    async def post307(self, cls=None, **kwargs) -> None:
+    async def post307(self, *, cls=None, **kwargs) -> None:
+
         """Post redirected with 307, resulting in a 200 after redirect.
 
         FIXME: add operation.summary
@@ -716,7 +731,8 @@ class HttpRedirectsOperations:
     post307.metadata = {'url': '/http/redirect/307'}
 
     @distributed_trace_async
-    async def delete307(self, cls=None, **kwargs) -> None:
+    async def delete307(self, *, cls=None, **kwargs) -> None:
+
         """Delete redirected with 307, resulting in a 200 after redirect.
 
         FIXME: add operation.summary

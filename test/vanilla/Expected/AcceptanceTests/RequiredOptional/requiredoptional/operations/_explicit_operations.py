@@ -38,6 +38,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_required_integer_parameter(self, body_parameter, cls=None, **kwargs):
+
         # type: (int, Optional[Any], **Any) -> None
         """Test explicitly required integer. Please put null and the client library should throw before the request is sent..
 
@@ -83,6 +84,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_optional_integer_parameter(self, body_parameter=None, cls=None, **kwargs):
+
         # type: (Optional[int], Optional[Any], **Any) -> None
         """Test explicitly optional integer. Please put null..
 
@@ -131,6 +133,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_required_integer_property(self, value, cls=None, **kwargs):
+
         # type: (int, Optional[Any], **Any) -> None
         """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the client library should throw before the request is sent..
 
@@ -177,6 +180,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_optional_integer_property(self, value=None, cls=None, **kwargs):
+
         # type: (Optional[int], Optional[Any], **Any) -> None
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null..
 
@@ -226,6 +230,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_required_integer_header(self, header_parameter, cls=None, **kwargs):
+
         # type: (int, Optional[Any], **Any) -> None
         """Test explicitly required integer. Please put a header 'headerParameter' => null and the client library should throw before the request is sent..
 
@@ -268,6 +273,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_optional_integer_header(self, header_parameter=None, cls=None, **kwargs):
+
         # type: (Optional[int], Optional[Any], **Any) -> None
         """Test explicitly optional integer. Please put a header 'headerParameter' => null..
 
@@ -311,6 +317,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_required_string_parameter(self, body_parameter, cls=None, **kwargs):
+
         # type: (str, Optional[Any], **Any) -> None
         """Test explicitly required string. Please put null and the client library should throw before the request is sent..
 
@@ -356,6 +363,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_optional_string_parameter(self, body_parameter=None, cls=None, **kwargs):
+
         # type: (Optional[str], Optional[Any], **Any) -> None
         """Test explicitly optional string. Please put null..
 
@@ -404,6 +412,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_required_string_property(self, value, cls=None, **kwargs):
+
         # type: (str, Optional[Any], **Any) -> None
         """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the client library should throw before the request is sent..
 
@@ -450,6 +459,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_optional_string_property(self, value=None, cls=None, **kwargs):
+
         # type: (Optional[str], Optional[Any], **Any) -> None
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null..
 
@@ -499,6 +509,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_required_string_header(self, header_parameter, cls=None, **kwargs):
+
         # type: (str, Optional[Any], **Any) -> None
         """Test explicitly required string. Please put a header 'headerParameter' => null and the client library should throw before the request is sent..
 
@@ -541,6 +552,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_optional_string_header(self, body_parameter=None, cls=None, **kwargs):
+
         # type: (Optional[str], Optional[Any], **Any) -> None
         """Test explicitly optional string. Please put a header 'headerParameter' => null..
 
@@ -584,6 +596,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_required_class_parameter(self, body_parameter, cls=None, **kwargs):
+
         # type: ("Product", Optional[Any], **Any) -> None
         """Test explicitly required complex object. Please put null and the client library should throw before the request is sent..
 
@@ -629,6 +642,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_optional_class_parameter(self, body_parameter=None, cls=None, **kwargs):
+
         # type: (Optional["Product"], Optional[Any], **Any) -> None
         """Test explicitly optional complex object. Please put null..
 
@@ -677,6 +691,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_required_class_property(self, value, cls=None, **kwargs):
+
         # type: ("Product", Optional[Any], **Any) -> None
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null and the client library should throw before the request is sent..
 
@@ -723,6 +738,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_optional_class_property(self, value=None, cls=None, **kwargs):
+
         # type: (Optional["Product"], Optional[Any], **Any) -> None
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null..
 
@@ -772,6 +788,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_required_array_parameter(self, body_parameter, cls=None, **kwargs):
+
         # type: (List[str], Optional[Any], **Any) -> None
         """Test explicitly required array. Please put null and the client library should throw before the request is sent..
 
@@ -817,6 +834,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_optional_array_parameter(self, body_parameter=None, cls=None, **kwargs):
+
         # type: (Optional[List[str]], Optional[Any], **Any) -> None
         """Test explicitly optional array. Please put null..
 
@@ -865,6 +883,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_required_array_property(self, value, cls=None, **kwargs):
+
         # type: (List[str], Optional[Any], **Any) -> None
         """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the client library should throw before the request is sent..
 
@@ -911,6 +930,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_optional_array_property(self, value=None, cls=None, **kwargs):
+
         # type: (Optional[List[str]], Optional[Any], **Any) -> None
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null..
 
@@ -960,6 +980,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_required_array_header(self, header_parameter, cls=None, **kwargs):
+
         # type: (List[str], Optional[Any], **Any) -> None
         """Test explicitly required array. Please put a header 'headerParameter' => null and the client library should throw before the request is sent..
 
@@ -1002,6 +1023,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_optional_array_header(self, header_parameter=None, cls=None, **kwargs):
+
         # type: (Optional[List[str]], Optional[Any], **Any) -> None
         """Test explicitly optional integer. Please put a header 'headerParameter' => null..
 

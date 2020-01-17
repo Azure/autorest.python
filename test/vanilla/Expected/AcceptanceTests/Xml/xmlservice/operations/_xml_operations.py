@@ -38,6 +38,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def get_complex_type_ref_no_meta(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "RootWithRefAndNoMeta"
         """Get a complex type that has a ref to a complex type with no XML node.
 
@@ -81,6 +82,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def put_complex_type_ref_no_meta(self, model, cls=None, **kwargs):
+
         # type: ("RootWithRefAndNoMeta", Optional[Any], **Any) -> None
         """Puts a complex type that has a ref to a complex type with no XML node.
 
@@ -126,6 +128,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def get_complex_type_ref_with_meta(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "RootWithRefAndMeta"
         """Get a complex type that has a ref to a complex type with XML node.
 
@@ -169,6 +172,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def put_complex_type_ref_with_meta(self, model, cls=None, **kwargs):
+
         # type: ("RootWithRefAndMeta", Optional[Any], **Any) -> None
         """Puts a complex type that has a ref to a complex type with XML node.
 
@@ -214,6 +218,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def get_simple(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "Slideshow"
         """Get a simple XML document.
 
@@ -257,6 +262,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def put_simple(self, slideshow, cls=None, **kwargs):
+
         # type: ("Slideshow", Optional[Any], **Any) -> None
         """Put a simple XML document.
 
@@ -302,6 +308,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def get_wrapped_lists(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "AppleBarrel"
         """Get an XML document with multiple wrapped lists.
 
@@ -345,6 +352,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def put_wrapped_lists(self, wrapped_lists, cls=None, **kwargs):
+
         # type: ("AppleBarrel", Optional[Any], **Any) -> None
         """Put an XML document with multiple wrapped lists.
 
@@ -390,6 +398,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def get_headers(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Get strongly-typed response headers..
 
@@ -432,6 +441,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def get_empty_list(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "Slideshow"
         """Get an empty list..
 
@@ -475,6 +485,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def put_empty_list(self, slideshow, cls=None, **kwargs):
+
         # type: ("Slideshow", Optional[Any], **Any) -> None
         """Puts an empty list..
 
@@ -520,6 +531,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def get_empty_wrapped_lists(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "AppleBarrel"
         """Gets some empty wrapped lists..
 
@@ -563,6 +575,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def put_empty_wrapped_lists(self, apple_barrel, cls=None, **kwargs):
+
         # type: ("AppleBarrel", Optional[Any], **Any) -> None
         """Puts some empty wrapped lists..
 
@@ -608,6 +621,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def get_root_list(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> List["Banana"]
         """Gets a list as the root element..
 
@@ -651,6 +665,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def put_root_list(self, bananas, cls=None, **kwargs):
+
         # type: (List["Banana"], Optional[Any], **Any) -> None
         """Puts a list as the root element..
 
@@ -696,6 +711,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def get_root_list_single_item(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> List["Banana"]
         """Gets a list with a single item..
 
@@ -739,6 +755,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def put_root_list_single_item(self, bananas, cls=None, **kwargs):
+
         # type: (List["Banana"], Optional[Any], **Any) -> None
         """Puts a list with a single item..
 
@@ -784,6 +801,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def get_empty_root_list(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> List["Banana"]
         """Gets an empty list as the root element..
 
@@ -827,6 +845,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def put_empty_root_list(self, bananas, cls=None, **kwargs):
+
         # type: (List["Banana"], Optional[Any], **Any) -> None
         """Puts an empty list as the root element..
 
@@ -872,6 +891,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def get_empty_child_element(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "Banana"
         """Gets an XML document with an empty child element..
 
@@ -915,6 +935,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def put_empty_child_element(self, banana, cls=None, **kwargs):
+
         # type: ("Banana", Optional[Any], **Any) -> None
         """Puts a value with an empty child element..
 
@@ -960,6 +981,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def list_containers(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "ListContainersResponse"
         """Lists containers in a storage account..
 
@@ -1005,6 +1027,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def get_service_properties(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "StorageServiceProperties"
         """Gets storage service properties..
 
@@ -1052,6 +1075,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def put_service_properties(self, properties, cls=None, **kwargs):
+
         # type: ("StorageServiceProperties", Optional[Any], **Any) -> None
         """Puts storage service properties..
 
@@ -1101,6 +1125,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def get_acls(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> List["SignedIdentifier"]
         """Gets storage ACLs for a container..
 
@@ -1148,6 +1173,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def put_acls(self, properties, cls=None, **kwargs):
+
         # type: (List["SignedIdentifier"], Optional[Any], **Any) -> None
         """Puts storage ACLs for a container..
 
@@ -1197,6 +1223,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def list_blobs(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "ListBlobsResponse"
         """Lists blobs in a storage container..
 
@@ -1244,6 +1271,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def json_input(self, id=None, cls=None, **kwargs):
+
         # type: (Optional[int], Optional[Any], **Any) -> None
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID number 42.
 
@@ -1290,6 +1318,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def json_output(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "JSONOutput"
         """A Swagger with XML that has one operation that returns JSON. ID number 42.
 

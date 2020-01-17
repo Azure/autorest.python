@@ -1,6 +1,6 @@
 {% set version_import = ".._version" if async_mode else "._version" %}
 {% set async_prefix = "Async" if async_mode else "" %}
-{% set init_typing_comment = ("# type: (") ~ code_model.global_parameters|map(attribute='schema')|join(', ', attribute='type_annotation') ~ (", " if code_model.global_parameters else "") ~ ("**Any) -> None") %}
+{% set init_typing_comment = ("# type: (") ~ code_model.global_parameters.method|map(attribute='schema')|join(', ', attribute='type_annotation') ~ (", " if code_model.global_parameters.method else "") ~ ("**Any) -> None") %}
 {% set credential_scopes = "*self.credential_scopes, " if code_model.options['credential_scopes'] else "" %}
 {# actual template starts here #}
 # coding=utf-8
@@ -27,7 +27,7 @@ class {{ code_model.class_name }}Configuration(Configuration):
 
     def __init__(self{{ code_model.global_parameters.async_method_signature if async_mode else code_model.global_parameters.sync_method_signature }}, **kwargs){{ " -> None" if async_mode else "" }}:
     {% if not async_mode %}
-    {{ init_typing_comment }}
+        {{ init_typing_comment }}
     {% endif %}
 {% for parameter in code_model.global_parameters.method|selectattr('required') %}
         if {{ parameter.serialized_name }} is None:
@@ -50,6 +50,9 @@ class {{ code_model.class_name }}Configuration(Configuration):
         self.user_agent_policy.add_user_agent('azsdk-python-{{ code_model.class_name|lower }}/{}'.format(VERSION))
 
     def _configure(self, **kwargs){{ " -> None" if async_mode else "" }}:
+        {% if not async_mode %}
+        # type: (**Any) -> None
+        {% endif %}
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)
         self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)
         self.proxy_policy = kwargs.get('proxy_policy') or policies.ProxyPolicy(**kwargs)

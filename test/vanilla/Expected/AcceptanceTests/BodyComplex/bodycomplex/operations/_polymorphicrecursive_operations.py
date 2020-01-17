@@ -37,6 +37,7 @@ class PolymorphicrecursiveOperations(object):
 
     @distributed_trace
     def get_valid(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "Fish"
         """Get complex types that are polymorphic and have recursive references.
 
@@ -80,6 +81,7 @@ class PolymorphicrecursiveOperations(object):
 
     @distributed_trace
     def put_valid(self, complex_body, cls=None, **kwargs):
+
         # type: ("Fish", Optional[Any], **Any) -> None
         """Put complex types that are polymorphic and have recursive references.
 

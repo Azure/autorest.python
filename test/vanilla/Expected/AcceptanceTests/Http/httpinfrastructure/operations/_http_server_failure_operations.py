@@ -37,6 +37,7 @@ class HttpServerFailureOperations(object):
 
     @distributed_trace
     def head501(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Return 501 status code - should be represented in the client as an error.
 
@@ -76,6 +77,7 @@ class HttpServerFailureOperations(object):
 
     @distributed_trace
     def get501(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Return 501 status code - should be represented in the client as an error.
 
@@ -115,6 +117,7 @@ class HttpServerFailureOperations(object):
 
     @distributed_trace
     def post505(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Return 505 status code - should be represented in the client as an error.
 
@@ -162,6 +165,7 @@ class HttpServerFailureOperations(object):
 
     @distributed_trace
     def delete505(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Return 505 status code - should be represented in the client as an error.
 

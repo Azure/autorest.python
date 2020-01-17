@@ -37,6 +37,7 @@ class HttpRetryOperations(object):
 
     @distributed_trace
     def head408(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Return 408 status code, then 200 after retry.
 
@@ -76,6 +77,7 @@ class HttpRetryOperations(object):
 
     @distributed_trace
     def put500(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Return 500 status code, then 200 after retry.
 
@@ -123,6 +125,7 @@ class HttpRetryOperations(object):
 
     @distributed_trace
     def patch500(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Return 500 status code, then 200 after retry.
 
@@ -170,6 +173,7 @@ class HttpRetryOperations(object):
 
     @distributed_trace
     def get502(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Return 502 status code, then 200 after retry.
 
@@ -209,6 +213,7 @@ class HttpRetryOperations(object):
 
     @distributed_trace
     def options502(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> bool
         """Return 502 status code, then 200 after retry.
 
@@ -252,6 +257,7 @@ class HttpRetryOperations(object):
 
     @distributed_trace
     def post503(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Return 503 status code, then 200 after retry.
 
@@ -299,6 +305,7 @@ class HttpRetryOperations(object):
 
     @distributed_trace
     def delete503(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Return 503 status code, then 200 after retry.
 
@@ -346,6 +353,7 @@ class HttpRetryOperations(object):
 
     @distributed_trace
     def put504(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Return 504 status code, then 200 after retry.
 
@@ -393,6 +401,7 @@ class HttpRetryOperations(object):
 
     @distributed_trace
     def patch504(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Return 504 status code, then 200 after retry.
 

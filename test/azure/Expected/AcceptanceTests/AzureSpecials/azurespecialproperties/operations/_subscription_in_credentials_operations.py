@@ -37,6 +37,7 @@ class SubscriptionInCredentialsOperations(object):
 
     @distributed_trace
     def post_method_global_valid(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to '1234-5678-9012-3456' to succeed.
 
@@ -81,6 +82,7 @@ class SubscriptionInCredentialsOperations(object):
 
     @distributed_trace
     def post_method_global_null(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to null, and client-side validation should prevent you from making this call.
 
@@ -125,6 +127,7 @@ class SubscriptionInCredentialsOperations(object):
 
     @distributed_trace
     def post_method_global_not_provided_valid(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to '1234-5678-9012-3456' to succeed.
 
@@ -169,6 +172,7 @@ class SubscriptionInCredentialsOperations(object):
 
     @distributed_trace
     def post_path_global_valid(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to '1234-5678-9012-3456' to succeed.
 
@@ -213,6 +217,7 @@ class SubscriptionInCredentialsOperations(object):
 
     @distributed_trace
     def post_swagger_global_valid(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to '1234-5678-9012-3456' to succeed.
 

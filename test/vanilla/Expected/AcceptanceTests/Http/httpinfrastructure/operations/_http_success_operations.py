@@ -37,6 +37,7 @@ class HttpSuccessOperations(object):
 
     @distributed_trace
     def head200(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Return 200 status code if successful.
 
@@ -76,6 +77,7 @@ class HttpSuccessOperations(object):
 
     @distributed_trace
     def get200(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> bool
         """Get 200 success.
 
@@ -119,6 +121,7 @@ class HttpSuccessOperations(object):
 
     @distributed_trace
     def options200(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> bool
         """Options 200 success.
 
@@ -162,6 +165,7 @@ class HttpSuccessOperations(object):
 
     @distributed_trace
     def put200(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Put boolean value true returning 200 success.
 
@@ -209,6 +213,7 @@ class HttpSuccessOperations(object):
 
     @distributed_trace
     def patch200(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Patch true Boolean value in request returning 200.
 
@@ -256,6 +261,7 @@ class HttpSuccessOperations(object):
 
     @distributed_trace
     def post200(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Post bollean value true in request that returns a 200.
 
@@ -303,6 +309,7 @@ class HttpSuccessOperations(object):
 
     @distributed_trace
     def delete200(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Delete simple boolean value true returns 200.
 
@@ -350,6 +357,7 @@ class HttpSuccessOperations(object):
 
     @distributed_trace
     def put201(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Put true Boolean value in request returns 201.
 
@@ -397,6 +405,7 @@ class HttpSuccessOperations(object):
 
     @distributed_trace
     def post201(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Post true Boolean value in request returns 201 (Created).
 
@@ -444,6 +453,7 @@ class HttpSuccessOperations(object):
 
     @distributed_trace
     def put202(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Put true Boolean value in request returns 202 (Accepted).
 
@@ -491,6 +501,7 @@ class HttpSuccessOperations(object):
 
     @distributed_trace
     def patch202(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Patch true Boolean value in request returns 202.
 
@@ -538,6 +549,7 @@ class HttpSuccessOperations(object):
 
     @distributed_trace
     def post202(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Post true Boolean value in request returns 202 (Accepted).
 
@@ -585,6 +597,7 @@ class HttpSuccessOperations(object):
 
     @distributed_trace
     def delete202(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Delete true Boolean value in request returns 202 (accepted).
 
@@ -632,6 +645,7 @@ class HttpSuccessOperations(object):
 
     @distributed_trace
     def head204(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Return 204 status code if successful.
 
@@ -671,6 +685,7 @@ class HttpSuccessOperations(object):
 
     @distributed_trace
     def put204(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Put true Boolean value in request returns 204 (no content).
 
@@ -718,6 +733,7 @@ class HttpSuccessOperations(object):
 
     @distributed_trace
     def patch204(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Patch true Boolean value in request returns 204 (no content).
 
@@ -765,6 +781,7 @@ class HttpSuccessOperations(object):
 
     @distributed_trace
     def post204(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Post true Boolean value in request returns 204 (no content).
 
@@ -812,6 +829,7 @@ class HttpSuccessOperations(object):
 
     @distributed_trace
     def delete204(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Delete true Boolean value in request returns 204 (no content).
 
@@ -859,6 +877,7 @@ class HttpSuccessOperations(object):
 
     @distributed_trace
     def head404(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Return 404 status code.
 

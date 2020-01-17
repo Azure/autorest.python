@@ -37,6 +37,7 @@ class StringOperations(object):
 
     @distributed_trace
     def get_null(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> str
         """Get null string value value.
 
@@ -80,6 +81,7 @@ class StringOperations(object):
 
     @distributed_trace
     def put_null(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Set string value null.
 
@@ -127,6 +129,7 @@ class StringOperations(object):
 
     @distributed_trace
     def get_empty(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> str
         """Get empty string value value ''.
 
@@ -170,6 +173,7 @@ class StringOperations(object):
 
     @distributed_trace
     def put_empty(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Set string value empty ''.
 
@@ -214,6 +218,7 @@ class StringOperations(object):
 
     @distributed_trace
     def get_mbcs(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> str
         """Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
@@ -257,6 +262,7 @@ class StringOperations(object):
 
     @distributed_trace
     def put_mbcs(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
@@ -301,6 +307,7 @@ class StringOperations(object):
 
     @distributed_trace
     def get_whitespace(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> str
         """Get string value with leading and trailing whitespace ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
@@ -344,6 +351,7 @@ class StringOperations(object):
 
     @distributed_trace
     def put_whitespace(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Set String value with leading and trailing whitespace ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
@@ -388,6 +396,7 @@ class StringOperations(object):
 
     @distributed_trace
     def get_not_provided(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> str
         """Get String value when no string value is sent in response payload.
 
@@ -431,6 +440,7 @@ class StringOperations(object):
 
     @distributed_trace
     def get_base64_encoded(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> bytes
         """Get value that is base64 encoded.
 
@@ -474,6 +484,7 @@ class StringOperations(object):
 
     @distributed_trace
     def get_base64_url_encoded(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> bytes
         """Get value that is base64url encoded.
 
@@ -517,6 +528,7 @@ class StringOperations(object):
 
     @distributed_trace
     def put_base64_url_encoded(self, string_body, cls=None, **kwargs):
+
         # type: (bytes, Optional[Any], **Any) -> None
         """Put value that is base64url encoded.
 
@@ -562,6 +574,7 @@ class StringOperations(object):
 
     @distributed_trace
     def get_null_base64_url_encoded(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> bytes
         """Get null value that is expected to be base64url encoded.
 

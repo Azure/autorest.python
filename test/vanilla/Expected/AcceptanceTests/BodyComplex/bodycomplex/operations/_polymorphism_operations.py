@@ -37,6 +37,7 @@ class PolymorphismOperations(object):
 
     @distributed_trace
     def get_valid(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "Fish"
         """Get complex types that are polymorphic.
 
@@ -80,6 +81,7 @@ class PolymorphismOperations(object):
 
     @distributed_trace
     def put_valid(self, complex_body, cls=None, **kwargs):
+
         # type: ("Fish", Optional[Any], **Any) -> None
         """Put complex types that are polymorphic.
 
@@ -157,6 +159,7 @@ class PolymorphismOperations(object):
 
     @distributed_trace
     def get_dot_syntax(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "DotFish"
         """Get complex types that are polymorphic, JSON key contains a dot.
 
@@ -200,6 +203,7 @@ class PolymorphismOperations(object):
 
     @distributed_trace
     def get_composed_with_discriminator(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "DotFishMarket"
         """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, with discriminator specified. Deserialization must NOT fail and use the discriminator type specified on the wire..
 
@@ -243,6 +247,7 @@ class PolymorphismOperations(object):
 
     @distributed_trace
     def get_composed_without_discriminator(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "DotFishMarket"
         """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, without discriminator specified on wire. Deserialization must NOT fail and use the explicit type of the property..
 
@@ -286,6 +291,7 @@ class PolymorphismOperations(object):
 
     @distributed_trace
     def get_complicated(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "Salmon"
         """Get complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties.
 
@@ -329,6 +335,7 @@ class PolymorphismOperations(object):
 
     @distributed_trace
     def put_complicated(self, complex_body, cls=None, **kwargs):
+
         # type: ("Salmon", Optional[Any], **Any) -> None
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties.
 
@@ -374,6 +381,7 @@ class PolymorphismOperations(object):
 
     @distributed_trace
     def put_missing_discriminator(self, complex_body, cls=None, **kwargs):
+
         # type: ("Salmon", Optional[Any], **Any) -> "Salmon"
         """Put complex types that are polymorphic, omitting the discriminator.
 
@@ -423,6 +431,7 @@ class PolymorphismOperations(object):
 
     @distributed_trace
     def put_valid_missing_required(self, complex_body, cls=None, **kwargs):
+
         # type: ("Fish", Optional[Any], **Any) -> None
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the request should not be allowed from the client.
 

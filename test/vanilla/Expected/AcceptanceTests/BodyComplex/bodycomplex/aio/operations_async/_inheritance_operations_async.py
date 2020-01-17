@@ -36,7 +36,8 @@ class InheritanceOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_valid(self, cls=None, **kwargs) -> "Siamese":
+    async def get_valid(self, *, cls=None, **kwargs) -> "Siamese":
+
         """Get complex types that extend others.
 
         FIXME: add operation.summary
@@ -78,7 +79,8 @@ class InheritanceOperations:
     get_valid.metadata = {'url': '/complex/inheritance/valid'}
 
     @distributed_trace_async
-    async def put_valid(self, complex_body: "Siamese", cls=None, **kwargs) -> None:
+    async def put_valid(self, complex_body: "Siamese", *, cls=None, **kwargs) -> None:
+
         """Put complex types that extend others.
 
         FIXME: add operation.summary

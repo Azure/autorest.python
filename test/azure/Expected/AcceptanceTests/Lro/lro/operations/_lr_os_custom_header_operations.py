@@ -42,6 +42,7 @@ class LROsCustomHeaderOperations(object):
 
     
     def _put_async_retry_succeeded_initial(self, product=None, cls=None, **kwargs):
+
         # type: (Optional["Product"], Optional[Any], **Any) -> "Product"
         error_map = kwargs.pop('error_map', {})
 
@@ -87,7 +88,8 @@ class LROsCustomHeaderOperations(object):
     _put_async_retry_succeeded_initial.metadata = {'url': '/lro/customheader/putasync/retry/succeeded'}
 
     @distributed_trace
-    def begin_put_async_retry_succeeded(self, product=None, cls=None, polling=True, **kwargs):
+    def put_async_retry_succeeded(self, product=None, cls=None, polling=True, **kwargs):
+
         # type: (Optional["Product"], Optional[Any], Optional[bool], **Any) -> "Product"
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
@@ -134,6 +136,7 @@ class LROsCustomHeaderOperations(object):
 
     
     def _put201_creating_succeeded200_initial(self, product=None, cls=None, **kwargs):
+
         # type: (Optional["Product"], Optional[Any], **Any) -> Union["Product", "Product"]
         error_map = kwargs.pop('error_map', {})
 
@@ -180,7 +183,8 @@ class LROsCustomHeaderOperations(object):
     _put201_creating_succeeded200_initial.metadata = {'url': '/lro/customheader/put/201/creating/succeeded/200'}
 
     @distributed_trace
-    def begin_put201_creating_succeeded200(self, product=None, cls=None, polling=True, **kwargs):
+    def put201_creating_succeeded200(self, product=None, cls=None, polling=True, **kwargs):
+
         # type: (Optional["Product"], Optional[Any], Optional[bool], **Any) -> Union["Product", "Product"]
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
@@ -223,6 +227,7 @@ class LROsCustomHeaderOperations(object):
 
     
     def _post202_retry200_initial(self, product=None, cls=None, **kwargs):
+
         # type: (Optional["Product"], Optional[Any], **Any) -> None
         error_map = kwargs.pop('error_map', {})
 
@@ -264,7 +269,8 @@ class LROsCustomHeaderOperations(object):
     _post202_retry200_initial.metadata = {'url': '/lro/customheader/post/202/retry/200'}
 
     @distributed_trace
-    def begin_post202_retry200(self, product=None, cls=None, polling=True, **kwargs):
+    def post202_retry200(self, product=None, cls=None, polling=True, **kwargs):
+
         # type: (Optional["Product"], Optional[Any], Optional[bool], **Any) -> None
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running post request, service returns a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
@@ -304,6 +310,7 @@ class LROsCustomHeaderOperations(object):
 
     
     def _post_async_retry_succeeded_initial(self, product=None, cls=None, **kwargs):
+
         # type: (Optional["Product"], Optional[Any], **Any) -> None
         error_map = kwargs.pop('error_map', {})
 
@@ -346,7 +353,8 @@ class LROsCustomHeaderOperations(object):
     _post_async_retry_succeeded_initial.metadata = {'url': '/lro/customheader/postasync/retry/succeeded'}
 
     @distributed_trace
-    def begin_post_async_retry_succeeded(self, product=None, cls=None, polling=True, **kwargs):
+    def post_async_retry_succeeded(self, product=None, cls=None, polling=True, **kwargs):
+
         # type: (Optional["Product"], Optional[Any], Optional[bool], **Any) -> None
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 

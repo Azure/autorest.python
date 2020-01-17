@@ -37,6 +37,7 @@ class DurationOperations(object):
 
     @distributed_trace
     def get_null(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> datetime.timedelta
         """Get null duration value.
 
@@ -80,6 +81,7 @@ class DurationOperations(object):
 
     @distributed_trace
     def put_positive_duration(self, duration_body, cls=None, **kwargs):
+
         # type: (datetime.timedelta, Optional[Any], **Any) -> None
         """Put a positive duration value.
 
@@ -125,6 +127,7 @@ class DurationOperations(object):
 
     @distributed_trace
     def get_positive_duration(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> datetime.timedelta
         """Get a positive duration value.
 
@@ -168,6 +171,7 @@ class DurationOperations(object):
 
     @distributed_trace
     def get_invalid(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> datetime.timedelta
         """Get an invalid duration value.
 

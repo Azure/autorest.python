@@ -37,7 +37,8 @@ class PathsOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_boolean_true(self, cls=None, **kwargs) -> None:
+    async def get_boolean_true(self, *, cls=None, **kwargs) -> None:
+
         """Get true Boolean value on path.
 
         FIXME: add operation.summary
@@ -80,7 +81,8 @@ class PathsOperations:
     get_boolean_true.metadata = {'url': '/paths/bool/true/{boolPath}'}
 
     @distributed_trace_async
-    async def get_boolean_false(self, cls=None, **kwargs) -> None:
+    async def get_boolean_false(self, *, cls=None, **kwargs) -> None:
+
         """Get false Boolean value on path.
 
         FIXME: add operation.summary
@@ -123,7 +125,8 @@ class PathsOperations:
     get_boolean_false.metadata = {'url': '/paths/bool/false/{boolPath}'}
 
     @distributed_trace_async
-    async def get_int_one_million(self, cls=None, **kwargs) -> None:
+    async def get_int_one_million(self, *, cls=None, **kwargs) -> None:
+
         """Get '1000000' integer value.
 
         FIXME: add operation.summary
@@ -166,7 +169,8 @@ class PathsOperations:
     get_int_one_million.metadata = {'url': '/paths/int/1000000/{intPath}'}
 
     @distributed_trace_async
-    async def get_int_negative_one_million(self, cls=None, **kwargs) -> None:
+    async def get_int_negative_one_million(self, *, cls=None, **kwargs) -> None:
+
         """Get '-1000000' integer value.
 
         FIXME: add operation.summary
@@ -209,7 +213,8 @@ class PathsOperations:
     get_int_negative_one_million.metadata = {'url': '/paths/int/-1000000/{intPath}'}
 
     @distributed_trace_async
-    async def get_ten_billion(self, cls=None, **kwargs) -> None:
+    async def get_ten_billion(self, *, cls=None, **kwargs) -> None:
+
         """Get '10000000000' 64 bit integer value.
 
         FIXME: add operation.summary
@@ -252,7 +257,8 @@ class PathsOperations:
     get_ten_billion.metadata = {'url': '/paths/long/10000000000/{longPath}'}
 
     @distributed_trace_async
-    async def get_negative_ten_billion(self, cls=None, **kwargs) -> None:
+    async def get_negative_ten_billion(self, *, cls=None, **kwargs) -> None:
+
         """Get '-10000000000' 64 bit integer value.
 
         FIXME: add operation.summary
@@ -295,7 +301,8 @@ class PathsOperations:
     get_negative_ten_billion.metadata = {'url': '/paths/long/-10000000000/{longPath}'}
 
     @distributed_trace_async
-    async def float_scientific_positive(self, cls=None, **kwargs) -> None:
+    async def float_scientific_positive(self, *, cls=None, **kwargs) -> None:
+
         """Get '1.034E+20' numeric value.
 
         FIXME: add operation.summary
@@ -338,7 +345,8 @@ class PathsOperations:
     float_scientific_positive.metadata = {'url': '/paths/float/1.034E+20/{floatPath}'}
 
     @distributed_trace_async
-    async def float_scientific_negative(self, cls=None, **kwargs) -> None:
+    async def float_scientific_negative(self, *, cls=None, **kwargs) -> None:
+
         """Get '-1.034E-20' numeric value.
 
         FIXME: add operation.summary
@@ -381,7 +389,8 @@ class PathsOperations:
     float_scientific_negative.metadata = {'url': '/paths/float/-1.034E-20/{floatPath}'}
 
     @distributed_trace_async
-    async def double_decimal_positive(self, cls=None, **kwargs) -> None:
+    async def double_decimal_positive(self, *, cls=None, **kwargs) -> None:
+
         """Get '9999999.999' numeric value.
 
         FIXME: add operation.summary
@@ -424,7 +433,8 @@ class PathsOperations:
     double_decimal_positive.metadata = {'url': '/paths/double/9999999.999/{doublePath}'}
 
     @distributed_trace_async
-    async def double_decimal_negative(self, cls=None, **kwargs) -> None:
+    async def double_decimal_negative(self, *, cls=None, **kwargs) -> None:
+
         """Get '-9999999.999' numeric value.
 
         FIXME: add operation.summary
@@ -467,7 +477,8 @@ class PathsOperations:
     double_decimal_negative.metadata = {'url': '/paths/double/-9999999.999/{doublePath}'}
 
     @distributed_trace_async
-    async def string_unicode(self, cls=None, **kwargs) -> None:
+    async def string_unicode(self, *, cls=None, **kwargs) -> None:
+
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
         FIXME: add operation.summary
@@ -510,7 +521,8 @@ class PathsOperations:
     string_unicode.metadata = {'url': '/paths/string/unicode/{stringPath}'}
 
     @distributed_trace_async
-    async def string_url_encoded(self, cls=None, **kwargs) -> None:
+    async def string_url_encoded(self, *, cls=None, **kwargs) -> None:
+
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
         FIXME: add operation.summary
@@ -553,7 +565,8 @@ class PathsOperations:
     string_url_encoded.metadata = {'url': '/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}'}
 
     @distributed_trace_async
-    async def string_url_non_encoded(self, cls=None, **kwargs) -> None:
+    async def string_url_non_encoded(self, *, cls=None, **kwargs) -> None:
+
         """Get 'begin!*'();:@&=+$,end.
 
         FIXME: add operation.summary
@@ -596,7 +609,8 @@ class PathsOperations:
     string_url_non_encoded.metadata = {'url': '/paths/string/begin!*\'();:@&=+$,end/{stringPath}'}
 
     @distributed_trace_async
-    async def string_empty(self, cls=None, **kwargs) -> None:
+    async def string_empty(self, *, cls=None, **kwargs) -> None:
+
         """Get ''.
 
         FIXME: add operation.summary
@@ -639,7 +653,8 @@ class PathsOperations:
     string_empty.metadata = {'url': '/paths/string/empty/{stringPath}'}
 
     @distributed_trace_async
-    async def string_null(self, string_path: str, cls=None, **kwargs) -> None:
+    async def string_null(self, string_path: str, *, cls=None, **kwargs) -> None:
+
         """Get null (should throw).
 
         FIXME: add operation.summary
@@ -683,7 +698,8 @@ class PathsOperations:
     string_null.metadata = {'url': '/paths/string/null/{stringPath}'}
 
     @distributed_trace_async
-    async def enum_valid(self, enum_path: Union[str, "UriColor"], cls=None, **kwargs) -> None:
+    async def enum_valid(self, enum_path: Union[str, "UriColor"], *, cls=None, **kwargs) -> None:
+
         """Get using uri with 'green color' in path parameter.
 
         FIXME: add operation.summary
@@ -727,7 +743,8 @@ class PathsOperations:
     enum_valid.metadata = {'url': '/paths/enum/green%20color/{enumPath}'}
 
     @distributed_trace_async
-    async def enum_null(self, enum_path: Union[str, "UriColor"], cls=None, **kwargs) -> None:
+    async def enum_null(self, enum_path: Union[str, "UriColor"], *, cls=None, **kwargs) -> None:
+
         """Get null (should throw on the client before the request is sent on wire).
 
         FIXME: add operation.summary
@@ -771,7 +788,8 @@ class PathsOperations:
     enum_null.metadata = {'url': '/paths/string/null/{enumPath}'}
 
     @distributed_trace_async
-    async def byte_multi_byte(self, byte_path: bytearray, cls=None, **kwargs) -> None:
+    async def byte_multi_byte(self, byte_path: bytearray, *, cls=None, **kwargs) -> None:
+
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
         FIXME: add operation.summary
@@ -815,7 +833,8 @@ class PathsOperations:
     byte_multi_byte.metadata = {'url': '/paths/byte/multibyte/{bytePath}'}
 
     @distributed_trace_async
-    async def byte_empty(self, cls=None, **kwargs) -> None:
+    async def byte_empty(self, *, cls=None, **kwargs) -> None:
+
         """Get '' as byte array.
 
         FIXME: add operation.summary
@@ -858,7 +877,8 @@ class PathsOperations:
     byte_empty.metadata = {'url': '/paths/byte/empty/{bytePath}'}
 
     @distributed_trace_async
-    async def byte_null(self, byte_path: bytearray, cls=None, **kwargs) -> None:
+    async def byte_null(self, byte_path: bytearray, *, cls=None, **kwargs) -> None:
+
         """Get null as byte array (should throw).
 
         FIXME: add operation.summary
@@ -902,7 +922,8 @@ class PathsOperations:
     byte_null.metadata = {'url': '/paths/byte/null/{bytePath}'}
 
     @distributed_trace_async
-    async def date_valid(self, cls=None, **kwargs) -> None:
+    async def date_valid(self, *, cls=None, **kwargs) -> None:
+
         """Get '2012-01-01' as date.
 
         FIXME: add operation.summary
@@ -945,7 +966,8 @@ class PathsOperations:
     date_valid.metadata = {'url': '/paths/date/2012-01-01/{datePath}'}
 
     @distributed_trace_async
-    async def date_null(self, date_path: datetime.date, cls=None, **kwargs) -> None:
+    async def date_null(self, date_path: datetime.date, *, cls=None, **kwargs) -> None:
+
         """Get null as date - this should throw or be unusable on the client side, depending on date representation.
 
         FIXME: add operation.summary
@@ -989,7 +1011,8 @@ class PathsOperations:
     date_null.metadata = {'url': '/paths/date/null/{datePath}'}
 
     @distributed_trace_async
-    async def date_time_valid(self, cls=None, **kwargs) -> None:
+    async def date_time_valid(self, *, cls=None, **kwargs) -> None:
+
         """Get '2012-01-01T01:01:01Z' as date-time.
 
         FIXME: add operation.summary
@@ -1032,7 +1055,8 @@ class PathsOperations:
     date_time_valid.metadata = {'url': '/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}'}
 
     @distributed_trace_async
-    async def date_time_null(self, date_time_path: datetime.datetime, cls=None, **kwargs) -> None:
+    async def date_time_null(self, date_time_path: datetime.datetime, *, cls=None, **kwargs) -> None:
+
         """Get null as date-time, should be disallowed or throw depending on representation of date-time.
 
         FIXME: add operation.summary
@@ -1076,7 +1100,8 @@ class PathsOperations:
     date_time_null.metadata = {'url': '/paths/datetime/null/{dateTimePath}'}
 
     @distributed_trace_async
-    async def base64_url(self, base64_url_path: bytes, cls=None, **kwargs) -> None:
+    async def base64_url(self, base64_url_path: bytes, *, cls=None, **kwargs) -> None:
+
         """Get 'lorem' encoded value as 'bG9yZW0' (base64url).
 
         FIXME: add operation.summary
@@ -1120,7 +1145,8 @@ class PathsOperations:
     base64_url.metadata = {'url': '/paths/string/bG9yZW0/{base64UrlPath}'}
 
     @distributed_trace_async
-    async def array_csv_in_path(self, array_path: List[str], cls=None, **kwargs) -> None:
+    async def array_csv_in_path(self, array_path: List[str], *, cls=None, **kwargs) -> None:
+
         """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
 
         FIXME: add operation.summary
@@ -1164,7 +1190,8 @@ class PathsOperations:
     array_csv_in_path.metadata = {'url': '/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}'}
 
     @distributed_trace_async
-    async def unix_time_url(self, unix_time_url_path: datetime.datetime, cls=None, **kwargs) -> None:
+    async def unix_time_url(self, unix_time_url_path: datetime.datetime, *, cls=None, **kwargs) -> None:
+
         """Get the date 2016-04-13 encoded value as '1460505600' (Unix time).
 
         FIXME: add operation.summary

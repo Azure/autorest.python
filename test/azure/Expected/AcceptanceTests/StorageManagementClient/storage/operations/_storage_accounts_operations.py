@@ -43,6 +43,7 @@ class StorageAccountsOperations(object):
 
     @distributed_trace
     def check_name_availability(self, account_name, cls=None, **kwargs):
+
         # type: ("StorageAccountCheckNameAvailabilityParameters", Optional[Any], **Any) -> "CheckNameAvailabilityResult"
         """Checks that account name is valid and is not in use..
 
@@ -97,6 +98,7 @@ class StorageAccountsOperations(object):
 
     
     def _create_initial(self, resource_group_name, account_name, parameters, cls=None, **kwargs):
+
         # type: (str, str, "StorageAccountCreateParameters", Optional[Any], **Any) -> Union["StorageAccount", None]
         error_map = kwargs.pop('error_map', {})
 
@@ -143,7 +145,8 @@ class StorageAccountsOperations(object):
     _create_initial.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
     @distributed_trace
-    def begin_create(self, resource_group_name, account_name, parameters, cls=None, polling=True, **kwargs):
+    def create(self, resource_group_name, account_name, parameters, cls=None, polling=True, **kwargs):
+
         # type: (str, str, "StorageAccountCreateParameters", Optional[Any], Optional[bool], **Any) -> Union["StorageAccount", None]
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts cannot be updated with this API and should instead use the Update Storage Account API. If an account is already created and subsequent PUT request is issued with exact same set of properties, then HTTP 200 would be returned..
 
@@ -192,6 +195,7 @@ class StorageAccountsOperations(object):
 
     @distributed_trace
     def delete(self, resource_group_name, account_name, cls=None, **kwargs):
+
         # type: (str, str, Optional[Any], **Any) -> None
         """Deletes a storage account in Microsoft Azure..
 
@@ -242,6 +246,7 @@ class StorageAccountsOperations(object):
 
     @distributed_trace
     def get_properties(self, resource_group_name, account_name, cls=None, **kwargs):
+
         # type: (str, str, Optional[Any], **Any) -> "StorageAccount"
         """Returns the properties for the specified storage account including but not limited to name, account type, location, and account status. The ListKeys operation should be used to retrieve storage keys..
 
@@ -296,6 +301,7 @@ class StorageAccountsOperations(object):
 
     @distributed_trace
     def update(self, resource_group_name, account_name, parameters, cls=None, **kwargs):
+
         # type: (str, str, "StorageAccountUpdateParameters", Optional[Any], **Any) -> "StorageAccount"
         """Updates the account type or tags for a storage account. It can also be used to add a custom domain (note that custom domains cannot be added via the Create operation). Only one custom domain is supported per storage account. This API can only be used to update one of tags, accountType, or customDomain per call. To update multiple of these properties, call the API multiple times with one change per call. This call does not change the storage keys for the account. If you want to change storage account keys, use the RegenerateKey operation. The location and name of the storage account cannot be changed after creation..
 
@@ -356,6 +362,7 @@ class StorageAccountsOperations(object):
 
     @distributed_trace
     def list_keys(self, resource_group_name, account_name, cls=None, **kwargs):
+
         # type: (str, str, Optional[Any], **Any) -> "StorageAccountKeys"
         """Lists the access keys for the specified storage account..
 
@@ -410,6 +417,7 @@ class StorageAccountsOperations(object):
 
     @distributed_trace
     def list(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "StorageAccountListResult"
         """Lists all the storage accounts available under the subscription. Note that storage keys are not returned; use the ListKeys operation for this..
 
@@ -475,6 +483,7 @@ class StorageAccountsOperations(object):
 
     @distributed_trace
     def list_by_resource_group(self, resource_group_name, cls=None, **kwargs):
+
         # type: (str, Optional[Any], **Any) -> "StorageAccountListResult"
         """Lists all the storage accounts available under the given resource group. Note that storage keys are not returned; use the ListKeys operation for this..
 
@@ -543,6 +552,7 @@ class StorageAccountsOperations(object):
 
     @distributed_trace
     def regenerate_key(self, resource_group_name, account_name, key_name=None, cls=None, **kwargs):
+
         # type: (str, str, Optional[Union[str, "KeyName"]], Optional[Any], **Any) -> "StorageAccountKeys"
         """Regenerates the access keys for the specified storage account..
 

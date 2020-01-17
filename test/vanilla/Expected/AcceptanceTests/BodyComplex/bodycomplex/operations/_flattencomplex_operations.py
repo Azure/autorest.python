@@ -36,6 +36,7 @@ class FlattencomplexOperations(object):
 
     @distributed_trace
     def get_valid(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "MyBaseType"
         """MISSING·OPERATION-DESCRIPTION.
 

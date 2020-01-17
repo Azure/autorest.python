@@ -36,7 +36,8 @@ class ParameterGroupingOperations:
         self._config = config
 
     @distributed_trace_async
-    async def post_required(self, path: str, body: int, custom_header: Optional[str] = None, query: Optional[int] = None, cls=None, **kwargs) -> None:
+    async def post_required(self, path: str, body: int, custom_header: Optional[str] = None, query: Optional[int] = None, *, cls=None, **kwargs) -> None:
+
         """Post a bunch of required parameters grouped.
 
         FIXME: add operation.summary
@@ -94,7 +95,8 @@ class ParameterGroupingOperations:
     post_required.metadata = {'url': '/parameterGrouping/postRequired/{path}'}
 
     @distributed_trace_async
-    async def post_optional(self, custom_header: Optional[str] = None, query: Optional[int] = None, cls=None, **kwargs) -> None:
+    async def post_optional(self, custom_header: Optional[str] = None, query: Optional[int] = None, *, cls=None, **kwargs) -> None:
+
         """Post a bunch of optional parameters grouped.
 
         FIXME: add operation.summary
@@ -140,7 +142,8 @@ class ParameterGroupingOperations:
     post_optional.metadata = {'url': '/parameterGrouping/postOptional'}
 
     @distributed_trace_async
-    async def post_multi_param_groups(self, header_one: Optional[str] = None, query_one: Optional[int] = None, header_two: Optional[str] = None, query_two: Optional[int] = None, cls=None, **kwargs) -> None:
+    async def post_multi_param_groups(self, header_one: Optional[str] = None, query_one: Optional[int] = None, header_two: Optional[str] = None, query_two: Optional[int] = None, *, cls=None, **kwargs) -> None:
+
         """Post parameters from multiple different parameter groups.
 
         FIXME: add operation.summary
@@ -194,7 +197,8 @@ class ParameterGroupingOperations:
     post_multi_param_groups.metadata = {'url': '/parameterGrouping/postMultipleParameterGroups'}
 
     @distributed_trace_async
-    async def post_shared_parameter_group_object(self, header_one: Optional[str] = None, query_one: Optional[int] = None, cls=None, **kwargs) -> None:
+    async def post_shared_parameter_group_object(self, header_one: Optional[str] = None, query_one: Optional[int] = None, *, cls=None, **kwargs) -> None:
+
         """Post parameters with a shared parameter group object.
 
         FIXME: add operation.summary

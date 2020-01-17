@@ -38,6 +38,7 @@ class EnumOperations(object):
 
     @distributed_trace
     def get_not_expandable(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> Union[str, "Colors"]
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'..
 
@@ -81,6 +82,7 @@ class EnumOperations(object):
 
     @distributed_trace
     def put_not_expandable(self, string_body, cls=None, **kwargs):
+
         # type: (Union[str, "Colors"], Optional[Any], **Any) -> None
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
@@ -126,6 +128,7 @@ class EnumOperations(object):
 
     @distributed_trace
     def get_referenced(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> Union[str, "Colors"]
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'..
 
@@ -169,6 +172,7 @@ class EnumOperations(object):
 
     @distributed_trace
     def put_referenced(self, enum_string_body, cls=None, **kwargs):
+
         # type: (Union[str, "Colors"], Optional[Any], **Any) -> None
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
@@ -214,6 +218,7 @@ class EnumOperations(object):
 
     @distributed_trace
     def get_referenced_constant(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "RefColorConstant"
         """Get value 'green-color' from the constant..
 
@@ -257,6 +262,7 @@ class EnumOperations(object):
 
     @distributed_trace
     def put_referenced_constant(self, field1=None, cls=None, **kwargs):
+
         # type: (Optional[str], Optional[Any], **Any) -> None
         """Sends value 'green-color' from a constant.
 

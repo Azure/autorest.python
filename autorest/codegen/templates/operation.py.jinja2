@@ -11,6 +11,13 @@
     if operation.responses | selectattr('has_body') | first
     else " -> None"
 %}
+{% macro method_signature() %}
+{% if async_mode %}
+async def {{ operation.python_name }}(self{{ operation.parameters.async_method_signature }}, *, cls=None, **kwargs){{ async_return_type_annotation }}:
+{% else %}
+def {{ operation.python_name }}(self{{ operation.parameters.sync_method_signature }}, cls=None, **kwargs):
+{% endif %}
+{% endmacro %}
 {% macro return_docstring() %}
 {% if operation.responses | selectattr('has_body') | first %}
 :return: {{ operation.responses|map(attribute='schema')|map(attribute='name')|join(' or ') }} or the result of cls(response)
@@ -28,7 +35,7 @@
 {% else %}
 
 {% endif %}
-{{ keywords.def }} {{ operation.python_name }}(self{{ operation.parameters.async_method_signature if async_mode else operation.parameters.sync_method_signature }}, cls=None, **kwargs){{ async_return_type_annotation if async_mode else ""}}:
+{{ method_signature() }}
 {% if not async_mode %}
     {{ operation_typing_comment(operation) }}
 {% endif %}

@@ -36,7 +36,8 @@ class ImplicitOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_required_path(self, path_parameter: str, cls=None, **kwargs) -> None:
+    async def get_required_path(self, path_parameter: str, *, cls=None, **kwargs) -> None:
+
         """Test implicitly required path parameter.
 
         FIXME: add operation.summary
@@ -80,7 +81,8 @@ class ImplicitOperations:
     get_required_path.metadata = {'url': '/reqopt/implicit/required/path/{pathParameter}'}
 
     @distributed_trace_async
-    async def put_optional_query(self, query_parameter: Optional[str] = None, cls=None, **kwargs) -> None:
+    async def put_optional_query(self, query_parameter: Optional[str] = None, *, cls=None, **kwargs) -> None:
+
         """Test implicitly optional query parameter.
 
         FIXME: add operation.summary
@@ -122,7 +124,8 @@ class ImplicitOperations:
     put_optional_query.metadata = {'url': '/reqopt/implicit/optional/query'}
 
     @distributed_trace_async
-    async def put_optional_header(self, query_parameter: Optional[str] = None, cls=None, **kwargs) -> None:
+    async def put_optional_header(self, query_parameter: Optional[str] = None, *, cls=None, **kwargs) -> None:
+
         """Test implicitly optional header parameter.
 
         FIXME: add operation.summary
@@ -164,7 +167,8 @@ class ImplicitOperations:
     put_optional_header.metadata = {'url': '/reqopt/implicit/optional/header'}
 
     @distributed_trace_async
-    async def put_optional_body(self, body_parameter: Optional[str] = None, cls=None, **kwargs) -> None:
+    async def put_optional_body(self, body_parameter: Optional[str] = None, *, cls=None, **kwargs) -> None:
+
         """Test implicitly optional body parameter.
 
         FIXME: add operation.summary
@@ -211,7 +215,8 @@ class ImplicitOperations:
     put_optional_body.metadata = {'url': '/reqopt/implicit/optional/body'}
 
     @distributed_trace_async
-    async def get_required_global_path(self, cls=None, **kwargs) -> None:
+    async def get_required_global_path(self, *, cls=None, **kwargs) -> None:
+
         """Test implicitly required path parameter.
 
         FIXME: add operation.summary
@@ -253,7 +258,8 @@ class ImplicitOperations:
     get_required_global_path.metadata = {'url': '/reqopt/global/required/path/{required-global-path}'}
 
     @distributed_trace_async
-    async def get_required_global_query(self, cls=None, **kwargs) -> None:
+    async def get_required_global_query(self, *, cls=None, **kwargs) -> None:
+
         """Test implicitly required query parameter.
 
         FIXME: add operation.summary
@@ -292,7 +298,8 @@ class ImplicitOperations:
     get_required_global_query.metadata = {'url': '/reqopt/global/required/query'}
 
     @distributed_trace_async
-    async def get_optional_global_query(self, cls=None, **kwargs) -> None:
+    async def get_optional_global_query(self, *, cls=None, **kwargs) -> None:
+
         """Test implicitly optional query parameter.
 
         FIXME: add operation.summary

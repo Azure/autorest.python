@@ -39,6 +39,7 @@ class PrimitiveOperations(object):
 
     @distributed_trace
     def get_int(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "IntWrapper"
         """Get complex types with integer properties.
 
@@ -82,6 +83,7 @@ class PrimitiveOperations(object):
 
     @distributed_trace
     def put_int(self, complex_body, cls=None, **kwargs):
+
         # type: ("IntWrapper", Optional[Any], **Any) -> None
         """Put complex types with integer properties.
 
@@ -127,6 +129,7 @@ class PrimitiveOperations(object):
 
     @distributed_trace
     def get_long(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "LongWrapper"
         """Get complex types with long properties.
 
@@ -170,6 +173,7 @@ class PrimitiveOperations(object):
 
     @distributed_trace
     def put_long(self, complex_body, cls=None, **kwargs):
+
         # type: ("LongWrapper", Optional[Any], **Any) -> None
         """Put complex types with long properties.
 
@@ -215,6 +219,7 @@ class PrimitiveOperations(object):
 
     @distributed_trace
     def get_float(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "FloatWrapper"
         """Get complex types with float properties.
 
@@ -258,6 +263,7 @@ class PrimitiveOperations(object):
 
     @distributed_trace
     def put_float(self, complex_body, cls=None, **kwargs):
+
         # type: ("FloatWrapper", Optional[Any], **Any) -> None
         """Put complex types with float properties.
 
@@ -303,6 +309,7 @@ class PrimitiveOperations(object):
 
     @distributed_trace
     def get_double(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "DoubleWrapper"
         """Get complex types with double properties.
 
@@ -346,6 +353,7 @@ class PrimitiveOperations(object):
 
     @distributed_trace
     def put_double(self, complex_body, cls=None, **kwargs):
+
         # type: ("DoubleWrapper", Optional[Any], **Any) -> None
         """Put complex types with double properties.
 
@@ -391,6 +399,7 @@ class PrimitiveOperations(object):
 
     @distributed_trace
     def get_bool(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "BooleanWrapper"
         """Get complex types with bool properties.
 
@@ -434,6 +443,7 @@ class PrimitiveOperations(object):
 
     @distributed_trace
     def put_bool(self, complex_body, cls=None, **kwargs):
+
         # type: ("BooleanWrapper", Optional[Any], **Any) -> None
         """Put complex types with bool properties.
 
@@ -479,6 +489,7 @@ class PrimitiveOperations(object):
 
     @distributed_trace
     def get_string(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "StringWrapper"
         """Get complex types with string properties.
 
@@ -522,6 +533,7 @@ class PrimitiveOperations(object):
 
     @distributed_trace
     def put_string(self, complex_body, cls=None, **kwargs):
+
         # type: ("StringWrapper", Optional[Any], **Any) -> None
         """Put complex types with string properties.
 
@@ -567,6 +579,7 @@ class PrimitiveOperations(object):
 
     @distributed_trace
     def get_date(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "DateWrapper"
         """Get complex types with date properties.
 
@@ -610,6 +623,7 @@ class PrimitiveOperations(object):
 
     @distributed_trace
     def put_date(self, complex_body, cls=None, **kwargs):
+
         # type: ("DateWrapper", Optional[Any], **Any) -> None
         """Put complex types with date properties.
 
@@ -655,6 +669,7 @@ class PrimitiveOperations(object):
 
     @distributed_trace
     def get_date_time(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "DatetimeWrapper"
         """Get complex types with datetime properties.
 
@@ -698,6 +713,7 @@ class PrimitiveOperations(object):
 
     @distributed_trace
     def put_date_time(self, complex_body, cls=None, **kwargs):
+
         # type: ("DatetimeWrapper", Optional[Any], **Any) -> None
         """Put complex types with datetime properties.
 
@@ -743,6 +759,7 @@ class PrimitiveOperations(object):
 
     @distributed_trace
     def get_date_time_rfc1123(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "Datetimerfc1123Wrapper"
         """Get complex types with datetimeRfc1123 properties.
 
@@ -786,6 +803,7 @@ class PrimitiveOperations(object):
 
     @distributed_trace
     def put_date_time_rfc1123(self, complex_body, cls=None, **kwargs):
+
         # type: ("Datetimerfc1123Wrapper", Optional[Any], **Any) -> None
         """Put complex types with datetimeRfc1123 properties.
 
@@ -831,6 +849,7 @@ class PrimitiveOperations(object):
 
     @distributed_trace
     def get_duration(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "DurationWrapper"
         """Get complex types with duration properties.
 
@@ -874,6 +893,7 @@ class PrimitiveOperations(object):
 
     @distributed_trace
     def put_duration(self, field=None, cls=None, **kwargs):
+
         # type: (Optional[datetime.timedelta], Optional[Any], **Any) -> None
         """Put complex types with duration properties.
 
@@ -920,6 +940,7 @@ class PrimitiveOperations(object):
 
     @distributed_trace
     def get_byte(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> "ByteWrapper"
         """Get complex types with byte properties.
 
@@ -963,6 +984,7 @@ class PrimitiveOperations(object):
 
     @distributed_trace
     def put_byte(self, field=None, cls=None, **kwargs):
+
         # type: (Optional[bytearray], Optional[Any], **Any) -> None
         """Put complex types with byte properties.
 

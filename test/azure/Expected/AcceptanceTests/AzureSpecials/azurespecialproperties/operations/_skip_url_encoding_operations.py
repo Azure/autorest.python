@@ -38,6 +38,7 @@ class SkipUrlEncodingOperations(object):
 
     @distributed_trace
     def get_method_path_valid(self, unencoded_path_param, cls=None, **kwargs):
+
         # type: (str, Optional[Any], **Any) -> None
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
@@ -84,6 +85,7 @@ class SkipUrlEncodingOperations(object):
 
     @distributed_trace
     def get_path_path_valid(self, unencoded_path_param, cls=None, **kwargs):
+
         # type: (str, Optional[Any], **Any) -> None
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
@@ -130,6 +132,7 @@ class SkipUrlEncodingOperations(object):
 
     @distributed_trace
     def get_swagger_path_valid(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
@@ -175,6 +178,7 @@ class SkipUrlEncodingOperations(object):
 
     @distributed_trace
     def get_method_query_valid(self, q1, cls=None, **kwargs):
+
         # type: (str, Optional[Any], **Any) -> None
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
@@ -218,6 +222,7 @@ class SkipUrlEncodingOperations(object):
 
     @distributed_trace
     def get_method_query_null(self, q1=None, cls=None, **kwargs):
+
         # type: (Optional[str], Optional[Any], **Any) -> None
         """Get method with unencoded query parameter with value null.
 
@@ -262,6 +267,7 @@ class SkipUrlEncodingOperations(object):
 
     @distributed_trace
     def get_path_query_valid(self, q1, cls=None, **kwargs):
+
         # type: (str, Optional[Any], **Any) -> None
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
@@ -305,6 +311,7 @@ class SkipUrlEncodingOperations(object):
 
     @distributed_trace
     def get_swagger_query_valid(self, cls=None, **kwargs):
+
         # type: (Optional[Any], **Any) -> None
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
