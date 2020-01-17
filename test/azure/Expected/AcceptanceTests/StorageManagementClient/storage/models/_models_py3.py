@@ -13,7 +13,7 @@ from msrest.serialization import Model
 
 
 class Bar(Model):
-    """The URIs that are used to perform a retrieval of a public blob, queue or table object.
+    """The URIs that are used to perform a retrieval of a public blob, queue or table object..
 
     :param recursive_point: The URIs that are used to perform a retrieval of a
      public blob, queue or table object.
@@ -30,7 +30,7 @@ class Bar(Model):
 
 
 class CheckNameAvailabilityResult(Model):
-    """The CheckNameAvailability operation response.
+    """The CheckNameAvailability operation response..
 
     :param name_available: Gets a boolean value that indicates whether the name is
      available for you to use. If true, the name is available. If false, the name has
@@ -59,7 +59,7 @@ class CheckNameAvailabilityResult(Model):
 
 
 class CustomDomain(Model):
-    """The custom domain assigned to this storage account. This can be set via Update.
+    """The custom domain assigned to this storage account. This can be set via Update..
 
     :param name: Gets or sets the custom domain name. Name is the CNAME source.
     :type name: str
@@ -80,7 +80,7 @@ class CustomDomain(Model):
 
 
 class Endpoints(Model):
-    """The URIs that are used to perform a retrieval of a public blob, queue or table object.
+    """The URIs that are used to perform a retrieval of a public blob, queue or table object..
 
     :param blob: Gets the blob endpoint.
     :type blob: str
@@ -114,7 +114,7 @@ class Endpoints(Model):
 
 
 class Foo(Model):
-    """The URIs that are used to perform a retrieval of a public blob, queue or table object.
+    """The URIs that are used to perform a retrieval of a public blob, queue or table object..
 
     :param bar_point: The URIs that are used to perform a retrieval of a public
      blob, queue or table object.
@@ -174,7 +174,7 @@ class Resource(Model):
 
 
 class StorageAccount(Resource):
-    """The storage account.
+    """The storage account..
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -299,7 +299,7 @@ class StorageAccountCheckNameAvailabilityParameters(Model):
 
 
 class StorageAccountCreateParameters(Resource):
-    """The parameters to provide for the account.
+    """The parameters to provide for the account..
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -342,7 +342,7 @@ class StorageAccountCreateParameters(Resource):
 
 
 class StorageAccountKeys(Model):
-    """The access keys for the storage account.
+    """The access keys for the storage account..
 
     :param key1: Gets the value of key 1.
     :type key1: str
@@ -362,7 +362,7 @@ class StorageAccountKeys(Model):
 
 
 class StorageAccountListResult(Model):
-    """The list storage accounts operation response.
+    """The list storage accounts operation response..
 
     :param value: Gets the list of storage accounts and their properties.
     :type value: list[~storage.models.StorageAccount]
@@ -511,7 +511,7 @@ class StorageAccountRegenerateKeyParameters(Model):
 
 
 class StorageAccountUpdateParameters(Resource):
-    """The parameters to update on the account.
+    """The parameters to update on the account..
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -575,7 +575,7 @@ class SubResource(Model):
 
 
 class Usage(Model):
-    """Describes Storage Resource Usage.
+    """Describes Storage Resource Usage..
 
     :param unit: Gets the unit of measurement. Possible values include: 'Count',
      'Bytes', 'Seconds', 'Percent', 'CountsPerSecond', 'BytesPerSecond'.
@@ -606,7 +606,7 @@ class Usage(Model):
 
 
 class UsageListResult(Model):
-    """The List Usages operation response.
+    """The List Usages operation response..
 
     :param value: Gets or sets the list Storage Resource Usages.
     :type value: list[~storage.models.Usage]
@@ -622,7 +622,7 @@ class UsageListResult(Model):
 
 
 class UsageName(Model):
-    """The Usage Names.
+    """The Usage Names..
 
     :param value: Gets a string describing the resource name.
     :type value: str

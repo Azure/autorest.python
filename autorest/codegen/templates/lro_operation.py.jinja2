@@ -22,7 +22,7 @@ response_headers = {
 {{ trace_decorator }}
 {% endif %}
 {{ keywords.def }} {{ operation_name }}(self{{ operation.parameters.method_signature }}, cls=None, polling=True, **kwargs):
-    """{{operation.description.strip() }}.
+    """{{operation.description + ("." if operation.description else "")}}
 
     {{ "FIXME: add operation.summary\n" }}
 

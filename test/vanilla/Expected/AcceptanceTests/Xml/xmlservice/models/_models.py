@@ -11,7 +11,7 @@ from msrest.serialization import Model
 
 
 class AccessPolicy(Model):
-    """An Access policy
+    """An Access policy.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -43,7 +43,7 @@ class AccessPolicy(Model):
 
 
 class AppleBarrel(Model):
-    """A barrel of apples.
+    """A barrel of apples..
 
     :param good_apples:
     :type good_apples: list[str]
@@ -63,7 +63,7 @@ class AppleBarrel(Model):
 
 
 class Banana(Model):
-    """A banana.
+    """A banana..
 
     :param name:
     :type name: str
@@ -87,7 +87,7 @@ class Banana(Model):
 
 
 class Blob(Model):
-    """An Azure Storage blob
+    """An Azure Storage blob.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -151,7 +151,7 @@ class BlobPrefix(Model):
 
 
 class BlobProperties(Model):
-    """Properties of a blob
+    """Properties of a blob.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -307,7 +307,7 @@ class Blobs(Model):
 
 
 class ComplexTypeNoMeta(Model):
-    """I am a complex type with no XML node
+    """I am a complex type with no XML node.
 
     :param id: The id of the res.
     :type id: str
@@ -323,7 +323,7 @@ class ComplexTypeNoMeta(Model):
 
 
 class ComplexTypeWithMeta(Model):
-    """I am a complex type with XML node
+    """I am a complex type with XML node.
 
     :param id: The id of the res.
     :type id: str
@@ -339,7 +339,7 @@ class ComplexTypeWithMeta(Model):
 
 
 class Container(Model):
-    """An Azure Storage container
+    """An Azure Storage container.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -371,7 +371,7 @@ class Container(Model):
 
 
 class ContainerProperties(Model):
-    """Properties of a container
+    """Properties of a container.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -415,7 +415,7 @@ class ContainerProperties(Model):
 
 
 class CorsRule(Model):
-    """CORS is an HTTP feature that enables a web application running under one domain to access resources in another domain. Web browsers implement a security restriction known as same-origin policy that prevents a web page from calling APIs in a different domain; CORS provides a secure way to allow one domain (the origin domain) to call APIs in another domain
+    """CORS is an HTTP feature that enables a web application running under one domain to access resources in another domain. Web browsers implement a security restriction known as same-origin policy that prevents a web page from calling APIs in a different domain; CORS provides a secure way to allow one domain (the origin domain) to call APIs in another domain.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -544,7 +544,7 @@ class JSONOutput(Model):
 
 
 class ListBlobsResponse(Model):
-    """An enumeration of blobs
+    """An enumeration of blobs.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -601,7 +601,7 @@ class ListBlobsResponse(Model):
 
 
 class ListContainersResponse(Model):
-    """An enumeration of containers
+    """An enumeration of containers.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -646,7 +646,7 @@ class ListContainersResponse(Model):
 
 
 class Logging(Model):
-    """Azure Analytics Logging settings.
+    """Azure Analytics Logging settings..
 
     All required parameters must be populated in order to send to Azure.
 
@@ -724,7 +724,7 @@ class Metrics(Model):
 
 
 class RetentionPolicy(Model):
-    """the retention policy
+    """the retention policy.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -753,7 +753,7 @@ class RetentionPolicy(Model):
 
 
 class RootWithRefAndMeta(Model):
-    """I am root, and I ref a model WITH meta
+    """I am root, and I ref a model WITH meta.
 
     :param ref_to_model: I am a complex type with XML node.
     :type ref_to_model: ~xmlservice.models.ComplexTypeWithMeta
@@ -773,7 +773,7 @@ class RootWithRefAndMeta(Model):
 
 
 class RootWithRefAndNoMeta(Model):
-    """I am root, and I ref a model with no meta
+    """I am root, and I ref a model with no meta.
 
     :param ref_to_model: I am a complex type with no XML node.
     :type ref_to_model: ~xmlservice.models.ComplexTypeNoMeta
@@ -793,7 +793,7 @@ class RootWithRefAndNoMeta(Model):
 
 
 class SignedIdentifier(Model):
-    """signed identifier
+    """signed identifier.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -820,7 +820,7 @@ class SignedIdentifier(Model):
 
 
 class Slide(Model):
-    """A slide in a slideshow
+    """A slide in a slideshow.
 
     :param type:
     :type type: str
@@ -844,7 +844,7 @@ class Slide(Model):
 
 
 class Slideshow(Model):
-    """Data about a slideshow
+    """Data about a slideshow.
 
     :param title:
     :type title: str
@@ -872,7 +872,7 @@ class Slideshow(Model):
 
 
 class StorageServiceProperties(Model):
-    """Storage Service Properties.
+    """Storage Service Properties..
 
     :param logging: Azure Analytics Logging settings.
     :type logging: ~xmlservice.models.Logging

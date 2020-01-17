@@ -11,7 +11,7 @@ from msrest.serialization import Model
 
 
 class ChildProduct(Model):
-    """The product documentation.
+    """The product documentation..
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -40,7 +40,7 @@ class ChildProduct(Model):
 
 
 class ConstantProduct(Model):
-    """The product documentation.
+    """The product documentation..
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -120,7 +120,7 @@ class Error(Model):
 
 
 class Product(Model):
-    """The product documentation.
+    """The product documentation..
 
     Variables are only populated by the server, and will be ignored when sending a request.
 

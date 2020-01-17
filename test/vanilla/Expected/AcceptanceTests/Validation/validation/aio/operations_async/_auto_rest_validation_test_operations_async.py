@@ -131,7 +131,7 @@ class AutoRestValidationTestOperationsMixin:
     validation_of_body.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
     @distributed_trace_async
     async def get_with_constant_in_path(self, cls=None, **kwargs):
-        """MISSING·OPERATION-DESCRIPTION.
+        """
 
         FIXME: add operation.summary
 
@@ -173,7 +173,7 @@ class AutoRestValidationTestOperationsMixin:
     get_with_constant_in_path.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}
     @distributed_trace_async
     async def post_with_constant_in_body(self, body=None, cls=None, **kwargs):
-        """MISSING·OPERATION-DESCRIPTION.
+        """
 
         FIXME: add operation.summary
 

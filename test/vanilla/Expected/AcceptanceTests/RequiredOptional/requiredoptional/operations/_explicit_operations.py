@@ -224,7 +224,7 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-        :param header_parameter: MISSING·PARAMETER-DESCRIPTION
+        :param header_parameter: 
         :type header_parameter: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -265,7 +265,7 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-        :param header_parameter: MISSING·PARAMETER-DESCRIPTION
+        :param header_parameter: 
         :type header_parameter: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -491,7 +491,7 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-        :param header_parameter: MISSING·PARAMETER-DESCRIPTION
+        :param header_parameter: 
         :type header_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -532,7 +532,7 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-        :param body_parameter: MISSING·PARAMETER-DESCRIPTION
+        :param body_parameter: 
         :type body_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -942,7 +942,7 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-        :param header_parameter: MISSING·PARAMETER-DESCRIPTION
+        :param header_parameter: 
         :type header_parameter: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -983,7 +983,7 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-        :param header_parameter: MISSING·PARAMETER-DESCRIPTION
+        :param header_parameter: 
         :type header_parameter: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

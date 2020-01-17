@@ -95,6 +95,14 @@ class NameConverter:
         schema_python_name = NameConverter._to_valid_python_name(schema_name, **kwargs)
         schema['language']['python']['name'] = schema_python_name
 
+        schema_description = schema['language']['default']['description'].strip()
+        if schema_description == 'MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA':
+            # what is being used for empty property descriptions
+            schema_description = schema['language']['python']['name']
+        elif 'MISSING' in schema_description:
+            schema_description = ""
+        schema['language']['python']['description'] = schema_description
+
     @staticmethod
     def _convert_language_default_pascal_case(schema):
         if schema['language'].get('python'):
@@ -105,6 +113,12 @@ class NameConverter:
 
         schema_python_name = NameConverter._to_pascal_case(schema_name)
         schema['language']['python']['name'] = schema_python_name
+
+        schema_description = schema['language']['default']['description'].strip()
+        if schema_description == 'MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA':
+            # what is being used for empty ObjectSchema descriptions
+            schema_description = schema['language']['python']['name']
+        schema['language']['python']['description'] = schema_description + "."
 
     @staticmethod
     def _to_pascal_case(name):

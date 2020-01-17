@@ -36,7 +36,7 @@ class PetOperations:
 
     @distributed_trace_async
     async def get_by_pet_id(self, pet_id, cls=None, **kwargs):
-        """MISSING·OPERATION-DESCRIPTION.
+        """
 
         FIXME: add operation.summary
 
@@ -84,7 +84,7 @@ class PetOperations:
 
     @distributed_trace_async
     async def add_pet(self, pet_param=None, cls=None, **kwargs):
-        """MISSING·OPERATION-DESCRIPTION.
+        """
 
         FIXME: add operation.summary
 
