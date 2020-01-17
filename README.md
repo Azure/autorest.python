@@ -28,7 +28,7 @@ use-extension:
 
 modelerfour:
   flatten-models: true
-  flatten-payloads: false
+  flatten-payloads: true
 
 pipeline:
 

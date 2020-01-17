@@ -77,19 +77,20 @@ class InheritanceOperations(object):
     get_valid.metadata = {'url': '/complex/inheritance/valid'}
 
     @distributed_trace
-    def put_valid(self, complex_body, cls=None, **kwargs):
+    def put_valid(self, breed=None, cls=None, **kwargs):
         """Put complex types that extend others.
 
         FIXME: add operation.summary
 
-        :param complex_body: Please put a siamese with id=2, name="Siameee", color=green, breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and the 2nd one named "Tomato" with id=-1 and food="french fries".
-        :type complex_body: ~bodycomplex.models.Siamese
+        :param breed: MISSING·SCHEMA-DESCRIPTION-STRING
+        :type breed: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+        complex_body = models.Siamese(breed=breed)
 
         # Construct URL
         url = self.put_valid.metadata['url']

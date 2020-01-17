@@ -205,43 +205,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                 if operation not in next_operations
             ]
 
-    def enable_parameter_flattening(self) -> None:
-        for op_group in self.operation_groups:
-            for operation in op_group.operations:
-                self._enable_parameter_flattening_for_operation(operation)
-
-    def _enable_parameter_flattening_for_operation(self, operation: Operation) -> None:
-        if not (operation.parameters.has_body and isinstance(operation.parameters.body.schema, ObjectSchema)):
-            return
-
-        body_schema = cast(ObjectSchema, operation.parameters.body.schema)
-        properties = [prop for prop in body_schema.properties if not (prop.constant or prop.readonly)]
-
-        if len(properties) > self.options.get("payload-flattening-threshold", 0):
-            return
-
-        # Create fake parameters, so we can use the template as usual
-        fake_parameters = []
-        for prop in properties:
-            fake_parameters.append(
-                Parameter(
-                    yaml_data={},
-                    schema=prop.schema,
-                    rest_api_name=prop.original_swagger_name,
-                    serialized_name=prop.name,
-                    description=prop.description,
-                    implementation="Method",
-                    is_required=prop.required,
-                    location=ParameterLocation.Flattened,
-                    skip_url_encoding=False, # Doesn't matter here
-                    constraints=[], # FIXME inject validation map
-                )
-            )
-
-        # Insert after the body parameter these fake parameters
-        body_parameter_index = operation.parameters.index(operation.parameters.body)
-        operation.parameters[body_parameter_index:body_parameter_index] = fake_parameters
-
     def _add_properties_from_inheritance(self) -> None:
         """Adds properties from base classes to schemas with parents.
 

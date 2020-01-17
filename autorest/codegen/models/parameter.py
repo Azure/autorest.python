@@ -47,6 +47,8 @@ class Parameter(BaseModel):
         skip_url_encoding: bool,
         constraints: List[Any],
         style: Optional[ParameterStyle] = None,
+        *,
+        hidden: bool = False,
     ):
         super().__init__(yaml_data)
         self.schema = schema
@@ -59,6 +61,7 @@ class Parameter(BaseModel):
         self.skip_url_encoding = skip_url_encoding
         self.constraints = constraints
         self.style = style
+        self.hidden = hidden
 
     @property
     def implementation(self) -> str:
@@ -83,7 +86,8 @@ class Parameter(BaseModel):
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any]) -> "Parameter":
 
-        http_protocol = yaml_data["protocol"]["http"]
+        # Assumes that if there is no protocol, it's flattening parameter
+        http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Flattened})
         return cls(
             yaml_data=yaml_data,
             schema=yaml_data.get("schema", None),  # FIXME replace by operation model
@@ -93,10 +97,11 @@ class Parameter(BaseModel):
             ),
             serialized_name=yaml_data['language']['python']['name'],
             description=yaml_data["language"]["python"]["description"],
-            implementation=yaml_data["implementation"],
+            implementation=yaml_data.get("implementation", "Method"),
             is_required=yaml_data.get("required", False),
             location=ParameterLocation(http_protocol["in"]),
             skip_url_encoding=yaml_data.get("extensions", {}).get("x-ms-skip-url-encoding", False),
             constraints=[], # FIXME constraints
             style=ParameterStyle(http_protocol["style"]) if "style" in http_protocol else None,
+            hidden=yaml_data.get("hidden", False),
         )

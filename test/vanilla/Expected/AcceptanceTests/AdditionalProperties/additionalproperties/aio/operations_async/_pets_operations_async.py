@@ -83,19 +83,20 @@ class PetsOperations:
     create_ap_true.metadata = {'url': '/additionalProperties/true'}
 
     @distributed_trace_async
-    async def create_cat_ap_true(self, create_parameters, cls=None, **kwargs):
+    async def create_cat_ap_true(self, friendly=None, cls=None, **kwargs):
         """Create a CatAPTrue which contains more properties than what is defined..
 
         FIXME: add operation.summary
 
-        :param create_parameters: 
-        :type create_parameters: ~additionalproperties.models.CatAPTrue
+        :param friendly: MISSING·SCHEMA-DESCRIPTION-BOOLEAN
+        :type friendly: bool
         :param callable cls: A custom type or function that will be passed the direct response
         :return: CatAPTrue or the result of cls(response)
         :rtype: ~additionalproperties.models.CatAPTrue
         :raises: ~additionalproperties.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+        create_parameters = models.CatAPTrue(friendly=friendly)
 
         # Construct URL
         url = self.create_cat_ap_true.metadata['url']
