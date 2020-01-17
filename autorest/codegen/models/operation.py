@@ -192,6 +192,12 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         for parameter in self.parameters:
             file_import.merge(parameter.imports())
 
+        for response in [r for r in self.responses if r.has_body]:
+            file_import.merge(response.schema.imports())
+
+        if len([r for r in self.responses if r.has_body]) > 1:
+            file_import.add_from_import("typing", "Union", ImportType.STDLIB)
+
         # If ARM, I always generated a client request id
         if code_model.options['azure_arm']:
             file_import.add_import("uuid", ImportType.STDLIB)

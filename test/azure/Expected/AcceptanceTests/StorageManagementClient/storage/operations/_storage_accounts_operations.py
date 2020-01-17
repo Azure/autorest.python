@@ -145,7 +145,7 @@ class StorageAccountsOperations(object):
     _create_initial.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
     @distributed_trace
-    def create(self, resource_group_name, account_name, parameters, cls=None, polling=True, **kwargs):
+    def begin_create(self, resource_group_name, account_name, parameters, cls=None, polling=True, **kwargs):
 
         # type: (str, str, "StorageAccountCreateParameters", Optional[Any], Optional[bool], **Any) -> Union["StorageAccount", None]
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts cannot be updated with this API and should instead use the Update Storage Account API. If an account is already created and subsequent PUT request is issued with exact same set of properties, then HTTP 200 would be returned..

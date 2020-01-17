@@ -36,7 +36,7 @@ class InheritanceOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_valid(self, *, cls=None, **kwargs) -> "Siamese":
+    async def get_valid(self, cls=None, **kwargs) -> "Siamese":
 
         """Get complex types that extend others.
 

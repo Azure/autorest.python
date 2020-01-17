@@ -13,6 +13,7 @@ from azure.core.exceptions import map_error
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMError
+from msrest.serialization import Model
 
 from ... import models
 
@@ -39,7 +40,7 @@ class PagingOperations:
         self._config = config
 
     @distributed_trace
-    async def get_pages_partial_url(self, account_name: str, *, cls=None, **kwargs) -> "ProductResult":
+    def get_pages_partial_url(self, account_name: str, *, cls=None, **kwargs) -> "ProductResult":
 
         """A paging operation that combines custom url, paging and partial URL and expect to concat after host.
 
@@ -112,7 +113,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    async def get_pages_partial_url_operation(self, account_name: str, *, cls=None, **kwargs) -> "ProductResult":
+    def get_pages_partial_url_operation(self, account_name: str, *, cls=None, **kwargs) -> "ProductResult":
 
         """A paging operation that combines custom url, paging and partial URL with next operation.
 

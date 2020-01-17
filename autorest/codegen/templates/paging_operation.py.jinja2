@@ -12,7 +12,7 @@
 %}
 {% macro method_signature() %}
 {% if async_mode %}
-async def {{ operation.python_name }}(self{{ operation.parameters.async_method_signature }}, *, cls=None, **kwargs){{ async_return_type_annotation }}:
+def {{ operation.python_name }}(self{{ operation.parameters.async_method_signature }}, {{ ("*, " if operation.parameters.method | first else "") }}cls=None, **kwargs){{ async_return_type_annotation }}:
 {% else %}
 def {{ operation.python_name }}(self{{ operation.parameters.sync_method_signature }}, cls=None, **kwargs):
 {% endif %}

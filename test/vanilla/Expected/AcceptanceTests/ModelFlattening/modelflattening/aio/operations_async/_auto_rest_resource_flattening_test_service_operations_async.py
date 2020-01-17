@@ -64,7 +64,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
     put_array.metadata = {'url': '/model-flatten/array'}
     @distributed_trace_async
-    async def get_array(self, *, cls=None, **kwargs) -> List["FlattenedProduct"]:
+    async def get_array(self, cls=None, **kwargs) -> List["FlattenedProduct"]:
 
         """Get External Resource as an Array.
 
@@ -153,7 +153,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
     put_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}
     @distributed_trace_async
-    async def get_wrapped_array(self, *, cls=None, **kwargs) -> List["ProductWrapper"]:
+    async def get_wrapped_array(self, cls=None, **kwargs) -> List["ProductWrapper"]:
 
         """No need to have a route in Express server for this operation. Used to verify the type flattened is not removed if it's referenced in an array.
 
@@ -242,7 +242,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
     put_dictionary.metadata = {'url': '/model-flatten/dictionary'}
     @distributed_trace_async
-    async def get_dictionary(self, *, cls=None, **kwargs) -> Dict[str, "FlattenedProduct"]:
+    async def get_dictionary(self, cls=None, **kwargs) -> Dict[str, "FlattenedProduct"]:
 
         """Get External Resource as a Dictionary.
 
@@ -331,7 +331,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
     put_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}
     @distributed_trace_async
-    async def get_resource_collection(self, *, cls=None, **kwargs) -> "ResourceCollection":
+    async def get_resource_collection(self, cls=None, **kwargs) -> "ResourceCollection":
 
         """Get External Resource as a ResourceCollection.
 

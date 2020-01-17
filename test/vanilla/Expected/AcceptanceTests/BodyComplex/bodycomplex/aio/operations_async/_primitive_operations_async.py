@@ -38,7 +38,7 @@ class PrimitiveOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_int(self, *, cls=None, **kwargs) -> "IntWrapper":
+    async def get_int(self, cls=None, **kwargs) -> "IntWrapper":
 
         """Get complex types with integer properties.
 
@@ -126,7 +126,7 @@ class PrimitiveOperations:
     put_int.metadata = {'url': '/complex/primitive/integer'}
 
     @distributed_trace_async
-    async def get_long(self, *, cls=None, **kwargs) -> "LongWrapper":
+    async def get_long(self, cls=None, **kwargs) -> "LongWrapper":
 
         """Get complex types with long properties.
 
@@ -214,7 +214,7 @@ class PrimitiveOperations:
     put_long.metadata = {'url': '/complex/primitive/long'}
 
     @distributed_trace_async
-    async def get_float(self, *, cls=None, **kwargs) -> "FloatWrapper":
+    async def get_float(self, cls=None, **kwargs) -> "FloatWrapper":
 
         """Get complex types with float properties.
 
@@ -302,7 +302,7 @@ class PrimitiveOperations:
     put_float.metadata = {'url': '/complex/primitive/float'}
 
     @distributed_trace_async
-    async def get_double(self, *, cls=None, **kwargs) -> "DoubleWrapper":
+    async def get_double(self, cls=None, **kwargs) -> "DoubleWrapper":
 
         """Get complex types with double properties.
 
@@ -390,7 +390,7 @@ class PrimitiveOperations:
     put_double.metadata = {'url': '/complex/primitive/double'}
 
     @distributed_trace_async
-    async def get_bool(self, *, cls=None, **kwargs) -> "BooleanWrapper":
+    async def get_bool(self, cls=None, **kwargs) -> "BooleanWrapper":
 
         """Get complex types with bool properties.
 
@@ -478,7 +478,7 @@ class PrimitiveOperations:
     put_bool.metadata = {'url': '/complex/primitive/bool'}
 
     @distributed_trace_async
-    async def get_string(self, *, cls=None, **kwargs) -> "StringWrapper":
+    async def get_string(self, cls=None, **kwargs) -> "StringWrapper":
 
         """Get complex types with string properties.
 
@@ -566,7 +566,7 @@ class PrimitiveOperations:
     put_string.metadata = {'url': '/complex/primitive/string'}
 
     @distributed_trace_async
-    async def get_date(self, *, cls=None, **kwargs) -> "DateWrapper":
+    async def get_date(self, cls=None, **kwargs) -> "DateWrapper":
 
         """Get complex types with date properties.
 
@@ -654,7 +654,7 @@ class PrimitiveOperations:
     put_date.metadata = {'url': '/complex/primitive/date'}
 
     @distributed_trace_async
-    async def get_date_time(self, *, cls=None, **kwargs) -> "DatetimeWrapper":
+    async def get_date_time(self, cls=None, **kwargs) -> "DatetimeWrapper":
 
         """Get complex types with datetime properties.
 
@@ -742,7 +742,7 @@ class PrimitiveOperations:
     put_date_time.metadata = {'url': '/complex/primitive/datetime'}
 
     @distributed_trace_async
-    async def get_date_time_rfc1123(self, *, cls=None, **kwargs) -> "Datetimerfc1123Wrapper":
+    async def get_date_time_rfc1123(self, cls=None, **kwargs) -> "Datetimerfc1123Wrapper":
 
         """Get complex types with datetimeRfc1123 properties.
 
@@ -830,7 +830,7 @@ class PrimitiveOperations:
     put_date_time_rfc1123.metadata = {'url': '/complex/primitive/datetimerfc1123'}
 
     @distributed_trace_async
-    async def get_duration(self, *, cls=None, **kwargs) -> "DurationWrapper":
+    async def get_duration(self, cls=None, **kwargs) -> "DurationWrapper":
 
         """Get complex types with duration properties.
 
@@ -919,7 +919,7 @@ class PrimitiveOperations:
     put_duration.metadata = {'url': '/complex/primitive/duration'}
 
     @distributed_trace_async
-    async def get_byte(self, *, cls=None, **kwargs) -> "ByteWrapper":
+    async def get_byte(self, cls=None, **kwargs) -> "ByteWrapper":
 
         """Get complex types with byte properties.
 

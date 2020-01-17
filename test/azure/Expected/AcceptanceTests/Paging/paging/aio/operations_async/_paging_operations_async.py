@@ -16,6 +16,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMError
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
+from msrest.serialization import Model
 
 from ... import models
 
@@ -42,7 +43,7 @@ class PagingOperations:
         self._config = config
 
     @distributed_trace
-    async def get_no_item_name_pages(self, *, cls=None, **kwargs) -> "ProductResultValue":
+    def get_no_item_name_pages(self, cls=None, **kwargs) -> "ProductResultValue":
 
         """A paging operation that must return result of the default 'value' node..
 
@@ -103,7 +104,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    async def get_null_next_link_name_pages(self, *, cls=None, **kwargs) -> "ProductResult":
+    def get_null_next_link_name_pages(self, cls=None, **kwargs) -> "ProductResult":
 
         """A paging operation that must ignore any kind of nextLink, and stop after page 1..
 
@@ -164,7 +165,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    async def get_single_pages(self, *, cls=None, **kwargs) -> "ProductResult":
+    def get_single_pages(self, cls=None, **kwargs) -> "ProductResult":
 
         """A paging operation that finishes on the first call without a nextlink.
 
@@ -225,7 +226,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    async def get_multiple_pages(self, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: Optional[int] = None, *, cls=None, **kwargs) -> "ProductResult":
+    def get_multiple_pages(self, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: Optional[int] = None, *, cls=None, **kwargs) -> "ProductResult":
 
         """A paging operation that includes a nextLink that has 10 pages.
 
@@ -298,7 +299,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    async def get_odata_multiple_pages(self, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: Optional[int] = None, *, cls=None, **kwargs) -> "OdataProductResult":
+    def get_odata_multiple_pages(self, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: Optional[int] = None, *, cls=None, **kwargs) -> "OdataProductResult":
 
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
@@ -371,7 +372,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    async def get_multiple_pages_with_offset(self, offset: int, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: Optional[int] = None, *, cls=None, **kwargs) -> "ProductResult":
+    def get_multiple_pages_with_offset(self, offset: int, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: Optional[int] = None, *, cls=None, **kwargs) -> "ProductResult":
 
         """A paging operation that includes a nextLink that has 10 pages.
 
@@ -450,7 +451,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    async def get_multiple_pages_retry_first(self, *, cls=None, **kwargs) -> "ProductResult":
+    def get_multiple_pages_retry_first(self, cls=None, **kwargs) -> "ProductResult":
 
         """A paging operation that fails on the first call with 500 and then retries and then get a response including a nextLink that has 10 pages.
 
@@ -511,7 +512,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    async def get_multiple_pages_retry_second(self, *, cls=None, **kwargs) -> "ProductResult":
+    def get_multiple_pages_retry_second(self, cls=None, **kwargs) -> "ProductResult":
 
         """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first with 500. The client should retry and finish all 10 pages eventually..
 
@@ -572,7 +573,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    async def get_single_pages_failure(self, *, cls=None, **kwargs) -> "ProductResult":
+    def get_single_pages_failure(self, cls=None, **kwargs) -> "ProductResult":
 
         """A paging operation that receives a 400 on the first call.
 
@@ -633,7 +634,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    async def get_multiple_pages_failure(self, *, cls=None, **kwargs) -> "ProductResult":
+    def get_multiple_pages_failure(self, cls=None, **kwargs) -> "ProductResult":
 
         """A paging operation that receives a 400 on the second call.
 
@@ -694,7 +695,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    async def get_multiple_pages_failure_uri(self, *, cls=None, **kwargs) -> "ProductResult":
+    def get_multiple_pages_failure_uri(self, cls=None, **kwargs) -> "ProductResult":
 
         """A paging operation that receives an invalid nextLink.
 
@@ -755,7 +756,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    async def get_multiple_pages_fragment_next_link(self, api_version: str, tenant: str, *, cls=None, **kwargs) -> "OdataProductResult":
+    def get_multiple_pages_fragment_next_link(self, api_version: str, tenant: str, *, cls=None, **kwargs) -> "OdataProductResult":
 
         """A paging operation that doesn't return a full URL, just a fragment.
 
@@ -830,7 +831,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    async def get_multiple_pages_fragment_with_grouping_next_link(self, api_version: str, tenant: str, *, cls=None, **kwargs) -> "OdataProductResult":
+    def get_multiple_pages_fragment_with_grouping_next_link(self, api_version: str, tenant: str, *, cls=None, **kwargs) -> "OdataProductResult":
 
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
 

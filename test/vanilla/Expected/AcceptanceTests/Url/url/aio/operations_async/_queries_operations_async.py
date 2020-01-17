@@ -37,7 +37,7 @@ class QueriesOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_boolean_true(self, *, cls=None, **kwargs) -> None:
+    async def get_boolean_true(self, cls=None, **kwargs) -> None:
 
         """Get true Boolean value on path.
 
@@ -78,7 +78,7 @@ class QueriesOperations:
     get_boolean_true.metadata = {'url': '/queries/bool/true'}
 
     @distributed_trace_async
-    async def get_boolean_false(self, *, cls=None, **kwargs) -> None:
+    async def get_boolean_false(self, cls=None, **kwargs) -> None:
 
         """Get false Boolean value on path.
 
@@ -162,7 +162,7 @@ class QueriesOperations:
     get_boolean_null.metadata = {'url': '/queries/bool/null'}
 
     @distributed_trace_async
-    async def get_int_one_million(self, *, cls=None, **kwargs) -> None:
+    async def get_int_one_million(self, cls=None, **kwargs) -> None:
 
         """Get '1000000' integer value.
 
@@ -203,7 +203,7 @@ class QueriesOperations:
     get_int_one_million.metadata = {'url': '/queries/int/1000000'}
 
     @distributed_trace_async
-    async def get_int_negative_one_million(self, *, cls=None, **kwargs) -> None:
+    async def get_int_negative_one_million(self, cls=None, **kwargs) -> None:
 
         """Get '-1000000' integer value.
 
@@ -287,7 +287,7 @@ class QueriesOperations:
     get_int_null.metadata = {'url': '/queries/int/null'}
 
     @distributed_trace_async
-    async def get_ten_billion(self, *, cls=None, **kwargs) -> None:
+    async def get_ten_billion(self, cls=None, **kwargs) -> None:
 
         """Get '10000000000' 64 bit integer value.
 
@@ -328,7 +328,7 @@ class QueriesOperations:
     get_ten_billion.metadata = {'url': '/queries/long/10000000000'}
 
     @distributed_trace_async
-    async def get_negative_ten_billion(self, *, cls=None, **kwargs) -> None:
+    async def get_negative_ten_billion(self, cls=None, **kwargs) -> None:
 
         """Get '-10000000000' 64 bit integer value.
 
@@ -412,7 +412,7 @@ class QueriesOperations:
     get_long_null.metadata = {'url': '/queries/long/null'}
 
     @distributed_trace_async
-    async def float_scientific_positive(self, *, cls=None, **kwargs) -> None:
+    async def float_scientific_positive(self, cls=None, **kwargs) -> None:
 
         """Get '1.034E+20' numeric value.
 
@@ -453,7 +453,7 @@ class QueriesOperations:
     float_scientific_positive.metadata = {'url': '/queries/float/1.034E+20'}
 
     @distributed_trace_async
-    async def float_scientific_negative(self, *, cls=None, **kwargs) -> None:
+    async def float_scientific_negative(self, cls=None, **kwargs) -> None:
 
         """Get '-1.034E-20' numeric value.
 
@@ -537,7 +537,7 @@ class QueriesOperations:
     float_null.metadata = {'url': '/queries/float/null'}
 
     @distributed_trace_async
-    async def double_decimal_positive(self, *, cls=None, **kwargs) -> None:
+    async def double_decimal_positive(self, cls=None, **kwargs) -> None:
 
         """Get '9999999.999' numeric value.
 
@@ -578,7 +578,7 @@ class QueriesOperations:
     double_decimal_positive.metadata = {'url': '/queries/double/9999999.999'}
 
     @distributed_trace_async
-    async def double_decimal_negative(self, *, cls=None, **kwargs) -> None:
+    async def double_decimal_negative(self, cls=None, **kwargs) -> None:
 
         """Get '-9999999.999' numeric value.
 
@@ -662,7 +662,7 @@ class QueriesOperations:
     double_null.metadata = {'url': '/queries/double/null'}
 
     @distributed_trace_async
-    async def string_unicode(self, *, cls=None, **kwargs) -> None:
+    async def string_unicode(self, cls=None, **kwargs) -> None:
 
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
@@ -703,7 +703,7 @@ class QueriesOperations:
     string_unicode.metadata = {'url': '/queries/string/unicode/'}
 
     @distributed_trace_async
-    async def string_url_encoded(self, *, cls=None, **kwargs) -> None:
+    async def string_url_encoded(self, cls=None, **kwargs) -> None:
 
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
@@ -744,7 +744,7 @@ class QueriesOperations:
     string_url_encoded.metadata = {'url': '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend'}
 
     @distributed_trace_async
-    async def string_empty(self, *, cls=None, **kwargs) -> None:
+    async def string_empty(self, cls=None, **kwargs) -> None:
 
         """Get ''.
 
@@ -957,7 +957,7 @@ class QueriesOperations:
     byte_multi_byte.metadata = {'url': '/queries/byte/multibyte'}
 
     @distributed_trace_async
-    async def byte_empty(self, *, cls=None, **kwargs) -> None:
+    async def byte_empty(self, cls=None, **kwargs) -> None:
 
         """Get '' as byte array.
 
@@ -1041,7 +1041,7 @@ class QueriesOperations:
     byte_null.metadata = {'url': '/queries/byte/null'}
 
     @distributed_trace_async
-    async def date_valid(self, *, cls=None, **kwargs) -> None:
+    async def date_valid(self, cls=None, **kwargs) -> None:
 
         """Get '2012-01-01' as date.
 
@@ -1125,7 +1125,7 @@ class QueriesOperations:
     date_null.metadata = {'url': '/queries/date/null'}
 
     @distributed_trace_async
-    async def date_time_valid(self, *, cls=None, **kwargs) -> None:
+    async def date_time_valid(self, cls=None, **kwargs) -> None:
 
         """Get '2012-01-01T01:01:01Z' as date-time.
 

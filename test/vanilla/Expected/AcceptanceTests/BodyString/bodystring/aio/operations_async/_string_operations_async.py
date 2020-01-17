@@ -36,7 +36,7 @@ class StringOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_null(self, *, cls=None, **kwargs) -> str:
+    async def get_null(self, cls=None, **kwargs) -> str:
 
         """Get null string value value.
 
@@ -79,7 +79,7 @@ class StringOperations:
     get_null.metadata = {'url': '/string/null'}
 
     @distributed_trace_async
-    async def put_null(self, *, cls=None, **kwargs) -> None:
+    async def put_null(self, cls=None, **kwargs) -> None:
 
         """Set string value null.
 
@@ -126,7 +126,7 @@ class StringOperations:
     put_null.metadata = {'url': '/string/null'}
 
     @distributed_trace_async
-    async def get_empty(self, *, cls=None, **kwargs) -> str:
+    async def get_empty(self, cls=None, **kwargs) -> str:
 
         """Get empty string value value ''.
 
@@ -169,7 +169,7 @@ class StringOperations:
     get_empty.metadata = {'url': '/string/empty'}
 
     @distributed_trace_async
-    async def put_empty(self, *, cls=None, **kwargs) -> None:
+    async def put_empty(self, cls=None, **kwargs) -> None:
 
         """Set string value empty ''.
 
@@ -213,7 +213,7 @@ class StringOperations:
     put_empty.metadata = {'url': '/string/empty'}
 
     @distributed_trace_async
-    async def get_mbcs(self, *, cls=None, **kwargs) -> str:
+    async def get_mbcs(self, cls=None, **kwargs) -> str:
 
         """Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
@@ -256,7 +256,7 @@ class StringOperations:
     get_mbcs.metadata = {'url': '/string/mbcs'}
 
     @distributed_trace_async
-    async def put_mbcs(self, *, cls=None, **kwargs) -> None:
+    async def put_mbcs(self, cls=None, **kwargs) -> None:
 
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
@@ -300,7 +300,7 @@ class StringOperations:
     put_mbcs.metadata = {'url': '/string/mbcs'}
 
     @distributed_trace_async
-    async def get_whitespace(self, *, cls=None, **kwargs) -> str:
+    async def get_whitespace(self, cls=None, **kwargs) -> str:
 
         """Get string value with leading and trailing whitespace ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
@@ -343,7 +343,7 @@ class StringOperations:
     get_whitespace.metadata = {'url': '/string/whitespace'}
 
     @distributed_trace_async
-    async def put_whitespace(self, *, cls=None, **kwargs) -> None:
+    async def put_whitespace(self, cls=None, **kwargs) -> None:
 
         """Set String value with leading and trailing whitespace ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
@@ -387,7 +387,7 @@ class StringOperations:
     put_whitespace.metadata = {'url': '/string/whitespace'}
 
     @distributed_trace_async
-    async def get_not_provided(self, *, cls=None, **kwargs) -> str:
+    async def get_not_provided(self, cls=None, **kwargs) -> str:
 
         """Get String value when no string value is sent in response payload.
 
@@ -430,7 +430,7 @@ class StringOperations:
     get_not_provided.metadata = {'url': '/string/notProvided'}
 
     @distributed_trace_async
-    async def get_base64_encoded(self, *, cls=None, **kwargs) -> bytes:
+    async def get_base64_encoded(self, cls=None, **kwargs) -> bytes:
 
         """Get value that is base64 encoded.
 
@@ -473,7 +473,7 @@ class StringOperations:
     get_base64_encoded.metadata = {'url': '/string/base64Encoding'}
 
     @distributed_trace_async
-    async def get_base64_url_encoded(self, *, cls=None, **kwargs) -> bytes:
+    async def get_base64_url_encoded(self, cls=None, **kwargs) -> bytes:
 
         """Get value that is base64url encoded.
 
@@ -561,7 +561,7 @@ class StringOperations:
     put_base64_url_encoded.metadata = {'url': '/string/base64UrlEncoding'}
 
     @distributed_trace_async
-    async def get_null_base64_url_encoded(self, *, cls=None, **kwargs) -> bytes:
+    async def get_null_base64_url_encoded(self, cls=None, **kwargs) -> bytes:
 
         """Get null value that is expected to be base64url encoded.
 

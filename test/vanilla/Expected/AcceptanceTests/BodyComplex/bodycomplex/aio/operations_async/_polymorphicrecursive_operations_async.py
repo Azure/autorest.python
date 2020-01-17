@@ -36,7 +36,7 @@ class PolymorphicrecursiveOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_valid(self, *, cls=None, **kwargs) -> "Fish":
+    async def get_valid(self, cls=None, **kwargs) -> "Fish":
 
         """Get complex types that are polymorphic and have recursive references.
 

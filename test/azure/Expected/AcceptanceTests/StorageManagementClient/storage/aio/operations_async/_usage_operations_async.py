@@ -11,6 +11,7 @@ import warnings
 from azure.core.exceptions import map_error
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMError
+from msrest.serialization import Model
 
 from ... import models
 
@@ -37,7 +38,7 @@ class UsageOperations:
         self._config = config
 
     @distributed_trace_async
-    async def list(self, *, cls=None, **kwargs) -> "UsageListResult":
+    async def list(self, cls=None, **kwargs) -> "UsageListResult":
 
         """Gets the current usage count and the limit for the resources under the subscription..
 

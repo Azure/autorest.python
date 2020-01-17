@@ -134,7 +134,7 @@ class AutoRestValidationTestOperationsMixin:
         return deserialized
     validation_of_body.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
     @distributed_trace_async
-    async def get_with_constant_in_path(self, *, cls=None, **kwargs) -> None:
+    async def get_with_constant_in_path(self, cls=None, **kwargs) -> None:
 
         """MISSING·OPERATION-DESCRIPTION.
 

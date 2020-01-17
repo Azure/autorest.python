@@ -37,7 +37,7 @@ class PathsOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_boolean_true(self, *, cls=None, **kwargs) -> None:
+    async def get_boolean_true(self, cls=None, **kwargs) -> None:
 
         """Get true Boolean value on path.
 
@@ -81,7 +81,7 @@ class PathsOperations:
     get_boolean_true.metadata = {'url': '/paths/bool/true/{boolPath}'}
 
     @distributed_trace_async
-    async def get_boolean_false(self, *, cls=None, **kwargs) -> None:
+    async def get_boolean_false(self, cls=None, **kwargs) -> None:
 
         """Get false Boolean value on path.
 
@@ -125,7 +125,7 @@ class PathsOperations:
     get_boolean_false.metadata = {'url': '/paths/bool/false/{boolPath}'}
 
     @distributed_trace_async
-    async def get_int_one_million(self, *, cls=None, **kwargs) -> None:
+    async def get_int_one_million(self, cls=None, **kwargs) -> None:
 
         """Get '1000000' integer value.
 
@@ -169,7 +169,7 @@ class PathsOperations:
     get_int_one_million.metadata = {'url': '/paths/int/1000000/{intPath}'}
 
     @distributed_trace_async
-    async def get_int_negative_one_million(self, *, cls=None, **kwargs) -> None:
+    async def get_int_negative_one_million(self, cls=None, **kwargs) -> None:
 
         """Get '-1000000' integer value.
 
@@ -213,7 +213,7 @@ class PathsOperations:
     get_int_negative_one_million.metadata = {'url': '/paths/int/-1000000/{intPath}'}
 
     @distributed_trace_async
-    async def get_ten_billion(self, *, cls=None, **kwargs) -> None:
+    async def get_ten_billion(self, cls=None, **kwargs) -> None:
 
         """Get '10000000000' 64 bit integer value.
 
@@ -257,7 +257,7 @@ class PathsOperations:
     get_ten_billion.metadata = {'url': '/paths/long/10000000000/{longPath}'}
 
     @distributed_trace_async
-    async def get_negative_ten_billion(self, *, cls=None, **kwargs) -> None:
+    async def get_negative_ten_billion(self, cls=None, **kwargs) -> None:
 
         """Get '-10000000000' 64 bit integer value.
 
@@ -301,7 +301,7 @@ class PathsOperations:
     get_negative_ten_billion.metadata = {'url': '/paths/long/-10000000000/{longPath}'}
 
     @distributed_trace_async
-    async def float_scientific_positive(self, *, cls=None, **kwargs) -> None:
+    async def float_scientific_positive(self, cls=None, **kwargs) -> None:
 
         """Get '1.034E+20' numeric value.
 
@@ -345,7 +345,7 @@ class PathsOperations:
     float_scientific_positive.metadata = {'url': '/paths/float/1.034E+20/{floatPath}'}
 
     @distributed_trace_async
-    async def float_scientific_negative(self, *, cls=None, **kwargs) -> None:
+    async def float_scientific_negative(self, cls=None, **kwargs) -> None:
 
         """Get '-1.034E-20' numeric value.
 
@@ -389,7 +389,7 @@ class PathsOperations:
     float_scientific_negative.metadata = {'url': '/paths/float/-1.034E-20/{floatPath}'}
 
     @distributed_trace_async
-    async def double_decimal_positive(self, *, cls=None, **kwargs) -> None:
+    async def double_decimal_positive(self, cls=None, **kwargs) -> None:
 
         """Get '9999999.999' numeric value.
 
@@ -433,7 +433,7 @@ class PathsOperations:
     double_decimal_positive.metadata = {'url': '/paths/double/9999999.999/{doublePath}'}
 
     @distributed_trace_async
-    async def double_decimal_negative(self, *, cls=None, **kwargs) -> None:
+    async def double_decimal_negative(self, cls=None, **kwargs) -> None:
 
         """Get '-9999999.999' numeric value.
 
@@ -477,7 +477,7 @@ class PathsOperations:
     double_decimal_negative.metadata = {'url': '/paths/double/-9999999.999/{doublePath}'}
 
     @distributed_trace_async
-    async def string_unicode(self, *, cls=None, **kwargs) -> None:
+    async def string_unicode(self, cls=None, **kwargs) -> None:
 
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
@@ -521,7 +521,7 @@ class PathsOperations:
     string_unicode.metadata = {'url': '/paths/string/unicode/{stringPath}'}
 
     @distributed_trace_async
-    async def string_url_encoded(self, *, cls=None, **kwargs) -> None:
+    async def string_url_encoded(self, cls=None, **kwargs) -> None:
 
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
@@ -565,7 +565,7 @@ class PathsOperations:
     string_url_encoded.metadata = {'url': '/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}'}
 
     @distributed_trace_async
-    async def string_url_non_encoded(self, *, cls=None, **kwargs) -> None:
+    async def string_url_non_encoded(self, cls=None, **kwargs) -> None:
 
         """Get 'begin!*'();:@&=+$,end.
 
@@ -609,7 +609,7 @@ class PathsOperations:
     string_url_non_encoded.metadata = {'url': '/paths/string/begin!*\'();:@&=+$,end/{stringPath}'}
 
     @distributed_trace_async
-    async def string_empty(self, *, cls=None, **kwargs) -> None:
+    async def string_empty(self, cls=None, **kwargs) -> None:
 
         """Get ''.
 
@@ -833,7 +833,7 @@ class PathsOperations:
     byte_multi_byte.metadata = {'url': '/paths/byte/multibyte/{bytePath}'}
 
     @distributed_trace_async
-    async def byte_empty(self, *, cls=None, **kwargs) -> None:
+    async def byte_empty(self, cls=None, **kwargs) -> None:
 
         """Get '' as byte array.
 
@@ -922,7 +922,7 @@ class PathsOperations:
     byte_null.metadata = {'url': '/paths/byte/null/{bytePath}'}
 
     @distributed_trace_async
-    async def date_valid(self, *, cls=None, **kwargs) -> None:
+    async def date_valid(self, cls=None, **kwargs) -> None:
 
         """Get '2012-01-01' as date.
 
@@ -1011,7 +1011,7 @@ class PathsOperations:
     date_null.metadata = {'url': '/paths/date/null/{datePath}'}
 
     @distributed_trace_async
-    async def date_time_valid(self, *, cls=None, **kwargs) -> None:
+    async def date_time_valid(self, cls=None, **kwargs) -> None:
 
         """Get '2012-01-01T01:01:01Z' as date-time.
 

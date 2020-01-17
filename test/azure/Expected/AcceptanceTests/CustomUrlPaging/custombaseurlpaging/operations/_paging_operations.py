@@ -12,6 +12,7 @@ from azure.core.exceptions import map_error
 from azure.core.paging import ItemPaged
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMError
+from msrest.serialization import Model
 
 from .. import models
 

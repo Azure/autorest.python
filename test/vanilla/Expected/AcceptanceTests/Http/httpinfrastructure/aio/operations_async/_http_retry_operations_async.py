@@ -36,7 +36,7 @@ class HttpRetryOperations:
         self._config = config
 
     @distributed_trace_async
-    async def head408(self, *, cls=None, **kwargs) -> None:
+    async def head408(self, cls=None, **kwargs) -> None:
 
         """Return 408 status code, then 200 after retry.
 
@@ -75,7 +75,7 @@ class HttpRetryOperations:
     head408.metadata = {'url': '/http/retry/408'}
 
     @distributed_trace_async
-    async def put500(self, *, cls=None, **kwargs) -> None:
+    async def put500(self, cls=None, **kwargs) -> None:
 
         """Return 500 status code, then 200 after retry.
 
@@ -122,7 +122,7 @@ class HttpRetryOperations:
     put500.metadata = {'url': '/http/retry/500'}
 
     @distributed_trace_async
-    async def patch500(self, *, cls=None, **kwargs) -> None:
+    async def patch500(self, cls=None, **kwargs) -> None:
 
         """Return 500 status code, then 200 after retry.
 
@@ -169,7 +169,7 @@ class HttpRetryOperations:
     patch500.metadata = {'url': '/http/retry/500'}
 
     @distributed_trace_async
-    async def get502(self, *, cls=None, **kwargs) -> None:
+    async def get502(self, cls=None, **kwargs) -> None:
 
         """Return 502 status code, then 200 after retry.
 
@@ -208,7 +208,7 @@ class HttpRetryOperations:
     get502.metadata = {'url': '/http/retry/502'}
 
     @distributed_trace_async
-    async def options502(self, *, cls=None, **kwargs) -> bool:
+    async def options502(self, cls=None, **kwargs) -> bool:
 
         """Return 502 status code, then 200 after retry.
 
@@ -251,7 +251,7 @@ class HttpRetryOperations:
     options502.metadata = {'url': '/http/retry/502'}
 
     @distributed_trace_async
-    async def post503(self, *, cls=None, **kwargs) -> None:
+    async def post503(self, cls=None, **kwargs) -> None:
 
         """Return 503 status code, then 200 after retry.
 
@@ -298,7 +298,7 @@ class HttpRetryOperations:
     post503.metadata = {'url': '/http/retry/503'}
 
     @distributed_trace_async
-    async def delete503(self, *, cls=None, **kwargs) -> None:
+    async def delete503(self, cls=None, **kwargs) -> None:
 
         """Return 503 status code, then 200 after retry.
 
@@ -345,7 +345,7 @@ class HttpRetryOperations:
     delete503.metadata = {'url': '/http/retry/503'}
 
     @distributed_trace_async
-    async def put504(self, *, cls=None, **kwargs) -> None:
+    async def put504(self, cls=None, **kwargs) -> None:
 
         """Return 504 status code, then 200 after retry.
 
@@ -392,7 +392,7 @@ class HttpRetryOperations:
     put504.metadata = {'url': '/http/retry/504'}
 
     @distributed_trace_async
-    async def patch504(self, *, cls=None, **kwargs) -> None:
+    async def patch504(self, cls=None, **kwargs) -> None:
 
         """Return 504 status code, then 200 after retry.
 

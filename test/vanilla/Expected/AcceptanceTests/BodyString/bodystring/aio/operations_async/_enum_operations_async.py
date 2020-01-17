@@ -37,7 +37,7 @@ class EnumOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_not_expandable(self, *, cls=None, **kwargs) -> Union[str, "Colors"]:
+    async def get_not_expandable(self, cls=None, **kwargs) -> Union[str, "Colors"]:
 
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'..
 
@@ -125,7 +125,7 @@ class EnumOperations:
     put_not_expandable.metadata = {'url': '/string/enum/notExpandable'}
 
     @distributed_trace_async
-    async def get_referenced(self, *, cls=None, **kwargs) -> Union[str, "Colors"]:
+    async def get_referenced(self, cls=None, **kwargs) -> Union[str, "Colors"]:
 
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'..
 
@@ -213,7 +213,7 @@ class EnumOperations:
     put_referenced.metadata = {'url': '/string/enum/Referenced'}
 
     @distributed_trace_async
-    async def get_referenced_constant(self, *, cls=None, **kwargs) -> "RefColorConstant":
+    async def get_referenced_constant(self, cls=None, **kwargs) -> "RefColorConstant":
 
         """Get value 'green-color' from the constant..
 

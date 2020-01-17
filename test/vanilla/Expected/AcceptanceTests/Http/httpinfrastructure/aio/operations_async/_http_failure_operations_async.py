@@ -35,7 +35,7 @@ class HttpFailureOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_empty_error(self, *, cls=None, **kwargs) -> bool:
+    async def get_empty_error(self, cls=None, **kwargs) -> bool:
 
         """Get empty error form server.
 
@@ -78,7 +78,7 @@ class HttpFailureOperations:
     get_empty_error.metadata = {'url': '/http/failure/emptybody/error'}
 
     @distributed_trace_async
-    async def get_no_model_error(self, *, cls=None, **kwargs) -> bool:
+    async def get_no_model_error(self, cls=None, **kwargs) -> bool:
 
         """Get empty error form server.
 
@@ -121,7 +121,7 @@ class HttpFailureOperations:
     get_no_model_error.metadata = {'url': '/http/failure/nomodel/error'}
 
     @distributed_trace_async
-    async def get_no_model_empty(self, *, cls=None, **kwargs) -> bool:
+    async def get_no_model_empty(self, cls=None, **kwargs) -> bool:
 
         """Get empty response from server.
 

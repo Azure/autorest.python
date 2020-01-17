@@ -37,7 +37,7 @@ class XmlOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_complex_type_ref_no_meta(self, *, cls=None, **kwargs) -> "RootWithRefAndNoMeta":
+    async def get_complex_type_ref_no_meta(self, cls=None, **kwargs) -> "RootWithRefAndNoMeta":
 
         """Get a complex type that has a ref to a complex type with no XML node.
 
@@ -125,7 +125,7 @@ class XmlOperations:
     put_complex_type_ref_no_meta.metadata = {'url': '/xml/complex-type-ref-no-meta'}
 
     @distributed_trace_async
-    async def get_complex_type_ref_with_meta(self, *, cls=None, **kwargs) -> "RootWithRefAndMeta":
+    async def get_complex_type_ref_with_meta(self, cls=None, **kwargs) -> "RootWithRefAndMeta":
 
         """Get a complex type that has a ref to a complex type with XML node.
 
@@ -213,7 +213,7 @@ class XmlOperations:
     put_complex_type_ref_with_meta.metadata = {'url': '/xml/complex-type-ref-with-meta'}
 
     @distributed_trace_async
-    async def get_simple(self, *, cls=None, **kwargs) -> "Slideshow":
+    async def get_simple(self, cls=None, **kwargs) -> "Slideshow":
 
         """Get a simple XML document.
 
@@ -301,7 +301,7 @@ class XmlOperations:
     put_simple.metadata = {'url': '/xml/simple'}
 
     @distributed_trace_async
-    async def get_wrapped_lists(self, *, cls=None, **kwargs) -> "AppleBarrel":
+    async def get_wrapped_lists(self, cls=None, **kwargs) -> "AppleBarrel":
 
         """Get an XML document with multiple wrapped lists.
 
@@ -389,7 +389,7 @@ class XmlOperations:
     put_wrapped_lists.metadata = {'url': '/xml/wrapped-lists'}
 
     @distributed_trace_async
-    async def get_headers(self, *, cls=None, **kwargs) -> None:
+    async def get_headers(self, cls=None, **kwargs) -> None:
 
         """Get strongly-typed response headers..
 
@@ -431,7 +431,7 @@ class XmlOperations:
     get_headers.metadata = {'url': '/xml/headers'}
 
     @distributed_trace_async
-    async def get_empty_list(self, *, cls=None, **kwargs) -> "Slideshow":
+    async def get_empty_list(self, cls=None, **kwargs) -> "Slideshow":
 
         """Get an empty list..
 
@@ -519,7 +519,7 @@ class XmlOperations:
     put_empty_list.metadata = {'url': '/xml/empty-list'}
 
     @distributed_trace_async
-    async def get_empty_wrapped_lists(self, *, cls=None, **kwargs) -> "AppleBarrel":
+    async def get_empty_wrapped_lists(self, cls=None, **kwargs) -> "AppleBarrel":
 
         """Gets some empty wrapped lists..
 
@@ -607,7 +607,7 @@ class XmlOperations:
     put_empty_wrapped_lists.metadata = {'url': '/xml/empty-wrapped-lists'}
 
     @distributed_trace_async
-    async def get_root_list(self, *, cls=None, **kwargs) -> List["Banana"]:
+    async def get_root_list(self, cls=None, **kwargs) -> List["Banana"]:
 
         """Gets a list as the root element..
 
@@ -695,7 +695,7 @@ class XmlOperations:
     put_root_list.metadata = {'url': '/xml/root-list'}
 
     @distributed_trace_async
-    async def get_root_list_single_item(self, *, cls=None, **kwargs) -> List["Banana"]:
+    async def get_root_list_single_item(self, cls=None, **kwargs) -> List["Banana"]:
 
         """Gets a list with a single item..
 
@@ -783,7 +783,7 @@ class XmlOperations:
     put_root_list_single_item.metadata = {'url': '/xml/root-list-single-item'}
 
     @distributed_trace_async
-    async def get_empty_root_list(self, *, cls=None, **kwargs) -> List["Banana"]:
+    async def get_empty_root_list(self, cls=None, **kwargs) -> List["Banana"]:
 
         """Gets an empty list as the root element..
 
@@ -871,7 +871,7 @@ class XmlOperations:
     put_empty_root_list.metadata = {'url': '/xml/empty-root-list'}
 
     @distributed_trace_async
-    async def get_empty_child_element(self, *, cls=None, **kwargs) -> "Banana":
+    async def get_empty_child_element(self, cls=None, **kwargs) -> "Banana":
 
         """Gets an XML document with an empty child element..
 
@@ -959,7 +959,7 @@ class XmlOperations:
     put_empty_child_element.metadata = {'url': '/xml/empty-child-element'}
 
     @distributed_trace_async
-    async def list_containers(self, *, cls=None, **kwargs) -> "ListContainersResponse":
+    async def list_containers(self, cls=None, **kwargs) -> "ListContainersResponse":
 
         """Lists containers in a storage account..
 
@@ -1004,7 +1004,7 @@ class XmlOperations:
     list_containers.metadata = {'url': '/xml/'}
 
     @distributed_trace_async
-    async def get_service_properties(self, *, cls=None, **kwargs) -> "StorageServiceProperties":
+    async def get_service_properties(self, cls=None, **kwargs) -> "StorageServiceProperties":
 
         """Gets storage service properties..
 
@@ -1100,7 +1100,7 @@ class XmlOperations:
     put_service_properties.metadata = {'url': '/xml/'}
 
     @distributed_trace_async
-    async def get_acls(self, *, cls=None, **kwargs) -> List["SignedIdentifier"]:
+    async def get_acls(self, cls=None, **kwargs) -> List["SignedIdentifier"]:
 
         """Gets storage ACLs for a container..
 
@@ -1196,7 +1196,7 @@ class XmlOperations:
     put_acls.metadata = {'url': '/xml/mycontainer'}
 
     @distributed_trace_async
-    async def list_blobs(self, *, cls=None, **kwargs) -> "ListBlobsResponse":
+    async def list_blobs(self, cls=None, **kwargs) -> "ListBlobsResponse":
 
         """Lists blobs in a storage container..
 
@@ -1289,7 +1289,7 @@ class XmlOperations:
     json_input.metadata = {'url': '/xml/jsoninput'}
 
     @distributed_trace_async
-    async def json_output(self, *, cls=None, **kwargs) -> "JSONOutput":
+    async def json_output(self, cls=None, **kwargs) -> "JSONOutput":
 
         """A Swagger with XML that has one operation that returns JSON. ID number 42.
 

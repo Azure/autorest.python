@@ -37,7 +37,7 @@ class XMsClientRequestIdOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get(self, *, cls=None, **kwargs) -> None:
+    async def get(self, cls=None, **kwargs) -> None:
 
         """Get method that overwrites x-ms-client-request header with value 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0..
 

@@ -37,7 +37,7 @@ class DictionaryOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_valid(self, *, cls=None, **kwargs) -> "DictionaryWrapper":
+    async def get_valid(self, cls=None, **kwargs) -> "DictionaryWrapper":
 
         """Get complex types with dictionary property.
 
@@ -126,7 +126,7 @@ class DictionaryOperations:
     put_valid.metadata = {'url': '/complex/dictionary/typed/valid'}
 
     @distributed_trace_async
-    async def get_empty(self, *, cls=None, **kwargs) -> "DictionaryWrapper":
+    async def get_empty(self, cls=None, **kwargs) -> "DictionaryWrapper":
 
         """Get complex types with dictionary property which is empty.
 
@@ -215,7 +215,7 @@ class DictionaryOperations:
     put_empty.metadata = {'url': '/complex/dictionary/typed/empty'}
 
     @distributed_trace_async
-    async def get_null(self, *, cls=None, **kwargs) -> "DictionaryWrapper":
+    async def get_null(self, cls=None, **kwargs) -> "DictionaryWrapper":
 
         """Get complex types with dictionary property which is null.
 
@@ -258,7 +258,7 @@ class DictionaryOperations:
     get_null.metadata = {'url': '/complex/dictionary/typed/null'}
 
     @distributed_trace_async
-    async def get_not_provided(self, *, cls=None, **kwargs) -> "DictionaryWrapper":
+    async def get_not_provided(self, cls=None, **kwargs) -> "DictionaryWrapper":
 
         """Get complex types with dictionary property while server doesn't provide a response payload.
 

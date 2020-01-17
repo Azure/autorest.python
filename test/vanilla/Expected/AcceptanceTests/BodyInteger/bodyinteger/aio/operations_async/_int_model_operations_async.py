@@ -36,7 +36,7 @@ class IntOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_null(self, *, cls=None, **kwargs) -> int:
+    async def get_null(self, cls=None, **kwargs) -> int:
 
         """Get null Int value.
 
@@ -79,7 +79,7 @@ class IntOperations:
     get_null.metadata = {'url': '/int/null'}
 
     @distributed_trace_async
-    async def get_invalid(self, *, cls=None, **kwargs) -> int:
+    async def get_invalid(self, cls=None, **kwargs) -> int:
 
         """Get invalid Int value.
 
@@ -122,7 +122,7 @@ class IntOperations:
     get_invalid.metadata = {'url': '/int/invalid'}
 
     @distributed_trace_async
-    async def get_overflow_int32(self, *, cls=None, **kwargs) -> int:
+    async def get_overflow_int32(self, cls=None, **kwargs) -> int:
 
         """Get overflow Int32 value.
 
@@ -165,7 +165,7 @@ class IntOperations:
     get_overflow_int32.metadata = {'url': '/int/overflowint32'}
 
     @distributed_trace_async
-    async def get_underflow_int32(self, *, cls=None, **kwargs) -> int:
+    async def get_underflow_int32(self, cls=None, **kwargs) -> int:
 
         """Get underflow Int32 value.
 
@@ -208,7 +208,7 @@ class IntOperations:
     get_underflow_int32.metadata = {'url': '/int/underflowint32'}
 
     @distributed_trace_async
-    async def get_overflow_int64(self, *, cls=None, **kwargs) -> int:
+    async def get_overflow_int64(self, cls=None, **kwargs) -> int:
 
         """Get overflow Int64 value.
 
@@ -251,7 +251,7 @@ class IntOperations:
     get_overflow_int64.metadata = {'url': '/int/overflowint64'}
 
     @distributed_trace_async
-    async def get_underflow_int64(self, *, cls=None, **kwargs) -> int:
+    async def get_underflow_int64(self, cls=None, **kwargs) -> int:
 
         """Get underflow Int64 value.
 
@@ -474,7 +474,7 @@ class IntOperations:
     put_min64.metadata = {'url': '/int/min/64'}
 
     @distributed_trace_async
-    async def get_unix_time(self, *, cls=None, **kwargs) -> datetime.datetime:
+    async def get_unix_time(self, cls=None, **kwargs) -> datetime.datetime:
 
         """Get datetime encoded as Unix time value.
 
@@ -562,7 +562,7 @@ class IntOperations:
     put_unix_time_date.metadata = {'url': '/int/unixtime'}
 
     @distributed_trace_async
-    async def get_invalid_unix_time(self, *, cls=None, **kwargs) -> datetime.datetime:
+    async def get_invalid_unix_time(self, cls=None, **kwargs) -> datetime.datetime:
 
         """Get invalid Unix time value.
 
@@ -605,7 +605,7 @@ class IntOperations:
     get_invalid_unix_time.metadata = {'url': '/int/invalidunixtime'}
 
     @distributed_trace_async
-    async def get_null_unix_time(self, *, cls=None, **kwargs) -> datetime.datetime:
+    async def get_null_unix_time(self, cls=None, **kwargs) -> datetime.datetime:
 
         """Get null Unix time value.
 

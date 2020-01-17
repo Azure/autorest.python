@@ -79,7 +79,7 @@ class HeaderOperations:
     param_existing_key.metadata = {'url': '/header/param/existingkey'}
 
     @distributed_trace_async
-    async def response_existing_key(self, *, cls=None, **kwargs) -> None:
+    async def response_existing_key(self, cls=None, **kwargs) -> None:
 
         """Get a response with header value "User-Agent": "overwrite".
 
@@ -163,7 +163,7 @@ class HeaderOperations:
     param_protected_key.metadata = {'url': '/header/param/protectedkey'}
 
     @distributed_trace_async
-    async def response_protected_key(self, *, cls=None, **kwargs) -> None:
+    async def response_protected_key(self, cls=None, **kwargs) -> None:
 
         """Get a response with header value "Content-Type": "text/html".
 
@@ -1288,7 +1288,7 @@ class HeaderOperations:
     response_enum.metadata = {'url': '/header/response/prim/enum'}
 
     @distributed_trace_async
-    async def custom_request_id(self, *, cls=None, **kwargs) -> None:
+    async def custom_request_id(self, cls=None, **kwargs) -> None:
 
         """Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 

@@ -129,7 +129,7 @@ class SkipUrlEncodingOperations:
     get_path_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}'}
 
     @distributed_trace_async
-    async def get_swagger_path_valid(self, *, cls=None, **kwargs) -> None:
+    async def get_swagger_path_valid(self, cls=None, **kwargs) -> None:
 
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
@@ -304,7 +304,7 @@ class SkipUrlEncodingOperations:
     get_path_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/path/query/valid'}
 
     @distributed_trace_async
-    async def get_swagger_query_valid(self, *, cls=None, **kwargs) -> None:
+    async def get_swagger_query_valid(self, cls=None, **kwargs) -> None:
 
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 

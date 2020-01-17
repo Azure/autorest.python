@@ -37,7 +37,7 @@ class ReadonlypropertyOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_valid(self, *, cls=None, **kwargs) -> "ReadonlyObj":
+    async def get_valid(self, cls=None, **kwargs) -> "ReadonlyObj":
 
         """Get complex types that have readonly properties.
 

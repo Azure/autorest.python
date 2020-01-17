@@ -11,11 +11,12 @@
     if operation.responses | selectattr('has_body') | first
     else " -> None"
 %}
+{% set operation_name = operation.python_name if async_mode else "begin_"+operation.python_name %}
 {% macro method_signature() %}
 {% if async_mode %}
-async def {{ operation.python_name }}(self{{ operation.parameters.async_method_signature }}, *, cls=None, polling: Optional[bool] = True, **kwargs){{ async_return_type_annotation }}:
+async def {{ operation_name }}(self{{ operation.parameters.async_method_signature }}, {{ ("*, " if operation.parameters.method | first else "") }}cls=None, polling: Optional[bool] = True, **kwargs){{ async_return_type_annotation }}:
 {% else %}
-def {{ operation.python_name }}(self{{ operation.parameters.sync_method_signature }}, cls=None, polling=True, **kwargs):
+def {{ operation_name }}(self{{ operation.parameters.sync_method_signature }}, cls=None, polling=True, **kwargs):
 {% endif %}
 {% endmacro %}
 {% macro return_docstring() %}
@@ -31,7 +32,6 @@ response_headers = {
 }
 {% endmacro %}
 {% set lro_options = (", lro_options={'final-state-via': '"+ operation.lro_options['final-state-via'] + "'}") if operation.lro_options else "" %}
-{% set operation_name = operation.python_name if async_mode else "begin_"+operation.python_name %}
 {# actual template starts here #}
 {% if code_model.options['tracing'] %}
 {{ trace_decorator }}

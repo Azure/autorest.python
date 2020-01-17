@@ -9,6 +9,7 @@ import warnings
 
 from azure.core.exceptions import HttpResponseError, map_error
 from azure.core.tracing.decorator_async import distributed_trace_async
+from msrest.serialization import Model
 
 from ... import models
 
@@ -35,7 +36,7 @@ class FlattencomplexOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_valid(self, *, cls=None, **kwargs) -> "MyBaseType":
+    async def get_valid(self, cls=None, **kwargs) -> "MyBaseType":
 
         """MISSING·OPERATION-DESCRIPTION.
 

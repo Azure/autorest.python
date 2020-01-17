@@ -410,7 +410,7 @@ class StorageAccountsOperations:
     list_keys.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys'}
 
     @distributed_trace
-    async def list(self, *, cls=None, **kwargs) -> "StorageAccountListResult":
+    def list(self, cls=None, **kwargs) -> "StorageAccountListResult":
 
         """Lists all the storage accounts available under the subscription. Note that storage keys are not returned; use the ListKeys operation for this..
 
@@ -475,7 +475,7 @@ class StorageAccountsOperations:
 
 
     @distributed_trace
-    async def list_by_resource_group(self, resource_group_name: str, *, cls=None, **kwargs) -> "StorageAccountListResult":
+    def list_by_resource_group(self, resource_group_name: str, *, cls=None, **kwargs) -> "StorageAccountListResult":
 
         """Lists all the storage accounts available under the given resource group. Note that storage keys are not returned; use the ListKeys operation for this..
 

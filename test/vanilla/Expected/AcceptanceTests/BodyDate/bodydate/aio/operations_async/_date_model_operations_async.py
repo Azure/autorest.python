@@ -36,7 +36,7 @@ class DateOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_null(self, *, cls=None, **kwargs) -> datetime.date:
+    async def get_null(self, cls=None, **kwargs) -> datetime.date:
 
         """Get null date value.
 
@@ -79,7 +79,7 @@ class DateOperations:
     get_null.metadata = {'url': '/date/null'}
 
     @distributed_trace_async
-    async def get_invalid_date(self, *, cls=None, **kwargs) -> datetime.date:
+    async def get_invalid_date(self, cls=None, **kwargs) -> datetime.date:
 
         """Get invalid date value.
 
@@ -122,7 +122,7 @@ class DateOperations:
     get_invalid_date.metadata = {'url': '/date/invaliddate'}
 
     @distributed_trace_async
-    async def get_overflow_date(self, *, cls=None, **kwargs) -> datetime.date:
+    async def get_overflow_date(self, cls=None, **kwargs) -> datetime.date:
 
         """Get overflow date value.
 
@@ -165,7 +165,7 @@ class DateOperations:
     get_overflow_date.metadata = {'url': '/date/overflowdate'}
 
     @distributed_trace_async
-    async def get_underflow_date(self, *, cls=None, **kwargs) -> datetime.date:
+    async def get_underflow_date(self, cls=None, **kwargs) -> datetime.date:
 
         """Get underflow date value.
 
@@ -253,7 +253,7 @@ class DateOperations:
     put_max_date.metadata = {'url': '/date/max'}
 
     @distributed_trace_async
-    async def get_max_date(self, *, cls=None, **kwargs) -> datetime.date:
+    async def get_max_date(self, cls=None, **kwargs) -> datetime.date:
 
         """Get max date value 9999-12-31.
 
@@ -341,7 +341,7 @@ class DateOperations:
     put_min_date.metadata = {'url': '/date/min'}
 
     @distributed_trace_async
-    async def get_min_date(self, *, cls=None, **kwargs) -> datetime.date:
+    async def get_min_date(self, cls=None, **kwargs) -> datetime.date:
 
         """Get min date value 0000-01-01.
 

@@ -15,6 +15,7 @@ from azure.core.polling import LROPoller, NoPolling
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMError
 from azure.mgmt.core.polling.arm_polling import ARMPolling
+from msrest.serialization import Model
 
 from .. import models
 
@@ -959,7 +960,7 @@ class PagingOperations(object):
     _get_multiple_pages_lro_initial.metadata = {'url': '/paging/multiple/lro'}
 
     @distributed_trace
-    def get_multiple_pages_lro(self, client_request_id=None, maxresults=None, timeout=None, cls=None, polling=True, **kwargs):
+    def begin_get_multiple_pages_lro(self, client_request_id=None, maxresults=None, timeout=None, cls=None, polling=True, **kwargs):
 
         # type: (Optional[str], Optional[int], Optional[int], Optional[Any], Optional[bool], **Any) -> "ProductResult"
         """A long-running paging operation that includes a nextLink that has 10 pages.
