@@ -30,7 +30,7 @@ class PrimitiveSchema(BaseSchema):
         return self._to_python_type()
 
     def get_python_type_annotation(self) -> str:
-        return self.docstring_type(None)
+        return self.docstring_type
 
 
 class AnySchema(PrimitiveSchema):
