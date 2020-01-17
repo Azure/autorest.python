@@ -32,7 +32,8 @@ class ModelPython3Serializer(ModelBaseSerializer):
         if init_properties_declaration:
             wrapline = "\n        "
             init_properties_declaration_string = ("," + wrapline).join(init_properties_declaration)
-            return f"def __init__({wrapline}self,{wrapline}*,{wrapline}{init_properties_declaration_string},{wrapline}**kwargs\n    ) -> None:"
+            return (f"def __init__({wrapline}self,{wrapline}*,{wrapline}{init_properties_declaration_string}," +
+            f"{wrapline}**kwargs\n    ) -> None:")
         return "def __init__(self, **kwargs) -> None:"
 
     @staticmethod

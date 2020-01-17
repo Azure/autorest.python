@@ -4,13 +4,14 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, List, Any, Optional, Union
+from typing import cast, Dict, List, Any, Optional, Union
 
 from .base_model import BaseModel
 from .imports import FileImport, ImportType
 from .schema_response import SchemaResponse
 from .parameter import Parameter, ParameterStyle
 from .parameter_list import ParameterList
+from .base_schema import BaseSchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -193,7 +194,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
             file_import.merge(parameter.imports())
 
         for response in [r for r in self.responses if r.has_body]:
-            file_import.merge(response.schema.imports())
+            file_import.merge(cast(BaseSchema, response.schema).imports())
 
         if len([r for r in self.responses if r.has_body]) > 1:
             file_import.add_from_import("typing", "Union", ImportType.STDLIB)

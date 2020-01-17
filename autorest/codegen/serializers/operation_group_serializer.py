@@ -3,9 +3,11 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from typing import cast
 from jinja2 import Environment
+
 from .import_serializer import FileImportSerializer
-from ..models import LROOperation, PagingOperation, CodeModel, OperationGroup, Operation
+from ..models import LROOperation, PagingOperation, CodeModel, OperationGroup, Operation, BaseSchema
 
 class OperationGroupSerializer:
     def __init__(
@@ -52,11 +54,11 @@ class OperationGroupSerializer:
     def operation_typing_comment(operation: Operation) -> str:
         response = "None"
         if any(r.has_body for r in operation.responses):
-            if len(operation.responses) == 1:
-                response = operation.responses[0].schema.type_annotation
+            if len([r for r in operation.responses if r.has_body]) == 1:
+                response = cast(BaseSchema, operation.responses[0].schema).type_annotation
             else:
                 response_parameters_string = ", ".join([
-                    r.schema.type_annotation if r.has_body else "None"
+                    cast(BaseSchema, r.schema).type_annotation if r.has_body else "None"
                     for r in operation.responses
                 ])
                 response = f"Union[{response_parameters_string}]"
