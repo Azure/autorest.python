@@ -43,7 +43,7 @@ class BaseSchema(BaseModel, ABC):
         ...
 
     @property
-    def rst_type(self) -> str:
+    def docstring_type(self) -> str:
         """The python type used for RST syntax input.
 
         Special case for enum, for instance: 'str or ~namespace.EnumName'
