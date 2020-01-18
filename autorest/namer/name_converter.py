@@ -118,7 +118,9 @@ class NameConverter:
         if schema_description == 'MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA':
             # what is being used for empty ObjectSchema descriptions
             schema_description = schema['language']['python']['name']
-        schema['language']['python']['description'] = schema_description + "."
+        if schema_description and schema_description[-1] != ".":
+            schema_description += "."
+        schema['language']['python']['description'] = schema_description
 
     @staticmethod
     def _to_pascal_case(name):

@@ -11,7 +11,7 @@ from msrest.serialization import Model
 
 
 class BaseProduct(Model):
-    """The product documentation..
+    """The product documentation.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -130,7 +130,7 @@ class Resource(Model):
 
 
 class FlattenedProduct(Resource):
-    """Flattened product..
+    """Flattened product.
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -219,7 +219,7 @@ class FlattenedProductProperties(Model):
 
 
 class GenericUrl(Model):
-    """The Generic URL..
+    """The Generic URL.
 
     :param generic_value: Generic URL value.
     :type generic_value: str
@@ -235,7 +235,7 @@ class GenericUrl(Model):
 
 
 class ProductUrl(GenericUrl):
-    """The product URL..
+    """The product URL.
 
     :param generic_value: Generic URL value.
     :type generic_value: str
@@ -254,7 +254,7 @@ class ProductUrl(GenericUrl):
 
 
 class ProductWrapper(Model):
-    """The wrapped produc..
+    """The wrapped produc.
 
     :param value: the product value.
     :type value: str
@@ -294,7 +294,7 @@ class ResourceCollection(Model):
 
 
 class SimpleProduct(BaseProduct):
-    """The product documentation..
+    """The product documentation.
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -337,7 +337,7 @@ class SimpleProduct(BaseProduct):
 
 
 class SimpleProductProperties(Model):
-    """The product documentation..
+    """The product documentation.
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -372,7 +372,7 @@ class SimpleProductProperties(Model):
 
 
 class WrappedProduct(Model):
-    """The wrapped produc..
+    """The wrapped produc.
 
     :param value: the product value.
     :type value: str

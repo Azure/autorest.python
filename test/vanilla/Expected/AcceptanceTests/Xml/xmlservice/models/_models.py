@@ -43,7 +43,7 @@ class AccessPolicy(Model):
 
 
 class AppleBarrel(Model):
-    """A barrel of apples..
+    """A barrel of apples.
 
     :param good_apples:
     :type good_apples: list[str]
@@ -63,7 +63,7 @@ class AppleBarrel(Model):
 
 
 class Banana(Model):
-    """A banana..
+    """A banana.
 
     :param name:
     :type name: str
@@ -646,7 +646,7 @@ class ListContainersResponse(Model):
 
 
 class Logging(Model):
-    """Azure Analytics Logging settings..
+    """Azure Analytics Logging settings.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -872,7 +872,7 @@ class Slideshow(Model):
 
 
 class StorageServiceProperties(Model):
-    """Storage Service Properties..
+    """Storage Service Properties.
 
     :param logging: Azure Analytics Logging settings.
     :type logging: ~xmlservice.models.Logging
