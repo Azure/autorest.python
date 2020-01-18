@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from itertools import chain
 import logging
-from typing import List, Dict, Optional, Any, cast, Set
+from typing import List, Dict, Optional, Any, Set
 
 from .base_schema import BaseSchema
 from .enum_schema import EnumSchema

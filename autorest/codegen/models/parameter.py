@@ -33,7 +33,7 @@ class ParameterStyle(Enum):
     binary = "binary"
 
 
-class Parameter(BaseModel):
+class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
     def __init__(
         self,
         yaml_data: Dict[str, Any],
