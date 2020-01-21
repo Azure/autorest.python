@@ -41,7 +41,7 @@ class IntOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: int or the result of cls(response)
         :rtype: int
         :raises: ~bodyinteger.models.ErrorException:
         """
@@ -83,7 +83,7 @@ class IntOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: int or the result of cls(response)
         :rtype: int
         :raises: ~bodyinteger.models.ErrorException:
         """
@@ -125,7 +125,7 @@ class IntOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: int or the result of cls(response)
         :rtype: int
         :raises: ~bodyinteger.models.ErrorException:
         """
@@ -167,7 +167,7 @@ class IntOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: int or the result of cls(response)
         :rtype: int
         :raises: ~bodyinteger.models.ErrorException:
         """
@@ -209,7 +209,7 @@ class IntOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: long or the result of cls(response)
         :rtype: long
         :raises: ~bodyinteger.models.ErrorException:
         """
@@ -251,7 +251,7 @@ class IntOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: long or the result of cls(response)
         :rtype: long
         :raises: ~bodyinteger.models.ErrorException:
         """
@@ -469,7 +469,7 @@ class IntOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~bodyinteger.models.ErrorException:
         """
@@ -555,7 +555,7 @@ class IntOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~bodyinteger.models.ErrorException:
         """
@@ -597,7 +597,7 @@ class IntOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~bodyinteger.models.ErrorException:
         """

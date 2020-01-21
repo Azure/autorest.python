@@ -52,6 +52,8 @@ class NameConverter:
 
     @staticmethod
     def _convert_schemas(schemas):
+        for enum in schemas.get('sealedChoices', []) + schemas.get('choices', []):
+            NameConverter._convert_enum_schema(enum)
         for obj in schemas.get('objects', []):
             NameConverter._convert_object_schema(obj)
         for type_list, schema_yamls in schemas.items():
@@ -65,8 +67,6 @@ class NameConverter:
                     NameConverter._convert_language_default_python_case(schema)
                     NameConverter._convert_language_default_python_case(schema['value'])
                     NameConverter._convert_language_default_python_case(schema['valueType'])
-                elif type_list in ['sealedChoices', 'choices']:
-                    NameConverter._convert_enum_schema(schema)
                 else:
                     NameConverter._convert_language_default_python_case(schema)
 
