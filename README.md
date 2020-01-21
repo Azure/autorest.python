@@ -22,13 +22,13 @@ AutoRest needs the below config to pick this up as a plug-in - see https://githu
 #### Python code gen
 
 ``` yaml
-version: 3.0.6185
+version: 3.0.6187
 use-extension:
-  "@autorest/modelerfour": "4.3.121"
+  "@autorest/modelerfour": "4.3.142"
 
 modelerfour:
   flatten-models: true
-  flatten-payloads: false
+  flatten-payloads: true
 
 pipeline:
 

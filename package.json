@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/Azure/autorest.python/blob/master/README.md",
   "devDependencies": {
-    "@microsoft.azure/autorest.testserver": "^2.10.1",
+    "@microsoft.azure/autorest.testserver": "^2.10.9",
     "@autorest/autorest": "^3.0.0"
   },
   "files": [
