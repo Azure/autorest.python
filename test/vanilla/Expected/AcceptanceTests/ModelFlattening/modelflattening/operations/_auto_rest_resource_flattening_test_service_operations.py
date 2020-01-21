@@ -428,8 +428,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :raises: ~modelflattening.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        simple_body_product = models.SimpleProduct(max_product_display_name=max_product_display_name,capacity=capacity,odatavalue=odatavalue)
-        capacity = "Large"
+        simple_body_product = models.SimpleProduct(max_product_display_name=max_product_display_name, odatavalue=odatavalue)
 
         # Construct URL
         url = self.post_flattened_simple_product.metadata['url']
@@ -484,8 +483,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :raises: ~modelflattening.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        simple_body_product = models.SimpleProduct(max_product_display_name=max_product_display_name,capacity=capacity,odatavalue=odatavalue)
-        capacity = "Large"
+        simple_body_product = models.SimpleProduct(max_product_display_name=max_product_display_name, odatavalue=odatavalue)
 
         # Construct URL
         url = self.put_simple_product_with_grouping.metadata['url']
