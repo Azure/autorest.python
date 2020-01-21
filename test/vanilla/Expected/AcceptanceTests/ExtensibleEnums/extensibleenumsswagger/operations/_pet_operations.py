@@ -40,7 +40,7 @@ class PetOperations(object):
 
         FIXME: add operation.summary
 
-        :param pet_id: Pet id
+        :param pet_id: Pet id.
         :type pet_id: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Pet or the result of cls(response)

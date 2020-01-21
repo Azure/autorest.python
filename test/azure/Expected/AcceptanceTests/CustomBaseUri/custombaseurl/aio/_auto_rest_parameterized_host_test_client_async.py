@@ -19,7 +19,7 @@ class AutoRestParameterizedHostTestClient(object):
 
     :ivar paths: PathsOperations operations
     :vartype paths: custombaseurl.aio.operations_async.PathsOperations
-    :param host: A string value that is used as a global part of the parameterized host
+    :param host: A string value that is used as a global part of the parameterized host.
     :type host: str
     """
 

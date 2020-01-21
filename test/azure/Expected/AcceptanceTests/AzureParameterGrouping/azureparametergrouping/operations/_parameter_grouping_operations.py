@@ -40,13 +40,13 @@ class ParameterGroupingOperations(object):
 
         FIXME: add operation.summary
 
-        :param path: Path parameter
+        :param path: Path parameter.
         :type path: str
         :param body: 
         :type body: int
         :param custom_header: 
         :type custom_header: str
-        :param query: Query parameter with default
+        :param query: Query parameter with default.
         :type query: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -100,7 +100,7 @@ class ParameterGroupingOperations(object):
 
         :param custom_header: 
         :type custom_header: str
-        :param query: Query parameter with default
+        :param query: Query parameter with default.
         :type query: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -146,11 +146,11 @@ class ParameterGroupingOperations(object):
 
         :param header_one: 
         :type header_one: str
-        :param query_one: Query parameter with default
+        :param query_one: Query parameter with default.
         :type query_one: int
         :param header_two: 
         :type header_two: str
-        :param query_two: Query parameter with default
+        :param query_two: Query parameter with default.
         :type query_two: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -200,7 +200,7 @@ class ParameterGroupingOperations(object):
 
         :param header_one: 
         :type header_one: str
-        :param query_one: Query parameter with default
+        :param query_one: Query parameter with default.
         :type query_one: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

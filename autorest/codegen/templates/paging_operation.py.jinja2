@@ -22,7 +22,7 @@
 {% endif %}
 def {{ operation.python_name }}(self{{ operation.parameters.method_signature }}, cls=None, **kwargs):
 {% if operation.want_description_docstring %}
-    """{{operation.description + ("." if operation.description else "")}}
+    """{{operation.description }}
 
     {{ "FIXME: add operation.summary\n" }}
 

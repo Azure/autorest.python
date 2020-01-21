@@ -101,6 +101,8 @@ class NameConverter:
             schema_description = schema['language']['python']['name']
         elif 'MISSING' in schema_description:
             schema_description = ""
+        if schema_description and schema_description[-1] != ".":
+            schema_description += "."
         schema['language']['python']['description'] = schema_description
 
     @staticmethod

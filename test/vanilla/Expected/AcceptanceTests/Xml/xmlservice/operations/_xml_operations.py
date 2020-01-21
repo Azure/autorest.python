@@ -380,7 +380,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def get_headers(self, cls=None, **kwargs):
-        """Get strongly-typed response headers..
+        """Get strongly-typed response headers.
 
         FIXME: add operation.summary
 
@@ -421,7 +421,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def get_empty_list(self, cls=None, **kwargs):
-        """Get an empty list..
+        """Get an empty list.
 
         FIXME: add operation.summary
 
@@ -463,7 +463,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def put_empty_list(self, slideshow, cls=None, **kwargs):
-        """Puts an empty list..
+        """Puts an empty list.
 
         FIXME: add operation.summary
 
@@ -507,7 +507,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def get_empty_wrapped_lists(self, cls=None, **kwargs):
-        """Gets some empty wrapped lists..
+        """Gets some empty wrapped lists.
 
         FIXME: add operation.summary
 
@@ -549,7 +549,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def put_empty_wrapped_lists(self, apple_barrel, cls=None, **kwargs):
-        """Puts some empty wrapped lists..
+        """Puts some empty wrapped lists.
 
         FIXME: add operation.summary
 
@@ -593,7 +593,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def get_root_list(self, cls=None, **kwargs):
-        """Gets a list as the root element..
+        """Gets a list as the root element.
 
         FIXME: add operation.summary
 
@@ -635,7 +635,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def put_root_list(self, bananas, cls=None, **kwargs):
-        """Puts a list as the root element..
+        """Puts a list as the root element.
 
         FIXME: add operation.summary
 
@@ -679,7 +679,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def get_root_list_single_item(self, cls=None, **kwargs):
-        """Gets a list with a single item..
+        """Gets a list with a single item.
 
         FIXME: add operation.summary
 
@@ -721,7 +721,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def put_root_list_single_item(self, bananas, cls=None, **kwargs):
-        """Puts a list with a single item..
+        """Puts a list with a single item.
 
         FIXME: add operation.summary
 
@@ -765,7 +765,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def get_empty_root_list(self, cls=None, **kwargs):
-        """Gets an empty list as the root element..
+        """Gets an empty list as the root element.
 
         FIXME: add operation.summary
 
@@ -807,7 +807,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def put_empty_root_list(self, bananas, cls=None, **kwargs):
-        """Puts an empty list as the root element..
+        """Puts an empty list as the root element.
 
         FIXME: add operation.summary
 
@@ -851,7 +851,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def get_empty_child_element(self, cls=None, **kwargs):
-        """Gets an XML document with an empty child element..
+        """Gets an XML document with an empty child element.
 
         FIXME: add operation.summary
 
@@ -893,7 +893,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def put_empty_child_element(self, banana, cls=None, **kwargs):
-        """Puts a value with an empty child element..
+        """Puts a value with an empty child element.
 
         FIXME: add operation.summary
 
@@ -937,7 +937,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def list_containers(self, cls=None, **kwargs):
-        """Lists containers in a storage account..
+        """Lists containers in a storage account.
 
         FIXME: add operation.summary
 
@@ -981,7 +981,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def get_service_properties(self, cls=None, **kwargs):
-        """Gets storage service properties..
+        """Gets storage service properties.
 
         FIXME: add operation.summary
 
@@ -1027,7 +1027,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def put_service_properties(self, properties, cls=None, **kwargs):
-        """Puts storage service properties..
+        """Puts storage service properties.
 
         FIXME: add operation.summary
 
@@ -1075,7 +1075,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def get_acls(self, cls=None, **kwargs):
-        """Gets storage ACLs for a container..
+        """Gets storage ACLs for a container.
 
         FIXME: add operation.summary
 
@@ -1121,7 +1121,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def put_acls(self, properties, cls=None, **kwargs):
-        """Puts storage ACLs for a container..
+        """Puts storage ACLs for a container.
 
         FIXME: add operation.summary
 
@@ -1169,7 +1169,7 @@ class XmlOperations(object):
 
     @distributed_trace
     def list_blobs(self, cls=None, **kwargs):
-        """Lists blobs in a storage container..
+        """Lists blobs in a storage container.
 
         FIXME: add operation.summary
 

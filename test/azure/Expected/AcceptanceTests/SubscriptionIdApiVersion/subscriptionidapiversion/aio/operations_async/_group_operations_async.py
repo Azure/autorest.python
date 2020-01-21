@@ -37,7 +37,7 @@ class GroupOperations:
 
     @distributed_trace_async
     async def get_sample_resource_group(self, resource_group_name, cls=None, **kwargs):
-        """Provides a resouce group with name 'testgroup101' and location 'West US'..
+        """Provides a resouce group with name 'testgroup101' and location 'West US'.
 
         FIXME: add operation.summary
 
