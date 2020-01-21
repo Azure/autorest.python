@@ -5,7 +5,7 @@
 from setuptools import setup, find_packages
 
 NAME = "{{ code_model.class_name|lower }}"
-VERSION = "{{ code_model.api_version }}"
+VERSION = "{{ code_model.options.get('package_version', '0.0.0') }}"
 
 # To install the library, run the following
 #

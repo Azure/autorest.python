@@ -10,7 +10,7 @@
 from setuptools import setup, find_packages
 
 NAME = "autorestswaggerbatheaderservice"
-VERSION = ""
+VERSION = "0.1.0"
 
 # To install the library, run the following
 #
