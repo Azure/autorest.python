@@ -42,6 +42,7 @@ def build_schema(yaml_data: Dict[str, Any], **kwargs) -> BaseSchema:
     if not code_model:
         raise ValueError("CodeModel not passed through kwargs")
     yaml_id = id(yaml_data)
+    namespace = code_model.namespace
     try:
         return code_model.lookup_schema(yaml_id)
     except KeyError:
@@ -50,30 +51,30 @@ def build_schema(yaml_data: Dict[str, Any], **kwargs) -> BaseSchema:
     schema: BaseSchema
     schema_type = yaml_data['type']
     if schema_type == 'constant':
-        schema = ConstantSchema.from_yaml(yaml_data=yaml_data)
+        schema = ConstantSchema.from_yaml(namespace=namespace, yaml_data=yaml_data)
         code_model.primitives[yaml_id] = schema
 
     elif schema_type in ['choice', 'sealed-choice']:
-        schema = EnumSchema.from_yaml(yaml_data=yaml_data)
+        schema = EnumSchema.from_yaml(namespace=namespace, yaml_data=yaml_data)
         code_model.enums[yaml_id] = schema
 
     elif schema_type == 'array':
-        schema = ListSchema.from_yaml(yaml_data=yaml_data, **kwargs)
+        schema = ListSchema.from_yaml(namespace=namespace, yaml_data=yaml_data, **kwargs)
         code_model.primitives[yaml_id] = schema
 
     elif schema_type == 'dictionary':
-        schema = DictionarySchema.from_yaml(yaml_data=yaml_data, **kwargs)
+        schema = DictionarySchema.from_yaml(namespace=namespace, yaml_data=yaml_data, **kwargs)
         code_model.primitives[yaml_id] = schema
 
     elif schema_type in ['object', 'and']:
         # To avoid infinite loop, create the right instance in memory,
         # put it in the index, and then parse the object.
-        schema = ObjectSchema(yaml_data, "_", "")
+        schema = ObjectSchema(namespace, yaml_data, "_", "")
         code_model.schemas[yaml_id] = schema
-        schema.fill_instance_from_yaml(yaml_data, **kwargs)
+        schema.fill_instance_from_yaml(namespace=namespace, yaml_data=yaml_data, **kwargs)
 
     else:
-        schema = get_primitive_schema(yaml_data=yaml_data)
+        schema = get_primitive_schema(namespace=namespace, yaml_data=yaml_data)
         code_model.primitives[yaml_id] = schema
 
     return schema

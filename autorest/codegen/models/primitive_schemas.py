@@ -25,24 +25,26 @@ class PrimitiveSchema(BaseSchema):
     def get_serialization_type(self) -> str:
         return self._to_python_type()
 
-    def get_python_type(self, namespace: str = None) -> str:
+    @property
+    def docstring_type(self) -> str:
         return self._to_python_type()
 
     def get_python_type_annotation(self) -> str:
-        return self.get_python_type(None)
+        return self.docstring_type
 
 
 class AnySchema(PrimitiveSchema):
     def get_serialization_type(self) -> str:
         return 'object'
 
-    def get_python_type(self, namespace: str = None) -> str:
+    @property
+    def docstring_type(self) -> str:
         return 'object'
 
 
 class NumberSchema(PrimitiveSchema):
-    def __init__(self, yaml_data: Dict[str, Any]):
-        super(NumberSchema, self).__init__(yaml_data)
+    def __init__(self, namespace: str, yaml_data: Dict[str, Any]):
+        super(NumberSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.precision = cast(int, yaml_data['precision'])
         self.multiple = cast(int, yaml_data.get('multipleOf'))
         self.maximum = cast(int, yaml_data.get('maximum'))
@@ -84,7 +86,8 @@ class NumberSchema(PrimitiveSchema):
             return "int"
         return "float"
 
-    def get_python_type(self, namespace: str = None) -> str:
+    @property
+    def docstring_type(self) -> str:
         if self.yaml_data['type'] == "integer":
             if self.precision == 64:
                 return "long"
@@ -92,15 +95,15 @@ class NumberSchema(PrimitiveSchema):
         return "float"
 
     def get_python_type_annotation(self) -> str:
-        python_type = self.get_python_type(None)
+        python_type = self.docstring_type
         if python_type == "long":
             return "int"
         return python_type
 
 
 class StringSchema(PrimitiveSchema):
-    def __init__(self, yaml_data: Dict[str, Any]):
-        super(StringSchema, self).__init__(yaml_data)
+    def __init__(self, namespace: str, yaml_data: Dict[str, Any]):
+        super(StringSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.max_length = cast(int, yaml_data.get('maxLength'))
         self.min_length = cast(int, (
             yaml_data.get('minLength', 0)
@@ -131,8 +134,8 @@ class StringSchema(PrimitiveSchema):
 
 
 class DatetimeSchema(PrimitiveSchema):
-    def __init__(self, yaml_data):
-        super(DatetimeSchema, self).__init__(yaml_data)
+    def __init__(self, namespace: str, yaml_data: Dict[str, Any]):
+        super(DatetimeSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.format = self.Formats(yaml_data['format'])
 
     class Formats(str, Enum):
@@ -146,7 +149,8 @@ class DatetimeSchema(PrimitiveSchema):
         }
         return formats_to_attribute_type[self.format]
 
-    def get_python_type(self, namespace: str = None) -> str:
+    @property
+    def docstring_type(self) -> str:
         return "~"+self.get_python_type_annotation()
 
     def get_python_type_annotation(self) -> str:
@@ -164,7 +168,8 @@ class UnixTimeSchema(PrimitiveSchema):
     def get_serialization_type(self) -> str:
         return "unix-time"
 
-    def get_python_type(self, namespace: str = None) -> str:
+    @property
+    def docstring_type(self) -> str:
         return "~"+self.get_python_type_annotation()
 
     def get_python_type_annotation(self) -> str:
@@ -182,7 +187,8 @@ class DateSchema(PrimitiveSchema):
     def get_serialization_type(self) -> str:
         return "date"
 
-    def get_python_type(self, namespace: str = None) -> str:
+    @property
+    def docstring_type(self) -> str:
         return "~"+self.get_python_type_annotation()
 
     def get_python_type_annotation(self):
@@ -200,7 +206,8 @@ class DurationSchema(PrimitiveSchema):
     def get_serialization_type(self) -> str:
         return "duration"
 
-    def get_python_type(self, namespace: str = None) -> str:
+    @property
+    def docstring_type(self) -> str:
         return "~"+self.get_python_type_annotation()
 
     def get_python_type_annotation(self) -> str:
@@ -214,8 +221,8 @@ class DurationSchema(PrimitiveSchema):
 
 
 class ByteArraySchema(PrimitiveSchema):
-    def __init__(self, yaml_data: Dict[str, Any]):
-        super(ByteArraySchema, self).__init__(yaml_data)
+    def __init__(self, namespace: str, yaml_data: Dict[str, Any]):
+        super(ByteArraySchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.format = self.Formats(yaml_data['format'])
 
     class Formats(str, Enum):
@@ -227,7 +234,8 @@ class ByteArraySchema(PrimitiveSchema):
             return "base64"
         return "bytearray"
 
-    def get_python_type(self, namespace: Optional[str] = None) -> str:
+    @property
+    def docstring_type(self) -> str:
         if self.format == ByteArraySchema.Formats.base64url:
             return "bytes"
         return "bytearray"
@@ -238,7 +246,7 @@ class ByteArraySchema(PrimitiveSchema):
         return f'bytearray("{value}", encoding="utf-8")'
 
 
-def get_primitive_schema(yaml_data: Dict[str, Any]) -> "PrimitiveSchema":
+def get_primitive_schema(namespace: str, yaml_data: Dict[str, Any]) -> "PrimitiveSchema":
     mapping = {
         'integer': NumberSchema,
         'number': NumberSchema,
@@ -251,5 +259,8 @@ def get_primitive_schema(yaml_data: Dict[str, Any]) -> "PrimitiveSchema":
         'any': AnySchema
     }
     schema_type = yaml_data['type']
-    primitive_schema = cast(PrimitiveSchema, mapping.get(schema_type, PrimitiveSchema).from_yaml(yaml_data=yaml_data))
+    primitive_schema = cast(
+        PrimitiveSchema,
+        mapping.get(schema_type, PrimitiveSchema).from_yaml(namespace=namespace, yaml_data=yaml_data)
+    )
     return primitive_schema

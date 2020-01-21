@@ -18,8 +18,15 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
     :param properties: the optional properties of the class.
     :type properties: dict(str, str)
     """
-    def __init__(self, yaml_data: Dict[str, Any], name: str, description: str = "", **kwargs):
-        super(ObjectSchema, self).__init__(yaml_data)
+    def __init__(
+        self,
+        namespace: str,
+        yaml_data: Dict[str, Any],
+        name: str,
+        description: str = "",
+        **kwargs
+    ):
+        super(ObjectSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.name = name
         self.description = description
         self.max_properties = kwargs.pop('max_properties', None)
@@ -44,8 +51,9 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
     def get_python_type_annotation(self) -> str:
         return f'\"{self.name}\"'
 
-    def get_python_type(self, namespace: str):
-        return '~{}.models.{}'.format(namespace, self.name)
+    @property
+    def docstring_type(self):
+        return '~{}.models.{}'.format(self.namespace, self.name)
 
     def get_declaration(self, value: Any) -> str:
         return f"{self.name}()"
@@ -54,7 +62,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         return f"<{self.__class__.__name__} {self.name}>"
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], **kwargs) -> "ObjectSchema":
+    def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs) -> "ObjectSchema":
         """Returns a ClassType from the dict object constructed from a yaml file.
 
         WARNING: This guy might create an infinite loop.
@@ -65,11 +73,11 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         :returns: A ClassType.
         :rtype: ~autorest.models.schema.ClassType
         """
-        obj = cls(yaml_data, "", "")
-        obj.fill_instance_from_yaml(yaml_data)
+        obj = cls(namespace, yaml_data, "", description="")
+        obj.fill_instance_from_yaml(namespace, yaml_data)
         return obj
 
-    def fill_instance_from_yaml(self, yaml_data: Dict[str, Any], **kwargs) -> None:
+    def fill_instance_from_yaml(self, namespace: str, yaml_data: Dict[str, Any], **kwargs) -> None:
         properties = []
         base_model = None
 
@@ -81,6 +89,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
                 for immediate_parent in immediate_parents:
                     if immediate_parent['type'] == 'dictionary':
                         additional_properties_schema = DictionarySchema.from_yaml(
+                            namespace=namespace,
                             yaml_data=immediate_parent,
                             for_additional_properties=True,
                             **kwargs
