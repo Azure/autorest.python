@@ -21,11 +21,12 @@ class ConstantSchema(BaseSchema):
     """
     def __init__(
         self,
+        namespace: str,
         yaml_data: Dict[str, Any],
         schema: PrimitiveSchema,
         value: Optional[str],
     ):
-        super(ConstantSchema, self).__init__(yaml_data)
+        super(ConstantSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.value = value
         self.schema = schema
 
@@ -51,18 +52,19 @@ class ConstantSchema(BaseSchema):
     def docstring_text(self) -> str:
         return "constant"
 
-    def get_python_type(self, namespace: str) -> str:
+    @property
+    def docstring_type(self) -> str:
         """The python type used for RST syntax input and type annotation.
 
         :param str namespace: Optional. The namespace for the models.
         """
-        return self.schema.get_python_type(namespace)
+        return self.schema.docstring_type
 
     def get_python_type_annotation(self) -> str:
         return self.schema.get_python_type_annotation()
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], **kwargs) -> "ConstantSchema":
+    def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs) -> "ConstantSchema":
         """Constructs a ConstantSchema from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this schema
@@ -74,7 +76,8 @@ class ConstantSchema(BaseSchema):
         name = yaml_data["language"]["python"]["name"] if yaml_data["language"]["python"].get('name') else ""
         _LOGGER.debug("Parsing %s constant", name)
         return cls(
+            namespace=namespace,
             yaml_data=yaml_data,
-            schema=get_primitive_schema(yaml_data['valueType']),
+            schema=get_primitive_schema(namespace=namespace, yaml_data=yaml_data['valueType']),
             value=yaml_data.get("value", {}).get("value", None)
         )

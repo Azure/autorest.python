@@ -30,11 +30,12 @@ class CredentialSchema(BaseSchema):
     def get_serialization_type(self) -> str:
         return self.type
 
-    def get_python_type(self, namespace: Optional[str] = None) -> str:
+    @property
+    def docstring_type(self) -> str:
         return self.type
 
     def get_python_type_annotation(self) -> str:
-        return self.get_python_type(None)
+        return self.docstring_type
 
     @property
     def docstring_text(self) -> str:

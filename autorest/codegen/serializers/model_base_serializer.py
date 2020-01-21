@@ -67,13 +67,13 @@ class ModelBaseSerializer:
         return param_doc_string
 
     @staticmethod
-    def prop_type_documentation_string(prop: Property, namespace: str) -> str:
+    def prop_type_documentation_string(prop: Property) -> str:
         # building the type line of the property doc
         if prop.constant or prop.readonly:
             type_doc_string = ":vartype {}: ".format(prop.name)
         else:
             type_doc_string = ":type {}: ".format(prop.name)
-        type_doc_string += prop.schema.get_python_type(namespace)
+        type_doc_string += prop.schema.docstring_type
         return type_doc_string
 
     @staticmethod

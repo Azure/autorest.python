@@ -48,12 +48,13 @@ class EnumSchema(BaseSchema):
     """
     def __init__(
         self,
+        namespace: str,
         yaml_data: Dict[str, Any],
         description: str,
         enum_type: str,
         values: List["EnumValue"]
     ):
-        super(EnumSchema, self).__init__(yaml_data)
+        super(EnumSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.description = description
         self.enum_type = enum_type
         self.values = values
@@ -78,12 +79,11 @@ class EnumSchema(BaseSchema):
     def docstring_text(self) -> str:
         return self.enum_type
 
-    def get_python_type(self, namespace: str) -> str:
+    @property
+    def docstring_type(self) -> str:
         """The python type used for RST syntax input and type annotation.
-
-        :param str namespace: The namespace for this enum.
         """
-        return f"str or ~{namespace}.models.{self.enum_type}"
+        return f"str or ~{self.namespace}.models.{self.enum_type}"
 
     @staticmethod
     def _get_enum_values(yaml_data: List[Dict[str, Any]]) -> List["EnumValue"]:
@@ -106,7 +106,7 @@ class EnumSchema(BaseSchema):
         return values
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], **kwargs) -> "EnumSchema":
+    def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs) -> "EnumSchema":
         """Constructs an EnumSchema from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this schema
@@ -119,6 +119,7 @@ class EnumSchema(BaseSchema):
         values = EnumSchema._get_enum_values(yaml_data['choices'])
 
         return cls(
+            namespace=namespace,
             yaml_data=yaml_data,
             description=yaml_data['language']['python']['description'],
             enum_type=enum_type,
