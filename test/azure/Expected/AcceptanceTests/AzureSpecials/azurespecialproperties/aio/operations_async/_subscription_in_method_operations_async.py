@@ -63,7 +63,6 @@ class SubscriptionInMethodOperations:
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -108,7 +107,6 @@ class SubscriptionInMethodOperations:
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -153,7 +151,6 @@ class SubscriptionInMethodOperations:
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -198,7 +195,6 @@ class SubscriptionInMethodOperations:
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request

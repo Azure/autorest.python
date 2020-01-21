@@ -67,7 +67,6 @@ class PagingOperations(object):
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -127,7 +126,6 @@ class PagingOperations(object):
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -187,7 +185,6 @@ class PagingOperations(object):
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -259,7 +256,6 @@ class PagingOperations(object):
             if timeout is not None:
                 header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -331,7 +327,6 @@ class PagingOperations(object):
             if timeout is not None:
                 header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -409,7 +404,6 @@ class PagingOperations(object):
             if timeout is not None:
                 header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -469,7 +463,6 @@ class PagingOperations(object):
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -529,7 +522,6 @@ class PagingOperations(object):
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -589,7 +581,6 @@ class PagingOperations(object):
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -649,7 +640,6 @@ class PagingOperations(object):
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -709,7 +699,6 @@ class PagingOperations(object):
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -783,7 +772,6 @@ class PagingOperations(object):
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -857,7 +845,6 @@ class PagingOperations(object):
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -909,7 +896,6 @@ class PagingOperations(object):
         if timeout is not None:
             header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
         header_parameters['Accept'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request

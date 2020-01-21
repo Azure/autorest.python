@@ -58,7 +58,6 @@ class XMsClientRequestIdOperations:
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -100,7 +99,6 @@ class XMsClientRequestIdOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['x-ms-client-request-id'] = self._serialize.header("x_ms_client_request_id", x_ms_client_request_id, 'str')
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request

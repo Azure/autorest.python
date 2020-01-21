@@ -60,7 +60,6 @@ class HeaderOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", foo_client_request_id, 'str')
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -105,7 +104,6 @@ class HeaderOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", foo_client_request_id, 'str')
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -150,7 +148,6 @@ class HeaderOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", foo_client_request_id, 'str')
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request

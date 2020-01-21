@@ -53,7 +53,6 @@ class LROSADsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -140,7 +139,6 @@ class LROSADsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -227,7 +225,6 @@ class LROSADsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -314,7 +311,6 @@ class LROSADsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -402,7 +398,6 @@ class LROSADsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -471,7 +466,6 @@ class LROSADsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -540,7 +534,6 @@ class LROSADsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -611,7 +604,6 @@ class LROSADsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -690,7 +682,6 @@ class LROSADsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -769,7 +760,6 @@ class LROSADsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -850,7 +840,6 @@ class LROSADsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -937,7 +926,6 @@ class LROSADsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -1027,7 +1015,6 @@ class LROSADsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -1115,7 +1102,6 @@ class LROSADsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -1180,7 +1166,6 @@ class LROSADsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -1251,7 +1236,6 @@ class LROSADsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -1330,7 +1314,6 @@ class LROSADsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -1411,7 +1394,6 @@ class LROSADsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -1495,7 +1477,6 @@ class LROSADsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -1585,7 +1566,6 @@ class LROSADsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -1673,7 +1653,6 @@ class LROSADsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -1742,7 +1721,6 @@ class LROSADsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -1812,7 +1790,6 @@ class LROSADsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -1883,7 +1860,6 @@ class LROSADsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -1962,7 +1938,6 @@ class LROSADsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -2042,7 +2017,6 @@ class LROSADsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body

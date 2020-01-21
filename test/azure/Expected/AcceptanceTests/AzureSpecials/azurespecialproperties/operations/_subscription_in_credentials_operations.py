@@ -61,7 +61,6 @@ class SubscriptionInCredentialsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -104,7 +103,6 @@ class SubscriptionInCredentialsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -147,7 +145,6 @@ class SubscriptionInCredentialsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -190,7 +187,6 @@ class SubscriptionInCredentialsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -233,7 +229,6 @@ class SubscriptionInCredentialsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request

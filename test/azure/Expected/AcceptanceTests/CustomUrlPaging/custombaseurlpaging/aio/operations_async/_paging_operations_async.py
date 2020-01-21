@@ -78,7 +78,6 @@ class PagingOperations:
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -151,7 +150,6 @@ class PagingOperations:
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
