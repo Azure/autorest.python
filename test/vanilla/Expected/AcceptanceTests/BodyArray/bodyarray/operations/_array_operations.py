@@ -1148,7 +1148,7 @@ class ArrayOperations(object):
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
-        :rtype: list[str or ~bodyarray.models.foo_enum]
+        :rtype: list[str or ~bodyarray.models.FooEnum]
         :raises: ~bodyarray.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -1189,7 +1189,7 @@ class ArrayOperations(object):
         FIXME: add operation.summary
 
         :param array_body: 
-        :type array_body: list[str or ~bodyarray.models.foo_enum]
+        :type array_body: list[str or ~bodyarray.models.FooEnum]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -1234,7 +1234,7 @@ class ArrayOperations(object):
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or the result of cls(response)
-        :rtype: list[str or ~bodyarray.models.enum0]
+        :rtype: list[str or ~bodyarray.models.Enum0]
         :raises: ~bodyarray.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -1275,7 +1275,7 @@ class ArrayOperations(object):
         FIXME: add operation.summary
 
         :param array_body: 
-        :type array_body: list[str or ~bodyarray.models.enum0]
+        :type array_body: list[str or ~bodyarray.models.Enum0]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
