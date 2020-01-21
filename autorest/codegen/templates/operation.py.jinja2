@@ -5,7 +5,7 @@
 {% set request_as_xml = ", is_xml=False" if "xml" in operation.request_content_type else "" %}
 {% macro return_docstring() %}
 {% if operation.responses | selectattr('has_body') | first %}
-:return: {{ operation.responses|map(attribute='schema')|map(attribute='name')|join(' or ') }} or the result of cls(response)
+:return: {{ operation.responses|map(attribute='schema')|map(attribute='docstring_text')|join(' or ') }} or the result of cls(response)
 :rtype: {% for response in operation.responses %}{{response.schema.docstring_type if response.has_body else "None"}}{% if not loop.last %} or {% endif %}{% endfor %}
 {% else %}
 :return: None or the result of cls(response)

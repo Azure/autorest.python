@@ -37,6 +37,10 @@ class CredentialSchema(BaseSchema):
     def get_python_type_annotation(self) -> str:
         return self.docstring_type
 
+    @property
+    def docstring_text(self) -> str:
+        return 'credential'
+
 
 class CodeModel:  # pylint: disable=too-many-instance-attributes
     """Holds all of the information we have parsed out of the yaml file. The CodeModel is what gets

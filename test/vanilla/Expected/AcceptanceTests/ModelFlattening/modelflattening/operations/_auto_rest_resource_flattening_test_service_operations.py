@@ -67,7 +67,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[~modelflattening.models.FlattenedProduct]
         :raises: ~modelflattening.models.ErrorException:
         """
@@ -154,7 +154,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[~modelflattening.models.ProductWrapper]
         :raises: ~modelflattening.models.ErrorException:
         """
@@ -241,7 +241,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: dict or the result of cls(response)
         :rtype: dict[str, ~modelflattening.models.FlattenedProduct]
         :raises: ~modelflattening.models.ErrorException:
         """
