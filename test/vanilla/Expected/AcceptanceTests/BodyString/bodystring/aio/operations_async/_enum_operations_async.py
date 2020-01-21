@@ -262,8 +262,7 @@ class EnumOperations:
         :raises: ~bodystring.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        enum_string_body = models.RefColorConstant(color_constant=color_constant,field1=field1)
-        color_constant = "green-color"
+        enum_string_body = models.RefColorConstant(field1=field1)
 
         # Construct URL
         url = self.put_referenced_constant.metadata['url']
