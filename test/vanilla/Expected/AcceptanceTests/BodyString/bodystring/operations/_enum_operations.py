@@ -249,19 +249,21 @@ class EnumOperations(object):
     get_referenced_constant.metadata = {'url': '/string/enum/ReferencedConstant'}
 
     @distributed_trace
-    def put_referenced_constant(self, enum_string_body, cls=None, **kwargs):
+    def put_referenced_constant(self, field1=None, cls=None, **kwargs):
         """Sends value 'green-color' from a constant.
 
         FIXME: add operation.summary
 
-        :param enum_string_body: 
-        :type enum_string_body: ~bodystring.models.RefColorConstant
+        :param field1: Sample string.
+        :type field1: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodystring.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+        enum_string_body = models.RefColorConstant(color_constant=color_constant,field1=field1)
+        color_constant = "green-color"
 
         # Construct URL
         url = self.put_referenced_constant.metadata['url']
