@@ -369,28 +369,28 @@ class DotFish(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server.
-    :type fishtype: str
+    :param fish_type: Required. Constant filled by server.
+    :type fish_type: str
     :param species:
     :type species: str
     """
 
     _validation = {
-        'fishtype': {'required': True},
+        'fish_type': {'required': True},
     }
 
     _attribute_map = {
-        'fishtype': {'key': 'fish\\.type', 'type': 'str'},
+        'fish_type': {'key': 'fish\\.type', 'type': 'str'},
         'species': {'key': 'species', 'type': 'str'},
     }
 
     _subtype_map = {
-        'fishtype': {'DotSalmon': 'DotSalmon'}
+        'fish_type': {'DotSalmon': 'DotSalmon'}
     }
 
     def __init__(self, **kwargs):
         super(DotFish, self).__init__(**kwargs)
-        self.fishtype = None
+        self.fish_type = None
         self.species = kwargs.get('species', None)
 
 
@@ -427,8 +427,8 @@ class DotSalmon(DotFish):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param fishtype: Required. Constant filled by server.
-    :type fishtype: str
+    :param fish_type: Required. Constant filled by server.
+    :type fish_type: str
     :param species:
     :type species: str
     :param location:
@@ -438,11 +438,11 @@ class DotSalmon(DotFish):
     """
 
     _validation = {
-        'fishtype': {'required': True},
+        'fish_type': {'required': True},
     }
 
     _attribute_map = {
-        'fishtype': {'key': 'fish\\.type', 'type': 'str'},
+        'fish_type': {'key': 'fish\\.type', 'type': 'str'},
         'species': {'key': 'species', 'type': 'str'},
         'location': {'key': 'location', 'type': 'str'},
         'iswild': {'key': 'iswild', 'type': 'bool'},
@@ -450,7 +450,7 @@ class DotSalmon(DotFish):
 
     def __init__(self, **kwargs):
         super(DotSalmon, self).__init__(**kwargs)
-        self.fishtype = 'DotSalmon'
+        self.fish_type = 'DotSalmon'
         self.location = kwargs.get('location', None)
         self.iswild = kwargs.get('iswild', None)
 
@@ -461,21 +461,21 @@ class DoubleWrapper(Model):
     :param field1:
     :type field1: float
     :param
-     field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
+     field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_along_field_name_on_purpose:
     :type
-     field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
+     field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_along_field_name_on_purpose:
      float
     """
 
     _attribute_map = {
         'field1': {'key': 'field1', 'type': 'float'},
-        'field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose': {'key': 'field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose', 'type': 'float'},
+        'field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_along_field_name_on_purpose': {'key': 'field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose', 'type': 'float'},
     }
 
     def __init__(self, **kwargs):
         super(DoubleWrapper, self).__init__(**kwargs)
         self.field1 = kwargs.get('field1', None)
-        self.field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose = kwargs.get('field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose', None)
+        self.field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_along_field_name_on_purpose = kwargs.get('field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_along_field_name_on_purpose', None)
 
 
 class DurationWrapper(Model):

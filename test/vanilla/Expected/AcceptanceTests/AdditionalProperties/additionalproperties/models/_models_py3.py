@@ -188,8 +188,8 @@ class PetAPInPropertiesWithAPString(Model):
     :type name: str
     :ivar status:
     :vartype status: bool
-    :param odatalocation: Required.
-    :type odatalocation: str
+    :param odata_location: Required.
+    :type odata_location: str
     :param additional_properties1: Dictionary of
      <components·schemas·petapinproperties·properties·additionalproperties·additionalproperties>.
     :type additional_properties1: dict[str, float]
@@ -198,7 +198,7 @@ class PetAPInPropertiesWithAPString(Model):
     _validation = {
         'id': {'required': True},
         'status': {'readonly': True},
-        'odatalocation': {'required': True},
+        'odata_location': {'required': True},
     }
 
     _attribute_map = {
@@ -206,17 +206,17 @@ class PetAPInPropertiesWithAPString(Model):
         'id': {'key': 'id', 'type': 'int'},
         'name': {'key': 'name', 'type': 'str'},
         'status': {'key': 'status', 'type': 'bool'},
-        'odatalocation': {'key': '@odata\\.location', 'type': 'str'},
+        'odata_location': {'key': '@odata\\.location', 'type': 'str'},
         'additional_properties1': {'key': 'additionalProperties', 'type': '{float}'},
     }
 
-    def __init__(self, *, id: int, odatalocation: str, additional_properties: Dict[str, str]=None, name: str=None, additional_properties1: Dict[str, float]=None, **kwargs) -> None:
+    def __init__(self, *, id: int, odata_location: str, additional_properties: Dict[str, str]=None, name: str=None, additional_properties1: Dict[str, float]=None, **kwargs) -> None:
         super(PetAPInPropertiesWithAPString, self).__init__(**kwargs)
         self.additional_properties = additional_properties
         self.id = id
         self.name = name
         self.status = None
-        self.odatalocation = odatalocation
+        self.odata_location = odata_location
         self.additional_properties1 = additional_properties1
 
 

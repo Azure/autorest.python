@@ -532,7 +532,7 @@ class StorageAccountsOperations:
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
         :type account_name: str
-        :param key_name: 
+        :param key_name: MISSING·SCHEMA-DESCRIPTION-CHOICE
         :type key_name: str or ~storage.models.KeyName
         :param callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountKeys or the result of cls(response)

@@ -144,11 +144,11 @@ class TestComplex(object):
         # GET primitive/double
         doubleResult = await client.primitive.get_double()
         assert 3e-100 ==  doubleResult.field1
-        assert -5e-57 ==  doubleResult.field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose
+        assert -5e-57 ==  doubleResult.field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_along_field_name_on_purpose
 
         # PUT primitive/double
         doubleRequest = {'field1':3e-100}
-        doubleRequest['field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose'] = -5e-57
+        doubleRequest['field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_along_field_name_on_purpose'] = -5e-57
         await client.primitive.put_double(doubleRequest)
 
     @pytest.mark.asyncio
@@ -487,5 +487,5 @@ class TestComplex(object):
 
         # Dot syntax
         dot_salmon = await client.polymorphism.get_dot_syntax()
-        assert dot_salmon.fishtype == "DotSalmon"
+        assert dot_salmon.fish_type == "DotSalmon"
         assert dot_salmon.location == "sweden"

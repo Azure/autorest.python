@@ -1348,7 +1348,7 @@ class LROsOperations(object):
         FIXME: add operation.summary
 
 
-        :param provisioning_state: 
+        :param provisioning_state: MISSING·SCHEMA-DESCRIPTION-STRING
         :type provisioning_state: str
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -1430,7 +1430,7 @@ class LROsOperations(object):
         FIXME: add operation.summary
 
 
-        :param provisioning_state: 
+        :param provisioning_state: MISSING·SCHEMA-DESCRIPTION-STRING
         :type provisioning_state: str
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
