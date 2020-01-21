@@ -46,7 +46,4 @@ header_parameters['Accept'] = '{{ operation.accept_content_type }}'
 {% if operation.parameters.has_body %}
 header_parameters['Content-Type'] = '{{ operation.request_content_type }}'
 {% endif %}
-{% if code_model.options['azure_arm'] %}
-kwargs.setdefault('request_id', str(uuid.uuid1()))
-{% endif %}
 {% endmacro %}
