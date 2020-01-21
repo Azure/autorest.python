@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import cast
+from typing import cast, Optional
 from jinja2 import Environment
 
 from .import_serializer import FileImportSerializer
@@ -52,14 +52,18 @@ class OperationGroupSerializer:
 
     @staticmethod
     def operation_typing_comment(operation: Operation) -> str:
+        def _cast_to_base_schema(schema: Optional[BaseSchema]) -> BaseSchema:
+            cast_schema = cast(BaseSchema, schema)
+            return cast_schema
         response = "None"
         if any(r.has_body for r in operation.responses):
-            if len([r for r in operation.responses if r.has_body]) == 1:
-                response = cast(BaseSchema, operation.responses[0].schema).type_annotation
+            responses_with_bodies = [r for r in operation.responses if r.has_body]
+            if len(responses_with_bodies) == 1:
+                response = _cast_to_base_schema(responses_with_bodies[0].schema).type_annotation
             else:
                 response_parameters_string = ", ".join([
-                    cast(BaseSchema, r.schema).type_annotation if r.has_body else "None"
-                    for r in operation.responses
+                    _cast_to_base_schema(r.schema).type_annotation if r.has_body else "None"
+                    for r in responses_with_bodies
                 ])
                 response = f"Union[{response_parameters_string}]"
         if not operation.parameters.method:
