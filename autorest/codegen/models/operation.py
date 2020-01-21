@@ -190,10 +190,6 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
                     "azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE
                 )
 
-        # If ARM, I always generated a client request id
-        if code_model.options['azure_arm']:
-            file_import.add_import("uuid", ImportType.STDLIB)
-
         # Deprecation
         # FIXME: Replace with "the YAML contains deprecated:true"
         if True:  # pylint: disable=using-constant-test
