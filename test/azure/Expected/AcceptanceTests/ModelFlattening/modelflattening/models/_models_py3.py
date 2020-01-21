@@ -166,8 +166,10 @@ class FlattenedProduct(Resource):
     :type location: str
     :ivar name: Resource Name.
     :vartype name: str
-    :param pname:
-    :type pname: str
+    :param p_name:
+    :type p_name: str
+    :param type_properties_type:
+    :type type_properties_type: str
     :ivar provisioning_state_values:  Possible values include: 'Succeeded',
      'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
      'Deleting', 'Deleted', 'OK'.
@@ -190,7 +192,8 @@ class FlattenedProduct(Resource):
         'tags': {'key': 'tags', 'type': '{str}'},
         'location': {'key': 'location', 'type': 'str'},
         'name': {'key': 'name', 'type': 'str'},
-        'pname': {'key': 'properties.p\\.name', 'type': 'str'},
+        'p_name': {'key': 'properties.p\\.name', 'type': 'str'},
+        'type_properties_type': {'key': 'properties.type', 'type': 'str'},
         'provisioning_state_values': {'key': 'properties.provisioningStateValues', 'type': 'str'},
         'provisioning_state': {'key': 'properties.provisioningState', 'type': 'str'},
     }
@@ -200,12 +203,14 @@ class FlattenedProduct(Resource):
         *,
         tags: Optional[Dict[str, str]] = None,
         location: Optional[str] = None,
-        pname: Optional[str] = None,
+        p_name: Optional[str] = None,
+        type_properties_type: Optional[str] = None,
         provisioning_state: Optional[str] = None,
         **kwargs
     ) -> None:
         super(FlattenedProduct, self).__init__(tags=tags, location=location, **kwargs)
-        self.pname = pname
+        self.p_name = p_name
+        self.type_properties_type = type_properties_type
         self.provisioning_state = provisioning_state
 
 
@@ -214,8 +219,8 @@ class FlattenedProductProperties(Model):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    :param pname:
-    :type pname: str
+    :param p_name:
+    :type p_name: str
     :param type:
     :type type: str
     :ivar provisioning_state_values:  Possible values include: 'Succeeded',
@@ -232,7 +237,7 @@ class FlattenedProductProperties(Model):
     }
 
     _attribute_map = {
-        'pname': {'key': 'p\\.name', 'type': 'str'},
+        'p_name': {'key': 'p\\.name', 'type': 'str'},
         'type': {'key': 'type', 'type': 'str'},
         'provisioning_state_values': {'key': 'provisioningStateValues', 'type': 'str'},
         'provisioning_state': {'key': 'provisioningState', 'type': 'str'},
@@ -241,13 +246,13 @@ class FlattenedProductProperties(Model):
     def __init__(
         self,
         *,
-        pname: Optional[str] = None,
+        p_name: Optional[str] = None,
         type: Optional[str] = None,
         provisioning_state: Optional[str] = None,
         **kwargs
     ) -> None:
         super(FlattenedProductProperties, self).__init__(**kwargs)
-        self.pname = pname
+        self.p_name = p_name
         self.type = type
         self.provisioning_state_values = None
         self.provisioning_state = provisioning_state
@@ -279,24 +284,24 @@ class ProductUrl(GenericUrl):
 
     :param generic_value: Generic URL value.
     :type generic_value: str
-    :param odatavalue: URL value.
-    :type odatavalue: str
+    :param odata_value: URL value.
+    :type odata_value: str
     """
 
     _attribute_map = {
         'generic_value': {'key': 'generic_value', 'type': 'str'},
-        'odatavalue': {'key': '@odata\\.value', 'type': 'str'},
+        'odata_value': {'key': '@odata\\.value', 'type': 'str'},
     }
 
     def __init__(
         self,
         *,
         generic_value: Optional[str] = None,
-        odatavalue: Optional[str] = None,
+        odata_value: Optional[str] = None,
         **kwargs
     ) -> None:
         super(ProductUrl, self).__init__(generic_value=generic_value, **kwargs)
-        self.odatavalue = odatavalue
+        self.odata_value = odata_value
 
 
 class ProductWrapper(Model):
@@ -369,8 +374,8 @@ class SimpleProduct(BaseProduct):
     :ivar capacity: Capacity of product. For example, 4 people. Default value:
      "Large".
     :vartype capacity: str
-    :param odatavalue: URL value.
-    :type odatavalue: str
+    :param odata_value: URL value.
+    :type odata_value: str
     """
 
     _validation = {
@@ -383,7 +388,7 @@ class SimpleProduct(BaseProduct):
         'description': {'key': 'base_product_description', 'type': 'str'},
         'max_product_display_name': {'key': 'details.max_product_display_name', 'type': 'str'},
         'capacity': {'key': 'details.max_product_capacity', 'type': 'str'},
-        'odatavalue': {'key': 'details.max_product_image.@odata\\.value', 'type': 'str'},
+        'odata_value': {'key': 'details.max_product_image.@odata\\.value', 'type': 'str'},
     }
 
     capacity = "Large"
@@ -394,12 +399,12 @@ class SimpleProduct(BaseProduct):
         product_id: str,
         description: Optional[str] = None,
         max_product_display_name: Optional[str] = None,
-        odatavalue: Optional[str] = None,
+        odata_value: Optional[str] = None,
         **kwargs
     ) -> None:
         super(SimpleProduct, self).__init__(product_id=product_id, description=description, **kwargs)
         self.max_product_display_name = max_product_display_name
-        self.odatavalue = odatavalue
+        self.odata_value = odata_value
 
 
 class SimpleProductProperties(Model):
@@ -414,8 +419,8 @@ class SimpleProductProperties(Model):
     :ivar capacity: Required. Capacity of product. For example, 4 people. Default
      value: "Large".
     :vartype capacity: str
-    :param odatavalue: URL value.
-    :type odatavalue: str
+    :param odata_value: URL value.
+    :type odata_value: str
     """
 
     _validation = {
@@ -426,7 +431,7 @@ class SimpleProductProperties(Model):
     _attribute_map = {
         'max_product_display_name': {'key': 'max_product_display_name', 'type': 'str'},
         'capacity': {'key': 'max_product_capacity', 'type': 'str'},
-        'odatavalue': {'key': 'max_product_image.@odata\\.value', 'type': 'str'},
+        'odata_value': {'key': 'max_product_image.@odata\\.value', 'type': 'str'},
     }
 
     capacity = "Large"
@@ -435,12 +440,12 @@ class SimpleProductProperties(Model):
         self,
         *,
         max_product_display_name: str,
-        odatavalue: Optional[str] = None,
+        odata_value: Optional[str] = None,
         **kwargs
     ) -> None:
         super(SimpleProductProperties, self).__init__(**kwargs)
         self.max_product_display_name = max_product_display_name
-        self.odatavalue = odatavalue
+        self.odata_value = odata_value
 
 
 class WrappedProduct(Model):

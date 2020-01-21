@@ -6,7 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from typing import Optional
-import uuid
 import warnings
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
@@ -71,7 +70,6 @@ class PagingOperations:
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -132,7 +130,6 @@ class PagingOperations:
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -193,7 +190,6 @@ class PagingOperations:
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -266,7 +262,6 @@ class PagingOperations:
             if timeout is not None:
                 header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -339,7 +334,6 @@ class PagingOperations:
             if timeout is not None:
                 header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -351,7 +345,7 @@ class PagingOperations:
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.odatanext_link, AsyncList(list_of_elem)
+            return deserialized.odata_next_link, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -418,7 +412,6 @@ class PagingOperations:
             if timeout is not None:
                 header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -479,7 +472,6 @@ class PagingOperations:
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -540,7 +532,6 @@ class PagingOperations:
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -601,7 +592,6 @@ class PagingOperations:
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -662,7 +652,6 @@ class PagingOperations:
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -723,7 +712,6 @@ class PagingOperations:
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -798,7 +786,6 @@ class PagingOperations:
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -810,7 +797,7 @@ class PagingOperations:
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.odatanext_link, AsyncList(list_of_elem)
+            return deserialized.odata_next_link, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -873,7 +860,6 @@ class PagingOperations:
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -885,7 +871,7 @@ class PagingOperations:
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.odatanext_link, AsyncList(list_of_elem)
+            return deserialized.odata_next_link, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -926,7 +912,6 @@ class PagingOperations:
         if timeout is not None:
             header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
         header_parameters['Accept'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request

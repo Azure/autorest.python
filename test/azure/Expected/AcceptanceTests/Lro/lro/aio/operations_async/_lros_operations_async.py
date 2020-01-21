@@ -6,7 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from typing import Optional, Union
-import uuid
 import warnings
 
 from azure.core.exceptions import map_error
@@ -56,7 +55,6 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -142,7 +140,6 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -226,7 +223,6 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -310,7 +306,6 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -399,7 +394,6 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -483,7 +477,6 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -572,7 +565,6 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -656,7 +648,6 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -744,7 +735,6 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -836,7 +826,6 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -926,7 +915,6 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -1018,7 +1006,6 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -1108,7 +1095,6 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -1196,7 +1182,6 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -1280,7 +1265,6 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -1365,7 +1349,6 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -1399,7 +1382,7 @@ class LROsOperations:
         FIXME: add operation.summary
 
 
-        :param provisioning_state: 
+        :param provisioning_state: MISSING·SCHEMA-DESCRIPTION-STRING
         :type provisioning_state: str
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -1450,7 +1433,6 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -1484,7 +1466,7 @@ class LROsOperations:
         FIXME: add operation.summary
 
 
-        :param provisioning_state: 
+        :param provisioning_state: MISSING·SCHEMA-DESCRIPTION-STRING
         :type provisioning_state: str
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -1533,7 +1515,6 @@ class LROsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -1618,7 +1599,6 @@ class LROsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -1703,7 +1683,6 @@ class LROsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -1787,7 +1766,6 @@ class LROsOperations:
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -1855,7 +1833,6 @@ class LROsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -1936,7 +1913,6 @@ class LROsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -2016,7 +1992,6 @@ class LROsOperations:
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -2087,7 +2062,6 @@ class LROsOperations:
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -2158,7 +2132,6 @@ class LROsOperations:
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -2230,7 +2203,6 @@ class LROsOperations:
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -2302,7 +2274,6 @@ class LROsOperations:
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -2374,7 +2345,6 @@ class LROsOperations:
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -2447,7 +2417,6 @@ class LROsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -2526,7 +2495,6 @@ class LROsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -2608,7 +2576,6 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -2697,7 +2664,6 @@ class LROsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -2771,7 +2737,6 @@ class LROsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -2845,7 +2810,6 @@ class LROsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -2920,7 +2884,6 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -3012,7 +2975,6 @@ class LROsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -3103,7 +3065,6 @@ class LROsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -3185,7 +3146,6 @@ class LROsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body

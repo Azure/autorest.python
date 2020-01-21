@@ -6,7 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from typing import Optional, Union
-import uuid
 import warnings
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
@@ -73,7 +72,6 @@ class StorageAccountsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -118,7 +116,6 @@ class StorageAccountsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -224,7 +221,6 @@ class StorageAccountsOperations:
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -275,7 +271,6 @@ class StorageAccountsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -332,7 +327,6 @@ class StorageAccountsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -389,7 +383,6 @@ class StorageAccountsOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -442,7 +435,6 @@ class StorageAccountsOperations:
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -510,7 +502,6 @@ class StorageAccountsOperations:
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -553,7 +544,7 @@ class StorageAccountsOperations:
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
         :type account_name: str
-        :param key_name: 
+        :param key_name: MISSING·SCHEMA-DESCRIPTION-CHOICE
         :type key_name: str or ~storage.models.KeyName
         :param callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountKeys or the result of cls(response)
@@ -580,7 +571,6 @@ class StorageAccountsOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body

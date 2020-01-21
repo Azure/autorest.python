@@ -44,7 +44,7 @@ class DurationOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: timedelta or the result of cls(response)
         :rtype: ~datetime.timedelta
         :raises: ~bodyduration.models.ErrorException:
         """
@@ -134,7 +134,7 @@ class DurationOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: timedelta or the result of cls(response)
         :rtype: ~datetime.timedelta
         :raises: ~bodyduration.models.ErrorException:
         """
@@ -178,7 +178,7 @@ class DurationOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: timedelta or the result of cls(response)
         :rtype: ~datetime.timedelta
         :raises: ~bodyduration.models.ErrorException:
         """

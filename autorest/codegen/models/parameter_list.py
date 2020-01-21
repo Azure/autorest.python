@@ -16,8 +16,9 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class ParameterList(MutableSequence):
-
-    def __init__(self, parameters: List[Parameter] = None, implementation: str = "Method"):
+    def __init__(
+        self, parameters: List[Parameter] = None, implementation: str = "Method"
+    ):
         self.parameters = parameters or []
         self.implementation = implementation
 
@@ -43,14 +44,18 @@ class ParameterList(MutableSequence):
     # Parameter helpers
 
     def has_any_location(self, location: ParameterLocation) -> bool:
-        return bool([
-            parameter for parameter in self.parameters if parameter.location == location
-        ])
+        return bool(
+            [
+                parameter
+                for parameter in self.parameters
+                if parameter.location == location
+            ]
+        )
 
-    def get_from_predicate(self, predicate: Callable[[Parameter], bool]) -> List[Parameter]:
-        return [
-            parameter for parameter in self.parameters if predicate(parameter)
-        ]
+    def get_from_predicate(
+        self, predicate: Callable[[Parameter], bool]
+    ) -> List[Parameter]:
+        return [parameter for parameter in self.parameters if predicate(parameter)]
 
     def get_from_location(self, location: ParameterLocation) -> List[Parameter]:
         return self.get_from_predicate(lambda parameter: parameter.location == location)
@@ -69,9 +74,10 @@ class ParameterList(MutableSequence):
     @property
     def path(self) -> List[Parameter]:
         return [
-            parameter for parameter in self.parameters
-            if parameter.location in [ParameterLocation.Uri, ParameterLocation.Path] and
-            parameter.rest_api_name != "$host"
+            parameter
+            for parameter in self.parameters
+            if parameter.location in [ParameterLocation.Uri, ParameterLocation.Path]
+            and parameter.rest_api_name != "$host"
         ]
 
     @property
@@ -84,16 +90,29 @@ class ParameterList(MutableSequence):
 
     @property
     def constant(self) -> List[Parameter]:
-        return self.get_from_predicate(lambda parameter: isinstance(parameter.schema, ConstantSchema))
+        """Return the constants of this parameter list.
+
+        This excludes the constant from flatening on purpose, since technically they are not
+        constant from this set of parameters, they are constants on the models and hence they do
+        not have impact on any generation at this level
+        """
+        return self.get_from_predicate(
+            lambda parameter: isinstance(parameter.schema, ConstantSchema)
+            and parameter.location != ParameterLocation.Flattened
+        )
 
     @property
     def method(self) -> List[Parameter]:
         """The list of parameter used in method signature.
         """
+
         def is_parameter_in_signature(parameter):
             """A predicate to tell if this parmater deserves to be in the signature.
             """
-            return not (isinstance(parameter.schema, ConstantSchema) or parameter.implementation != self.implementation)
+            return not (
+                isinstance(parameter.schema, ConstantSchema)
+                or parameter.implementation != self.implementation
+            )
 
         signature_parameters_required = []
         signature_parameters_optional = []
@@ -104,7 +123,9 @@ class ParameterList(MutableSequence):
                 else:
                     signature_parameters_optional.append(parameter)
 
-        signature_parameters = signature_parameters_required + signature_parameters_optional
+        signature_parameters = (
+            signature_parameters_required + signature_parameters_optional
+        )
         if self.is_flattened:
             signature_parameters.remove(self.body)
         return signature_parameters
@@ -124,7 +145,7 @@ class ParameterList(MutableSequence):
             parameter.async_method_signature for parameter in self.method
         ])
         if signature:
-            signature = ", "+signature
+            signature = ", " + signature
         return signature
 
     @property
@@ -133,9 +154,16 @@ class ParameterList(MutableSequence):
 
     def build_flattened_object(self) -> str:
         if not self.is_flattened:
-            raise ValueError("This method can't be called if the operation doesn't need parameter flattening")
+            raise ValueError(
+                "This method can't be called if the operation doesn't need parameter flattening"
+            )
 
-        parameters = self.get_from_location(ParameterLocation.Flattened)
-        parameter_string = ",".join([f"{param.serialized_name}={param.serialized_name}" for param in parameters])
+        parameters = self.get_from_predicate(
+            lambda parameter: parameter.location == ParameterLocation.Flattened
+            and not isinstance(parameter.schema, ConstantSchema)
+        )
+        parameter_string = ", ".join(
+            [f"{param.serialized_name}={param.serialized_name}" for param in parameters]
+        )
         object_schema = cast(ObjectSchema, self.body.schema)
         return f"{self.body.serialized_name} = models.{object_schema.name}({parameter_string})"

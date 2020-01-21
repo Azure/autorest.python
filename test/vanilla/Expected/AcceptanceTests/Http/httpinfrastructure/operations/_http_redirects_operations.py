@@ -82,13 +82,13 @@ class HttpRedirectsOperations(object):
     @distributed_trace
     def get300(self, cls=None, **kwargs):
 
-        # type: (Optional[Any], **Any) -> Union[None, List[str]]
+        # type: (Optional[Any], **Any) -> List[str]
         """Return 300 status code and redirect to /http/success/200.
 
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or  or the result of cls(response)
+        :return:  or list or the result of cls(response)
         :rtype: None or list[str]
         :raises: ~httpinfrastructure.models.ErrorException:
         """

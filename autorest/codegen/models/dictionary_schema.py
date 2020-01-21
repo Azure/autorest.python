@@ -15,8 +15,15 @@ class DictionarySchema(BaseSchema):
     :param element_type: The type of the value for the dictionary
     :type element_type: ~autorest.models.BaseSchema
     """
-    def __init__(self, yaml_data: Dict[str, Any], element_type: "BaseSchema", *, additional_properties: bool = False):
-        super(DictionarySchema, self).__init__(yaml_data)
+    def __init__(
+        self,
+        namespace: str,
+        yaml_data: Dict[str, Any],
+        element_type: "BaseSchema",
+        *,
+        additional_properties: bool = False
+    ):
+        super(DictionarySchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.element_type = element_type
         self.additional_properties = additional_properties
 
@@ -38,15 +45,20 @@ class DictionarySchema(BaseSchema):
         """
         return f'Dict[str, {self.element_type.type_annotation}]'
 
-    def get_python_type(self, namespace: str) -> str:
+    @property
+    def docstring_text(self) -> str:
+        return "dict"
+
+    @property
+    def docstring_type(self) -> str:
         """The python type used for RST syntax input and type annotation.
 
         :param str namespace: Optional. The namespace for the models.
         """
-        return 'dict[str, {}]'.format(self.element_type.get_python_type(namespace))
+        return 'dict[str, {}]'.format(self.element_type.docstring_type)
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], **kwargs: Any) -> "DictionarySchema":
+    def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs: Any) -> "DictionarySchema":
         """Constructs a DictionarySchema from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this schema
@@ -67,6 +79,7 @@ class DictionarySchema(BaseSchema):
         )
 
         return cls(
+            namespace=namespace,
             yaml_data=yaml_data,
             element_type=element_type,
             additional_properties=for_additional_properties

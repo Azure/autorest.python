@@ -44,7 +44,7 @@ class StringOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: str or the result of cls(response)
         :rtype: str
         :raises: ~bodystring.models.ErrorException:
         """
@@ -136,7 +136,7 @@ class StringOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: str or the result of cls(response)
         :rtype: str
         :raises: ~bodystring.models.ErrorException:
         """
@@ -225,7 +225,7 @@ class StringOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: str or the result of cls(response)
         :rtype: str
         :raises: ~bodystring.models.ErrorException:
         """
@@ -314,7 +314,7 @@ class StringOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: str or the result of cls(response)
         :rtype: str
         :raises: ~bodystring.models.ErrorException:
         """
@@ -403,7 +403,7 @@ class StringOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: str or the result of cls(response)
         :rtype: str
         :raises: ~bodystring.models.ErrorException:
         """
@@ -447,7 +447,7 @@ class StringOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: bytes or the result of cls(response)
         :rtype: bytes
         :raises: ~bodystring.models.ErrorException:
         """
@@ -491,7 +491,7 @@ class StringOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: bytes or the result of cls(response)
         :rtype: bytes
         :raises: ~bodystring.models.ErrorException:
         """
@@ -581,7 +581,7 @@ class StringOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: bytes or the result of cls(response)
         :rtype: bytes
         :raises: ~bodystring.models.ErrorException:
         """

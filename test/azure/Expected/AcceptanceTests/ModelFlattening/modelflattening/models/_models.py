@@ -147,8 +147,10 @@ class FlattenedProduct(Resource):
     :type location: str
     :ivar name: Resource Name.
     :vartype name: str
-    :param pname:
-    :type pname: str
+    :param p_name:
+    :type p_name: str
+    :param type_properties_type:
+    :type type_properties_type: str
     :ivar provisioning_state_values:  Possible values include: 'Succeeded',
      'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
      'Deleting', 'Deleted', 'OK'.
@@ -171,14 +173,16 @@ class FlattenedProduct(Resource):
         'tags': {'key': 'tags', 'type': '{str}'},
         'location': {'key': 'location', 'type': 'str'},
         'name': {'key': 'name', 'type': 'str'},
-        'pname': {'key': 'properties.p\\.name', 'type': 'str'},
+        'p_name': {'key': 'properties.p\\.name', 'type': 'str'},
+        'type_properties_type': {'key': 'properties.type', 'type': 'str'},
         'provisioning_state_values': {'key': 'properties.provisioningStateValues', 'type': 'str'},
         'provisioning_state': {'key': 'properties.provisioningState', 'type': 'str'},
     }
 
     def __init__(self, **kwargs):
         super(FlattenedProduct, self).__init__(**kwargs)
-        self.pname = kwargs.get('pname', None)
+        self.p_name = kwargs.get('p_name', None)
+        self.type_properties_type = kwargs.get('type_properties_type', None)
         self.provisioning_state_values = None
         self.provisioning_state = kwargs.get('provisioning_state', None)
 
@@ -188,8 +192,8 @@ class FlattenedProductProperties(Model):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    :param pname:
-    :type pname: str
+    :param p_name:
+    :type p_name: str
     :param type:
     :type type: str
     :ivar provisioning_state_values:  Possible values include: 'Succeeded',
@@ -206,7 +210,7 @@ class FlattenedProductProperties(Model):
     }
 
     _attribute_map = {
-        'pname': {'key': 'p\\.name', 'type': 'str'},
+        'p_name': {'key': 'p\\.name', 'type': 'str'},
         'type': {'key': 'type', 'type': 'str'},
         'provisioning_state_values': {'key': 'provisioningStateValues', 'type': 'str'},
         'provisioning_state': {'key': 'provisioningState', 'type': 'str'},
@@ -214,7 +218,7 @@ class FlattenedProductProperties(Model):
 
     def __init__(self, **kwargs):
         super(FlattenedProductProperties, self).__init__(**kwargs)
-        self.pname = kwargs.get('pname', None)
+        self.p_name = kwargs.get('p_name', None)
         self.type = kwargs.get('type', None)
         self.provisioning_state_values = None
         self.provisioning_state = kwargs.get('provisioning_state', None)
@@ -241,18 +245,18 @@ class ProductUrl(GenericUrl):
 
     :param generic_value: Generic URL value.
     :type generic_value: str
-    :param odatavalue: URL value.
-    :type odatavalue: str
+    :param odata_value: URL value.
+    :type odata_value: str
     """
 
     _attribute_map = {
         'generic_value': {'key': 'generic_value', 'type': 'str'},
-        'odatavalue': {'key': '@odata\\.value', 'type': 'str'},
+        'odata_value': {'key': '@odata\\.value', 'type': 'str'},
     }
 
     def __init__(self, **kwargs):
         super(ProductUrl, self).__init__(**kwargs)
-        self.odatavalue = kwargs.get('odatavalue', None)
+        self.odata_value = kwargs.get('odata_value', None)
 
 
 class ProductWrapper(Model):
@@ -313,8 +317,8 @@ class SimpleProduct(BaseProduct):
     :ivar capacity: Capacity of product. For example, 4 people. Default value:
      "Large".
     :vartype capacity: str
-    :param odatavalue: URL value.
-    :type odatavalue: str
+    :param odata_value: URL value.
+    :type odata_value: str
     """
 
     _validation = {
@@ -327,7 +331,7 @@ class SimpleProduct(BaseProduct):
         'description': {'key': 'base_product_description', 'type': 'str'},
         'max_product_display_name': {'key': 'details.max_product_display_name', 'type': 'str'},
         'capacity': {'key': 'details.max_product_capacity', 'type': 'str'},
-        'odatavalue': {'key': 'details.max_product_image.@odata\\.value', 'type': 'str'},
+        'odata_value': {'key': 'details.max_product_image.@odata\\.value', 'type': 'str'},
     }
 
     capacity = "Large"
@@ -335,7 +339,7 @@ class SimpleProduct(BaseProduct):
     def __init__(self, **kwargs):
         super(SimpleProduct, self).__init__(**kwargs)
         self.max_product_display_name = kwargs.get('max_product_display_name', None)
-        self.odatavalue = kwargs.get('odatavalue', None)
+        self.odata_value = kwargs.get('odata_value', None)
 
 
 class SimpleProductProperties(Model):
@@ -350,8 +354,8 @@ class SimpleProductProperties(Model):
     :ivar capacity: Required. Capacity of product. For example, 4 people. Default
      value: "Large".
     :vartype capacity: str
-    :param odatavalue: URL value.
-    :type odatavalue: str
+    :param odata_value: URL value.
+    :type odata_value: str
     """
 
     _validation = {
@@ -362,7 +366,7 @@ class SimpleProductProperties(Model):
     _attribute_map = {
         'max_product_display_name': {'key': 'max_product_display_name', 'type': 'str'},
         'capacity': {'key': 'max_product_capacity', 'type': 'str'},
-        'odatavalue': {'key': 'max_product_image.@odata\\.value', 'type': 'str'},
+        'odata_value': {'key': 'max_product_image.@odata\\.value', 'type': 'str'},
     }
 
     capacity = "Large"
@@ -370,7 +374,7 @@ class SimpleProductProperties(Model):
     def __init__(self, **kwargs):
         super(SimpleProductProperties, self).__init__(**kwargs)
         self.max_product_display_name = kwargs.get('max_product_display_name', None)
-        self.odatavalue = kwargs.get('odatavalue', None)
+        self.odata_value = kwargs.get('odata_value', None)
 
 
 class WrappedProduct(Model):

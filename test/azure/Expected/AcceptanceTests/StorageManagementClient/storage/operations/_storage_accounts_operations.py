@@ -6,7 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from typing import Optional, Union
-import uuid
 import warnings
 
 from azure.core.exceptions import map_error
@@ -73,7 +72,6 @@ class StorageAccountsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -99,7 +97,7 @@ class StorageAccountsOperations(object):
     
     def _create_initial(self, resource_group_name, account_name, parameters, cls=None, **kwargs):
 
-        # type: (str, str, "StorageAccountCreateParameters", Optional[Any], **Any) -> Union["StorageAccount", None]
+        # type: (str, str, "StorageAccountCreateParameters", Optional[Any], **Any) -> "StorageAccount"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -119,7 +117,6 @@ class StorageAccountsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -147,7 +144,7 @@ class StorageAccountsOperations(object):
     @distributed_trace
     def begin_create(self, resource_group_name, account_name, parameters, cls=None, polling=True, **kwargs):
 
-        # type: (str, str, "StorageAccountCreateParameters", Optional[Any], Optional[bool], **Any) -> Union["StorageAccount", None]
+        # type: (str, str, "StorageAccountCreateParameters", Optional[Any], Optional[bool], **Any) -> "StorageAccount"
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts cannot be updated with this API and should instead use the Update Storage Account API. If an account is already created and subsequent PUT request is issued with exact same set of properties, then HTTP 200 would be returned..
 
         FIXME: add operation.summary
@@ -227,7 +224,6 @@ class StorageAccountsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -279,7 +275,6 @@ class StorageAccountsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -337,7 +332,6 @@ class StorageAccountsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -395,7 +389,6 @@ class StorageAccountsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -449,7 +442,6 @@ class StorageAccountsOperations(object):
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -518,7 +510,6 @@ class StorageAccountsOperations(object):
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-            kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
             # Construct and send request
@@ -562,7 +553,7 @@ class StorageAccountsOperations(object):
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
         :type account_name: str
-        :param key_name: 
+        :param key_name: MISSING·SCHEMA-DESCRIPTION-CHOICE
         :type key_name: str or ~storage.models.KeyName
         :param callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountKeys or the result of cls(response)
@@ -589,7 +580,6 @@ class StorageAccountsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body

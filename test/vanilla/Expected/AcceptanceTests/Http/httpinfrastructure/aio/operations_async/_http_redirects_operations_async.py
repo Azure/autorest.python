@@ -86,7 +86,7 @@ class HttpRedirectsOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or  or the result of cls(response)
+        :return:  or list or the result of cls(response)
         :rtype: None or list[str]
         :raises: ~httpinfrastructure.models.ErrorException:
         """

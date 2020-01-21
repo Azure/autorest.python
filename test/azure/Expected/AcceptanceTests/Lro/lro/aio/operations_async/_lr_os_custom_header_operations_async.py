@@ -6,7 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from typing import Optional, Union
-import uuid
 import warnings
 
 from azure.core.exceptions import map_error
@@ -56,7 +55,6 @@ class LROsCustomHeaderOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -148,7 +146,6 @@ class LROsCustomHeaderOperations:
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -236,7 +233,6 @@ class LROsCustomHeaderOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -317,7 +313,6 @@ class LROsCustomHeaderOperations:
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body

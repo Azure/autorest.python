@@ -216,8 +216,8 @@ class PetAPInPropertiesWithAPString(Model):
     :type name: str
     :ivar status:
     :vartype status: bool
-    :param odatalocation: Required.
-    :type odatalocation: str
+    :param odata_location: Required.
+    :type odata_location: str
     :param additional_properties1: Dictionary of
      <components·schemas·petapinproperties·properties·additionalproperties·additionalproperties>.
     :type additional_properties1: dict[str, float]
@@ -226,7 +226,7 @@ class PetAPInPropertiesWithAPString(Model):
     _validation = {
         'id': {'required': True},
         'status': {'readonly': True},
-        'odatalocation': {'required': True},
+        'odata_location': {'required': True},
     }
 
     _attribute_map = {
@@ -234,7 +234,7 @@ class PetAPInPropertiesWithAPString(Model):
         'id': {'key': 'id', 'type': 'int'},
         'name': {'key': 'name', 'type': 'str'},
         'status': {'key': 'status', 'type': 'bool'},
-        'odatalocation': {'key': '@odata\\.location', 'type': 'str'},
+        'odata_location': {'key': '@odata\\.location', 'type': 'str'},
         'additional_properties1': {'key': 'additionalProperties', 'type': '{float}'},
     }
 
@@ -242,7 +242,7 @@ class PetAPInPropertiesWithAPString(Model):
         self,
         *,
         id: int,
-        odatalocation: str,
+        odata_location: str,
         additional_properties: Optional[Dict[str, str]] = None,
         name: Optional[str] = None,
         additional_properties1: Optional[Dict[str, float]] = None,
@@ -253,7 +253,7 @@ class PetAPInPropertiesWithAPString(Model):
         self.id = id
         self.name = name
         self.status = None
-        self.odatalocation = odatalocation
+        self.odata_location = odata_location
         self.additional_properties1 = additional_properties1
 
 

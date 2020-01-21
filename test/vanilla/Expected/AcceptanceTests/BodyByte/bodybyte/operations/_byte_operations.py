@@ -43,7 +43,7 @@ class ByteOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: bytearray or the result of cls(response)
         :rtype: bytearray
         :raises: ~bodybyte.models.ErrorException:
         """
@@ -87,7 +87,7 @@ class ByteOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: bytearray or the result of cls(response)
         :rtype: bytearray
         :raises: ~bodybyte.models.ErrorException:
         """
@@ -131,7 +131,7 @@ class ByteOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: bytearray or the result of cls(response)
         :rtype: bytearray
         :raises: ~bodybyte.models.ErrorException:
         """
@@ -221,7 +221,7 @@ class ByteOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: bytearray or the result of cls(response)
         :rtype: bytearray
         :raises: ~bodybyte.models.ErrorException:
         """

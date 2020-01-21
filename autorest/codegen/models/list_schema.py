@@ -11,6 +11,7 @@ from .imports import FileImport, ImportType
 class ListSchema(BaseSchema):
     def __init__(
         self,
+        namespace: str,
         yaml_data: Dict[str, Any],
         element_type: BaseSchema,
         *,
@@ -18,7 +19,7 @@ class ListSchema(BaseSchema):
         min_items: int = None,
         unique_items: int = None
     ):
-        super(ListSchema, self).__init__(yaml_data)
+        super(ListSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.element_type = element_type
         self.max_items = max_items
         self.min_items = min_items
@@ -32,8 +33,13 @@ class ListSchema(BaseSchema):
     def type_annotation(self) -> str:
         return f'List[{self.element_type.type_annotation}]'
 
-    def get_python_type(self, namespace: str) -> str:
-        return f'list[{self.element_type.get_python_type(namespace)}]'
+    @property
+    def docstring_type(self) -> str:
+        return f'list[{self.element_type.docstring_type}]'
+
+    @property
+    def docstring_text(self) -> str:
+        return "list"
 
     def get_validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
         validation_map: Dict[str, Union[bool, int, str]] = {}
@@ -47,7 +53,7 @@ class ListSchema(BaseSchema):
         return validation_map or None
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], **kwargs) -> "ListSchema":
+    def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs) -> "ListSchema":
         # TODO: for items, if the type is a primitive is it listed in type instead of $ref?
         element_schema = yaml_data['elementType']
 
@@ -58,6 +64,7 @@ class ListSchema(BaseSchema):
         )
 
         return cls(
+            namespace=namespace,
             yaml_data=yaml_data,
             element_type=element_type,
             max_items=yaml_data.get('maxItems'),

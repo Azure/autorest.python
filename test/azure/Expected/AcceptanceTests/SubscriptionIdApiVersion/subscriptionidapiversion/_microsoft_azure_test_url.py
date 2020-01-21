@@ -27,7 +27,7 @@ class MicrosoftAzureTestUrl(object):
     """
 
     def __init__(self, credential, subscription_id, base_url=None, **kwargs):
-        # type: ("TokenCredential", str, Optional[str], **Any) -> None
+        # type: (azure.core.credentials.TokenCredential, str, Optional[str], **Any) -> None
         if not base_url:
             base_url = 'https://management.azure.com'
         self._config = MicrosoftAzureTestUrlConfiguration(credential, subscription_id, **kwargs)

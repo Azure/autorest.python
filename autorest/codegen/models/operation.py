@@ -199,10 +199,6 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         if len([r for r in self.responses if r.has_body]) > 1:
             file_import.add_from_import("typing", "Union", ImportType.STDLIB)
 
-        # If ARM, I always generated a client request id
-        if code_model.options['azure_arm']:
-            file_import.add_import("uuid", ImportType.STDLIB)
-
         # Deprecation
         # FIXME: Replace with "the YAML contains deprecated:true"
         if True:  # pylint: disable=using-constant-test

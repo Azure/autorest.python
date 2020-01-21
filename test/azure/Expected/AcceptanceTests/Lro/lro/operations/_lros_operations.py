@@ -6,7 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from typing import Optional, Union
-import uuid
 import warnings
 
 from azure.core.exceptions import map_error
@@ -43,7 +42,7 @@ class LROsOperations(object):
     
     def _put200_succeeded_initial(self, product=None, cls=None, **kwargs):
 
-        # type: (Optional["Product"], Optional[Any], **Any) -> Union["Product", None]
+        # type: (Optional["Product"], Optional[Any], **Any) -> "Product"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -57,7 +56,6 @@ class LROsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -88,7 +86,7 @@ class LROsOperations(object):
     @distributed_trace
     def begin_put200_succeeded(self, product=None, cls=None, polling=True, **kwargs):
 
-        # type: (Optional["Product"], Optional[Any], Optional[bool], **Any) -> Union["Product", None]
+        # type: (Optional["Product"], Optional[Any], Optional[bool], **Any) -> "Product"
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Succeeded’..
 
         FIXME: add operation.summary
@@ -145,7 +143,6 @@ class LROsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -231,7 +228,6 @@ class LROsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -317,7 +313,6 @@ class LROsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -408,7 +403,6 @@ class LROsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -494,7 +488,6 @@ class LROsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -585,7 +578,6 @@ class LROsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -671,7 +663,6 @@ class LROsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -761,7 +752,6 @@ class LROsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -855,7 +845,6 @@ class LROsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -947,7 +936,6 @@ class LROsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -1041,7 +1029,6 @@ class LROsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -1133,7 +1120,6 @@ class LROsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -1223,7 +1209,6 @@ class LROsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -1309,7 +1294,6 @@ class LROsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -1396,7 +1380,6 @@ class LROsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -1431,7 +1414,7 @@ class LROsOperations(object):
         FIXME: add operation.summary
 
 
-        :param provisioning_state: 
+        :param provisioning_state: MISSING·SCHEMA-DESCRIPTION-STRING
         :type provisioning_state: str
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -1483,7 +1466,6 @@ class LROsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -1518,7 +1500,7 @@ class LROsOperations(object):
         FIXME: add operation.summary
 
 
-        :param provisioning_state: 
+        :param provisioning_state: MISSING·SCHEMA-DESCRIPTION-STRING
         :type provisioning_state: str
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -1568,7 +1550,6 @@ class LROsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -1655,7 +1636,6 @@ class LROsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -1742,7 +1722,6 @@ class LROsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -1828,7 +1807,6 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -1885,7 +1863,7 @@ class LROsOperations(object):
     
     def _delete202_retry200_initial(self, cls=None, **kwargs):
 
-        # type: (Optional[Any], **Any) -> Union["Product", None]
+        # type: (Optional[Any], **Any) -> "Product"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1898,7 +1876,6 @@ class LROsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -1928,7 +1905,7 @@ class LROsOperations(object):
     @distributed_trace
     def begin_delete202_retry200(self, cls=None, polling=True, **kwargs):
 
-        # type: (Optional[Any], Optional[bool], **Any) -> Union["Product", None]
+        # type: (Optional[Any], Optional[bool], **Any) -> "Product"
         """Long running delete request, service returns a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         FIXME: add operation.summary
@@ -1968,7 +1945,7 @@ class LROsOperations(object):
     
     def _delete202_no_retry204_initial(self, cls=None, **kwargs):
 
-        # type: (Optional[Any], **Any) -> Union["Product", None]
+        # type: (Optional[Any], **Any) -> "Product"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1981,7 +1958,6 @@ class LROsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -2011,7 +1987,7 @@ class LROsOperations(object):
     @distributed_trace
     def begin_delete202_no_retry204(self, cls=None, polling=True, **kwargs):
 
-        # type: (Optional[Any], Optional[bool], **Any) -> Union["Product", None]
+        # type: (Optional[Any], Optional[bool], **Any) -> "Product"
         """Long running delete request, service returns a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         FIXME: add operation.summary
@@ -2063,7 +2039,6 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -2136,7 +2111,6 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -2209,7 +2183,6 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -2283,7 +2256,6 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -2357,7 +2329,6 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -2431,7 +2402,6 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -2506,7 +2476,6 @@ class LROsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -2587,7 +2556,6 @@ class LROsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -2671,7 +2639,6 @@ class LROsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -2762,7 +2729,6 @@ class LROsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -2838,7 +2804,6 @@ class LROsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -2914,7 +2879,6 @@ class LROsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct and send request
@@ -2977,7 +2941,7 @@ class LROsOperations(object):
     
     def _post_async_retry_succeeded_initial(self, product=None, cls=None, **kwargs):
 
-        # type: (Optional["Product"], Optional[Any], **Any) -> Union["Product", None]
+        # type: (Optional["Product"], Optional[Any], **Any) -> "Product"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2991,7 +2955,6 @@ class LROsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -3028,7 +2991,7 @@ class LROsOperations(object):
     @distributed_trace
     def begin_post_async_retry_succeeded(self, product=None, cls=None, polling=True, **kwargs):
 
-        # type: (Optional["Product"], Optional[Any], Optional[bool], **Any) -> Union["Product", None]
+        # type: (Optional["Product"], Optional[Any], Optional[bool], **Any) -> "Product"
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         FIXME: add operation.summary
@@ -3071,7 +3034,7 @@ class LROsOperations(object):
     
     def _post_async_no_retry_succeeded_initial(self, product=None, cls=None, **kwargs):
 
-        # type: (Optional["Product"], Optional[Any], **Any) -> Union["Product", None]
+        # type: (Optional["Product"], Optional[Any], **Any) -> "Product"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -3085,7 +3048,6 @@ class LROsOperations(object):
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -3122,7 +3084,7 @@ class LROsOperations(object):
     @distributed_trace
     def begin_post_async_no_retry_succeeded(self, product=None, cls=None, polling=True, **kwargs):
 
-        # type: (Optional["Product"], Optional[Any], Optional[bool], **Any) -> Union["Product", None]
+        # type: (Optional["Product"], Optional[Any], Optional[bool], **Any) -> "Product"
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         FIXME: add operation.summary
@@ -3178,7 +3140,6 @@ class LROsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body
@@ -3262,7 +3223,6 @@ class LROsOperations(object):
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-        kwargs.setdefault('request_id', str(uuid.uuid1()))
 
 
         # Construct body

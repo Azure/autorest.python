@@ -44,7 +44,7 @@ class DateOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: date or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~bodydate.models.ErrorException:
         """
@@ -88,7 +88,7 @@ class DateOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: date or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~bodydate.models.ErrorException:
         """
@@ -132,7 +132,7 @@ class DateOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: date or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~bodydate.models.ErrorException:
         """
@@ -176,7 +176,7 @@ class DateOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: date or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~bodydate.models.ErrorException:
         """
@@ -266,7 +266,7 @@ class DateOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: date or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~bodydate.models.ErrorException:
         """
@@ -356,7 +356,7 @@ class DateOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: date or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~bodydate.models.ErrorException:
         """

@@ -139,7 +139,7 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-        :param value: 
+        :param value: MISSING·SCHEMA-DESCRIPTION-INTEGER
         :type value: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -186,7 +186,7 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-        :param value: 
+        :param value: MISSING·SCHEMA-DESCRIPTION-INTEGER
         :type value: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -418,7 +418,7 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-        :param value: 
+        :param value: MISSING·SCHEMA-DESCRIPTION-STRING
         :type value: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -465,7 +465,7 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-        :param value: 
+        :param value: MISSING·SCHEMA-DESCRIPTION-STRING
         :type value: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -697,7 +697,7 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-        :param value: 
+        :param value: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         :type value: ~requiredoptional.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -744,7 +744,7 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-        :param value: 
+        :param value: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
         :type value: ~requiredoptional.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -889,7 +889,7 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-        :param value: 
+        :param value: MISSING·SCHEMA-DESCRIPTION-ARRAYSCHEMA
         :type value: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -936,7 +936,7 @@ class ExplicitOperations(object):
 
         FIXME: add operation.summary
 
-        :param value: 
+        :param value: MISSING·SCHEMA-DESCRIPTION-ARRAYSCHEMA
         :type value: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

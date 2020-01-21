@@ -37,7 +37,7 @@ class AvailabilitySetsOperations(object):
         self._config = config
 
     @distributed_trace
-    def update(self, resource_group_name, avset, tags, cls=None, **kwargs):
+    def update(self, resource_group_name, avset, availability_set_update_parameters_tags, cls=None, **kwargs):
 
         # type: (str, str, Dict[str, str], Optional[Any], **Any) -> None
         """Updates the tags for an availability set..
@@ -48,15 +48,15 @@ class AvailabilitySetsOperations(object):
         :type resource_group_name: str
         :param avset: The name of the storage availability set.
         :type avset: str
-        :param tags: A description about the set of tags.
-        :type tags: dict[str, str]
+        :param availability_set_update_parameters_tags: A description about the set of tags.
+        :type availability_set_update_parameters_tags: dict[str, str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
-        tags = models.AvailabilitySetUpdateParameters(tags=tags)
+        tags = models.AvailabilitySetUpdateParameters(availability_set_update_parameters_tags=availability_set_update_parameters_tags)
 
         # Construct URL
         url = self.update.metadata['url']

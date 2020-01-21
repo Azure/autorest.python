@@ -22,7 +22,7 @@ class AutoRestPagingTestServiceConfiguration(Configuration):
     """
 
     def __init__(self, credential, **kwargs):
-        # type: ("TokenCredential", **Any) -> None
+        # type: (azure.core.credentials.TokenCredential, **Any) -> None
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
         super(AutoRestPagingTestServiceConfiguration, self).__init__(**kwargs)
