@@ -27,7 +27,6 @@
 import unittest
 import subprocess
 import sys
-import isodate
 import tempfile
 import json
 from uuid import uuid4
@@ -42,13 +41,18 @@ from azurespecialproperties import models
 
 import pytest
 
+
 @pytest.fixture
 async def client(credential, authentication_policy):
-    valid_subscription = '1234-5678-9012-3456'
+    valid_subscription = "1234-5678-9012-3456"
     async with AutoRestAzureSpecialParametersTestClient(
-        credential, valid_subscription, base_url="http://localhost:3000", authentication_policy=authentication_policy
+        credential,
+        valid_subscription,
+        base_url="http://localhost:3000",
+        authentication_policy=authentication_policy,
     ) as client:
         yield client
+
 
 class TestXmsRequestClientId(object):
     @pytest.mark.asyncio
@@ -62,10 +66,8 @@ class TestXmsRequestClientId(object):
         except HttpResponseError as err:
             pass
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.python/issues/248")
+    @pytest.mark.xfail(reason="https://github.com/Azure/azure-sdk-for-python/issues/9545")
     @pytest.mark.asyncio
     async def test_xms_request_client_id_in_client(self, client):
         # expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
-
-        client._config.generate_client_request_id = False
-        await client.x_ms_client_request_id.get()
+        await client.x_ms_client_request_id.get(request_id=None)
