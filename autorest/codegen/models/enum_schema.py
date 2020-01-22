@@ -6,8 +6,6 @@
 from typing import Any, Dict, List, Optional, Set
 from .base_schema import BaseSchema
 from .imports import FileImport, ImportType
-from .primitive_schemas import StringSchema
-
 
 class EnumValue:
     """Model containing necessary information for a single value of an enum.
