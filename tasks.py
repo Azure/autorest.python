@@ -11,6 +11,14 @@ from invoke import task, run
 init()
 _AUTOREST_CMD_LINE = "autorest-beta"
 
+service_to_readme_path = {
+    'azure-ai-textanalytics': 'test/services/azure-ai-textanalytics/README.md',
+    'azure-storage-blob': '../azure-sdk-for-python/sdk/storage/azure-storage-blob/swagger/README.md',
+    # 'azure-mgmt-storage': ,
+    # 'azure-graphrbac': ,
+    # 'azure-cognitiveservices-search-websearch': ,
+}
+
 default_mappings = {
   'AcceptanceTests/AdditionalProperties': 'additionalProperties.json',
   'AcceptanceTests/ParameterFlattening': 'parameter-flattening.json',
@@ -219,3 +227,27 @@ def test(c, env=None):
     c.run(cmd)
     os.chdir("{}/test/azure/".format(base_dir))
     c.run(cmd)
+
+
+@task
+def regenerate_services(c, swagger_name=None, debug=False):
+    # regenerate service from swagger
+    if swagger_name:
+        service_mapping = {k: v for k, v in service_to_readme_path.items() if swagger_name.lower() in k.lower()}
+    else:
+        service_mapping = service_to_readme_path
+
+    cmds = []
+    for service in service_mapping:
+        readme_path = service_to_readme_path[service]
+        service = service.strip()
+        cmd_line = f'{_AUTOREST_CMD_LINE} {readme_path} --use=.'
+        print(Fore.YELLOW + f'Queuing up: {cmd_line}')
+        cmds.append(cmd_line)
+
+    if len(cmds) == 1:
+        run_autorest(cmds[0])
+    else:
+        # Execute actual taks in parallel
+        with Pool() as pool:
+            pool.map(run_autorest, cmds)
