@@ -10,7 +10,7 @@
 from setuptools import setup, find_packages
 
 NAME = "autorestreportserviceforazure"
-VERSION = ""
+VERSION = "0.1.0"
 
 # To install the library, run the following
 #
@@ -19,7 +19,7 @@ VERSION = ""
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
 
-REQUIRES = ["msrest>=0.6.0", "azure-core<2.0.0,>=1.0.0"]
+REQUIRES = ["msrest>=0.6.0", "azure-core<2.0.0,>=1.2.0"]
 
 setup(
     name=NAME,

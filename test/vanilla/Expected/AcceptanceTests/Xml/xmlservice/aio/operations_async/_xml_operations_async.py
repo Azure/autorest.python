@@ -598,7 +598,7 @@ class XmlOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.HttpResponseError
         """
@@ -684,7 +684,7 @@ class XmlOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.HttpResponseError
         """
@@ -770,7 +770,7 @@ class XmlOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.HttpResponseError
         """
@@ -1080,7 +1080,7 @@ class XmlOperations:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[~xmlservice.models.SignedIdentifier]
         :raises: ~azure.core.HttpResponseError
         """

@@ -23,7 +23,7 @@ class AutoRestReportServiceOperationsMixin(object):
         :param qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in for Python). The only effect is, that generators that run all tests several times, can distinguish the generated reports.
         :type qualifier: str
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: dict or the result of cls(response)
         :rtype: dict[str, int]
         :raises: ~report.models.ErrorException:
         """
@@ -68,7 +68,7 @@ class AutoRestReportServiceOperationsMixin(object):
         :param qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in for Python). The only effect is, that generators that run all tests several times, can distinguish the generated reports.
         :type qualifier: str
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: dict or the result of cls(response)
         :rtype: dict[str, int]
         :raises: ~report.models.ErrorException:
         """

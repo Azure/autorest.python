@@ -186,8 +186,8 @@ class PetAPInPropertiesWithAPString(Model):
     :type name: str
     :ivar status:
     :vartype status: bool
-    :param odatalocation: Required.
-    :type odatalocation: str
+    :param odata_location: Required.
+    :type odata_location: str
     :param additional_properties1: Dictionary of
      <components·schemas·petapinproperties·properties·additionalproperties·additionalproperties>.
     :type additional_properties1: dict[str, float]
@@ -196,7 +196,7 @@ class PetAPInPropertiesWithAPString(Model):
     _validation = {
         'id': {'required': True},
         'status': {'readonly': True},
-        'odatalocation': {'required': True},
+        'odata_location': {'required': True},
     }
 
     _attribute_map = {
@@ -204,7 +204,7 @@ class PetAPInPropertiesWithAPString(Model):
         'id': {'key': 'id', 'type': 'int'},
         'name': {'key': 'name', 'type': 'str'},
         'status': {'key': 'status', 'type': 'bool'},
-        'odatalocation': {'key': '@odata\\.location', 'type': 'str'},
+        'odata_location': {'key': '@odata\\.location', 'type': 'str'},
         'additional_properties1': {'key': 'additionalProperties', 'type': '{float}'},
     }
 
@@ -214,7 +214,7 @@ class PetAPInPropertiesWithAPString(Model):
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
         self.status = None
-        self.odatalocation = kwargs.get('odatalocation', None)
+        self.odata_location = kwargs.get('odata_location', None)
         self.additional_properties1 = kwargs.get('additional_properties1', None)
 
 
