@@ -36,7 +36,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_required_integer_parameter(self, body_parameter, cls=None, **kwargs):
-        """Test explicitly required integer. Please put null and the client library should throw before the request is sent..
+        """Test explicitly required integer. Please put null and the client library should throw before the request is sent.
 
         FIXME: add operation.summary
 
@@ -80,7 +80,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_optional_integer_parameter(self, body_parameter=None, cls=None, **kwargs):
-        """Test explicitly optional integer. Please put null..
+        """Test explicitly optional integer. Please put null.
 
         FIXME: add operation.summary
 
@@ -127,11 +127,11 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_required_integer_property(self, value, cls=None, **kwargs):
-        """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the client library should throw before the request is sent..
+        """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the client library should throw before the request is sent.
 
         FIXME: add operation.summary
 
-        :param value: MISSING·SCHEMA-DESCRIPTION-INTEGER
+        :param value: 
         :type value: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -172,11 +172,11 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_optional_integer_property(self, value=None, cls=None, **kwargs):
-        """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null..
+        """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
         FIXME: add operation.summary
 
-        :param value: MISSING·SCHEMA-DESCRIPTION-INTEGER
+        :param value: 
         :type value: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -220,11 +220,11 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_required_integer_header(self, header_parameter, cls=None, **kwargs):
-        """Test explicitly required integer. Please put a header 'headerParameter' => null and the client library should throw before the request is sent..
+        """Test explicitly required integer. Please put a header 'headerParameter' => null and the client library should throw before the request is sent.
 
         FIXME: add operation.summary
 
-        :param header_parameter: MISSING·PARAMETER-DESCRIPTION
+        :param header_parameter: 
         :type header_parameter: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -261,11 +261,11 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_optional_integer_header(self, header_parameter=None, cls=None, **kwargs):
-        """Test explicitly optional integer. Please put a header 'headerParameter' => null..
+        """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
         FIXME: add operation.summary
 
-        :param header_parameter: MISSING·PARAMETER-DESCRIPTION
+        :param header_parameter: 
         :type header_parameter: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -303,7 +303,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_required_string_parameter(self, body_parameter, cls=None, **kwargs):
-        """Test explicitly required string. Please put null and the client library should throw before the request is sent..
+        """Test explicitly required string. Please put null and the client library should throw before the request is sent.
 
         FIXME: add operation.summary
 
@@ -347,7 +347,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_optional_string_parameter(self, body_parameter=None, cls=None, **kwargs):
-        """Test explicitly optional string. Please put null..
+        """Test explicitly optional string. Please put null.
 
         FIXME: add operation.summary
 
@@ -394,11 +394,11 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_required_string_property(self, value, cls=None, **kwargs):
-        """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the client library should throw before the request is sent..
+        """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the client library should throw before the request is sent.
 
         FIXME: add operation.summary
 
-        :param value: MISSING·SCHEMA-DESCRIPTION-STRING
+        :param value: 
         :type value: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -439,11 +439,11 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_optional_string_property(self, value=None, cls=None, **kwargs):
-        """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null..
+        """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
         FIXME: add operation.summary
 
-        :param value: MISSING·SCHEMA-DESCRIPTION-STRING
+        :param value: 
         :type value: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -487,11 +487,11 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_required_string_header(self, header_parameter, cls=None, **kwargs):
-        """Test explicitly required string. Please put a header 'headerParameter' => null and the client library should throw before the request is sent..
+        """Test explicitly required string. Please put a header 'headerParameter' => null and the client library should throw before the request is sent.
 
         FIXME: add operation.summary
 
-        :param header_parameter: MISSING·PARAMETER-DESCRIPTION
+        :param header_parameter: 
         :type header_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -528,11 +528,11 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_optional_string_header(self, body_parameter=None, cls=None, **kwargs):
-        """Test explicitly optional string. Please put a header 'headerParameter' => null..
+        """Test explicitly optional string. Please put a header 'headerParameter' => null.
 
         FIXME: add operation.summary
 
-        :param body_parameter: MISSING·PARAMETER-DESCRIPTION
+        :param body_parameter: 
         :type body_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -570,7 +570,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_required_class_parameter(self, body_parameter, cls=None, **kwargs):
-        """Test explicitly required complex object. Please put null and the client library should throw before the request is sent..
+        """Test explicitly required complex object. Please put null and the client library should throw before the request is sent.
 
         FIXME: add operation.summary
 
@@ -614,7 +614,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_optional_class_parameter(self, body_parameter=None, cls=None, **kwargs):
-        """Test explicitly optional complex object. Please put null..
+        """Test explicitly optional complex object. Please put null.
 
         FIXME: add operation.summary
 
@@ -661,11 +661,11 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_required_class_property(self, value, cls=None, **kwargs):
-        """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null and the client library should throw before the request is sent..
+        """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null and the client library should throw before the request is sent.
 
         FIXME: add operation.summary
 
-        :param value: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
+        :param value: 
         :type value: ~requiredoptional.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -706,11 +706,11 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_optional_class_property(self, value=None, cls=None, **kwargs):
-        """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null..
+        """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
         FIXME: add operation.summary
 
-        :param value: MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA
+        :param value: 
         :type value: ~requiredoptional.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -754,7 +754,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_required_array_parameter(self, body_parameter, cls=None, **kwargs):
-        """Test explicitly required array. Please put null and the client library should throw before the request is sent..
+        """Test explicitly required array. Please put null and the client library should throw before the request is sent.
 
         FIXME: add operation.summary
 
@@ -798,7 +798,7 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_optional_array_parameter(self, body_parameter=None, cls=None, **kwargs):
-        """Test explicitly optional array. Please put null..
+        """Test explicitly optional array. Please put null.
 
         FIXME: add operation.summary
 
@@ -845,11 +845,11 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_required_array_property(self, value, cls=None, **kwargs):
-        """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the client library should throw before the request is sent..
+        """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the client library should throw before the request is sent.
 
         FIXME: add operation.summary
 
-        :param value: MISSING·SCHEMA-DESCRIPTION-ARRAYSCHEMA
+        :param value: 
         :type value: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -890,11 +890,11 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_optional_array_property(self, value=None, cls=None, **kwargs):
-        """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null..
+        """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
         FIXME: add operation.summary
 
-        :param value: MISSING·SCHEMA-DESCRIPTION-ARRAYSCHEMA
+        :param value: 
         :type value: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -938,11 +938,11 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_required_array_header(self, header_parameter, cls=None, **kwargs):
-        """Test explicitly required array. Please put a header 'headerParameter' => null and the client library should throw before the request is sent..
+        """Test explicitly required array. Please put a header 'headerParameter' => null and the client library should throw before the request is sent.
 
         FIXME: add operation.summary
 
-        :param header_parameter: MISSING·PARAMETER-DESCRIPTION
+        :param header_parameter: 
         :type header_parameter: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -979,11 +979,11 @@ class ExplicitOperations(object):
 
     @distributed_trace
     def post_optional_array_header(self, header_parameter=None, cls=None, **kwargs):
-        """Test explicitly optional integer. Please put a header 'headerParameter' => null..
+        """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
         FIXME: add operation.summary
 
-        :param header_parameter: MISSING·PARAMETER-DESCRIPTION
+        :param header_parameter: 
         :type header_parameter: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

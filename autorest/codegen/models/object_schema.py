@@ -128,12 +128,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
 
         name = yaml_data['language']['python']['name']
 
-        description = None
-        description = yaml_data['language']['python']['description'].strip()
-        if description == 'MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA':
-            description = name + "."
-        elif 'MISSING' in description:
-            description = ""
+        description = yaml_data['language']['python']['description']
         is_exception = None
         exceptions_set = kwargs.pop('exceptions_set', None)
         if exceptions_set:

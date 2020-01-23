@@ -40,7 +40,7 @@ class PagingOperations(object):
 
     @distributed_trace
     def get_no_item_name_pages(self, cls=None, **kwargs):
-        """A paging operation that must return result of the default 'value' node..
+        """A paging operation that must return result of the default 'value' node.
 
         FIXME: add operation.summary
 
@@ -99,7 +99,7 @@ class PagingOperations(object):
 
     @distributed_trace
     def get_null_next_link_name_pages(self, cls=None, **kwargs):
-        """A paging operation that must ignore any kind of nextLink, and stop after page 1..
+        """A paging operation that must ignore any kind of nextLink, and stop after page 1.
 
         FIXME: add operation.summary
 
@@ -222,7 +222,7 @@ class PagingOperations(object):
         FIXME: add operation.summary
 
 
-        :param client_request_id: MISSING·PARAMETER-DESCRIPTION
+        :param client_request_id: 
         :type client_request_id: str
         :param maxresults: Sets the maximum number of items to return in the response.
         :type maxresults: int
@@ -293,7 +293,7 @@ class PagingOperations(object):
         FIXME: add operation.summary
 
 
-        :param client_request_id: MISSING·PARAMETER-DESCRIPTION
+        :param client_request_id: 
         :type client_request_id: str
         :param maxresults: Sets the maximum number of items to return in the response.
         :type maxresults: int
@@ -364,9 +364,9 @@ class PagingOperations(object):
         FIXME: add operation.summary
 
 
-        :param offset: Offset of return value
+        :param offset: Offset of return value.
         :type offset: int
-        :param client_request_id: MISSING·PARAMETER-DESCRIPTION
+        :param client_request_id: 
         :type client_request_id: str
         :param maxresults: Sets the maximum number of items to return in the response.
         :type maxresults: int
@@ -495,7 +495,7 @@ class PagingOperations(object):
 
     @distributed_trace
     def get_multiple_pages_retry_second(self, cls=None, **kwargs):
-        """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first with 500. The client should retry and finish all 10 pages eventually..
+        """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first with 500. The client should retry and finish all 10 pages eventually.
 
         FIXME: add operation.summary
 
@@ -921,7 +921,7 @@ class PagingOperations(object):
         FIXME: add operation.summary
 
 
-        :param client_request_id: MISSING·PARAMETER-DESCRIPTION
+        :param client_request_id: 
         :type client_request_id: str
         :param maxresults: Sets the maximum number of items to return in the response.
         :type maxresults: int

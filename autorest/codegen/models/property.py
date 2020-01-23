@@ -36,13 +36,7 @@ class Property(BaseModel):
         if description:
             self.description = description
         else:
-            yaml_description = yaml_data['language']['python']['description'].strip()
-            if yaml_description == 'MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA':
-                self.description = name + "."
-            elif 'MISSING' in yaml_description:
-                self.description = ""
-            else:
-                self.description = yaml_description
+            self.description = yaml_data['language']['python']['description']
 
         validation_map: Dict[str, Union[bool, int, str]] = {}
         if self.required:

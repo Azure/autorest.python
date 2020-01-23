@@ -36,7 +36,7 @@ class AvailabilitySetsOperations:
 
     @distributed_trace_async
     async def update(self, resource_group_name, avset, availability_set_update_parameters_tags, cls=None, **kwargs):
-        """Updates the tags for an availability set..
+        """Updates the tags for an availability set.
 
         FIXME: add operation.summary
 

@@ -36,7 +36,7 @@ class FlattencomplexOperations(object):
 
     @distributed_trace
     def get_valid(self, cls=None, **kwargs):
-        """MISSING·OPERATION-DESCRIPTION.
+        """
 
         FIXME: add operation.summary
 
