@@ -82,7 +82,7 @@ class ReadonlypropertyOperations:
 
         FIXME: add operation.summary
 
-        :param size: MISSING·SCHEMA-DESCRIPTION-INTEGER
+        :param size: 
         :type size: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

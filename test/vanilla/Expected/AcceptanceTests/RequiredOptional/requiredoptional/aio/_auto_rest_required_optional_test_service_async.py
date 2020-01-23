@@ -22,11 +22,11 @@ class AutoRestRequiredOptionalTestService(object):
     :vartype implicit: requiredoptional.aio.operations_async.ImplicitOperations
     :ivar explicit: ExplicitOperations operations
     :vartype explicit: requiredoptional.aio.operations_async.ExplicitOperations
-    :param required_global_path: number of items to skip
+    :param required_global_path: number of items to skip.
     :type required_global_path: str
-    :param required_global_query: number of items to skip
+    :param required_global_query: number of items to skip.
     :type required_global_query: str
-    :param optional_global_query: number of items to skip
+    :param optional_global_query: number of items to skip.
     :type optional_global_query: int
     :param str base_url: Service URL
     """

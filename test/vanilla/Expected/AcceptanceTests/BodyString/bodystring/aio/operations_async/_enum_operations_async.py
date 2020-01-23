@@ -36,7 +36,7 @@ class EnumOperations:
 
     @distributed_trace_async
     async def get_not_expandable(self, cls=None, **kwargs):
-        """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'..
+        """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         FIXME: add operation.summary
 
@@ -122,7 +122,7 @@ class EnumOperations:
 
     @distributed_trace_async
     async def get_referenced(self, cls=None, **kwargs):
-        """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'..
+        """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         FIXME: add operation.summary
 
@@ -208,7 +208,7 @@ class EnumOperations:
 
     @distributed_trace_async
     async def get_referenced_constant(self, cls=None, **kwargs):
-        """Get value 'green-color' from the constant..
+        """Get value 'green-color' from the constant.
 
         FIXME: add operation.summary
 

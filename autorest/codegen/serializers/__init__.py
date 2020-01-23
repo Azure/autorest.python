@@ -152,13 +152,20 @@ class JinjaSerializer:
         )
 
         # Write the version if necessary
-        if (code_model.options['package_version'] or
-            not code_model.options['keep_version_file'] or
-            not self._autorestapi.read_file(namespace_path / Path("_version.py"))):
+        if (
+            code_model.options['keep_version_file'] and
+            self._autorestapi.read_file(namespace_path / Path("_version.py"))
+        ):
+            self._autorestapi.write_file(
+                namespace_path / Path("_version.py"),
+                self._autorestapi.read_file(namespace_path / Path("_version.py"))
+            )
+        elif code_model.options['package_version']:
             self._autorestapi.write_file(
                 namespace_path / Path("_version.py"),
                 general_serializer.serialize_version_file()
             )
+
 
         # Write the config file
         self._autorestapi.write_file(

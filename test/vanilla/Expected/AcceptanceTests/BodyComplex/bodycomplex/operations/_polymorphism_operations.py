@@ -114,7 +114,7 @@ class PolymorphismOperations(object):
                 'jawsize': 5
               }
             ]
-          };
+          };.
         :type complex_body: ~bodycomplex.models.Fish
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -196,7 +196,7 @@ class PolymorphismOperations(object):
 
     @distributed_trace
     def get_composed_with_discriminator(self, cls=None, **kwargs):
-        """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, with discriminator specified. Deserialization must NOT fail and use the discriminator type specified on the wire..
+        """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, with discriminator specified. Deserialization must NOT fail and use the discriminator type specified on the wire.
 
         FIXME: add operation.summary
 
@@ -238,7 +238,7 @@ class PolymorphismOperations(object):
 
     @distributed_trace
     def get_composed_without_discriminator(self, cls=None, **kwargs):
-        """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, without discriminator specified on wire. Deserialization must NOT fail and use the explicit type of the property..
+        """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, without discriminator specified on wire. Deserialization must NOT fail and use the explicit type of the property.
 
         FIXME: add operation.summary
 
@@ -450,7 +450,7 @@ class PolymorphismOperations(object):
                 'jawsize': 5
               }
             ]
-          };
+          };.
         :type complex_body: ~bodycomplex.models.Fish
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

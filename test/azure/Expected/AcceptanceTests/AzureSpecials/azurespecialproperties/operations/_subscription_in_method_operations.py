@@ -40,7 +40,7 @@ class SubscriptionInMethodOperations(object):
 
         FIXME: add operation.summary
 
-        :param subscription_id: This should appear as a method parameter, use value '1234-5678-9012-3456'
+        :param subscription_id: This should appear as a method parameter, use value '1234-5678-9012-3456'.
         :type subscription_id: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -84,7 +84,7 @@ class SubscriptionInMethodOperations(object):
 
         FIXME: add operation.summary
 
-        :param subscription_id: This should appear as a method parameter, use value '1234-5678-9012-3456'
+        :param subscription_id: This should appear as a method parameter, use value '1234-5678-9012-3456'.
         :type subscription_id: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -128,7 +128,7 @@ class SubscriptionInMethodOperations(object):
 
         FIXME: add operation.summary
 
-        :param subscription_id: This should appear as a method parameter, use value '1234-5678-9012-3456'
+        :param subscription_id: This should appear as a method parameter, use value '1234-5678-9012-3456'.
         :type subscription_id: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -172,7 +172,7 @@ class SubscriptionInMethodOperations(object):
 
         FIXME: add operation.summary
 
-        :param subscription_id: This should appear as a method parameter, use value '1234-5678-9012-3456'
+        :param subscription_id: This should appear as a method parameter, use value '1234-5678-9012-3456'.
         :type subscription_id: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
