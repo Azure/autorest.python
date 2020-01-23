@@ -10,6 +10,7 @@ import warnings
 from azure.core.exceptions import map_error
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMError
+from msrest.serialization import Model
 
 from .. import models
 
@@ -37,7 +38,8 @@ class UsageOperations(object):
 
     @distributed_trace
     def list(self, cls=None, **kwargs):
-        """Gets the current usage count and the limit for the resources under the subscription.
+        # type: (Optional[Any], **Any) -> "UsageListResult"
+        """Gets the current usage count and the limit for the resources under the subscription..
 
         FIXME: add operation.summary
 

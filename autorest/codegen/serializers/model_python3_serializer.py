@@ -5,8 +5,8 @@
 # --------------------------------------------------------------------------
 from typing import List
 from .model_base_serializer import ModelBaseSerializer
-from ..models import PrimitiveSchema, ListSchema, DictionarySchema, EnumSchema, ObjectSchema
-from ..models.imports import FileImport, ImportType
+from ..models import ObjectSchema
+from ..models.imports import FileImport
 
 
 class ModelPython3Serializer(ModelBaseSerializer):
@@ -21,18 +21,19 @@ class ModelPython3Serializer(ModelBaseSerializer):
         for param in init_line_parameters:
             if param.required:
                 init_properties_declaration.append(
-                    "{}: {}".format(param.name, param.schema.get_python_type_annotation())
+                    "{}: {}".format(param.name, param.schema.type_annotation)
                 )
             else:
                 default_value = "\"" + param.schema.default_value + "\"" if param.schema.default_value else "None"
                 init_properties_declaration.append(
-                    "{}: {}={}".format(param.name, param.schema.get_python_type_annotation(), default_value)
+                    "{}: Optional[{}] = {}".format(param.name, param.schema.type_annotation, default_value)
                 )
 
         if init_properties_declaration:
-            return "def __init__(self, *, {}, **kwargs) -> None:".format(
-                ", ".join(init_properties_declaration)
-            )
+            wrapline = "\n        "
+            init_properties_declaration_string = ("," + wrapline).join(init_properties_declaration)
+            return (f"def __init__({wrapline}self,{wrapline}*,{wrapline}{init_properties_declaration_string}," +
+            f"{wrapline}**kwargs\n    ) -> None:")
         return "def __init__(self, **kwargs) -> None:"
 
     @staticmethod
@@ -66,15 +67,6 @@ class ModelPython3Serializer(ModelBaseSerializer):
         for model in self.code_model.sorted_schemas:
             init_line_parameters = [p for p in model.properties if not p.readonly and not p.is_discriminator]
             for param in init_line_parameters:
-                if isinstance(param.schema, PrimitiveSchema):
-                    stdlib_type = param.schema.get_python_type_annotation()
-                    if stdlib_type.startswith("datetime"):
-                        file_import.add_import("datetime", ImportType.STDLIB)
-                elif isinstance(param.schema, ListSchema):
-                    file_import.add_from_import("typing", "List", ImportType.STDLIB)
-                elif isinstance(param.schema, DictionarySchema):
-                    file_import.add_from_import("typing", "Dict", ImportType.STDLIB)
-                elif isinstance(param.schema, EnumSchema):
-                    file_import.add_from_import("typing", "Union", ImportType.STDLIB)
+                file_import.merge(param.imports())
 
         return file_import

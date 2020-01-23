@@ -36,11 +36,12 @@ class HeaderOperations(object):
 
     @distributed_trace
     def custom_named_request_id(self, foo_client_request_id, cls=None, **kwargs):
+        # type: (str, Optional[Any], **Any) -> None
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
         FIXME: add operation.summary
 
-        :param foo_client_request_id: The fooRequestId.
+        :param foo_client_request_id: The fooRequestId
         :type foo_client_request_id: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -80,11 +81,12 @@ class HeaderOperations(object):
 
     @distributed_trace
     def custom_named_request_id_param_grouping(self, foo_client_request_id, cls=None, **kwargs):
+        # type: (str, Optional[Any], **Any) -> None
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request, via a parameter group.
 
         FIXME: add operation.summary
 
-        :param foo_client_request_id: The fooRequestId.
+        :param foo_client_request_id: The fooRequestId
         :type foo_client_request_id: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -124,11 +126,12 @@ class HeaderOperations(object):
 
     @distributed_trace
     def custom_named_request_id_head(self, foo_client_request_id, cls=None, **kwargs):
+        # type: (str, Optional[Any], **Any) -> None
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
         FIXME: add operation.summary
 
-        :param foo_client_request_id: The fooRequestId.
+        :param foo_client_request_id: The fooRequestId
         :type foo_client_request_id: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

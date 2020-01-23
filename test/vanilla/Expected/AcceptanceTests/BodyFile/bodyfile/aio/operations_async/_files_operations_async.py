@@ -35,7 +35,7 @@ class FilesOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_file(self, cls=None, **kwargs):
+    async def get_file(self, cls=None, **kwargs) -> None:
         """Get file.
 
         FIXME: add operation.summary
@@ -77,7 +77,7 @@ class FilesOperations:
     get_file.metadata = {'url': '/files/stream/nonempty'}
 
     @distributed_trace_async
-    async def get_file_large(self, cls=None, **kwargs):
+    async def get_file_large(self, cls=None, **kwargs) -> None:
         """Get a large file.
 
         FIXME: add operation.summary
@@ -119,7 +119,7 @@ class FilesOperations:
     get_file_large.metadata = {'url': '/files/stream/verylarge'}
 
     @distributed_trace_async
-    async def get_empty_file(self, cls=None, **kwargs):
+    async def get_empty_file(self, cls=None, **kwargs) -> None:
         """Get empty file.
 
         FIXME: add operation.summary

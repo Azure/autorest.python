@@ -31,6 +31,13 @@ class Client:
             "msrest", "Deserializer", ImportType.AZURECORE
         )
 
+        # if code_model.options["credential"]:
+        #     file_import.add_from_import("azure.core.credentials", "TokenCredential", ImportType.AZURECORE)
+        any_optional_gp = any(not gp.required for gp in code_model.global_parameters)
+
+        if any_optional_gp or (code_model.base_url and async_mode):
+            file_import.add_from_import("typing", "Optional", ImportType.STDLIB)
+
         if code_model.options["azure_arm"]:
             file_import.add_from_import(
                 "azure.mgmt.core", Client.pipeline_class(code_model, async_mode), ImportType.AZURECORE

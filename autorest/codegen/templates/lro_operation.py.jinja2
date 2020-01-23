@@ -3,6 +3,22 @@
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set async_prefix = "Async" if async_mode else "" %}
 {% set poller = "async_poller" if async_mode else "LROPoller" %}
+{% set async_return_type_annotation =
+        " -> " ~
+        ("Union[" if operation.responses | selectattr('has_body') | list | length > 1 else "") ~
+        (operation.responses | selectattr('has_body') | map(attribute='schema') | join(', ', attribute='type_annotation')) ~
+        ("]" if operation.responses | selectattr('has_body') | list | length > 1 else "")
+    if operation.responses | selectattr('has_body') | first
+    else " -> None"
+%}
+{% set operation_name = operation.python_name if async_mode else "begin_"+operation.python_name %}
+{% macro method_signature() %}
+{% if async_mode %}
+async def {{ operation_name }}(self{{ operation.parameters.async_method_signature }}, {{ ("*, " if operation.parameters.method | first else "") }}cls=None, polling: Optional[bool] = True, **kwargs){{ async_return_type_annotation }}:
+{% else %}
+def {{ operation_name }}(self{{ operation.parameters.sync_method_signature }}, cls=None, polling=True, **kwargs):
+{% endif %}
+{% endmacro %}
 {% macro return_docstring() %}
 :return: An instance of LROPoller that returns {{ operation.responses[0].schema.name if operation.responses[0].has_body else "None"}}
     :rtype: ~azure.core.polling.LROPoller[{{ operation.responses[0].schema.docstring_type if operation.responses[0].has_body else "None" }}]
@@ -16,13 +32,15 @@ response_headers = {
 }
 {% endmacro %}
 {% set lro_options = (", lro_options={'final-state-via': '"+ operation.lro_options['final-state-via'] + "'}") if operation.lro_options else "" %}
-{% set operation_name = operation.python_name if async_mode else "begin_"+operation.python_name %}
 {# actual template starts here #}
 {% if code_model.options['tracing'] %}
 {{ trace_decorator }}
 {% endif %}
-{{ keywords.def }} {{ operation_name }}(self{{ operation.parameters.method_signature }}, cls=None, polling=True, **kwargs):
-    """{{operation.description }}
+{{ method_signature() }}
+{%- if not async_mode %}
+    {{ operation_typing_comment(operation) }}
+{% endif %}
+    """{{operation.description.strip() }}.
 
     {{ "FIXME: add operation.summary\n" }}
 

@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict, List, Optional, Set
 from .base_schema import BaseSchema
-
+from .imports import FileImport, ImportType
 
 class EnumValue:
     """Model containing necessary information for a single value of an enum.
@@ -67,7 +67,8 @@ class EnumSchema(BaseSchema):
         """
         return "str"
 
-    def get_python_type_annotation(self) -> str:
+    @property
+    def type_annotation(self) -> str:
         """The python type used for type annotation
 
         :return: The type annotation for this schema
@@ -125,3 +126,8 @@ class EnumSchema(BaseSchema):
             enum_type=enum_type,
             values=values
         )
+
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_from_import("typing", "Union", ImportType.STDLIB)
+        return file_import

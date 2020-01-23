@@ -7,6 +7,7 @@ from typing import cast, Any, Dict, Union, List, Optional
 
 from .base_model import BaseModel
 from .constant_schema import ConstantSchema
+from .imports import FileImport, ImportType
 from .base_schema import BaseSchema
 
 
@@ -36,7 +37,13 @@ class Property(BaseModel):
         if description:
             self.description = description
         else:
-            self.description = yaml_data['language']['python']['description']
+            yaml_description = yaml_data['language']['python']['description'].strip()
+            if yaml_description == 'MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA':
+                self.description = name + "."
+            elif 'MISSING' in yaml_description:
+                self.description = ""
+            else:
+                self.description = yaml_description
 
         validation_map: Dict[str, Union[bool, int, str]] = {}
         if self.required:
@@ -73,3 +80,9 @@ class Property(BaseModel):
             original_swagger_name=yaml_data['serializedName'],
             flattened_names=yaml_data.get('flattenedNames', []),
         )
+
+    def imports(self) -> FileImport:
+        file_import = self.schema.imports()
+        if not self.required:
+            file_import.add_from_import("typing", "Optional", ImportType.STDLIB)
+        return file_import

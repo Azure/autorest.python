@@ -9,6 +9,7 @@ import warnings
 
 from azure.core.exceptions import map_error
 from azure.core.tracing.decorator import distributed_trace
+from msrest.serialization import Model
 
 from .. import models
 
@@ -36,7 +37,8 @@ class PetsOperations(object):
 
     @distributed_trace
     def create_ap_true(self, create_parameters, cls=None, **kwargs):
-        """Create a Pet which contains more properties than what is defined.
+        # type: ("PetAPTrue", Optional[Any], **Any) -> "PetAPTrue"
+        """Create a Pet which contains more properties than what is defined..
 
         FIXME: add operation.summary
 
@@ -84,7 +86,8 @@ class PetsOperations(object):
 
     @distributed_trace
     def create_cat_ap_true(self, create_parameters, cls=None, **kwargs):
-        """Create a CatAPTrue which contains more properties than what is defined.
+        # type: ("CatAPTrue", Optional[Any], **Any) -> "CatAPTrue"
+        """Create a CatAPTrue which contains more properties than what is defined..
 
         FIXME: add operation.summary
 
@@ -132,7 +135,8 @@ class PetsOperations(object):
 
     @distributed_trace
     def create_ap_object(self, create_parameters, cls=None, **kwargs):
-        """Create a Pet which contains more properties than what is defined.
+        # type: ("PetAPObject", Optional[Any], **Any) -> "PetAPObject"
+        """Create a Pet which contains more properties than what is defined..
 
         FIXME: add operation.summary
 
@@ -180,7 +184,8 @@ class PetsOperations(object):
 
     @distributed_trace
     def create_ap_string(self, create_parameters, cls=None, **kwargs):
-        """Create a Pet which contains more properties than what is defined.
+        # type: ("PetAPString", Optional[Any], **Any) -> "PetAPString"
+        """Create a Pet which contains more properties than what is defined..
 
         FIXME: add operation.summary
 
@@ -228,7 +233,8 @@ class PetsOperations(object):
 
     @distributed_trace
     def create_ap_in_properties(self, create_parameters, cls=None, **kwargs):
-        """Create a Pet which contains more properties than what is defined.
+        # type: ("PetAPInProperties", Optional[Any], **Any) -> "PetAPInProperties"
+        """Create a Pet which contains more properties than what is defined..
 
         FIXME: add operation.summary
 
@@ -276,7 +282,8 @@ class PetsOperations(object):
 
     @distributed_trace
     def create_ap_in_properties_with_ap_string(self, create_parameters, cls=None, **kwargs):
-        """Create a Pet which contains more properties than what is defined.
+        # type: ("PetAPInPropertiesWithAPString", Optional[Any], **Any) -> "PetAPInPropertiesWithAPString"
+        """Create a Pet which contains more properties than what is defined..
 
         FIXME: add operation.summary
 

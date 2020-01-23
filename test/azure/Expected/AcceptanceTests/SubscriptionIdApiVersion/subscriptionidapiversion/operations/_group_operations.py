@@ -9,6 +9,7 @@ import warnings
 
 from azure.core.exceptions import map_error
 from azure.core.tracing.decorator import distributed_trace
+from msrest.serialization import Model
 
 from .. import models
 
@@ -36,7 +37,8 @@ class GroupOperations(object):
 
     @distributed_trace
     def get_sample_resource_group(self, resource_group_name, cls=None, **kwargs):
-        """Provides a resouce group with name 'testgroup101' and location 'West US'.
+        # type: (str, Optional[Any], **Any) -> "SampleResourceGroup"
+        """Provides a resouce group with name 'testgroup101' and location 'West US'..
 
         FIXME: add operation.summary
 

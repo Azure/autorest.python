@@ -9,6 +9,7 @@ import warnings
 
 from azure.core.exceptions import map_error
 from azure.core.tracing.decorator import distributed_trace
+from msrest.serialization import Model
 
 from .. import models
 
@@ -36,6 +37,7 @@ class PolymorphicrecursiveOperations(object):
 
     @distributed_trace
     def get_valid(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> "Fish"
         """Get complex types that are polymorphic and have recursive references.
 
         FIXME: add operation.summary
@@ -78,6 +80,7 @@ class PolymorphicrecursiveOperations(object):
 
     @distributed_trace
     def put_valid(self, complex_body, cls=None, **kwargs):
+        # type: ("Fish", Optional[Any], **Any) -> None
         """Put complex types that are polymorphic and have recursive references.
 
         FIXME: add operation.summary
@@ -114,7 +117,7 @@ class PolymorphicrecursiveOperations(object):
                 'jawsize': 5
               }
             ]
-          };.
+          };
         :type complex_body: ~bodycomplex.models.Fish
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

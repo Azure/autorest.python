@@ -6,6 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import Optional
+
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
@@ -22,16 +24,17 @@ class AutoRestRequiredOptionalTestService(object):
     :vartype implicit: requiredoptional.operations.ImplicitOperations
     :ivar explicit: ExplicitOperations operations
     :vartype explicit: requiredoptional.operations.ExplicitOperations
-    :param required_global_path: number of items to skip.
+    :param required_global_path: number of items to skip
     :type required_global_path: str
-    :param required_global_query: number of items to skip.
+    :param required_global_query: number of items to skip
     :type required_global_query: str
-    :param optional_global_query: number of items to skip.
+    :param optional_global_query: number of items to skip
     :type optional_global_query: int
     :param str base_url: Service URL
     """
 
     def __init__(self, required_global_path, required_global_query, optional_global_query=None, base_url=None, **kwargs):
+        # type: (str, str, int, Optional[str], **Any) -> None
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestRequiredOptionalTestServiceConfiguration(required_global_path, required_global_query, optional_global_query, **kwargs)
@@ -47,11 +50,14 @@ class AutoRestRequiredOptionalTestService(object):
             self._client, self._config, self._serialize, self._deserialize)
 
     def close(self):
+        # type: () -> None
         self._client.close()
 
     def __enter__(self):
+        # type: () -> AutoRestRequiredOptionalTestService
         self._client.__enter__()
         return self
 
     def __exit__(self, *exc_details):
+        # type: (Any) -> None
         self._client.__exit__(*exc_details)

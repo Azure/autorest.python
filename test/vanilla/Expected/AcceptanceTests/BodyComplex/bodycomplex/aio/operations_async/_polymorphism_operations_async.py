@@ -9,6 +9,7 @@ import warnings
 
 from azure.core.exceptions import map_error
 from azure.core.tracing.decorator_async import distributed_trace_async
+from msrest.serialization import Model
 
 from ... import models
 
@@ -35,7 +36,7 @@ class PolymorphismOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_valid(self, cls=None, **kwargs):
+    async def get_valid(self, cls=None, **kwargs) -> "Fish":
         """Get complex types that are polymorphic.
 
         FIXME: add operation.summary
@@ -77,7 +78,7 @@ class PolymorphismOperations:
     get_valid.metadata = {'url': '/complex/polymorphism/valid'}
 
     @distributed_trace_async
-    async def put_valid(self, complex_body, cls=None, **kwargs):
+    async def put_valid(self, complex_body: "Fish", *, cls=None, **kwargs) -> None:
         """Put complex types that are polymorphic.
 
         FIXME: add operation.summary
@@ -114,7 +115,7 @@ class PolymorphismOperations:
                 'jawsize': 5
               }
             ]
-          };.
+          };
         :type complex_body: ~bodycomplex.models.Fish
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -153,7 +154,7 @@ class PolymorphismOperations:
     put_valid.metadata = {'url': '/complex/polymorphism/valid'}
 
     @distributed_trace_async
-    async def get_dot_syntax(self, cls=None, **kwargs):
+    async def get_dot_syntax(self, cls=None, **kwargs) -> "DotFish":
         """Get complex types that are polymorphic, JSON key contains a dot.
 
         FIXME: add operation.summary
@@ -195,8 +196,8 @@ class PolymorphismOperations:
     get_dot_syntax.metadata = {'url': '/complex/polymorphism/dotsyntax'}
 
     @distributed_trace_async
-    async def get_composed_with_discriminator(self, cls=None, **kwargs):
-        """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, with discriminator specified. Deserialization must NOT fail and use the discriminator type specified on the wire.
+    async def get_composed_with_discriminator(self, cls=None, **kwargs) -> "DotFishMarket":
+        """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, with discriminator specified. Deserialization must NOT fail and use the discriminator type specified on the wire..
 
         FIXME: add operation.summary
 
@@ -237,8 +238,8 @@ class PolymorphismOperations:
     get_composed_with_discriminator.metadata = {'url': '/complex/polymorphism/composedWithDiscriminator'}
 
     @distributed_trace_async
-    async def get_composed_without_discriminator(self, cls=None, **kwargs):
-        """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, without discriminator specified on wire. Deserialization must NOT fail and use the explicit type of the property.
+    async def get_composed_without_discriminator(self, cls=None, **kwargs) -> "DotFishMarket":
+        """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, without discriminator specified on wire. Deserialization must NOT fail and use the explicit type of the property..
 
         FIXME: add operation.summary
 
@@ -279,7 +280,7 @@ class PolymorphismOperations:
     get_composed_without_discriminator.metadata = {'url': '/complex/polymorphism/composedWithoutDiscriminator'}
 
     @distributed_trace_async
-    async def get_complicated(self, cls=None, **kwargs):
+    async def get_complicated(self, cls=None, **kwargs) -> "Salmon":
         """Get complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties.
 
         FIXME: add operation.summary
@@ -321,7 +322,7 @@ class PolymorphismOperations:
     get_complicated.metadata = {'url': '/complex/polymorphism/complicated'}
 
     @distributed_trace_async
-    async def put_complicated(self, complex_body, cls=None, **kwargs):
+    async def put_complicated(self, complex_body: "Salmon", *, cls=None, **kwargs) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties.
 
         FIXME: add operation.summary
@@ -365,7 +366,7 @@ class PolymorphismOperations:
     put_complicated.metadata = {'url': '/complex/polymorphism/complicated'}
 
     @distributed_trace_async
-    async def put_missing_discriminator(self, complex_body, cls=None, **kwargs):
+    async def put_missing_discriminator(self, complex_body: "Salmon", *, cls=None, **kwargs) -> "Salmon":
         """Put complex types that are polymorphic, omitting the discriminator.
 
         FIXME: add operation.summary
@@ -413,7 +414,7 @@ class PolymorphismOperations:
     put_missing_discriminator.metadata = {'url': '/complex/polymorphism/missingdiscriminator'}
 
     @distributed_trace_async
-    async def put_valid_missing_required(self, complex_body, cls=None, **kwargs):
+    async def put_valid_missing_required(self, complex_body: "Fish", *, cls=None, **kwargs) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the request should not be allowed from the client.
 
         FIXME: add operation.summary
@@ -450,7 +451,7 @@ class PolymorphismOperations:
                 'jawsize': 5
               }
             ]
-          };.
+          };
         :type complex_body: ~bodycomplex.models.Fish
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

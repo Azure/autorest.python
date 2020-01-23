@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import List, Union
+from typing import List, Optional, Union
 
 from msrest.serialization import Model
 
@@ -25,7 +25,13 @@ class OdataProductResult(Model):
         'odata_next_link': {'key': 'odata\\.nextLink', 'type': 'str'},
     }
 
-    def __init__(self, *, values: List["Product"]=None, odata_next_link: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        values: Optional[List["Product"]] = None,
+        odata_next_link: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(OdataProductResult, self).__init__(**kwargs)
         self.values = values
         self.odata_next_link = odata_next_link
@@ -44,7 +50,12 @@ class OperationResult(Model):
         'status': {'key': 'status', 'type': 'str'},
     }
 
-    def __init__(self, *, status: Union[str, "OperationResultStatus"]=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        status: Optional[Union[str, "OperationResultStatus"]] = None,
+        **kwargs
+    ) -> None:
         super(OperationResult, self).__init__(**kwargs)
         self.status = status
 
@@ -60,7 +71,12 @@ class Product(Model):
         'properties': {'key': 'properties', 'type': 'ProductProperties'},
     }
 
-    def __init__(self, *, properties: "ProductProperties"=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        properties: Optional["ProductProperties"] = None,
+        **kwargs
+    ) -> None:
         super(Product, self).__init__(**kwargs)
         self.properties = properties
 
@@ -79,7 +95,13 @@ class ProductProperties(Model):
         'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, *, id: int=None, name: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        id: Optional[int] = None,
+        name: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(ProductProperties, self).__init__(**kwargs)
         self.id = id
         self.name = name
@@ -99,7 +121,13 @@ class ProductResult(Model):
         'next_link': {'key': 'nextLink', 'type': 'str'},
     }
 
-    def __init__(self, *, values: List["Product"]=None, next_link: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        values: Optional[List["Product"]] = None,
+        next_link: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(ProductResult, self).__init__(**kwargs)
         self.values = values
         self.next_link = next_link
@@ -119,7 +147,13 @@ class ProductResultValue(Model):
         'next_link': {'key': 'nextLink', 'type': 'str'},
     }
 
-    def __init__(self, *, value: List["Product"]=None, next_link: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        value: Optional[List["Product"]] = None,
+        next_link: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(ProductResultValue, self).__init__(**kwargs)
         self.value = value
         self.next_link = next_link

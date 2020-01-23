@@ -35,7 +35,7 @@ class NumberOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_null(self, cls=None, **kwargs):
+    async def get_null(self, cls=None, **kwargs) -> float:
         """Get null Number value.
 
         FIXME: add operation.summary
@@ -77,7 +77,7 @@ class NumberOperations:
     get_null.metadata = {'url': '/number/null'}
 
     @distributed_trace_async
-    async def get_invalid_float(self, cls=None, **kwargs):
+    async def get_invalid_float(self, cls=None, **kwargs) -> float:
         """Get invalid float Number value.
 
         FIXME: add operation.summary
@@ -119,7 +119,7 @@ class NumberOperations:
     get_invalid_float.metadata = {'url': '/number/invalidfloat'}
 
     @distributed_trace_async
-    async def get_invalid_double(self, cls=None, **kwargs):
+    async def get_invalid_double(self, cls=None, **kwargs) -> float:
         """Get invalid double Number value.
 
         FIXME: add operation.summary
@@ -161,7 +161,7 @@ class NumberOperations:
     get_invalid_double.metadata = {'url': '/number/invaliddouble'}
 
     @distributed_trace_async
-    async def get_invalid_decimal(self, cls=None, **kwargs):
+    async def get_invalid_decimal(self, cls=None, **kwargs) -> float:
         """Get invalid decimal Number value.
 
         FIXME: add operation.summary
@@ -203,7 +203,7 @@ class NumberOperations:
     get_invalid_decimal.metadata = {'url': '/number/invaliddecimal'}
 
     @distributed_trace_async
-    async def put_big_float(self, number_body, cls=None, **kwargs):
+    async def put_big_float(self, number_body: float, *, cls=None, **kwargs) -> None:
         """Put big float value 3.402823e+20.
 
         FIXME: add operation.summary
@@ -247,7 +247,7 @@ class NumberOperations:
     put_big_float.metadata = {'url': '/number/big/float/3.402823e+20'}
 
     @distributed_trace_async
-    async def get_big_float(self, cls=None, **kwargs):
+    async def get_big_float(self, cls=None, **kwargs) -> float:
         """Get big float value 3.402823e+20.
 
         FIXME: add operation.summary
@@ -289,7 +289,7 @@ class NumberOperations:
     get_big_float.metadata = {'url': '/number/big/float/3.402823e+20'}
 
     @distributed_trace_async
-    async def put_big_double(self, number_body, cls=None, **kwargs):
+    async def put_big_double(self, number_body: float, *, cls=None, **kwargs) -> None:
         """Put big double value 2.5976931e+101.
 
         FIXME: add operation.summary
@@ -333,7 +333,7 @@ class NumberOperations:
     put_big_double.metadata = {'url': '/number/big/double/2.5976931e+101'}
 
     @distributed_trace_async
-    async def get_big_double(self, cls=None, **kwargs):
+    async def get_big_double(self, cls=None, **kwargs) -> float:
         """Get big double value 2.5976931e+101.
 
         FIXME: add operation.summary
@@ -375,7 +375,7 @@ class NumberOperations:
     get_big_double.metadata = {'url': '/number/big/double/2.5976931e+101'}
 
     @distributed_trace_async
-    async def put_big_double_positive_decimal(self, cls=None, **kwargs):
+    async def put_big_double_positive_decimal(self, cls=None, **kwargs) -> None:
         """Put big double value 99999999.99.
 
         FIXME: add operation.summary
@@ -418,7 +418,7 @@ class NumberOperations:
     put_big_double_positive_decimal.metadata = {'url': '/number/big/double/99999999.99'}
 
     @distributed_trace_async
-    async def get_big_double_positive_decimal(self, cls=None, **kwargs):
+    async def get_big_double_positive_decimal(self, cls=None, **kwargs) -> float:
         """Get big double value 99999999.99.
 
         FIXME: add operation.summary
@@ -460,7 +460,7 @@ class NumberOperations:
     get_big_double_positive_decimal.metadata = {'url': '/number/big/double/99999999.99'}
 
     @distributed_trace_async
-    async def put_big_double_negative_decimal(self, cls=None, **kwargs):
+    async def put_big_double_negative_decimal(self, cls=None, **kwargs) -> None:
         """Put big double value -99999999.99.
 
         FIXME: add operation.summary
@@ -503,7 +503,7 @@ class NumberOperations:
     put_big_double_negative_decimal.metadata = {'url': '/number/big/double/-99999999.99'}
 
     @distributed_trace_async
-    async def get_big_double_negative_decimal(self, cls=None, **kwargs):
+    async def get_big_double_negative_decimal(self, cls=None, **kwargs) -> float:
         """Get big double value -99999999.99.
 
         FIXME: add operation.summary
@@ -545,7 +545,7 @@ class NumberOperations:
     get_big_double_negative_decimal.metadata = {'url': '/number/big/double/-99999999.99'}
 
     @distributed_trace_async
-    async def put_big_decimal(self, number_body, cls=None, **kwargs):
+    async def put_big_decimal(self, number_body: float, *, cls=None, **kwargs) -> None:
         """Put big decimal value 2.5976931e+101.
 
         FIXME: add operation.summary
@@ -589,7 +589,7 @@ class NumberOperations:
     put_big_decimal.metadata = {'url': '/number/big/decimal/2.5976931e+101'}
 
     @distributed_trace_async
-    async def get_big_decimal(self, cls=None, **kwargs):
+    async def get_big_decimal(self, cls=None, **kwargs) -> float:
         """Get big decimal value 2.5976931e+101.
 
         FIXME: add operation.summary
@@ -631,7 +631,7 @@ class NumberOperations:
     get_big_decimal.metadata = {'url': '/number/big/decimal/2.5976931e+101'}
 
     @distributed_trace_async
-    async def put_big_decimal_positive_decimal(self, cls=None, **kwargs):
+    async def put_big_decimal_positive_decimal(self, cls=None, **kwargs) -> None:
         """Put big decimal value 99999999.99.
 
         FIXME: add operation.summary
@@ -674,7 +674,7 @@ class NumberOperations:
     put_big_decimal_positive_decimal.metadata = {'url': '/number/big/decimal/99999999.99'}
 
     @distributed_trace_async
-    async def get_big_decimal_positive_decimal(self, cls=None, **kwargs):
+    async def get_big_decimal_positive_decimal(self, cls=None, **kwargs) -> float:
         """Get big decimal value 99999999.99.
 
         FIXME: add operation.summary
@@ -716,7 +716,7 @@ class NumberOperations:
     get_big_decimal_positive_decimal.metadata = {'url': '/number/big/decimal/99999999.99'}
 
     @distributed_trace_async
-    async def put_big_decimal_negative_decimal(self, cls=None, **kwargs):
+    async def put_big_decimal_negative_decimal(self, cls=None, **kwargs) -> None:
         """Put big decimal value -99999999.99.
 
         FIXME: add operation.summary
@@ -759,7 +759,7 @@ class NumberOperations:
     put_big_decimal_negative_decimal.metadata = {'url': '/number/big/decimal/-99999999.99'}
 
     @distributed_trace_async
-    async def get_big_decimal_negative_decimal(self, cls=None, **kwargs):
+    async def get_big_decimal_negative_decimal(self, cls=None, **kwargs) -> float:
         """Get big decimal value -99999999.99.
 
         FIXME: add operation.summary
@@ -801,7 +801,7 @@ class NumberOperations:
     get_big_decimal_negative_decimal.metadata = {'url': '/number/big/decimal/-99999999.99'}
 
     @distributed_trace_async
-    async def put_small_float(self, number_body, cls=None, **kwargs):
+    async def put_small_float(self, number_body: float, *, cls=None, **kwargs) -> None:
         """Put small float value 3.402823e-20.
 
         FIXME: add operation.summary
@@ -845,7 +845,7 @@ class NumberOperations:
     put_small_float.metadata = {'url': '/number/small/float/3.402823e-20'}
 
     @distributed_trace_async
-    async def get_small_float(self, cls=None, **kwargs):
+    async def get_small_float(self, cls=None, **kwargs) -> float:
         """Get big double value 3.402823e-20.
 
         FIXME: add operation.summary
@@ -887,7 +887,7 @@ class NumberOperations:
     get_small_float.metadata = {'url': '/number/small/float/3.402823e-20'}
 
     @distributed_trace_async
-    async def put_small_double(self, number_body, cls=None, **kwargs):
+    async def put_small_double(self, number_body: float, *, cls=None, **kwargs) -> None:
         """Put small double value 2.5976931e-101.
 
         FIXME: add operation.summary
@@ -931,7 +931,7 @@ class NumberOperations:
     put_small_double.metadata = {'url': '/number/small/double/2.5976931e-101'}
 
     @distributed_trace_async
-    async def get_small_double(self, cls=None, **kwargs):
+    async def get_small_double(self, cls=None, **kwargs) -> float:
         """Get big double value 2.5976931e-101.
 
         FIXME: add operation.summary
@@ -973,7 +973,7 @@ class NumberOperations:
     get_small_double.metadata = {'url': '/number/small/double/2.5976931e-101'}
 
     @distributed_trace_async
-    async def put_small_decimal(self, number_body, cls=None, **kwargs):
+    async def put_small_decimal(self, number_body: float, *, cls=None, **kwargs) -> None:
         """Put small decimal value 2.5976931e-101.
 
         FIXME: add operation.summary
@@ -1017,7 +1017,7 @@ class NumberOperations:
     put_small_decimal.metadata = {'url': '/number/small/decimal/2.5976931e-101'}
 
     @distributed_trace_async
-    async def get_small_decimal(self, cls=None, **kwargs):
+    async def get_small_decimal(self, cls=None, **kwargs) -> float:
         """Get small decimal value 2.5976931e-101.
 
         FIXME: add operation.summary

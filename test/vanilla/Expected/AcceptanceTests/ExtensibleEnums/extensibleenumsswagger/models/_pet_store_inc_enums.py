@@ -20,6 +20,6 @@ class DaysOfWeekExtensibleEnum(str, Enum):
 
 class IntEnum(str, Enum):
     
-    one = "1"  #: one.
-    two = "2"  #: two.
-    three = "3"  #: three.
+    one = "1"  #: one
+    two = "2"  #: two
+    three = "3"  #: three

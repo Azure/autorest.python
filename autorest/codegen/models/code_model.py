@@ -34,8 +34,9 @@ class CredentialSchema(BaseSchema):
     def docstring_type(self) -> str:
         return self.type
 
-    def get_python_type_annotation(self) -> str:
-        return self.docstring_type
+    @property
+    def type_annotation(self) -> str:
+        return "\"TokenCredential\""
 
     @property
     def docstring_text(self) -> str:
@@ -137,7 +138,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             rest_api_name="credential",
             implementation="Client",
             description="Credential needed for the client to connect to Azure.",
-            is_required=True,
+            required=True,
             location=ParameterLocation.Other,
             skip_url_encoding=True,
             constraints=[]

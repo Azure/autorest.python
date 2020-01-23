@@ -30,7 +30,7 @@ class HeadExceptionOperations:
         self._config = config
 
     @distributed_trace_async
-    async def head200(self, cls=None, **kwargs):
+    async def head200(self, cls=None, **kwargs) -> None:
         """Return 200 status code if successful.
 
         FIXME: add operation.summary
@@ -69,7 +69,7 @@ class HeadExceptionOperations:
     head200.metadata = {'url': '/http/success/200'}
 
     @distributed_trace_async
-    async def head204(self, cls=None, **kwargs):
+    async def head204(self, cls=None, **kwargs) -> None:
         """Return 204 status code if successful.
 
         FIXME: add operation.summary
@@ -108,7 +108,7 @@ class HeadExceptionOperations:
     head204.metadata = {'url': '/http/success/204'}
 
     @distributed_trace_async
-    async def head404(self, cls=None, **kwargs):
+    async def head404(self, cls=None, **kwargs) -> None:
         """Return 404 status code if successful.
 
         FIXME: add operation.summary

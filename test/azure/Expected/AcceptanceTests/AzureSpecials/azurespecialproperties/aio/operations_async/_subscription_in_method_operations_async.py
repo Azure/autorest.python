@@ -35,12 +35,12 @@ class SubscriptionInMethodOperations:
         self._config = config
 
     @distributed_trace_async
-    async def post_method_local_valid(self, subscription_id, cls=None, **kwargs):
+    async def post_method_local_valid(self, subscription_id: str, *, cls=None, **kwargs) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id = '1234-5678-9012-3456' to succeed.
 
         FIXME: add operation.summary
 
-        :param subscription_id: This should appear as a method parameter, use value '1234-5678-9012-3456'.
+        :param subscription_id: This should appear as a method parameter, use value '1234-5678-9012-3456'
         :type subscription_id: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -79,12 +79,12 @@ class SubscriptionInMethodOperations:
     post_method_local_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}
 
     @distributed_trace_async
-    async def post_method_local_null(self, subscription_id, cls=None, **kwargs):
+    async def post_method_local_null(self, subscription_id: str, *, cls=None, **kwargs) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id = null, client-side validation should prevent you from making this call.
 
         FIXME: add operation.summary
 
-        :param subscription_id: This should appear as a method parameter, use value '1234-5678-9012-3456'.
+        :param subscription_id: This should appear as a method parameter, use value '1234-5678-9012-3456'
         :type subscription_id: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -123,12 +123,12 @@ class SubscriptionInMethodOperations:
     post_method_local_null.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}'}
 
     @distributed_trace_async
-    async def post_path_local_valid(self, subscription_id, cls=None, **kwargs):
+    async def post_path_local_valid(self, subscription_id: str, *, cls=None, **kwargs) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id = '1234-5678-9012-3456' to succeed.
 
         FIXME: add operation.summary
 
-        :param subscription_id: This should appear as a method parameter, use value '1234-5678-9012-3456'.
+        :param subscription_id: This should appear as a method parameter, use value '1234-5678-9012-3456'
         :type subscription_id: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -167,12 +167,12 @@ class SubscriptionInMethodOperations:
     post_path_local_valid.metadata = {'url': '/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}
 
     @distributed_trace_async
-    async def post_swagger_local_valid(self, subscription_id, cls=None, **kwargs):
+    async def post_swagger_local_valid(self, subscription_id: str, *, cls=None, **kwargs) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id = '1234-5678-9012-3456' to succeed.
 
         FIXME: add operation.summary
 
-        :param subscription_id: This should appear as a method parameter, use value '1234-5678-9012-3456'.
+        :param subscription_id: This should appear as a method parameter, use value '1234-5678-9012-3456'
         :type subscription_id: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

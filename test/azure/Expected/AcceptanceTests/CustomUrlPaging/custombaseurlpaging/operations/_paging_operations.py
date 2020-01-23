@@ -11,6 +11,7 @@ from azure.core.exceptions import map_error
 from azure.core.paging import ItemPaged
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMError
+from msrest.serialization import Model
 
 from .. import models
 
@@ -38,12 +39,13 @@ class PagingOperations(object):
 
     @distributed_trace
     def get_pages_partial_url(self, account_name, cls=None, **kwargs):
+        # type: (str, Optional[Any], **Any) -> "ProductResult"
         """A paging operation that combines custom url, paging and partial URL and expect to concat after host.
 
         FIXME: add operation.summary
 
 
-        :param account_name: Account Name.
+        :param account_name: Account Name
         :type account_name: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
@@ -109,12 +111,13 @@ class PagingOperations(object):
 
     @distributed_trace
     def get_pages_partial_url_operation(self, account_name, cls=None, **kwargs):
+        # type: (str, Optional[Any], **Any) -> "ProductResult"
         """A paging operation that combines custom url, paging and partial URL with next operation.
 
         FIXME: add operation.summary
 
 
-        :param account_name: Account Name.
+        :param account_name: Account Name
         :type account_name: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)

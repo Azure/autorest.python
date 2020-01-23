@@ -35,8 +35,8 @@ class ApiVersionDefaultOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_method_global_valid(self, cls=None, **kwargs):
-        """GET method with api-version modeled in global settings.
+    async def get_method_global_valid(self, cls=None, **kwargs) -> None:
+        """GET method with api-version modeled in global settings..
 
         FIXME: add operation.summary
 
@@ -73,8 +73,8 @@ class ApiVersionDefaultOperations:
     get_method_global_valid.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview'}
 
     @distributed_trace_async
-    async def get_method_global_not_provided_valid(self, cls=None, **kwargs):
-        """GET method with api-version modeled in global settings.
+    async def get_method_global_not_provided_valid(self, cls=None, **kwargs) -> None:
+        """GET method with api-version modeled in global settings..
 
         FIXME: add operation.summary
 
@@ -111,8 +111,8 @@ class ApiVersionDefaultOperations:
     get_method_global_not_provided_valid.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview'}
 
     @distributed_trace_async
-    async def get_path_global_valid(self, cls=None, **kwargs):
-        """GET method with api-version modeled in global settings.
+    async def get_path_global_valid(self, cls=None, **kwargs) -> None:
+        """GET method with api-version modeled in global settings..
 
         FIXME: add operation.summary
 
@@ -149,8 +149,8 @@ class ApiVersionDefaultOperations:
     get_path_global_valid.metadata = {'url': '/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview'}
 
     @distributed_trace_async
-    async def get_swagger_global_valid(self, cls=None, **kwargs):
-        """GET method with api-version modeled in global settings.
+    async def get_swagger_global_valid(self, cls=None, **kwargs) -> None:
+        """GET method with api-version modeled in global settings..
 
         FIXME: add operation.summary
 

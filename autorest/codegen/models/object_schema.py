@@ -48,7 +48,8 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
     def get_serialization_type(self) -> str:
         return self.name
 
-    def get_python_type_annotation(self) -> str:
+    @property
+    def type_annotation(self) -> str:
         return f'\"{self.name}\"'
 
     @property
@@ -128,7 +129,12 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
 
         name = yaml_data['language']['python']['name']
 
-        description = yaml_data['language']['python']['description']
+        description = None
+        description = yaml_data['language']['python']['description'].strip()
+        if description == 'MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA':
+            description = name + "."
+        elif 'MISSING' in description:
+            description = ""
         is_exception = None
         exceptions_set = kwargs.pop('exceptions_set', None)
         if exceptions_set:

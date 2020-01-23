@@ -42,12 +42,13 @@ class AutoRestAzureSpecialParametersTestClient(object):
     :vartype header: azurespecialproperties.operations.HeaderOperations
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: azure.core.credentials.TokenCredential
-    :param subscription_id: The subscription id, which appears in the path, always modeled in credentials. The value is always '1234-5678-9012-3456'.
+    :param subscription_id: The subscription id, which appears in the path, always modeled in credentials. The value is always '1234-5678-9012-3456'
     :type subscription_id: str
     :param str base_url: Service URL
     """
 
     def __init__(self, credential, subscription_id, base_url=None, **kwargs):
+        # type: ("TokenCredential", str, Optional[str], **Any) -> None
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestAzureSpecialParametersTestClientConfiguration(credential, subscription_id, **kwargs)
@@ -75,11 +76,14 @@ class AutoRestAzureSpecialParametersTestClient(object):
             self._client, self._config, self._serialize, self._deserialize)
 
     def close(self):
+        # type: () -> None
         self._client.close()
 
     def __enter__(self):
+        # type: () -> AutoRestAzureSpecialParametersTestClient
         self._client.__enter__()
         return self
 
     def __exit__(self, *exc_details):
+        # type: (Any) -> None
         self._client.__exit__(*exc_details)

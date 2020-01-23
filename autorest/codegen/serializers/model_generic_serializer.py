@@ -33,3 +33,12 @@ class ModelGenericSerializer(ModelBaseSerializer):
                 else:
                     init_args.append("self.{} = '{}'".format(prop.name, model.discriminator_value))
         return init_args
+
+    def imports(self):
+        file_import = super(ModelGenericSerializer, self).imports()
+        for model in self.code_model.sorted_schemas:
+            init_line_parameters = [p for p in model.properties if not p.readonly and not p.is_discriminator]
+            for param in init_line_parameters:
+                file_import.merge(param.imports())
+
+        return file_import

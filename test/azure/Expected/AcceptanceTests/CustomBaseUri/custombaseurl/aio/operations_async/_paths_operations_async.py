@@ -35,12 +35,12 @@ class PathsOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_empty(self, account_name, cls=None, **kwargs):
+    async def get_empty(self, account_name: str, *, cls=None, **kwargs) -> None:
         """Get a 200 to test a valid base uri.
 
         FIXME: add operation.summary
 
-        :param account_name: Account Name.
+        :param account_name: Account Name
         :type account_name: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

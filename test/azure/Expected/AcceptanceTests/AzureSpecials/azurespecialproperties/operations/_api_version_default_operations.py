@@ -36,7 +36,8 @@ class ApiVersionDefaultOperations(object):
 
     @distributed_trace
     def get_method_global_valid(self, cls=None, **kwargs):
-        """GET method with api-version modeled in global settings.
+        # type: (Optional[Any], **Any) -> None
+        """GET method with api-version modeled in global settings..
 
         FIXME: add operation.summary
 
@@ -74,7 +75,8 @@ class ApiVersionDefaultOperations(object):
 
     @distributed_trace
     def get_method_global_not_provided_valid(self, cls=None, **kwargs):
-        """GET method with api-version modeled in global settings.
+        # type: (Optional[Any], **Any) -> None
+        """GET method with api-version modeled in global settings..
 
         FIXME: add operation.summary
 
@@ -112,7 +114,8 @@ class ApiVersionDefaultOperations(object):
 
     @distributed_trace
     def get_path_global_valid(self, cls=None, **kwargs):
-        """GET method with api-version modeled in global settings.
+        # type: (Optional[Any], **Any) -> None
+        """GET method with api-version modeled in global settings..
 
         FIXME: add operation.summary
 
@@ -150,7 +153,8 @@ class ApiVersionDefaultOperations(object):
 
     @distributed_trace
     def get_swagger_global_valid(self, cls=None, **kwargs):
-        """GET method with api-version modeled in global settings.
+        # type: (Optional[Any], **Any) -> None
+        """GET method with api-version modeled in global settings..
 
         FIXME: add operation.summary
 

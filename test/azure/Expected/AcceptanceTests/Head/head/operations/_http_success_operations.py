@@ -31,6 +31,7 @@ class HttpSuccessOperations(object):
 
     @distributed_trace
     def head200(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Return 200 status code if successful.
 
         FIXME: add operation.summary
@@ -70,6 +71,7 @@ class HttpSuccessOperations(object):
 
     @distributed_trace
     def head204(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Return 204 status code if successful.
 
         FIXME: add operation.summary
@@ -109,6 +111,7 @@ class HttpSuccessOperations(object):
 
     @distributed_trace
     def head404(self, cls=None, **kwargs):
+        # type: (Optional[Any], **Any) -> None
         """Return 404 status code if successful.
 
         FIXME: add operation.summary

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Dict, Union
+from typing import Dict, Optional, Union
 
 from msrest.serialization import Model
 
@@ -27,7 +27,13 @@ class OperationResult(Model):
         'error': {'key': 'error', 'type': 'OperationResultError'},
     }
 
-    def __init__(self, *, status: Union[str, "OperationResultStatus"]=None, error: "OperationResultError"=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        status: Optional[Union[str, "OperationResultStatus"]] = None,
+        error: Optional["OperationResultError"] = None,
+        **kwargs
+    ) -> None:
         super(OperationResult, self).__init__(**kwargs)
         self.status = status
         self.error = error
@@ -47,7 +53,13 @@ class OperationResultError(Model):
         'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, *, code: int=None, message: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        code: Optional[int] = None,
+        message: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(OperationResultError, self).__init__(**kwargs)
         self.code = code
         self.message = message
@@ -85,7 +97,13 @@ class Resource(Model):
         'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, *, tags: Dict[str, str]=None, location: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        tags: Optional[Dict[str, str]] = None,
+        location: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(Resource, self).__init__(**kwargs)
         self.id = None
         self.type = None
@@ -136,7 +154,14 @@ class Product(Resource):
         'provisioning_state_values': {'key': 'properties.provisioningStateValues', 'type': 'str'},
     }
 
-    def __init__(self, *, tags: Dict[str, str]=None, location: str=None, provisioning_state: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        tags: Optional[Dict[str, str]] = None,
+        location: Optional[str] = None,
+        provisioning_state: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(Product, self).__init__(tags=tags, location=location, **kwargs)
         self.provisioning_state = provisioning_state
 
@@ -164,7 +189,12 @@ class ProductProperties(Model):
         'provisioning_state_values': {'key': 'provisioningStateValues', 'type': 'str'},
     }
 
-    def __init__(self, *, provisioning_state: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        provisioning_state: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(ProductProperties, self).__init__(**kwargs)
         self.provisioning_state = provisioning_state
         self.provisioning_state_values = None
@@ -184,7 +214,13 @@ class Sku(Model):
         'id': {'key': 'id', 'type': 'str'},
     }
 
-    def __init__(self, *, name: str=None, id: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        name: Optional[str] = None,
+        id: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(Sku, self).__init__(**kwargs)
         self.name = name
         self.id = id
@@ -239,7 +275,12 @@ class SubProduct(SubResource):
         'provisioning_state_values': {'key': 'properties.provisioningStateValues', 'type': 'str'},
     }
 
-    def __init__(self, *, provisioning_state: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        provisioning_state: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(SubProduct, self).__init__(**kwargs)
         self.provisioning_state = provisioning_state
 
@@ -267,7 +308,12 @@ class SubProductProperties(Model):
         'provisioning_state_values': {'key': 'provisioningStateValues', 'type': 'str'},
     }
 
-    def __init__(self, *, provisioning_state: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        provisioning_state: Optional[str] = None,
+        **kwargs
+    ) -> None:
         super(SubProductProperties, self).__init__(**kwargs)
         self.provisioning_state = provisioning_state
         self.provisioning_state_values = None

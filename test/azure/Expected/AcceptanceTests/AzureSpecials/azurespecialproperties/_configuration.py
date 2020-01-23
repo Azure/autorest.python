@@ -19,11 +19,12 @@ class AutoRestAzureSpecialParametersTestClientConfiguration(Configuration):
 
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: azure.core.credentials.TokenCredential
-    :param subscription_id: The subscription id, which appears in the path, always modeled in credentials. The value is always '1234-5678-9012-3456'.
+    :param subscription_id: The subscription id, which appears in the path, always modeled in credentials. The value is always '1234-5678-9012-3456'
     :type subscription_id: str
     """
 
     def __init__(self, credential, subscription_id, **kwargs):
+        # type: ("TokenCredential", str, **Any) -> None
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
         if subscription_id is None:
@@ -37,6 +38,7 @@ class AutoRestAzureSpecialParametersTestClientConfiguration(Configuration):
         self.user_agent_policy.add_user_agent('azsdk-python-autorestazurespecialparameterstestclient/{}'.format(VERSION))
 
     def _configure(self, **kwargs):
+        # type: (**Any) -> None
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)
         self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)
         self.proxy_policy = kwargs.get('proxy_policy') or policies.ProxyPolicy(**kwargs)

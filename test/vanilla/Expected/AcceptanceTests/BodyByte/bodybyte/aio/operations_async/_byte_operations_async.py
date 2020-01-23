@@ -35,7 +35,7 @@ class ByteOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_null(self, cls=None, **kwargs):
+    async def get_null(self, cls=None, **kwargs) -> bytearray:
         """Get null byte value.
 
         FIXME: add operation.summary
@@ -77,7 +77,7 @@ class ByteOperations:
     get_null.metadata = {'url': '/byte/null'}
 
     @distributed_trace_async
-    async def get_empty(self, cls=None, **kwargs):
+    async def get_empty(self, cls=None, **kwargs) -> bytearray:
         """Get empty byte value ''.
 
         FIXME: add operation.summary
@@ -119,7 +119,7 @@ class ByteOperations:
     get_empty.metadata = {'url': '/byte/empty'}
 
     @distributed_trace_async
-    async def get_non_ascii(self, cls=None, **kwargs):
+    async def get_non_ascii(self, cls=None, **kwargs) -> bytearray:
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         FIXME: add operation.summary
@@ -161,12 +161,12 @@ class ByteOperations:
     get_non_ascii.metadata = {'url': '/byte/nonAscii'}
 
     @distributed_trace_async
-    async def put_non_ascii(self, byte_body, cls=None, **kwargs):
+    async def put_non_ascii(self, byte_body: bytearray, *, cls=None, **kwargs) -> None:
         """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         FIXME: add operation.summary
 
-        :param byte_body: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
+        :param byte_body: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6)
         :type byte_body: bytearray
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -205,7 +205,7 @@ class ByteOperations:
     put_non_ascii.metadata = {'url': '/byte/nonAscii'}
 
     @distributed_trace_async
-    async def get_invalid(self, cls=None, **kwargs):
+    async def get_invalid(self, cls=None, **kwargs) -> bytearray:
         """Get invalid byte value ':::SWAGGER::::'.
 
         FIXME: add operation.summary

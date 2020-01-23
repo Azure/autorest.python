@@ -9,6 +9,7 @@ import warnings
 
 from azure.core.exceptions import HttpResponseError, map_error
 from azure.core.tracing.decorator_async import distributed_trace_async
+from msrest.serialization import Model
 
 from ... import models
 
@@ -35,12 +36,12 @@ class PetOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_pet_by_id(self, pet_id, cls=None, **kwargs):
-        """Gets pets by id.
+    async def get_pet_by_id(self, pet_id: str, *, cls=None, **kwargs) -> "Pet":
+        """Gets pets by id..
 
         FIXME: add operation.summary
 
-        :param pet_id: pet id.
+        :param pet_id: pet id
         :type pet_id: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Pet or  or the result of cls(response)
@@ -90,12 +91,12 @@ class PetOperations:
     get_pet_by_id.metadata = {'url': '/errorStatusCodes/Pets/{petId}/GetPet'}
 
     @distributed_trace_async
-    async def do_something(self, what_action, cls=None, **kwargs):
+    async def do_something(self, what_action: str, *, cls=None, **kwargs) -> "PetAction":
         """Asks pet to do something.
 
         FIXME: add operation.summary
 
-        :param what_action: what action the pet should do.
+        :param what_action: what action the pet should do
         :type what_action: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: PetAction or the result of cls(response)

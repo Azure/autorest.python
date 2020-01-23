@@ -23,7 +23,7 @@ class StorageManagementClientConfiguration(Configuration):
     :type subscription_id: str
     """
 
-    def __init__(self, credential, subscription_id, **kwargs):
+    def __init__(self, credential: "TokenCredential", subscription_id: str, **kwargs) -> None:
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
         if subscription_id is None:
@@ -36,7 +36,7 @@ class StorageManagementClientConfiguration(Configuration):
         self._configure(**kwargs)
         self.user_agent_policy.add_user_agent('azsdk-python-storagemanagementclient/{}'.format(VERSION))
 
-    def _configure(self, **kwargs):
+    def _configure(self, **kwargs) -> None:
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)
         self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)
         self.proxy_policy = kwargs.get('proxy_policy') or policies.ProxyPolicy(**kwargs)
