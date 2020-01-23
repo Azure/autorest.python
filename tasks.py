@@ -16,7 +16,7 @@ service_to_readme_path = {
     'azure-storage-blob': '../azure-sdk-for-python/sdk/storage/azure-storage-blob/swagger/README.md',
     'azure-mgmt-storage': 'test/services/azure-mgmt-storage/README.md',
     'azure-graphrbac': 'test/services/azure-graphrbac/README.md',
-    'azure-cognitiveservices-search-websearch': 'test/services/azure-cognitiveservices-search-websearch/README.md',
+    'azure-search': 'test/services/azure-search/README.md',
 }
 
 default_mappings = {
