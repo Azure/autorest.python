@@ -20,7 +20,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         FIXME: add operation.summary
 
-        :param resource_array: External Resource as an Array to put
+        :param resource_array: External Resource as an Array to put.
         :type resource_array: list[~modelflattening.models.Resource]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -67,7 +67,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[~modelflattening.models.FlattenedProduct]
         :raises: ~modelflattening.models.ErrorException:
         """
@@ -107,7 +107,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         FIXME: add operation.summary
 
-        :param resource_array: External Resource as an Array to put
+        :param resource_array: External Resource as an Array to put.
         :type resource_array: list[~modelflattening.models.WrappedProduct]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -154,7 +154,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: list[~modelflattening.models.ProductWrapper]
         :raises: ~modelflattening.models.ErrorException:
         """
@@ -194,7 +194,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         FIXME: add operation.summary
 
-        :param resource_dictionary: External Resource as a Dictionary to put
+        :param resource_dictionary: External Resource as a Dictionary to put.
         :type resource_dictionary: dict[str, ~modelflattening.models.FlattenedProduct]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -241,7 +241,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: dict or the result of cls(response)
         :rtype: dict[str, ~modelflattening.models.FlattenedProduct]
         :raises: ~modelflattening.models.ErrorException:
         """
@@ -281,7 +281,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         FIXME: add operation.summary
 
-        :param resource_complex_object: External Resource as a ResourceCollection to put
+        :param resource_complex_object: External Resource as a ResourceCollection to put.
         :type resource_complex_object: ~modelflattening.models.ResourceCollection
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -368,7 +368,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         FIXME: add operation.summary
 
-        :param simple_body_product: Simple body product to put
+        :param simple_body_product: Simple body product to put.
         :type simple_body_product: ~modelflattening.models.SimpleProduct
         :param callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
@@ -413,19 +413,22 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         return deserialized
     put_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
     @distributed_trace_async
-    async def post_flattened_simple_product(self, simple_body_product=None, cls=None, **kwargs):
+    async def post_flattened_simple_product(self, max_product_display_name=None, odatavalue=None, cls=None, **kwargs):
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         FIXME: add operation.summary
 
-        :param simple_body_product: Simple body product to post
-        :type simple_body_product: ~modelflattening.models.SimpleProduct
+        :param max_product_display_name: Display name of product.
+        :type max_product_display_name: str
+        :param odatavalue: URL value.
+        :type odatavalue: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
         :raises: ~modelflattening.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+        simple_body_product = models.SimpleProduct(max_product_display_name=max_product_display_name, odatavalue=odatavalue)
 
         # Construct URL
         url = self.post_flattened_simple_product.metadata['url']
@@ -463,21 +466,24 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         return deserialized
     post_flattened_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
     @distributed_trace_async
-    async def put_simple_product_with_grouping(self, name, simple_body_product=None, cls=None, **kwargs):
+    async def put_simple_product_with_grouping(self, name, max_product_display_name=None, odatavalue=None, cls=None, **kwargs):
         """Put Simple Product with client flattening true on the model.
 
         FIXME: add operation.summary
 
-        :param name: Product name with value 'groupproduct'
+        :param name: Product name with value 'groupproduct'.
         :type name: str
-        :param simple_body_product: Simple body product to put
-        :type simple_body_product: ~modelflattening.models.SimpleProduct
+        :param max_product_display_name: Display name of product.
+        :type max_product_display_name: str
+        :param odatavalue: URL value.
+        :type odatavalue: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
         :raises: ~modelflattening.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+        simple_body_product = models.SimpleProduct(max_product_display_name=max_product_display_name, odatavalue=odatavalue)
 
         # Construct URL
         url = self.put_simple_product_with_grouping.metadata['url']

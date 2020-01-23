@@ -36,11 +36,11 @@ class PetOperations(object):
 
     @distributed_trace
     def get_by_pet_id(self, pet_id, cls=None, **kwargs):
-        """MISSING·OPERATION-DESCRIPTION.
+        """
 
         FIXME: add operation.summary
 
-        :param pet_id: Pet id
+        :param pet_id: Pet id.
         :type pet_id: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Pet or the result of cls(response)
@@ -84,7 +84,7 @@ class PetOperations(object):
 
     @distributed_trace
     def add_pet(self, pet_param=None, cls=None, **kwargs):
-        """MISSING·OPERATION-DESCRIPTION.
+        """
 
         FIXME: add operation.summary
 

@@ -13,13 +13,13 @@ except (SyntaxError, ImportError):
     from ._models import Error, ErrorException
     from ._models import Product
 from ._auto_rest_swagger_bat_array_service_enums import (
-    enum0,
-    foo_enum,
+    Enum0,
+    FooEnum,
 )
 
 __all__ = [
     'Error', 'ErrorException',
     'Product',
-    'enum0',
-    'foo_enum',
+    'Enum0',
+    'FooEnum',
 ]

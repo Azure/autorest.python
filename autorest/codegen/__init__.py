@@ -113,9 +113,6 @@ class CodeGenerator(Plugin):
             code_model.add_schema_link_to_operation()
             code_model.add_schema_link_to_global_parameters()
 
-        # Parameter flattening
-        code_model.enable_parameter_flattening()
-
         # LRO operation
         code_model.format_lro_operations()
         code_model.remove_next_operation()
@@ -154,7 +151,6 @@ class CodeGenerator(Plugin):
             'keep_version_file': self._autorestapi.get_boolean_value("keep-version-file", False),
             'no_async': self._autorestapi.get_boolean_value("no-async", False),
             'no_namespace_folders': self._autorestapi.get_boolean_value("no-namespace-folders", False),
-            'payload-flattening-threshold': self._autorestapi.get_value("payload-flattening-threshold") or 0,
             'basic_setup_py': self._autorestapi.get_boolean_value("basic-setup-py", False),
             'package_version': self._autorestapi.get_value("package-version"),
             'client_side_validation': self._autorestapi.get_boolean_value('client-side-validation', True),

@@ -17,7 +17,7 @@ class AutoRestParameterizedHostTestClientConfiguration(Configuration):
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param host: A string value that is used as a global part of the parameterized host
+    :param host: A string value that is used as a global part of the parameterized host.
     :type host: str
     """
 

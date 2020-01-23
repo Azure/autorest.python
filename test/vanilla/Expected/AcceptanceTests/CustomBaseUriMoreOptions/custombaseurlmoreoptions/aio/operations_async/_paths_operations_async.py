@@ -40,7 +40,7 @@ class PathsOperations:
 
         FIXME: add operation.summary
 
-        :param vault: The vault name, e.g. https://myvault
+        :param vault: The vault name, e.g. https://myvault.
         :type vault: str
         :param secret: Secret value.
         :type secret: str

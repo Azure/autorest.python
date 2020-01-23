@@ -132,7 +132,7 @@ class TestAdditionalProperties(object):
         input_ap_str_add = PetAPInPropertiesWithAPString(
             id = 5,
             name = 'Funny',
-            odatalocation = 'westus',
+            odata_location = 'westus',
             additional_properties = {
                 'color': 'red',
                 'city': 'Seattle',

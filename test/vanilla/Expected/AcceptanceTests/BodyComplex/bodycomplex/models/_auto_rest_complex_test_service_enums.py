@@ -20,4 +20,5 @@ class GoblinSharkColor(str, Enum):
     pink = "pink"
     gray = "gray"
     brown = "brown"
-    red = "RED"
+    upper_red = "RED"  #: Uppercase RED.
+    lower_red = "red"  #: Lowercase RED.

@@ -40,7 +40,7 @@ class QueriesOperations:
 
         FIXME: add operation.summary
 
-        :param array_query: a null array of string using the multi-array format
+        :param array_query: a null array of string using the multi-array format.
         :type array_query: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -82,7 +82,7 @@ class QueriesOperations:
 
         FIXME: add operation.summary
 
-        :param array_query: an empty array [] of string using the multi-array format
+        :param array_query: an empty array [] of string using the multi-array format.
         :type array_query: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -124,7 +124,7 @@ class QueriesOperations:
 
         FIXME: add operation.summary
 
-        :param array_query: an empty array [] of string using the multi-array format
+        :param array_query: an empty array [] of string using the multi-array format.
         :type array_query: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

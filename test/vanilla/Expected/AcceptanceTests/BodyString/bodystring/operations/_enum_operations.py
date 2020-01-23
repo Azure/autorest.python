@@ -36,12 +36,12 @@ class EnumOperations(object):
 
     @distributed_trace
     def get_not_expandable(self, cls=None, **kwargs):
-        """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'..
+        """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: Colors or the result of cls(response)
         :rtype: str or ~bodystring.models.Colors
         :raises: ~bodystring.models.ErrorException:
         """
@@ -122,12 +122,12 @@ class EnumOperations(object):
 
     @distributed_trace
     def get_referenced(self, cls=None, **kwargs):
-        """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'..
+        """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return:  or the result of cls(response)
+        :return: Colors or the result of cls(response)
         :rtype: str or ~bodystring.models.Colors
         :raises: ~bodystring.models.ErrorException:
         """
@@ -208,7 +208,7 @@ class EnumOperations(object):
 
     @distributed_trace
     def get_referenced_constant(self, cls=None, **kwargs):
-        """Get value 'green-color' from the constant..
+        """Get value 'green-color' from the constant.
 
         FIXME: add operation.summary
 

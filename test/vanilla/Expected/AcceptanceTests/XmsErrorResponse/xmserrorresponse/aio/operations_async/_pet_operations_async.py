@@ -36,11 +36,11 @@ class PetOperations:
 
     @distributed_trace_async
     async def get_pet_by_id(self, pet_id, cls=None, **kwargs):
-        """Gets pets by id..
+        """Gets pets by id.
 
         FIXME: add operation.summary
 
-        :param pet_id: pet id
+        :param pet_id: pet id.
         :type pet_id: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Pet or  or the result of cls(response)
@@ -95,7 +95,7 @@ class PetOperations:
 
         FIXME: add operation.summary
 
-        :param what_action: what action the pet should do
+        :param what_action: what action the pet should do.
         :type what_action: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: PetAction or the result of cls(response)

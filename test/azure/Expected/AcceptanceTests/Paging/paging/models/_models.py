@@ -14,19 +14,19 @@ class OdataProductResult(Model):
 
     :param values:
     :type values: list[~paging.models.Product]
-    :param odatanext_link:
-    :type odatanext_link: str
+    :param odata_next_link:
+    :type odata_next_link: str
     """
 
     _attribute_map = {
         'values': {'key': 'values', 'type': '[Product]'},
-        'odatanext_link': {'key': 'odata\\.nextLink', 'type': 'str'},
+        'odata_next_link': {'key': 'odata\\.nextLink', 'type': 'str'},
     }
 
     def __init__(self, **kwargs):
         super(OdataProductResult, self).__init__(**kwargs)
         self.values = kwargs.get('values', None)
-        self.odatanext_link = kwargs.get('odatanext_link', None)
+        self.odata_next_link = kwargs.get('odata_next_link', None)
 
 
 class OperationResult(Model):
