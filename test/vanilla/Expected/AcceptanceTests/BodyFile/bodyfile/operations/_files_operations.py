@@ -41,8 +41,8 @@ class FilesOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
+        :return: IO or the result of cls(response)
+        :rtype: IO
         :raises: ~bodyfile.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -83,8 +83,8 @@ class FilesOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
+        :return: IO or the result of cls(response)
+        :rtype: IO
         :raises: ~bodyfile.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -125,8 +125,8 @@ class FilesOperations(object):
         FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
+        :return: IO or the result of cls(response)
+        :rtype: IO
         :raises: ~bodyfile.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
