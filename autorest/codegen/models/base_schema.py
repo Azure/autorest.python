@@ -80,7 +80,7 @@ class BaseSchema(BaseModel, ABC):
         return str(value)
 
     def get_default_value_declaration(self) -> str:
-        """Return the default value as intr using get_declaration.
+        """Return the default value as string using get_declaration.
         """
         if self.default_value is None:
             return "None"
