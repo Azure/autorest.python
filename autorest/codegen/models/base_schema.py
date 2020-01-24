@@ -79,6 +79,13 @@ class BaseSchema(BaseModel, ABC):
         """
         return str(value)
 
+    def get_default_value_declaration(self) -> str:
+        """Return the default value as intr using get_declaration.
+        """
+        if self.default_value is None:
+            return "None"
+        return self.get_declaration(self.default_value)
+
     def get_validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]: # pylint: disable=no-self-use
         return None
 
