@@ -142,14 +142,14 @@ def regen_expected(c, opts, debug):
         cmds.append(cmd_line)
 
     if len(cmds) == 1:
-        run_autorest(cmds[0])
+        run_autorest(cmds[0], debug=debug)
     else:
         # Execute actual taks in parallel
         with Pool() as pool:
             pool.map(run_autorest, cmds)
 
-def run_autorest(cmd_line):
-    result = run(cmd_line, warn=True, hide=True)
+def run_autorest(cmd_line, debug=False):
+    result = run(cmd_line, warn=True, hide=not debug)
     if result.ok or result.return_code is None:
         print(Fore.GREEN + f'Call "{cmd_line}" done with success')
     else:
@@ -242,11 +242,13 @@ def regenerate_services(c, swagger_name=None, debug=False):
         readme_path = service_to_readme_path[service]
         service = service.strip()
         cmd_line = f'{_AUTOREST_CMD_LINE} {readme_path} --use=. --output-artifact=code-model-v4-no-tags'
+        if debug:
+            cmd_line += " --debug"
         print(Fore.YELLOW + f'Queuing up: {cmd_line}')
         cmds.append(cmd_line)
 
     if len(cmds) == 1:
-        run_autorest(cmds[0])
+        run_autorest(cmds[0], debug=debug)
     else:
         # Execute actual taks in parallel
         with Pool() as pool:
