@@ -241,7 +241,7 @@ def regenerate_services(c, swagger_name=None, debug=False):
     for service in service_mapping:
         readme_path = service_to_readme_path[service]
         service = service.strip()
-        cmd_line = f'{_AUTOREST_CMD_LINE} {readme_path} --use=.'
+        cmd_line = f'{_AUTOREST_CMD_LINE} {readme_path} --use=. --output-artifact=code-model-v4-no-tags'
         print(Fore.YELLOW + f'Queuing up: {cmd_line}')
         cmds.append(cmd_line)
 
