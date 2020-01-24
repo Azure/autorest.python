@@ -51,10 +51,14 @@ class SchemaResponse(BaseModel):
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any]) -> "SchemaResponse":
+        from .code_model import IOSchema
+        schema = yaml_data.get("schema", None)
+        if not schema and yaml_data.get("binary", False):
+            schema = IOSchema()
 
         return cls(
             yaml_data=yaml_data,
-            schema=yaml_data.get("schema", None),  # FIXME replace by operation model
+            schema=schema,  # FIXME replace by operation model
             media_types=yaml_data["protocol"]["http"].get("mediaTypes", []),
             status_codes=[
                 int(code) if code != "default" else "default"
