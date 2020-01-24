@@ -43,10 +43,10 @@ class {{ code_model.class_name }}({{ base_class }}):
 
     def __init__(self{{ code_model.global_parameters.method_signature }}{{ '' if not code_model.base_url else ', base_url=None' }}, **kwargs):
         {% if not code_model.base_url %}
-        base_url = '{{ code_model.custom_base_url }}'
+        base_url = {{ keywords.escape_str(code_model.custom_base_url) }}
         {% else %}
         if not base_url:
-            base_url = '{{ code_model.base_url }}'
+            base_url = {{ keywords.escape_str(code_model.base_url) }}
         {% endif %}
         self._config = {{ code_model.class_name }}Configuration({{ config_signature }}**kwargs)
         self._client = {{ code_model.service_client.pipeline_class(code_model, async_mode) }}(base_url=base_url, config=self._config, **kwargs)
