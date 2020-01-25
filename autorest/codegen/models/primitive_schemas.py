@@ -270,6 +270,7 @@ def get_primitive_schema(namespace: str, yaml_data: Dict[str, Any]) -> "Primitiv
         'integer': NumberSchema,
         'number': NumberSchema,
         'string': StringSchema,
+        'char': StringSchema,
         'date-time': DatetimeSchema,
         'unixtime': UnixTimeSchema,
         'date': DateSchema,
