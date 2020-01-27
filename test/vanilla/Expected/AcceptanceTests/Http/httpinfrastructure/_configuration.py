@@ -18,7 +18,7 @@ class AutoRestHttpInfrastructureTestServiceConfiguration(Configuration):
     attributes.
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self[], **kwargs):
         # type: (**Any) -> None
         super(AutoRestHttpInfrastructureTestServiceConfiguration, self).__init__(**kwargs)
 

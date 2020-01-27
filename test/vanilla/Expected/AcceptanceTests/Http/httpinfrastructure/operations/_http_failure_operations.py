@@ -35,8 +35,12 @@ class HttpFailureOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_empty_error(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> bool
+    def get_empty_error(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> bool
         """Get empty error form server.
 
         FIXME: add operation.summary
@@ -78,8 +82,12 @@ class HttpFailureOperations(object):
     get_empty_error.metadata = {'url': '/http/failure/emptybody/error'}
 
     @distributed_trace
-    def get_no_model_error(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> bool
+    def get_no_model_error(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> bool
         """Get empty error form server.
 
         FIXME: add operation.summary
@@ -121,8 +129,12 @@ class HttpFailureOperations(object):
     get_no_model_error.metadata = {'url': '/http/failure/nomodel/error'}
 
     @distributed_trace
-    def get_no_model_empty(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> bool
+    def get_no_model_empty(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> bool
         """Get empty response from server.
 
         FIXME: add operation.summary

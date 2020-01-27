@@ -37,7 +37,13 @@ class PetOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_by_pet_id(self, pet_id: str, *, cls=None, **kwargs) -> "Pet":
+    async def get_by_pet_id(
+        self,
+        pet_id: str,
+        *,
+        cls=None,
+        **kwargs
+    ) -> "Pet":
         """MISSING·OPERATION-DESCRIPTION.
 
         FIXME: add operation.summary
@@ -85,7 +91,13 @@ class PetOperations:
     get_by_pet_id.metadata = {'url': '/extensibleenums/pet/{petId}'}
 
     @distributed_trace_async
-    async def add_pet(self, pet_param: Optional["Pet"] = None, *, cls=None, **kwargs) -> "Pet":
+    async def add_pet(
+        self,
+        pet_param: Optional["Pet"] = None,
+        *,
+        cls=None,
+        **kwargs
+    ) -> "Pet":
         """MISSING·OPERATION-DESCRIPTION.
 
         FIXME: add operation.summary

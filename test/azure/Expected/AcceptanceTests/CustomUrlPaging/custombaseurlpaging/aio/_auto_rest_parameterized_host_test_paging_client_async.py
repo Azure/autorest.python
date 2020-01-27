@@ -25,7 +25,7 @@ class AutoRestParameterizedHostTestPagingClient(object):
     :type host: str
     """
 
-    def __init__(self, credential: "TokenCredential", host: str, **kwargs) -> None:
+    def __init__(self['credential: "TokenCredential"', 'host: str'], **kwargs) -> None:
         base_url = 'http://{accountName}{host}'
         self._config = AutoRestParameterizedHostTestPagingClientConfiguration(credential, host, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)

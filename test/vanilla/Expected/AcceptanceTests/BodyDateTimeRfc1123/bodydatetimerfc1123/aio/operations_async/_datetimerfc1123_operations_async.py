@@ -36,7 +36,11 @@ class Datetimerfc1123Operations:
         self._config = config
 
     @distributed_trace_async
-    async def get_null(self, cls=None, **kwargs) -> datetime.datetime:
+    async def get_null(
+        self,
+        cls=None,
+        **kwargs
+    ) -> datetime.datetime:
         """Get null datetime value.
 
         FIXME: add operation.summary
@@ -78,7 +82,11 @@ class Datetimerfc1123Operations:
     get_null.metadata = {'url': '/datetimerfc1123/null'}
 
     @distributed_trace_async
-    async def get_invalid(self, cls=None, **kwargs) -> datetime.datetime:
+    async def get_invalid(
+        self,
+        cls=None,
+        **kwargs
+    ) -> datetime.datetime:
         """Get invalid datetime value.
 
         FIXME: add operation.summary
@@ -120,7 +128,11 @@ class Datetimerfc1123Operations:
     get_invalid.metadata = {'url': '/datetimerfc1123/invalid'}
 
     @distributed_trace_async
-    async def get_overflow(self, cls=None, **kwargs) -> datetime.datetime:
+    async def get_overflow(
+        self,
+        cls=None,
+        **kwargs
+    ) -> datetime.datetime:
         """Get overflow datetime value.
 
         FIXME: add operation.summary
@@ -162,7 +174,11 @@ class Datetimerfc1123Operations:
     get_overflow.metadata = {'url': '/datetimerfc1123/overflow'}
 
     @distributed_trace_async
-    async def get_underflow(self, cls=None, **kwargs) -> datetime.datetime:
+    async def get_underflow(
+        self,
+        cls=None,
+        **kwargs
+    ) -> datetime.datetime:
         """Get underflow datetime value.
 
         FIXME: add operation.summary
@@ -204,7 +220,13 @@ class Datetimerfc1123Operations:
     get_underflow.metadata = {'url': '/datetimerfc1123/underflow'}
 
     @distributed_trace_async
-    async def put_utc_max_date_time(self, datetime_body: datetime.datetime, *, cls=None, **kwargs) -> None:
+    async def put_utc_max_date_time(
+        self,
+        datetime_body: datetime.datetime,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT.
 
         FIXME: add operation.summary
@@ -248,7 +270,11 @@ class Datetimerfc1123Operations:
     put_utc_max_date_time.metadata = {'url': '/datetimerfc1123/max'}
 
     @distributed_trace_async
-    async def get_utc_lowercase_max_date_time(self, cls=None, **kwargs) -> datetime.datetime:
+    async def get_utc_lowercase_max_date_time(
+        self,
+        cls=None,
+        **kwargs
+    ) -> datetime.datetime:
         """Get max datetime value fri, 31 dec 9999 23:59:59 gmt.
 
         FIXME: add operation.summary
@@ -290,7 +316,11 @@ class Datetimerfc1123Operations:
     get_utc_lowercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/lowercase'}
 
     @distributed_trace_async
-    async def get_utc_uppercase_max_date_time(self, cls=None, **kwargs) -> datetime.datetime:
+    async def get_utc_uppercase_max_date_time(
+        self,
+        cls=None,
+        **kwargs
+    ) -> datetime.datetime:
         """Get max datetime value FRI, 31 DEC 9999 23:59:59 GMT.
 
         FIXME: add operation.summary
@@ -332,7 +362,13 @@ class Datetimerfc1123Operations:
     get_utc_uppercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/uppercase'}
 
     @distributed_trace_async
-    async def put_utc_min_date_time(self, datetime_body: datetime.datetime, *, cls=None, **kwargs) -> None:
+    async def put_utc_min_date_time(
+        self,
+        datetime_body: datetime.datetime,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
         FIXME: add operation.summary
@@ -376,7 +412,11 @@ class Datetimerfc1123Operations:
     put_utc_min_date_time.metadata = {'url': '/datetimerfc1123/min'}
 
     @distributed_trace_async
-    async def get_utc_min_date_time(self, cls=None, **kwargs) -> datetime.datetime:
+    async def get_utc_min_date_time(
+        self,
+        cls=None,
+        **kwargs
+    ) -> datetime.datetime:
         """Get min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
         FIXME: add operation.summary

@@ -30,8 +30,12 @@ class HttpSuccessOperations(object):
         self._config = config
 
     @distributed_trace
-    def head200(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def head200(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 200 status code if successful.
 
         FIXME: add operation.summary
@@ -70,8 +74,12 @@ class HttpSuccessOperations(object):
     head200.metadata = {'url': '/http/success/200'}
 
     @distributed_trace
-    def head204(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def head204(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 204 status code if successful.
 
         FIXME: add operation.summary
@@ -110,8 +118,12 @@ class HttpSuccessOperations(object):
     head204.metadata = {'url': '/http/success/204'}
 
     @distributed_trace
-    def head404(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def head404(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 404 status code if successful.
 
         FIXME: add operation.summary

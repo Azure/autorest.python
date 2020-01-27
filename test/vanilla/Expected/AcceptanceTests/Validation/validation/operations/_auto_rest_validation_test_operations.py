@@ -17,8 +17,14 @@ from .. import models
 
 class AutoRestValidationTestOperationsMixin(object):
     @distributed_trace
-    def validation_of_method_parameters(self, resource_group_name, id, cls=None, **kwargs):
-        # type: (str, int, Optional[Any], **Any) -> "Product"
+    def validation_of_method_parameters(
+        self,
+        resource_group_name,  # type: str
+        id,  # type: int
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "Product"
         """Validates input parameters on the method. See swagger for details..
 
         FIXME: add operation.summary
@@ -71,8 +77,15 @@ class AutoRestValidationTestOperationsMixin(object):
         return deserialized
     validation_of_method_parameters.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
     @distributed_trace
-    def validation_of_body(self, resource_group_name, id, body=None, cls=None, **kwargs):
-        # type: (str, int, Optional["Product"], Optional[Any], **Any) -> "Product"
+    def validation_of_body(
+        self,
+        resource_group_name,  # type: str
+        id,  # type: int
+        body=None,  # type: Optional["Product"]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "Product"
         """Validates body parameters on the method. See swagger for details..
 
         FIXME: add operation.summary
@@ -134,8 +147,12 @@ class AutoRestValidationTestOperationsMixin(object):
         return deserialized
     validation_of_body.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
     @distributed_trace
-    def get_with_constant_in_path(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def get_with_constant_in_path(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """MISSING·OPERATION-DESCRIPTION.
 
         FIXME: add operation.summary
@@ -177,8 +194,13 @@ class AutoRestValidationTestOperationsMixin(object):
 
     get_with_constant_in_path.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}
     @distributed_trace
-    def post_with_constant_in_body(self, body=None, cls=None, **kwargs):
-        # type: (Optional["Product"], Optional[Any], **Any) -> "Product"
+    def post_with_constant_in_body(
+        self,
+        body=None,  # type: Optional["Product"]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "Product"
         """MISSING·OPERATION-DESCRIPTION.
 
         FIXME: add operation.summary

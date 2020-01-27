@@ -16,7 +16,13 @@ from ... import models
 
 class AutoRestReportServiceOperationsMixin:
     @distributed_trace_async
-    async def get_report(self, qualifier: Optional[str] = None, *, cls=None, **kwargs) -> Dict[str, int]:
+    async def get_report(
+        self,
+        qualifier: Optional[str] = None,
+        *,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, int]:
         """Get test coverage report.
 
         FIXME: add operation.summary
@@ -61,7 +67,13 @@ class AutoRestReportServiceOperationsMixin:
         return deserialized
     get_report.metadata = {'url': '/report'}
     @distributed_trace_async
-    async def get_optional_report(self, qualifier: Optional[str] = None, *, cls=None, **kwargs) -> Dict[str, int]:
+    async def get_optional_report(
+        self,
+        qualifier: Optional[str] = None,
+        *,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, int]:
         """Get optional test coverage report.
 
         FIXME: add operation.summary

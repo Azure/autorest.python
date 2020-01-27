@@ -23,7 +23,7 @@ class MicrosoftAzureTestUrlConfiguration(Configuration):
     :type subscription_id: str
     """
 
-    def __init__(self, credential: "TokenCredential", subscription_id: str, **kwargs) -> None:
+    def __init__(self['credential: "TokenCredential"', 'subscription_id: str'], **kwargs) -> None:
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
         if subscription_id is None:

@@ -35,8 +35,12 @@ class ByteOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_null(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> bytearray
+    def get_null(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> bytearray
         """Get null byte value.
 
         FIXME: add operation.summary
@@ -78,8 +82,12 @@ class ByteOperations(object):
     get_null.metadata = {'url': '/byte/null'}
 
     @distributed_trace
-    def get_empty(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> bytearray
+    def get_empty(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> bytearray
         """Get empty byte value ''.
 
         FIXME: add operation.summary
@@ -121,8 +129,12 @@ class ByteOperations(object):
     get_empty.metadata = {'url': '/byte/empty'}
 
     @distributed_trace
-    def get_non_ascii(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> bytearray
+    def get_non_ascii(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> bytearray
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         FIXME: add operation.summary
@@ -164,8 +176,13 @@ class ByteOperations(object):
     get_non_ascii.metadata = {'url': '/byte/nonAscii'}
 
     @distributed_trace
-    def put_non_ascii(self, byte_body, cls=None, **kwargs):
-        # type: (bytearray, Optional[Any], **Any) -> None
+    def put_non_ascii(
+        self,
+        byte_body,  # type: bytearray
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         FIXME: add operation.summary
@@ -209,8 +226,12 @@ class ByteOperations(object):
     put_non_ascii.metadata = {'url': '/byte/nonAscii'}
 
     @distributed_trace
-    def get_invalid(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> bytearray
+    def get_invalid(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> bytearray
         """Get invalid byte value ':::SWAGGER::::'.
 
         FIXME: add operation.summary

@@ -35,8 +35,12 @@ class BoolOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_true(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> bool
+    def get_true(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> bool
         """Get true Boolean value.
 
         FIXME: add operation.summary
@@ -78,8 +82,12 @@ class BoolOperations(object):
     get_true.metadata = {'url': '/bool/true'}
 
     @distributed_trace
-    def put_true(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def put_true(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Set Boolean value true.
 
         FIXME: add operation.summary
@@ -122,8 +130,12 @@ class BoolOperations(object):
     put_true.metadata = {'url': '/bool/true'}
 
     @distributed_trace
-    def get_false(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> bool
+    def get_false(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> bool
         """Get false Boolean value.
 
         FIXME: add operation.summary
@@ -165,8 +177,12 @@ class BoolOperations(object):
     get_false.metadata = {'url': '/bool/false'}
 
     @distributed_trace
-    def put_false(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def put_false(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Set Boolean value false.
 
         FIXME: add operation.summary
@@ -209,8 +225,12 @@ class BoolOperations(object):
     put_false.metadata = {'url': '/bool/false'}
 
     @distributed_trace
-    def get_null(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> bool
+    def get_null(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> bool
         """Get null Boolean value.
 
         FIXME: add operation.summary
@@ -252,8 +272,12 @@ class BoolOperations(object):
     get_null.metadata = {'url': '/bool/null'}
 
     @distributed_trace
-    def get_invalid(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> bool
+    def get_invalid(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> bool
         """Get invalid Boolean value.
 
         FIXME: add operation.summary

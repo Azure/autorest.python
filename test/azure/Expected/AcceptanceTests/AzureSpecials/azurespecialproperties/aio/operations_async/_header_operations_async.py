@@ -35,7 +35,13 @@ class HeaderOperations:
         self._config = config
 
     @distributed_trace_async
-    async def custom_named_request_id(self, foo_client_request_id: str, *, cls=None, **kwargs) -> None:
+    async def custom_named_request_id(
+        self,
+        foo_client_request_id: str,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
         FIXME: add operation.summary
@@ -79,7 +85,13 @@ class HeaderOperations:
     custom_named_request_id.metadata = {'url': '/azurespecials/customNamedRequestId'}
 
     @distributed_trace_async
-    async def custom_named_request_id_param_grouping(self, foo_client_request_id: str, *, cls=None, **kwargs) -> None:
+    async def custom_named_request_id_param_grouping(
+        self,
+        foo_client_request_id: str,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request, via a parameter group.
 
         FIXME: add operation.summary
@@ -123,7 +135,13 @@ class HeaderOperations:
     custom_named_request_id_param_grouping.metadata = {'url': '/azurespecials/customNamedRequestIdParamGrouping'}
 
     @distributed_trace_async
-    async def custom_named_request_id_head(self, foo_client_request_id: str, *, cls=None, **kwargs) -> None:
+    async def custom_named_request_id_head(
+        self,
+        foo_client_request_id: str,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
         FIXME: add operation.summary

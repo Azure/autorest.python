@@ -38,8 +38,12 @@ class PrimitiveOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_int(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "IntWrapper"
+    def get_int(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "IntWrapper"
         """Get complex types with integer properties.
 
         FIXME: add operation.summary
@@ -81,8 +85,13 @@ class PrimitiveOperations(object):
     get_int.metadata = {'url': '/complex/primitive/integer'}
 
     @distributed_trace
-    def put_int(self, complex_body, cls=None, **kwargs):
-        # type: ("IntWrapper", Optional[Any], **Any) -> None
+    def put_int(
+        self,
+        complex_body,  # type: "IntWrapper"
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put complex types with integer properties.
 
         FIXME: add operation.summary
@@ -126,8 +135,12 @@ class PrimitiveOperations(object):
     put_int.metadata = {'url': '/complex/primitive/integer'}
 
     @distributed_trace
-    def get_long(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "LongWrapper"
+    def get_long(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "LongWrapper"
         """Get complex types with long properties.
 
         FIXME: add operation.summary
@@ -169,8 +182,13 @@ class PrimitiveOperations(object):
     get_long.metadata = {'url': '/complex/primitive/long'}
 
     @distributed_trace
-    def put_long(self, complex_body, cls=None, **kwargs):
-        # type: ("LongWrapper", Optional[Any], **Any) -> None
+    def put_long(
+        self,
+        complex_body,  # type: "LongWrapper"
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put complex types with long properties.
 
         FIXME: add operation.summary
@@ -214,8 +232,12 @@ class PrimitiveOperations(object):
     put_long.metadata = {'url': '/complex/primitive/long'}
 
     @distributed_trace
-    def get_float(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "FloatWrapper"
+    def get_float(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "FloatWrapper"
         """Get complex types with float properties.
 
         FIXME: add operation.summary
@@ -257,8 +279,13 @@ class PrimitiveOperations(object):
     get_float.metadata = {'url': '/complex/primitive/float'}
 
     @distributed_trace
-    def put_float(self, complex_body, cls=None, **kwargs):
-        # type: ("FloatWrapper", Optional[Any], **Any) -> None
+    def put_float(
+        self,
+        complex_body,  # type: "FloatWrapper"
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put complex types with float properties.
 
         FIXME: add operation.summary
@@ -302,8 +329,12 @@ class PrimitiveOperations(object):
     put_float.metadata = {'url': '/complex/primitive/float'}
 
     @distributed_trace
-    def get_double(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "DoubleWrapper"
+    def get_double(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "DoubleWrapper"
         """Get complex types with double properties.
 
         FIXME: add operation.summary
@@ -345,8 +376,13 @@ class PrimitiveOperations(object):
     get_double.metadata = {'url': '/complex/primitive/double'}
 
     @distributed_trace
-    def put_double(self, complex_body, cls=None, **kwargs):
-        # type: ("DoubleWrapper", Optional[Any], **Any) -> None
+    def put_double(
+        self,
+        complex_body,  # type: "DoubleWrapper"
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put complex types with double properties.
 
         FIXME: add operation.summary
@@ -390,8 +426,12 @@ class PrimitiveOperations(object):
     put_double.metadata = {'url': '/complex/primitive/double'}
 
     @distributed_trace
-    def get_bool(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "BooleanWrapper"
+    def get_bool(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "BooleanWrapper"
         """Get complex types with bool properties.
 
         FIXME: add operation.summary
@@ -433,8 +473,13 @@ class PrimitiveOperations(object):
     get_bool.metadata = {'url': '/complex/primitive/bool'}
 
     @distributed_trace
-    def put_bool(self, complex_body, cls=None, **kwargs):
-        # type: ("BooleanWrapper", Optional[Any], **Any) -> None
+    def put_bool(
+        self,
+        complex_body,  # type: "BooleanWrapper"
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put complex types with bool properties.
 
         FIXME: add operation.summary
@@ -478,8 +523,12 @@ class PrimitiveOperations(object):
     put_bool.metadata = {'url': '/complex/primitive/bool'}
 
     @distributed_trace
-    def get_string(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "StringWrapper"
+    def get_string(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "StringWrapper"
         """Get complex types with string properties.
 
         FIXME: add operation.summary
@@ -521,8 +570,13 @@ class PrimitiveOperations(object):
     get_string.metadata = {'url': '/complex/primitive/string'}
 
     @distributed_trace
-    def put_string(self, complex_body, cls=None, **kwargs):
-        # type: ("StringWrapper", Optional[Any], **Any) -> None
+    def put_string(
+        self,
+        complex_body,  # type: "StringWrapper"
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put complex types with string properties.
 
         FIXME: add operation.summary
@@ -566,8 +620,12 @@ class PrimitiveOperations(object):
     put_string.metadata = {'url': '/complex/primitive/string'}
 
     @distributed_trace
-    def get_date(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "DateWrapper"
+    def get_date(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "DateWrapper"
         """Get complex types with date properties.
 
         FIXME: add operation.summary
@@ -609,8 +667,13 @@ class PrimitiveOperations(object):
     get_date.metadata = {'url': '/complex/primitive/date'}
 
     @distributed_trace
-    def put_date(self, complex_body, cls=None, **kwargs):
-        # type: ("DateWrapper", Optional[Any], **Any) -> None
+    def put_date(
+        self,
+        complex_body,  # type: "DateWrapper"
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put complex types with date properties.
 
         FIXME: add operation.summary
@@ -654,8 +717,12 @@ class PrimitiveOperations(object):
     put_date.metadata = {'url': '/complex/primitive/date'}
 
     @distributed_trace
-    def get_date_time(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "DatetimeWrapper"
+    def get_date_time(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "DatetimeWrapper"
         """Get complex types with datetime properties.
 
         FIXME: add operation.summary
@@ -697,8 +764,13 @@ class PrimitiveOperations(object):
     get_date_time.metadata = {'url': '/complex/primitive/datetime'}
 
     @distributed_trace
-    def put_date_time(self, complex_body, cls=None, **kwargs):
-        # type: ("DatetimeWrapper", Optional[Any], **Any) -> None
+    def put_date_time(
+        self,
+        complex_body,  # type: "DatetimeWrapper"
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put complex types with datetime properties.
 
         FIXME: add operation.summary
@@ -742,8 +814,12 @@ class PrimitiveOperations(object):
     put_date_time.metadata = {'url': '/complex/primitive/datetime'}
 
     @distributed_trace
-    def get_date_time_rfc1123(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "Datetimerfc1123Wrapper"
+    def get_date_time_rfc1123(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "Datetimerfc1123Wrapper"
         """Get complex types with datetimeRfc1123 properties.
 
         FIXME: add operation.summary
@@ -785,8 +861,13 @@ class PrimitiveOperations(object):
     get_date_time_rfc1123.metadata = {'url': '/complex/primitive/datetimerfc1123'}
 
     @distributed_trace
-    def put_date_time_rfc1123(self, complex_body, cls=None, **kwargs):
-        # type: ("Datetimerfc1123Wrapper", Optional[Any], **Any) -> None
+    def put_date_time_rfc1123(
+        self,
+        complex_body,  # type: "Datetimerfc1123Wrapper"
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put complex types with datetimeRfc1123 properties.
 
         FIXME: add operation.summary
@@ -830,8 +911,12 @@ class PrimitiveOperations(object):
     put_date_time_rfc1123.metadata = {'url': '/complex/primitive/datetimerfc1123'}
 
     @distributed_trace
-    def get_duration(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "DurationWrapper"
+    def get_duration(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "DurationWrapper"
         """Get complex types with duration properties.
 
         FIXME: add operation.summary
@@ -873,8 +958,13 @@ class PrimitiveOperations(object):
     get_duration.metadata = {'url': '/complex/primitive/duration'}
 
     @distributed_trace
-    def put_duration(self, field=None, cls=None, **kwargs):
-        # type: (Optional[datetime.timedelta], Optional[Any], **Any) -> None
+    def put_duration(
+        self,
+        field=None,  # type: Optional[datetime.timedelta]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put complex types with duration properties.
 
         FIXME: add operation.summary
@@ -919,8 +1009,12 @@ class PrimitiveOperations(object):
     put_duration.metadata = {'url': '/complex/primitive/duration'}
 
     @distributed_trace
-    def get_byte(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "ByteWrapper"
+    def get_byte(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "ByteWrapper"
         """Get complex types with byte properties.
 
         FIXME: add operation.summary
@@ -962,8 +1056,13 @@ class PrimitiveOperations(object):
     get_byte.metadata = {'url': '/complex/primitive/byte'}
 
     @distributed_trace
-    def put_byte(self, field=None, cls=None, **kwargs):
-        # type: (Optional[bytearray], Optional[Any], **Any) -> None
+    def put_byte(
+        self,
+        field=None,  # type: Optional[bytearray]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put complex types with byte properties.
 
         FIXME: add operation.summary

@@ -17,8 +17,13 @@ from .. import models
 
 class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
-    def put_array(self, resource_array=None, cls=None, **kwargs):
-        # type: (Optional[List["Resource"]], Optional[Any], **Any) -> None
+    def put_array(
+        self,
+        resource_array=None,  # type: Optional[List["Resource"]]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put External Resource as an Array.
 
         FIXME: add operation.summary
@@ -64,8 +69,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
     put_array.metadata = {'url': '/model-flatten/array'}
     @distributed_trace
-    def get_array(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> List["FlattenedProduct"]
+    def get_array(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> List["FlattenedProduct"]
         """Get External Resource as an Array.
 
         FIXME: add operation.summary
@@ -106,8 +115,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         return deserialized
     get_array.metadata = {'url': '/model-flatten/array'}
     @distributed_trace
-    def put_wrapped_array(self, resource_array=None, cls=None, **kwargs):
-        # type: (Optional[List["WrappedProduct"]], Optional[Any], **Any) -> None
+    def put_wrapped_array(
+        self,
+        resource_array=None,  # type: Optional[List["WrappedProduct"]]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """No need to have a route in Express server for this operation. Used to verify the type flattened is not removed if it's referenced in an array.
 
         FIXME: add operation.summary
@@ -153,8 +167,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
     put_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}
     @distributed_trace
-    def get_wrapped_array(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> List["ProductWrapper"]
+    def get_wrapped_array(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> List["ProductWrapper"]
         """No need to have a route in Express server for this operation. Used to verify the type flattened is not removed if it's referenced in an array.
 
         FIXME: add operation.summary
@@ -195,8 +213,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         return deserialized
     get_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}
     @distributed_trace
-    def put_dictionary(self, resource_dictionary=None, cls=None, **kwargs):
-        # type: (Optional[Dict[str, "FlattenedProduct"]], Optional[Any], **Any) -> None
+    def put_dictionary(
+        self,
+        resource_dictionary=None,  # type: Optional[Dict[str, "FlattenedProduct"]]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put External Resource as a Dictionary.
 
         FIXME: add operation.summary
@@ -242,8 +265,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
     put_dictionary.metadata = {'url': '/model-flatten/dictionary'}
     @distributed_trace
-    def get_dictionary(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> Dict[str, "FlattenedProduct"]
+    def get_dictionary(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> Dict[str, "FlattenedProduct"]
         """Get External Resource as a Dictionary.
 
         FIXME: add operation.summary
@@ -284,8 +311,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         return deserialized
     get_dictionary.metadata = {'url': '/model-flatten/dictionary'}
     @distributed_trace
-    def put_resource_collection(self, resource_complex_object=None, cls=None, **kwargs):
-        # type: (Optional["ResourceCollection"], Optional[Any], **Any) -> None
+    def put_resource_collection(
+        self,
+        resource_complex_object=None,  # type: Optional["ResourceCollection"]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put External Resource as a ResourceCollection.
 
         FIXME: add operation.summary
@@ -331,8 +363,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
     put_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}
     @distributed_trace
-    def get_resource_collection(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "ResourceCollection"
+    def get_resource_collection(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "ResourceCollection"
         """Get External Resource as a ResourceCollection.
 
         FIXME: add operation.summary
@@ -373,8 +409,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         return deserialized
     get_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}
     @distributed_trace
-    def put_simple_product(self, simple_body_product=None, cls=None, **kwargs):
-        # type: (Optional["SimpleProduct"], Optional[Any], **Any) -> "SimpleProduct"
+    def put_simple_product(
+        self,
+        simple_body_product=None,  # type: Optional["SimpleProduct"]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "SimpleProduct"
         """Put Simple Product with client flattening true on the model.
 
         FIXME: add operation.summary
@@ -424,8 +465,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         return deserialized
     put_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
     @distributed_trace
-    def post_flattened_simple_product(self, max_product_display_name=None, odatavalue=None, cls=None, **kwargs):
-        # type: (Optional[str], Optional[str], Optional[Any], **Any) -> "SimpleProduct"
+    def post_flattened_simple_product(
+        self,
+        max_product_display_name=None,  # type: Optional[str]
+        odatavalue=None,  # type: Optional[str]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "SimpleProduct"
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         FIXME: add operation.summary
@@ -478,8 +525,15 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         return deserialized
     post_flattened_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
     @distributed_trace
-    def put_simple_product_with_grouping(self, name, max_product_display_name=None, odatavalue=None, cls=None, **kwargs):
-        # type: (str, Optional[str], Optional[str], Optional[Any], **Any) -> "SimpleProduct"
+    def put_simple_product_with_grouping(
+        self,
+        name,  # type: str
+        max_product_display_name=None,  # type: Optional[str]
+        odatavalue=None,  # type: Optional[str]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "SimpleProduct"
         """Put Simple Product with client flattening true on the model.
 
         FIXME: add operation.summary

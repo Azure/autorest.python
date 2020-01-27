@@ -36,7 +36,13 @@ class GroupOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_sample_resource_group(self, resource_group_name: str, *, cls=None, **kwargs) -> "SampleResourceGroup":
+    async def get_sample_resource_group(
+        self,
+        resource_group_name: str,
+        *,
+        cls=None,
+        **kwargs
+    ) -> "SampleResourceGroup":
         """Provides a resouce group with name 'testgroup101' and location 'West US'..
 
         FIXME: add operation.summary

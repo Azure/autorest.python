@@ -25,7 +25,7 @@ class AutoRestUrlTestServiceConfiguration(Configuration):
     :type global_string_query: str
     """
 
-    def __init__(self, global_string_path, global_string_query=None, **kwargs):
+    def __init__(self['global_string_path,  # type: str', 'global_string_query=None,  # type: Optional[str]'], **kwargs):
         # type: (str, str, **Any) -> None
         if global_string_path is None:
             raise ValueError("Parameter 'global_string_path' must not be None.")

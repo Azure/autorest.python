@@ -18,7 +18,7 @@ class AutoRestSwaggerBATArrayServiceConfiguration(Configuration):
     attributes.
     """
 
-    def __init__(self, **kwargs) -> None:
+    def __init__(self[], **kwargs) -> None:
         super(AutoRestSwaggerBATArrayServiceConfiguration, self).__init__(**kwargs)
 
         self._configure(**kwargs)

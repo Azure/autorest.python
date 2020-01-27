@@ -19,7 +19,7 @@ class AutoRestComplexTestServiceConfiguration(Configuration):
 
     """
 
-    def __init__(self, **kwargs) -> None:
+    def __init__(self[], **kwargs) -> None:
         super(AutoRestComplexTestServiceConfiguration, self).__init__(**kwargs)
 
         self.api_version = "2016-02-29"

@@ -47,7 +47,7 @@ class AutoRestAzureSpecialParametersTestClient(object):
     :param str base_url: Service URL
     """
 
-    def __init__(self, credential, subscription_id, base_url=None, **kwargs):
+    def __init__(self['credential,  # type: "TokenCredential"', 'subscription_id,  # type: str'], base_url=None, **kwargs):
         # type: ("TokenCredential", str, Optional[str], **Any) -> None
         if not base_url:
             base_url = 'http://localhost:3000'

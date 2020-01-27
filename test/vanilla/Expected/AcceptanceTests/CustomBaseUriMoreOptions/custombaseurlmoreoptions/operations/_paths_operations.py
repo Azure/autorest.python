@@ -36,8 +36,16 @@ class PathsOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_empty(self, vault, secret, key_name, key_version=None, cls=None, **kwargs):
-        # type: (str, str, str, Optional[str], Optional[Any], **Any) -> None
+    def get_empty(
+        self,
+        vault,  # type: str
+        secret,  # type: str
+        key_name,  # type: str
+        key_version=None,  # type: Optional[str]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get a 200 to test a valid base uri.
 
         FIXME: add operation.summary

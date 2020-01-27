@@ -37,8 +37,13 @@ class HeaderOperations(object):
         self._config = config
 
     @distributed_trace
-    def param_existing_key(self, user_agent, cls=None, **kwargs):
-        # type: (str, Optional[Any], **Any) -> None
+    def param_existing_key(
+        self,
+        user_agent,  # type: str
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Send a post request with header value "User-Agent": "overwrite".
 
         FIXME: add operation.summary
@@ -79,8 +84,12 @@ class HeaderOperations(object):
     param_existing_key.metadata = {'url': '/header/param/existingkey'}
 
     @distributed_trace
-    def response_existing_key(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def response_existing_key(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get a response with header value "User-Agent": "overwrite".
 
         FIXME: add operation.summary
@@ -121,8 +130,13 @@ class HeaderOperations(object):
     response_existing_key.metadata = {'url': '/header/response/existingkey'}
 
     @distributed_trace
-    def param_protected_key(self, content_type, cls=None, **kwargs):
-        # type: (str, Optional[Any], **Any) -> None
+    def param_protected_key(
+        self,
+        content_type,  # type: str
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Send a post request with header value "Content-Type": "text/html".
 
         FIXME: add operation.summary
@@ -163,8 +177,12 @@ class HeaderOperations(object):
     param_protected_key.metadata = {'url': '/header/param/protectedkey'}
 
     @distributed_trace
-    def response_protected_key(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def response_protected_key(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get a response with header value "Content-Type": "text/html".
 
         FIXME: add operation.summary
@@ -205,8 +223,14 @@ class HeaderOperations(object):
     response_protected_key.metadata = {'url': '/header/response/protectedkey'}
 
     @distributed_trace
-    def param_integer(self, scenario, value, cls=None, **kwargs):
-        # type: (str, int, Optional[Any], **Any) -> None
+    def param_integer(
+        self,
+        scenario,  # type: str
+        value,  # type: int
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Send a post request with header values "scenario": "positive", "value": 1 or "scenario": "negative", "value": -2.
 
         FIXME: add operation.summary
@@ -250,8 +274,13 @@ class HeaderOperations(object):
     param_integer.metadata = {'url': '/header/param/prim/integer'}
 
     @distributed_trace
-    def response_integer(self, scenario, cls=None, **kwargs):
-        # type: (str, Optional[Any], **Any) -> None
+    def response_integer(
+        self,
+        scenario,  # type: str
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get a response with header value "value": 1 or -2.
 
         FIXME: add operation.summary
@@ -295,8 +324,14 @@ class HeaderOperations(object):
     response_integer.metadata = {'url': '/header/response/prim/integer'}
 
     @distributed_trace
-    def param_long(self, scenario, value, cls=None, **kwargs):
-        # type: (str, int, Optional[Any], **Any) -> None
+    def param_long(
+        self,
+        scenario,  # type: str
+        value,  # type: int
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Send a post request with header values "scenario": "positive", "value": 105 or "scenario": "negative", "value": -2.
 
         FIXME: add operation.summary
@@ -340,8 +375,13 @@ class HeaderOperations(object):
     param_long.metadata = {'url': '/header/param/prim/long'}
 
     @distributed_trace
-    def response_long(self, scenario, cls=None, **kwargs):
-        # type: (str, Optional[Any], **Any) -> None
+    def response_long(
+        self,
+        scenario,  # type: str
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get a response with header value "value": 105 or -2.
 
         FIXME: add operation.summary
@@ -385,8 +425,14 @@ class HeaderOperations(object):
     response_long.metadata = {'url': '/header/response/prim/long'}
 
     @distributed_trace
-    def param_float(self, scenario, value, cls=None, **kwargs):
-        # type: (str, float, Optional[Any], **Any) -> None
+    def param_float(
+        self,
+        scenario,  # type: str
+        value,  # type: float
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario": "negative", "value": -3.0.
 
         FIXME: add operation.summary
@@ -430,8 +476,13 @@ class HeaderOperations(object):
     param_float.metadata = {'url': '/header/param/prim/float'}
 
     @distributed_trace
-    def response_float(self, scenario, cls=None, **kwargs):
-        # type: (str, Optional[Any], **Any) -> None
+    def response_float(
+        self,
+        scenario,  # type: str
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get a response with header value "value": 0.07 or -3.0.
 
         FIXME: add operation.summary
@@ -475,8 +526,14 @@ class HeaderOperations(object):
     response_float.metadata = {'url': '/header/response/prim/float'}
 
     @distributed_trace
-    def param_double(self, scenario, value, cls=None, **kwargs):
-        # type: (str, float, Optional[Any], **Any) -> None
+    def param_double(
+        self,
+        scenario,  # type: str
+        value,  # type: float
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario": "negative", "value": -3.0.
 
         FIXME: add operation.summary
@@ -520,8 +577,13 @@ class HeaderOperations(object):
     param_double.metadata = {'url': '/header/param/prim/double'}
 
     @distributed_trace
-    def response_double(self, scenario, cls=None, **kwargs):
-        # type: (str, Optional[Any], **Any) -> None
+    def response_double(
+        self,
+        scenario,  # type: str
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get a response with header value "value": 7e120 or -3.0.
 
         FIXME: add operation.summary
@@ -565,8 +627,14 @@ class HeaderOperations(object):
     response_double.metadata = {'url': '/header/response/prim/double'}
 
     @distributed_trace
-    def param_bool(self, scenario, value, cls=None, **kwargs):
-        # type: (str, bool, Optional[Any], **Any) -> None
+    def param_bool(
+        self,
+        scenario,  # type: str
+        value,  # type: bool
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Send a post request with header values "scenario": "true", "value": true or "scenario": "false", "value": false.
 
         FIXME: add operation.summary
@@ -610,8 +678,13 @@ class HeaderOperations(object):
     param_bool.metadata = {'url': '/header/param/prim/bool'}
 
     @distributed_trace
-    def response_bool(self, scenario, cls=None, **kwargs):
-        # type: (str, Optional[Any], **Any) -> None
+    def response_bool(
+        self,
+        scenario,  # type: str
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get a response with header value "value": true or false.
 
         FIXME: add operation.summary
@@ -655,8 +728,14 @@ class HeaderOperations(object):
     response_bool.metadata = {'url': '/header/response/prim/bool'}
 
     @distributed_trace
-    def param_string(self, scenario, value=None, cls=None, **kwargs):
-        # type: (str, Optional[str], Optional[Any], **Any) -> None
+    def param_string(
+        self,
+        scenario,  # type: str
+        value=None,  # type: Optional[str]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "".
 
         FIXME: add operation.summary
@@ -701,8 +780,13 @@ class HeaderOperations(object):
     param_string.metadata = {'url': '/header/param/prim/string'}
 
     @distributed_trace
-    def response_string(self, scenario, cls=None, **kwargs):
-        # type: (str, Optional[Any], **Any) -> None
+    def response_string(
+        self,
+        scenario,  # type: str
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get a response with header values "The quick brown fox jumps over the lazy dog" or null or "".
 
         FIXME: add operation.summary
@@ -746,8 +830,14 @@ class HeaderOperations(object):
     response_string.metadata = {'url': '/header/response/prim/string'}
 
     @distributed_trace
-    def param_date(self, scenario, value, cls=None, **kwargs):
-        # type: (str, datetime.date, Optional[Any], **Any) -> None
+    def param_date(
+        self,
+        scenario,  # type: str
+        value,  # type: datetime.date
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01" or "scenario": "min", "value": "0001-01-01".
 
         FIXME: add operation.summary
@@ -791,8 +881,13 @@ class HeaderOperations(object):
     param_date.metadata = {'url': '/header/param/prim/date'}
 
     @distributed_trace
-    def response_date(self, scenario, cls=None, **kwargs):
-        # type: (str, Optional[Any], **Any) -> None
+    def response_date(
+        self,
+        scenario,  # type: str
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get a response with header values "2010-01-01" or "0001-01-01".
 
         FIXME: add operation.summary
@@ -836,8 +931,14 @@ class HeaderOperations(object):
     response_date.metadata = {'url': '/header/response/prim/date'}
 
     @distributed_trace
-    def param_datetime(self, scenario, value, cls=None, **kwargs):
-        # type: (str, datetime.datetime, Optional[Any], **Any) -> None
+    def param_datetime(
+        self,
+        scenario,  # type: str
+        value,  # type: datetime.datetime
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or "scenario": "min", "value": "0001-01-01T00:00:00Z".
 
         FIXME: add operation.summary
@@ -881,8 +982,13 @@ class HeaderOperations(object):
     param_datetime.metadata = {'url': '/header/param/prim/datetime'}
 
     @distributed_trace
-    def response_datetime(self, scenario, cls=None, **kwargs):
-        # type: (str, Optional[Any], **Any) -> None
+    def response_datetime(
+        self,
+        scenario,  # type: str
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z".
 
         FIXME: add operation.summary
@@ -926,8 +1032,14 @@ class HeaderOperations(object):
     response_datetime.metadata = {'url': '/header/response/prim/datetime'}
 
     @distributed_trace
-    def param_datetime_rfc1123(self, scenario, value=None, cls=None, **kwargs):
-        # type: (str, Optional[datetime.datetime], Optional[Any], **Any) -> None
+    def param_datetime_rfc1123(
+        self,
+        scenario,  # type: str
+        value=None,  # type: Optional[datetime.datetime]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56 GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT".
 
         FIXME: add operation.summary
@@ -972,8 +1084,13 @@ class HeaderOperations(object):
     param_datetime_rfc1123.metadata = {'url': '/header/param/prim/datetimerfc1123'}
 
     @distributed_trace
-    def response_datetime_rfc1123(self, scenario, cls=None, **kwargs):
-        # type: (str, Optional[Any], **Any) -> None
+    def response_datetime_rfc1123(
+        self,
+        scenario,  # type: str
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT".
 
         FIXME: add operation.summary
@@ -1017,8 +1134,14 @@ class HeaderOperations(object):
     response_datetime_rfc1123.metadata = {'url': '/header/response/prim/datetimerfc1123'}
 
     @distributed_trace
-    def param_duration(self, scenario, value, cls=None, **kwargs):
-        # type: (str, datetime.timedelta, Optional[Any], **Any) -> None
+    def param_duration(
+        self,
+        scenario,  # type: str
+        value,  # type: datetime.timedelta
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S".
 
         FIXME: add operation.summary
@@ -1062,8 +1185,13 @@ class HeaderOperations(object):
     param_duration.metadata = {'url': '/header/param/prim/duration'}
 
     @distributed_trace
-    def response_duration(self, scenario, cls=None, **kwargs):
-        # type: (str, Optional[Any], **Any) -> None
+    def response_duration(
+        self,
+        scenario,  # type: str
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get a response with header values "P123DT22H14M12.011S".
 
         FIXME: add operation.summary
@@ -1107,8 +1235,14 @@ class HeaderOperations(object):
     response_duration.metadata = {'url': '/header/response/prim/duration'}
 
     @distributed_trace
-    def param_byte(self, scenario, value, cls=None, **kwargs):
-        # type: (str, bytearray, Optional[Any], **Any) -> None
+    def param_byte(
+        self,
+        scenario,  # type: str
+        value,  # type: bytearray
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩".
 
         FIXME: add operation.summary
@@ -1152,8 +1286,13 @@ class HeaderOperations(object):
     param_byte.metadata = {'url': '/header/param/prim/byte'}
 
     @distributed_trace
-    def response_byte(self, scenario, cls=None, **kwargs):
-        # type: (str, Optional[Any], **Any) -> None
+    def response_byte(
+        self,
+        scenario,  # type: str
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get a response with header values "啊齄丂狛狜隣郎隣兀﨩".
 
         FIXME: add operation.summary
@@ -1197,8 +1336,14 @@ class HeaderOperations(object):
     response_byte.metadata = {'url': '/header/response/prim/byte'}
 
     @distributed_trace
-    def param_enum(self, scenario, value=None, cls=None, **kwargs):
-        # type: (str, Optional[Union[str, "GreyscaleColors"]], Optional[Any], **Any) -> None
+    def param_enum(
+        self,
+        scenario,  # type: str
+        value=None,  # type: Optional[Union[str, "GreyscaleColors"]]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario": "null", "value": null.
 
         FIXME: add operation.summary
@@ -1243,8 +1388,13 @@ class HeaderOperations(object):
     param_enum.metadata = {'url': '/header/param/prim/enum'}
 
     @distributed_trace
-    def response_enum(self, scenario, cls=None, **kwargs):
-        # type: (str, Optional[Any], **Any) -> None
+    def response_enum(
+        self,
+        scenario,  # type: str
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get a response with header values "GREY" or null.
 
         FIXME: add operation.summary
@@ -1288,8 +1438,12 @@ class HeaderOperations(object):
     response_enum.metadata = {'url': '/header/response/prim/enum'}
 
     @distributed_trace
-    def custom_request_id(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def custom_request_id(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
         FIXME: add operation.summary

@@ -25,7 +25,7 @@ class AutoRestParameterizedCustomHostTestClient(object):
     :type dns_suffix: str
     """
 
-    def __init__(self, subscription_id, dns_suffix, **kwargs):
+    def __init__(self['subscription_id,  # type: str', 'dns_suffix,  # type: str'], **kwargs):
         # type: (str, str, **Any) -> None
         base_url = '{vault}{secret}{dnsSuffix}'
         self._config = AutoRestParameterizedCustomHostTestClientConfiguration(subscription_id, dns_suffix, **kwargs)

@@ -36,8 +36,12 @@ class HttpServerFailureOperations(object):
         self._config = config
 
     @distributed_trace
-    def head501(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def head501(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 501 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -75,8 +79,12 @@ class HttpServerFailureOperations(object):
     head501.metadata = {'url': '/http/failure/server/501'}
 
     @distributed_trace
-    def get501(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def get501(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 501 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -114,8 +122,12 @@ class HttpServerFailureOperations(object):
     get501.metadata = {'url': '/http/failure/server/501'}
 
     @distributed_trace
-    def post505(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def post505(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 505 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -161,8 +173,12 @@ class HttpServerFailureOperations(object):
     post505.metadata = {'url': '/http/failure/server/505'}
 
     @distributed_trace
-    def delete505(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def delete505(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 505 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary

@@ -36,8 +36,12 @@ class PolymorphicrecursiveOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_valid(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "Fish"
+    def get_valid(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "Fish"
         """Get complex types that are polymorphic and have recursive references.
 
         FIXME: add operation.summary
@@ -79,8 +83,13 @@ class PolymorphicrecursiveOperations(object):
     get_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}
 
     @distributed_trace
-    def put_valid(self, complex_body, cls=None, **kwargs):
-        # type: ("Fish", Optional[Any], **Any) -> None
+    def put_valid(
+        self,
+        complex_body,  # type: "Fish"
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put complex types that are polymorphic and have recursive references.
 
         FIXME: add operation.summary

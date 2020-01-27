@@ -24,7 +24,7 @@ class AutoRestPagingTestService(object):
     :param str base_url: Service URL
     """
 
-    def __init__(self, credential, base_url=None, **kwargs):
+    def __init__(self['credential,  # type: "TokenCredential"'], base_url=None, **kwargs):
         # type: ("TokenCredential", Optional[str], **Any) -> None
         if not base_url:
             base_url = 'http://localhost:3000'

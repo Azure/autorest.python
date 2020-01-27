@@ -17,7 +17,14 @@ from ... import models
 
 class AutoRestValidationTestOperationsMixin:
     @distributed_trace_async
-    async def validation_of_method_parameters(self, resource_group_name: str, id: int, *, cls=None, **kwargs) -> "Product":
+    async def validation_of_method_parameters(
+        self,
+        resource_group_name: str,
+        id: int,
+        *,
+        cls=None,
+        **kwargs
+    ) -> "Product":
         """Validates input parameters on the method. See swagger for details..
 
         FIXME: add operation.summary
@@ -70,7 +77,15 @@ class AutoRestValidationTestOperationsMixin:
         return deserialized
     validation_of_method_parameters.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
     @distributed_trace_async
-    async def validation_of_body(self, resource_group_name: str, id: int, body: Optional["Product"] = None, *, cls=None, **kwargs) -> "Product":
+    async def validation_of_body(
+        self,
+        resource_group_name: str,
+        id: int,
+        body: Optional["Product"] = None,
+        *,
+        cls=None,
+        **kwargs
+    ) -> "Product":
         """Validates body parameters on the method. See swagger for details..
 
         FIXME: add operation.summary
@@ -132,7 +147,11 @@ class AutoRestValidationTestOperationsMixin:
         return deserialized
     validation_of_body.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
     @distributed_trace_async
-    async def get_with_constant_in_path(self, cls=None, **kwargs) -> None:
+    async def get_with_constant_in_path(
+        self,
+        cls=None,
+        **kwargs
+    ) -> None:
         """MISSING·OPERATION-DESCRIPTION.
 
         FIXME: add operation.summary
@@ -174,7 +193,13 @@ class AutoRestValidationTestOperationsMixin:
 
     get_with_constant_in_path.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}
     @distributed_trace_async
-    async def post_with_constant_in_body(self, body: Optional["Product"] = None, *, cls=None, **kwargs) -> "Product":
+    async def post_with_constant_in_body(
+        self,
+        body: Optional["Product"] = None,
+        *,
+        cls=None,
+        **kwargs
+    ) -> "Product":
         """MISSING·OPERATION-DESCRIPTION.
 
         FIXME: add operation.summary

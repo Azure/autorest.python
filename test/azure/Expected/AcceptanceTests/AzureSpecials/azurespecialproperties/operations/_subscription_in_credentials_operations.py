@@ -35,8 +35,12 @@ class SubscriptionInCredentialsOperations(object):
         self._config = config
 
     @distributed_trace
-    def post_method_global_valid(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def post_method_global_valid(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to '1234-5678-9012-3456' to succeed.
 
         FIXME: add operation.summary
@@ -78,8 +82,12 @@ class SubscriptionInCredentialsOperations(object):
     post_method_global_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}
 
     @distributed_trace
-    def post_method_global_null(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def post_method_global_null(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to null, and client-side validation should prevent you from making this call.
 
         FIXME: add operation.summary
@@ -121,8 +129,12 @@ class SubscriptionInCredentialsOperations(object):
     post_method_global_null.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}'}
 
     @distributed_trace
-    def post_method_global_not_provided_valid(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def post_method_global_not_provided_valid(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to '1234-5678-9012-3456' to succeed.
 
         FIXME: add operation.summary
@@ -164,8 +176,12 @@ class SubscriptionInCredentialsOperations(object):
     post_method_global_not_provided_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}'}
 
     @distributed_trace
-    def post_path_global_valid(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def post_path_global_valid(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to '1234-5678-9012-3456' to succeed.
 
         FIXME: add operation.summary
@@ -207,8 +223,12 @@ class SubscriptionInCredentialsOperations(object):
     post_path_global_valid.metadata = {'url': '/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}
 
     @distributed_trace
-    def post_swagger_global_valid(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def post_swagger_global_valid(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to '1234-5678-9012-3456' to succeed.
 
         FIXME: add operation.summary

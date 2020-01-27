@@ -21,7 +21,7 @@ class AutoRestHeadTestServiceConfiguration(Configuration):
     :type credential: azure.core.credentials.TokenCredential
     """
 
-    def __init__(self, credential: "TokenCredential", **kwargs) -> None:
+    def __init__(self['credential: "TokenCredential"'], **kwargs) -> None:
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
         super(AutoRestHeadTestServiceConfiguration, self).__init__(**kwargs)

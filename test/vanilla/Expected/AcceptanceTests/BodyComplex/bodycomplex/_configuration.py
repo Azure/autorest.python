@@ -19,7 +19,7 @@ class AutoRestComplexTestServiceConfiguration(Configuration):
 
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self[], **kwargs):
         # type: (**Any) -> None
         super(AutoRestComplexTestServiceConfiguration, self).__init__(**kwargs)
 

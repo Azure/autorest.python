@@ -37,7 +37,13 @@ class ExplicitOperations:
         self._config = config
 
     @distributed_trace_async
-    async def post_required_integer_parameter(self, body_parameter: int, *, cls=None, **kwargs) -> None:
+    async def post_required_integer_parameter(
+        self,
+        body_parameter: int,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Test explicitly required integer. Please put null and the client library should throw before the request is sent..
 
         FIXME: add operation.summary
@@ -81,7 +87,13 @@ class ExplicitOperations:
     post_required_integer_parameter.metadata = {'url': '/reqopt/requied/integer/parameter'}
 
     @distributed_trace_async
-    async def post_optional_integer_parameter(self, body_parameter: Optional[int] = None, *, cls=None, **kwargs) -> None:
+    async def post_optional_integer_parameter(
+        self,
+        body_parameter: Optional[int] = None,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Test explicitly optional integer. Please put null..
 
         FIXME: add operation.summary
@@ -128,7 +140,13 @@ class ExplicitOperations:
     post_optional_integer_parameter.metadata = {'url': '/reqopt/optional/integer/parameter'}
 
     @distributed_trace_async
-    async def post_required_integer_property(self, value: int, *, cls=None, **kwargs) -> None:
+    async def post_required_integer_property(
+        self,
+        value: int,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the client library should throw before the request is sent..
 
         FIXME: add operation.summary
@@ -173,7 +191,13 @@ class ExplicitOperations:
     post_required_integer_property.metadata = {'url': '/reqopt/requied/integer/property'}
 
     @distributed_trace_async
-    async def post_optional_integer_property(self, value: Optional[int] = None, *, cls=None, **kwargs) -> None:
+    async def post_optional_integer_property(
+        self,
+        value: Optional[int] = None,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null..
 
         FIXME: add operation.summary
@@ -221,7 +245,13 @@ class ExplicitOperations:
     post_optional_integer_property.metadata = {'url': '/reqopt/optional/integer/property'}
 
     @distributed_trace_async
-    async def post_required_integer_header(self, header_parameter: int, *, cls=None, **kwargs) -> None:
+    async def post_required_integer_header(
+        self,
+        header_parameter: int,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Test explicitly required integer. Please put a header 'headerParameter' => null and the client library should throw before the request is sent..
 
         FIXME: add operation.summary
@@ -262,7 +292,13 @@ class ExplicitOperations:
     post_required_integer_header.metadata = {'url': '/reqopt/requied/integer/header'}
 
     @distributed_trace_async
-    async def post_optional_integer_header(self, header_parameter: Optional[int] = None, *, cls=None, **kwargs) -> None:
+    async def post_optional_integer_header(
+        self,
+        header_parameter: Optional[int] = None,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null..
 
         FIXME: add operation.summary
@@ -304,7 +340,13 @@ class ExplicitOperations:
     post_optional_integer_header.metadata = {'url': '/reqopt/optional/integer/header'}
 
     @distributed_trace_async
-    async def post_required_string_parameter(self, body_parameter: str, *, cls=None, **kwargs) -> None:
+    async def post_required_string_parameter(
+        self,
+        body_parameter: str,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Test explicitly required string. Please put null and the client library should throw before the request is sent..
 
         FIXME: add operation.summary
@@ -348,7 +390,13 @@ class ExplicitOperations:
     post_required_string_parameter.metadata = {'url': '/reqopt/requied/string/parameter'}
 
     @distributed_trace_async
-    async def post_optional_string_parameter(self, body_parameter: Optional[str] = None, *, cls=None, **kwargs) -> None:
+    async def post_optional_string_parameter(
+        self,
+        body_parameter: Optional[str] = None,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Test explicitly optional string. Please put null..
 
         FIXME: add operation.summary
@@ -395,7 +443,13 @@ class ExplicitOperations:
     post_optional_string_parameter.metadata = {'url': '/reqopt/optional/string/parameter'}
 
     @distributed_trace_async
-    async def post_required_string_property(self, value: str, *, cls=None, **kwargs) -> None:
+    async def post_required_string_property(
+        self,
+        value: str,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the client library should throw before the request is sent..
 
         FIXME: add operation.summary
@@ -440,7 +494,13 @@ class ExplicitOperations:
     post_required_string_property.metadata = {'url': '/reqopt/requied/string/property'}
 
     @distributed_trace_async
-    async def post_optional_string_property(self, value: Optional[str] = None, *, cls=None, **kwargs) -> None:
+    async def post_optional_string_property(
+        self,
+        value: Optional[str] = None,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null..
 
         FIXME: add operation.summary
@@ -488,7 +548,13 @@ class ExplicitOperations:
     post_optional_string_property.metadata = {'url': '/reqopt/optional/string/property'}
 
     @distributed_trace_async
-    async def post_required_string_header(self, header_parameter: str, *, cls=None, **kwargs) -> None:
+    async def post_required_string_header(
+        self,
+        header_parameter: str,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Test explicitly required string. Please put a header 'headerParameter' => null and the client library should throw before the request is sent..
 
         FIXME: add operation.summary
@@ -529,7 +595,13 @@ class ExplicitOperations:
     post_required_string_header.metadata = {'url': '/reqopt/requied/string/header'}
 
     @distributed_trace_async
-    async def post_optional_string_header(self, body_parameter: Optional[str] = None, *, cls=None, **kwargs) -> None:
+    async def post_optional_string_header(
+        self,
+        body_parameter: Optional[str] = None,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Test explicitly optional string. Please put a header 'headerParameter' => null..
 
         FIXME: add operation.summary
@@ -571,7 +643,13 @@ class ExplicitOperations:
     post_optional_string_header.metadata = {'url': '/reqopt/optional/string/header'}
 
     @distributed_trace_async
-    async def post_required_class_parameter(self, body_parameter: "Product", *, cls=None, **kwargs) -> None:
+    async def post_required_class_parameter(
+        self,
+        body_parameter: "Product",
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Test explicitly required complex object. Please put null and the client library should throw before the request is sent..
 
         FIXME: add operation.summary
@@ -615,7 +693,13 @@ class ExplicitOperations:
     post_required_class_parameter.metadata = {'url': '/reqopt/requied/class/parameter'}
 
     @distributed_trace_async
-    async def post_optional_class_parameter(self, body_parameter: Optional["Product"] = None, *, cls=None, **kwargs) -> None:
+    async def post_optional_class_parameter(
+        self,
+        body_parameter: Optional["Product"] = None,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Test explicitly optional complex object. Please put null..
 
         FIXME: add operation.summary
@@ -662,7 +746,13 @@ class ExplicitOperations:
     post_optional_class_parameter.metadata = {'url': '/reqopt/optional/class/parameter'}
 
     @distributed_trace_async
-    async def post_required_class_property(self, value: "Product", *, cls=None, **kwargs) -> None:
+    async def post_required_class_property(
+        self,
+        value: "Product",
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null and the client library should throw before the request is sent..
 
         FIXME: add operation.summary
@@ -707,7 +797,13 @@ class ExplicitOperations:
     post_required_class_property.metadata = {'url': '/reqopt/requied/class/property'}
 
     @distributed_trace_async
-    async def post_optional_class_property(self, value: Optional["Product"] = None, *, cls=None, **kwargs) -> None:
+    async def post_optional_class_property(
+        self,
+        value: Optional["Product"] = None,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null..
 
         FIXME: add operation.summary
@@ -755,7 +851,13 @@ class ExplicitOperations:
     post_optional_class_property.metadata = {'url': '/reqopt/optional/class/property'}
 
     @distributed_trace_async
-    async def post_required_array_parameter(self, body_parameter: List[str], *, cls=None, **kwargs) -> None:
+    async def post_required_array_parameter(
+        self,
+        body_parameter: List[str],
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Test explicitly required array. Please put null and the client library should throw before the request is sent..
 
         FIXME: add operation.summary
@@ -799,7 +901,13 @@ class ExplicitOperations:
     post_required_array_parameter.metadata = {'url': '/reqopt/requied/array/parameter'}
 
     @distributed_trace_async
-    async def post_optional_array_parameter(self, body_parameter: Optional[List[str]] = None, *, cls=None, **kwargs) -> None:
+    async def post_optional_array_parameter(
+        self,
+        body_parameter: Optional[List[str]] = None,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Test explicitly optional array. Please put null..
 
         FIXME: add operation.summary
@@ -846,7 +954,13 @@ class ExplicitOperations:
     post_optional_array_parameter.metadata = {'url': '/reqopt/optional/array/parameter'}
 
     @distributed_trace_async
-    async def post_required_array_property(self, value: List[str], *, cls=None, **kwargs) -> None:
+    async def post_required_array_property(
+        self,
+        value: List[str],
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the client library should throw before the request is sent..
 
         FIXME: add operation.summary
@@ -891,7 +1005,13 @@ class ExplicitOperations:
     post_required_array_property.metadata = {'url': '/reqopt/requied/array/property'}
 
     @distributed_trace_async
-    async def post_optional_array_property(self, value: Optional[List[str]] = None, *, cls=None, **kwargs) -> None:
+    async def post_optional_array_property(
+        self,
+        value: Optional[List[str]] = None,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null..
 
         FIXME: add operation.summary
@@ -939,7 +1059,13 @@ class ExplicitOperations:
     post_optional_array_property.metadata = {'url': '/reqopt/optional/array/property'}
 
     @distributed_trace_async
-    async def post_required_array_header(self, header_parameter: List[str], *, cls=None, **kwargs) -> None:
+    async def post_required_array_header(
+        self,
+        header_parameter: List[str],
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Test explicitly required array. Please put a header 'headerParameter' => null and the client library should throw before the request is sent..
 
         FIXME: add operation.summary
@@ -980,7 +1106,13 @@ class ExplicitOperations:
     post_required_array_header.metadata = {'url': '/reqopt/requied/array/header'}
 
     @distributed_trace_async
-    async def post_optional_array_header(self, header_parameter: Optional[List[str]] = None, *, cls=None, **kwargs) -> None:
+    async def post_optional_array_header(
+        self,
+        header_parameter: Optional[List[str]] = None,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null..
 
         FIXME: add operation.summary

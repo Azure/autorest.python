@@ -18,7 +18,7 @@ class AutoRestDateTestServiceConfiguration(Configuration):
     attributes.
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self[], **kwargs):
         # type: (**Any) -> None
         super(AutoRestDateTestServiceConfiguration, self).__init__(**kwargs)
 

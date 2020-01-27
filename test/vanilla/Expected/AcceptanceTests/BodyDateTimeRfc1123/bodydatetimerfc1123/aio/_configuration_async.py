@@ -18,7 +18,7 @@ class AutoRestRFC1123DateTimeTestServiceConfiguration(Configuration):
     attributes.
     """
 
-    def __init__(self, **kwargs) -> None:
+    def __init__(self[], **kwargs) -> None:
         super(AutoRestRFC1123DateTimeTestServiceConfiguration, self).__init__(**kwargs)
 
         self._configure(**kwargs)

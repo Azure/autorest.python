@@ -37,8 +37,12 @@ class ArrayOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_valid(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "ArrayWrapper"
+    def get_valid(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "ArrayWrapper"
         """Get complex types with array property.
 
         FIXME: add operation.summary
@@ -80,8 +84,13 @@ class ArrayOperations(object):
     get_valid.metadata = {'url': '/complex/array/valid'}
 
     @distributed_trace
-    def put_valid(self, array=None, cls=None, **kwargs):
-        # type: (Optional[List[str]], Optional[Any], **Any) -> None
+    def put_valid(
+        self,
+        array=None,  # type: Optional[List[str]]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put complex types with array property.
 
         FIXME: add operation.summary
@@ -126,8 +135,12 @@ class ArrayOperations(object):
     put_valid.metadata = {'url': '/complex/array/valid'}
 
     @distributed_trace
-    def get_empty(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "ArrayWrapper"
+    def get_empty(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "ArrayWrapper"
         """Get complex types with array property which is empty.
 
         FIXME: add operation.summary
@@ -169,8 +182,13 @@ class ArrayOperations(object):
     get_empty.metadata = {'url': '/complex/array/empty'}
 
     @distributed_trace
-    def put_empty(self, array=None, cls=None, **kwargs):
-        # type: (Optional[List[str]], Optional[Any], **Any) -> None
+    def put_empty(
+        self,
+        array=None,  # type: Optional[List[str]]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put complex types with array property which is empty.
 
         FIXME: add operation.summary
@@ -215,8 +233,12 @@ class ArrayOperations(object):
     put_empty.metadata = {'url': '/complex/array/empty'}
 
     @distributed_trace
-    def get_not_provided(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "ArrayWrapper"
+    def get_not_provided(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "ArrayWrapper"
         """Get complex types with array property while server doesn't provide a response payload.
 
         FIXME: add operation.summary

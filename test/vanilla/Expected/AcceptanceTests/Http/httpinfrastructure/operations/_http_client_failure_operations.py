@@ -36,8 +36,12 @@ class HttpClientFailureOperations(object):
         self._config = config
 
     @distributed_trace
-    def head400(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def head400(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -75,8 +79,12 @@ class HttpClientFailureOperations(object):
     head400.metadata = {'url': '/http/failure/client/400'}
 
     @distributed_trace
-    def get400(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def get400(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -114,8 +122,12 @@ class HttpClientFailureOperations(object):
     get400.metadata = {'url': '/http/failure/client/400'}
 
     @distributed_trace
-    def options400(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def options400(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -153,8 +165,12 @@ class HttpClientFailureOperations(object):
     options400.metadata = {'url': '/http/failure/client/400'}
 
     @distributed_trace
-    def put400(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def put400(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -200,8 +216,12 @@ class HttpClientFailureOperations(object):
     put400.metadata = {'url': '/http/failure/client/400'}
 
     @distributed_trace
-    def patch400(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def patch400(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -247,8 +267,12 @@ class HttpClientFailureOperations(object):
     patch400.metadata = {'url': '/http/failure/client/400'}
 
     @distributed_trace
-    def post400(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def post400(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -294,8 +318,12 @@ class HttpClientFailureOperations(object):
     post400.metadata = {'url': '/http/failure/client/400'}
 
     @distributed_trace
-    def delete400(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def delete400(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -341,8 +369,12 @@ class HttpClientFailureOperations(object):
     delete400.metadata = {'url': '/http/failure/client/400'}
 
     @distributed_trace
-    def head401(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def head401(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 401 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -380,8 +412,12 @@ class HttpClientFailureOperations(object):
     head401.metadata = {'url': '/http/failure/client/401'}
 
     @distributed_trace
-    def get402(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def get402(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 402 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -419,8 +455,12 @@ class HttpClientFailureOperations(object):
     get402.metadata = {'url': '/http/failure/client/402'}
 
     @distributed_trace
-    def options403(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def options403(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 403 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -458,8 +498,12 @@ class HttpClientFailureOperations(object):
     options403.metadata = {'url': '/http/failure/client/403'}
 
     @distributed_trace
-    def get403(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def get403(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 403 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -497,8 +541,12 @@ class HttpClientFailureOperations(object):
     get403.metadata = {'url': '/http/failure/client/403'}
 
     @distributed_trace
-    def put404(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def put404(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 404 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -544,8 +592,12 @@ class HttpClientFailureOperations(object):
     put404.metadata = {'url': '/http/failure/client/404'}
 
     @distributed_trace
-    def patch405(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def patch405(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 405 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -591,8 +643,12 @@ class HttpClientFailureOperations(object):
     patch405.metadata = {'url': '/http/failure/client/405'}
 
     @distributed_trace
-    def post406(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def post406(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 406 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -638,8 +694,12 @@ class HttpClientFailureOperations(object):
     post406.metadata = {'url': '/http/failure/client/406'}
 
     @distributed_trace
-    def delete407(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def delete407(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 407 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -685,8 +745,12 @@ class HttpClientFailureOperations(object):
     delete407.metadata = {'url': '/http/failure/client/407'}
 
     @distributed_trace
-    def put409(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def put409(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 409 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -732,8 +796,12 @@ class HttpClientFailureOperations(object):
     put409.metadata = {'url': '/http/failure/client/409'}
 
     @distributed_trace
-    def head410(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def head410(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 410 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -771,8 +839,12 @@ class HttpClientFailureOperations(object):
     head410.metadata = {'url': '/http/failure/client/410'}
 
     @distributed_trace
-    def get411(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def get411(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 411 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -810,8 +882,12 @@ class HttpClientFailureOperations(object):
     get411.metadata = {'url': '/http/failure/client/411'}
 
     @distributed_trace
-    def options412(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def options412(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 412 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -849,8 +925,12 @@ class HttpClientFailureOperations(object):
     options412.metadata = {'url': '/http/failure/client/412'}
 
     @distributed_trace
-    def get412(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def get412(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 412 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -888,8 +968,12 @@ class HttpClientFailureOperations(object):
     get412.metadata = {'url': '/http/failure/client/412'}
 
     @distributed_trace
-    def put413(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def put413(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 413 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -935,8 +1019,12 @@ class HttpClientFailureOperations(object):
     put413.metadata = {'url': '/http/failure/client/413'}
 
     @distributed_trace
-    def patch414(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def patch414(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 414 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -982,8 +1070,12 @@ class HttpClientFailureOperations(object):
     patch414.metadata = {'url': '/http/failure/client/414'}
 
     @distributed_trace
-    def post415(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def post415(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 415 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -1029,8 +1121,12 @@ class HttpClientFailureOperations(object):
     post415.metadata = {'url': '/http/failure/client/415'}
 
     @distributed_trace
-    def get416(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def get416(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 416 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -1068,8 +1164,12 @@ class HttpClientFailureOperations(object):
     get416.metadata = {'url': '/http/failure/client/416'}
 
     @distributed_trace
-    def delete417(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def delete417(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 417 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary
@@ -1115,8 +1215,12 @@ class HttpClientFailureOperations(object):
     delete417.metadata = {'url': '/http/failure/client/417'}
 
     @distributed_trace
-    def head429(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def head429(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 429 status code - should be represented in the client as an error.
 
         FIXME: add operation.summary

@@ -23,7 +23,7 @@ class AutoRestParameterizedCustomHostTestClientConfiguration(Configuration):
     :type dns_suffix: str
     """
 
-    def __init__(self, subscription_id: str, dns_suffix: str, **kwargs) -> None:
+    def __init__(self['subscription_id: str', 'dns_suffix: str'], **kwargs) -> None:
         if subscription_id is None:
             raise ValueError("Parameter 'subscription_id' must not be None.")
         if dns_suffix is None:

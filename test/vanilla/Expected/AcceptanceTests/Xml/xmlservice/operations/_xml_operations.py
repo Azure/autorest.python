@@ -37,8 +37,12 @@ class XmlOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_complex_type_ref_no_meta(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "RootWithRefAndNoMeta"
+    def get_complex_type_ref_no_meta(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "RootWithRefAndNoMeta"
         """Get a complex type that has a ref to a complex type with no XML node.
 
         FIXME: add operation.summary
@@ -80,8 +84,13 @@ class XmlOperations(object):
     get_complex_type_ref_no_meta.metadata = {'url': '/xml/complex-type-ref-no-meta'}
 
     @distributed_trace
-    def put_complex_type_ref_no_meta(self, model, cls=None, **kwargs):
-        # type: ("RootWithRefAndNoMeta", Optional[Any], **Any) -> None
+    def put_complex_type_ref_no_meta(
+        self,
+        model,  # type: "RootWithRefAndNoMeta"
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Puts a complex type that has a ref to a complex type with no XML node.
 
         FIXME: add operation.summary
@@ -125,8 +134,12 @@ class XmlOperations(object):
     put_complex_type_ref_no_meta.metadata = {'url': '/xml/complex-type-ref-no-meta'}
 
     @distributed_trace
-    def get_complex_type_ref_with_meta(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "RootWithRefAndMeta"
+    def get_complex_type_ref_with_meta(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "RootWithRefAndMeta"
         """Get a complex type that has a ref to a complex type with XML node.
 
         FIXME: add operation.summary
@@ -168,8 +181,13 @@ class XmlOperations(object):
     get_complex_type_ref_with_meta.metadata = {'url': '/xml/complex-type-ref-with-meta'}
 
     @distributed_trace
-    def put_complex_type_ref_with_meta(self, model, cls=None, **kwargs):
-        # type: ("RootWithRefAndMeta", Optional[Any], **Any) -> None
+    def put_complex_type_ref_with_meta(
+        self,
+        model,  # type: "RootWithRefAndMeta"
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Puts a complex type that has a ref to a complex type with XML node.
 
         FIXME: add operation.summary
@@ -213,8 +231,12 @@ class XmlOperations(object):
     put_complex_type_ref_with_meta.metadata = {'url': '/xml/complex-type-ref-with-meta'}
 
     @distributed_trace
-    def get_simple(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "Slideshow"
+    def get_simple(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "Slideshow"
         """Get a simple XML document.
 
         FIXME: add operation.summary
@@ -256,8 +278,13 @@ class XmlOperations(object):
     get_simple.metadata = {'url': '/xml/simple'}
 
     @distributed_trace
-    def put_simple(self, slideshow, cls=None, **kwargs):
-        # type: ("Slideshow", Optional[Any], **Any) -> None
+    def put_simple(
+        self,
+        slideshow,  # type: "Slideshow"
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put a simple XML document.
 
         FIXME: add operation.summary
@@ -301,8 +328,12 @@ class XmlOperations(object):
     put_simple.metadata = {'url': '/xml/simple'}
 
     @distributed_trace
-    def get_wrapped_lists(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "AppleBarrel"
+    def get_wrapped_lists(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "AppleBarrel"
         """Get an XML document with multiple wrapped lists.
 
         FIXME: add operation.summary
@@ -344,8 +375,13 @@ class XmlOperations(object):
     get_wrapped_lists.metadata = {'url': '/xml/wrapped-lists'}
 
     @distributed_trace
-    def put_wrapped_lists(self, wrapped_lists, cls=None, **kwargs):
-        # type: ("AppleBarrel", Optional[Any], **Any) -> None
+    def put_wrapped_lists(
+        self,
+        wrapped_lists,  # type: "AppleBarrel"
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put an XML document with multiple wrapped lists.
 
         FIXME: add operation.summary
@@ -389,8 +425,12 @@ class XmlOperations(object):
     put_wrapped_lists.metadata = {'url': '/xml/wrapped-lists'}
 
     @distributed_trace
-    def get_headers(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def get_headers(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get strongly-typed response headers..
 
         FIXME: add operation.summary
@@ -431,8 +471,12 @@ class XmlOperations(object):
     get_headers.metadata = {'url': '/xml/headers'}
 
     @distributed_trace
-    def get_empty_list(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "Slideshow"
+    def get_empty_list(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "Slideshow"
         """Get an empty list..
 
         FIXME: add operation.summary
@@ -474,8 +518,13 @@ class XmlOperations(object):
     get_empty_list.metadata = {'url': '/xml/empty-list'}
 
     @distributed_trace
-    def put_empty_list(self, slideshow, cls=None, **kwargs):
-        # type: ("Slideshow", Optional[Any], **Any) -> None
+    def put_empty_list(
+        self,
+        slideshow,  # type: "Slideshow"
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Puts an empty list..
 
         FIXME: add operation.summary
@@ -519,8 +568,12 @@ class XmlOperations(object):
     put_empty_list.metadata = {'url': '/xml/empty-list'}
 
     @distributed_trace
-    def get_empty_wrapped_lists(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "AppleBarrel"
+    def get_empty_wrapped_lists(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "AppleBarrel"
         """Gets some empty wrapped lists..
 
         FIXME: add operation.summary
@@ -562,8 +615,13 @@ class XmlOperations(object):
     get_empty_wrapped_lists.metadata = {'url': '/xml/empty-wrapped-lists'}
 
     @distributed_trace
-    def put_empty_wrapped_lists(self, apple_barrel, cls=None, **kwargs):
-        # type: ("AppleBarrel", Optional[Any], **Any) -> None
+    def put_empty_wrapped_lists(
+        self,
+        apple_barrel,  # type: "AppleBarrel"
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Puts some empty wrapped lists..
 
         FIXME: add operation.summary
@@ -607,8 +665,12 @@ class XmlOperations(object):
     put_empty_wrapped_lists.metadata = {'url': '/xml/empty-wrapped-lists'}
 
     @distributed_trace
-    def get_root_list(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> List["Banana"]
+    def get_root_list(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> List["Banana"]
         """Gets a list as the root element..
 
         FIXME: add operation.summary
@@ -650,8 +712,13 @@ class XmlOperations(object):
     get_root_list.metadata = {'url': '/xml/root-list'}
 
     @distributed_trace
-    def put_root_list(self, bananas, cls=None, **kwargs):
-        # type: (List["Banana"], Optional[Any], **Any) -> None
+    def put_root_list(
+        self,
+        bananas,  # type: List["Banana"]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Puts a list as the root element..
 
         FIXME: add operation.summary
@@ -695,8 +762,12 @@ class XmlOperations(object):
     put_root_list.metadata = {'url': '/xml/root-list'}
 
     @distributed_trace
-    def get_root_list_single_item(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> List["Banana"]
+    def get_root_list_single_item(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> List["Banana"]
         """Gets a list with a single item..
 
         FIXME: add operation.summary
@@ -738,8 +809,13 @@ class XmlOperations(object):
     get_root_list_single_item.metadata = {'url': '/xml/root-list-single-item'}
 
     @distributed_trace
-    def put_root_list_single_item(self, bananas, cls=None, **kwargs):
-        # type: (List["Banana"], Optional[Any], **Any) -> None
+    def put_root_list_single_item(
+        self,
+        bananas,  # type: List["Banana"]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Puts a list with a single item..
 
         FIXME: add operation.summary
@@ -783,8 +859,12 @@ class XmlOperations(object):
     put_root_list_single_item.metadata = {'url': '/xml/root-list-single-item'}
 
     @distributed_trace
-    def get_empty_root_list(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> List["Banana"]
+    def get_empty_root_list(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> List["Banana"]
         """Gets an empty list as the root element..
 
         FIXME: add operation.summary
@@ -826,8 +906,13 @@ class XmlOperations(object):
     get_empty_root_list.metadata = {'url': '/xml/empty-root-list'}
 
     @distributed_trace
-    def put_empty_root_list(self, bananas, cls=None, **kwargs):
-        # type: (List["Banana"], Optional[Any], **Any) -> None
+    def put_empty_root_list(
+        self,
+        bananas,  # type: List["Banana"]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Puts an empty list as the root element..
 
         FIXME: add operation.summary
@@ -871,8 +956,12 @@ class XmlOperations(object):
     put_empty_root_list.metadata = {'url': '/xml/empty-root-list'}
 
     @distributed_trace
-    def get_empty_child_element(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "Banana"
+    def get_empty_child_element(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "Banana"
         """Gets an XML document with an empty child element..
 
         FIXME: add operation.summary
@@ -914,8 +1003,13 @@ class XmlOperations(object):
     get_empty_child_element.metadata = {'url': '/xml/empty-child-element'}
 
     @distributed_trace
-    def put_empty_child_element(self, banana, cls=None, **kwargs):
-        # type: ("Banana", Optional[Any], **Any) -> None
+    def put_empty_child_element(
+        self,
+        banana,  # type: "Banana"
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Puts a value with an empty child element..
 
         FIXME: add operation.summary
@@ -959,8 +1053,12 @@ class XmlOperations(object):
     put_empty_child_element.metadata = {'url': '/xml/empty-child-element'}
 
     @distributed_trace
-    def list_containers(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "ListContainersResponse"
+    def list_containers(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "ListContainersResponse"
         """Lists containers in a storage account..
 
         FIXME: add operation.summary
@@ -1004,8 +1102,12 @@ class XmlOperations(object):
     list_containers.metadata = {'url': '/xml/'}
 
     @distributed_trace
-    def get_service_properties(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "StorageServiceProperties"
+    def get_service_properties(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "StorageServiceProperties"
         """Gets storage service properties..
 
         FIXME: add operation.summary
@@ -1051,8 +1153,13 @@ class XmlOperations(object):
     get_service_properties.metadata = {'url': '/xml/'}
 
     @distributed_trace
-    def put_service_properties(self, properties, cls=None, **kwargs):
-        # type: ("StorageServiceProperties", Optional[Any], **Any) -> None
+    def put_service_properties(
+        self,
+        properties,  # type: "StorageServiceProperties"
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Puts storage service properties..
 
         FIXME: add operation.summary
@@ -1100,8 +1207,12 @@ class XmlOperations(object):
     put_service_properties.metadata = {'url': '/xml/'}
 
     @distributed_trace
-    def get_acls(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> List["SignedIdentifier"]
+    def get_acls(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> List["SignedIdentifier"]
         """Gets storage ACLs for a container..
 
         FIXME: add operation.summary
@@ -1147,8 +1258,13 @@ class XmlOperations(object):
     get_acls.metadata = {'url': '/xml/mycontainer'}
 
     @distributed_trace
-    def put_acls(self, properties, cls=None, **kwargs):
-        # type: (List["SignedIdentifier"], Optional[Any], **Any) -> None
+    def put_acls(
+        self,
+        properties,  # type: List["SignedIdentifier"]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Puts storage ACLs for a container..
 
         FIXME: add operation.summary
@@ -1196,8 +1312,12 @@ class XmlOperations(object):
     put_acls.metadata = {'url': '/xml/mycontainer'}
 
     @distributed_trace
-    def list_blobs(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "ListBlobsResponse"
+    def list_blobs(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "ListBlobsResponse"
         """Lists blobs in a storage container..
 
         FIXME: add operation.summary
@@ -1243,8 +1363,13 @@ class XmlOperations(object):
     list_blobs.metadata = {'url': '/xml/mycontainer'}
 
     @distributed_trace
-    def json_input(self, id=None, cls=None, **kwargs):
-        # type: (Optional[int], Optional[Any], **Any) -> None
+    def json_input(
+        self,
+        id=None,  # type: Optional[int]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID number 42.
 
         FIXME: add operation.summary
@@ -1289,8 +1414,12 @@ class XmlOperations(object):
     json_input.metadata = {'url': '/xml/jsoninput'}
 
     @distributed_trace
-    def json_output(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "JSONOutput"
+    def json_output(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "JSONOutput"
         """A Swagger with XML that has one operation that returns JSON. ID number 42.
 
         FIXME: add operation.summary

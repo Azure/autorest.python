@@ -131,22 +131,12 @@ class ParameterList(MutableSequence):
         return signature_parameters
 
     @property
-    def sync_method_signature(self) -> str:
-        signature = ", ".join([
-            parameter.sync_method_signature for parameter in self.method
-        ])
-        if signature:
-            signature = ", "+signature
-        return signature
+    def sync_method_signature(self) -> List[str]:
+        return [parameter.sync_method_signature for parameter in self.method]
 
     @property
     def async_method_signature(self) -> str:
-        signature = ", ".join([
-            parameter.async_method_signature for parameter in self.method
-        ])
-        if signature:
-            signature = ", " + signature
-        return signature
+        return [parameter.async_method_signature for parameter in self.method]
 
     @property
     def is_flattened(self) -> bool:

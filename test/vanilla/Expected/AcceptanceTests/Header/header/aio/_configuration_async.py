@@ -18,7 +18,7 @@ class AutoRestSwaggerBATHeaderServiceConfiguration(Configuration):
     attributes.
     """
 
-    def __init__(self, **kwargs) -> None:
+    def __init__(self[], **kwargs) -> None:
         super(AutoRestSwaggerBATHeaderServiceConfiguration, self).__init__(**kwargs)
 
         self._configure(**kwargs)

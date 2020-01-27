@@ -20,7 +20,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
     :param str base_url: Service URL
     """
 
-    def __init__(self, base_url=None, **kwargs):
+    def __init__(self[], base_url=None, **kwargs):
         # type: (Optional[str], **Any) -> None
         if not base_url:
             base_url = 'http://localhost:3000'

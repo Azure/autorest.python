@@ -35,7 +35,11 @@ class BoolOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_true(self, cls=None, **kwargs) -> bool:
+    async def get_true(
+        self,
+        cls=None,
+        **kwargs
+    ) -> bool:
         """Get true Boolean value.
 
         FIXME: add operation.summary
@@ -77,7 +81,11 @@ class BoolOperations:
     get_true.metadata = {'url': '/bool/true'}
 
     @distributed_trace_async
-    async def put_true(self, cls=None, **kwargs) -> None:
+    async def put_true(
+        self,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Set Boolean value true.
 
         FIXME: add operation.summary
@@ -120,7 +128,11 @@ class BoolOperations:
     put_true.metadata = {'url': '/bool/true'}
 
     @distributed_trace_async
-    async def get_false(self, cls=None, **kwargs) -> bool:
+    async def get_false(
+        self,
+        cls=None,
+        **kwargs
+    ) -> bool:
         """Get false Boolean value.
 
         FIXME: add operation.summary
@@ -162,7 +174,11 @@ class BoolOperations:
     get_false.metadata = {'url': '/bool/false'}
 
     @distributed_trace_async
-    async def put_false(self, cls=None, **kwargs) -> None:
+    async def put_false(
+        self,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Set Boolean value false.
 
         FIXME: add operation.summary
@@ -205,7 +221,11 @@ class BoolOperations:
     put_false.metadata = {'url': '/bool/false'}
 
     @distributed_trace_async
-    async def get_null(self, cls=None, **kwargs) -> bool:
+    async def get_null(
+        self,
+        cls=None,
+        **kwargs
+    ) -> bool:
         """Get null Boolean value.
 
         FIXME: add operation.summary
@@ -247,7 +267,11 @@ class BoolOperations:
     get_null.metadata = {'url': '/bool/null'}
 
     @distributed_trace_async
-    async def get_invalid(self, cls=None, **kwargs) -> bool:
+    async def get_invalid(
+        self,
+        cls=None,
+        **kwargs
+    ) -> bool:
         """Get invalid Boolean value.
 
         FIXME: add operation.summary

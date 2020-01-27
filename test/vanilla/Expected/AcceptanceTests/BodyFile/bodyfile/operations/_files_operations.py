@@ -36,8 +36,12 @@ class FilesOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_file(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def get_file(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get file.
 
         FIXME: add operation.summary
@@ -79,8 +83,12 @@ class FilesOperations(object):
     get_file.metadata = {'url': '/files/stream/nonempty'}
 
     @distributed_trace
-    def get_file_large(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def get_file_large(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get a large file.
 
         FIXME: add operation.summary
@@ -122,8 +130,12 @@ class FilesOperations(object):
     get_file_large.metadata = {'url': '/files/stream/verylarge'}
 
     @distributed_trace
-    def get_empty_file(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def get_empty_file(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get empty file.
 
         FIXME: add operation.summary

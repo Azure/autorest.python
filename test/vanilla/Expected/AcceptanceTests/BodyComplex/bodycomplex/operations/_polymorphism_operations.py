@@ -36,8 +36,12 @@ class PolymorphismOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_valid(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "Fish"
+    def get_valid(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "Fish"
         """Get complex types that are polymorphic.
 
         FIXME: add operation.summary
@@ -79,8 +83,13 @@ class PolymorphismOperations(object):
     get_valid.metadata = {'url': '/complex/polymorphism/valid'}
 
     @distributed_trace
-    def put_valid(self, complex_body, cls=None, **kwargs):
-        # type: ("Fish", Optional[Any], **Any) -> None
+    def put_valid(
+        self,
+        complex_body,  # type: "Fish"
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put complex types that are polymorphic.
 
         FIXME: add operation.summary
@@ -156,8 +165,12 @@ class PolymorphismOperations(object):
     put_valid.metadata = {'url': '/complex/polymorphism/valid'}
 
     @distributed_trace
-    def get_dot_syntax(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "DotFish"
+    def get_dot_syntax(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "DotFish"
         """Get complex types that are polymorphic, JSON key contains a dot.
 
         FIXME: add operation.summary
@@ -199,8 +212,12 @@ class PolymorphismOperations(object):
     get_dot_syntax.metadata = {'url': '/complex/polymorphism/dotsyntax'}
 
     @distributed_trace
-    def get_composed_with_discriminator(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "DotFishMarket"
+    def get_composed_with_discriminator(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "DotFishMarket"
         """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, with discriminator specified. Deserialization must NOT fail and use the discriminator type specified on the wire..
 
         FIXME: add operation.summary
@@ -242,8 +259,12 @@ class PolymorphismOperations(object):
     get_composed_with_discriminator.metadata = {'url': '/complex/polymorphism/composedWithDiscriminator'}
 
     @distributed_trace
-    def get_composed_without_discriminator(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "DotFishMarket"
+    def get_composed_without_discriminator(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "DotFishMarket"
         """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, without discriminator specified on wire. Deserialization must NOT fail and use the explicit type of the property..
 
         FIXME: add operation.summary
@@ -285,8 +306,12 @@ class PolymorphismOperations(object):
     get_composed_without_discriminator.metadata = {'url': '/complex/polymorphism/composedWithoutDiscriminator'}
 
     @distributed_trace
-    def get_complicated(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "Salmon"
+    def get_complicated(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "Salmon"
         """Get complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties.
 
         FIXME: add operation.summary
@@ -328,8 +353,13 @@ class PolymorphismOperations(object):
     get_complicated.metadata = {'url': '/complex/polymorphism/complicated'}
 
     @distributed_trace
-    def put_complicated(self, complex_body, cls=None, **kwargs):
-        # type: ("Salmon", Optional[Any], **Any) -> None
+    def put_complicated(
+        self,
+        complex_body,  # type: "Salmon"
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties.
 
         FIXME: add operation.summary
@@ -373,8 +403,13 @@ class PolymorphismOperations(object):
     put_complicated.metadata = {'url': '/complex/polymorphism/complicated'}
 
     @distributed_trace
-    def put_missing_discriminator(self, complex_body, cls=None, **kwargs):
-        # type: ("Salmon", Optional[Any], **Any) -> "Salmon"
+    def put_missing_discriminator(
+        self,
+        complex_body,  # type: "Salmon"
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "Salmon"
         """Put complex types that are polymorphic, omitting the discriminator.
 
         FIXME: add operation.summary
@@ -422,8 +457,13 @@ class PolymorphismOperations(object):
     put_missing_discriminator.metadata = {'url': '/complex/polymorphism/missingdiscriminator'}
 
     @distributed_trace
-    def put_valid_missing_required(self, complex_body, cls=None, **kwargs):
-        # type: ("Fish", Optional[Any], **Any) -> None
+    def put_valid_missing_required(
+        self,
+        complex_body,  # type: "Fish"
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the request should not be allowed from the client.
 
         FIXME: add operation.summary

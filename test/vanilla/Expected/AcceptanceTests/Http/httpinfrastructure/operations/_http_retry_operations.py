@@ -36,8 +36,12 @@ class HttpRetryOperations(object):
         self._config = config
 
     @distributed_trace
-    def head408(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def head408(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 408 status code, then 200 after retry.
 
         FIXME: add operation.summary
@@ -75,8 +79,12 @@ class HttpRetryOperations(object):
     head408.metadata = {'url': '/http/retry/408'}
 
     @distributed_trace
-    def put500(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def put500(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 500 status code, then 200 after retry.
 
         FIXME: add operation.summary
@@ -122,8 +130,12 @@ class HttpRetryOperations(object):
     put500.metadata = {'url': '/http/retry/500'}
 
     @distributed_trace
-    def patch500(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def patch500(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 500 status code, then 200 after retry.
 
         FIXME: add operation.summary
@@ -169,8 +181,12 @@ class HttpRetryOperations(object):
     patch500.metadata = {'url': '/http/retry/500'}
 
     @distributed_trace
-    def get502(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def get502(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 502 status code, then 200 after retry.
 
         FIXME: add operation.summary
@@ -208,8 +224,12 @@ class HttpRetryOperations(object):
     get502.metadata = {'url': '/http/retry/502'}
 
     @distributed_trace
-    def options502(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> bool
+    def options502(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> bool
         """Return 502 status code, then 200 after retry.
 
         FIXME: add operation.summary
@@ -251,8 +271,12 @@ class HttpRetryOperations(object):
     options502.metadata = {'url': '/http/retry/502'}
 
     @distributed_trace
-    def post503(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def post503(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 503 status code, then 200 after retry.
 
         FIXME: add operation.summary
@@ -298,8 +322,12 @@ class HttpRetryOperations(object):
     post503.metadata = {'url': '/http/retry/503'}
 
     @distributed_trace
-    def delete503(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def delete503(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 503 status code, then 200 after retry.
 
         FIXME: add operation.summary
@@ -345,8 +373,12 @@ class HttpRetryOperations(object):
     delete503.metadata = {'url': '/http/retry/503'}
 
     @distributed_trace
-    def put504(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def put504(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 504 status code, then 200 after retry.
 
         FIXME: add operation.summary
@@ -392,8 +424,12 @@ class HttpRetryOperations(object):
     put504.metadata = {'url': '/http/retry/504'}
 
     @distributed_trace
-    def patch504(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def patch504(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Return 504 status code, then 200 after retry.
 
         FIXME: add operation.summary

@@ -36,8 +36,13 @@ class PetOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_pet_by_id(self, pet_id, cls=None, **kwargs):
-        # type: (str, Optional[Any], **Any) -> "Pet"
+    def get_pet_by_id(
+        self,
+        pet_id,  # type: str
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "Pet"
         """Gets pets by id..
 
         FIXME: add operation.summary
@@ -92,8 +97,13 @@ class PetOperations(object):
     get_pet_by_id.metadata = {'url': '/errorStatusCodes/Pets/{petId}/GetPet'}
 
     @distributed_trace
-    def do_something(self, what_action, cls=None, **kwargs):
-        # type: (str, Optional[Any], **Any) -> "PetAction"
+    def do_something(
+        self,
+        what_action,  # type: str
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "PetAction"
         """Asks pet to do something.
 
         FIXME: add operation.summary

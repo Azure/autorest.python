@@ -42,7 +42,11 @@ class PagingOperations:
         self._config = config
 
     @distributed_trace
-    def get_no_item_name_pages(self, cls=None, **kwargs) -> "ProductResultValue":
+    async def get_no_item_name_pages(
+        self,
+        cls=None,
+        **kwargs
+    ) -> "ProductResultValue":
         """A paging operation that must return result of the default 'value' node..
 
         FIXME: add operation.summary
@@ -101,7 +105,11 @@ class PagingOperations:
 
 
     @distributed_trace
-    def get_null_next_link_name_pages(self, cls=None, **kwargs) -> "ProductResult":
+    async def get_null_next_link_name_pages(
+        self,
+        cls=None,
+        **kwargs
+    ) -> "ProductResult":
         """A paging operation that must ignore any kind of nextLink, and stop after page 1..
 
         FIXME: add operation.summary
@@ -160,7 +168,11 @@ class PagingOperations:
 
 
     @distributed_trace
-    def get_single_pages(self, cls=None, **kwargs) -> "ProductResult":
+    async def get_single_pages(
+        self,
+        cls=None,
+        **kwargs
+    ) -> "ProductResult":
         """A paging operation that finishes on the first call without a nextlink.
 
         FIXME: add operation.summary
@@ -219,7 +231,15 @@ class PagingOperations:
 
 
     @distributed_trace
-    def get_multiple_pages(self, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: Optional[int] = None, *, cls=None, **kwargs) -> "ProductResult":
+    async def get_multiple_pages(
+        self,
+        client_request_id: Optional[str] = None,
+        maxresults: Optional[int] = None,
+        timeout: Optional[int] = None,
+        *,
+        cls=None,
+        **kwargs
+    ) -> "ProductResult":
         """A paging operation that includes a nextLink that has 10 pages.
 
         FIXME: add operation.summary
@@ -290,7 +310,15 @@ class PagingOperations:
 
 
     @distributed_trace
-    def get_odata_multiple_pages(self, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: Optional[int] = None, *, cls=None, **kwargs) -> "OdataProductResult":
+    async def get_odata_multiple_pages(
+        self,
+        client_request_id: Optional[str] = None,
+        maxresults: Optional[int] = None,
+        timeout: Optional[int] = None,
+        *,
+        cls=None,
+        **kwargs
+    ) -> "OdataProductResult":
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
         FIXME: add operation.summary
@@ -361,7 +389,16 @@ class PagingOperations:
 
 
     @distributed_trace
-    def get_multiple_pages_with_offset(self, offset: int, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: Optional[int] = None, *, cls=None, **kwargs) -> "ProductResult":
+    async def get_multiple_pages_with_offset(
+        self,
+        offset: int,
+        client_request_id: Optional[str] = None,
+        maxresults: Optional[int] = None,
+        timeout: Optional[int] = None,
+        *,
+        cls=None,
+        **kwargs
+    ) -> "ProductResult":
         """A paging operation that includes a nextLink that has 10 pages.
 
         FIXME: add operation.summary
@@ -438,7 +475,11 @@ class PagingOperations:
 
 
     @distributed_trace
-    def get_multiple_pages_retry_first(self, cls=None, **kwargs) -> "ProductResult":
+    async def get_multiple_pages_retry_first(
+        self,
+        cls=None,
+        **kwargs
+    ) -> "ProductResult":
         """A paging operation that fails on the first call with 500 and then retries and then get a response including a nextLink that has 10 pages.
 
         FIXME: add operation.summary
@@ -497,7 +538,11 @@ class PagingOperations:
 
 
     @distributed_trace
-    def get_multiple_pages_retry_second(self, cls=None, **kwargs) -> "ProductResult":
+    async def get_multiple_pages_retry_second(
+        self,
+        cls=None,
+        **kwargs
+    ) -> "ProductResult":
         """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first with 500. The client should retry and finish all 10 pages eventually..
 
         FIXME: add operation.summary
@@ -556,7 +601,11 @@ class PagingOperations:
 
 
     @distributed_trace
-    def get_single_pages_failure(self, cls=None, **kwargs) -> "ProductResult":
+    async def get_single_pages_failure(
+        self,
+        cls=None,
+        **kwargs
+    ) -> "ProductResult":
         """A paging operation that receives a 400 on the first call.
 
         FIXME: add operation.summary
@@ -615,7 +664,11 @@ class PagingOperations:
 
 
     @distributed_trace
-    def get_multiple_pages_failure(self, cls=None, **kwargs) -> "ProductResult":
+    async def get_multiple_pages_failure(
+        self,
+        cls=None,
+        **kwargs
+    ) -> "ProductResult":
         """A paging operation that receives a 400 on the second call.
 
         FIXME: add operation.summary
@@ -674,7 +727,11 @@ class PagingOperations:
 
 
     @distributed_trace
-    def get_multiple_pages_failure_uri(self, cls=None, **kwargs) -> "ProductResult":
+    async def get_multiple_pages_failure_uri(
+        self,
+        cls=None,
+        **kwargs
+    ) -> "ProductResult":
         """A paging operation that receives an invalid nextLink.
 
         FIXME: add operation.summary
@@ -733,7 +790,14 @@ class PagingOperations:
 
 
     @distributed_trace
-    def get_multiple_pages_fragment_next_link(self, api_version: str, tenant: str, *, cls=None, **kwargs) -> "OdataProductResult":
+    async def get_multiple_pages_fragment_next_link(
+        self,
+        api_version: str,
+        tenant: str,
+        *,
+        cls=None,
+        **kwargs
+    ) -> "OdataProductResult":
         """A paging operation that doesn't return a full URL, just a fragment.
 
         FIXME: add operation.summary
@@ -806,7 +870,14 @@ class PagingOperations:
 
 
     @distributed_trace
-    def get_multiple_pages_fragment_with_grouping_next_link(self, api_version: str, tenant: str, *, cls=None, **kwargs) -> "OdataProductResult":
+    async def get_multiple_pages_fragment_with_grouping_next_link(
+        self,
+        api_version: str,
+        tenant: str,
+        *,
+        cls=None,
+        **kwargs
+    ) -> "OdataProductResult":
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
 
         FIXME: add operation.summary
@@ -879,7 +950,15 @@ class PagingOperations:
 
 
     
-    async def _get_multiple_pages_lro_initial(self, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: Optional[int] = None, *, cls=None, **kwargs) -> "ProductResult":
+    async def _get_multiple_pages_lro_initial(
+        self,
+        client_request_id: Optional[str] = None,
+        maxresults: Optional[int] = None,
+        timeout: Optional[int] = None,
+        *,
+        cls=None,
+        **kwargs
+    ) -> "ProductResult":
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -918,7 +997,16 @@ class PagingOperations:
     _get_multiple_pages_lro_initial.metadata = {'url': '/paging/multiple/lro'}
 
     @distributed_trace_async
-    async def get_multiple_pages_lro(self, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: Optional[int] = None, *, cls=None, polling: Optional[bool] = True, **kwargs) -> "ProductResult":
+    async def get_multiple_pages_lro(
+        self,
+        client_request_id: Optional[str] = None,
+        maxresults: Optional[int] = None,
+        timeout: Optional[int] = None,
+        *,
+        cls=None,
+        polling: Optional[bool] = True,
+        **kwargs
+    ) -> "ProductResult":
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         FIXME: add operation.summary

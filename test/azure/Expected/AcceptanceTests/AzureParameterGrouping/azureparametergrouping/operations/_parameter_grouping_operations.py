@@ -36,8 +36,16 @@ class ParameterGroupingOperations(object):
         self._config = config
 
     @distributed_trace
-    def post_required(self, path, body, custom_header=None, query=None, cls=None, **kwargs):
-        # type: (str, int, Optional[str], Optional[int], Optional[Any], **Any) -> None
+    def post_required(
+        self,
+        path,  # type: str
+        body,  # type: int
+        custom_header=None,  # type: Optional[str]
+        query=None,  # type: Optional[int]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Post a bunch of required parameters grouped.
 
         FIXME: add operation.summary
@@ -95,8 +103,14 @@ class ParameterGroupingOperations(object):
     post_required.metadata = {'url': '/parameterGrouping/postRequired/{path}'}
 
     @distributed_trace
-    def post_optional(self, custom_header=None, query=None, cls=None, **kwargs):
-        # type: (Optional[str], Optional[int], Optional[Any], **Any) -> None
+    def post_optional(
+        self,
+        custom_header=None,  # type: Optional[str]
+        query=None,  # type: Optional[int]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Post a bunch of optional parameters grouped.
 
         FIXME: add operation.summary
@@ -142,8 +156,16 @@ class ParameterGroupingOperations(object):
     post_optional.metadata = {'url': '/parameterGrouping/postOptional'}
 
     @distributed_trace
-    def post_multi_param_groups(self, header_one=None, query_one=None, header_two=None, query_two=None, cls=None, **kwargs):
-        # type: (Optional[str], Optional[int], Optional[str], Optional[int], Optional[Any], **Any) -> None
+    def post_multi_param_groups(
+        self,
+        header_one=None,  # type: Optional[str]
+        query_one=None,  # type: Optional[int]
+        header_two=None,  # type: Optional[str]
+        query_two=None,  # type: Optional[int]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Post parameters from multiple different parameter groups.
 
         FIXME: add operation.summary
@@ -197,8 +219,14 @@ class ParameterGroupingOperations(object):
     post_multi_param_groups.metadata = {'url': '/parameterGrouping/postMultipleParameterGroups'}
 
     @distributed_trace
-    def post_shared_parameter_group_object(self, header_one=None, query_one=None, cls=None, **kwargs):
-        # type: (Optional[str], Optional[int], Optional[Any], **Any) -> None
+    def post_shared_parameter_group_object(
+        self,
+        header_one=None,  # type: Optional[str]
+        query_one=None,  # type: Optional[int]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Post parameters with a shared parameter group object.
 
         FIXME: add operation.summary

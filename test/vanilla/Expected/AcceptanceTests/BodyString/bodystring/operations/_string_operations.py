@@ -36,8 +36,12 @@ class StringOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_null(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> str
+    def get_null(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> str
         """Get null string value value.
 
         FIXME: add operation.summary
@@ -79,8 +83,12 @@ class StringOperations(object):
     get_null.metadata = {'url': '/string/null'}
 
     @distributed_trace
-    def put_null(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def put_null(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Set string value null.
 
         FIXME: add operation.summary
@@ -126,8 +134,12 @@ class StringOperations(object):
     put_null.metadata = {'url': '/string/null'}
 
     @distributed_trace
-    def get_empty(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> str
+    def get_empty(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> str
         """Get empty string value value ''.
 
         FIXME: add operation.summary
@@ -169,8 +181,12 @@ class StringOperations(object):
     get_empty.metadata = {'url': '/string/empty'}
 
     @distributed_trace
-    def put_empty(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def put_empty(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Set string value empty ''.
 
         FIXME: add operation.summary
@@ -213,8 +229,12 @@ class StringOperations(object):
     put_empty.metadata = {'url': '/string/empty'}
 
     @distributed_trace
-    def get_mbcs(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> str
+    def get_mbcs(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> str
         """Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
         FIXME: add operation.summary
@@ -256,8 +276,12 @@ class StringOperations(object):
     get_mbcs.metadata = {'url': '/string/mbcs'}
 
     @distributed_trace
-    def put_mbcs(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def put_mbcs(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
         FIXME: add operation.summary
@@ -300,8 +324,12 @@ class StringOperations(object):
     put_mbcs.metadata = {'url': '/string/mbcs'}
 
     @distributed_trace
-    def get_whitespace(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> str
+    def get_whitespace(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> str
         """Get string value with leading and trailing whitespace ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
         FIXME: add operation.summary
@@ -343,8 +371,12 @@ class StringOperations(object):
     get_whitespace.metadata = {'url': '/string/whitespace'}
 
     @distributed_trace
-    def put_whitespace(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def put_whitespace(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Set String value with leading and trailing whitespace ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
         FIXME: add operation.summary
@@ -387,8 +419,12 @@ class StringOperations(object):
     put_whitespace.metadata = {'url': '/string/whitespace'}
 
     @distributed_trace
-    def get_not_provided(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> str
+    def get_not_provided(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> str
         """Get String value when no string value is sent in response payload.
 
         FIXME: add operation.summary
@@ -430,8 +466,12 @@ class StringOperations(object):
     get_not_provided.metadata = {'url': '/string/notProvided'}
 
     @distributed_trace
-    def get_base64_encoded(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> bytes
+    def get_base64_encoded(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> bytes
         """Get value that is base64 encoded.
 
         FIXME: add operation.summary
@@ -473,8 +513,12 @@ class StringOperations(object):
     get_base64_encoded.metadata = {'url': '/string/base64Encoding'}
 
     @distributed_trace
-    def get_base64_url_encoded(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> bytes
+    def get_base64_url_encoded(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> bytes
         """Get value that is base64url encoded.
 
         FIXME: add operation.summary
@@ -516,8 +560,13 @@ class StringOperations(object):
     get_base64_url_encoded.metadata = {'url': '/string/base64UrlEncoding'}
 
     @distributed_trace
-    def put_base64_url_encoded(self, string_body, cls=None, **kwargs):
-        # type: (bytes, Optional[Any], **Any) -> None
+    def put_base64_url_encoded(
+        self,
+        string_body,  # type: bytes
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put value that is base64url encoded.
 
         FIXME: add operation.summary
@@ -561,8 +610,12 @@ class StringOperations(object):
     put_base64_url_encoded.metadata = {'url': '/string/base64UrlEncoding'}
 
     @distributed_trace
-    def get_null_base64_url_encoded(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> bytes
+    def get_null_base64_url_encoded(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> bytes
         """Get null value that is expected to be base64url encoded.
 
         FIXME: add operation.summary

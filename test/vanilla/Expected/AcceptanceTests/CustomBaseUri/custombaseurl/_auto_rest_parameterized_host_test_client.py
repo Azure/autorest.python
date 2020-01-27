@@ -23,7 +23,7 @@ class AutoRestParameterizedHostTestClient(object):
     :type host: str
     """
 
-    def __init__(self, host, **kwargs):
+    def __init__(self['host,  # type: str'], **kwargs):
         # type: (str, **Any) -> None
         base_url = 'http://{accountName}{host}'
         self._config = AutoRestParameterizedHostTestClientConfiguration(host, **kwargs)

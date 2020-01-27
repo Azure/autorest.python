@@ -37,7 +37,11 @@ class EnumOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_not_expandable(self, cls=None, **kwargs) -> Union[str, "Colors"]:
+    async def get_not_expandable(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Union[str, "Colors"]:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'..
 
         FIXME: add operation.summary
@@ -79,7 +83,13 @@ class EnumOperations:
     get_not_expandable.metadata = {'url': '/string/enum/notExpandable'}
 
     @distributed_trace_async
-    async def put_not_expandable(self, string_body: Union[str, "Colors"], *, cls=None, **kwargs) -> None:
+    async def put_not_expandable(
+        self,
+        string_body: Union[str, "Colors"],
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         FIXME: add operation.summary
@@ -123,7 +133,11 @@ class EnumOperations:
     put_not_expandable.metadata = {'url': '/string/enum/notExpandable'}
 
     @distributed_trace_async
-    async def get_referenced(self, cls=None, **kwargs) -> Union[str, "Colors"]:
+    async def get_referenced(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Union[str, "Colors"]:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'..
 
         FIXME: add operation.summary
@@ -165,7 +179,13 @@ class EnumOperations:
     get_referenced.metadata = {'url': '/string/enum/Referenced'}
 
     @distributed_trace_async
-    async def put_referenced(self, enum_string_body: Union[str, "Colors"], *, cls=None, **kwargs) -> None:
+    async def put_referenced(
+        self,
+        enum_string_body: Union[str, "Colors"],
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         FIXME: add operation.summary
@@ -209,7 +229,11 @@ class EnumOperations:
     put_referenced.metadata = {'url': '/string/enum/Referenced'}
 
     @distributed_trace_async
-    async def get_referenced_constant(self, cls=None, **kwargs) -> "RefColorConstant":
+    async def get_referenced_constant(
+        self,
+        cls=None,
+        **kwargs
+    ) -> "RefColorConstant":
         """Get value 'green-color' from the constant..
 
         FIXME: add operation.summary
@@ -251,7 +275,13 @@ class EnumOperations:
     get_referenced_constant.metadata = {'url': '/string/enum/ReferencedConstant'}
 
     @distributed_trace_async
-    async def put_referenced_constant(self, field1: Optional[str] = None, *, cls=None, **kwargs) -> None:
+    async def put_referenced_constant(
+        self,
+        field1: Optional[str] = None,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Sends value 'green-color' from a constant.
 
         FIXME: add operation.summary

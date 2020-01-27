@@ -18,7 +18,7 @@ class AutoRestParameterGroupingTestServiceConfiguration(Configuration):
     attributes.
     """
 
-    def __init__(self, **kwargs) -> None:
+    def __init__(self[], **kwargs) -> None:
         super(AutoRestParameterGroupingTestServiceConfiguration, self).__init__(**kwargs)
 
         self._configure(**kwargs)

@@ -37,8 +37,12 @@ class QueriesOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_boolean_true(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def get_boolean_true(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get true Boolean value on path.
 
         FIXME: add operation.summary
@@ -78,8 +82,12 @@ class QueriesOperations(object):
     get_boolean_true.metadata = {'url': '/queries/bool/true'}
 
     @distributed_trace
-    def get_boolean_false(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def get_boolean_false(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get false Boolean value on path.
 
         FIXME: add operation.summary
@@ -119,8 +127,13 @@ class QueriesOperations(object):
     get_boolean_false.metadata = {'url': '/queries/bool/false'}
 
     @distributed_trace
-    def get_boolean_null(self, bool_query=None, cls=None, **kwargs):
-        # type: (Optional[bool], Optional[Any], **Any) -> None
+    def get_boolean_null(
+        self,
+        bool_query=None,  # type: Optional[bool]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get null Boolean value on query (query string should be absent).
 
         FIXME: add operation.summary
@@ -162,8 +175,12 @@ class QueriesOperations(object):
     get_boolean_null.metadata = {'url': '/queries/bool/null'}
 
     @distributed_trace
-    def get_int_one_million(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def get_int_one_million(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get '1000000' integer value.
 
         FIXME: add operation.summary
@@ -203,8 +220,12 @@ class QueriesOperations(object):
     get_int_one_million.metadata = {'url': '/queries/int/1000000'}
 
     @distributed_trace
-    def get_int_negative_one_million(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def get_int_negative_one_million(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get '-1000000' integer value.
 
         FIXME: add operation.summary
@@ -244,8 +265,13 @@ class QueriesOperations(object):
     get_int_negative_one_million.metadata = {'url': '/queries/int/-1000000'}
 
     @distributed_trace
-    def get_int_null(self, int_query=None, cls=None, **kwargs):
-        # type: (Optional[int], Optional[Any], **Any) -> None
+    def get_int_null(
+        self,
+        int_query=None,  # type: Optional[int]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get null integer value (no query parameter).
 
         FIXME: add operation.summary
@@ -287,8 +313,12 @@ class QueriesOperations(object):
     get_int_null.metadata = {'url': '/queries/int/null'}
 
     @distributed_trace
-    def get_ten_billion(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def get_ten_billion(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get '10000000000' 64 bit integer value.
 
         FIXME: add operation.summary
@@ -328,8 +358,12 @@ class QueriesOperations(object):
     get_ten_billion.metadata = {'url': '/queries/long/10000000000'}
 
     @distributed_trace
-    def get_negative_ten_billion(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def get_negative_ten_billion(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get '-10000000000' 64 bit integer value.
 
         FIXME: add operation.summary
@@ -369,8 +403,13 @@ class QueriesOperations(object):
     get_negative_ten_billion.metadata = {'url': '/queries/long/-10000000000'}
 
     @distributed_trace
-    def get_long_null(self, long_query=None, cls=None, **kwargs):
-        # type: (Optional[int], Optional[Any], **Any) -> None
+    def get_long_null(
+        self,
+        long_query=None,  # type: Optional[int]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get 'null 64 bit integer value (no query param in uri).
 
         FIXME: add operation.summary
@@ -412,8 +451,12 @@ class QueriesOperations(object):
     get_long_null.metadata = {'url': '/queries/long/null'}
 
     @distributed_trace
-    def float_scientific_positive(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def float_scientific_positive(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get '1.034E+20' numeric value.
 
         FIXME: add operation.summary
@@ -453,8 +496,12 @@ class QueriesOperations(object):
     float_scientific_positive.metadata = {'url': '/queries/float/1.034E+20'}
 
     @distributed_trace
-    def float_scientific_negative(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def float_scientific_negative(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get '-1.034E-20' numeric value.
 
         FIXME: add operation.summary
@@ -494,8 +541,13 @@ class QueriesOperations(object):
     float_scientific_negative.metadata = {'url': '/queries/float/-1.034E-20'}
 
     @distributed_trace
-    def float_null(self, float_query=None, cls=None, **kwargs):
-        # type: (Optional[float], Optional[Any], **Any) -> None
+    def float_null(
+        self,
+        float_query=None,  # type: Optional[float]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get null numeric value (no query parameter).
 
         FIXME: add operation.summary
@@ -537,8 +589,12 @@ class QueriesOperations(object):
     float_null.metadata = {'url': '/queries/float/null'}
 
     @distributed_trace
-    def double_decimal_positive(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def double_decimal_positive(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get '9999999.999' numeric value.
 
         FIXME: add operation.summary
@@ -578,8 +634,12 @@ class QueriesOperations(object):
     double_decimal_positive.metadata = {'url': '/queries/double/9999999.999'}
 
     @distributed_trace
-    def double_decimal_negative(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def double_decimal_negative(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get '-9999999.999' numeric value.
 
         FIXME: add operation.summary
@@ -619,8 +679,13 @@ class QueriesOperations(object):
     double_decimal_negative.metadata = {'url': '/queries/double/-9999999.999'}
 
     @distributed_trace
-    def double_null(self, double_query=None, cls=None, **kwargs):
-        # type: (Optional[float], Optional[Any], **Any) -> None
+    def double_null(
+        self,
+        double_query=None,  # type: Optional[float]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get null numeric value (no query parameter).
 
         FIXME: add operation.summary
@@ -662,8 +727,12 @@ class QueriesOperations(object):
     double_null.metadata = {'url': '/queries/double/null'}
 
     @distributed_trace
-    def string_unicode(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def string_unicode(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
         FIXME: add operation.summary
@@ -703,8 +772,12 @@ class QueriesOperations(object):
     string_unicode.metadata = {'url': '/queries/string/unicode/'}
 
     @distributed_trace
-    def string_url_encoded(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def string_url_encoded(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
         FIXME: add operation.summary
@@ -744,8 +817,12 @@ class QueriesOperations(object):
     string_url_encoded.metadata = {'url': '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend'}
 
     @distributed_trace
-    def string_empty(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def string_empty(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get ''.
 
         FIXME: add operation.summary
@@ -785,8 +862,13 @@ class QueriesOperations(object):
     string_empty.metadata = {'url': '/queries/string/empty'}
 
     @distributed_trace
-    def string_null(self, string_query=None, cls=None, **kwargs):
-        # type: (Optional[str], Optional[Any], **Any) -> None
+    def string_null(
+        self,
+        string_query=None,  # type: Optional[str]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get null (no query parameter in url).
 
         FIXME: add operation.summary
@@ -828,8 +910,13 @@ class QueriesOperations(object):
     string_null.metadata = {'url': '/queries/string/null'}
 
     @distributed_trace
-    def enum_valid(self, enum_query=None, cls=None, **kwargs):
-        # type: (Optional[Union[str, "UriColor"]], Optional[Any], **Any) -> None
+    def enum_valid(
+        self,
+        enum_query=None,  # type: Optional[Union[str, "UriColor"]]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get using uri with query parameter 'green color'.
 
         FIXME: add operation.summary
@@ -871,8 +958,13 @@ class QueriesOperations(object):
     enum_valid.metadata = {'url': '/queries/enum/green%20color'}
 
     @distributed_trace
-    def enum_null(self, enum_query=None, cls=None, **kwargs):
-        # type: (Optional[Union[str, "UriColor"]], Optional[Any], **Any) -> None
+    def enum_null(
+        self,
+        enum_query=None,  # type: Optional[Union[str, "UriColor"]]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get null (no query parameter in url).
 
         FIXME: add operation.summary
@@ -914,8 +1006,13 @@ class QueriesOperations(object):
     enum_null.metadata = {'url': '/queries/enum/null'}
 
     @distributed_trace
-    def byte_multi_byte(self, byte_query=None, cls=None, **kwargs):
-        # type: (Optional[bytearray], Optional[Any], **Any) -> None
+    def byte_multi_byte(
+        self,
+        byte_query=None,  # type: Optional[bytearray]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
         FIXME: add operation.summary
@@ -957,8 +1054,12 @@ class QueriesOperations(object):
     byte_multi_byte.metadata = {'url': '/queries/byte/multibyte'}
 
     @distributed_trace
-    def byte_empty(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def byte_empty(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get '' as byte array.
 
         FIXME: add operation.summary
@@ -998,8 +1099,13 @@ class QueriesOperations(object):
     byte_empty.metadata = {'url': '/queries/byte/empty'}
 
     @distributed_trace
-    def byte_null(self, byte_query=None, cls=None, **kwargs):
-        # type: (Optional[bytearray], Optional[Any], **Any) -> None
+    def byte_null(
+        self,
+        byte_query=None,  # type: Optional[bytearray]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get null as byte array (no query parameters in uri).
 
         FIXME: add operation.summary
@@ -1041,8 +1147,12 @@ class QueriesOperations(object):
     byte_null.metadata = {'url': '/queries/byte/null'}
 
     @distributed_trace
-    def date_valid(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def date_valid(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get '2012-01-01' as date.
 
         FIXME: add operation.summary
@@ -1082,8 +1192,13 @@ class QueriesOperations(object):
     date_valid.metadata = {'url': '/queries/date/2012-01-01'}
 
     @distributed_trace
-    def date_null(self, date_query=None, cls=None, **kwargs):
-        # type: (Optional[datetime.date], Optional[Any], **Any) -> None
+    def date_null(
+        self,
+        date_query=None,  # type: Optional[datetime.date]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get null as date - this should result in no query parameters in uri.
 
         FIXME: add operation.summary
@@ -1125,8 +1240,12 @@ class QueriesOperations(object):
     date_null.metadata = {'url': '/queries/date/null'}
 
     @distributed_trace
-    def date_time_valid(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def date_time_valid(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get '2012-01-01T01:01:01Z' as date-time.
 
         FIXME: add operation.summary
@@ -1166,8 +1285,13 @@ class QueriesOperations(object):
     date_time_valid.metadata = {'url': '/queries/datetime/2012-01-01T01%3A01%3A01Z'}
 
     @distributed_trace
-    def date_time_null(self, date_time_query=None, cls=None, **kwargs):
-        # type: (Optional[datetime.datetime], Optional[Any], **Any) -> None
+    def date_time_null(
+        self,
+        date_time_query=None,  # type: Optional[datetime.datetime]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get null as date-time, should result in no query parameters in uri.
 
         FIXME: add operation.summary
@@ -1209,8 +1333,13 @@ class QueriesOperations(object):
     date_time_null.metadata = {'url': '/queries/datetime/null'}
 
     @distributed_trace
-    def array_string_csv_valid(self, array_query=None, cls=None, **kwargs):
-        # type: (Optional[List[str]], Optional[Any], **Any) -> None
+    def array_string_csv_valid(
+        self,
+        array_query=None,  # type: Optional[List[str]]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
 
         FIXME: add operation.summary
@@ -1252,8 +1381,13 @@ class QueriesOperations(object):
     array_string_csv_valid.metadata = {'url': '/queries/array/csv/string/valid'}
 
     @distributed_trace
-    def array_string_csv_null(self, array_query=None, cls=None, **kwargs):
-        # type: (Optional[List[str]], Optional[Any], **Any) -> None
+    def array_string_csv_null(
+        self,
+        array_query=None,  # type: Optional[List[str]]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get a null array of string using the csv-array format.
 
         FIXME: add operation.summary
@@ -1295,8 +1429,13 @@ class QueriesOperations(object):
     array_string_csv_null.metadata = {'url': '/queries/array/csv/string/null'}
 
     @distributed_trace
-    def array_string_csv_empty(self, array_query=None, cls=None, **kwargs):
-        # type: (Optional[List[str]], Optional[Any], **Any) -> None
+    def array_string_csv_empty(
+        self,
+        array_query=None,  # type: Optional[List[str]]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get an empty array [] of string using the csv-array format.
 
         FIXME: add operation.summary
@@ -1338,8 +1477,13 @@ class QueriesOperations(object):
     array_string_csv_empty.metadata = {'url': '/queries/array/csv/string/empty'}
 
     @distributed_trace
-    def array_string_ssv_valid(self, array_query=None, cls=None, **kwargs):
-        # type: (Optional[List[str]], Optional[Any], **Any) -> None
+    def array_string_ssv_valid(
+        self,
+        array_query=None,  # type: Optional[List[str]]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format.
 
         FIXME: add operation.summary
@@ -1381,8 +1525,13 @@ class QueriesOperations(object):
     array_string_ssv_valid.metadata = {'url': '/queries/array/ssv/string/valid'}
 
     @distributed_trace
-    def array_string_tsv_valid(self, array_query=None, cls=None, **kwargs):
-        # type: (Optional[List[str]], Optional[Any], **Any) -> None
+    def array_string_tsv_valid(
+        self,
+        array_query=None,  # type: Optional[List[str]]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format.
 
         FIXME: add operation.summary
@@ -1424,8 +1573,13 @@ class QueriesOperations(object):
     array_string_tsv_valid.metadata = {'url': '/queries/array/tsv/string/valid'}
 
     @distributed_trace
-    def array_string_pipes_valid(self, array_query=None, cls=None, **kwargs):
-        # type: (Optional[List[str]], Optional[Any], **Any) -> None
+    def array_string_pipes_valid(
+        self,
+        array_query=None,  # type: Optional[List[str]]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format.
 
         FIXME: add operation.summary

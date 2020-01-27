@@ -18,7 +18,7 @@ class AutoRestBoolTestServiceConfiguration(Configuration):
     attributes.
     """
 
-    def __init__(self, **kwargs) -> None:
+    def __init__(self[], **kwargs) -> None:
         super(AutoRestBoolTestServiceConfiguration, self).__init__(**kwargs)
 
         self._configure(**kwargs)

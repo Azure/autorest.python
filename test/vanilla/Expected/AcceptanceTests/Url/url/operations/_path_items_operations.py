@@ -36,8 +36,16 @@ class PathItemsOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_all_with_values(self, path_item_string_path, local_string_path, path_item_string_query=None, local_string_query=None, cls=None, **kwargs):
-        # type: (str, str, Optional[str], Optional[str], Optional[Any], **Any) -> None
+    def get_all_with_values(
+        self,
+        path_item_string_path,  # type: str
+        local_string_path,  # type: str
+        path_item_string_query=None,  # type: Optional[str]
+        local_string_query=None,  # type: Optional[str]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
         FIXME: add operation.summary
@@ -95,8 +103,16 @@ class PathItemsOperations(object):
     get_all_with_values.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery'}
 
     @distributed_trace
-    def get_global_query_null(self, path_item_string_path, local_string_path, path_item_string_query=None, local_string_query=None, cls=None, **kwargs):
-        # type: (str, str, Optional[str], Optional[str], Optional[Any], **Any) -> None
+    def get_global_query_null(
+        self,
+        path_item_string_path,  # type: str
+        local_string_path,  # type: str
+        path_item_string_query=None,  # type: Optional[str]
+        local_string_query=None,  # type: Optional[str]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
         FIXME: add operation.summary
@@ -154,8 +170,16 @@ class PathItemsOperations(object):
     get_global_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery'}
 
     @distributed_trace
-    def get_global_and_local_query_null(self, path_item_string_path, local_string_path, path_item_string_query=None, local_string_query=None, cls=None, **kwargs):
-        # type: (str, str, Optional[str], Optional[str], Optional[Any], **Any) -> None
+    def get_global_and_local_query_null(
+        self,
+        path_item_string_path,  # type: str
+        local_string_path,  # type: str
+        path_item_string_query=None,  # type: Optional[str]
+        local_string_query=None,  # type: Optional[str]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
 
         FIXME: add operation.summary
@@ -213,8 +237,16 @@ class PathItemsOperations(object):
     get_global_and_local_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null'}
 
     @distributed_trace
-    def get_local_path_item_query_null(self, path_item_string_path, local_string_path, path_item_string_query=None, local_string_query=None, cls=None, **kwargs):
-        # type: (str, str, Optional[str], Optional[str], Optional[Any], **Any) -> None
+    def get_local_path_item_query_null(
+        self,
+        path_item_string_path,  # type: str
+        local_string_path,  # type: str
+        path_item_string_query=None,  # type: Optional[str]
+        local_string_query=None,  # type: Optional[str]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery=null, localStringQuery=null.
 
         FIXME: add operation.summary

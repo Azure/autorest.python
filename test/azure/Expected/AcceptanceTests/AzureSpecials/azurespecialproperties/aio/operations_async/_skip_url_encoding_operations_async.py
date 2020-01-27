@@ -36,7 +36,13 @@ class SkipUrlEncodingOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_method_path_valid(self, unencoded_path_param: str, *, cls=None, **kwargs) -> None:
+    async def get_method_path_valid(
+        self,
+        unencoded_path_param: str,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
         FIXME: add operation.summary
@@ -80,7 +86,13 @@ class SkipUrlEncodingOperations:
     get_method_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}'}
 
     @distributed_trace_async
-    async def get_path_path_valid(self, unencoded_path_param: str, *, cls=None, **kwargs) -> None:
+    async def get_path_path_valid(
+        self,
+        unencoded_path_param: str,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
         FIXME: add operation.summary
@@ -124,7 +136,11 @@ class SkipUrlEncodingOperations:
     get_path_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}'}
 
     @distributed_trace_async
-    async def get_swagger_path_valid(self, cls=None, **kwargs) -> None:
+    async def get_swagger_path_valid(
+        self,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
         FIXME: add operation.summary
@@ -167,7 +183,13 @@ class SkipUrlEncodingOperations:
     get_swagger_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}'}
 
     @distributed_trace_async
-    async def get_method_query_valid(self, q1: str, *, cls=None, **kwargs) -> None:
+    async def get_method_query_valid(
+        self,
+        q1: str,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
         FIXME: add operation.summary
@@ -208,7 +230,13 @@ class SkipUrlEncodingOperations:
     get_method_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/method/query/valid'}
 
     @distributed_trace_async
-    async def get_method_query_null(self, q1: Optional[str] = None, *, cls=None, **kwargs) -> None:
+    async def get_method_query_null(
+        self,
+        q1: Optional[str] = None,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Get method with unencoded query parameter with value null.
 
         FIXME: add operation.summary
@@ -250,7 +278,13 @@ class SkipUrlEncodingOperations:
     get_method_query_null.metadata = {'url': '/azurespecials/skipUrlEncoding/method/query/null'}
 
     @distributed_trace_async
-    async def get_path_query_valid(self, q1: str, *, cls=None, **kwargs) -> None:
+    async def get_path_query_valid(
+        self,
+        q1: str,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
         FIXME: add operation.summary
@@ -291,7 +325,11 @@ class SkipUrlEncodingOperations:
     get_path_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/path/query/valid'}
 
     @distributed_trace_async
-    async def get_swagger_query_valid(self, cls=None, **kwargs) -> None:
+    async def get_swagger_query_valid(
+        self,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
         FIXME: add operation.summary

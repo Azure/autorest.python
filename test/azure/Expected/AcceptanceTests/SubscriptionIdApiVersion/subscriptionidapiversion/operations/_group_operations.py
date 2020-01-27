@@ -36,8 +36,13 @@ class GroupOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_sample_resource_group(self, resource_group_name, cls=None, **kwargs):
-        # type: (str, Optional[Any], **Any) -> "SampleResourceGroup"
+    def get_sample_resource_group(
+        self,
+        resource_group_name,  # type: str
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "SampleResourceGroup"
         """Provides a resouce group with name 'testgroup101' and location 'West US'..
 
         FIXME: add operation.summary

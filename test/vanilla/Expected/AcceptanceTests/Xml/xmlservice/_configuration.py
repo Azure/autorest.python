@@ -18,7 +18,7 @@ class AutoRestSwaggerBATXMLServiceConfiguration(Configuration):
     attributes.
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self[], **kwargs):
         # type: (**Any) -> None
         super(AutoRestSwaggerBATXMLServiceConfiguration, self).__init__(**kwargs)
 

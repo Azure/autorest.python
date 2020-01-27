@@ -36,7 +36,13 @@ class PetOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_pet_by_id(self, pet_id: str, *, cls=None, **kwargs) -> "Pet":
+    async def get_pet_by_id(
+        self,
+        pet_id: str,
+        *,
+        cls=None,
+        **kwargs
+    ) -> "Pet":
         """Gets pets by id..
 
         FIXME: add operation.summary
@@ -91,7 +97,13 @@ class PetOperations:
     get_pet_by_id.metadata = {'url': '/errorStatusCodes/Pets/{petId}/GetPet'}
 
     @distributed_trace_async
-    async def do_something(self, what_action: str, *, cls=None, **kwargs) -> "PetAction":
+    async def do_something(
+        self,
+        what_action: str,
+        *,
+        cls=None,
+        **kwargs
+    ) -> "PetAction":
         """Asks pet to do something.
 
         FIXME: add operation.summary

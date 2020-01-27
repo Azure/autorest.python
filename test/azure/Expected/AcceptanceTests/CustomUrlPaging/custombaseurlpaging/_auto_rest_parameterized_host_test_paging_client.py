@@ -25,7 +25,7 @@ class AutoRestParameterizedHostTestPagingClient(object):
     :type host: str
     """
 
-    def __init__(self, credential, host, **kwargs):
+    def __init__(self['credential,  # type: "TokenCredential"', 'host,  # type: str'], **kwargs):
         # type: ("TokenCredential", str, **Any) -> None
         base_url = 'http://{accountName}{host}'
         self._config = AutoRestParameterizedHostTestPagingClientConfiguration(credential, host, **kwargs)

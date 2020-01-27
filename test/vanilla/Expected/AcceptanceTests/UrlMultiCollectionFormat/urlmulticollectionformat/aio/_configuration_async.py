@@ -18,7 +18,7 @@ class AutoRestUrlMutliCollectionFormatTestServiceConfiguration(Configuration):
     attributes.
     """
 
-    def __init__(self, **kwargs) -> None:
+    def __init__(self[], **kwargs) -> None:
         super(AutoRestUrlMutliCollectionFormatTestServiceConfiguration, self).__init__(**kwargs)
 
         self._configure(**kwargs)

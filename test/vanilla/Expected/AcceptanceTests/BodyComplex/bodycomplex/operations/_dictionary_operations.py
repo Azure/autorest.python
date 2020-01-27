@@ -37,8 +37,12 @@ class DictionaryOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_valid(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "DictionaryWrapper"
+    def get_valid(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "DictionaryWrapper"
         """Get complex types with dictionary property.
 
         FIXME: add operation.summary
@@ -80,8 +84,13 @@ class DictionaryOperations(object):
     get_valid.metadata = {'url': '/complex/dictionary/typed/valid'}
 
     @distributed_trace
-    def put_valid(self, default_program=None, cls=None, **kwargs):
-        # type: (Optional[Dict[str, str]], Optional[Any], **Any) -> None
+    def put_valid(
+        self,
+        default_program=None,  # type: Optional[Dict[str, str]]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put complex types with dictionary property.
 
         FIXME: add operation.summary
@@ -126,8 +135,12 @@ class DictionaryOperations(object):
     put_valid.metadata = {'url': '/complex/dictionary/typed/valid'}
 
     @distributed_trace
-    def get_empty(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "DictionaryWrapper"
+    def get_empty(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "DictionaryWrapper"
         """Get complex types with dictionary property which is empty.
 
         FIXME: add operation.summary
@@ -169,8 +182,13 @@ class DictionaryOperations(object):
     get_empty.metadata = {'url': '/complex/dictionary/typed/empty'}
 
     @distributed_trace
-    def put_empty(self, default_program=None, cls=None, **kwargs):
-        # type: (Optional[Dict[str, str]], Optional[Any], **Any) -> None
+    def put_empty(
+        self,
+        default_program=None,  # type: Optional[Dict[str, str]]
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put complex types with dictionary property which is empty.
 
         FIXME: add operation.summary
@@ -215,8 +233,12 @@ class DictionaryOperations(object):
     put_empty.metadata = {'url': '/complex/dictionary/typed/empty'}
 
     @distributed_trace
-    def get_null(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "DictionaryWrapper"
+    def get_null(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "DictionaryWrapper"
         """Get complex types with dictionary property which is null.
 
         FIXME: add operation.summary
@@ -258,8 +280,12 @@ class DictionaryOperations(object):
     get_null.metadata = {'url': '/complex/dictionary/typed/null'}
 
     @distributed_trace
-    def get_not_provided(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> "DictionaryWrapper"
+    def get_not_provided(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> "DictionaryWrapper"
         """Get complex types with dictionary property while server doesn't provide a response payload.
 
         FIXME: add operation.summary

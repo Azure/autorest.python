@@ -18,7 +18,7 @@ class AutoRestNumberTestServiceConfiguration(Configuration):
     attributes.
     """
 
-    def __init__(self, **kwargs) -> None:
+    def __init__(self[], **kwargs) -> None:
         super(AutoRestNumberTestServiceConfiguration, self).__init__(**kwargs)
 
         self._configure(**kwargs)

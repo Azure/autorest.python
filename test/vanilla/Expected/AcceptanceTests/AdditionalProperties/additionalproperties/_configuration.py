@@ -18,7 +18,7 @@ class AdditionalPropertiesClientConfiguration(Configuration):
     attributes.
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self[], **kwargs):
         # type: (**Any) -> None
         super(AdditionalPropertiesClientConfiguration, self).__init__(**kwargs)
 

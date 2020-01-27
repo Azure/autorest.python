@@ -36,7 +36,11 @@ class DurationOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_null(self, cls=None, **kwargs) -> datetime.timedelta:
+    async def get_null(
+        self,
+        cls=None,
+        **kwargs
+    ) -> datetime.timedelta:
         """Get null duration value.
 
         FIXME: add operation.summary
@@ -78,7 +82,13 @@ class DurationOperations:
     get_null.metadata = {'url': '/duration/null'}
 
     @distributed_trace_async
-    async def put_positive_duration(self, duration_body: datetime.timedelta, *, cls=None, **kwargs) -> None:
+    async def put_positive_duration(
+        self,
+        duration_body: datetime.timedelta,
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Put a positive duration value.
 
         FIXME: add operation.summary
@@ -122,7 +132,11 @@ class DurationOperations:
     put_positive_duration.metadata = {'url': '/duration/positiveduration'}
 
     @distributed_trace_async
-    async def get_positive_duration(self, cls=None, **kwargs) -> datetime.timedelta:
+    async def get_positive_duration(
+        self,
+        cls=None,
+        **kwargs
+    ) -> datetime.timedelta:
         """Get a positive duration value.
 
         FIXME: add operation.summary
@@ -164,7 +178,11 @@ class DurationOperations:
     get_positive_duration.metadata = {'url': '/duration/positiveduration'}
 
     @distributed_trace_async
-    async def get_invalid(self, cls=None, **kwargs) -> datetime.timedelta:
+    async def get_invalid(
+        self,
+        cls=None,
+        **kwargs
+    ) -> datetime.timedelta:
         """Get an invalid duration value.
 
         FIXME: add operation.summary

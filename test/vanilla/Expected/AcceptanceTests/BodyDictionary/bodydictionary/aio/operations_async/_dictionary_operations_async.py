@@ -38,7 +38,11 @@ class DictionaryOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_null(self, cls=None, **kwargs) -> Dict[str, int]:
+    async def get_null(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, int]:
         """Get null dictionary value.
 
         FIXME: add operation.summary
@@ -80,7 +84,11 @@ class DictionaryOperations:
     get_null.metadata = {'url': '/dictionary/null'}
 
     @distributed_trace_async
-    async def get_empty(self, cls=None, **kwargs) -> Dict[str, int]:
+    async def get_empty(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, int]:
         """Get empty dictionary value {}.
 
         FIXME: add operation.summary
@@ -122,7 +130,13 @@ class DictionaryOperations:
     get_empty.metadata = {'url': '/dictionary/empty'}
 
     @distributed_trace_async
-    async def put_empty(self, array_body: Dict[str, str], *, cls=None, **kwargs) -> None:
+    async def put_empty(
+        self,
+        array_body: Dict[str, str],
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Set dictionary value empty {}.
 
         FIXME: add operation.summary
@@ -166,7 +180,11 @@ class DictionaryOperations:
     put_empty.metadata = {'url': '/dictionary/empty'}
 
     @distributed_trace_async
-    async def get_null_value(self, cls=None, **kwargs) -> Dict[str, str]:
+    async def get_null_value(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, str]:
         """Get Dictionary with null value.
 
         FIXME: add operation.summary
@@ -208,7 +226,11 @@ class DictionaryOperations:
     get_null_value.metadata = {'url': '/dictionary/nullvalue'}
 
     @distributed_trace_async
-    async def get_null_key(self, cls=None, **kwargs) -> Dict[str, str]:
+    async def get_null_key(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, str]:
         """Get Dictionary with null key.
 
         FIXME: add operation.summary
@@ -250,7 +272,11 @@ class DictionaryOperations:
     get_null_key.metadata = {'url': '/dictionary/nullkey'}
 
     @distributed_trace_async
-    async def get_empty_string_key(self, cls=None, **kwargs) -> Dict[str, str]:
+    async def get_empty_string_key(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, str]:
         """Get Dictionary with key as empty string.
 
         FIXME: add operation.summary
@@ -292,7 +318,11 @@ class DictionaryOperations:
     get_empty_string_key.metadata = {'url': '/dictionary/keyemptystring'}
 
     @distributed_trace_async
-    async def get_invalid(self, cls=None, **kwargs) -> Dict[str, str]:
+    async def get_invalid(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, str]:
         """Get invalid Dictionary value.
 
         FIXME: add operation.summary
@@ -334,7 +364,11 @@ class DictionaryOperations:
     get_invalid.metadata = {'url': '/dictionary/invalid'}
 
     @distributed_trace_async
-    async def get_boolean_tfft(self, cls=None, **kwargs) -> Dict[str, bool]:
+    async def get_boolean_tfft(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, bool]:
         """Get boolean dictionary value {"0": true, "1": false, "2": false, "3": true }.
 
         FIXME: add operation.summary
@@ -376,7 +410,13 @@ class DictionaryOperations:
     get_boolean_tfft.metadata = {'url': '/dictionary/prim/boolean/tfft'}
 
     @distributed_trace_async
-    async def put_boolean_tfft(self, array_body: Dict[str, bool], *, cls=None, **kwargs) -> None:
+    async def put_boolean_tfft(
+        self,
+        array_body: Dict[str, bool],
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Set dictionary value empty {"0": true, "1": false, "2": false, "3": true }.
 
         FIXME: add operation.summary
@@ -420,7 +460,11 @@ class DictionaryOperations:
     put_boolean_tfft.metadata = {'url': '/dictionary/prim/boolean/tfft'}
 
     @distributed_trace_async
-    async def get_boolean_invalid_null(self, cls=None, **kwargs) -> Dict[str, bool]:
+    async def get_boolean_invalid_null(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, bool]:
         """Get boolean dictionary value {"0": true, "1": null, "2": false }.
 
         FIXME: add operation.summary
@@ -462,7 +506,11 @@ class DictionaryOperations:
     get_boolean_invalid_null.metadata = {'url': '/dictionary/prim/boolean/true.null.false'}
 
     @distributed_trace_async
-    async def get_boolean_invalid_string(self, cls=None, **kwargs) -> Dict[str, bool]:
+    async def get_boolean_invalid_string(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, bool]:
         """Get boolean dictionary value '{"0": true, "1": "boolean", "2": false}'.
 
         FIXME: add operation.summary
@@ -504,7 +552,11 @@ class DictionaryOperations:
     get_boolean_invalid_string.metadata = {'url': '/dictionary/prim/boolean/true.boolean.false'}
 
     @distributed_trace_async
-    async def get_integer_valid(self, cls=None, **kwargs) -> Dict[str, int]:
+    async def get_integer_valid(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, int]:
         """Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}.
 
         FIXME: add operation.summary
@@ -546,7 +598,13 @@ class DictionaryOperations:
     get_integer_valid.metadata = {'url': '/dictionary/prim/integer/1.-1.3.300'}
 
     @distributed_trace_async
-    async def put_integer_valid(self, array_body: Dict[str, int], *, cls=None, **kwargs) -> None:
+    async def put_integer_valid(
+        self,
+        array_body: Dict[str, int],
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
 
         FIXME: add operation.summary
@@ -590,7 +648,11 @@ class DictionaryOperations:
     put_integer_valid.metadata = {'url': '/dictionary/prim/integer/1.-1.3.300'}
 
     @distributed_trace_async
-    async def get_int_invalid_null(self, cls=None, **kwargs) -> Dict[str, int]:
+    async def get_int_invalid_null(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, int]:
         """Get integer dictionary value {"0": 1, "1": null, "2": 0}.
 
         FIXME: add operation.summary
@@ -632,7 +694,11 @@ class DictionaryOperations:
     get_int_invalid_null.metadata = {'url': '/dictionary/prim/integer/1.null.zero'}
 
     @distributed_trace_async
-    async def get_int_invalid_string(self, cls=None, **kwargs) -> Dict[str, int]:
+    async def get_int_invalid_string(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, int]:
         """Get integer dictionary value {"0": 1, "1": "integer", "2": 0}.
 
         FIXME: add operation.summary
@@ -674,7 +740,11 @@ class DictionaryOperations:
     get_int_invalid_string.metadata = {'url': '/dictionary/prim/integer/1.integer.0'}
 
     @distributed_trace_async
-    async def get_long_valid(self, cls=None, **kwargs) -> Dict[str, int]:
+    async def get_long_valid(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, int]:
         """Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}.
 
         FIXME: add operation.summary
@@ -716,7 +786,13 @@ class DictionaryOperations:
     get_long_valid.metadata = {'url': '/dictionary/prim/long/1.-1.3.300'}
 
     @distributed_trace_async
-    async def put_long_valid(self, array_body: Dict[str, int], *, cls=None, **kwargs) -> None:
+    async def put_long_valid(
+        self,
+        array_body: Dict[str, int],
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
 
         FIXME: add operation.summary
@@ -760,7 +836,11 @@ class DictionaryOperations:
     put_long_valid.metadata = {'url': '/dictionary/prim/long/1.-1.3.300'}
 
     @distributed_trace_async
-    async def get_long_invalid_null(self, cls=None, **kwargs) -> Dict[str, int]:
+    async def get_long_invalid_null(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, int]:
         """Get long dictionary value {"0": 1, "1": null, "2": 0}.
 
         FIXME: add operation.summary
@@ -802,7 +882,11 @@ class DictionaryOperations:
     get_long_invalid_null.metadata = {'url': '/dictionary/prim/long/1.null.zero'}
 
     @distributed_trace_async
-    async def get_long_invalid_string(self, cls=None, **kwargs) -> Dict[str, int]:
+    async def get_long_invalid_string(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, int]:
         """Get long dictionary value {"0": 1, "1": "integer", "2": 0}.
 
         FIXME: add operation.summary
@@ -844,7 +928,11 @@ class DictionaryOperations:
     get_long_invalid_string.metadata = {'url': '/dictionary/prim/long/1.integer.0'}
 
     @distributed_trace_async
-    async def get_float_valid(self, cls=None, **kwargs) -> Dict[str, float]:
+    async def get_float_valid(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, float]:
         """Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
         FIXME: add operation.summary
@@ -886,7 +974,13 @@ class DictionaryOperations:
     get_float_valid.metadata = {'url': '/dictionary/prim/float/0--0.01-1.2e20'}
 
     @distributed_trace_async
-    async def put_float_valid(self, array_body: Dict[str, float], *, cls=None, **kwargs) -> None:
+    async def put_float_valid(
+        self,
+        array_body: Dict[str, float],
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
         FIXME: add operation.summary
@@ -930,7 +1024,11 @@ class DictionaryOperations:
     put_float_valid.metadata = {'url': '/dictionary/prim/float/0--0.01-1.2e20'}
 
     @distributed_trace_async
-    async def get_float_invalid_null(self, cls=None, **kwargs) -> Dict[str, float]:
+    async def get_float_invalid_null(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, float]:
         """Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}.
 
         FIXME: add operation.summary
@@ -972,7 +1070,11 @@ class DictionaryOperations:
     get_float_invalid_null.metadata = {'url': '/dictionary/prim/float/0.0-null-1.2e20'}
 
     @distributed_trace_async
-    async def get_float_invalid_string(self, cls=None, **kwargs) -> Dict[str, float]:
+    async def get_float_invalid_string(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, float]:
         """Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}.
 
         FIXME: add operation.summary
@@ -1014,7 +1116,11 @@ class DictionaryOperations:
     get_float_invalid_string.metadata = {'url': '/dictionary/prim/float/1.number.0'}
 
     @distributed_trace_async
-    async def get_double_valid(self, cls=None, **kwargs) -> Dict[str, float]:
+    async def get_double_valid(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, float]:
         """Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
         FIXME: add operation.summary
@@ -1056,7 +1162,13 @@ class DictionaryOperations:
     get_double_valid.metadata = {'url': '/dictionary/prim/double/0--0.01-1.2e20'}
 
     @distributed_trace_async
-    async def put_double_valid(self, array_body: Dict[str, float], *, cls=None, **kwargs) -> None:
+    async def put_double_valid(
+        self,
+        array_body: Dict[str, float],
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
         FIXME: add operation.summary
@@ -1100,7 +1212,11 @@ class DictionaryOperations:
     put_double_valid.metadata = {'url': '/dictionary/prim/double/0--0.01-1.2e20'}
 
     @distributed_trace_async
-    async def get_double_invalid_null(self, cls=None, **kwargs) -> Dict[str, float]:
+    async def get_double_invalid_null(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, float]:
         """Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}.
 
         FIXME: add operation.summary
@@ -1142,7 +1258,11 @@ class DictionaryOperations:
     get_double_invalid_null.metadata = {'url': '/dictionary/prim/double/0.0-null-1.2e20'}
 
     @distributed_trace_async
-    async def get_double_invalid_string(self, cls=None, **kwargs) -> Dict[str, float]:
+    async def get_double_invalid_string(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, float]:
         """Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}.
 
         FIXME: add operation.summary
@@ -1184,7 +1304,11 @@ class DictionaryOperations:
     get_double_invalid_string.metadata = {'url': '/dictionary/prim/double/1.number.0'}
 
     @distributed_trace_async
-    async def get_string_valid(self, cls=None, **kwargs) -> Dict[str, str]:
+    async def get_string_valid(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, str]:
         """Get string dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
 
         FIXME: add operation.summary
@@ -1226,7 +1350,13 @@ class DictionaryOperations:
     get_string_valid.metadata = {'url': '/dictionary/prim/string/foo1.foo2.foo3'}
 
     @distributed_trace_async
-    async def put_string_valid(self, array_body: Dict[str, str], *, cls=None, **kwargs) -> None:
+    async def put_string_valid(
+        self,
+        array_body: Dict[str, str],
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Set dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
 
         FIXME: add operation.summary
@@ -1270,7 +1400,11 @@ class DictionaryOperations:
     put_string_valid.metadata = {'url': '/dictionary/prim/string/foo1.foo2.foo3'}
 
     @distributed_trace_async
-    async def get_string_with_null(self, cls=None, **kwargs) -> Dict[str, str]:
+    async def get_string_with_null(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, str]:
         """Get string dictionary value {"0": "foo", "1": null, "2": "foo2"}.
 
         FIXME: add operation.summary
@@ -1312,7 +1446,11 @@ class DictionaryOperations:
     get_string_with_null.metadata = {'url': '/dictionary/prim/string/foo.null.foo2'}
 
     @distributed_trace_async
-    async def get_string_with_invalid(self, cls=None, **kwargs) -> Dict[str, str]:
+    async def get_string_with_invalid(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, str]:
         """Get string dictionary value {"0": "foo", "1": 123, "2": "foo2"}.
 
         FIXME: add operation.summary
@@ -1354,7 +1492,11 @@ class DictionaryOperations:
     get_string_with_invalid.metadata = {'url': '/dictionary/prim/string/foo.123.foo2'}
 
     @distributed_trace_async
-    async def get_date_valid(self, cls=None, **kwargs) -> Dict[str, datetime.date]:
+    async def get_date_valid(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, datetime.date]:
         """Get integer dictionary value {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
 
         FIXME: add operation.summary
@@ -1396,7 +1538,13 @@ class DictionaryOperations:
     get_date_valid.metadata = {'url': '/dictionary/prim/date/valid'}
 
     @distributed_trace_async
-    async def put_date_valid(self, array_body: Dict[str, datetime.date], *, cls=None, **kwargs) -> None:
+    async def put_date_valid(
+        self,
+        array_body: Dict[str, datetime.date],
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Set dictionary value  {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
 
         FIXME: add operation.summary
@@ -1440,7 +1588,11 @@ class DictionaryOperations:
     put_date_valid.metadata = {'url': '/dictionary/prim/date/valid'}
 
     @distributed_trace_async
-    async def get_date_invalid_null(self, cls=None, **kwargs) -> Dict[str, datetime.date]:
+    async def get_date_invalid_null(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, datetime.date]:
         """Get date dictionary value {"0": "2012-01-01", "1": null, "2": "1776-07-04"}.
 
         FIXME: add operation.summary
@@ -1482,7 +1634,11 @@ class DictionaryOperations:
     get_date_invalid_null.metadata = {'url': '/dictionary/prim/date/invalidnull'}
 
     @distributed_trace_async
-    async def get_date_invalid_chars(self, cls=None, **kwargs) -> Dict[str, datetime.date]:
+    async def get_date_invalid_chars(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, datetime.date]:
         """Get date dictionary value {"0": "2011-03-22", "1": "date"}.
 
         FIXME: add operation.summary
@@ -1524,7 +1680,11 @@ class DictionaryOperations:
     get_date_invalid_chars.metadata = {'url': '/dictionary/prim/date/invalidchars'}
 
     @distributed_trace_async
-    async def get_date_time_valid(self, cls=None, **kwargs) -> Dict[str, datetime.datetime]:
+    async def get_date_time_valid(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, datetime.datetime]:
         """Get date-time dictionary value {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2": "1492-10-12T10:15:01-08:00"}.
 
         FIXME: add operation.summary
@@ -1566,7 +1726,13 @@ class DictionaryOperations:
     get_date_time_valid.metadata = {'url': '/dictionary/prim/date-time/valid'}
 
     @distributed_trace_async
-    async def put_date_time_valid(self, array_body: Dict[str, datetime.datetime], *, cls=None, **kwargs) -> None:
+    async def put_date_time_valid(
+        self,
+        array_body: Dict[str, datetime.datetime],
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Set dictionary value  {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2": "1492-10-12T10:15:01-08:00"}.
 
         FIXME: add operation.summary
@@ -1610,7 +1776,11 @@ class DictionaryOperations:
     put_date_time_valid.metadata = {'url': '/dictionary/prim/date-time/valid'}
 
     @distributed_trace_async
-    async def get_date_time_invalid_null(self, cls=None, **kwargs) -> Dict[str, datetime.datetime]:
+    async def get_date_time_invalid_null(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, datetime.datetime]:
         """Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": null}.
 
         FIXME: add operation.summary
@@ -1652,7 +1822,11 @@ class DictionaryOperations:
     get_date_time_invalid_null.metadata = {'url': '/dictionary/prim/date-time/invalidnull'}
 
     @distributed_trace_async
-    async def get_date_time_invalid_chars(self, cls=None, **kwargs) -> Dict[str, datetime.datetime]:
+    async def get_date_time_invalid_chars(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, datetime.datetime]:
         """Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": "date-time"}.
 
         FIXME: add operation.summary
@@ -1694,7 +1868,11 @@ class DictionaryOperations:
     get_date_time_invalid_chars.metadata = {'url': '/dictionary/prim/date-time/invalidchars'}
 
     @distributed_trace_async
-    async def get_date_time_rfc1123_valid(self, cls=None, **kwargs) -> Dict[str, datetime.datetime]:
+    async def get_date_time_rfc1123_valid(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, datetime.datetime]:
         """Get date-time-rfc1123 dictionary value {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980 00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
 
         FIXME: add operation.summary
@@ -1736,7 +1914,13 @@ class DictionaryOperations:
     get_date_time_rfc1123_valid.metadata = {'url': '/dictionary/prim/date-time-rfc1123/valid'}
 
     @distributed_trace_async
-    async def put_date_time_rfc1123_valid(self, array_body: Dict[str, datetime.datetime], *, cls=None, **kwargs) -> None:
+    async def put_date_time_rfc1123_valid(
+        self,
+        array_body: Dict[str, datetime.datetime],
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Set dictionary value empty {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980 00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
 
         FIXME: add operation.summary
@@ -1780,7 +1964,11 @@ class DictionaryOperations:
     put_date_time_rfc1123_valid.metadata = {'url': '/dictionary/prim/date-time-rfc1123/valid'}
 
     @distributed_trace_async
-    async def get_duration_valid(self, cls=None, **kwargs) -> Dict[str, datetime.timedelta]:
+    async def get_duration_valid(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, datetime.timedelta]:
         """Get duration dictionary value {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
 
         FIXME: add operation.summary
@@ -1822,7 +2010,13 @@ class DictionaryOperations:
     get_duration_valid.metadata = {'url': '/dictionary/prim/duration/valid'}
 
     @distributed_trace_async
-    async def put_duration_valid(self, array_body: Dict[str, datetime.timedelta], *, cls=None, **kwargs) -> None:
+    async def put_duration_valid(
+        self,
+        array_body: Dict[str, datetime.timedelta],
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Set dictionary value  {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
 
         FIXME: add operation.summary
@@ -1866,7 +2060,11 @@ class DictionaryOperations:
     put_duration_valid.metadata = {'url': '/dictionary/prim/duration/valid'}
 
     @distributed_trace_async
-    async def get_byte_valid(self, cls=None, **kwargs) -> Dict[str, bytearray]:
+    async def get_byte_valid(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, bytearray]:
         """Get byte dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)} with each item encoded in base64.
 
         FIXME: add operation.summary
@@ -1908,7 +2106,13 @@ class DictionaryOperations:
     get_byte_valid.metadata = {'url': '/dictionary/prim/byte/valid'}
 
     @distributed_trace_async
-    async def put_byte_valid(self, array_body: Dict[str, bytearray], *, cls=None, **kwargs) -> None:
+    async def put_byte_valid(
+        self,
+        array_body: Dict[str, bytearray],
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)} with each elementencoded in base 64.
 
         FIXME: add operation.summary
@@ -1952,7 +2156,11 @@ class DictionaryOperations:
     put_byte_valid.metadata = {'url': '/dictionary/prim/byte/valid'}
 
     @distributed_trace_async
-    async def get_byte_invalid_null(self, cls=None, **kwargs) -> Dict[str, bytearray]:
+    async def get_byte_invalid_null(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, bytearray]:
         """Get byte dictionary value {"0": hex(FF FF FF FA), "1": null} with the first item base64 encoded.
 
         FIXME: add operation.summary
@@ -1994,7 +2202,11 @@ class DictionaryOperations:
     get_byte_invalid_null.metadata = {'url': '/dictionary/prim/byte/invalidnull'}
 
     @distributed_trace_async
-    async def get_base64_url(self, cls=None, **kwargs) -> Dict[str, bytes]:
+    async def get_base64_url(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, bytes]:
         """Get base64url dictionary value {"0": "a string that gets encoded with base64url", "1": "test string", "2": "Lorem ipsum"}.
 
         FIXME: add operation.summary
@@ -2036,7 +2248,11 @@ class DictionaryOperations:
     get_base64_url.metadata = {'url': '/dictionary/prim/base64url/valid'}
 
     @distributed_trace_async
-    async def get_complex_null(self, cls=None, **kwargs) -> Dict[str, "Widget"]:
+    async def get_complex_null(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, "Widget"]:
         """Get dictionary of complex type null value.
 
         FIXME: add operation.summary
@@ -2078,7 +2294,11 @@ class DictionaryOperations:
     get_complex_null.metadata = {'url': '/dictionary/complex/null'}
 
     @distributed_trace_async
-    async def get_complex_empty(self, cls=None, **kwargs) -> Dict[str, "Widget"]:
+    async def get_complex_empty(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, "Widget"]:
         """Get empty dictionary of complex type {}.
 
         FIXME: add operation.summary
@@ -2120,7 +2340,11 @@ class DictionaryOperations:
     get_complex_empty.metadata = {'url': '/dictionary/complex/empty'}
 
     @distributed_trace_async
-    async def get_complex_item_null(self, cls=None, **kwargs) -> Dict[str, "Widget"]:
+    async def get_complex_item_null(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, "Widget"]:
         """Get dictionary of complex type with null item {"0": {"integer": 1, "string": "2"}, "1": null, "2": {"integer": 5, "string": "6"}}.
 
         FIXME: add operation.summary
@@ -2162,7 +2386,11 @@ class DictionaryOperations:
     get_complex_item_null.metadata = {'url': '/dictionary/complex/itemnull'}
 
     @distributed_trace_async
-    async def get_complex_item_empty(self, cls=None, **kwargs) -> Dict[str, "Widget"]:
+    async def get_complex_item_empty(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, "Widget"]:
         """Get dictionary of complex type with empty item {"0": {"integer": 1, "string": "2"}, "1:" {}, "2": {"integer": 5, "string": "6"}}.
 
         FIXME: add operation.summary
@@ -2204,7 +2432,11 @@ class DictionaryOperations:
     get_complex_item_empty.metadata = {'url': '/dictionary/complex/itemempty'}
 
     @distributed_trace_async
-    async def get_complex_valid(self, cls=None, **kwargs) -> Dict[str, "Widget"]:
+    async def get_complex_valid(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, "Widget"]:
         """Get dictionary of complex type with {"0": {"integer": 1, "string": "2"}, "1": {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
         FIXME: add operation.summary
@@ -2246,7 +2478,13 @@ class DictionaryOperations:
     get_complex_valid.metadata = {'url': '/dictionary/complex/valid'}
 
     @distributed_trace_async
-    async def put_complex_valid(self, array_body: Dict[str, "Widget"], *, cls=None, **kwargs) -> None:
+    async def put_complex_valid(
+        self,
+        array_body: Dict[str, "Widget"],
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1": {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
         FIXME: add operation.summary
@@ -2290,7 +2528,11 @@ class DictionaryOperations:
     put_complex_valid.metadata = {'url': '/dictionary/complex/valid'}
 
     @distributed_trace_async
-    async def get_array_null(self, cls=None, **kwargs) -> Dict[str, List[str]]:
+    async def get_array_null(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, List[str]]:
         """Get a null array.
 
         FIXME: add operation.summary
@@ -2332,7 +2574,11 @@ class DictionaryOperations:
     get_array_null.metadata = {'url': '/dictionary/array/null'}
 
     @distributed_trace_async
-    async def get_array_empty(self, cls=None, **kwargs) -> Dict[str, List[str]]:
+    async def get_array_empty(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, List[str]]:
         """Get an empty dictionary {}.
 
         FIXME: add operation.summary
@@ -2374,7 +2620,11 @@ class DictionaryOperations:
     get_array_empty.metadata = {'url': '/dictionary/array/empty'}
 
     @distributed_trace_async
-    async def get_array_item_null(self, cls=None, **kwargs) -> Dict[str, List[str]]:
+    async def get_array_item_null(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, List[str]]:
         """Get an dictionary of array of strings {"0": ["1", "2", "3"], "1": null, "2": ["7", "8", "9"]}.
 
         FIXME: add operation.summary
@@ -2416,7 +2666,11 @@ class DictionaryOperations:
     get_array_item_null.metadata = {'url': '/dictionary/array/itemnull'}
 
     @distributed_trace_async
-    async def get_array_item_empty(self, cls=None, **kwargs) -> Dict[str, List[str]]:
+    async def get_array_item_empty(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, List[str]]:
         """Get an array of array of strings [{"0": ["1", "2", "3"], "1": [], "2": ["7", "8", "9"]}.
 
         FIXME: add operation.summary
@@ -2458,7 +2712,11 @@ class DictionaryOperations:
     get_array_item_empty.metadata = {'url': '/dictionary/array/itemempty'}
 
     @distributed_trace_async
-    async def get_array_valid(self, cls=None, **kwargs) -> Dict[str, List[str]]:
+    async def get_array_valid(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, List[str]]:
         """Get an array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8", "9"]}.
 
         FIXME: add operation.summary
@@ -2500,7 +2758,13 @@ class DictionaryOperations:
     get_array_valid.metadata = {'url': '/dictionary/array/valid'}
 
     @distributed_trace_async
-    async def put_array_valid(self, array_body: Dict[str, List[str]], *, cls=None, **kwargs) -> None:
+    async def put_array_valid(
+        self,
+        array_body: Dict[str, List[str]],
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Put An array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8", "9"]}.
 
         FIXME: add operation.summary
@@ -2544,7 +2808,11 @@ class DictionaryOperations:
     put_array_valid.metadata = {'url': '/dictionary/array/valid'}
 
     @distributed_trace_async
-    async def get_dictionary_null(self, cls=None, **kwargs) -> Dict[str, object]:
+    async def get_dictionary_null(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, object]:
         """Get an dictionaries of dictionaries with value null.
 
         FIXME: add operation.summary
@@ -2586,7 +2854,11 @@ class DictionaryOperations:
     get_dictionary_null.metadata = {'url': '/dictionary/dictionary/null'}
 
     @distributed_trace_async
-    async def get_dictionary_empty(self, cls=None, **kwargs) -> Dict[str, object]:
+    async def get_dictionary_empty(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, object]:
         """Get an dictionaries of dictionaries of type <string, string> with value {}.
 
         FIXME: add operation.summary
@@ -2628,7 +2900,11 @@ class DictionaryOperations:
     get_dictionary_empty.metadata = {'url': '/dictionary/dictionary/empty'}
 
     @distributed_trace_async
-    async def get_dictionary_item_null(self, cls=None, **kwargs) -> Dict[str, object]:
+    async def get_dictionary_item_null(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, object]:
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2": "two", "3": "three"}, "1": null, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
         FIXME: add operation.summary
@@ -2670,7 +2946,11 @@ class DictionaryOperations:
     get_dictionary_item_null.metadata = {'url': '/dictionary/dictionary/itemnull'}
 
     @distributed_trace_async
-    async def get_dictionary_item_empty(self, cls=None, **kwargs) -> Dict[str, object]:
+    async def get_dictionary_item_empty(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, object]:
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2": "two", "3": "three"}, "1": {}, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
         FIXME: add operation.summary
@@ -2712,7 +2992,11 @@ class DictionaryOperations:
     get_dictionary_item_empty.metadata = {'url': '/dictionary/dictionary/itemempty'}
 
     @distributed_trace_async
-    async def get_dictionary_valid(self, cls=None, **kwargs) -> Dict[str, object]:
+    async def get_dictionary_valid(
+        self,
+        cls=None,
+        **kwargs
+    ) -> Dict[str, object]:
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2": "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
         FIXME: add operation.summary
@@ -2754,7 +3038,13 @@ class DictionaryOperations:
     get_dictionary_valid.metadata = {'url': '/dictionary/dictionary/valid'}
 
     @distributed_trace_async
-    async def put_dictionary_valid(self, array_body: Dict[str, object], *, cls=None, **kwargs) -> None:
+    async def put_dictionary_valid(
+        self,
+        array_body: Dict[str, object],
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2": "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
         FIXME: add operation.summary

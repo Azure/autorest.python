@@ -18,7 +18,7 @@ class XMSErrorResponseExtensionsConfiguration(Configuration):
     attributes.
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self[], **kwargs):
         # type: (**Any) -> None
         super(XMSErrorResponseExtensionsConfiguration, self).__init__(**kwargs)
 

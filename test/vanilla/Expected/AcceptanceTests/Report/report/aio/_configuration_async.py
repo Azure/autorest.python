@@ -18,7 +18,7 @@ class AutoRestReportServiceConfiguration(Configuration):
     attributes.
     """
 
-    def __init__(self, **kwargs) -> None:
+    def __init__(self[], **kwargs) -> None:
         super(AutoRestReportServiceConfiguration, self).__init__(**kwargs)
 
         self._configure(**kwargs)

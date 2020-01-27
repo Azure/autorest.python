@@ -36,7 +36,11 @@ class BasicOperations:
         self._config = config
 
     @distributed_trace_async
-    async def get_valid(self, cls=None, **kwargs) -> "Basic":
+    async def get_valid(
+        self,
+        cls=None,
+        **kwargs
+    ) -> "Basic":
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
         FIXME: add operation.summary
@@ -78,7 +82,13 @@ class BasicOperations:
     get_valid.metadata = {'url': '/complex/basic/valid'}
 
     @distributed_trace_async
-    async def put_valid(self, complex_body: "Basic", *, cls=None, **kwargs) -> None:
+    async def put_valid(
+        self,
+        complex_body: "Basic",
+        *,
+        cls=None,
+        **kwargs
+    ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         FIXME: add operation.summary
@@ -124,7 +134,11 @@ class BasicOperations:
     put_valid.metadata = {'url': '/complex/basic/valid'}
 
     @distributed_trace_async
-    async def get_invalid(self, cls=None, **kwargs) -> "Basic":
+    async def get_invalid(
+        self,
+        cls=None,
+        **kwargs
+    ) -> "Basic":
         """Get a basic complex type that is invalid for the local strong type.
 
         FIXME: add operation.summary
@@ -166,7 +180,11 @@ class BasicOperations:
     get_invalid.metadata = {'url': '/complex/basic/invalid'}
 
     @distributed_trace_async
-    async def get_empty(self, cls=None, **kwargs) -> "Basic":
+    async def get_empty(
+        self,
+        cls=None,
+        **kwargs
+    ) -> "Basic":
         """Get a basic complex type that is empty.
 
         FIXME: add operation.summary
@@ -208,7 +226,11 @@ class BasicOperations:
     get_empty.metadata = {'url': '/complex/basic/empty'}
 
     @distributed_trace_async
-    async def get_null(self, cls=None, **kwargs) -> "Basic":
+    async def get_null(
+        self,
+        cls=None,
+        **kwargs
+    ) -> "Basic":
         """Get a basic complex type whose properties are null.
 
         FIXME: add operation.summary
@@ -250,7 +272,11 @@ class BasicOperations:
     get_null.metadata = {'url': '/complex/basic/null'}
 
     @distributed_trace_async
-    async def get_not_provided(self, cls=None, **kwargs) -> "Basic":
+    async def get_not_provided(
+        self,
+        cls=None,
+        **kwargs
+    ) -> "Basic":
         """Get a basic complex type while the server doesn't provide a response payload.
 
         FIXME: add operation.summary

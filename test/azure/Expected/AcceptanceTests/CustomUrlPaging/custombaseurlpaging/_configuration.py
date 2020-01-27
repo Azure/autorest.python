@@ -23,7 +23,7 @@ class AutoRestParameterizedHostTestPagingClientConfiguration(Configuration):
     :type host: str
     """
 
-    def __init__(self, credential, host, **kwargs):
+    def __init__(self['credential,  # type: "TokenCredential"', 'host,  # type: str'], **kwargs):
         # type: ("TokenCredential", str, **Any) -> None
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")

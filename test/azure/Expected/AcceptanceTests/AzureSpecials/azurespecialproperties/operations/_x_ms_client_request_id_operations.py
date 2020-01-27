@@ -36,8 +36,12 @@ class XMsClientRequestIdOperations(object):
         self._config = config
 
     @distributed_trace
-    def get(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> None
+    def get(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get method that overwrites x-ms-client-request header with value 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0..
 
         FIXME: add operation.summary
@@ -75,8 +79,13 @@ class XMsClientRequestIdOperations(object):
     get.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/method/'}
 
     @distributed_trace
-    def param_get(self, x_ms_client_request_id, cls=None, **kwargs):
-        # type: (str, Optional[Any], **Any) -> None
+    def param_get(
+        self,
+        x_ms_client_request_id,  # type: str
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Get method that overwrites x-ms-client-request header with value 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0..
 
         FIXME: add operation.summary

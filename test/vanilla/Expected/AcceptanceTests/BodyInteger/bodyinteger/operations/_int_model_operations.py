@@ -36,8 +36,12 @@ class IntOperations(object):
         self._config = config
 
     @distributed_trace
-    def get_null(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> int
+    def get_null(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> int
         """Get null Int value.
 
         FIXME: add operation.summary
@@ -79,8 +83,12 @@ class IntOperations(object):
     get_null.metadata = {'url': '/int/null'}
 
     @distributed_trace
-    def get_invalid(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> int
+    def get_invalid(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> int
         """Get invalid Int value.
 
         FIXME: add operation.summary
@@ -122,8 +130,12 @@ class IntOperations(object):
     get_invalid.metadata = {'url': '/int/invalid'}
 
     @distributed_trace
-    def get_overflow_int32(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> int
+    def get_overflow_int32(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> int
         """Get overflow Int32 value.
 
         FIXME: add operation.summary
@@ -165,8 +177,12 @@ class IntOperations(object):
     get_overflow_int32.metadata = {'url': '/int/overflowint32'}
 
     @distributed_trace
-    def get_underflow_int32(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> int
+    def get_underflow_int32(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> int
         """Get underflow Int32 value.
 
         FIXME: add operation.summary
@@ -208,8 +224,12 @@ class IntOperations(object):
     get_underflow_int32.metadata = {'url': '/int/underflowint32'}
 
     @distributed_trace
-    def get_overflow_int64(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> int
+    def get_overflow_int64(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> int
         """Get overflow Int64 value.
 
         FIXME: add operation.summary
@@ -251,8 +271,12 @@ class IntOperations(object):
     get_overflow_int64.metadata = {'url': '/int/overflowint64'}
 
     @distributed_trace
-    def get_underflow_int64(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> int
+    def get_underflow_int64(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> int
         """Get underflow Int64 value.
 
         FIXME: add operation.summary
@@ -294,8 +318,13 @@ class IntOperations(object):
     get_underflow_int64.metadata = {'url': '/int/underflowint64'}
 
     @distributed_trace
-    def put_max32(self, int_body, cls=None, **kwargs):
-        # type: (int, Optional[Any], **Any) -> None
+    def put_max32(
+        self,
+        int_body,  # type: int
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put max int32 value.
 
         FIXME: add operation.summary
@@ -339,8 +368,13 @@ class IntOperations(object):
     put_max32.metadata = {'url': '/int/max/32'}
 
     @distributed_trace
-    def put_max64(self, int_body, cls=None, **kwargs):
-        # type: (int, Optional[Any], **Any) -> None
+    def put_max64(
+        self,
+        int_body,  # type: int
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put max int64 value.
 
         FIXME: add operation.summary
@@ -384,8 +418,13 @@ class IntOperations(object):
     put_max64.metadata = {'url': '/int/max/64'}
 
     @distributed_trace
-    def put_min32(self, int_body, cls=None, **kwargs):
-        # type: (int, Optional[Any], **Any) -> None
+    def put_min32(
+        self,
+        int_body,  # type: int
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put min int32 value.
 
         FIXME: add operation.summary
@@ -429,8 +468,13 @@ class IntOperations(object):
     put_min32.metadata = {'url': '/int/min/32'}
 
     @distributed_trace
-    def put_min64(self, int_body, cls=None, **kwargs):
-        # type: (int, Optional[Any], **Any) -> None
+    def put_min64(
+        self,
+        int_body,  # type: int
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put min int64 value.
 
         FIXME: add operation.summary
@@ -474,8 +518,12 @@ class IntOperations(object):
     put_min64.metadata = {'url': '/int/min/64'}
 
     @distributed_trace
-    def get_unix_time(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> datetime.datetime
+    def get_unix_time(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> datetime.datetime
         """Get datetime encoded as Unix time value.
 
         FIXME: add operation.summary
@@ -517,8 +565,13 @@ class IntOperations(object):
     get_unix_time.metadata = {'url': '/int/unixtime'}
 
     @distributed_trace
-    def put_unix_time_date(self, int_body, cls=None, **kwargs):
-        # type: (datetime.datetime, Optional[Any], **Any) -> None
+    def put_unix_time_date(
+        self,
+        int_body,  # type: datetime.datetime
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> None
         """Put datetime encoded as Unix time.
 
         FIXME: add operation.summary
@@ -562,8 +615,12 @@ class IntOperations(object):
     put_unix_time_date.metadata = {'url': '/int/unixtime'}
 
     @distributed_trace
-    def get_invalid_unix_time(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> datetime.datetime
+    def get_invalid_unix_time(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> datetime.datetime
         """Get invalid Unix time value.
 
         FIXME: add operation.summary
@@ -605,8 +662,12 @@ class IntOperations(object):
     get_invalid_unix_time.metadata = {'url': '/int/invalidunixtime'}
 
     @distributed_trace
-    def get_null_unix_time(self, cls=None, **kwargs):
-        # type: (Optional[Any], **Any) -> datetime.datetime
+    def get_null_unix_time(
+        self,
+        cls=None,
+        **kwargs
+    ):
+        # type: (...) -> datetime.datetime
         """Get null Unix time value.
 
         FIXME: add operation.summary

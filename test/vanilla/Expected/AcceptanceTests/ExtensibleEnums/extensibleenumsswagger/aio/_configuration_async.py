@@ -18,7 +18,7 @@ class PetStoreIncConfiguration(Configuration):
     attributes.
     """
 
-    def __init__(self, **kwargs) -> None:
+    def __init__(self[], **kwargs) -> None:
         super(PetStoreIncConfiguration, self).__init__(**kwargs)
 
         self._configure(**kwargs)
