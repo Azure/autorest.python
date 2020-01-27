@@ -35,7 +35,7 @@ class ParameterGroupingOperations(object):
         self._config = config
 
     @distributed_trace
-    def post_required(self, path, body, custom_header=None, query=None, cls=None, **kwargs):
+    def post_required(self, path, body, parameter_grouping_post_required_parameters, custom_header=None, query=None, cls=None, **kwargs):
         """Post a bunch of required parameters grouped.
 
         FIXME: add operation.summary
@@ -44,6 +44,8 @@ class ParameterGroupingOperations(object):
         :type path: str
         :param body: 
         :type body: int
+        :param parameter_grouping_post_required_parameters: Parameter group.
+        :type parameter_grouping_post_required_parameters: ~azureparametergrouping.models.ParameterGroupingPostRequiredParameters
         :param custom_header: 
         :type custom_header: str
         :param query: Query parameter with default.
@@ -93,7 +95,7 @@ class ParameterGroupingOperations(object):
     post_required.metadata = {'url': '/parameterGrouping/postRequired/{path}'}
 
     @distributed_trace
-    def post_optional(self, custom_header=None, query=None, cls=None, **kwargs):
+    def post_optional(self, custom_header=None, query=None, parameter_grouping_post_optional_parameters=None, cls=None, **kwargs):
         """Post a bunch of optional parameters grouped.
 
         FIXME: add operation.summary
@@ -102,6 +104,8 @@ class ParameterGroupingOperations(object):
         :type custom_header: str
         :param query: Query parameter with default.
         :type query: int
+        :param parameter_grouping_post_optional_parameters: Parameter group.
+        :type parameter_grouping_post_optional_parameters: ~azureparametergrouping.models.ParameterGroupingPostOptionalParameters
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -139,7 +143,7 @@ class ParameterGroupingOperations(object):
     post_optional.metadata = {'url': '/parameterGrouping/postOptional'}
 
     @distributed_trace
-    def post_multi_param_groups(self, header_one=None, query_one=None, header_two=None, query_two=None, cls=None, **kwargs):
+    def post_multi_param_groups(self, header_one=None, query_one=None, header_two=None, query_two=None, first_parameter_group=None, parameter_grouping_post_multi_param_groups_second_param_group=None, cls=None, **kwargs):
         """Post parameters from multiple different parameter groups.
 
         FIXME: add operation.summary
@@ -152,6 +156,10 @@ class ParameterGroupingOperations(object):
         :type header_two: str
         :param query_two: Query parameter with default.
         :type query_two: int
+        :param first_parameter_group: Parameter group.
+        :type first_parameter_group: ~azureparametergrouping.models.FirstParameterGroup
+        :param parameter_grouping_post_multi_param_groups_second_param_group: Parameter group.
+        :type parameter_grouping_post_multi_param_groups_second_param_group: ~azureparametergrouping.models.ParameterGroupingPostMultiParamGroupsSecondParamGroup
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -193,7 +201,7 @@ class ParameterGroupingOperations(object):
     post_multi_param_groups.metadata = {'url': '/parameterGrouping/postMultipleParameterGroups'}
 
     @distributed_trace
-    def post_shared_parameter_group_object(self, header_one=None, query_one=None, cls=None, **kwargs):
+    def post_shared_parameter_group_object(self, header_one=None, query_one=None, first_parameter_group=None, cls=None, **kwargs):
         """Post parameters with a shared parameter group object.
 
         FIXME: add operation.summary
@@ -202,6 +210,8 @@ class ParameterGroupingOperations(object):
         :type header_one: str
         :param query_one: Query parameter with default.
         :type query_one: int
+        :param first_parameter_group: Parameter group.
+        :type first_parameter_group: ~azureparametergrouping.models.FirstParameterGroup
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None

@@ -413,13 +413,15 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         return deserialized
     put_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
     @distributed_trace
-    def post_flattened_simple_product(self, max_product_display_name=None, odatavalue=None, cls=None, **kwargs):
+    def post_flattened_simple_product(self, max_product_display_name=None, generic_value=None, odatavalue=None, cls=None, **kwargs):
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         FIXME: add operation.summary
 
         :param max_product_display_name: Display name of product.
         :type max_product_display_name: str
+        :param generic_value: Generic URL value.
+        :type generic_value: str
         :param odatavalue: URL value.
         :type odatavalue: str
         :param callable cls: A custom type or function that will be passed the direct response
@@ -428,7 +430,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :raises: ~modelflattening.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        simple_body_product = models.SimpleProduct(max_product_display_name=max_product_display_name, odatavalue=odatavalue)
+        simple_body_product = models.SimpleProduct(max_product_display_name=max_product_display_name, generic_value=generic_value, odatavalue=odatavalue)
 
         # Construct URL
         url = self.post_flattened_simple_product.metadata['url']
@@ -466,15 +468,19 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         return deserialized
     post_flattened_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
     @distributed_trace
-    def put_simple_product_with_grouping(self, name, max_product_display_name=None, odatavalue=None, cls=None, **kwargs):
+    def put_simple_product_with_grouping(self, name, flatten_parameter_group, max_product_display_name=None, generic_value=None, odatavalue=None, cls=None, **kwargs):
         """Put Simple Product with client flattening true on the model.
 
         FIXME: add operation.summary
 
         :param name: Product name with value 'groupproduct'.
         :type name: str
+        :param flatten_parameter_group: Parameter group.
+        :type flatten_parameter_group: ~modelflattening.models.FlattenParameterGroup
         :param max_product_display_name: Display name of product.
         :type max_product_display_name: str
+        :param generic_value: Generic URL value.
+        :type generic_value: str
         :param odatavalue: URL value.
         :type odatavalue: str
         :param callable cls: A custom type or function that will be passed the direct response
@@ -483,7 +489,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :raises: ~modelflattening.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        simple_body_product = models.SimpleProduct(max_product_display_name=max_product_display_name, odatavalue=odatavalue)
+        simple_body_product = models.SimpleProduct(max_product_display_name=max_product_display_name, generic_value=generic_value, odatavalue=odatavalue, flatten_parameter_group=flatten_parameter_group)
 
         # Construct URL
         url = self.put_simple_product_with_grouping.metadata['url']

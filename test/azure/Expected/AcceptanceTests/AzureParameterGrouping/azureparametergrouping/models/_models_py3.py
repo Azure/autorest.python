@@ -54,3 +54,98 @@ class Error(Model):
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
+
+
+class FirstParameterGroup(Model):
+    """Parameter group.
+
+    :param header_one:
+    :type header_one: str
+    :param query_one: Query parameter with default.
+    :type query_one: int
+    """
+
+    _attribute_map = {
+        'header_one': {'key': 'header-one', 'type': 'str'},
+        'query_one': {'key': 'query-one', 'type': 'int'},
+    }
+
+    def __init__(self, *, header_one: str=None, query_one: int=30, **kwargs) -> None:
+        super(FirstParameterGroup, self).__init__(**kwargs)
+        self.header_one = header_one
+        self.query_one = query_one
+
+
+class ParameterGroupingPostMultiParamGroupsSecondParamGroup(Model):
+    """Parameter group.
+
+    :param header_two:
+    :type header_two: str
+    :param query_two: Query parameter with default.
+    :type query_two: int
+    """
+
+    _attribute_map = {
+        'header_two': {'key': 'header-two', 'type': 'str'},
+        'query_two': {'key': 'query-two', 'type': 'int'},
+    }
+
+    def __init__(self, *, header_two: str=None, query_two: int=30, **kwargs) -> None:
+        super(ParameterGroupingPostMultiParamGroupsSecondParamGroup, self).__init__(**kwargs)
+        self.header_two = header_two
+        self.query_two = query_two
+
+
+class ParameterGroupingPostOptionalParameters(Model):
+    """Parameter group.
+
+    :param custom_header:
+    :type custom_header: str
+    :param query: Query parameter with default.
+    :type query: int
+    """
+
+    _attribute_map = {
+        'custom_header': {'key': 'customHeader', 'type': 'str'},
+        'query': {'key': 'query', 'type': 'int'},
+    }
+
+    def __init__(self, *, custom_header: str=None, query: int=30, **kwargs) -> None:
+        super(ParameterGroupingPostOptionalParameters, self).__init__(**kwargs)
+        self.custom_header = custom_header
+        self.query = query
+
+
+class ParameterGroupingPostRequiredParameters(Model):
+    """Parameter group.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :param custom_header:
+    :type custom_header: str
+    :param query: Query parameter with default.
+    :type query: int
+    :param path: Required. Path parameter.
+    :type path: str
+    :param body: Required.
+    :type body: int
+    """
+
+    _validation = {
+        'path': {'required': True},
+        'body': {'required': True},
+    }
+
+    _attribute_map = {
+        'custom_header': {'key': 'customHeader', 'type': 'str'},
+        'query': {'key': 'query', 'type': 'int'},
+        'path': {'key': 'path', 'type': 'str'},
+        'body': {'key': 'body', 'type': 'int'},
+    }
+
+    def __init__(self, *, path: str, body: int, custom_header: str=None, query: int=30, **kwargs) -> None:
+        super(ParameterGroupingPostRequiredParameters, self).__init__(**kwargs)
+        self.custom_header = custom_header
+        self.query = query
+        self.path = path
+        self.body = body

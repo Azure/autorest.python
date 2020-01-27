@@ -79,13 +79,15 @@ class HeaderOperations(object):
     custom_named_request_id.metadata = {'url': '/azurespecials/customNamedRequestId'}
 
     @distributed_trace
-    def custom_named_request_id_param_grouping(self, foo_client_request_id, cls=None, **kwargs):
+    def custom_named_request_id_param_grouping(self, foo_client_request_id, header_custom_named_request_id_param_grouping_parameters, cls=None, **kwargs):
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request, via a parameter group.
 
         FIXME: add operation.summary
 
         :param foo_client_request_id: The fooRequestId.
         :type foo_client_request_id: str
+        :param header_custom_named_request_id_param_grouping_parameters: Parameter group.
+        :type header_custom_named_request_id_param_grouping_parameters: ~azurespecialproperties.models.HeaderCustomNamedRequestIdParamGroupingParameters
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None

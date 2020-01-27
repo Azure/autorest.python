@@ -66,7 +66,7 @@ def build_schema(yaml_data: Dict[str, Any], **kwargs) -> BaseSchema:
         schema = DictionarySchema.from_yaml(namespace=namespace, yaml_data=yaml_data, **kwargs)
         code_model.primitives[yaml_id] = schema
 
-    elif schema_type in ['object', 'and']:
+    elif schema_type in ['object', 'and', 'group']:
         # To avoid infinite loop, create the right instance in memory,
         # put it in the index, and then parse the object.
         schema = ObjectSchema(namespace, yaml_data, "_", "")

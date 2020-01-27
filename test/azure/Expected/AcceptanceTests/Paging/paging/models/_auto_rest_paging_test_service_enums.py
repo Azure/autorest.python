@@ -10,14 +10,14 @@ from enum import Enum
 
 class OperationResultStatus(str, Enum):
     
-    succeeded = "Succeeded"
-    failed = "Failed"
-    canceled = "canceled"
-    accepted = "Accepted"
-    creating = "Creating"
-    created = "Created"
-    updating = "Updating"
-    updated = "Updated"
-    deleting = "Deleting"
-    deleted = "Deleted"
-    ok = "OK"
+    succeeded = "Succeeded"  #: The value 'Succeeded'.
+    failed = "Failed"  #: The value 'Failed'.
+    canceled = "canceled"  #: The value 'canceled'.
+    accepted = "Accepted"  #: The value 'Accepted'.
+    creating = "Creating"  #: The value 'Creating'.
+    created = "Created"  #: The value 'Created'.
+    updating = "Updating"  #: The value 'Updating'.
+    updated = "Updated"  #: The value 'Updated'.
+    deleting = "Deleting"  #: The value 'Deleting'.
+    deleted = "Deleted"  #: The value 'Deleted'.
+    ok = "OK"  #: The value 'OK'.

@@ -44,7 +44,7 @@ class Error(Model):
 
     :param status:
     :type status: int
-    :ivar constant_id: Required.  Default value: "1".
+    :ivar constant_id: Required. The constant value 1. Default value: "1".
     :vartype constant_id: float
     :param message:
     :type message: str
@@ -67,6 +67,28 @@ class Error(Model):
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
+
+
+class HeaderCustomNamedRequestIdParamGroupingParameters(Model):
+    """Parameter group.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :param foo_client_request_id: Required. The fooRequestId.
+    :type foo_client_request_id: str
+    """
+
+    _validation = {
+        'foo_client_request_id': {'required': True},
+    }
+
+    _attribute_map = {
+        'foo_client_request_id': {'key': 'foo-client-request-id', 'type': 'str'},
+    }
+
+    def __init__(self, *, foo_client_request_id: str, **kwargs) -> None:
+        super(HeaderCustomNamedRequestIdParamGroupingParameters, self).__init__(**kwargs)
+        self.foo_client_request_id = foo_client_request_id
 
 
 class OdataFilter(Model):

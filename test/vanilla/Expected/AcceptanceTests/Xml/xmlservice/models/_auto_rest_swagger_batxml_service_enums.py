@@ -10,54 +10,54 @@ from enum import Enum
 
 class LeaseStatusType(str, Enum):
     
-    locked = "locked"
-    unlocked = "unlocked"
+    locked = "locked"  #: The value 'locked'.
+    unlocked = "unlocked"  #: The value 'unlocked'.
 
 class LeaseStateType(str, Enum):
     
-    available = "available"
-    leased = "leased"
-    expired = "expired"
-    breaking = "breaking"
-    broken = "broken"
+    available = "available"  #: The value 'available'.
+    leased = "leased"  #: The value 'leased'.
+    expired = "expired"  #: The value 'expired'.
+    breaking = "breaking"  #: The value 'breaking'.
+    broken = "broken"  #: The value 'broken'.
 
 class LeaseDurationType(str, Enum):
     
-    infinite = "infinite"
-    fixed = "fixed"
+    infinite = "infinite"  #: The value 'infinite'.
+    fixed = "fixed"  #: The value 'fixed'.
 
 class PublicAccessType(str, Enum):
     
-    container = "container"
-    blob = "blob"
+    container = "container"  #: The value 'container'.
+    blob = "blob"  #: The value 'blob'.
 
 class BlobType(str, Enum):
     
-    block_blob = "BlockBlob"
-    page_blob = "PageBlob"
-    append_blob = "AppendBlob"
+    block_blob = "BlockBlob"  #: The value 'BlockBlob'.
+    page_blob = "PageBlob"  #: The value 'PageBlob'.
+    append_blob = "AppendBlob"  #: The value 'AppendBlob'.
 
 class CopyStatusType(str, Enum):
     
-    pending = "pending"
-    success = "success"
-    aborted = "aborted"
-    failed = "failed"
+    pending = "pending"  #: The value 'pending'.
+    success = "success"  #: The value 'success'.
+    aborted = "aborted"  #: The value 'aborted'.
+    failed = "failed"  #: The value 'failed'.
 
 class AccessTier(str, Enum):
     
-    p4 = "P4"
-    p6 = "P6"
-    p10 = "P10"
-    p20 = "P20"
-    p30 = "P30"
-    p40 = "P40"
-    p50 = "P50"
-    hot = "Hot"
-    cool = "Cool"
-    archive = "Archive"
+    p4 = "P4"  #: The value 'P4'.
+    p6 = "P6"  #: The value 'P6'.
+    p10 = "P10"  #: The value 'P10'.
+    p20 = "P20"  #: The value 'P20'.
+    p30 = "P30"  #: The value 'P30'.
+    p40 = "P40"  #: The value 'P40'.
+    p50 = "P50"  #: The value 'P50'.
+    hot = "Hot"  #: The value 'Hot'.
+    cool = "Cool"  #: The value 'Cool'.
+    archive = "Archive"  #: The value 'Archive'.
 
 class ArchiveStatus(str, Enum):
     
-    rehydrate_pending_to_hot = "rehydrate-pending-to-hot"
-    rehydrate_pending_to_cool = "rehydrate-pending-to-cool"
+    rehydrate_pending_to_hot = "rehydrate-pending-to-hot"  #: The value 'rehydrate-pending-to-hot'.
+    rehydrate_pending_to_cool = "rehydrate-pending-to-cool"  #: The value 'rehydrate-pending-to-cool'.

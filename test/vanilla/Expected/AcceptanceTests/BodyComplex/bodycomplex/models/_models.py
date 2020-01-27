@@ -672,7 +672,7 @@ class MyBaseType(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param kind: Required. Constant filled by server.
+    :param kind: Required. The constant value Kind1.Constant filled by server.
     :type kind: str
     :param prop_b1:
     :type prop_b1: str
@@ -706,7 +706,7 @@ class MyDerivedType(MyBaseType):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param kind: Required. Constant filled by server.
+    :param kind: Required. The constant value Kind1.Constant filled by server.
     :type kind: str
     :param prop_b1:
     :type prop_b1: str
