@@ -141,7 +141,7 @@ class ParameterList(MutableSequence):
 
     @property
     def is_flattened(self) -> bool:
-        return self.get_from_predicate(lambda parameter: parameter.flattened)
+        return len(self.get_from_predicate(lambda parameter: parameter.flattened)) > 0
 
     def build_flattened_object(self) -> str:
         if not self.is_flattened:
