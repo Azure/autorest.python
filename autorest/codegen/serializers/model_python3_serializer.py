@@ -24,7 +24,7 @@ class ModelPython3Serializer(ModelBaseSerializer):
                     "{}: {}".format(param.name, param.schema.type_annotation)
                 )
             else:
-                default_value = "\"" + param.schema.default_value + "\"" if param.schema.default_value else "None"
+                default_value = param.schema.get_default_value_declaration()
                 init_properties_declaration.append(
                     "{}: Optional[{}] = {}".format(param.name, param.schema.type_annotation, default_value)
                 )

@@ -18,6 +18,8 @@ from .parameter import Parameter, ParameterLocation
 from .client import Client
 from .property import Property
 from .parameter_list import ParameterList
+from .imports import FileImport, ImportType
+from .schema_response import SchemaResponse
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -41,6 +43,29 @@ class CredentialSchema(BaseSchema):
     @property
     def docstring_text(self) -> str:
         return 'credential'
+
+class IOSchema(BaseSchema):
+    def __init__(self):  # pylint: disable=super-init-not-called
+        self.type = 'IO'
+
+    def get_serialization_type(self) -> str:
+        return self.type
+
+    @property
+    def docstring_type(self) -> str:
+        return self.type
+
+    def get_python_type_annotation(self) -> str:
+        return self.docstring_type
+
+    @property
+    def docstring_text(self) -> str:
+        return 'IO'
+
+    def imports(self):
+        file_import = FileImport()
+        file_import.add_from_import("typing", "IO", ImportType.STDLIB)
+        return file_import
 
 
 class CodeModel:  # pylint: disable=too-many-instance-attributes
@@ -259,6 +284,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
 
     def _populate_schema(self, obj: Any) -> None:
         schema_obj = obj.schema
+
         if schema_obj:
             schema_obj_id = id(obj.schema)
             _LOGGER.debug("Looking for id %s for member %s", schema_obj_id, obj)
@@ -267,6 +293,8 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             except KeyError:
                 _LOGGER.critical("Unable to ref the object")
                 raise
+        if isinstance(obj, SchemaResponse) and obj.is_stream_response:
+            obj.schema = IOSchema()
 
     def add_schema_link_to_operation(self) -> None:
         """Puts created schemas into operation classes `schema` property
