@@ -135,7 +135,7 @@ class ParameterList(MutableSequence):
         return [parameter.sync_method_signature for parameter in self.method]
 
     @property
-    def async_method_signature(self) -> str:
+    def async_method_signature(self) -> List[str]:
         return [parameter.async_method_signature for parameter in self.method]
 
     @property

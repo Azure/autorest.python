@@ -21,7 +21,6 @@ def __init__(
     **kwargs  # type: Any
     {% endif %}
 ){{" -> None" if async_mode else "" }}:{% endmacro %}
-{% set init_typing_comment = ("# type: (") ~ code_model.global_parameters|map(attribute='schema')|join(', ', attribute='type_annotation') ~ (", " if code_model.global_parameters else "") ~ ("Optional[str], " if code_model.base_url else "") ~ ("**Any) -> None") %}
 {% set config_signature = code_model.global_parameters.method|join(', ', attribute='serialized_name') ~ (", " if code_model.global_parameters.method else "") %}
 {% set has_mixin_operation_group = code_model.operation_groups|selectattr("is_empty_operation_group")|first %}
 {% macro mixin_operation_group_name() %}{{ code_model.class_name }}OperationsMixin{% endmacro %}

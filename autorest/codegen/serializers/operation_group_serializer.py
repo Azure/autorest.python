@@ -3,11 +3,10 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import cast, Optional
 from jinja2 import Environment
 
 from .import_serializer import FileImportSerializer
-from ..models import LROOperation, PagingOperation, CodeModel, OperationGroup, Operation, BaseSchema
+from ..models import LROOperation, PagingOperation, CodeModel, OperationGroup
 
 class OperationGroupSerializer:
     def __init__(
