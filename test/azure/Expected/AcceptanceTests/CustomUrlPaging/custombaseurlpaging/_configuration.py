@@ -23,8 +23,13 @@ class AutoRestParameterizedHostTestPagingClientConfiguration(Configuration):
     :type host: str
     """
 
-    def __init__(self['credential,  # type: "TokenCredential"', 'host,  # type: str'], **kwargs):
-        # type: ("TokenCredential", str, **Any) -> None
+    def __init__(
+        self,
+        credential,  # type: "TokenCredential"
+        host,  # type: str
+        **kwargs
+    ):
+        # type: (...) -> None
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
         if host is None:
@@ -37,8 +42,11 @@ class AutoRestParameterizedHostTestPagingClientConfiguration(Configuration):
         self._configure(**kwargs)
         self.user_agent_policy.add_user_agent('azsdk-python-autorestparameterizedhosttestpagingclient/{}'.format(VERSION))
 
-    def _configure(self, **kwargs):
-        # type: (**Any) -> None
+    def _configure(
+        self,
+        **kwargs
+    ):
+        # type: (...) -> None
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)
         self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)
         self.proxy_policy = kwargs.get('proxy_policy') or policies.ProxyPolicy(**kwargs)

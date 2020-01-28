@@ -21,8 +21,12 @@ class AutoRestParameterizedHostTestClientConfiguration(Configuration):
     :type host: str
     """
 
-    def __init__(self['host,  # type: str'], **kwargs):
-        # type: (str, **Any) -> None
+    def __init__(
+        self,
+        host,  # type: str
+        **kwargs
+    ):
+        # type: (...) -> None
         if host is None:
             raise ValueError("Parameter 'host' must not be None.")
         super(AutoRestParameterizedHostTestClientConfiguration, self).__init__(**kwargs)
@@ -31,8 +35,11 @@ class AutoRestParameterizedHostTestClientConfiguration(Configuration):
         self._configure(**kwargs)
         self.user_agent_policy.add_user_agent('azsdk-python-autorestparameterizedhosttestclient/{}'.format(VERSION))
 
-    def _configure(self, **kwargs):
-        # type: (**Any) -> None
+    def _configure(
+        self,
+        **kwargs
+    ):
+        # type: (...) -> None
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)
         self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)
         self.proxy_policy = kwargs.get('proxy_policy') or policies.ProxyPolicy(**kwargs)

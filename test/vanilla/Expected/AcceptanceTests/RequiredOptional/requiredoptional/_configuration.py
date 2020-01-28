@@ -27,8 +27,14 @@ class AutoRestRequiredOptionalTestServiceConfiguration(Configuration):
     :type optional_global_query: int
     """
 
-    def __init__(self['required_global_path,  # type: str', 'required_global_query,  # type: str', 'optional_global_query=None,  # type: Optional[int]'], **kwargs):
-        # type: (str, str, int, **Any) -> None
+    def __init__(
+        self,
+        required_global_path,  # type: str
+        required_global_query,  # type: str
+        optional_global_query=None,  # type: Optional[int]
+        **kwargs
+    ):
+        # type: (...) -> None
         if required_global_path is None:
             raise ValueError("Parameter 'required_global_path' must not be None.")
         if required_global_query is None:
@@ -41,8 +47,11 @@ class AutoRestRequiredOptionalTestServiceConfiguration(Configuration):
         self._configure(**kwargs)
         self.user_agent_policy.add_user_agent('azsdk-python-autorestrequiredoptionaltestservice/{}'.format(VERSION))
 
-    def _configure(self, **kwargs):
-        # type: (**Any) -> None
+    def _configure(
+        self,
+        **kwargs
+    ):
+        # type: (...) -> None
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)
         self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)
         self.proxy_policy = kwargs.get('proxy_policy') or policies.ProxyPolicy(**kwargs)

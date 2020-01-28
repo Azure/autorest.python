@@ -21,7 +21,11 @@ class AutoRestLongRunningOperationTestServiceConfiguration(Configuration):
     :type credential: azure.core.credentials.TokenCredential
     """
 
-    def __init__(self['credential: "TokenCredential"'], **kwargs) -> None:
+    def __init__(
+        self,
+        credential: "TokenCredential",
+        **kwargs
+    ) -> None:
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
         super(AutoRestLongRunningOperationTestServiceConfiguration, self).__init__(**kwargs)
@@ -31,7 +35,10 @@ class AutoRestLongRunningOperationTestServiceConfiguration(Configuration):
         self._configure(**kwargs)
         self.user_agent_policy.add_user_agent('azsdk-python-autorestlongrunningoperationtestservice/{}'.format(VERSION))
 
-    def _configure(self, **kwargs) -> None:
+    def _configure(
+        self,
+        **kwargs
+    ) -> None:
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)
         self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)
         self.proxy_policy = kwargs.get('proxy_policy') or policies.ProxyPolicy(**kwargs)
