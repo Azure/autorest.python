@@ -57,7 +57,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_array.metadata = {'url': '/model-flatten/array'}
     @distributed_trace
@@ -94,10 +94,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('[FlattenedProduct]', response)
+        deserialized = self._deserialize('[FlattenedProduct]', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_array.metadata = {'url': '/model-flatten/array'}
@@ -144,7 +144,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}
     @distributed_trace
@@ -181,10 +181,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('[ProductWrapper]', response)
+        deserialized = self._deserialize('[ProductWrapper]', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}
@@ -231,7 +231,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_dictionary.metadata = {'url': '/model-flatten/dictionary'}
     @distributed_trace
@@ -268,10 +268,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('{FlattenedProduct}', response)
+        deserialized = self._deserialize('{FlattenedProduct}', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_dictionary.metadata = {'url': '/model-flatten/dictionary'}
@@ -318,7 +318,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}
     @distributed_trace
@@ -355,10 +355,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('ResourceCollection', response)
+        deserialized = self._deserialize('ResourceCollection', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}
@@ -405,10 +405,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('SimpleProduct', response)
+        deserialized = self._deserialize('SimpleProduct', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     put_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
@@ -458,10 +458,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('SimpleProduct', response)
+        deserialized = self._deserialize('SimpleProduct', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     post_flattened_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
@@ -517,10 +517,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('SimpleProduct', response)
+        deserialized = self._deserialize('SimpleProduct', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     put_simple_product_with_grouping.metadata = {'url': '/model-flatten/customFlattening/parametergrouping/{name}/'}

@@ -68,10 +68,10 @@ class PrimitiveOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('IntWrapper', response)
+        deserialized = self._deserialize('IntWrapper', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_int.metadata = {'url': '/complex/primitive/integer'}
@@ -116,7 +116,7 @@ class PrimitiveOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_int.metadata = {'url': '/complex/primitive/integer'}
 
@@ -154,10 +154,10 @@ class PrimitiveOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('LongWrapper', response)
+        deserialized = self._deserialize('LongWrapper', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_long.metadata = {'url': '/complex/primitive/long'}
@@ -202,7 +202,7 @@ class PrimitiveOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_long.metadata = {'url': '/complex/primitive/long'}
 
@@ -240,10 +240,10 @@ class PrimitiveOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('FloatWrapper', response)
+        deserialized = self._deserialize('FloatWrapper', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_float.metadata = {'url': '/complex/primitive/float'}
@@ -288,7 +288,7 @@ class PrimitiveOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_float.metadata = {'url': '/complex/primitive/float'}
 
@@ -326,10 +326,10 @@ class PrimitiveOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('DoubleWrapper', response)
+        deserialized = self._deserialize('DoubleWrapper', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_double.metadata = {'url': '/complex/primitive/double'}
@@ -374,7 +374,7 @@ class PrimitiveOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_double.metadata = {'url': '/complex/primitive/double'}
 
@@ -412,10 +412,10 @@ class PrimitiveOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('BooleanWrapper', response)
+        deserialized = self._deserialize('BooleanWrapper', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_bool.metadata = {'url': '/complex/primitive/bool'}
@@ -460,7 +460,7 @@ class PrimitiveOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_bool.metadata = {'url': '/complex/primitive/bool'}
 
@@ -498,10 +498,10 @@ class PrimitiveOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('StringWrapper', response)
+        deserialized = self._deserialize('StringWrapper', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_string.metadata = {'url': '/complex/primitive/string'}
@@ -546,7 +546,7 @@ class PrimitiveOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_string.metadata = {'url': '/complex/primitive/string'}
 
@@ -584,10 +584,10 @@ class PrimitiveOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('DateWrapper', response)
+        deserialized = self._deserialize('DateWrapper', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_date.metadata = {'url': '/complex/primitive/date'}
@@ -632,7 +632,7 @@ class PrimitiveOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_date.metadata = {'url': '/complex/primitive/date'}
 
@@ -670,10 +670,10 @@ class PrimitiveOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('DatetimeWrapper', response)
+        deserialized = self._deserialize('DatetimeWrapper', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_date_time.metadata = {'url': '/complex/primitive/datetime'}
@@ -718,7 +718,7 @@ class PrimitiveOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_date_time.metadata = {'url': '/complex/primitive/datetime'}
 
@@ -756,10 +756,10 @@ class PrimitiveOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('Datetimerfc1123Wrapper', response)
+        deserialized = self._deserialize('Datetimerfc1123Wrapper', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_date_time_rfc1123.metadata = {'url': '/complex/primitive/datetimerfc1123'}
@@ -804,7 +804,7 @@ class PrimitiveOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_date_time_rfc1123.metadata = {'url': '/complex/primitive/datetimerfc1123'}
 
@@ -842,10 +842,10 @@ class PrimitiveOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('DurationWrapper', response)
+        deserialized = self._deserialize('DurationWrapper', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_duration.metadata = {'url': '/complex/primitive/duration'}
@@ -891,7 +891,7 @@ class PrimitiveOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_duration.metadata = {'url': '/complex/primitive/duration'}
 
@@ -929,10 +929,10 @@ class PrimitiveOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('ByteWrapper', response)
+        deserialized = self._deserialize('ByteWrapper', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_byte.metadata = {'url': '/complex/primitive/byte'}
@@ -978,6 +978,6 @@ class PrimitiveOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_byte.metadata = {'url': '/complex/primitive/byte'}

@@ -907,10 +907,10 @@ class PagingOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise ARMError(response=response)
 
-        deserialized = self._deserialize('ProductResult', response)
+        deserialized = self._deserialize('ProductResult', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     _get_multiple_pages_lro_initial.metadata = {'url': '/paging/multiple/lro'}
@@ -945,10 +945,10 @@ class PagingOperations:
         )
 
         def get_long_running_output(response):
-            deserialized = self._deserialize('ProductResult', response)
+            deserialized = self._deserialize('ProductResult', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(

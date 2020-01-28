@@ -157,7 +157,7 @@
   {% endif %}
 {% endif %}
     if cls:
-      return cls(response, {{ 'deserialized' if operation.has_response_body else 'None'}}, {{ 'response_headers' if operation.any_response_has_headers else '{}' }})
+      return cls({{ "response" if operation.responses | selectattr('is_stream_response') | first  else "pipeline_response" }}, {{ 'deserialized' if operation.has_response_body else 'None'}}, {{ 'response_headers' if operation.any_response_has_headers else '{}' }})
 
 {% if operation.has_response_body %}
     return deserialized

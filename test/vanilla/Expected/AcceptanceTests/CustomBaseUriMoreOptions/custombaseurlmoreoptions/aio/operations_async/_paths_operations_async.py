@@ -86,6 +86,6 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_empty.metadata = {'url': '/customuri/{subscriptionId}/{keyName}'}

@@ -68,10 +68,10 @@ class BoolOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('bool', response)
+        deserialized = self._deserialize('bool', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_true.metadata = {'url': '/bool/true'}
@@ -115,7 +115,7 @@ class BoolOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_true.metadata = {'url': '/bool/true'}
 
@@ -153,10 +153,10 @@ class BoolOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('bool', response)
+        deserialized = self._deserialize('bool', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_false.metadata = {'url': '/bool/false'}
@@ -200,7 +200,7 @@ class BoolOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_false.metadata = {'url': '/bool/false'}
 
@@ -238,10 +238,10 @@ class BoolOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('bool', response)
+        deserialized = self._deserialize('bool', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/bool/null'}
@@ -280,10 +280,10 @@ class BoolOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('bool', response)
+        deserialized = self._deserialize('bool', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid.metadata = {'url': '/bool/invalid'}

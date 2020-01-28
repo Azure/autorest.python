@@ -70,7 +70,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_boolean_true.metadata = {'url': '/queries/bool/true'}
 
@@ -110,7 +110,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_boolean_false.metadata = {'url': '/queries/bool/false'}
 
@@ -152,7 +152,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_boolean_null.metadata = {'url': '/queries/bool/null'}
 
@@ -192,7 +192,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_int_one_million.metadata = {'url': '/queries/int/1000000'}
 
@@ -232,7 +232,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_int_negative_one_million.metadata = {'url': '/queries/int/-1000000'}
 
@@ -274,7 +274,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_int_null.metadata = {'url': '/queries/int/null'}
 
@@ -314,7 +314,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_ten_billion.metadata = {'url': '/queries/long/10000000000'}
 
@@ -354,7 +354,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_negative_ten_billion.metadata = {'url': '/queries/long/-10000000000'}
 
@@ -396,7 +396,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_long_null.metadata = {'url': '/queries/long/null'}
 
@@ -436,7 +436,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     float_scientific_positive.metadata = {'url': '/queries/float/1.034E+20'}
 
@@ -476,7 +476,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     float_scientific_negative.metadata = {'url': '/queries/float/-1.034E-20'}
 
@@ -518,7 +518,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     float_null.metadata = {'url': '/queries/float/null'}
 
@@ -558,7 +558,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     double_decimal_positive.metadata = {'url': '/queries/double/9999999.999'}
 
@@ -598,7 +598,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     double_decimal_negative.metadata = {'url': '/queries/double/-9999999.999'}
 
@@ -640,7 +640,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     double_null.metadata = {'url': '/queries/double/null'}
 
@@ -680,7 +680,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     string_unicode.metadata = {'url': '/queries/string/unicode/'}
 
@@ -720,7 +720,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     string_url_encoded.metadata = {'url': '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend'}
 
@@ -760,7 +760,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     string_empty.metadata = {'url': '/queries/string/empty'}
 
@@ -802,7 +802,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     string_null.metadata = {'url': '/queries/string/null'}
 
@@ -844,7 +844,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     enum_valid.metadata = {'url': '/queries/enum/green%20color'}
 
@@ -886,7 +886,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     enum_null.metadata = {'url': '/queries/enum/null'}
 
@@ -928,7 +928,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     byte_multi_byte.metadata = {'url': '/queries/byte/multibyte'}
 
@@ -968,7 +968,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     byte_empty.metadata = {'url': '/queries/byte/empty'}
 
@@ -1010,7 +1010,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     byte_null.metadata = {'url': '/queries/byte/null'}
 
@@ -1050,7 +1050,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     date_valid.metadata = {'url': '/queries/date/2012-01-01'}
 
@@ -1092,7 +1092,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     date_null.metadata = {'url': '/queries/date/null'}
 
@@ -1132,7 +1132,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     date_time_valid.metadata = {'url': '/queries/datetime/2012-01-01T01%3A01%3A01Z'}
 
@@ -1174,7 +1174,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     date_time_null.metadata = {'url': '/queries/datetime/null'}
 
@@ -1216,7 +1216,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     array_string_csv_valid.metadata = {'url': '/queries/array/csv/string/valid'}
 
@@ -1258,7 +1258,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     array_string_csv_null.metadata = {'url': '/queries/array/csv/string/null'}
 
@@ -1300,7 +1300,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     array_string_csv_empty.metadata = {'url': '/queries/array/csv/string/empty'}
 
@@ -1342,7 +1342,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     array_string_ssv_valid.metadata = {'url': '/queries/array/ssv/string/valid'}
 
@@ -1384,7 +1384,7 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     array_string_tsv_valid.metadata = {'url': '/queries/array/tsv/string/valid'}
 
@@ -1426,6 +1426,6 @@ class QueriesOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     array_string_pipes_valid.metadata = {'url': '/queries/array/pipes/string/valid'}
