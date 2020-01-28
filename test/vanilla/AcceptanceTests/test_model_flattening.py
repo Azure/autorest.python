@@ -60,8 +60,8 @@ class TestModelFlatteningTests(object):
         # Resource 1
         assert "1" ==  result[0].id
         assert "OK" ==  result[0].provisioning_state_values
-        assert "Product1" ==  result[0].pname
-        assert "Flat" ==  result[0].flattened_product_type
+        assert "Product1" ==  result[0].p_name
+        assert "Flat" ==  result[0].type_properties_type
         assert "Building 44" ==  result[0].location
         assert "Resource1" ==  result[0].name
         assert "Succeeded" ==  result[0].provisioning_state
@@ -93,8 +93,8 @@ class TestModelFlatteningTests(object):
         # Resource 1
         assert "1" ==  resultDictionary["Product1"].id
         assert "OK" ==  resultDictionary["Product1"].provisioning_state_values
-        assert "Product1" ==  resultDictionary["Product1"].pname
-        assert "Flat" ==  resultDictionary["Product1"].flattened_product_type
+        assert "Product1" ==  resultDictionary["Product1"].p_name
+        assert "Flat" ==  resultDictionary["Product1"].type_properties_type
         assert "Building 44" ==  resultDictionary["Product1"].location
         assert "Resource1" ==  resultDictionary["Product1"].name
         assert "Succeeded" ==  resultDictionary["Product1"].provisioning_state
@@ -113,12 +113,12 @@ class TestModelFlatteningTests(object):
                 "Resource1": {
                     'location': "West US",
                     'tags': {"tag1":"value1", "tag2":"value3"},
-                    'pname': "Product1",
-                    'flattened_product_type': "Flat"},
+                    'p_name': "Product1",
+                    'type_properties_type': "Flat"},
                 "Resource2": {
                     'location': "Building 44",
-                    'pname': "Product2",
-                    'flattened_product_type': "Flat"}}
+                    'p_name': "Product2",
+                    'type_properties_type': "Flat"}}
 
         client.put_dictionary(resourceDictionary)
 
@@ -132,8 +132,8 @@ class TestModelFlatteningTests(object):
         # Resource 1
         assert "1" ==  resultResource.dictionaryofresources["Product1"].id
         assert "OK" ==  resultResource.dictionaryofresources["Product1"].provisioning_state_values
-        assert "Product1" ==  resultResource.dictionaryofresources["Product1"].pname
-        assert "Flat" ==  resultResource.dictionaryofresources["Product1"].flattened_product_type
+        assert "Product1" ==  resultResource.dictionaryofresources["Product1"].p_name
+        assert "Flat" ==  resultResource.dictionaryofresources["Product1"].type_properties_type
         assert "Building 44" ==  resultResource.dictionaryofresources["Product1"].location
         assert "Resource1" ==  resultResource.dictionaryofresources["Product1"].name
         assert "Succeeded" ==  resultResource.dictionaryofresources["Product1"].provisioning_state
@@ -153,8 +153,8 @@ class TestModelFlatteningTests(object):
         # Resource 1
         assert "4" ==  resultResource.arrayofresources[0].id
         assert "OK" ==  resultResource.arrayofresources[0].provisioning_state_values
-        assert "Product4" ==  resultResource.arrayofresources[0].pname
-        assert "Flat" ==  resultResource.arrayofresources[0].flattened_product_type
+        assert "Product4" ==  resultResource.arrayofresources[0].p_name
+        assert "Flat" ==  resultResource.arrayofresources[0].type_properties_type
         assert "Building 44" ==  resultResource.arrayofresources[0].location
         assert "Resource4" ==  resultResource.arrayofresources[0].name
         assert "Succeeded" ==  resultResource.arrayofresources[0].provisioning_state
@@ -177,12 +177,12 @@ class TestModelFlatteningTests(object):
                 "Resource1": FlattenedProduct(
                     location = "West US",
                     tags = {"tag1":"value1", "tag2":"value3"},
-                    pname = "Product1",
-                    flattened_product_type = "Flat"),
+                    p_name = "Product1",
+                    type_properties_type = "Flat"),
                 "Resource2": FlattenedProduct(
                     location = "Building 44",
-                    pname = "Product2",
-                    flattened_product_type = "Flat")}
+                    p_name = "Product2",
+                    type_properties_type = "Flat")}
 
         resourceComplexObject = ResourceCollection(
                 dictionaryofresources = resourceDictionary,
@@ -190,16 +190,16 @@ class TestModelFlatteningTests(object):
                     FlattenedProduct(
                         location = "West US",
                         tags = {"tag1":"value1", "tag2":"value3"},
-                        pname = "Product1",
-                        flattened_product_type = "Flat"),
+                        p_name = "Product1",
+                        type_properties_type = "Flat"),
                     FlattenedProduct(
                         location = "East US",
-                        pname = "Product2",
-                        flattened_product_type = "Flat")],
+                        p_name = "Product2",
+                        type_properties_type = "Flat")],
                 productresource = FlattenedProduct(
                     location = "India",
-                    pname = "Azure",
-                    flattened_product_type = "Flat"))
+                    p_name = "Azure",
+                    type_properties_type = "Flat"))
 
         client.put_resource_collection(resourceComplexObject)
 
