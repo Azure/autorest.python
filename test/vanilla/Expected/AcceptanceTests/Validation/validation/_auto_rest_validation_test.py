@@ -22,8 +22,13 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
     :param str base_url: Service URL
     """
 
-    def __init__(self['subscription_id,  # type: str'], base_url=None, **kwargs):
-        # type: (str, str, Optional[str], **Any) -> None
+    def __init__(
+        self,
+        subscription_id,  # type: str
+        base_url=None,  # type: Optional[str]
+        **kwargs
+    ):
+        # type: (...) -> None
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestValidationTestConfiguration(subscription_id, **kwargs)

@@ -25,7 +25,12 @@ class AutoRestHeadExceptionTestService(object):
     :param str base_url: Service URL
     """
 
-    def __init__(self['credential: "TokenCredential"'], base_url: Optional[str] = None, **kwargs) -> None:
+    def __init__(
+        self,
+        credential: "TokenCredential",
+        base_url: Optional[str] = None,
+        **kwargs
+    ) -> None:
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestHeadExceptionTestServiceConfiguration(credential, **kwargs)

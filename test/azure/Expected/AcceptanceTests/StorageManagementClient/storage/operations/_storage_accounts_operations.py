@@ -152,7 +152,7 @@ class StorageAccountsOperations(object):
     _create_initial.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
     @distributed_trace
-    def create(
+    def begin_create(
         self,
         resource_group_name,  # type: str
         account_name,  # type: str

@@ -14,8 +14,7 @@ def __init__(
     {% endfor %}
     {% endif %}
     **kwargs
-){{" -> None" if async_mode else "" }}:
-{% endmacro %}
+){{" -> None" if async_mode else "" }}:{% endmacro %}
 {# actual template starts here #}
 # coding=utf-8
 {{ code_model.options['license_header'] }}
@@ -40,7 +39,7 @@ class {{ code_model.class_name }}Configuration(Configuration):
     """
 
     {{ method_signature()|indent }}
-    {%- if not async_mode %}
+    {% if not async_mode %}
         # type: (...) -> None
     {% endif %}
 {% for parameter in code_model.global_parameters.method|selectattr('required') %}

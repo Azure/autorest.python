@@ -88,7 +88,7 @@ class LROsOperations(object):
     _put200_succeeded_initial.metadata = {'url': '/lro/put/200/succeeded'}
 
     @distributed_trace
-    def put200_succeeded(
+    def begin_put200_succeeded(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -182,7 +182,7 @@ class LROsOperations(object):
     _put200_succeeded_no_state_initial.metadata = {'url': '/lro/put/200/succeeded/nostate'}
 
     @distributed_trace
-    def put200_succeeded_no_state(
+    def begin_put200_succeeded_no_state(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -276,7 +276,7 @@ class LROsOperations(object):
     _put202_retry200_initial.metadata = {'url': '/lro/put/202/retry/200'}
 
     @distributed_trace
-    def put202_retry200(
+    def begin_put202_retry200(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -375,7 +375,7 @@ class LROsOperations(object):
     _put201_creating_succeeded200_initial.metadata = {'url': '/lro/put/201/creating/succeeded/200'}
 
     @distributed_trace
-    def put201_creating_succeeded200(
+    def begin_put201_creating_succeeded200(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -469,7 +469,7 @@ class LROsOperations(object):
     _put200_updating_succeeded204_initial.metadata = {'url': '/lro/put/200/updating/succeeded/200'}
 
     @distributed_trace
-    def put200_updating_succeeded204(
+    def begin_put200_updating_succeeded204(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -568,7 +568,7 @@ class LROsOperations(object):
     _put201_creating_failed200_initial.metadata = {'url': '/lro/put/201/created/failed/200'}
 
     @distributed_trace
-    def put201_creating_failed200(
+    def begin_put201_creating_failed200(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -662,7 +662,7 @@ class LROsOperations(object):
     _put200_acceptedcanceled200_initial.metadata = {'url': '/lro/put/200/accepted/canceled/200'}
 
     @distributed_trace
-    def put200_acceptedcanceled200(
+    def begin_put200_acceptedcanceled200(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -758,7 +758,7 @@ class LROsOperations(object):
     _put_no_header_in_retry_initial.metadata = {'url': '/lro/put/noheader/202/200'}
 
     @distributed_trace
-    def put_no_header_in_retry(
+    def begin_put_no_header_in_retry(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -858,7 +858,7 @@ class LROsOperations(object):
     _put_async_retry_succeeded_initial.metadata = {'url': '/lro/putasync/retry/succeeded'}
 
     @distributed_trace
-    def put_async_retry_succeeded(
+    def begin_put_async_retry_succeeded(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -959,7 +959,7 @@ class LROsOperations(object):
     _put_async_no_retry_succeeded_initial.metadata = {'url': '/lro/putasync/noretry/succeeded'}
 
     @distributed_trace
-    def put_async_no_retry_succeeded(
+    def begin_put_async_no_retry_succeeded(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -1060,7 +1060,7 @@ class LROsOperations(object):
     _put_async_retry_failed_initial.metadata = {'url': '/lro/putasync/retry/failed'}
 
     @distributed_trace
-    def put_async_retry_failed(
+    def begin_put_async_retry_failed(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -1161,7 +1161,7 @@ class LROsOperations(object):
     _put_async_no_retrycanceled_initial.metadata = {'url': '/lro/putasync/noretry/canceled'}
 
     @distributed_trace
-    def put_async_no_retrycanceled(
+    def begin_put_async_no_retrycanceled(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -1260,7 +1260,7 @@ class LROsOperations(object):
     _put_async_no_header_in_retry_initial.metadata = {'url': '/lro/putasync/noheader/201/200'}
 
     @distributed_trace
-    def put_async_no_header_in_retry(
+    def begin_put_async_no_header_in_retry(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -1356,7 +1356,7 @@ class LROsOperations(object):
     _put_non_resource_initial.metadata = {'url': '/lro/putnonresource/202/200'}
 
     @distributed_trace
-    def put_non_resource(
+    def begin_put_non_resource(
         self,
         sku=None,  # type: Optional["Sku"]
         cls=None,
@@ -1450,7 +1450,7 @@ class LROsOperations(object):
     _put_async_non_resource_initial.metadata = {'url': '/lro/putnonresourceasync/202/200'}
 
     @distributed_trace
-    def put_async_non_resource(
+    def begin_put_async_non_resource(
         self,
         sku=None,  # type: Optional["Sku"]
         cls=None,
@@ -1545,7 +1545,7 @@ class LROsOperations(object):
     _put_sub_resource_initial.metadata = {'url': '/lro/putsubresource/202/200'}
 
     @distributed_trace
-    def put_sub_resource(
+    def begin_put_sub_resource(
         self,
         provisioning_state=None,  # type: Optional[str]
         cls=None,
@@ -1640,7 +1640,7 @@ class LROsOperations(object):
     _put_async_sub_resource_initial.metadata = {'url': '/lro/putsubresourceasync/202/200'}
 
     @distributed_trace
-    def put_async_sub_resource(
+    def begin_put_async_sub_resource(
         self,
         provisioning_state=None,  # type: Optional[str]
         cls=None,
@@ -1734,7 +1734,7 @@ class LROsOperations(object):
     _delete_provisioning202_accepted200_succeeded_initial.metadata = {'url': '/lro/delete/provisioning/202/accepted/200/succeeded'}
 
     @distributed_trace
-    def delete_provisioning202_accepted200_succeeded(
+    def begin_delete_provisioning202_accepted200_succeeded(
         self,
         cls=None,
         polling=True,  # type: Optional[bool]
@@ -1827,7 +1827,7 @@ class LROsOperations(object):
     _delete_provisioning202_deleting_failed200_initial.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/failed'}
 
     @distributed_trace
-    def delete_provisioning202_deleting_failed200(
+    def begin_delete_provisioning202_deleting_failed200(
         self,
         cls=None,
         polling=True,  # type: Optional[bool]
@@ -1920,7 +1920,7 @@ class LROsOperations(object):
     _delete_provisioning202_deletingcanceled200_initial.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/canceled'}
 
     @distributed_trace
-    def delete_provisioning202_deletingcanceled200(
+    def begin_delete_provisioning202_deletingcanceled200(
         self,
         cls=None,
         polling=True,  # type: Optional[bool]
@@ -2001,7 +2001,7 @@ class LROsOperations(object):
     _delete204_succeeded_initial.metadata = {'url': '/lro/delete/204/succeeded'}
 
     @distributed_trace
-    def delete204_succeeded(
+    def begin_delete204_succeeded(
         self,
         cls=None,
         polling=True,  # type: Optional[bool]
@@ -2087,7 +2087,7 @@ class LROsOperations(object):
     _delete202_retry200_initial.metadata = {'url': '/lro/delete/202/retry/200'}
 
     @distributed_trace
-    def delete202_retry200(
+    def begin_delete202_retry200(
         self,
         cls=None,
         polling=True,  # type: Optional[bool]
@@ -2176,7 +2176,7 @@ class LROsOperations(object):
     _delete202_no_retry204_initial.metadata = {'url': '/lro/delete/202/noretry/204'}
 
     @distributed_trace
-    def delete202_no_retry204(
+    def begin_delete202_no_retry204(
         self,
         cls=None,
         polling=True,  # type: Optional[bool]
@@ -2258,7 +2258,7 @@ class LROsOperations(object):
     _delete_no_header_in_retry_initial.metadata = {'url': '/lro/delete/noheader'}
 
     @distributed_trace
-    def delete_no_header_in_retry(
+    def begin_delete_no_header_in_retry(
         self,
         cls=None,
         polling=True,  # type: Optional[bool]
@@ -2337,7 +2337,7 @@ class LROsOperations(object):
     _delete_async_no_header_in_retry_initial.metadata = {'url': '/lro/deleteasync/noheader/202/204'}
 
     @distributed_trace
-    def delete_async_no_header_in_retry(
+    def begin_delete_async_no_header_in_retry(
         self,
         cls=None,
         polling=True,  # type: Optional[bool]
@@ -2417,7 +2417,7 @@ class LROsOperations(object):
     _delete_async_retry_succeeded_initial.metadata = {'url': '/lro/deleteasync/retry/succeeded'}
 
     @distributed_trace
-    def delete_async_retry_succeeded(
+    def begin_delete_async_retry_succeeded(
         self,
         cls=None,
         polling=True,  # type: Optional[bool]
@@ -2497,7 +2497,7 @@ class LROsOperations(object):
     _delete_async_no_retry_succeeded_initial.metadata = {'url': '/lro/deleteasync/noretry/succeeded'}
 
     @distributed_trace
-    def delete_async_no_retry_succeeded(
+    def begin_delete_async_no_retry_succeeded(
         self,
         cls=None,
         polling=True,  # type: Optional[bool]
@@ -2577,7 +2577,7 @@ class LROsOperations(object):
     _delete_async_retry_failed_initial.metadata = {'url': '/lro/deleteasync/retry/failed'}
 
     @distributed_trace
-    def delete_async_retry_failed(
+    def begin_delete_async_retry_failed(
         self,
         cls=None,
         polling=True,  # type: Optional[bool]
@@ -2657,7 +2657,7 @@ class LROsOperations(object):
     _delete_async_retrycanceled_initial.metadata = {'url': '/lro/deleteasync/retry/canceled'}
 
     @distributed_trace
-    def delete_async_retrycanceled(
+    def begin_delete_async_retrycanceled(
         self,
         cls=None,
         polling=True,  # type: Optional[bool]
@@ -2741,7 +2741,7 @@ class LROsOperations(object):
     _post200_with_payload_initial.metadata = {'url': '/lro/post/payload/200'}
 
     @distributed_trace
-    def post200_with_payload(
+    def begin_post200_with_payload(
         self,
         cls=None,
         polling=True,  # type: Optional[bool]
@@ -2831,7 +2831,7 @@ class LROsOperations(object):
     _post202_retry200_initial.metadata = {'url': '/lro/post/202/retry/200'}
 
     @distributed_trace
-    def post202_retry200(
+    def begin_post202_retry200(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -2925,7 +2925,7 @@ class LROsOperations(object):
     _post202_no_retry204_initial.metadata = {'url': '/lro/post/202/noretry/204'}
 
     @distributed_trace
-    def post202_no_retry204(
+    def begin_post202_no_retry204(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -3014,7 +3014,7 @@ class LROsOperations(object):
     _post_double_headers_final_location_get_initial.metadata = {'url': '/lro/LROPostDoubleHeadersFinalLocationGet'}
 
     @distributed_trace
-    def post_double_headers_final_location_get(
+    def begin_post_double_headers_final_location_get(
         self,
         cls=None,
         polling=True,  # type: Optional[bool]
@@ -3096,7 +3096,7 @@ class LROsOperations(object):
     _post_double_headers_final_azure_header_get_initial.metadata = {'url': '/lro/LROPostDoubleHeadersFinalAzureHeaderGet'}
 
     @distributed_trace
-    def post_double_headers_final_azure_header_get(
+    def begin_post_double_headers_final_azure_header_get(
         self,
         cls=None,
         polling=True,  # type: Optional[bool]
@@ -3178,7 +3178,7 @@ class LROsOperations(object):
     _post_double_headers_final_azure_header_get_default_initial.metadata = {'url': '/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault'}
 
     @distributed_trace
-    def post_double_headers_final_azure_header_get_default(
+    def begin_post_double_headers_final_azure_header_get_default(
         self,
         cls=None,
         polling=True,  # type: Optional[bool]
@@ -3276,7 +3276,7 @@ class LROsOperations(object):
     _post_async_retry_succeeded_initial.metadata = {'url': '/lro/postasync/retry/succeeded'}
 
     @distributed_trace
-    def post_async_retry_succeeded(
+    def begin_post_async_retry_succeeded(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -3378,7 +3378,7 @@ class LROsOperations(object):
     _post_async_no_retry_succeeded_initial.metadata = {'url': '/lro/postasync/noretry/succeeded'}
 
     @distributed_trace
-    def post_async_no_retry_succeeded(
+    def begin_post_async_no_retry_succeeded(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -3473,7 +3473,7 @@ class LROsOperations(object):
     _post_async_retry_failed_initial.metadata = {'url': '/lro/postasync/retry/failed'}
 
     @distributed_trace
-    def post_async_retry_failed(
+    def begin_post_async_retry_failed(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -3565,7 +3565,7 @@ class LROsOperations(object):
     _post_async_retrycanceled_initial.metadata = {'url': '/lro/postasync/retry/canceled'}
 
     @distributed_trace
-    def post_async_retrycanceled(
+    def begin_post_async_retrycanceled(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,

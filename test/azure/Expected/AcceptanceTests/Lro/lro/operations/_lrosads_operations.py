@@ -91,7 +91,7 @@ class LROSADsOperations(object):
     _put_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/put/400'}
 
     @distributed_trace
-    def put_non_retry400(
+    def begin_put_non_retry400(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -190,7 +190,7 @@ class LROSADsOperations(object):
     _put_non_retry201_creating400_initial.metadata = {'url': '/lro/nonretryerror/put/201/creating/400'}
 
     @distributed_trace
-    def put_non_retry201_creating400(
+    def begin_put_non_retry201_creating400(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -289,7 +289,7 @@ class LROSADsOperations(object):
     _put_non_retry201_creating400_invalid_json_initial.metadata = {'url': '/lro/nonretryerror/put/201/creating/400/invalidjson'}
 
     @distributed_trace
-    def put_non_retry201_creating400_invalid_json(
+    def begin_put_non_retry201_creating400_invalid_json(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -387,7 +387,7 @@ class LROSADsOperations(object):
     _put_async_relative_retry400_initial.metadata = {'url': '/lro/nonretryerror/putasync/retry/400'}
 
     @distributed_trace
-    def put_async_relative_retry400(
+    def begin_put_async_relative_retry400(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -477,7 +477,7 @@ class LROSADsOperations(object):
     _delete_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/delete/400'}
 
     @distributed_trace
-    def delete_non_retry400(
+    def begin_delete_non_retry400(
         self,
         cls=None,
         polling=True,  # type: Optional[bool]
@@ -556,7 +556,7 @@ class LROSADsOperations(object):
     _delete202_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/delete/202/retry/400'}
 
     @distributed_trace
-    def delete202_non_retry400(
+    def begin_delete202_non_retry400(
         self,
         cls=None,
         polling=True,  # type: Optional[bool]
@@ -636,7 +636,7 @@ class LROSADsOperations(object):
     _delete_async_relative_retry400_initial.metadata = {'url': '/lro/nonretryerror/deleteasync/retry/400'}
 
     @distributed_trace
-    def delete_async_relative_retry400(
+    def begin_delete_async_relative_retry400(
         self,
         cls=None,
         polling=True,  # type: Optional[bool]
@@ -723,7 +723,7 @@ class LROSADsOperations(object):
     _post_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/post/400'}
 
     @distributed_trace
-    def post_non_retry400(
+    def begin_post_non_retry400(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -814,7 +814,7 @@ class LROSADsOperations(object):
     _post202_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/post/202/retry/400'}
 
     @distributed_trace
-    def post202_non_retry400(
+    def begin_post202_non_retry400(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -906,7 +906,7 @@ class LROSADsOperations(object):
     _post_async_relative_retry400_initial.metadata = {'url': '/lro/nonretryerror/postasync/retry/400'}
 
     @distributed_trace
-    def post_async_relative_retry400(
+    def begin_post_async_relative_retry400(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -1002,7 +1002,7 @@ class LROSADsOperations(object):
     _put_error201_no_provisioning_state_payload_initial.metadata = {'url': '/lro/error/put/201/noprovisioningstatepayload'}
 
     @distributed_trace
-    def put_error201_no_provisioning_state_payload(
+    def begin_put_error201_no_provisioning_state_payload(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -1100,7 +1100,7 @@ class LROSADsOperations(object):
     _put_async_relative_retry_no_status_initial.metadata = {'url': '/lro/error/putasync/retry/nostatus'}
 
     @distributed_trace
-    def put_async_relative_retry_no_status(
+    def begin_put_async_relative_retry_no_status(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -1202,7 +1202,7 @@ class LROSADsOperations(object):
     _put_async_relative_retry_no_status_payload_initial.metadata = {'url': '/lro/error/putasync/retry/nostatuspayload'}
 
     @distributed_trace
-    def put_async_relative_retry_no_status_payload(
+    def begin_put_async_relative_retry_no_status_payload(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -1288,7 +1288,7 @@ class LROSADsOperations(object):
     _delete204_succeeded_initial.metadata = {'url': '/lro/error/delete/204/nolocation'}
 
     @distributed_trace
-    def delete204_succeeded(
+    def begin_delete204_succeeded(
         self,
         cls=None,
         polling=True,  # type: Optional[bool]
@@ -1368,7 +1368,7 @@ class LROSADsOperations(object):
     _delete_async_relative_retry_no_status_initial.metadata = {'url': '/lro/error/deleteasync/retry/nostatus'}
 
     @distributed_trace
-    def delete_async_relative_retry_no_status(
+    def begin_delete_async_relative_retry_no_status(
         self,
         cls=None,
         polling=True,  # type: Optional[bool]
@@ -1455,7 +1455,7 @@ class LROSADsOperations(object):
     _post202_no_location_initial.metadata = {'url': '/lro/error/post/202/nolocation'}
 
     @distributed_trace
-    def post202_no_location(
+    def begin_post202_no_location(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -1547,7 +1547,7 @@ class LROSADsOperations(object):
     _post_async_relative_retry_no_payload_initial.metadata = {'url': '/lro/error/postasync/retry/nopayload'}
 
     @distributed_trace
-    def post_async_relative_retry_no_payload(
+    def begin_post_async_relative_retry_no_payload(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -1640,7 +1640,7 @@ class LROSADsOperations(object):
     _put200_invalid_json_initial.metadata = {'url': '/lro/error/put/200/invalidjson'}
 
     @distributed_trace
-    def put200_invalid_json(
+    def begin_put200_invalid_json(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -1738,7 +1738,7 @@ class LROSADsOperations(object):
     _put_async_relative_retry_invalid_header_initial.metadata = {'url': '/lro/error/putasync/retry/invalidheader'}
 
     @distributed_trace
-    def put_async_relative_retry_invalid_header(
+    def begin_put_async_relative_retry_invalid_header(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -1840,7 +1840,7 @@ class LROSADsOperations(object):
     _put_async_relative_retry_invalid_json_polling_initial.metadata = {'url': '/lro/error/putasync/retry/invalidjsonpolling'}
 
     @distributed_trace
-    def put_async_relative_retry_invalid_json_polling(
+    def begin_put_async_relative_retry_invalid_json_polling(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -1930,7 +1930,7 @@ class LROSADsOperations(object):
     _delete202_retry_invalid_header_initial.metadata = {'url': '/lro/error/delete/202/retry/invalidheader'}
 
     @distributed_trace
-    def delete202_retry_invalid_header(
+    def begin_delete202_retry_invalid_header(
         self,
         cls=None,
         polling=True,  # type: Optional[bool]
@@ -2010,7 +2010,7 @@ class LROSADsOperations(object):
     _delete_async_relative_retry_invalid_header_initial.metadata = {'url': '/lro/error/deleteasync/retry/invalidheader'}
 
     @distributed_trace
-    def delete_async_relative_retry_invalid_header(
+    def begin_delete_async_relative_retry_invalid_header(
         self,
         cls=None,
         polling=True,  # type: Optional[bool]
@@ -2090,7 +2090,7 @@ class LROSADsOperations(object):
     _delete_async_relative_retry_invalid_json_polling_initial.metadata = {'url': '/lro/error/deleteasync/retry/invalidjsonpolling'}
 
     @distributed_trace
-    def delete_async_relative_retry_invalid_json_polling(
+    def begin_delete_async_relative_retry_invalid_json_polling(
         self,
         cls=None,
         polling=True,  # type: Optional[bool]
@@ -2177,7 +2177,7 @@ class LROSADsOperations(object):
     _post202_retry_invalid_header_initial.metadata = {'url': '/lro/error/post/202/retry/invalidheader'}
 
     @distributed_trace
-    def post202_retry_invalid_header(
+    def begin_post202_retry_invalid_header(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -2269,7 +2269,7 @@ class LROSADsOperations(object):
     _post_async_relative_retry_invalid_header_initial.metadata = {'url': '/lro/error/postasync/retry/invalidheader'}
 
     @distributed_trace
-    def post_async_relative_retry_invalid_header(
+    def begin_post_async_relative_retry_invalid_header(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -2361,7 +2361,7 @@ class LROSADsOperations(object):
     _post_async_relative_retry_invalid_json_polling_initial.metadata = {'url': '/lro/error/postasync/retry/invalidjsonpolling'}
 
     @distributed_trace
-    def post_async_relative_retry_invalid_json_polling(
+    def begin_post_async_relative_retry_invalid_json_polling(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,

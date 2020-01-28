@@ -90,7 +90,7 @@ class LROsCustomHeaderOperations(object):
     _put_async_retry_succeeded_initial.metadata = {'url': '/lro/customheader/putasync/retry/succeeded'}
 
     @distributed_trace
-    def put_async_retry_succeeded(
+    def begin_put_async_retry_succeeded(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -193,7 +193,7 @@ class LROsCustomHeaderOperations(object):
     _put201_creating_succeeded200_initial.metadata = {'url': '/lro/customheader/put/201/creating/succeeded/200'}
 
     @distributed_trace
-    def put201_creating_succeeded200(
+    def begin_put201_creating_succeeded200(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -287,7 +287,7 @@ class LROsCustomHeaderOperations(object):
     _post202_retry200_initial.metadata = {'url': '/lro/customheader/post/202/retry/200'}
 
     @distributed_trace
-    def post202_retry200(
+    def begin_post202_retry200(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -379,7 +379,7 @@ class LROsCustomHeaderOperations(object):
     _post_async_retry_succeeded_initial.metadata = {'url': '/lro/customheader/postasync/retry/succeeded'}
 
     @distributed_trace
-    def post_async_retry_succeeded(
+    def begin_post_async_retry_succeeded(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,

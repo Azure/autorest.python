@@ -39,7 +39,7 @@ class PagingOperations:
         self._config = config
 
     @distributed_trace
-    async def get_pages_partial_url(
+    def get_pages_partial_url(
         self,
         account_name: str,
         *,
@@ -116,7 +116,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    async def get_pages_partial_url_operation(
+    def get_pages_partial_url_operation(
         self,
         account_name: str,
         *,

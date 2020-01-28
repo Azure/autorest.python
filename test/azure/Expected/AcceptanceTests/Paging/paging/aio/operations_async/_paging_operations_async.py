@@ -42,7 +42,7 @@ class PagingOperations:
         self._config = config
 
     @distributed_trace
-    async def get_no_item_name_pages(
+    def get_no_item_name_pages(
         self,
         cls=None,
         **kwargs
@@ -105,7 +105,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    async def get_null_next_link_name_pages(
+    def get_null_next_link_name_pages(
         self,
         cls=None,
         **kwargs
@@ -168,7 +168,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    async def get_single_pages(
+    def get_single_pages(
         self,
         cls=None,
         **kwargs
@@ -231,7 +231,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    async def get_multiple_pages(
+    def get_multiple_pages(
         self,
         client_request_id: Optional[str] = None,
         maxresults: Optional[int] = None,
@@ -310,7 +310,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    async def get_odata_multiple_pages(
+    def get_odata_multiple_pages(
         self,
         client_request_id: Optional[str] = None,
         maxresults: Optional[int] = None,
@@ -389,7 +389,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    async def get_multiple_pages_with_offset(
+    def get_multiple_pages_with_offset(
         self,
         offset: int,
         client_request_id: Optional[str] = None,
@@ -475,7 +475,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    async def get_multiple_pages_retry_first(
+    def get_multiple_pages_retry_first(
         self,
         cls=None,
         **kwargs
@@ -538,7 +538,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    async def get_multiple_pages_retry_second(
+    def get_multiple_pages_retry_second(
         self,
         cls=None,
         **kwargs
@@ -601,7 +601,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    async def get_single_pages_failure(
+    def get_single_pages_failure(
         self,
         cls=None,
         **kwargs
@@ -664,7 +664,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    async def get_multiple_pages_failure(
+    def get_multiple_pages_failure(
         self,
         cls=None,
         **kwargs
@@ -727,7 +727,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    async def get_multiple_pages_failure_uri(
+    def get_multiple_pages_failure_uri(
         self,
         cls=None,
         **kwargs
@@ -790,7 +790,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    async def get_multiple_pages_fragment_next_link(
+    def get_multiple_pages_fragment_next_link(
         self,
         api_version: str,
         tenant: str,
@@ -870,7 +870,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    async def get_multiple_pages_fragment_with_grouping_next_link(
+    def get_multiple_pages_fragment_with_grouping_next_link(
         self,
         api_version: str,
         tenant: str,

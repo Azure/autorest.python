@@ -33,8 +33,15 @@ class AutoRestRequiredOptionalTestService(object):
     :param str base_url: Service URL
     """
 
-    def __init__(self['required_global_path,  # type: str', 'required_global_query,  # type: str', 'optional_global_query=None,  # type: Optional[int]'], base_url=None, **kwargs):
-        # type: (str, str, int, Optional[str], **Any) -> None
+    def __init__(
+        self,
+        required_global_path,  # type: str
+        required_global_query,  # type: str
+        optional_global_query=None,  # type: Optional[int]
+        base_url=None,  # type: Optional[str]
+        **kwargs
+    ):
+        # type: (...) -> None
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestRequiredOptionalTestServiceConfiguration(required_global_path, required_global_query, optional_global_query, **kwargs)

@@ -1004,7 +1004,7 @@ class PagingOperations(object):
     _get_multiple_pages_lro_initial.metadata = {'url': '/paging/multiple/lro'}
 
     @distributed_trace
-    def get_multiple_pages_lro(
+    def begin_get_multiple_pages_lro(
         self,
         client_request_id=None,  # type: Optional[str]
         maxresults=None,  # type: Optional[int]

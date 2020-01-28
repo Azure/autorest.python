@@ -25,7 +25,12 @@ class AutoRestParameterizedCustomHostTestClient(object):
     :type dns_suffix: str
     """
 
-    def __init__(self['subscription_id: str', 'dns_suffix: str'], **kwargs) -> None:
+    def __init__(
+        self,
+        subscription_id: str,
+        dns_suffix: str,
+        **kwargs
+    ) -> None:
         base_url = '{vault}{secret}{dnsSuffix}'
         self._config = AutoRestParameterizedCustomHostTestClientConfiguration(subscription_id, dns_suffix, **kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)

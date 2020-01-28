@@ -4,7 +4,7 @@
 {% set request_as_xml = ", is_xml=False" if "xml" in operation.request_content_type else "" %}
 {% macro method_signature() %}
 {% if async_mode %}
-async def {{ operation.python_name }}(
+def {{ operation.python_name }}(
     self,
     {% for param_signature in operation.parameters.async_method_signature %}
     {{ param_signature }},

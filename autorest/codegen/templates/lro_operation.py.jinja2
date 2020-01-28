@@ -6,7 +6,7 @@
 {% set operation_name = operation.python_name if async_mode else "begin_"+operation.python_name %}
 {% macro method_signature() %}
 {% if async_mode %}
-async def {{ operation.python_name }}(
+async def {{ operation_name }}(
     self,
     {% for param_signature in operation.parameters.async_method_signature %}
     {{ param_signature }},
@@ -19,7 +19,7 @@ async def {{ operation.python_name }}(
     **kwargs
 ){{ keywords.async_return_type_annotation(operation) }}:
 {% else %}
-def {{ operation.python_name }}(
+def {{ operation_name }}(
     self,
     {% for param_signature in operation.parameters.sync_method_signature %}
     {{ param_signature }}

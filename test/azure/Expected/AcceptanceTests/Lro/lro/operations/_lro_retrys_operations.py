@@ -91,7 +91,7 @@ class LRORetrysOperations(object):
     _put201_creating_succeeded200_initial.metadata = {'url': '/lro/retryerror/put/201/creating/succeeded/200'}
 
     @distributed_trace
-    def put201_creating_succeeded200(
+    def begin_put201_creating_succeeded200(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -189,7 +189,7 @@ class LRORetrysOperations(object):
     _put_async_relative_retry_succeeded_initial.metadata = {'url': '/lro/retryerror/putasync/retry/succeeded'}
 
     @distributed_trace
-    def put_async_relative_retry_succeeded(
+    def begin_put_async_relative_retry_succeeded(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -287,7 +287,7 @@ class LRORetrysOperations(object):
     _delete_provisioning202_accepted200_succeeded_initial.metadata = {'url': '/lro/retryerror/delete/provisioning/202/accepted/200/succeeded'}
 
     @distributed_trace
-    def delete_provisioning202_accepted200_succeeded(
+    def begin_delete_provisioning202_accepted200_succeeded(
         self,
         cls=None,
         polling=True,  # type: Optional[bool]
@@ -372,7 +372,7 @@ class LRORetrysOperations(object):
     _delete202_retry200_initial.metadata = {'url': '/lro/retryerror/delete/202/retry/200'}
 
     @distributed_trace
-    def delete202_retry200(
+    def begin_delete202_retry200(
         self,
         cls=None,
         polling=True,  # type: Optional[bool]
@@ -452,7 +452,7 @@ class LRORetrysOperations(object):
     _delete_async_relative_retry_succeeded_initial.metadata = {'url': '/lro/retryerror/deleteasync/retry/succeeded'}
 
     @distributed_trace
-    def delete_async_relative_retry_succeeded(
+    def begin_delete_async_relative_retry_succeeded(
         self,
         cls=None,
         polling=True,  # type: Optional[bool]
@@ -539,7 +539,7 @@ class LRORetrysOperations(object):
     _post202_retry200_initial.metadata = {'url': '/lro/retryerror/post/202/retry/200'}
 
     @distributed_trace
-    def post202_retry200(
+    def begin_post202_retry200(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,
@@ -631,7 +631,7 @@ class LRORetrysOperations(object):
     _post_async_relative_retry_succeeded_initial.metadata = {'url': '/lro/retryerror/postasync/retry/succeeded'}
 
     @distributed_trace
-    def post_async_relative_retry_succeeded(
+    def begin_post_async_relative_retry_succeeded(
         self,
         product=None,  # type: Optional["Product"]
         cls=None,

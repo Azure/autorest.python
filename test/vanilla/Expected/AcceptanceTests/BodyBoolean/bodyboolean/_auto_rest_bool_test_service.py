@@ -22,8 +22,12 @@ class AutoRestBoolTestService(object):
     :param str base_url: Service URL
     """
 
-    def __init__(self[], base_url=None, **kwargs):
-        # type: (Optional[str], **Any) -> None
+    def __init__(
+        self,
+        base_url=None,  # type: Optional[str]
+        **kwargs
+    ):
+        # type: (...) -> None
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestBoolTestServiceConfiguration(**kwargs)
