@@ -90,7 +90,7 @@ class ParameterList(MutableSequence):
 
     @property
     def grouped(self) -> List[Parameter]:
-        return self.get_from_predicate(lambda parameter: parameter.grouped)
+        return self.get_from_predicate(lambda parameter: parameter.grouped_by)
 
     @property
     def constant(self) -> List[Parameter]:
@@ -102,7 +102,7 @@ class ParameterList(MutableSequence):
         """
         return self.get_from_predicate(
             lambda parameter: isinstance(parameter.schema, ConstantSchema)
-            and parameter.location != ParameterLocation.Flattened
+            and not parameter.flattened
         )
 
     @property
@@ -116,7 +116,7 @@ class ParameterList(MutableSequence):
             return not (
                 isinstance(parameter.schema, ConstantSchema)
                 or parameter.implementation != self.implementation
-                or parameter.grouped
+                or parameter.grouped_by
             )
 
         signature_parameters_required = []
