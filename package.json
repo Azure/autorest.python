@@ -34,8 +34,5 @@
     "prepare.py",
     "start.py",
     "venvtools.py"
-  ],
-  "dependencies": {
-    "grouper": "^2.1.0"
-  }
+  ]
 }
