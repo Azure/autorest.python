@@ -89,6 +89,10 @@ class ParameterList(MutableSequence):
         return self.get_from_location(ParameterLocation.Header)
 
     @property
+    def grouped(self) -> List[Parameter]:
+        return self.get_from_predicate(lambda parameter: parameter.grouped)
+
+    @property
     def constant(self) -> List[Parameter]:
         """Return the constants of this parameter list.
 
@@ -112,6 +116,7 @@ class ParameterList(MutableSequence):
             return not (
                 isinstance(parameter.schema, ConstantSchema)
                 or parameter.implementation != self.implementation
+                or parameter.grouped
             )
 
         signature_parameters_required = []
@@ -141,7 +146,7 @@ class ParameterList(MutableSequence):
 
     @property
     def is_flattened(self) -> bool:
-        return len(self.get_from_predicate(lambda parameter: parameter.flattened)) > 0
+        return self.get_from_predicate(lambda parameter: parameter.flattened)
 
     def build_flattened_object(self) -> str:
         if not self.is_flattened:
@@ -150,7 +155,7 @@ class ParameterList(MutableSequence):
             )
 
         parameters = self.get_from_predicate(
-            lambda parameter: parameter.location == ParameterLocation.Flattened
+            lambda parameter: parameter.flattened
             and not isinstance(parameter.schema, ConstantSchema)
         )
         parameter_string = ", ".join(

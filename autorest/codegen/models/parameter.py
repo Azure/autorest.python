@@ -17,7 +17,6 @@ class ParameterLocation(Enum):
     Header = "header"
     Uri = "uri"
     Other = "other"
-    Flattened = "flattened"
 
 
 class ParameterStyle(Enum):
@@ -88,8 +87,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any]) -> "Parameter":
 
-        # Assumes that if there is no protocol, it's flattening parameter
-        http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Flattened})
+        http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Other})
         return cls(
             yaml_data=yaml_data,
             schema=yaml_data.get("schema", None),  # FIXME replace by operation model
