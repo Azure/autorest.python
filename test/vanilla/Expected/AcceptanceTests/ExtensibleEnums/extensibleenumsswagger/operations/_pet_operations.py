@@ -40,8 +40,8 @@ class PetOperations(object):
     def get_by_pet_id(
         self,
         pet_id,  # type: str
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "Pet", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "Pet"
         """MISSING·OPERATION-DESCRIPTION.
@@ -94,8 +94,8 @@ class PetOperations(object):
     def add_pet(
         self,
         pet_param=None,  # type: Optional["Pet"]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "Pet", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "Pet"
         """MISSING·OPERATION-DESCRIPTION.

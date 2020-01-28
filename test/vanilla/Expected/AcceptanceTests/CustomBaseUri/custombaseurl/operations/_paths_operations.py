@@ -38,8 +38,8 @@ class PathsOperations(object):
     def get_empty(
         self,
         account_name,  # type: str
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get a 200 to test a valid base uri.

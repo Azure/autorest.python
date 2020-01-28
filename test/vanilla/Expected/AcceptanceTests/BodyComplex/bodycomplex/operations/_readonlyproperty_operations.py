@@ -39,8 +39,8 @@ class ReadonlypropertyOperations(object):
     @distributed_trace
     def get_valid(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "ReadonlyObj", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "ReadonlyObj"
         """Get complex types that have readonly properties.
@@ -87,8 +87,8 @@ class ReadonlypropertyOperations(object):
     def put_valid(
         self,
         size=None,  # type: Optional[int]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put complex types that have readonly properties.

@@ -39,8 +39,8 @@ class PetOperations(object):
     def get_pet_by_id(
         self,
         pet_id,  # type: str
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "Pet", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "Pet"
         """Gets pets by id..
@@ -100,8 +100,8 @@ class PetOperations(object):
     def do_something(
         self,
         what_action,  # type: str
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "PetAction", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "PetAction"
         """Asks pet to do something.

@@ -40,8 +40,8 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_int(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "IntWrapper", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "IntWrapper"
         """Get complex types with integer properties.
@@ -88,8 +88,8 @@ class PrimitiveOperations(object):
     def put_int(
         self,
         complex_body,  # type: "IntWrapper"
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put complex types with integer properties.
@@ -137,8 +137,8 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_long(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "LongWrapper", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "LongWrapper"
         """Get complex types with long properties.
@@ -185,8 +185,8 @@ class PrimitiveOperations(object):
     def put_long(
         self,
         complex_body,  # type: "LongWrapper"
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put complex types with long properties.
@@ -234,8 +234,8 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_float(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "FloatWrapper", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "FloatWrapper"
         """Get complex types with float properties.
@@ -282,8 +282,8 @@ class PrimitiveOperations(object):
     def put_float(
         self,
         complex_body,  # type: "FloatWrapper"
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put complex types with float properties.
@@ -331,8 +331,8 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_double(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "DoubleWrapper", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "DoubleWrapper"
         """Get complex types with double properties.
@@ -379,8 +379,8 @@ class PrimitiveOperations(object):
     def put_double(
         self,
         complex_body,  # type: "DoubleWrapper"
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put complex types with double properties.
@@ -428,8 +428,8 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_bool(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "BooleanWrapper", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "BooleanWrapper"
         """Get complex types with bool properties.
@@ -476,8 +476,8 @@ class PrimitiveOperations(object):
     def put_bool(
         self,
         complex_body,  # type: "BooleanWrapper"
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put complex types with bool properties.
@@ -525,8 +525,8 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_string(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "StringWrapper", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "StringWrapper"
         """Get complex types with string properties.
@@ -573,8 +573,8 @@ class PrimitiveOperations(object):
     def put_string(
         self,
         complex_body,  # type: "StringWrapper"
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put complex types with string properties.
@@ -622,8 +622,8 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_date(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "DateWrapper", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "DateWrapper"
         """Get complex types with date properties.
@@ -670,8 +670,8 @@ class PrimitiveOperations(object):
     def put_date(
         self,
         complex_body,  # type: "DateWrapper"
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put complex types with date properties.
@@ -719,8 +719,8 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_date_time(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "DatetimeWrapper", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "DatetimeWrapper"
         """Get complex types with datetime properties.
@@ -767,8 +767,8 @@ class PrimitiveOperations(object):
     def put_date_time(
         self,
         complex_body,  # type: "DatetimeWrapper"
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put complex types with datetime properties.
@@ -816,8 +816,8 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_date_time_rfc1123(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "Datetimerfc1123Wrapper", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "Datetimerfc1123Wrapper"
         """Get complex types with datetimeRfc1123 properties.
@@ -864,8 +864,8 @@ class PrimitiveOperations(object):
     def put_date_time_rfc1123(
         self,
         complex_body,  # type: "Datetimerfc1123Wrapper"
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put complex types with datetimeRfc1123 properties.
@@ -913,8 +913,8 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_duration(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "DurationWrapper", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "DurationWrapper"
         """Get complex types with duration properties.
@@ -961,8 +961,8 @@ class PrimitiveOperations(object):
     def put_duration(
         self,
         field=None,  # type: Optional[datetime.timedelta]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put complex types with duration properties.
@@ -1011,8 +1011,8 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_byte(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "ByteWrapper", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "ByteWrapper"
         """Get complex types with byte properties.
@@ -1059,8 +1059,8 @@ class PrimitiveOperations(object):
     def put_byte(
         self,
         field=None,  # type: Optional[bytearray]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put complex types with byte properties.

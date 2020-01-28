@@ -38,8 +38,8 @@ class Datetimerfc1123Operations(object):
     @distributed_trace
     def get_null(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, datetime.datetime, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.datetime
         """Get null datetime value.
@@ -85,8 +85,8 @@ class Datetimerfc1123Operations(object):
     @distributed_trace
     def get_invalid(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, datetime.datetime, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.datetime
         """Get invalid datetime value.
@@ -132,8 +132,8 @@ class Datetimerfc1123Operations(object):
     @distributed_trace
     def get_overflow(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, datetime.datetime, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.datetime
         """Get overflow datetime value.
@@ -179,8 +179,8 @@ class Datetimerfc1123Operations(object):
     @distributed_trace
     def get_underflow(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, datetime.datetime, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.datetime
         """Get underflow datetime value.
@@ -227,8 +227,8 @@ class Datetimerfc1123Operations(object):
     def put_utc_max_date_time(
         self,
         datetime_body,  # type: datetime.datetime
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT.
@@ -276,8 +276,8 @@ class Datetimerfc1123Operations(object):
     @distributed_trace
     def get_utc_lowercase_max_date_time(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, datetime.datetime, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.datetime
         """Get max datetime value fri, 31 dec 9999 23:59:59 gmt.
@@ -323,8 +323,8 @@ class Datetimerfc1123Operations(object):
     @distributed_trace
     def get_utc_uppercase_max_date_time(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, datetime.datetime, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.datetime
         """Get max datetime value FRI, 31 DEC 9999 23:59:59 GMT.
@@ -371,8 +371,8 @@ class Datetimerfc1123Operations(object):
     def put_utc_min_date_time(
         self,
         datetime_body,  # type: datetime.datetime
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
@@ -420,8 +420,8 @@ class Datetimerfc1123Operations(object):
     @distributed_trace
     def get_utc_min_date_time(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, datetime.datetime, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.datetime
         """Get min datetime value Mon, 1 Jan 0001 00:00:00 GMT.

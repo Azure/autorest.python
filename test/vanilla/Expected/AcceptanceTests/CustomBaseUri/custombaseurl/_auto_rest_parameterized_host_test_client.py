@@ -27,7 +27,7 @@ class AutoRestParameterizedHostTestClient(object):
         self,
         host,  # type: str
         base_url=None,  # type: Optional[str]
-        **kwargs
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         base_url = 'http://{accountName}{host}'

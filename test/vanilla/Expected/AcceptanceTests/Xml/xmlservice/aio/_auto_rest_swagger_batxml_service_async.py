@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
+from typing import Any, Optional
 
 from azure.core import AsyncPipelineClient
 from msrest import Deserializer, Serializer
@@ -27,7 +27,7 @@ class AutoRestSwaggerBATXMLService(object):
     def __init__(
         self,
         base_url: Optional[str] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         if not base_url:
             base_url = 'http://localhost:3000'

@@ -6,6 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import Any
+
 from azure.core import AsyncPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -29,7 +31,7 @@ class AutoRestParameterizedCustomHostTestClient(object):
         self,
         subscription_id: str,
         dns_suffix: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         base_url = '{vault}{secret}{dnsSuffix}'
         self._config = AutoRestParameterizedCustomHostTestClientConfiguration(subscription_id, dns_suffix, **kwargs)

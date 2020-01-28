@@ -13,8 +13,8 @@ async def {{ operation.python_name }}(
     {% if operation.parameters.method | first %}
     *,
     {% endif %}
-    cls=None,
-    **kwargs
+    cls: Optional[Callable[[AsyncHttpResponse, {{ keywords.return_type_annotation(operation) }}, Dict[str, Any]], Any]] = None,
+    **kwargs: Any
 ){{ keywords.async_return_type_annotation(operation) }}:
 {% else %}
 def {{ operation.python_name }}(
@@ -22,8 +22,8 @@ def {{ operation.python_name }}(
     {% for param_signature in operation.parameters.sync_method_signature %}
     {{ param_signature }}
     {% endfor %}
-    cls=None,
-    **kwargs
+    cls=None,  # type: Callable[[HttpResponse, {{ keywords.return_type_annotation(operation) }}, Dict[str, Any]], Any]
+    **kwargs  # type: **Any
 ):
 {% endif %}{% endmacro %}
 {% macro return_docstring() %}

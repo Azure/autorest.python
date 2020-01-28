@@ -38,8 +38,8 @@ class BasicOperations(object):
     @distributed_trace
     def get_valid(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "Basic", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "Basic"
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
@@ -86,8 +86,8 @@ class BasicOperations(object):
     def put_valid(
         self,
         complex_body,  # type: "Basic"
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
@@ -137,8 +137,8 @@ class BasicOperations(object):
     @distributed_trace
     def get_invalid(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "Basic", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "Basic"
         """Get a basic complex type that is invalid for the local strong type.
@@ -184,8 +184,8 @@ class BasicOperations(object):
     @distributed_trace
     def get_empty(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "Basic", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "Basic"
         """Get a basic complex type that is empty.
@@ -231,8 +231,8 @@ class BasicOperations(object):
     @distributed_trace
     def get_null(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "Basic", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "Basic"
         """Get a basic complex type whose properties are null.
@@ -278,8 +278,8 @@ class BasicOperations(object):
     @distributed_trace
     def get_not_provided(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "Basic", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "Basic"
         """Get a basic complex type while the server doesn't provide a response payload.

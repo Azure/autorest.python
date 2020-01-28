@@ -39,8 +39,8 @@ class EnumOperations(object):
     @distributed_trace
     def get_not_expandable(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, Union[str, "Colors"], Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> Union[str, "Colors"]
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'..
@@ -87,8 +87,8 @@ class EnumOperations(object):
     def put_not_expandable(
         self,
         string_body,  # type: Union[str, "Colors"]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
@@ -136,8 +136,8 @@ class EnumOperations(object):
     @distributed_trace
     def get_referenced(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, Union[str, "Colors"], Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> Union[str, "Colors"]
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'..
@@ -184,8 +184,8 @@ class EnumOperations(object):
     def put_referenced(
         self,
         enum_string_body,  # type: Union[str, "Colors"]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
@@ -233,8 +233,8 @@ class EnumOperations(object):
     @distributed_trace
     def get_referenced_constant(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "RefColorConstant", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "RefColorConstant"
         """Get value 'green-color' from the constant..
@@ -281,8 +281,8 @@ class EnumOperations(object):
     def put_referenced_constant(
         self,
         field1=None,  # type: Optional[str]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Sends value 'green-color' from a constant.

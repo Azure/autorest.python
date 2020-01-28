@@ -30,7 +30,7 @@ class AutoRestParameterizedCustomHostTestClient(object):
         subscription_id,  # type: str
         dns_suffix,  # type: str
         base_url=None,  # type: Optional[str]
-        **kwargs
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         base_url = '{vault}{secret}{dnsSuffix}'

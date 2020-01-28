@@ -39,7 +39,7 @@ class AutoRestUrlTestService(object):
         global_string_path,  # type: str
         global_string_query=None,  # type: Optional[str]
         base_url=None,  # type: Optional[str]
-        **kwargs
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         if not base_url:

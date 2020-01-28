@@ -30,6 +30,8 @@ class Client:
         file_import.add_from_import(
             "msrest", "Deserializer", ImportType.AZURECORE
         )
+        if async_mode:
+            file_import.add_from_import("typing", "Any", ImportType.STDLIB)
 
         # if code_model.options["credential"]:
         #     file_import.add_from_import("azure.core.credentials", "TokenCredential", ImportType.AZURECORE)

@@ -38,8 +38,8 @@ class FilesOperations(object):
     @distributed_trace
     def get_file(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get file.
@@ -85,8 +85,8 @@ class FilesOperations(object):
     @distributed_trace
     def get_file_large(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get a large file.
@@ -132,8 +132,8 @@ class FilesOperations(object):
     @distributed_trace
     def get_empty_file(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get empty file.

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
+from typing import Any, Optional
 
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
@@ -32,7 +32,7 @@ class AutoRestRequiredOptionalTestServiceConfiguration(Configuration):
         required_global_path: str,
         required_global_query: str,
         optional_global_query: Optional[int] = None,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         if required_global_path is None:
             raise ValueError("Parameter 'required_global_path' must not be None.")
@@ -48,7 +48,7 @@ class AutoRestRequiredOptionalTestServiceConfiguration(Configuration):
 
     def _configure(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)
         self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)

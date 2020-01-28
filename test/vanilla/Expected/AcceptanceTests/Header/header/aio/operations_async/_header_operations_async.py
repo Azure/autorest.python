@@ -6,10 +6,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Optional, Union
+from typing import Any, Callable, Dict, Optional, Union
 import warnings
 
 from azure.core.exceptions import map_error
+from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models
@@ -41,8 +42,8 @@ class HeaderOperations:
         self,
         user_agent: str,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Send a post request with header value "User-Agent": "overwrite".
 
@@ -86,8 +87,8 @@ class HeaderOperations:
     @distributed_trace_async
     async def response_existing_key(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get a response with header value "User-Agent": "overwrite".
 
@@ -133,8 +134,8 @@ class HeaderOperations:
         self,
         content_type: str,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Send a post request with header value "Content-Type": "text/html".
 
@@ -178,8 +179,8 @@ class HeaderOperations:
     @distributed_trace_async
     async def response_protected_key(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get a response with header value "Content-Type": "text/html".
 
@@ -226,8 +227,8 @@ class HeaderOperations:
         scenario: str,
         value: int,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "positive", "value": 1 or "scenario": "negative", "value": -2.
 
@@ -276,8 +277,8 @@ class HeaderOperations:
         self,
         scenario: str,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get a response with header value "value": 1 or -2.
 
@@ -327,8 +328,8 @@ class HeaderOperations:
         scenario: str,
         value: int,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "positive", "value": 105 or "scenario": "negative", "value": -2.
 
@@ -377,8 +378,8 @@ class HeaderOperations:
         self,
         scenario: str,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get a response with header value "value": 105 or -2.
 
@@ -428,8 +429,8 @@ class HeaderOperations:
         scenario: str,
         value: float,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario": "negative", "value": -3.0.
 
@@ -478,8 +479,8 @@ class HeaderOperations:
         self,
         scenario: str,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get a response with header value "value": 0.07 or -3.0.
 
@@ -529,8 +530,8 @@ class HeaderOperations:
         scenario: str,
         value: float,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario": "negative", "value": -3.0.
 
@@ -579,8 +580,8 @@ class HeaderOperations:
         self,
         scenario: str,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get a response with header value "value": 7e120 or -3.0.
 
@@ -630,8 +631,8 @@ class HeaderOperations:
         scenario: str,
         value: bool,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "true", "value": true or "scenario": "false", "value": false.
 
@@ -680,8 +681,8 @@ class HeaderOperations:
         self,
         scenario: str,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get a response with header value "value": true or false.
 
@@ -731,8 +732,8 @@ class HeaderOperations:
         scenario: str,
         value: Optional[str] = None,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "".
 
@@ -782,8 +783,8 @@ class HeaderOperations:
         self,
         scenario: str,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get a response with header values "The quick brown fox jumps over the lazy dog" or null or "".
 
@@ -833,8 +834,8 @@ class HeaderOperations:
         scenario: str,
         value: datetime.date,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01" or "scenario": "min", "value": "0001-01-01".
 
@@ -883,8 +884,8 @@ class HeaderOperations:
         self,
         scenario: str,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get a response with header values "2010-01-01" or "0001-01-01".
 
@@ -934,8 +935,8 @@ class HeaderOperations:
         scenario: str,
         value: datetime.datetime,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or "scenario": "min", "value": "0001-01-01T00:00:00Z".
 
@@ -984,8 +985,8 @@ class HeaderOperations:
         self,
         scenario: str,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z".
 
@@ -1035,8 +1036,8 @@ class HeaderOperations:
         scenario: str,
         value: Optional[datetime.datetime] = None,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56 GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT".
 
@@ -1086,8 +1087,8 @@ class HeaderOperations:
         self,
         scenario: str,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT".
 
@@ -1137,8 +1138,8 @@ class HeaderOperations:
         scenario: str,
         value: datetime.timedelta,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S".
 
@@ -1187,8 +1188,8 @@ class HeaderOperations:
         self,
         scenario: str,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get a response with header values "P123DT22H14M12.011S".
 
@@ -1238,8 +1239,8 @@ class HeaderOperations:
         scenario: str,
         value: bytearray,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩".
 
@@ -1288,8 +1289,8 @@ class HeaderOperations:
         self,
         scenario: str,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get a response with header values "啊齄丂狛狜隣郎隣兀﨩".
 
@@ -1339,8 +1340,8 @@ class HeaderOperations:
         scenario: str,
         value: Optional[Union[str, "GreyscaleColors"]] = None,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario": "null", "value": null.
 
@@ -1390,8 +1391,8 @@ class HeaderOperations:
         self,
         scenario: str,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get a response with header values "GREY" or null.
 
@@ -1438,8 +1439,8 @@ class HeaderOperations:
     @distributed_trace_async
     async def custom_request_id(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 

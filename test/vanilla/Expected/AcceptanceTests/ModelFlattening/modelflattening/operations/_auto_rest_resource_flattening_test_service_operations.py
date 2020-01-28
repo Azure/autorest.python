@@ -20,8 +20,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def put_array(
         self,
         resource_array=None,  # type: Optional[List["Resource"]]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put External Resource as an Array.
@@ -71,8 +71,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def get_array(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, List["FlattenedProduct"], Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> List["FlattenedProduct"]
         """Get External Resource as an Array.
@@ -118,8 +118,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def put_wrapped_array(
         self,
         resource_array=None,  # type: Optional[List["WrappedProduct"]]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """No need to have a route in Express server for this operation. Used to verify the type flattened is not removed if it's referenced in an array.
@@ -169,8 +169,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def get_wrapped_array(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, List["ProductWrapper"], Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> List["ProductWrapper"]
         """No need to have a route in Express server for this operation. Used to verify the type flattened is not removed if it's referenced in an array.
@@ -216,8 +216,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def put_dictionary(
         self,
         resource_dictionary=None,  # type: Optional[Dict[str, "FlattenedProduct"]]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put External Resource as a Dictionary.
@@ -267,8 +267,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def get_dictionary(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, Dict[str, "FlattenedProduct"], Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, "FlattenedProduct"]
         """Get External Resource as a Dictionary.
@@ -314,8 +314,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def put_resource_collection(
         self,
         resource_complex_object=None,  # type: Optional["ResourceCollection"]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put External Resource as a ResourceCollection.
@@ -365,8 +365,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def get_resource_collection(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "ResourceCollection", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "ResourceCollection"
         """Get External Resource as a ResourceCollection.
@@ -412,8 +412,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def put_simple_product(
         self,
         simple_body_product=None,  # type: Optional["SimpleProduct"]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "SimpleProduct", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "SimpleProduct"
         """Put Simple Product with client flattening true on the model.
@@ -469,8 +469,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         self,
         max_product_display_name=None,  # type: Optional[str]
         odatavalue=None,  # type: Optional[str]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "SimpleProduct", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "SimpleProduct"
         """Put Flattened Simple Product with client flattening true on the parameter.
@@ -530,8 +530,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         name,  # type: str
         max_product_display_name=None,  # type: Optional[str]
         odatavalue=None,  # type: Optional[str]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "SimpleProduct", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "SimpleProduct"
         """Put Simple Product with client flattening true on the model.

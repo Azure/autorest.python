@@ -39,7 +39,7 @@ class AutoRestRequiredOptionalTestService(object):
         required_global_query,  # type: str
         optional_global_query=None,  # type: Optional[int]
         base_url=None,  # type: Optional[str]
-        **kwargs
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         if not base_url:

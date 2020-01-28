@@ -23,7 +23,7 @@ class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServic
     def __init__(
         self,
         base_url=None,  # type: Optional[str]
-        **kwargs
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         if not base_url:

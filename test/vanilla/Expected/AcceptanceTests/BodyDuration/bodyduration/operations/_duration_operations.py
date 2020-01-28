@@ -38,8 +38,8 @@ class DurationOperations(object):
     @distributed_trace
     def get_null(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, datetime.timedelta, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.timedelta
         """Get null duration value.
@@ -86,8 +86,8 @@ class DurationOperations(object):
     def put_positive_duration(
         self,
         duration_body,  # type: datetime.timedelta
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put a positive duration value.
@@ -135,8 +135,8 @@ class DurationOperations(object):
     @distributed_trace
     def get_positive_duration(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, datetime.timedelta, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.timedelta
         """Get a positive duration value.
@@ -182,8 +182,8 @@ class DurationOperations(object):
     @distributed_trace
     def get_invalid(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, datetime.timedelta, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.timedelta
         """Get an invalid duration value.

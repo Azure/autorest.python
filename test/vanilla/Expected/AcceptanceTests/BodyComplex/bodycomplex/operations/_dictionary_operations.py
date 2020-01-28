@@ -39,8 +39,8 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_valid(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "DictionaryWrapper", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "DictionaryWrapper"
         """Get complex types with dictionary property.
@@ -87,8 +87,8 @@ class DictionaryOperations(object):
     def put_valid(
         self,
         default_program=None,  # type: Optional[Dict[str, str]]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put complex types with dictionary property.
@@ -137,8 +137,8 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_empty(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "DictionaryWrapper", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "DictionaryWrapper"
         """Get complex types with dictionary property which is empty.
@@ -185,8 +185,8 @@ class DictionaryOperations(object):
     def put_empty(
         self,
         default_program=None,  # type: Optional[Dict[str, str]]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put complex types with dictionary property which is empty.
@@ -235,8 +235,8 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_null(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "DictionaryWrapper", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "DictionaryWrapper"
         """Get complex types with dictionary property which is null.
@@ -282,8 +282,8 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_not_provided(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "DictionaryWrapper", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "DictionaryWrapper"
         """Get complex types with dictionary property while server doesn't provide a response payload.

@@ -42,8 +42,8 @@ class PathsOperations(object):
         secret,  # type: str
         key_name,  # type: str
         key_version=None,  # type: Optional[str]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get a 200 to test a valid base uri.

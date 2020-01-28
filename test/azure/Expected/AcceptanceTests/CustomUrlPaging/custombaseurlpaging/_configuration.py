@@ -6,6 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import Any
+
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
@@ -27,7 +29,7 @@ class AutoRestParameterizedHostTestPagingClientConfiguration(Configuration):
         self,
         credential,  # type: "TokenCredential"
         host,  # type: str
-        **kwargs
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         if credential is None:
@@ -44,7 +46,7 @@ class AutoRestParameterizedHostTestPagingClientConfiguration(Configuration):
 
     def _configure(
         self,
-        **kwargs
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)

@@ -28,7 +28,7 @@ class AutoRestPagingTestService(object):
         self,
         credential,  # type: "TokenCredential"
         base_url=None,  # type: Optional[str]
-        **kwargs
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         if not base_url:

@@ -6,6 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import Any
+
 from azure.mgmt.core import AsyncARMPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -29,7 +31,7 @@ class AutoRestParameterizedHostTestPagingClient(object):
         self,
         credential: "TokenCredential",
         host: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         base_url = 'http://{accountName}{host}'
         self._config = AutoRestParameterizedHostTestPagingClientConfiguration(credential, host, **kwargs)

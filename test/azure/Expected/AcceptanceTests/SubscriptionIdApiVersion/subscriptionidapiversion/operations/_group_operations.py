@@ -39,8 +39,8 @@ class GroupOperations(object):
     def get_sample_resource_group(
         self,
         resource_group_name,  # type: str
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "SampleResourceGroup", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "SampleResourceGroup"
         """Provides a resouce group with name 'testgroup101' and location 'West US'..

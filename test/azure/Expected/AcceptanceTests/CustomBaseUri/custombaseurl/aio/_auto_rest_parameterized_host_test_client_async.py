@@ -6,6 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import Any
+
 from azure.core import AsyncPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -26,7 +28,7 @@ class AutoRestParameterizedHostTestClient(object):
     def __init__(
         self,
         host: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         base_url = 'http://{accountName}{host}'
         self._config = AutoRestParameterizedHostTestClientConfiguration(host, **kwargs)

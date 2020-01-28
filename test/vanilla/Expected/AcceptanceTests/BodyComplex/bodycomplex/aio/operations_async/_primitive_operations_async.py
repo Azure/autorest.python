@@ -6,10 +6,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Optional
+from typing import Any, Callable, Dict, Optional
 import warnings
 
 from azure.core.exceptions import map_error
+from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.tracing.decorator_async import distributed_trace_async
 from msrest.serialization import Model
 
@@ -40,8 +41,8 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_int(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, "IntWrapper", Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> "IntWrapper":
         """Get complex types with integer properties.
 
@@ -88,8 +89,8 @@ class PrimitiveOperations:
         self,
         complex_body: "IntWrapper",
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Put complex types with integer properties.
 
@@ -136,8 +137,8 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_long(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, "LongWrapper", Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> "LongWrapper":
         """Get complex types with long properties.
 
@@ -184,8 +185,8 @@ class PrimitiveOperations:
         self,
         complex_body: "LongWrapper",
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Put complex types with long properties.
 
@@ -232,8 +233,8 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_float(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, "FloatWrapper", Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> "FloatWrapper":
         """Get complex types with float properties.
 
@@ -280,8 +281,8 @@ class PrimitiveOperations:
         self,
         complex_body: "FloatWrapper",
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Put complex types with float properties.
 
@@ -328,8 +329,8 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_double(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, "DoubleWrapper", Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> "DoubleWrapper":
         """Get complex types with double properties.
 
@@ -376,8 +377,8 @@ class PrimitiveOperations:
         self,
         complex_body: "DoubleWrapper",
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Put complex types with double properties.
 
@@ -424,8 +425,8 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_bool(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, "BooleanWrapper", Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> "BooleanWrapper":
         """Get complex types with bool properties.
 
@@ -472,8 +473,8 @@ class PrimitiveOperations:
         self,
         complex_body: "BooleanWrapper",
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Put complex types with bool properties.
 
@@ -520,8 +521,8 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_string(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, "StringWrapper", Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> "StringWrapper":
         """Get complex types with string properties.
 
@@ -568,8 +569,8 @@ class PrimitiveOperations:
         self,
         complex_body: "StringWrapper",
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Put complex types with string properties.
 
@@ -616,8 +617,8 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_date(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, "DateWrapper", Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> "DateWrapper":
         """Get complex types with date properties.
 
@@ -664,8 +665,8 @@ class PrimitiveOperations:
         self,
         complex_body: "DateWrapper",
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Put complex types with date properties.
 
@@ -712,8 +713,8 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_date_time(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, "DatetimeWrapper", Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> "DatetimeWrapper":
         """Get complex types with datetime properties.
 
@@ -760,8 +761,8 @@ class PrimitiveOperations:
         self,
         complex_body: "DatetimeWrapper",
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Put complex types with datetime properties.
 
@@ -808,8 +809,8 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_date_time_rfc1123(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, "Datetimerfc1123Wrapper", Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> "Datetimerfc1123Wrapper":
         """Get complex types with datetimeRfc1123 properties.
 
@@ -856,8 +857,8 @@ class PrimitiveOperations:
         self,
         complex_body: "Datetimerfc1123Wrapper",
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Put complex types with datetimeRfc1123 properties.
 
@@ -904,8 +905,8 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_duration(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, "DurationWrapper", Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> "DurationWrapper":
         """Get complex types with duration properties.
 
@@ -952,8 +953,8 @@ class PrimitiveOperations:
         self,
         field: Optional[datetime.timedelta] = None,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Put complex types with duration properties.
 
@@ -1001,8 +1002,8 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_byte(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, "ByteWrapper", Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> "ByteWrapper":
         """Get complex types with byte properties.
 
@@ -1049,8 +1050,8 @@ class PrimitiveOperations:
         self,
         field: Optional[bytearray] = None,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Put complex types with byte properties.
 

@@ -65,6 +65,7 @@ class GeneralSerializer:
         file_import = FileImport()
         file_import.add_from_import("azure.core.configuration", "Configuration", ImportType.AZURECORE)
         file_import.add_from_import("azure.core.pipeline", "policies", ImportType.AZURECORE)
+        file_import.add_from_import("typing", "Any", ImportType.STDLIB)
         if self.code_model.options['package_version']:
             file_import.add_from_import(".._version" if async_mode else "._version", "VERSION", ImportType.LOCAL)
         if any(not gp.required for gp in self.code_model.global_parameters):

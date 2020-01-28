@@ -39,8 +39,8 @@ class UsageOperations(object):
     @distributed_trace
     def list(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "UsageListResult", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "UsageListResult"
         """Gets the current usage count and the limit for the resources under the subscription..

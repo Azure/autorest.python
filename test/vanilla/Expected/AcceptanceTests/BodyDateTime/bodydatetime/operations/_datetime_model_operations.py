@@ -38,8 +38,8 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_null(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, datetime.datetime, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.datetime
         """Get null datetime value.
@@ -85,8 +85,8 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_invalid(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, datetime.datetime, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.datetime
         """Get invalid datetime value.
@@ -132,8 +132,8 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_overflow(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, datetime.datetime, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.datetime
         """Get overflow datetime value.
@@ -179,8 +179,8 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_underflow(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, datetime.datetime, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.datetime
         """Get underflow datetime value.
@@ -227,8 +227,8 @@ class DatetimeOperations(object):
     def put_utc_max_date_time(
         self,
         datetime_body,  # type: datetime.datetime
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put max datetime value 9999-12-31T23:59:59.999Z.
@@ -277,8 +277,8 @@ class DatetimeOperations(object):
     def put_utc_max_date_time7_digits(
         self,
         datetime_body,  # type: datetime.datetime
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put max datetime value 9999-12-31T23:59:59.9999999Z.
@@ -326,8 +326,8 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_utc_lowercase_max_date_time(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, datetime.datetime, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.datetime
         """Get max datetime value 9999-12-31t23:59:59.999z.
@@ -373,8 +373,8 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_utc_uppercase_max_date_time(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, datetime.datetime, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.datetime
         """Get max datetime value 9999-12-31T23:59:59.999Z.
@@ -420,8 +420,8 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_utc_uppercase_max_date_time7_digits(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, datetime.datetime, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.datetime
         """Get max datetime value 9999-12-31T23:59:59.9999999Z.
@@ -468,8 +468,8 @@ class DatetimeOperations(object):
     def put_local_positive_offset_max_date_time(
         self,
         datetime_body,  # type: datetime.datetime
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999+14:00.
@@ -517,8 +517,8 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_local_positive_offset_lowercase_max_date_time(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, datetime.datetime, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.datetime
         """Get max datetime value with positive num offset 9999-12-31t23:59:59.999+14:00.
@@ -564,8 +564,8 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_local_positive_offset_uppercase_max_date_time(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, datetime.datetime, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.datetime
         """Get max datetime value with positive num offset 9999-12-31T23:59:59.999+14:00.
@@ -612,8 +612,8 @@ class DatetimeOperations(object):
     def put_local_negative_offset_max_date_time(
         self,
         datetime_body,  # type: datetime.datetime
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999-14:00.
@@ -661,8 +661,8 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_local_negative_offset_uppercase_max_date_time(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, datetime.datetime, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.datetime
         """Get max datetime value with positive num offset 9999-12-31T23:59:59.999-14:00.
@@ -708,8 +708,8 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_local_negative_offset_lowercase_max_date_time(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, datetime.datetime, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.datetime
         """Get max datetime value with positive num offset 9999-12-31t23:59:59.999-14:00.
@@ -756,8 +756,8 @@ class DatetimeOperations(object):
     def put_utc_min_date_time(
         self,
         datetime_body,  # type: datetime.datetime
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put min datetime value 0001-01-01T00:00:00Z.
@@ -805,8 +805,8 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_utc_min_date_time(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, datetime.datetime, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.datetime
         """Get min datetime value 0001-01-01T00:00:00Z.
@@ -853,8 +853,8 @@ class DatetimeOperations(object):
     def put_local_positive_offset_min_date_time(
         self,
         datetime_body,  # type: datetime.datetime
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put min datetime value 0001-01-01T00:00:00+14:00.
@@ -902,8 +902,8 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_local_positive_offset_min_date_time(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, datetime.datetime, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.datetime
         """Get min datetime value 0001-01-01T00:00:00+14:00.
@@ -950,8 +950,8 @@ class DatetimeOperations(object):
     def put_local_negative_offset_min_date_time(
         self,
         datetime_body,  # type: datetime.datetime
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put min datetime value 0001-01-01T00:00:00-14:00.
@@ -999,8 +999,8 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_local_negative_offset_min_date_time(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, datetime.datetime, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.datetime
         """Get min datetime value 0001-01-01T00:00:00-14:00.

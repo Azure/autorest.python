@@ -199,6 +199,13 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         if len([r for r in self.responses if r.has_body]) > 1:
             file_import.add_from_import("typing", "Union", ImportType.STDLIB)
 
+        if async_mode:
+            file_import.add_from_import("typing", "Callable", ImportType.STDLIB)
+            file_import.add_from_import("typing", "Optional", ImportType.STDLIB)
+            file_import.add_from_import("typing", "Dict", ImportType.STDLIB)
+            file_import.add_from_import("typing", "Any", ImportType.STDLIB)
+            file_import.add_from_import("azure.core.pipeline.transport", "AsyncHttpResponse", ImportType.AZURECORE)
+
         # Deprecation
         # FIXME: Replace with "the YAML contains deprecated:true"
         if True:  # pylint: disable=using-constant-test

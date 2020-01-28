@@ -38,8 +38,8 @@ class FlattencomplexOperations(object):
     @distributed_trace
     def get_valid(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "MyBaseType", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "MyBaseType"
         """MISSING·OPERATION-DESCRIPTION.

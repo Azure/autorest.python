@@ -39,8 +39,8 @@ class QueriesOperations(object):
     @distributed_trace
     def get_boolean_true(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get true Boolean value on path.
@@ -84,8 +84,8 @@ class QueriesOperations(object):
     @distributed_trace
     def get_boolean_false(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get false Boolean value on path.
@@ -130,8 +130,8 @@ class QueriesOperations(object):
     def get_boolean_null(
         self,
         bool_query=None,  # type: Optional[bool]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get null Boolean value on query (query string should be absent).
@@ -177,8 +177,8 @@ class QueriesOperations(object):
     @distributed_trace
     def get_int_one_million(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get '1000000' integer value.
@@ -222,8 +222,8 @@ class QueriesOperations(object):
     @distributed_trace
     def get_int_negative_one_million(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get '-1000000' integer value.
@@ -268,8 +268,8 @@ class QueriesOperations(object):
     def get_int_null(
         self,
         int_query=None,  # type: Optional[int]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get null integer value (no query parameter).
@@ -315,8 +315,8 @@ class QueriesOperations(object):
     @distributed_trace
     def get_ten_billion(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get '10000000000' 64 bit integer value.
@@ -360,8 +360,8 @@ class QueriesOperations(object):
     @distributed_trace
     def get_negative_ten_billion(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get '-10000000000' 64 bit integer value.
@@ -406,8 +406,8 @@ class QueriesOperations(object):
     def get_long_null(
         self,
         long_query=None,  # type: Optional[int]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get 'null 64 bit integer value (no query param in uri).
@@ -453,8 +453,8 @@ class QueriesOperations(object):
     @distributed_trace
     def float_scientific_positive(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get '1.034E+20' numeric value.
@@ -498,8 +498,8 @@ class QueriesOperations(object):
     @distributed_trace
     def float_scientific_negative(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get '-1.034E-20' numeric value.
@@ -544,8 +544,8 @@ class QueriesOperations(object):
     def float_null(
         self,
         float_query=None,  # type: Optional[float]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get null numeric value (no query parameter).
@@ -591,8 +591,8 @@ class QueriesOperations(object):
     @distributed_trace
     def double_decimal_positive(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get '9999999.999' numeric value.
@@ -636,8 +636,8 @@ class QueriesOperations(object):
     @distributed_trace
     def double_decimal_negative(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get '-9999999.999' numeric value.
@@ -682,8 +682,8 @@ class QueriesOperations(object):
     def double_null(
         self,
         double_query=None,  # type: Optional[float]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get null numeric value (no query parameter).
@@ -729,8 +729,8 @@ class QueriesOperations(object):
     @distributed_trace
     def string_unicode(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
@@ -774,8 +774,8 @@ class QueriesOperations(object):
     @distributed_trace
     def string_url_encoded(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get 'begin!*'();:@ &=+$,/?#[]end.
@@ -819,8 +819,8 @@ class QueriesOperations(object):
     @distributed_trace
     def string_empty(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get ''.
@@ -865,8 +865,8 @@ class QueriesOperations(object):
     def string_null(
         self,
         string_query=None,  # type: Optional[str]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get null (no query parameter in url).
@@ -913,8 +913,8 @@ class QueriesOperations(object):
     def enum_valid(
         self,
         enum_query=None,  # type: Optional[Union[str, "UriColor"]]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get using uri with query parameter 'green color'.
@@ -961,8 +961,8 @@ class QueriesOperations(object):
     def enum_null(
         self,
         enum_query=None,  # type: Optional[Union[str, "UriColor"]]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get null (no query parameter in url).
@@ -1009,8 +1009,8 @@ class QueriesOperations(object):
     def byte_multi_byte(
         self,
         byte_query=None,  # type: Optional[bytearray]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
@@ -1056,8 +1056,8 @@ class QueriesOperations(object):
     @distributed_trace
     def byte_empty(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get '' as byte array.
@@ -1102,8 +1102,8 @@ class QueriesOperations(object):
     def byte_null(
         self,
         byte_query=None,  # type: Optional[bytearray]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get null as byte array (no query parameters in uri).
@@ -1149,8 +1149,8 @@ class QueriesOperations(object):
     @distributed_trace
     def date_valid(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get '2012-01-01' as date.
@@ -1195,8 +1195,8 @@ class QueriesOperations(object):
     def date_null(
         self,
         date_query=None,  # type: Optional[datetime.date]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get null as date - this should result in no query parameters in uri.
@@ -1242,8 +1242,8 @@ class QueriesOperations(object):
     @distributed_trace
     def date_time_valid(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get '2012-01-01T01:01:01Z' as date-time.
@@ -1288,8 +1288,8 @@ class QueriesOperations(object):
     def date_time_null(
         self,
         date_time_query=None,  # type: Optional[datetime.datetime]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get null as date-time, should result in no query parameters in uri.
@@ -1336,8 +1336,8 @@ class QueriesOperations(object):
     def array_string_csv_valid(
         self,
         array_query=None,  # type: Optional[List[str]]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
@@ -1384,8 +1384,8 @@ class QueriesOperations(object):
     def array_string_csv_null(
         self,
         array_query=None,  # type: Optional[List[str]]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get a null array of string using the csv-array format.
@@ -1432,8 +1432,8 @@ class QueriesOperations(object):
     def array_string_csv_empty(
         self,
         array_query=None,  # type: Optional[List[str]]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get an empty array [] of string using the csv-array format.
@@ -1480,8 +1480,8 @@ class QueriesOperations(object):
     def array_string_ssv_valid(
         self,
         array_query=None,  # type: Optional[List[str]]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format.
@@ -1528,8 +1528,8 @@ class QueriesOperations(object):
     def array_string_tsv_valid(
         self,
         array_query=None,  # type: Optional[List[str]]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format.
@@ -1576,8 +1576,8 @@ class QueriesOperations(object):
     def array_string_pipes_valid(
         self,
         array_query=None,  # type: Optional[List[str]]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format.

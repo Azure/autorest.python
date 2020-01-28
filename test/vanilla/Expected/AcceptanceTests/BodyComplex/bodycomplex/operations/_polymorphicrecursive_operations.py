@@ -38,8 +38,8 @@ class PolymorphicrecursiveOperations(object):
     @distributed_trace
     def get_valid(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "Fish", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "Fish"
         """Get complex types that are polymorphic and have recursive references.
@@ -86,8 +86,8 @@ class PolymorphicrecursiveOperations(object):
     def put_valid(
         self,
         complex_body,  # type: "Fish"
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put complex types that are polymorphic and have recursive references.

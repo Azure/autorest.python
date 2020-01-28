@@ -39,8 +39,8 @@ class PetsOperations(object):
     def create_ap_true(
         self,
         create_parameters,  # type: "PetAPTrue"
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "PetAPTrue", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "PetAPTrue"
         """Create a Pet which contains more properties than what is defined..
@@ -93,8 +93,8 @@ class PetsOperations(object):
     def create_cat_ap_true(
         self,
         create_parameters,  # type: "CatAPTrue"
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "CatAPTrue", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "CatAPTrue"
         """Create a CatAPTrue which contains more properties than what is defined..
@@ -147,8 +147,8 @@ class PetsOperations(object):
     def create_ap_object(
         self,
         create_parameters,  # type: "PetAPObject"
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "PetAPObject", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "PetAPObject"
         """Create a Pet which contains more properties than what is defined..
@@ -201,8 +201,8 @@ class PetsOperations(object):
     def create_ap_string(
         self,
         create_parameters,  # type: "PetAPString"
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "PetAPString", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "PetAPString"
         """Create a Pet which contains more properties than what is defined..
@@ -255,8 +255,8 @@ class PetsOperations(object):
     def create_ap_in_properties(
         self,
         create_parameters,  # type: "PetAPInProperties"
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "PetAPInProperties", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "PetAPInProperties"
         """Create a Pet which contains more properties than what is defined..
@@ -309,8 +309,8 @@ class PetsOperations(object):
     def create_ap_in_properties_with_ap_string(
         self,
         create_parameters,  # type: "PetAPInPropertiesWithAPString"
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "PetAPInPropertiesWithAPString", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "PetAPInPropertiesWithAPString"
         """Create a Pet which contains more properties than what is defined..

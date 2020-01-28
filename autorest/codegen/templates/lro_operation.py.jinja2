@@ -24,9 +24,9 @@ def {{ operation_name }}(
     {% for param_signature in operation.parameters.sync_method_signature %}
     {{ param_signature }}
     {% endfor %}
-    cls=None,
+    cls=None,  # type: Callable[[HTTPResponse, {{ keywords.return_type_annotation(operation) }}, Dict[str, Any]], Any]
     polling=True,  # type: Optional[bool]
-    **kwargs
+    **kwargs  # type: **Any
 ):
 {% endif %}{% endmacro %}
 {% macro return_docstring() %}

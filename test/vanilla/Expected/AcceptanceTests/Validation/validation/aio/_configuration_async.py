@@ -6,6 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import Any
+
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
@@ -24,7 +26,7 @@ class AutoRestValidationTestConfiguration(Configuration):
     def __init__(
         self,
         subscription_id: str,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         if subscription_id is None:
             raise ValueError("Parameter 'subscription_id' must not be None.")
@@ -37,7 +39,7 @@ class AutoRestValidationTestConfiguration(Configuration):
 
     def _configure(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)
         self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)

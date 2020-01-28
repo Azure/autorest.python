@@ -39,8 +39,8 @@ class ImplicitOperations(object):
     def get_required_path(
         self,
         path_parameter,  # type: str
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Test implicitly required path parameter.
@@ -89,8 +89,8 @@ class ImplicitOperations(object):
     def put_optional_query(
         self,
         query_parameter=None,  # type: Optional[str]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Test implicitly optional query parameter.
@@ -137,8 +137,8 @@ class ImplicitOperations(object):
     def put_optional_header(
         self,
         query_parameter=None,  # type: Optional[str]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Test implicitly optional header parameter.
@@ -185,8 +185,8 @@ class ImplicitOperations(object):
     def put_optional_body(
         self,
         body_parameter=None,  # type: Optional[str]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Test implicitly optional body parameter.
@@ -237,8 +237,8 @@ class ImplicitOperations(object):
     @distributed_trace
     def get_required_global_path(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Test implicitly required path parameter.
@@ -284,8 +284,8 @@ class ImplicitOperations(object):
     @distributed_trace
     def get_required_global_query(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Test implicitly required query parameter.
@@ -328,8 +328,8 @@ class ImplicitOperations(object):
     @distributed_trace
     def get_optional_global_query(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Test implicitly optional query parameter.

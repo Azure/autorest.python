@@ -26,7 +26,7 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
         self,
         subscription_id,  # type: str
         base_url=None,  # type: Optional[str]
-        **kwargs
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         if not base_url:

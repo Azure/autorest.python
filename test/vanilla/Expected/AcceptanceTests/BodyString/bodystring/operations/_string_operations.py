@@ -38,8 +38,8 @@ class StringOperations(object):
     @distributed_trace
     def get_null(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, str, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> str
         """Get null string value value.
@@ -85,8 +85,8 @@ class StringOperations(object):
     @distributed_trace
     def put_null(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Set string value null.
@@ -136,8 +136,8 @@ class StringOperations(object):
     @distributed_trace
     def get_empty(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, str, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> str
         """Get empty string value value ''.
@@ -183,8 +183,8 @@ class StringOperations(object):
     @distributed_trace
     def put_empty(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Set string value empty ''.
@@ -231,8 +231,8 @@ class StringOperations(object):
     @distributed_trace
     def get_mbcs(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, str, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> str
         """Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
@@ -278,8 +278,8 @@ class StringOperations(object):
     @distributed_trace
     def put_mbcs(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
@@ -326,8 +326,8 @@ class StringOperations(object):
     @distributed_trace
     def get_whitespace(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, str, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> str
         """Get string value with leading and trailing whitespace ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
@@ -373,8 +373,8 @@ class StringOperations(object):
     @distributed_trace
     def put_whitespace(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Set String value with leading and trailing whitespace ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
@@ -421,8 +421,8 @@ class StringOperations(object):
     @distributed_trace
     def get_not_provided(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, str, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> str
         """Get String value when no string value is sent in response payload.
@@ -468,8 +468,8 @@ class StringOperations(object):
     @distributed_trace
     def get_base64_encoded(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, bytes, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> bytes
         """Get value that is base64 encoded.
@@ -515,8 +515,8 @@ class StringOperations(object):
     @distributed_trace
     def get_base64_url_encoded(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, bytes, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> bytes
         """Get value that is base64url encoded.
@@ -563,8 +563,8 @@ class StringOperations(object):
     def put_base64_url_encoded(
         self,
         string_body,  # type: bytes
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put value that is base64url encoded.
@@ -612,8 +612,8 @@ class StringOperations(object):
     @distributed_trace
     def get_null_base64_url_encoded(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, bytes, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> bytes
         """Get null value that is expected to be base64url encoded.

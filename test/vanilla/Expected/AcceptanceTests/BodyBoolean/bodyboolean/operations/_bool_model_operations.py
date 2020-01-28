@@ -37,8 +37,8 @@ class BoolOperations(object):
     @distributed_trace
     def get_true(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, bool, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> bool
         """Get true Boolean value.
@@ -84,8 +84,8 @@ class BoolOperations(object):
     @distributed_trace
     def put_true(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Set Boolean value true.
@@ -132,8 +132,8 @@ class BoolOperations(object):
     @distributed_trace
     def get_false(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, bool, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> bool
         """Get false Boolean value.
@@ -179,8 +179,8 @@ class BoolOperations(object):
     @distributed_trace
     def put_false(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Set Boolean value false.
@@ -227,8 +227,8 @@ class BoolOperations(object):
     @distributed_trace
     def get_null(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, bool, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> bool
         """Get null Boolean value.
@@ -274,8 +274,8 @@ class BoolOperations(object):
     @distributed_trace
     def get_invalid(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, bool, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> bool
         """Get invalid Boolean value.

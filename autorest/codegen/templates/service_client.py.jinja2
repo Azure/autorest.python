@@ -12,13 +12,14 @@ def __init__(
     {% if code_model.base_url %}
     base_url: Optional[str] = None,
     {% endif %}
+    **kwargs: Any
     {% else %}
     {% for param_signature in code_model.global_parameters.sync_method_signature %}
     {{ param_signature }}
     {% endfor %}
     base_url=None,  # type: Optional[str]
+    **kwargs  # type: Any
     {% endif %}
-    **kwargs
 ){{" -> None" if async_mode else "" }}:{% endmacro %}
 {% set init_typing_comment = ("# type: (") ~ code_model.global_parameters|map(attribute='schema')|join(', ', attribute='type_annotation') ~ (", " if code_model.global_parameters else "") ~ ("Optional[str], " if code_model.base_url else "") ~ ("**Any) -> None") %}
 {% set config_signature = code_model.global_parameters.method|join(', ', attribute='serialized_name') ~ (", " if code_model.global_parameters.method else "") %}

@@ -19,8 +19,8 @@ class AutoRestReportServiceOperationsMixin(object):
     def get_report(
         self,
         qualifier=None,  # type: Optional[str]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, Dict[str, int], Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, int]
         """Get test coverage report.
@@ -70,8 +70,8 @@ class AutoRestReportServiceOperationsMixin(object):
     def get_optional_report(
         self,
         qualifier=None,  # type: Optional[str]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, Dict[str, int], Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, int]
         """Get optional test coverage report.

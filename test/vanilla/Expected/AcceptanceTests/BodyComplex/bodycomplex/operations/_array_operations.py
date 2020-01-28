@@ -39,8 +39,8 @@ class ArrayOperations(object):
     @distributed_trace
     def get_valid(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "ArrayWrapper", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "ArrayWrapper"
         """Get complex types with array property.
@@ -87,8 +87,8 @@ class ArrayOperations(object):
     def put_valid(
         self,
         array=None,  # type: Optional[List[str]]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put complex types with array property.
@@ -137,8 +137,8 @@ class ArrayOperations(object):
     @distributed_trace
     def get_empty(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "ArrayWrapper", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "ArrayWrapper"
         """Get complex types with array property which is empty.
@@ -185,8 +185,8 @@ class ArrayOperations(object):
     def put_empty(
         self,
         array=None,  # type: Optional[List[str]]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put complex types with array property which is empty.
@@ -235,8 +235,8 @@ class ArrayOperations(object):
     @distributed_trace
     def get_not_provided(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "ArrayWrapper", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "ArrayWrapper"
         """Get complex types with array property while server doesn't provide a response payload.

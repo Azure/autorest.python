@@ -6,9 +6,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
+from typing import Any, Callable, Dict, Optional
 import warnings
 
 from azure.core.exceptions import map_error
+from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models
@@ -38,8 +40,8 @@ class DurationOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, datetime.timedelta, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> datetime.timedelta:
         """Get null duration value.
 
@@ -86,8 +88,8 @@ class DurationOperations:
         self,
         duration_body: datetime.timedelta,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Put a positive duration value.
 
@@ -134,8 +136,8 @@ class DurationOperations:
     @distributed_trace_async
     async def get_positive_duration(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, datetime.timedelta, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> datetime.timedelta:
         """Get a positive duration value.
 
@@ -180,8 +182,8 @@ class DurationOperations:
     @distributed_trace_async
     async def get_invalid(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, datetime.timedelta, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> datetime.timedelta:
         """Get an invalid duration value.
 

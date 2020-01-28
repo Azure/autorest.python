@@ -6,10 +6,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import List, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, Union
 import warnings
 
 from azure.core.exceptions import map_error
+from azure.core.pipeline.transport import AsyncHttpResponse
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models
@@ -39,8 +40,8 @@ class QueriesOperations:
     @distributed_trace_async
     async def get_boolean_true(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get true Boolean value on path.
 
@@ -83,8 +84,8 @@ class QueriesOperations:
     @distributed_trace_async
     async def get_boolean_false(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get false Boolean value on path.
 
@@ -129,8 +130,8 @@ class QueriesOperations:
         self,
         bool_query: Optional[bool] = None,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get null Boolean value on query (query string should be absent).
 
@@ -175,8 +176,8 @@ class QueriesOperations:
     @distributed_trace_async
     async def get_int_one_million(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get '1000000' integer value.
 
@@ -219,8 +220,8 @@ class QueriesOperations:
     @distributed_trace_async
     async def get_int_negative_one_million(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get '-1000000' integer value.
 
@@ -265,8 +266,8 @@ class QueriesOperations:
         self,
         int_query: Optional[int] = None,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get null integer value (no query parameter).
 
@@ -311,8 +312,8 @@ class QueriesOperations:
     @distributed_trace_async
     async def get_ten_billion(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get '10000000000' 64 bit integer value.
 
@@ -355,8 +356,8 @@ class QueriesOperations:
     @distributed_trace_async
     async def get_negative_ten_billion(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get '-10000000000' 64 bit integer value.
 
@@ -401,8 +402,8 @@ class QueriesOperations:
         self,
         long_query: Optional[int] = None,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get 'null 64 bit integer value (no query param in uri).
 
@@ -447,8 +448,8 @@ class QueriesOperations:
     @distributed_trace_async
     async def float_scientific_positive(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get '1.034E+20' numeric value.
 
@@ -491,8 +492,8 @@ class QueriesOperations:
     @distributed_trace_async
     async def float_scientific_negative(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get '-1.034E-20' numeric value.
 
@@ -537,8 +538,8 @@ class QueriesOperations:
         self,
         float_query: Optional[float] = None,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get null numeric value (no query parameter).
 
@@ -583,8 +584,8 @@ class QueriesOperations:
     @distributed_trace_async
     async def double_decimal_positive(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get '9999999.999' numeric value.
 
@@ -627,8 +628,8 @@ class QueriesOperations:
     @distributed_trace_async
     async def double_decimal_negative(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get '-9999999.999' numeric value.
 
@@ -673,8 +674,8 @@ class QueriesOperations:
         self,
         double_query: Optional[float] = None,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get null numeric value (no query parameter).
 
@@ -719,8 +720,8 @@ class QueriesOperations:
     @distributed_trace_async
     async def string_unicode(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
@@ -763,8 +764,8 @@ class QueriesOperations:
     @distributed_trace_async
     async def string_url_encoded(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
@@ -807,8 +808,8 @@ class QueriesOperations:
     @distributed_trace_async
     async def string_empty(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get ''.
 
@@ -853,8 +854,8 @@ class QueriesOperations:
         self,
         string_query: Optional[str] = None,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get null (no query parameter in url).
 
@@ -901,8 +902,8 @@ class QueriesOperations:
         self,
         enum_query: Optional[Union[str, "UriColor"]] = None,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get using uri with query parameter 'green color'.
 
@@ -949,8 +950,8 @@ class QueriesOperations:
         self,
         enum_query: Optional[Union[str, "UriColor"]] = None,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get null (no query parameter in url).
 
@@ -997,8 +998,8 @@ class QueriesOperations:
         self,
         byte_query: Optional[bytearray] = None,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
@@ -1043,8 +1044,8 @@ class QueriesOperations:
     @distributed_trace_async
     async def byte_empty(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get '' as byte array.
 
@@ -1089,8 +1090,8 @@ class QueriesOperations:
         self,
         byte_query: Optional[bytearray] = None,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get null as byte array (no query parameters in uri).
 
@@ -1135,8 +1136,8 @@ class QueriesOperations:
     @distributed_trace_async
     async def date_valid(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get '2012-01-01' as date.
 
@@ -1181,8 +1182,8 @@ class QueriesOperations:
         self,
         date_query: Optional[datetime.date] = None,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get null as date - this should result in no query parameters in uri.
 
@@ -1227,8 +1228,8 @@ class QueriesOperations:
     @distributed_trace_async
     async def date_time_valid(
         self,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get '2012-01-01T01:01:01Z' as date-time.
 
@@ -1273,8 +1274,8 @@ class QueriesOperations:
         self,
         date_time_query: Optional[datetime.datetime] = None,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get null as date-time, should result in no query parameters in uri.
 
@@ -1321,8 +1322,8 @@ class QueriesOperations:
         self,
         array_query: Optional[List[str]] = None,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
 
@@ -1369,8 +1370,8 @@ class QueriesOperations:
         self,
         array_query: Optional[List[str]] = None,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get a null array of string using the csv-array format.
 
@@ -1417,8 +1418,8 @@ class QueriesOperations:
         self,
         array_query: Optional[List[str]] = None,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get an empty array [] of string using the csv-array format.
 
@@ -1465,8 +1466,8 @@ class QueriesOperations:
         self,
         array_query: Optional[List[str]] = None,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format.
 
@@ -1513,8 +1514,8 @@ class QueriesOperations:
         self,
         array_query: Optional[List[str]] = None,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format.
 
@@ -1561,8 +1562,8 @@ class QueriesOperations:
         self,
         array_query: Optional[List[str]] = None,
         *,
-        cls=None,
-        **kwargs
+        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format.
 

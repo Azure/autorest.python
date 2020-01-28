@@ -42,8 +42,8 @@ class ParameterGroupingOperations(object):
         body,  # type: int
         custom_header=None,  # type: Optional[str]
         query=None,  # type: Optional[int]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Post a bunch of required parameters grouped.
@@ -107,8 +107,8 @@ class ParameterGroupingOperations(object):
         self,
         custom_header=None,  # type: Optional[str]
         query=None,  # type: Optional[int]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Post a bunch of optional parameters grouped.
@@ -162,8 +162,8 @@ class ParameterGroupingOperations(object):
         query_one=None,  # type: Optional[int]
         header_two=None,  # type: Optional[str]
         query_two=None,  # type: Optional[int]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Post parameters from multiple different parameter groups.
@@ -223,8 +223,8 @@ class ParameterGroupingOperations(object):
         self,
         header_one=None,  # type: Optional[str]
         query_one=None,  # type: Optional[int]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Post parameters with a shared parameter group object.

@@ -19,8 +19,8 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
     def get_report(
         self,
         qualifier=None,  # type: Optional[str]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, Dict[str, int], Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, int]
         """Get test coverage report.

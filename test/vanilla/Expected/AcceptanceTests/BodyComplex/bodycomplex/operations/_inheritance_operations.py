@@ -38,8 +38,8 @@ class InheritanceOperations(object):
     @distributed_trace
     def get_valid(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, "Siamese", Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> "Siamese"
         """Get complex types that extend others.
@@ -86,8 +86,8 @@ class InheritanceOperations(object):
     def put_valid(
         self,
         complex_body,  # type: "Siamese"
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put complex types that extend others.

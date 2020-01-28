@@ -39,8 +39,8 @@ class QueriesOperations(object):
     def array_string_multi_null(
         self,
         array_query=None,  # type: Optional[List[str]]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get a null array of string using the multi-array format.
@@ -87,8 +87,8 @@ class QueriesOperations(object):
     def array_string_multi_empty(
         self,
         array_query=None,  # type: Optional[List[str]]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get an empty array [] of string using the multi-array format.
@@ -135,8 +135,8 @@ class QueriesOperations(object):
     def array_string_multi_valid(
         self,
         array_query=None,  # type: Optional[List[str]]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the mult-array format.

@@ -6,6 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import Any
+
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
@@ -20,7 +22,7 @@ class AutoRestSwaggerBATFileServiceConfiguration(Configuration):
 
     def __init__(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         super(AutoRestSwaggerBATFileServiceConfiguration, self).__init__(**kwargs)
 
@@ -29,7 +31,7 @@ class AutoRestSwaggerBATFileServiceConfiguration(Configuration):
 
     def _configure(
         self,
-        **kwargs
+        **kwargs: Any
     ) -> None:
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)
         self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)

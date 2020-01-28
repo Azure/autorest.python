@@ -41,8 +41,8 @@ class OdataOperations(object):
         filter=None,  # type: Optional[str]
         top=None,  # type: Optional[int]
         orderby=None,  # type: Optional[str]
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'.

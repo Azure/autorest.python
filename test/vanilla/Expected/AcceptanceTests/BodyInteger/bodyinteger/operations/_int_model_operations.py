@@ -38,8 +38,8 @@ class IntOperations(object):
     @distributed_trace
     def get_null(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, int, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> int
         """Get null Int value.
@@ -85,8 +85,8 @@ class IntOperations(object):
     @distributed_trace
     def get_invalid(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, int, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> int
         """Get invalid Int value.
@@ -132,8 +132,8 @@ class IntOperations(object):
     @distributed_trace
     def get_overflow_int32(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, int, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> int
         """Get overflow Int32 value.
@@ -179,8 +179,8 @@ class IntOperations(object):
     @distributed_trace
     def get_underflow_int32(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, int, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> int
         """Get underflow Int32 value.
@@ -226,8 +226,8 @@ class IntOperations(object):
     @distributed_trace
     def get_overflow_int64(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, int, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> int
         """Get overflow Int64 value.
@@ -273,8 +273,8 @@ class IntOperations(object):
     @distributed_trace
     def get_underflow_int64(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, int, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> int
         """Get underflow Int64 value.
@@ -321,8 +321,8 @@ class IntOperations(object):
     def put_max32(
         self,
         int_body,  # type: int
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put max int32 value.
@@ -371,8 +371,8 @@ class IntOperations(object):
     def put_max64(
         self,
         int_body,  # type: int
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put max int64 value.
@@ -421,8 +421,8 @@ class IntOperations(object):
     def put_min32(
         self,
         int_body,  # type: int
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put min int32 value.
@@ -471,8 +471,8 @@ class IntOperations(object):
     def put_min64(
         self,
         int_body,  # type: int
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put min int64 value.
@@ -520,8 +520,8 @@ class IntOperations(object):
     @distributed_trace
     def get_unix_time(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, datetime.datetime, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.datetime
         """Get datetime encoded as Unix time value.
@@ -568,8 +568,8 @@ class IntOperations(object):
     def put_unix_time_date(
         self,
         int_body,  # type: datetime.datetime
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> None
         """Put datetime encoded as Unix time.
@@ -617,8 +617,8 @@ class IntOperations(object):
     @distributed_trace
     def get_invalid_unix_time(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, datetime.datetime, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.datetime
         """Get invalid Unix time value.
@@ -664,8 +664,8 @@ class IntOperations(object):
     @distributed_trace
     def get_null_unix_time(
         self,
-        cls=None,
-        **kwargs
+        cls=None,  # type: Callable[[HttpResponse, datetime.datetime, Dict[str, Any]], Any]
+        **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.datetime
         """Get null Unix time value.
