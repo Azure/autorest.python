@@ -41,7 +41,7 @@ class OdataOperations(object):
         filter=None,  # type: Optional[str]
         top=None,  # type: Optional[int]
         orderby=None,  # type: Optional[str]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None

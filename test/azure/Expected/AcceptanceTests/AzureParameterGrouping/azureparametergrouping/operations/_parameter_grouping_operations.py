@@ -42,7 +42,7 @@ class ParameterGroupingOperations(object):
         body,  # type: int
         custom_header=None,  # type: Optional[str]
         query=None,  # type: Optional[int]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -107,7 +107,7 @@ class ParameterGroupingOperations(object):
         self,
         custom_header=None,  # type: Optional[str]
         query=None,  # type: Optional[int]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -162,7 +162,7 @@ class ParameterGroupingOperations(object):
         query_one=None,  # type: Optional[int]
         header_two=None,  # type: Optional[str]
         query_two=None,  # type: Optional[int]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -223,7 +223,7 @@ class ParameterGroupingOperations(object):
         self,
         header_one=None,  # type: Optional[str]
         query_one=None,  # type: Optional[int]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None

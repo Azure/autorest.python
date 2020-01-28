@@ -38,7 +38,7 @@ class InheritanceOperations(object):
     @distributed_trace
     def get_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "Siamese", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Siamese", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "Siamese"
@@ -86,7 +86,7 @@ class InheritanceOperations(object):
     def put_valid(
         self,
         complex_body,  # type: "Siamese"
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None

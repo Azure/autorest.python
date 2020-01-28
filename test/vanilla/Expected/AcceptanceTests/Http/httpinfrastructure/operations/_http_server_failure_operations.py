@@ -38,7 +38,7 @@ class HttpServerFailureOperations(object):
     @distributed_trace
     def head501(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -81,7 +81,7 @@ class HttpServerFailureOperations(object):
     @distributed_trace
     def get501(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -124,7 +124,7 @@ class HttpServerFailureOperations(object):
     @distributed_trace
     def post505(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -175,7 +175,7 @@ class HttpServerFailureOperations(object):
     @distributed_trace
     def delete505(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None

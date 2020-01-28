@@ -38,7 +38,7 @@ class BasicOperations(object):
     @distributed_trace
     def get_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "Basic", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Basic", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "Basic"
@@ -86,7 +86,7 @@ class BasicOperations(object):
     def put_valid(
         self,
         complex_body,  # type: "Basic"
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -137,7 +137,7 @@ class BasicOperations(object):
     @distributed_trace
     def get_invalid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "Basic", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Basic", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "Basic"
@@ -184,7 +184,7 @@ class BasicOperations(object):
     @distributed_trace
     def get_empty(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "Basic", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Basic", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "Basic"
@@ -231,7 +231,7 @@ class BasicOperations(object):
     @distributed_trace
     def get_null(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "Basic", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Basic", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "Basic"
@@ -278,7 +278,7 @@ class BasicOperations(object):
     @distributed_trace
     def get_not_provided(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "Basic", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Basic", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "Basic"

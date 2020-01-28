@@ -19,7 +19,7 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
     def get_report(
         self,
         qualifier=None,  # type: Optional[str]
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, int], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, int], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, int]

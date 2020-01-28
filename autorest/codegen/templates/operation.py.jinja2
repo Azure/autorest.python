@@ -22,7 +22,7 @@ def {{ operation.python_name }}(
     {% for param_signature in operation.parameters.sync_method_signature %}
     {{ param_signature }}
     {% endfor %}
-    cls=None,  # type: Callable[[HttpResponse, {{ keywords.return_type_annotation(operation) }}, Dict[str, Any]], Any]
+    cls=None,  # type: Optional[Callable[[HttpResponse, {{ keywords.return_type_annotation(operation) }}, Dict[str, Any]], Any]]
     **kwargs  # type: **Any
 ):
 {% endif %}{% endmacro %}

@@ -39,7 +39,7 @@ class UsageOperations(object):
     @distributed_trace
     def list(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "UsageListResult", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "UsageListResult", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "UsageListResult"

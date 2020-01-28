@@ -38,7 +38,7 @@ class HttpRedirectsOperations(object):
     @distributed_trace
     def head300(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -85,7 +85,7 @@ class HttpRedirectsOperations(object):
     @distributed_trace
     def get300(
         self,
-        cls=None,  # type: Callable[[HttpResponse, List[str], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, List[str], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> List[str]
@@ -136,7 +136,7 @@ class HttpRedirectsOperations(object):
     @distributed_trace
     def head301(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -183,7 +183,7 @@ class HttpRedirectsOperations(object):
     @distributed_trace
     def get301(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -230,7 +230,7 @@ class HttpRedirectsOperations(object):
     @distributed_trace
     def put301(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -284,7 +284,7 @@ class HttpRedirectsOperations(object):
     @distributed_trace
     def head302(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -331,7 +331,7 @@ class HttpRedirectsOperations(object):
     @distributed_trace
     def get302(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -378,7 +378,7 @@ class HttpRedirectsOperations(object):
     @distributed_trace
     def patch302(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -432,7 +432,7 @@ class HttpRedirectsOperations(object):
     @distributed_trace
     def post303(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -487,7 +487,7 @@ class HttpRedirectsOperations(object):
     @distributed_trace
     def head307(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -534,7 +534,7 @@ class HttpRedirectsOperations(object):
     @distributed_trace
     def get307(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -581,7 +581,7 @@ class HttpRedirectsOperations(object):
     @distributed_trace
     def options307(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -628,7 +628,7 @@ class HttpRedirectsOperations(object):
     @distributed_trace
     def put307(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -683,7 +683,7 @@ class HttpRedirectsOperations(object):
     @distributed_trace
     def patch307(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -738,7 +738,7 @@ class HttpRedirectsOperations(object):
     @distributed_trace
     def post307(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -793,7 +793,7 @@ class HttpRedirectsOperations(object):
     @distributed_trace
     def delete307(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None

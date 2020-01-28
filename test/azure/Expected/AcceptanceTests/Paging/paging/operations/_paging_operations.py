@@ -962,7 +962,7 @@ class PagingOperations(object):
         client_request_id=None,  # type: Optional[str]
         maxresults=None,  # type: Optional[int]
         timeout=None,  # type: Optional[int]
-        cls=None,  # type: Callable[[HttpResponse, "ProductResult", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "ProductResult", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "ProductResult"

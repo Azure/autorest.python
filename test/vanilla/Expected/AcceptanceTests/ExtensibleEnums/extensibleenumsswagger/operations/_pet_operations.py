@@ -40,7 +40,7 @@ class PetOperations(object):
     def get_by_pet_id(
         self,
         pet_id,  # type: str
-        cls=None,  # type: Callable[[HttpResponse, "Pet", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Pet", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "Pet"
@@ -94,7 +94,7 @@ class PetOperations(object):
     def add_pet(
         self,
         pet_param=None,  # type: Optional["Pet"]
-        cls=None,  # type: Callable[[HttpResponse, "Pet", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Pet", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "Pet"

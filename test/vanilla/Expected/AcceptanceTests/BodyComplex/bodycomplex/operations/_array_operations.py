@@ -39,7 +39,7 @@ class ArrayOperations(object):
     @distributed_trace
     def get_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "ArrayWrapper", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "ArrayWrapper", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "ArrayWrapper"
@@ -87,7 +87,7 @@ class ArrayOperations(object):
     def put_valid(
         self,
         array=None,  # type: Optional[List[str]]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -137,7 +137,7 @@ class ArrayOperations(object):
     @distributed_trace
     def get_empty(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "ArrayWrapper", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "ArrayWrapper", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "ArrayWrapper"
@@ -185,7 +185,7 @@ class ArrayOperations(object):
     def put_empty(
         self,
         array=None,  # type: Optional[List[str]]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -235,7 +235,7 @@ class ArrayOperations(object):
     @distributed_trace
     def get_not_provided(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "ArrayWrapper", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "ArrayWrapper", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "ArrayWrapper"

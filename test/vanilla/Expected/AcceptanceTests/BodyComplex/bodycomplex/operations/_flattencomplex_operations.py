@@ -38,7 +38,7 @@ class FlattencomplexOperations(object):
     @distributed_trace
     def get_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "MyBaseType", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "MyBaseType", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "MyBaseType"

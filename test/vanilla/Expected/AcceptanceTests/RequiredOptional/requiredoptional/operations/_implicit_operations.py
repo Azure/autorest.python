@@ -39,7 +39,7 @@ class ImplicitOperations(object):
     def get_required_path(
         self,
         path_parameter,  # type: str
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -89,7 +89,7 @@ class ImplicitOperations(object):
     def put_optional_query(
         self,
         query_parameter=None,  # type: Optional[str]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -137,7 +137,7 @@ class ImplicitOperations(object):
     def put_optional_header(
         self,
         query_parameter=None,  # type: Optional[str]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -185,7 +185,7 @@ class ImplicitOperations(object):
     def put_optional_body(
         self,
         body_parameter=None,  # type: Optional[str]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -237,7 +237,7 @@ class ImplicitOperations(object):
     @distributed_trace
     def get_required_global_path(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -284,7 +284,7 @@ class ImplicitOperations(object):
     @distributed_trace
     def get_required_global_query(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -328,7 +328,7 @@ class ImplicitOperations(object):
     @distributed_trace
     def get_optional_global_query(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None

@@ -37,7 +37,7 @@ class HttpFailureOperations(object):
     @distributed_trace
     def get_empty_error(
         self,
-        cls=None,  # type: Callable[[HttpResponse, bool, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, bool, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> bool
@@ -84,7 +84,7 @@ class HttpFailureOperations(object):
     @distributed_trace
     def get_no_model_error(
         self,
-        cls=None,  # type: Callable[[HttpResponse, bool, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, bool, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> bool
@@ -131,7 +131,7 @@ class HttpFailureOperations(object):
     @distributed_trace
     def get_no_model_empty(
         self,
-        cls=None,  # type: Callable[[HttpResponse, bool, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, bool, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> bool

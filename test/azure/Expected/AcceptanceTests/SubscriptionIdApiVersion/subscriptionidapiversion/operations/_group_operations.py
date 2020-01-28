@@ -39,7 +39,7 @@ class GroupOperations(object):
     def get_sample_resource_group(
         self,
         resource_group_name,  # type: str
-        cls=None,  # type: Callable[[HttpResponse, "SampleResourceGroup", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "SampleResourceGroup", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "SampleResourceGroup"

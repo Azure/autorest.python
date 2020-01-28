@@ -43,7 +43,7 @@ class LROsCustomHeaderOperations(object):
     def _put_async_retry_succeeded_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HttpResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Product", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "Product"
@@ -145,7 +145,7 @@ class LROsCustomHeaderOperations(object):
     def _put201_creating_succeeded200_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HttpResponse, Union["Product", "Product"], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Union["Product", "Product"], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Union["Product", "Product"]
@@ -244,7 +244,7 @@ class LROsCustomHeaderOperations(object):
     def _post202_retry200_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -335,7 +335,7 @@ class LROsCustomHeaderOperations(object):
     def _post_async_retry_succeeded_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None

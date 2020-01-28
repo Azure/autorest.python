@@ -21,7 +21,7 @@ class AutoRestValidationTestOperationsMixin(object):
         self,
         resource_group_name,  # type: str
         id,  # type: int
-        cls=None,  # type: Callable[[HttpResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Product", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "Product"
@@ -82,7 +82,7 @@ class AutoRestValidationTestOperationsMixin(object):
         resource_group_name,  # type: str
         id,  # type: int
         body=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HttpResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Product", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "Product"
@@ -149,7 +149,7 @@ class AutoRestValidationTestOperationsMixin(object):
     @distributed_trace
     def get_with_constant_in_path(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -197,7 +197,7 @@ class AutoRestValidationTestOperationsMixin(object):
     def post_with_constant_in_body(
         self,
         body=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HttpResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Product", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "Product"

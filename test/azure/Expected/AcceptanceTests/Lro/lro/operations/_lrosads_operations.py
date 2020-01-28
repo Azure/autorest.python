@@ -43,7 +43,7 @@ class LROSADsOperations(object):
     def _put_non_retry400_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HttpResponse, Union["Product", "Product"], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Union["Product", "Product"], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Union["Product", "Product"]
@@ -142,7 +142,7 @@ class LROSADsOperations(object):
     def _put_non_retry201_creating400_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HttpResponse, Union["Product", "Product"], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Union["Product", "Product"], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Union["Product", "Product"]
@@ -241,7 +241,7 @@ class LROSADsOperations(object):
     def _put_non_retry201_creating400_invalid_json_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HttpResponse, Union["Product", "Product"], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Union["Product", "Product"], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Union["Product", "Product"]
@@ -340,7 +340,7 @@ class LROSADsOperations(object):
     def _put_async_relative_retry400_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HttpResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Product", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "Product"
@@ -441,7 +441,7 @@ class LROSADsOperations(object):
     
     def _delete_non_retry400_initial(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -520,7 +520,7 @@ class LROSADsOperations(object):
     
     def _delete202_non_retry400_initial(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -599,7 +599,7 @@ class LROSADsOperations(object):
     
     def _delete_async_relative_retry400_initial(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -680,7 +680,7 @@ class LROSADsOperations(object):
     def _post_non_retry400_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -771,7 +771,7 @@ class LROSADsOperations(object):
     def _post202_non_retry400_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -862,7 +862,7 @@ class LROSADsOperations(object):
     def _post_async_relative_retry400_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -954,7 +954,7 @@ class LROSADsOperations(object):
     def _put_error201_no_provisioning_state_payload_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HttpResponse, Union["Product", "Product"], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Union["Product", "Product"], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Union["Product", "Product"]
@@ -1053,7 +1053,7 @@ class LROSADsOperations(object):
     def _put_async_relative_retry_no_status_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HttpResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Product", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "Product"
@@ -1155,7 +1155,7 @@ class LROSADsOperations(object):
     def _put_async_relative_retry_no_status_payload_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HttpResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Product", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "Product"
@@ -1256,7 +1256,7 @@ class LROSADsOperations(object):
     
     def _delete204_succeeded_initial(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1331,7 +1331,7 @@ class LROSADsOperations(object):
     
     def _delete_async_relative_retry_no_status_initial(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1412,7 +1412,7 @@ class LROSADsOperations(object):
     def _post202_no_location_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1503,7 +1503,7 @@ class LROSADsOperations(object):
     def _post_async_relative_retry_no_payload_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1595,7 +1595,7 @@ class LROSADsOperations(object):
     def _put200_invalid_json_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HttpResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Product", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "Product"
@@ -1691,7 +1691,7 @@ class LROSADsOperations(object):
     def _put_async_relative_retry_invalid_header_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HttpResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Product", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "Product"
@@ -1793,7 +1793,7 @@ class LROSADsOperations(object):
     def _put_async_relative_retry_invalid_json_polling_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HttpResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Product", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "Product"
@@ -1894,7 +1894,7 @@ class LROSADsOperations(object):
     
     def _delete202_retry_invalid_header_initial(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1973,7 +1973,7 @@ class LROSADsOperations(object):
     
     def _delete_async_relative_retry_invalid_header_initial(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -2053,7 +2053,7 @@ class LROSADsOperations(object):
     
     def _delete_async_relative_retry_invalid_json_polling_initial(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -2134,7 +2134,7 @@ class LROSADsOperations(object):
     def _post202_retry_invalid_header_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -2225,7 +2225,7 @@ class LROSADsOperations(object):
     def _post_async_relative_retry_invalid_header_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -2317,7 +2317,7 @@ class LROSADsOperations(object):
     def _post_async_relative_retry_invalid_json_polling_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None

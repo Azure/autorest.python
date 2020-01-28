@@ -39,7 +39,7 @@ class XmlOperations(object):
     @distributed_trace
     def get_complex_type_ref_no_meta(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "RootWithRefAndNoMeta", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "RootWithRefAndNoMeta", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "RootWithRefAndNoMeta"
@@ -87,7 +87,7 @@ class XmlOperations(object):
     def put_complex_type_ref_no_meta(
         self,
         model,  # type: "RootWithRefAndNoMeta"
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -136,7 +136,7 @@ class XmlOperations(object):
     @distributed_trace
     def get_complex_type_ref_with_meta(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "RootWithRefAndMeta", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "RootWithRefAndMeta", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "RootWithRefAndMeta"
@@ -184,7 +184,7 @@ class XmlOperations(object):
     def put_complex_type_ref_with_meta(
         self,
         model,  # type: "RootWithRefAndMeta"
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -233,7 +233,7 @@ class XmlOperations(object):
     @distributed_trace
     def get_simple(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "Slideshow", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Slideshow", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "Slideshow"
@@ -281,7 +281,7 @@ class XmlOperations(object):
     def put_simple(
         self,
         slideshow,  # type: "Slideshow"
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -330,7 +330,7 @@ class XmlOperations(object):
     @distributed_trace
     def get_wrapped_lists(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "AppleBarrel", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "AppleBarrel", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "AppleBarrel"
@@ -378,7 +378,7 @@ class XmlOperations(object):
     def put_wrapped_lists(
         self,
         wrapped_lists,  # type: "AppleBarrel"
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -427,7 +427,7 @@ class XmlOperations(object):
     @distributed_trace
     def get_headers(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -473,7 +473,7 @@ class XmlOperations(object):
     @distributed_trace
     def get_empty_list(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "Slideshow", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Slideshow", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "Slideshow"
@@ -521,7 +521,7 @@ class XmlOperations(object):
     def put_empty_list(
         self,
         slideshow,  # type: "Slideshow"
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -570,7 +570,7 @@ class XmlOperations(object):
     @distributed_trace
     def get_empty_wrapped_lists(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "AppleBarrel", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "AppleBarrel", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "AppleBarrel"
@@ -618,7 +618,7 @@ class XmlOperations(object):
     def put_empty_wrapped_lists(
         self,
         apple_barrel,  # type: "AppleBarrel"
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -667,7 +667,7 @@ class XmlOperations(object):
     @distributed_trace
     def get_root_list(
         self,
-        cls=None,  # type: Callable[[HttpResponse, List["Banana"], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, List["Banana"], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> List["Banana"]
@@ -715,7 +715,7 @@ class XmlOperations(object):
     def put_root_list(
         self,
         bananas,  # type: List["Banana"]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -764,7 +764,7 @@ class XmlOperations(object):
     @distributed_trace
     def get_root_list_single_item(
         self,
-        cls=None,  # type: Callable[[HttpResponse, List["Banana"], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, List["Banana"], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> List["Banana"]
@@ -812,7 +812,7 @@ class XmlOperations(object):
     def put_root_list_single_item(
         self,
         bananas,  # type: List["Banana"]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -861,7 +861,7 @@ class XmlOperations(object):
     @distributed_trace
     def get_empty_root_list(
         self,
-        cls=None,  # type: Callable[[HttpResponse, List["Banana"], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, List["Banana"], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> List["Banana"]
@@ -909,7 +909,7 @@ class XmlOperations(object):
     def put_empty_root_list(
         self,
         bananas,  # type: List["Banana"]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -958,7 +958,7 @@ class XmlOperations(object):
     @distributed_trace
     def get_empty_child_element(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "Banana", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Banana", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "Banana"
@@ -1006,7 +1006,7 @@ class XmlOperations(object):
     def put_empty_child_element(
         self,
         banana,  # type: "Banana"
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1055,7 +1055,7 @@ class XmlOperations(object):
     @distributed_trace
     def list_containers(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "ListContainersResponse", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "ListContainersResponse", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "ListContainersResponse"
@@ -1104,7 +1104,7 @@ class XmlOperations(object):
     @distributed_trace
     def get_service_properties(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "StorageServiceProperties", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "StorageServiceProperties", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "StorageServiceProperties"
@@ -1156,7 +1156,7 @@ class XmlOperations(object):
     def put_service_properties(
         self,
         properties,  # type: "StorageServiceProperties"
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1209,7 +1209,7 @@ class XmlOperations(object):
     @distributed_trace
     def get_acls(
         self,
-        cls=None,  # type: Callable[[HttpResponse, List["SignedIdentifier"], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, List["SignedIdentifier"], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> List["SignedIdentifier"]
@@ -1261,7 +1261,7 @@ class XmlOperations(object):
     def put_acls(
         self,
         properties,  # type: List["SignedIdentifier"]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1314,7 +1314,7 @@ class XmlOperations(object):
     @distributed_trace
     def list_blobs(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "ListBlobsResponse", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "ListBlobsResponse", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "ListBlobsResponse"
@@ -1366,7 +1366,7 @@ class XmlOperations(object):
     def json_input(
         self,
         id=None,  # type: Optional[int]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1416,7 +1416,7 @@ class XmlOperations(object):
     @distributed_trace
     def json_output(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "JSONOutput", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "JSONOutput", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "JSONOutput"

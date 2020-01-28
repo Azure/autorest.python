@@ -37,7 +37,7 @@ class SubscriptionInCredentialsOperations(object):
     @distributed_trace
     def post_method_global_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -84,7 +84,7 @@ class SubscriptionInCredentialsOperations(object):
     @distributed_trace
     def post_method_global_null(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -131,7 +131,7 @@ class SubscriptionInCredentialsOperations(object):
     @distributed_trace
     def post_method_global_not_provided_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -178,7 +178,7 @@ class SubscriptionInCredentialsOperations(object):
     @distributed_trace
     def post_path_global_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -225,7 +225,7 @@ class SubscriptionInCredentialsOperations(object):
     @distributed_trace
     def post_swagger_global_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None

@@ -44,7 +44,7 @@ class StorageAccountsOperations(object):
     def check_name_availability(
         self,
         account_name,  # type: "StorageAccountCheckNameAvailabilityParameters"
-        cls=None,  # type: Callable[[HttpResponse, "CheckNameAvailabilityResult", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "CheckNameAvailabilityResult", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "CheckNameAvailabilityResult"
@@ -104,7 +104,7 @@ class StorageAccountsOperations(object):
         resource_group_name,  # type: str
         account_name,  # type: str
         parameters,  # type: "StorageAccountCreateParameters"
-        cls=None,  # type: Callable[[HttpResponse, "StorageAccount", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "StorageAccount", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "StorageAccount"
@@ -212,7 +212,7 @@ class StorageAccountsOperations(object):
         self,
         resource_group_name,  # type: str
         account_name,  # type: str
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -267,7 +267,7 @@ class StorageAccountsOperations(object):
         self,
         resource_group_name,  # type: str
         account_name,  # type: str
-        cls=None,  # type: Callable[[HttpResponse, "StorageAccount", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "StorageAccount", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "StorageAccount"
@@ -327,7 +327,7 @@ class StorageAccountsOperations(object):
         resource_group_name,  # type: str
         account_name,  # type: str
         parameters,  # type: "StorageAccountUpdateParameters"
-        cls=None,  # type: Callable[[HttpResponse, "StorageAccount", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "StorageAccount", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "StorageAccount"
@@ -392,7 +392,7 @@ class StorageAccountsOperations(object):
         self,
         resource_group_name,  # type: str
         account_name,  # type: str
-        cls=None,  # type: Callable[[HttpResponse, "StorageAccountKeys", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "StorageAccountKeys", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "StorageAccountKeys"
@@ -592,7 +592,7 @@ class StorageAccountsOperations(object):
         resource_group_name,  # type: str
         account_name,  # type: str
         key_name=None,  # type: Optional[Union[str, "KeyName"]]
-        cls=None,  # type: Callable[[HttpResponse, "StorageAccountKeys", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "StorageAccountKeys", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "StorageAccountKeys"

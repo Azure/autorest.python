@@ -42,7 +42,7 @@ class AvailabilitySetsOperations(object):
         resource_group_name,  # type: str
         avset,  # type: str
         availability_set_update_parameters_tags,  # type: Dict[str, str]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None

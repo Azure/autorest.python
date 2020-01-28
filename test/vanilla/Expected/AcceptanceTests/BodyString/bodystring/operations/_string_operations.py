@@ -38,7 +38,7 @@ class StringOperations(object):
     @distributed_trace
     def get_null(
         self,
-        cls=None,  # type: Callable[[HttpResponse, str, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, str, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> str
@@ -85,7 +85,7 @@ class StringOperations(object):
     @distributed_trace
     def put_null(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -136,7 +136,7 @@ class StringOperations(object):
     @distributed_trace
     def get_empty(
         self,
-        cls=None,  # type: Callable[[HttpResponse, str, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, str, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> str
@@ -183,7 +183,7 @@ class StringOperations(object):
     @distributed_trace
     def put_empty(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -231,7 +231,7 @@ class StringOperations(object):
     @distributed_trace
     def get_mbcs(
         self,
-        cls=None,  # type: Callable[[HttpResponse, str, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, str, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> str
@@ -278,7 +278,7 @@ class StringOperations(object):
     @distributed_trace
     def put_mbcs(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -326,7 +326,7 @@ class StringOperations(object):
     @distributed_trace
     def get_whitespace(
         self,
-        cls=None,  # type: Callable[[HttpResponse, str, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, str, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> str
@@ -373,7 +373,7 @@ class StringOperations(object):
     @distributed_trace
     def put_whitespace(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -421,7 +421,7 @@ class StringOperations(object):
     @distributed_trace
     def get_not_provided(
         self,
-        cls=None,  # type: Callable[[HttpResponse, str, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, str, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> str
@@ -468,7 +468,7 @@ class StringOperations(object):
     @distributed_trace
     def get_base64_encoded(
         self,
-        cls=None,  # type: Callable[[HttpResponse, bytes, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, bytes, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> bytes
@@ -515,7 +515,7 @@ class StringOperations(object):
     @distributed_trace
     def get_base64_url_encoded(
         self,
-        cls=None,  # type: Callable[[HttpResponse, bytes, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, bytes, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> bytes
@@ -563,7 +563,7 @@ class StringOperations(object):
     def put_base64_url_encoded(
         self,
         string_body,  # type: bytes
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -612,7 +612,7 @@ class StringOperations(object):
     @distributed_trace
     def get_null_base64_url_encoded(
         self,
-        cls=None,  # type: Callable[[HttpResponse, bytes, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, bytes, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> bytes

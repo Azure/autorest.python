@@ -38,7 +38,7 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def head200(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -81,7 +81,7 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def get200(
         self,
-        cls=None,  # type: Callable[[HttpResponse, bool, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, bool, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> bool
@@ -128,7 +128,7 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def options200(
         self,
-        cls=None,  # type: Callable[[HttpResponse, bool, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, bool, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> bool
@@ -175,7 +175,7 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def put200(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -226,7 +226,7 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def patch200(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -277,7 +277,7 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def post200(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -328,7 +328,7 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def delete200(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -379,7 +379,7 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def put201(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -430,7 +430,7 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def post201(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -481,7 +481,7 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def put202(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -532,7 +532,7 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def patch202(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -583,7 +583,7 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def post202(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -634,7 +634,7 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def delete202(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -685,7 +685,7 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def head204(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -728,7 +728,7 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def put204(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -779,7 +779,7 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def patch204(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -830,7 +830,7 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def post204(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -881,7 +881,7 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def delete204(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -932,7 +932,7 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def head404(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None

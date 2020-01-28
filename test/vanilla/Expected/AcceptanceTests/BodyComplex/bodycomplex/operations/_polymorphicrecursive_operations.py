@@ -38,7 +38,7 @@ class PolymorphicrecursiveOperations(object):
     @distributed_trace
     def get_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "Fish", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Fish", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "Fish"
@@ -86,7 +86,7 @@ class PolymorphicrecursiveOperations(object):
     def put_valid(
         self,
         complex_body,  # type: "Fish"
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None

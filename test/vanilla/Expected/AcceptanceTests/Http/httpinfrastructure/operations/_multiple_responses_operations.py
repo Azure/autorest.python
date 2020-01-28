@@ -39,7 +39,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get200_model204_no_model_default_error200_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "MyException"
@@ -88,7 +88,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get200_model204_no_model_default_error204_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "MyException"
@@ -137,7 +137,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get200_model204_no_model_default_error201_invalid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "MyException"
@@ -186,7 +186,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get200_model204_no_model_default_error202_none(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "MyException"
@@ -235,7 +235,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get200_model204_no_model_default_error400_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "MyException"
@@ -284,7 +284,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get200_model201_model_default_error200_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Union["MyException", "B"], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Union["MyException", "B"], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Union["MyException", "B"]
@@ -336,7 +336,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get200_model201_model_default_error201_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Union["MyException", "B"], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Union["MyException", "B"], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Union["MyException", "B"]
@@ -388,7 +388,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get200_model201_model_default_error400_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Union["MyException", "B"], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Union["MyException", "B"], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Union["MyException", "B"]
@@ -440,7 +440,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get200_model_a201_model_c404_model_ddefault_error200_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Union["MyException", "C", "D"], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Union["MyException", "C", "D"], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Union["MyException", "C", "D"]
@@ -495,7 +495,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get200_model_a201_model_c404_model_ddefault_error201_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Union["MyException", "C", "D"], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Union["MyException", "C", "D"], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Union["MyException", "C", "D"]
@@ -550,7 +550,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get200_model_a201_model_c404_model_ddefault_error404_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Union["MyException", "C", "D"], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Union["MyException", "C", "D"], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Union["MyException", "C", "D"]
@@ -605,7 +605,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get200_model_a201_model_c404_model_ddefault_error400_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Union["MyException", "C", "D"], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Union["MyException", "C", "D"], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Union["MyException", "C", "D"]
@@ -660,7 +660,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get202_none204_none_default_error202_none(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -703,7 +703,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get202_none204_none_default_error204_none(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -746,7 +746,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get202_none204_none_default_error400_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -789,7 +789,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get202_none204_none_default_none202_invalid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -832,7 +832,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get202_none204_none_default_none204_none(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -875,7 +875,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get202_none204_none_default_none400_none(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -918,7 +918,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get202_none204_none_default_none400_invalid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -961,7 +961,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get_default_model_a200_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "MyException"
@@ -1008,7 +1008,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get_default_model_a200_none(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "MyException"
@@ -1055,7 +1055,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get_default_model_a400_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1098,7 +1098,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get_default_model_a400_none(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1141,7 +1141,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get_default_none200_invalid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1184,7 +1184,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get_default_none200_none(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1227,7 +1227,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get_default_none400_invalid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1270,7 +1270,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get_default_none400_none(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1313,7 +1313,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get200_model_a200_none(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "MyException"
@@ -1360,7 +1360,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get200_model_a200_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "MyException"
@@ -1407,7 +1407,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get200_model_a200_invalid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "MyException"
@@ -1454,7 +1454,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get200_model_a400_none(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "MyException"
@@ -1501,7 +1501,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get200_model_a400_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "MyException"
@@ -1548,7 +1548,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get200_model_a400_invalid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "MyException"
@@ -1595,7 +1595,7 @@ class MultipleResponsesOperations(object):
     @distributed_trace
     def get200_model_a202_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "MyException", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "MyException"

@@ -38,7 +38,7 @@ class SubscriptionInMethodOperations(object):
     def post_method_local_valid(
         self,
         subscription_id,  # type: str
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -88,7 +88,7 @@ class SubscriptionInMethodOperations(object):
     def post_method_local_null(
         self,
         subscription_id,  # type: str
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -138,7 +138,7 @@ class SubscriptionInMethodOperations(object):
     def post_path_local_valid(
         self,
         subscription_id,  # type: str
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -188,7 +188,7 @@ class SubscriptionInMethodOperations(object):
     def post_swagger_local_valid(
         self,
         subscription_id,  # type: str
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None

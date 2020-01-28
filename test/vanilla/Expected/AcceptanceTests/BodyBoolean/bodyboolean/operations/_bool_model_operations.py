@@ -37,7 +37,7 @@ class BoolOperations(object):
     @distributed_trace
     def get_true(
         self,
-        cls=None,  # type: Callable[[HttpResponse, bool, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, bool, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> bool
@@ -84,7 +84,7 @@ class BoolOperations(object):
     @distributed_trace
     def put_true(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -132,7 +132,7 @@ class BoolOperations(object):
     @distributed_trace
     def get_false(
         self,
-        cls=None,  # type: Callable[[HttpResponse, bool, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, bool, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> bool
@@ -179,7 +179,7 @@ class BoolOperations(object):
     @distributed_trace
     def put_false(
         self,
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -227,7 +227,7 @@ class BoolOperations(object):
     @distributed_trace
     def get_null(
         self,
-        cls=None,  # type: Callable[[HttpResponse, bool, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, bool, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> bool
@@ -274,7 +274,7 @@ class BoolOperations(object):
     @distributed_trace
     def get_invalid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, bool, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, bool, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> bool

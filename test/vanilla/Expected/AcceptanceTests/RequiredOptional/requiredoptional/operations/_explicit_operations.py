@@ -40,7 +40,7 @@ class ExplicitOperations(object):
     def post_required_integer_parameter(
         self,
         body_parameter,  # type: int
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -90,7 +90,7 @@ class ExplicitOperations(object):
     def post_optional_integer_parameter(
         self,
         body_parameter=None,  # type: Optional[int]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -143,7 +143,7 @@ class ExplicitOperations(object):
     def post_required_integer_property(
         self,
         value,  # type: int
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -194,7 +194,7 @@ class ExplicitOperations(object):
     def post_optional_integer_property(
         self,
         value=None,  # type: Optional[int]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -248,7 +248,7 @@ class ExplicitOperations(object):
     def post_required_integer_header(
         self,
         header_parameter,  # type: int
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -295,7 +295,7 @@ class ExplicitOperations(object):
     def post_optional_integer_header(
         self,
         header_parameter=None,  # type: Optional[int]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -343,7 +343,7 @@ class ExplicitOperations(object):
     def post_required_string_parameter(
         self,
         body_parameter,  # type: str
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -393,7 +393,7 @@ class ExplicitOperations(object):
     def post_optional_string_parameter(
         self,
         body_parameter=None,  # type: Optional[str]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -446,7 +446,7 @@ class ExplicitOperations(object):
     def post_required_string_property(
         self,
         value,  # type: str
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -497,7 +497,7 @@ class ExplicitOperations(object):
     def post_optional_string_property(
         self,
         value=None,  # type: Optional[str]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -551,7 +551,7 @@ class ExplicitOperations(object):
     def post_required_string_header(
         self,
         header_parameter,  # type: str
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -598,7 +598,7 @@ class ExplicitOperations(object):
     def post_optional_string_header(
         self,
         body_parameter=None,  # type: Optional[str]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -646,7 +646,7 @@ class ExplicitOperations(object):
     def post_required_class_parameter(
         self,
         body_parameter,  # type: "Product"
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -696,7 +696,7 @@ class ExplicitOperations(object):
     def post_optional_class_parameter(
         self,
         body_parameter=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -749,7 +749,7 @@ class ExplicitOperations(object):
     def post_required_class_property(
         self,
         value,  # type: "Product"
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -800,7 +800,7 @@ class ExplicitOperations(object):
     def post_optional_class_property(
         self,
         value=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -854,7 +854,7 @@ class ExplicitOperations(object):
     def post_required_array_parameter(
         self,
         body_parameter,  # type: List[str]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -904,7 +904,7 @@ class ExplicitOperations(object):
     def post_optional_array_parameter(
         self,
         body_parameter=None,  # type: Optional[List[str]]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -957,7 +957,7 @@ class ExplicitOperations(object):
     def post_required_array_property(
         self,
         value,  # type: List[str]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1008,7 +1008,7 @@ class ExplicitOperations(object):
     def post_optional_array_property(
         self,
         value=None,  # type: Optional[List[str]]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1062,7 +1062,7 @@ class ExplicitOperations(object):
     def post_required_array_header(
         self,
         header_parameter,  # type: List[str]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1109,7 +1109,7 @@ class ExplicitOperations(object):
     def post_optional_array_header(
         self,
         header_parameter=None,  # type: Optional[List[str]]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None

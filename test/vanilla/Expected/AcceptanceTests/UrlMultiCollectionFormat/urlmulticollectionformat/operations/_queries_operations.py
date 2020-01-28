@@ -39,7 +39,7 @@ class QueriesOperations(object):
     def array_string_multi_null(
         self,
         array_query=None,  # type: Optional[List[str]]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -87,7 +87,7 @@ class QueriesOperations(object):
     def array_string_multi_empty(
         self,
         array_query=None,  # type: Optional[List[str]]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -135,7 +135,7 @@ class QueriesOperations(object):
     def array_string_multi_valid(
         self,
         array_query=None,  # type: Optional[List[str]]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None

@@ -39,7 +39,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "DictionaryWrapper", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "DictionaryWrapper", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "DictionaryWrapper"
@@ -87,7 +87,7 @@ class DictionaryOperations(object):
     def put_valid(
         self,
         default_program=None,  # type: Optional[Dict[str, str]]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -137,7 +137,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_empty(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "DictionaryWrapper", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "DictionaryWrapper", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "DictionaryWrapper"
@@ -185,7 +185,7 @@ class DictionaryOperations(object):
     def put_empty(
         self,
         default_program=None,  # type: Optional[Dict[str, str]]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -235,7 +235,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_null(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "DictionaryWrapper", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "DictionaryWrapper", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "DictionaryWrapper"
@@ -282,7 +282,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_not_provided(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "DictionaryWrapper", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "DictionaryWrapper", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "DictionaryWrapper"

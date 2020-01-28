@@ -37,7 +37,7 @@ class ByteOperations(object):
     @distributed_trace
     def get_null(
         self,
-        cls=None,  # type: Callable[[HttpResponse, bytearray, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, bytearray, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> bytearray
@@ -84,7 +84,7 @@ class ByteOperations(object):
     @distributed_trace
     def get_empty(
         self,
-        cls=None,  # type: Callable[[HttpResponse, bytearray, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, bytearray, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> bytearray
@@ -131,7 +131,7 @@ class ByteOperations(object):
     @distributed_trace
     def get_non_ascii(
         self,
-        cls=None,  # type: Callable[[HttpResponse, bytearray, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, bytearray, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> bytearray
@@ -179,7 +179,7 @@ class ByteOperations(object):
     def put_non_ascii(
         self,
         byte_body,  # type: bytearray
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -228,7 +228,7 @@ class ByteOperations(object):
     @distributed_trace
     def get_invalid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, bytearray, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, bytearray, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> bytearray

@@ -42,7 +42,7 @@ class PathItemsOperations(object):
         local_string_path,  # type: str
         path_item_string_query=None,  # type: Optional[str]
         local_string_query=None,  # type: Optional[str]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -109,7 +109,7 @@ class PathItemsOperations(object):
         local_string_path,  # type: str
         path_item_string_query=None,  # type: Optional[str]
         local_string_query=None,  # type: Optional[str]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -176,7 +176,7 @@ class PathItemsOperations(object):
         local_string_path,  # type: str
         path_item_string_query=None,  # type: Optional[str]
         local_string_query=None,  # type: Optional[str]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -243,7 +243,7 @@ class PathItemsOperations(object):
         local_string_path,  # type: str
         path_item_string_query=None,  # type: Optional[str]
         local_string_query=None,  # type: Optional[str]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None

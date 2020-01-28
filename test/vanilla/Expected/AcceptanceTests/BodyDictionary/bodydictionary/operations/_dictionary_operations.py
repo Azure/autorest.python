@@ -40,7 +40,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_null(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, int], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, int], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, int]
@@ -87,7 +87,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_empty(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, int], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, int], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, int]
@@ -135,7 +135,7 @@ class DictionaryOperations(object):
     def put_empty(
         self,
         array_body,  # type: Dict[str, str]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -184,7 +184,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_null_value(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, str], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, str], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, str]
@@ -231,7 +231,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_null_key(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, str], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, str], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, str]
@@ -278,7 +278,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_empty_string_key(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, str], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, str], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, str]
@@ -325,7 +325,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_invalid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, str], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, str], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, str]
@@ -372,7 +372,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_boolean_tfft(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, bool], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, bool], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, bool]
@@ -420,7 +420,7 @@ class DictionaryOperations(object):
     def put_boolean_tfft(
         self,
         array_body,  # type: Dict[str, bool]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -469,7 +469,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_boolean_invalid_null(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, bool], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, bool], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, bool]
@@ -516,7 +516,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_boolean_invalid_string(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, bool], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, bool], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, bool]
@@ -563,7 +563,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_integer_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, int], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, int], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, int]
@@ -611,7 +611,7 @@ class DictionaryOperations(object):
     def put_integer_valid(
         self,
         array_body,  # type: Dict[str, int]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -660,7 +660,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_int_invalid_null(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, int], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, int], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, int]
@@ -707,7 +707,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_int_invalid_string(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, int], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, int], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, int]
@@ -754,7 +754,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_long_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, int], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, int], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, int]
@@ -802,7 +802,7 @@ class DictionaryOperations(object):
     def put_long_valid(
         self,
         array_body,  # type: Dict[str, int]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -851,7 +851,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_long_invalid_null(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, int], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, int], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, int]
@@ -898,7 +898,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_long_invalid_string(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, int], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, int], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, int]
@@ -945,7 +945,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_float_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, float], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, float], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, float]
@@ -993,7 +993,7 @@ class DictionaryOperations(object):
     def put_float_valid(
         self,
         array_body,  # type: Dict[str, float]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1042,7 +1042,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_float_invalid_null(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, float], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, float], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, float]
@@ -1089,7 +1089,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_float_invalid_string(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, float], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, float], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, float]
@@ -1136,7 +1136,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_double_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, float], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, float], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, float]
@@ -1184,7 +1184,7 @@ class DictionaryOperations(object):
     def put_double_valid(
         self,
         array_body,  # type: Dict[str, float]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1233,7 +1233,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_double_invalid_null(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, float], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, float], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, float]
@@ -1280,7 +1280,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_double_invalid_string(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, float], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, float], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, float]
@@ -1327,7 +1327,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_string_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, str], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, str], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, str]
@@ -1375,7 +1375,7 @@ class DictionaryOperations(object):
     def put_string_valid(
         self,
         array_body,  # type: Dict[str, str]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1424,7 +1424,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_string_with_null(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, str], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, str], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, str]
@@ -1471,7 +1471,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_string_with_invalid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, str], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, str], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, str]
@@ -1518,7 +1518,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_date_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, datetime.date], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, datetime.date], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, datetime.date]
@@ -1566,7 +1566,7 @@ class DictionaryOperations(object):
     def put_date_valid(
         self,
         array_body,  # type: Dict[str, datetime.date]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1615,7 +1615,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_date_invalid_null(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, datetime.date], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, datetime.date], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, datetime.date]
@@ -1662,7 +1662,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_date_invalid_chars(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, datetime.date], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, datetime.date], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, datetime.date]
@@ -1709,7 +1709,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_date_time_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, datetime.datetime], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, datetime.datetime], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, datetime.datetime]
@@ -1757,7 +1757,7 @@ class DictionaryOperations(object):
     def put_date_time_valid(
         self,
         array_body,  # type: Dict[str, datetime.datetime]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1806,7 +1806,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_date_time_invalid_null(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, datetime.datetime], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, datetime.datetime], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, datetime.datetime]
@@ -1853,7 +1853,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_date_time_invalid_chars(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, datetime.datetime], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, datetime.datetime], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, datetime.datetime]
@@ -1900,7 +1900,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_date_time_rfc1123_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, datetime.datetime], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, datetime.datetime], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, datetime.datetime]
@@ -1948,7 +1948,7 @@ class DictionaryOperations(object):
     def put_date_time_rfc1123_valid(
         self,
         array_body,  # type: Dict[str, datetime.datetime]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1997,7 +1997,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_duration_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, datetime.timedelta], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, datetime.timedelta], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, datetime.timedelta]
@@ -2045,7 +2045,7 @@ class DictionaryOperations(object):
     def put_duration_valid(
         self,
         array_body,  # type: Dict[str, datetime.timedelta]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -2094,7 +2094,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_byte_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, bytearray], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, bytearray], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, bytearray]
@@ -2142,7 +2142,7 @@ class DictionaryOperations(object):
     def put_byte_valid(
         self,
         array_body,  # type: Dict[str, bytearray]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -2191,7 +2191,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_byte_invalid_null(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, bytearray], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, bytearray], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, bytearray]
@@ -2238,7 +2238,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_base64_url(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, bytes], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, bytes], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, bytes]
@@ -2285,7 +2285,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_complex_null(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, "Widget"], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, "Widget"], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, "Widget"]
@@ -2332,7 +2332,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_complex_empty(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, "Widget"], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, "Widget"], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, "Widget"]
@@ -2379,7 +2379,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_complex_item_null(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, "Widget"], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, "Widget"], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, "Widget"]
@@ -2426,7 +2426,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_complex_item_empty(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, "Widget"], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, "Widget"], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, "Widget"]
@@ -2473,7 +2473,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_complex_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, "Widget"], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, "Widget"], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, "Widget"]
@@ -2521,7 +2521,7 @@ class DictionaryOperations(object):
     def put_complex_valid(
         self,
         array_body,  # type: Dict[str, "Widget"]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -2570,7 +2570,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_array_null(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, List[str]], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, List[str]], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, List[str]]
@@ -2617,7 +2617,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_array_empty(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, List[str]], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, List[str]], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, List[str]]
@@ -2664,7 +2664,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_array_item_null(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, List[str]], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, List[str]], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, List[str]]
@@ -2711,7 +2711,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_array_item_empty(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, List[str]], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, List[str]], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, List[str]]
@@ -2758,7 +2758,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_array_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, List[str]], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, List[str]], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, List[str]]
@@ -2806,7 +2806,7 @@ class DictionaryOperations(object):
     def put_array_valid(
         self,
         array_body,  # type: Dict[str, List[str]]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -2855,7 +2855,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_dictionary_null(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, object], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, object], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, object]
@@ -2902,7 +2902,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_dictionary_empty(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, object], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, object], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, object]
@@ -2949,7 +2949,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_dictionary_item_null(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, object], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, object], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, object]
@@ -2996,7 +2996,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_dictionary_item_empty(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, object], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, object], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, object]
@@ -3043,7 +3043,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_dictionary_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Dict[str, object], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Dict[str, object], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Dict[str, object]
@@ -3091,7 +3091,7 @@ class DictionaryOperations(object):
     def put_dictionary_valid(
         self,
         array_body,  # type: Dict[str, object]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None

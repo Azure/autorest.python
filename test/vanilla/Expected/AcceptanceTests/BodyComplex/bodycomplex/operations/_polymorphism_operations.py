@@ -38,7 +38,7 @@ class PolymorphismOperations(object):
     @distributed_trace
     def get_valid(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "Fish", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Fish", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "Fish"
@@ -86,7 +86,7 @@ class PolymorphismOperations(object):
     def put_valid(
         self,
         complex_body,  # type: "Fish"
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -167,7 +167,7 @@ class PolymorphismOperations(object):
     @distributed_trace
     def get_dot_syntax(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "DotFish", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "DotFish", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "DotFish"
@@ -214,7 +214,7 @@ class PolymorphismOperations(object):
     @distributed_trace
     def get_composed_with_discriminator(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "DotFishMarket", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "DotFishMarket", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "DotFishMarket"
@@ -261,7 +261,7 @@ class PolymorphismOperations(object):
     @distributed_trace
     def get_composed_without_discriminator(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "DotFishMarket", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "DotFishMarket", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "DotFishMarket"
@@ -308,7 +308,7 @@ class PolymorphismOperations(object):
     @distributed_trace
     def get_complicated(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "Salmon", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Salmon", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "Salmon"
@@ -356,7 +356,7 @@ class PolymorphismOperations(object):
     def put_complicated(
         self,
         complex_body,  # type: "Salmon"
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -406,7 +406,7 @@ class PolymorphismOperations(object):
     def put_missing_discriminator(
         self,
         complex_body,  # type: "Salmon"
-        cls=None,  # type: Callable[[HttpResponse, "Salmon", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Salmon", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "Salmon"
@@ -460,7 +460,7 @@ class PolymorphismOperations(object):
     def put_valid_missing_required(
         self,
         complex_body,  # type: "Fish"
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None

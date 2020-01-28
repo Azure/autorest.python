@@ -39,7 +39,7 @@ class EnumOperations(object):
     @distributed_trace
     def get_not_expandable(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Union[str, "Colors"], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Union[str, "Colors"], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Union[str, "Colors"]
@@ -87,7 +87,7 @@ class EnumOperations(object):
     def put_not_expandable(
         self,
         string_body,  # type: Union[str, "Colors"]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -136,7 +136,7 @@ class EnumOperations(object):
     @distributed_trace
     def get_referenced(
         self,
-        cls=None,  # type: Callable[[HttpResponse, Union[str, "Colors"], Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, Union[str, "Colors"], Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> Union[str, "Colors"]
@@ -184,7 +184,7 @@ class EnumOperations(object):
     def put_referenced(
         self,
         enum_string_body,  # type: Union[str, "Colors"]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -233,7 +233,7 @@ class EnumOperations(object):
     @distributed_trace
     def get_referenced_constant(
         self,
-        cls=None,  # type: Callable[[HttpResponse, "RefColorConstant", Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "RefColorConstant", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "RefColorConstant"
@@ -281,7 +281,7 @@ class EnumOperations(object):
     def put_referenced_constant(
         self,
         field1=None,  # type: Optional[str]
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None

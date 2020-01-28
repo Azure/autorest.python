@@ -38,7 +38,7 @@ class DateOperations(object):
     @distributed_trace
     def get_null(
         self,
-        cls=None,  # type: Callable[[HttpResponse, datetime.date, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, datetime.date, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.date
@@ -85,7 +85,7 @@ class DateOperations(object):
     @distributed_trace
     def get_invalid_date(
         self,
-        cls=None,  # type: Callable[[HttpResponse, datetime.date, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, datetime.date, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.date
@@ -132,7 +132,7 @@ class DateOperations(object):
     @distributed_trace
     def get_overflow_date(
         self,
-        cls=None,  # type: Callable[[HttpResponse, datetime.date, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, datetime.date, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.date
@@ -179,7 +179,7 @@ class DateOperations(object):
     @distributed_trace
     def get_underflow_date(
         self,
-        cls=None,  # type: Callable[[HttpResponse, datetime.date, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, datetime.date, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.date
@@ -227,7 +227,7 @@ class DateOperations(object):
     def put_max_date(
         self,
         date_body,  # type: datetime.date
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -276,7 +276,7 @@ class DateOperations(object):
     @distributed_trace
     def get_max_date(
         self,
-        cls=None,  # type: Callable[[HttpResponse, datetime.date, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, datetime.date, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.date
@@ -324,7 +324,7 @@ class DateOperations(object):
     def put_min_date(
         self,
         date_body,  # type: datetime.date
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -373,7 +373,7 @@ class DateOperations(object):
     @distributed_trace
     def get_min_date(
         self,
-        cls=None,  # type: Callable[[HttpResponse, datetime.date, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, datetime.date, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.date

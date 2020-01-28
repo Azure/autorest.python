@@ -38,7 +38,7 @@ class HeaderOperations(object):
     def custom_named_request_id(
         self,
         foo_client_request_id,  # type: str
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -88,7 +88,7 @@ class HeaderOperations(object):
     def custom_named_request_id_param_grouping(
         self,
         foo_client_request_id,  # type: str
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -138,7 +138,7 @@ class HeaderOperations(object):
     def custom_named_request_id_head(
         self,
         foo_client_request_id,  # type: str
-        cls=None,  # type: Callable[[HttpResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
