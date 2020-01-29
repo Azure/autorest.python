@@ -66,7 +66,7 @@ class ErrorException(HttpResponseError):
 
 
 class Error(Model):
-    """Error.
+    """
 
     :param status:
     :type status: int
@@ -91,7 +91,7 @@ class Error(Model):
 
 
 class Resource(Model):
-    """Resource.
+    """
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -187,7 +187,7 @@ class FlattenedProduct(Resource):
 
 
 class FlattenedProductProperties(Model):
-    """FlattenedProductProperties.
+    """
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -301,7 +301,7 @@ class ProductWrapper(Model):
 
 
 class ResourceCollection(Model):
-    """ResourceCollection.
+    """
 
     :param productresource: Flattened product.
     :type productresource: ~modelflattening.models.FlattenedProduct

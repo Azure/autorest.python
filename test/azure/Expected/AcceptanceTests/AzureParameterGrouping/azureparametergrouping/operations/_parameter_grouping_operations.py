@@ -49,12 +49,15 @@ class ParameterGroupingOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
         
+        custom_header = None
+        query = None
+        path = None
+        body = None
         if parameter_grouping_post_required_parameters is not None:
             custom_header = parameter_grouping_post_required_parameters.custom_header
-        if parameter_grouping_post_required_parameters is not None:
             query = parameter_grouping_post_required_parameters.query
-        path = parameter_grouping_post_required_parameters.path
-        body = parameter_grouping_post_required_parameters.body
+            path = parameter_grouping_post_required_parameters.path
+            body = parameter_grouping_post_required_parameters.body
 
 
         # Construct URL
@@ -109,9 +112,10 @@ class ParameterGroupingOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
         
+        custom_header = None
+        query = None
         if parameter_grouping_post_optional_parameters is not None:
             custom_header = parameter_grouping_post_optional_parameters.custom_header
-        if parameter_grouping_post_optional_parameters is not None:
             query = parameter_grouping_post_optional_parameters.query
 
 
@@ -161,13 +165,15 @@ class ParameterGroupingOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
         
+        header_one = None
+        query_one = None
+        header_two = None
+        query_two = None
         if first_parameter_group is not None:
             header_one = first_parameter_group.header_one
-        if first_parameter_group is not None:
             query_one = first_parameter_group.query_one
         if parameter_grouping_post_multi_param_groups_second_param_group is not None:
             header_two = parameter_grouping_post_multi_param_groups_second_param_group.header_two
-        if parameter_grouping_post_multi_param_groups_second_param_group is not None:
             query_two = parameter_grouping_post_multi_param_groups_second_param_group.query_two
 
 
@@ -219,9 +225,10 @@ class ParameterGroupingOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
         
+        header_one = None
+        query_one = None
         if first_parameter_group is not None:
             header_one = first_parameter_group.header_one
-        if first_parameter_group is not None:
             query_one = first_parameter_group.query_one
 
 

@@ -16,12 +16,13 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
 {% if operation.parameters.grouped %}
 
     {% for grouped_parameter in operation.parameters.grouped %}
-        {%if grouped_parameter.is_required %}
-{{ grouped_parameter.serialized_name }} = {{ grouped_parameter.grouped_by.serialized_name }}.{{ grouped_parameter.serialized_name }}
-        {% else %}
-if {{ grouped_parameter.grouped_by.serialized_name }} is not None:
-    {{ grouped_parameter.serialized_name }} = {{ grouped_parameter.grouped_by.serialized_name }}.{{ grouped_parameter.serialized_name }}
-        {% endif %}
+{{ grouped_parameter.serialized_name }} = None
+    {% endfor %}
+    {% for grouper_name, grouped_parameters in operation.parameters.grouped|groupby("grouped_by.serialized_name") %}
+if {{ grouper_name }} is not None:
+        {% for grouped_parameter in grouped_parameters %}
+    {{ grouped_parameter.serialized_name }} = {{ grouper_name }}.{{ grouped_parameter.serialized_name }}
+        {% endfor %}
     {% endfor %}
 {% endif %}
 {% endmacro %}

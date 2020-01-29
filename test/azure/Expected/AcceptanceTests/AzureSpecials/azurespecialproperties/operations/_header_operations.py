@@ -93,7 +93,9 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
         
-        foo_client_request_id = header_custom_named_request_id_param_grouping_parameters.foo_client_request_id
+        foo_client_request_id = None
+        if header_custom_named_request_id_param_grouping_parameters is not None:
+            foo_client_request_id = header_custom_named_request_id_param_grouping_parameters.foo_client_request_id
 
 
         # Construct URL

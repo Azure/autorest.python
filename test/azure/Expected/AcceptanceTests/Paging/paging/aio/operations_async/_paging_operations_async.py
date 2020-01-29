@@ -234,9 +234,10 @@ class PagingOperations:
         """
         error_map = kwargs.pop('error_map', {})
         
+        maxresults = None
+        timeout = None
         if paging_get_multiple_pages_options is not None:
             maxresults = paging_get_multiple_pages_options.maxresults
-        if paging_get_multiple_pages_options is not None:
             timeout = paging_get_multiple_pages_options.timeout
 
 
@@ -309,9 +310,10 @@ class PagingOperations:
         """
         error_map = kwargs.pop('error_map', {})
         
+        maxresults = None
+        timeout = None
         if paging_get_odata_multiple_pages_options is not None:
             maxresults = paging_get_odata_multiple_pages_options.maxresults
-        if paging_get_odata_multiple_pages_options is not None:
             timeout = paging_get_odata_multiple_pages_options.timeout
 
 
@@ -384,10 +386,12 @@ class PagingOperations:
         """
         error_map = kwargs.pop('error_map', {})
         
+        maxresults = None
+        offset = None
+        timeout = None
         if paging_get_multiple_pages_with_offset_options is not None:
             maxresults = paging_get_multiple_pages_with_offset_options.maxresults
-        offset = paging_get_multiple_pages_with_offset_options.offset
-        if paging_get_multiple_pages_with_offset_options is not None:
+            offset = paging_get_multiple_pages_with_offset_options.offset
             timeout = paging_get_multiple_pages_with_offset_options.timeout
 
 
@@ -830,8 +834,11 @@ class PagingOperations:
         """
         error_map = kwargs.pop('error_map', {})
         
-        api_version = custom_parameter_group.api_version
-        tenant = custom_parameter_group.tenant
+        api_version = None
+        tenant = None
+        if custom_parameter_group is not None:
+            api_version = custom_parameter_group.api_version
+            tenant = custom_parameter_group.tenant
 
 
         def prepare_request(next_link=None):
@@ -893,9 +900,10 @@ class PagingOperations:
     async def _get_multiple_pages_lro_initial(self, client_request_id=None, paging_get_multiple_pages_lro_options=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
         
+        maxresults = None
+        timeout = None
         if paging_get_multiple_pages_lro_options is not None:
             maxresults = paging_get_multiple_pages_lro_options.maxresults
-        if paging_get_multiple_pages_lro_options is not None:
             timeout = paging_get_multiple_pages_lro_options.timeout
 
 

@@ -111,12 +111,20 @@ class ParameterList(MutableSequence):
         """
 
         def is_parameter_in_signature(parameter):
-            """A predicate to tell if this parmater deserves to be in the signature.
+            """A predicate to tell if this parameter deserves to be in the signature.
             """
             return not (
+                # Constant are never on signature
                 isinstance(parameter.schema, ConstantSchema)
+
+                # Client level should not be on Method, etc.
                 or parameter.implementation != self.implementation
+
+                # If I'm grouped, my grouper will be on signature, not me
                 or parameter.grouped_by
+
+                # If I'm body and it's flattened, I'm not either
+                or (parameter.location == ParameterLocation.Body and self.is_flattened)
             )
 
         signature_parameters_required = []
@@ -131,8 +139,6 @@ class ParameterList(MutableSequence):
         signature_parameters = (
             signature_parameters_required + signature_parameters_optional
         )
-        if self.is_flattened:
-            signature_parameters.remove(self.body)
         return signature_parameters
 
     @property
