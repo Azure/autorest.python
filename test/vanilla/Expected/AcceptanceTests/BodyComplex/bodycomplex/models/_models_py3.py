@@ -221,7 +221,6 @@ class Shark(Fish):
 
     def __init__(self, *, length: float, birthday: datetime.datetime, species: str=None, siblings: List["Fish"]=None, age: int=None, **kwargs) -> None:
         super(Shark, self).__init__(species=species, length=length, siblings=siblings, **kwargs)
-        self.fishtype = 'shark'
         self.age = age
         self.birthday = birthday
 
@@ -262,7 +261,6 @@ class Cookiecuttershark(Shark):
 
     def __init__(self, *, length: float, birthday: datetime.datetime, species: str=None, siblings: List["Fish"]=None, age: int=None, **kwargs) -> None:
         super(Cookiecuttershark, self).__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
-        self.fishtype = 'cookiecuttershark'
 
 
 class Datetimerfc1123Wrapper(Model):
@@ -453,7 +451,6 @@ class DotSalmon(DotFish):
 
     def __init__(self, *, species: str=None, location: str=None, iswild: bool=None, **kwargs) -> None:
         super(DotSalmon, self).__init__(species=species, **kwargs)
-        self.fish_type = 'DotSalmon'
         self.location = location
         self.iswild = iswild
 
@@ -606,7 +603,6 @@ class Goblinshark(Shark):
 
     def __init__(self, *, length: float, birthday: datetime.datetime, species: str=None, siblings: List["Fish"]=None, age: int=None, jawsize: int=None, color: Union[str, "GoblinSharkColor"]="gray", **kwargs) -> None:
         super(Goblinshark, self).__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
-        self.fishtype = 'goblin'
         self.jawsize = jawsize
         self.color = color
 
@@ -732,7 +728,6 @@ class MyDerivedType(MyBaseType):
 
     def __init__(self, *, prop_b1: str=None, prop_bh1: str=None, prop_d1: str=None, **kwargs) -> None:
         super(MyDerivedType, self).__init__(prop_b1=prop_b1, prop_bh1=prop_bh1, **kwargs)
-        self.kind = 'Kind1'
         self.prop_d1 = prop_d1
 
 
@@ -804,7 +799,6 @@ class Salmon(Fish):
 
     def __init__(self, *, length: float, species: str=None, siblings: List["Fish"]=None, location: str=None, iswild: bool=None, **kwargs) -> None:
         super(Salmon, self).__init__(species=species, length=length, siblings=siblings, **kwargs)
-        self.fishtype = 'salmon'
         self.location = location
         self.iswild = iswild
 
@@ -848,7 +842,6 @@ class Sawshark(Shark):
 
     def __init__(self, *, length: float, birthday: datetime.datetime, species: str=None, siblings: List["Fish"]=None, age: int=None, picture: bytearray=None, **kwargs) -> None:
         super(Sawshark, self).__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
-        self.fishtype = 'sawshark'
         self.picture = picture
 
 
@@ -922,7 +915,6 @@ class SmartSalmon(Salmon):
 
     def __init__(self, *, length: float, species: str=None, siblings: List["Fish"]=None, location: str=None, iswild: bool=None, additional_properties: Dict[str, object]=None, college_degree: str=None, **kwargs) -> None:
         super(SmartSalmon, self).__init__(species=species, length=length, siblings=siblings, location=location, iswild=iswild, **kwargs)
-        self.fishtype = 'smart_salmon'
         self.additional_properties = additional_properties
         self.college_degree = college_degree
 

@@ -158,7 +158,6 @@ class AnimalNotFound(NotFoundErrorBase):
 
     def __init__(self, *, some_base_prop: str=None, reason: str=None, name: str=None, **kwargs) -> None:
         super(AnimalNotFound, self).__init__(some_base_prop=some_base_prop, reason=reason, **kwargs)
-        self.what_not_found = 'AnimalNotFound'
         self.name = name
 
 
@@ -216,7 +215,6 @@ class LinkNotFound(NotFoundErrorBase):
 
     def __init__(self, *, some_base_prop: str=None, reason: str=None, what_sub_address: str=None, **kwargs) -> None:
         super(LinkNotFound, self).__init__(some_base_prop=some_base_prop, reason=reason, **kwargs)
-        self.what_not_found = 'InvalidResourceLink'
         self.what_sub_address = what_sub_address
 
 
@@ -242,6 +240,7 @@ class Pet(Animal):
 
     def __init__(self, *, ani_type: str=None, **kwargs) -> None:
         super(Pet, self).__init__(ani_type=ani_type, **kwargs)
+        self.name = None
 
 
 class PetAction(Model):
@@ -377,7 +376,6 @@ class PetSadError(PetActionError):
 
     def __init__(self, *, error_message: str=None, reason: str=None, **kwargs) -> None:
         super(PetSadError, self).__init__(error_message=error_message, **kwargs)
-        self.error_type = 'PetSadError'
         self.reason = reason
 
 
@@ -435,5 +433,4 @@ class PetHungryOrThirstyError(PetSadError):
 
     def __init__(self, *, error_message: str=None, reason: str=None, hungry_or_thirsty: str=None, **kwargs) -> None:
         super(PetHungryOrThirstyError, self).__init__(error_message=error_message, reason=reason, **kwargs)
-        self.error_type = 'PetHungryOrThirstyError'
         self.hungry_or_thirsty = hungry_or_thirsty
