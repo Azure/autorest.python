@@ -36,7 +36,7 @@ class ErrorException(HttpResponseError):
 
 
 class Error(Model):
-    """Error.
+    """
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -44,7 +44,7 @@ class Error(Model):
 
     :param status:
     :type status: int
-    :ivar constant_id: Required. The constant value 1. Default value: "1".
+    :ivar constant_id: Required.  Default value: "1".
     :vartype constant_id: float
     :param message:
     :type message: str
@@ -92,7 +92,7 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(Model):
 
 
 class OdataFilter(Model):
-    """OdataFilter.
+    """
 
     :param id:
     :type id: int

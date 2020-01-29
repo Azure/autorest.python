@@ -10,38 +10,38 @@ from enum import Enum
 
 class ProvisioningState(str, Enum):
     
-    creating = "Creating"  #: The value 'Creating'.
-    resolving_dns = "ResolvingDNS"  #: The value 'ResolvingDNS'.
-    succeeded = "Succeeded"  #: The value 'Succeeded'.
+    creating = "Creating"
+    resolving_dns = "ResolvingDNS"
+    succeeded = "Succeeded"
 
 class AccountType(str, Enum):
     
-    standard_lrs = "Standard_LRS"  #: The value 'Standard_LRS'.
-    standard_zrs = "Standard_ZRS"  #: The value 'Standard_ZRS'.
-    standard_grs = "Standard_GRS"  #: The value 'Standard_GRS'.
-    standard_ragrs = "Standard_RAGRS"  #: The value 'Standard_RAGRS'.
-    premium_lrs = "Premium_LRS"  #: The value 'Premium_LRS'.
+    standard_lrs = "Standard_LRS"
+    standard_zrs = "Standard_ZRS"
+    standard_grs = "Standard_GRS"
+    standard_ragrs = "Standard_RAGRS"
+    premium_lrs = "Premium_LRS"
 
 class AccountStatus(str, Enum):
     
-    available = "Available"  #: The value 'Available'.
-    unavailable = "Unavailable"  #: The value 'Unavailable'.
+    available = "Available"
+    unavailable = "Unavailable"
 
 class UsageUnit(str, Enum):
     
-    count = "Count"  #: The value 'Count'.
-    bytes = "Bytes"  #: The value 'Bytes'.
-    seconds = "Seconds"  #: The value 'Seconds'.
-    percent = "Percent"  #: The value 'Percent'.
-    counts_per_second = "CountsPerSecond"  #: The value 'CountsPerSecond'.
-    bytes_per_second = "BytesPerSecond"  #: The value 'BytesPerSecond'.
+    count = "Count"
+    bytes = "Bytes"
+    seconds = "Seconds"
+    percent = "Percent"
+    counts_per_second = "CountsPerSecond"
+    bytes_per_second = "BytesPerSecond"
 
 class Reason(str, Enum):
     
-    account_name_invalid = "AccountNameInvalid"  #: The value 'AccountNameInvalid'.
-    already_exists = "AlreadyExists"  #: The value 'AlreadyExists'.
+    account_name_invalid = "AccountNameInvalid"
+    already_exists = "AlreadyExists"
 
 class KeyName(str, Enum):
     
-    key1 = "key1"  #: The value 'key1'.
-    key2 = "key2"  #: The value 'key2'.
+    key1 = "key1"
+    key2 = "key2"

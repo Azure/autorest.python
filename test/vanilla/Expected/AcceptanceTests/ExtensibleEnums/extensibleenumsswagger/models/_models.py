@@ -10,7 +10,7 @@ from msrest.serialization import Model
 
 
 class Pet(Model):
-    """Pet.
+    """
 
     All required parameters must be populated in order to send to Azure.
 

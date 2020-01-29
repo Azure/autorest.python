@@ -97,7 +97,7 @@ class ErrorException(HttpResponseError):
 
 
 class Error(Model):
-    """Error.
+    """
 
     :param code:
     :type code: int

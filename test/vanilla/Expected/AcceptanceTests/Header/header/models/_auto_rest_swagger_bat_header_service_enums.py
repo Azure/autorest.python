@@ -10,6 +10,6 @@ from enum import Enum
 
 class GreyscaleColors(str, Enum):
     
-    white = "White"  #: The value 'White'.
-    black = "black"  #: The value 'black'.
-    grey = "GREY"  #: The value 'GREY'.
+    white = "White"
+    black = "black"
+    grey = "GREY"

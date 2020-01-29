@@ -36,7 +36,7 @@ class ErrorException(HttpResponseError):
 
 
 class Error(Model):
-    """Error.
+    """
 
     :param status:
     :type status: int
@@ -57,7 +57,7 @@ class Error(Model):
 
 
 class Widget(Model):
-    """Widget.
+    """
 
     :param integer:
     :type integer: int

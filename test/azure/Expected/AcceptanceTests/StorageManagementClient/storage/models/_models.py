@@ -128,7 +128,7 @@ class Foo(Model):
 
 
 class Resource(Model):
-    """Resource.
+    """
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -270,7 +270,7 @@ class StorageAccount(Resource):
 
 
 class StorageAccountCheckNameAvailabilityParameters(Model):
-    """StorageAccountCheckNameAvailabilityParameters.
+    """
 
     All required parameters must be populated in order to send to Azure.
 
@@ -380,7 +380,7 @@ class StorageAccountListResult(Model):
 
 
 class StorageAccountProperties(Model):
-    """StorageAccountProperties.
+    """
 
     :param provisioning_state: Gets the status of the storage account at the time
      the operation was called. Possible values include: 'Creating', 'ResolvingDNS',
@@ -453,7 +453,7 @@ class StorageAccountProperties(Model):
 
 
 class StorageAccountPropertiesCreateParameters(Model):
-    """StorageAccountPropertiesCreateParameters.
+    """
 
     :param account_type: Gets or sets the account type. Possible values include:
      'Standard_LRS', 'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
@@ -470,7 +470,7 @@ class StorageAccountPropertiesCreateParameters(Model):
 
 
 class StorageAccountPropertiesUpdateParameters(Model):
-    """StorageAccountPropertiesUpdateParameters.
+    """
 
     :param account_type: Gets or sets the account type. Possible values include:
      'Standard_LRS', 'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
@@ -492,7 +492,7 @@ class StorageAccountPropertiesUpdateParameters(Model):
 
 
 class StorageAccountRegenerateKeyParameters(Model):
-    """StorageAccountRegenerateKeyParameters.
+    """
 
     :param key_name:  Possible values include: 'key1', 'key2'.
     :type key_name: str or ~storage.models.KeyName
@@ -556,7 +556,7 @@ class StorageAccountUpdateParameters(Resource):
 
 
 class SubResource(Model):
-    """SubResource.
+    """
 
     :param id: Resource Id.
     :type id: str

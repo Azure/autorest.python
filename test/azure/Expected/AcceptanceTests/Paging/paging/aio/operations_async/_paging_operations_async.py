@@ -217,7 +217,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    def get_multiple_pages(self, client_request_id=None, maxresults=None, timeout=None, paging_get_multiple_pages_options=None, cls=None, **kwargs):
+    def get_multiple_pages(self, client_request_id=None, paging_get_multiple_pages_options=None, cls=None, **kwargs):
         """A paging operation that includes a nextLink that has 10 pages.
 
         FIXME: add operation.summary
@@ -225,10 +225,6 @@ class PagingOperations:
 
         :param client_request_id: 
         :type client_request_id: str
-        :param maxresults: Sets the maximum number of items to return in the response.
-        :type maxresults: int
-        :param timeout: Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
-        :type timeout: int
         :param paging_get_multiple_pages_options: Parameter group.
         :type paging_get_multiple_pages_options: ~paging.models.PagingGetMultiplePagesOptions
         :param callable cls: A custom type or function that will be passed the direct response
@@ -237,6 +233,12 @@ class PagingOperations:
         :raises: ~azure.mgmt.core.ARMError
         """
         error_map = kwargs.pop('error_map', {})
+        
+        if paging_get_multiple_pages_options is not None:
+            maxresults = paging_get_multiple_pages_options.maxresults
+        if paging_get_multiple_pages_options is not None:
+            timeout = paging_get_multiple_pages_options.timeout
+
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -290,7 +292,7 @@ class PagingOperations:
 
 
     @distributed_trace
-    def get_odata_multiple_pages(self, client_request_id=None, maxresults=None, timeout=None, paging_get_odata_multiple_pages_options=None, cls=None, **kwargs):
+    def get_odata_multiple_pages(self, client_request_id=None, paging_get_odata_multiple_pages_options=None, cls=None, **kwargs):
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
         FIXME: add operation.summary
@@ -298,10 +300,6 @@ class PagingOperations:
 
         :param client_request_id: 
         :type client_request_id: str
-        :param maxresults: Sets the maximum number of items to return in the response.
-        :type maxresults: int
-        :param timeout: Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
-        :type timeout: int
         :param paging_get_odata_multiple_pages_options: Parameter group.
         :type paging_get_odata_multiple_pages_options: ~paging.models.PagingGetOdataMultiplePagesOptions
         :param callable cls: A custom type or function that will be passed the direct response
@@ -310,6 +308,12 @@ class PagingOperations:
         :raises: ~azure.mgmt.core.ARMError
         """
         error_map = kwargs.pop('error_map', {})
+        
+        if paging_get_odata_multiple_pages_options is not None:
+            maxresults = paging_get_odata_multiple_pages_options.maxresults
+        if paging_get_odata_multiple_pages_options is not None:
+            timeout = paging_get_odata_multiple_pages_options.timeout
+
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -363,28 +367,29 @@ class PagingOperations:
 
 
     @distributed_trace
-    def get_multiple_pages_with_offset(self, offset, paging_get_multiple_pages_with_offset_options, client_request_id=None, maxresults=None, timeout=None, cls=None, **kwargs):
+    def get_multiple_pages_with_offset(self, paging_get_multiple_pages_with_offset_options, client_request_id=None, cls=None, **kwargs):
         """A paging operation that includes a nextLink that has 10 pages.
 
         FIXME: add operation.summary
 
 
-        :param offset: Offset of return value.
-        :type offset: int
         :param paging_get_multiple_pages_with_offset_options: Parameter group.
         :type paging_get_multiple_pages_with_offset_options: ~paging.models.PagingGetMultiplePagesWithOffsetOptions
         :param client_request_id: 
         :type client_request_id: str
-        :param maxresults: Sets the maximum number of items to return in the response.
-        :type maxresults: int
-        :param timeout: Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
-        :type timeout: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
         error_map = kwargs.pop('error_map', {})
+        
+        if paging_get_multiple_pages_with_offset_options is not None:
+            maxresults = paging_get_multiple_pages_with_offset_options.maxresults
+        offset = paging_get_multiple_pages_with_offset_options.offset
+        if paging_get_multiple_pages_with_offset_options is not None:
+            timeout = paging_get_multiple_pages_with_offset_options.timeout
+
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -810,16 +815,12 @@ class PagingOperations:
 
 
     @distributed_trace
-    def get_multiple_pages_fragment_with_grouping_next_link(self, api_version, tenant, custom_parameter_group, cls=None, **kwargs):
+    def get_multiple_pages_fragment_with_grouping_next_link(self, custom_parameter_group, cls=None, **kwargs):
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
 
         FIXME: add operation.summary
 
 
-        :param api_version: Sets the api version to use.
-        :type api_version: str
-        :param tenant: Sets the tenant to use.
-        :type tenant: str
         :param custom_parameter_group: Parameter group.
         :type custom_parameter_group: ~paging.models.CustomParameterGroup
         :param callable cls: A custom type or function that will be passed the direct response
@@ -828,6 +829,10 @@ class PagingOperations:
         :raises: ~azure.mgmt.core.ARMError
         """
         error_map = kwargs.pop('error_map', {})
+        
+        api_version = custom_parameter_group.api_version
+        tenant = custom_parameter_group.tenant
+
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -885,8 +890,14 @@ class PagingOperations:
 
 
     
-    async def _get_multiple_pages_lro_initial(self, client_request_id=None, maxresults=None, timeout=None, paging_get_multiple_pages_lro_options=None, cls=None, **kwargs):
+    async def _get_multiple_pages_lro_initial(self, client_request_id=None, paging_get_multiple_pages_lro_options=None, cls=None, **kwargs):
         error_map = kwargs.pop('error_map', {})
+        
+        if paging_get_multiple_pages_lro_options is not None:
+            maxresults = paging_get_multiple_pages_lro_options.maxresults
+        if paging_get_multiple_pages_lro_options is not None:
+            timeout = paging_get_multiple_pages_lro_options.timeout
+
 
         # Construct URL
         url = self._get_multiple_pages_lro_initial.metadata['url']
@@ -924,7 +935,7 @@ class PagingOperations:
     _get_multiple_pages_lro_initial.metadata = {'url': '/paging/multiple/lro'}
 
     @distributed_trace_async
-    async def get_multiple_pages_lro(self, client_request_id=None, maxresults=None, timeout=None, paging_get_multiple_pages_lro_options=None, cls=None, polling=True, **kwargs):
+    async def get_multiple_pages_lro(self, client_request_id=None, paging_get_multiple_pages_lro_options=None, cls=None, polling=True, **kwargs):
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         FIXME: add operation.summary
@@ -932,10 +943,6 @@ class PagingOperations:
 
         :param client_request_id: 
         :type client_request_id: str
-        :param maxresults: Sets the maximum number of items to return in the response.
-        :type maxresults: int
-        :param timeout: Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
-        :type timeout: int
         :param paging_get_multiple_pages_lro_options: Parameter group.
         :type paging_get_multiple_pages_lro_options: ~paging.models.PagingGetMultiplePagesLroOptions
         :param callable cls: A custom type or function that will be passed the direct response
@@ -948,8 +955,6 @@ class PagingOperations:
         """
         raw_result = await self._get_multiple_pages_lro_initial(
             client_request_id=client_request_id,
-            maxresults=maxresults,
-            timeout=timeout,
             paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,
             cls=lambda x,y,z: x,
             **kwargs

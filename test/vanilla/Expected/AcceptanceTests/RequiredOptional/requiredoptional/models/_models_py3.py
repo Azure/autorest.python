@@ -13,7 +13,7 @@ from msrest.serialization import Model
 
 
 class ArrayOptionalWrapper(Model):
-    """ArrayOptionalWrapper.
+    """
 
     :param value:
     :type value: list[str]
@@ -29,7 +29,7 @@ class ArrayOptionalWrapper(Model):
 
 
 class ArrayWrapper(Model):
-    """ArrayWrapper.
+    """
 
     All required parameters must be populated in order to send to Azure.
 
@@ -51,7 +51,7 @@ class ArrayWrapper(Model):
 
 
 class ClassOptionalWrapper(Model):
-    """ClassOptionalWrapper.
+    """
 
     :param value:
     :type value: ~requiredoptional.models.Product
@@ -67,7 +67,7 @@ class ClassOptionalWrapper(Model):
 
 
 class ClassWrapper(Model):
-    """ClassWrapper.
+    """
 
     All required parameters must be populated in order to send to Azure.
 
@@ -114,7 +114,7 @@ class ErrorException(HttpResponseError):
 
 
 class Error(Model):
-    """Error.
+    """
 
     :param status:
     :type status: int
@@ -135,7 +135,7 @@ class Error(Model):
 
 
 class IntOptionalWrapper(Model):
-    """IntOptionalWrapper.
+    """
 
     :param value:
     :type value: int
@@ -151,7 +151,7 @@ class IntOptionalWrapper(Model):
 
 
 class IntWrapper(Model):
-    """IntWrapper.
+    """
 
     All required parameters must be populated in order to send to Azure.
 
@@ -173,7 +173,7 @@ class IntWrapper(Model):
 
 
 class Product(Model):
-    """Product.
+    """
 
     All required parameters must be populated in order to send to Azure.
 
@@ -199,7 +199,7 @@ class Product(Model):
 
 
 class StringOptionalWrapper(Model):
-    """StringOptionalWrapper.
+    """
 
     :param value:
     :type value: str
@@ -215,7 +215,7 @@ class StringOptionalWrapper(Model):
 
 
 class StringWrapper(Model):
-    """StringWrapper.
+    """
 
     All required parameters must be populated in order to send to Azure.
 

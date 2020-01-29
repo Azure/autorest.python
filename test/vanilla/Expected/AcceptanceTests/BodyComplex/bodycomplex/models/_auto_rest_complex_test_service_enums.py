@@ -10,15 +10,15 @@ from enum import Enum
 
 class CMYKColors(str, Enum):
     
-    cyan = "cyan"  #: The value 'cyan'.
-    magenta = "Magenta"  #: The value 'Magenta'.
-    yellow = "YELLOW"  #: The value 'YELLOW'.
-    blac_k = "blacK"  #: The value 'blacK'.
+    cyan = "cyan"
+    magenta = "Magenta"
+    yellow = "YELLOW"
+    blac_k = "blacK"
 
 class GoblinSharkColor(str, Enum):
     
-    pink = "pink"  #: The value 'pink'.
-    gray = "gray"  #: The value 'gray'.
-    brown = "brown"  #: The value 'brown'.
+    pink = "pink"
+    gray = "gray"
+    brown = "brown"
     upper_red = "RED"  #: Uppercase RED.
     lower_red = "red"  #: Lowercase RED.

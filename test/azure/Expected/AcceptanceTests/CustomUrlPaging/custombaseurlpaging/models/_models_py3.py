@@ -12,7 +12,7 @@ from msrest.serialization import Model
 
 
 class Error(Model):
-    """Error.
+    """
 
     :param status:
     :type status: int
@@ -32,7 +32,7 @@ class Error(Model):
 
 
 class Product(Model):
-    """Product.
+    """
 
     :param properties:
     :type properties: ~custombaseurlpaging.models.ProductProperties
@@ -48,7 +48,7 @@ class Product(Model):
 
 
 class ProductProperties(Model):
-    """ProductProperties.
+    """
 
     :param id:
     :type id: int
@@ -68,7 +68,7 @@ class ProductProperties(Model):
 
 
 class ProductResult(Model):
-    """ProductResult.
+    """
 
     :param values:
     :type values: list[~custombaseurlpaging.models.Product]

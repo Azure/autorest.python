@@ -36,7 +36,7 @@ class ErrorException(HttpResponseError):
 
 
 class Error(Model):
-    """Error.
+    """
 
     :param code:
     :type code: int
@@ -57,7 +57,7 @@ class Error(Model):
 
 
 class SampleResourceGroup(Model):
-    """SampleResourceGroup.
+    """
 
     :param name: resource group name 'testgroup101'.
     :type name: str

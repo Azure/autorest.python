@@ -39,7 +39,7 @@ class CustomParameterGroup(Model):
 
 
 class OdataProductResult(Model):
-    """OdataProductResult.
+    """
 
     :param values:
     :type values: list[~paging.models.Product]
@@ -59,7 +59,7 @@ class OdataProductResult(Model):
 
 
 class OperationResult(Model):
-    """OperationResult.
+    """
 
     :param status: The status of the request. Possible values include: 'Succeeded',
      'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
@@ -171,7 +171,7 @@ class PagingGetOdataMultiplePagesOptions(Model):
 
 
 class Product(Model):
-    """Product.
+    """
 
     :param properties:
     :type properties: ~paging.models.ProductProperties
@@ -187,7 +187,7 @@ class Product(Model):
 
 
 class ProductProperties(Model):
-    """ProductProperties.
+    """
 
     :param id:
     :type id: int
@@ -207,7 +207,7 @@ class ProductProperties(Model):
 
 
 class ProductResult(Model):
-    """ProductResult.
+    """
 
     :param values:
     :type values: list[~paging.models.Product]
@@ -227,7 +227,7 @@ class ProductResult(Model):
 
 
 class ProductResultValue(Model):
-    """ProductResultValue.
+    """
 
     :param value:
     :type value: list[~paging.models.Product]
