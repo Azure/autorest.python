@@ -44,7 +44,7 @@ class ModelPython3Serializer(ModelBaseSerializer):
             for prop in model.properties:
                 if (prop in model.base_model.properties and not prop.is_discriminator and not prop.constant and not prop.readonly):
                     properties_to_pass.append("{}={}".format(prop.name, prop.name))
-                elif prop not in model.base_model.properties:
+                elif prop not in model.base_model.properties or prop.is_discriminator or prop.constant:
                     properties_to_initialize.append(prop)
             properties_to_pass.append("**kwargs")
             init_args.append("super({}, self).__init__({})".format(model.name, ", ".join(properties_to_pass)))
