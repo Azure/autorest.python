@@ -78,5 +78,5 @@ response_headers = {
     if polling is True: polling_method = {{ async_prefix }}ARMPolling(lro_delay{{ lro_options }},  **kwargs)
     elif polling is False: polling_method = {{ async_prefix }}NoPolling()
     else: polling_method = polling
-    return {{ keywords.await }}{{ poller }}(self._client, raw_result.http_response, get_long_running_output, polling_method)
+    return {{ keywords.await }}{{ poller }}(self._client, raw_result, get_long_running_output, polling_method)
 {{ operation_name }}.metadata = {'url': '{{ operation.url }}'}
