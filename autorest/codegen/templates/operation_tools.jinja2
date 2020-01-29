@@ -1,5 +1,5 @@
 {# handle response headers/deserialization #}
-{% macro response_handling(response, is_lro) %}
+{% macro response_handling(response) %}
   {% if response.headers %}
     {% for response_header in response.headers %}
 response_headers['{{ response_header.name }}']=self._deserialize('{{ response_header.schema.get_serialization_type() }}', response.headers.get('{{ response_header.name }}'))
@@ -7,8 +7,6 @@ response_headers['{{ response_header.name }}']=self._deserialize('{{ response_he
   {% endif %}
   {% if response.is_stream_response %}
 deserialized = response.stream_download(self._client._pipeline)
-  {% elif is_lro %}
-deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}', response)
   {% elif response.has_body %}
 deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}', pipeline_response)
   {% endif %}

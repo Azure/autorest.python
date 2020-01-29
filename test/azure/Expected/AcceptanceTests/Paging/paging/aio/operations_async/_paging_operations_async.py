@@ -944,11 +944,11 @@ class PagingOperations:
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('ProductResult', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('ProductResult', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(

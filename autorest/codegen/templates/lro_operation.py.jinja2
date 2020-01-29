@@ -3,6 +3,7 @@
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set async_prefix = "Async" if async_mode else "" %}
 {% set poller = "async_poller" if async_mode else "LROPoller" %}
+{% set response_type = "response" if operation.responses | selectattr('is_stream_response') | first  else "pipeline_response" %}
 {% macro return_docstring() %}
 :return: An instance of LROPoller that returns {{ operation.responses[0].schema.name if operation.responses[0].has_body else "None"}}
     :rtype: ~azure.core.polling.LROPoller[{{ operation.responses[0].schema.docstring_type if operation.responses[0].has_body else "None" }}]
@@ -57,15 +58,18 @@ response_headers = {
         **kwargs
     )
 
-    def get_long_running_output(response):
+    def get_long_running_output({{ response_type }}):
         {% if operation.lro_response.has_headers %}
         response_headers = {}
+        {% if response_type == 'pipeline_response' %}
+        response = pipeline_response.http_response
+        {% endif %}
         {% endif %}
         {% if operation.lro_response %}
-        {{ response_handling(operation.lro_response, is_lro=True)|indent(8) }}
+        {{ response_handling(operation.lro_response)|indent(8) }}
         {% endif %}
         if cls:
-            return cls(response, {{ 'deserialized' if operation.lro_response.has_body else 'None'}}, {{ 'response_headers' if operation.lro_response.has_headers else '{}' }})
+            return cls({{ response_type }}, {{ 'deserialized' if operation.lro_response.has_body else 'None'}}, {{ 'response_headers' if operation.lro_response.has_headers else '{}' }})
         {% if operation.lro_response.has_body %}
         return deserialized
         {% endif %}

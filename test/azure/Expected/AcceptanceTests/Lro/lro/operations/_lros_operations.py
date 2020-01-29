@@ -102,11 +102,11 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('Product', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -183,11 +183,11 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('Product', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -264,11 +264,11 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('Product', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -350,11 +350,11 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('Product', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -431,11 +431,11 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('Product', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -517,11 +517,11 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('Product', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -598,11 +598,11 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('Product', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -681,13 +681,14 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             response_headers = {}
+            response = pipeline_response.http_response
             response_headers['location']=self._deserialize('str', response.headers.get('location'))
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, response_headers)
+                return cls(pipeline_response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -768,15 +769,16 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             response_headers = {}
+            response = pipeline_response.http_response
             response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
             response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, response_headers)
+                return cls(pipeline_response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -856,14 +858,15 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             response_headers = {}
+            response = pipeline_response.http_response
             response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, response_headers)
+                return cls(pipeline_response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -944,15 +947,16 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             response_headers = {}
+            response = pipeline_response.http_response
             response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
             response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, response_headers)
+                return cls(pipeline_response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1032,14 +1036,15 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             response_headers = {}
+            response = pipeline_response.http_response
             response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, response_headers)
+                return cls(pipeline_response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1118,13 +1123,14 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             response_headers = {}
+            response = pipeline_response.http_response
             response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, response_headers)
+                return cls(pipeline_response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1201,11 +1207,11 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('Sku', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Sku', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1282,11 +1288,11 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('Sku', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Sku', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1364,11 +1370,11 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('SubProduct', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('SubProduct', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1446,11 +1452,11 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('SubProduct', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('SubProduct', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1525,14 +1531,15 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             response_headers = {}
+            response = pipeline_response.http_response
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
             response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, response_headers)
+                return cls(pipeline_response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1607,14 +1614,15 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             response_headers = {}
+            response = pipeline_response.http_response
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
             response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, response_headers)
+                return cls(pipeline_response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1689,14 +1697,15 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             response_headers = {}
+            response = pipeline_response.http_response
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
             response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, response_headers)
+                return cls(pipeline_response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1759,9 +1768,9 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -1834,11 +1843,11 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('Product', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1912,11 +1921,11 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('Product', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1983,9 +1992,9 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -2051,9 +2060,9 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -2120,9 +2129,9 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -2189,9 +2198,9 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -2258,9 +2267,9 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -2327,9 +2336,9 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -2400,11 +2409,11 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('Sku', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Sku', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -2481,9 +2490,9 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -2562,14 +2571,15 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             response_headers = {}
+            response = pipeline_response.http_response
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
             response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, response_headers)
+                return cls(pipeline_response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -2636,11 +2646,11 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('Product', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -2707,11 +2717,11 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('Product', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -2778,11 +2788,11 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('Product', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -2867,11 +2877,11 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('Product', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -2956,11 +2966,11 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('Product', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -3038,9 +3048,9 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -3117,9 +3127,9 @@ class LROsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
