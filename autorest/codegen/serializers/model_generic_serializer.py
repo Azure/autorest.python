@@ -11,8 +11,8 @@ from ..models import ObjectSchema
 class ModelGenericSerializer(ModelBaseSerializer):
 
     @staticmethod
-    def init_line(model: ObjectSchema) -> str:
-        return "def __init__(self, **kwargs):"
+    def init_line(model: ObjectSchema) -> List[str]:
+        return []
 
     @staticmethod
     def init_args(model: ObjectSchema) -> List[str]:
@@ -35,10 +35,4 @@ class ModelGenericSerializer(ModelBaseSerializer):
         return init_args
 
     def imports(self):
-        file_import = super(ModelGenericSerializer, self).imports()
-        for model in self.code_model.sorted_schemas:
-            init_line_parameters = [p for p in model.properties if not p.readonly and not p.is_discriminator]
-            for param in init_line_parameters:
-                file_import.merge(param.imports())
-
-        return file_import
+        return super(ModelGenericSerializer, self).imports()

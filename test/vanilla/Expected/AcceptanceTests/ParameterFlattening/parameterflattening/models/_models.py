@@ -6,8 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Dict
-
 from msrest.serialization import Model
 
 
@@ -28,6 +26,9 @@ class AvailabilitySetUpdateParameters(Model):
         'tags': {'key': 'tags', 'type': '{str}'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(AvailabilitySetUpdateParameters, self).__init__(**kwargs)
         self.tags = kwargs.get('tags', None)

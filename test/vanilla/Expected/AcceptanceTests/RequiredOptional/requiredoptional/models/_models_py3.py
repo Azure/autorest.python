@@ -28,7 +28,7 @@ class ArrayOptionalWrapper(Model):
         *,
         value: Optional[List[str]] = None,
         **kwargs
-    ) -> None:
+    ):
         super(ArrayOptionalWrapper, self).__init__(**kwargs)
         self.value = value
 
@@ -52,10 +52,9 @@ class ArrayWrapper(Model):
 
     def __init__(
         self,
-        *,
         value: List[str],
         **kwargs
-    ) -> None:
+    ):
         super(ArrayWrapper, self).__init__(**kwargs)
         self.value = value
 
@@ -76,7 +75,7 @@ class ClassOptionalWrapper(Model):
         *,
         value: Optional["Product"] = None,
         **kwargs
-    ) -> None:
+    ):
         super(ClassOptionalWrapper, self).__init__(**kwargs)
         self.value = value
 
@@ -100,10 +99,9 @@ class ClassWrapper(Model):
 
     def __init__(
         self,
-        *,
         value: "Product",
         **kwargs
-    ) -> None:
+    ):
         super(ClassWrapper, self).__init__(**kwargs)
         self.value = value
 
@@ -154,7 +152,7 @@ class Error(Model):
         status: Optional[int] = None,
         message: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -176,7 +174,7 @@ class IntOptionalWrapper(Model):
         *,
         value: Optional[int] = None,
         **kwargs
-    ) -> None:
+    ):
         super(IntOptionalWrapper, self).__init__(**kwargs)
         self.value = value
 
@@ -200,10 +198,9 @@ class IntWrapper(Model):
 
     def __init__(
         self,
-        *,
         value: int,
         **kwargs
-    ) -> None:
+    ):
         super(IntWrapper, self).__init__(**kwargs)
         self.value = value
 
@@ -230,11 +227,11 @@ class Product(Model):
 
     def __init__(
         self,
-        *,
         id: int,
+        *,
         name: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Product, self).__init__(**kwargs)
         self.id = id
         self.name = name
@@ -256,7 +253,7 @@ class StringOptionalWrapper(Model):
         *,
         value: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(StringOptionalWrapper, self).__init__(**kwargs)
         self.value = value
 
@@ -280,9 +277,8 @@ class StringWrapper(Model):
 
     def __init__(
         self,
-        *,
         value: str,
         **kwargs
-    ) -> None:
+    ):
         super(StringWrapper, self).__init__(**kwargs)
         self.value = value

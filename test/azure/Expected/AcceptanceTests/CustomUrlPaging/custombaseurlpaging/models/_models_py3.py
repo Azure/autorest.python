@@ -31,7 +31,7 @@ class Error(Model):
         status: Optional[int] = None,
         message: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -53,7 +53,7 @@ class Product(Model):
         *,
         properties: Optional["ProductProperties"] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Product, self).__init__(**kwargs)
         self.properties = properties
 
@@ -78,7 +78,7 @@ class ProductProperties(Model):
         id: Optional[int] = None,
         name: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(ProductProperties, self).__init__(**kwargs)
         self.id = id
         self.name = name
@@ -104,7 +104,7 @@ class ProductResult(Model):
         values: Optional[List["Product"]] = None,
         next_link: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(ProductResult, self).__init__(**kwargs)
         self.values = values
         self.next_link = next_link

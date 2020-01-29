@@ -6,8 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import List, Optional
-
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
 
@@ -36,7 +34,10 @@ class ChildProduct(Model):
 
     const_property = "constant"
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(ChildProduct, self).__init__(**kwargs)
         self.count = kwargs.get('count', None)
 
@@ -67,7 +68,10 @@ class ConstantProduct(Model):
     const_property = "constant"
     const_property2 = "constant2"
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(ConstantProduct, self).__init__(**kwargs)
 
 
@@ -114,7 +118,10 @@ class Error(Model):
         'fields': {'key': 'fields', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Error, self).__init__(**kwargs)
         self.code = kwargs.get('code', None)
         self.message = kwargs.get('message', None)
@@ -173,7 +180,10 @@ class Product(Model):
     const_string = "constant"
     const_string_as_enum = "constant_string_as_enum"
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Product, self).__init__(**kwargs)
         self.display_names = kwargs.get('display_names', None)
         self.capacity = kwargs.get('capacity', None)

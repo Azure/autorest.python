@@ -29,7 +29,7 @@ class ArrayWrapper(Model):
         *,
         array: Optional[List[str]] = None,
         **kwargs
-    ) -> None:
+    ):
         super(ArrayWrapper, self).__init__(**kwargs)
         self.array = array
 
@@ -59,7 +59,7 @@ class Basic(Model):
         name: Optional[str] = None,
         color: Optional[Union[str, "CMYKColors"]] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Basic, self).__init__(**kwargs)
         self.id = id
         self.name = name
@@ -86,7 +86,7 @@ class BooleanWrapper(Model):
         field_true: Optional[bool] = None,
         field_false: Optional[bool] = None,
         **kwargs
-    ) -> None:
+    ):
         super(BooleanWrapper, self).__init__(**kwargs)
         self.field_true = field_true
         self.field_false = field_false
@@ -108,7 +108,7 @@ class ByteWrapper(Model):
         *,
         field: Optional[bytearray] = None,
         **kwargs
-    ) -> None:
+    ):
         super(ByteWrapper, self).__init__(**kwargs)
         self.field = field
 
@@ -133,7 +133,7 @@ class Pet(Model):
         id: Optional[int] = None,
         name: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Pet, self).__init__(**kwargs)
         self.id = id
         self.name = name
@@ -167,7 +167,7 @@ class Cat(Pet):
         color: Optional[str] = None,
         hates: Optional[List["Dog"]] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Cat, self).__init__(id=id, name=name, **kwargs)
         self.color = color
         self.hates = hates
@@ -209,12 +209,12 @@ class Fish(Model):
 
     def __init__(
         self,
-        *,
         length: float,
+        *,
         species: Optional[str] = None,
         siblings: Optional[List["Fish"]] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Fish, self).__init__(**kwargs)
         self.fishtype = 'None'
         self.species = species
@@ -265,14 +265,14 @@ class Shark(Fish):
 
     def __init__(
         self,
-        *,
         length: float,
         birthday: datetime.datetime,
+        *,
         species: Optional[str] = None,
         siblings: Optional[List["Fish"]] = None,
         age: Optional[int] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Shark, self).__init__(species=species, length=length, siblings=siblings, **kwargs)
         self.fishtype = 'shark'
         self.age = age
@@ -315,14 +315,14 @@ class Cookiecuttershark(Shark):
 
     def __init__(
         self,
-        *,
         length: float,
         birthday: datetime.datetime,
+        *,
         species: Optional[str] = None,
         siblings: Optional[List["Fish"]] = None,
         age: Optional[int] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Cookiecuttershark, self).__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
         self.fishtype = 'cookiecuttershark'
 
@@ -347,7 +347,7 @@ class Datetimerfc1123Wrapper(Model):
         field: Optional[datetime.datetime] = None,
         now: Optional[datetime.datetime] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Datetimerfc1123Wrapper, self).__init__(**kwargs)
         self.field = field
         self.now = now
@@ -373,7 +373,7 @@ class DatetimeWrapper(Model):
         field: Optional[datetime.datetime] = None,
         now: Optional[datetime.datetime] = None,
         **kwargs
-    ) -> None:
+    ):
         super(DatetimeWrapper, self).__init__(**kwargs)
         self.field = field
         self.now = now
@@ -399,7 +399,7 @@ class DateWrapper(Model):
         field: Optional[datetime.date] = None,
         leap: Optional[datetime.date] = None,
         **kwargs
-    ) -> None:
+    ):
         super(DateWrapper, self).__init__(**kwargs)
         self.field = field
         self.leap = leap
@@ -422,7 +422,7 @@ class DictionaryWrapper(Model):
         *,
         default_program: Optional[Dict[str, str]] = None,
         **kwargs
-    ) -> None:
+    ):
         super(DictionaryWrapper, self).__init__(**kwargs)
         self.default_program = default_program
 
@@ -451,7 +451,7 @@ class Dog(Pet):
         name: Optional[str] = None,
         food: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Dog, self).__init__(id=id, name=name, **kwargs)
         self.food = food
 
@@ -488,7 +488,7 @@ class DotFish(Model):
         *,
         species: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(DotFish, self).__init__(**kwargs)
         self.fish_type = 'None'
         self.species = species
@@ -522,7 +522,7 @@ class DotFishMarket(Model):
         sample_fish: Optional["DotFish"] = None,
         fishes: Optional[List["DotFish"]] = None,
         **kwargs
-    ) -> None:
+    ):
         super(DotFishMarket, self).__init__(**kwargs)
         self.sample_salmon = sample_salmon
         self.salmons = salmons
@@ -563,7 +563,7 @@ class DotSalmon(DotFish):
         location: Optional[str] = None,
         iswild: Optional[bool] = None,
         **kwargs
-    ) -> None:
+    ):
         super(DotSalmon, self).__init__(species=species, **kwargs)
         self.fish_type = 'DotSalmon'
         self.location = location
@@ -593,7 +593,7 @@ class DoubleWrapper(Model):
         field1: Optional[float] = None,
         field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_along_field_name_on_purpose: Optional[float] = None,
         **kwargs
-    ) -> None:
+    ):
         super(DoubleWrapper, self).__init__(**kwargs)
         self.field1 = field1
         self.field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_along_field_name_on_purpose = field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_along_field_name_on_purpose
@@ -615,7 +615,7 @@ class DurationWrapper(Model):
         *,
         field: Optional[datetime.timedelta] = None,
         **kwargs
-    ) -> None:
+    ):
         super(DurationWrapper, self).__init__(**kwargs)
         self.field = field
 
@@ -666,7 +666,7 @@ class Error(Model):
         status: Optional[int] = None,
         message: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -692,7 +692,7 @@ class FloatWrapper(Model):
         field1: Optional[float] = None,
         field2: Optional[float] = None,
         **kwargs
-    ) -> None:
+    ):
         super(FloatWrapper, self).__init__(**kwargs)
         self.field1 = field1
         self.field2 = field2
@@ -741,16 +741,16 @@ class Goblinshark(Shark):
 
     def __init__(
         self,
-        *,
         length: float,
         birthday: datetime.datetime,
+        *,
         species: Optional[str] = None,
         siblings: Optional[List["Fish"]] = None,
         age: Optional[int] = None,
         jawsize: Optional[int] = None,
         color: Optional[Union[str, "GoblinSharkColor"]] = "gray",
         **kwargs
-    ) -> None:
+    ):
         super(Goblinshark, self).__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
         self.fishtype = 'goblin'
         self.jawsize = jawsize
@@ -777,7 +777,7 @@ class IntWrapper(Model):
         field1: Optional[int] = None,
         field2: Optional[int] = None,
         **kwargs
-    ) -> None:
+    ):
         super(IntWrapper, self).__init__(**kwargs)
         self.field1 = field1
         self.field2 = field2
@@ -803,7 +803,7 @@ class LongWrapper(Model):
         field1: Optional[int] = None,
         field2: Optional[int] = None,
         **kwargs
-    ) -> None:
+    ):
         super(LongWrapper, self).__init__(**kwargs)
         self.field1 = field1
         self.field2 = field2
@@ -825,7 +825,7 @@ class MyBaseHelperType(Model):
         *,
         prop_bh1: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(MyBaseHelperType, self).__init__(**kwargs)
         self.prop_bh1 = prop_bh1
 
@@ -866,7 +866,7 @@ class MyBaseType(Model):
         prop_b1: Optional[str] = None,
         prop_bh1: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(MyBaseType, self).__init__(**kwargs)
         self.kind = 'None'
         self.prop_b1 = prop_b1
@@ -906,7 +906,7 @@ class MyDerivedType(MyBaseType):
         prop_bh1: Optional[str] = None,
         prop_d1: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(MyDerivedType, self).__init__(prop_b1=prop_b1, prop_bh1=prop_bh1, **kwargs)
         self.kind = 'Kind1'
         self.prop_d1 = prop_d1
@@ -937,7 +937,7 @@ class ReadonlyObj(Model):
         *,
         size: Optional[int] = None,
         **kwargs
-    ) -> None:
+    ):
         super(ReadonlyObj, self).__init__(**kwargs)
         self.id = None
         self.size = size
@@ -985,14 +985,14 @@ class Salmon(Fish):
 
     def __init__(
         self,
-        *,
         length: float,
+        *,
         species: Optional[str] = None,
         siblings: Optional[List["Fish"]] = None,
         location: Optional[str] = None,
         iswild: Optional[bool] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Salmon, self).__init__(species=species, length=length, siblings=siblings, **kwargs)
         self.fishtype = 'salmon'
         self.location = location
@@ -1038,15 +1038,15 @@ class Sawshark(Shark):
 
     def __init__(
         self,
-        *,
         length: float,
         birthday: datetime.datetime,
+        *,
         species: Optional[str] = None,
         siblings: Optional[List["Fish"]] = None,
         age: Optional[int] = None,
         picture: Optional[bytearray] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Sawshark, self).__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
         self.fishtype = 'sawshark'
         self.picture = picture
@@ -1084,7 +1084,7 @@ class Siamese(Cat):
         hates: Optional[List["Dog"]] = None,
         breed: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Siamese, self).__init__(id=id, name=name, color=color, hates=hates, **kwargs)
         self.breed = breed
 
@@ -1131,8 +1131,8 @@ class SmartSalmon(Salmon):
 
     def __init__(
         self,
-        *,
         length: float,
+        *,
         species: Optional[str] = None,
         siblings: Optional[List["Fish"]] = None,
         location: Optional[str] = None,
@@ -1140,7 +1140,7 @@ class SmartSalmon(Salmon):
         additional_properties: Optional[Dict[str, object]] = None,
         college_degree: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(SmartSalmon, self).__init__(species=species, length=length, siblings=siblings, location=location, iswild=iswild, **kwargs)
         self.fishtype = 'smart_salmon'
         self.additional_properties = additional_properties
@@ -1171,7 +1171,7 @@ class StringWrapper(Model):
         empty: Optional[str] = None,
         null: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(StringWrapper, self).__init__(**kwargs)
         self.field = field
         self.empty = empty

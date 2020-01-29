@@ -5,36 +5,34 @@
 # --------------------------------------------------------------------------
 from typing import List
 from .model_base_serializer import ModelBaseSerializer
-from ..models import ObjectSchema
-from ..models.imports import FileImport
+from ..models import PrimitiveSchema, ListSchema, DictionarySchema, EnumSchema, ObjectSchema
+from ..models.imports import FileImport, ImportType
 
 
 class ModelPython3Serializer(ModelBaseSerializer):
 
     @staticmethod
-    def init_line(model: ObjectSchema) -> str:
+    def init_line(model: ObjectSchema) -> List[str]:
         init_properties_declaration = []
         init_line_parameters = [
             p for p in model.properties if not p.readonly and not p.is_discriminator and not p.constant
         ]
-        init_line_parameters.sort(key=lambda x: x.required, reverse=True)
-        for param in init_line_parameters:
-            if param.required:
-                init_properties_declaration.append(
-                    "{}: {}".format(param.name, param.schema.type_annotation)
-                )
-            else:
-                default_value = param.schema.get_default_value_declaration()
-                init_properties_declaration.append(
-                    "{}: Optional[{}] = {}".format(param.name, param.schema.type_annotation, default_value)
-                )
+        # init_line_parameters.sort(key=lambda x: x.required, reverse=True)
+        required_parameters = [p for p in init_line_parameters if p.required]
+        optional_parameters = [p for p in init_line_parameters if not p.required]
+        for param in required_parameters:
+            init_properties_declaration.append(
+                "{}: {}".format(param.name, param.type_annotation)
+            )
+        if optional_parameters:
+            init_properties_declaration.append("*")
+        for param in optional_parameters:
+            default_value = param.schema.get_default_value_declaration()
+            init_properties_declaration.append(
+                "{}: {} = {}".format(param.name, param.type_annotation, default_value)
+            )
 
-        if init_properties_declaration:
-            wrapline = "\n        "
-            init_properties_declaration_string = ("," + wrapline).join(init_properties_declaration)
-            return (f"def __init__({wrapline}self,{wrapline}*,{wrapline}{init_properties_declaration_string}," +
-            f"{wrapline}**kwargs\n    ) -> None:")
-        return "def __init__(self, **kwargs) -> None:"
+        return init_properties_declaration
 
     @staticmethod
     def init_args(model: ObjectSchema) -> List[str]:
@@ -62,7 +60,7 @@ class ModelPython3Serializer(ModelBaseSerializer):
 
         return init_args
 
-    def imports(self) -> FileImport:
+    def imports(self):
         file_import = super(ModelPython3Serializer, self).imports()
         for model in self.code_model.sorted_schemas:
             init_line_parameters = [p for p in model.properties if not p.readonly and not p.is_discriminator]

@@ -6,8 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
-
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
 
@@ -49,7 +47,10 @@ class MyException(Model):
         'status_code': {'key': 'statusCode', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(MyException, self).__init__(**kwargs)
         self.status_code = kwargs.get('status_code', None)
 
@@ -94,7 +95,10 @@ class B(MyException):
         'text_status_code': {'key': 'textStatusCode', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(B, self).__init__(**kwargs)
         self.text_status_code = kwargs.get('text_status_code', None)
 
@@ -110,7 +114,10 @@ class C(Model):
         'http_code': {'key': 'httpCode', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(C, self).__init__(**kwargs)
         self.http_code = kwargs.get('http_code', None)
 
@@ -126,7 +133,10 @@ class D(Model):
         'http_status_code': {'key': 'httpStatusCode', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(D, self).__init__(**kwargs)
         self.http_status_code = kwargs.get('http_status_code', None)
 
@@ -171,7 +181,10 @@ class Error(Model):
         'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)

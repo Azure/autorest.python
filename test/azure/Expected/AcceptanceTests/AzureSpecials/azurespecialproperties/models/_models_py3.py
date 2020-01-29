@@ -71,7 +71,7 @@ class Error(Model):
         status: Optional[int] = None,
         message: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -97,7 +97,7 @@ class OdataFilter(Model):
         id: Optional[int] = None,
         name: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(OdataFilter, self).__init__(**kwargs)
         self.id = id
         self.name = name

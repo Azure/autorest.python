@@ -54,7 +54,7 @@ class MyException(Model):
         *,
         status_code: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(MyException, self).__init__(**kwargs)
         self.status_code = status_code
 
@@ -105,7 +105,7 @@ class B(MyException):
         status_code: Optional[str] = None,
         text_status_code: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(B, self).__init__(status_code=status_code, **kwargs)
         self.text_status_code = text_status_code
 
@@ -126,7 +126,7 @@ class C(Model):
         *,
         http_code: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(C, self).__init__(**kwargs)
         self.http_code = http_code
 
@@ -147,7 +147,7 @@ class D(Model):
         *,
         http_status_code: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(D, self).__init__(**kwargs)
         self.http_status_code = http_status_code
 
@@ -198,7 +198,7 @@ class Error(Model):
         status: Optional[int] = None,
         message: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message

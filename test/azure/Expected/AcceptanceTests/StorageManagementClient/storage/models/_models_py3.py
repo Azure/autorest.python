@@ -29,7 +29,7 @@ class Bar(Model):
         *,
         recursive_point: Optional["Endpoints"] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Bar, self).__init__(**kwargs)
         self.recursive_point = recursive_point
 
@@ -63,7 +63,7 @@ class CheckNameAvailabilityResult(Model):
         reason: Optional[Union[str, "Reason"]] = None,
         message: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(CheckNameAvailabilityResult, self).__init__(**kwargs)
         self.name_available = name_available
         self.reason = reason
@@ -91,7 +91,7 @@ class CustomDomain(Model):
         name: Optional[str] = None,
         use_sub_domain: Optional[bool] = None,
         **kwargs
-    ) -> None:
+    ):
         super(CustomDomain, self).__init__(**kwargs)
         self.name = name
         self.use_sub_domain = use_sub_domain
@@ -131,7 +131,7 @@ class Endpoints(Model):
         dummy_end_point: Optional["Endpoints"] = None,
         foo_point: Optional["Foo"] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Endpoints, self).__init__(**kwargs)
         self.blob = blob
         self.queue = queue
@@ -157,7 +157,7 @@ class Foo(Model):
         *,
         bar_point: Optional["Bar"] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Foo, self).__init__(**kwargs)
         self.bar_point = bar_point
 
@@ -198,11 +198,11 @@ class Resource(Model):
 
     def __init__(
         self,
-        *,
         location: str,
+        *,
         tags: Optional[Dict[str, str]] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Resource, self).__init__(**kwargs)
         self.id = None
         self.name = None
@@ -297,8 +297,8 @@ class StorageAccount(Resource):
 
     def __init__(
         self,
-        *,
         location: str,
+        *,
         tags: Optional[Dict[str, str]] = None,
         provisioning_state: Optional[Union[str, "ProvisioningState"]] = None,
         account_type: Optional[Union[str, "AccountType"]] = None,
@@ -312,7 +312,7 @@ class StorageAccount(Resource):
         custom_domain: Optional["CustomDomain"] = None,
         secondary_endpoints: Optional["Endpoints"] = None,
         **kwargs
-    ) -> None:
+    ):
         super(StorageAccount, self).__init__(location=location, tags=tags, **kwargs)
         self.provisioning_state = provisioning_state
         self.account_type = account_type
@@ -349,11 +349,11 @@ class StorageAccountCheckNameAvailabilityParameters(Model):
 
     def __init__(
         self,
-        *,
         name: str,
+        *,
         type: Optional[str] = "Microsoft.Storage/storageAccounts",
         **kwargs
-    ) -> None:
+    ):
         super(StorageAccountCheckNameAvailabilityParameters, self).__init__(**kwargs)
         self.name = name
         self.type = type
@@ -399,12 +399,12 @@ class StorageAccountCreateParameters(Resource):
 
     def __init__(
         self,
-        *,
         location: str,
+        *,
         tags: Optional[Dict[str, str]] = None,
         account_type: Optional[Union[str, "AccountType"]] = None,
         **kwargs
-    ) -> None:
+    ):
         super(StorageAccountCreateParameters, self).__init__(location=location, tags=tags, **kwargs)
         self.account_type = account_type
 
@@ -429,7 +429,7 @@ class StorageAccountKeys(Model):
         key1: Optional[str] = None,
         key2: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(StorageAccountKeys, self).__init__(**kwargs)
         self.key1 = key1
         self.key2 = key2
@@ -456,7 +456,7 @@ class StorageAccountListResult(Model):
         value: Optional[List["StorageAccount"]] = None,
         next_link: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(StorageAccountListResult, self).__init__(**kwargs)
         self.value = value
         self.next_link = next_link
@@ -535,7 +535,7 @@ class StorageAccountProperties(Model):
         custom_domain: Optional["CustomDomain"] = None,
         secondary_endpoints: Optional["Endpoints"] = None,
         **kwargs
-    ) -> None:
+    ):
         super(StorageAccountProperties, self).__init__(**kwargs)
         self.provisioning_state = provisioning_state
         self.account_type = account_type
@@ -567,7 +567,7 @@ class StorageAccountPropertiesCreateParameters(Model):
         *,
         account_type: Optional[Union[str, "AccountType"]] = None,
         **kwargs
-    ) -> None:
+    ):
         super(StorageAccountPropertiesCreateParameters, self).__init__(**kwargs)
         self.account_type = account_type
 
@@ -594,7 +594,7 @@ class StorageAccountPropertiesUpdateParameters(Model):
         account_type: Optional[Union[str, "AccountType"]] = None,
         custom_domain: Optional["CustomDomain"] = None,
         **kwargs
-    ) -> None:
+    ):
         super(StorageAccountPropertiesUpdateParameters, self).__init__(**kwargs)
         self.account_type = account_type
         self.custom_domain = custom_domain
@@ -616,7 +616,7 @@ class StorageAccountRegenerateKeyParameters(Model):
         *,
         key_name: Optional[Union[str, "KeyName"]] = None,
         **kwargs
-    ) -> None:
+    ):
         super(StorageAccountRegenerateKeyParameters, self).__init__(**kwargs)
         self.key_name = key_name
 
@@ -665,13 +665,13 @@ class StorageAccountUpdateParameters(Resource):
 
     def __init__(
         self,
-        *,
         location: str,
+        *,
         tags: Optional[Dict[str, str]] = None,
         account_type: Optional[Union[str, "AccountType"]] = None,
         custom_domain: Optional["CustomDomain"] = None,
         **kwargs
-    ) -> None:
+    ):
         super(StorageAccountUpdateParameters, self).__init__(location=location, tags=tags, **kwargs)
         self.account_type = account_type
         self.custom_domain = custom_domain
@@ -693,7 +693,7 @@ class SubResource(Model):
         *,
         id: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(SubResource, self).__init__(**kwargs)
         self.id = id
 
@@ -729,7 +729,7 @@ class Usage(Model):
         limit: Optional[int] = None,
         name: Optional["UsageName"] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Usage, self).__init__(**kwargs)
         self.unit = unit
         self.current_value = current_value
@@ -753,7 +753,7 @@ class UsageListResult(Model):
         *,
         value: Optional[List["Usage"]] = None,
         **kwargs
-    ) -> None:
+    ):
         super(UsageListResult, self).__init__(**kwargs)
         self.value = value
 
@@ -778,7 +778,7 @@ class UsageName(Model):
         value: Optional[str] = None,
         localized_value: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(UsageName, self).__init__(**kwargs)
         self.value = value
         self.localized_value = localized_value

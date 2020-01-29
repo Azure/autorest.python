@@ -41,7 +41,7 @@ class ChildProduct(Model):
         *,
         count: Optional[int] = None,
         **kwargs
-    ) -> None:
+    ):
         super(ChildProduct, self).__init__(**kwargs)
         self.count = count
 
@@ -72,7 +72,10 @@ class ConstantProduct(Model):
     const_property = "constant"
     const_property2 = "constant2"
 
-    def __init__(self, **kwargs) -> None:
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(ConstantProduct, self).__init__(**kwargs)
 
 
@@ -126,7 +129,7 @@ class Error(Model):
         message: Optional[str] = None,
         fields: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Error, self).__init__(**kwargs)
         self.code = code
         self.message = message
@@ -187,14 +190,14 @@ class Product(Model):
 
     def __init__(
         self,
-        *,
         child: "ChildProduct",
         const_child: "ConstantProduct",
+        *,
         display_names: Optional[List[str]] = None,
         capacity: Optional[int] = None,
         image: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Product, self).__init__(**kwargs)
         self.display_names = display_names
         self.capacity = capacity

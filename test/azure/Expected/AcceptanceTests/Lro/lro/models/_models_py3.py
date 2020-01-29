@@ -33,7 +33,7 @@ class OperationResult(Model):
         status: Optional[Union[str, "OperationResultStatus"]] = None,
         error: Optional["OperationResultError"] = None,
         **kwargs
-    ) -> None:
+    ):
         super(OperationResult, self).__init__(**kwargs)
         self.status = status
         self.error = error
@@ -59,7 +59,7 @@ class OperationResultError(Model):
         code: Optional[int] = None,
         message: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(OperationResultError, self).__init__(**kwargs)
         self.code = code
         self.message = message
@@ -103,7 +103,7 @@ class Resource(Model):
         tags: Optional[Dict[str, str]] = None,
         location: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Resource, self).__init__(**kwargs)
         self.id = None
         self.type = None
@@ -161,7 +161,7 @@ class Product(Resource):
         location: Optional[str] = None,
         provisioning_state: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Product, self).__init__(tags=tags, location=location, **kwargs)
         self.provisioning_state = provisioning_state
 
@@ -194,7 +194,7 @@ class ProductProperties(Model):
         *,
         provisioning_state: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(ProductProperties, self).__init__(**kwargs)
         self.provisioning_state = provisioning_state
         self.provisioning_state_values = None
@@ -220,7 +220,7 @@ class Sku(Model):
         name: Optional[str] = None,
         id: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Sku, self).__init__(**kwargs)
         self.name = name
         self.id = id
@@ -243,7 +243,10 @@ class SubResource(Model):
         'id': {'key': 'id', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs) -> None:
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(SubResource, self).__init__(**kwargs)
         self.id = None
 
@@ -280,7 +283,7 @@ class SubProduct(SubResource):
         *,
         provisioning_state: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(SubProduct, self).__init__(**kwargs)
         self.provisioning_state = provisioning_state
 
@@ -313,7 +316,7 @@ class SubProductProperties(Model):
         *,
         provisioning_state: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(SubProductProperties, self).__init__(**kwargs)
         self.provisioning_state = provisioning_state
         self.provisioning_state_values = None

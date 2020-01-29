@@ -40,12 +40,11 @@ class AccessPolicy(Model):
 
     def __init__(
         self,
-        *,
         start: datetime.datetime,
         expiry: datetime.datetime,
         permission: str,
         **kwargs
-    ) -> None:
+    ):
         super(AccessPolicy, self).__init__(**kwargs)
         self.start = start
         self.expiry = expiry
@@ -72,7 +71,7 @@ class AppleBarrel(Model):
         good_apples: Optional[List[str]] = None,
         bad_apples: Optional[List[str]] = None,
         **kwargs
-    ) -> None:
+    ):
         super(AppleBarrel, self).__init__(**kwargs)
         self.good_apples = good_apples
         self.bad_apples = bad_apples
@@ -102,7 +101,7 @@ class Banana(Model):
         flavor: Optional[str] = None,
         expiration: Optional[datetime.datetime] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Banana, self).__init__(**kwargs)
         self.name = name
         self.flavor = flavor
@@ -144,14 +143,14 @@ class Blob(Model):
 
     def __init__(
         self,
-        *,
         name: str,
         deleted: bool,
         snapshot: str,
         properties: "BlobProperties",
+        *,
         metadata: Optional[Dict[str, str]] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Blob, self).__init__(**kwargs)
         self.name = name
         self.deleted = deleted
@@ -179,10 +178,9 @@ class BlobPrefix(Model):
 
     def __init__(
         self,
-        *,
         name: str,
         **kwargs
-    ) -> None:
+    ):
         super(BlobPrefix, self).__init__(**kwargs)
         self.name = name
 
@@ -293,9 +291,9 @@ class BlobProperties(Model):
 
     def __init__(
         self,
-        *,
         last_modified: datetime.datetime,
         etag: str,
+        *,
         content_length: Optional[int] = None,
         content_type: Optional[str] = None,
         content_encoding: Optional[str] = None,
@@ -323,7 +321,7 @@ class BlobProperties(Model):
         access_tier_inferred: Optional[bool] = None,
         archive_status: Optional[Union[str, "ArchiveStatus"]] = None,
         **kwargs
-    ) -> None:
+    ):
         super(BlobProperties, self).__init__(**kwargs)
         self.last_modified = last_modified
         self.etag = etag
@@ -375,7 +373,7 @@ class Blobs(Model):
         blob_prefix: Optional[List["BlobPrefix"]] = None,
         blob: Optional[List["Blob"]] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Blobs, self).__init__(**kwargs)
         self.blob_prefix = blob_prefix
         self.blob = blob
@@ -397,7 +395,7 @@ class ComplexTypeNoMeta(Model):
         *,
         id: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(ComplexTypeNoMeta, self).__init__(**kwargs)
         self.id = id
 
@@ -418,7 +416,7 @@ class ComplexTypeWithMeta(Model):
         *,
         id: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(ComplexTypeWithMeta, self).__init__(**kwargs)
         self.id = id
 
@@ -450,12 +448,12 @@ class Container(Model):
 
     def __init__(
         self,
-        *,
         name: str,
         properties: "ContainerProperties",
+        *,
         metadata: Optional[Dict[str, str]] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Container, self).__init__(**kwargs)
         self.name = name
         self.properties = properties
@@ -498,15 +496,15 @@ class ContainerProperties(Model):
 
     def __init__(
         self,
-        *,
         last_modified: datetime.datetime,
         etag: str,
+        *,
         lease_status: Optional[Union[str, "LeaseStatusType"]] = None,
         lease_state: Optional[Union[str, "LeaseStateType"]] = None,
         lease_duration: Optional[Union[str, "LeaseDurationType"]] = None,
         public_access: Optional[Union[str, "PublicAccessType"]] = None,
         **kwargs
-    ) -> None:
+    ):
         super(ContainerProperties, self).__init__(**kwargs)
         self.last_modified = last_modified
         self.etag = etag
@@ -560,14 +558,13 @@ class CorsRule(Model):
 
     def __init__(
         self,
-        *,
         allowed_origins: str,
         allowed_methods: str,
         allowed_headers: str,
         exposed_headers: str,
         max_age_in_seconds: int,
         **kwargs
-    ) -> None:
+    ):
         super(CorsRule, self).__init__(**kwargs)
         self.allowed_origins = allowed_origins
         self.allowed_methods = allowed_methods
@@ -622,7 +619,7 @@ class Error(Model):
         status: Optional[int] = None,
         message: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -644,7 +641,7 @@ class JSONInput(Model):
         *,
         id: Optional[int] = None,
         **kwargs
-    ) -> None:
+    ):
         super(JSONInput, self).__init__(**kwargs)
         self.id = id
 
@@ -665,7 +662,7 @@ class JSONOutput(Model):
         *,
         id: Optional[int] = None,
         **kwargs
-    ) -> None:
+    ):
         super(JSONOutput, self).__init__(**kwargs)
         self.id = id
 
@@ -717,7 +714,6 @@ class ListBlobsResponse(Model):
 
     def __init__(
         self,
-        *,
         service_endpoint: str,
         container_name: str,
         prefix: str,
@@ -727,7 +723,7 @@ class ListBlobsResponse(Model):
         blobs: "Blobs",
         next_marker: str,
         **kwargs
-    ) -> None:
+    ):
         super(ListBlobsResponse, self).__init__(**kwargs)
         self.service_endpoint = service_endpoint
         self.container_name = container_name
@@ -776,15 +772,15 @@ class ListContainersResponse(Model):
 
     def __init__(
         self,
-        *,
         service_endpoint: str,
         prefix: str,
         max_results: int,
         next_marker: str,
+        *,
         marker: Optional[str] = None,
         containers: Optional[List["Container"]] = None,
         **kwargs
-    ) -> None:
+    ):
         super(ListContainersResponse, self).__init__(**kwargs)
         self.service_endpoint = service_endpoint
         self.prefix = prefix
@@ -829,14 +825,13 @@ class Logging(Model):
 
     def __init__(
         self,
-        *,
         version: str,
         delete: bool,
         read: bool,
         write: bool,
         retention_policy: "RetentionPolicy",
         **kwargs
-    ) -> None:
+    ):
         super(Logging, self).__init__(**kwargs)
         self.version = version
         self.delete = delete
@@ -875,13 +870,13 @@ class Metrics(Model):
 
     def __init__(
         self,
-        *,
         enabled: bool,
+        *,
         version: Optional[str] = None,
         include_apis: Optional[bool] = None,
         retention_policy: Optional["RetentionPolicy"] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Metrics, self).__init__(**kwargs)
         self.version = version
         self.enabled = enabled
@@ -914,11 +909,11 @@ class RetentionPolicy(Model):
 
     def __init__(
         self,
-        *,
         enabled: bool,
+        *,
         days: Optional[int] = None,
         **kwargs
-    ) -> None:
+    ):
         super(RetentionPolicy, self).__init__(**kwargs)
         self.enabled = enabled
         self.days = days
@@ -944,7 +939,7 @@ class RootWithRefAndMeta(Model):
         ref_to_model: Optional["ComplexTypeWithMeta"] = None,
         something: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(RootWithRefAndMeta, self).__init__(**kwargs)
         self.ref_to_model = ref_to_model
         self.something = something
@@ -970,7 +965,7 @@ class RootWithRefAndNoMeta(Model):
         ref_to_model: Optional["ComplexTypeNoMeta"] = None,
         something: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(RootWithRefAndNoMeta, self).__init__(**kwargs)
         self.ref_to_model = ref_to_model
         self.something = something
@@ -999,11 +994,10 @@ class SignedIdentifier(Model):
 
     def __init__(
         self,
-        *,
         id: str,
         access_policy: "AccessPolicy",
         **kwargs
-    ) -> None:
+    ):
         super(SignedIdentifier, self).__init__(**kwargs)
         self.id = id
         self.access_policy = access_policy
@@ -1033,7 +1027,7 @@ class Slide(Model):
         title: Optional[str] = None,
         items: Optional[List[str]] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Slide, self).__init__(**kwargs)
         self.type = type
         self.title = title
@@ -1068,7 +1062,7 @@ class Slideshow(Model):
         author: Optional[str] = None,
         slides: Optional[List["Slide"]] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Slideshow, self).__init__(**kwargs)
         self.title = title
         self.date_property = date_property
@@ -1114,7 +1108,7 @@ class StorageServiceProperties(Model):
         default_service_version: Optional[str] = None,
         delete_retention_policy: Optional["RetentionPolicy"] = None,
         **kwargs
-    ) -> None:
+    ):
         super(StorageServiceProperties, self).__init__(**kwargs)
         self.logging = logging
         self.hour_metrics = hour_metrics

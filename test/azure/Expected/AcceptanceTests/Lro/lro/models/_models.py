@@ -6,8 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Dict, Optional, Union
-
 from msrest.serialization import Model
 
 
@@ -27,7 +25,10 @@ class OperationResult(Model):
         'error': {'key': 'error', 'type': 'OperationResultError'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(OperationResult, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
         self.error = kwargs.get('error', None)
@@ -47,7 +48,10 @@ class OperationResultError(Model):
         'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(OperationResultError, self).__init__(**kwargs)
         self.code = kwargs.get('code', None)
         self.message = kwargs.get('message', None)
@@ -85,7 +89,10 @@ class Resource(Model):
         'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Resource, self).__init__(**kwargs)
         self.id = None
         self.type = None
@@ -136,7 +143,10 @@ class Product(Resource):
         'provisioning_state_values': {'key': 'properties.provisioningStateValues', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Product, self).__init__(**kwargs)
         self.provisioning_state = kwargs.get('provisioning_state', None)
         self.provisioning_state_values = None
@@ -165,7 +175,10 @@ class ProductProperties(Model):
         'provisioning_state_values': {'key': 'provisioningStateValues', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(ProductProperties, self).__init__(**kwargs)
         self.provisioning_state = kwargs.get('provisioning_state', None)
         self.provisioning_state_values = None
@@ -185,7 +198,10 @@ class Sku(Model):
         'id': {'key': 'id', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Sku, self).__init__(**kwargs)
         self.name = kwargs.get('name', None)
         self.id = kwargs.get('id', None)
@@ -208,7 +224,10 @@ class SubResource(Model):
         'id': {'key': 'id', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(SubResource, self).__init__(**kwargs)
         self.id = None
 
@@ -240,7 +259,10 @@ class SubProduct(SubResource):
         'provisioning_state_values': {'key': 'properties.provisioningStateValues', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(SubProduct, self).__init__(**kwargs)
         self.provisioning_state = kwargs.get('provisioning_state', None)
         self.provisioning_state_values = None
@@ -269,7 +291,10 @@ class SubProductProperties(Model):
         'provisioning_state_values': {'key': 'provisioningStateValues', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(SubProductProperties, self).__init__(**kwargs)
         self.provisioning_state = kwargs.get('provisioning_state', None)
         self.provisioning_state_values = None

@@ -58,7 +58,7 @@ class Error(Model):
         status: Optional[int] = None,
         message: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -94,6 +94,6 @@ class RefColorConstant(Model):
         *,
         field1: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(RefColorConstant, self).__init__(**kwargs)
         self.field1 = field1

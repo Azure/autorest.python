@@ -6,8 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Optional
-
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
 
@@ -23,7 +21,10 @@ class Animal(Model):
         'ani_type': {'key': 'aniType', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Animal, self).__init__(**kwargs)
         self.ani_type = kwargs.get('ani_type', None)
 
@@ -39,7 +40,10 @@ class BaseError(Model):
         'some_base_prop': {'key': 'someBaseProp', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(BaseError, self).__init__(**kwargs)
         self.some_base_prop = kwargs.get('some_base_prop', None)
 
@@ -100,7 +104,10 @@ class NotFoundErrorBase(BaseError):
         'what_not_found': {'AnimalNotFound': 'AnimalNotFound', 'InvalidResourceLink': 'LinkNotFound'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(NotFoundErrorBase, self).__init__(**kwargs)
         self.reason = kwargs.get('reason', None)
         self.what_not_found = 'NotFoundErrorBase'
@@ -158,7 +165,10 @@ class AnimalNotFound(NotFoundErrorBase):
         'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(AnimalNotFound, self).__init__(**kwargs)
         self.what_not_found = 'AnimalNotFound'
         self.name = kwargs.get('name', None)
@@ -216,7 +226,10 @@ class LinkNotFound(NotFoundErrorBase):
         'what_sub_address': {'key': 'whatSubAddress', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(LinkNotFound, self).__init__(**kwargs)
         self.what_not_found = 'InvalidResourceLink'
         self.what_sub_address = kwargs.get('what_sub_address', None)
@@ -242,7 +255,10 @@ class Pet(Animal):
         'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Pet, self).__init__(**kwargs)
         self.name = None
 
@@ -258,7 +274,10 @@ class PetAction(Model):
         'action_response': {'key': 'actionResponse', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(PetAction, self).__init__(**kwargs)
         self.action_response = kwargs.get('action_response', None)
 
@@ -316,7 +335,10 @@ class PetActionError(Model):
         'error_type': {'PetSadError': 'PetSadError'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(PetActionError, self).__init__(**kwargs)
         self.error_type = None
         self.error_message = kwargs.get('error_message', None)
@@ -378,7 +400,10 @@ class PetSadError(PetActionError):
         'error_type': {'PetHungryOrThirstyError': 'PetHungryOrThirstyError'}
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(PetSadError, self).__init__(**kwargs)
         self.error_type = 'PetSadError'
         self.reason = kwargs.get('reason', None)
@@ -436,7 +461,10 @@ class PetHungryOrThirstyError(PetSadError):
         'hungry_or_thirsty': {'key': 'hungryOrThirsty', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(PetHungryOrThirstyError, self).__init__(**kwargs)
         self.error_type = 'PetHungryOrThirstyError'
         self.hungry_or_thirsty = kwargs.get('hungry_or_thirsty', None)

@@ -81,6 +81,12 @@ class Property(BaseModel):
             flattened_names=yaml_data.get('flattenedNames', []),
         )
 
+    @property
+    def type_annotation(self) -> str:
+        if self.required:
+            return self.schema.type_annotation
+        return f"Optional[{self.schema.type_annotation}]"
+
     def imports(self) -> FileImport:
         file_import = self.schema.imports()
         if not self.required:

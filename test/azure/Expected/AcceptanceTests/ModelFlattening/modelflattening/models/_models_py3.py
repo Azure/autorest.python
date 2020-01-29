@@ -36,11 +36,11 @@ class BaseProduct(Model):
 
     def __init__(
         self,
-        *,
         product_id: str,
+        *,
         description: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(BaseProduct, self).__init__(**kwargs)
         self.product_id = product_id
         self.description = description
@@ -96,7 +96,7 @@ class Error(Model):
         message: Optional[str] = None,
         parent_error: Optional["Error"] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -141,7 +141,7 @@ class Resource(Model):
         tags: Optional[Dict[str, str]] = None,
         location: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Resource, self).__init__(**kwargs)
         self.id = None
         self.type = None
@@ -207,7 +207,7 @@ class FlattenedProduct(Resource):
         type_properties_type: Optional[str] = None,
         provisioning_state: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(FlattenedProduct, self).__init__(tags=tags, location=location, **kwargs)
         self.p_name = p_name
         self.type_properties_type = type_properties_type
@@ -250,7 +250,7 @@ class FlattenedProductProperties(Model):
         type: Optional[str] = None,
         provisioning_state: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(FlattenedProductProperties, self).__init__(**kwargs)
         self.p_name = p_name
         self.type = type
@@ -274,7 +274,7 @@ class GenericUrl(Model):
         *,
         generic_value: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(GenericUrl, self).__init__(**kwargs)
         self.generic_value = generic_value
 
@@ -299,7 +299,7 @@ class ProductUrl(GenericUrl):
         generic_value: Optional[str] = None,
         odata_value: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(ProductUrl, self).__init__(generic_value=generic_value, **kwargs)
         self.odata_value = odata_value
 
@@ -320,7 +320,7 @@ class ProductWrapper(Model):
         *,
         value: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(ProductWrapper, self).__init__(**kwargs)
         self.value = value
 
@@ -349,7 +349,7 @@ class ResourceCollection(Model):
         arrayofresources: Optional[List["FlattenedProduct"]] = None,
         dictionaryofresources: Optional[Dict[str, "FlattenedProduct"]] = None,
         **kwargs
-    ) -> None:
+    ):
         super(ResourceCollection, self).__init__(**kwargs)
         self.productresource = productresource
         self.arrayofresources = arrayofresources
@@ -395,13 +395,13 @@ class SimpleProduct(BaseProduct):
 
     def __init__(
         self,
-        *,
         product_id: str,
+        *,
         description: Optional[str] = None,
         max_product_display_name: Optional[str] = None,
         odata_value: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(SimpleProduct, self).__init__(product_id=product_id, description=description, **kwargs)
         self.max_product_display_name = max_product_display_name
         self.odata_value = odata_value
@@ -438,11 +438,11 @@ class SimpleProductProperties(Model):
 
     def __init__(
         self,
-        *,
         max_product_display_name: str,
+        *,
         odata_value: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(SimpleProductProperties, self).__init__(**kwargs)
         self.max_product_display_name = max_product_display_name
         self.odata_value = odata_value
@@ -464,6 +464,6 @@ class WrappedProduct(Model):
         *,
         value: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(WrappedProduct, self).__init__(**kwargs)
         self.value = value

@@ -30,9 +30,8 @@ class AvailabilitySetUpdateParameters(Model):
 
     def __init__(
         self,
-        *,
         tags: Dict[str, str],
         **kwargs
-    ) -> None:
+    ):
         super(AvailabilitySetUpdateParameters, self).__init__(**kwargs)
         self.tags = tags

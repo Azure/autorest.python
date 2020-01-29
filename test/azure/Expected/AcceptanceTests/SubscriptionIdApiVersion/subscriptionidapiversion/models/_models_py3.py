@@ -58,7 +58,7 @@ class Error(Model):
         code: Optional[int] = None,
         message: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Error, self).__init__(**kwargs)
         self.code = code
         self.message = message
@@ -84,7 +84,7 @@ class SampleResourceGroup(Model):
         name: Optional[str] = None,
         location: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(SampleResourceGroup, self).__init__(**kwargs)
         self.name = name
         self.location = location

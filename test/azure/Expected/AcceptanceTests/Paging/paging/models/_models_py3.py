@@ -31,7 +31,7 @@ class OdataProductResult(Model):
         values: Optional[List["Product"]] = None,
         odata_next_link: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(OdataProductResult, self).__init__(**kwargs)
         self.values = values
         self.odata_next_link = odata_next_link
@@ -55,7 +55,7 @@ class OperationResult(Model):
         *,
         status: Optional[Union[str, "OperationResultStatus"]] = None,
         **kwargs
-    ) -> None:
+    ):
         super(OperationResult, self).__init__(**kwargs)
         self.status = status
 
@@ -76,7 +76,7 @@ class Product(Model):
         *,
         properties: Optional["ProductProperties"] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Product, self).__init__(**kwargs)
         self.properties = properties
 
@@ -101,7 +101,7 @@ class ProductProperties(Model):
         id: Optional[int] = None,
         name: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(ProductProperties, self).__init__(**kwargs)
         self.id = id
         self.name = name
@@ -127,7 +127,7 @@ class ProductResult(Model):
         values: Optional[List["Product"]] = None,
         next_link: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(ProductResult, self).__init__(**kwargs)
         self.values = values
         self.next_link = next_link
@@ -153,7 +153,7 @@ class ProductResultValue(Model):
         value: Optional[List["Product"]] = None,
         next_link: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(ProductResultValue, self).__init__(**kwargs)
         self.value = value
         self.next_link = next_link

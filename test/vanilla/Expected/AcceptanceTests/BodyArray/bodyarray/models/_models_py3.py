@@ -58,7 +58,7 @@ class Error(Model):
         status: Optional[int] = None,
         message: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -84,7 +84,7 @@ class Product(Model):
         integer: Optional[int] = None,
         string: Optional[str] = None,
         **kwargs
-    ) -> None:
+    ):
         super(Product, self).__init__(**kwargs)
         self.integer = integer
         self.string = string
