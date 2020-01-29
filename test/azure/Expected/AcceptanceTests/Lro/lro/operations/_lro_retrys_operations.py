@@ -43,10 +43,10 @@ class LRORetrysOperations(object):
     def _put201_creating_succeeded200_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Optional[Callable[[HttpResponse, Union["Product", "Product"], Dict[str, Any]], Any]]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Product", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
-        # type: (...) -> Union["Product", "Product"]
+        # type: (...) -> "Product"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -94,11 +94,11 @@ class LRORetrysOperations(object):
     def begin_put201_creating_succeeded200(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, Union["Product", "Product"], Dict[str, Any]], Any]
+        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: **Any
     ):
-        # type: (...) -> Union["Product", "Product"]
+        # type: (...) -> "Product"
         """Long running put request, service returns a 500, then a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         FIXME: add operation.summary
@@ -243,10 +243,10 @@ class LRORetrysOperations(object):
     
     def _delete_provisioning202_accepted200_succeeded_initial(
         self,
-        cls=None,  # type: Optional[Callable[[HttpResponse, Union["Product", "Product"], Dict[str, Any]], Any]]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Product", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
-        # type: (...) -> Union["Product", "Product"]
+        # type: (...) -> "Product"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -289,11 +289,11 @@ class LRORetrysOperations(object):
     @distributed_trace
     def begin_delete_provisioning202_accepted200_succeeded(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, Union["Product", "Product"], Dict[str, Any]], Any]
+        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: **Any
     ):
-        # type: (...) -> Union["Product", "Product"]
+        # type: (...) -> "Product"
         """Long running delete request, service returns a 500, then a  202 to the initial request, with an entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         FIXME: add operation.summary

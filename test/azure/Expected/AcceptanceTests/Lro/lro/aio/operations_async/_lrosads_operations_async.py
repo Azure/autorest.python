@@ -45,9 +45,9 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, Union["Product", "Product"], Dict[str, Any]], Any]] = None,
+        cls: Optional[Callable[[AsyncHttpResponse, "Product", Dict[str, Any]], Any]] = None,
         **kwargs: Any
-    ) -> Union["Product", "Product"]:
+    ) -> "Product":
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -99,7 +99,7 @@ class LROSADsOperations:
         cls=None,
         polling: Optional[bool] = True,
         **kwargs
-    ) -> Union["Product", "Product"]:
+    ) -> "Product":
         """Long running put request, service returns a 400 to the initial request.
 
         FIXME: add operation.summary
@@ -144,9 +144,9 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, Union["Product", "Product"], Dict[str, Any]], Any]] = None,
+        cls: Optional[Callable[[AsyncHttpResponse, "Product", Dict[str, Any]], Any]] = None,
         **kwargs: Any
-    ) -> Union["Product", "Product"]:
+    ) -> "Product":
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -198,7 +198,7 @@ class LROSADsOperations:
         cls=None,
         polling: Optional[bool] = True,
         **kwargs
-    ) -> Union["Product", "Product"]:
+    ) -> "Product":
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201 response code.
 
         FIXME: add operation.summary
@@ -243,9 +243,9 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, Union["Product", "Product"], Dict[str, Any]], Any]] = None,
+        cls: Optional[Callable[[AsyncHttpResponse, "Product", Dict[str, Any]], Any]] = None,
         **kwargs: Any
-    ) -> Union["Product", "Product"]:
+    ) -> "Product":
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -297,7 +297,7 @@ class LROSADsOperations:
         cls=None,
         polling: Optional[bool] = True,
         **kwargs
-    ) -> Union["Product", "Product"]:
+    ) -> "Product":
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201 response code.
 
         FIXME: add operation.summary
@@ -950,9 +950,9 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, Union["Product", "Product"], Dict[str, Any]], Any]] = None,
+        cls: Optional[Callable[[AsyncHttpResponse, "Product", Dict[str, Any]], Any]] = None,
         **kwargs: Any
-    ) -> Union["Product", "Product"]:
+    ) -> "Product":
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1004,7 +1004,7 @@ class LROSADsOperations:
         cls=None,
         polling: Optional[bool] = True,
         **kwargs
-    ) -> Union["Product", "Product"]:
+    ) -> "Product":
         """Long running put request, service returns a 201 to the initial request with no payload.
 
         FIXME: add operation.summary

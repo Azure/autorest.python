@@ -43,10 +43,10 @@ class LROSADsOperations(object):
     def _put_non_retry400_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Optional[Callable[[HttpResponse, Union["Product", "Product"], Dict[str, Any]], Any]]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Product", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
-        # type: (...) -> Union["Product", "Product"]
+        # type: (...) -> "Product"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -94,11 +94,11 @@ class LROSADsOperations(object):
     def begin_put_non_retry400(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, Union["Product", "Product"], Dict[str, Any]], Any]
+        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: **Any
     ):
-        # type: (...) -> Union["Product", "Product"]
+        # type: (...) -> "Product"
         """Long running put request, service returns a 400 to the initial request.
 
         FIXME: add operation.summary
@@ -142,10 +142,10 @@ class LROSADsOperations(object):
     def _put_non_retry201_creating400_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Optional[Callable[[HttpResponse, Union["Product", "Product"], Dict[str, Any]], Any]]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Product", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
-        # type: (...) -> Union["Product", "Product"]
+        # type: (...) -> "Product"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -193,11 +193,11 @@ class LROSADsOperations(object):
     def begin_put_non_retry201_creating400(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, Union["Product", "Product"], Dict[str, Any]], Any]
+        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: **Any
     ):
-        # type: (...) -> Union["Product", "Product"]
+        # type: (...) -> "Product"
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201 response code.
 
         FIXME: add operation.summary
@@ -241,10 +241,10 @@ class LROSADsOperations(object):
     def _put_non_retry201_creating400_invalid_json_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Optional[Callable[[HttpResponse, Union["Product", "Product"], Dict[str, Any]], Any]]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Product", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
-        # type: (...) -> Union["Product", "Product"]
+        # type: (...) -> "Product"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -292,11 +292,11 @@ class LROSADsOperations(object):
     def begin_put_non_retry201_creating400_invalid_json(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, Union["Product", "Product"], Dict[str, Any]], Any]
+        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: **Any
     ):
-        # type: (...) -> Union["Product", "Product"]
+        # type: (...) -> "Product"
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201 response code.
 
         FIXME: add operation.summary
@@ -954,10 +954,10 @@ class LROSADsOperations(object):
     def _put_error201_no_provisioning_state_payload_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Optional[Callable[[HttpResponse, Union["Product", "Product"], Dict[str, Any]], Any]]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Product", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
-        # type: (...) -> Union["Product", "Product"]
+        # type: (...) -> "Product"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1005,11 +1005,11 @@ class LROSADsOperations(object):
     def begin_put_error201_no_provisioning_state_payload(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, Union["Product", "Product"], Dict[str, Any]], Any]
+        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: **Any
     ):
-        # type: (...) -> Union["Product", "Product"]
+        # type: (...) -> "Product"
         """Long running put request, service returns a 201 to the initial request with no payload.
 
         FIXME: add operation.summary

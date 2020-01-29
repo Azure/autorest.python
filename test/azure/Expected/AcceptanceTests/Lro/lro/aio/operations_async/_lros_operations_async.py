@@ -329,9 +329,9 @@ class LROsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, Union["Product", "Product"], Dict[str, Any]], Any]] = None,
+        cls: Optional[Callable[[AsyncHttpResponse, "Product", Dict[str, Any]], Any]] = None,
         **kwargs: Any
-    ) -> Union["Product", "Product"]:
+    ) -> "Product":
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -383,7 +383,7 @@ class LROsOperations:
         cls=None,
         polling: Optional[bool] = True,
         **kwargs
-    ) -> Union["Product", "Product"]:
+    ) -> "Product":
         """Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         FIXME: add operation.summary
@@ -522,9 +522,9 @@ class LROsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, Union["Product", "Product"], Dict[str, Any]], Any]] = None,
+        cls: Optional[Callable[[AsyncHttpResponse, "Product", Dict[str, Any]], Any]] = None,
         **kwargs: Any
-    ) -> Union["Product", "Product"]:
+    ) -> "Product":
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -576,7 +576,7 @@ class LROsOperations:
         cls=None,
         polling: Optional[bool] = True,
         **kwargs
-    ) -> Union["Product", "Product"]:
+    ) -> "Product":
         """Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Failed’.
 
         FIXME: add operation.summary
@@ -1691,9 +1691,9 @@ class LROsOperations:
     
     async def _delete_provisioning202_accepted200_succeeded_initial(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, Union["Product", "Product"], Dict[str, Any]], Any]] = None,
+        cls: Optional[Callable[[AsyncHttpResponse, "Product", Dict[str, Any]], Any]] = None,
         **kwargs: Any
-    ) -> Union["Product", "Product"]:
+    ) -> "Product":
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1739,7 +1739,7 @@ class LROsOperations:
         cls=None,
         polling: Optional[bool] = True,
         **kwargs
-    ) -> Union["Product", "Product"]:
+    ) -> "Product":
         """Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         FIXME: add operation.summary
@@ -1782,9 +1782,9 @@ class LROsOperations:
     
     async def _delete_provisioning202_deleting_failed200_initial(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, Union["Product", "Product"], Dict[str, Any]], Any]] = None,
+        cls: Optional[Callable[[AsyncHttpResponse, "Product", Dict[str, Any]], Any]] = None,
         **kwargs: Any
-    ) -> Union["Product", "Product"]:
+    ) -> "Product":
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1830,7 +1830,7 @@ class LROsOperations:
         cls=None,
         polling: Optional[bool] = True,
         **kwargs
-    ) -> Union["Product", "Product"]:
+    ) -> "Product":
         """Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Failed’.
 
         FIXME: add operation.summary
@@ -1873,9 +1873,9 @@ class LROsOperations:
     
     async def _delete_provisioning202_deletingcanceled200_initial(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, Union["Product", "Product"], Dict[str, Any]], Any]] = None,
+        cls: Optional[Callable[[AsyncHttpResponse, "Product", Dict[str, Any]], Any]] = None,
         **kwargs: Any
-    ) -> Union["Product", "Product"]:
+    ) -> "Product":
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1921,7 +1921,7 @@ class LROsOperations:
         cls=None,
         polling: Optional[bool] = True,
         **kwargs
-    ) -> Union["Product", "Product"]:
+    ) -> "Product":
         """Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Canceled’.
 
         FIXME: add operation.summary
@@ -2677,9 +2677,9 @@ class LROsOperations:
     
     async def _post200_with_payload_initial(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, Union["Sku", "Sku"], Dict[str, Any]], Any]] = None,
+        cls: Optional[Callable[[AsyncHttpResponse, "Sku", Dict[str, Any]], Any]] = None,
         **kwargs: Any
-    ) -> Union["Sku", "Sku"]:
+    ) -> "Sku":
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2722,7 +2722,7 @@ class LROsOperations:
         cls=None,
         polling: Optional[bool] = True,
         **kwargs
-    ) -> Union["Sku", "Sku"]:
+    ) -> "Sku":
         """Long running post request, service returns a 202 to the initial request, with 'Location' header. Poll returns a 200 with a response body after success..
 
         FIXME: add operation.summary

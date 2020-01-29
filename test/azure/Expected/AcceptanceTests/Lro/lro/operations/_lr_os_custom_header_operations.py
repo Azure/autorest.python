@@ -145,10 +145,10 @@ class LROsCustomHeaderOperations(object):
     def _put201_creating_succeeded200_initial(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Optional[Callable[[HttpResponse, Union["Product", "Product"], Dict[str, Any]], Any]]
+        cls=None,  # type: Optional[Callable[[HttpResponse, "Product", Dict[str, Any]], Any]]
         **kwargs  # type: **Any
     ):
-        # type: (...) -> Union["Product", "Product"]
+        # type: (...) -> "Product"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -196,11 +196,11 @@ class LROsCustomHeaderOperations(object):
     def begin_put201_creating_succeeded200(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, Union["Product", "Product"], Dict[str, Any]], Any]
+        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: **Any
     ):
-        # type: (...) -> Union["Product", "Product"]
+        # type: (...) -> "Product"
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         FIXME: add operation.summary
