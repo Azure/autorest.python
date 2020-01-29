@@ -83,10 +83,10 @@ class StorageAccountsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise ARMError(response=response)
 
-        deserialized = self._deserialize('CheckNameAvailabilityResult', response)
+        deserialized = self._deserialize('CheckNameAvailabilityResult', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     check_name_availability.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability'}
@@ -128,10 +128,10 @@ class StorageAccountsOperations:
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize('StorageAccount', response)
+            deserialized = self._deserialize('StorageAccount', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     _create_initial.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
@@ -165,11 +165,11 @@ class StorageAccountsOperations:
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('StorageAccount', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('StorageAccount', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -227,7 +227,7 @@ class StorageAccountsOperations:
             raise ARMError(response=response)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     delete.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
@@ -275,10 +275,10 @@ class StorageAccountsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise ARMError(response=response)
 
-        deserialized = self._deserialize('StorageAccount', response)
+        deserialized = self._deserialize('StorageAccount', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_properties.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
@@ -333,10 +333,10 @@ class StorageAccountsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise ARMError(response=response)
 
-        deserialized = self._deserialize('StorageAccount', response)
+        deserialized = self._deserialize('StorageAccount', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     update.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
@@ -385,10 +385,10 @@ class StorageAccountsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise ARMError(response=response)
 
-        deserialized = self._deserialize('StorageAccountKeys', response)
+        deserialized = self._deserialize('StorageAccountKeys', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     list_keys.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys'}
@@ -431,8 +431,8 @@ class StorageAccountsOperations:
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        async def extract_data(response):
-            deserialized = self._deserialize('StorageAccountListResult', response)
+        async def extract_data(pipeline_response):
+            deserialized = self._deserialize('StorageAccountListResult', pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -448,7 +448,7 @@ class StorageAccountsOperations:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
 
-            return response
+            return pipeline_response
 
         return AsyncItemPaged(
             get_next, extract_data
@@ -497,8 +497,8 @@ class StorageAccountsOperations:
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        async def extract_data(response):
-            deserialized = self._deserialize('StorageAccountListResult', response)
+        async def extract_data(pipeline_response):
+            deserialized = self._deserialize('StorageAccountListResult', pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -514,7 +514,7 @@ class StorageAccountsOperations:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
 
-            return response
+            return pipeline_response
 
         return AsyncItemPaged(
             get_next, extract_data
@@ -573,10 +573,10 @@ class StorageAccountsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise ARMError(response=response)
 
-        deserialized = self._deserialize('StorageAccountKeys', response)
+        deserialized = self._deserialize('StorageAccountKeys', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     regenerate_key.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey'}

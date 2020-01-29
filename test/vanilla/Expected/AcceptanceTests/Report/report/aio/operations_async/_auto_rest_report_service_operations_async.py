@@ -52,10 +52,10 @@ class AutoRestReportServiceOperationsMixin:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('{int}', response)
+        deserialized = self._deserialize('{int}', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_report.metadata = {'url': '/report'}
@@ -97,10 +97,10 @@ class AutoRestReportServiceOperationsMixin:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('{int}', response)
+        deserialized = self._deserialize('{int}', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_optional_report.metadata = {'url': '/report/optional'}

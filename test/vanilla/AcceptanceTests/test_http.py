@@ -64,8 +64,8 @@ def client(cookie_policy):
 class TestHttp(object):
 
     def assert_status(self, code, func, *args, **kwargs):
-        def return_status(response, data, headers):
-            return response.status_code
+        def return_status(pipeline_response, data, headers):
+            return pipeline_response.http_response.status_code
         kwargs['cls'] = return_status
         status_code = func(*args, **kwargs)
         assert status_code == code

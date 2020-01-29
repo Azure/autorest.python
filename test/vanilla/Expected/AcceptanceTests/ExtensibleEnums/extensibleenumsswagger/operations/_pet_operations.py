@@ -74,10 +74,10 @@ class PetOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('Pet', response)
+        deserialized = self._deserialize('Pet', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_by_pet_id.metadata = {'url': '/extensibleenums/pet/{petId}'}
@@ -125,10 +125,10 @@ class PetOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('Pet', response)
+        deserialized = self._deserialize('Pet', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     add_pet.metadata = {'url': '/extensibleenums/pet/addPet'}

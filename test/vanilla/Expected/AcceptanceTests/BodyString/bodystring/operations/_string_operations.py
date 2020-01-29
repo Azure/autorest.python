@@ -68,10 +68,10 @@ class StringOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('str', response)
+        deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/string/null'}
@@ -118,7 +118,7 @@ class StringOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_null.metadata = {'url': '/string/null'}
 
@@ -156,10 +156,10 @@ class StringOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('str', response)
+        deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty.metadata = {'url': '/string/empty'}
@@ -203,7 +203,7 @@ class StringOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_empty.metadata = {'url': '/string/empty'}
 
@@ -241,10 +241,10 @@ class StringOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('str', response)
+        deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_mbcs.metadata = {'url': '/string/mbcs'}
@@ -288,7 +288,7 @@ class StringOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_mbcs.metadata = {'url': '/string/mbcs'}
 
@@ -326,10 +326,10 @@ class StringOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('str', response)
+        deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_whitespace.metadata = {'url': '/string/whitespace'}
@@ -373,7 +373,7 @@ class StringOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_whitespace.metadata = {'url': '/string/whitespace'}
 
@@ -411,10 +411,10 @@ class StringOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('str', response)
+        deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_not_provided.metadata = {'url': '/string/notProvided'}
@@ -453,10 +453,10 @@ class StringOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('base64', response)
+        deserialized = self._deserialize('base64', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_base64_encoded.metadata = {'url': '/string/base64Encoding'}
@@ -495,10 +495,10 @@ class StringOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('base64', response)
+        deserialized = self._deserialize('base64', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_base64_url_encoded.metadata = {'url': '/string/base64UrlEncoding'}
@@ -543,7 +543,7 @@ class StringOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_base64_url_encoded.metadata = {'url': '/string/base64UrlEncoding'}
 
@@ -581,10 +581,10 @@ class StringOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('base64', response)
+        deserialized = self._deserialize('base64', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null_base64_url_encoded.metadata = {'url': '/string/nullBase64UrlEncoding'}

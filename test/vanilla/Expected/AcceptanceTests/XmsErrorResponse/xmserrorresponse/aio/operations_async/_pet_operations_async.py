@@ -81,10 +81,10 @@ class PetOperations:
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize('Pet', response)
+            deserialized = self._deserialize('Pet', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_pet_by_id.metadata = {'url': '/errorStatusCodes/Pets/{petId}/GetPet'}
@@ -132,10 +132,10 @@ class PetOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.PetActionErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('PetAction', response)
+        deserialized = self._deserialize('PetAction', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     do_something.metadata = {'url': '/errorStatusCodes/Pets/doSomething/{whatAction}'}

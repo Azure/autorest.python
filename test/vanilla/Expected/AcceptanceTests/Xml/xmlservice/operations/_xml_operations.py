@@ -68,10 +68,10 @@ class XmlOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('RootWithRefAndNoMeta', response)
+        deserialized = self._deserialize('RootWithRefAndNoMeta', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_complex_type_ref_no_meta.metadata = {'url': '/xml/complex-type-ref-no-meta'}
@@ -116,7 +116,7 @@ class XmlOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_complex_type_ref_no_meta.metadata = {'url': '/xml/complex-type-ref-no-meta'}
 
@@ -154,10 +154,10 @@ class XmlOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('RootWithRefAndMeta', response)
+        deserialized = self._deserialize('RootWithRefAndMeta', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_complex_type_ref_with_meta.metadata = {'url': '/xml/complex-type-ref-with-meta'}
@@ -202,7 +202,7 @@ class XmlOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_complex_type_ref_with_meta.metadata = {'url': '/xml/complex-type-ref-with-meta'}
 
@@ -240,10 +240,10 @@ class XmlOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('Slideshow', response)
+        deserialized = self._deserialize('Slideshow', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_simple.metadata = {'url': '/xml/simple'}
@@ -288,7 +288,7 @@ class XmlOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_simple.metadata = {'url': '/xml/simple'}
 
@@ -326,10 +326,10 @@ class XmlOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('AppleBarrel', response)
+        deserialized = self._deserialize('AppleBarrel', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_wrapped_lists.metadata = {'url': '/xml/wrapped-lists'}
@@ -374,7 +374,7 @@ class XmlOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_wrapped_lists.metadata = {'url': '/xml/wrapped-lists'}
 
@@ -415,7 +415,7 @@ class XmlOperations(object):
         response_headers['Custom-Header']=self._deserialize('str', response.headers.get('Custom-Header'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     get_headers.metadata = {'url': '/xml/headers'}
 
@@ -453,10 +453,10 @@ class XmlOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('Slideshow', response)
+        deserialized = self._deserialize('Slideshow', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty_list.metadata = {'url': '/xml/empty-list'}
@@ -501,7 +501,7 @@ class XmlOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_empty_list.metadata = {'url': '/xml/empty-list'}
 
@@ -539,10 +539,10 @@ class XmlOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('AppleBarrel', response)
+        deserialized = self._deserialize('AppleBarrel', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty_wrapped_lists.metadata = {'url': '/xml/empty-wrapped-lists'}
@@ -587,7 +587,7 @@ class XmlOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_empty_wrapped_lists.metadata = {'url': '/xml/empty-wrapped-lists'}
 
@@ -625,10 +625,10 @@ class XmlOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('[Banana]', response)
+        deserialized = self._deserialize('[Banana]', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_root_list.metadata = {'url': '/xml/root-list'}
@@ -673,7 +673,7 @@ class XmlOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_root_list.metadata = {'url': '/xml/root-list'}
 
@@ -711,10 +711,10 @@ class XmlOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('[Banana]', response)
+        deserialized = self._deserialize('[Banana]', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_root_list_single_item.metadata = {'url': '/xml/root-list-single-item'}
@@ -759,7 +759,7 @@ class XmlOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_root_list_single_item.metadata = {'url': '/xml/root-list-single-item'}
 
@@ -797,10 +797,10 @@ class XmlOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('[Banana]', response)
+        deserialized = self._deserialize('[Banana]', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty_root_list.metadata = {'url': '/xml/empty-root-list'}
@@ -845,7 +845,7 @@ class XmlOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_empty_root_list.metadata = {'url': '/xml/empty-root-list'}
 
@@ -883,10 +883,10 @@ class XmlOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('Banana', response)
+        deserialized = self._deserialize('Banana', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty_child_element.metadata = {'url': '/xml/empty-child-element'}
@@ -931,7 +931,7 @@ class XmlOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_empty_child_element.metadata = {'url': '/xml/empty-child-element'}
 
@@ -971,10 +971,10 @@ class XmlOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('ListContainersResponse', response)
+        deserialized = self._deserialize('ListContainersResponse', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     list_containers.metadata = {'url': '/xml/'}
@@ -1017,10 +1017,10 @@ class XmlOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('StorageServiceProperties', response)
+        deserialized = self._deserialize('StorageServiceProperties', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_service_properties.metadata = {'url': '/xml/'}
@@ -1069,7 +1069,7 @@ class XmlOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_service_properties.metadata = {'url': '/xml/'}
 
@@ -1111,10 +1111,10 @@ class XmlOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('[SignedIdentifier]', response)
+        deserialized = self._deserialize('[SignedIdentifier]', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_acls.metadata = {'url': '/xml/mycontainer'}
@@ -1163,7 +1163,7 @@ class XmlOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_acls.metadata = {'url': '/xml/mycontainer'}
 
@@ -1205,10 +1205,10 @@ class XmlOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('ListBlobsResponse', response)
+        deserialized = self._deserialize('ListBlobsResponse', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     list_blobs.metadata = {'url': '/xml/mycontainer'}
@@ -1254,7 +1254,7 @@ class XmlOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     json_input.metadata = {'url': '/xml/jsoninput'}
 
@@ -1292,10 +1292,10 @@ class XmlOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('JSONOutput', response)
+        deserialized = self._deserialize('JSONOutput', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     json_output.metadata = {'url': '/xml/jsonoutput'}
