@@ -155,7 +155,7 @@ class ParameterList(MutableSequence):
             )
 
         parameters = self.get_from_predicate(
-            lambda parameter: parameter.flattened
+            lambda parameter: parameter.location == ParameterLocation.Other
             and not isinstance(parameter.schema, ConstantSchema)
         )
         parameter_string = ", ".join(

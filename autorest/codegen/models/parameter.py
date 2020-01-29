@@ -49,6 +49,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         *,
         flattened: bool = False,
         grouped_by: Optional["Parameter"] = None,
+        original_parameter: Optional["Parameter"] = None,
     ):
         super().__init__(yaml_data)
         self.schema = schema
@@ -63,6 +64,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.style = style
         self.flattened = flattened
         self.grouped_by = grouped_by
+        self.original_parameter = original_parameter
 
     @property
     def implementation(self) -> str:
@@ -104,5 +106,6 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
             constraints=[], # FIXME constraints
             style=ParameterStyle(http_protocol["style"]) if "style" in http_protocol else None,
             grouped_by=yaml_data.get("groupedBy", None),
+            original_parameter=yaml_data.get("originalParameter", None),
             flattened=yaml_data.get("flattened", False)
         )

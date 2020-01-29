@@ -214,11 +214,15 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         ]
         parameters_index = {id(parameter.yaml_data): parameter for parameter in parameters}
 
-        # Need to connect the groupBy
+        # Need to connect the groupBy and originalParameter
         for parameter in parameters:
             parameter_grouped_by_id = id(parameter.grouped_by)
             if parameter_grouped_by_id in parameters_index:
                 parameter.grouped_by = parameters_index[parameter_grouped_by_id]
+
+            parameter_original_id = id(parameter.original_parameter)
+            if parameter_original_id in parameters_index:
+                parameter.original_parameter = parameters_index[parameter_original_id]
 
         return cls(
             yaml_data=yaml_data,
