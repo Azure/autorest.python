@@ -97,7 +97,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
             ),
             serialized_name=yaml_data['language']['python']['name'],
             description=yaml_data["language"]["python"]["description"],
-            implementation=yaml_data.get("implementation", "Method"),
+            implementation=yaml_data["implementation"],
             is_required=yaml_data.get("required", False),
             location=ParameterLocation(http_protocol["in"]),
             skip_url_encoding=yaml_data.get("extensions", {}).get("x-ms-skip-url-encoding", False),

@@ -75,6 +75,9 @@ class EnumSchema(BaseSchema):
         """
         return f'Union[str, \"{self.enum_type}\"]'
 
+    def get_declaration(self, value) -> str:
+        return f'"{value}"'
+
     @property
     def docstring_text(self) -> str:
         return self.enum_type

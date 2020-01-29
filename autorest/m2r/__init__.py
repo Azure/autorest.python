@@ -53,4 +53,7 @@ class M2R(YamlUpdatePlugin):
     def convert_to_rst(string_to_convert: str) -> str:
         """Convert that string from MD to RST.
         """
-        return m2r.convert(string_to_convert, renderer=AutorestRender()).strip()
+        try:
+            return m2r.convert(string_to_convert, renderer=AutorestRender()).strip()
+        except Exception:  # pylint: disable=broad-except
+            return string_to_convert
