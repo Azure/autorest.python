@@ -187,8 +187,8 @@ class TestHeader(object):
         assert response == "text/html; charset=utf-8"
 
     def test_custom_request_id(self, client):
-        def status_code(response, _, headers):
-            return response.status_code
+        def status_code(pipeline_response, _, headers):
+            return pipeline_response.http_response.status_code
         custom_headers = {"x-ms-client-request-id": "9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"}
         response = client.header.custom_request_id(headers=custom_headers, cls=status_code)
         assert response == 200

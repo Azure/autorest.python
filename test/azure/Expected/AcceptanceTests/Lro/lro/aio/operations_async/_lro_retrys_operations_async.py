@@ -106,10 +106,10 @@ class LRORetrysOperations:
         )
 
         def get_long_running_output(response):
-            deserialized = self._deserialize('Product', pipeline_response)
+            deserialized = self._deserialize('Product', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -119,7 +119,7 @@ class LRORetrysOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     put201_creating_succeeded200.metadata = {'url': '/lro/retryerror/put/201/creating/succeeded/200'}
 
 
@@ -195,10 +195,10 @@ class LRORetrysOperations:
             response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
             response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-            deserialized = self._deserialize('Product', pipeline_response)
+            deserialized = self._deserialize('Product', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, response_headers)
+                return cls(response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -208,7 +208,7 @@ class LRORetrysOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     put_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/putasync/retry/succeeded'}
 
 
@@ -277,10 +277,10 @@ class LRORetrysOperations:
             response_headers = {}
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
             response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-            deserialized = self._deserialize('Product', pipeline_response)
+            deserialized = self._deserialize('Product', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, response_headers)
+                return cls(response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -290,7 +290,7 @@ class LRORetrysOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     delete_provisioning202_accepted200_succeeded.metadata = {'url': '/lro/retryerror/delete/provisioning/202/accepted/200/succeeded'}
 
 
@@ -349,7 +349,7 @@ class LRORetrysOperations:
 
         def get_long_running_output(response):
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -358,7 +358,7 @@ class LRORetrysOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     delete202_retry200.metadata = {'url': '/lro/retryerror/delete/202/retry/200'}
 
 
@@ -418,7 +418,7 @@ class LRORetrysOperations:
 
         def get_long_running_output(response):
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -427,7 +427,7 @@ class LRORetrysOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     delete_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/deleteasync/retry/succeeded'}
 
 
@@ -496,7 +496,7 @@ class LRORetrysOperations:
 
         def get_long_running_output(response):
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -505,7 +505,7 @@ class LRORetrysOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     post202_retry200.metadata = {'url': '/lro/retryerror/post/202/retry/200'}
 
 
@@ -575,7 +575,7 @@ class LRORetrysOperations:
 
         def get_long_running_output(response):
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -584,6 +584,6 @@ class LRORetrysOperations:
         if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
+        return await async_poller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     post_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/postasync/retry/succeeded'}
 

@@ -103,10 +103,10 @@ class LROsOperations(object):
         )
 
         def get_long_running_output(response):
-            deserialized = self._deserialize('Product', pipeline_response)
+            deserialized = self._deserialize('Product', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -116,7 +116,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_put200_succeeded.metadata = {'url': '/lro/put/200/succeeded'}
 
 
@@ -184,10 +184,10 @@ class LROsOperations(object):
         )
 
         def get_long_running_output(response):
-            deserialized = self._deserialize('Product', pipeline_response)
+            deserialized = self._deserialize('Product', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -197,7 +197,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_put200_succeeded_no_state.metadata = {'url': '/lro/put/200/succeeded/nostate'}
 
 
@@ -265,10 +265,10 @@ class LROsOperations(object):
         )
 
         def get_long_running_output(response):
-            deserialized = self._deserialize('Product', pipeline_response)
+            deserialized = self._deserialize('Product', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -278,7 +278,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_put202_retry200.metadata = {'url': '/lro/put/202/retry/200'}
 
 
@@ -351,10 +351,10 @@ class LROsOperations(object):
         )
 
         def get_long_running_output(response):
-            deserialized = self._deserialize('Product', pipeline_response)
+            deserialized = self._deserialize('Product', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -364,7 +364,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_put201_creating_succeeded200.metadata = {'url': '/lro/put/201/creating/succeeded/200'}
 
 
@@ -432,10 +432,10 @@ class LROsOperations(object):
         )
 
         def get_long_running_output(response):
-            deserialized = self._deserialize('Product', pipeline_response)
+            deserialized = self._deserialize('Product', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -445,7 +445,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_put200_updating_succeeded204.metadata = {'url': '/lro/put/200/updating/succeeded/200'}
 
 
@@ -518,10 +518,10 @@ class LROsOperations(object):
         )
 
         def get_long_running_output(response):
-            deserialized = self._deserialize('Product', pipeline_response)
+            deserialized = self._deserialize('Product', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -531,7 +531,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_put201_creating_failed200.metadata = {'url': '/lro/put/201/created/failed/200'}
 
 
@@ -599,10 +599,10 @@ class LROsOperations(object):
         )
 
         def get_long_running_output(response):
-            deserialized = self._deserialize('Product', pipeline_response)
+            deserialized = self._deserialize('Product', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -612,7 +612,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_put200_acceptedcanceled200.metadata = {'url': '/lro/put/200/accepted/canceled/200'}
 
 
@@ -684,10 +684,10 @@ class LROsOperations(object):
         def get_long_running_output(response):
             response_headers = {}
             response_headers['location']=self._deserialize('str', response.headers.get('location'))
-            deserialized = self._deserialize('Product', pipeline_response)
+            deserialized = self._deserialize('Product', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, response_headers)
+                return cls(response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -697,7 +697,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_put_no_header_in_retry.metadata = {'url': '/lro/put/noheader/202/200'}
 
 
@@ -773,10 +773,10 @@ class LROsOperations(object):
             response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
             response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-            deserialized = self._deserialize('Product', pipeline_response)
+            deserialized = self._deserialize('Product', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, response_headers)
+                return cls(response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -786,7 +786,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_put_async_retry_succeeded.metadata = {'url': '/lro/putasync/retry/succeeded'}
 
 
@@ -860,10 +860,10 @@ class LROsOperations(object):
             response_headers = {}
             response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
-            deserialized = self._deserialize('Product', pipeline_response)
+            deserialized = self._deserialize('Product', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, response_headers)
+                return cls(response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -873,7 +873,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_put_async_no_retry_succeeded.metadata = {'url': '/lro/putasync/noretry/succeeded'}
 
 
@@ -949,10 +949,10 @@ class LROsOperations(object):
             response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
             response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-            deserialized = self._deserialize('Product', pipeline_response)
+            deserialized = self._deserialize('Product', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, response_headers)
+                return cls(response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -962,7 +962,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_put_async_retry_failed.metadata = {'url': '/lro/putasync/retry/failed'}
 
 
@@ -1036,10 +1036,10 @@ class LROsOperations(object):
             response_headers = {}
             response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
-            deserialized = self._deserialize('Product', pipeline_response)
+            deserialized = self._deserialize('Product', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, response_headers)
+                return cls(response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1049,7 +1049,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_put_async_no_retrycanceled.metadata = {'url': '/lro/putasync/noretry/canceled'}
 
 
@@ -1121,10 +1121,10 @@ class LROsOperations(object):
         def get_long_running_output(response):
             response_headers = {}
             response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
-            deserialized = self._deserialize('Product', pipeline_response)
+            deserialized = self._deserialize('Product', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, response_headers)
+                return cls(response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1134,7 +1134,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_put_async_no_header_in_retry.metadata = {'url': '/lro/putasync/noheader/201/200'}
 
 
@@ -1202,10 +1202,10 @@ class LROsOperations(object):
         )
 
         def get_long_running_output(response):
-            deserialized = self._deserialize('Sku', pipeline_response)
+            deserialized = self._deserialize('Sku', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1215,7 +1215,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_put_non_resource.metadata = {'url': '/lro/putnonresource/202/200'}
 
 
@@ -1283,10 +1283,10 @@ class LROsOperations(object):
         )
 
         def get_long_running_output(response):
-            deserialized = self._deserialize('Sku', pipeline_response)
+            deserialized = self._deserialize('Sku', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1296,7 +1296,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_put_async_non_resource.metadata = {'url': '/lro/putnonresourceasync/202/200'}
 
 
@@ -1365,10 +1365,10 @@ class LROsOperations(object):
         )
 
         def get_long_running_output(response):
-            deserialized = self._deserialize('SubProduct', pipeline_response)
+            deserialized = self._deserialize('SubProduct', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1378,7 +1378,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_put_sub_resource.metadata = {'url': '/lro/putsubresource/202/200'}
 
 
@@ -1447,10 +1447,10 @@ class LROsOperations(object):
         )
 
         def get_long_running_output(response):
-            deserialized = self._deserialize('SubProduct', pipeline_response)
+            deserialized = self._deserialize('SubProduct', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1460,7 +1460,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_put_async_sub_resource.metadata = {'url': '/lro/putsubresourceasync/202/200'}
 
 
@@ -1529,10 +1529,10 @@ class LROsOperations(object):
             response_headers = {}
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
             response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-            deserialized = self._deserialize('Product', pipeline_response)
+            deserialized = self._deserialize('Product', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, response_headers)
+                return cls(response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1542,7 +1542,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_delete_provisioning202_accepted200_succeeded.metadata = {'url': '/lro/delete/provisioning/202/accepted/200/succeeded'}
 
 
@@ -1611,10 +1611,10 @@ class LROsOperations(object):
             response_headers = {}
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
             response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-            deserialized = self._deserialize('Product', pipeline_response)
+            deserialized = self._deserialize('Product', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, response_headers)
+                return cls(response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1624,7 +1624,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_delete_provisioning202_deleting_failed200.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/failed'}
 
 
@@ -1693,10 +1693,10 @@ class LROsOperations(object):
             response_headers = {}
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
             response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-            deserialized = self._deserialize('Product', pipeline_response)
+            deserialized = self._deserialize('Product', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, response_headers)
+                return cls(response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1706,7 +1706,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_delete_provisioning202_deletingcanceled200.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/canceled'}
 
 
@@ -1761,7 +1761,7 @@ class LROsOperations(object):
 
         def get_long_running_output(response):
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -1770,7 +1770,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_delete204_succeeded.metadata = {'url': '/lro/delete/204/succeeded'}
 
 
@@ -1835,10 +1835,10 @@ class LROsOperations(object):
         )
 
         def get_long_running_output(response):
-            deserialized = self._deserialize('Product', pipeline_response)
+            deserialized = self._deserialize('Product', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1848,7 +1848,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_delete202_retry200.metadata = {'url': '/lro/delete/202/retry/200'}
 
 
@@ -1913,10 +1913,10 @@ class LROsOperations(object):
         )
 
         def get_long_running_output(response):
-            deserialized = self._deserialize('Product', pipeline_response)
+            deserialized = self._deserialize('Product', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1926,7 +1926,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_delete202_no_retry204.metadata = {'url': '/lro/delete/202/noretry/204'}
 
 
@@ -1985,7 +1985,7 @@ class LROsOperations(object):
 
         def get_long_running_output(response):
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -1994,7 +1994,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_delete_no_header_in_retry.metadata = {'url': '/lro/delete/noheader'}
 
 
@@ -2053,7 +2053,7 @@ class LROsOperations(object):
 
         def get_long_running_output(response):
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -2062,7 +2062,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_delete_async_no_header_in_retry.metadata = {'url': '/lro/deleteasync/noheader/202/204'}
 
 
@@ -2122,7 +2122,7 @@ class LROsOperations(object):
 
         def get_long_running_output(response):
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -2131,7 +2131,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_delete_async_retry_succeeded.metadata = {'url': '/lro/deleteasync/retry/succeeded'}
 
 
@@ -2191,7 +2191,7 @@ class LROsOperations(object):
 
         def get_long_running_output(response):
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -2200,7 +2200,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_delete_async_no_retry_succeeded.metadata = {'url': '/lro/deleteasync/noretry/succeeded'}
 
 
@@ -2260,7 +2260,7 @@ class LROsOperations(object):
 
         def get_long_running_output(response):
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -2269,7 +2269,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_delete_async_retry_failed.metadata = {'url': '/lro/deleteasync/retry/failed'}
 
 
@@ -2329,7 +2329,7 @@ class LROsOperations(object):
 
         def get_long_running_output(response):
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -2338,7 +2338,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_delete_async_retrycanceled.metadata = {'url': '/lro/deleteasync/retry/canceled'}
 
 
@@ -2401,10 +2401,10 @@ class LROsOperations(object):
         )
 
         def get_long_running_output(response):
-            deserialized = self._deserialize('Sku', pipeline_response)
+            deserialized = self._deserialize('Sku', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -2414,7 +2414,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_post200_with_payload.metadata = {'url': '/lro/post/payload/200'}
 
 
@@ -2483,7 +2483,7 @@ class LROsOperations(object):
 
         def get_long_running_output(response):
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -2492,7 +2492,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_post202_retry200.metadata = {'url': '/lro/post/202/retry/200'}
 
 
@@ -2566,10 +2566,10 @@ class LROsOperations(object):
             response_headers = {}
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
             response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-            deserialized = self._deserialize('Product', pipeline_response)
+            deserialized = self._deserialize('Product', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, response_headers)
+                return cls(response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -2579,7 +2579,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_post202_no_retry204.metadata = {'url': '/lro/post/202/noretry/204'}
 
 
@@ -2637,10 +2637,10 @@ class LROsOperations(object):
         )
 
         def get_long_running_output(response):
-            deserialized = self._deserialize('Product', pipeline_response)
+            deserialized = self._deserialize('Product', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -2650,7 +2650,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay, lro_options={'final-state-via': 'location'},  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_post_double_headers_final_location_get.metadata = {'url': '/lro/LROPostDoubleHeadersFinalLocationGet'}
 
 
@@ -2708,10 +2708,10 @@ class LROsOperations(object):
         )
 
         def get_long_running_output(response):
-            deserialized = self._deserialize('Product', pipeline_response)
+            deserialized = self._deserialize('Product', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -2721,7 +2721,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay, lro_options={'final-state-via': 'azure-async-operation'},  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_post_double_headers_final_azure_header_get.metadata = {'url': '/lro/LROPostDoubleHeadersFinalAzureHeaderGet'}
 
 
@@ -2779,10 +2779,10 @@ class LROsOperations(object):
         )
 
         def get_long_running_output(response):
-            deserialized = self._deserialize('Product', pipeline_response)
+            deserialized = self._deserialize('Product', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -2792,7 +2792,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_post_double_headers_final_azure_header_get_default.metadata = {'url': '/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault'}
 
 
@@ -2868,10 +2868,10 @@ class LROsOperations(object):
         )
 
         def get_long_running_output(response):
-            deserialized = self._deserialize('Product', pipeline_response)
+            deserialized = self._deserialize('Product', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -2881,7 +2881,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_post_async_retry_succeeded.metadata = {'url': '/lro/postasync/retry/succeeded'}
 
 
@@ -2957,10 +2957,10 @@ class LROsOperations(object):
         )
 
         def get_long_running_output(response):
-            deserialized = self._deserialize('Product', pipeline_response)
+            deserialized = self._deserialize('Product', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -2970,7 +2970,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_post_async_no_retry_succeeded.metadata = {'url': '/lro/postasync/noretry/succeeded'}
 
 
@@ -3040,7 +3040,7 @@ class LROsOperations(object):
 
         def get_long_running_output(response):
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -3049,7 +3049,7 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_post_async_retry_failed.metadata = {'url': '/lro/postasync/retry/failed'}
 
 
@@ -3119,7 +3119,7 @@ class LROsOperations(object):
 
         def get_long_running_output(response):
             if cls:
-                return cls(pipeline_response, None, {})
+                return cls(response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -3128,6 +3128,6 @@ class LROsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_post_async_retrycanceled.metadata = {'url': '/lro/postasync/retry/canceled'}
 

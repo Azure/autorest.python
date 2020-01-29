@@ -165,10 +165,10 @@ class StorageAccountsOperations(object):
         )
 
         def get_long_running_output(response):
-            deserialized = self._deserialize('StorageAccount', pipeline_response)
+            deserialized = self._deserialize('StorageAccount', response)
 
             if cls:
-                return cls(pipeline_response, deserialized, {})
+                return cls(response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -178,7 +178,7 @@ class StorageAccountsOperations(object):
         if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+        return LROPoller(self._client, raw_result.http_response, get_long_running_output, polling_method)
     begin_create.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
 
@@ -430,8 +430,8 @@ class StorageAccountsOperations(object):
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def extract_data(response):
-            deserialized = self._deserialize('StorageAccountListResult', response)
+        def extract_data(pipeline_response):
+            deserialized = self._deserialize('StorageAccountListResult', pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -447,7 +447,7 @@ class StorageAccountsOperations(object):
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
 
-            return response
+            return pipeline_response
 
         return ItemPaged(
             get_next, extract_data
@@ -496,8 +496,8 @@ class StorageAccountsOperations(object):
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def extract_data(response):
-            deserialized = self._deserialize('StorageAccountListResult', response)
+        def extract_data(pipeline_response):
+            deserialized = self._deserialize('StorageAccountListResult', pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -513,7 +513,7 @@ class StorageAccountsOperations(object):
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
 
-            return response
+            return pipeline_response
 
         return ItemPaged(
             get_next, extract_data

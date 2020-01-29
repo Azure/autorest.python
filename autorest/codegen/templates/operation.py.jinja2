@@ -148,12 +148,12 @@
       {% set response =  operation.get_response_from_status(status_code) %}
       {% if response.headers or response.has_body %}
     if response.status_code == {{ status_code }}:
-        {{ op_tools.response_handling(response)|indent(8) }}
+        {{ op_tools.response_handling(response, is_lro=False)|indent(8) }}
       {% endif %}
     {% endfor %}
   {% else %}
     {% set response = operation.responses[0] %}
-    {{ op_tools.response_handling(response)|indent }}
+    {{ op_tools.response_handling(response, is_lro=False)|indent }}
   {% endif %}
 {% endif %}
     if cls:
