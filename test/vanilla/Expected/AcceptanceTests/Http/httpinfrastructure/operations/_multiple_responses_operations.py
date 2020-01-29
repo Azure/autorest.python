@@ -77,10 +77,10 @@ class MultipleResponsesOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize('MyException', response)
+            deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model204_no_model_default_error200_valid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/200/valid'}
@@ -126,10 +126,10 @@ class MultipleResponsesOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize('MyException', response)
+            deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model204_no_model_default_error204_valid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/204/none'}
@@ -175,10 +175,10 @@ class MultipleResponsesOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize('MyException', response)
+            deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model204_no_model_default_error201_invalid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/201/valid'}
@@ -224,10 +224,10 @@ class MultipleResponsesOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize('MyException', response)
+            deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model204_no_model_default_error202_none.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/202/none'}
@@ -273,10 +273,10 @@ class MultipleResponsesOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize('MyException', response)
+            deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model204_no_model_default_error400_valid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/400/valid'}
@@ -322,13 +322,13 @@ class MultipleResponsesOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize('MyException', response)
+            deserialized = self._deserialize('MyException', pipeline_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize('B', response)
+            deserialized = self._deserialize('B', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model201_model_default_error200_valid.metadata = {'url': '/http/payloads/200/A/201/B/default/Error/response/200/valid'}
@@ -374,13 +374,13 @@ class MultipleResponsesOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize('MyException', response)
+            deserialized = self._deserialize('MyException', pipeline_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize('B', response)
+            deserialized = self._deserialize('B', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model201_model_default_error201_valid.metadata = {'url': '/http/payloads/200/A/201/B/default/Error/response/201/valid'}
@@ -426,13 +426,13 @@ class MultipleResponsesOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize('MyException', response)
+            deserialized = self._deserialize('MyException', pipeline_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize('B', response)
+            deserialized = self._deserialize('B', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model201_model_default_error400_valid.metadata = {'url': '/http/payloads/200/A/201/B/default/Error/response/400/valid'}
@@ -478,16 +478,16 @@ class MultipleResponsesOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize('MyException', response)
+            deserialized = self._deserialize('MyException', pipeline_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize('C', response)
+            deserialized = self._deserialize('C', pipeline_response)
 
         if response.status_code == 404:
-            deserialized = self._deserialize('D', response)
+            deserialized = self._deserialize('D', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model_a201_model_c404_model_ddefault_error200_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid'}
@@ -533,16 +533,16 @@ class MultipleResponsesOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize('MyException', response)
+            deserialized = self._deserialize('MyException', pipeline_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize('C', response)
+            deserialized = self._deserialize('C', pipeline_response)
 
         if response.status_code == 404:
-            deserialized = self._deserialize('D', response)
+            deserialized = self._deserialize('D', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model_a201_model_c404_model_ddefault_error201_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid'}
@@ -588,16 +588,16 @@ class MultipleResponsesOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize('MyException', response)
+            deserialized = self._deserialize('MyException', pipeline_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize('C', response)
+            deserialized = self._deserialize('C', pipeline_response)
 
         if response.status_code == 404:
-            deserialized = self._deserialize('D', response)
+            deserialized = self._deserialize('D', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model_a201_model_c404_model_ddefault_error404_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid'}
@@ -643,16 +643,16 @@ class MultipleResponsesOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize('MyException', response)
+            deserialized = self._deserialize('MyException', pipeline_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize('C', response)
+            deserialized = self._deserialize('C', pipeline_response)
 
         if response.status_code == 404:
-            deserialized = self._deserialize('D', response)
+            deserialized = self._deserialize('D', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model_a201_model_c404_model_ddefault_error400_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid'}
@@ -696,7 +696,7 @@ class MultipleResponsesOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get202_none204_none_default_error202_none.metadata = {'url': '/http/payloads/202/none/204/none/default/Error/response/202/none'}
 
@@ -739,7 +739,7 @@ class MultipleResponsesOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get202_none204_none_default_error204_none.metadata = {'url': '/http/payloads/202/none/204/none/default/Error/response/204/none'}
 
@@ -782,7 +782,7 @@ class MultipleResponsesOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get202_none204_none_default_error400_valid.metadata = {'url': '/http/payloads/202/none/204/none/default/Error/response/400/valid'}
 
@@ -825,7 +825,7 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get202_none204_none_default_none202_invalid.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/202/invalid'}
 
@@ -868,7 +868,7 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get202_none204_none_default_none204_none.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/204/none'}
 
@@ -911,7 +911,7 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get202_none204_none_default_none400_none.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/400/none'}
 
@@ -954,7 +954,7 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get202_none204_none_default_none400_invalid.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/400/invalid'}
 
@@ -997,10 +997,10 @@ class MultipleResponsesOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('MyException', response)
+        deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_default_model_a200_valid.metadata = {'url': '/http/payloads/default/A/response/200/valid'}
@@ -1044,10 +1044,10 @@ class MultipleResponsesOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('MyException', response)
+        deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_default_model_a200_none.metadata = {'url': '/http/payloads/default/A/response/200/none'}
@@ -1091,7 +1091,7 @@ class MultipleResponsesOperations(object):
             raise models.MyExceptionException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_default_model_a400_valid.metadata = {'url': '/http/payloads/default/A/response/400/valid'}
 
@@ -1134,7 +1134,7 @@ class MultipleResponsesOperations(object):
             raise models.MyExceptionException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_default_model_a400_none.metadata = {'url': '/http/payloads/default/A/response/400/none'}
 
@@ -1177,7 +1177,7 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_default_none200_invalid.metadata = {'url': '/http/payloads/default/none/response/200/invalid'}
 
@@ -1220,7 +1220,7 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_default_none200_none.metadata = {'url': '/http/payloads/default/none/response/200/none'}
 
@@ -1263,7 +1263,7 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_default_none400_invalid.metadata = {'url': '/http/payloads/default/none/response/400/invalid'}
 
@@ -1306,7 +1306,7 @@ class MultipleResponsesOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_default_none400_none.metadata = {'url': '/http/payloads/default/none/response/400/none'}
 
@@ -1349,10 +1349,10 @@ class MultipleResponsesOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('MyException', response)
+        deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model_a200_none.metadata = {'url': '/http/payloads/200/A/response/200/none'}
@@ -1396,10 +1396,10 @@ class MultipleResponsesOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('MyException', response)
+        deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model_a200_valid.metadata = {'url': '/http/payloads/200/A/response/200/valid'}
@@ -1443,10 +1443,10 @@ class MultipleResponsesOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('MyException', response)
+        deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model_a200_invalid.metadata = {'url': '/http/payloads/200/A/response/200/invalid'}
@@ -1490,10 +1490,10 @@ class MultipleResponsesOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('MyException', response)
+        deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model_a400_none.metadata = {'url': '/http/payloads/200/A/response/400/none'}
@@ -1537,10 +1537,10 @@ class MultipleResponsesOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('MyException', response)
+        deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model_a400_valid.metadata = {'url': '/http/payloads/200/A/response/400/valid'}
@@ -1584,10 +1584,10 @@ class MultipleResponsesOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('MyException', response)
+        deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model_a400_invalid.metadata = {'url': '/http/payloads/200/A/response/400/invalid'}
@@ -1631,10 +1631,10 @@ class MultipleResponsesOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('MyException', response)
+        deserialized = self._deserialize('MyException', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get200_model_a202_valid.metadata = {'url': '/http/payloads/200/A/response/202/valid'}

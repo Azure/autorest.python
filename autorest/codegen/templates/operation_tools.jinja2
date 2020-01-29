@@ -8,7 +8,7 @@ response_headers['{{ response_header.name }}']=self._deserialize('{{ response_he
   {% if response.is_stream_response %}
 deserialized = response.stream_download(self._client._pipeline)
   {% elif response.has_body %}
-deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}', response)
+deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}', pipeline_response)
   {% endif %}
 {% endmacro %}
 {# write queryparameters #}

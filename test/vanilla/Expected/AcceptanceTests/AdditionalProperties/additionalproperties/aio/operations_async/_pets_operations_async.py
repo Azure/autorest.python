@@ -83,10 +83,10 @@ class PetsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('PetAPTrue', response)
+        deserialized = self._deserialize('PetAPTrue', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     create_ap_true.metadata = {'url': '/additionalProperties/true'}
@@ -137,10 +137,10 @@ class PetsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('CatAPTrue', response)
+        deserialized = self._deserialize('CatAPTrue', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     create_cat_ap_true.metadata = {'url': '/additionalProperties/true-subclass'}
@@ -191,10 +191,10 @@ class PetsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('PetAPObject', response)
+        deserialized = self._deserialize('PetAPObject', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     create_ap_object.metadata = {'url': '/additionalProperties/type/object'}
@@ -245,10 +245,10 @@ class PetsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('PetAPString', response)
+        deserialized = self._deserialize('PetAPString', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     create_ap_string.metadata = {'url': '/additionalProperties/type/string'}
@@ -299,10 +299,10 @@ class PetsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('PetAPInProperties', response)
+        deserialized = self._deserialize('PetAPInProperties', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     create_ap_in_properties.metadata = {'url': '/additionalProperties/in/properties'}
@@ -353,10 +353,10 @@ class PetsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('PetAPInPropertiesWithAPString', response)
+        deserialized = self._deserialize('PetAPInPropertiesWithAPString', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     create_ap_in_properties_with_ap_string.metadata = {'url': '/additionalProperties/in/properties/with/additionalProperties/string'}

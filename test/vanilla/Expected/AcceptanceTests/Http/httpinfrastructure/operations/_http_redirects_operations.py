@@ -78,7 +78,7 @@ class HttpRedirectsOperations(object):
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     head300.metadata = {'url': '/http/redirect/300'}
 
@@ -125,10 +125,10 @@ class HttpRedirectsOperations(object):
         deserialized = None
         if response.status_code == 300:
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
-            deserialized = self._deserialize('[str]', response)
+            deserialized = self._deserialize('[str]', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, response_headers)
+          return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
     get300.metadata = {'url': '/http/redirect/300'}
@@ -176,7 +176,7 @@ class HttpRedirectsOperations(object):
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     head301.metadata = {'url': '/http/redirect/301'}
 
@@ -223,7 +223,7 @@ class HttpRedirectsOperations(object):
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     get301.metadata = {'url': '/http/redirect/301'}
 
@@ -277,7 +277,7 @@ class HttpRedirectsOperations(object):
         response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     put301.metadata = {'url': '/http/redirect/301'}
 
@@ -324,7 +324,7 @@ class HttpRedirectsOperations(object):
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     head302.metadata = {'url': '/http/redirect/302'}
 
@@ -371,7 +371,7 @@ class HttpRedirectsOperations(object):
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     get302.metadata = {'url': '/http/redirect/302'}
 
@@ -425,7 +425,7 @@ class HttpRedirectsOperations(object):
         response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     patch302.metadata = {'url': '/http/redirect/302'}
 
@@ -480,7 +480,7 @@ class HttpRedirectsOperations(object):
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     post303.metadata = {'url': '/http/redirect/303'}
 
@@ -527,7 +527,7 @@ class HttpRedirectsOperations(object):
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     head307.metadata = {'url': '/http/redirect/307'}
 
@@ -574,7 +574,7 @@ class HttpRedirectsOperations(object):
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     get307.metadata = {'url': '/http/redirect/307'}
 
@@ -621,7 +621,7 @@ class HttpRedirectsOperations(object):
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     options307.metadata = {'url': '/http/redirect/307'}
 
@@ -676,7 +676,7 @@ class HttpRedirectsOperations(object):
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     put307.metadata = {'url': '/http/redirect/307'}
 
@@ -731,7 +731,7 @@ class HttpRedirectsOperations(object):
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     patch307.metadata = {'url': '/http/redirect/307'}
 
@@ -786,7 +786,7 @@ class HttpRedirectsOperations(object):
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     post307.metadata = {'url': '/http/redirect/307'}
 
@@ -841,6 +841,6 @@ class HttpRedirectsOperations(object):
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     delete307.metadata = {'url': '/http/redirect/307'}

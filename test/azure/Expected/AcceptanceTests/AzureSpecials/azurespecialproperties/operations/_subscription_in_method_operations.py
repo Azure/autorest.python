@@ -80,7 +80,7 @@ class SubscriptionInMethodOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_method_local_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}
 
@@ -130,7 +130,7 @@ class SubscriptionInMethodOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_method_local_null.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}'}
 
@@ -180,7 +180,7 @@ class SubscriptionInMethodOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_path_local_valid.metadata = {'url': '/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}
 
@@ -230,6 +230,6 @@ class SubscriptionInMethodOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_swagger_local_valid.metadata = {'url': '/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}

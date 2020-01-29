@@ -74,10 +74,10 @@ class DateOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('date', response)
+        deserialized = self._deserialize('date', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/date/null'}
@@ -121,10 +121,10 @@ class DateOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('date', response)
+        deserialized = self._deserialize('date', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid_date.metadata = {'url': '/date/invaliddate'}
@@ -168,10 +168,10 @@ class DateOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('date', response)
+        deserialized = self._deserialize('date', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_overflow_date.metadata = {'url': '/date/overflowdate'}
@@ -215,10 +215,10 @@ class DateOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('date', response)
+        deserialized = self._deserialize('date', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_underflow_date.metadata = {'url': '/date/underflowdate'}
@@ -269,7 +269,7 @@ class DateOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_max_date.metadata = {'url': '/date/max'}
 
@@ -312,10 +312,10 @@ class DateOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('date', response)
+        deserialized = self._deserialize('date', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_max_date.metadata = {'url': '/date/max'}
@@ -366,7 +366,7 @@ class DateOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_min_date.metadata = {'url': '/date/min'}
 
@@ -409,10 +409,10 @@ class DateOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('date', response)
+        deserialized = self._deserialize('date', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_min_date.metadata = {'url': '/date/min'}

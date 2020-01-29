@@ -73,10 +73,10 @@ class ByteOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('bytearray', response)
+        deserialized = self._deserialize('bytearray', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/byte/null'}
@@ -120,10 +120,10 @@ class ByteOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('bytearray', response)
+        deserialized = self._deserialize('bytearray', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty.metadata = {'url': '/byte/empty'}
@@ -167,10 +167,10 @@ class ByteOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('bytearray', response)
+        deserialized = self._deserialize('bytearray', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_non_ascii.metadata = {'url': '/byte/nonAscii'}
@@ -221,7 +221,7 @@ class ByteOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_non_ascii.metadata = {'url': '/byte/nonAscii'}
 
@@ -264,10 +264,10 @@ class ByteOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('bytearray', response)
+        deserialized = self._deserialize('bytearray', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid.metadata = {'url': '/byte/invalid'}

@@ -99,7 +99,7 @@ class PathItemsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_all_with_values.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery'}
 
@@ -166,7 +166,7 @@ class PathItemsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_global_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery'}
 
@@ -233,7 +233,7 @@ class PathItemsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_global_and_local_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null'}
 
@@ -300,6 +300,6 @@ class PathItemsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_local_path_item_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null'}

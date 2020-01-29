@@ -79,10 +79,10 @@ class UsageOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise ARMError(response=response)
 
-        deserialized = self._deserialize('UsageListResult', response)
+        deserialized = self._deserialize('UsageListResult', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     list.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/usages'}

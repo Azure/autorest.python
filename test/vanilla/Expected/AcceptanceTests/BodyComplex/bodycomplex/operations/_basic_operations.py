@@ -74,10 +74,10 @@ class BasicOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('Basic', response)
+        deserialized = self._deserialize('Basic', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_valid.metadata = {'url': '/complex/basic/valid'}
@@ -130,7 +130,7 @@ class BasicOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_valid.metadata = {'url': '/complex/basic/valid'}
 
@@ -173,10 +173,10 @@ class BasicOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('Basic', response)
+        deserialized = self._deserialize('Basic', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid.metadata = {'url': '/complex/basic/invalid'}
@@ -220,10 +220,10 @@ class BasicOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('Basic', response)
+        deserialized = self._deserialize('Basic', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty.metadata = {'url': '/complex/basic/empty'}
@@ -267,10 +267,10 @@ class BasicOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('Basic', response)
+        deserialized = self._deserialize('Basic', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/complex/basic/null'}
@@ -314,10 +314,10 @@ class BasicOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('Basic', response)
+        deserialized = self._deserialize('Basic', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_not_provided.metadata = {'url': '/complex/basic/notprovided'}

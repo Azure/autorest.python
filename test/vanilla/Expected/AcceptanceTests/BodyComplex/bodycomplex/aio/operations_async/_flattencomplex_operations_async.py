@@ -75,10 +75,10 @@ class FlattencomplexOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('MyBaseType', response)
+        deserialized = self._deserialize('MyBaseType', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_valid.metadata = {'url': '/complex/flatten/valid'}

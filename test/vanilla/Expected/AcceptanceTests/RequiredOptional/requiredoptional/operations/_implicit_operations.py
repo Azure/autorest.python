@@ -81,7 +81,7 @@ class ImplicitOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_required_path.metadata = {'url': '/reqopt/implicit/required/path/{pathParameter}'}
 
@@ -129,7 +129,7 @@ class ImplicitOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_optional_query.metadata = {'url': '/reqopt/implicit/optional/query'}
 
@@ -177,7 +177,7 @@ class ImplicitOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_optional_header.metadata = {'url': '/reqopt/implicit/optional/header'}
 
@@ -230,7 +230,7 @@ class ImplicitOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_optional_body.metadata = {'url': '/reqopt/implicit/optional/body'}
 
@@ -277,7 +277,7 @@ class ImplicitOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_required_global_path.metadata = {'url': '/reqopt/global/required/path/{required-global-path}'}
 
@@ -321,7 +321,7 @@ class ImplicitOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_required_global_query.metadata = {'url': '/reqopt/global/required/query'}
 
@@ -366,6 +366,6 @@ class ImplicitOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_optional_global_query.metadata = {'url': '/reqopt/global/optional/query'}

@@ -75,10 +75,10 @@ class PolymorphicrecursiveOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('Fish', response)
+        deserialized = self._deserialize('Fish', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}
@@ -161,6 +161,6 @@ class PolymorphicrecursiveOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}

@@ -70,10 +70,10 @@ class AutoRestValidationTestOperationsMixin:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('Product', response)
+        deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     validation_of_method_parameters.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
@@ -140,10 +140,10 @@ class AutoRestValidationTestOperationsMixin:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('Product', response)
+        deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     validation_of_body.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
@@ -190,7 +190,7 @@ class AutoRestValidationTestOperationsMixin:
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_with_constant_in_path.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}
     @distributed_trace_async
@@ -247,10 +247,10 @@ class AutoRestValidationTestOperationsMixin:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('Product', response)
+        deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     post_with_constant_in_body.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}

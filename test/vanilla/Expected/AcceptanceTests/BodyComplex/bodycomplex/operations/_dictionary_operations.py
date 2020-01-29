@@ -75,10 +75,10 @@ class DictionaryOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('DictionaryWrapper', response)
+        deserialized = self._deserialize('DictionaryWrapper', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_valid.metadata = {'url': '/complex/dictionary/typed/valid'}
@@ -130,7 +130,7 @@ class DictionaryOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_valid.metadata = {'url': '/complex/dictionary/typed/valid'}
 
@@ -173,10 +173,10 @@ class DictionaryOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('DictionaryWrapper', response)
+        deserialized = self._deserialize('DictionaryWrapper', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty.metadata = {'url': '/complex/dictionary/typed/empty'}
@@ -228,7 +228,7 @@ class DictionaryOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_empty.metadata = {'url': '/complex/dictionary/typed/empty'}
 
@@ -271,10 +271,10 @@ class DictionaryOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('DictionaryWrapper', response)
+        deserialized = self._deserialize('DictionaryWrapper', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/complex/dictionary/typed/null'}
@@ -318,10 +318,10 @@ class DictionaryOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('DictionaryWrapper', response)
+        deserialized = self._deserialize('DictionaryWrapper', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_not_provided.metadata = {'url': '/complex/dictionary/typed/notprovided'}

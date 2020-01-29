@@ -80,7 +80,7 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_boolean_true.metadata = {'url': '/paths/bool/true/{boolPath}'}
 
@@ -127,7 +127,7 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_boolean_false.metadata = {'url': '/paths/bool/false/{boolPath}'}
 
@@ -174,7 +174,7 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_int_one_million.metadata = {'url': '/paths/int/1000000/{intPath}'}
 
@@ -221,7 +221,7 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_int_negative_one_million.metadata = {'url': '/paths/int/-1000000/{intPath}'}
 
@@ -268,7 +268,7 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_ten_billion.metadata = {'url': '/paths/long/10000000000/{longPath}'}
 
@@ -315,7 +315,7 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_negative_ten_billion.metadata = {'url': '/paths/long/-10000000000/{longPath}'}
 
@@ -362,7 +362,7 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     float_scientific_positive.metadata = {'url': '/paths/float/1.034E+20/{floatPath}'}
 
@@ -409,7 +409,7 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     float_scientific_negative.metadata = {'url': '/paths/float/-1.034E-20/{floatPath}'}
 
@@ -456,7 +456,7 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     double_decimal_positive.metadata = {'url': '/paths/double/9999999.999/{doublePath}'}
 
@@ -503,7 +503,7 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     double_decimal_negative.metadata = {'url': '/paths/double/-9999999.999/{doublePath}'}
 
@@ -550,7 +550,7 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     string_unicode.metadata = {'url': '/paths/string/unicode/{stringPath}'}
 
@@ -597,7 +597,7 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     string_url_encoded.metadata = {'url': '/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}'}
 
@@ -644,7 +644,7 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     string_url_non_encoded.metadata = {'url': '/paths/string/begin!*\'();:@&=+$,end/{stringPath}'}
 
@@ -691,7 +691,7 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     string_empty.metadata = {'url': '/paths/string/empty/{stringPath}'}
 
@@ -741,7 +741,7 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     string_null.metadata = {'url': '/paths/string/null/{stringPath}'}
 
@@ -791,7 +791,7 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     enum_valid.metadata = {'url': '/paths/enum/green%20color/{enumPath}'}
 
@@ -841,7 +841,7 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     enum_null.metadata = {'url': '/paths/string/null/{enumPath}'}
 
@@ -891,7 +891,7 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     byte_multi_byte.metadata = {'url': '/paths/byte/multibyte/{bytePath}'}
 
@@ -938,7 +938,7 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     byte_empty.metadata = {'url': '/paths/byte/empty/{bytePath}'}
 
@@ -988,7 +988,7 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     byte_null.metadata = {'url': '/paths/byte/null/{bytePath}'}
 
@@ -1035,7 +1035,7 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     date_valid.metadata = {'url': '/paths/date/2012-01-01/{datePath}'}
 
@@ -1085,7 +1085,7 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     date_null.metadata = {'url': '/paths/date/null/{datePath}'}
 
@@ -1132,7 +1132,7 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     date_time_valid.metadata = {'url': '/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}'}
 
@@ -1182,7 +1182,7 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     date_time_null.metadata = {'url': '/paths/datetime/null/{dateTimePath}'}
 
@@ -1232,7 +1232,7 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     base64_url.metadata = {'url': '/paths/string/bG9yZW0/{base64UrlPath}'}
 
@@ -1282,7 +1282,7 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     array_csv_in_path.metadata = {'url': '/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}'}
 
@@ -1332,6 +1332,6 @@ class PathsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     unix_time_url.metadata = {'url': '/paths/int/1460505600/{unixTimeUrlPath}'}

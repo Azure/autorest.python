@@ -75,10 +75,10 @@ class ArrayOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('ArrayWrapper', response)
+        deserialized = self._deserialize('ArrayWrapper', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_valid.metadata = {'url': '/complex/array/valid'}
@@ -130,7 +130,7 @@ class ArrayOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_valid.metadata = {'url': '/complex/array/valid'}
 
@@ -173,10 +173,10 @@ class ArrayOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('ArrayWrapper', response)
+        deserialized = self._deserialize('ArrayWrapper', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty.metadata = {'url': '/complex/array/empty'}
@@ -228,7 +228,7 @@ class ArrayOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_empty.metadata = {'url': '/complex/array/empty'}
 
@@ -271,10 +271,10 @@ class ArrayOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('ArrayWrapper', response)
+        deserialized = self._deserialize('ArrayWrapper', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_not_provided.metadata = {'url': '/complex/array/notprovided'}

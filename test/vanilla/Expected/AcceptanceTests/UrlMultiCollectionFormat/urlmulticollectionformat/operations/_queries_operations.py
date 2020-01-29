@@ -79,7 +79,7 @@ class QueriesOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     array_string_multi_null.metadata = {'url': '/queries/array/multi/string/null'}
 
@@ -127,7 +127,7 @@ class QueriesOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     array_string_multi_empty.metadata = {'url': '/queries/array/multi/string/empty'}
 
@@ -175,6 +175,6 @@ class QueriesOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     array_string_multi_valid.metadata = {'url': '/queries/array/multi/string/valid'}

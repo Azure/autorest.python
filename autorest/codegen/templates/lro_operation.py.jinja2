@@ -85,15 +85,16 @@ response_headers = {
         **kwargs
     )
 
-    def get_long_running_output(response):
+    def get_long_running_output(pipeline_response):
         {% if operation.lro_response.has_headers %}
         response_headers = {}
+        response = pipeline_response.http_response
         {% endif %}
         {% if operation.lro_response %}
         {{ response_handling(operation.lro_response)|indent(8) }}
         {% endif %}
         if cls:
-            return cls(response, {{ 'deserialized' if operation.lro_response.has_body else 'None'}}, {{ 'response_headers' if operation.lro_response.has_headers else '{}' }})
+            return cls(pipeline_response, {{ 'deserialized' if operation.lro_response.has_body else 'None'}}, {{ 'response_headers' if operation.lro_response.has_headers else '{}' }})
         {% if operation.lro_response.has_body %}
         return deserialized
         {% endif %}

@@ -68,7 +68,7 @@ class HeadExceptionOperations(object):
             raise ARMError(response=response)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
         return 200 <= response.status_code <= 299
     head200.metadata = {'url': '/http/success/200'}
@@ -112,7 +112,7 @@ class HeadExceptionOperations(object):
             raise ARMError(response=response)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
         return 200 <= response.status_code <= 299
     head204.metadata = {'url': '/http/success/204'}
@@ -156,7 +156,7 @@ class HeadExceptionOperations(object):
             raise ARMError(response=response)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
         return 200 <= response.status_code <= 299
     head404.metadata = {'url': '/http/success/404'}

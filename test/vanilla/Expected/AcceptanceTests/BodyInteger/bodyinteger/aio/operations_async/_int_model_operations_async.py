@@ -75,10 +75,10 @@ class IntOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('int', response)
+        deserialized = self._deserialize('int', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/int/null'}
@@ -121,10 +121,10 @@ class IntOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('int', response)
+        deserialized = self._deserialize('int', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid.metadata = {'url': '/int/invalid'}
@@ -167,10 +167,10 @@ class IntOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('int', response)
+        deserialized = self._deserialize('int', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_overflow_int32.metadata = {'url': '/int/overflowint32'}
@@ -213,10 +213,10 @@ class IntOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('int', response)
+        deserialized = self._deserialize('int', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_underflow_int32.metadata = {'url': '/int/underflowint32'}
@@ -259,10 +259,10 @@ class IntOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('long', response)
+        deserialized = self._deserialize('long', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_overflow_int64.metadata = {'url': '/int/overflowint64'}
@@ -305,10 +305,10 @@ class IntOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('long', response)
+        deserialized = self._deserialize('long', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_underflow_int64.metadata = {'url': '/int/underflowint64'}
@@ -359,7 +359,7 @@ class IntOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_max32.metadata = {'url': '/int/max/32'}
 
@@ -409,7 +409,7 @@ class IntOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_max64.metadata = {'url': '/int/max/64'}
 
@@ -459,7 +459,7 @@ class IntOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_min32.metadata = {'url': '/int/min/32'}
 
@@ -509,7 +509,7 @@ class IntOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_min64.metadata = {'url': '/int/min/64'}
 
@@ -551,10 +551,10 @@ class IntOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('unix-time', response)
+        deserialized = self._deserialize('unix-time', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_unix_time.metadata = {'url': '/int/unixtime'}
@@ -605,7 +605,7 @@ class IntOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_unix_time_date.metadata = {'url': '/int/unixtime'}
 
@@ -647,10 +647,10 @@ class IntOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('unix-time', response)
+        deserialized = self._deserialize('unix-time', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid_unix_time.metadata = {'url': '/int/invalidunixtime'}
@@ -693,10 +693,10 @@ class IntOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('unix-time', response)
+        deserialized = self._deserialize('unix-time', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null_unix_time.metadata = {'url': '/int/nullunixtime'}

@@ -79,7 +79,7 @@ class HeaderOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     param_existing_key.metadata = {'url': '/header/param/existingkey'}
 
@@ -125,7 +125,7 @@ class HeaderOperations(object):
         response_headers['User-Agent']=self._deserialize('str', response.headers.get('User-Agent'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     response_existing_key.metadata = {'url': '/header/response/existingkey'}
 
@@ -172,7 +172,7 @@ class HeaderOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     param_protected_key.metadata = {'url': '/header/param/protectedkey'}
 
@@ -218,7 +218,7 @@ class HeaderOperations(object):
         response_headers['Content-Type']=self._deserialize('str', response.headers.get('Content-Type'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     response_protected_key.metadata = {'url': '/header/response/protectedkey'}
 
@@ -269,7 +269,7 @@ class HeaderOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     param_integer.metadata = {'url': '/header/param/prim/integer'}
 
@@ -319,7 +319,7 @@ class HeaderOperations(object):
         response_headers['value']=self._deserialize('int', response.headers.get('value'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     response_integer.metadata = {'url': '/header/response/prim/integer'}
 
@@ -370,7 +370,7 @@ class HeaderOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     param_long.metadata = {'url': '/header/param/prim/long'}
 
@@ -420,7 +420,7 @@ class HeaderOperations(object):
         response_headers['value']=self._deserialize('long', response.headers.get('value'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     response_long.metadata = {'url': '/header/response/prim/long'}
 
@@ -471,7 +471,7 @@ class HeaderOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     param_float.metadata = {'url': '/header/param/prim/float'}
 
@@ -521,7 +521,7 @@ class HeaderOperations(object):
         response_headers['value']=self._deserialize('float', response.headers.get('value'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     response_float.metadata = {'url': '/header/response/prim/float'}
 
@@ -572,7 +572,7 @@ class HeaderOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     param_double.metadata = {'url': '/header/param/prim/double'}
 
@@ -622,7 +622,7 @@ class HeaderOperations(object):
         response_headers['value']=self._deserialize('float', response.headers.get('value'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     response_double.metadata = {'url': '/header/response/prim/double'}
 
@@ -673,7 +673,7 @@ class HeaderOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     param_bool.metadata = {'url': '/header/param/prim/bool'}
 
@@ -723,7 +723,7 @@ class HeaderOperations(object):
         response_headers['value']=self._deserialize('bool', response.headers.get('value'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     response_bool.metadata = {'url': '/header/response/prim/bool'}
 
@@ -775,7 +775,7 @@ class HeaderOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     param_string.metadata = {'url': '/header/param/prim/string'}
 
@@ -825,7 +825,7 @@ class HeaderOperations(object):
         response_headers['value']=self._deserialize('str', response.headers.get('value'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     response_string.metadata = {'url': '/header/response/prim/string'}
 
@@ -876,7 +876,7 @@ class HeaderOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     param_date.metadata = {'url': '/header/param/prim/date'}
 
@@ -926,7 +926,7 @@ class HeaderOperations(object):
         response_headers['value']=self._deserialize('date', response.headers.get('value'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     response_date.metadata = {'url': '/header/response/prim/date'}
 
@@ -977,7 +977,7 @@ class HeaderOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     param_datetime.metadata = {'url': '/header/param/prim/datetime'}
 
@@ -1027,7 +1027,7 @@ class HeaderOperations(object):
         response_headers['value']=self._deserialize('iso-8601', response.headers.get('value'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     response_datetime.metadata = {'url': '/header/response/prim/datetime'}
 
@@ -1079,7 +1079,7 @@ class HeaderOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     param_datetime_rfc1123.metadata = {'url': '/header/param/prim/datetimerfc1123'}
 
@@ -1129,7 +1129,7 @@ class HeaderOperations(object):
         response_headers['value']=self._deserialize('rfc-1123', response.headers.get('value'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     response_datetime_rfc1123.metadata = {'url': '/header/response/prim/datetimerfc1123'}
 
@@ -1180,7 +1180,7 @@ class HeaderOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     param_duration.metadata = {'url': '/header/param/prim/duration'}
 
@@ -1230,7 +1230,7 @@ class HeaderOperations(object):
         response_headers['value']=self._deserialize('duration', response.headers.get('value'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     response_duration.metadata = {'url': '/header/response/prim/duration'}
 
@@ -1281,7 +1281,7 @@ class HeaderOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     param_byte.metadata = {'url': '/header/param/prim/byte'}
 
@@ -1331,7 +1331,7 @@ class HeaderOperations(object):
         response_headers['value']=self._deserialize('bytearray', response.headers.get('value'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     response_byte.metadata = {'url': '/header/response/prim/byte'}
 
@@ -1383,7 +1383,7 @@ class HeaderOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     param_enum.metadata = {'url': '/header/param/prim/enum'}
 
@@ -1433,7 +1433,7 @@ class HeaderOperations(object):
         response_headers['value']=self._deserialize('str', response.headers.get('value'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     response_enum.metadata = {'url': '/header/response/prim/enum'}
 
@@ -1476,6 +1476,6 @@ class HeaderOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     custom_request_id.metadata = {'url': '/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'}

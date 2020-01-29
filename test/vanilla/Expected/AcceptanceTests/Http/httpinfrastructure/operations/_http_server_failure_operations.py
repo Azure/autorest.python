@@ -74,7 +74,7 @@ class HttpServerFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     head501.metadata = {'url': '/http/failure/server/501'}
 
@@ -117,7 +117,7 @@ class HttpServerFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get501.metadata = {'url': '/http/failure/server/501'}
 
@@ -168,7 +168,7 @@ class HttpServerFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post505.metadata = {'url': '/http/failure/server/505'}
 
@@ -219,6 +219,6 @@ class HttpServerFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     delete505.metadata = {'url': '/http/failure/server/505'}

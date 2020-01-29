@@ -79,8 +79,8 @@ class PagingOperations(object):
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def extract_data(response):
-            deserialized = self._deserialize('ProductResultValue', response)
+        def extract_data(pipeline_response):
+            deserialized = self._deserialize('ProductResultValue', pipeline_response)
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -96,7 +96,7 @@ class PagingOperations(object):
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
 
-            return response
+            return pipeline_response
 
         return ItemPaged(
             get_next, extract_data
@@ -143,8 +143,8 @@ class PagingOperations(object):
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def extract_data(response):
-            deserialized = self._deserialize('ProductResult', response)
+        def extract_data(pipeline_response):
+            deserialized = self._deserialize('ProductResult', pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -160,7 +160,7 @@ class PagingOperations(object):
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
 
-            return response
+            return pipeline_response
 
         return ItemPaged(
             get_next, extract_data
@@ -207,8 +207,8 @@ class PagingOperations(object):
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def extract_data(response):
-            deserialized = self._deserialize('ProductResult', response)
+        def extract_data(pipeline_response):
+            deserialized = self._deserialize('ProductResult', pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -224,7 +224,7 @@ class PagingOperations(object):
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
 
-            return response
+            return pipeline_response
 
         return ItemPaged(
             get_next, extract_data
@@ -286,8 +286,8 @@ class PagingOperations(object):
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def extract_data(response):
-            deserialized = self._deserialize('ProductResult', response)
+        def extract_data(pipeline_response):
+            deserialized = self._deserialize('ProductResult', pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -303,7 +303,7 @@ class PagingOperations(object):
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
 
-            return response
+            return pipeline_response
 
         return ItemPaged(
             get_next, extract_data
@@ -365,8 +365,8 @@ class PagingOperations(object):
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def extract_data(response):
-            deserialized = self._deserialize('OdataProductResult', response)
+        def extract_data(pipeline_response):
+            deserialized = self._deserialize('OdataProductResult', pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -382,7 +382,7 @@ class PagingOperations(object):
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
 
-            return response
+            return pipeline_response
 
         return ItemPaged(
             get_next, extract_data
@@ -451,8 +451,8 @@ class PagingOperations(object):
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def extract_data(response):
-            deserialized = self._deserialize('ProductResult', response)
+        def extract_data(pipeline_response):
+            deserialized = self._deserialize('ProductResult', pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -468,7 +468,7 @@ class PagingOperations(object):
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
 
-            return response
+            return pipeline_response
 
         return ItemPaged(
             get_next, extract_data
@@ -515,8 +515,8 @@ class PagingOperations(object):
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def extract_data(response):
-            deserialized = self._deserialize('ProductResult', response)
+        def extract_data(pipeline_response):
+            deserialized = self._deserialize('ProductResult', pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -532,7 +532,7 @@ class PagingOperations(object):
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
 
-            return response
+            return pipeline_response
 
         return ItemPaged(
             get_next, extract_data
@@ -579,8 +579,8 @@ class PagingOperations(object):
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def extract_data(response):
-            deserialized = self._deserialize('ProductResult', response)
+        def extract_data(pipeline_response):
+            deserialized = self._deserialize('ProductResult', pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -596,7 +596,7 @@ class PagingOperations(object):
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
 
-            return response
+            return pipeline_response
 
         return ItemPaged(
             get_next, extract_data
@@ -643,8 +643,8 @@ class PagingOperations(object):
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def extract_data(response):
-            deserialized = self._deserialize('ProductResult', response)
+        def extract_data(pipeline_response):
+            deserialized = self._deserialize('ProductResult', pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -660,7 +660,7 @@ class PagingOperations(object):
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
 
-            return response
+            return pipeline_response
 
         return ItemPaged(
             get_next, extract_data
@@ -707,8 +707,8 @@ class PagingOperations(object):
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def extract_data(response):
-            deserialized = self._deserialize('ProductResult', response)
+        def extract_data(pipeline_response):
+            deserialized = self._deserialize('ProductResult', pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -724,7 +724,7 @@ class PagingOperations(object):
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
 
-            return response
+            return pipeline_response
 
         return ItemPaged(
             get_next, extract_data
@@ -771,8 +771,8 @@ class PagingOperations(object):
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def extract_data(response):
-            deserialized = self._deserialize('ProductResult', response)
+        def extract_data(pipeline_response):
+            deserialized = self._deserialize('ProductResult', pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -788,7 +788,7 @@ class PagingOperations(object):
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
 
-            return response
+            return pipeline_response
 
         return ItemPaged(
             get_next, extract_data
@@ -851,8 +851,8 @@ class PagingOperations(object):
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def extract_data(response):
-            deserialized = self._deserialize('OdataProductResult', response)
+        def extract_data(pipeline_response):
+            deserialized = self._deserialize('OdataProductResult', pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -868,7 +868,7 @@ class PagingOperations(object):
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
 
-            return response
+            return pipeline_response
 
         return ItemPaged(
             get_next, extract_data
@@ -931,8 +931,8 @@ class PagingOperations(object):
             request = self._client.get(url, query_parameters, header_parameters)
             return request
 
-        def extract_data(response):
-            deserialized = self._deserialize('OdataProductResult', response)
+        def extract_data(pipeline_response):
+            deserialized = self._deserialize('OdataProductResult', pipeline_response)
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
@@ -948,7 +948,7 @@ class PagingOperations(object):
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise ARMError(response=response)
 
-            return response
+            return pipeline_response
 
         return ItemPaged(
             get_next, extract_data
@@ -995,10 +995,10 @@ class PagingOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise ARMError(response=response)
 
-        deserialized = self._deserialize('ProductResult', response)
+        deserialized = self._deserialize('ProductResult', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     _get_multiple_pages_lro_initial.metadata = {'url': '/paging/multiple/lro'}
@@ -1041,11 +1041,11 @@ class PagingOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('ProductResult', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('ProductResult', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(

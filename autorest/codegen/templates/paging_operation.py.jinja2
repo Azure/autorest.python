@@ -177,9 +177,9 @@ def {{ operation.python_name }}(
     {% endif %}
         return request
 
-    {{ keywords.def }} extract_data(response):
+    {{ keywords.def }} extract_data(pipeline_response):
         {% set response = operation.responses[0] %}
-        deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}', response)
+        deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}', pipeline_response)
         list_of_elem = deserialized.{{ operation.item_name }}
         if cls:
             list_of_elem = cls(list_of_elem)
@@ -203,7 +203,7 @@ def {{ operation.python_name }}(
             raise models.{{ exception_name() }}.from_response(response, self._deserialize)
             {% endif %}
 
-        return response
+        return pipeline_response
 
 {% if async_mode %}
     return AsyncItemPaged(

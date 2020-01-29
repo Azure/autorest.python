@@ -83,7 +83,7 @@ class ExplicitOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_required_integer_parameter.metadata = {'url': '/reqopt/requied/integer/parameter'}
 
@@ -136,7 +136,7 @@ class ExplicitOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_optional_integer_parameter.metadata = {'url': '/reqopt/optional/integer/parameter'}
 
@@ -187,7 +187,7 @@ class ExplicitOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_required_integer_property.metadata = {'url': '/reqopt/requied/integer/property'}
 
@@ -241,7 +241,7 @@ class ExplicitOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_optional_integer_property.metadata = {'url': '/reqopt/optional/integer/property'}
 
@@ -288,7 +288,7 @@ class ExplicitOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_required_integer_header.metadata = {'url': '/reqopt/requied/integer/header'}
 
@@ -336,7 +336,7 @@ class ExplicitOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_optional_integer_header.metadata = {'url': '/reqopt/optional/integer/header'}
 
@@ -386,7 +386,7 @@ class ExplicitOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_required_string_parameter.metadata = {'url': '/reqopt/requied/string/parameter'}
 
@@ -439,7 +439,7 @@ class ExplicitOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_optional_string_parameter.metadata = {'url': '/reqopt/optional/string/parameter'}
 
@@ -490,7 +490,7 @@ class ExplicitOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_required_string_property.metadata = {'url': '/reqopt/requied/string/property'}
 
@@ -544,7 +544,7 @@ class ExplicitOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_optional_string_property.metadata = {'url': '/reqopt/optional/string/property'}
 
@@ -591,7 +591,7 @@ class ExplicitOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_required_string_header.metadata = {'url': '/reqopt/requied/string/header'}
 
@@ -639,7 +639,7 @@ class ExplicitOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_optional_string_header.metadata = {'url': '/reqopt/optional/string/header'}
 
@@ -689,7 +689,7 @@ class ExplicitOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_required_class_parameter.metadata = {'url': '/reqopt/requied/class/parameter'}
 
@@ -742,7 +742,7 @@ class ExplicitOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_optional_class_parameter.metadata = {'url': '/reqopt/optional/class/parameter'}
 
@@ -793,7 +793,7 @@ class ExplicitOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_required_class_property.metadata = {'url': '/reqopt/requied/class/property'}
 
@@ -847,7 +847,7 @@ class ExplicitOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_optional_class_property.metadata = {'url': '/reqopt/optional/class/property'}
 
@@ -897,7 +897,7 @@ class ExplicitOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_required_array_parameter.metadata = {'url': '/reqopt/requied/array/parameter'}
 
@@ -950,7 +950,7 @@ class ExplicitOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_optional_array_parameter.metadata = {'url': '/reqopt/optional/array/parameter'}
 
@@ -1001,7 +1001,7 @@ class ExplicitOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_required_array_property.metadata = {'url': '/reqopt/requied/array/property'}
 
@@ -1055,7 +1055,7 @@ class ExplicitOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_optional_array_property.metadata = {'url': '/reqopt/optional/array/property'}
 
@@ -1102,7 +1102,7 @@ class ExplicitOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_required_array_header.metadata = {'url': '/reqopt/requied/array/header'}
 
@@ -1150,6 +1150,6 @@ class ExplicitOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_optional_array_header.metadata = {'url': '/reqopt/optional/array/header'}

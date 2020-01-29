@@ -74,7 +74,7 @@ class XMsClientRequestIdOperations(object):
             raise ARMError(response=response)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/method/'}
 
@@ -121,6 +121,6 @@ class XMsClientRequestIdOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     param_get.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/via-param/method/'}

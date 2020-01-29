@@ -94,6 +94,6 @@ class AvailabilitySetsOperations(object):
             raise HttpResponseError(response=response)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     update.metadata = {'url': '/parameterFlattening/{resourceGroupName}/{availabilitySetName}'}

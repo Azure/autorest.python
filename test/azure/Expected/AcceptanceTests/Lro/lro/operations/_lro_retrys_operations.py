@@ -79,13 +79,13 @@ class LRORetrysOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     _put201_creating_succeeded200_initial.metadata = {'url': '/lro/retryerror/put/201/creating/succeeded/200'}
@@ -120,11 +120,11 @@ class LRORetrysOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('Product', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -180,10 +180,10 @@ class LRORetrysOperations(object):
         response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
         response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
         response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-        deserialized = self._deserialize('Product', response)
+        deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, response_headers)
+          return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
     _put_async_relative_retry_succeeded_initial.metadata = {'url': '/lro/retryerror/putasync/retry/succeeded'}
@@ -218,15 +218,16 @@ class LRORetrysOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             response_headers = {}
+            response = pipeline_response.http_response
             response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
             response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, response_headers)
+                return cls(pipeline_response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -273,15 +274,15 @@ class LRORetrysOperations(object):
         response_headers = {}
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
         if response.status_code == 202:
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
             response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, response_headers)
+          return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
     _delete_provisioning202_accepted200_succeeded_initial.metadata = {'url': '/lro/retryerror/delete/provisioning/202/accepted/200/succeeded'}
@@ -312,14 +313,15 @@ class LRORetrysOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             response_headers = {}
+            response = pipeline_response.http_response
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
             response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, response_headers)
+                return cls(pipeline_response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -367,7 +369,7 @@ class LRORetrysOperations(object):
         response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     _delete202_retry200_initial.metadata = {'url': '/lro/retryerror/delete/202/retry/200'}
 
@@ -397,9 +399,9 @@ class LRORetrysOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -447,7 +449,7 @@ class LRORetrysOperations(object):
         response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     _delete_async_relative_retry_succeeded_initial.metadata = {'url': '/lro/retryerror/deleteasync/retry/succeeded'}
 
@@ -477,9 +479,9 @@ class LRORetrysOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -534,7 +536,7 @@ class LRORetrysOperations(object):
         response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     _post202_retry200_initial.metadata = {'url': '/lro/retryerror/post/202/retry/200'}
 
@@ -568,9 +570,9 @@ class LRORetrysOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -626,7 +628,7 @@ class LRORetrysOperations(object):
         response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     _post_async_relative_retry_succeeded_initial.metadata = {'url': '/lro/retryerror/postasync/retry/succeeded'}
 
@@ -660,9 +662,9 @@ class LRORetrysOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',

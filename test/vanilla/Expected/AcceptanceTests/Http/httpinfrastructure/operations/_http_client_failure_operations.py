@@ -74,7 +74,7 @@ class HttpClientFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     head400.metadata = {'url': '/http/failure/client/400'}
 
@@ -117,7 +117,7 @@ class HttpClientFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get400.metadata = {'url': '/http/failure/client/400'}
 
@@ -160,7 +160,7 @@ class HttpClientFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     options400.metadata = {'url': '/http/failure/client/400'}
 
@@ -211,7 +211,7 @@ class HttpClientFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put400.metadata = {'url': '/http/failure/client/400'}
 
@@ -262,7 +262,7 @@ class HttpClientFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     patch400.metadata = {'url': '/http/failure/client/400'}
 
@@ -313,7 +313,7 @@ class HttpClientFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post400.metadata = {'url': '/http/failure/client/400'}
 
@@ -364,7 +364,7 @@ class HttpClientFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     delete400.metadata = {'url': '/http/failure/client/400'}
 
@@ -407,7 +407,7 @@ class HttpClientFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     head401.metadata = {'url': '/http/failure/client/401'}
 
@@ -450,7 +450,7 @@ class HttpClientFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get402.metadata = {'url': '/http/failure/client/402'}
 
@@ -493,7 +493,7 @@ class HttpClientFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     options403.metadata = {'url': '/http/failure/client/403'}
 
@@ -536,7 +536,7 @@ class HttpClientFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get403.metadata = {'url': '/http/failure/client/403'}
 
@@ -587,7 +587,7 @@ class HttpClientFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put404.metadata = {'url': '/http/failure/client/404'}
 
@@ -638,7 +638,7 @@ class HttpClientFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     patch405.metadata = {'url': '/http/failure/client/405'}
 
@@ -689,7 +689,7 @@ class HttpClientFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post406.metadata = {'url': '/http/failure/client/406'}
 
@@ -740,7 +740,7 @@ class HttpClientFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     delete407.metadata = {'url': '/http/failure/client/407'}
 
@@ -791,7 +791,7 @@ class HttpClientFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put409.metadata = {'url': '/http/failure/client/409'}
 
@@ -834,7 +834,7 @@ class HttpClientFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     head410.metadata = {'url': '/http/failure/client/410'}
 
@@ -877,7 +877,7 @@ class HttpClientFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get411.metadata = {'url': '/http/failure/client/411'}
 
@@ -920,7 +920,7 @@ class HttpClientFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     options412.metadata = {'url': '/http/failure/client/412'}
 
@@ -963,7 +963,7 @@ class HttpClientFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get412.metadata = {'url': '/http/failure/client/412'}
 
@@ -1014,7 +1014,7 @@ class HttpClientFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put413.metadata = {'url': '/http/failure/client/413'}
 
@@ -1065,7 +1065,7 @@ class HttpClientFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     patch414.metadata = {'url': '/http/failure/client/414'}
 
@@ -1116,7 +1116,7 @@ class HttpClientFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post415.metadata = {'url': '/http/failure/client/415'}
 
@@ -1159,7 +1159,7 @@ class HttpClientFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get416.metadata = {'url': '/http/failure/client/416'}
 
@@ -1210,7 +1210,7 @@ class HttpClientFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     delete417.metadata = {'url': '/http/failure/client/417'}
 
@@ -1253,6 +1253,6 @@ class HttpClientFailureOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     head429.metadata = {'url': '/http/failure/client/429'}

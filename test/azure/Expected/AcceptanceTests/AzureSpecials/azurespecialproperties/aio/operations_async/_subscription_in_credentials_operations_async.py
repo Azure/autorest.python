@@ -78,7 +78,7 @@ class SubscriptionInCredentialsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_method_global_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}
 
@@ -124,7 +124,7 @@ class SubscriptionInCredentialsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_method_global_null.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}'}
 
@@ -170,7 +170,7 @@ class SubscriptionInCredentialsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_method_global_not_provided_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}'}
 
@@ -216,7 +216,7 @@ class SubscriptionInCredentialsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_path_global_valid.metadata = {'url': '/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}
 
@@ -262,6 +262,6 @@ class SubscriptionInCredentialsOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_swagger_global_valid.metadata = {'url': '/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}
