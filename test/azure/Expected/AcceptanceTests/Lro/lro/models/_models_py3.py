@@ -164,6 +164,7 @@ class Product(Resource):
     ):
         super(Product, self).__init__(tags=tags, location=location, **kwargs)
         self.provisioning_state = provisioning_state
+        self.provisioning_state_values = None
 
 
 class ProductProperties(Model):
@@ -286,6 +287,7 @@ class SubProduct(SubResource):
     ):
         super(SubProduct, self).__init__(**kwargs)
         self.provisioning_state = provisioning_state
+        self.provisioning_state_values = None
 
 
 class SubProductProperties(Model):

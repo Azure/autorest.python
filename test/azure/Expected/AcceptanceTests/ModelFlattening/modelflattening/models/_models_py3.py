@@ -211,6 +211,7 @@ class FlattenedProduct(Resource):
         super(FlattenedProduct, self).__init__(tags=tags, location=location, **kwargs)
         self.p_name = p_name
         self.type_properties_type = type_properties_type
+        self.provisioning_state_values = None
         self.provisioning_state = provisioning_state
 
 

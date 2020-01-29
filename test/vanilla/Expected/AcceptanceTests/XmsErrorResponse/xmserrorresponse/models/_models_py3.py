@@ -279,6 +279,7 @@ class Pet(Animal):
         **kwargs
     ):
         super(Pet, self).__init__(ani_type=ani_type, **kwargs)
+        self.name = None
 
 
 class PetAction(Model):
