@@ -139,6 +139,7 @@ class Product(Resource):
     def __init__(self, *, tags: Dict[str, str]=None, location: str=None, provisioning_state: str=None, **kwargs) -> None:
         super(Product, self).__init__(tags=tags, location=location, **kwargs)
         self.provisioning_state = provisioning_state
+        self.provisioning_state_values = None
 
 
 class ProductProperties(Model):
@@ -242,6 +243,7 @@ class SubProduct(SubResource):
     def __init__(self, *, provisioning_state: str=None, **kwargs) -> None:
         super(SubProduct, self).__init__(**kwargs)
         self.provisioning_state = provisioning_state
+        self.provisioning_state_values = None
 
 
 class SubProductProperties(Model):
