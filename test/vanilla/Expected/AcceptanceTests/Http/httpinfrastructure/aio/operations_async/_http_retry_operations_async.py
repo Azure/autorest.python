@@ -15,6 +15,10 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class HttpRetryOperations:
     """HttpRetryOperations async operations.
 
@@ -39,7 +43,7 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def head408(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Return 408 status code, then 200 after retry.
@@ -81,7 +85,7 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def put500(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Return 500 status code, then 200 after retry.
@@ -131,7 +135,7 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def patch500(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Return 500 status code, then 200 after retry.
@@ -181,7 +185,7 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def get502(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Return 502 status code, then 200 after retry.
@@ -223,7 +227,7 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def options502(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, bool, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(bool) = None,
         **kwargs: Any
     ) -> bool:
         """Return 502 status code, then 200 after retry.
@@ -269,7 +273,7 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def post503(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Return 503 status code, then 200 after retry.
@@ -319,7 +323,7 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def delete503(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Return 503 status code, then 200 after retry.
@@ -369,7 +373,7 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def put504(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Return 504 status code, then 200 after retry.
@@ -419,7 +423,7 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def patch504(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Return 504 status code, then 200 after retry.

@@ -16,6 +16,10 @@ from msrest.serialization import Model
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class DictionaryOperations:
     """DictionaryOperations async operations.
 
@@ -40,7 +44,7 @@ class DictionaryOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "DictionaryWrapper", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("DictionaryWrapper") = None,
         **kwargs: Any
     ) -> "DictionaryWrapper":
         """Get complex types with dictionary property.
@@ -88,7 +92,7 @@ class DictionaryOperations:
         self,
         default_program: Optional[Dict[str, str]] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put complex types with dictionary property.
@@ -137,7 +141,7 @@ class DictionaryOperations:
     @distributed_trace_async
     async def get_empty(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "DictionaryWrapper", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("DictionaryWrapper") = None,
         **kwargs: Any
     ) -> "DictionaryWrapper":
         """Get complex types with dictionary property which is empty.
@@ -185,7 +189,7 @@ class DictionaryOperations:
         self,
         default_program: Optional[Dict[str, str]] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put complex types with dictionary property which is empty.
@@ -234,7 +238,7 @@ class DictionaryOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "DictionaryWrapper", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("DictionaryWrapper") = None,
         **kwargs: Any
     ) -> "DictionaryWrapper":
         """Get complex types with dictionary property which is null.
@@ -280,7 +284,7 @@ class DictionaryOperations:
     @distributed_trace_async
     async def get_not_provided(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "DictionaryWrapper", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("DictionaryWrapper") = None,
         **kwargs: Any
     ) -> "DictionaryWrapper":
         """Get complex types with dictionary property while server doesn't provide a response payload.

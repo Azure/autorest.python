@@ -15,6 +15,10 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class QueriesOperations:
     """QueriesOperations async operations.
 
@@ -41,7 +45,7 @@ class QueriesOperations:
         self,
         array_query: Optional[List[str]] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Get a null array of string using the multi-array format.
@@ -89,7 +93,7 @@ class QueriesOperations:
         self,
         array_query: Optional[List[str]] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Get an empty array [] of string using the multi-array format.
@@ -137,7 +141,7 @@ class QueriesOperations:
         self,
         array_query: Optional[List[str]] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the mult-array format.

@@ -16,6 +16,10 @@ from azure.mgmt.core.exceptions import ARMError
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class XMsClientRequestIdOperations:
     """XMsClientRequestIdOperations async operations.
 
@@ -40,7 +44,7 @@ class XMsClientRequestIdOperations:
     @distributed_trace_async
     async def get(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Get method that overwrites x-ms-client-request header with value 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0..
@@ -84,7 +88,7 @@ class XMsClientRequestIdOperations:
         self,
         x_ms_client_request_id: str,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Get method that overwrites x-ms-client-request header with value 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0..

@@ -14,6 +14,10 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMError
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class HttpSuccessOperations:
     """HttpSuccessOperations async operations.
 
@@ -34,7 +38,7 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def head200(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Return 200 status code if successful.
@@ -77,7 +81,7 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def head204(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Return 204 status code if successful.
@@ -120,7 +124,7 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def head404(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Return 404 status code if successful.

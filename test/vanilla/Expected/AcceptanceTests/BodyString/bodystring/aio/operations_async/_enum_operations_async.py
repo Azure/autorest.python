@@ -16,6 +16,10 @@ from msrest.serialization import Model
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class EnumOperations:
     """EnumOperations async operations.
 
@@ -40,7 +44,7 @@ class EnumOperations:
     @distributed_trace_async
     async def get_not_expandable(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, Union[str, "Colors"], Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(Union[str, "Colors"]) = None,
         **kwargs: Any
     ) -> Union[str, "Colors"]:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'..
@@ -88,7 +92,7 @@ class EnumOperations:
         self,
         string_body: Union[str, "Colors"],
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
@@ -136,7 +140,7 @@ class EnumOperations:
     @distributed_trace_async
     async def get_referenced(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, Union[str, "Colors"], Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(Union[str, "Colors"]) = None,
         **kwargs: Any
     ) -> Union[str, "Colors"]:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'..
@@ -184,7 +188,7 @@ class EnumOperations:
         self,
         enum_string_body: Union[str, "Colors"],
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
@@ -232,7 +236,7 @@ class EnumOperations:
     @distributed_trace_async
     async def get_referenced_constant(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "RefColorConstant", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("RefColorConstant") = None,
         **kwargs: Any
     ) -> "RefColorConstant":
         """Get value 'green-color' from the constant..
@@ -280,7 +284,7 @@ class EnumOperations:
         self,
         field1: Optional[str] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Sends value 'green-color' from a constant.

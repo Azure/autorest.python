@@ -19,6 +19,10 @@ from msrest.serialization import Model
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class LROSADsOperations:
     """LROSADsOperations async operations.
 
@@ -45,7 +49,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "Product", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Product") = None,
         **kwargs: Any
     ) -> "Product":
         error_map = kwargs.pop('error_map', {})
@@ -96,7 +100,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -144,7 +148,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "Product", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Product") = None,
         **kwargs: Any
     ) -> "Product":
         error_map = kwargs.pop('error_map', {})
@@ -195,7 +199,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -243,7 +247,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "Product", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Product") = None,
         **kwargs: Any
     ) -> "Product":
         error_map = kwargs.pop('error_map', {})
@@ -294,7 +298,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -342,7 +346,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "Product", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Product") = None,
         **kwargs: Any
     ) -> "Product":
         error_map = kwargs.pop('error_map', {})
@@ -392,7 +396,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -442,7 +446,7 @@ class LROSADsOperations:
     
     async def _delete_non_retry400_initial(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         error_map = kwargs.pop('error_map', {})
@@ -479,7 +483,7 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete_non_retry400(
         self,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -519,7 +523,7 @@ class LROSADsOperations:
     
     async def _delete202_non_retry400_initial(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         error_map = kwargs.pop('error_map', {})
@@ -556,7 +560,7 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete202_non_retry400(
         self,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -596,7 +600,7 @@ class LROSADsOperations:
     
     async def _delete_async_relative_retry400_initial(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         error_map = kwargs.pop('error_map', {})
@@ -634,7 +638,7 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete_async_relative_retry400(
         self,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -676,7 +680,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         error_map = kwargs.pop('error_map', {})
@@ -722,7 +726,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -767,7 +771,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         error_map = kwargs.pop('error_map', {})
@@ -813,7 +817,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -858,7 +862,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         error_map = kwargs.pop('error_map', {})
@@ -905,7 +909,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -950,7 +954,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "Product", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Product") = None,
         **kwargs: Any
     ) -> "Product":
         error_map = kwargs.pop('error_map', {})
@@ -1001,7 +1005,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -1049,7 +1053,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "Product", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Product") = None,
         **kwargs: Any
     ) -> "Product":
         error_map = kwargs.pop('error_map', {})
@@ -1099,7 +1103,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -1151,7 +1155,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "Product", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Product") = None,
         **kwargs: Any
     ) -> "Product":
         error_map = kwargs.pop('error_map', {})
@@ -1201,7 +1205,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -1251,7 +1255,7 @@ class LROSADsOperations:
     
     async def _delete204_succeeded_initial(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         error_map = kwargs.pop('error_map', {})
@@ -1284,7 +1288,7 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete204_succeeded(
         self,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -1324,7 +1328,7 @@ class LROSADsOperations:
     
     async def _delete_async_relative_retry_no_status_initial(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         error_map = kwargs.pop('error_map', {})
@@ -1362,7 +1366,7 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete_async_relative_retry_no_status(
         self,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -1404,7 +1408,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         error_map = kwargs.pop('error_map', {})
@@ -1450,7 +1454,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -1495,7 +1499,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         error_map = kwargs.pop('error_map', {})
@@ -1542,7 +1546,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -1587,7 +1591,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "Product", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Product") = None,
         **kwargs: Any
     ) -> "Product":
         error_map = kwargs.pop('error_map', {})
@@ -1635,7 +1639,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -1683,7 +1687,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "Product", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Product") = None,
         **kwargs: Any
     ) -> "Product":
         error_map = kwargs.pop('error_map', {})
@@ -1733,7 +1737,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -1785,7 +1789,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "Product", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Product") = None,
         **kwargs: Any
     ) -> "Product":
         error_map = kwargs.pop('error_map', {})
@@ -1835,7 +1839,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -1885,7 +1889,7 @@ class LROSADsOperations:
     
     async def _delete202_retry_invalid_header_initial(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         error_map = kwargs.pop('error_map', {})
@@ -1922,7 +1926,7 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete202_retry_invalid_header(
         self,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -1962,7 +1966,7 @@ class LROSADsOperations:
     
     async def _delete_async_relative_retry_invalid_header_initial(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         error_map = kwargs.pop('error_map', {})
@@ -2000,7 +2004,7 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete_async_relative_retry_invalid_header(
         self,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -2040,7 +2044,7 @@ class LROSADsOperations:
     
     async def _delete_async_relative_retry_invalid_json_polling_initial(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         error_map = kwargs.pop('error_map', {})
@@ -2078,7 +2082,7 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete_async_relative_retry_invalid_json_polling(
         self,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -2120,7 +2124,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         error_map = kwargs.pop('error_map', {})
@@ -2166,7 +2170,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -2211,7 +2215,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         error_map = kwargs.pop('error_map', {})
@@ -2258,7 +2262,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -2303,7 +2307,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         error_map = kwargs.pop('error_map', {})
@@ -2350,7 +2354,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:

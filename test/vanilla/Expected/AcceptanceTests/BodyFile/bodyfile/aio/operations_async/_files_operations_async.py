@@ -15,6 +15,10 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class FilesOperations:
     """FilesOperations async operations.
 
@@ -39,7 +43,7 @@ class FilesOperations:
     @distributed_trace_async
     async def get_file(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Get file.
@@ -85,7 +89,7 @@ class FilesOperations:
     @distributed_trace_async
     async def get_file_large(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Get a large file.
@@ -131,7 +135,7 @@ class FilesOperations:
     @distributed_trace_async
     async def get_empty_file(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Get empty file.

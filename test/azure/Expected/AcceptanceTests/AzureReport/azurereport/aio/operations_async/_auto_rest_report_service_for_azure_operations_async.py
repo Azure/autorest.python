@@ -21,7 +21,7 @@ class AutoRestReportServiceForAzureOperationsMixin:
         self,
         qualifier: Optional[str] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, Dict[str, int], Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(Dict[str, int]) = None,
         **kwargs: Any
     ) -> Dict[str, int]:
         """Get test coverage report.

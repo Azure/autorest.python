@@ -16,6 +16,10 @@ from msrest.serialization import Model
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class BasicOperations:
     """BasicOperations async operations.
 
@@ -40,7 +44,7 @@ class BasicOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "Basic", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Basic") = None,
         **kwargs: Any
     ) -> "Basic":
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
@@ -88,7 +92,7 @@ class BasicOperations:
         self,
         complex_body: "Basic",
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
@@ -138,7 +142,7 @@ class BasicOperations:
     @distributed_trace_async
     async def get_invalid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "Basic", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Basic") = None,
         **kwargs: Any
     ) -> "Basic":
         """Get a basic complex type that is invalid for the local strong type.
@@ -184,7 +188,7 @@ class BasicOperations:
     @distributed_trace_async
     async def get_empty(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "Basic", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Basic") = None,
         **kwargs: Any
     ) -> "Basic":
         """Get a basic complex type that is empty.
@@ -230,7 +234,7 @@ class BasicOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "Basic", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Basic") = None,
         **kwargs: Any
     ) -> "Basic":
         """Get a basic complex type whose properties are null.
@@ -276,7 +280,7 @@ class BasicOperations:
     @distributed_trace_async
     async def get_not_provided(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "Basic", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Basic") = None,
         **kwargs: Any
     ) -> "Basic":
         """Get a basic complex type while the server doesn't provide a response payload.

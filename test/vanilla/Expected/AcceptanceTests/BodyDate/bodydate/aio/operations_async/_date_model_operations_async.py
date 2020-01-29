@@ -16,6 +16,10 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class DateOperations:
     """DateOperations async operations.
 
@@ -40,7 +44,7 @@ class DateOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.date, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(datetime.date) = None,
         **kwargs: Any
     ) -> datetime.date:
         """Get null date value.
@@ -86,7 +90,7 @@ class DateOperations:
     @distributed_trace_async
     async def get_invalid_date(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.date, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(datetime.date) = None,
         **kwargs: Any
     ) -> datetime.date:
         """Get invalid date value.
@@ -132,7 +136,7 @@ class DateOperations:
     @distributed_trace_async
     async def get_overflow_date(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.date, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(datetime.date) = None,
         **kwargs: Any
     ) -> datetime.date:
         """Get overflow date value.
@@ -178,7 +182,7 @@ class DateOperations:
     @distributed_trace_async
     async def get_underflow_date(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.date, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(datetime.date) = None,
         **kwargs: Any
     ) -> datetime.date:
         """Get underflow date value.
@@ -226,7 +230,7 @@ class DateOperations:
         self,
         date_body: datetime.date,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put max date value 9999-12-31.
@@ -274,7 +278,7 @@ class DateOperations:
     @distributed_trace_async
     async def get_max_date(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.date, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(datetime.date) = None,
         **kwargs: Any
     ) -> datetime.date:
         """Get max date value 9999-12-31.
@@ -322,7 +326,7 @@ class DateOperations:
         self,
         date_body: datetime.date,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put min date value 0000-01-01.
@@ -370,7 +374,7 @@ class DateOperations:
     @distributed_trace_async
     async def get_min_date(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.date, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(datetime.date) = None,
         **kwargs: Any
     ) -> datetime.date:
         """Get min date value 0000-01-01.

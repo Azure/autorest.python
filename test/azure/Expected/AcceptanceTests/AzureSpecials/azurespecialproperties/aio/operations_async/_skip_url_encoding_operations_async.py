@@ -15,6 +15,10 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class SkipUrlEncodingOperations:
     """SkipUrlEncodingOperations async operations.
 
@@ -41,7 +45,7 @@ class SkipUrlEncodingOperations:
         self,
         unencoded_path_param: str,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
@@ -91,7 +95,7 @@ class SkipUrlEncodingOperations:
         self,
         unencoded_path_param: str,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
@@ -139,7 +143,7 @@ class SkipUrlEncodingOperations:
     @distributed_trace_async
     async def get_swagger_path_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
@@ -188,7 +192,7 @@ class SkipUrlEncodingOperations:
         self,
         q1: str,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
@@ -235,7 +239,7 @@ class SkipUrlEncodingOperations:
         self,
         q1: Optional[str] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Get method with unencoded query parameter with value null.
@@ -283,7 +287,7 @@ class SkipUrlEncodingOperations:
         self,
         q1: str,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
@@ -328,7 +332,7 @@ class SkipUrlEncodingOperations:
     @distributed_trace_async
     async def get_swagger_query_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.

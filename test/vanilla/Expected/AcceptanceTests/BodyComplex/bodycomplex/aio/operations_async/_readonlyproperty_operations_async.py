@@ -16,6 +16,10 @@ from msrest.serialization import Model
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class ReadonlypropertyOperations:
     """ReadonlypropertyOperations async operations.
 
@@ -40,7 +44,7 @@ class ReadonlypropertyOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "ReadonlyObj", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("ReadonlyObj") = None,
         **kwargs: Any
     ) -> "ReadonlyObj":
         """Get complex types that have readonly properties.
@@ -88,7 +92,7 @@ class ReadonlypropertyOperations:
         self,
         size: Optional[int] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put complex types that have readonly properties.

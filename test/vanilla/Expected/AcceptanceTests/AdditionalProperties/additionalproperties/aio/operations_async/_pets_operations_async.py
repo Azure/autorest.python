@@ -16,6 +16,10 @@ from msrest.serialization import Model
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class PetsOperations:
     """PetsOperations async operations.
 
@@ -42,7 +46,7 @@ class PetsOperations:
         self,
         create_parameters: "PetAPTrue",
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "PetAPTrue", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("PetAPTrue") = None,
         **kwargs: Any
     ) -> "PetAPTrue":
         """Create a Pet which contains more properties than what is defined..
@@ -96,7 +100,7 @@ class PetsOperations:
         self,
         create_parameters: "CatAPTrue",
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "CatAPTrue", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("CatAPTrue") = None,
         **kwargs: Any
     ) -> "CatAPTrue":
         """Create a CatAPTrue which contains more properties than what is defined..
@@ -150,7 +154,7 @@ class PetsOperations:
         self,
         create_parameters: "PetAPObject",
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "PetAPObject", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("PetAPObject") = None,
         **kwargs: Any
     ) -> "PetAPObject":
         """Create a Pet which contains more properties than what is defined..
@@ -204,7 +208,7 @@ class PetsOperations:
         self,
         create_parameters: "PetAPString",
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "PetAPString", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("PetAPString") = None,
         **kwargs: Any
     ) -> "PetAPString":
         """Create a Pet which contains more properties than what is defined..
@@ -258,7 +262,7 @@ class PetsOperations:
         self,
         create_parameters: "PetAPInProperties",
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "PetAPInProperties", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("PetAPInProperties") = None,
         **kwargs: Any
     ) -> "PetAPInProperties":
         """Create a Pet which contains more properties than what is defined..
@@ -312,7 +316,7 @@ class PetsOperations:
         self,
         create_parameters: "PetAPInPropertiesWithAPString",
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "PetAPInPropertiesWithAPString", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("PetAPInPropertiesWithAPString") = None,
         **kwargs: Any
     ) -> "PetAPInPropertiesWithAPString":
         """Create a Pet which contains more properties than what is defined..

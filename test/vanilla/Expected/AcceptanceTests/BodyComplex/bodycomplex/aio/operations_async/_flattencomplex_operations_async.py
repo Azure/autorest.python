@@ -16,6 +16,10 @@ from msrest.serialization import Model
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class FlattencomplexOperations:
     """FlattencomplexOperations async operations.
 
@@ -40,7 +44,7 @@ class FlattencomplexOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "MyBaseType", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("MyBaseType") = None,
         **kwargs: Any
     ) -> "MyBaseType":
         """MISSING·OPERATION-DESCRIPTION.

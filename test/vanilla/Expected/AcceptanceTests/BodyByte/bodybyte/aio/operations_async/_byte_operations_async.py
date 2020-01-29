@@ -15,6 +15,10 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class ByteOperations:
     """ByteOperations async operations.
 
@@ -39,7 +43,7 @@ class ByteOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, bytearray, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(bytearray) = None,
         **kwargs: Any
     ) -> bytearray:
         """Get null byte value.
@@ -85,7 +89,7 @@ class ByteOperations:
     @distributed_trace_async
     async def get_empty(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, bytearray, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(bytearray) = None,
         **kwargs: Any
     ) -> bytearray:
         """Get empty byte value ''.
@@ -131,7 +135,7 @@ class ByteOperations:
     @distributed_trace_async
     async def get_non_ascii(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, bytearray, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(bytearray) = None,
         **kwargs: Any
     ) -> bytearray:
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
@@ -179,7 +183,7 @@ class ByteOperations:
         self,
         byte_body: bytearray,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
@@ -227,7 +231,7 @@ class ByteOperations:
     @distributed_trace_async
     async def get_invalid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, bytearray, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(bytearray) = None,
         **kwargs: Any
     ) -> bytearray:
         """Get invalid byte value ':::SWAGGER::::'.

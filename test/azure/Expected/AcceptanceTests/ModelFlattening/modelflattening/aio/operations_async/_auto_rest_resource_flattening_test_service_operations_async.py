@@ -22,7 +22,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         self,
         resource_array: Optional[List["Resource"]] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put External Resource as an Array.
@@ -72,7 +72,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     @distributed_trace_async
     async def get_array(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, List["FlattenedProduct"], Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(List["FlattenedProduct"]) = None,
         **kwargs: Any
     ) -> List["FlattenedProduct"]:
         """Get External Resource as an Array.
@@ -119,7 +119,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         self,
         resource_array: Optional[List["WrappedProduct"]] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened is not removed if it's referenced in an array.
@@ -169,7 +169,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     @distributed_trace_async
     async def get_wrapped_array(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, List["ProductWrapper"], Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(List["ProductWrapper"]) = None,
         **kwargs: Any
     ) -> List["ProductWrapper"]:
         """No need to have a route in Express server for this operation. Used to verify the type flattened is not removed if it's referenced in an array.
@@ -216,7 +216,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         self,
         resource_dictionary: Optional[Dict[str, "FlattenedProduct"]] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put External Resource as a Dictionary.
@@ -266,7 +266,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     @distributed_trace_async
     async def get_dictionary(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, Dict[str, "FlattenedProduct"], Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(Dict[str, "FlattenedProduct"]) = None,
         **kwargs: Any
     ) -> Dict[str, "FlattenedProduct"]:
         """Get External Resource as a Dictionary.
@@ -313,7 +313,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         self,
         resource_complex_object: Optional["ResourceCollection"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put External Resource as a ResourceCollection.
@@ -363,7 +363,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     @distributed_trace_async
     async def get_resource_collection(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "ResourceCollection", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("ResourceCollection") = None,
         **kwargs: Any
     ) -> "ResourceCollection":
         """Get External Resource as a ResourceCollection.
@@ -410,7 +410,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         self,
         simple_body_product: Optional["SimpleProduct"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "SimpleProduct", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("SimpleProduct") = None,
         **kwargs: Any
     ) -> "SimpleProduct":
         """Put Simple Product with client flattening true on the model.
@@ -467,7 +467,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         max_product_display_name: Optional[str] = None,
         odatavalue: Optional[str] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "SimpleProduct", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("SimpleProduct") = None,
         **kwargs: Any
     ) -> "SimpleProduct":
         """Put Flattened Simple Product with client flattening true on the parameter.
@@ -528,7 +528,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         max_product_display_name: Optional[str] = None,
         odatavalue: Optional[str] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "SimpleProduct", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("SimpleProduct") = None,
         **kwargs: Any
     ) -> "SimpleProduct":
         """Put Simple Product with client flattening true on the model.

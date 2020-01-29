@@ -15,6 +15,10 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class HttpFailureOperations:
     """HttpFailureOperations async operations.
 
@@ -39,7 +43,7 @@ class HttpFailureOperations:
     @distributed_trace_async
     async def get_empty_error(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, bool, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(bool) = None,
         **kwargs: Any
     ) -> bool:
         """Get empty error form server.
@@ -85,7 +89,7 @@ class HttpFailureOperations:
     @distributed_trace_async
     async def get_no_model_error(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, bool, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(bool) = None,
         **kwargs: Any
     ) -> bool:
         """Get empty error form server.
@@ -131,7 +135,7 @@ class HttpFailureOperations:
     @distributed_trace_async
     async def get_no_model_empty(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, bool, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(bool) = None,
         **kwargs: Any
     ) -> bool:
         """Get empty response from server.

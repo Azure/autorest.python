@@ -13,7 +13,7 @@ async def {{ operation.python_name }}(
     {% if operation.parameters.method | first %}
     *,
     {% endif %}
-    cls: Optional[Callable[[AsyncHttpResponse, {{ keywords.return_type_annotation(operation) }}, Dict[str, Any]], Any]] = None,
+    cls: _cls_type_annotation({{ keywords.return_type_annotation(operation) }}) = None,
     **kwargs: Any
 ){{ keywords.async_return_type_annotation(operation) }}:
 {% else %}

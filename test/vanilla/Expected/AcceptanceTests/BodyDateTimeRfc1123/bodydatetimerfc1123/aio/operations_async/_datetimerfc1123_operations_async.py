@@ -16,6 +16,10 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class Datetimerfc1123Operations:
     """Datetimerfc1123Operations async operations.
 
@@ -40,7 +44,7 @@ class Datetimerfc1123Operations:
     @distributed_trace_async
     async def get_null(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.datetime, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(datetime.datetime) = None,
         **kwargs: Any
     ) -> datetime.datetime:
         """Get null datetime value.
@@ -86,7 +90,7 @@ class Datetimerfc1123Operations:
     @distributed_trace_async
     async def get_invalid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.datetime, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(datetime.datetime) = None,
         **kwargs: Any
     ) -> datetime.datetime:
         """Get invalid datetime value.
@@ -132,7 +136,7 @@ class Datetimerfc1123Operations:
     @distributed_trace_async
     async def get_overflow(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.datetime, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(datetime.datetime) = None,
         **kwargs: Any
     ) -> datetime.datetime:
         """Get overflow datetime value.
@@ -178,7 +182,7 @@ class Datetimerfc1123Operations:
     @distributed_trace_async
     async def get_underflow(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.datetime, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(datetime.datetime) = None,
         **kwargs: Any
     ) -> datetime.datetime:
         """Get underflow datetime value.
@@ -226,7 +230,7 @@ class Datetimerfc1123Operations:
         self,
         datetime_body: datetime.datetime,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT.
@@ -274,7 +278,7 @@ class Datetimerfc1123Operations:
     @distributed_trace_async
     async def get_utc_lowercase_max_date_time(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.datetime, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(datetime.datetime) = None,
         **kwargs: Any
     ) -> datetime.datetime:
         """Get max datetime value fri, 31 dec 9999 23:59:59 gmt.
@@ -320,7 +324,7 @@ class Datetimerfc1123Operations:
     @distributed_trace_async
     async def get_utc_uppercase_max_date_time(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.datetime, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(datetime.datetime) = None,
         **kwargs: Any
     ) -> datetime.datetime:
         """Get max datetime value FRI, 31 DEC 9999 23:59:59 GMT.
@@ -368,7 +372,7 @@ class Datetimerfc1123Operations:
         self,
         datetime_body: datetime.datetime,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
@@ -416,7 +420,7 @@ class Datetimerfc1123Operations:
     @distributed_trace_async
     async def get_utc_min_date_time(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.datetime, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(datetime.datetime) = None,
         **kwargs: Any
     ) -> datetime.datetime:
         """Get min datetime value Mon, 1 Jan 0001 00:00:00 GMT.

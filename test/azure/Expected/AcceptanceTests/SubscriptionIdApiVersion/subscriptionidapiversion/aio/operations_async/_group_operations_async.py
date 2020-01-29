@@ -16,6 +16,10 @@ from msrest.serialization import Model
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class GroupOperations:
     """GroupOperations async operations.
 
@@ -42,7 +46,7 @@ class GroupOperations:
         self,
         resource_group_name: str,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "SampleResourceGroup", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("SampleResourceGroup") = None,
         **kwargs: Any
     ) -> "SampleResourceGroup":
         """Provides a resouce group with name 'testgroup101' and location 'West US'..

@@ -23,7 +23,7 @@ class AutoRestValidationTestOperationsMixin:
         resource_group_name: str,
         id: int,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "Product", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Product") = None,
         **kwargs: Any
     ) -> "Product":
         """Validates input parameters on the method. See swagger for details..
@@ -84,7 +84,7 @@ class AutoRestValidationTestOperationsMixin:
         id: int,
         body: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "Product", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Product") = None,
         **kwargs: Any
     ) -> "Product":
         """Validates body parameters on the method. See swagger for details..
@@ -150,7 +150,7 @@ class AutoRestValidationTestOperationsMixin:
     @distributed_trace_async
     async def get_with_constant_in_path(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """MISSING·OPERATION-DESCRIPTION.
@@ -198,7 +198,7 @@ class AutoRestValidationTestOperationsMixin:
         self,
         body: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "Product", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Product") = None,
         **kwargs: Any
     ) -> "Product":
         """MISSING·OPERATION-DESCRIPTION.

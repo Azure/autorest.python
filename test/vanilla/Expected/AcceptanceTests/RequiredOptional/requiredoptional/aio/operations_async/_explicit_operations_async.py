@@ -16,6 +16,10 @@ from msrest.serialization import Model
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class ExplicitOperations:
     """ExplicitOperations async operations.
 
@@ -42,7 +46,7 @@ class ExplicitOperations:
         self,
         body_parameter: int,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test explicitly required integer. Please put null and the client library should throw before the request is sent..
@@ -92,7 +96,7 @@ class ExplicitOperations:
         self,
         body_parameter: Optional[int] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put null..
@@ -145,7 +149,7 @@ class ExplicitOperations:
         self,
         value: int,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the client library should throw before the request is sent..
@@ -196,7 +200,7 @@ class ExplicitOperations:
         self,
         value: Optional[int] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null..
@@ -250,7 +254,7 @@ class ExplicitOperations:
         self,
         header_parameter: int,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test explicitly required integer. Please put a header 'headerParameter' => null and the client library should throw before the request is sent..
@@ -297,7 +301,7 @@ class ExplicitOperations:
         self,
         header_parameter: Optional[int] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null..
@@ -345,7 +349,7 @@ class ExplicitOperations:
         self,
         body_parameter: str,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test explicitly required string. Please put null and the client library should throw before the request is sent..
@@ -395,7 +399,7 @@ class ExplicitOperations:
         self,
         body_parameter: Optional[str] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test explicitly optional string. Please put null..
@@ -448,7 +452,7 @@ class ExplicitOperations:
         self,
         value: str,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the client library should throw before the request is sent..
@@ -499,7 +503,7 @@ class ExplicitOperations:
         self,
         value: Optional[str] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null..
@@ -553,7 +557,7 @@ class ExplicitOperations:
         self,
         header_parameter: str,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test explicitly required string. Please put a header 'headerParameter' => null and the client library should throw before the request is sent..
@@ -600,7 +604,7 @@ class ExplicitOperations:
         self,
         body_parameter: Optional[str] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test explicitly optional string. Please put a header 'headerParameter' => null..
@@ -648,7 +652,7 @@ class ExplicitOperations:
         self,
         body_parameter: "Product",
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put null and the client library should throw before the request is sent..
@@ -698,7 +702,7 @@ class ExplicitOperations:
         self,
         body_parameter: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put null..
@@ -751,7 +755,7 @@ class ExplicitOperations:
         self,
         value: "Product",
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null and the client library should throw before the request is sent..
@@ -802,7 +806,7 @@ class ExplicitOperations:
         self,
         value: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null..
@@ -856,7 +860,7 @@ class ExplicitOperations:
         self,
         body_parameter: List[str],
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put null and the client library should throw before the request is sent..
@@ -906,7 +910,7 @@ class ExplicitOperations:
         self,
         body_parameter: Optional[List[str]] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put null..
@@ -959,7 +963,7 @@ class ExplicitOperations:
         self,
         value: List[str],
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the client library should throw before the request is sent..
@@ -1010,7 +1014,7 @@ class ExplicitOperations:
         self,
         value: Optional[List[str]] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null..
@@ -1064,7 +1068,7 @@ class ExplicitOperations:
         self,
         header_parameter: List[str],
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put a header 'headerParameter' => null and the client library should throw before the request is sent..
@@ -1111,7 +1115,7 @@ class ExplicitOperations:
         self,
         header_parameter: Optional[List[str]] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null..

@@ -16,6 +16,10 @@ from msrest.serialization import Model
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class PolymorphismOperations:
     """PolymorphismOperations async operations.
 
@@ -40,7 +44,7 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "Fish", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Fish") = None,
         **kwargs: Any
     ) -> "Fish":
         """Get complex types that are polymorphic.
@@ -88,7 +92,7 @@ class PolymorphismOperations:
         self,
         complex_body: "Fish",
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic.
@@ -168,7 +172,7 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def get_dot_syntax(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "DotFish", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("DotFish") = None,
         **kwargs: Any
     ) -> "DotFish":
         """Get complex types that are polymorphic, JSON key contains a dot.
@@ -214,7 +218,7 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def get_composed_with_discriminator(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "DotFishMarket", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("DotFishMarket") = None,
         **kwargs: Any
     ) -> "DotFishMarket":
         """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, with discriminator specified. Deserialization must NOT fail and use the discriminator type specified on the wire..
@@ -260,7 +264,7 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def get_composed_without_discriminator(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "DotFishMarket", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("DotFishMarket") = None,
         **kwargs: Any
     ) -> "DotFishMarket":
         """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, without discriminator specified on wire. Deserialization must NOT fail and use the explicit type of the property..
@@ -306,7 +310,7 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def get_complicated(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "Salmon", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Salmon") = None,
         **kwargs: Any
     ) -> "Salmon":
         """Get complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties.
@@ -354,7 +358,7 @@ class PolymorphismOperations:
         self,
         complex_body: "Salmon",
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties.
@@ -404,7 +408,7 @@ class PolymorphismOperations:
         self,
         complex_body: "Salmon",
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "Salmon", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Salmon") = None,
         **kwargs: Any
     ) -> "Salmon":
         """Put complex types that are polymorphic, omitting the discriminator.
@@ -458,7 +462,7 @@ class PolymorphismOperations:
         self,
         complex_body: "Fish",
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the request should not be allowed from the client.

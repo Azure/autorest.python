@@ -6,6 +6,12 @@
 {{ imports }}
 
 
+{% if async_mode %}
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[{{ "AsyncHttpResponse" if async_mode else "HttpResponse" }}, return_type, Dict[str, Any]], Any]]
+
+
+    {% endif %}
 class {{ operation_group.class_name }}{{ object_base_class }}:
     """{{ operation_group.class_name }} {{ operations_description }}.
 

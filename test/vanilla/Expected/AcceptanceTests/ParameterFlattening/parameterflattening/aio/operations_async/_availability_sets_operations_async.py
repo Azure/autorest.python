@@ -16,6 +16,10 @@ from msrest.serialization import Model
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class AvailabilitySetsOperations:
     """AvailabilitySetsOperations async operations.
 
@@ -44,7 +48,7 @@ class AvailabilitySetsOperations:
         avset: str,
         availability_set_update_parameters_tags: Dict[str, str],
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Updates the tags for an availability set..

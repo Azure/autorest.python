@@ -16,6 +16,10 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class DurationOperations:
     """DurationOperations async operations.
 
@@ -40,7 +44,7 @@ class DurationOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.timedelta, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(datetime.timedelta) = None,
         **kwargs: Any
     ) -> datetime.timedelta:
         """Get null duration value.
@@ -88,7 +92,7 @@ class DurationOperations:
         self,
         duration_body: datetime.timedelta,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put a positive duration value.
@@ -136,7 +140,7 @@ class DurationOperations:
     @distributed_trace_async
     async def get_positive_duration(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.timedelta, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(datetime.timedelta) = None,
         **kwargs: Any
     ) -> datetime.timedelta:
         """Get a positive duration value.
@@ -182,7 +186,7 @@ class DurationOperations:
     @distributed_trace_async
     async def get_invalid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.timedelta, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(datetime.timedelta) = None,
         **kwargs: Any
     ) -> datetime.timedelta:
         """Get an invalid duration value.

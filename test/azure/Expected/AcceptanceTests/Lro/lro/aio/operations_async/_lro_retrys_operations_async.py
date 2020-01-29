@@ -19,6 +19,10 @@ from msrest.serialization import Model
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class LRORetrysOperations:
     """LRORetrysOperations async operations.
 
@@ -45,7 +49,7 @@ class LRORetrysOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "Product", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Product") = None,
         **kwargs: Any
     ) -> "Product":
         error_map = kwargs.pop('error_map', {})
@@ -96,7 +100,7 @@ class LRORetrysOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -144,7 +148,7 @@ class LRORetrysOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "Product", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Product") = None,
         **kwargs: Any
     ) -> "Product":
         error_map = kwargs.pop('error_map', {})
@@ -194,7 +198,7 @@ class LRORetrysOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -244,7 +248,7 @@ class LRORetrysOperations:
     
     async def _delete_provisioning202_accepted200_succeeded_initial(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "Product", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Product") = None,
         **kwargs: Any
     ) -> "Product":
         error_map = kwargs.pop('error_map', {})
@@ -289,7 +293,7 @@ class LRORetrysOperations:
     @distributed_trace_async
     async def delete_provisioning202_accepted200_succeeded(
         self,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -335,7 +339,7 @@ class LRORetrysOperations:
     
     async def _delete202_retry200_initial(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         error_map = kwargs.pop('error_map', {})
@@ -372,7 +376,7 @@ class LRORetrysOperations:
     @distributed_trace_async
     async def delete202_retry200(
         self,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -412,7 +416,7 @@ class LRORetrysOperations:
     
     async def _delete_async_relative_retry_succeeded_initial(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         error_map = kwargs.pop('error_map', {})
@@ -450,7 +454,7 @@ class LRORetrysOperations:
     @distributed_trace_async
     async def delete_async_relative_retry_succeeded(
         self,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -492,7 +496,7 @@ class LRORetrysOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         error_map = kwargs.pop('error_map', {})
@@ -538,7 +542,7 @@ class LRORetrysOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -583,7 +587,7 @@ class LRORetrysOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         error_map = kwargs.pop('error_map', {})
@@ -630,7 +634,7 @@ class LRORetrysOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:

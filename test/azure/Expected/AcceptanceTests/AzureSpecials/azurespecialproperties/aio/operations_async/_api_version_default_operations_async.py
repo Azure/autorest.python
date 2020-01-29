@@ -15,6 +15,10 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class ApiVersionDefaultOperations:
     """ApiVersionDefaultOperations async operations.
 
@@ -39,7 +43,7 @@ class ApiVersionDefaultOperations:
     @distributed_trace_async
     async def get_method_global_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """GET method with api-version modeled in global settings..
@@ -81,7 +85,7 @@ class ApiVersionDefaultOperations:
     @distributed_trace_async
     async def get_method_global_not_provided_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """GET method with api-version modeled in global settings..
@@ -123,7 +127,7 @@ class ApiVersionDefaultOperations:
     @distributed_trace_async
     async def get_path_global_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """GET method with api-version modeled in global settings..
@@ -165,7 +169,7 @@ class ApiVersionDefaultOperations:
     @distributed_trace_async
     async def get_swagger_global_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """GET method with api-version modeled in global settings..

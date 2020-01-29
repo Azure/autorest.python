@@ -15,6 +15,10 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class HttpSuccessOperations:
     """HttpSuccessOperations async operations.
 
@@ -39,7 +43,7 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def head200(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Return 200 status code if successful.
@@ -81,7 +85,7 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def get200(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, bool, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(bool) = None,
         **kwargs: Any
     ) -> bool:
         """Get 200 success.
@@ -127,7 +131,7 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def options200(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, bool, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(bool) = None,
         **kwargs: Any
     ) -> bool:
         """Options 200 success.
@@ -173,7 +177,7 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def put200(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put boolean value true returning 200 success.
@@ -223,7 +227,7 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def patch200(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returning 200.
@@ -273,7 +277,7 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def post200(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Post bollean value true in request that returns a 200.
@@ -323,7 +327,7 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def delete200(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Delete simple boolean value true returns 200.
@@ -373,7 +377,7 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def put201(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 201.
@@ -423,7 +427,7 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def post201(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 201 (Created).
@@ -473,7 +477,7 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def put202(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 202 (Accepted).
@@ -523,7 +527,7 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def patch202(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returns 202.
@@ -573,7 +577,7 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def post202(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 202 (Accepted).
@@ -623,7 +627,7 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def delete202(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Delete true Boolean value in request returns 202 (accepted).
@@ -673,7 +677,7 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def head204(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Return 204 status code if successful.
@@ -715,7 +719,7 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def put204(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 204 (no content).
@@ -765,7 +769,7 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def patch204(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returns 204 (no content).
@@ -815,7 +819,7 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def post204(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 204 (no content).
@@ -865,7 +869,7 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def delete204(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Delete true Boolean value in request returns 204 (no content).
@@ -915,7 +919,7 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def head404(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Return 404 status code.

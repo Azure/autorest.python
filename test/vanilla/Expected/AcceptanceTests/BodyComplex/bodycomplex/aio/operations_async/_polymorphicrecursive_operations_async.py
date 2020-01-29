@@ -16,6 +16,10 @@ from msrest.serialization import Model
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class PolymorphicrecursiveOperations:
     """PolymorphicrecursiveOperations async operations.
 
@@ -40,7 +44,7 @@ class PolymorphicrecursiveOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "Fish", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Fish") = None,
         **kwargs: Any
     ) -> "Fish":
         """Get complex types that are polymorphic and have recursive references.
@@ -88,7 +92,7 @@ class PolymorphicrecursiveOperations:
         self,
         complex_body: "Fish",
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic and have recursive references.

@@ -17,6 +17,10 @@ from msrest.serialization import Model
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class UsageOperations:
     """UsageOperations async operations.
 
@@ -41,7 +45,7 @@ class UsageOperations:
     @distributed_trace_async
     async def list(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "UsageListResult", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("UsageListResult") = None,
         **kwargs: Any
     ) -> "UsageListResult":
         """Gets the current usage count and the limit for the resources under the subscription..

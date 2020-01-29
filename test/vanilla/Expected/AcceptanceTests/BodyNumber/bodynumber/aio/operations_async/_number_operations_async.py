@@ -15,6 +15,10 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class NumberOperations:
     """NumberOperations async operations.
 
@@ -39,7 +43,7 @@ class NumberOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, float, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(float) = None,
         **kwargs: Any
     ) -> float:
         """Get null Number value.
@@ -85,7 +89,7 @@ class NumberOperations:
     @distributed_trace_async
     async def get_invalid_float(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, float, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(float) = None,
         **kwargs: Any
     ) -> float:
         """Get invalid float Number value.
@@ -131,7 +135,7 @@ class NumberOperations:
     @distributed_trace_async
     async def get_invalid_double(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, float, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(float) = None,
         **kwargs: Any
     ) -> float:
         """Get invalid double Number value.
@@ -177,7 +181,7 @@ class NumberOperations:
     @distributed_trace_async
     async def get_invalid_decimal(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, float, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(float) = None,
         **kwargs: Any
     ) -> float:
         """Get invalid decimal Number value.
@@ -225,7 +229,7 @@ class NumberOperations:
         self,
         number_body: float,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put big float value 3.402823e+20.
@@ -273,7 +277,7 @@ class NumberOperations:
     @distributed_trace_async
     async def get_big_float(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, float, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(float) = None,
         **kwargs: Any
     ) -> float:
         """Get big float value 3.402823e+20.
@@ -321,7 +325,7 @@ class NumberOperations:
         self,
         number_body: float,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put big double value 2.5976931e+101.
@@ -369,7 +373,7 @@ class NumberOperations:
     @distributed_trace_async
     async def get_big_double(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, float, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(float) = None,
         **kwargs: Any
     ) -> float:
         """Get big double value 2.5976931e+101.
@@ -415,7 +419,7 @@ class NumberOperations:
     @distributed_trace_async
     async def put_big_double_positive_decimal(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put big double value 99999999.99.
@@ -462,7 +466,7 @@ class NumberOperations:
     @distributed_trace_async
     async def get_big_double_positive_decimal(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, float, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(float) = None,
         **kwargs: Any
     ) -> float:
         """Get big double value 99999999.99.
@@ -508,7 +512,7 @@ class NumberOperations:
     @distributed_trace_async
     async def put_big_double_negative_decimal(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put big double value -99999999.99.
@@ -555,7 +559,7 @@ class NumberOperations:
     @distributed_trace_async
     async def get_big_double_negative_decimal(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, float, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(float) = None,
         **kwargs: Any
     ) -> float:
         """Get big double value -99999999.99.
@@ -603,7 +607,7 @@ class NumberOperations:
         self,
         number_body: float,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put big decimal value 2.5976931e+101.
@@ -651,7 +655,7 @@ class NumberOperations:
     @distributed_trace_async
     async def get_big_decimal(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, float, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(float) = None,
         **kwargs: Any
     ) -> float:
         """Get big decimal value 2.5976931e+101.
@@ -697,7 +701,7 @@ class NumberOperations:
     @distributed_trace_async
     async def put_big_decimal_positive_decimal(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put big decimal value 99999999.99.
@@ -744,7 +748,7 @@ class NumberOperations:
     @distributed_trace_async
     async def get_big_decimal_positive_decimal(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, float, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(float) = None,
         **kwargs: Any
     ) -> float:
         """Get big decimal value 99999999.99.
@@ -790,7 +794,7 @@ class NumberOperations:
     @distributed_trace_async
     async def put_big_decimal_negative_decimal(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put big decimal value -99999999.99.
@@ -837,7 +841,7 @@ class NumberOperations:
     @distributed_trace_async
     async def get_big_decimal_negative_decimal(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, float, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(float) = None,
         **kwargs: Any
     ) -> float:
         """Get big decimal value -99999999.99.
@@ -885,7 +889,7 @@ class NumberOperations:
         self,
         number_body: float,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put small float value 3.402823e-20.
@@ -933,7 +937,7 @@ class NumberOperations:
     @distributed_trace_async
     async def get_small_float(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, float, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(float) = None,
         **kwargs: Any
     ) -> float:
         """Get big double value 3.402823e-20.
@@ -981,7 +985,7 @@ class NumberOperations:
         self,
         number_body: float,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put small double value 2.5976931e-101.
@@ -1029,7 +1033,7 @@ class NumberOperations:
     @distributed_trace_async
     async def get_small_double(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, float, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(float) = None,
         **kwargs: Any
     ) -> float:
         """Get big double value 2.5976931e-101.
@@ -1077,7 +1081,7 @@ class NumberOperations:
         self,
         number_body: float,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put small decimal value 2.5976931e-101.
@@ -1125,7 +1129,7 @@ class NumberOperations:
     @distributed_trace_async
     async def get_small_decimal(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, float, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(float) = None,
         **kwargs: Any
     ) -> float:
         """Get small decimal value 2.5976931e-101.

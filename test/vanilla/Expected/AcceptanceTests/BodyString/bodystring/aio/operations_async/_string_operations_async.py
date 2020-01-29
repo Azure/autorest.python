@@ -15,6 +15,10 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class StringOperations:
     """StringOperations async operations.
 
@@ -39,7 +43,7 @@ class StringOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, str, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(str) = None,
         **kwargs: Any
     ) -> str:
         """Get null string value value.
@@ -85,7 +89,7 @@ class StringOperations:
     @distributed_trace_async
     async def put_null(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Set string value null.
@@ -135,7 +139,7 @@ class StringOperations:
     @distributed_trace_async
     async def get_empty(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, str, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(str) = None,
         **kwargs: Any
     ) -> str:
         """Get empty string value value ''.
@@ -181,7 +185,7 @@ class StringOperations:
     @distributed_trace_async
     async def put_empty(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Set string value empty ''.
@@ -228,7 +232,7 @@ class StringOperations:
     @distributed_trace_async
     async def get_mbcs(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, str, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(str) = None,
         **kwargs: Any
     ) -> str:
         """Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
@@ -274,7 +278,7 @@ class StringOperations:
     @distributed_trace_async
     async def put_mbcs(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
@@ -321,7 +325,7 @@ class StringOperations:
     @distributed_trace_async
     async def get_whitespace(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, str, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(str) = None,
         **kwargs: Any
     ) -> str:
         """Get string value with leading and trailing whitespace ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
@@ -367,7 +371,7 @@ class StringOperations:
     @distributed_trace_async
     async def put_whitespace(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Set String value with leading and trailing whitespace ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
@@ -414,7 +418,7 @@ class StringOperations:
     @distributed_trace_async
     async def get_not_provided(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, str, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(str) = None,
         **kwargs: Any
     ) -> str:
         """Get String value when no string value is sent in response payload.
@@ -460,7 +464,7 @@ class StringOperations:
     @distributed_trace_async
     async def get_base64_encoded(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, bytes, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(bytes) = None,
         **kwargs: Any
     ) -> bytes:
         """Get value that is base64 encoded.
@@ -506,7 +510,7 @@ class StringOperations:
     @distributed_trace_async
     async def get_base64_url_encoded(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, bytes, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(bytes) = None,
         **kwargs: Any
     ) -> bytes:
         """Get value that is base64url encoded.
@@ -554,7 +558,7 @@ class StringOperations:
         self,
         string_body: bytes,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put value that is base64url encoded.
@@ -602,7 +606,7 @@ class StringOperations:
     @distributed_trace_async
     async def get_null_base64_url_encoded(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, bytes, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(bytes) = None,
         **kwargs: Any
     ) -> bytes:
         """Get null value that is expected to be base64url encoded.

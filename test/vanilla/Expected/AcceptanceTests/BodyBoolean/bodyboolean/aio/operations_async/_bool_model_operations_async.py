@@ -15,6 +15,10 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class BoolOperations:
     """BoolOperations async operations.
 
@@ -39,7 +43,7 @@ class BoolOperations:
     @distributed_trace_async
     async def get_true(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, bool, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(bool) = None,
         **kwargs: Any
     ) -> bool:
         """Get true Boolean value.
@@ -85,7 +89,7 @@ class BoolOperations:
     @distributed_trace_async
     async def put_true(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Set Boolean value true.
@@ -132,7 +136,7 @@ class BoolOperations:
     @distributed_trace_async
     async def get_false(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, bool, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(bool) = None,
         **kwargs: Any
     ) -> bool:
         """Get false Boolean value.
@@ -178,7 +182,7 @@ class BoolOperations:
     @distributed_trace_async
     async def put_false(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Set Boolean value false.
@@ -225,7 +229,7 @@ class BoolOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, bool, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(bool) = None,
         **kwargs: Any
     ) -> bool:
         """Get null Boolean value.
@@ -271,7 +275,7 @@ class BoolOperations:
     @distributed_trace_async
     async def get_invalid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, bool, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(bool) = None,
         **kwargs: Any
     ) -> bool:
         """Get invalid Boolean value.

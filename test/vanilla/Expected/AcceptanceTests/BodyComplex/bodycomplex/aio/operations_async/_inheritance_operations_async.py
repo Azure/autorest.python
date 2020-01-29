@@ -16,6 +16,10 @@ from msrest.serialization import Model
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class InheritanceOperations:
     """InheritanceOperations async operations.
 
@@ -40,7 +44,7 @@ class InheritanceOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "Siamese", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Siamese") = None,
         **kwargs: Any
     ) -> "Siamese":
         """Get complex types that extend others.
@@ -88,7 +92,7 @@ class InheritanceOperations:
         self,
         complex_body: "Siamese",
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put complex types that extend others.

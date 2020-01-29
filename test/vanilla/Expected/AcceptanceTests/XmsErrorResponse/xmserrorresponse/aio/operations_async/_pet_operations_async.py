@@ -16,6 +16,10 @@ from msrest.serialization import Model
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class PetOperations:
     """PetOperations async operations.
 
@@ -42,7 +46,7 @@ class PetOperations:
         self,
         pet_id: str,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "Pet", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Pet") = None,
         **kwargs: Any
     ) -> "Pet":
         """Gets pets by id..
@@ -103,7 +107,7 @@ class PetOperations:
         self,
         what_action: str,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, "PetAction", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("PetAction") = None,
         **kwargs: Any
     ) -> "PetAction":
         """Asks pet to do something.

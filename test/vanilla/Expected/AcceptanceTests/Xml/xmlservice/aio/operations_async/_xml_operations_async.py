@@ -16,6 +16,10 @@ from msrest.serialization import Model
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class XmlOperations:
     """XmlOperations async operations.
 
@@ -40,7 +44,7 @@ class XmlOperations:
     @distributed_trace_async
     async def get_complex_type_ref_no_meta(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "RootWithRefAndNoMeta", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("RootWithRefAndNoMeta") = None,
         **kwargs: Any
     ) -> "RootWithRefAndNoMeta":
         """Get a complex type that has a ref to a complex type with no XML node.
@@ -88,7 +92,7 @@ class XmlOperations:
         self,
         model: "RootWithRefAndNoMeta",
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Puts a complex type that has a ref to a complex type with no XML node.
@@ -136,7 +140,7 @@ class XmlOperations:
     @distributed_trace_async
     async def get_complex_type_ref_with_meta(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "RootWithRefAndMeta", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("RootWithRefAndMeta") = None,
         **kwargs: Any
     ) -> "RootWithRefAndMeta":
         """Get a complex type that has a ref to a complex type with XML node.
@@ -184,7 +188,7 @@ class XmlOperations:
         self,
         model: "RootWithRefAndMeta",
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Puts a complex type that has a ref to a complex type with XML node.
@@ -232,7 +236,7 @@ class XmlOperations:
     @distributed_trace_async
     async def get_simple(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "Slideshow", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Slideshow") = None,
         **kwargs: Any
     ) -> "Slideshow":
         """Get a simple XML document.
@@ -280,7 +284,7 @@ class XmlOperations:
         self,
         slideshow: "Slideshow",
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put a simple XML document.
@@ -328,7 +332,7 @@ class XmlOperations:
     @distributed_trace_async
     async def get_wrapped_lists(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "AppleBarrel", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("AppleBarrel") = None,
         **kwargs: Any
     ) -> "AppleBarrel":
         """Get an XML document with multiple wrapped lists.
@@ -376,7 +380,7 @@ class XmlOperations:
         self,
         wrapped_lists: "AppleBarrel",
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put an XML document with multiple wrapped lists.
@@ -424,7 +428,7 @@ class XmlOperations:
     @distributed_trace_async
     async def get_headers(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Get strongly-typed response headers..
@@ -469,7 +473,7 @@ class XmlOperations:
     @distributed_trace_async
     async def get_empty_list(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "Slideshow", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Slideshow") = None,
         **kwargs: Any
     ) -> "Slideshow":
         """Get an empty list..
@@ -517,7 +521,7 @@ class XmlOperations:
         self,
         slideshow: "Slideshow",
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Puts an empty list..
@@ -565,7 +569,7 @@ class XmlOperations:
     @distributed_trace_async
     async def get_empty_wrapped_lists(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "AppleBarrel", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("AppleBarrel") = None,
         **kwargs: Any
     ) -> "AppleBarrel":
         """Gets some empty wrapped lists..
@@ -613,7 +617,7 @@ class XmlOperations:
         self,
         apple_barrel: "AppleBarrel",
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Puts some empty wrapped lists..
@@ -661,7 +665,7 @@ class XmlOperations:
     @distributed_trace_async
     async def get_root_list(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, List["Banana"], Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(List["Banana"]) = None,
         **kwargs: Any
     ) -> List["Banana"]:
         """Gets a list as the root element..
@@ -709,7 +713,7 @@ class XmlOperations:
         self,
         bananas: List["Banana"],
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Puts a list as the root element..
@@ -757,7 +761,7 @@ class XmlOperations:
     @distributed_trace_async
     async def get_root_list_single_item(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, List["Banana"], Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(List["Banana"]) = None,
         **kwargs: Any
     ) -> List["Banana"]:
         """Gets a list with a single item..
@@ -805,7 +809,7 @@ class XmlOperations:
         self,
         bananas: List["Banana"],
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Puts a list with a single item..
@@ -853,7 +857,7 @@ class XmlOperations:
     @distributed_trace_async
     async def get_empty_root_list(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, List["Banana"], Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(List["Banana"]) = None,
         **kwargs: Any
     ) -> List["Banana"]:
         """Gets an empty list as the root element..
@@ -901,7 +905,7 @@ class XmlOperations:
         self,
         bananas: List["Banana"],
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Puts an empty list as the root element..
@@ -949,7 +953,7 @@ class XmlOperations:
     @distributed_trace_async
     async def get_empty_child_element(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "Banana", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("Banana") = None,
         **kwargs: Any
     ) -> "Banana":
         """Gets an XML document with an empty child element..
@@ -997,7 +1001,7 @@ class XmlOperations:
         self,
         banana: "Banana",
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Puts a value with an empty child element..
@@ -1045,7 +1049,7 @@ class XmlOperations:
     @distributed_trace_async
     async def list_containers(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "ListContainersResponse", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("ListContainersResponse") = None,
         **kwargs: Any
     ) -> "ListContainersResponse":
         """Lists containers in a storage account..
@@ -1093,7 +1097,7 @@ class XmlOperations:
     @distributed_trace_async
     async def get_service_properties(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "StorageServiceProperties", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("StorageServiceProperties") = None,
         **kwargs: Any
     ) -> "StorageServiceProperties":
         """Gets storage service properties..
@@ -1145,7 +1149,7 @@ class XmlOperations:
         self,
         properties: "StorageServiceProperties",
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Puts storage service properties..
@@ -1197,7 +1201,7 @@ class XmlOperations:
     @distributed_trace_async
     async def get_acls(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, List["SignedIdentifier"], Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(List["SignedIdentifier"]) = None,
         **kwargs: Any
     ) -> List["SignedIdentifier"]:
         """Gets storage ACLs for a container..
@@ -1249,7 +1253,7 @@ class XmlOperations:
         self,
         properties: List["SignedIdentifier"],
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Puts storage ACLs for a container..
@@ -1301,7 +1305,7 @@ class XmlOperations:
     @distributed_trace_async
     async def list_blobs(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "ListBlobsResponse", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("ListBlobsResponse") = None,
         **kwargs: Any
     ) -> "ListBlobsResponse":
         """Lists blobs in a storage container..
@@ -1353,7 +1357,7 @@ class XmlOperations:
         self,
         id: Optional[int] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID number 42.
@@ -1402,7 +1406,7 @@ class XmlOperations:
     @distributed_trace_async
     async def json_output(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "JSONOutput", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("JSONOutput") = None,
         **kwargs: Any
     ) -> "JSONOutput":
         """A Swagger with XML that has one operation that returns JSON. ID number 42.

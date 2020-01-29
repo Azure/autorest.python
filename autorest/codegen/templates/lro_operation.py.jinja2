@@ -14,7 +14,7 @@ async def {{ operation_name }}(
     {% if operation.parameters.method | first %}
     *,
     {% endif %}
-    cls=None,
+    cls: _cls_type_annotation({{ keywords.return_type_annotation(operation) }}) = None,
     polling: Optional[bool] = True,
     **kwargs
 ){{ keywords.async_return_type_annotation(operation) }}:

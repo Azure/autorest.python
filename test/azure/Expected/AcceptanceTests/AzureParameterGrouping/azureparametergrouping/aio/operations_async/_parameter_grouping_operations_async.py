@@ -15,6 +15,10 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class ParameterGroupingOperations:
     """ParameterGroupingOperations async operations.
 
@@ -44,7 +48,7 @@ class ParameterGroupingOperations:
         custom_header: Optional[str] = None,
         query: Optional[int] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Post a bunch of required parameters grouped.
@@ -109,7 +113,7 @@ class ParameterGroupingOperations:
         custom_header: Optional[str] = None,
         query: Optional[int] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Post a bunch of optional parameters grouped.
@@ -164,7 +168,7 @@ class ParameterGroupingOperations:
         header_two: Optional[str] = None,
         query_two: Optional[int] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Post parameters from multiple different parameter groups.
@@ -225,7 +229,7 @@ class ParameterGroupingOperations:
         header_one: Optional[str] = None,
         query_one: Optional[int] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Post parameters with a shared parameter group object.

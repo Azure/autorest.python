@@ -15,6 +15,10 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class ImplicitOperations:
     """ImplicitOperations async operations.
 
@@ -41,7 +45,7 @@ class ImplicitOperations:
         self,
         path_parameter: str,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test implicitly required path parameter.
@@ -91,7 +95,7 @@ class ImplicitOperations:
         self,
         query_parameter: Optional[str] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test implicitly optional query parameter.
@@ -139,7 +143,7 @@ class ImplicitOperations:
         self,
         query_parameter: Optional[str] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test implicitly optional header parameter.
@@ -187,7 +191,7 @@ class ImplicitOperations:
         self,
         body_parameter: Optional[str] = None,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test implicitly optional body parameter.
@@ -238,7 +242,7 @@ class ImplicitOperations:
     @distributed_trace_async
     async def get_required_global_path(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test implicitly required path parameter.
@@ -284,7 +288,7 @@ class ImplicitOperations:
     @distributed_trace_async
     async def get_required_global_query(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test implicitly required query parameter.
@@ -327,7 +331,7 @@ class ImplicitOperations:
     @distributed_trace_async
     async def get_optional_global_query(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Test implicitly optional query parameter.

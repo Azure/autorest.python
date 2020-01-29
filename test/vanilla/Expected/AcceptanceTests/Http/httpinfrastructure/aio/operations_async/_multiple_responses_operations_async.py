@@ -16,6 +16,10 @@ from msrest.serialization import Model
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class MultipleResponsesOperations:
     """MultipleResponsesOperations async operations.
 
@@ -40,7 +44,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model204_no_model_default_error200_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "MyException", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("MyException") = None,
         **kwargs: Any
     ) -> "MyException":
         """Send a 200 response with valid payload: {'statusCode': '200'}.
@@ -88,7 +92,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model204_no_model_default_error204_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "MyException", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("MyException") = None,
         **kwargs: Any
     ) -> "MyException":
         """Send a 204 response with no payload.
@@ -136,7 +140,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model204_no_model_default_error201_invalid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "MyException", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("MyException") = None,
         **kwargs: Any
     ) -> "MyException":
         """Send a 201 response with valid payload: {'statusCode': '201'}.
@@ -184,7 +188,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model204_no_model_default_error202_none(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "MyException", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("MyException") = None,
         **kwargs: Any
     ) -> "MyException":
         """Send a 202 response with no payload:.
@@ -232,7 +236,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model204_no_model_default_error400_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "MyException", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("MyException") = None,
         **kwargs: Any
     ) -> "MyException":
         """Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'}.
@@ -280,7 +284,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model201_model_default_error200_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, Union["MyException", "B"], Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(Union["MyException", "B"]) = None,
         **kwargs: Any
     ) -> Union["MyException", "B"]:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
@@ -331,7 +335,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model201_model_default_error201_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, Union["MyException", "B"], Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(Union["MyException", "B"]) = None,
         **kwargs: Any
     ) -> Union["MyException", "B"]:
         """Send a 201 response with valid payload: {'statusCode': '201', 'textStatusCode': 'Created'}.
@@ -382,7 +386,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model201_model_default_error400_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, Union["MyException", "B"], Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(Union["MyException", "B"]) = None,
         **kwargs: Any
     ) -> Union["MyException", "B"]:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
@@ -433,7 +437,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model_a201_model_c404_model_ddefault_error200_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, Union["MyException", "C", "D"], Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(Union["MyException", "C", "D"]) = None,
         **kwargs: Any
     ) -> Union["MyException", "C", "D"]:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
@@ -487,7 +491,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model_a201_model_c404_model_ddefault_error201_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, Union["MyException", "C", "D"], Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(Union["MyException", "C", "D"]) = None,
         **kwargs: Any
     ) -> Union["MyException", "C", "D"]:
         """Send a 200 response with valid payload: {'httpCode': '201'}.
@@ -541,7 +545,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model_a201_model_c404_model_ddefault_error404_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, Union["MyException", "C", "D"], Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(Union["MyException", "C", "D"]) = None,
         **kwargs: Any
     ) -> Union["MyException", "C", "D"]:
         """Send a 200 response with valid payload: {'httpStatusCode': '404'}.
@@ -595,7 +599,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model_a201_model_c404_model_ddefault_error400_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, Union["MyException", "C", "D"], Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(Union["MyException", "C", "D"]) = None,
         **kwargs: Any
     ) -> Union["MyException", "C", "D"]:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
@@ -649,7 +653,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get202_none204_none_default_error202_none(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Send a 202 response with no payload.
@@ -691,7 +695,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get202_none204_none_default_error204_none(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Send a 204 response with no payload.
@@ -733,7 +737,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get202_none204_none_default_error400_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
@@ -775,7 +779,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get202_none204_none_default_none202_invalid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Send a 202 response with an unexpected payload {'property': 'value'}.
@@ -817,7 +821,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get202_none204_none_default_none204_none(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Send a 204 response with no payload.
@@ -859,7 +863,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get202_none204_none_default_none400_none(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Send a 400 response with no payload.
@@ -901,7 +905,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get202_none204_none_default_none400_invalid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Send a 400 response with an unexpected payload {'property': 'value'}.
@@ -943,7 +947,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get_default_model_a200_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "MyException", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("MyException") = None,
         **kwargs: Any
     ) -> "MyException":
         """Send a 200 response with valid payload: {'statusCode': '200'}.
@@ -989,7 +993,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get_default_model_a200_none(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "MyException", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("MyException") = None,
         **kwargs: Any
     ) -> "MyException":
         """Send a 200 response with no payload.
@@ -1035,7 +1039,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get_default_model_a400_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Send a 400 response with valid payload: {'statusCode': '400'}.
@@ -1077,7 +1081,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get_default_model_a400_none(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Send a 400 response with no payload.
@@ -1119,7 +1123,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get_default_none200_invalid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Send a 200 response with invalid payload: {'statusCode': '200'}.
@@ -1161,7 +1165,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get_default_none200_none(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Send a 200 response with no payload.
@@ -1203,7 +1207,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get_default_none400_invalid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Send a 400 response with valid payload: {'statusCode': '400'}.
@@ -1245,7 +1249,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get_default_none400_none(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Send a 400 response with no payload.
@@ -1287,7 +1291,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model_a200_none(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "MyException", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("MyException") = None,
         **kwargs: Any
     ) -> "MyException":
         """Send a 200 response with no payload, when a payload is expected - client should return a null object of thde type for model A.
@@ -1333,7 +1337,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model_a200_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "MyException", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("MyException") = None,
         **kwargs: Any
     ) -> "MyException":
         """Send a 200 response with payload {'statusCode': '200'}.
@@ -1379,7 +1383,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model_a200_invalid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "MyException", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("MyException") = None,
         **kwargs: Any
     ) -> "MyException":
         """Send a 200 response with invalid payload {'statusCodeInvalid': '200'}.
@@ -1425,7 +1429,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model_a400_none(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "MyException", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("MyException") = None,
         **kwargs: Any
     ) -> "MyException":
         """Send a 400 response with no payload client should treat as an http error with no error model.
@@ -1471,7 +1475,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model_a400_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "MyException", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("MyException") = None,
         **kwargs: Any
     ) -> "MyException":
         """Send a 200 response with payload {'statusCode': '400'}.
@@ -1517,7 +1521,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model_a400_invalid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "MyException", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("MyException") = None,
         **kwargs: Any
     ) -> "MyException":
         """Send a 200 response with invalid payload {'statusCodeInvalid': '400'}.
@@ -1563,7 +1567,7 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model_a202_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, "MyException", Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation("MyException") = None,
         **kwargs: Any
     ) -> "MyException":
         """Send a 202 response with payload {'statusCode': '202'}.

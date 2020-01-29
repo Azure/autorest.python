@@ -15,6 +15,10 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class HttpRedirectsOperations:
     """HttpRedirectsOperations async operations.
 
@@ -39,7 +43,7 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def head300(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Return 300 status code and redirect to /http/success/200.
@@ -85,7 +89,7 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def get300(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, List[str], Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(List[str]) = None,
         **kwargs: Any
     ) -> List[str]:
         """Return 300 status code and redirect to /http/success/200.
@@ -135,7 +139,7 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def head301(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Return 301 status code and redirect to /http/success/200.
@@ -181,7 +185,7 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def get301(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Return 301 status code and redirect to /http/success/200.
@@ -227,7 +231,7 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def put301(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 301.  This request should not be automatically redirected, but should return the received 301 to the caller for evaluation.
@@ -280,7 +284,7 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def head302(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Return 302 status code and redirect to /http/success/200.
@@ -326,7 +330,7 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def get302(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Return 302 status code and redirect to /http/success/200.
@@ -372,7 +376,7 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def patch302(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returns 302.  This request should not be automatically redirected, but should return the received 302 to the caller for evaluation.
@@ -425,7 +429,7 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def post303(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 303.  This request should be automatically redirected usign a get, ultimately returning a 200 status code.
@@ -479,7 +483,7 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def head307(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Redirect with 307, resulting in a 200 success.
@@ -525,7 +529,7 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def get307(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Redirect get with 307, resulting in a 200 success.
@@ -571,7 +575,7 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def options307(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """options redirected with 307, resulting in a 200 after redirect.
@@ -617,7 +621,7 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def put307(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Put redirected with 307, resulting in a 200 after redirect.
@@ -671,7 +675,7 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def patch307(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Patch redirected with 307, resulting in a 200 after redirect.
@@ -725,7 +729,7 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def post307(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Post redirected with 307, resulting in a 200 after redirect.
@@ -779,7 +783,7 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def delete307(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Delete redirected with 307, resulting in a 200 after redirect.

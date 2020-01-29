@@ -15,6 +15,10 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models
 
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class HttpServerFailureOperations:
     """HttpServerFailureOperations async operations.
 
@@ -39,7 +43,7 @@ class HttpServerFailureOperations:
     @distributed_trace_async
     async def head501(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Return 501 status code - should be represented in the client as an error.
@@ -81,7 +85,7 @@ class HttpServerFailureOperations:
     @distributed_trace_async
     async def get501(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Return 501 status code - should be represented in the client as an error.
@@ -123,7 +127,7 @@ class HttpServerFailureOperations:
     @distributed_trace_async
     async def post505(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Return 505 status code - should be represented in the client as an error.
@@ -173,7 +177,7 @@ class HttpServerFailureOperations:
     @distributed_trace_async
     async def delete505(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: _cls_type_annotation(None) = None,
         **kwargs: Any
     ) -> None:
         """Return 505 status code - should be represented in the client as an error.
