@@ -63,7 +63,10 @@ class Error(Model):
 
     constant_id = 1
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
@@ -86,7 +89,10 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(Model):
         'foo_client_request_id': {'key': 'foo-client-request-id', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(HeaderCustomNamedRequestIdParamGroupingParameters, self).__init__(**kwargs)
         self.foo_client_request_id = kwargs.get('foo_client_request_id', None)
 
@@ -105,7 +111,10 @@ class OdataFilter(Model):
         'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(OdataFilter, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)

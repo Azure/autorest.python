@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Union
+from typing import Optional, Union
 
 from msrest.serialization import Model
 
@@ -37,7 +37,14 @@ class Pet(Model):
         'int_enum': {'key': 'IntEnum', 'type': 'str'},
     }
 
-    def __init__(self, *, int_enum: Union[str, "IntEnum"], name: str=None, days_of_week: Union[str, "DaysOfWeekExtensibleEnum"]="Friday", **kwargs) -> None:
+    def __init__(
+        self,
+        int_enum: Union[str, "IntEnum"],
+        *,
+        name: Optional[str] = None,
+        days_of_week: Optional[Union[str, "DaysOfWeekExtensibleEnum"]] = "Friday",
+        **kwargs
+    ):
         super(Pet, self).__init__(**kwargs)
         self.name = name
         self.days_of_week = days_of_week

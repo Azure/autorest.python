@@ -9,7 +9,7 @@
 try:
     from ._models_py3 import AvailabilitySetUpdateParameters
 except (SyntaxError, ImportError):
-    from ._models import AvailabilitySetUpdateParameters
+    from ._models import AvailabilitySetUpdateParameters  # type: ignore
 
 __all__ = [
     'AvailabilitySetUpdateParameters',

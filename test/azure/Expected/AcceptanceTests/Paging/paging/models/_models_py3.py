@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import List, Union
+from typing import List, Optional, Union
 
 from msrest.serialization import Model
 
@@ -32,7 +32,12 @@ class CustomParameterGroup(Model):
         'tenant': {'key': 'tenant', 'type': 'str'},
     }
 
-    def __init__(self, *, api_version: str, tenant: str, **kwargs) -> None:
+    def __init__(
+        self,
+        api_version: str,
+        tenant: str,
+        **kwargs
+    ):
         super(CustomParameterGroup, self).__init__(**kwargs)
         self.api_version = api_version
         self.tenant = tenant
@@ -52,7 +57,13 @@ class OdataProductResult(Model):
         'odata_next_link': {'key': 'odata\\.nextLink', 'type': 'str'},
     }
 
-    def __init__(self, *, values: List["Product"]=None, odata_next_link: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        values: Optional[List["Product"]] = None,
+        odata_next_link: Optional[str] = None,
+        **kwargs
+    ):
         super(OdataProductResult, self).__init__(**kwargs)
         self.values = values
         self.odata_next_link = odata_next_link
@@ -71,7 +82,12 @@ class OperationResult(Model):
         'status': {'key': 'status', 'type': 'str'},
     }
 
-    def __init__(self, *, status: Union[str, "OperationResultStatus"]=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        status: Optional[Union[str, "OperationResultStatus"]] = None,
+        **kwargs
+    ):
         super(OperationResult, self).__init__(**kwargs)
         self.status = status
 
@@ -91,7 +107,13 @@ class PagingGetMultiplePagesLroOptions(Model):
         'timeout': {'key': 'timeout', 'type': 'int'},
     }
 
-    def __init__(self, *, maxresults: int=None, timeout: int=30, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        maxresults: Optional[int] = None,
+        timeout: Optional[int] = 30,
+        **kwargs
+    ):
         super(PagingGetMultiplePagesLroOptions, self).__init__(**kwargs)
         self.maxresults = maxresults
         self.timeout = timeout
@@ -112,7 +134,13 @@ class PagingGetMultiplePagesOptions(Model):
         'timeout': {'key': 'timeout', 'type': 'int'},
     }
 
-    def __init__(self, *, maxresults: int=None, timeout: int=30, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        maxresults: Optional[int] = None,
+        timeout: Optional[int] = 30,
+        **kwargs
+    ):
         super(PagingGetMultiplePagesOptions, self).__init__(**kwargs)
         self.maxresults = maxresults
         self.timeout = timeout
@@ -142,7 +170,14 @@ class PagingGetMultiplePagesWithOffsetOptions(Model):
         'timeout': {'key': 'timeout', 'type': 'int'},
     }
 
-    def __init__(self, *, offset: int, maxresults: int=None, timeout: int=30, **kwargs) -> None:
+    def __init__(
+        self,
+        offset: int,
+        *,
+        maxresults: Optional[int] = None,
+        timeout: Optional[int] = 30,
+        **kwargs
+    ):
         super(PagingGetMultiplePagesWithOffsetOptions, self).__init__(**kwargs)
         self.maxresults = maxresults
         self.offset = offset
@@ -164,7 +199,13 @@ class PagingGetOdataMultiplePagesOptions(Model):
         'timeout': {'key': 'timeout', 'type': 'int'},
     }
 
-    def __init__(self, *, maxresults: int=None, timeout: int=30, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        maxresults: Optional[int] = None,
+        timeout: Optional[int] = 30,
+        **kwargs
+    ):
         super(PagingGetOdataMultiplePagesOptions, self).__init__(**kwargs)
         self.maxresults = maxresults
         self.timeout = timeout
@@ -181,7 +222,12 @@ class Product(Model):
         'properties': {'key': 'properties', 'type': 'ProductProperties'},
     }
 
-    def __init__(self, *, properties: "ProductProperties"=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        properties: Optional["ProductProperties"] = None,
+        **kwargs
+    ):
         super(Product, self).__init__(**kwargs)
         self.properties = properties
 
@@ -200,7 +246,13 @@ class ProductProperties(Model):
         'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, *, id: int=None, name: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        id: Optional[int] = None,
+        name: Optional[str] = None,
+        **kwargs
+    ):
         super(ProductProperties, self).__init__(**kwargs)
         self.id = id
         self.name = name
@@ -220,7 +272,13 @@ class ProductResult(Model):
         'next_link': {'key': 'nextLink', 'type': 'str'},
     }
 
-    def __init__(self, *, values: List["Product"]=None, next_link: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        values: Optional[List["Product"]] = None,
+        next_link: Optional[str] = None,
+        **kwargs
+    ):
         super(ProductResult, self).__init__(**kwargs)
         self.values = values
         self.next_link = next_link
@@ -240,7 +298,13 @@ class ProductResultValue(Model):
         'next_link': {'key': 'nextLink', 'type': 'str'},
     }
 
-    def __init__(self, *, value: List["Product"]=None, next_link: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        value: Optional[List["Product"]] = None,
+        next_link: Optional[str] = None,
+        **kwargs
+    ):
         super(ProductResultValue, self).__init__(**kwargs)
         self.value = value
         self.next_link = next_link

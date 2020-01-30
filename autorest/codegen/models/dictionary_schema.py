@@ -3,8 +3,9 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 from .base_schema import BaseSchema
+from .imports import FileImport, ImportType
 
 class DictionarySchema(BaseSchema):
     """Schema for dictionaries that will be serialized.
@@ -35,13 +36,14 @@ class DictionarySchema(BaseSchema):
         """
         return "{{{}}}".format(self.element_type.get_serialization_type())
 
-    def get_python_type_annotation(self) -> str:
+    @property
+    def type_annotation(self) -> str:
         """The python type used for type annotation
 
         :return: The type annotation for this schema
         :rtype: str
         """
-        return f'Dict[str, {self.element_type.get_python_type_annotation()}]'
+        return f'Dict[str, {self.element_type.type_annotation}]'
 
     @property
     def docstring_text(self) -> str:
@@ -54,6 +56,9 @@ class DictionarySchema(BaseSchema):
         :param str namespace: Optional. The namespace for the models.
         """
         return 'dict[str, {}]'.format(self.element_type.docstring_type)
+
+    def xml_serialization_ctxt(self) -> Optional[str]:
+        raise NotImplementedError("Dictionary schema does not support XML serialization.")
 
     @classmethod
     def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs: Any) -> "DictionarySchema":
@@ -82,3 +87,9 @@ class DictionarySchema(BaseSchema):
             element_type=element_type,
             additional_properties=for_additional_properties
         )
+
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_from_import("typing", "Dict", ImportType.STDLIB)
+        file_import.merge(self.element_type.imports())
+        return file_import

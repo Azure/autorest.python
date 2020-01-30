@@ -13,11 +13,11 @@ try:
     from ._models_py3 import Error, ErrorException
     from ._models_py3 import MyException, MyExceptionException
 except (SyntaxError, ImportError):
-    from ._models import B, BException
-    from ._models import C
-    from ._models import D
-    from ._models import Error, ErrorException
-    from ._models import MyException, MyExceptionException
+    from ._models import B, BException  # type: ignore
+    from ._models import C  # type: ignore
+    from ._models import D  # type: ignore
+    from ._models import Error, ErrorException  # type: ignore
+    from ._models import MyException, MyExceptionException  # type: ignore
 
 __all__ = [
     'B', 'BException',

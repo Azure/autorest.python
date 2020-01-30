@@ -2,6 +2,29 @@
 {% import 'operation_tools.jinja2' as op_tools %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
 {% set request_as_xml = ", is_xml=False" if "xml" in operation.request_content_type else "" %}
+{% macro method_signature() %}
+{% if async_mode %}
+def {{ operation.python_name }}(
+    self,
+    {% for param_signature in operation.parameters.async_method_signature %}
+    {{ param_signature }},
+    {% endfor %}
+    {% if operation.parameters.method | first %}
+    *,
+    {% endif %}
+    cls: ClsType[{{ keywords.return_type_annotation(operation) }}] = None,
+    **kwargs
+){{ keywords.async_return_type_annotation(operation) }}:
+{% else %}
+def {{ operation.python_name }}(
+    self,
+    {% for param_signature in operation.parameters.sync_method_signature %}
+    {{ param_signature }}
+    {% endfor %}
+    cls=None,  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
+    **kwargs  # type: Any
+):
+{% endif %}{% endmacro %}
 {% macro return_docstring() %}
 {% if operation.responses | selectattr('has_body') | first %}
 :return: {{ operation.responses|map(attribute='schema')|map(attribute='docstring_text')|join(' or ') }} or the result of cls(response)
@@ -20,9 +43,12 @@
 {% else %}
 
 {% endif %}
-def {{ operation.python_name }}(self{{ operation.parameters.method_signature }}, cls=None, **kwargs):
+{{ method_signature() }}
+{%- if not async_mode %}
+    {{ keywords.sync_return_type_annotation(operation) }}
+{% endif %}
 {% if operation.want_description_docstring %}
-    """{{operation.description }}
+    """{{operation.description.strip() }}
 
     {{ "FIXME: add operation.summary\n" }}
 
@@ -114,14 +140,14 @@ def {{ operation.python_name }}(self{{ operation.parameters.method_signature }},
         {% endif %}
 {% endif %}
 
-        {{ op_tools.query_parameters(operation)|indent(8) }}
+        {{ op_tools.query_parameters(operation, async_mode)|indent(8) }}
 
-        {{ op_tools.header_parameters(code_model, operation)|indent(8) }}
+        {{ op_tools.header_parameters(code_model, operation, async_mode)|indent(8) }}
 
     {% if operation.parameters.has_body %}
         # Construct body
         {% if not operation.parameters.body.is_stream %}
-            {% if operation.parameters.body.is_required %}
+            {% if operation.parameters.body.required %}
         body_content = self._serialize.body({{ operation.parameters.body.serialized_name }}, '{{ operation.parameters.body.schema.get_serialization_type() }}'{{ request_as_xml }}{{ operation.serialization_context }})
             {% else %}
         if {{ operation.parameters.body.serialized_name }} is not None:
@@ -154,9 +180,9 @@ def {{ operation.python_name }}(self{{ operation.parameters.method_signature }},
     {% endif %}
         return request
 
-    {{ keywords.def }} extract_data(response):
+    {{ keywords.def }} extract_data(pipeline_response):
         {% set response = operation.responses[0] %}
-        deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}', response)
+        deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}', pipeline_response)
         list_of_elem = deserialized.{{ operation.item_name }}
         if cls:
             list_of_elem = cls(list_of_elem)
@@ -180,7 +206,7 @@ def {{ operation.python_name }}(self{{ operation.parameters.method_signature }},
             raise models.{{ exception_name() }}.from_response(response, self._deserialize)
             {% endif %}
 
-        return response
+        return pipeline_response
 
 {% if async_mode %}
     return AsyncItemPaged(

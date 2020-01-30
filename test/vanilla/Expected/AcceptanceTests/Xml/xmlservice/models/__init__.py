@@ -34,32 +34,32 @@ try:
     from ._models_py3 import Slideshow
     from ._models_py3 import StorageServiceProperties
 except (SyntaxError, ImportError):
-    from ._models import AccessPolicy
-    from ._models import AppleBarrel
-    from ._models import Banana
-    from ._models import Blob
-    from ._models import BlobPrefix
-    from ._models import BlobProperties
-    from ._models import Blobs
-    from ._models import ComplexTypeNoMeta
-    from ._models import ComplexTypeWithMeta
-    from ._models import Container
-    from ._models import ContainerProperties
-    from ._models import CorsRule
-    from ._models import Error, ErrorException
-    from ._models import JSONInput
-    from ._models import JSONOutput
-    from ._models import ListBlobsResponse
-    from ._models import ListContainersResponse
-    from ._models import Logging
-    from ._models import Metrics
-    from ._models import RetentionPolicy
-    from ._models import RootWithRefAndMeta
-    from ._models import RootWithRefAndNoMeta
-    from ._models import SignedIdentifier
-    from ._models import Slide
-    from ._models import Slideshow
-    from ._models import StorageServiceProperties
+    from ._models import AccessPolicy  # type: ignore
+    from ._models import AppleBarrel  # type: ignore
+    from ._models import Banana  # type: ignore
+    from ._models import Blob  # type: ignore
+    from ._models import BlobPrefix  # type: ignore
+    from ._models import BlobProperties  # type: ignore
+    from ._models import Blobs  # type: ignore
+    from ._models import ComplexTypeNoMeta  # type: ignore
+    from ._models import ComplexTypeWithMeta  # type: ignore
+    from ._models import Container  # type: ignore
+    from ._models import ContainerProperties  # type: ignore
+    from ._models import CorsRule  # type: ignore
+    from ._models import Error, ErrorException  # type: ignore
+    from ._models import JSONInput  # type: ignore
+    from ._models import JSONOutput  # type: ignore
+    from ._models import ListBlobsResponse  # type: ignore
+    from ._models import ListContainersResponse  # type: ignore
+    from ._models import Logging  # type: ignore
+    from ._models import Metrics  # type: ignore
+    from ._models import RetentionPolicy  # type: ignore
+    from ._models import RootWithRefAndMeta  # type: ignore
+    from ._models import RootWithRefAndNoMeta  # type: ignore
+    from ._models import SignedIdentifier  # type: ignore
+    from ._models import Slide  # type: ignore
+    from ._models import Slideshow  # type: ignore
+    from ._models import StorageServiceProperties  # type: ignore
 from ._auto_rest_swagger_batxml_service_enums import (
     AccessTier,
     ArchiveStatus,

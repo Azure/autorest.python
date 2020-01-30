@@ -11,9 +11,9 @@ try:
     from ._models_py3 import HeaderCustomNamedRequestIdParamGroupingParameters
     from ._models_py3 import OdataFilter
 except (SyntaxError, ImportError):
-    from ._models import Error, ErrorException
-    from ._models import HeaderCustomNamedRequestIdParamGroupingParameters
-    from ._models import OdataFilter
+    from ._models import Error, ErrorException  # type: ignore
+    from ._models import HeaderCustomNamedRequestIdParamGroupingParameters  # type: ignore
+    from ._models import OdataFilter  # type: ignore
 
 __all__ = [
     'Error', 'ErrorException',

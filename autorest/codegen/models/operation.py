@@ -4,13 +4,14 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, List, Any, Optional, Union
+from typing import cast, Dict, List, Any, Optional, Union
 
 from .base_model import BaseModel
 from .imports import FileImport, ImportType
 from .schema_response import SchemaResponse
 from .parameter import Parameter, ParameterStyle
 from .parameter_list import ParameterList
+from .base_schema import BaseSchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -189,6 +190,27 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
                 file_import.add_from_import(
                     "azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE
                 )
+        for parameter in self.parameters:
+            file_import.merge(parameter.imports())
+
+        for response in [r for r in self.responses if r.has_body]:
+            file_import.merge(cast(BaseSchema, response.schema).imports())
+
+        if len([r for r in self.responses if r.has_body]) > 1:
+            file_import.add_from_import("typing", "Union", ImportType.STDLIB)
+
+        file_import.add_from_import("typing", "Callable", ImportType.STDLIB)
+        file_import.add_from_import("typing", "Optional", ImportType.STDLIB)
+        file_import.add_from_import("typing", "Dict", ImportType.STDLIB)
+        file_import.add_from_import("typing", "Any", ImportType.STDLIB)
+        file_import.add_from_import("typing", "TypeVar", ImportType.STDLIB)
+        file_import.add_from_import("typing", "Generic", ImportType.STDLIB)
+        file_import.add_from_import("azure.core.pipeline", "PipelineResponse", ImportType.AZURECORE)
+        file_import.add_from_import("azure.core.pipeline.transport", "HttpRequest", ImportType.AZURECORE)
+        if async_mode:
+            file_import.add_from_import("azure.core.pipeline.transport", "AsyncHttpResponse", ImportType.AZURECORE)
+        else:
+            file_import.add_from_import("azure.core.pipeline.transport", "HttpResponse", ImportType.AZURECORE)
 
         # Deprecation
         # FIXME: Replace with "the YAML contains deprecated:true"

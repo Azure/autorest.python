@@ -32,7 +32,10 @@ class BaseProduct(Model):
         'description': {'key': 'base_product_description', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(BaseProduct, self).__init__(**kwargs)
         self.product_id = kwargs.get('product_id', None)
         self.description = kwargs.get('description', None)
@@ -81,7 +84,10 @@ class Error(Model):
         'parent_error': {'key': 'parentError', 'type': 'Error'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
@@ -120,7 +126,10 @@ class Resource(Model):
         'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Resource, self).__init__(**kwargs)
         self.id = None
         self.type = None
@@ -177,7 +186,10 @@ class FlattenedProduct(Resource):
         'provisioning_state': {'key': 'properties.provisioningState', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(FlattenedProduct, self).__init__(**kwargs)
         self.p_name = kwargs.get('p_name', None)
         self.type_properties_type = kwargs.get('type_properties_type', None)
@@ -214,7 +226,10 @@ class FlattenedProductProperties(Model):
         'provisioning_state': {'key': 'provisioningState', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(FlattenedProductProperties, self).__init__(**kwargs)
         self.p_name = kwargs.get('p_name', None)
         self.type = kwargs.get('type', None)
@@ -269,7 +284,10 @@ class FlattenParameterGroup(Model):
 
     capacity = "Large"
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(FlattenParameterGroup, self).__init__(**kwargs)
         self.name = kwargs.get('name', None)
         self.simple_body_product = kwargs.get('simple_body_product', None)
@@ -291,7 +309,10 @@ class GenericUrl(Model):
         'generic_value': {'key': 'generic_value', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(GenericUrl, self).__init__(**kwargs)
         self.generic_value = kwargs.get('generic_value', None)
 
@@ -310,7 +331,10 @@ class ProductUrl(GenericUrl):
         'odata_value': {'key': '@odata\\.value', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(ProductUrl, self).__init__(**kwargs)
         self.odata_value = kwargs.get('odata_value', None)
 
@@ -326,7 +350,10 @@ class ProductWrapper(Model):
         'value': {'key': 'property.value', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(ProductWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
 
@@ -348,7 +375,10 @@ class ResourceCollection(Model):
         'dictionaryofresources': {'key': 'dictionaryofresources', 'type': '{FlattenedProduct}'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(ResourceCollection, self).__init__(**kwargs)
         self.productresource = kwargs.get('productresource', None)
         self.arrayofresources = kwargs.get('arrayofresources', None)
@@ -395,7 +425,10 @@ class SimpleProduct(BaseProduct):
 
     capacity = "Large"
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(SimpleProduct, self).__init__(**kwargs)
         self.max_product_display_name = kwargs.get('max_product_display_name', None)
         self.generic_value = kwargs.get('generic_value', None)
@@ -434,7 +467,10 @@ class SimpleProductProperties(Model):
 
     capacity = "Large"
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(SimpleProductProperties, self).__init__(**kwargs)
         self.max_product_display_name = kwargs.get('max_product_display_name', None)
         self.generic_value = kwargs.get('generic_value', None)
@@ -452,6 +488,9 @@ class WrappedProduct(Model):
         'value': {'key': 'value', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(WrappedProduct, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)

@@ -18,16 +18,16 @@ try:
     from ._models_py3 import PetHungryOrThirstyError, PetHungryOrThirstyErrorException
     from ._models_py3 import PetSadError, PetSadErrorException
 except (SyntaxError, ImportError):
-    from ._models import Animal
-    from ._models import AnimalNotFound, AnimalNotFoundException
-    from ._models import BaseError
-    from ._models import LinkNotFound, LinkNotFoundException
-    from ._models import NotFoundErrorBase, NotFoundErrorBaseException
-    from ._models import Pet
-    from ._models import PetAction
-    from ._models import PetActionError, PetActionErrorException
-    from ._models import PetHungryOrThirstyError, PetHungryOrThirstyErrorException
-    from ._models import PetSadError, PetSadErrorException
+    from ._models import Animal  # type: ignore
+    from ._models import AnimalNotFound, AnimalNotFoundException  # type: ignore
+    from ._models import BaseError  # type: ignore
+    from ._models import LinkNotFound, LinkNotFoundException  # type: ignore
+    from ._models import NotFoundErrorBase, NotFoundErrorBaseException  # type: ignore
+    from ._models import Pet  # type: ignore
+    from ._models import PetAction  # type: ignore
+    from ._models import PetActionError, PetActionErrorException  # type: ignore
+    from ._models import PetHungryOrThirstyError, PetHungryOrThirstyErrorException  # type: ignore
+    from ._models import PetSadError, PetSadErrorException  # type: ignore
 
 __all__ = [
     'Animal',

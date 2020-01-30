@@ -1,19 +1,30 @@
 {% set version_import = ".._version" if async_mode else "._version" %}
 {% set async_prefix = "Async" if async_mode else "" %}
 {% set credential_scopes = "*self.credential_scopes, " if code_model.options['credential_scopes'] else "" %}
+{% macro method_signature() %}
+def __init__(
+    self,
+    {% if async_mode %}
+    {% for param_signature in code_model.global_parameters.async_method_signature %}
+    {{ param_signature }},
+    {% endfor %}
+    **kwargs: Any
+    {% else %}
+    {% for param_signature in code_model.global_parameters.sync_method_signature %}
+    {{ param_signature }}
+    {% endfor %}
+    **kwargs  # type: Any
+    {% endif %}
+){{" -> None" if async_mode else "" }}:{% endmacro %}
 {# actual template starts here #}
 # coding=utf-8
 {{ code_model.options['license_header'] }}
 
-from azure.core.configuration import Configuration
-from azure.core.pipeline import policies
+{{ imports }}
 
-{% if code_model.options['package_version'] %}
-from {{ version_import }} import VERSION
-{% else %}
+{% if not code_model.options['package_version'] %}
 VERSION = "unknown"
 {% endif %}
-
 
 class {{ code_model.class_name }}Configuration(Configuration):
     """Configuration for {{ code_model.class_name }}
@@ -28,8 +39,11 @@ class {{ code_model.class_name }}Configuration(Configuration):
 {% endfor %}
     """
 
-    def __init__(self{{ code_model.global_parameters.method_signature }}, **kwargs):
-{% for parameter in code_model.global_parameters.method|selectattr('is_required') %}
+    {{ method_signature()|indent }}
+    {% if not async_mode %}
+        # type: (...) -> None
+    {% endif %}
+{% for parameter in code_model.global_parameters.method|selectattr('required') %}
         if {{ parameter.serialized_name }} is None:
             raise ValueError("Parameter '{{ parameter.serialized_name }}' must not be None.")
 {% endfor %}
@@ -49,7 +63,13 @@ class {{ code_model.class_name }}Configuration(Configuration):
         self._configure(**kwargs)
         self.user_agent_policy.add_user_agent('azsdk-python-{{ code_model.class_name|lower }}/{}'.format(VERSION))
 
-    def _configure(self, **kwargs):
+    def _configure(
+        self,
+        **kwargs{{": Any" if async_mode else "  # type: Any"}}
+    ){{ " -> None" if async_mode else "" }}:
+        {% if not async_mode %}
+        # type: (...) -> None
+        {% endif %}
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)
         self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)
         self.proxy_policy = kwargs.get('proxy_policy') or policies.ProxyPolicy(**kwargs)

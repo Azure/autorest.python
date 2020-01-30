@@ -21,7 +21,10 @@ class Bar(Model):
         'recursive_point': {'key': 'RecursivePoint', 'type': 'Endpoints'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Bar, self).__init__(**kwargs)
         self.recursive_point = kwargs.get('recursive_point', None)
 
@@ -48,7 +51,10 @@ class CheckNameAvailabilityResult(Model):
         'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(CheckNameAvailabilityResult, self).__init__(**kwargs)
         self.name_available = kwargs.get('name_available', None)
         self.reason = kwargs.get('reason', None)
@@ -70,7 +76,10 @@ class CustomDomain(Model):
         'use_sub_domain': {'key': 'useSubDomain', 'type': 'bool'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(CustomDomain, self).__init__(**kwargs)
         self.name = kwargs.get('name', None)
         self.use_sub_domain = kwargs.get('use_sub_domain', None)
@@ -101,7 +110,10 @@ class Endpoints(Model):
         'foo_point': {'key': 'FooPoint', 'type': 'Foo'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Endpoints, self).__init__(**kwargs)
         self.blob = kwargs.get('blob', None)
         self.queue = kwargs.get('queue', None)
@@ -122,7 +134,10 @@ class Foo(Model):
         'bar_point': {'key': 'Bar\\.Point', 'type': 'Bar'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Foo, self).__init__(**kwargs)
         self.bar_point = kwargs.get('bar_point', None)
 
@@ -161,7 +176,10 @@ class Resource(Model):
         'tags': {'key': 'tags', 'type': '{str}'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Resource, self).__init__(**kwargs)
         self.id = None
         self.name = None
@@ -254,7 +272,10 @@ class StorageAccount(Resource):
         'secondary_endpoints': {'key': 'properties.secondaryEndpoints', 'type': 'Endpoints'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(StorageAccount, self).__init__(**kwargs)
         self.provisioning_state = kwargs.get('provisioning_state', None)
         self.account_type = kwargs.get('account_type', None)
@@ -289,7 +310,10 @@ class StorageAccountCheckNameAvailabilityParameters(Model):
         'type': {'key': 'type', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(StorageAccountCheckNameAvailabilityParameters, self).__init__(**kwargs)
         self.name = kwargs.get('name', None)
         self.type = kwargs.get('type', "Microsoft.Storage/storageAccounts")
@@ -333,7 +357,10 @@ class StorageAccountCreateParameters(Resource):
         'account_type': {'key': 'properties.accountType', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(StorageAccountCreateParameters, self).__init__(**kwargs)
         self.account_type = kwargs.get('account_type', None)
 
@@ -352,7 +379,10 @@ class StorageAccountKeys(Model):
         'key2': {'key': 'key2', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(StorageAccountKeys, self).__init__(**kwargs)
         self.key1 = kwargs.get('key1', None)
         self.key2 = kwargs.get('key2', None)
@@ -373,7 +403,10 @@ class StorageAccountListResult(Model):
         'next_link': {'key': 'nextLink', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(StorageAccountListResult, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
         self.next_link = kwargs.get('next_link', None)
@@ -437,7 +470,10 @@ class StorageAccountProperties(Model):
         'secondary_endpoints': {'key': 'secondaryEndpoints', 'type': 'Endpoints'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(StorageAccountProperties, self).__init__(**kwargs)
         self.provisioning_state = kwargs.get('provisioning_state', None)
         self.account_type = kwargs.get('account_type', None)
@@ -464,7 +500,10 @@ class StorageAccountPropertiesCreateParameters(Model):
         'account_type': {'key': 'accountType', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(StorageAccountPropertiesCreateParameters, self).__init__(**kwargs)
         self.account_type = kwargs.get('account_type', None)
 
@@ -485,7 +524,10 @@ class StorageAccountPropertiesUpdateParameters(Model):
         'custom_domain': {'key': 'customDomain', 'type': 'CustomDomain'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(StorageAccountPropertiesUpdateParameters, self).__init__(**kwargs)
         self.account_type = kwargs.get('account_type', None)
         self.custom_domain = kwargs.get('custom_domain', None)
@@ -502,7 +544,10 @@ class StorageAccountRegenerateKeyParameters(Model):
         'key_name': {'key': 'keyName', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(StorageAccountRegenerateKeyParameters, self).__init__(**kwargs)
         self.key_name = kwargs.get('key_name', None)
 
@@ -549,7 +594,10 @@ class StorageAccountUpdateParameters(Resource):
         'custom_domain': {'key': 'properties.customDomain', 'type': 'CustomDomain'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(StorageAccountUpdateParameters, self).__init__(**kwargs)
         self.account_type = kwargs.get('account_type', None)
         self.custom_domain = kwargs.get('custom_domain', None)
@@ -566,7 +614,10 @@ class SubResource(Model):
         'id': {'key': 'id', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(SubResource, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
 
@@ -594,7 +645,10 @@ class Usage(Model):
         'name': {'key': 'name', 'type': 'UsageName'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Usage, self).__init__(**kwargs)
         self.unit = kwargs.get('unit', None)
         self.current_value = kwargs.get('current_value', None)
@@ -613,7 +667,10 @@ class UsageListResult(Model):
         'value': {'key': 'value', 'type': '[Usage]'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(UsageListResult, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
 
@@ -632,7 +689,10 @@ class UsageName(Model):
         'localized_value': {'key': 'localizedValue', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(UsageName, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
         self.localized_value = kwargs.get('localized_value', None)

@@ -55,8 +55,8 @@ class LROOperation(Operation):
 
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = super().imports(code_model, async_mode)
-
         if async_mode:
+            file_import.add_from_import("typing", "Optional", ImportType.STDLIB)
             file_import.add_from_import(
                 "azure.core.polling", "async_poller", ImportType.AZURECORE
             )

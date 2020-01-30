@@ -6,6 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import Any, Optional
+
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
@@ -22,7 +24,13 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
     :param str base_url: Service URL
     """
 
-    def __init__(self, subscription_id, base_url=None, **kwargs):
+    def __init__(
+        self,
+        subscription_id,  # type: str
+        base_url=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestValidationTestConfiguration(subscription_id, **kwargs)
@@ -34,11 +42,14 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
 
 
     def close(self):
+        # type: () -> None
         self._client.close()
 
     def __enter__(self):
+        # type: () -> AutoRestValidationTest
         self._client.__enter__()
         return self
 
     def __exit__(self, *exc_details):
+        # type: (Any) -> None
         self._client.__exit__(*exc_details)

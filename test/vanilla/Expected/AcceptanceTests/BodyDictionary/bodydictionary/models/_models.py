@@ -50,7 +50,10 @@ class Error(Model):
         'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
@@ -70,7 +73,10 @@ class Widget(Model):
         'string': {'key': 'string', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Widget, self).__init__(**kwargs)
         self.integer = kwargs.get('integer', None)
         self.string = kwargs.get('string', None)

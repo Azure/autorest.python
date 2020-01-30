@@ -6,6 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import Any
+
 from azure.mgmt.core import AsyncARMPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -25,7 +27,12 @@ class AutoRestParameterizedHostTestPagingClient(object):
     :type host: str
     """
 
-    def __init__(self, credential, host, **kwargs):
+    def __init__(
+        self,
+        credential: "TokenCredential",
+        host: str,
+        **kwargs: Any
+    ) -> None:
         base_url = 'http://{accountName}{host}'
         self._config = AutoRestParameterizedHostTestPagingClientConfiguration(credential, host, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
@@ -37,12 +44,12 @@ class AutoRestParameterizedHostTestPagingClient(object):
         self.paging = PagingOperations(
             self._client, self._config, self._serialize, self._deserialize)
 
-    async def close(self):
+    async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self):
+    async def __aenter__(self) -> "AutoRestParameterizedHostTestPagingClient":
         await self._client.__aenter__()
         return self
 
-    async def __aexit__(self, *exc_details):
+    async def __aexit__(self, *exc_details) -> None:
         await self._client.__aexit__(*exc_details)

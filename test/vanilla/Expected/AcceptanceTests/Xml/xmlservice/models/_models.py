@@ -35,7 +35,10 @@ class AccessPolicy(Model):
         'permission': {'key': 'Permission', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(AccessPolicy, self).__init__(**kwargs)
         self.start = kwargs.get('start', None)
         self.expiry = kwargs.get('expiry', None)
@@ -52,11 +55,14 @@ class AppleBarrel(Model):
     """
 
     _attribute_map = {
-        'good_apples': {'key': 'GoodApples', 'type': '[str]'},
-        'bad_apples': {'key': 'BadApples', 'type': '[str]'},
+        'good_apples': {'key': 'GoodApples', 'type': '[str]', 'xml': {'wrapped': True, 'itemsName': 'Apple'}},
+        'bad_apples': {'key': 'BadApples', 'type': '[str]', 'xml': {'wrapped': True, 'itemsName': 'Apple'}},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(AppleBarrel, self).__init__(**kwargs)
         self.good_apples = kwargs.get('good_apples', None)
         self.bad_apples = kwargs.get('bad_apples', None)
@@ -74,12 +80,18 @@ class Banana(Model):
     """
 
     _attribute_map = {
-        'name': {'key': 'name', 'type': 'str'},
-        'flavor': {'key': 'flavor', 'type': 'str'},
-        'expiration': {'key': 'expiration', 'type': 'iso-8601'},
+        'name': {'key': 'name', 'type': 'str', 'xml': {'name': 'name'}},
+        'flavor': {'key': 'flavor', 'type': 'str', 'xml': {'name': 'flavor'}},
+        'expiration': {'key': 'expiration', 'type': 'iso-8601', 'xml': {'name': 'expiration'}},
+    }
+    _xml_map = {
+        'name': 'banana'
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Banana, self).__init__(**kwargs)
         self.name = kwargs.get('name', None)
         self.flavor = kwargs.get('flavor', None)
@@ -118,8 +130,14 @@ class Blob(Model):
         'properties': {'key': 'Properties', 'type': 'BlobProperties'},
         'metadata': {'key': 'Metadata', 'type': '{str}'},
     }
+    _xml_map = {
+        'name': 'Blob'
+    }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Blob, self).__init__(**kwargs)
         self.name = kwargs.get('name', None)
         self.deleted = kwargs.get('deleted', None)
@@ -145,7 +163,10 @@ class BlobPrefix(Model):
         'name': {'key': 'Name', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(BlobPrefix, self).__init__(**kwargs)
         self.name = kwargs.get('name', None)
 
@@ -254,7 +275,10 @@ class BlobProperties(Model):
         'archive_status': {'key': 'ArchiveStatus', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(BlobProperties, self).__init__(**kwargs)
         self.last_modified = kwargs.get('last_modified', None)
         self.etag = kwargs.get('etag', None)
@@ -300,7 +324,10 @@ class Blobs(Model):
         'blob': {'key': 'Blob', 'type': '[Blob]'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Blobs, self).__init__(**kwargs)
         self.blob_prefix = kwargs.get('blob_prefix', None)
         self.blob = kwargs.get('blob', None)
@@ -317,7 +344,10 @@ class ComplexTypeNoMeta(Model):
         'id': {'key': 'ID', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(ComplexTypeNoMeta, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
 
@@ -332,8 +362,14 @@ class ComplexTypeWithMeta(Model):
     _attribute_map = {
         'id': {'key': 'ID', 'type': 'str'},
     }
+    _xml_map = {
+        'name': 'XMLComplexTypeWithMeta'
+    }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(ComplexTypeWithMeta, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
 
@@ -363,7 +399,10 @@ class Container(Model):
         'metadata': {'key': 'Metadata', 'type': '{str}'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Container, self).__init__(**kwargs)
         self.name = kwargs.get('name', None)
         self.properties = kwargs.get('properties', None)
@@ -404,7 +443,10 @@ class ContainerProperties(Model):
         'public_access': {'key': 'PublicAccess', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(ContainerProperties, self).__init__(**kwargs)
         self.last_modified = kwargs.get('last_modified', None)
         self.etag = kwargs.get('etag', None)
@@ -455,8 +497,14 @@ class CorsRule(Model):
         'exposed_headers': {'key': 'ExposedHeaders', 'type': 'str'},
         'max_age_in_seconds': {'key': 'MaxAgeInSeconds', 'type': 'int'},
     }
+    _xml_map = {
+        'name': 'CorsRule'
+    }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(CorsRule, self).__init__(**kwargs)
         self.allowed_origins = kwargs.get('allowed_origins', None)
         self.allowed_methods = kwargs.get('allowed_methods', None)
@@ -505,7 +553,10 @@ class Error(Model):
         'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
@@ -522,7 +573,10 @@ class JSONInput(Model):
         'id': {'key': 'id', 'type': 'int'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(JSONInput, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
 
@@ -538,7 +592,10 @@ class JSONOutput(Model):
         'id': {'key': 'id', 'type': 'int'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(JSONOutput, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
 
@@ -578,8 +635,8 @@ class ListBlobsResponse(Model):
     }
 
     _attribute_map = {
-        'service_endpoint': {'key': 'ServiceEndpoint', 'type': 'str'},
-        'container_name': {'key': 'ContainerName', 'type': 'str'},
+        'service_endpoint': {'key': 'ServiceEndpoint', 'type': 'str', 'xml': {'attr': True}},
+        'container_name': {'key': 'ContainerName', 'type': 'str', 'xml': {'attr': True}},
         'prefix': {'key': 'Prefix', 'type': 'str'},
         'marker': {'key': 'Marker', 'type': 'str'},
         'max_results': {'key': 'MaxResults', 'type': 'int'},
@@ -587,8 +644,14 @@ class ListBlobsResponse(Model):
         'blobs': {'key': 'Blobs', 'type': 'Blobs'},
         'next_marker': {'key': 'NextMarker', 'type': 'str'},
     }
+    _xml_map = {
+        'name': 'EnumerationResults'
+    }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(ListBlobsResponse, self).__init__(**kwargs)
         self.service_endpoint = kwargs.get('service_endpoint', None)
         self.container_name = kwargs.get('container_name', None)
@@ -627,15 +690,21 @@ class ListContainersResponse(Model):
     }
 
     _attribute_map = {
-        'service_endpoint': {'key': 'ServiceEndpoint', 'type': 'str'},
+        'service_endpoint': {'key': 'ServiceEndpoint', 'type': 'str', 'xml': {'attr': True}},
         'prefix': {'key': 'Prefix', 'type': 'str'},
         'marker': {'key': 'Marker', 'type': 'str'},
         'max_results': {'key': 'MaxResults', 'type': 'int'},
-        'containers': {'key': 'Containers', 'type': '[Container]'},
+        'containers': {'key': 'Containers', 'type': '[Container]', 'xml': {'wrapped': True}},
         'next_marker': {'key': 'NextMarker', 'type': 'str'},
     }
+    _xml_map = {
+        'name': 'EnumerationResults'
+    }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(ListContainersResponse, self).__init__(**kwargs)
         self.service_endpoint = kwargs.get('service_endpoint', None)
         self.prefix = kwargs.get('prefix', None)
@@ -678,7 +747,10 @@ class Logging(Model):
         'retention_policy': {'key': 'RetentionPolicy', 'type': 'RetentionPolicy'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Logging, self).__init__(**kwargs)
         self.version = kwargs.get('version', None)
         self.delete = kwargs.get('delete', None)
@@ -715,7 +787,10 @@ class Metrics(Model):
         'retention_policy': {'key': 'RetentionPolicy', 'type': 'RetentionPolicy'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Metrics, self).__init__(**kwargs)
         self.version = kwargs.get('version', None)
         self.enabled = kwargs.get('enabled', None)
@@ -746,7 +821,10 @@ class RetentionPolicy(Model):
         'days': {'key': 'Days', 'type': 'int'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(RetentionPolicy, self).__init__(**kwargs)
         self.enabled = kwargs.get('enabled', None)
         self.days = kwargs.get('days', None)
@@ -766,7 +844,10 @@ class RootWithRefAndMeta(Model):
         'something': {'key': 'Something', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(RootWithRefAndMeta, self).__init__(**kwargs)
         self.ref_to_model = kwargs.get('ref_to_model', None)
         self.something = kwargs.get('something', None)
@@ -786,7 +867,10 @@ class RootWithRefAndNoMeta(Model):
         'something': {'key': 'Something', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(RootWithRefAndNoMeta, self).__init__(**kwargs)
         self.ref_to_model = kwargs.get('ref_to_model', None)
         self.something = kwargs.get('something', None)
@@ -812,8 +896,14 @@ class SignedIdentifier(Model):
         'id': {'key': 'Id', 'type': 'str'},
         'access_policy': {'key': 'AccessPolicy', 'type': 'AccessPolicy'},
     }
+    _xml_map = {
+        'name': 'SignedIdentifier'
+    }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(SignedIdentifier, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
         self.access_policy = kwargs.get('access_policy', None)
@@ -831,12 +921,18 @@ class Slide(Model):
     """
 
     _attribute_map = {
-        'type': {'key': 'type', 'type': 'str'},
+        'type': {'key': 'type', 'type': 'str', 'xml': {'attr': True}},
         'title': {'key': 'title', 'type': 'str'},
-        'items': {'key': 'items', 'type': '[str]'},
+        'items': {'key': 'items', 'type': '[str]', 'xml': {'itemsName': 'item'}},
+    }
+    _xml_map = {
+        'name': 'slide'
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Slide, self).__init__(**kwargs)
         self.type = kwargs.get('type', None)
         self.title = kwargs.get('title', None)
@@ -857,13 +953,19 @@ class Slideshow(Model):
     """
 
     _attribute_map = {
-        'title': {'key': 'title', 'type': 'str'},
-        'date_property': {'key': 'date', 'type': 'str'},
-        'author': {'key': 'author', 'type': 'str'},
+        'title': {'key': 'title', 'type': 'str', 'xml': {'attr': True}},
+        'date_property': {'key': 'date', 'type': 'str', 'xml': {'attr': True}},
+        'author': {'key': 'author', 'type': 'str', 'xml': {'attr': True}},
         'slides': {'key': 'slides', 'type': '[Slide]'},
     }
+    _xml_map = {
+        'name': 'slideshow'
+    }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Slideshow, self).__init__(**kwargs)
         self.title = kwargs.get('title', None)
         self.date_property = kwargs.get('date_property', None)
@@ -894,12 +996,15 @@ class StorageServiceProperties(Model):
         'logging': {'key': 'Logging', 'type': 'Logging'},
         'hour_metrics': {'key': 'HourMetrics', 'type': 'Metrics'},
         'minute_metrics': {'key': 'MinuteMetrics', 'type': 'Metrics'},
-        'cors': {'key': 'Cors', 'type': '[CorsRule]'},
+        'cors': {'key': 'Cors', 'type': '[CorsRule]', 'xml': {'wrapped': True, 'itemsName': 'CorsRule'}},
         'default_service_version': {'key': 'DefaultServiceVersion', 'type': 'str'},
         'delete_retention_policy': {'key': 'DeleteRetentionPolicy', 'type': 'RetentionPolicy'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(StorageServiceProperties, self).__init__(**kwargs)
         self.logging = kwargs.get('logging', None)
         self.hour_metrics = kwargs.get('hour_metrics', None)

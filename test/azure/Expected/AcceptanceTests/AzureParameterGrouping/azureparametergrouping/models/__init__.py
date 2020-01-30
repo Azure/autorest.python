@@ -13,11 +13,11 @@ try:
     from ._models_py3 import ParameterGroupingPostOptionalParameters
     from ._models_py3 import ParameterGroupingPostRequiredParameters
 except (SyntaxError, ImportError):
-    from ._models import Error, ErrorException
-    from ._models import FirstParameterGroup
-    from ._models import ParameterGroupingPostMultiParamGroupsSecondParamGroup
-    from ._models import ParameterGroupingPostOptionalParameters
-    from ._models import ParameterGroupingPostRequiredParameters
+    from ._models import Error, ErrorException  # type: ignore
+    from ._models import FirstParameterGroup  # type: ignore
+    from ._models import ParameterGroupingPostMultiParamGroupsSecondParamGroup  # type: ignore
+    from ._models import ParameterGroupingPostOptionalParameters  # type: ignore
+    from ._models import ParameterGroupingPostRequiredParameters  # type: ignore
 
 __all__ = [
     'Error', 'ErrorException',

@@ -17,15 +17,15 @@ try:
     from ._models_py3 import SubProductProperties
     from ._models_py3 import SubResource
 except (SyntaxError, ImportError):
-    from ._models import OperationResult
-    from ._models import OperationResultError
-    from ._models import Product
-    from ._models import ProductProperties
-    from ._models import Resource
-    from ._models import Sku
-    from ._models import SubProduct
-    from ._models import SubProductProperties
-    from ._models import SubResource
+    from ._models import OperationResult  # type: ignore
+    from ._models import OperationResultError  # type: ignore
+    from ._models import Product  # type: ignore
+    from ._models import ProductProperties  # type: ignore
+    from ._models import Resource  # type: ignore
+    from ._models import Sku  # type: ignore
+    from ._models import SubProduct  # type: ignore
+    from ._models import SubProductProperties  # type: ignore
+    from ._models import SubResource  # type: ignore
 from ._auto_rest_long_running_operation_test_service_enums import (
     OperationResultStatus,
     ProductPropertiesProvisioningStateValues,

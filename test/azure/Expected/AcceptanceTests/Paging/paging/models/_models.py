@@ -30,7 +30,10 @@ class CustomParameterGroup(Model):
         'tenant': {'key': 'tenant', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(CustomParameterGroup, self).__init__(**kwargs)
         self.api_version = kwargs.get('api_version', None)
         self.tenant = kwargs.get('tenant', None)
@@ -50,7 +53,10 @@ class OdataProductResult(Model):
         'odata_next_link': {'key': 'odata\\.nextLink', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(OdataProductResult, self).__init__(**kwargs)
         self.values = kwargs.get('values', None)
         self.odata_next_link = kwargs.get('odata_next_link', None)
@@ -69,7 +75,10 @@ class OperationResult(Model):
         'status': {'key': 'status', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(OperationResult, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
 
@@ -89,7 +98,10 @@ class PagingGetMultiplePagesLroOptions(Model):
         'timeout': {'key': 'timeout', 'type': 'int'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(PagingGetMultiplePagesLroOptions, self).__init__(**kwargs)
         self.maxresults = kwargs.get('maxresults', None)
         self.timeout = kwargs.get('timeout', 30)
@@ -110,7 +122,10 @@ class PagingGetMultiplePagesOptions(Model):
         'timeout': {'key': 'timeout', 'type': 'int'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(PagingGetMultiplePagesOptions, self).__init__(**kwargs)
         self.maxresults = kwargs.get('maxresults', None)
         self.timeout = kwargs.get('timeout', 30)
@@ -140,7 +155,10 @@ class PagingGetMultiplePagesWithOffsetOptions(Model):
         'timeout': {'key': 'timeout', 'type': 'int'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(PagingGetMultiplePagesWithOffsetOptions, self).__init__(**kwargs)
         self.maxresults = kwargs.get('maxresults', None)
         self.offset = kwargs.get('offset', None)
@@ -162,7 +180,10 @@ class PagingGetOdataMultiplePagesOptions(Model):
         'timeout': {'key': 'timeout', 'type': 'int'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(PagingGetOdataMultiplePagesOptions, self).__init__(**kwargs)
         self.maxresults = kwargs.get('maxresults', None)
         self.timeout = kwargs.get('timeout', 30)
@@ -179,7 +200,10 @@ class Product(Model):
         'properties': {'key': 'properties', 'type': 'ProductProperties'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Product, self).__init__(**kwargs)
         self.properties = kwargs.get('properties', None)
 
@@ -198,7 +222,10 @@ class ProductProperties(Model):
         'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(ProductProperties, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
@@ -218,7 +245,10 @@ class ProductResult(Model):
         'next_link': {'key': 'nextLink', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(ProductResult, self).__init__(**kwargs)
         self.values = kwargs.get('values', None)
         self.next_link = kwargs.get('next_link', None)
@@ -238,7 +268,10 @@ class ProductResultValue(Model):
         'next_link': {'key': 'nextLink', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(ProductResultValue, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
         self.next_link = kwargs.get('next_link', None)
