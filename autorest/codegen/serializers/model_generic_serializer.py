@@ -11,8 +11,8 @@ from ..models import ObjectSchema
 class ModelGenericSerializer(ModelBaseSerializer):
 
     @staticmethod
-    def init_line(model: ObjectSchema) -> str:
-        return "def __init__(self, **kwargs):"
+    def init_line(model: ObjectSchema) -> List[str]:
+        return []
 
     @staticmethod
     def init_args(model: ObjectSchema) -> List[str]:

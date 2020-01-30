@@ -48,8 +48,13 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
     def get_serialization_type(self) -> str:
         return self.name
 
-    def get_python_type_annotation(self) -> str:
+    @property
+    def type_annotation(self) -> str:
         return f'\"{self.name}\"'
+
+    @property
+    def operation_type_annotation(self) -> str:
+        return f'\"models.{self.name}\"'
 
     @property
     def docstring_type(self):

@@ -100,7 +100,13 @@ class {{ model.name }}(Model):
         {% endfor %}
     {% endif %}
 
-    {{ init_line(model) }}
+    def __init__(
+        self,
+        {% for param_signature in init_line(model) %}
+        {{ param_signature }},
+        {% endfor %}
+        **kwargs
+    ):
     {% for arg in init_args(model) %}
         {{ arg }}
     {% endfor %}

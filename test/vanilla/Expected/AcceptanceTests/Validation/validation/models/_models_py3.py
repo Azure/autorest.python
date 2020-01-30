@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import List
+from typing import List, Optional
 
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
@@ -36,7 +36,12 @@ class ChildProduct(Model):
 
     const_property = "constant"
 
-    def __init__(self, *, count: int=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        count: Optional[int] = None,
+        **kwargs
+    ):
         super(ChildProduct, self).__init__(**kwargs)
         self.count = count
 
@@ -67,7 +72,10 @@ class ConstantProduct(Model):
     const_property = "constant"
     const_property2 = "constant2"
 
-    def __init__(self, **kwargs) -> None:
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(ConstantProduct, self).__init__(**kwargs)
 
 
@@ -114,7 +122,14 @@ class Error(Model):
         'fields': {'key': 'fields', 'type': 'str'},
     }
 
-    def __init__(self, *, code: int=None, message: str=None, fields: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        code: Optional[int] = None,
+        message: Optional[str] = None,
+        fields: Optional[str] = None,
+        **kwargs
+    ):
         super(Error, self).__init__(**kwargs)
         self.code = code
         self.message = message
@@ -173,7 +188,16 @@ class Product(Model):
     const_string = "constant"
     const_string_as_enum = "constant_string_as_enum"
 
-    def __init__(self, *, child: "ChildProduct", const_child: "ConstantProduct", display_names: List[str]=None, capacity: int=None, image: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        child: "ChildProduct",
+        const_child: "ConstantProduct",
+        *,
+        display_names: Optional[List[str]] = None,
+        capacity: Optional[int] = None,
+        image: Optional[str] = None,
+        **kwargs
+    ):
         super(Product, self).__init__(**kwargs)
         self.display_names = display_names
         self.capacity = capacity

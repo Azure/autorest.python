@@ -4,6 +4,29 @@
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
 {% set send_xml = "xml" in operation.request_content_type %}
 {% set request_as_xml = ", is_xml=True" if send_xml else "" %}
+{% macro method_signature() %}
+{% if async_mode %}
+async def {{ operation.python_name }}(
+    self,
+    {% for param_signature in operation.parameters.async_method_signature %}
+    {{ param_signature }},
+    {% endfor %}
+    {% if operation.parameters.method | first %}
+    *,
+    {% endif %}
+    cls: ClsType[{{ keywords.return_type_annotation(operation) }}] = None,
+    **kwargs: Any
+){{ keywords.async_return_type_annotation(operation) }}:
+{% else %}
+def {{ operation.python_name }}(
+    self,
+    {% for param_signature in operation.parameters.sync_method_signature %}
+    {{ param_signature }}
+    {% endfor %}
+    cls=None,  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
+    **kwargs  # type: Any
+):
+{% endif %}{% endmacro %}
 {% macro return_docstring() %}
 {% if operation.responses | selectattr('has_body') | first %}
 :return: {{ operation.responses|map(attribute='schema')|map(attribute='docstring_text')|join(' or ') }} or the result of cls(response)
@@ -21,9 +44,12 @@
 {% else %}
 
 {% endif %}
-{{ keywords.def }} {{ operation.python_name }}(self{{ operation.parameters.method_signature }}, cls=None, **kwargs):
+{{ method_signature() }}
+{%- if not async_mode %}
+    {{ keywords.sync_return_type_annotation(operation) }}
+{% endif %}
 {% if operation.want_description_docstring %}
-    """{{operation.description }}
+    """{{operation.description.strip() }}
 
     FIXME: add operation.summary
 
@@ -88,9 +114,9 @@
     url = self._client.format_url(url, **path_format_arguments)
 {% endif %}
 
-    {{ op_tools.query_parameters(operation)|indent }}
+    {{ op_tools.query_parameters(operation, async_mode)|indent }}
 
-    {{ op_tools.header_parameters(code_model, operation)|indent }}
+    {{ op_tools.header_parameters(code_model, operation, async_mode)|indent }}
 
 {% if operation.parameters.has_body %}
     # Construct body
@@ -99,7 +125,7 @@
         {% if ser_ctxt %}
     serialization_ctxt = {'xml': {{ "{" }}{{ ser_ctxt }}{{ "}}" }}
         {% endif %}
-        {% if operation.parameters.body.is_required %}
+        {% if operation.parameters.body.required %}
     body_content = self._serialize.body({{ operation.parameters.body.serialized_name }}, '{{ operation.parameters.body.schema.get_serialization_type() }}'{{ request_as_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
         {% else %}
     if {{ operation.parameters.body.serialized_name }} is not None:

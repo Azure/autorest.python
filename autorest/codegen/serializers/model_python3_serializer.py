@@ -5,48 +5,35 @@
 # --------------------------------------------------------------------------
 from typing import List
 from .model_base_serializer import ModelBaseSerializer
-from ..models import (
-    PrimitiveSchema,
-    ListSchema,
-    DictionarySchema,
-    EnumSchema,
-    ObjectSchema,
-)
-from ..models.imports import FileImport, ImportType
+from ..models import ObjectSchema
+from ..models.imports import FileImport
 
 
 class ModelPython3Serializer(ModelBaseSerializer):
     @staticmethod
-    def init_line(model: ObjectSchema) -> str:
+    def init_line(model: ObjectSchema) -> List[str]:
         init_properties_declaration = []
         init_line_parameters = [
             p
             for p in model.properties
             if not p.readonly and not p.is_discriminator and not p.constant
         ]
-        init_line_parameters.sort(key=lambda x: x.required, reverse=True)
-        for param in init_line_parameters:
-            if param.required:
-                init_properties_declaration.append(
-                    "{}: {}".format(
-                        param.name, param.schema.get_python_type_annotation()
-                    )
-                )
-            else:
-                default_value = param.schema.get_default_value_declaration()
-                init_properties_declaration.append(
-                    "{}: {}={}".format(
-                        param.name,
-                        param.schema.get_python_type_annotation(),
-                        default_value,
-                    )
-                )
-
-        if init_properties_declaration:
-            return "def __init__(self, *, {}, **kwargs) -> None:".format(
-                ", ".join(init_properties_declaration)
+        # init_line_parameters.sort(key=lambda x: x.required, reverse=True)
+        required_parameters = [p for p in init_line_parameters if p.required]
+        optional_parameters = [p for p in init_line_parameters if not p.required]
+        for param in required_parameters:
+            init_properties_declaration.append(
+                "{}: {}".format(param.name, param.type_annotation)
             )
-        return "def __init__(self, **kwargs) -> None:"
+        if optional_parameters:
+            init_properties_declaration.append("*")
+        for param in optional_parameters:
+            default_value = param.schema.get_default_value_declaration()
+            init_properties_declaration.append(
+                "{}: {} = {}".format(param.name, param.type_annotation, default_value)
+            )
+
+        return init_properties_declaration
 
     @staticmethod
     def init_args(model: ObjectSchema) -> List[str]:
@@ -96,15 +83,6 @@ class ModelPython3Serializer(ModelBaseSerializer):
                 p for p in model.properties if not p.readonly and not p.is_discriminator
             ]
             for param in init_line_parameters:
-                if isinstance(param.schema, PrimitiveSchema):
-                    stdlib_type = param.schema.get_python_type_annotation()
-                    if stdlib_type.startswith("datetime"):
-                        file_import.add_import("datetime", ImportType.STDLIB)
-                elif isinstance(param.schema, ListSchema):
-                    file_import.add_from_import("typing", "List", ImportType.STDLIB)
-                elif isinstance(param.schema, DictionarySchema):
-                    file_import.add_from_import("typing", "Dict", ImportType.STDLIB)
-                elif isinstance(param.schema, EnumSchema):
-                    file_import.add_from_import("typing", "Union", ImportType.STDLIB)
+                file_import.merge(param.imports())
 
         return file_import

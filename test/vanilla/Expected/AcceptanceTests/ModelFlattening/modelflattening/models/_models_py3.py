@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
@@ -34,7 +34,13 @@ class BaseProduct(Model):
         'description': {'key': 'base_product_description', 'type': 'str'},
     }
 
-    def __init__(self, *, product_id: str, description: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        product_id: str,
+        *,
+        description: Optional[str] = None,
+        **kwargs
+    ):
         super(BaseProduct, self).__init__(**kwargs)
         self.product_id = product_id
         self.description = description
@@ -83,7 +89,14 @@ class Error(Model):
         'parent_error': {'key': 'parentError', 'type': 'Error'},
     }
 
-    def __init__(self, *, status: int=None, message: str=None, parent_error: "Error"=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        status: Optional[int] = None,
+        message: Optional[str] = None,
+        parent_error: Optional["Error"] = None,
+        **kwargs
+    ):
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -122,7 +135,13 @@ class Resource(Model):
         'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, *, tags: Dict[str, str]=None, location: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        tags: Optional[Dict[str, str]] = None,
+        location: Optional[str] = None,
+        **kwargs
+    ):
         super(Resource, self).__init__(**kwargs)
         self.id = None
         self.type = None
@@ -179,7 +198,16 @@ class FlattenedProduct(Resource):
         'provisioning_state': {'key': 'properties.provisioningState', 'type': 'str'},
     }
 
-    def __init__(self, *, tags: Dict[str, str]=None, location: str=None, p_name: str=None, type_properties_type: str=None, provisioning_state: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        tags: Optional[Dict[str, str]] = None,
+        location: Optional[str] = None,
+        p_name: Optional[str] = None,
+        type_properties_type: Optional[str] = None,
+        provisioning_state: Optional[str] = None,
+        **kwargs
+    ):
         super(FlattenedProduct, self).__init__(tags=tags, location=location, **kwargs)
         self.p_name = p_name
         self.type_properties_type = type_properties_type
@@ -216,7 +244,14 @@ class FlattenedProductProperties(Model):
         'provisioning_state': {'key': 'provisioningState', 'type': 'str'},
     }
 
-    def __init__(self, *, p_name: str=None, type: str=None, provisioning_state: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        p_name: Optional[str] = None,
+        type: Optional[str] = None,
+        provisioning_state: Optional[str] = None,
+        **kwargs
+    ):
         super(FlattenedProductProperties, self).__init__(**kwargs)
         self.p_name = p_name
         self.type = type
@@ -235,7 +270,12 @@ class GenericUrl(Model):
         'generic_value': {'key': 'generic_value', 'type': 'str'},
     }
 
-    def __init__(self, *, generic_value: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        generic_value: Optional[str] = None,
+        **kwargs
+    ):
         super(GenericUrl, self).__init__(**kwargs)
         self.generic_value = generic_value
 
@@ -254,7 +294,13 @@ class ProductUrl(GenericUrl):
         'odata_value': {'key': '@odata\\.value', 'type': 'str'},
     }
 
-    def __init__(self, *, generic_value: str=None, odata_value: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        generic_value: Optional[str] = None,
+        odata_value: Optional[str] = None,
+        **kwargs
+    ):
         super(ProductUrl, self).__init__(generic_value=generic_value, **kwargs)
         self.odata_value = odata_value
 
@@ -270,7 +316,12 @@ class ProductWrapper(Model):
         'value': {'key': 'property.value', 'type': 'str'},
     }
 
-    def __init__(self, *, value: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        value: Optional[str] = None,
+        **kwargs
+    ):
         super(ProductWrapper, self).__init__(**kwargs)
         self.value = value
 
@@ -292,7 +343,14 @@ class ResourceCollection(Model):
         'dictionaryofresources': {'key': 'dictionaryofresources', 'type': '{FlattenedProduct}'},
     }
 
-    def __init__(self, *, productresource: "FlattenedProduct"=None, arrayofresources: List["FlattenedProduct"]=None, dictionaryofresources: Dict[str, "FlattenedProduct"]=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        productresource: Optional["FlattenedProduct"] = None,
+        arrayofresources: Optional[List["FlattenedProduct"]] = None,
+        dictionaryofresources: Optional[Dict[str, "FlattenedProduct"]] = None,
+        **kwargs
+    ):
         super(ResourceCollection, self).__init__(**kwargs)
         self.productresource = productresource
         self.arrayofresources = arrayofresources
@@ -336,7 +394,15 @@ class SimpleProduct(BaseProduct):
 
     capacity = "Large"
 
-    def __init__(self, *, product_id: str, description: str=None, max_product_display_name: str=None, odata_value: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        product_id: str,
+        *,
+        description: Optional[str] = None,
+        max_product_display_name: Optional[str] = None,
+        odata_value: Optional[str] = None,
+        **kwargs
+    ):
         super(SimpleProduct, self).__init__(product_id=product_id, description=description, **kwargs)
         self.max_product_display_name = max_product_display_name
         self.odata_value = odata_value
@@ -371,7 +437,13 @@ class SimpleProductProperties(Model):
 
     capacity = "Large"
 
-    def __init__(self, *, max_product_display_name: str, odata_value: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        max_product_display_name: str,
+        *,
+        odata_value: Optional[str] = None,
+        **kwargs
+    ):
         super(SimpleProductProperties, self).__init__(**kwargs)
         self.max_product_display_name = max_product_display_name
         self.odata_value = odata_value
@@ -388,6 +460,11 @@ class WrappedProduct(Model):
         'value': {'key': 'value', 'type': 'str'},
     }
 
-    def __init__(self, *, value: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        value: Optional[str] = None,
+        **kwargs
+    ):
         super(WrappedProduct, self).__init__(**kwargs)
         self.value = value
