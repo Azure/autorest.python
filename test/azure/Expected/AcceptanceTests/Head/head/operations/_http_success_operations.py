@@ -56,11 +56,11 @@ class HttpSuccessOperations(object):
         url = self.head200.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
 
 
         # Construct and send request
@@ -100,11 +100,11 @@ class HttpSuccessOperations(object):
         url = self.head204.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
 
 
         # Construct and send request
@@ -144,11 +144,11 @@ class HttpSuccessOperations(object):
         url = self.head404.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
 
 
         # Construct and send request

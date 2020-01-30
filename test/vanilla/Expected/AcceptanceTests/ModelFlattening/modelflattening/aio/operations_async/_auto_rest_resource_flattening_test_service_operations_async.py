@@ -16,6 +16,8 @@ from msrest.serialization import Model
 
 from ... import models
 
+T = TypeVar('T')
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 class AutoRestResourceFlatteningTestServiceOperationsMixin:
     @distributed_trace_async

@@ -77,13 +77,13 @@ class ParameterGroupingOperations(object):
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
         if query is not None:
             query_parameters['query'] = self._serialize.query("query", query, 'int')
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         if custom_header is not None:
             header_parameters['customHeader'] = self._serialize.header("custom_header", custom_header, 'str')
         header_parameters['Content-Type'] = 'application/json'
@@ -134,13 +134,13 @@ class ParameterGroupingOperations(object):
         url = self.post_optional.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
         if query is not None:
             query_parameters['query'] = self._serialize.query("query", query, 'int')
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         if custom_header is not None:
             header_parameters['customHeader'] = self._serialize.header("custom_header", custom_header, 'str')
 
@@ -193,7 +193,7 @@ class ParameterGroupingOperations(object):
         url = self.post_multi_param_groups.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
         if query_one is not None:
             query_parameters['query-one'] = self._serialize.query("query_one", query_one, 'int')
         if query_two is not None:
@@ -201,7 +201,7 @@ class ParameterGroupingOperations(object):
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         if header_one is not None:
             header_parameters['header-one'] = self._serialize.header("header_one", header_one, 'str')
         if header_two is not None:
@@ -250,13 +250,13 @@ class ParameterGroupingOperations(object):
         url = self.post_shared_parameter_group_object.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
         if query_one is not None:
             query_parameters['query-one'] = self._serialize.query("query_one", query_one, 'int')
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         if header_one is not None:
             header_parameters['header-one'] = self._serialize.header("header_one", header_one, 'str')
 

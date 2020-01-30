@@ -15,6 +15,8 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models
 
+T = TypeVar('T')
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 class AutoRestReportServiceForAzureOperationsMixin:
     @distributed_trace_async

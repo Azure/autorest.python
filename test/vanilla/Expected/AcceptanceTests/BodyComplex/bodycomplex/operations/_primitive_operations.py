@@ -63,11 +63,11 @@ class PrimitiveOperations(object):
         url = self.get_int.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -113,11 +113,11 @@ class PrimitiveOperations(object):
         url = self.put_int.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -160,11 +160,11 @@ class PrimitiveOperations(object):
         url = self.get_long.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -210,11 +210,11 @@ class PrimitiveOperations(object):
         url = self.put_long.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -257,11 +257,11 @@ class PrimitiveOperations(object):
         url = self.get_float.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -307,11 +307,11 @@ class PrimitiveOperations(object):
         url = self.put_float.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -354,11 +354,11 @@ class PrimitiveOperations(object):
         url = self.get_double.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -404,11 +404,11 @@ class PrimitiveOperations(object):
         url = self.put_double.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -451,11 +451,11 @@ class PrimitiveOperations(object):
         url = self.get_bool.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -501,11 +501,11 @@ class PrimitiveOperations(object):
         url = self.put_bool.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -548,11 +548,11 @@ class PrimitiveOperations(object):
         url = self.get_string.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -598,11 +598,11 @@ class PrimitiveOperations(object):
         url = self.put_string.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -645,11 +645,11 @@ class PrimitiveOperations(object):
         url = self.get_date.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -695,11 +695,11 @@ class PrimitiveOperations(object):
         url = self.put_date.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -742,11 +742,11 @@ class PrimitiveOperations(object):
         url = self.get_date_time.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -792,11 +792,11 @@ class PrimitiveOperations(object):
         url = self.put_date_time.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -839,11 +839,11 @@ class PrimitiveOperations(object):
         url = self.get_date_time_rfc1123.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -889,11 +889,11 @@ class PrimitiveOperations(object):
         url = self.put_date_time_rfc1123.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -936,11 +936,11 @@ class PrimitiveOperations(object):
         url = self.get_duration.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -987,11 +987,11 @@ class PrimitiveOperations(object):
         url = self.put_duration.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -1034,11 +1034,11 @@ class PrimitiveOperations(object):
         url = self.get_byte.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -1085,11 +1085,11 @@ class PrimitiveOperations(object):
         url = self.put_byte.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
 

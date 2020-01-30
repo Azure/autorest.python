@@ -61,11 +61,11 @@ class StringOperations(object):
         url = self.get_null.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -109,11 +109,11 @@ class StringOperations(object):
         url = self.put_null.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -159,11 +159,11 @@ class StringOperations(object):
         url = self.get_empty.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -207,11 +207,11 @@ class StringOperations(object):
         url = self.put_empty.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -254,11 +254,11 @@ class StringOperations(object):
         url = self.get_mbcs.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -302,11 +302,11 @@ class StringOperations(object):
         url = self.put_mbcs.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -349,11 +349,11 @@ class StringOperations(object):
         url = self.get_whitespace.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -397,11 +397,11 @@ class StringOperations(object):
         url = self.put_whitespace.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -444,11 +444,11 @@ class StringOperations(object):
         url = self.get_not_provided.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -491,11 +491,11 @@ class StringOperations(object):
         url = self.get_base64_encoded.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -538,11 +538,11 @@ class StringOperations(object):
         url = self.get_base64_url_encoded.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -588,11 +588,11 @@ class StringOperations(object):
         url = self.put_base64_url_encoded.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -635,11 +635,11 @@ class StringOperations(object):
         url = self.get_null_base64_url_encoded.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
 
 

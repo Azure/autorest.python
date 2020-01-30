@@ -67,11 +67,11 @@ class UsageOperations(object):
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
 
 

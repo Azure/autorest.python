@@ -114,9 +114,9 @@ def {{ operation.python_name }}(
     url = self._client.format_url(url, **path_format_arguments)
 {% endif %}
 
-    {{ op_tools.query_parameters(operation)|indent }}
+    {{ op_tools.query_parameters(operation, async_mode)|indent }}
 
-    {{ op_tools.header_parameters(code_model, operation)|indent }}
+    {{ op_tools.header_parameters(code_model, operation, async_mode)|indent }}
 
 {% if operation.parameters.has_body %}
     # Construct body

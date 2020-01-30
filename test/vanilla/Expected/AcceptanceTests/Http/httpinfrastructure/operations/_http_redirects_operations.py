@@ -61,11 +61,11 @@ class HttpRedirectsOperations(object):
         url = self.head300.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
 
 
         # Construct and send request
@@ -108,11 +108,11 @@ class HttpRedirectsOperations(object):
         url = self.get300.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -159,11 +159,11 @@ class HttpRedirectsOperations(object):
         url = self.head301.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
 
 
         # Construct and send request
@@ -206,11 +206,11 @@ class HttpRedirectsOperations(object):
         url = self.get301.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
 
 
         # Construct and send request
@@ -254,11 +254,11 @@ class HttpRedirectsOperations(object):
         url = self.put301.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -307,11 +307,11 @@ class HttpRedirectsOperations(object):
         url = self.head302.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
 
 
         # Construct and send request
@@ -354,11 +354,11 @@ class HttpRedirectsOperations(object):
         url = self.get302.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
 
 
         # Construct and send request
@@ -402,11 +402,11 @@ class HttpRedirectsOperations(object):
         url = self.patch302.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -456,11 +456,11 @@ class HttpRedirectsOperations(object):
         url = self.post303.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -510,11 +510,11 @@ class HttpRedirectsOperations(object):
         url = self.head307.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
 
 
         # Construct and send request
@@ -557,11 +557,11 @@ class HttpRedirectsOperations(object):
         url = self.get307.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
 
 
         # Construct and send request
@@ -604,11 +604,11 @@ class HttpRedirectsOperations(object):
         url = self.options307.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
 
 
         # Construct and send request
@@ -652,11 +652,11 @@ class HttpRedirectsOperations(object):
         url = self.put307.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -707,11 +707,11 @@ class HttpRedirectsOperations(object):
         url = self.patch307.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -762,11 +762,11 @@ class HttpRedirectsOperations(object):
         url = self.post307.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -817,11 +817,11 @@ class HttpRedirectsOperations(object):
         url = self.delete307.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
 

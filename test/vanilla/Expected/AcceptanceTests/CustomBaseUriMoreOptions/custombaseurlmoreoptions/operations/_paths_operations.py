@@ -81,13 +81,13 @@ class PathsOperations(object):
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
         if key_version is not None:
             query_parameters['keyVersion'] = self._serialize.query("key_version", key_version, 'str')
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
 
 
         # Construct and send request

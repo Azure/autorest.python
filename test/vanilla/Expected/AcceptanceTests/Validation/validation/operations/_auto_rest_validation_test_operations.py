@@ -16,6 +16,8 @@ from msrest.serialization import Model
 
 from .. import models
 
+T = TypeVar('T')
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 class AutoRestValidationTestOperationsMixin(object):
     @distributed_trace
@@ -53,12 +55,12 @@ class AutoRestValidationTestOperationsMixin(object):
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
         query_parameters['apiVersion'] = self._serialize.query("api_version", api_version, 'str')
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -116,12 +118,12 @@ class AutoRestValidationTestOperationsMixin(object):
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
         query_parameters['apiVersion'] = self._serialize.query("api_version", api_version, 'str')
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -175,11 +177,11 @@ class AutoRestValidationTestOperationsMixin(object):
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
 
 
         # Construct and send request
@@ -225,11 +227,11 @@ class AutoRestValidationTestOperationsMixin(object):
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 

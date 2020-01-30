@@ -61,11 +61,11 @@ class ApiVersionDefaultOperations(object):
         url = self.get_method_global_valid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
 
 
         # Construct and send request
@@ -104,11 +104,11 @@ class ApiVersionDefaultOperations(object):
         url = self.get_method_global_not_provided_valid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
 
 
         # Construct and send request
@@ -147,11 +147,11 @@ class ApiVersionDefaultOperations(object):
         url = self.get_path_global_valid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
 
 
         # Construct and send request
@@ -190,11 +190,11 @@ class ApiVersionDefaultOperations(object):
         url = self.get_swagger_global_valid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
 
 
         # Construct and send request

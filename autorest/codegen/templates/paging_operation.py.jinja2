@@ -137,9 +137,9 @@ def {{ operation.python_name }}(
         {% endif %}
 {% endif %}
 
-        {{ op_tools.query_parameters(operation)|indent(8) }}
+        {{ op_tools.query_parameters(operation, async_mode)|indent(8) }}
 
-        {{ op_tools.header_parameters(code_model, operation)|indent(8) }}
+        {{ op_tools.header_parameters(code_model, operation, async_mode)|indent(8) }}
 
     {% if operation.parameters.has_body %}
         # Construct body
