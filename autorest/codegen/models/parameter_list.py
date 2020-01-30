@@ -90,7 +90,7 @@ class ParameterList(MutableSequence):
 
     @property
     def grouped(self) -> List[Parameter]:
-        return self.get_from_predicate(lambda parameter: parameter.grouped_by)
+        return self.get_from_predicate(lambda parameter: cast(bool, parameter.grouped_by))
 
     @property
     def constant(self) -> List[Parameter]:
@@ -151,7 +151,7 @@ class ParameterList(MutableSequence):
 
     @property
     def is_flattened(self) -> bool:
-        return self.get_from_predicate(lambda parameter: parameter.flattened)
+        return cast(bool, self.get_from_predicate(lambda parameter: parameter.flattened))
 
     def build_flattened_object(self) -> str:
         if not self.is_flattened:
