@@ -47,7 +47,6 @@ class TestAcceptance(object):
             'FileStreamVeryLarge' : 1,
             'ConstantsInBody': 1,  # https://github.com/Azure/autorest.modelerfour/issues/83
             'CustomBaseUriMoreOptions': 1, # https://github.com/Azure/autorest.testserver/issues/97
-            'putModelFlattenCustomGroupedParameter': 1, # https://github.com/Azure/autorest.modelerfour/issues/10
         }
 
         print("Coverage:")
