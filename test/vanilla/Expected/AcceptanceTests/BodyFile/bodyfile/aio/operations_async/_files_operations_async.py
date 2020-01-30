@@ -60,11 +60,11 @@ class FilesOperations:
         url = self.get_file.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'image/png'
 
 
@@ -106,11 +106,11 @@ class FilesOperations:
         url = self.get_file_large.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'image/png'
 
 
@@ -152,11 +152,11 @@ class FilesOperations:
         url = self.get_empty_file.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'image/png'
 
 

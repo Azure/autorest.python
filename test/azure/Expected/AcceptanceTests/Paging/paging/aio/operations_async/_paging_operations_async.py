@@ -71,11 +71,11 @@ class PagingOperations:
                 url = next_link
 
             # Construct parameters
-            query_parameters = {}
+            query_parameters: Dict[str, Any] = {}
 
 
             # Construct headers
-            header_parameters = {}
+            header_parameters: Dict[str, Any] = {}
             header_parameters['Accept'] = 'application/json'
 
 
@@ -134,11 +134,11 @@ class PagingOperations:
                 url = next_link
 
             # Construct parameters
-            query_parameters = {}
+            query_parameters: Dict[str, Any] = {}
 
 
             # Construct headers
-            header_parameters = {}
+            header_parameters: Dict[str, Any] = {}
             header_parameters['Accept'] = 'application/json'
 
 
@@ -197,11 +197,11 @@ class PagingOperations:
                 url = next_link
 
             # Construct parameters
-            query_parameters = {}
+            query_parameters: Dict[str, Any] = {}
 
 
             # Construct headers
-            header_parameters = {}
+            header_parameters: Dict[str, Any] = {}
             header_parameters['Accept'] = 'application/json'
 
 
@@ -270,11 +270,11 @@ class PagingOperations:
                 url = next_link
 
             # Construct parameters
-            query_parameters = {}
+            query_parameters: Dict[str, Any] = {}
 
 
             # Construct headers
-            header_parameters = {}
+            header_parameters: Dict[str, Any] = {}
             if client_request_id is not None:
                 header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
             if maxresults is not None:
@@ -349,11 +349,11 @@ class PagingOperations:
                 url = next_link
 
             # Construct parameters
-            query_parameters = {}
+            query_parameters: Dict[str, Any] = {}
 
 
             # Construct headers
-            header_parameters = {}
+            header_parameters: Dict[str, Any] = {}
             if client_request_id is not None:
                 header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
             if maxresults is not None:
@@ -435,11 +435,11 @@ class PagingOperations:
                 url = next_link
 
             # Construct parameters
-            query_parameters = {}
+            query_parameters: Dict[str, Any] = {}
 
 
             # Construct headers
-            header_parameters = {}
+            header_parameters: Dict[str, Any] = {}
             if client_request_id is not None:
                 header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
             if maxresults is not None:
@@ -504,11 +504,11 @@ class PagingOperations:
                 url = next_link
 
             # Construct parameters
-            query_parameters = {}
+            query_parameters: Dict[str, Any] = {}
 
 
             # Construct headers
-            header_parameters = {}
+            header_parameters: Dict[str, Any] = {}
             header_parameters['Accept'] = 'application/json'
 
 
@@ -567,11 +567,11 @@ class PagingOperations:
                 url = next_link
 
             # Construct parameters
-            query_parameters = {}
+            query_parameters: Dict[str, Any] = {}
 
 
             # Construct headers
-            header_parameters = {}
+            header_parameters: Dict[str, Any] = {}
             header_parameters['Accept'] = 'application/json'
 
 
@@ -630,11 +630,11 @@ class PagingOperations:
                 url = next_link
 
             # Construct parameters
-            query_parameters = {}
+            query_parameters: Dict[str, Any] = {}
 
 
             # Construct headers
-            header_parameters = {}
+            header_parameters: Dict[str, Any] = {}
             header_parameters['Accept'] = 'application/json'
 
 
@@ -693,11 +693,11 @@ class PagingOperations:
                 url = next_link
 
             # Construct parameters
-            query_parameters = {}
+            query_parameters: Dict[str, Any] = {}
 
 
             # Construct headers
-            header_parameters = {}
+            header_parameters: Dict[str, Any] = {}
             header_parameters['Accept'] = 'application/json'
 
 
@@ -756,11 +756,11 @@ class PagingOperations:
                 url = next_link
 
             # Construct parameters
-            query_parameters = {}
+            query_parameters: Dict[str, Any] = {}
 
 
             # Construct headers
-            header_parameters = {}
+            header_parameters: Dict[str, Any] = {}
             header_parameters['Accept'] = 'application/json'
 
 
@@ -835,12 +835,12 @@ class PagingOperations:
                 url = self._client.format_url(url, **path_format_arguments)
 
             # Construct parameters
-            query_parameters = {}
+            query_parameters: Dict[str, Any] = {}
             query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
 
 
             # Construct headers
-            header_parameters = {}
+            header_parameters: Dict[str, Any] = {}
             header_parameters['Accept'] = 'application/json'
 
 
@@ -915,12 +915,12 @@ class PagingOperations:
                 url = self._client.format_url(url, **path_format_arguments)
 
             # Construct parameters
-            query_parameters = {}
+            query_parameters: Dict[str, Any] = {}
             query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
 
 
             # Construct headers
-            header_parameters = {}
+            header_parameters: Dict[str, Any] = {}
             header_parameters['Accept'] = 'application/json'
 
 
@@ -969,11 +969,11 @@ class PagingOperations:
         url = self._get_multiple_pages_lro_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         if client_request_id is not None:
             header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
         if maxresults is not None:

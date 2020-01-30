@@ -62,11 +62,11 @@ class DateOperations(object):
         url = self.get_null.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -109,11 +109,11 @@ class DateOperations(object):
         url = self.get_invalid_date.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -156,11 +156,11 @@ class DateOperations(object):
         url = self.get_overflow_date.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -203,11 +203,11 @@ class DateOperations(object):
         url = self.get_underflow_date.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -253,11 +253,11 @@ class DateOperations(object):
         url = self.put_max_date.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -300,11 +300,11 @@ class DateOperations(object):
         url = self.get_max_date.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -350,11 +350,11 @@ class DateOperations(object):
         url = self.put_min_date.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -397,11 +397,11 @@ class DateOperations(object):
         url = self.get_min_date.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 

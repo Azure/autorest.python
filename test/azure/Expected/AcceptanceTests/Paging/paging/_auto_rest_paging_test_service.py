@@ -6,6 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import Any, Optional
+
 from azure.mgmt.core import ARMPipelineClient
 from msrest import Deserializer, Serializer
 

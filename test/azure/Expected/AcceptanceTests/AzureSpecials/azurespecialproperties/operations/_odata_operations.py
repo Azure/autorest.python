@@ -70,7 +70,7 @@ class OdataOperations(object):
         url = self.get_with_filter.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
         if filter is not None:
             query_parameters['$filter'] = self._serialize.query("filter", filter, 'str')
         if top is not None:
@@ -80,7 +80,7 @@ class OdataOperations(object):
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
 
 
         # Construct and send request

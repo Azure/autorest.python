@@ -61,11 +61,11 @@ class ByteOperations(object):
         url = self.get_null.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -108,11 +108,11 @@ class ByteOperations(object):
         url = self.get_empty.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -155,11 +155,11 @@ class ByteOperations(object):
         url = self.get_non_ascii.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -205,11 +205,11 @@ class ByteOperations(object):
         url = self.put_non_ascii.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -252,11 +252,11 @@ class ByteOperations(object):
         url = self.get_invalid.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 

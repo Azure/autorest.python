@@ -57,11 +57,11 @@ class LROsOperations:
         url = self._put200_succeeded_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -153,11 +153,11 @@ class LROsOperations:
         url = self._put200_succeeded_no_state_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -247,11 +247,11 @@ class LROsOperations:
         url = self._put202_retry200_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -341,11 +341,11 @@ class LROsOperations:
         url = self._put201_creating_succeeded200_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -440,11 +440,11 @@ class LROsOperations:
         url = self._put200_updating_succeeded204_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -534,11 +534,11 @@ class LROsOperations:
         url = self._put201_creating_failed200_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -633,11 +633,11 @@ class LROsOperations:
         url = self._put200_acceptedcanceled200_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -727,11 +727,11 @@ class LROsOperations:
         url = self._put_no_header_in_retry_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -826,11 +826,11 @@ class LROsOperations:
         url = self._put_async_retry_succeeded_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -929,11 +929,11 @@ class LROsOperations:
         url = self._put_async_no_retry_succeeded_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -1030,11 +1030,11 @@ class LROsOperations:
         url = self._put_async_retry_failed_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -1133,11 +1133,11 @@ class LROsOperations:
         url = self._put_async_no_retrycanceled_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -1234,11 +1234,11 @@ class LROsOperations:
         url = self._put_async_no_header_in_retry_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -1333,11 +1333,11 @@ class LROsOperations:
         url = self._put_non_resource_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -1427,11 +1427,11 @@ class LROsOperations:
         url = self._put_async_non_resource_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -1522,11 +1522,11 @@ class LROsOperations:
         url = self._put_sub_resource_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -1617,11 +1617,11 @@ class LROsOperations:
         url = self._put_async_sub_resource_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -1709,11 +1709,11 @@ class LROsOperations:
         url = self._delete_provisioning202_accepted200_succeeded_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -1801,11 +1801,11 @@ class LROsOperations:
         url = self._delete_provisioning202_deleting_failed200_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -1893,11 +1893,11 @@ class LROsOperations:
         url = self._delete_provisioning202_deletingcanceled200_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -1985,11 +1985,11 @@ class LROsOperations:
         url = self._delete204_succeeded_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
 
 
         # Construct and send request
@@ -2058,11 +2058,11 @@ class LROsOperations:
         url = self._delete202_retry200_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -2145,11 +2145,11 @@ class LROsOperations:
         url = self._delete202_no_retry204_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -2232,11 +2232,11 @@ class LROsOperations:
         url = self._delete_no_header_in_retry_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
 
 
         # Construct and send request
@@ -2309,11 +2309,11 @@ class LROsOperations:
         url = self._delete_async_no_header_in_retry_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
 
 
         # Construct and send request
@@ -2386,11 +2386,11 @@ class LROsOperations:
         url = self._delete_async_retry_succeeded_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
 
 
         # Construct and send request
@@ -2464,11 +2464,11 @@ class LROsOperations:
         url = self._delete_async_no_retry_succeeded_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
 
 
         # Construct and send request
@@ -2542,11 +2542,11 @@ class LROsOperations:
         url = self._delete_async_retry_failed_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
 
 
         # Construct and send request
@@ -2620,11 +2620,11 @@ class LROsOperations:
         url = self._delete_async_retrycanceled_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
 
 
         # Construct and send request
@@ -2698,11 +2698,11 @@ class LROsOperations:
         url = self._post200_with_payload_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -2785,11 +2785,11 @@ class LROsOperations:
         url = self._post202_retry200_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -2876,11 +2876,11 @@ class LROsOperations:
         url = self._post202_no_retry204_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -2975,11 +2975,11 @@ class LROsOperations:
         url = self._post_double_headers_final_location_get_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -3055,11 +3055,11 @@ class LROsOperations:
         url = self._post_double_headers_final_azure_header_get_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -3135,11 +3135,11 @@ class LROsOperations:
         url = self._post_double_headers_final_azure_header_get_default_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -3217,11 +3217,11 @@ class LROsOperations:
         url = self._post_async_retry_succeeded_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -3319,11 +3319,11 @@ class LROsOperations:
         url = self._post_async_no_retry_succeeded_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -3421,11 +3421,11 @@ class LROsOperations:
         url = self._post_async_retry_failed_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -3513,11 +3513,11 @@ class LROsOperations:
         url = self._post_async_retrycanceled_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
 
 

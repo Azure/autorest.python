@@ -14,7 +14,7 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
 {# write queryparameters #}
 {% macro query_parameters(operation) %}
 # Construct parameters
-query_parameters = {}
+query_parameters: Dict[str, Any] = {}
 {% if operation.parameters.query %}
     {% for query_parameter in operation.parameters.query %}
         {%if query_parameter.required %}
@@ -29,7 +29,7 @@ if {{ query_parameter.full_serialized_name }} is not None:
 {# write request headers #}
 {% macro header_parameters(code_model, operation) %}
 # Construct headers
-header_parameters = {}
+header_parameters: Dict[str, Any] = {}
 {% if operation.parameters.headers %}
     {% for header_parameter in operation.parameters.headers %}
         {%if header_parameter.required %}

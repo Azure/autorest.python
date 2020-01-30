@@ -61,11 +61,11 @@ class NumberOperations(object):
         url = self.get_null.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -108,11 +108,11 @@ class NumberOperations(object):
         url = self.get_invalid_float.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -155,11 +155,11 @@ class NumberOperations(object):
         url = self.get_invalid_double.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -202,11 +202,11 @@ class NumberOperations(object):
         url = self.get_invalid_decimal.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -252,11 +252,11 @@ class NumberOperations(object):
         url = self.put_big_float.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -299,11 +299,11 @@ class NumberOperations(object):
         url = self.get_big_float.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -349,11 +349,11 @@ class NumberOperations(object):
         url = self.put_big_double.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -396,11 +396,11 @@ class NumberOperations(object):
         url = self.get_big_double.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -444,11 +444,11 @@ class NumberOperations(object):
         url = self.put_big_double_positive_decimal.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -491,11 +491,11 @@ class NumberOperations(object):
         url = self.get_big_double_positive_decimal.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -539,11 +539,11 @@ class NumberOperations(object):
         url = self.put_big_double_negative_decimal.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -586,11 +586,11 @@ class NumberOperations(object):
         url = self.get_big_double_negative_decimal.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -636,11 +636,11 @@ class NumberOperations(object):
         url = self.put_big_decimal.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -683,11 +683,11 @@ class NumberOperations(object):
         url = self.get_big_decimal.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -731,11 +731,11 @@ class NumberOperations(object):
         url = self.put_big_decimal_positive_decimal.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -778,11 +778,11 @@ class NumberOperations(object):
         url = self.get_big_decimal_positive_decimal.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -826,11 +826,11 @@ class NumberOperations(object):
         url = self.put_big_decimal_negative_decimal.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -873,11 +873,11 @@ class NumberOperations(object):
         url = self.get_big_decimal_negative_decimal.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -923,11 +923,11 @@ class NumberOperations(object):
         url = self.put_small_float.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -970,11 +970,11 @@ class NumberOperations(object):
         url = self.get_small_float.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -1020,11 +1020,11 @@ class NumberOperations(object):
         url = self.put_small_double.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -1067,11 +1067,11 @@ class NumberOperations(object):
         url = self.get_small_double.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
@@ -1117,11 +1117,11 @@ class NumberOperations(object):
         url = self.put_small_decimal.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -1164,11 +1164,11 @@ class NumberOperations(object):
         url = self.get_small_decimal.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 

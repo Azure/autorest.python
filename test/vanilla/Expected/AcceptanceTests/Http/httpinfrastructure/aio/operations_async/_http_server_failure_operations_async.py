@@ -60,11 +60,11 @@ class HttpServerFailureOperations:
         url = self.head501.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
 
 
         # Construct and send request
@@ -102,11 +102,11 @@ class HttpServerFailureOperations:
         url = self.get501.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
 
 
         # Construct and send request
@@ -145,11 +145,11 @@ class HttpServerFailureOperations:
         url = self.post505.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -195,11 +195,11 @@ class HttpServerFailureOperations:
         url = self.delete505.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
 
 

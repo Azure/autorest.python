@@ -61,11 +61,11 @@ class ApiVersionLocalOperations(object):
         url = self.get_method_local_valid.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
 
 
         # Construct and send request
@@ -104,11 +104,11 @@ class ApiVersionLocalOperations(object):
         url = self.get_method_local_null.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
 
 
         # Construct and send request
@@ -147,11 +147,11 @@ class ApiVersionLocalOperations(object):
         url = self.get_path_local_valid.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
 
 
         # Construct and send request
@@ -190,11 +190,11 @@ class ApiVersionLocalOperations(object):
         url = self.get_swagger_local_valid.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
 
 
         # Construct and send request

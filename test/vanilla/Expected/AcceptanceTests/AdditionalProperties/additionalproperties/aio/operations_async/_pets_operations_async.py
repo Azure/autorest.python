@@ -65,11 +65,11 @@ class PetsOperations:
         url = self.create_ap_true.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -119,11 +119,11 @@ class PetsOperations:
         url = self.create_cat_ap_true.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -173,11 +173,11 @@ class PetsOperations:
         url = self.create_ap_object.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -227,11 +227,11 @@ class PetsOperations:
         url = self.create_ap_string.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -281,11 +281,11 @@ class PetsOperations:
         url = self.create_ap_in_properties.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -335,11 +335,11 @@ class PetsOperations:
         url = self.create_ap_in_properties_with_ap_string.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 

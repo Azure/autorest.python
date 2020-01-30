@@ -64,13 +64,13 @@ class QueriesOperations:
         url = self.array_string_multi_null.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
         if array_query is not None:
             query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
 
 
         # Construct and send request
@@ -112,13 +112,13 @@ class QueriesOperations:
         url = self.array_string_multi_empty.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
         if array_query is not None:
             query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
 
 
         # Construct and send request
@@ -160,13 +160,13 @@ class QueriesOperations:
         url = self.array_string_multi_valid.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
         if array_query is not None:
             query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
 
 
         # Construct and send request

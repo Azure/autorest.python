@@ -68,11 +68,11 @@ class SkipUrlEncodingOperations:
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
 
 
         # Construct and send request
@@ -118,11 +118,11 @@ class SkipUrlEncodingOperations:
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
 
 
         # Construct and send request
@@ -165,11 +165,11 @@ class SkipUrlEncodingOperations:
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
 
 
         # Construct and send request
@@ -211,12 +211,12 @@ class SkipUrlEncodingOperations:
         url = self.get_method_query_valid.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
         query_parameters['q1'] = self._serialize.query("q1", q1, 'str', skip_quote=True)
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
 
 
         # Construct and send request
@@ -258,13 +258,13 @@ class SkipUrlEncodingOperations:
         url = self.get_method_query_null.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
         if q1 is not None:
             query_parameters['q1'] = self._serialize.query("q1", q1, 'str', skip_quote=True)
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
 
 
         # Construct and send request
@@ -306,12 +306,12 @@ class SkipUrlEncodingOperations:
         url = self.get_path_query_valid.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
         query_parameters['q1'] = self._serialize.query("q1", q1, 'str', skip_quote=True)
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
 
 
         # Construct and send request
@@ -350,12 +350,12 @@ class SkipUrlEncodingOperations:
         url = self.get_swagger_query_valid.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
         query_parameters['q1'] = self._serialize.query("q1", q1, 'str', skip_quote=True)
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
 
 
         # Construct and send request

@@ -61,11 +61,11 @@ class XmlOperations:
         url = self.get_complex_type_ref_no_meta.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
 
 
@@ -111,11 +111,11 @@ class XmlOperations:
         url = self.put_complex_type_ref_no_meta.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/xml'
 
 
@@ -157,11 +157,11 @@ class XmlOperations:
         url = self.get_complex_type_ref_with_meta.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
 
 
@@ -207,11 +207,11 @@ class XmlOperations:
         url = self.put_complex_type_ref_with_meta.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/xml'
 
 
@@ -253,11 +253,11 @@ class XmlOperations:
         url = self.get_simple.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
 
 
@@ -303,11 +303,11 @@ class XmlOperations:
         url = self.put_simple.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/xml'
 
 
@@ -349,11 +349,11 @@ class XmlOperations:
         url = self.get_wrapped_lists.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
 
 
@@ -399,11 +399,11 @@ class XmlOperations:
         url = self.put_wrapped_lists.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/xml'
 
 
@@ -445,11 +445,11 @@ class XmlOperations:
         url = self.get_headers.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
 
 
         # Construct and send request
@@ -490,11 +490,11 @@ class XmlOperations:
         url = self.get_empty_list.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
 
 
@@ -540,11 +540,11 @@ class XmlOperations:
         url = self.put_empty_list.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/xml'
 
 
@@ -586,11 +586,11 @@ class XmlOperations:
         url = self.get_empty_wrapped_lists.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
 
 
@@ -636,11 +636,11 @@ class XmlOperations:
         url = self.put_empty_wrapped_lists.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/xml'
 
 
@@ -682,11 +682,11 @@ class XmlOperations:
         url = self.get_root_list.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
 
 
@@ -732,11 +732,11 @@ class XmlOperations:
         url = self.put_root_list.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/xml'
 
 
@@ -778,11 +778,11 @@ class XmlOperations:
         url = self.get_root_list_single_item.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
 
 
@@ -828,11 +828,11 @@ class XmlOperations:
         url = self.put_root_list_single_item.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/xml'
 
 
@@ -874,11 +874,11 @@ class XmlOperations:
         url = self.get_empty_root_list.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
 
 
@@ -924,11 +924,11 @@ class XmlOperations:
         url = self.put_empty_root_list.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/xml'
 
 
@@ -970,11 +970,11 @@ class XmlOperations:
         url = self.get_empty_child_element.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
 
 
@@ -1020,11 +1020,11 @@ class XmlOperations:
         url = self.put_empty_child_element.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/xml'
 
 
@@ -1067,12 +1067,12 @@ class XmlOperations:
         url = self.list_containers.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
         query_parameters['comp'] = self._serialize.query("comp", comp, 'str')
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
 
 
@@ -1116,13 +1116,13 @@ class XmlOperations:
         url = self.get_service_properties.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
         query_parameters['comp'] = self._serialize.query("comp", comp, 'str')
         query_parameters['restype'] = self._serialize.query("restype", restype, 'str')
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
 
 
@@ -1170,13 +1170,13 @@ class XmlOperations:
         url = self.put_service_properties.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
         query_parameters['comp'] = self._serialize.query("comp", comp, 'str')
         query_parameters['restype'] = self._serialize.query("restype", restype, 'str')
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/xml'
 
 
@@ -1220,13 +1220,13 @@ class XmlOperations:
         url = self.get_acls.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
         query_parameters['comp'] = self._serialize.query("comp", comp, 'str')
         query_parameters['restype'] = self._serialize.query("restype", restype, 'str')
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
 
 
@@ -1274,13 +1274,13 @@ class XmlOperations:
         url = self.put_acls.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
         query_parameters['comp'] = self._serialize.query("comp", comp, 'str')
         query_parameters['restype'] = self._serialize.query("restype", restype, 'str')
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/xml'
 
 
@@ -1324,13 +1324,13 @@ class XmlOperations:
         url = self.list_blobs.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
         query_parameters['comp'] = self._serialize.query("comp", comp, 'str')
         query_parameters['restype'] = self._serialize.query("restype", restype, 'str')
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
 
 
@@ -1377,11 +1377,11 @@ class XmlOperations:
         url = self.json_input.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
 
 
@@ -1423,11 +1423,11 @@ class XmlOperations:
         url = self.json_output.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters: Dict[str, Any] = {}
 
 
         # Construct headers
-        header_parameters = {}
+        header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
 
 
