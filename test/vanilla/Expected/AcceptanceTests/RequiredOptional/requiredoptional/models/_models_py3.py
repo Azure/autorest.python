@@ -52,6 +52,7 @@ class ArrayWrapper(Model):
 
     def __init__(
         self,
+        *,
         value: List[str],
         **kwargs
     ):
@@ -99,6 +100,7 @@ class ClassWrapper(Model):
 
     def __init__(
         self,
+        *,
         value: "Product",
         **kwargs
     ):
@@ -198,6 +200,7 @@ class IntWrapper(Model):
 
     def __init__(
         self,
+        *,
         value: int,
         **kwargs
     ):
@@ -227,8 +230,8 @@ class Product(Model):
 
     def __init__(
         self,
-        id: int,
         *,
+        id: int,
         name: Optional[str] = None,
         **kwargs
     ):
@@ -277,6 +280,7 @@ class StringWrapper(Model):
 
     def __init__(
         self,
+        *,
         value: str,
         **kwargs
     ):

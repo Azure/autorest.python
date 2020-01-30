@@ -209,8 +209,8 @@ class Fish(Model):
 
     def __init__(
         self,
-        length: float,
         *,
+        length: float,
         species: Optional[str] = None,
         siblings: Optional[List["Fish"]] = None,
         **kwargs
@@ -265,9 +265,9 @@ class Shark(Fish):
 
     def __init__(
         self,
+        *,
         length: float,
         birthday: datetime.datetime,
-        *,
         species: Optional[str] = None,
         siblings: Optional[List["Fish"]] = None,
         age: Optional[int] = None,
@@ -315,9 +315,9 @@ class Cookiecuttershark(Shark):
 
     def __init__(
         self,
+        *,
         length: float,
         birthday: datetime.datetime,
-        *,
         species: Optional[str] = None,
         siblings: Optional[List["Fish"]] = None,
         age: Optional[int] = None,
@@ -741,9 +741,9 @@ class Goblinshark(Shark):
 
     def __init__(
         self,
+        *,
         length: float,
         birthday: datetime.datetime,
-        *,
         species: Optional[str] = None,
         siblings: Optional[List["Fish"]] = None,
         age: Optional[int] = None,
@@ -985,8 +985,8 @@ class Salmon(Fish):
 
     def __init__(
         self,
-        length: float,
         *,
+        length: float,
         species: Optional[str] = None,
         siblings: Optional[List["Fish"]] = None,
         location: Optional[str] = None,
@@ -1038,9 +1038,9 @@ class Sawshark(Shark):
 
     def __init__(
         self,
+        *,
         length: float,
         birthday: datetime.datetime,
-        *,
         species: Optional[str] = None,
         siblings: Optional[List["Fish"]] = None,
         age: Optional[int] = None,
@@ -1131,8 +1131,8 @@ class SmartSalmon(Salmon):
 
     def __init__(
         self,
-        length: float,
         *,
+        length: float,
         species: Optional[str] = None,
         siblings: Optional[List["Fish"]] = None,
         location: Optional[str] = None,

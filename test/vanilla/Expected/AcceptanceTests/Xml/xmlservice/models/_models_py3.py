@@ -40,6 +40,7 @@ class AccessPolicy(Model):
 
     def __init__(
         self,
+        *,
         start: datetime.datetime,
         expiry: datetime.datetime,
         permission: str,
@@ -149,11 +150,11 @@ class Blob(Model):
 
     def __init__(
         self,
+        *,
         name: str,
         deleted: bool,
         snapshot: str,
         properties: "BlobProperties",
-        *,
         metadata: Optional[Dict[str, str]] = None,
         **kwargs
     ):
@@ -184,6 +185,7 @@ class BlobPrefix(Model):
 
     def __init__(
         self,
+        *,
         name: str,
         **kwargs
     ):
@@ -297,9 +299,9 @@ class BlobProperties(Model):
 
     def __init__(
         self,
+        *,
         last_modified: datetime.datetime,
         etag: str,
-        *,
         content_length: Optional[int] = None,
         content_type: Optional[str] = None,
         content_encoding: Optional[str] = None,
@@ -457,9 +459,9 @@ class Container(Model):
 
     def __init__(
         self,
+        *,
         name: str,
         properties: "ContainerProperties",
-        *,
         metadata: Optional[Dict[str, str]] = None,
         **kwargs
     ):
@@ -505,9 +507,9 @@ class ContainerProperties(Model):
 
     def __init__(
         self,
+        *,
         last_modified: datetime.datetime,
         etag: str,
-        *,
         lease_status: Optional[Union[str, "LeaseStatusType"]] = None,
         lease_state: Optional[Union[str, "LeaseStateType"]] = None,
         lease_duration: Optional[Union[str, "LeaseDurationType"]] = None,
@@ -570,6 +572,7 @@ class CorsRule(Model):
 
     def __init__(
         self,
+        *,
         allowed_origins: str,
         allowed_methods: str,
         allowed_headers: str,
@@ -729,6 +732,7 @@ class ListBlobsResponse(Model):
 
     def __init__(
         self,
+        *,
         service_endpoint: str,
         container_name: str,
         prefix: str,
@@ -790,11 +794,11 @@ class ListContainersResponse(Model):
 
     def __init__(
         self,
+        *,
         service_endpoint: str,
         prefix: str,
         max_results: int,
         next_marker: str,
-        *,
         marker: Optional[str] = None,
         containers: Optional[List["Container"]] = None,
         **kwargs
@@ -843,6 +847,7 @@ class Logging(Model):
 
     def __init__(
         self,
+        *,
         version: str,
         delete: bool,
         read: bool,
@@ -888,8 +893,8 @@ class Metrics(Model):
 
     def __init__(
         self,
-        enabled: bool,
         *,
+        enabled: bool,
         version: Optional[str] = None,
         include_apis: Optional[bool] = None,
         retention_policy: Optional["RetentionPolicy"] = None,
@@ -927,8 +932,8 @@ class RetentionPolicy(Model):
 
     def __init__(
         self,
-        enabled: bool,
         *,
+        enabled: bool,
         days: Optional[int] = None,
         **kwargs
     ):
@@ -1015,6 +1020,7 @@ class SignedIdentifier(Model):
 
     def __init__(
         self,
+        *,
         id: str,
         access_policy: "AccessPolicy",
         **kwargs

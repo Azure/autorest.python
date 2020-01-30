@@ -36,8 +36,8 @@ class BaseProduct(Model):
 
     def __init__(
         self,
-        product_id: str,
         *,
+        product_id: str,
         description: Optional[str] = None,
         **kwargs
     ):
@@ -308,9 +308,9 @@ class FlattenParameterGroup(Model):
 
     def __init__(
         self,
+        *,
         name: str,
         product_id: str,
-        *,
         simple_body_product: Optional["SimpleProduct"] = None,
         description: Optional[str] = None,
         max_product_display_name: Optional[str] = None,
@@ -468,8 +468,8 @@ class SimpleProduct(BaseProduct):
 
     def __init__(
         self,
-        product_id: str,
         *,
+        product_id: str,
         description: Optional[str] = None,
         max_product_display_name: Optional[str] = None,
         generic_value: Optional[str] = None,
@@ -516,8 +516,8 @@ class SimpleProductProperties(Model):
 
     def __init__(
         self,
-        max_product_display_name: str,
         *,
+        max_product_display_name: str,
         generic_value: Optional[str] = None,
         odata_value: Optional[str] = None,
         **kwargs

@@ -44,8 +44,8 @@ class PetAPTrue(Model):
 
     def __init__(
         self,
-        id: int,
         *,
+        id: int,
         additional_properties: Optional[Dict[str, object]] = None,
         name: Optional[str] = None,
         **kwargs
@@ -92,8 +92,8 @@ class CatAPTrue(PetAPTrue):
 
     def __init__(
         self,
-        id: int,
         *,
+        id: int,
         additional_properties: Optional[Dict[str, object]] = None,
         name: Optional[str] = None,
         friendly: Optional[bool] = None,
@@ -187,8 +187,8 @@ class PetAPInProperties(Model):
 
     def __init__(
         self,
-        id: int,
         *,
+        id: int,
         name: Optional[str] = None,
         additional_properties: Optional[Dict[str, float]] = None,
         **kwargs
@@ -240,9 +240,9 @@ class PetAPInPropertiesWithAPString(Model):
 
     def __init__(
         self,
+        *,
         id: int,
         odata_location: str,
-        *,
         additional_properties: Optional[Dict[str, str]] = None,
         name: Optional[str] = None,
         additional_properties1: Optional[Dict[str, float]] = None,
@@ -289,8 +289,8 @@ class PetAPObject(Model):
 
     def __init__(
         self,
-        id: int,
         *,
+        id: int,
         additional_properties: Optional[Dict[str, object]] = None,
         name: Optional[str] = None,
         **kwargs
@@ -334,8 +334,8 @@ class PetAPString(Model):
 
     def __init__(
         self,
-        id: int,
         *,
+        id: int,
         additional_properties: Optional[Dict[str, str]] = None,
         name: Optional[str] = None,
         **kwargs
