@@ -234,6 +234,12 @@ class FlattenParameterGroup(Model):
     :type name: str
     :param simple_body_product: Simple body product to put.
     :type simple_body_product: ~modelflattening.models.SimpleProduct
+    :param product_id: Required. Unique identifier representing a specific product
+     for a given latitude & longitude. For example, uberX in San Francisco will have
+     a different product_id than uberX in Los Angeles.
+    :type product_id: str
+    :param description: Description of product.
+    :type description: str
     :param max_product_display_name: Display name of product.
     :type max_product_display_name: str
     :ivar capacity: Capacity of product. For example, 4 people. Default value:
@@ -247,12 +253,15 @@ class FlattenParameterGroup(Model):
 
     _validation = {
         'name': {'required': True},
+        'product_id': {'required': True},
         'capacity': {'constant': True},
     }
 
     _attribute_map = {
         'name': {'key': 'name', 'type': 'str'},
         'simple_body_product': {'key': 'SimpleBodyProduct', 'type': 'SimpleProduct'},
+        'product_id': {'key': 'productId', 'type': 'str'},
+        'description': {'key': 'description', 'type': 'str'},
         'max_product_display_name': {'key': 'max_product_display_name', 'type': 'str'},
         'capacity': {'key': 'capacity', 'type': 'str'},
         'generic_value': {'key': 'generic_value', 'type': 'str'},
@@ -261,10 +270,12 @@ class FlattenParameterGroup(Model):
 
     capacity = "Large"
 
-    def __init__(self, *, name: str, simple_body_product: "SimpleProduct"=None, max_product_display_name: str=None, generic_value: str=None, odatavalue: str=None, **kwargs) -> None:
+    def __init__(self, *, name: str, product_id: str, simple_body_product: "SimpleProduct"=None, description: str=None, max_product_display_name: str=None, generic_value: str=None, odatavalue: str=None, **kwargs) -> None:
         super(FlattenParameterGroup, self).__init__(**kwargs)
         self.name = name
         self.simple_body_product = simple_body_product
+        self.product_id = product_id
+        self.description = description
         self.max_product_display_name = max_product_display_name
         self.generic_value = generic_value
         self.odatavalue = odatavalue

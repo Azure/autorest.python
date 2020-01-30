@@ -413,11 +413,15 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         return deserialized
     put_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
     @distributed_trace
-    def post_flattened_simple_product(self, max_product_display_name=None, generic_value=None, odatavalue=None, cls=None, **kwargs):
+    def post_flattened_simple_product(self, product_id, description=None, max_product_display_name=None, generic_value=None, odatavalue=None, cls=None, **kwargs):
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         FIXME: add operation.summary
 
+        :param product_id: Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
+        :type product_id: str
+        :param description: Description of product.
+        :type description: str
         :param max_product_display_name: Display name of product.
         :type max_product_display_name: str
         :param generic_value: Generic URL value.
@@ -430,7 +434,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :raises: ~modelflattening.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        simple_body_product = models.SimpleProduct(max_product_display_name=max_product_display_name, generic_value=generic_value, odatavalue=odatavalue)
+        simple_body_product = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odatavalue=odatavalue)
 
         # Construct URL
         url = self.post_flattened_simple_product.metadata['url']
@@ -484,6 +488,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         
         name = None
         simple_body_product = None
+        product_id = None
+        description = None
         max_product_display_name = None
         capacity = None
         generic_value = None
@@ -491,12 +497,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         if flatten_parameter_group is not None:
             name = flatten_parameter_group.name
             simple_body_product = flatten_parameter_group.simple_body_product
+            product_id = flatten_parameter_group.product_id
+            description = flatten_parameter_group.description
             max_product_display_name = flatten_parameter_group.max_product_display_name
             capacity = flatten_parameter_group.capacity
             generic_value = flatten_parameter_group.generic_value
             odatavalue = flatten_parameter_group.odatavalue
 
-        simple_body_product = models.SimpleProduct(max_product_display_name=max_product_display_name, generic_value=generic_value, odatavalue=odatavalue, flatten_parameter_group=flatten_parameter_group)
+        simple_body_product = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odatavalue=odatavalue, flatten_parameter_group=flatten_parameter_group)
 
         # Construct URL
         url = self.put_simple_product_with_grouping.metadata['url']
