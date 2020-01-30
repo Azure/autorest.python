@@ -17,6 +17,10 @@ from azure.mgmt.core.exceptions import ARMError
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class HeadExceptionOperations:
     """HeadExceptionOperations async operations.
 

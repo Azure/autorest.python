@@ -22,6 +22,10 @@ from ... import models
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class LROsOperations:
     """LROsOperations async operations.
 
@@ -96,7 +100,7 @@ class LROsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -190,7 +194,7 @@ class LROsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -284,7 +288,7 @@ class LROsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -383,7 +387,7 @@ class LROsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -477,7 +481,7 @@ class LROsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -576,7 +580,7 @@ class LROsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -670,7 +674,7 @@ class LROsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -766,7 +770,7 @@ class LROsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -867,7 +871,7 @@ class LROsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -969,7 +973,7 @@ class LROsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -1071,7 +1075,7 @@ class LROsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -1173,7 +1177,7 @@ class LROsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -1273,7 +1277,7 @@ class LROsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -1370,7 +1374,7 @@ class LROsOperations:
         self,
         sku: Optional["Sku"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Sku") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Sku":
@@ -1464,7 +1468,7 @@ class LROsOperations:
         self,
         sku: Optional["Sku"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Sku") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Sku":
@@ -1559,7 +1563,7 @@ class LROsOperations:
         self,
         provisioning_state: Optional[str] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("SubProduct") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "SubProduct":
@@ -1654,7 +1658,7 @@ class LROsOperations:
         self,
         provisioning_state: Optional[str] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("SubProduct") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "SubProduct":
@@ -1745,7 +1749,7 @@ class LROsOperations:
     @distributed_trace_async
     async def delete_provisioning202_accepted200_succeeded(
         self,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -1837,7 +1841,7 @@ class LROsOperations:
     @distributed_trace_async
     async def delete_provisioning202_deleting_failed200(
         self,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -1929,7 +1933,7 @@ class LROsOperations:
     @distributed_trace_async
     async def delete_provisioning202_deletingcanceled200(
         self,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -2009,7 +2013,7 @@ class LROsOperations:
     @distributed_trace_async
     async def delete204_succeeded(
         self,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -2093,7 +2097,7 @@ class LROsOperations:
     @distributed_trace_async
     async def delete202_retry200(
         self,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -2180,7 +2184,7 @@ class LROsOperations:
     @distributed_trace_async
     async def delete202_no_retry204(
         self,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -2260,7 +2264,7 @@ class LROsOperations:
     @distributed_trace_async
     async def delete_no_header_in_retry(
         self,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -2337,7 +2341,7 @@ class LROsOperations:
     @distributed_trace_async
     async def delete_async_no_header_in_retry(
         self,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -2415,7 +2419,7 @@ class LROsOperations:
     @distributed_trace_async
     async def delete_async_retry_succeeded(
         self,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -2493,7 +2497,7 @@ class LROsOperations:
     @distributed_trace_async
     async def delete_async_no_retry_succeeded(
         self,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -2571,7 +2575,7 @@ class LROsOperations:
     @distributed_trace_async
     async def delete_async_retry_failed(
         self,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -2649,7 +2653,7 @@ class LROsOperations:
     @distributed_trace_async
     async def delete_async_retrycanceled(
         self,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -2731,7 +2735,7 @@ class LROsOperations:
     @distributed_trace_async
     async def post200_with_payload(
         self,
-        cls=None,
+        cls: _cls_type_annotation("Sku") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Sku":
@@ -2822,7 +2826,7 @@ class LROsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -2916,7 +2920,7 @@ class LROsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -3003,7 +3007,7 @@ class LROsOperations:
     @distributed_trace_async
     async def post_double_headers_final_location_get(
         self,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -3083,7 +3087,7 @@ class LROsOperations:
     @distributed_trace_async
     async def post_double_headers_final_azure_header_get(
         self,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -3163,7 +3167,7 @@ class LROsOperations:
     @distributed_trace_async
     async def post_double_headers_final_azure_header_get_default(
         self,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -3262,7 +3266,7 @@ class LROsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -3364,7 +3368,7 @@ class LROsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -3459,7 +3463,7 @@ class LROsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -3551,7 +3555,7 @@ class LROsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:

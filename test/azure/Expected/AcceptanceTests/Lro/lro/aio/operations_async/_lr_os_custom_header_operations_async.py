@@ -22,6 +22,10 @@ from ... import models
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class LROsCustomHeaderOperations:
     """LROsCustomHeaderOperations async operations.
 
@@ -98,7 +102,7 @@ class LROsCustomHeaderOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -202,7 +206,7 @@ class LROsCustomHeaderOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation("Product") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -296,7 +300,7 @@ class LROsCustomHeaderOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -388,7 +392,7 @@ class LROsCustomHeaderOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls=None,
+        cls: _cls_type_annotation(None) = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:

@@ -22,6 +22,10 @@ from ... import models
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class PagingOperations:
     """PagingOperations async operations.
 
@@ -48,7 +52,7 @@ class PagingOperations:
         self,
         account_name: str,
         *,
-        cls=None,
+        cls: _cls_type_annotation("ProductResult") = None,
         **kwargs
     ) -> "ProductResult":
         """A paging operation that combines custom url, paging and partial URL and expect to concat after host.
@@ -125,7 +129,7 @@ class PagingOperations:
         self,
         account_name: str,
         *,
-        cls=None,
+        cls: _cls_type_annotation("ProductResult") = None,
         **kwargs
     ) -> "ProductResult":
         """A paging operation that combines custom url, paging and partial URL with next operation.

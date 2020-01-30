@@ -24,6 +24,10 @@ from ... import models
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
+def _cls_type_annotation(return_type):
+    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
+
+
 class StorageAccountsOperations:
     """StorageAccountsOperations async operations.
 
@@ -163,7 +167,7 @@ class StorageAccountsOperations:
         account_name: str,
         parameters: "StorageAccountCreateParameters",
         *,
-        cls=None,
+        cls: _cls_type_annotation("StorageAccount") = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "StorageAccount":
@@ -454,7 +458,7 @@ class StorageAccountsOperations:
     @distributed_trace
     def list(
         self,
-        cls=None,
+        cls: _cls_type_annotation("StorageAccountListResult") = None,
         **kwargs
     ) -> "StorageAccountListResult":
         """Lists all the storage accounts available under the subscription. Note that storage keys are not returned; use the ListKeys operation for this..
@@ -523,7 +527,7 @@ class StorageAccountsOperations:
         self,
         resource_group_name: str,
         *,
-        cls=None,
+        cls: _cls_type_annotation("StorageAccountListResult") = None,
         **kwargs
     ) -> "StorageAccountListResult":
         """Lists all the storage accounts available under the given resource group. Note that storage keys are not returned; use the ListKeys operation for this..
