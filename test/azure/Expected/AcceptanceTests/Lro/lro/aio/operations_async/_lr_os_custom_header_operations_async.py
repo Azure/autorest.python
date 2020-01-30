@@ -111,7 +111,7 @@ class LROsCustomHeaderOperations:
         FIXME: add operation.summary
 
 
-        :param product: Product to put
+        :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -215,7 +215,7 @@ class LROsCustomHeaderOperations:
         FIXME: add operation.summary
 
 
-        :param product: Product to put
+        :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -309,7 +309,7 @@ class LROsCustomHeaderOperations:
         FIXME: add operation.summary
 
 
-        :param product: Product to put
+        :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -401,7 +401,7 @@ class LROsCustomHeaderOperations:
         FIXME: add operation.summary
 
 
-        :param product: Product to put
+        :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a

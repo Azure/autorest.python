@@ -54,13 +54,13 @@ class PathItemsOperations(object):
 
         FIXME: add operation.summary
 
-        :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path
+        :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
         :type path_item_string_path: str
-        :param local_string_path: should contain value 'localStringPath'
+        :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
-        :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query parameter
+        :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query parameter.
         :type path_item_string_query: str
-        :param local_string_query: should contain value 'localStringQuery'
+        :param local_string_query: should contain value 'localStringQuery'.
         :type local_string_query: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -121,13 +121,13 @@ class PathItemsOperations(object):
 
         FIXME: add operation.summary
 
-        :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path
+        :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
         :type path_item_string_path: str
-        :param local_string_path: should contain value 'localStringPath'
+        :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
-        :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query parameter
+        :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query parameter.
         :type path_item_string_query: str
-        :param local_string_query: should contain value 'localStringQuery'
+        :param local_string_query: should contain value 'localStringQuery'.
         :type local_string_query: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -188,13 +188,13 @@ class PathItemsOperations(object):
 
         FIXME: add operation.summary
 
-        :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path
+        :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
         :type path_item_string_path: str
-        :param local_string_path: should contain value 'localStringPath'
+        :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
-        :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query parameter
+        :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query parameter.
         :type path_item_string_query: str
-        :param local_string_query: should contain value 'localStringQuery'
+        :param local_string_query: should contain value 'localStringQuery'.
         :type local_string_query: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -255,13 +255,13 @@ class PathItemsOperations(object):
 
         FIXME: add operation.summary
 
-        :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path
+        :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
         :type path_item_string_path: str
-        :param local_string_path: should contain value 'localStringPath'
+        :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
-        :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query parameter
+        :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query parameter.
         :type path_item_string_query: str
-        :param local_string_query: should contain value 'localStringQuery'
+        :param local_string_query: should contain value 'localStringQuery'.
         :type local_string_query: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

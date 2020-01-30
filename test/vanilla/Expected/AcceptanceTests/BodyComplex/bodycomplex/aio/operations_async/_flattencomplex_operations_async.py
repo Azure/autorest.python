@@ -50,7 +50,7 @@ class FlattencomplexOperations:
         cls: ClsType["MyBaseType"] = None,
         **kwargs: Any
     ) -> "MyBaseType":
-        """MISSING·OPERATION-DESCRIPTION.
+        """
 
         FIXME: add operation.summary
 

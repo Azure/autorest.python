@@ -142,7 +142,7 @@ class QueriesOperations(object):
 
         FIXME: add operation.summary
 
-        :param bool_query: null boolean value
+        :param bool_query: null boolean value.
         :type bool_query: bool
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -280,7 +280,7 @@ class QueriesOperations(object):
 
         FIXME: add operation.summary
 
-        :param int_query: null integer value
+        :param int_query: null integer value.
         :type int_query: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -418,7 +418,7 @@ class QueriesOperations(object):
 
         FIXME: add operation.summary
 
-        :param long_query: null 64 bit integer value
+        :param long_query: null 64 bit integer value.
         :type long_query: long
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -556,7 +556,7 @@ class QueriesOperations(object):
 
         FIXME: add operation.summary
 
-        :param float_query: null numeric value
+        :param float_query: null numeric value.
         :type float_query: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -694,7 +694,7 @@ class QueriesOperations(object):
 
         FIXME: add operation.summary
 
-        :param double_query: null numeric value
+        :param double_query: null numeric value.
         :type double_query: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -877,7 +877,7 @@ class QueriesOperations(object):
 
         FIXME: add operation.summary
 
-        :param string_query: null string value
+        :param string_query: null string value.
         :type string_query: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -925,7 +925,7 @@ class QueriesOperations(object):
 
         FIXME: add operation.summary
 
-        :param enum_query: 'green color' enum value
+        :param enum_query: 'green color' enum value.
         :type enum_query: str or ~url.models.UriColor
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -973,7 +973,7 @@ class QueriesOperations(object):
 
         FIXME: add operation.summary
 
-        :param enum_query: 'green color' enum value
+        :param enum_query: 'green color' enum value.
         :type enum_query: str or ~url.models.UriColor
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1021,7 +1021,7 @@ class QueriesOperations(object):
 
         FIXME: add operation.summary
 
-        :param byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
+        :param byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
         :type byte_query: bytearray
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1114,7 +1114,7 @@ class QueriesOperations(object):
 
         FIXME: add operation.summary
 
-        :param byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
+        :param byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
         :type byte_query: bytearray
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1207,7 +1207,7 @@ class QueriesOperations(object):
 
         FIXME: add operation.summary
 
-        :param date_query: null as date (no query parameters in uri)
+        :param date_query: null as date (no query parameters in uri).
         :type date_query: ~datetime.date
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1300,7 +1300,7 @@ class QueriesOperations(object):
 
         FIXME: add operation.summary
 
-        :param date_time_query: null as date-time (no query parameters)
+        :param date_time_query: null as date-time (no query parameters).
         :type date_time_query: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1348,7 +1348,7 @@ class QueriesOperations(object):
 
         FIXME: add operation.summary
 
-        :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format
+        :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
         :type array_query: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1396,7 +1396,7 @@ class QueriesOperations(object):
 
         FIXME: add operation.summary
 
-        :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format
+        :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
         :type array_query: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1444,7 +1444,7 @@ class QueriesOperations(object):
 
         FIXME: add operation.summary
 
-        :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format
+        :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
         :type array_query: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1492,7 +1492,7 @@ class QueriesOperations(object):
 
         FIXME: add operation.summary
 
-        :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format
+        :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format.
         :type array_query: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1540,7 +1540,7 @@ class QueriesOperations(object):
 
         FIXME: add operation.summary
 
-        :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format
+        :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format.
         :type array_query: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1588,7 +1588,7 @@ class QueriesOperations(object):
 
         FIXME: add operation.summary
 
-        :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format
+        :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format.
         :type array_query: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

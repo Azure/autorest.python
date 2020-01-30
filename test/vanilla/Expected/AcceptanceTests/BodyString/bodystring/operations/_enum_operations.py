@@ -47,7 +47,7 @@ class EnumOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> Union[str, "Colors"]
-        """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'..
+        """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         FIXME: add operation.summary
 
@@ -144,7 +144,7 @@ class EnumOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> Union[str, "Colors"]
-        """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'..
+        """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         FIXME: add operation.summary
 
@@ -241,7 +241,7 @@ class EnumOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "RefColorConstant"
-        """Get value 'green-color' from the constant..
+        """Get value 'green-color' from the constant.
 
         FIXME: add operation.summary
 

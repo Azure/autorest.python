@@ -103,7 +103,7 @@ class PrimitiveOperations:
 
         FIXME: add operation.summary
 
-        :param complex_body: Please put -1 and 2
+        :param complex_body: Please put -1 and 2.
         :type complex_body: ~bodycomplex.models.IntWrapper
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -199,7 +199,7 @@ class PrimitiveOperations:
 
         FIXME: add operation.summary
 
-        :param complex_body: Please put 1099511627775 and -999511627788
+        :param complex_body: Please put 1099511627775 and -999511627788.
         :type complex_body: ~bodycomplex.models.LongWrapper
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -295,7 +295,7 @@ class PrimitiveOperations:
 
         FIXME: add operation.summary
 
-        :param complex_body: Please put 1.05 and -0.003
+        :param complex_body: Please put 1.05 and -0.003.
         :type complex_body: ~bodycomplex.models.FloatWrapper
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -391,7 +391,7 @@ class PrimitiveOperations:
 
         FIXME: add operation.summary
 
-        :param complex_body: Please put 3e-100 and -0.000000000000000000000000000000000000000000000000000000005
+        :param complex_body: Please put 3e-100 and -0.000000000000000000000000000000000000000000000000000000005.
         :type complex_body: ~bodycomplex.models.DoubleWrapper
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -487,7 +487,7 @@ class PrimitiveOperations:
 
         FIXME: add operation.summary
 
-        :param complex_body: Please put true and false
+        :param complex_body: Please put true and false.
         :type complex_body: ~bodycomplex.models.BooleanWrapper
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -583,7 +583,7 @@ class PrimitiveOperations:
 
         FIXME: add operation.summary
 
-        :param complex_body: Please put 'goodrequest', '', and null
+        :param complex_body: Please put 'goodrequest', '', and null.
         :type complex_body: ~bodycomplex.models.StringWrapper
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -679,7 +679,7 @@ class PrimitiveOperations:
 
         FIXME: add operation.summary
 
-        :param complex_body: Please put '0001-01-01' and '2016-02-29'
+        :param complex_body: Please put '0001-01-01' and '2016-02-29'.
         :type complex_body: ~bodycomplex.models.DateWrapper
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -775,7 +775,7 @@ class PrimitiveOperations:
 
         FIXME: add operation.summary
 
-        :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'
+        :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
         :type complex_body: ~bodycomplex.models.DatetimeWrapper
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -871,7 +871,7 @@ class PrimitiveOperations:
 
         FIXME: add operation.summary
 
-        :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00 GMT'
+        :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00 GMT'.
         :type complex_body: ~bodycomplex.models.Datetimerfc1123Wrapper
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -967,7 +967,7 @@ class PrimitiveOperations:
 
         FIXME: add operation.summary
 
-        :param field: MISSING·SCHEMA-DESCRIPTION-DURATION
+        :param field: 
         :type field: ~datetime.timedelta
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1064,7 +1064,7 @@ class PrimitiveOperations:
 
         FIXME: add operation.summary
 
-        :param field: MISSING·SCHEMA-DESCRIPTION-BYTEARRAY
+        :param field: 
         :type field: bytearray
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

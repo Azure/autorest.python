@@ -27,7 +27,7 @@ class AutoRestValidationTestOperationsMixin(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "Product"
-        """Validates input parameters on the method. See swagger for details..
+        """Validates input parameters on the method. See swagger for details.
 
         FIXME: add operation.summary
 
@@ -88,7 +88,7 @@ class AutoRestValidationTestOperationsMixin(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "Product"
-        """Validates body parameters on the method. See swagger for details..
+        """Validates body parameters on the method. See swagger for details.
 
         FIXME: add operation.summary
 
@@ -155,7 +155,7 @@ class AutoRestValidationTestOperationsMixin(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """MISSING·OPERATION-DESCRIPTION.
+        """
 
         FIXME: add operation.summary
 
@@ -203,7 +203,7 @@ class AutoRestValidationTestOperationsMixin(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "Product"
-        """MISSING·OPERATION-DESCRIPTION.
+        """
 
         FIXME: add operation.summary
 

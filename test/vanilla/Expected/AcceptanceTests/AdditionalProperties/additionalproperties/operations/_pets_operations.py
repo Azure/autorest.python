@@ -48,7 +48,7 @@ class PetsOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "PetAPTrue"
-        """Create a Pet which contains more properties than what is defined..
+        """Create a Pet which contains more properties than what is defined.
 
         FIXME: add operation.summary
 
@@ -102,7 +102,7 @@ class PetsOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "CatAPTrue"
-        """Create a CatAPTrue which contains more properties than what is defined..
+        """Create a CatAPTrue which contains more properties than what is defined.
 
         FIXME: add operation.summary
 
@@ -156,7 +156,7 @@ class PetsOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "PetAPObject"
-        """Create a Pet which contains more properties than what is defined..
+        """Create a Pet which contains more properties than what is defined.
 
         FIXME: add operation.summary
 
@@ -210,7 +210,7 @@ class PetsOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "PetAPString"
-        """Create a Pet which contains more properties than what is defined..
+        """Create a Pet which contains more properties than what is defined.
 
         FIXME: add operation.summary
 
@@ -264,7 +264,7 @@ class PetsOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "PetAPInProperties"
-        """Create a Pet which contains more properties than what is defined..
+        """Create a Pet which contains more properties than what is defined.
 
         FIXME: add operation.summary
 
@@ -318,7 +318,7 @@ class PetsOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "PetAPInPropertiesWithAPString"
-        """Create a Pet which contains more properties than what is defined..
+        """Create a Pet which contains more properties than what is defined.
 
         FIXME: add operation.summary
 

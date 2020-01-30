@@ -52,7 +52,7 @@ class PetsOperations:
         cls: ClsType["PetAPTrue"] = None,
         **kwargs: Any
     ) -> "PetAPTrue":
-        """Create a Pet which contains more properties than what is defined..
+        """Create a Pet which contains more properties than what is defined.
 
         FIXME: add operation.summary
 
@@ -106,7 +106,7 @@ class PetsOperations:
         cls: ClsType["CatAPTrue"] = None,
         **kwargs: Any
     ) -> "CatAPTrue":
-        """Create a CatAPTrue which contains more properties than what is defined..
+        """Create a CatAPTrue which contains more properties than what is defined.
 
         FIXME: add operation.summary
 
@@ -160,7 +160,7 @@ class PetsOperations:
         cls: ClsType["PetAPObject"] = None,
         **kwargs: Any
     ) -> "PetAPObject":
-        """Create a Pet which contains more properties than what is defined..
+        """Create a Pet which contains more properties than what is defined.
 
         FIXME: add operation.summary
 
@@ -214,7 +214,7 @@ class PetsOperations:
         cls: ClsType["PetAPString"] = None,
         **kwargs: Any
     ) -> "PetAPString":
-        """Create a Pet which contains more properties than what is defined..
+        """Create a Pet which contains more properties than what is defined.
 
         FIXME: add operation.summary
 
@@ -268,7 +268,7 @@ class PetsOperations:
         cls: ClsType["PetAPInProperties"] = None,
         **kwargs: Any
     ) -> "PetAPInProperties":
-        """Create a Pet which contains more properties than what is defined..
+        """Create a Pet which contains more properties than what is defined.
 
         FIXME: add operation.summary
 
@@ -322,7 +322,7 @@ class PetsOperations:
         cls: ClsType["PetAPInPropertiesWithAPString"] = None,
         **kwargs: Any
     ) -> "PetAPInPropertiesWithAPString":
-        """Create a Pet which contains more properties than what is defined..
+        """Create a Pet which contains more properties than what is defined.
 
         FIXME: add operation.summary
 

@@ -104,12 +104,12 @@ class LROsOperations:
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
-        """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Succeeded’..
+        """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Succeeded’.
 
         FIXME: add operation.summary
 
 
-        :param product: Product to put
+        :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -198,12 +198,12 @@ class LROsOperations:
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
-        """Long running put request, service returns a 200 to the initial request, with an entity that does not contain ProvisioningState=’Succeeded’..
+        """Long running put request, service returns a 200 to the initial request, with an entity that does not contain ProvisioningState=’Succeeded’.
 
         FIXME: add operation.summary
 
 
-        :param product: Product to put
+        :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -297,7 +297,7 @@ class LROsOperations:
         FIXME: add operation.summary
 
 
-        :param product: Product to put
+        :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -396,7 +396,7 @@ class LROsOperations:
         FIXME: add operation.summary
 
 
-        :param product: Product to put
+        :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -490,7 +490,7 @@ class LROsOperations:
         FIXME: add operation.summary
 
 
-        :param product: Product to put
+        :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -589,7 +589,7 @@ class LROsOperations:
         FIXME: add operation.summary
 
 
-        :param product: Product to put
+        :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -683,7 +683,7 @@ class LROsOperations:
         FIXME: add operation.summary
 
 
-        :param product: Product to put
+        :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -774,12 +774,12 @@ class LROsOperations:
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
-        """Long running put request, service returns a 202 to the initial request with location header. Subsequent calls to operation status do not contain location header..
+        """Long running put request, service returns a 202 to the initial request with location header. Subsequent calls to operation status do not contain location header.
 
         FIXME: add operation.summary
 
 
-        :param product: Product to put
+        :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -880,7 +880,7 @@ class LROsOperations:
         FIXME: add operation.summary
 
 
-        :param product: Product to put
+        :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -982,7 +982,7 @@ class LROsOperations:
         FIXME: add operation.summary
 
 
-        :param product: Product to put
+        :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -1084,7 +1084,7 @@ class LROsOperations:
         FIXME: add operation.summary
 
 
-        :param product: Product to put
+        :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -1186,7 +1186,7 @@ class LROsOperations:
         FIXME: add operation.summary
 
 
-        :param product: Product to put
+        :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -1281,12 +1281,12 @@ class LROsOperations:
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
-        """Long running put request, service returns a 202 to the initial request with Azure-AsyncOperation header. Subsequent calls to operation status do not contain Azure-AsyncOperation header..
+        """Long running put request, service returns a 202 to the initial request with Azure-AsyncOperation header. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
 
         FIXME: add operation.summary
 
 
-        :param product: Product to put
+        :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -1378,12 +1378,12 @@ class LROsOperations:
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Sku":
-        """Long running put request with non resource..
+        """Long running put request with non resource.
 
         FIXME: add operation.summary
 
 
-        :param sku: sku to put
+        :param sku: sku to put.
         :type sku: ~lro.models.Sku
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -1472,12 +1472,12 @@ class LROsOperations:
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Sku":
-        """Long running put request with non resource..
+        """Long running put request with non resource.
 
         FIXME: add operation.summary
 
 
-        :param sku: sku to put
+        :param sku: sku to put.
         :type sku: ~lro.models.Sku
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -1567,12 +1567,12 @@ class LROsOperations:
         polling: Optional[bool] = True,
         **kwargs
     ) -> "SubProduct":
-        """Long running put request with sub resource..
+        """Long running put request with sub resource.
 
         FIXME: add operation.summary
 
 
-        :param provisioning_state: MISSING·SCHEMA-DESCRIPTION-STRING
+        :param provisioning_state: 
         :type provisioning_state: str
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -1662,12 +1662,12 @@ class LROsOperations:
         polling: Optional[bool] = True,
         **kwargs
     ) -> "SubProduct":
-        """Long running put request with sub resource..
+        """Long running put request with sub resource.
 
         FIXME: add operation.summary
 
 
-        :param provisioning_state: MISSING·SCHEMA-DESCRIPTION-STRING
+        :param provisioning_state: 
         :type provisioning_state: str
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -2268,7 +2268,7 @@ class LROsOperations:
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
-        """Long running delete request, service returns a location header in the initial request. Subsequent calls to operation status do not contain location header..
+        """Long running delete request, service returns a location header in the initial request. Subsequent calls to operation status do not contain location header.
 
         FIXME: add operation.summary
 
@@ -2345,7 +2345,7 @@ class LROsOperations:
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
-        """Long running delete request, service returns an Azure-AsyncOperation header in the initial request. Subsequent calls to operation status do not contain Azure-AsyncOperation header..
+        """Long running delete request, service returns an Azure-AsyncOperation header in the initial request. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
 
         FIXME: add operation.summary
 
@@ -2739,7 +2739,7 @@ class LROsOperations:
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Sku":
-        """Long running post request, service returns a 202 to the initial request, with 'Location' header. Poll returns a 200 with a response body after success..
+        """Long running post request, service returns a 202 to the initial request, with 'Location' header. Poll returns a 200 with a response body after success.
 
         FIXME: add operation.summary
 
@@ -2835,7 +2835,7 @@ class LROsOperations:
         FIXME: add operation.summary
 
 
-        :param product: Product to put
+        :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -2929,7 +2929,7 @@ class LROsOperations:
         FIXME: add operation.summary
 
 
-        :param product: Product to put
+        :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -3171,7 +3171,7 @@ class LROsOperations:
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
-        """Long running post request, service returns a 202 to the initial request with both Location and Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final object if you support initial Autorest behavior..
+        """Long running post request, service returns a 202 to the initial request with both Location and Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final object if you support initial Autorest behavior.
 
         FIXME: add operation.summary
 
@@ -3275,7 +3275,7 @@ class LROsOperations:
         FIXME: add operation.summary
 
 
-        :param product: Product to put
+        :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -3377,7 +3377,7 @@ class LROsOperations:
         FIXME: add operation.summary
 
 
-        :param product: Product to put
+        :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -3472,7 +3472,7 @@ class LROsOperations:
         FIXME: add operation.summary
 
 
-        :param product: Product to put
+        :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -3564,7 +3564,7 @@ class LROsOperations:
         FIXME: add operation.summary
 
 
-        :param product: Product to put
+        :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a

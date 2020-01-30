@@ -49,7 +49,7 @@ class ApiVersionDefaultOperations:
         cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
-        """GET method with api-version modeled in global settings..
+        """GET method with api-version modeled in global settings.
 
         FIXME: add operation.summary
 
@@ -91,7 +91,7 @@ class ApiVersionDefaultOperations:
         cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
-        """GET method with api-version modeled in global settings..
+        """GET method with api-version modeled in global settings.
 
         FIXME: add operation.summary
 
@@ -133,7 +133,7 @@ class ApiVersionDefaultOperations:
         cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
-        """GET method with api-version modeled in global settings..
+        """GET method with api-version modeled in global settings.
 
         FIXME: add operation.summary
 
@@ -175,7 +175,7 @@ class ApiVersionDefaultOperations:
         cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
-        """GET method with api-version modeled in global settings..
+        """GET method with api-version modeled in global settings.
 
         FIXME: add operation.summary
 

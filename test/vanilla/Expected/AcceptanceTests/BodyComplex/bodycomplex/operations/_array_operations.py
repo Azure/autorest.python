@@ -99,7 +99,7 @@ class ArrayOperations(object):
 
         FIXME: add operation.summary
 
-        :param array: MISSING·SCHEMA-DESCRIPTION-ARRAYSCHEMA
+        :param array: 
         :type array: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -197,7 +197,7 @@ class ArrayOperations(object):
 
         FIXME: add operation.summary
 
-        :param array: MISSING·SCHEMA-DESCRIPTION-ARRAYSCHEMA
+        :param array: 
         :type array: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

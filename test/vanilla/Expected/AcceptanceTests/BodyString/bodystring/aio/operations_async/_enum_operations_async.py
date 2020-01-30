@@ -50,7 +50,7 @@ class EnumOperations:
         cls: ClsType[Union[str, "Colors"]] = None,
         **kwargs: Any
     ) -> Union[str, "Colors"]:
-        """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'..
+        """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         FIXME: add operation.summary
 
@@ -146,7 +146,7 @@ class EnumOperations:
         cls: ClsType[Union[str, "Colors"]] = None,
         **kwargs: Any
     ) -> Union[str, "Colors"]:
-        """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'..
+        """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         FIXME: add operation.summary
 
@@ -242,7 +242,7 @@ class EnumOperations:
         cls: ClsType["RefColorConstant"] = None,
         **kwargs: Any
     ) -> "RefColorConstant":
-        """Get value 'green-color' from the constant..
+        """Get value 'green-color' from the constant.
 
         FIXME: add operation.summary
 

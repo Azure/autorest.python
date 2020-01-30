@@ -48,7 +48,7 @@ class GroupOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "SampleResourceGroup"
-        """Provides a resouce group with name 'testgroup101' and location 'West US'..
+        """Provides a resouce group with name 'testgroup101' and location 'West US'.
 
         FIXME: add operation.summary
 

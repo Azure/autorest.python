@@ -27,7 +27,7 @@ class AutoRestValidationTestOperationsMixin:
         cls: ClsType["Product"] = None,
         **kwargs: Any
     ) -> "Product":
-        """Validates input parameters on the method. See swagger for details..
+        """Validates input parameters on the method. See swagger for details.
 
         FIXME: add operation.summary
 
@@ -88,7 +88,7 @@ class AutoRestValidationTestOperationsMixin:
         cls: ClsType["Product"] = None,
         **kwargs: Any
     ) -> "Product":
-        """Validates body parameters on the method. See swagger for details..
+        """Validates body parameters on the method. See swagger for details.
 
         FIXME: add operation.summary
 
@@ -154,7 +154,7 @@ class AutoRestValidationTestOperationsMixin:
         cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
-        """MISSING·OPERATION-DESCRIPTION.
+        """
 
         FIXME: add operation.summary
 
@@ -202,7 +202,7 @@ class AutoRestValidationTestOperationsMixin:
         cls: ClsType["Product"] = None,
         **kwargs: Any
     ) -> "Product":
-        """MISSING·OPERATION-DESCRIPTION.
+        """
 
         FIXME: add operation.summary
 

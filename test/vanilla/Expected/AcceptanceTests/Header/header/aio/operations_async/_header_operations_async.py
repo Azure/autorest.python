@@ -56,7 +56,7 @@ class HeaderOperations:
 
         FIXME: add operation.summary
 
-        :param user_agent: Send a post request with header value "User-Agent": "overwrite"
+        :param user_agent: Send a post request with header value "User-Agent": "overwrite".
         :type user_agent: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -148,7 +148,7 @@ class HeaderOperations:
 
         FIXME: add operation.summary
 
-        :param content_type: Send a post request with header value "Content-Type": "text/html"
+        :param content_type: Send a post request with header value "Content-Type": "text/html".
         :type content_type: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -241,9 +241,9 @@ class HeaderOperations:
 
         FIXME: add operation.summary
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative"
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
-        :param value: Send a post request with header values 1 or -2
+        :param value: Send a post request with header values 1 or -2.
         :type value: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -291,7 +291,7 @@ class HeaderOperations:
 
         FIXME: add operation.summary
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative"
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -342,9 +342,9 @@ class HeaderOperations:
 
         FIXME: add operation.summary
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative"
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
-        :param value: Send a post request with header values 105 or -2
+        :param value: Send a post request with header values 105 or -2.
         :type value: long
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -392,7 +392,7 @@ class HeaderOperations:
 
         FIXME: add operation.summary
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative"
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -443,9 +443,9 @@ class HeaderOperations:
 
         FIXME: add operation.summary
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative"
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
-        :param value: Send a post request with header values 0.07 or -3.0
+        :param value: Send a post request with header values 0.07 or -3.0.
         :type value: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -493,7 +493,7 @@ class HeaderOperations:
 
         FIXME: add operation.summary
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative"
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -544,9 +544,9 @@ class HeaderOperations:
 
         FIXME: add operation.summary
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative"
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
-        :param value: Send a post request with header values 7e120 or -3.0
+        :param value: Send a post request with header values 7e120 or -3.0.
         :type value: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -594,7 +594,7 @@ class HeaderOperations:
 
         FIXME: add operation.summary
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative"
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -645,9 +645,9 @@ class HeaderOperations:
 
         FIXME: add operation.summary
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative"
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
-        :param value: Send a post request with header values true or false
+        :param value: Send a post request with header values true or false.
         :type value: bool
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -695,7 +695,7 @@ class HeaderOperations:
 
         FIXME: add operation.summary
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative"
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -746,9 +746,9 @@ class HeaderOperations:
 
         FIXME: add operation.summary
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative"
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
-        :param value: Send a post request with header values "The quick brown fox jumps over the lazy dog" or null or ""
+        :param value: Send a post request with header values "The quick brown fox jumps over the lazy dog" or null or "".
         :type value: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -797,7 +797,7 @@ class HeaderOperations:
 
         FIXME: add operation.summary
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative"
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -848,9 +848,9 @@ class HeaderOperations:
 
         FIXME: add operation.summary
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative"
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
-        :param value: Send a post request with header values "2010-01-01" or "0001-01-01"
+        :param value: Send a post request with header values "2010-01-01" or "0001-01-01".
         :type value: ~datetime.date
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -898,7 +898,7 @@ class HeaderOperations:
 
         FIXME: add operation.summary
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative"
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -949,9 +949,9 @@ class HeaderOperations:
 
         FIXME: add operation.summary
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative"
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
-        :param value: Send a post request with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z"
+        :param value: Send a post request with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z".
         :type value: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -999,7 +999,7 @@ class HeaderOperations:
 
         FIXME: add operation.summary
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative"
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1050,9 +1050,9 @@ class HeaderOperations:
 
         FIXME: add operation.summary
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative"
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
-        :param value: Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT"
+        :param value: Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT".
         :type value: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1101,7 +1101,7 @@ class HeaderOperations:
 
         FIXME: add operation.summary
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative"
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1152,9 +1152,9 @@ class HeaderOperations:
 
         FIXME: add operation.summary
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative"
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
-        :param value: Send a post request with header values "P123DT22H14M12.011S"
+        :param value: Send a post request with header values "P123DT22H14M12.011S".
         :type value: ~datetime.timedelta
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1202,7 +1202,7 @@ class HeaderOperations:
 
         FIXME: add operation.summary
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative"
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1253,9 +1253,9 @@ class HeaderOperations:
 
         FIXME: add operation.summary
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative"
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
-        :param value: Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩"
+        :param value: Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩".
         :type value: bytearray
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1303,7 +1303,7 @@ class HeaderOperations:
 
         FIXME: add operation.summary
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative"
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1354,9 +1354,9 @@ class HeaderOperations:
 
         FIXME: add operation.summary
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative"
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
-        :param value: Send a post request with header values 'GREY'
+        :param value: Send a post request with header values 'GREY'.
         :type value: str or ~header.models.GreyscaleColors
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1405,7 +1405,7 @@ class HeaderOperations:
 
         FIXME: add operation.summary
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative"
+        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

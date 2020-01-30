@@ -99,7 +99,7 @@ class BasicOperations(object):
 
         FIXME: add operation.summary
 
-        :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}
+        :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}.
         :type complex_body: ~bodycomplex.models.Basic
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

@@ -55,7 +55,7 @@ class ImplicitOperations:
 
         FIXME: add operation.summary
 
-        :param path_parameter: MISSING·PARAMETER-DESCRIPTION
+        :param path_parameter: 
         :type path_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -105,7 +105,7 @@ class ImplicitOperations:
 
         FIXME: add operation.summary
 
-        :param query_parameter: MISSING·PARAMETER-DESCRIPTION
+        :param query_parameter: 
         :type query_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -153,7 +153,7 @@ class ImplicitOperations:
 
         FIXME: add operation.summary
 
-        :param query_parameter: MISSING·PARAMETER-DESCRIPTION
+        :param query_parameter: 
         :type query_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

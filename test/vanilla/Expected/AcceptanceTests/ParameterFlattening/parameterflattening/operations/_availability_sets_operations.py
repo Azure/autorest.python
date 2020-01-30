@@ -50,7 +50,7 @@ class AvailabilitySetsOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Updates the tags for an availability set..
+        """Updates the tags for an availability set.
 
         FIXME: add operation.summary
 

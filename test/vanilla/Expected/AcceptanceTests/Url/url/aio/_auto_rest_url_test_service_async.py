@@ -27,9 +27,9 @@ class AutoRestUrlTestService(object):
     :vartype queries: url.aio.operations_async.QueriesOperations
     :ivar path_items: PathItemsOperations operations
     :vartype path_items: url.aio.operations_async.PathItemsOperations
-    :param global_string_path: A string value 'globalItemStringPath' that appears in the path
+    :param global_string_path: A string value 'globalItemStringPath' that appears in the path.
     :type global_string_path: str
-    :param global_string_query: should contain value null
+    :param global_string_query: should contain value null.
     :type global_string_query: str
     :param str base_url: Service URL
     """

@@ -54,7 +54,7 @@ class AvailabilitySetsOperations:
         cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
-        """Updates the tags for an availability set..
+        """Updates the tags for an availability set.
 
         FIXME: add operation.summary
 

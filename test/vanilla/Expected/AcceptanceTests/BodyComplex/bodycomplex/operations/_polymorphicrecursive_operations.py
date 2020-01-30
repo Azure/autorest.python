@@ -131,7 +131,7 @@ class PolymorphicrecursiveOperations(object):
                 'jawsize': 5
               }
             ]
-          };
+          };.
         :type complex_body: ~bodycomplex.models.Fish
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

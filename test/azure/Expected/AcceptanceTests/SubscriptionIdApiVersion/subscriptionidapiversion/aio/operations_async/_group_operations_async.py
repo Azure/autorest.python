@@ -52,7 +52,7 @@ class GroupOperations:
         cls: ClsType["SampleResourceGroup"] = None,
         **kwargs: Any
     ) -> "SampleResourceGroup":
-        """Provides a resouce group with name 'testgroup101' and location 'West US'..
+        """Provides a resouce group with name 'testgroup101' and location 'West US'.
 
         FIXME: add operation.summary
 

@@ -51,7 +51,7 @@ class HeaderOperations(object):
 
         FIXME: add operation.summary
 
-        :param foo_client_request_id: The fooRequestId
+        :param foo_client_request_id: The fooRequestId.
         :type foo_client_request_id: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -101,7 +101,7 @@ class HeaderOperations(object):
 
         FIXME: add operation.summary
 
-        :param foo_client_request_id: The fooRequestId
+        :param foo_client_request_id: The fooRequestId.
         :type foo_client_request_id: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -151,7 +151,7 @@ class HeaderOperations(object):
 
         FIXME: add operation.summary
 
-        :param foo_client_request_id: The fooRequestId
+        :param foo_client_request_id: The fooRequestId.
         :type foo_client_request_id: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

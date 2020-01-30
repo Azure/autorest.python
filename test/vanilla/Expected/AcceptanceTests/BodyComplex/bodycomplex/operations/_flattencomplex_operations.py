@@ -47,7 +47,7 @@ class FlattencomplexOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "MyBaseType"
-        """MISSING·OPERATION-DESCRIPTION.
+        """
 
         FIXME: add operation.summary
 

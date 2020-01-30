@@ -48,7 +48,7 @@ def {{ operation.python_name }}(
     {{ keywords.sync_return_type_annotation(operation) }}
 {% endif %}
 {% if operation.want_description_docstring %}
-    """{{operation.description.strip() }}.
+    """{{operation.description.strip() }}
 
     FIXME: add operation.summary
 

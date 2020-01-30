@@ -435,7 +435,7 @@ class XmlOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Get strongly-typed response headers..
+        """Get strongly-typed response headers.
 
         FIXME: add operation.summary
 
@@ -481,7 +481,7 @@ class XmlOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "Slideshow"
-        """Get an empty list..
+        """Get an empty list.
 
         FIXME: add operation.summary
 
@@ -529,7 +529,7 @@ class XmlOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Puts an empty list..
+        """Puts an empty list.
 
         FIXME: add operation.summary
 
@@ -578,7 +578,7 @@ class XmlOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "AppleBarrel"
-        """Gets some empty wrapped lists..
+        """Gets some empty wrapped lists.
 
         FIXME: add operation.summary
 
@@ -626,7 +626,7 @@ class XmlOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Puts some empty wrapped lists..
+        """Puts some empty wrapped lists.
 
         FIXME: add operation.summary
 
@@ -675,7 +675,7 @@ class XmlOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> List["Banana"]
-        """Gets a list as the root element..
+        """Gets a list as the root element.
 
         FIXME: add operation.summary
 
@@ -723,7 +723,7 @@ class XmlOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Puts a list as the root element..
+        """Puts a list as the root element.
 
         FIXME: add operation.summary
 
@@ -772,7 +772,7 @@ class XmlOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> List["Banana"]
-        """Gets a list with a single item..
+        """Gets a list with a single item.
 
         FIXME: add operation.summary
 
@@ -820,7 +820,7 @@ class XmlOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Puts a list with a single item..
+        """Puts a list with a single item.
 
         FIXME: add operation.summary
 
@@ -869,7 +869,7 @@ class XmlOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> List["Banana"]
-        """Gets an empty list as the root element..
+        """Gets an empty list as the root element.
 
         FIXME: add operation.summary
 
@@ -917,7 +917,7 @@ class XmlOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Puts an empty list as the root element..
+        """Puts an empty list as the root element.
 
         FIXME: add operation.summary
 
@@ -966,7 +966,7 @@ class XmlOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "Banana"
-        """Gets an XML document with an empty child element..
+        """Gets an XML document with an empty child element.
 
         FIXME: add operation.summary
 
@@ -1014,7 +1014,7 @@ class XmlOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Puts a value with an empty child element..
+        """Puts a value with an empty child element.
 
         FIXME: add operation.summary
 
@@ -1063,7 +1063,7 @@ class XmlOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "ListContainersResponse"
-        """Lists containers in a storage account..
+        """Lists containers in a storage account.
 
         FIXME: add operation.summary
 
@@ -1112,7 +1112,7 @@ class XmlOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "StorageServiceProperties"
-        """Gets storage service properties..
+        """Gets storage service properties.
 
         FIXME: add operation.summary
 
@@ -1164,7 +1164,7 @@ class XmlOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Puts storage service properties..
+        """Puts storage service properties.
 
         FIXME: add operation.summary
 
@@ -1217,7 +1217,7 @@ class XmlOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> List["SignedIdentifier"]
-        """Gets storage ACLs for a container..
+        """Gets storage ACLs for a container.
 
         FIXME: add operation.summary
 
@@ -1269,7 +1269,7 @@ class XmlOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """Puts storage ACLs for a container..
+        """Puts storage ACLs for a container.
 
         FIXME: add operation.summary
 
@@ -1322,7 +1322,7 @@ class XmlOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "ListBlobsResponse"
-        """Lists blobs in a storage container..
+        """Lists blobs in a storage container.
 
         FIXME: add operation.summary
 
@@ -1378,7 +1378,7 @@ class XmlOperations(object):
 
         FIXME: add operation.summary
 
-        :param id: MISSING·SCHEMA-DESCRIPTION-INTEGER
+        :param id: 
         :type id: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

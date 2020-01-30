@@ -19,11 +19,11 @@ class AutoRestRequiredOptionalTestServiceConfiguration(Configuration):
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param required_global_path: number of items to skip
+    :param required_global_path: number of items to skip.
     :type required_global_path: str
-    :param required_global_query: number of items to skip
+    :param required_global_query: number of items to skip.
     :type required_global_query: str
-    :param optional_global_query: number of items to skip
+    :param optional_global_query: number of items to skip.
     :type optional_global_query: int
     """
 

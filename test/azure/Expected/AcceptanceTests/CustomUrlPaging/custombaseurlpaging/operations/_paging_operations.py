@@ -55,7 +55,7 @@ class PagingOperations(object):
         FIXME: add operation.summary
 
 
-        :param account_name: Account Name
+        :param account_name: Account Name.
         :type account_name: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
@@ -132,7 +132,7 @@ class PagingOperations(object):
         FIXME: add operation.summary
 
 
-        :param account_name: Account Name
+        :param account_name: Account Name.
         :type account_name: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)

@@ -30,7 +30,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         FIXME: add operation.summary
 
-        :param resource_array: External Resource as an Array to put
+        :param resource_array: External Resource as an Array to put.
         :type resource_array: list[~modelflattening.models.Resource]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -128,7 +128,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         FIXME: add operation.summary
 
-        :param resource_array: External Resource as an Array to put
+        :param resource_array: External Resource as an Array to put.
         :type resource_array: list[~modelflattening.models.WrappedProduct]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -226,7 +226,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         FIXME: add operation.summary
 
-        :param resource_dictionary: External Resource as a Dictionary to put
+        :param resource_dictionary: External Resource as a Dictionary to put.
         :type resource_dictionary: dict[str, ~modelflattening.models.FlattenedProduct]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -324,7 +324,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         FIXME: add operation.summary
 
-        :param resource_complex_object: External Resource as a ResourceCollection to put
+        :param resource_complex_object: External Resource as a ResourceCollection to put.
         :type resource_complex_object: ~modelflattening.models.ResourceCollection
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -422,7 +422,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         FIXME: add operation.summary
 
-        :param simple_body_product: Simple body product to put
+        :param simple_body_product: Simple body product to put.
         :type simple_body_product: ~modelflattening.models.SimpleProduct
         :param callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
@@ -540,7 +540,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         FIXME: add operation.summary
 
-        :param name: Product name with value 'groupproduct'
+        :param name: Product name with value 'groupproduct'.
         :type name: str
         :param max_product_display_name: Display name of product.
         :type max_product_display_name: str

@@ -51,7 +51,7 @@ class UsageOperations:
         cls: ClsType["UsageListResult"] = None,
         **kwargs: Any
     ) -> "UsageListResult":
-        """Gets the current usage count and the limit for the resources under the subscription..
+        """Gets the current usage count and the limit for the resources under the subscription.
 
         FIXME: add operation.summary
 

@@ -724,7 +724,7 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-        :param string_path: null string value
+        :param string_path: null string value.
         :type string_path: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -774,7 +774,7 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-        :param enum_path: send the value green
+        :param enum_path: send the value green.
         :type enum_path: str or ~url.models.UriColor
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -824,7 +824,7 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-        :param enum_path: send the value green
+        :param enum_path: send the value green.
         :type enum_path: str or ~url.models.UriColor
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -874,7 +874,7 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-        :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
+        :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
         :type byte_path: bytearray
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -972,7 +972,7 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-        :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array
+        :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
         :type byte_path: bytearray
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1070,7 +1070,7 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-        :param date_path: null as date (should throw)
+        :param date_path: null as date (should throw).
         :type date_path: ~datetime.date
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1168,7 +1168,7 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-        :param date_time_path: null as date-time
+        :param date_time_path: null as date-time.
         :type date_time_path: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1218,7 +1218,7 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-        :param base64_url_path: base64url encoded value
+        :param base64_url_path: base64url encoded value.
         :type base64_url_path: bytes
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1268,7 +1268,7 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-        :param array_path: an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format
+        :param array_path: an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
         :type array_path: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1318,7 +1318,7 @@ class PathsOperations(object):
 
         FIXME: add operation.summary
 
-        :param unix_time_url_path: Unix time encoded value
+        :param unix_time_url_path: Unix time encoded value.
         :type unix_time_url_path: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
