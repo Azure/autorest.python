@@ -6,6 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import Any
+
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
@@ -25,7 +27,14 @@ class AutoRestParameterizedCustomHostTestClient(object):
     :type dns_suffix: str
     """
 
-    def __init__(self, subscription_id, dns_suffix, **kwargs):
+    def __init__(
+        self,
+        subscription_id,  # type: str
+        dns_suffix,  # type: str
+        base_url=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         base_url = '{vault}{secret}{dnsSuffix}'
         self._config = AutoRestParameterizedCustomHostTestClientConfiguration(subscription_id, dns_suffix, **kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
@@ -38,11 +47,14 @@ class AutoRestParameterizedCustomHostTestClient(object):
             self._client, self._config, self._serialize, self._deserialize)
 
     def close(self):
+        # type: () -> None
         self._client.close()
 
     def __enter__(self):
+        # type: () -> AutoRestParameterizedCustomHostTestClient
         self._client.__enter__()
         return self
 
     def __exit__(self, *exc_details):
+        # type: (Any) -> None
         self._client.__exit__(*exc_details)

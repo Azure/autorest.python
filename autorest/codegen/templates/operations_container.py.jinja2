@@ -5,6 +5,8 @@
 {{ code_model.options['license_header'] }}
 {{ imports }}
 
+T = TypeVar('T')
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, {{ "Async" if async_mode else "" }}HttpResponse], T, Dict[str, Any]], Any]]
 
 class {{ operation_group.class_name }}{{ object_base_class }}:
     """{{ operation_group.class_name }} {{ operations_description }}.

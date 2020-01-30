@@ -2,7 +2,7 @@ requests>=2.14.0
 pytest
 pytest-cov
 pytest-asyncio;python_full_version>="3.5.2"
-msrest>=0.6.10
+msrest>=0.6.11
 azure-core>=1.2.0
 aiohttp;python_full_version>="3.5.2"
 -e ./Expected/AcceptanceTests/AdditionalProperties

@@ -68,11 +68,11 @@ class AutorestTestARMPolling(AsyncARMPolling):
         return {}
 
     async def request_status(self, status_link):
-        request = self._client.get(status_link, headers=self._polling_cookie(self._response))
+        request = self._client.get(status_link, headers=self._polling_cookie(self._pipeline_response.http_response))
         # ARM requires to re-inject 'x-ms-client-request-id' while polling
         if 'request_id' not in self._operation_config:
-            self._operation_config['request_id'] = self._operation.initial_response.request.headers['x-ms-client-request-id']
-        return (await self._client._pipeline.run(request, stream=False, **self._operation_config)).http_response
+            self._operation_config['request_id'] = self._operation.initial_response.http_response.request.headers['x-ms-client-request-id']
+        return (await self._client._pipeline.run(request, stream=False, **self._operation_config))
 
 @pytest.fixture()
 async def client(cookie_policy, credential):

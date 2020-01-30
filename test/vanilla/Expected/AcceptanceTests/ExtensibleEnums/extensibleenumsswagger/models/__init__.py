@@ -9,7 +9,7 @@
 try:
     from ._models_py3 import Pet
 except (SyntaxError, ImportError):
-    from ._models import Pet
+    from ._models import Pet  # type: ignore
 from ._pet_store_inc_enums import (
     DaysOfWeekExtensibleEnum,
     IntEnum,

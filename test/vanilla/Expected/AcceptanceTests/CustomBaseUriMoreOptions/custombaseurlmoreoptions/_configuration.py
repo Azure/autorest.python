@@ -6,6 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import Any
+
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
@@ -23,7 +25,13 @@ class AutoRestParameterizedCustomHostTestClientConfiguration(Configuration):
     :type dns_suffix: str
     """
 
-    def __init__(self, subscription_id, dns_suffix, **kwargs):
+    def __init__(
+        self,
+        subscription_id,  # type: str
+        dns_suffix,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         if subscription_id is None:
             raise ValueError("Parameter 'subscription_id' must not be None.")
         if dns_suffix is None:
@@ -35,7 +43,11 @@ class AutoRestParameterizedCustomHostTestClientConfiguration(Configuration):
         self._configure(**kwargs)
         self.user_agent_policy.add_user_agent('azsdk-python-autorestparameterizedcustomhosttestclient/{}'.format(VERSION))
 
-    def _configure(self, **kwargs):
+    def _configure(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)
         self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)
         self.proxy_policy = kwargs.get('proxy_policy') or policies.ProxyPolicy(**kwargs)

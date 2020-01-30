@@ -21,7 +21,10 @@ class ArrayOptionalWrapper(Model):
         'value': {'key': 'value', 'type': '[str]'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(ArrayOptionalWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
 
@@ -43,7 +46,10 @@ class ArrayWrapper(Model):
         'value': {'key': 'value', 'type': '[str]'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(ArrayWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
 
@@ -59,7 +65,10 @@ class ClassOptionalWrapper(Model):
         'value': {'key': 'value', 'type': 'Product'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(ClassOptionalWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
 
@@ -81,7 +90,10 @@ class ClassWrapper(Model):
         'value': {'key': 'value', 'type': 'Product'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(ClassWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
 
@@ -126,7 +138,10 @@ class Error(Model):
         'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
@@ -143,7 +158,10 @@ class IntOptionalWrapper(Model):
         'value': {'key': 'value', 'type': 'int'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(IntOptionalWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
 
@@ -165,7 +183,10 @@ class IntWrapper(Model):
         'value': {'key': 'value', 'type': 'int'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(IntWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
 
@@ -190,7 +211,10 @@ class Product(Model):
         'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Product, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
@@ -207,7 +231,10 @@ class StringOptionalWrapper(Model):
         'value': {'key': 'value', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(StringOptionalWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
 
@@ -229,6 +256,9 @@ class StringWrapper(Model):
         'value': {'key': 'value', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(StringWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)

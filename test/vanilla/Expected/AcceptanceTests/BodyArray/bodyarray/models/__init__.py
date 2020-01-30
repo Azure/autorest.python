@@ -10,8 +10,8 @@ try:
     from ._models_py3 import Error, ErrorException
     from ._models_py3 import Product
 except (SyntaxError, ImportError):
-    from ._models import Error, ErrorException
-    from ._models import Product
+    from ._models import Error, ErrorException  # type: ignore
+    from ._models import Product  # type: ignore
 from ._auto_rest_swagger_bat_array_service_enums import (
     Enum0,
     FooEnum,

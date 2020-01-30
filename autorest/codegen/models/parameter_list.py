@@ -118,7 +118,7 @@ class ParameterList(MutableSequence):
         signature_parameters_optional = []
         for parameter in self.parameters:
             if is_parameter_in_signature(parameter):
-                if parameter.is_required:
+                if parameter.required:
                     signature_parameters_required.append(parameter)
                 else:
                     signature_parameters_optional.append(parameter)
@@ -131,13 +131,12 @@ class ParameterList(MutableSequence):
         return signature_parameters
 
     @property
-    def method_signature(self) -> str:
-        signature = ", ".join(
-            [parameter.for_method_signature for parameter in self.method]
-        )
-        if signature:
-            signature = ", " + signature
-        return signature
+    def sync_method_signature(self) -> List[str]:
+        return [parameter.sync_method_signature for parameter in self.method]
+
+    @property
+    def async_method_signature(self) -> List[str]:
+        return [parameter.async_method_signature for parameter in self.method]
 
     @property
     def is_flattened(self) -> bool:

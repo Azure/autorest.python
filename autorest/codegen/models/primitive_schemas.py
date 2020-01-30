@@ -9,6 +9,7 @@ from enum import Enum
 from typing import cast, Any, Dict, List, Optional, Union
 
 from .base_schema import BaseSchema
+from .imports import FileImport, ImportType
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -29,7 +30,8 @@ class PrimitiveSchema(BaseSchema):
     def docstring_type(self) -> str:
         return self._to_python_type()
 
-    def get_python_type_annotation(self) -> str:
+    @property
+    def type_annotation(self) -> str:
         return self.docstring_type
 
     @property
@@ -97,7 +99,8 @@ class NumberSchema(PrimitiveSchema):
             return "int"
         return "float"
 
-    def get_python_type_annotation(self) -> str:
+    @property
+    def type_annotation(self) -> str:
         python_type = self.docstring_type
         if python_type == "long":
             return "int"
@@ -154,9 +157,10 @@ class DatetimeSchema(PrimitiveSchema):
 
     @property
     def docstring_type(self) -> str:
-        return "~"+self.get_python_type_annotation()
+        return "~" + self.type_annotation
 
-    def get_python_type_annotation(self) -> str:
+    @property
+    def type_annotation(self) -> str:
         return "datetime.datetime"
 
     @property
@@ -168,6 +172,11 @@ class DatetimeSchema(PrimitiveSchema):
         but msrest will do fine.
         """
         return f'"{value}"'
+
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_import("datetime", ImportType.STDLIB)
+        return file_import
 
 
 class UnixTimeSchema(PrimitiveSchema):
@@ -177,9 +186,10 @@ class UnixTimeSchema(PrimitiveSchema):
 
     @property
     def docstring_type(self) -> str:
-        return "~"+self.get_python_type_annotation()
+        return "~" + self.type_annotation
 
-    def get_python_type_annotation(self) -> str:
+    @property
+    def type_annotation(self) -> str:
         return "datetime.datetime"
 
     @property
@@ -192,6 +202,11 @@ class UnixTimeSchema(PrimitiveSchema):
         """
         return f'"{value}"'
 
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_import("datetime", ImportType.STDLIB)
+        return file_import
+
 
 class DateSchema(PrimitiveSchema):
 
@@ -200,9 +215,10 @@ class DateSchema(PrimitiveSchema):
 
     @property
     def docstring_type(self) -> str:
-        return "~"+self.get_python_type_annotation()
+        return "~" + self.type_annotation
 
-    def get_python_type_annotation(self):
+    @property
+    def type_annotation(self) -> str:
         return "datetime.date"
 
     @property
@@ -215,6 +231,11 @@ class DateSchema(PrimitiveSchema):
         """
         return f'"{value}"'
 
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_import("datetime", ImportType.STDLIB)
+        return file_import
+
 
 class DurationSchema(PrimitiveSchema):
 
@@ -223,9 +244,10 @@ class DurationSchema(PrimitiveSchema):
 
     @property
     def docstring_type(self) -> str:
-        return "~"+self.get_python_type_annotation()
+        return "~" + self.type_annotation
 
-    def get_python_type_annotation(self) -> str:
+    @property
+    def type_annotation(self) -> str:
         return "datetime.timedelta"
 
     @property
@@ -237,6 +259,11 @@ class DurationSchema(PrimitiveSchema):
         but msrest will do fine.
         """
         return f'"{value}"'
+
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_import("datetime", ImportType.STDLIB)
+        return file_import
 
 
 class ByteArraySchema(PrimitiveSchema):
@@ -270,6 +297,7 @@ def get_primitive_schema(namespace: str, yaml_data: Dict[str, Any]) -> "Primitiv
         'integer': NumberSchema,
         'number': NumberSchema,
         'string': StringSchema,
+        'char': StringSchema,
         'date-time': DatetimeSchema,
         'unixtime': UnixTimeSchema,
         'date': DateSchema,

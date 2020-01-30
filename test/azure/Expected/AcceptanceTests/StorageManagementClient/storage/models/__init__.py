@@ -28,26 +28,26 @@ try:
     from ._models_py3 import UsageListResult
     from ._models_py3 import UsageName
 except (SyntaxError, ImportError):
-    from ._models import Bar
-    from ._models import CheckNameAvailabilityResult
-    from ._models import CustomDomain
-    from ._models import Endpoints
-    from ._models import Foo
-    from ._models import Resource
-    from ._models import StorageAccount
-    from ._models import StorageAccountCheckNameAvailabilityParameters
-    from ._models import StorageAccountCreateParameters
-    from ._models import StorageAccountKeys
-    from ._models import StorageAccountListResult
-    from ._models import StorageAccountProperties
-    from ._models import StorageAccountPropertiesCreateParameters
-    from ._models import StorageAccountPropertiesUpdateParameters
-    from ._models import StorageAccountRegenerateKeyParameters
-    from ._models import StorageAccountUpdateParameters
-    from ._models import SubResource
-    from ._models import Usage
-    from ._models import UsageListResult
-    from ._models import UsageName
+    from ._models import Bar  # type: ignore
+    from ._models import CheckNameAvailabilityResult  # type: ignore
+    from ._models import CustomDomain  # type: ignore
+    from ._models import Endpoints  # type: ignore
+    from ._models import Foo  # type: ignore
+    from ._models import Resource  # type: ignore
+    from ._models import StorageAccount  # type: ignore
+    from ._models import StorageAccountCheckNameAvailabilityParameters  # type: ignore
+    from ._models import StorageAccountCreateParameters  # type: ignore
+    from ._models import StorageAccountKeys  # type: ignore
+    from ._models import StorageAccountListResult  # type: ignore
+    from ._models import StorageAccountProperties  # type: ignore
+    from ._models import StorageAccountPropertiesCreateParameters  # type: ignore
+    from ._models import StorageAccountPropertiesUpdateParameters  # type: ignore
+    from ._models import StorageAccountRegenerateKeyParameters  # type: ignore
+    from ._models import StorageAccountUpdateParameters  # type: ignore
+    from ._models import SubResource  # type: ignore
+    from ._models import Usage  # type: ignore
+    from ._models import UsageListResult  # type: ignore
+    from ._models import UsageName  # type: ignore
 from ._storage_management_client_enums import (
     AccountStatus,
     AccountType,

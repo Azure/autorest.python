@@ -78,7 +78,7 @@ class ModelBaseSerializer:
 
     @staticmethod
     @abstractmethod
-    def init_line(model: ObjectSchema) -> str:
+    def init_line(model: ObjectSchema) -> List[str]:
         ...
 
     @staticmethod
