@@ -3,7 +3,9 @@
   "version": "5.0.0",
   "description": "The Python extension for generators in AutoRest.",
   "scripts": {
-    "start": "python -m autorest.jsonrpc.server"
+    "prepare": "python prepare.py",
+    "start": "python start.py",
+    "install": "python install.py"
   },
   "repository": {
     "type": "git",
@@ -21,7 +23,16 @@
   },
   "homepage": "https://github.com/Azure/autorest.python/blob/master/README.md",
   "devDependencies": {
-    "@microsoft.azure/autorest.testserver": "^2.7.8",
+    "@microsoft.azure/autorest.testserver": "^2.10.9",
     "@autorest/autorest": "^3.0.0"
-  }
+  },
+  "files": [
+    "autorest/**/*.py",
+    "autorest/**/*.jinja2",
+    "setup.py",
+    "install.py",
+    "prepare.py",
+    "start.py",
+    "venvtools.py"
+  ]
 }

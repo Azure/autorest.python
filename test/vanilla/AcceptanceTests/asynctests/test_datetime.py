@@ -34,13 +34,6 @@ from datetime import date, datetime, timedelta
 import os
 from os.path import dirname, pardir, join, realpath
 
-cwd = dirname(realpath(__file__))
-log_level = int(os.environ.get('PythonLogLevel', 30))
-
-tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "BodyDateTime"))
-
-from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError, SerializationError
 
 from bodydatetime.aio import AutoRestDateTimeTestService
@@ -52,15 +45,24 @@ async def client():
     async with AutoRestDateTimeTestService(base_url="http://localhost:3000") as client:
         yield client
 
-class TestDatetime(object):
+class TestDatetime:
     @pytest.mark.asyncio
     async def test_utc_max_date_time(self, client):
-        max_date = isodate.parse_datetime("9999-12-31T23:59:59.999999Z")
+        max_date = isodate.parse_datetime("9999-12-31T23:59:59.999Z")
         dt = await client.datetime_model.get_utc_lowercase_max_date_time()
         assert dt ==  max_date
         dt = await client.datetime_model.get_utc_uppercase_max_date_time()
         assert dt ==  max_date
         await client.datetime_model.put_utc_max_date_time(max_date)
+
+    @pytest.mark.asyncio
+    async def test_utc_max_date_time_7digits(self, client):
+        max_date = isodate.parse_datetime("9999-12-31T23:59:59.999999Z")
+        dt = await client.datetime_model.get_utc_uppercase_max_date_time7_digits()
+        assert dt == max_date
+        with pytest.raises(Exception):
+            # Python doesn't support 7 digits
+            await client.datetime_model.put_utc_max_date_time7_digits(max_date)
 
     @pytest.mark.asyncio
     async def test_get_utc_min_date_time(self, client):

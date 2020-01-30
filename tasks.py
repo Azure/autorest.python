@@ -1,6 +1,14 @@
+# -------------------------------------------------------------------------
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License. See License.txt in the project root for
+# license information.
+# --------------------------------------------------------------------------
+from multiprocessing import Pool
 import os
-from invoke import task
+from colorama import init, Fore
+from invoke import task, run
 
+init()
 _AUTOREST_CMD_LINE = "autorest-beta"
 
 default_mappings = {
@@ -31,7 +39,8 @@ default_mappings = {
   'AcceptanceTests/CustomBaseUriMoreOptions': ['custom-baseUrl-more-options.json', 'custombaseurlmoreoptions'],
   'AcceptanceTests/ModelFlattening': 'model-flattening.json',
   'AcceptanceTests/Xml': ['xml-service.json', 'xmlservice'],
-  'AcceptanceTests/UrlMultiCollectionFormat' : 'url-multi-collectionFormat.json'
+  'AcceptanceTests/UrlMultiCollectionFormat' : 'url-multi-collectionFormat.json',
+  'AcceptanceTests/XmsErrorResponse': 'xms-error-responses.json',
 }
 
 default_azure_mappings = {
@@ -65,6 +74,7 @@ def regen_expected(c, opts, debug):
     output_dir = "{}/{}".format(opts['output_base_dir'], opts['output_dir']) if opts.get('output_base_dir') else opts['output_dir']
     keys = opts['mappings'].keys()
 
+    cmds = []
     for key in keys:
         opts_mappings_value = opts['mappings'][key]
         key = key.strip()
@@ -79,7 +89,8 @@ def regen_expected(c, opts, debug):
             "--enable-xml",
             "--basic-setup-py",
             "--package-version=0.1.0",
-            "--trace"
+            "--trace",
+            "--output-artifact=code-model-v4-no-tags",
         ]
 
         for swagger_file in swagger_files:
@@ -119,12 +130,23 @@ def regen_expected(c, opts, debug):
             args.append("--override-info.description={}".format(opts['override-info.description']))
 
         cmd_line = '{} {}'.format(_AUTOREST_CMD_LINE, " ".join(args))
-        print(f'Queuing up: {cmd_line}')
-        result = c.run(cmd_line, warn=True)
-        if result.ok:
-            print('Call done with success')
-        else:
-            print(f'Call failed with {result.return_code}')
+        print(Fore.YELLOW + f'Queuing up: {cmd_line}')
+        cmds.append(cmd_line)
+
+    if len(cmds) == 1:
+        run_autorest(cmds[0])
+    else:
+        # Execute actual taks in parallel
+        with Pool() as pool:
+            pool.map(run_autorest, cmds)
+
+def run_autorest(cmd_line):
+    result = run(cmd_line, warn=True, hide=True)
+    if result.ok or result.return_code is None:
+        print(Fore.GREEN + f'Call "{cmd_line}" done with success')
+    else:
+        print(Fore.RED + f'Call "{cmd_line}" failed with {result.return_code}\n{result.stdout}\n{result.stderr}')
+    return result
 
 
 @task
@@ -190,9 +212,10 @@ def regenerate(c, swagger_name=None, debug=False):
 
 
 @task
-def test(c):
+def test(c, env=None):
     # run language-specific tests
+    cmd = f'tox -e {env}' if env else 'tox'
     os.chdir("{}/test/vanilla/".format(base_dir))
-    c.run('tox')
+    c.run(cmd)
     os.chdir("{}/test/azure/".format(base_dir))
-    c.run('tox')
+    c.run(cmd)

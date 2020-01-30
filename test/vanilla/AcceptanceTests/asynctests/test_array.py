@@ -34,13 +34,6 @@ from datetime import date, datetime, timedelta
 import os
 from os.path import dirname, pardir, join, realpath
 
-cwd = dirname(realpath(__file__))
-log_level = int(os.environ.get('PythonLogLevel', 30))
-
-tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "BodyArray"))
-
-from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
 from azure.core.exceptions import DecodeError
@@ -325,3 +318,13 @@ class TestArray(object):
                       'test string'.encode(),
                       'Lorem ipsum'.encode()]
         assert (await client.array.get_base64_url()) ==  test_array
+
+    @pytest.mark.asyncio
+    async def test_array_enum_valid(self, client):
+        array = await client.array.get_enum_valid()
+        await client.array.put_enum_valid(array)
+
+    @pytest.mark.asyncio
+    async def test_array_string_enum_valid(self, client):
+        array = await client.array.get_string_enum_valid()
+        await client.array.put_string_enum_valid(array)

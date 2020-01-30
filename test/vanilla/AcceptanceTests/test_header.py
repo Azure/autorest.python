@@ -34,13 +34,6 @@ from datetime import date, datetime, timedelta
 import os
 from os.path import dirname, pardir, join, realpath
 
-cwd = dirname(realpath(__file__))
-log_level = int(os.environ.get('PythonLogLevel', 30))
-
-tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "Header"))
-
-from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
 from header import AutoRestSwaggerBATHeaderService
@@ -194,8 +187,8 @@ class TestHeader(object):
         assert response == "text/html; charset=utf-8"
 
     def test_custom_request_id(self, client):
-        def status_code(response, _, headers):
-            return response.status_code
+        def status_code(pipeline_response, _, headers):
+            return pipeline_response.http_response.status_code
         custom_headers = {"x-ms-client-request-id": "9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"}
         response = client.header.custom_request_id(headers=custom_headers, cls=status_code)
         assert response == 200

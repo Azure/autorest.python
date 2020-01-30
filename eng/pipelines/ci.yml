@@ -1,0 +1,101 @@
+trigger:
+  branches:
+    include:
+    - autorestv3
+
+pr:
+  branches:
+    include:
+    - autorestv3
+
+variables:
+  NodeVersion: '10.x'
+  PythonVersion: '3.6'
+  TestFolder: '$(Build.SourcesDirectory)/test/'
+
+jobs:
+  - job: 'AutoRest_Python_CI'
+    displayName: 'Run AutoRest CI Checks'
+
+    strategy:
+      matrix:
+        Linux_Python27:
+          OSName: 'Linux'
+          OSVmImage: 'ubuntu-16.04'
+          PythonVersion: '2.7'
+        Linux_Python35:
+          OSName: 'Linux'
+          OSVmImage: 'ubuntu-16.04'
+          PythonVersion: '3.5'
+          CoverageArg: ''
+        Linux_Python36:
+          OSName: 'Linux'
+          OSVmImage: 'ubuntu-16.04'
+          PythonVersion: '3.8'
+
+    pool:
+      vmImage: '$(OSVmImage)'
+
+    steps:
+      - task: NodeTool@0
+        displayName: 'Install Node.js $(NodeVersion)'
+        inputs:
+          versionSpec: '$(NodeVersion)'
+
+      - task: UsePythonVersion@0
+        displayName: 'Use Python 3.6'
+        inputs:
+          versionSpec: 3.6
+
+      - script: |
+          cd $(Build.SourcesDirectory)
+          pip install -r dev_requirements.txt
+          npm install -g "@autorest/autorest"
+          npm install
+        displayName: 'Prepare Environment for Generation'
+      - script: |
+          pylint autorest
+        displayName: 'Pylint'
+
+      - script: |
+          mypy autorest
+        displayName: 'Mypy'
+
+      - script: |
+          pytest test/unittests
+        displayName: 'Unit tests'
+
+      - script: |
+          inv regenerate
+        displayName: 'Regenerate Code'
+      - task: UsePythonVersion@0
+        displayName: 'Use Python $(PythonVersion)'
+        inputs:
+          versionSpec: $(PythonVersion)
+
+      - script: |
+          pip install tox coverage==4.5.4
+        displayName: 'Install Env Specific Reqs in Target PyVersion $(PythonVersion)'
+      - script: |
+          cd $(TestFolder)/azure
+          tox -e ci
+        displayName: 'Execute "azure" Tests - Python $(PythonVersion)'
+      - task: PublishTestResults@2
+        condition: always()
+        displayName: 'Publish "azure" Test Results'
+        inputs:
+          testResultsFiles: 'test-junit-azure-ci.xml'
+          testRunTitle: '$(OSName) Python $(PythonVersion) - azure'
+          searchFolder: '$(TestFolder)/azure'
+
+      - script: |
+          cd $(TestFolder)/vanilla
+          tox -e ci
+        displayName: 'Execute "vanilla" Tests - Python $(PythonVersion)'
+      - task: PublishTestResults@2
+        displayName: 'Publish "vanilla" Test Results'
+        condition: always()
+        inputs:
+          testResultsFiles: 'test-junit-vanilla-ci.xml'
+          testRunTitle: '$(OSName) Python $(PythonVersion) - vanilla'
+          searchFolder: '$(TestFolder)/vanilla'

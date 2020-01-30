@@ -34,13 +34,6 @@ from datetime import date, datetime, timedelta, tzinfo
 import os
 from os.path import dirname, pardir, join, realpath
 
-cwd = dirname(realpath(__file__))
-log_level = int(os.environ.get('PythonLogLevel', 30))
-
-tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "BodyComplex"))
-
-from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError, SerializationError, ValidationError
 
 from bodycomplex.aio import AutoRestComplexTestService
@@ -151,11 +144,11 @@ class TestComplex(object):
         # GET primitive/double
         doubleResult = await client.primitive.get_double()
         assert 3e-100 ==  doubleResult.field1
-        assert -5e-57 ==  doubleResult.field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose
+        assert -5e-57 ==  doubleResult.field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_along_field_name_on_purpose
 
         # PUT primitive/double
         doubleRequest = {'field1':3e-100}
-        doubleRequest['field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose'] = -5e-57
+        doubleRequest['field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_along_field_name_on_purpose'] = -5e-57
         await client.primitive.put_double(doubleRequest)
 
     @pytest.mark.asyncio
@@ -336,6 +329,16 @@ class TestComplex(object):
     # COMPLEX TYPES THAT INVOLVE POLYMORPHISM
 
     @pytest.mark.asyncio
+    async def test_get_composed_with_discriminator(self, client):
+        result = await client.polymorphism.get_composed_with_discriminator()
+        assert isinstance(result.sample_fish, DotSalmon)
+
+    @pytest.mark.asyncio
+    async def test_get_composed_without_discriminator(self, client):
+        result = await client.polymorphism.get_composed_without_discriminator()
+        assert isinstance(result.sample_fish, DotFish)
+
+    @pytest.mark.asyncio
     async def test_polymorphism_get_and_put_valid(self, client):
         # GET polymorphism/valid
         result = await client.polymorphism.get_valid()
@@ -484,5 +487,5 @@ class TestComplex(object):
 
         # Dot syntax
         dot_salmon = await client.polymorphism.get_dot_syntax()
-        assert dot_salmon.fishtype == "DotSalmon"
+        assert dot_salmon.fish_type == "DotSalmon"
         assert dot_salmon.location == "sweden"

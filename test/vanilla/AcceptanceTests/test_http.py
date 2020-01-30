@@ -36,12 +36,6 @@ from os.path import dirname, pardir, join, realpath
 
 import requests
 
-cwd = dirname(realpath(__file__))
-log_level = int(os.environ.get('PythonLogLevel', 30))
-
-tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "Http"))
-
 from azure.core.exceptions import HttpResponseError
 from azure.core.pipeline.policies import ContentDecodePolicy, RetryPolicy, HeadersPolicy, RedirectPolicy
 from msrest.exceptions import DeserializationError
@@ -70,8 +64,8 @@ def client(cookie_policy):
 class TestHttp(object):
 
     def assert_status(self, code, func, *args, **kwargs):
-        def return_status(response, data, headers):
-            return response.status_code
+        def return_status(pipeline_response, data, headers):
+            return pipeline_response.http_response.status_code
         kwargs['cls'] = return_status
         status_code = func(*args, **kwargs)
         assert status_code == code
@@ -416,3 +410,7 @@ class TestHttp(object):
 
     def test_success_status_codes_404(self, client):
         client.http_success.head404()
+
+    def test_empty_no_content(self, client):
+        self.assert_raises_with_status(requests.codes.bad_request,
+            client.http_failure.get_no_model_empty)

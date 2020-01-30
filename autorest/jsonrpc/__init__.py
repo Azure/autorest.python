@@ -1,33 +1,14 @@
-# --------------------------------------------------------------------------
-#
+# -------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
-#
-# The MIT License (MIT)
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the ""Software""), to
-# deal in the Software without restriction, including without limitation the
-# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-# sell copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-# IN THE SOFTWARE.
-#
+# Licensed under the MIT License. See License.txt in the project root for
+# license information.
 # --------------------------------------------------------------------------
 from abc import ABC, abstractmethod
 from enum import Enum
+from typing import Any, List, Optional, Union
 import logging
 from pathlib import Path
-from typing import List
+
 
 
 class Channel(Enum):
@@ -81,7 +62,7 @@ class AutorestHandler(logging.Handler):
             )
         except RecursionError:  # See issue 36272
             raise
-        except Exception:
+        except Exception:  # pylint: disable=broad-except
             self.handleError(record)
 
 
@@ -92,16 +73,19 @@ class AutorestAPI(ABC):
         if Path("logging.conf").exists():
             logging.config.fileConfig(Path("logging.conf"))
         else:
-            logging.basicConfig(
-                level=logging.DEBUG,
-                format="[%(name)s.%(funcName)s:%(lineno)d] %(message)s",
-                handlers=[
-                    AutorestHandler(self)
-                ]
-            )
+            self._handler = AutorestHandler(self)
+            fmt = logging.Formatter("[%(name)s.%(funcName)s:%(lineno)d] %(message)s")
+            self._handler.setFormatter(fmt)
+            logging.getLogger().addHandler(self._handler)
+            logging.getLogger().setLevel(logging.DEBUG)
+
+    def close(self):
+        if self._handler:
+            logging.getLogger().removeHandler(self._handler)
+            self._handler = None
 
     @abstractmethod
-    def write_file(self, filename: str, file_content: str) -> None:
+    def write_file(self, filename: Union[str, Path], file_content: str) -> None:
         """Ask autorest to write the content to the current path.
 
         pathlib.Path object are acceptable but must be relative.
@@ -111,7 +95,7 @@ class AutorestAPI(ABC):
         """
 
     @abstractmethod
-    def read_file(self, filename: str) -> str:
+    def read_file(self, filename: Union[str, Path]) -> str:
         """Ask autorest to read a file for me.
 
         pathlib.Path object are acceptable but must be relative.
@@ -127,7 +111,7 @@ class AutorestAPI(ABC):
         """
 
     @abstractmethod
-    def get_value(self, key: str) -> str:
+    def get_value(self, key: str) -> Any:
         """Get a value from configuration.
         """
 
@@ -136,14 +120,27 @@ class AutorestAPI(ABC):
         """Send a log message to autorest.
         """
 
-    def get_boolean_value(self, key: str) -> bool:
-        """Get a value and interpret it as a boolean.
+    def get_boolean_value(self, key: str, default: bool = None) -> Optional[bool]:
+        """Check if value is present on the line, and interpret it as bool if it was.
 
-        For the JSON testserver, empty dict means "it was on the line", so we want it to true.
+        If value is not not on the line, return the "default".
+        If the value is present, will also accept "true" or 1 as True.
+
+        For autorest, empty dict means "it was on the line", so we want it to true.
+
+        :returns: A boolean if it was present, or None if not
+        :rtype: Optional[bool]
         """
         result = self.get_value(key)
         if result is None:
-            return False
+            return default
+        if result == {}: # autorest received --myoption
+            return True
         if isinstance(result, bool):
             return result
-        return result == {} or result.lower() == "true" or result == 1
+        # Try as a string
+        try:
+            return result.lower() == "true"
+        except AttributeError: # not a string
+            pass
+        return result == 1

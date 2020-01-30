@@ -29,14 +29,6 @@ from os.path import dirname, pardir, join, realpath
 import unittest
 import sys
 
-cwd = dirname(realpath(__file__))
-log_level = int(os.environ.get('PythonLogLevel', 30))
-
-tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "ExtensibleEnums"))
-
-from msrest.serialization import Deserializer
-
 from extensibleenumsswagger.aio import PetStoreInc
 from extensibleenumsswagger.models import (
     Pet,

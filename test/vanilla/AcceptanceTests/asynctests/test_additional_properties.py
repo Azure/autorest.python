@@ -34,18 +34,12 @@ from datetime import date, datetime, timedelta
 import os
 from os.path import dirname, pardir, join, realpath
 
-cwd = dirname(realpath(__file__))
-log_level = int(os.environ.get('PythonLogLevel', 30))
-
-tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "AdditionalProperties"))
-
-from msrest.serialization import Deserializer
 from msrest.exceptions import DeserializationError
 
 from additionalproperties.aio import AdditionalPropertiesClient
 from additionalproperties.models import (
     PetAPTrue,
+    CatAPTrue,
     PetAPObject,
     PetAPString,
     PetAPInProperties,
@@ -74,6 +68,22 @@ class TestAdditionalProperties(object):
             }
         )
         output_ap_true = await client.pets.create_ap_true(input_ap_true)
+        assert output_ap_true.additional_properties['birthdate'] ==  '2017-12-13T02:29:51Z'
+
+    @pytest.mark.asyncio
+    async def test_create_cat_ap_true(self, client):
+        input_ap_true = CatAPTrue(
+            id = 1,
+            name = 'Lisa',
+            friendly = True,
+            additional_properties = {
+                'birthdate': '2017-12-13T02:29:51Z',
+                'complexProperty': {
+                    'color': 'Red'
+                }
+            }
+        )
+        output_ap_true = await client.pets.create_cat_ap_true(input_ap_true)
         assert output_ap_true.additional_properties['birthdate'] ==  '2017-12-13T02:29:51Z'
 
     @pytest.mark.asyncio
@@ -129,7 +139,7 @@ class TestAdditionalProperties(object):
         input_ap_str_add = PetAPInPropertiesWithAPString(
             id = 5,
             name = 'Funny',
-            odatalocation = 'westus',
+            odata_location = 'westus',
             additional_properties = {
                 'color': 'red',
                 'city': 'Seattle',

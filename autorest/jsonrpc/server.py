@@ -1,31 +1,11 @@
-# --------------------------------------------------------------------------
-#
+# -------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
-#
-# The MIT License (MIT)
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the ""Software""), to
-# deal in the Software without restriction, including without limitation the
-# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-# sell copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-# IN THE SOFTWARE.
-#
+# Licensed under the MIT License. See License.txt in the project root for
+# license information.
 # --------------------------------------------------------------------------
+import contextlib
 import os
 import logging
-import sys
 
 from jsonrpc import dispatcher, JSONRPCResponseManager
 
@@ -37,27 +17,40 @@ _LOGGER = logging.getLogger(__name__)
 
 @dispatcher.add_method
 def GetPluginNames():
-    return ["mapper"]
+    return ["codegen", "m2r", "namer"]
 
 @dispatcher.add_method
-def Process(plugin_name, session_id):
-    _LOGGER.debug("Process was called by Autorest")
-    from ..code_generator import CodeGenerator
+def Process(plugin_name: str, session_id):
+    # pylint: disable=import-outside-toplevel
+    """JSON-RPC process call.
+    """
     from .stdstream import StdStreamAutorestAPI
+    with contextlib.closing(StdStreamAutorestAPI(session_id)) as stdstream_connection:
 
-    stdstream_connection = StdStreamAutorestAPI(session_id)
-    code_generator = CodeGenerator(stdstream_connection)
+        _LOGGER.debug("Autorest called process with plugin_name '%s' and session_id: '%s'", plugin_name, session_id)
+        if plugin_name == "m2r":
+            from ..m2r import M2R as PluginToLoad
+        elif plugin_name == "namer":
+            from ..namer import Namer as PluginToLoad # type: ignore
+        elif plugin_name == "codegen":
+            from ..codegen import CodeGenerator as PluginToLoad # type: ignore
+        else:
+            _LOGGER.fatal("Unknown plugin name %s", plugin_name)
+            raise RuntimeError(f"Unknown plugin name {plugin_name}")
 
-    try:
-        return code_generator.process()
-    except Exception as err:
-        _LOGGER.exception("Python generator raised an exception")
+        plugin = PluginToLoad(stdstream_connection)
+
+        try:
+            _LOGGER.debug("Starting plugin %s", PluginToLoad.__name__)
+            return plugin.process()
+        except Exception:   # pylint: disable=broad-except
+            _LOGGER.exception("Python generator raised an exception")
 
 
 def main():
     if os.environ.get("AUTOREST_PYTHON_ATTACH_VSCODE_DEBUG", False):
         try:
-            import ptvsd
+            import ptvsd  # pylint: disable=import-outside-toplevel
         except ImportError:
             raise SystemExit("Please pip install ptvsd in order to use VSCode debugging")
 
@@ -65,7 +58,7 @@ def main():
         print("Waiting for debugger attach")
         ptvsd.enable_attach(address=('localhost', 5678), redirect_output=True)
         ptvsd.wait_for_attach()
-        breakpoint()
+        breakpoint()  # pylint: disable=undefined-variable
 
     _LOGGER.debug("Starting JSON RPC server")
 

@@ -32,13 +32,6 @@ import os
 from datetime import date, datetime, timedelta
 from os.path import dirname, pardir, join, realpath
 
-cwd = dirname(realpath(__file__))
-log_level = int(os.environ.get('PythonLogLevel', 30))
-
-tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "CustomBaseUri"))
-sys.path.append(join(tests, "CustomBaseUriMoreOptions"))
-
 from msrest.exceptions import (
     DeserializationError,
     SerializationError,
@@ -72,9 +65,9 @@ class TestCustomBaseUri(object):
             client.paths.get_empty(None)
 
     def test_get_empty_from_bad_host(self):
-        client = AutoRestParameterizedHostTestClient("badhost:3000", retry_total = 0)
-        with pytest.raises(ServiceRequestError):
-            client.paths.get_empty("local")
+        with AutoRestParameterizedHostTestClient("badhost:3000", retry_total = 0) as client:
+            with pytest.raises(ServiceRequestError):
+                client.paths.get_empty("local")
 
     @pytest.mark.xfail(reason="https://github.com/Azure/autorest.testserver/issues/97")
     def test_more_optiopns(self):

@@ -1,0 +1,106 @@
+{% set exception_name = model.name + 'Exception' %}
+{% set basename = model.base_model.name if model.base_model and model.base_model.name|length else "" %}
+{# actual template starts here #}
+{% if model.is_exception %}
+
+
+{% if model.base_model and model.base_model.is_exception %}
+class {{ exception_name }}({{ basename }}Exception):
+{% else %}
+class {{ exception_name }}(HttpResponseError):
+{% endif %}
+    """Server responded with exception of type: '{{ model.name }}'.
+
+    :param response: Server response to be deserialized.
+    :param error_model: A deserialized model of the response body as model.
+    """
+
+    def __init__(self, response, error_model):
+        self.error = error_model
+        super({{ exception_name }}, self).__init__(response=response, error_model=error_model)
+
+    @classmethod
+    def from_response(cls, response, deserialize):
+        """Deserialize this response as this exception, or a subclass of this exception.
+
+        :param response: Server response to be deserialized.
+        :param deserialize: A deserializer
+        """
+        model_name = '{{ model.name }}'
+        error = deserialize(model_name, response)
+        if error is None:
+            error = deserialize.dependencies[model_name]()
+        return error._EXCEPTION_TYPE(response, error)
+{% endif %}
+
+
+{% if basename %}
+class {{ model.name }}({{ basename }}):
+{% else %}
+class {{ model.name }}(Model):
+{% endif %}
+    """{{ model.description }}
+    {% if model.discriminator_name %}
+
+    You probably want to use the sub-classes and not this class directly. Known
+    sub-classes are: {{ model.subtype_map.values()|join(', ') }}.
+    {% endif %}
+    {% if model.has_readonly_or_constant_property %}
+
+    Variables are only populated by the server, and will be ignored when sending a request.
+    {% endif %}
+    {% if (model.properties | selectattr('required') | first) is defined %}
+
+    All required parameters must be populated in order to send to Azure.
+    {% endif %}
+
+    {% if model.properties != None %}
+        {% for p in model.properties %}
+    {{ prop_documentation_string(p) | wordwrap(width=80, break_long_words=False, wrapstring='\n     ') }}
+    {{ prop_type_documentation_string(p) | wordwrap(width=80, break_long_words=False, wrapstring='\n     ') }}
+        {% endfor %}
+    {% endif %}
+    """
+{% if model.is_exception %}
+    _EXCEPTION_TYPE = {{ exception_name }}
+{% endif %}
+    {% if (model.properties | selectattr('validation_map') ) | first %}
+
+    _validation = {
+        {% for p in model.properties | selectattr('validation_map')%}
+        '{{ p.name }}': {{ str(p.validation_map) }},
+        {% endfor %}
+    }
+    {% endif %}
+
+    _attribute_map = {
+        {% if model.properties != None %}
+            {% for p in model.properties %}
+        {% set xml_metadata = (", 'xml': {" + p.schema.xml_serialization_ctxt() + "}") if p.schema.has_xml_serialization_ctxt else "" %}
+        '{{ p.name }}': {'key': '{{ p.escaped_swagger_name }}', 'type': '{{ p.schema.get_serialization_type()}}'{{ xml_metadata }}},
+            {% endfor %}
+        {% else%}
+        {% endif %}
+    }
+    {% if model.discriminator_name %}
+
+    _subtype_map = {
+        '{{ model.discriminator_name }}': {{ str(model.subtype_map) }}
+    }
+    {% endif %}
+    {% if model.xml_metadata %}
+    _xml_map = {
+        {{ model.xml_map_content() }}
+    }
+    {% endif %}
+    {% if (model.properties | selectattr('constant') | first) is defined %}
+
+        {% for p in model.properties | selectattr('constant')%}
+    {{ p.name }} = {{ p.schema.get_constant_value() }}
+        {% endfor %}
+    {% endif %}
+
+    {{ init_line(model) }}
+    {% for arg in init_args(model) %}
+        {{ arg }}
+    {% endfor %}

@@ -33,13 +33,6 @@ from datetime import date, datetime, timedelta
 import os
 from os.path import dirname, pardir, join, realpath
 
-cwd = dirname(realpath(__file__))
-log_level = int(os.environ.get('PythonLogLevel', 30))
-
-tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "Url"))
-sys.path.append(join(tests, "UrlMultiCollectionFormat"))
-
 from msrest.exceptions import DeserializationError, ValidationError
 
 from url.aio import AutoRestUrlTestService
@@ -139,6 +132,10 @@ class TestUrl(object):
     @pytest.mark.asyncio
     async def test_string_url_encoded(self, client):
         await client.paths.string_url_encoded()
+
+    @pytest.mark.asyncio
+    async def test_string_url_non_encoded(self, client):
+        await client.paths.string_url_non_encoded()
 
     @pytest.mark.asyncio
     async def test_enum_valid(self, client):

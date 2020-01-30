@@ -35,13 +35,6 @@ from datetime import date, datetime, timedelta
 import os
 from os.path import dirname, pardir, join, realpath
 
-cwd = dirname(realpath(__file__))
-log_level = int(os.environ.get('PythonLogLevel', 30))
-
-tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "BodyNumber"))
-
-from msrest.serialization import Deserializer
 from azure.core.exceptions import DecodeError
 
 from bodynumber import AutoRestNumberTestService
@@ -88,11 +81,11 @@ class TestNumber(object):
         assert client.number.get_small_decimal() ==  2.5976931e-101
 
     def test_get_big_decimal_negative_decimal(self, client):
-        # client.number.put_big_decimal_positive_decimal()
+        client.number.put_big_decimal_positive_decimal()
         assert client.number.get_big_decimal_negative_decimal() ==  -99999999.99
 
     def test_get_big_decimal_positive_decimal(self, client):
-        # client.number.put_big_decimal_negative_decimal()
+        client.number.put_big_decimal_negative_decimal()
         assert client.number.get_big_decimal_positive_decimal() ==  99999999.99
 
     def test_get_null(self, client):

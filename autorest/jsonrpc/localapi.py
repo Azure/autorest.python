@@ -1,31 +1,11 @@
-# --------------------------------------------------------------------------
-#
+# -------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
-#
-# The MIT License (MIT)
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the ""Software""), to
-# deal in the Software without restriction, including without limitation the
-# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-# sell copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-# IN THE SOFTWARE.
-#
+# Licensed under the MIT License. See License.txt in the project root for
+# license information.
 # --------------------------------------------------------------------------
 import logging
 from pathlib import Path
-from typing import List
+from typing import Dict, List, Optional, Union
 
 from . import AutorestAPI, Channel
 
@@ -42,14 +22,15 @@ class LocalAutorestAPI(AutorestAPI):
             reachable_files = []
         self._reachable_files = reachable_files
         self._output_folder = Path(output_folder)
+        self.values: Dict[str, Optional[str]] = dict()
 
-    def write_file(self, filename: str, file_content: str) -> None:
+    def write_file(self, filename: Union[str, Path], file_content: str) -> None:
         _LOGGER.debug("Writing file: %s", filename)
         with (self._output_folder / Path(filename)).open('w') as fd:
             fd.write(file_content)
         _LOGGER.debug("Written file: %s", filename)
 
-    def read_file(self, filename: str) -> str:
+    def read_file(self, filename: Union[str, Path]) -> str:
         _LOGGER.debug("Reading file: %s", filename)
         with Path(filename).open('r') as fd:
             return fd.read()
@@ -57,8 +38,8 @@ class LocalAutorestAPI(AutorestAPI):
     def list_inputs(self) -> List[str]:
         return self._reachable_files
 
-    def get_value(self, key: str) -> str:
-        pass
+    def get_value(self, key: str) -> Optional[str]:
+        return self.values.get(key, None)
 
     def message(self, channel: Channel, text: str) -> None:
         pass

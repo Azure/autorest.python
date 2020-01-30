@@ -28,14 +28,6 @@ import os
 from os.path import dirname, pardir, join, realpath
 import inspect
 
-cwd = dirname(realpath(__file__))
-log_level = int(os.environ.get("PythonLogLevel", 30))
-
-tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "Paging"))
-sys.path.append(join(tests, "Lro"))
-sys.path.append(join(tests, "SubscriptionIdApiVersion"))
-
 from paging import AutoRestPagingTestService
 from subscriptionidapiversion import MicrosoftAzureTestUrl
 from lro import AutoRestLongRunningOperationTestService
@@ -55,7 +47,7 @@ def test_paging():
 def test_lro():
     with AutoRestLongRunningOperationTestService("cred", base_url="dummy url") as client:
         assert not has_tracing_decorator(client.lros._put201_creating_succeeded200_initial)
-        assert has_tracing_decorator(client.lros.put201_creating_succeeded200)
+        assert has_tracing_decorator(client.lros.begin_put201_creating_succeeded200)
         assert not has_tracing_decorator(client.lros._put201_creating_succeeded200_initial)
 
 

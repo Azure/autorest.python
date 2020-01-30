@@ -34,12 +34,6 @@ from datetime import date, datetime, timedelta
 import os
 from os.path import dirname, pardir, join, realpath
 
-cwd = dirname(realpath(__file__))
-log_level = int(os.environ.get('PythonLogLevel', 30))
-
-tests = realpath(join(cwd, pardir, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "Lro"))
-
 from azure.core.exceptions import DecodeError
 from azure.core.polling import async_poller
 from azure.core.pipeline.policies import ContentDecodePolicy, AsyncRetryPolicy, HeadersPolicy, RequestIdPolicy
@@ -74,13 +68,11 @@ class AutorestTestARMPolling(AsyncARMPolling):
         return {}
 
     async def request_status(self, status_link):
+        request = self._client.get(status_link, headers=self._polling_cookie(self._pipeline_response.http_response))
         # ARM requires to re-inject 'x-ms-client-request-id' while polling
-        header_parameters = {
-            'x-ms-client-request-id': self._operation.initial_response.request.headers['x-ms-client-request-id']
-        }
-        header_parameters.update(self._polling_cookie(self._response))
-        request = self._client.get(status_link, headers=header_parameters)
-        return (await self._client._pipeline.run(request, stream=False, **self._operation_config)).http_response
+        if 'request_id' not in self._operation_config:
+            self._operation_config['request_id'] = self._operation.initial_response.http_response.request.headers['x-ms-client-request-id']
+        return (await self._client._pipeline.run(request, stream=False, **self._operation_config))
 
 @pytest.fixture()
 async def client(cookie_policy, credential):
@@ -145,7 +137,6 @@ class TestLro:
         product = await client.lros.post_double_headers_final_azure_header_get()
         assert product.id == "100"
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     @pytest.mark.asyncio
     async def test_happy_put201_creating_succeeded200(self, client, product):
         process = await self.lro_result(client.lros.put201_creating_succeeded200, product)
@@ -155,7 +146,6 @@ class TestLro:
         process = await self.lro_result(client.lros.put201_creating_succeeded200, product, polling=False)
         assert "Creating" ==  process.provisioning_state
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     @pytest.mark.asyncio
     async def test_happy_put201_creating_failed200(self, client, product):
         await self.assert_raises_with_message(
@@ -165,7 +155,6 @@ class TestLro:
         process = await self.lro_result(client.lros.put201_creating_failed200, product, polling=False)
         assert "Created" ==  process.provisioning_state
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     @pytest.mark.asyncio
     async def test_happy_put200_updating_succeeded204(self, client, product):
         process = await self.lro_result(client.lros.put200_updating_succeeded204, product)
@@ -174,7 +163,6 @@ class TestLro:
         process = await self.lro_result(client.lros.put200_updating_succeeded204, product, polling=False)
         assert "Updating" ==  process.provisioning_state
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     @pytest.mark.asyncio
     async def test_happy_put200_acceptedcanceled200(self, client, product):
         await self.assert_raises_with_message(
@@ -184,7 +172,6 @@ class TestLro:
         process = await self.lro_result(client.lros.put200_acceptedcanceled200, product, polling=False)
         assert "Accepted" ==  process.provisioning_state
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     @pytest.mark.asyncio
     async def test_happy_put_no_header_in_retry(self, client, product):
         process = await self.lro_result(client.lros.put_no_header_in_retry, product)
@@ -193,7 +180,6 @@ class TestLro:
         process = await self.lro_result(client.lros.put_async_no_header_in_retry, product)
         assert "Succeeded" ==  process.provisioning_state
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     @pytest.mark.asyncio
     async def test_happy_put_sub_resource(self, client):
         process = await self.lro_result(client.lros.put_sub_resource, SubProduct())
@@ -210,7 +196,6 @@ class TestLro:
         process = await self.lro_result(client.lros.put_async_non_resource, Sku())
         assert "100" ==  process.id
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     @pytest.mark.asyncio
     async def test_happy_put200_succeeded(self, client, product):
         process = await self.lro_result(client.lros.put200_succeeded, product)
@@ -224,7 +209,6 @@ class TestLro:
         process = await self.lro_result(client.lros.put202_retry200, product)
         assert "100" ==  process.id
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     @pytest.mark.asyncio
     async def test_happy_put_retry_succeeded(self, client, product):
         process = await self.lro_result(client.lros.put_async_retry_succeeded, product)
@@ -274,7 +258,6 @@ class TestLro:
         assert await self.lro_result(client.lros.delete_async_no_retry_succeeded) is None
         assert await self.lro_result(client.lros.delete_async_retry_succeeded) is None
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     @pytest.mark.asyncio
     async def test_happy_delete_provisioning(self, client):
         process = await self.lro_result(client.lros.delete_provisioning202_accepted200_succeeded)
@@ -310,7 +293,6 @@ class TestLro:
         prod = await self.lro_result(client.lros.post_async_no_retry_succeeded)
         assert prod.id ==  "100"
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     @pytest.mark.asyncio
     async def test_retrys_put(self, client, product):
         process = await self.lro_result(client.lro_retrys.put201_creating_succeeded200, product)
@@ -319,7 +301,6 @@ class TestLro:
         process = await self.lro_result(client.lro_retrys.put_async_relative_retry_succeeded, product)
         assert 'Succeeded' ==  process.provisioning_state
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     @pytest.mark.asyncio
     async def test_retrys_delete(self, client, product):
         process = await self.lro_result(client.lro_retrys.delete_provisioning202_accepted200_succeeded)

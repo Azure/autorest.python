@@ -29,13 +29,6 @@ import os
 from os.path import dirname, pardir, join, realpath
 import inspect
 
-cwd = dirname(realpath(__file__))
-log_level = int(os.environ.get('PythonLogLevel', 30))
-
-tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "Url"))
-sys.path.append(join(tests, "UrlMultiCollectionFormat"))
-
 from url import AutoRestUrlTestService
 
 

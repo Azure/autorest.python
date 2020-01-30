@@ -33,11 +33,6 @@ from datetime import date, datetime, timedelta
 import os
 from os.path import dirname, pardir, join, realpath
 
-cwd = dirname(realpath(__file__))
-
-tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "Xml"))
-
 from xmlservice import AutoRestSwaggerBATXMLService
 from xmlservice.models import BlobType
 
@@ -52,7 +47,7 @@ def client():
 
 def _assert_with_log(func, *args, **kwargs):
     def raise_for_status(response, deserialized, headers):
-        response.internal_response.raise_for_status()
+        response.http_response.internal_response.raise_for_status()
     try:
         http_response = func(*args, cls=raise_for_status, **kwargs)
     except Exception as err:

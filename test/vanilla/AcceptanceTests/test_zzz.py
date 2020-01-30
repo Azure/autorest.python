@@ -23,21 +23,11 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
-
-import unittest
-import isodate
-import subprocess
 import sys
 import datetime
 import os
 import platform
-from os.path import dirname, pardir, join, realpath
-
-cwd = dirname(realpath(__file__))
-log_level = int(os.environ.get('PythonLogLevel', 30))
-
-tests = realpath(join(cwd, pardir, "Expected", "AcceptanceTests"))
-sys.path.append(join(tests, "Report"))
+import warnings
 
 from report import AutoRestReportService
 
@@ -47,30 +37,59 @@ class TestAcceptance(object):
     def test_ensure_coverage(self):
         client = AutoRestReportService(base_url="http://localhost:3000")
         report = client.get_report(platform.python_version())
+        optional_report = client.get_optional_report(platform.python_version())
 
         # Add tests that wont be supported due to the nature of Python here
         not_supported = {}
 
         # Please add missing features or failing tests here
-        missing_features_or_bugs = {'FileStreamVeryLarge' : 1}
+        missing_features_or_bugs = {
+            'FileStreamVeryLarge' : 1,
+            'ConstantsInBody': 1,  # https://github.com/Azure/autorest.modelerfour/issues/83
+            'CustomBaseUriMoreOptions': 1, # https://github.com/Azure/autorest.testserver/issues/97
+            'putModelFlattenArray': 1, # https://github.com/Azure/autorest.modelerfour/issues/14
+            'putModelFlattenDictionary': 1, # https://github.com/Azure/autorest.modelerfour/issues/14
+            'putModelFlattenResourceCollection': 1, # https://github.com/Azure/autorest.modelerfour/issues/14
+            'putModelFlattenCustomBase': 1, # https://github.com/Azure/autorest.modelerfour/issues/14
+            'postModelFlattenCustomParameter': 1, # https://github.com/Azure/autorest.modelerfour/issues/14
+            'putModelFlattenCustomGroupedParameter': 1, # https://github.com/Azure/autorest.modelerfour/issues/10
+        }
+        for name in report:
+            if "XML" in name:
+                missing_features_or_bugs[name] = 1; # Skip all XML until XML PR is merged
 
-        report.update(not_supported)
-        report.update(missing_features_or_bugs)
+        print("Coverage:")
+        self._print_report(report, not_supported, missing_features_or_bugs)
+
+        missing_features_or_bugs = {
+            "putDateTimeMaxLocalNegativeOffset": 1, # Python doesn't support year 1000
+            "putDateTimeMinLocalPositiveOffset": 1, # Python doesn't support BC time
+            'putDateTimeMaxUtc7MS': 1 # Python doesn't support 7 digits ms datetime
+        }
+        for name in optional_report:
+            if "Options" in name:
+                missing_features_or_bugs[name] = 1; # https://github.com/Azure/azure-sdk-for-python/pull/9322
+
+        print("Optional coverage:")
+        self._print_report(optional_report, not_supported, missing_features_or_bugs)
+
+
+    def _print_report(self, report, not_supported=None, missing_features_or_bugs=None):
+        if not_supported:
+            report.update(not_supported)
+            for s in not_supported.keys():
+                print("IGNORING {0}".format(s))
+
+        if missing_features_or_bugs:
+            report.update(missing_features_or_bugs)
+            for s in missing_features_or_bugs.keys():
+                print("PENDING {0}".format(s))
+
         failed = [k for k, v in report.items() if v == 0]
-
-        for s in not_supported.keys():
-            print("IGNORING {0}".format(s))
-
-        for s in missing_features_or_bugs.keys():
-            print("PENDING {0}".format(s))
-
         for s in failed:
             print("FAILED TO EXECUTE {0}".format(s))
 
-        totalTests = len(report)
-        print ("The test coverage is {0}/{1}.".format(totalTests - len(failed), totalTests))
+        total_tests = len(report)
+        warnings.warn ("The test coverage is {0}/{1}.".format(total_tests - len(failed), total_tests))
 
-        # assert 0 ==  len(failed)
-
-if __name__ == '__main__':
-    unittest.main()
+        assert 0 == len(failed)
