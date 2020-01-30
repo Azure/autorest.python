@@ -226,27 +226,48 @@ class FlattenedProductProperties(Model):
 class FlattenParameterGroup(Model):
     """Parameter group.
 
+    Variables are only populated by the server, and will be ignored when sending a request.
+
     All required parameters must be populated in order to send to Azure.
 
     :param name: Required. Product name with value 'groupproduct'.
     :type name: str
     :param simple_body_product: Simple body product to put.
     :type simple_body_product: ~modelflattening.models.SimpleProduct
+    :param max_product_display_name: Display name of product.
+    :type max_product_display_name: str
+    :ivar capacity: Capacity of product. For example, 4 people. Default value:
+     "Large".
+    :vartype capacity: str
+    :param generic_value: Generic URL value.
+    :type generic_value: str
+    :param odatavalue: URL value.
+    :type odatavalue: str
     """
 
     _validation = {
         'name': {'required': True},
+        'capacity': {'constant': True},
     }
 
     _attribute_map = {
         'name': {'key': 'name', 'type': 'str'},
         'simple_body_product': {'key': 'SimpleBodyProduct', 'type': 'SimpleProduct'},
+        'max_product_display_name': {'key': 'max_product_display_name', 'type': 'str'},
+        'capacity': {'key': 'capacity', 'type': 'str'},
+        'generic_value': {'key': 'generic_value', 'type': 'str'},
+        'odatavalue': {'key': '@odata\\.value', 'type': 'str'},
     }
 
-    def __init__(self, *, name: str, simple_body_product: "SimpleProduct"=None, **kwargs) -> None:
+    capacity = "Large"
+
+    def __init__(self, *, name: str, simple_body_product: "SimpleProduct"=None, max_product_display_name: str=None, generic_value: str=None, odatavalue: str=None, **kwargs) -> None:
         super(FlattenParameterGroup, self).__init__(**kwargs)
         self.name = name
         self.simple_body_product = simple_body_product
+        self.max_product_display_name = max_product_display_name
+        self.generic_value = generic_value
+        self.odatavalue = odatavalue
 
 
 class GenericUrl(Model):

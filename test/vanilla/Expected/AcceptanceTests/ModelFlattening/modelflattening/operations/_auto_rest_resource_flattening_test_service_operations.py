@@ -468,19 +468,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         return deserialized
     post_flattened_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
     @distributed_trace
-    def put_simple_product_with_grouping(self, flatten_parameter_group, max_product_display_name=None, generic_value=None, odatavalue=None, cls=None, **kwargs):
+    def put_simple_product_with_grouping(self, flatten_parameter_group, cls=None, **kwargs):
         """Put Simple Product with client flattening true on the model.
 
         FIXME: add operation.summary
 
         :param flatten_parameter_group: Parameter group.
         :type flatten_parameter_group: ~modelflattening.models.FlattenParameterGroup
-        :param max_product_display_name: Display name of product.
-        :type max_product_display_name: str
-        :param generic_value: Generic URL value.
-        :type generic_value: str
-        :param odatavalue: URL value.
-        :type odatavalue: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
@@ -490,9 +484,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         
         name = None
         simple_body_product = None
+        max_product_display_name = None
+        capacity = None
+        generic_value = None
+        odatavalue = None
         if flatten_parameter_group is not None:
             name = flatten_parameter_group.name
             simple_body_product = flatten_parameter_group.simple_body_product
+            max_product_display_name = flatten_parameter_group.max_product_display_name
+            capacity = flatten_parameter_group.capacity
+            generic_value = flatten_parameter_group.generic_value
+            odatavalue = flatten_parameter_group.odatavalue
 
         simple_body_product = models.SimpleProduct(max_product_display_name=max_product_display_name, generic_value=generic_value, odatavalue=odatavalue, flatten_parameter_group=flatten_parameter_group)
 
