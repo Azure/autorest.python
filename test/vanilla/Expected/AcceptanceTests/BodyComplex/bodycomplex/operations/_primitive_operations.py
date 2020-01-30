@@ -6,15 +6,19 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Optional
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import map_error
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from msrest.serialization import Model
 
 from .. import models
 
+T = TypeVar('T')
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 class PrimitiveOperations(object):
     """PrimitiveOperations operations.
@@ -40,7 +44,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_int(
         self,
-        cls=None,  # type: Optional[Callable[[HttpResponse, "IntWrapper", Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType["IntWrapper"]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "IntWrapper"
@@ -88,7 +92,7 @@ class PrimitiveOperations(object):
     def put_int(
         self,
         complex_body,  # type: "IntWrapper"
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -137,7 +141,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_long(
         self,
-        cls=None,  # type: Optional[Callable[[HttpResponse, "LongWrapper", Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType["LongWrapper"]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "LongWrapper"
@@ -185,7 +189,7 @@ class PrimitiveOperations(object):
     def put_long(
         self,
         complex_body,  # type: "LongWrapper"
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -234,7 +238,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_float(
         self,
-        cls=None,  # type: Optional[Callable[[HttpResponse, "FloatWrapper", Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType["FloatWrapper"]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "FloatWrapper"
@@ -282,7 +286,7 @@ class PrimitiveOperations(object):
     def put_float(
         self,
         complex_body,  # type: "FloatWrapper"
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -331,7 +335,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_double(
         self,
-        cls=None,  # type: Optional[Callable[[HttpResponse, "DoubleWrapper", Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType["DoubleWrapper"]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "DoubleWrapper"
@@ -379,7 +383,7 @@ class PrimitiveOperations(object):
     def put_double(
         self,
         complex_body,  # type: "DoubleWrapper"
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -428,7 +432,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_bool(
         self,
-        cls=None,  # type: Optional[Callable[[HttpResponse, "BooleanWrapper", Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType["BooleanWrapper"]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "BooleanWrapper"
@@ -476,7 +480,7 @@ class PrimitiveOperations(object):
     def put_bool(
         self,
         complex_body,  # type: "BooleanWrapper"
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -525,7 +529,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_string(
         self,
-        cls=None,  # type: Optional[Callable[[HttpResponse, "StringWrapper", Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType["StringWrapper"]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "StringWrapper"
@@ -573,7 +577,7 @@ class PrimitiveOperations(object):
     def put_string(
         self,
         complex_body,  # type: "StringWrapper"
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -622,7 +626,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_date(
         self,
-        cls=None,  # type: Optional[Callable[[HttpResponse, "DateWrapper", Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType["DateWrapper"]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "DateWrapper"
@@ -670,7 +674,7 @@ class PrimitiveOperations(object):
     def put_date(
         self,
         complex_body,  # type: "DateWrapper"
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -719,7 +723,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_date_time(
         self,
-        cls=None,  # type: Optional[Callable[[HttpResponse, "DatetimeWrapper", Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType["DatetimeWrapper"]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "DatetimeWrapper"
@@ -767,7 +771,7 @@ class PrimitiveOperations(object):
     def put_date_time(
         self,
         complex_body,  # type: "DatetimeWrapper"
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -816,7 +820,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_date_time_rfc1123(
         self,
-        cls=None,  # type: Optional[Callable[[HttpResponse, "Datetimerfc1123Wrapper", Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType["Datetimerfc1123Wrapper"]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "Datetimerfc1123Wrapper"
@@ -864,7 +868,7 @@ class PrimitiveOperations(object):
     def put_date_time_rfc1123(
         self,
         complex_body,  # type: "Datetimerfc1123Wrapper"
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -913,7 +917,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_duration(
         self,
-        cls=None,  # type: Optional[Callable[[HttpResponse, "DurationWrapper", Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType["DurationWrapper"]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "DurationWrapper"
@@ -961,7 +965,7 @@ class PrimitiveOperations(object):
     def put_duration(
         self,
         field=None,  # type: Optional[datetime.timedelta]
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1011,7 +1015,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_byte(
         self,
-        cls=None,  # type: Optional[Callable[[HttpResponse, "ByteWrapper", Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType["ByteWrapper"]
         **kwargs  # type: **Any
     ):
         # type: (...) -> "ByteWrapper"
@@ -1059,7 +1063,7 @@ class PrimitiveOperations(object):
     def put_byte(
         self,
         field=None,  # type: Optional[bytearray]
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None

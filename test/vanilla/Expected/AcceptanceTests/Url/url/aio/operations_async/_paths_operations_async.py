@@ -6,15 +6,18 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar, Union
 import warnings
 
 from azure.core.exceptions import map_error
-from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models
 
+T = TypeVar('T')
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 class PathsOperations:
     """PathsOperations async operations.
@@ -40,7 +43,7 @@ class PathsOperations:
     @distributed_trace_async
     async def get_boolean_true(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Get true Boolean value on path.
@@ -87,7 +90,7 @@ class PathsOperations:
     @distributed_trace_async
     async def get_boolean_false(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Get false Boolean value on path.
@@ -134,7 +137,7 @@ class PathsOperations:
     @distributed_trace_async
     async def get_int_one_million(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Get '1000000' integer value.
@@ -181,7 +184,7 @@ class PathsOperations:
     @distributed_trace_async
     async def get_int_negative_one_million(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Get '-1000000' integer value.
@@ -228,7 +231,7 @@ class PathsOperations:
     @distributed_trace_async
     async def get_ten_billion(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Get '10000000000' 64 bit integer value.
@@ -275,7 +278,7 @@ class PathsOperations:
     @distributed_trace_async
     async def get_negative_ten_billion(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Get '-10000000000' 64 bit integer value.
@@ -322,7 +325,7 @@ class PathsOperations:
     @distributed_trace_async
     async def float_scientific_positive(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Get '1.034E+20' numeric value.
@@ -369,7 +372,7 @@ class PathsOperations:
     @distributed_trace_async
     async def float_scientific_negative(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Get '-1.034E-20' numeric value.
@@ -416,7 +419,7 @@ class PathsOperations:
     @distributed_trace_async
     async def double_decimal_positive(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Get '9999999.999' numeric value.
@@ -463,7 +466,7 @@ class PathsOperations:
     @distributed_trace_async
     async def double_decimal_negative(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Get '-9999999.999' numeric value.
@@ -510,7 +513,7 @@ class PathsOperations:
     @distributed_trace_async
     async def string_unicode(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
@@ -557,7 +560,7 @@ class PathsOperations:
     @distributed_trace_async
     async def string_url_encoded(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Get 'begin!*'();:@ &=+$,/?#[]end.
@@ -604,7 +607,7 @@ class PathsOperations:
     @distributed_trace_async
     async def string_url_non_encoded(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Get 'begin!*'();:@&=+$,end.
@@ -651,7 +654,7 @@ class PathsOperations:
     @distributed_trace_async
     async def string_empty(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Get ''.
@@ -700,7 +703,7 @@ class PathsOperations:
         self,
         string_path: str,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Get null (should throw).
@@ -750,7 +753,7 @@ class PathsOperations:
         self,
         enum_path: Union[str, "UriColor"],
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Get using uri with 'green color' in path parameter.
@@ -800,7 +803,7 @@ class PathsOperations:
         self,
         enum_path: Union[str, "UriColor"],
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Get null (should throw on the client before the request is sent on wire).
@@ -850,7 +853,7 @@ class PathsOperations:
         self,
         byte_path: bytearray,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
@@ -898,7 +901,7 @@ class PathsOperations:
     @distributed_trace_async
     async def byte_empty(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Get '' as byte array.
@@ -947,7 +950,7 @@ class PathsOperations:
         self,
         byte_path: bytearray,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Get null as byte array (should throw).
@@ -995,7 +998,7 @@ class PathsOperations:
     @distributed_trace_async
     async def date_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Get '2012-01-01' as date.
@@ -1044,7 +1047,7 @@ class PathsOperations:
         self,
         date_path: datetime.date,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Get null as date - this should throw or be unusable on the client side, depending on date representation.
@@ -1092,7 +1095,7 @@ class PathsOperations:
     @distributed_trace_async
     async def date_time_valid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Get '2012-01-01T01:01:01Z' as date-time.
@@ -1141,7 +1144,7 @@ class PathsOperations:
         self,
         date_time_path: datetime.datetime,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Get null as date-time, should be disallowed or throw depending on representation of date-time.
@@ -1191,7 +1194,7 @@ class PathsOperations:
         self,
         base64_url_path: bytes,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Get 'lorem' encoded value as 'bG9yZW0' (base64url).
@@ -1241,7 +1244,7 @@ class PathsOperations:
         self,
         array_path: List[str],
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
@@ -1291,7 +1294,7 @@ class PathsOperations:
         self,
         unix_time_url_path: datetime.datetime,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Get the date 2016-04-13 encoded value as '1460505600' (Unix time).

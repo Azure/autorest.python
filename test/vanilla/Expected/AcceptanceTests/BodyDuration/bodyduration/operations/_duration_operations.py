@@ -6,13 +6,18 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import map_error
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models
 
+T = TypeVar('T')
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 class DurationOperations(object):
     """DurationOperations operations.
@@ -38,7 +43,7 @@ class DurationOperations(object):
     @distributed_trace
     def get_null(
         self,
-        cls=None,  # type: Optional[Callable[[HttpResponse, datetime.timedelta, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[datetime.timedelta]
         **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.timedelta
@@ -86,7 +91,7 @@ class DurationOperations(object):
     def put_positive_duration(
         self,
         duration_body,  # type: datetime.timedelta
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -135,7 +140,7 @@ class DurationOperations(object):
     @distributed_trace
     def get_positive_duration(
         self,
-        cls=None,  # type: Optional[Callable[[HttpResponse, datetime.timedelta, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[datetime.timedelta]
         **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.timedelta
@@ -182,7 +187,7 @@ class DurationOperations(object):
     @distributed_trace
     def get_invalid(
         self,
-        cls=None,  # type: Optional[Callable[[HttpResponse, datetime.timedelta, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[datetime.timedelta]
         **kwargs  # type: **Any
     ):
         # type: (...) -> datetime.timedelta

@@ -6,15 +6,18 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Callable, Dict, Optional
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import map_error
-from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models
 
+T = TypeVar('T')
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 class DurationOperations:
     """DurationOperations async operations.
@@ -40,7 +43,7 @@ class DurationOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.timedelta, Dict[str, Any]], Any]] = None,
+        cls: ClsType[datetime.timedelta] = None,
         **kwargs: Any
     ) -> datetime.timedelta:
         """Get null duration value.
@@ -88,7 +91,7 @@ class DurationOperations:
         self,
         duration_body: datetime.timedelta,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Put a positive duration value.
@@ -136,7 +139,7 @@ class DurationOperations:
     @distributed_trace_async
     async def get_positive_duration(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.timedelta, Dict[str, Any]], Any]] = None,
+        cls: ClsType[datetime.timedelta] = None,
         **kwargs: Any
     ) -> datetime.timedelta:
         """Get a positive duration value.
@@ -182,7 +185,7 @@ class DurationOperations:
     @distributed_trace_async
     async def get_invalid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.timedelta, Dict[str, Any]], Any]] = None,
+        cls: ClsType[datetime.timedelta] = None,
         **kwargs: Any
     ) -> datetime.timedelta:
         """Get an invalid duration value.

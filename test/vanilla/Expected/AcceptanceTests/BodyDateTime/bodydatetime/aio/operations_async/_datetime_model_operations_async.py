@@ -6,15 +6,18 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Callable, Dict, Optional
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import map_error
-from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models
 
+T = TypeVar('T')
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 class DatetimeOperations:
     """DatetimeOperations async operations.
@@ -40,7 +43,7 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.datetime, Dict[str, Any]], Any]] = None,
+        cls: ClsType[datetime.datetime] = None,
         **kwargs: Any
     ) -> datetime.datetime:
         """Get null datetime value.
@@ -86,7 +89,7 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_invalid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.datetime, Dict[str, Any]], Any]] = None,
+        cls: ClsType[datetime.datetime] = None,
         **kwargs: Any
     ) -> datetime.datetime:
         """Get invalid datetime value.
@@ -132,7 +135,7 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_overflow(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.datetime, Dict[str, Any]], Any]] = None,
+        cls: ClsType[datetime.datetime] = None,
         **kwargs: Any
     ) -> datetime.datetime:
         """Get overflow datetime value.
@@ -178,7 +181,7 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_underflow(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.datetime, Dict[str, Any]], Any]] = None,
+        cls: ClsType[datetime.datetime] = None,
         **kwargs: Any
     ) -> datetime.datetime:
         """Get underflow datetime value.
@@ -226,7 +229,7 @@ class DatetimeOperations:
         self,
         datetime_body: datetime.datetime,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Put max datetime value 9999-12-31T23:59:59.999Z.
@@ -276,7 +279,7 @@ class DatetimeOperations:
         self,
         datetime_body: datetime.datetime,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Put max datetime value 9999-12-31T23:59:59.9999999Z.
@@ -324,7 +327,7 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_utc_lowercase_max_date_time(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.datetime, Dict[str, Any]], Any]] = None,
+        cls: ClsType[datetime.datetime] = None,
         **kwargs: Any
     ) -> datetime.datetime:
         """Get max datetime value 9999-12-31t23:59:59.999z.
@@ -370,7 +373,7 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_utc_uppercase_max_date_time(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.datetime, Dict[str, Any]], Any]] = None,
+        cls: ClsType[datetime.datetime] = None,
         **kwargs: Any
     ) -> datetime.datetime:
         """Get max datetime value 9999-12-31T23:59:59.999Z.
@@ -416,7 +419,7 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_utc_uppercase_max_date_time7_digits(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.datetime, Dict[str, Any]], Any]] = None,
+        cls: ClsType[datetime.datetime] = None,
         **kwargs: Any
     ) -> datetime.datetime:
         """Get max datetime value 9999-12-31T23:59:59.9999999Z.
@@ -464,7 +467,7 @@ class DatetimeOperations:
         self,
         datetime_body: datetime.datetime,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999+14:00.
@@ -512,7 +515,7 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_local_positive_offset_lowercase_max_date_time(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.datetime, Dict[str, Any]], Any]] = None,
+        cls: ClsType[datetime.datetime] = None,
         **kwargs: Any
     ) -> datetime.datetime:
         """Get max datetime value with positive num offset 9999-12-31t23:59:59.999+14:00.
@@ -558,7 +561,7 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_local_positive_offset_uppercase_max_date_time(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.datetime, Dict[str, Any]], Any]] = None,
+        cls: ClsType[datetime.datetime] = None,
         **kwargs: Any
     ) -> datetime.datetime:
         """Get max datetime value with positive num offset 9999-12-31T23:59:59.999+14:00.
@@ -606,7 +609,7 @@ class DatetimeOperations:
         self,
         datetime_body: datetime.datetime,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999-14:00.
@@ -654,7 +657,7 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_local_negative_offset_uppercase_max_date_time(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.datetime, Dict[str, Any]], Any]] = None,
+        cls: ClsType[datetime.datetime] = None,
         **kwargs: Any
     ) -> datetime.datetime:
         """Get max datetime value with positive num offset 9999-12-31T23:59:59.999-14:00.
@@ -700,7 +703,7 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_local_negative_offset_lowercase_max_date_time(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.datetime, Dict[str, Any]], Any]] = None,
+        cls: ClsType[datetime.datetime] = None,
         **kwargs: Any
     ) -> datetime.datetime:
         """Get max datetime value with positive num offset 9999-12-31t23:59:59.999-14:00.
@@ -748,7 +751,7 @@ class DatetimeOperations:
         self,
         datetime_body: datetime.datetime,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Put min datetime value 0001-01-01T00:00:00Z.
@@ -796,7 +799,7 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_utc_min_date_time(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.datetime, Dict[str, Any]], Any]] = None,
+        cls: ClsType[datetime.datetime] = None,
         **kwargs: Any
     ) -> datetime.datetime:
         """Get min datetime value 0001-01-01T00:00:00Z.
@@ -844,7 +847,7 @@ class DatetimeOperations:
         self,
         datetime_body: datetime.datetime,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Put min datetime value 0001-01-01T00:00:00+14:00.
@@ -892,7 +895,7 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_local_positive_offset_min_date_time(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.datetime, Dict[str, Any]], Any]] = None,
+        cls: ClsType[datetime.datetime] = None,
         **kwargs: Any
     ) -> datetime.datetime:
         """Get min datetime value 0001-01-01T00:00:00+14:00.
@@ -940,7 +943,7 @@ class DatetimeOperations:
         self,
         datetime_body: datetime.datetime,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Put min datetime value 0001-01-01T00:00:00-14:00.
@@ -988,7 +991,7 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_local_negative_offset_min_date_time(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.datetime, Dict[str, Any]], Any]] = None,
+        cls: ClsType[datetime.datetime] = None,
         **kwargs: Any
     ) -> datetime.datetime:
         """Get min datetime value 0001-01-01T00:00:00-14:00.

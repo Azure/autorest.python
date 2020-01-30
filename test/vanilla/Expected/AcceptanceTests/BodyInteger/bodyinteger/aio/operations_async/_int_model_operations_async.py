@@ -6,15 +6,18 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Any, Callable, Dict, Optional
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
 from azure.core.exceptions import map_error
-from azure.core.pipeline.transport import AsyncHttpResponse
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models
 
+T = TypeVar('T')
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 class IntOperations:
     """IntOperations async operations.
@@ -40,7 +43,7 @@ class IntOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, int, Dict[str, Any]], Any]] = None,
+        cls: ClsType[int] = None,
         **kwargs: Any
     ) -> int:
         """Get null Int value.
@@ -86,7 +89,7 @@ class IntOperations:
     @distributed_trace_async
     async def get_invalid(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, int, Dict[str, Any]], Any]] = None,
+        cls: ClsType[int] = None,
         **kwargs: Any
     ) -> int:
         """Get invalid Int value.
@@ -132,7 +135,7 @@ class IntOperations:
     @distributed_trace_async
     async def get_overflow_int32(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, int, Dict[str, Any]], Any]] = None,
+        cls: ClsType[int] = None,
         **kwargs: Any
     ) -> int:
         """Get overflow Int32 value.
@@ -178,7 +181,7 @@ class IntOperations:
     @distributed_trace_async
     async def get_underflow_int32(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, int, Dict[str, Any]], Any]] = None,
+        cls: ClsType[int] = None,
         **kwargs: Any
     ) -> int:
         """Get underflow Int32 value.
@@ -224,7 +227,7 @@ class IntOperations:
     @distributed_trace_async
     async def get_overflow_int64(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, int, Dict[str, Any]], Any]] = None,
+        cls: ClsType[int] = None,
         **kwargs: Any
     ) -> int:
         """Get overflow Int64 value.
@@ -270,7 +273,7 @@ class IntOperations:
     @distributed_trace_async
     async def get_underflow_int64(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, int, Dict[str, Any]], Any]] = None,
+        cls: ClsType[int] = None,
         **kwargs: Any
     ) -> int:
         """Get underflow Int64 value.
@@ -318,7 +321,7 @@ class IntOperations:
         self,
         int_body: int,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Put max int32 value.
@@ -368,7 +371,7 @@ class IntOperations:
         self,
         int_body: int,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Put max int64 value.
@@ -418,7 +421,7 @@ class IntOperations:
         self,
         int_body: int,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Put min int32 value.
@@ -468,7 +471,7 @@ class IntOperations:
         self,
         int_body: int,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Put min int64 value.
@@ -516,7 +519,7 @@ class IntOperations:
     @distributed_trace_async
     async def get_unix_time(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.datetime, Dict[str, Any]], Any]] = None,
+        cls: ClsType[datetime.datetime] = None,
         **kwargs: Any
     ) -> datetime.datetime:
         """Get datetime encoded as Unix time value.
@@ -564,7 +567,7 @@ class IntOperations:
         self,
         int_body: datetime.datetime,
         *,
-        cls: Optional[Callable[[AsyncHttpResponse, None, Dict[str, Any]], Any]] = None,
+        cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
         """Put datetime encoded as Unix time.
@@ -612,7 +615,7 @@ class IntOperations:
     @distributed_trace_async
     async def get_invalid_unix_time(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.datetime, Dict[str, Any]], Any]] = None,
+        cls: ClsType[datetime.datetime] = None,
         **kwargs: Any
     ) -> datetime.datetime:
         """Get invalid Unix time value.
@@ -658,7 +661,7 @@ class IntOperations:
     @distributed_trace_async
     async def get_null_unix_time(
         self,
-        cls: Optional[Callable[[AsyncHttpResponse, datetime.datetime, Dict[str, Any]], Any]] = None,
+        cls: ClsType[datetime.datetime] = None,
         **kwargs: Any
     ) -> datetime.datetime:
         """Get null Unix time value.

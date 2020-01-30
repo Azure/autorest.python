@@ -6,14 +6,18 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
-from typing import Optional, Union
+from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 import warnings
 
 from azure.core.exceptions import map_error
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .. import models
 
+T = TypeVar('T')
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 class HeaderOperations(object):
     """HeaderOperations operations.
@@ -40,7 +44,7 @@ class HeaderOperations(object):
     def param_existing_key(
         self,
         user_agent,  # type: str
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -86,7 +90,7 @@ class HeaderOperations(object):
     @distributed_trace
     def response_existing_key(
         self,
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -133,7 +137,7 @@ class HeaderOperations(object):
     def param_protected_key(
         self,
         content_type,  # type: str
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -179,7 +183,7 @@ class HeaderOperations(object):
     @distributed_trace
     def response_protected_key(
         self,
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -227,7 +231,7 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         value,  # type: int
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -277,7 +281,7 @@ class HeaderOperations(object):
     def response_integer(
         self,
         scenario,  # type: str
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -328,7 +332,7 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         value,  # type: int
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -378,7 +382,7 @@ class HeaderOperations(object):
     def response_long(
         self,
         scenario,  # type: str
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -429,7 +433,7 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         value,  # type: float
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -479,7 +483,7 @@ class HeaderOperations(object):
     def response_float(
         self,
         scenario,  # type: str
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -530,7 +534,7 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         value,  # type: float
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -580,7 +584,7 @@ class HeaderOperations(object):
     def response_double(
         self,
         scenario,  # type: str
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -631,7 +635,7 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         value,  # type: bool
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -681,7 +685,7 @@ class HeaderOperations(object):
     def response_bool(
         self,
         scenario,  # type: str
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -732,7 +736,7 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         value=None,  # type: Optional[str]
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -783,7 +787,7 @@ class HeaderOperations(object):
     def response_string(
         self,
         scenario,  # type: str
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -834,7 +838,7 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         value,  # type: datetime.date
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -884,7 +888,7 @@ class HeaderOperations(object):
     def response_date(
         self,
         scenario,  # type: str
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -935,7 +939,7 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         value,  # type: datetime.datetime
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -985,7 +989,7 @@ class HeaderOperations(object):
     def response_datetime(
         self,
         scenario,  # type: str
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1036,7 +1040,7 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         value=None,  # type: Optional[datetime.datetime]
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1087,7 +1091,7 @@ class HeaderOperations(object):
     def response_datetime_rfc1123(
         self,
         scenario,  # type: str
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1138,7 +1142,7 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         value,  # type: datetime.timedelta
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1188,7 +1192,7 @@ class HeaderOperations(object):
     def response_duration(
         self,
         scenario,  # type: str
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1239,7 +1243,7 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         value,  # type: bytearray
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1289,7 +1293,7 @@ class HeaderOperations(object):
     def response_byte(
         self,
         scenario,  # type: str
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1340,7 +1344,7 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         value=None,  # type: Optional[Union[str, "GreyscaleColors"]]
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1391,7 +1395,7 @@ class HeaderOperations(object):
     def response_enum(
         self,
         scenario,  # type: str
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
@@ -1440,7 +1444,7 @@ class HeaderOperations(object):
     @distributed_trace
     def custom_request_id(
         self,
-        cls=None,  # type: Optional[Callable[[HttpResponse, None, Dict[str, Any]], Any]]
+        cls=None,  # type: ClsType[None]
         **kwargs  # type: **Any
     ):
         # type: (...) -> None
