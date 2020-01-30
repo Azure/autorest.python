@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
 from .imports import FileImport, ImportType
@@ -69,6 +69,21 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
 
     def __repr__(self):
         return f"<{self.__class__.__name__} {self.name}>"
+
+    @property
+    def has_xml_serialization_ctxt(self):
+        return False
+
+    def xml_serialization_ctxt(self) -> Optional[str]:
+        # object schema contains _xml_map, they don't need serialization context
+        return ""
+
+    def xml_map_content(self):
+        if not self.xml_metadata:
+            raise ValueError("This object does not contain XML metadata")
+        # This is NOT an error on the super call, we use the serialization context for "xml_map",
+        # but we don't want to write a serialization context for an object.
+        return super().xml_serialization_ctxt()
 
     @classmethod
     def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs) -> "ObjectSchema":
@@ -139,7 +154,6 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         if exceptions_set:
             if yaml_data['language']['python']['name'] in exceptions_set:
                 is_exception = True
-
 
         self.yaml_data = yaml_data
         self.name = name
