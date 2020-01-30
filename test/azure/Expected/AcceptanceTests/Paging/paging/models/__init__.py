@@ -14,12 +14,12 @@ try:
     from ._models_py3 import ProductResult
     from ._models_py3 import ProductResultValue
 except (SyntaxError, ImportError):
-    from ._models import OdataProductResult
-    from ._models import OperationResult
-    from ._models import Product
-    from ._models import ProductProperties
-    from ._models import ProductResult
-    from ._models import ProductResultValue
+    from ._models import OdataProductResult  # type: ignore
+    from ._models import OperationResult  # type: ignore
+    from ._models import Product  # type: ignore
+    from ._models import ProductProperties  # type: ignore
+    from ._models import ProductResult  # type: ignore
+    from ._models import ProductResultValue  # type: ignore
 from ._auto_rest_paging_test_service_enums import (
     OperationResultStatus,
 )

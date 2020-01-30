@@ -7,6 +7,7 @@ from typing import cast, Any, Dict, Union, List, Optional
 
 from .base_model import BaseModel
 from .constant_schema import ConstantSchema
+from .imports import FileImport, ImportType
 from .base_schema import BaseSchema
 
 
@@ -73,3 +74,15 @@ class Property(BaseModel):
             original_swagger_name=yaml_data['serializedName'],
             flattened_names=yaml_data.get('flattenedNames', []),
         )
+
+    @property
+    def type_annotation(self) -> str:
+        if self.required:
+            return self.schema.type_annotation
+        return f"Optional[{self.schema.type_annotation}]"
+
+    def imports(self) -> FileImport:
+        file_import = self.schema.imports()
+        if not self.required:
+            file_import.add_from_import("typing", "Optional", ImportType.STDLIB)
+        return file_import

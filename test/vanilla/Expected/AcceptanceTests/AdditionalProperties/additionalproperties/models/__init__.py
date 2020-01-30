@@ -15,13 +15,13 @@ try:
     from ._models_py3 import PetAPString
     from ._models_py3 import PetAPTrue
 except (SyntaxError, ImportError):
-    from ._models import CatAPTrue
-    from ._models import Error, ErrorException
-    from ._models import PetAPInProperties
-    from ._models import PetAPInPropertiesWithAPString
-    from ._models import PetAPObject
-    from ._models import PetAPString
-    from ._models import PetAPTrue
+    from ._models import CatAPTrue  # type: ignore
+    from ._models import Error, ErrorException  # type: ignore
+    from ._models import PetAPInProperties  # type: ignore
+    from ._models import PetAPInPropertiesWithAPString  # type: ignore
+    from ._models import PetAPObject  # type: ignore
+    from ._models import PetAPString  # type: ignore
+    from ._models import PetAPTrue  # type: ignore
 
 __all__ = [
     'CatAPTrue',

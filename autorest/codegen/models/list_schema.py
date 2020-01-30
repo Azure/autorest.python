@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict, Optional, Union
 from .base_schema import BaseSchema
+from .imports import FileImport, ImportType
 
 
 class ListSchema(BaseSchema):
@@ -28,8 +29,9 @@ class ListSchema(BaseSchema):
     def get_serialization_type(self) -> str:
         return '[{}]'.format(self.element_type.get_serialization_type())
 
-    def get_python_type_annotation(self) -> str:
-        return f'List[{self.element_type.get_python_type_annotation()}]'
+    @property
+    def type_annotation(self) -> str:
+        return f'List[{self.element_type.type_annotation}]'
 
     @property
     def docstring_type(self) -> str:
@@ -94,3 +96,9 @@ class ListSchema(BaseSchema):
             min_items=yaml_data.get('minItems'),
             unique_items=yaml_data.get('uniqueItems'),
         )
+
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_from_import("typing", "List", ImportType.STDLIB)
+        file_import.merge(self.element_type.imports())
+        return file_import

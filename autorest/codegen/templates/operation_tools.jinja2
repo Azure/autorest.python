@@ -12,12 +12,12 @@ deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}
   {% endif %}
 {% endmacro %}
 {# write queryparameters #}
-{% macro query_parameters(operation) %}
+{% macro query_parameters(operation, async_mode) %}
 # Construct parameters
-query_parameters = {}
+query_parameters{{": Dict[str, Any]" if async_mode else "" }} = {}
 {% if operation.parameters.query %}
     {% for query_parameter in operation.parameters.query %}
-        {%if query_parameter.is_required %}
+        {%if query_parameter.required %}
 query_parameters['{{ query_parameter.rest_api_name }}'] = {{ operation.build_serialize_data_call(query_parameter, "query") }}
         {% else %}
 if {{ query_parameter.full_serialized_name }} is not None:
@@ -27,12 +27,12 @@ if {{ query_parameter.full_serialized_name }} is not None:
 {% endif %}
 {% endmacro %}
 {# write request headers #}
-{% macro header_parameters(code_model, operation) %}
+{% macro header_parameters(code_model, operation, async_mode) %}
 # Construct headers
-header_parameters = {}
+header_parameters{{": Dict[str, Any]" if async_mode else "" }} = {}
 {% if operation.parameters.headers %}
     {% for header_parameter in operation.parameters.headers %}
-        {%if header_parameter.is_required %}
+        {%if header_parameter.required %}
 header_parameters['{{ header_parameter.rest_api_name }}'] = {{ operation.build_serialize_data_call(header_parameter, "header") }}
         {% else %}
 if {{ header_parameter.full_serialized_name }} is not None:

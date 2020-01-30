@@ -6,6 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import Optional
+
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
 
@@ -50,7 +52,13 @@ class Error(Model):
         'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, *, status: int=None, message: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        status: Optional[int] = None,
+        message: Optional[str] = None,
+        **kwargs
+    ):
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -81,6 +89,11 @@ class RefColorConstant(Model):
 
     color_constant = "green-color"
 
-    def __init__(self, *, field1: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        field1: Optional[str] = None,
+        **kwargs
+    ):
         super(RefColorConstant, self).__init__(**kwargs)
         self.field1 = field1

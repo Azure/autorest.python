@@ -6,6 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import Any
+
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
@@ -21,7 +23,11 @@ class AutoRestHeadTestServiceConfiguration(Configuration):
     :type credential: azure.core.credentials.TokenCredential
     """
 
-    def __init__(self, credential, **kwargs):
+    def __init__(
+        self,
+        credential: "TokenCredential",
+        **kwargs: Any
+    ) -> None:
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
         super(AutoRestHeadTestServiceConfiguration, self).__init__(**kwargs)
@@ -31,7 +37,10 @@ class AutoRestHeadTestServiceConfiguration(Configuration):
         self._configure(**kwargs)
         self.user_agent_policy.add_user_agent('azsdk-python-autorestheadtestservice/{}'.format(VERSION))
 
-    def _configure(self, **kwargs):
+    def _configure(
+        self,
+        **kwargs: Any
+    ) -> None:
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)
         self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)
         self.proxy_policy = kwargs.get('proxy_policy') or policies.ProxyPolicy(**kwargs)
