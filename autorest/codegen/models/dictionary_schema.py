@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 from .base_schema import BaseSchema
 
 class DictionarySchema(BaseSchema):
@@ -54,6 +54,9 @@ class DictionarySchema(BaseSchema):
         :param str namespace: Optional. The namespace for the models.
         """
         return 'dict[str, {}]'.format(self.element_type.docstring_type)
+
+    def xml_serialization_ctxt(self) -> Optional[str]:
+        raise NotImplementedError("Dictionary schema does not support XML serialization.")
 
     @classmethod
     def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs: Any) -> "DictionarySchema":

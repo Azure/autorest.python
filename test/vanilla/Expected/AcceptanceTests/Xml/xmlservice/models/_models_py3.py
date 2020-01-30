@@ -55,8 +55,8 @@ class AppleBarrel(Model):
     """
 
     _attribute_map = {
-        'good_apples': {'key': 'GoodApples', 'type': '[str]'},
-        'bad_apples': {'key': 'BadApples', 'type': '[str]'},
+        'good_apples': {'key': 'GoodApples', 'type': '[str]', 'xml': {'wrapped': True, 'itemsName': 'Apple'}},
+        'bad_apples': {'key': 'BadApples', 'type': '[str]', 'xml': {'wrapped': True, 'itemsName': 'Apple'}},
     }
 
     def __init__(self, *, good_apples: List[str]=None, bad_apples: List[str]=None, **kwargs) -> None:
@@ -77,9 +77,12 @@ class Banana(Model):
     """
 
     _attribute_map = {
-        'name': {'key': 'name', 'type': 'str'},
-        'flavor': {'key': 'flavor', 'type': 'str'},
-        'expiration': {'key': 'expiration', 'type': 'iso-8601'},
+        'name': {'key': 'name', 'type': 'str', 'xml': {'name': 'name'}},
+        'flavor': {'key': 'flavor', 'type': 'str', 'xml': {'name': 'flavor'}},
+        'expiration': {'key': 'expiration', 'type': 'iso-8601', 'xml': {'name': 'expiration'}},
+    }
+    _xml_map = {
+        'name': 'banana'
     }
 
     def __init__(self, *, name: str=None, flavor: str=None, expiration: datetime.datetime=None, **kwargs) -> None:
@@ -120,6 +123,9 @@ class Blob(Model):
         'snapshot': {'key': 'Snapshot', 'type': 'str'},
         'properties': {'key': 'Properties', 'type': 'BlobProperties'},
         'metadata': {'key': 'Metadata', 'type': '{str}'},
+    }
+    _xml_map = {
+        'name': 'Blob'
     }
 
     def __init__(self, *, name: str, deleted: bool, snapshot: str, properties: "BlobProperties", metadata: Dict[str, str]=None, **kwargs) -> None:
@@ -335,6 +341,9 @@ class ComplexTypeWithMeta(Model):
     _attribute_map = {
         'id': {'key': 'ID', 'type': 'str'},
     }
+    _xml_map = {
+        'name': 'XMLComplexTypeWithMeta'
+    }
 
     def __init__(self, *, id: str=None, **kwargs) -> None:
         super(ComplexTypeWithMeta, self).__init__(**kwargs)
@@ -457,6 +466,9 @@ class CorsRule(Model):
         'allowed_headers': {'key': 'AllowedHeaders', 'type': 'str'},
         'exposed_headers': {'key': 'ExposedHeaders', 'type': 'str'},
         'max_age_in_seconds': {'key': 'MaxAgeInSeconds', 'type': 'int'},
+    }
+    _xml_map = {
+        'name': 'CorsRule'
     }
 
     def __init__(self, *, allowed_origins: str, allowed_methods: str, allowed_headers: str, exposed_headers: str, max_age_in_seconds: int, **kwargs) -> None:
@@ -581,14 +593,17 @@ class ListBlobsResponse(Model):
     }
 
     _attribute_map = {
-        'service_endpoint': {'key': 'ServiceEndpoint', 'type': 'str'},
-        'container_name': {'key': 'ContainerName', 'type': 'str'},
+        'service_endpoint': {'key': 'ServiceEndpoint', 'type': 'str', 'xml': {'attr': True}},
+        'container_name': {'key': 'ContainerName', 'type': 'str', 'xml': {'attr': True}},
         'prefix': {'key': 'Prefix', 'type': 'str'},
         'marker': {'key': 'Marker', 'type': 'str'},
         'max_results': {'key': 'MaxResults', 'type': 'int'},
         'delimiter': {'key': 'Delimiter', 'type': 'str'},
         'blobs': {'key': 'Blobs', 'type': 'Blobs'},
         'next_marker': {'key': 'NextMarker', 'type': 'str'},
+    }
+    _xml_map = {
+        'name': 'EnumerationResults'
     }
 
     def __init__(self, *, service_endpoint: str, container_name: str, prefix: str, marker: str, max_results: int, delimiter: str, blobs: "Blobs", next_marker: str, **kwargs) -> None:
@@ -630,12 +645,15 @@ class ListContainersResponse(Model):
     }
 
     _attribute_map = {
-        'service_endpoint': {'key': 'ServiceEndpoint', 'type': 'str'},
+        'service_endpoint': {'key': 'ServiceEndpoint', 'type': 'str', 'xml': {'attr': True}},
         'prefix': {'key': 'Prefix', 'type': 'str'},
         'marker': {'key': 'Marker', 'type': 'str'},
         'max_results': {'key': 'MaxResults', 'type': 'int'},
-        'containers': {'key': 'Containers', 'type': '[Container]'},
+        'containers': {'key': 'Containers', 'type': '[Container]', 'xml': {'wrapped': True}},
         'next_marker': {'key': 'NextMarker', 'type': 'str'},
+    }
+    _xml_map = {
+        'name': 'EnumerationResults'
     }
 
     def __init__(self, *, service_endpoint: str, prefix: str, max_results: int, next_marker: str, marker: str=None, containers: List["Container"]=None, **kwargs) -> None:
@@ -815,6 +833,9 @@ class SignedIdentifier(Model):
         'id': {'key': 'Id', 'type': 'str'},
         'access_policy': {'key': 'AccessPolicy', 'type': 'AccessPolicy'},
     }
+    _xml_map = {
+        'name': 'SignedIdentifier'
+    }
 
     def __init__(self, *, id: str, access_policy: "AccessPolicy", **kwargs) -> None:
         super(SignedIdentifier, self).__init__(**kwargs)
@@ -834,9 +855,12 @@ class Slide(Model):
     """
 
     _attribute_map = {
-        'type': {'key': 'type', 'type': 'str'},
+        'type': {'key': 'type', 'type': 'str', 'xml': {'attr': True}},
         'title': {'key': 'title', 'type': 'str'},
-        'items': {'key': 'items', 'type': '[str]'},
+        'items': {'key': 'items', 'type': '[str]', 'xml': {'itemsName': 'item'}},
+    }
+    _xml_map = {
+        'name': 'slide'
     }
 
     def __init__(self, *, type: str=None, title: str=None, items: List[str]=None, **kwargs) -> None:
@@ -860,10 +884,13 @@ class Slideshow(Model):
     """
 
     _attribute_map = {
-        'title': {'key': 'title', 'type': 'str'},
-        'date_property': {'key': 'date', 'type': 'str'},
-        'author': {'key': 'author', 'type': 'str'},
+        'title': {'key': 'title', 'type': 'str', 'xml': {'attr': True}},
+        'date_property': {'key': 'date', 'type': 'str', 'xml': {'attr': True}},
+        'author': {'key': 'author', 'type': 'str', 'xml': {'attr': True}},
         'slides': {'key': 'slides', 'type': '[Slide]'},
+    }
+    _xml_map = {
+        'name': 'slideshow'
     }
 
     def __init__(self, *, title: str=None, date_property: str=None, author: str=None, slides: List["Slide"]=None, **kwargs) -> None:
@@ -897,7 +924,7 @@ class StorageServiceProperties(Model):
         'logging': {'key': 'Logging', 'type': 'Logging'},
         'hour_metrics': {'key': 'HourMetrics', 'type': 'Metrics'},
         'minute_metrics': {'key': 'MinuteMetrics', 'type': 'Metrics'},
-        'cors': {'key': 'Cors', 'type': '[CorsRule]'},
+        'cors': {'key': 'Cors', 'type': '[CorsRule]', 'xml': {'wrapped': True, 'itemsName': 'CorsRule'}},
         'default_service_version': {'key': 'DefaultServiceVersion', 'type': 'str'},
         'delete_retention_policy': {'key': 'DeleteRetentionPolicy', 'type': 'RetentionPolicy'},
     }
