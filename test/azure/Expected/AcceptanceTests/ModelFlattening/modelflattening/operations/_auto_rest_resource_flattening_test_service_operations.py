@@ -315,7 +315,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def put_resource_collection(
         self,
-        resource_complex_object=None,  # type: Optional["ResourceCollection"]
+        resource_complex_object=None,  # type: Optional["models.ResourceCollection"]
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -367,10 +367,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def get_resource_collection(
         self,
-        cls=None,  # type: ClsType["ResourceCollection"]
+        cls=None,  # type: ClsType["models.ResourceCollection"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "ResourceCollection"
+        # type: (...) -> "models.ResourceCollection"
         """Get External Resource as a ResourceCollection.
 
         FIXME: add operation.summary
@@ -413,11 +413,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def put_simple_product(
         self,
-        simple_body_product=None,  # type: Optional["SimpleProduct"]
-        cls=None,  # type: ClsType["SimpleProduct"]
+        simple_body_product=None,  # type: Optional["models.SimpleProduct"]
+        cls=None,  # type: ClsType["models.SimpleProduct"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "SimpleProduct"
+        # type: (...) -> "models.SimpleProduct"
         """Put Simple Product with client flattening true on the model.
 
         FIXME: add operation.summary
@@ -471,10 +471,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         self,
         max_product_display_name=None,  # type: Optional[str]
         odatavalue=None,  # type: Optional[str]
-        cls=None,  # type: ClsType["SimpleProduct"]
+        cls=None,  # type: ClsType["models.SimpleProduct"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "SimpleProduct"
+        # type: (...) -> "models.SimpleProduct"
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         FIXME: add operation.summary
@@ -532,10 +532,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         name,  # type: str
         max_product_display_name=None,  # type: Optional[str]
         odatavalue=None,  # type: Optional[str]
-        cls=None,  # type: ClsType["SimpleProduct"]
+        cls=None,  # type: ClsType["models.SimpleProduct"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "SimpleProduct"
+        # type: (...) -> "models.SimpleProduct"
         """Put Simple Product with client flattening true on the model.
 
         FIXME: add operation.summary

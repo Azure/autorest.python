@@ -1343,7 +1343,7 @@ class HeaderOperations(object):
     def param_enum(
         self,
         scenario,  # type: str
-        value=None,  # type: Optional[Union[str, "GreyscaleColors"]]
+        value=None,  # type: Optional[Union[str, "models.GreyscaleColors"]]
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):

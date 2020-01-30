@@ -19,10 +19,6 @@ from ... import models
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-def _cls_type_annotation(return_type):
-    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
-
-
 class InheritanceOperations:
     """InheritanceOperations async operations.
 
@@ -47,9 +43,9 @@ class InheritanceOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        cls: ClsType["Siamese"] = None,
+        cls: ClsType["models.Siamese"] = None,
         **kwargs: Any
-    ) -> "Siamese":
+    ) -> "models.Siamese":
         """Get complex types that extend others.
 
         FIXME: add operation.summary
@@ -93,7 +89,7 @@ class InheritanceOperations:
     @distributed_trace_async
     async def put_valid(
         self,
-        complex_body: "Siamese",
+        complex_body: "models.Siamese",
         *,
         cls: ClsType[None] = None,
         **kwargs: Any

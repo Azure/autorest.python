@@ -19,10 +19,6 @@ from ... import models
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-def _cls_type_annotation(return_type):
-    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
-
-
 class ArrayOperations:
     """ArrayOperations async operations.
 
@@ -47,9 +43,9 @@ class ArrayOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        cls: ClsType["ArrayWrapper"] = None,
+        cls: ClsType["models.ArrayWrapper"] = None,
         **kwargs: Any
-    ) -> "ArrayWrapper":
+    ) -> "models.ArrayWrapper":
         """Get complex types with array property.
 
         FIXME: add operation.summary
@@ -144,9 +140,9 @@ class ArrayOperations:
     @distributed_trace_async
     async def get_empty(
         self,
-        cls: ClsType["ArrayWrapper"] = None,
+        cls: ClsType["models.ArrayWrapper"] = None,
         **kwargs: Any
-    ) -> "ArrayWrapper":
+    ) -> "models.ArrayWrapper":
         """Get complex types with array property which is empty.
 
         FIXME: add operation.summary
@@ -241,9 +237,9 @@ class ArrayOperations:
     @distributed_trace_async
     async def get_not_provided(
         self,
-        cls: ClsType["ArrayWrapper"] = None,
+        cls: ClsType["models.ArrayWrapper"] = None,
         **kwargs: Any
-    ) -> "ArrayWrapper":
+    ) -> "models.ArrayWrapper":
         """Get complex types with array property while server doesn't provide a response payload.
 
         FIXME: add operation.summary

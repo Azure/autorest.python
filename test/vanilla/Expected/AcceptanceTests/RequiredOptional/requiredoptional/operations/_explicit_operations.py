@@ -649,7 +649,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_class_parameter(
         self,
-        body_parameter,  # type: "Product"
+        body_parameter,  # type: "models.Product"
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -699,7 +699,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_class_parameter(
         self,
-        body_parameter=None,  # type: Optional["Product"]
+        body_parameter=None,  # type: Optional["models.Product"]
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -752,7 +752,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_class_property(
         self,
-        value,  # type: "Product"
+        value,  # type: "models.Product"
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -803,7 +803,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_class_property(
         self,
-        value=None,  # type: Optional["Product"]
+        value=None,  # type: Optional["models.Product"]
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):

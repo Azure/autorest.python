@@ -24,9 +24,9 @@ class AutoRestValidationTestOperationsMixin:
         resource_group_name: str,
         id: int,
         *,
-        cls: ClsType["Product"] = None,
+        cls: ClsType["models.Product"] = None,
         **kwargs: Any
-    ) -> "Product":
+    ) -> "models.Product":
         """Validates input parameters on the method. See swagger for details.
 
         FIXME: add operation.summary
@@ -83,11 +83,11 @@ class AutoRestValidationTestOperationsMixin:
         self,
         resource_group_name: str,
         id: int,
-        body: Optional["Product"] = None,
+        body: Optional["models.Product"] = None,
         *,
-        cls: ClsType["Product"] = None,
+        cls: ClsType["models.Product"] = None,
         **kwargs: Any
-    ) -> "Product":
+    ) -> "models.Product":
         """Validates body parameters on the method. See swagger for details.
 
         FIXME: add operation.summary
@@ -197,11 +197,11 @@ class AutoRestValidationTestOperationsMixin:
     @distributed_trace_async
     async def post_with_constant_in_body(
         self,
-        body: Optional["Product"] = None,
+        body: Optional["models.Product"] = None,
         *,
-        cls: ClsType["Product"] = None,
+        cls: ClsType["models.Product"] = None,
         **kwargs: Any
-    ) -> "Product":
+    ) -> "models.Product":
         """
 
         FIXME: add operation.summary

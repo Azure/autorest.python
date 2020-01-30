@@ -312,7 +312,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     @distributed_trace_async
     async def put_resource_collection(
         self,
-        resource_complex_object: Optional["ResourceCollection"] = None,
+        resource_complex_object: Optional["models.ResourceCollection"] = None,
         *,
         cls: ClsType[None] = None,
         **kwargs: Any
@@ -364,9 +364,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     @distributed_trace_async
     async def get_resource_collection(
         self,
-        cls: ClsType["ResourceCollection"] = None,
+        cls: ClsType["models.ResourceCollection"] = None,
         **kwargs: Any
-    ) -> "ResourceCollection":
+    ) -> "models.ResourceCollection":
         """Get External Resource as a ResourceCollection.
 
         FIXME: add operation.summary
@@ -409,11 +409,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     @distributed_trace_async
     async def put_simple_product(
         self,
-        simple_body_product: Optional["SimpleProduct"] = None,
+        simple_body_product: Optional["models.SimpleProduct"] = None,
         *,
-        cls: ClsType["SimpleProduct"] = None,
+        cls: ClsType["models.SimpleProduct"] = None,
         **kwargs: Any
-    ) -> "SimpleProduct":
+    ) -> "models.SimpleProduct":
         """Put Simple Product with client flattening true on the model.
 
         FIXME: add operation.summary
@@ -468,9 +468,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         max_product_display_name: Optional[str] = None,
         odatavalue: Optional[str] = None,
         *,
-        cls: ClsType["SimpleProduct"] = None,
+        cls: ClsType["models.SimpleProduct"] = None,
         **kwargs: Any
-    ) -> "SimpleProduct":
+    ) -> "models.SimpleProduct":
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         FIXME: add operation.summary
@@ -529,9 +529,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         max_product_display_name: Optional[str] = None,
         odatavalue: Optional[str] = None,
         *,
-        cls: ClsType["SimpleProduct"] = None,
+        cls: ClsType["models.SimpleProduct"] = None,
         **kwargs: Any
-    ) -> "SimpleProduct":
+    ) -> "models.SimpleProduct":
         """Put Simple Product with client flattening true on the model.
 
         FIXME: add operation.summary

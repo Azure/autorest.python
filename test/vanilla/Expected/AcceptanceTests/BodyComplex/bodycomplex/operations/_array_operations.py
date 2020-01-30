@@ -43,10 +43,10 @@ class ArrayOperations(object):
     @distributed_trace
     def get_valid(
         self,
-        cls=None,  # type: ClsType["ArrayWrapper"]
+        cls=None,  # type: ClsType["models.ArrayWrapper"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "ArrayWrapper"
+        # type: (...) -> "models.ArrayWrapper"
         """Get complex types with array property.
 
         FIXME: add operation.summary
@@ -141,10 +141,10 @@ class ArrayOperations(object):
     @distributed_trace
     def get_empty(
         self,
-        cls=None,  # type: ClsType["ArrayWrapper"]
+        cls=None,  # type: ClsType["models.ArrayWrapper"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "ArrayWrapper"
+        # type: (...) -> "models.ArrayWrapper"
         """Get complex types with array property which is empty.
 
         FIXME: add operation.summary
@@ -239,10 +239,10 @@ class ArrayOperations(object):
     @distributed_trace
     def get_not_provided(
         self,
-        cls=None,  # type: ClsType["ArrayWrapper"]
+        cls=None,  # type: ClsType["models.ArrayWrapper"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "ArrayWrapper"
+        # type: (...) -> "models.ArrayWrapper"
         """Get complex types with array property while server doesn't provide a response payload.
 
         FIXME: add operation.summary

@@ -43,10 +43,10 @@ class FlattencomplexOperations(object):
     @distributed_trace
     def get_valid(
         self,
-        cls=None,  # type: ClsType["MyBaseType"]
+        cls=None,  # type: ClsType["models.MyBaseType"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "MyBaseType"
+        # type: (...) -> "models.MyBaseType"
         """
 
         FIXME: add operation.summary

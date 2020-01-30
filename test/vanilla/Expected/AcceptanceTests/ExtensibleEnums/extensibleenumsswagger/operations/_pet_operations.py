@@ -44,10 +44,10 @@ class PetOperations(object):
     def get_by_pet_id(
         self,
         pet_id,  # type: str
-        cls=None,  # type: ClsType["Pet"]
+        cls=None,  # type: ClsType["models.Pet"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "Pet"
+        # type: (...) -> "models.Pet"
         """
 
         FIXME: add operation.summary
@@ -97,11 +97,11 @@ class PetOperations(object):
     @distributed_trace
     def add_pet(
         self,
-        pet_param=None,  # type: Optional["Pet"]
-        cls=None,  # type: ClsType["Pet"]
+        pet_param=None,  # type: Optional["models.Pet"]
+        cls=None,  # type: ClsType["models.Pet"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "Pet"
+        # type: (...) -> "models.Pet"
         """
 
         FIXME: add operation.summary

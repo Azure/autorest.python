@@ -55,7 +55,8 @@ class IOSchema(BaseSchema):
     def docstring_type(self) -> str:
         return self.type
 
-    def get_python_type_annotation(self) -> str:
+    @property
+    def type_annotation(self) -> str:
         return self.docstring_type
 
     @property

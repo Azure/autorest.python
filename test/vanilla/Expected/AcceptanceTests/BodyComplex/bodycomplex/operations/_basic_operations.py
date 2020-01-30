@@ -43,10 +43,10 @@ class BasicOperations(object):
     @distributed_trace
     def get_valid(
         self,
-        cls=None,  # type: ClsType["Basic"]
+        cls=None,  # type: ClsType["models.Basic"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "Basic"
+        # type: (...) -> "models.Basic"
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
         FIXME: add operation.summary
@@ -90,7 +90,7 @@ class BasicOperations(object):
     @distributed_trace
     def put_valid(
         self,
-        complex_body,  # type: "Basic"
+        complex_body,  # type: "models.Basic"
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -142,10 +142,10 @@ class BasicOperations(object):
     @distributed_trace
     def get_invalid(
         self,
-        cls=None,  # type: ClsType["Basic"]
+        cls=None,  # type: ClsType["models.Basic"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "Basic"
+        # type: (...) -> "models.Basic"
         """Get a basic complex type that is invalid for the local strong type.
 
         FIXME: add operation.summary
@@ -189,10 +189,10 @@ class BasicOperations(object):
     @distributed_trace
     def get_empty(
         self,
-        cls=None,  # type: ClsType["Basic"]
+        cls=None,  # type: ClsType["models.Basic"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "Basic"
+        # type: (...) -> "models.Basic"
         """Get a basic complex type that is empty.
 
         FIXME: add operation.summary
@@ -236,10 +236,10 @@ class BasicOperations(object):
     @distributed_trace
     def get_null(
         self,
-        cls=None,  # type: ClsType["Basic"]
+        cls=None,  # type: ClsType["models.Basic"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "Basic"
+        # type: (...) -> "models.Basic"
         """Get a basic complex type whose properties are null.
 
         FIXME: add operation.summary
@@ -283,10 +283,10 @@ class BasicOperations(object):
     @distributed_trace
     def get_not_provided(
         self,
-        cls=None,  # type: ClsType["Basic"]
+        cls=None,  # type: ClsType["models.Basic"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "Basic"
+        # type: (...) -> "models.Basic"
         """Get a basic complex type while the server doesn't provide a response payload.
 
         FIXME: add operation.summary

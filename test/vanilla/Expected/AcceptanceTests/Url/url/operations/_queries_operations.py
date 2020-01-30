@@ -916,7 +916,7 @@ class QueriesOperations(object):
     @distributed_trace
     def enum_valid(
         self,
-        enum_query=None,  # type: Optional[Union[str, "UriColor"]]
+        enum_query=None,  # type: Optional[Union[str, "models.UriColor"]]
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -964,7 +964,7 @@ class QueriesOperations(object):
     @distributed_trace
     def enum_null(
         self,
-        enum_query=None,  # type: Optional[Union[str, "UriColor"]]
+        enum_query=None,  # type: Optional[Union[str, "models.UriColor"]]
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):

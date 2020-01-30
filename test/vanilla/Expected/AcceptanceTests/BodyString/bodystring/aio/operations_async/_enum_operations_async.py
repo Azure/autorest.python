@@ -19,10 +19,6 @@ from ... import models
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-def _cls_type_annotation(return_type):
-    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
-
-
 class EnumOperations:
     """EnumOperations async operations.
 
@@ -47,9 +43,9 @@ class EnumOperations:
     @distributed_trace_async
     async def get_not_expandable(
         self,
-        cls: ClsType[Union[str, "Colors"]] = None,
+        cls: ClsType[Union[str, "models.Colors"]] = None,
         **kwargs: Any
-    ) -> Union[str, "Colors"]:
+    ) -> Union[str, "models.Colors"]:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         FIXME: add operation.summary
@@ -93,7 +89,7 @@ class EnumOperations:
     @distributed_trace_async
     async def put_not_expandable(
         self,
-        string_body: Union[str, "Colors"],
+        string_body: Union[str, "models.Colors"],
         *,
         cls: ClsType[None] = None,
         **kwargs: Any
@@ -143,9 +139,9 @@ class EnumOperations:
     @distributed_trace_async
     async def get_referenced(
         self,
-        cls: ClsType[Union[str, "Colors"]] = None,
+        cls: ClsType[Union[str, "models.Colors"]] = None,
         **kwargs: Any
-    ) -> Union[str, "Colors"]:
+    ) -> Union[str, "models.Colors"]:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         FIXME: add operation.summary
@@ -189,7 +185,7 @@ class EnumOperations:
     @distributed_trace_async
     async def put_referenced(
         self,
-        enum_string_body: Union[str, "Colors"],
+        enum_string_body: Union[str, "models.Colors"],
         *,
         cls: ClsType[None] = None,
         **kwargs: Any
@@ -239,9 +235,9 @@ class EnumOperations:
     @distributed_trace_async
     async def get_referenced_constant(
         self,
-        cls: ClsType["RefColorConstant"] = None,
+        cls: ClsType["models.RefColorConstant"] = None,
         **kwargs: Any
-    ) -> "RefColorConstant":
+    ) -> "models.RefColorConstant":
         """Get value 'green-color' from the constant.
 
         FIXME: add operation.summary

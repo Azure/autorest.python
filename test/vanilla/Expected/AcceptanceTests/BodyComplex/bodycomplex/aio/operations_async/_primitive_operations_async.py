@@ -20,10 +20,6 @@ from ... import models
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-def _cls_type_annotation(return_type):
-    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
-
-
 class PrimitiveOperations:
     """PrimitiveOperations async operations.
 
@@ -48,9 +44,9 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_int(
         self,
-        cls: ClsType["IntWrapper"] = None,
+        cls: ClsType["models.IntWrapper"] = None,
         **kwargs: Any
-    ) -> "IntWrapper":
+    ) -> "models.IntWrapper":
         """Get complex types with integer properties.
 
         FIXME: add operation.summary
@@ -94,7 +90,7 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def put_int(
         self,
-        complex_body: "IntWrapper",
+        complex_body: "models.IntWrapper",
         *,
         cls: ClsType[None] = None,
         **kwargs: Any
@@ -144,9 +140,9 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_long(
         self,
-        cls: ClsType["LongWrapper"] = None,
+        cls: ClsType["models.LongWrapper"] = None,
         **kwargs: Any
-    ) -> "LongWrapper":
+    ) -> "models.LongWrapper":
         """Get complex types with long properties.
 
         FIXME: add operation.summary
@@ -190,7 +186,7 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def put_long(
         self,
-        complex_body: "LongWrapper",
+        complex_body: "models.LongWrapper",
         *,
         cls: ClsType[None] = None,
         **kwargs: Any
@@ -240,9 +236,9 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_float(
         self,
-        cls: ClsType["FloatWrapper"] = None,
+        cls: ClsType["models.FloatWrapper"] = None,
         **kwargs: Any
-    ) -> "FloatWrapper":
+    ) -> "models.FloatWrapper":
         """Get complex types with float properties.
 
         FIXME: add operation.summary
@@ -286,7 +282,7 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def put_float(
         self,
-        complex_body: "FloatWrapper",
+        complex_body: "models.FloatWrapper",
         *,
         cls: ClsType[None] = None,
         **kwargs: Any
@@ -336,9 +332,9 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_double(
         self,
-        cls: ClsType["DoubleWrapper"] = None,
+        cls: ClsType["models.DoubleWrapper"] = None,
         **kwargs: Any
-    ) -> "DoubleWrapper":
+    ) -> "models.DoubleWrapper":
         """Get complex types with double properties.
 
         FIXME: add operation.summary
@@ -382,7 +378,7 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def put_double(
         self,
-        complex_body: "DoubleWrapper",
+        complex_body: "models.DoubleWrapper",
         *,
         cls: ClsType[None] = None,
         **kwargs: Any
@@ -432,9 +428,9 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_bool(
         self,
-        cls: ClsType["BooleanWrapper"] = None,
+        cls: ClsType["models.BooleanWrapper"] = None,
         **kwargs: Any
-    ) -> "BooleanWrapper":
+    ) -> "models.BooleanWrapper":
         """Get complex types with bool properties.
 
         FIXME: add operation.summary
@@ -478,7 +474,7 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def put_bool(
         self,
-        complex_body: "BooleanWrapper",
+        complex_body: "models.BooleanWrapper",
         *,
         cls: ClsType[None] = None,
         **kwargs: Any
@@ -528,9 +524,9 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_string(
         self,
-        cls: ClsType["StringWrapper"] = None,
+        cls: ClsType["models.StringWrapper"] = None,
         **kwargs: Any
-    ) -> "StringWrapper":
+    ) -> "models.StringWrapper":
         """Get complex types with string properties.
 
         FIXME: add operation.summary
@@ -574,7 +570,7 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def put_string(
         self,
-        complex_body: "StringWrapper",
+        complex_body: "models.StringWrapper",
         *,
         cls: ClsType[None] = None,
         **kwargs: Any
@@ -624,9 +620,9 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_date(
         self,
-        cls: ClsType["DateWrapper"] = None,
+        cls: ClsType["models.DateWrapper"] = None,
         **kwargs: Any
-    ) -> "DateWrapper":
+    ) -> "models.DateWrapper":
         """Get complex types with date properties.
 
         FIXME: add operation.summary
@@ -670,7 +666,7 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def put_date(
         self,
-        complex_body: "DateWrapper",
+        complex_body: "models.DateWrapper",
         *,
         cls: ClsType[None] = None,
         **kwargs: Any
@@ -720,9 +716,9 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_date_time(
         self,
-        cls: ClsType["DatetimeWrapper"] = None,
+        cls: ClsType["models.DatetimeWrapper"] = None,
         **kwargs: Any
-    ) -> "DatetimeWrapper":
+    ) -> "models.DatetimeWrapper":
         """Get complex types with datetime properties.
 
         FIXME: add operation.summary
@@ -766,7 +762,7 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def put_date_time(
         self,
-        complex_body: "DatetimeWrapper",
+        complex_body: "models.DatetimeWrapper",
         *,
         cls: ClsType[None] = None,
         **kwargs: Any
@@ -816,9 +812,9 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_date_time_rfc1123(
         self,
-        cls: ClsType["Datetimerfc1123Wrapper"] = None,
+        cls: ClsType["models.Datetimerfc1123Wrapper"] = None,
         **kwargs: Any
-    ) -> "Datetimerfc1123Wrapper":
+    ) -> "models.Datetimerfc1123Wrapper":
         """Get complex types with datetimeRfc1123 properties.
 
         FIXME: add operation.summary
@@ -862,7 +858,7 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def put_date_time_rfc1123(
         self,
-        complex_body: "Datetimerfc1123Wrapper",
+        complex_body: "models.Datetimerfc1123Wrapper",
         *,
         cls: ClsType[None] = None,
         **kwargs: Any
@@ -912,9 +908,9 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_duration(
         self,
-        cls: ClsType["DurationWrapper"] = None,
+        cls: ClsType["models.DurationWrapper"] = None,
         **kwargs: Any
-    ) -> "DurationWrapper":
+    ) -> "models.DurationWrapper":
         """Get complex types with duration properties.
 
         FIXME: add operation.summary
@@ -1009,9 +1005,9 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_byte(
         self,
-        cls: ClsType["ByteWrapper"] = None,
+        cls: ClsType["models.ByteWrapper"] = None,
         **kwargs: Any
-    ) -> "ByteWrapper":
+    ) -> "models.ByteWrapper":
         """Get complex types with byte properties.
 
         FIXME: add operation.summary

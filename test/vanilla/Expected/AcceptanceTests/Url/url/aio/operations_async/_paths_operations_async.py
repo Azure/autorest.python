@@ -19,10 +19,6 @@ from ... import models
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-def _cls_type_annotation(return_type):
-    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
-
-
 class PathsOperations:
     """PathsOperations async operations.
 
@@ -755,7 +751,7 @@ class PathsOperations:
     @distributed_trace_async
     async def enum_valid(
         self,
-        enum_path: Union[str, "UriColor"],
+        enum_path: Union[str, "models.UriColor"],
         *,
         cls: ClsType[None] = None,
         **kwargs: Any
@@ -805,7 +801,7 @@ class PathsOperations:
     @distributed_trace_async
     async def enum_null(
         self,
-        enum_path: Union[str, "UriColor"],
+        enum_path: Union[str, "models.UriColor"],
         *,
         cls: ClsType[None] = None,
         **kwargs: Any

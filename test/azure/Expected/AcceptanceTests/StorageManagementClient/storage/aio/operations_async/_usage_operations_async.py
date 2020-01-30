@@ -20,10 +20,6 @@ from ... import models
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-def _cls_type_annotation(return_type):
-    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
-
-
 class UsageOperations:
     """UsageOperations async operations.
 
@@ -48,9 +44,9 @@ class UsageOperations:
     @distributed_trace_async
     async def list(
         self,
-        cls: ClsType["UsageListResult"] = None,
+        cls: ClsType["models.UsageListResult"] = None,
         **kwargs: Any
-    ) -> "UsageListResult":
+    ) -> "models.UsageListResult":
         """Gets the current usage count and the limit for the resources under the subscription.
 
         FIXME: add operation.summary

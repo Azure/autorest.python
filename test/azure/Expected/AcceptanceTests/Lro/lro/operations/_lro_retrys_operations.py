@@ -46,11 +46,11 @@ class LRORetrysOperations(object):
     
     def _put201_creating_succeeded200_initial(
         self,
-        product=None,  # type: Optional["Product"]
-        cls=None,  # type: ClsType["Product"]
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "Product"
+        # type: (...) -> "models.Product"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -97,12 +97,12 @@ class LRORetrysOperations(object):
     @distributed_trace
     def begin_put201_creating_succeeded200(
         self,
-        product=None,  # type: Optional["Product"]
-        cls=None,  # type: ClsType["Product"]
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType["models.Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "Product"
+        # type: (...) -> "models.Product"
         """Long running put request, service returns a 500, then a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         FIXME: add operation.summary
@@ -145,11 +145,11 @@ class LRORetrysOperations(object):
     
     def _put_async_relative_retry_succeeded_initial(
         self,
-        product=None,  # type: Optional["Product"]
-        cls=None,  # type: ClsType["Product"]
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "Product"
+        # type: (...) -> "models.Product"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -195,12 +195,12 @@ class LRORetrysOperations(object):
     @distributed_trace
     def begin_put_async_relative_retry_succeeded(
         self,
-        product=None,  # type: Optional["Product"]
-        cls=None,  # type: ClsType["Product"]
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType["models.Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "Product"
+        # type: (...) -> "models.Product"
         """Long running put request, service returns a 500, then a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         FIXME: add operation.summary
@@ -248,10 +248,10 @@ class LRORetrysOperations(object):
     
     def _delete_provisioning202_accepted200_succeeded_initial(
         self,
-        cls=None,  # type: ClsType["Product"]
+        cls=None,  # type: ClsType["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "Product"
+        # type: (...) -> "models.Product"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -294,11 +294,11 @@ class LRORetrysOperations(object):
     @distributed_trace
     def begin_delete_provisioning202_accepted200_succeeded(
         self,
-        cls=None,  # type: ClsType["Product"]
+        cls=None,  # type: ClsType["models.Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "Product"
+        # type: (...) -> "models.Product"
         """Long running delete request, service returns a 500, then a  202 to the initial request, with an entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         FIXME: add operation.summary
@@ -501,7 +501,7 @@ class LRORetrysOperations(object):
     
     def _post202_retry200_initial(
         self,
-        product=None,  # type: Optional["Product"]
+        product=None,  # type: Optional["models.Product"]
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -547,7 +547,7 @@ class LRORetrysOperations(object):
     @distributed_trace
     def begin_post202_retry200(
         self,
-        product=None,  # type: Optional["Product"]
+        product=None,  # type: Optional["models.Product"]
         cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
@@ -592,7 +592,7 @@ class LRORetrysOperations(object):
     
     def _post_async_relative_retry_succeeded_initial(
         self,
-        product=None,  # type: Optional["Product"]
+        product=None,  # type: Optional["models.Product"]
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -639,7 +639,7 @@ class LRORetrysOperations(object):
     @distributed_trace
     def begin_post_async_relative_retry_succeeded(
         self,
-        product=None,  # type: Optional["Product"]
+        product=None,  # type: Optional["models.Product"]
         cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any

@@ -43,10 +43,10 @@ class InheritanceOperations(object):
     @distributed_trace
     def get_valid(
         self,
-        cls=None,  # type: ClsType["Siamese"]
+        cls=None,  # type: ClsType["models.Siamese"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "Siamese"
+        # type: (...) -> "models.Siamese"
         """Get complex types that extend others.
 
         FIXME: add operation.summary
@@ -90,7 +90,7 @@ class InheritanceOperations(object):
     @distributed_trace
     def put_valid(
         self,
-        complex_body,  # type: "Siamese"
+        complex_body,  # type: "models.Siamese"
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):

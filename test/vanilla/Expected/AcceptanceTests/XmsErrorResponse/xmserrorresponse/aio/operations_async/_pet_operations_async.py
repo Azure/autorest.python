@@ -19,10 +19,6 @@ from ... import models
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-def _cls_type_annotation(return_type):
-    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
-
-
 class PetOperations:
     """PetOperations async operations.
 
@@ -49,9 +45,9 @@ class PetOperations:
         self,
         pet_id: str,
         *,
-        cls: ClsType["Pet"] = None,
+        cls: ClsType["models.Pet"] = None,
         **kwargs: Any
-    ) -> "Pet":
+    ) -> "models.Pet":
         """Gets pets by id.
 
         FIXME: add operation.summary
@@ -110,9 +106,9 @@ class PetOperations:
         self,
         what_action: str,
         *,
-        cls: ClsType["PetAction"] = None,
+        cls: ClsType["models.PetAction"] = None,
         **kwargs: Any
-    ) -> "PetAction":
+    ) -> "models.PetAction":
         """Asks pet to do something.
 
         FIXME: add operation.summary

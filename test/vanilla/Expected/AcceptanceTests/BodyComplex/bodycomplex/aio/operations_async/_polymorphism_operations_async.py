@@ -19,10 +19,6 @@ from ... import models
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-def _cls_type_annotation(return_type):
-    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
-
-
 class PolymorphismOperations:
     """PolymorphismOperations async operations.
 
@@ -47,9 +43,9 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        cls: ClsType["Fish"] = None,
+        cls: ClsType["models.Fish"] = None,
         **kwargs: Any
-    ) -> "Fish":
+    ) -> "models.Fish":
         """Get complex types that are polymorphic.
 
         FIXME: add operation.summary
@@ -93,7 +89,7 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def put_valid(
         self,
-        complex_body: "Fish",
+        complex_body: "models.Fish",
         *,
         cls: ClsType[None] = None,
         **kwargs: Any
@@ -175,9 +171,9 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def get_dot_syntax(
         self,
-        cls: ClsType["DotFish"] = None,
+        cls: ClsType["models.DotFish"] = None,
         **kwargs: Any
-    ) -> "DotFish":
+    ) -> "models.DotFish":
         """Get complex types that are polymorphic, JSON key contains a dot.
 
         FIXME: add operation.summary
@@ -221,9 +217,9 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def get_composed_with_discriminator(
         self,
-        cls: ClsType["DotFishMarket"] = None,
+        cls: ClsType["models.DotFishMarket"] = None,
         **kwargs: Any
-    ) -> "DotFishMarket":
+    ) -> "models.DotFishMarket":
         """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, with discriminator specified. Deserialization must NOT fail and use the discriminator type specified on the wire.
 
         FIXME: add operation.summary
@@ -267,9 +263,9 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def get_composed_without_discriminator(
         self,
-        cls: ClsType["DotFishMarket"] = None,
+        cls: ClsType["models.DotFishMarket"] = None,
         **kwargs: Any
-    ) -> "DotFishMarket":
+    ) -> "models.DotFishMarket":
         """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, without discriminator specified on wire. Deserialization must NOT fail and use the explicit type of the property.
 
         FIXME: add operation.summary
@@ -313,9 +309,9 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def get_complicated(
         self,
-        cls: ClsType["Salmon"] = None,
+        cls: ClsType["models.Salmon"] = None,
         **kwargs: Any
-    ) -> "Salmon":
+    ) -> "models.Salmon":
         """Get complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties.
 
         FIXME: add operation.summary
@@ -359,7 +355,7 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def put_complicated(
         self,
-        complex_body: "Salmon",
+        complex_body: "models.Salmon",
         *,
         cls: ClsType[None] = None,
         **kwargs: Any
@@ -409,11 +405,11 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def put_missing_discriminator(
         self,
-        complex_body: "Salmon",
+        complex_body: "models.Salmon",
         *,
-        cls: ClsType["Salmon"] = None,
+        cls: ClsType["models.Salmon"] = None,
         **kwargs: Any
-    ) -> "Salmon":
+    ) -> "models.Salmon":
         """Put complex types that are polymorphic, omitting the discriminator.
 
         FIXME: add operation.summary
@@ -463,7 +459,7 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def put_valid_missing_required(
         self,
-        complex_body: "Fish",
+        complex_body: "models.Fish",
         *,
         cls: ClsType[None] = None,
         **kwargs: Any

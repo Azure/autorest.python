@@ -43,10 +43,10 @@ class ReadonlypropertyOperations(object):
     @distributed_trace
     def get_valid(
         self,
-        cls=None,  # type: ClsType["ReadonlyObj"]
+        cls=None,  # type: ClsType["models.ReadonlyObj"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "ReadonlyObj"
+        # type: (...) -> "models.ReadonlyObj"
         """Get complex types that have readonly properties.
 
         FIXME: add operation.summary

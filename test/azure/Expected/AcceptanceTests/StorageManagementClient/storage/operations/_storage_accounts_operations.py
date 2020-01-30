@@ -47,11 +47,11 @@ class StorageAccountsOperations(object):
     @distributed_trace
     def check_name_availability(
         self,
-        account_name,  # type: "StorageAccountCheckNameAvailabilityParameters"
-        cls=None,  # type: ClsType["CheckNameAvailabilityResult"]
+        account_name,  # type: "models.StorageAccountCheckNameAvailabilityParameters"
+        cls=None,  # type: ClsType["models.CheckNameAvailabilityResult"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "CheckNameAvailabilityResult"
+        # type: (...) -> "models.CheckNameAvailabilityResult"
         """Checks that account name is valid and is not in use.
 
         FIXME: add operation.summary
@@ -107,11 +107,11 @@ class StorageAccountsOperations(object):
         self,
         resource_group_name,  # type: str
         account_name,  # type: str
-        parameters,  # type: "StorageAccountCreateParameters"
-        cls=None,  # type: ClsType["StorageAccount"]
+        parameters,  # type: "models.StorageAccountCreateParameters"
+        cls=None,  # type: ClsType["models.StorageAccount"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "StorageAccount"
+        # type: (...) -> "models.StorageAccount"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -160,12 +160,12 @@ class StorageAccountsOperations(object):
         self,
         resource_group_name,  # type: str
         account_name,  # type: str
-        parameters,  # type: "StorageAccountCreateParameters"
-        cls=None,  # type: ClsType["StorageAccount"]
+        parameters,  # type: "models.StorageAccountCreateParameters"
+        cls=None,  # type: ClsType["models.StorageAccount"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "StorageAccount"
+        # type: (...) -> "models.StorageAccount"
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts cannot be updated with this API and should instead use the Update Storage Account API. If an account is already created and subsequent PUT request is issued with exact same set of properties, then HTTP 200 would be returned.
 
         FIXME: add operation.summary
@@ -271,10 +271,10 @@ class StorageAccountsOperations(object):
         self,
         resource_group_name,  # type: str
         account_name,  # type: str
-        cls=None,  # type: ClsType["StorageAccount"]
+        cls=None,  # type: ClsType["models.StorageAccount"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "StorageAccount"
+        # type: (...) -> "models.StorageAccount"
         """Returns the properties for the specified storage account including but not limited to name, account type, location, and account status. The ListKeys operation should be used to retrieve storage keys.
 
         FIXME: add operation.summary
@@ -330,11 +330,11 @@ class StorageAccountsOperations(object):
         self,
         resource_group_name,  # type: str
         account_name,  # type: str
-        parameters,  # type: "StorageAccountUpdateParameters"
-        cls=None,  # type: ClsType["StorageAccount"]
+        parameters,  # type: "models.StorageAccountUpdateParameters"
+        cls=None,  # type: ClsType["models.StorageAccount"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "StorageAccount"
+        # type: (...) -> "models.StorageAccount"
         """Updates the account type or tags for a storage account. It can also be used to add a custom domain (note that custom domains cannot be added via the Create operation). Only one custom domain is supported per storage account. This API can only be used to update one of tags, accountType, or customDomain per call. To update multiple of these properties, call the API multiple times with one change per call. This call does not change the storage keys for the account. If you want to change storage account keys, use the RegenerateKey operation. The location and name of the storage account cannot be changed after creation.
 
         FIXME: add operation.summary
@@ -396,10 +396,10 @@ class StorageAccountsOperations(object):
         self,
         resource_group_name,  # type: str
         account_name,  # type: str
-        cls=None,  # type: ClsType["StorageAccountKeys"]
+        cls=None,  # type: ClsType["models.StorageAccountKeys"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "StorageAccountKeys"
+        # type: (...) -> "models.StorageAccountKeys"
         """Lists the access keys for the specified storage account.
 
         FIXME: add operation.summary
@@ -453,10 +453,10 @@ class StorageAccountsOperations(object):
     @distributed_trace
     def list(
         self,
-        cls=None,  # type: ClsType["StorageAccountListResult"]
+        cls=None,  # type: ClsType["models.StorageAccountListResult"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "StorageAccountListResult"
+        # type: (...) -> "models.StorageAccountListResult"
         """Lists all the storage accounts available under the subscription. Note that storage keys are not returned; use the ListKeys operation for this.
 
         FIXME: add operation.summary
@@ -522,10 +522,10 @@ class StorageAccountsOperations(object):
     def list_by_resource_group(
         self,
         resource_group_name,  # type: str
-        cls=None,  # type: ClsType["StorageAccountListResult"]
+        cls=None,  # type: ClsType["models.StorageAccountListResult"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "StorageAccountListResult"
+        # type: (...) -> "models.StorageAccountListResult"
         """Lists all the storage accounts available under the given resource group. Note that storage keys are not returned; use the ListKeys operation for this.
 
         FIXME: add operation.summary
@@ -595,11 +595,11 @@ class StorageAccountsOperations(object):
         self,
         resource_group_name,  # type: str
         account_name,  # type: str
-        key_name=None,  # type: Optional[Union[str, "KeyName"]]
-        cls=None,  # type: ClsType["StorageAccountKeys"]
+        key_name=None,  # type: Optional[Union[str, "models.KeyName"]]
+        cls=None,  # type: ClsType["models.StorageAccountKeys"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "StorageAccountKeys"
+        # type: (...) -> "models.StorageAccountKeys"
         """Regenerates the access keys for the specified storage account.
 
         FIXME: add operation.summary

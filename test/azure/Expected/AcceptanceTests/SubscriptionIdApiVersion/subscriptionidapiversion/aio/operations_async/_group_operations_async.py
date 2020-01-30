@@ -19,10 +19,6 @@ from ... import models
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-def _cls_type_annotation(return_type):
-    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
-
-
 class GroupOperations:
     """GroupOperations async operations.
 
@@ -49,9 +45,9 @@ class GroupOperations:
         self,
         resource_group_name: str,
         *,
-        cls: ClsType["SampleResourceGroup"] = None,
+        cls: ClsType["models.SampleResourceGroup"] = None,
         **kwargs: Any
-    ) -> "SampleResourceGroup":
+    ) -> "models.SampleResourceGroup":
         """Provides a resouce group with name 'testgroup101' and location 'West US'.
 
         FIXME: add operation.summary

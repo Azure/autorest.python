@@ -19,10 +19,6 @@ from ... import models
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-def _cls_type_annotation(return_type):
-    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
-
-
 class BasicOperations:
     """BasicOperations async operations.
 
@@ -47,9 +43,9 @@ class BasicOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        cls: ClsType["Basic"] = None,
+        cls: ClsType["models.Basic"] = None,
         **kwargs: Any
-    ) -> "Basic":
+    ) -> "models.Basic":
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
         FIXME: add operation.summary
@@ -93,7 +89,7 @@ class BasicOperations:
     @distributed_trace_async
     async def put_valid(
         self,
-        complex_body: "Basic",
+        complex_body: "models.Basic",
         *,
         cls: ClsType[None] = None,
         **kwargs: Any
@@ -145,9 +141,9 @@ class BasicOperations:
     @distributed_trace_async
     async def get_invalid(
         self,
-        cls: ClsType["Basic"] = None,
+        cls: ClsType["models.Basic"] = None,
         **kwargs: Any
-    ) -> "Basic":
+    ) -> "models.Basic":
         """Get a basic complex type that is invalid for the local strong type.
 
         FIXME: add operation.summary
@@ -191,9 +187,9 @@ class BasicOperations:
     @distributed_trace_async
     async def get_empty(
         self,
-        cls: ClsType["Basic"] = None,
+        cls: ClsType["models.Basic"] = None,
         **kwargs: Any
-    ) -> "Basic":
+    ) -> "models.Basic":
         """Get a basic complex type that is empty.
 
         FIXME: add operation.summary
@@ -237,9 +233,9 @@ class BasicOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        cls: ClsType["Basic"] = None,
+        cls: ClsType["models.Basic"] = None,
         **kwargs: Any
-    ) -> "Basic":
+    ) -> "models.Basic":
         """Get a basic complex type whose properties are null.
 
         FIXME: add operation.summary
@@ -283,9 +279,9 @@ class BasicOperations:
     @distributed_trace_async
     async def get_not_provided(
         self,
-        cls: ClsType["Basic"] = None,
+        cls: ClsType["models.Basic"] = None,
         **kwargs: Any
-    ) -> "Basic":
+    ) -> "models.Basic":
         """Get a basic complex type while the server doesn't provide a response payload.
 
         FIXME: add operation.summary

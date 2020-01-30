@@ -66,6 +66,10 @@ class BaseSchema(BaseModel, ABC):
         """
         ...
 
+    @property
+    def operation_type_annotation(self) -> str:
+        return self.type_annotation
+
     def get_declaration(self, value: Any) -> str: # pylint: disable=no-self-use
         """Return the current value from YAML as a Python string that represents the constant.
 

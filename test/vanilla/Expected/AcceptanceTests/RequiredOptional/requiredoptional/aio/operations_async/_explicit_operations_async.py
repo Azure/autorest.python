@@ -19,10 +19,6 @@ from ... import models
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-def _cls_type_annotation(return_type):
-    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
-
-
 class ExplicitOperations:
     """ExplicitOperations async operations.
 
@@ -653,7 +649,7 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_required_class_parameter(
         self,
-        body_parameter: "Product",
+        body_parameter: "models.Product",
         *,
         cls: ClsType[None] = None,
         **kwargs: Any
@@ -703,7 +699,7 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_optional_class_parameter(
         self,
-        body_parameter: Optional["Product"] = None,
+        body_parameter: Optional["models.Product"] = None,
         *,
         cls: ClsType[None] = None,
         **kwargs: Any
@@ -756,7 +752,7 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_required_class_property(
         self,
-        value: "Product",
+        value: "models.Product",
         *,
         cls: ClsType[None] = None,
         **kwargs: Any
@@ -807,7 +803,7 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_optional_class_property(
         self,
-        value: Optional["Product"] = None,
+        value: Optional["models.Product"] = None,
         *,
         cls: ClsType[None] = None,
         **kwargs: Any

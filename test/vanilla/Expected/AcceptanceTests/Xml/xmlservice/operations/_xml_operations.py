@@ -43,10 +43,10 @@ class XmlOperations(object):
     @distributed_trace
     def get_complex_type_ref_no_meta(
         self,
-        cls=None,  # type: ClsType["RootWithRefAndNoMeta"]
+        cls=None,  # type: ClsType["models.RootWithRefAndNoMeta"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "RootWithRefAndNoMeta"
+        # type: (...) -> "models.RootWithRefAndNoMeta"
         """Get a complex type that has a ref to a complex type with no XML node.
 
         FIXME: add operation.summary
@@ -90,7 +90,7 @@ class XmlOperations(object):
     @distributed_trace
     def put_complex_type_ref_no_meta(
         self,
-        model,  # type: "RootWithRefAndNoMeta"
+        model,  # type: "models.RootWithRefAndNoMeta"
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -140,10 +140,10 @@ class XmlOperations(object):
     @distributed_trace
     def get_complex_type_ref_with_meta(
         self,
-        cls=None,  # type: ClsType["RootWithRefAndMeta"]
+        cls=None,  # type: ClsType["models.RootWithRefAndMeta"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "RootWithRefAndMeta"
+        # type: (...) -> "models.RootWithRefAndMeta"
         """Get a complex type that has a ref to a complex type with XML node.
 
         FIXME: add operation.summary
@@ -187,7 +187,7 @@ class XmlOperations(object):
     @distributed_trace
     def put_complex_type_ref_with_meta(
         self,
-        model,  # type: "RootWithRefAndMeta"
+        model,  # type: "models.RootWithRefAndMeta"
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -237,10 +237,10 @@ class XmlOperations(object):
     @distributed_trace
     def get_simple(
         self,
-        cls=None,  # type: ClsType["Slideshow"]
+        cls=None,  # type: ClsType["models.Slideshow"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "Slideshow"
+        # type: (...) -> "models.Slideshow"
         """Get a simple XML document.
 
         FIXME: add operation.summary
@@ -284,7 +284,7 @@ class XmlOperations(object):
     @distributed_trace
     def put_simple(
         self,
-        slideshow,  # type: "Slideshow"
+        slideshow,  # type: "models.Slideshow"
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -334,10 +334,10 @@ class XmlOperations(object):
     @distributed_trace
     def get_wrapped_lists(
         self,
-        cls=None,  # type: ClsType["AppleBarrel"]
+        cls=None,  # type: ClsType["models.AppleBarrel"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "AppleBarrel"
+        # type: (...) -> "models.AppleBarrel"
         """Get an XML document with multiple wrapped lists.
 
         FIXME: add operation.summary
@@ -381,7 +381,7 @@ class XmlOperations(object):
     @distributed_trace
     def put_wrapped_lists(
         self,
-        wrapped_lists,  # type: "AppleBarrel"
+        wrapped_lists,  # type: "models.AppleBarrel"
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -477,10 +477,10 @@ class XmlOperations(object):
     @distributed_trace
     def get_empty_list(
         self,
-        cls=None,  # type: ClsType["Slideshow"]
+        cls=None,  # type: ClsType["models.Slideshow"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "Slideshow"
+        # type: (...) -> "models.Slideshow"
         """Get an empty list.
 
         FIXME: add operation.summary
@@ -524,7 +524,7 @@ class XmlOperations(object):
     @distributed_trace
     def put_empty_list(
         self,
-        slideshow,  # type: "Slideshow"
+        slideshow,  # type: "models.Slideshow"
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -574,10 +574,10 @@ class XmlOperations(object):
     @distributed_trace
     def get_empty_wrapped_lists(
         self,
-        cls=None,  # type: ClsType["AppleBarrel"]
+        cls=None,  # type: ClsType["models.AppleBarrel"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "AppleBarrel"
+        # type: (...) -> "models.AppleBarrel"
         """Gets some empty wrapped lists.
 
         FIXME: add operation.summary
@@ -621,7 +621,7 @@ class XmlOperations(object):
     @distributed_trace
     def put_empty_wrapped_lists(
         self,
-        apple_barrel,  # type: "AppleBarrel"
+        apple_barrel,  # type: "models.AppleBarrel"
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -962,10 +962,10 @@ class XmlOperations(object):
     @distributed_trace
     def get_empty_child_element(
         self,
-        cls=None,  # type: ClsType["Banana"]
+        cls=None,  # type: ClsType["models.Banana"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "Banana"
+        # type: (...) -> "models.Banana"
         """Gets an XML document with an empty child element.
 
         FIXME: add operation.summary
@@ -1009,7 +1009,7 @@ class XmlOperations(object):
     @distributed_trace
     def put_empty_child_element(
         self,
-        banana,  # type: "Banana"
+        banana,  # type: "models.Banana"
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -1059,10 +1059,10 @@ class XmlOperations(object):
     @distributed_trace
     def list_containers(
         self,
-        cls=None,  # type: ClsType["ListContainersResponse"]
+        cls=None,  # type: ClsType["models.ListContainersResponse"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "ListContainersResponse"
+        # type: (...) -> "models.ListContainersResponse"
         """Lists containers in a storage account.
 
         FIXME: add operation.summary
@@ -1108,10 +1108,10 @@ class XmlOperations(object):
     @distributed_trace
     def get_service_properties(
         self,
-        cls=None,  # type: ClsType["StorageServiceProperties"]
+        cls=None,  # type: ClsType["models.StorageServiceProperties"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "StorageServiceProperties"
+        # type: (...) -> "models.StorageServiceProperties"
         """Gets storage service properties.
 
         FIXME: add operation.summary
@@ -1159,7 +1159,7 @@ class XmlOperations(object):
     @distributed_trace
     def put_service_properties(
         self,
-        properties,  # type: "StorageServiceProperties"
+        properties,  # type: "models.StorageServiceProperties"
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -1318,10 +1318,10 @@ class XmlOperations(object):
     @distributed_trace
     def list_blobs(
         self,
-        cls=None,  # type: ClsType["ListBlobsResponse"]
+        cls=None,  # type: ClsType["models.ListBlobsResponse"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "ListBlobsResponse"
+        # type: (...) -> "models.ListBlobsResponse"
         """Lists blobs in a storage container.
 
         FIXME: add operation.summary
@@ -1420,10 +1420,10 @@ class XmlOperations(object):
     @distributed_trace
     def json_output(
         self,
-        cls=None,  # type: ClsType["JSONOutput"]
+        cls=None,  # type: ClsType["models.JSONOutput"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "JSONOutput"
+        # type: (...) -> "models.JSONOutput"
         """A Swagger with XML that has one operation that returns JSON. ID number 42.
 
         FIXME: add operation.summary

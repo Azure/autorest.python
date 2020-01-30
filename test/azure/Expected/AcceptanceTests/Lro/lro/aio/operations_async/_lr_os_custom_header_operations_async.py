@@ -22,10 +22,6 @@ from ... import models
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-def _cls_type_annotation(return_type):
-    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
-
-
 class LROsCustomHeaderOperations:
     """LROsCustomHeaderOperations async operations.
 
@@ -50,11 +46,11 @@ class LROsCustomHeaderOperations:
     
     async def _put_async_retry_succeeded_initial(
         self,
-        product: Optional["Product"] = None,
+        product: Optional["models.Product"] = None,
         *,
-        cls: ClsType["Product"] = None,
+        cls: ClsType["models.Product"] = None,
         **kwargs: Any
-    ) -> "Product":
+    ) -> "models.Product":
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -100,12 +96,12 @@ class LROsCustomHeaderOperations:
     @distributed_trace_async
     async def put_async_retry_succeeded(
         self,
-        product: Optional["Product"] = None,
+        product: Optional["models.Product"] = None,
         *,
-        cls: ClsType["Product"] = None,
+        cls: ClsType["models.Product"] = None,
         polling: Optional[bool] = True,
         **kwargs
-    ) -> "Product":
+    ) -> "models.Product":
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         FIXME: add operation.summary
@@ -153,11 +149,11 @@ class LROsCustomHeaderOperations:
     
     async def _put201_creating_succeeded200_initial(
         self,
-        product: Optional["Product"] = None,
+        product: Optional["models.Product"] = None,
         *,
-        cls: ClsType["Product"] = None,
+        cls: ClsType["models.Product"] = None,
         **kwargs: Any
-    ) -> "Product":
+    ) -> "models.Product":
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -204,12 +200,12 @@ class LROsCustomHeaderOperations:
     @distributed_trace_async
     async def put201_creating_succeeded200(
         self,
-        product: Optional["Product"] = None,
+        product: Optional["models.Product"] = None,
         *,
-        cls: ClsType["Product"] = None,
+        cls: ClsType["models.Product"] = None,
         polling: Optional[bool] = True,
         **kwargs
-    ) -> "Product":
+    ) -> "models.Product":
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         FIXME: add operation.summary
@@ -252,7 +248,7 @@ class LROsCustomHeaderOperations:
     
     async def _post202_retry200_initial(
         self,
-        product: Optional["Product"] = None,
+        product: Optional["models.Product"] = None,
         *,
         cls: ClsType[None] = None,
         **kwargs: Any
@@ -298,7 +294,7 @@ class LROsCustomHeaderOperations:
     @distributed_trace_async
     async def post202_retry200(
         self,
-        product: Optional["Product"] = None,
+        product: Optional["models.Product"] = None,
         *,
         cls: ClsType[None] = None,
         polling: Optional[bool] = True,
@@ -343,7 +339,7 @@ class LROsCustomHeaderOperations:
     
     async def _post_async_retry_succeeded_initial(
         self,
-        product: Optional["Product"] = None,
+        product: Optional["models.Product"] = None,
         *,
         cls: ClsType[None] = None,
         **kwargs: Any
@@ -390,7 +386,7 @@ class LROsCustomHeaderOperations:
     @distributed_trace_async
     async def post_async_retry_succeeded(
         self,
-        product: Optional["Product"] = None,
+        product: Optional["models.Product"] = None,
         *,
         cls: ClsType[None] = None,
         polling: Optional[bool] = True,

@@ -19,10 +19,6 @@ from ... import models
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-def _cls_type_annotation(return_type):
-    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
-
-
 class ReadonlypropertyOperations:
     """ReadonlypropertyOperations async operations.
 
@@ -47,9 +43,9 @@ class ReadonlypropertyOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        cls: ClsType["ReadonlyObj"] = None,
+        cls: ClsType["models.ReadonlyObj"] = None,
         **kwargs: Any
-    ) -> "ReadonlyObj":
+    ) -> "models.ReadonlyObj":
         """Get complex types that have readonly properties.
 
         FIXME: add operation.summary

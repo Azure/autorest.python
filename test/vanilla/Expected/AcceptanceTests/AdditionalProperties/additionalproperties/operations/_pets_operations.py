@@ -43,11 +43,11 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_true(
         self,
-        create_parameters,  # type: "PetAPTrue"
-        cls=None,  # type: ClsType["PetAPTrue"]
+        create_parameters,  # type: "models.PetAPTrue"
+        cls=None,  # type: ClsType["models.PetAPTrue"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "PetAPTrue"
+        # type: (...) -> "models.PetAPTrue"
         """Create a Pet which contains more properties than what is defined.
 
         FIXME: add operation.summary
@@ -97,11 +97,11 @@ class PetsOperations(object):
     @distributed_trace
     def create_cat_ap_true(
         self,
-        create_parameters,  # type: "CatAPTrue"
-        cls=None,  # type: ClsType["CatAPTrue"]
+        create_parameters,  # type: "models.CatAPTrue"
+        cls=None,  # type: ClsType["models.CatAPTrue"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "CatAPTrue"
+        # type: (...) -> "models.CatAPTrue"
         """Create a CatAPTrue which contains more properties than what is defined.
 
         FIXME: add operation.summary
@@ -151,11 +151,11 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_object(
         self,
-        create_parameters,  # type: "PetAPObject"
-        cls=None,  # type: ClsType["PetAPObject"]
+        create_parameters,  # type: "models.PetAPObject"
+        cls=None,  # type: ClsType["models.PetAPObject"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "PetAPObject"
+        # type: (...) -> "models.PetAPObject"
         """Create a Pet which contains more properties than what is defined.
 
         FIXME: add operation.summary
@@ -205,11 +205,11 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_string(
         self,
-        create_parameters,  # type: "PetAPString"
-        cls=None,  # type: ClsType["PetAPString"]
+        create_parameters,  # type: "models.PetAPString"
+        cls=None,  # type: ClsType["models.PetAPString"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "PetAPString"
+        # type: (...) -> "models.PetAPString"
         """Create a Pet which contains more properties than what is defined.
 
         FIXME: add operation.summary
@@ -259,11 +259,11 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_in_properties(
         self,
-        create_parameters,  # type: "PetAPInProperties"
-        cls=None,  # type: ClsType["PetAPInProperties"]
+        create_parameters,  # type: "models.PetAPInProperties"
+        cls=None,  # type: ClsType["models.PetAPInProperties"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "PetAPInProperties"
+        # type: (...) -> "models.PetAPInProperties"
         """Create a Pet which contains more properties than what is defined.
 
         FIXME: add operation.summary
@@ -313,11 +313,11 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_in_properties_with_ap_string(
         self,
-        create_parameters,  # type: "PetAPInPropertiesWithAPString"
-        cls=None,  # type: ClsType["PetAPInPropertiesWithAPString"]
+        create_parameters,  # type: "models.PetAPInPropertiesWithAPString"
+        cls=None,  # type: ClsType["models.PetAPInPropertiesWithAPString"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "PetAPInPropertiesWithAPString"
+        # type: (...) -> "models.PetAPInPropertiesWithAPString"
         """Create a Pet which contains more properties than what is defined.
 
         FIXME: add operation.summary

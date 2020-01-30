@@ -24,10 +24,6 @@ from ... import models
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-def _cls_type_annotation(return_type):
-    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
-
-
 class PagingOperations:
     """PagingOperations async operations.
 
@@ -52,9 +48,9 @@ class PagingOperations:
     @distributed_trace
     def get_no_item_name_pages(
         self,
-        cls: ClsType["ProductResultValue"] = None,
+        cls: ClsType["models.ProductResultValue"] = None,
         **kwargs
-    ) -> "ProductResultValue":
+    ) -> "models.ProductResultValue":
         """A paging operation that must return result of the default 'value' node.
 
         FIXME: add operation.summary
@@ -115,9 +111,9 @@ class PagingOperations:
     @distributed_trace
     def get_null_next_link_name_pages(
         self,
-        cls: ClsType["ProductResult"] = None,
+        cls: ClsType["models.ProductResult"] = None,
         **kwargs
-    ) -> "ProductResult":
+    ) -> "models.ProductResult":
         """A paging operation that must ignore any kind of nextLink, and stop after page 1.
 
         FIXME: add operation.summary
@@ -178,9 +174,9 @@ class PagingOperations:
     @distributed_trace
     def get_single_pages(
         self,
-        cls: ClsType["ProductResult"] = None,
+        cls: ClsType["models.ProductResult"] = None,
         **kwargs
-    ) -> "ProductResult":
+    ) -> "models.ProductResult":
         """A paging operation that finishes on the first call without a nextlink.
 
         FIXME: add operation.summary
@@ -245,9 +241,9 @@ class PagingOperations:
         maxresults: Optional[int] = None,
         timeout: Optional[int] = None,
         *,
-        cls: ClsType["ProductResult"] = None,
+        cls: ClsType["models.ProductResult"] = None,
         **kwargs
-    ) -> "ProductResult":
+    ) -> "models.ProductResult":
         """A paging operation that includes a nextLink that has 10 pages.
 
         FIXME: add operation.summary
@@ -324,9 +320,9 @@ class PagingOperations:
         maxresults: Optional[int] = None,
         timeout: Optional[int] = None,
         *,
-        cls: ClsType["OdataProductResult"] = None,
+        cls: ClsType["models.OdataProductResult"] = None,
         **kwargs
-    ) -> "OdataProductResult":
+    ) -> "models.OdataProductResult":
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
         FIXME: add operation.summary
@@ -404,9 +400,9 @@ class PagingOperations:
         maxresults: Optional[int] = None,
         timeout: Optional[int] = None,
         *,
-        cls: ClsType["ProductResult"] = None,
+        cls: ClsType["models.ProductResult"] = None,
         **kwargs
-    ) -> "ProductResult":
+    ) -> "models.ProductResult":
         """A paging operation that includes a nextLink that has 10 pages.
 
         FIXME: add operation.summary
@@ -485,9 +481,9 @@ class PagingOperations:
     @distributed_trace
     def get_multiple_pages_retry_first(
         self,
-        cls: ClsType["ProductResult"] = None,
+        cls: ClsType["models.ProductResult"] = None,
         **kwargs
-    ) -> "ProductResult":
+    ) -> "models.ProductResult":
         """A paging operation that fails on the first call with 500 and then retries and then get a response including a nextLink that has 10 pages.
 
         FIXME: add operation.summary
@@ -548,9 +544,9 @@ class PagingOperations:
     @distributed_trace
     def get_multiple_pages_retry_second(
         self,
-        cls: ClsType["ProductResult"] = None,
+        cls: ClsType["models.ProductResult"] = None,
         **kwargs
-    ) -> "ProductResult":
+    ) -> "models.ProductResult":
         """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first with 500. The client should retry and finish all 10 pages eventually.
 
         FIXME: add operation.summary
@@ -611,9 +607,9 @@ class PagingOperations:
     @distributed_trace
     def get_single_pages_failure(
         self,
-        cls: ClsType["ProductResult"] = None,
+        cls: ClsType["models.ProductResult"] = None,
         **kwargs
-    ) -> "ProductResult":
+    ) -> "models.ProductResult":
         """A paging operation that receives a 400 on the first call.
 
         FIXME: add operation.summary
@@ -674,9 +670,9 @@ class PagingOperations:
     @distributed_trace
     def get_multiple_pages_failure(
         self,
-        cls: ClsType["ProductResult"] = None,
+        cls: ClsType["models.ProductResult"] = None,
         **kwargs
-    ) -> "ProductResult":
+    ) -> "models.ProductResult":
         """A paging operation that receives a 400 on the second call.
 
         FIXME: add operation.summary
@@ -737,9 +733,9 @@ class PagingOperations:
     @distributed_trace
     def get_multiple_pages_failure_uri(
         self,
-        cls: ClsType["ProductResult"] = None,
+        cls: ClsType["models.ProductResult"] = None,
         **kwargs
-    ) -> "ProductResult":
+    ) -> "models.ProductResult":
         """A paging operation that receives an invalid nextLink.
 
         FIXME: add operation.summary
@@ -803,9 +799,9 @@ class PagingOperations:
         api_version: str,
         tenant: str,
         *,
-        cls: ClsType["OdataProductResult"] = None,
+        cls: ClsType["models.OdataProductResult"] = None,
         **kwargs
-    ) -> "OdataProductResult":
+    ) -> "models.OdataProductResult":
         """A paging operation that doesn't return a full URL, just a fragment.
 
         FIXME: add operation.summary
@@ -883,9 +879,9 @@ class PagingOperations:
         api_version: str,
         tenant: str,
         *,
-        cls: ClsType["OdataProductResult"] = None,
+        cls: ClsType["models.OdataProductResult"] = None,
         **kwargs
-    ) -> "OdataProductResult":
+    ) -> "models.OdataProductResult":
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
 
         FIXME: add operation.summary
@@ -964,9 +960,9 @@ class PagingOperations:
         maxresults: Optional[int] = None,
         timeout: Optional[int] = None,
         *,
-        cls: ClsType["ProductResult"] = None,
+        cls: ClsType["models.ProductResult"] = None,
         **kwargs: Any
-    ) -> "ProductResult":
+    ) -> "models.ProductResult":
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1011,10 +1007,10 @@ class PagingOperations:
         maxresults: Optional[int] = None,
         timeout: Optional[int] = None,
         *,
-        cls: ClsType["ProductResult"] = None,
+        cls: ClsType["models.ProductResult"] = None,
         polling: Optional[bool] = True,
         **kwargs
-    ) -> "ProductResult":
+    ) -> "models.ProductResult":
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         FIXME: add operation.summary

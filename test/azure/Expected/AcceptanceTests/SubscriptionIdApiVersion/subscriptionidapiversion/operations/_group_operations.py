@@ -44,10 +44,10 @@ class GroupOperations(object):
     def get_sample_resource_group(
         self,
         resource_group_name,  # type: str
-        cls=None,  # type: ClsType["SampleResourceGroup"]
+        cls=None,  # type: ClsType["models.SampleResourceGroup"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "SampleResourceGroup"
+        # type: (...) -> "models.SampleResourceGroup"
         """Provides a resouce group with name 'testgroup101' and location 'West US'.
 
         FIXME: add operation.summary

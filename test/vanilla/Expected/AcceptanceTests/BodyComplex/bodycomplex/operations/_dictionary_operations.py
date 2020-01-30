@@ -43,10 +43,10 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_valid(
         self,
-        cls=None,  # type: ClsType["DictionaryWrapper"]
+        cls=None,  # type: ClsType["models.DictionaryWrapper"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "DictionaryWrapper"
+        # type: (...) -> "models.DictionaryWrapper"
         """Get complex types with dictionary property.
 
         FIXME: add operation.summary
@@ -141,10 +141,10 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_empty(
         self,
-        cls=None,  # type: ClsType["DictionaryWrapper"]
+        cls=None,  # type: ClsType["models.DictionaryWrapper"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "DictionaryWrapper"
+        # type: (...) -> "models.DictionaryWrapper"
         """Get complex types with dictionary property which is empty.
 
         FIXME: add operation.summary
@@ -239,10 +239,10 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_null(
         self,
-        cls=None,  # type: ClsType["DictionaryWrapper"]
+        cls=None,  # type: ClsType["models.DictionaryWrapper"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "DictionaryWrapper"
+        # type: (...) -> "models.DictionaryWrapper"
         """Get complex types with dictionary property which is null.
 
         FIXME: add operation.summary
@@ -286,10 +286,10 @@ class DictionaryOperations(object):
     @distributed_trace
     def get_not_provided(
         self,
-        cls=None,  # type: ClsType["DictionaryWrapper"]
+        cls=None,  # type: ClsType["models.DictionaryWrapper"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "DictionaryWrapper"
+        # type: (...) -> "models.DictionaryWrapper"
         """Get complex types with dictionary property while server doesn't provide a response payload.
 
         FIXME: add operation.summary

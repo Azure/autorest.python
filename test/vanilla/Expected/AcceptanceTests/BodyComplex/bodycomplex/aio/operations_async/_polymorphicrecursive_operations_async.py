@@ -19,10 +19,6 @@ from ... import models
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-def _cls_type_annotation(return_type):
-    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
-
-
 class PolymorphicrecursiveOperations:
     """PolymorphicrecursiveOperations async operations.
 
@@ -47,9 +43,9 @@ class PolymorphicrecursiveOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        cls: ClsType["Fish"] = None,
+        cls: ClsType["models.Fish"] = None,
         **kwargs: Any
-    ) -> "Fish":
+    ) -> "models.Fish":
         """Get complex types that are polymorphic and have recursive references.
 
         FIXME: add operation.summary
@@ -93,7 +89,7 @@ class PolymorphicrecursiveOperations:
     @distributed_trace_async
     async def put_valid(
         self,
-        complex_body: "Fish",
+        complex_body: "models.Fish",
         *,
         cls: ClsType[None] = None,
         **kwargs: Any

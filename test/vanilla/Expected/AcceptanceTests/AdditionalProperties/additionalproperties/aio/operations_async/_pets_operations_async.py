@@ -19,10 +19,6 @@ from ... import models
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-def _cls_type_annotation(return_type):
-    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
-
-
 class PetsOperations:
     """PetsOperations async operations.
 
@@ -47,11 +43,11 @@ class PetsOperations:
     @distributed_trace_async
     async def create_ap_true(
         self,
-        create_parameters: "PetAPTrue",
+        create_parameters: "models.PetAPTrue",
         *,
-        cls: ClsType["PetAPTrue"] = None,
+        cls: ClsType["models.PetAPTrue"] = None,
         **kwargs: Any
-    ) -> "PetAPTrue":
+    ) -> "models.PetAPTrue":
         """Create a Pet which contains more properties than what is defined.
 
         FIXME: add operation.summary
@@ -101,11 +97,11 @@ class PetsOperations:
     @distributed_trace_async
     async def create_cat_ap_true(
         self,
-        create_parameters: "CatAPTrue",
+        create_parameters: "models.CatAPTrue",
         *,
-        cls: ClsType["CatAPTrue"] = None,
+        cls: ClsType["models.CatAPTrue"] = None,
         **kwargs: Any
-    ) -> "CatAPTrue":
+    ) -> "models.CatAPTrue":
         """Create a CatAPTrue which contains more properties than what is defined.
 
         FIXME: add operation.summary
@@ -155,11 +151,11 @@ class PetsOperations:
     @distributed_trace_async
     async def create_ap_object(
         self,
-        create_parameters: "PetAPObject",
+        create_parameters: "models.PetAPObject",
         *,
-        cls: ClsType["PetAPObject"] = None,
+        cls: ClsType["models.PetAPObject"] = None,
         **kwargs: Any
-    ) -> "PetAPObject":
+    ) -> "models.PetAPObject":
         """Create a Pet which contains more properties than what is defined.
 
         FIXME: add operation.summary
@@ -209,11 +205,11 @@ class PetsOperations:
     @distributed_trace_async
     async def create_ap_string(
         self,
-        create_parameters: "PetAPString",
+        create_parameters: "models.PetAPString",
         *,
-        cls: ClsType["PetAPString"] = None,
+        cls: ClsType["models.PetAPString"] = None,
         **kwargs: Any
-    ) -> "PetAPString":
+    ) -> "models.PetAPString":
         """Create a Pet which contains more properties than what is defined.
 
         FIXME: add operation.summary
@@ -263,11 +259,11 @@ class PetsOperations:
     @distributed_trace_async
     async def create_ap_in_properties(
         self,
-        create_parameters: "PetAPInProperties",
+        create_parameters: "models.PetAPInProperties",
         *,
-        cls: ClsType["PetAPInProperties"] = None,
+        cls: ClsType["models.PetAPInProperties"] = None,
         **kwargs: Any
-    ) -> "PetAPInProperties":
+    ) -> "models.PetAPInProperties":
         """Create a Pet which contains more properties than what is defined.
 
         FIXME: add operation.summary
@@ -317,11 +313,11 @@ class PetsOperations:
     @distributed_trace_async
     async def create_ap_in_properties_with_ap_string(
         self,
-        create_parameters: "PetAPInPropertiesWithAPString",
+        create_parameters: "models.PetAPInPropertiesWithAPString",
         *,
-        cls: ClsType["PetAPInPropertiesWithAPString"] = None,
+        cls: ClsType["models.PetAPInPropertiesWithAPString"] = None,
         **kwargs: Any
-    ) -> "PetAPInPropertiesWithAPString":
+    ) -> "models.PetAPInPropertiesWithAPString":
         """Create a Pet which contains more properties than what is defined.
 
         FIXME: add operation.summary

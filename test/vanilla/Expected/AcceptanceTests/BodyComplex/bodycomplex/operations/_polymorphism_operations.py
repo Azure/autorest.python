@@ -43,10 +43,10 @@ class PolymorphismOperations(object):
     @distributed_trace
     def get_valid(
         self,
-        cls=None,  # type: ClsType["Fish"]
+        cls=None,  # type: ClsType["models.Fish"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "Fish"
+        # type: (...) -> "models.Fish"
         """Get complex types that are polymorphic.
 
         FIXME: add operation.summary
@@ -90,7 +90,7 @@ class PolymorphismOperations(object):
     @distributed_trace
     def put_valid(
         self,
-        complex_body,  # type: "Fish"
+        complex_body,  # type: "models.Fish"
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -172,10 +172,10 @@ class PolymorphismOperations(object):
     @distributed_trace
     def get_dot_syntax(
         self,
-        cls=None,  # type: ClsType["DotFish"]
+        cls=None,  # type: ClsType["models.DotFish"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "DotFish"
+        # type: (...) -> "models.DotFish"
         """Get complex types that are polymorphic, JSON key contains a dot.
 
         FIXME: add operation.summary
@@ -219,10 +219,10 @@ class PolymorphismOperations(object):
     @distributed_trace
     def get_composed_with_discriminator(
         self,
-        cls=None,  # type: ClsType["DotFishMarket"]
+        cls=None,  # type: ClsType["models.DotFishMarket"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "DotFishMarket"
+        # type: (...) -> "models.DotFishMarket"
         """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, with discriminator specified. Deserialization must NOT fail and use the discriminator type specified on the wire.
 
         FIXME: add operation.summary
@@ -266,10 +266,10 @@ class PolymorphismOperations(object):
     @distributed_trace
     def get_composed_without_discriminator(
         self,
-        cls=None,  # type: ClsType["DotFishMarket"]
+        cls=None,  # type: ClsType["models.DotFishMarket"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "DotFishMarket"
+        # type: (...) -> "models.DotFishMarket"
         """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, without discriminator specified on wire. Deserialization must NOT fail and use the explicit type of the property.
 
         FIXME: add operation.summary
@@ -313,10 +313,10 @@ class PolymorphismOperations(object):
     @distributed_trace
     def get_complicated(
         self,
-        cls=None,  # type: ClsType["Salmon"]
+        cls=None,  # type: ClsType["models.Salmon"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "Salmon"
+        # type: (...) -> "models.Salmon"
         """Get complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties.
 
         FIXME: add operation.summary
@@ -360,7 +360,7 @@ class PolymorphismOperations(object):
     @distributed_trace
     def put_complicated(
         self,
-        complex_body,  # type: "Salmon"
+        complex_body,  # type: "models.Salmon"
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -410,11 +410,11 @@ class PolymorphismOperations(object):
     @distributed_trace
     def put_missing_discriminator(
         self,
-        complex_body,  # type: "Salmon"
-        cls=None,  # type: ClsType["Salmon"]
+        complex_body,  # type: "models.Salmon"
+        cls=None,  # type: ClsType["models.Salmon"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "Salmon"
+        # type: (...) -> "models.Salmon"
         """Put complex types that are polymorphic, omitting the discriminator.
 
         FIXME: add operation.summary
@@ -464,7 +464,7 @@ class PolymorphismOperations(object):
     @distributed_trace
     def put_valid_missing_required(
         self,
-        complex_body,  # type: "Fish"
+        complex_body,  # type: "models.Fish"
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):

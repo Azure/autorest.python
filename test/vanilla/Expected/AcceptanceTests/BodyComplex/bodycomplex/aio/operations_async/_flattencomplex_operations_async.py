@@ -19,10 +19,6 @@ from ... import models
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-def _cls_type_annotation(return_type):
-    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
-
-
 class FlattencomplexOperations:
     """FlattencomplexOperations async operations.
 
@@ -47,9 +43,9 @@ class FlattencomplexOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        cls: ClsType["MyBaseType"] = None,
+        cls: ClsType["models.MyBaseType"] = None,
         **kwargs: Any
-    ) -> "MyBaseType":
+    ) -> "models.MyBaseType":
         """
 
         FIXME: add operation.summary

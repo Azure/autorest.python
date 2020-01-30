@@ -43,10 +43,10 @@ class EnumOperations(object):
     @distributed_trace
     def get_not_expandable(
         self,
-        cls=None,  # type: ClsType[Union[str, "Colors"]]
+        cls=None,  # type: ClsType[Union[str, "models.Colors"]]
         **kwargs  # type: Any
     ):
-        # type: (...) -> Union[str, "Colors"]
+        # type: (...) -> Union[str, "models.Colors"]
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         FIXME: add operation.summary
@@ -90,7 +90,7 @@ class EnumOperations(object):
     @distributed_trace
     def put_not_expandable(
         self,
-        string_body,  # type: Union[str, "Colors"]
+        string_body,  # type: Union[str, "models.Colors"]
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -140,10 +140,10 @@ class EnumOperations(object):
     @distributed_trace
     def get_referenced(
         self,
-        cls=None,  # type: ClsType[Union[str, "Colors"]]
+        cls=None,  # type: ClsType[Union[str, "models.Colors"]]
         **kwargs  # type: Any
     ):
-        # type: (...) -> Union[str, "Colors"]
+        # type: (...) -> Union[str, "models.Colors"]
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         FIXME: add operation.summary
@@ -187,7 +187,7 @@ class EnumOperations(object):
     @distributed_trace
     def put_referenced(
         self,
-        enum_string_body,  # type: Union[str, "Colors"]
+        enum_string_body,  # type: Union[str, "models.Colors"]
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -237,10 +237,10 @@ class EnumOperations(object):
     @distributed_trace
     def get_referenced_constant(
         self,
-        cls=None,  # type: ClsType["RefColorConstant"]
+        cls=None,  # type: ClsType["models.RefColorConstant"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "RefColorConstant"
+        # type: (...) -> "models.RefColorConstant"
         """Get value 'green-color' from the constant.
 
         FIXME: add operation.summary

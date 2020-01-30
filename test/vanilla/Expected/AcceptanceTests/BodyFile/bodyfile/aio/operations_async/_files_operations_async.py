@@ -18,10 +18,6 @@ from ... import models
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-def _cls_type_annotation(return_type):
-    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
-
-
 class FilesOperations:
     """FilesOperations async operations.
 
@@ -46,9 +42,9 @@ class FilesOperations:
     @distributed_trace_async
     async def get_file(
         self,
-        cls: ClsType[None] = None,
+        cls: ClsType[IO] = None,
         **kwargs: Any
-    ) -> None:
+    ) -> IO:
         """Get file.
 
         FIXME: add operation.summary
@@ -92,9 +88,9 @@ class FilesOperations:
     @distributed_trace_async
     async def get_file_large(
         self,
-        cls: ClsType[None] = None,
+        cls: ClsType[IO] = None,
         **kwargs: Any
-    ) -> None:
+    ) -> IO:
         """Get a large file.
 
         FIXME: add operation.summary
@@ -138,9 +134,9 @@ class FilesOperations:
     @distributed_trace_async
     async def get_empty_file(
         self,
-        cls: ClsType[None] = None,
+        cls: ClsType[IO] = None,
         **kwargs: Any
-    ) -> None:
+    ) -> IO:
         """Get empty file.
 
         FIXME: add operation.summary

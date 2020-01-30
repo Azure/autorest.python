@@ -44,10 +44,10 @@ class PetOperations(object):
     def get_pet_by_id(
         self,
         pet_id,  # type: str
-        cls=None,  # type: ClsType["Pet"]
+        cls=None,  # type: ClsType["models.Pet"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "Pet"
+        # type: (...) -> "models.Pet"
         """Gets pets by id.
 
         FIXME: add operation.summary
@@ -105,10 +105,10 @@ class PetOperations(object):
     def do_something(
         self,
         what_action,  # type: str
-        cls=None,  # type: ClsType["PetAction"]
+        cls=None,  # type: ClsType["models.PetAction"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "PetAction"
+        # type: (...) -> "models.PetAction"
         """Asks pet to do something.
 
         FIXME: add operation.summary

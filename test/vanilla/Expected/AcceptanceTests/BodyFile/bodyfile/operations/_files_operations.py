@@ -42,10 +42,10 @@ class FilesOperations(object):
     @distributed_trace
     def get_file(
         self,
-        cls=None,  # type: ClsType[None]
+        cls=None,  # type: ClsType[IO]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> IO
         """Get file.
 
         FIXME: add operation.summary
@@ -89,10 +89,10 @@ class FilesOperations(object):
     @distributed_trace
     def get_file_large(
         self,
-        cls=None,  # type: ClsType[None]
+        cls=None,  # type: ClsType[IO]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> IO
         """Get a large file.
 
         FIXME: add operation.summary
@@ -136,10 +136,10 @@ class FilesOperations(object):
     @distributed_trace
     def get_empty_file(
         self,
-        cls=None,  # type: ClsType[None]
+        cls=None,  # type: ClsType[IO]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> IO
         """Get empty file.
 
         FIXME: add operation.summary

@@ -19,10 +19,6 @@ from ... import models
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-def _cls_type_annotation(return_type):
-    return Optional[Callable[[AsyncHttpResponse, return_type, Dict[str, Any]], Any]]
-
-
 class HeaderOperations:
     """HeaderOperations async operations.
 
@@ -1345,7 +1341,7 @@ class HeaderOperations:
     async def param_enum(
         self,
         scenario: str,
-        value: Optional[Union[str, "GreyscaleColors"]] = None,
+        value: Optional[Union[str, "models.GreyscaleColors"]] = None,
         *,
         cls: ClsType[None] = None,
         **kwargs: Any

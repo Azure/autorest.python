@@ -44,10 +44,10 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_int(
         self,
-        cls=None,  # type: ClsType["IntWrapper"]
+        cls=None,  # type: ClsType["models.IntWrapper"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "IntWrapper"
+        # type: (...) -> "models.IntWrapper"
         """Get complex types with integer properties.
 
         FIXME: add operation.summary
@@ -91,7 +91,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_int(
         self,
-        complex_body,  # type: "IntWrapper"
+        complex_body,  # type: "models.IntWrapper"
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -141,10 +141,10 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_long(
         self,
-        cls=None,  # type: ClsType["LongWrapper"]
+        cls=None,  # type: ClsType["models.LongWrapper"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "LongWrapper"
+        # type: (...) -> "models.LongWrapper"
         """Get complex types with long properties.
 
         FIXME: add operation.summary
@@ -188,7 +188,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_long(
         self,
-        complex_body,  # type: "LongWrapper"
+        complex_body,  # type: "models.LongWrapper"
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -238,10 +238,10 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_float(
         self,
-        cls=None,  # type: ClsType["FloatWrapper"]
+        cls=None,  # type: ClsType["models.FloatWrapper"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "FloatWrapper"
+        # type: (...) -> "models.FloatWrapper"
         """Get complex types with float properties.
 
         FIXME: add operation.summary
@@ -285,7 +285,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_float(
         self,
-        complex_body,  # type: "FloatWrapper"
+        complex_body,  # type: "models.FloatWrapper"
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -335,10 +335,10 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_double(
         self,
-        cls=None,  # type: ClsType["DoubleWrapper"]
+        cls=None,  # type: ClsType["models.DoubleWrapper"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "DoubleWrapper"
+        # type: (...) -> "models.DoubleWrapper"
         """Get complex types with double properties.
 
         FIXME: add operation.summary
@@ -382,7 +382,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_double(
         self,
-        complex_body,  # type: "DoubleWrapper"
+        complex_body,  # type: "models.DoubleWrapper"
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -432,10 +432,10 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_bool(
         self,
-        cls=None,  # type: ClsType["BooleanWrapper"]
+        cls=None,  # type: ClsType["models.BooleanWrapper"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "BooleanWrapper"
+        # type: (...) -> "models.BooleanWrapper"
         """Get complex types with bool properties.
 
         FIXME: add operation.summary
@@ -479,7 +479,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_bool(
         self,
-        complex_body,  # type: "BooleanWrapper"
+        complex_body,  # type: "models.BooleanWrapper"
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -529,10 +529,10 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_string(
         self,
-        cls=None,  # type: ClsType["StringWrapper"]
+        cls=None,  # type: ClsType["models.StringWrapper"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "StringWrapper"
+        # type: (...) -> "models.StringWrapper"
         """Get complex types with string properties.
 
         FIXME: add operation.summary
@@ -576,7 +576,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_string(
         self,
-        complex_body,  # type: "StringWrapper"
+        complex_body,  # type: "models.StringWrapper"
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -626,10 +626,10 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_date(
         self,
-        cls=None,  # type: ClsType["DateWrapper"]
+        cls=None,  # type: ClsType["models.DateWrapper"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "DateWrapper"
+        # type: (...) -> "models.DateWrapper"
         """Get complex types with date properties.
 
         FIXME: add operation.summary
@@ -673,7 +673,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_date(
         self,
-        complex_body,  # type: "DateWrapper"
+        complex_body,  # type: "models.DateWrapper"
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -723,10 +723,10 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_date_time(
         self,
-        cls=None,  # type: ClsType["DatetimeWrapper"]
+        cls=None,  # type: ClsType["models.DatetimeWrapper"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "DatetimeWrapper"
+        # type: (...) -> "models.DatetimeWrapper"
         """Get complex types with datetime properties.
 
         FIXME: add operation.summary
@@ -770,7 +770,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_date_time(
         self,
-        complex_body,  # type: "DatetimeWrapper"
+        complex_body,  # type: "models.DatetimeWrapper"
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -820,10 +820,10 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_date_time_rfc1123(
         self,
-        cls=None,  # type: ClsType["Datetimerfc1123Wrapper"]
+        cls=None,  # type: ClsType["models.Datetimerfc1123Wrapper"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "Datetimerfc1123Wrapper"
+        # type: (...) -> "models.Datetimerfc1123Wrapper"
         """Get complex types with datetimeRfc1123 properties.
 
         FIXME: add operation.summary
@@ -867,7 +867,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_date_time_rfc1123(
         self,
-        complex_body,  # type: "Datetimerfc1123Wrapper"
+        complex_body,  # type: "models.Datetimerfc1123Wrapper"
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -917,10 +917,10 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_duration(
         self,
-        cls=None,  # type: ClsType["DurationWrapper"]
+        cls=None,  # type: ClsType["models.DurationWrapper"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "DurationWrapper"
+        # type: (...) -> "models.DurationWrapper"
         """Get complex types with duration properties.
 
         FIXME: add operation.summary
@@ -1015,10 +1015,10 @@ class PrimitiveOperations(object):
     @distributed_trace
     def get_byte(
         self,
-        cls=None,  # type: ClsType["ByteWrapper"]
+        cls=None,  # type: ClsType["models.ByteWrapper"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "ByteWrapper"
+        # type: (...) -> "models.ByteWrapper"
         """Get complex types with byte properties.
 
         FIXME: add operation.summary
