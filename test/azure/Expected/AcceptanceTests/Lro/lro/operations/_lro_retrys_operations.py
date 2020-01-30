@@ -98,7 +98,7 @@ class LRORetrysOperations(object):
     def begin_put201_creating_succeeded200(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -196,7 +196,7 @@ class LRORetrysOperations(object):
     def begin_put_async_relative_retry_succeeded(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -294,7 +294,7 @@ class LRORetrysOperations(object):
     @distributed_trace
     def begin_delete_provisioning202_accepted200_succeeded(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -380,7 +380,7 @@ class LRORetrysOperations(object):
     @distributed_trace
     def begin_delete202_retry200(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -460,7 +460,7 @@ class LRORetrysOperations(object):
     @distributed_trace
     def begin_delete_async_relative_retry_succeeded(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -548,7 +548,7 @@ class LRORetrysOperations(object):
     def begin_post202_retry200(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -640,7 +640,7 @@ class LRORetrysOperations(object):
     def begin_post_async_relative_retry_succeeded(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):

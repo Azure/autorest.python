@@ -167,7 +167,7 @@ class StorageAccountsOperations:
         account_name: str,
         parameters: "StorageAccountCreateParameters",
         *,
-        cls: _cls_type_annotation("StorageAccount") = None,
+        cls: ClsType["StorageAccount"] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "StorageAccount":
@@ -458,7 +458,7 @@ class StorageAccountsOperations:
     @distributed_trace
     def list(
         self,
-        cls: _cls_type_annotation("StorageAccountListResult") = None,
+        cls: ClsType["StorageAccountListResult"] = None,
         **kwargs
     ) -> "StorageAccountListResult":
         """Lists all the storage accounts available under the subscription. Note that storage keys are not returned; use the ListKeys operation for this..
@@ -527,7 +527,7 @@ class StorageAccountsOperations:
         self,
         resource_group_name: str,
         *,
-        cls: _cls_type_annotation("StorageAccountListResult") = None,
+        cls: ClsType["StorageAccountListResult"] = None,
         **kwargs
     ) -> "StorageAccountListResult":
         """Lists all the storage accounts available under the given resource group. Note that storage keys are not returned; use the ListKeys operation for this..

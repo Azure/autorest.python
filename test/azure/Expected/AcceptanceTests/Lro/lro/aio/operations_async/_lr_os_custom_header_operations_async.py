@@ -102,7 +102,7 @@ class LROsCustomHeaderOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: _cls_type_annotation("Product") = None,
+        cls: ClsType["Product"] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -206,7 +206,7 @@ class LROsCustomHeaderOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: _cls_type_annotation("Product") = None,
+        cls: ClsType["Product"] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -300,7 +300,7 @@ class LROsCustomHeaderOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: _cls_type_annotation(None) = None,
+        cls: ClsType[None] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -392,7 +392,7 @@ class LROsCustomHeaderOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: _cls_type_annotation(None) = None,
+        cls: ClsType[None] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:

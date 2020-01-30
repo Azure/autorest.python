@@ -14,7 +14,7 @@ async def {{ operation_name }}(
     {% if operation.parameters.method | first %}
     *,
     {% endif %}
-    cls: _cls_type_annotation({{ keywords.return_type_annotation(operation) }}) = None,
+    cls: ClsType[{{ keywords.return_type_annotation(operation) }}] = None,
     polling: Optional[bool] = True,
     **kwargs
 ){{ keywords.async_return_type_annotation(operation) }}:
@@ -24,7 +24,7 @@ def {{ operation_name }}(
     {% for param_signature in operation.parameters.sync_method_signature %}
     {{ param_signature }}
     {% endfor %}
-    cls=None,  # type: Callable[[HTTPResponse, {{ keywords.return_type_annotation(operation) }}, Dict[str, Any]], Any]
+    cls=None,  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
     polling=True,  # type: Optional[bool]
     **kwargs  # type: Any
 ):

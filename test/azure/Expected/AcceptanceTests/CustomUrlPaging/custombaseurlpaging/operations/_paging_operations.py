@@ -46,7 +46,7 @@ class PagingOperations(object):
     def get_pages_partial_url(
         self,
         account_name,  # type: str
-        cls=None,  # type: Callable[[HTTPResponse, "ProductResult", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["ProductResult"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "ProductResult"
@@ -123,7 +123,7 @@ class PagingOperations(object):
     def get_pages_partial_url_operation(
         self,
         account_name,  # type: str
-        cls=None,  # type: Callable[[HTTPResponse, "ProductResult", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["ProductResult"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "ProductResult"

@@ -47,7 +47,7 @@ class PagingOperations(object):
     @distributed_trace
     def get_no_item_name_pages(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, "ProductResultValue", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["ProductResultValue"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "ProductResultValue"
@@ -111,7 +111,7 @@ class PagingOperations(object):
     @distributed_trace
     def get_null_next_link_name_pages(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, "ProductResult", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["ProductResult"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "ProductResult"
@@ -175,7 +175,7 @@ class PagingOperations(object):
     @distributed_trace
     def get_single_pages(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, "ProductResult", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["ProductResult"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "ProductResult"
@@ -242,7 +242,7 @@ class PagingOperations(object):
         client_request_id=None,  # type: Optional[str]
         maxresults=None,  # type: Optional[int]
         timeout=None,  # type: Optional[int]
-        cls=None,  # type: Callable[[HTTPResponse, "ProductResult", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["ProductResult"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "ProductResult"
@@ -321,7 +321,7 @@ class PagingOperations(object):
         client_request_id=None,  # type: Optional[str]
         maxresults=None,  # type: Optional[int]
         timeout=None,  # type: Optional[int]
-        cls=None,  # type: Callable[[HTTPResponse, "OdataProductResult", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["OdataProductResult"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "OdataProductResult"
@@ -401,7 +401,7 @@ class PagingOperations(object):
         client_request_id=None,  # type: Optional[str]
         maxresults=None,  # type: Optional[int]
         timeout=None,  # type: Optional[int]
-        cls=None,  # type: Callable[[HTTPResponse, "ProductResult", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["ProductResult"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "ProductResult"
@@ -483,7 +483,7 @@ class PagingOperations(object):
     @distributed_trace
     def get_multiple_pages_retry_first(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, "ProductResult", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["ProductResult"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "ProductResult"
@@ -547,7 +547,7 @@ class PagingOperations(object):
     @distributed_trace
     def get_multiple_pages_retry_second(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, "ProductResult", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["ProductResult"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "ProductResult"
@@ -611,7 +611,7 @@ class PagingOperations(object):
     @distributed_trace
     def get_single_pages_failure(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, "ProductResult", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["ProductResult"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "ProductResult"
@@ -675,7 +675,7 @@ class PagingOperations(object):
     @distributed_trace
     def get_multiple_pages_failure(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, "ProductResult", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["ProductResult"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "ProductResult"
@@ -739,7 +739,7 @@ class PagingOperations(object):
     @distributed_trace
     def get_multiple_pages_failure_uri(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, "ProductResult", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["ProductResult"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "ProductResult"
@@ -805,7 +805,7 @@ class PagingOperations(object):
         self,
         api_version,  # type: str
         tenant,  # type: str
-        cls=None,  # type: Callable[[HTTPResponse, "OdataProductResult", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["OdataProductResult"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "OdataProductResult"
@@ -885,7 +885,7 @@ class PagingOperations(object):
         self,
         api_version,  # type: str
         tenant,  # type: str
-        cls=None,  # type: Callable[[HTTPResponse, "OdataProductResult", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["OdataProductResult"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "OdataProductResult"
@@ -1013,7 +1013,7 @@ class PagingOperations(object):
         client_request_id=None,  # type: Optional[str]
         maxresults=None,  # type: Optional[int]
         timeout=None,  # type: Optional[int]
-        cls=None,  # type: Callable[[HTTPResponse, "ProductResult", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["ProductResult"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):

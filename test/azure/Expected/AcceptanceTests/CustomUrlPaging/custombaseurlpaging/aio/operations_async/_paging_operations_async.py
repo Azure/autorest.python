@@ -52,7 +52,7 @@ class PagingOperations:
         self,
         account_name: str,
         *,
-        cls: _cls_type_annotation("ProductResult") = None,
+        cls: ClsType["ProductResult"] = None,
         **kwargs
     ) -> "ProductResult":
         """A paging operation that combines custom url, paging and partial URL and expect to concat after host.
@@ -129,7 +129,7 @@ class PagingOperations:
         self,
         account_name: str,
         *,
-        cls: _cls_type_annotation("ProductResult") = None,
+        cls: ClsType["ProductResult"] = None,
         **kwargs
     ) -> "ProductResult":
         """A paging operation that combines custom url, paging and partial URL with next operation.

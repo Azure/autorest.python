@@ -12,7 +12,7 @@ def {{ operation.python_name }}(
     {% if operation.parameters.method | first %}
     *,
     {% endif %}
-    cls: _cls_type_annotation({{ keywords.return_type_annotation(operation) }}) = None,
+    cls: ClsType[{{ keywords.return_type_annotation(operation) }}] = None,
     **kwargs
 ){{ keywords.async_return_type_annotation(operation) }}:
 {% else %}
@@ -21,7 +21,7 @@ def {{ operation.python_name }}(
     {% for param_signature in operation.parameters.sync_method_signature %}
     {{ param_signature }}
     {% endfor %}
-    cls=None,  # type: Callable[[HTTPResponse, {{ keywords.return_type_annotation(operation) }}, Dict[str, Any]], Any]
+    cls=None,  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
     **kwargs  # type: Any
 ):
 {% endif %}{% endmacro %}

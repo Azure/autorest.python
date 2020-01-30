@@ -52,7 +52,7 @@ class PagingOperations:
     @distributed_trace
     def get_no_item_name_pages(
         self,
-        cls: _cls_type_annotation("ProductResultValue") = None,
+        cls: ClsType["ProductResultValue"] = None,
         **kwargs
     ) -> "ProductResultValue":
         """A paging operation that must return result of the default 'value' node..
@@ -115,7 +115,7 @@ class PagingOperations:
     @distributed_trace
     def get_null_next_link_name_pages(
         self,
-        cls: _cls_type_annotation("ProductResult") = None,
+        cls: ClsType["ProductResult"] = None,
         **kwargs
     ) -> "ProductResult":
         """A paging operation that must ignore any kind of nextLink, and stop after page 1..
@@ -178,7 +178,7 @@ class PagingOperations:
     @distributed_trace
     def get_single_pages(
         self,
-        cls: _cls_type_annotation("ProductResult") = None,
+        cls: ClsType["ProductResult"] = None,
         **kwargs
     ) -> "ProductResult":
         """A paging operation that finishes on the first call without a nextlink.
@@ -245,7 +245,7 @@ class PagingOperations:
         maxresults: Optional[int] = None,
         timeout: Optional[int] = None,
         *,
-        cls: _cls_type_annotation("ProductResult") = None,
+        cls: ClsType["ProductResult"] = None,
         **kwargs
     ) -> "ProductResult":
         """A paging operation that includes a nextLink that has 10 pages.
@@ -324,7 +324,7 @@ class PagingOperations:
         maxresults: Optional[int] = None,
         timeout: Optional[int] = None,
         *,
-        cls: _cls_type_annotation("OdataProductResult") = None,
+        cls: ClsType["OdataProductResult"] = None,
         **kwargs
     ) -> "OdataProductResult":
         """A paging operation that includes a nextLink in odata format that has 10 pages.
@@ -404,7 +404,7 @@ class PagingOperations:
         maxresults: Optional[int] = None,
         timeout: Optional[int] = None,
         *,
-        cls: _cls_type_annotation("ProductResult") = None,
+        cls: ClsType["ProductResult"] = None,
         **kwargs
     ) -> "ProductResult":
         """A paging operation that includes a nextLink that has 10 pages.
@@ -485,7 +485,7 @@ class PagingOperations:
     @distributed_trace
     def get_multiple_pages_retry_first(
         self,
-        cls: _cls_type_annotation("ProductResult") = None,
+        cls: ClsType["ProductResult"] = None,
         **kwargs
     ) -> "ProductResult":
         """A paging operation that fails on the first call with 500 and then retries and then get a response including a nextLink that has 10 pages.
@@ -548,7 +548,7 @@ class PagingOperations:
     @distributed_trace
     def get_multiple_pages_retry_second(
         self,
-        cls: _cls_type_annotation("ProductResult") = None,
+        cls: ClsType["ProductResult"] = None,
         **kwargs
     ) -> "ProductResult":
         """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first with 500. The client should retry and finish all 10 pages eventually..
@@ -611,7 +611,7 @@ class PagingOperations:
     @distributed_trace
     def get_single_pages_failure(
         self,
-        cls: _cls_type_annotation("ProductResult") = None,
+        cls: ClsType["ProductResult"] = None,
         **kwargs
     ) -> "ProductResult":
         """A paging operation that receives a 400 on the first call.
@@ -674,7 +674,7 @@ class PagingOperations:
     @distributed_trace
     def get_multiple_pages_failure(
         self,
-        cls: _cls_type_annotation("ProductResult") = None,
+        cls: ClsType["ProductResult"] = None,
         **kwargs
     ) -> "ProductResult":
         """A paging operation that receives a 400 on the second call.
@@ -737,7 +737,7 @@ class PagingOperations:
     @distributed_trace
     def get_multiple_pages_failure_uri(
         self,
-        cls: _cls_type_annotation("ProductResult") = None,
+        cls: ClsType["ProductResult"] = None,
         **kwargs
     ) -> "ProductResult":
         """A paging operation that receives an invalid nextLink.
@@ -803,7 +803,7 @@ class PagingOperations:
         api_version: str,
         tenant: str,
         *,
-        cls: _cls_type_annotation("OdataProductResult") = None,
+        cls: ClsType["OdataProductResult"] = None,
         **kwargs
     ) -> "OdataProductResult":
         """A paging operation that doesn't return a full URL, just a fragment.
@@ -883,7 +883,7 @@ class PagingOperations:
         api_version: str,
         tenant: str,
         *,
-        cls: _cls_type_annotation("OdataProductResult") = None,
+        cls: ClsType["OdataProductResult"] = None,
         **kwargs
     ) -> "OdataProductResult":
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
@@ -1011,7 +1011,7 @@ class PagingOperations:
         maxresults: Optional[int] = None,
         timeout: Optional[int] = None,
         *,
-        cls: _cls_type_annotation("ProductResult") = None,
+        cls: ClsType["ProductResult"] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "ProductResult":

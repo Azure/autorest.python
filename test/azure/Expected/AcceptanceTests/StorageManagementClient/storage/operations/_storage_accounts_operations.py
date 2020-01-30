@@ -161,7 +161,7 @@ class StorageAccountsOperations(object):
         resource_group_name,  # type: str
         account_name,  # type: str
         parameters,  # type: "StorageAccountCreateParameters"
-        cls=None,  # type: Callable[[HTTPResponse, "StorageAccount", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["StorageAccount"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -453,7 +453,7 @@ class StorageAccountsOperations(object):
     @distributed_trace
     def list(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, "StorageAccountListResult", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["StorageAccountListResult"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "StorageAccountListResult"
@@ -522,7 +522,7 @@ class StorageAccountsOperations(object):
     def list_by_resource_group(
         self,
         resource_group_name,  # type: str
-        cls=None,  # type: Callable[[HTTPResponse, "StorageAccountListResult", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["StorageAccountListResult"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "StorageAccountListResult"

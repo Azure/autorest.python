@@ -103,7 +103,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: _cls_type_annotation("Product") = None,
+        cls: ClsType["Product"] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -202,7 +202,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: _cls_type_annotation("Product") = None,
+        cls: ClsType["Product"] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -301,7 +301,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: _cls_type_annotation("Product") = None,
+        cls: ClsType["Product"] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -399,7 +399,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: _cls_type_annotation("Product") = None,
+        cls: ClsType["Product"] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -487,7 +487,7 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete_non_retry400(
         self,
-        cls: _cls_type_annotation(None) = None,
+        cls: ClsType[None] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -564,7 +564,7 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete202_non_retry400(
         self,
-        cls: _cls_type_annotation(None) = None,
+        cls: ClsType[None] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -642,7 +642,7 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete_async_relative_retry400(
         self,
-        cls: _cls_type_annotation(None) = None,
+        cls: ClsType[None] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -730,7 +730,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: _cls_type_annotation(None) = None,
+        cls: ClsType[None] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -821,7 +821,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: _cls_type_annotation(None) = None,
+        cls: ClsType[None] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -913,7 +913,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: _cls_type_annotation(None) = None,
+        cls: ClsType[None] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -1009,7 +1009,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: _cls_type_annotation("Product") = None,
+        cls: ClsType["Product"] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -1107,7 +1107,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: _cls_type_annotation("Product") = None,
+        cls: ClsType["Product"] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -1210,7 +1210,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: _cls_type_annotation("Product") = None,
+        cls: ClsType["Product"] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -1294,7 +1294,7 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete204_succeeded(
         self,
-        cls: _cls_type_annotation(None) = None,
+        cls: ClsType[None] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -1372,7 +1372,7 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete_async_relative_retry_no_status(
         self,
-        cls: _cls_type_annotation(None) = None,
+        cls: ClsType[None] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -1460,7 +1460,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: _cls_type_annotation(None) = None,
+        cls: ClsType[None] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -1552,7 +1552,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: _cls_type_annotation(None) = None,
+        cls: ClsType[None] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -1645,7 +1645,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: _cls_type_annotation("Product") = None,
+        cls: ClsType["Product"] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -1743,7 +1743,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: _cls_type_annotation("Product") = None,
+        cls: ClsType["Product"] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -1846,7 +1846,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: _cls_type_annotation("Product") = None,
+        cls: ClsType["Product"] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> "Product":
@@ -1934,7 +1934,7 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete202_retry_invalid_header(
         self,
-        cls: _cls_type_annotation(None) = None,
+        cls: ClsType[None] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -2012,7 +2012,7 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete_async_relative_retry_invalid_header(
         self,
-        cls: _cls_type_annotation(None) = None,
+        cls: ClsType[None] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -2090,7 +2090,7 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete_async_relative_retry_invalid_json_polling(
         self,
-        cls: _cls_type_annotation(None) = None,
+        cls: ClsType[None] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -2178,7 +2178,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: _cls_type_annotation(None) = None,
+        cls: ClsType[None] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -2270,7 +2270,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: _cls_type_annotation(None) = None,
+        cls: ClsType[None] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:
@@ -2362,7 +2362,7 @@ class LROSADsOperations:
         self,
         product: Optional["Product"] = None,
         *,
-        cls: _cls_type_annotation(None) = None,
+        cls: ClsType[None] = None,
         polling: Optional[bool] = True,
         **kwargs
     ) -> None:

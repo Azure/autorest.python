@@ -95,7 +95,7 @@ class LROsOperations(object):
     def begin_put200_succeeded(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -189,7 +189,7 @@ class LROsOperations(object):
     def begin_put200_succeeded_no_state(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -283,7 +283,7 @@ class LROsOperations(object):
     def begin_put202_retry200(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -382,7 +382,7 @@ class LROsOperations(object):
     def begin_put201_creating_succeeded200(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -476,7 +476,7 @@ class LROsOperations(object):
     def begin_put200_updating_succeeded204(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -575,7 +575,7 @@ class LROsOperations(object):
     def begin_put201_creating_failed200(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -669,7 +669,7 @@ class LROsOperations(object):
     def begin_put200_acceptedcanceled200(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -765,7 +765,7 @@ class LROsOperations(object):
     def begin_put_no_header_in_retry(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -866,7 +866,7 @@ class LROsOperations(object):
     def begin_put_async_retry_succeeded(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -968,7 +968,7 @@ class LROsOperations(object):
     def begin_put_async_no_retry_succeeded(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -1070,7 +1070,7 @@ class LROsOperations(object):
     def begin_put_async_retry_failed(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -1172,7 +1172,7 @@ class LROsOperations(object):
     def begin_put_async_no_retrycanceled(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -1272,7 +1272,7 @@ class LROsOperations(object):
     def begin_put_async_no_header_in_retry(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -1369,7 +1369,7 @@ class LROsOperations(object):
     def begin_put_non_resource(
         self,
         sku=None,  # type: Optional["Sku"]
-        cls=None,  # type: Callable[[HTTPResponse, "Sku", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Sku"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -1463,7 +1463,7 @@ class LROsOperations(object):
     def begin_put_async_non_resource(
         self,
         sku=None,  # type: Optional["Sku"]
-        cls=None,  # type: Callable[[HTTPResponse, "Sku", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Sku"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -1558,7 +1558,7 @@ class LROsOperations(object):
     def begin_put_sub_resource(
         self,
         provisioning_state=None,  # type: Optional[str]
-        cls=None,  # type: Callable[[HTTPResponse, "SubProduct", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["SubProduct"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -1653,7 +1653,7 @@ class LROsOperations(object):
     def begin_put_async_sub_resource(
         self,
         provisioning_state=None,  # type: Optional[str]
-        cls=None,  # type: Callable[[HTTPResponse, "SubProduct", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["SubProduct"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -1746,7 +1746,7 @@ class LROsOperations(object):
     @distributed_trace
     def begin_delete_provisioning202_accepted200_succeeded(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -1840,7 +1840,7 @@ class LROsOperations(object):
     @distributed_trace
     def begin_delete_provisioning202_deleting_failed200(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -1934,7 +1934,7 @@ class LROsOperations(object):
     @distributed_trace
     def begin_delete_provisioning202_deletingcanceled200(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -2016,7 +2016,7 @@ class LROsOperations(object):
     @distributed_trace
     def begin_delete204_succeeded(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -2102,7 +2102,7 @@ class LROsOperations(object):
     @distributed_trace
     def begin_delete202_retry200(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -2191,7 +2191,7 @@ class LROsOperations(object):
     @distributed_trace
     def begin_delete202_no_retry204(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -2273,7 +2273,7 @@ class LROsOperations(object):
     @distributed_trace
     def begin_delete_no_header_in_retry(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -2352,7 +2352,7 @@ class LROsOperations(object):
     @distributed_trace
     def begin_delete_async_no_header_in_retry(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -2432,7 +2432,7 @@ class LROsOperations(object):
     @distributed_trace
     def begin_delete_async_retry_succeeded(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -2512,7 +2512,7 @@ class LROsOperations(object):
     @distributed_trace
     def begin_delete_async_no_retry_succeeded(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -2592,7 +2592,7 @@ class LROsOperations(object):
     @distributed_trace
     def begin_delete_async_retry_failed(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -2672,7 +2672,7 @@ class LROsOperations(object):
     @distributed_trace
     def begin_delete_async_retrycanceled(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -2756,7 +2756,7 @@ class LROsOperations(object):
     @distributed_trace
     def begin_post200_with_payload(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, "Sku", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Sku"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -2847,7 +2847,7 @@ class LROsOperations(object):
     def begin_post202_retry200(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -2941,7 +2941,7 @@ class LROsOperations(object):
     def begin_post202_no_retry204(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -3030,7 +3030,7 @@ class LROsOperations(object):
     @distributed_trace
     def begin_post_double_headers_final_location_get(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -3112,7 +3112,7 @@ class LROsOperations(object):
     @distributed_trace
     def begin_post_double_headers_final_azure_header_get(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -3194,7 +3194,7 @@ class LROsOperations(object):
     @distributed_trace
     def begin_post_double_headers_final_azure_header_get_default(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -3293,7 +3293,7 @@ class LROsOperations(object):
     def begin_post_async_retry_succeeded(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -3395,7 +3395,7 @@ class LROsOperations(object):
     def begin_post_async_no_retry_succeeded(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -3490,7 +3490,7 @@ class LROsOperations(object):
     def begin_post_async_retry_failed(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -3582,7 +3582,7 @@ class LROsOperations(object):
     def begin_post_async_retrycanceled(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):

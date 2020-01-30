@@ -98,7 +98,7 @@ class LROSADsOperations(object):
     def begin_put_non_retry400(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -197,7 +197,7 @@ class LROSADsOperations(object):
     def begin_put_non_retry201_creating400(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -296,7 +296,7 @@ class LROSADsOperations(object):
     def begin_put_non_retry201_creating400_invalid_json(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -394,7 +394,7 @@ class LROSADsOperations(object):
     def begin_put_async_relative_retry400(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -484,7 +484,7 @@ class LROSADsOperations(object):
     @distributed_trace
     def begin_delete_non_retry400(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -563,7 +563,7 @@ class LROSADsOperations(object):
     @distributed_trace
     def begin_delete202_non_retry400(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -643,7 +643,7 @@ class LROSADsOperations(object):
     @distributed_trace
     def begin_delete_async_relative_retry400(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -731,7 +731,7 @@ class LROSADsOperations(object):
     def begin_post_non_retry400(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -822,7 +822,7 @@ class LROSADsOperations(object):
     def begin_post202_non_retry400(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -914,7 +914,7 @@ class LROSADsOperations(object):
     def begin_post_async_relative_retry400(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -1010,7 +1010,7 @@ class LROSADsOperations(object):
     def begin_put_error201_no_provisioning_state_payload(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -1108,7 +1108,7 @@ class LROSADsOperations(object):
     def begin_put_async_relative_retry_no_status(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -1211,7 +1211,7 @@ class LROSADsOperations(object):
     def begin_put_async_relative_retry_no_status_payload(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -1297,7 +1297,7 @@ class LROSADsOperations(object):
     @distributed_trace
     def begin_delete204_succeeded(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -1377,7 +1377,7 @@ class LROSADsOperations(object):
     @distributed_trace
     def begin_delete_async_relative_retry_no_status(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -1465,7 +1465,7 @@ class LROSADsOperations(object):
     def begin_post202_no_location(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -1557,7 +1557,7 @@ class LROSADsOperations(object):
     def begin_post_async_relative_retry_no_payload(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -1650,7 +1650,7 @@ class LROSADsOperations(object):
     def begin_put200_invalid_json(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -1748,7 +1748,7 @@ class LROSADsOperations(object):
     def begin_put_async_relative_retry_invalid_header(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -1851,7 +1851,7 @@ class LROSADsOperations(object):
     def begin_put_async_relative_retry_invalid_json_polling(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, "Product", Dict[str, Any]], Any]
+        cls=None,  # type: ClsType["Product"]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -1941,7 +1941,7 @@ class LROSADsOperations(object):
     @distributed_trace
     def begin_delete202_retry_invalid_header(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -2021,7 +2021,7 @@ class LROSADsOperations(object):
     @distributed_trace
     def begin_delete_async_relative_retry_invalid_header(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -2101,7 +2101,7 @@ class LROSADsOperations(object):
     @distributed_trace
     def begin_delete_async_relative_retry_invalid_json_polling(
         self,
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -2189,7 +2189,7 @@ class LROSADsOperations(object):
     def begin_post202_retry_invalid_header(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -2281,7 +2281,7 @@ class LROSADsOperations(object):
     def begin_post_async_relative_retry_invalid_header(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
@@ -2373,7 +2373,7 @@ class LROSADsOperations(object):
     def begin_post_async_relative_retry_invalid_json_polling(
         self,
         product=None,  # type: Optional["Product"]
-        cls=None,  # type: Callable[[HTTPResponse, None, Dict[str, Any]], Any]
+        cls=None,  # type: ClsType[None]
         polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
