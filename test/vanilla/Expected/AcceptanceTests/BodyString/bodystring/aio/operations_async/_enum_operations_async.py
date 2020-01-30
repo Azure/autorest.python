@@ -68,10 +68,10 @@ class EnumOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('str', response)
+        deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_not_expandable.metadata = {'url': '/string/enum/notExpandable'}
@@ -116,7 +116,7 @@ class EnumOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_not_expandable.metadata = {'url': '/string/enum/notExpandable'}
 
@@ -154,10 +154,10 @@ class EnumOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('str', response)
+        deserialized = self._deserialize('str', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_referenced.metadata = {'url': '/string/enum/Referenced'}
@@ -202,7 +202,7 @@ class EnumOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_referenced.metadata = {'url': '/string/enum/Referenced'}
 
@@ -240,10 +240,10 @@ class EnumOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('RefColorConstant', response)
+        deserialized = self._deserialize('RefColorConstant', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_referenced_constant.metadata = {'url': '/string/enum/ReferencedConstant'}
@@ -289,6 +289,6 @@ class EnumOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_referenced_constant.metadata = {'url': '/string/enum/ReferencedConstant'}

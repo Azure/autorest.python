@@ -68,7 +68,7 @@ class HttpRetryOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     head408.metadata = {'url': '/http/retry/408'}
 
@@ -114,7 +114,7 @@ class HttpRetryOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put500.metadata = {'url': '/http/retry/500'}
 
@@ -160,7 +160,7 @@ class HttpRetryOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     patch500.metadata = {'url': '/http/retry/500'}
 
@@ -198,7 +198,7 @@ class HttpRetryOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get502.metadata = {'url': '/http/retry/502'}
 
@@ -236,10 +236,10 @@ class HttpRetryOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('bool', response)
+        deserialized = self._deserialize('bool', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     options502.metadata = {'url': '/http/retry/502'}
@@ -286,7 +286,7 @@ class HttpRetryOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post503.metadata = {'url': '/http/retry/503'}
 
@@ -332,7 +332,7 @@ class HttpRetryOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     delete503.metadata = {'url': '/http/retry/503'}
 
@@ -378,7 +378,7 @@ class HttpRetryOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put504.metadata = {'url': '/http/retry/504'}
 
@@ -424,6 +424,6 @@ class HttpRetryOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     patch504.metadata = {'url': '/http/retry/504'}

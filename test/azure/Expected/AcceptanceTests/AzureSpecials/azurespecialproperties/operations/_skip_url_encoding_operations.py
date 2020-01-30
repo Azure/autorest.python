@@ -74,7 +74,7 @@ class SkipUrlEncodingOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_method_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}'}
 
@@ -118,7 +118,7 @@ class SkipUrlEncodingOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_path_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}'}
 
@@ -161,7 +161,7 @@ class SkipUrlEncodingOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_swagger_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}'}
 
@@ -202,7 +202,7 @@ class SkipUrlEncodingOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_method_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/method/query/valid'}
 
@@ -244,7 +244,7 @@ class SkipUrlEncodingOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_method_query_null.metadata = {'url': '/azurespecials/skipUrlEncoding/method/query/null'}
 
@@ -285,7 +285,7 @@ class SkipUrlEncodingOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_path_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/path/query/valid'}
 
@@ -325,6 +325,6 @@ class SkipUrlEncodingOperations(object):
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_swagger_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/swagger/query/valid'}

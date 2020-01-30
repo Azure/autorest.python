@@ -68,10 +68,10 @@ class NumberOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('float', response)
+        deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/number/null'}
@@ -110,10 +110,10 @@ class NumberOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('float', response)
+        deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid_float.metadata = {'url': '/number/invalidfloat'}
@@ -152,10 +152,10 @@ class NumberOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('float', response)
+        deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid_double.metadata = {'url': '/number/invaliddouble'}
@@ -194,10 +194,10 @@ class NumberOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('float', response)
+        deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid_decimal.metadata = {'url': '/number/invaliddecimal'}
@@ -242,7 +242,7 @@ class NumberOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_big_float.metadata = {'url': '/number/big/float/3.402823e+20'}
 
@@ -280,10 +280,10 @@ class NumberOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('float', response)
+        deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_big_float.metadata = {'url': '/number/big/float/3.402823e+20'}
@@ -328,7 +328,7 @@ class NumberOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_big_double.metadata = {'url': '/number/big/double/2.5976931e+101'}
 
@@ -366,10 +366,10 @@ class NumberOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('float', response)
+        deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_big_double.metadata = {'url': '/number/big/double/2.5976931e+101'}
@@ -413,7 +413,7 @@ class NumberOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_big_double_positive_decimal.metadata = {'url': '/number/big/double/99999999.99'}
 
@@ -451,10 +451,10 @@ class NumberOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('float', response)
+        deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_big_double_positive_decimal.metadata = {'url': '/number/big/double/99999999.99'}
@@ -498,7 +498,7 @@ class NumberOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_big_double_negative_decimal.metadata = {'url': '/number/big/double/-99999999.99'}
 
@@ -536,10 +536,10 @@ class NumberOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('float', response)
+        deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_big_double_negative_decimal.metadata = {'url': '/number/big/double/-99999999.99'}
@@ -584,7 +584,7 @@ class NumberOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_big_decimal.metadata = {'url': '/number/big/decimal/2.5976931e+101'}
 
@@ -622,10 +622,10 @@ class NumberOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('float', response)
+        deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_big_decimal.metadata = {'url': '/number/big/decimal/2.5976931e+101'}
@@ -669,7 +669,7 @@ class NumberOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_big_decimal_positive_decimal.metadata = {'url': '/number/big/decimal/99999999.99'}
 
@@ -707,10 +707,10 @@ class NumberOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('float', response)
+        deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_big_decimal_positive_decimal.metadata = {'url': '/number/big/decimal/99999999.99'}
@@ -754,7 +754,7 @@ class NumberOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_big_decimal_negative_decimal.metadata = {'url': '/number/big/decimal/-99999999.99'}
 
@@ -792,10 +792,10 @@ class NumberOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('float', response)
+        deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_big_decimal_negative_decimal.metadata = {'url': '/number/big/decimal/-99999999.99'}
@@ -840,7 +840,7 @@ class NumberOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_small_float.metadata = {'url': '/number/small/float/3.402823e-20'}
 
@@ -878,10 +878,10 @@ class NumberOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('float', response)
+        deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_small_float.metadata = {'url': '/number/small/float/3.402823e-20'}
@@ -926,7 +926,7 @@ class NumberOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_small_double.metadata = {'url': '/number/small/double/2.5976931e-101'}
 
@@ -964,10 +964,10 @@ class NumberOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('float', response)
+        deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_small_double.metadata = {'url': '/number/small/double/2.5976931e-101'}
@@ -1012,7 +1012,7 @@ class NumberOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_small_decimal.metadata = {'url': '/number/small/decimal/2.5976931e-101'}
 
@@ -1050,10 +1050,10 @@ class NumberOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('float', response)
+        deserialized = self._deserialize('float', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_small_decimal.metadata = {'url': '/number/small/decimal/2.5976931e-101'}

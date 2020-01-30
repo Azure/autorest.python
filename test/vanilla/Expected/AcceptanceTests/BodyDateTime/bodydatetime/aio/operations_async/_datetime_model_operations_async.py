@@ -68,10 +68,10 @@ class DatetimeOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('iso-8601', response)
+        deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_null.metadata = {'url': '/datetime/null'}
@@ -110,10 +110,10 @@ class DatetimeOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('iso-8601', response)
+        deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_invalid.metadata = {'url': '/datetime/invalid'}
@@ -152,10 +152,10 @@ class DatetimeOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('iso-8601', response)
+        deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_overflow.metadata = {'url': '/datetime/overflow'}
@@ -194,10 +194,10 @@ class DatetimeOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('iso-8601', response)
+        deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_underflow.metadata = {'url': '/datetime/underflow'}
@@ -242,7 +242,7 @@ class DatetimeOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_utc_max_date_time.metadata = {'url': '/datetime/max/utc'}
 
@@ -286,7 +286,7 @@ class DatetimeOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_utc_max_date_time7_digits.metadata = {'url': '/datetime/max/utc7ms'}
 
@@ -324,10 +324,10 @@ class DatetimeOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('iso-8601', response)
+        deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_utc_lowercase_max_date_time.metadata = {'url': '/datetime/max/utc/lowercase'}
@@ -366,10 +366,10 @@ class DatetimeOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('iso-8601', response)
+        deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_utc_uppercase_max_date_time.metadata = {'url': '/datetime/max/utc/uppercase'}
@@ -408,10 +408,10 @@ class DatetimeOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('iso-8601', response)
+        deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_utc_uppercase_max_date_time7_digits.metadata = {'url': '/datetime/max/utc7ms/uppercase'}
@@ -456,7 +456,7 @@ class DatetimeOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_local_positive_offset_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset'}
 
@@ -494,10 +494,10 @@ class DatetimeOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('iso-8601', response)
+        deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_local_positive_offset_lowercase_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset/lowercase'}
@@ -536,10 +536,10 @@ class DatetimeOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('iso-8601', response)
+        deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_local_positive_offset_uppercase_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset/uppercase'}
@@ -584,7 +584,7 @@ class DatetimeOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_local_negative_offset_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset'}
 
@@ -622,10 +622,10 @@ class DatetimeOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('iso-8601', response)
+        deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_local_negative_offset_uppercase_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset/uppercase'}
@@ -664,10 +664,10 @@ class DatetimeOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('iso-8601', response)
+        deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_local_negative_offset_lowercase_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset/lowercase'}
@@ -712,7 +712,7 @@ class DatetimeOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_utc_min_date_time.metadata = {'url': '/datetime/min/utc'}
 
@@ -750,10 +750,10 @@ class DatetimeOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('iso-8601', response)
+        deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_utc_min_date_time.metadata = {'url': '/datetime/min/utc'}
@@ -798,7 +798,7 @@ class DatetimeOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_local_positive_offset_min_date_time.metadata = {'url': '/datetime/min/localpositiveoffset'}
 
@@ -836,10 +836,10 @@ class DatetimeOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('iso-8601', response)
+        deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_local_positive_offset_min_date_time.metadata = {'url': '/datetime/min/localpositiveoffset'}
@@ -884,7 +884,7 @@ class DatetimeOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     put_local_negative_offset_min_date_time.metadata = {'url': '/datetime/min/localnegativeoffset'}
 
@@ -922,10 +922,10 @@ class DatetimeOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('iso-8601', response)
+        deserialized = self._deserialize('iso-8601', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_local_negative_offset_min_date_time.metadata = {'url': '/datetime/min/localnegativeoffset'}

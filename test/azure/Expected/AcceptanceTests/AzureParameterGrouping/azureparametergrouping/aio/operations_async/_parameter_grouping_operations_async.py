@@ -88,7 +88,7 @@ class ParameterGroupingOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_required.metadata = {'url': '/parameterGrouping/postRequired/{path}'}
 
@@ -134,7 +134,7 @@ class ParameterGroupingOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_optional.metadata = {'url': '/parameterGrouping/postOptional'}
 
@@ -188,7 +188,7 @@ class ParameterGroupingOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_multi_param_groups.metadata = {'url': '/parameterGrouping/postMultipleParameterGroups'}
 
@@ -234,6 +234,6 @@ class ParameterGroupingOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     post_shared_parameter_group_object.metadata = {'url': '/parameterGrouping/sharedParameterGroupObject'}

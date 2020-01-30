@@ -2,7 +2,8 @@
 {% import 'operation_tools.jinja2' as op_tools %}
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
-{% set request_as_xml = ", is_xml=False" if "xml" in operation.request_content_type else "" %}
+{% set send_xml = "xml" in operation.request_content_type %}
+{% set request_as_xml = ", is_xml=True" if send_xml else "" %}
 {% macro return_docstring() %}
 {% if operation.responses | selectattr('has_body') | first %}
 :return: {{ operation.responses|map(attribute='schema')|map(attribute='docstring_text')|join(' or ') }} or the result of cls(response)
@@ -94,11 +95,15 @@
 {% if operation.parameters.has_body %}
     # Construct body
     {% if not operation.parameters.body.is_stream %}
+        {% set ser_ctxt = operation.parameters.body.schema.xml_serialization_ctxt() if send_xml else None %}
+        {% if ser_ctxt %}
+    serialization_ctxt = {'xml': {{ "{" }}{{ ser_ctxt }}{{ "}}" }}
+        {% endif %}
         {% if operation.parameters.body.is_required %}
-    body_content = self._serialize.body({{ operation.parameters.body.serialized_name }}, '{{ operation.parameters.body.schema.get_serialization_type() }}'{{ request_as_xml }}{{ operation.serialization_context }})
+    body_content = self._serialize.body({{ operation.parameters.body.serialized_name }}, '{{ operation.parameters.body.schema.get_serialization_type() }}'{{ request_as_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
         {% else %}
     if {{ operation.parameters.body.serialized_name }} is not None:
-        body_content = self._serialize.body({{ operation.parameters.body.serialized_name }}, '{{ operation.parameters.body.schema.get_serialization_type() }}'{{ request_as_xml }}{{ operation.serialization_context }})
+        body_content = self._serialize.body({{ operation.parameters.body.serialized_name }}, '{{ operation.parameters.body.schema.get_serialization_type() }}'{{ request_as_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
     else:
         body_content = None
         {% endif %}
@@ -157,7 +162,7 @@
   {% endif %}
 {% endif %}
     if cls:
-      return cls(response, {{ 'deserialized' if operation.has_response_body else 'None'}}, {{ 'response_headers' if operation.any_response_has_headers else '{}' }})
+      return cls(pipeline_response, {{ 'deserialized' if operation.has_response_body else 'None'}}, {{ 'response_headers' if operation.any_response_has_headers else '{}' }})
 
 {% if operation.has_response_body %}
     return deserialized

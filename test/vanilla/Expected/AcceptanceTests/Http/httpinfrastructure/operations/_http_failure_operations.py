@@ -68,10 +68,10 @@ class HttpFailureOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('bool', response)
+        deserialized = self._deserialize('bool', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_empty_error.metadata = {'url': '/http/failure/emptybody/error'}
@@ -110,10 +110,10 @@ class HttpFailureOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('bool', response)
+        deserialized = self._deserialize('bool', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_no_model_error.metadata = {'url': '/http/failure/nomodel/error'}
@@ -152,10 +152,10 @@ class HttpFailureOperations(object):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('bool', response)
+        deserialized = self._deserialize('bool', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     get_no_model_empty.metadata = {'url': '/http/failure/nomodel/empty'}

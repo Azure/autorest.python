@@ -71,13 +71,13 @@ class LROSADsOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     _put_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/put/400'}
@@ -105,11 +105,11 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('Product', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -157,13 +157,13 @@ class LROSADsOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     _put_non_retry201_creating400_initial.metadata = {'url': '/lro/nonretryerror/put/201/creating/400'}
@@ -191,11 +191,11 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('Product', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -243,13 +243,13 @@ class LROSADsOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     _put_non_retry201_creating400_invalid_json_initial.metadata = {'url': '/lro/nonretryerror/put/201/creating/400/invalidjson'}
@@ -277,11 +277,11 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('Product', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -331,10 +331,10 @@ class LROSADsOperations(object):
         response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
         response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
         response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-        deserialized = self._deserialize('Product', response)
+        deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, response_headers)
+          return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
     _put_async_relative_retry400_initial.metadata = {'url': '/lro/nonretryerror/putasync/retry/400'}
@@ -362,15 +362,16 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             response_headers = {}
+            response = pipeline_response.http_response
             response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
             response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, response_headers)
+                return cls(pipeline_response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -413,7 +414,7 @@ class LROSADsOperations(object):
         response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     _delete_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/delete/400'}
 
@@ -437,9 +438,9 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -481,7 +482,7 @@ class LROSADsOperations(object):
         response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     _delete202_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/delete/202/retry/400'}
 
@@ -505,9 +506,9 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -550,7 +551,7 @@ class LROSADsOperations(object):
         response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     _delete_async_relative_retry400_initial.metadata = {'url': '/lro/nonretryerror/deleteasync/retry/400'}
 
@@ -574,9 +575,9 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -625,7 +626,7 @@ class LROSADsOperations(object):
         response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     _post_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/post/400'}
 
@@ -652,9 +653,9 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -703,7 +704,7 @@ class LROSADsOperations(object):
         response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     _post202_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/post/202/retry/400'}
 
@@ -730,9 +731,9 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -782,7 +783,7 @@ class LROSADsOperations(object):
         response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     _post_async_relative_retry400_initial.metadata = {'url': '/lro/nonretryerror/postasync/retry/400'}
 
@@ -809,9 +810,9 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -858,13 +859,13 @@ class LROSADsOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
         if response.status_code == 201:
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     _put_error201_no_provisioning_state_payload_initial.metadata = {'url': '/lro/error/put/201/noprovisioningstatepayload'}
@@ -892,11 +893,11 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('Product', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -946,10 +947,10 @@ class LROSADsOperations(object):
         response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
         response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
         response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-        deserialized = self._deserialize('Product', response)
+        deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, response_headers)
+          return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
     _put_async_relative_retry_no_status_initial.metadata = {'url': '/lro/error/putasync/retry/nostatus'}
@@ -977,15 +978,16 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             response_headers = {}
+            response = pipeline_response.http_response
             response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
             response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, response_headers)
+                return cls(pipeline_response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1035,10 +1037,10 @@ class LROSADsOperations(object):
         response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
         response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
         response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-        deserialized = self._deserialize('Product', response)
+        deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, response_headers)
+          return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
     _put_async_relative_retry_no_status_payload_initial.metadata = {'url': '/lro/error/putasync/retry/nostatuspayload'}
@@ -1066,15 +1068,16 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             response_headers = {}
+            response = pipeline_response.http_response
             response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
             response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, response_headers)
+                return cls(pipeline_response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1113,7 +1116,7 @@ class LROSADsOperations(object):
             raise ARMError(response=response)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     _delete204_succeeded_initial.metadata = {'url': '/lro/error/delete/204/nolocation'}
 
@@ -1137,9 +1140,9 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -1182,7 +1185,7 @@ class LROSADsOperations(object):
         response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     _delete_async_relative_retry_no_status_initial.metadata = {'url': '/lro/error/deleteasync/retry/nostatus'}
 
@@ -1206,9 +1209,9 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -1257,7 +1260,7 @@ class LROSADsOperations(object):
         response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     _post202_no_location_initial.metadata = {'url': '/lro/error/post/202/nolocation'}
 
@@ -1284,9 +1287,9 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -1336,7 +1339,7 @@ class LROSADsOperations(object):
         response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     _post_async_relative_retry_no_payload_initial.metadata = {'url': '/lro/error/postasync/retry/nopayload'}
 
@@ -1363,9 +1366,9 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -1412,10 +1415,10 @@ class LROSADsOperations(object):
 
         deserialized = None
         if response.status_code == 200:
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, {})
+          return cls(pipeline_response, deserialized, {})
 
         return deserialized
     _put200_invalid_json_initial.metadata = {'url': '/lro/error/put/200/invalidjson'}
@@ -1443,11 +1446,11 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
-            deserialized = self._deserialize('Product', response)
+        def get_long_running_output(pipeline_response):
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, {})
+                return cls(pipeline_response, deserialized, {})
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1497,10 +1500,10 @@ class LROSADsOperations(object):
         response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
         response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
         response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-        deserialized = self._deserialize('Product', response)
+        deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, response_headers)
+          return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
     _put_async_relative_retry_invalid_header_initial.metadata = {'url': '/lro/error/putasync/retry/invalidheader'}
@@ -1528,15 +1531,16 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             response_headers = {}
+            response = pipeline_response.http_response
             response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
             response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, response_headers)
+                return cls(pipeline_response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1586,10 +1590,10 @@ class LROSADsOperations(object):
         response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
         response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
         response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-        deserialized = self._deserialize('Product', response)
+        deserialized = self._deserialize('Product', pipeline_response)
 
         if cls:
-          return cls(response, deserialized, response_headers)
+          return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
     _put_async_relative_retry_invalid_json_polling_initial.metadata = {'url': '/lro/error/putasync/retry/invalidjsonpolling'}
@@ -1617,15 +1621,16 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             response_headers = {}
+            response = pipeline_response.http_response
             response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
             response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
             response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
-            deserialized = self._deserialize('Product', response)
+            deserialized = self._deserialize('Product', pipeline_response)
 
             if cls:
-                return cls(response, deserialized, response_headers)
+                return cls(pipeline_response, deserialized, response_headers)
             return deserialized
 
         lro_delay = kwargs.get(
@@ -1668,7 +1673,7 @@ class LROSADsOperations(object):
         response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     _delete202_retry_invalid_header_initial.metadata = {'url': '/lro/error/delete/202/retry/invalidheader'}
 
@@ -1692,9 +1697,9 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -1737,7 +1742,7 @@ class LROSADsOperations(object):
         response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     _delete_async_relative_retry_invalid_header_initial.metadata = {'url': '/lro/error/deleteasync/retry/invalidheader'}
 
@@ -1761,9 +1766,9 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -1806,7 +1811,7 @@ class LROSADsOperations(object):
         response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     _delete_async_relative_retry_invalid_json_polling_initial.metadata = {'url': '/lro/error/deleteasync/retry/invalidjsonpolling'}
 
@@ -1830,9 +1835,9 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -1881,7 +1886,7 @@ class LROSADsOperations(object):
         response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     _post202_retry_invalid_header_initial.metadata = {'url': '/lro/error/post/202/retry/invalidheader'}
 
@@ -1908,9 +1913,9 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -1960,7 +1965,7 @@ class LROSADsOperations(object):
         response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     _post_async_relative_retry_invalid_header_initial.metadata = {'url': '/lro/error/postasync/retry/invalidheader'}
 
@@ -1987,9 +1992,9 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',
@@ -2039,7 +2044,7 @@ class LROSADsOperations(object):
         response_headers['Retry-After']=self._deserialize('int', response.headers.get('Retry-After'))
 
         if cls:
-          return cls(response, None, response_headers)
+          return cls(pipeline_response, None, response_headers)
 
     _post_async_relative_retry_invalid_json_polling_initial.metadata = {'url': '/lro/error/postasync/retry/invalidjsonpolling'}
 
@@ -2066,9 +2071,9 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        def get_long_running_output(response):
+        def get_long_running_output(pipeline_response):
             if cls:
-                return cls(response, None, {})
+                return cls(pipeline_response, None, {})
 
         lro_delay = kwargs.get(
             'polling_interval',

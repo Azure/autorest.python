@@ -80,6 +80,6 @@ class OdataOperations:
             raise models.ErrorException.from_response(response, self._deserialize)
 
         if cls:
-          return cls(response, None, {})
+          return cls(pipeline_response, None, {})
 
     get_with_filter.metadata = {'url': '/azurespecials/odata/filter'}

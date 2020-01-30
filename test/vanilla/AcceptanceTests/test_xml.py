@@ -47,14 +47,14 @@ def client():
 
 def _assert_with_log(func, *args, **kwargs):
     def raise_for_status(response, deserialized, headers):
-        response.internal_response.raise_for_status()
+        response.http_response.internal_response.raise_for_status()
     try:
         http_response = func(*args, cls=raise_for_status, **kwargs)
     except Exception as err:
         print(err.response.text)
         pytest.fail()
 
-@pytest.mark.skip("https://github.com/Azure/autorest.python/issues/168")
+
 class TestXml(object):
 
     def test_json_xml(self, client):
