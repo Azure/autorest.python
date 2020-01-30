@@ -49,9 +49,6 @@ class TestAcceptance(object):
             'CustomBaseUriMoreOptions': 1, # https://github.com/Azure/autorest.testserver/issues/97
             'putModelFlattenCustomGroupedParameter': 1, # https://github.com/Azure/autorest.modelerfour/issues/10
         }
-        for name in report:
-            if "XML" in name:
-                missing_features_or_bugs[name] = 1; # Skip all XML until XML PR is merged
 
         print("Coverage:")
         self._print_report(report, not_supported, missing_features_or_bugs)

@@ -54,7 +54,7 @@ class NameConverter:
     def _convert_schemas(schemas):
         for enum in schemas.get('sealedChoices', []) + schemas.get('choices', []):
             NameConverter._convert_enum_schema(enum)
-        for obj in schemas.get('objects', []):
+        for obj in schemas.get('objects', []) + schemas.get('groups', []):
             NameConverter._convert_object_schema(obj)
         for type_list, schema_yamls in schemas.items():
             for schema in schema_yamls:

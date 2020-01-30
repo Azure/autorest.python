@@ -237,7 +237,7 @@ class TestModelFlatteningTests(object):
         result.additional_properties = {} # Not the purpose of this test. This enables the ==.
         assert result ==  simple_product
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/10")
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     @pytest.mark.asyncio
     async def test_model_flattening_with_grouping(self, client):
         from modelflattening.models import FlattenParameterGroup

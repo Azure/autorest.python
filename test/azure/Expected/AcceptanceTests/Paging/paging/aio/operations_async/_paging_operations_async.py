@@ -238,8 +238,7 @@ class PagingOperations:
     def get_multiple_pages(
         self,
         client_request_id: Optional[str] = None,
-        maxresults: Optional[int] = None,
-        timeout: Optional[int] = None,
+        paging_get_multiple_pages_options: Optional["models.PagingGetMultiplePagesOptions"] = None,
         *,
         cls: ClsType["models.ProductResult"] = None,
         **kwargs
@@ -251,16 +250,21 @@ class PagingOperations:
 
         :param client_request_id: 
         :type client_request_id: str
-        :param maxresults: Sets the maximum number of items to return in the response.
-        :type maxresults: int
-        :param timeout: Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
-        :type timeout: int
+        :param paging_get_multiple_pages_options: Parameter group.
+        :type paging_get_multiple_pages_options: ~paging.models.PagingGetMultiplePagesOptions
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
         error_map = kwargs.pop('error_map', {})
+        
+        maxresults = None
+        timeout = None
+        if paging_get_multiple_pages_options is not None:
+            maxresults = paging_get_multiple_pages_options.maxresults
+            timeout = paging_get_multiple_pages_options.timeout
+
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -317,8 +321,7 @@ class PagingOperations:
     def get_odata_multiple_pages(
         self,
         client_request_id: Optional[str] = None,
-        maxresults: Optional[int] = None,
-        timeout: Optional[int] = None,
+        paging_get_odata_multiple_pages_options: Optional["models.PagingGetOdataMultiplePagesOptions"] = None,
         *,
         cls: ClsType["models.OdataProductResult"] = None,
         **kwargs
@@ -330,16 +333,21 @@ class PagingOperations:
 
         :param client_request_id: 
         :type client_request_id: str
-        :param maxresults: Sets the maximum number of items to return in the response.
-        :type maxresults: int
-        :param timeout: Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
-        :type timeout: int
+        :param paging_get_odata_multiple_pages_options: Parameter group.
+        :type paging_get_odata_multiple_pages_options: ~paging.models.PagingGetOdataMultiplePagesOptions
         :param callable cls: A custom type or function that will be passed the direct response
         :return: OdataProductResult or the result of cls(response)
         :rtype: ~paging.models.OdataProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
         error_map = kwargs.pop('error_map', {})
+        
+        maxresults = None
+        timeout = None
+        if paging_get_odata_multiple_pages_options is not None:
+            maxresults = paging_get_odata_multiple_pages_options.maxresults
+            timeout = paging_get_odata_multiple_pages_options.timeout
+
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -395,10 +403,8 @@ class PagingOperations:
     @distributed_trace
     def get_multiple_pages_with_offset(
         self,
-        offset: int,
+        paging_get_multiple_pages_with_offset_options: "models.PagingGetMultiplePagesWithOffsetOptions",
         client_request_id: Optional[str] = None,
-        maxresults: Optional[int] = None,
-        timeout: Optional[int] = None,
         *,
         cls: ClsType["models.ProductResult"] = None,
         **kwargs
@@ -408,20 +414,25 @@ class PagingOperations:
         FIXME: add operation.summary
 
 
-        :param offset: Offset of return value.
-        :type offset: int
+        :param paging_get_multiple_pages_with_offset_options: Parameter group.
+        :type paging_get_multiple_pages_with_offset_options: ~paging.models.PagingGetMultiplePagesWithOffsetOptions
         :param client_request_id: 
         :type client_request_id: str
-        :param maxresults: Sets the maximum number of items to return in the response.
-        :type maxresults: int
-        :param timeout: Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
-        :type timeout: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
         error_map = kwargs.pop('error_map', {})
+        
+        maxresults = None
+        offset = None
+        timeout = None
+        if paging_get_multiple_pages_with_offset_options is not None:
+            maxresults = paging_get_multiple_pages_with_offset_options.maxresults
+            offset = paging_get_multiple_pages_with_offset_options.offset
+            timeout = paging_get_multiple_pages_with_offset_options.timeout
+
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -876,8 +887,7 @@ class PagingOperations:
     @distributed_trace
     def get_multiple_pages_fragment_with_grouping_next_link(
         self,
-        api_version: str,
-        tenant: str,
+        custom_parameter_group: "models.CustomParameterGroup",
         *,
         cls: ClsType["models.OdataProductResult"] = None,
         **kwargs
@@ -887,16 +897,21 @@ class PagingOperations:
         FIXME: add operation.summary
 
 
-        :param api_version: Sets the api version to use.
-        :type api_version: str
-        :param tenant: Sets the tenant to use.
-        :type tenant: str
+        :param custom_parameter_group: Parameter group.
+        :type custom_parameter_group: ~paging.models.CustomParameterGroup
         :param callable cls: A custom type or function that will be passed the direct response
         :return: OdataProductResult or the result of cls(response)
         :rtype: ~paging.models.OdataProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
         error_map = kwargs.pop('error_map', {})
+        
+        api_version = None
+        tenant = None
+        if custom_parameter_group is not None:
+            api_version = custom_parameter_group.api_version
+            tenant = custom_parameter_group.tenant
+
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -957,13 +972,19 @@ class PagingOperations:
     async def _get_multiple_pages_lro_initial(
         self,
         client_request_id: Optional[str] = None,
-        maxresults: Optional[int] = None,
-        timeout: Optional[int] = None,
+        paging_get_multiple_pages_lro_options: Optional["models.PagingGetMultiplePagesLroOptions"] = None,
         *,
         cls: ClsType["models.ProductResult"] = None,
         **kwargs: Any
     ) -> "models.ProductResult":
         error_map = kwargs.pop('error_map', {})
+        
+        maxresults = None
+        timeout = None
+        if paging_get_multiple_pages_lro_options is not None:
+            maxresults = paging_get_multiple_pages_lro_options.maxresults
+            timeout = paging_get_multiple_pages_lro_options.timeout
+
 
         # Construct URL
         url = self._get_multiple_pages_lro_initial.metadata['url']
@@ -1004,8 +1025,7 @@ class PagingOperations:
     async def get_multiple_pages_lro(
         self,
         client_request_id: Optional[str] = None,
-        maxresults: Optional[int] = None,
-        timeout: Optional[int] = None,
+        paging_get_multiple_pages_lro_options: Optional["models.PagingGetMultiplePagesLroOptions"] = None,
         *,
         cls: ClsType["models.ProductResult"] = None,
         polling: Optional[bool] = True,
@@ -1018,10 +1038,8 @@ class PagingOperations:
 
         :param client_request_id: 
         :type client_request_id: str
-        :param maxresults: Sets the maximum number of items to return in the response.
-        :type maxresults: int
-        :param timeout: Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds.
-        :type timeout: int
+        :param paging_get_multiple_pages_lro_options: Parameter group.
+        :type paging_get_multiple_pages_lro_options: ~paging.models.PagingGetMultiplePagesLroOptions
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -1032,8 +1050,7 @@ class PagingOperations:
         """
         raw_result = await self._get_multiple_pages_lro_initial(
             client_request_id=client_request_id,
-            maxresults=maxresults,
-            timeout=timeout,
+            paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,
             cls=lambda x,y,z: x,
             **kwargs
         )
