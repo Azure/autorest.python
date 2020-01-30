@@ -3,12 +3,11 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
 from .imports import FileImport, ImportType
 from .property import Property
-from typing import Any, Dict, List, Optional
 
 
 class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
