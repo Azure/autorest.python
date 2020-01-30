@@ -45,7 +45,7 @@ class PrimitiveOperations(object):
     def get_int(
         self,
         cls=None,  # type: ClsType["IntWrapper"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "IntWrapper"
         """Get complex types with integer properties.
@@ -93,7 +93,7 @@ class PrimitiveOperations(object):
         self,
         complex_body,  # type: "IntWrapper"
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with integer properties.
@@ -142,7 +142,7 @@ class PrimitiveOperations(object):
     def get_long(
         self,
         cls=None,  # type: ClsType["LongWrapper"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "LongWrapper"
         """Get complex types with long properties.
@@ -190,7 +190,7 @@ class PrimitiveOperations(object):
         self,
         complex_body,  # type: "LongWrapper"
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with long properties.
@@ -239,7 +239,7 @@ class PrimitiveOperations(object):
     def get_float(
         self,
         cls=None,  # type: ClsType["FloatWrapper"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "FloatWrapper"
         """Get complex types with float properties.
@@ -287,7 +287,7 @@ class PrimitiveOperations(object):
         self,
         complex_body,  # type: "FloatWrapper"
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with float properties.
@@ -336,7 +336,7 @@ class PrimitiveOperations(object):
     def get_double(
         self,
         cls=None,  # type: ClsType["DoubleWrapper"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "DoubleWrapper"
         """Get complex types with double properties.
@@ -384,7 +384,7 @@ class PrimitiveOperations(object):
         self,
         complex_body,  # type: "DoubleWrapper"
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with double properties.
@@ -433,7 +433,7 @@ class PrimitiveOperations(object):
     def get_bool(
         self,
         cls=None,  # type: ClsType["BooleanWrapper"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "BooleanWrapper"
         """Get complex types with bool properties.
@@ -481,7 +481,7 @@ class PrimitiveOperations(object):
         self,
         complex_body,  # type: "BooleanWrapper"
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with bool properties.
@@ -530,7 +530,7 @@ class PrimitiveOperations(object):
     def get_string(
         self,
         cls=None,  # type: ClsType["StringWrapper"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "StringWrapper"
         """Get complex types with string properties.
@@ -578,7 +578,7 @@ class PrimitiveOperations(object):
         self,
         complex_body,  # type: "StringWrapper"
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with string properties.
@@ -627,7 +627,7 @@ class PrimitiveOperations(object):
     def get_date(
         self,
         cls=None,  # type: ClsType["DateWrapper"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "DateWrapper"
         """Get complex types with date properties.
@@ -675,7 +675,7 @@ class PrimitiveOperations(object):
         self,
         complex_body,  # type: "DateWrapper"
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with date properties.
@@ -724,7 +724,7 @@ class PrimitiveOperations(object):
     def get_date_time(
         self,
         cls=None,  # type: ClsType["DatetimeWrapper"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "DatetimeWrapper"
         """Get complex types with datetime properties.
@@ -772,7 +772,7 @@ class PrimitiveOperations(object):
         self,
         complex_body,  # type: "DatetimeWrapper"
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with datetime properties.
@@ -821,7 +821,7 @@ class PrimitiveOperations(object):
     def get_date_time_rfc1123(
         self,
         cls=None,  # type: ClsType["Datetimerfc1123Wrapper"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "Datetimerfc1123Wrapper"
         """Get complex types with datetimeRfc1123 properties.
@@ -869,7 +869,7 @@ class PrimitiveOperations(object):
         self,
         complex_body,  # type: "Datetimerfc1123Wrapper"
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with datetimeRfc1123 properties.
@@ -918,7 +918,7 @@ class PrimitiveOperations(object):
     def get_duration(
         self,
         cls=None,  # type: ClsType["DurationWrapper"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "DurationWrapper"
         """Get complex types with duration properties.
@@ -966,7 +966,7 @@ class PrimitiveOperations(object):
         self,
         field=None,  # type: Optional[datetime.timedelta]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with duration properties.
@@ -1016,7 +1016,7 @@ class PrimitiveOperations(object):
     def get_byte(
         self,
         cls=None,  # type: ClsType["ByteWrapper"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "ByteWrapper"
         """Get complex types with byte properties.
@@ -1064,7 +1064,7 @@ class PrimitiveOperations(object):
         self,
         field=None,  # type: Optional[bytearray]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with byte properties.

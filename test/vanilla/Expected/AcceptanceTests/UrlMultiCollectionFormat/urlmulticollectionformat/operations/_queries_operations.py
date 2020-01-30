@@ -44,7 +44,7 @@ class QueriesOperations(object):
         self,
         array_query=None,  # type: Optional[List[str]]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get a null array of string using the multi-array format.
@@ -92,7 +92,7 @@ class QueriesOperations(object):
         self,
         array_query=None,  # type: Optional[List[str]]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get an empty array [] of string using the multi-array format.
@@ -140,7 +140,7 @@ class QueriesOperations(object):
         self,
         array_query=None,  # type: Optional[List[str]]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the mult-array format.

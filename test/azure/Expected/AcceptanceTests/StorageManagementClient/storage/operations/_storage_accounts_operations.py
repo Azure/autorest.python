@@ -49,7 +49,7 @@ class StorageAccountsOperations(object):
         self,
         account_name,  # type: "StorageAccountCheckNameAvailabilityParameters"
         cls=None,  # type: ClsType["CheckNameAvailabilityResult"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "CheckNameAvailabilityResult"
         """Checks that account name is valid and is not in use..
@@ -109,7 +109,7 @@ class StorageAccountsOperations(object):
         account_name,  # type: str
         parameters,  # type: "StorageAccountCreateParameters"
         cls=None,  # type: ClsType["StorageAccount"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "StorageAccount"
         error_map = kwargs.pop('error_map', {})
@@ -163,7 +163,7 @@ class StorageAccountsOperations(object):
         parameters,  # type: "StorageAccountCreateParameters"
         cls=None,  # type: Callable[[HTTPResponse, "StorageAccount", Dict[str, Any]], Any]
         polling=True,  # type: Optional[bool]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "StorageAccount"
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts cannot be updated with this API and should instead use the Update Storage Account API. If an account is already created and subsequent PUT request is issued with exact same set of properties, then HTTP 200 would be returned..
@@ -217,7 +217,7 @@ class StorageAccountsOperations(object):
         resource_group_name,  # type: str
         account_name,  # type: str
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Deletes a storage account in Microsoft Azure..
@@ -272,7 +272,7 @@ class StorageAccountsOperations(object):
         resource_group_name,  # type: str
         account_name,  # type: str
         cls=None,  # type: ClsType["StorageAccount"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "StorageAccount"
         """Returns the properties for the specified storage account including but not limited to name, account type, location, and account status. The ListKeys operation should be used to retrieve storage keys..
@@ -332,7 +332,7 @@ class StorageAccountsOperations(object):
         account_name,  # type: str
         parameters,  # type: "StorageAccountUpdateParameters"
         cls=None,  # type: ClsType["StorageAccount"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "StorageAccount"
         """Updates the account type or tags for a storage account. It can also be used to add a custom domain (note that custom domains cannot be added via the Create operation). Only one custom domain is supported per storage account. This API can only be used to update one of tags, accountType, or customDomain per call. To update multiple of these properties, call the API multiple times with one change per call. This call does not change the storage keys for the account. If you want to change storage account keys, use the RegenerateKey operation. The location and name of the storage account cannot be changed after creation..
@@ -397,7 +397,7 @@ class StorageAccountsOperations(object):
         resource_group_name,  # type: str
         account_name,  # type: str
         cls=None,  # type: ClsType["StorageAccountKeys"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "StorageAccountKeys"
         """Lists the access keys for the specified storage account..
@@ -454,7 +454,7 @@ class StorageAccountsOperations(object):
     def list(
         self,
         cls=None,  # type: Callable[[HTTPResponse, "StorageAccountListResult", Dict[str, Any]], Any]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "StorageAccountListResult"
         """Lists all the storage accounts available under the subscription. Note that storage keys are not returned; use the ListKeys operation for this..
@@ -523,7 +523,7 @@ class StorageAccountsOperations(object):
         self,
         resource_group_name,  # type: str
         cls=None,  # type: Callable[[HTTPResponse, "StorageAccountListResult", Dict[str, Any]], Any]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "StorageAccountListResult"
         """Lists all the storage accounts available under the given resource group. Note that storage keys are not returned; use the ListKeys operation for this..
@@ -597,7 +597,7 @@ class StorageAccountsOperations(object):
         account_name,  # type: str
         key_name=None,  # type: Optional[Union[str, "KeyName"]]
         cls=None,  # type: ClsType["StorageAccountKeys"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "StorageAccountKeys"
         """Regenerates the access keys for the specified storage account..

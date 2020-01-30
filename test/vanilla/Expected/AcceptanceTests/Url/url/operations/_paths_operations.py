@@ -44,7 +44,7 @@ class PathsOperations(object):
     def get_boolean_true(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get true Boolean value on path.
@@ -92,7 +92,7 @@ class PathsOperations(object):
     def get_boolean_false(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get false Boolean value on path.
@@ -140,7 +140,7 @@ class PathsOperations(object):
     def get_int_one_million(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '1000000' integer value.
@@ -188,7 +188,7 @@ class PathsOperations(object):
     def get_int_negative_one_million(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '-1000000' integer value.
@@ -236,7 +236,7 @@ class PathsOperations(object):
     def get_ten_billion(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '10000000000' 64 bit integer value.
@@ -284,7 +284,7 @@ class PathsOperations(object):
     def get_negative_ten_billion(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '-10000000000' 64 bit integer value.
@@ -332,7 +332,7 @@ class PathsOperations(object):
     def float_scientific_positive(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '1.034E+20' numeric value.
@@ -380,7 +380,7 @@ class PathsOperations(object):
     def float_scientific_negative(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '-1.034E-20' numeric value.
@@ -428,7 +428,7 @@ class PathsOperations(object):
     def double_decimal_positive(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '9999999.999' numeric value.
@@ -476,7 +476,7 @@ class PathsOperations(object):
     def double_decimal_negative(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '-9999999.999' numeric value.
@@ -524,7 +524,7 @@ class PathsOperations(object):
     def string_unicode(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
@@ -572,7 +572,7 @@ class PathsOperations(object):
     def string_url_encoded(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get 'begin!*'();:@ &=+$,/?#[]end.
@@ -620,7 +620,7 @@ class PathsOperations(object):
     def string_url_non_encoded(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get 'begin!*'();:@&=+$,end.
@@ -668,7 +668,7 @@ class PathsOperations(object):
     def string_empty(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get ''.
@@ -717,7 +717,7 @@ class PathsOperations(object):
         self,
         string_path,  # type: str
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get null (should throw).
@@ -767,7 +767,7 @@ class PathsOperations(object):
         self,
         enum_path,  # type: Union[str, "UriColor"]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get using uri with 'green color' in path parameter.
@@ -817,7 +817,7 @@ class PathsOperations(object):
         self,
         enum_path,  # type: Union[str, "UriColor"]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get null (should throw on the client before the request is sent on wire).
@@ -867,7 +867,7 @@ class PathsOperations(object):
         self,
         byte_path,  # type: bytearray
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
@@ -916,7 +916,7 @@ class PathsOperations(object):
     def byte_empty(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '' as byte array.
@@ -965,7 +965,7 @@ class PathsOperations(object):
         self,
         byte_path,  # type: bytearray
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get null as byte array (should throw).
@@ -1014,7 +1014,7 @@ class PathsOperations(object):
     def date_valid(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '2012-01-01' as date.
@@ -1063,7 +1063,7 @@ class PathsOperations(object):
         self,
         date_path,  # type: datetime.date
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get null as date - this should throw or be unusable on the client side, depending on date representation.
@@ -1112,7 +1112,7 @@ class PathsOperations(object):
     def date_time_valid(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '2012-01-01T01:01:01Z' as date-time.
@@ -1161,7 +1161,7 @@ class PathsOperations(object):
         self,
         date_time_path,  # type: datetime.datetime
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get null as date-time, should be disallowed or throw depending on representation of date-time.
@@ -1211,7 +1211,7 @@ class PathsOperations(object):
         self,
         base64_url_path,  # type: bytes
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get 'lorem' encoded value as 'bG9yZW0' (base64url).
@@ -1261,7 +1261,7 @@ class PathsOperations(object):
         self,
         array_path,  # type: List[str]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
@@ -1311,7 +1311,7 @@ class PathsOperations(object):
         self,
         unix_time_url_path,  # type: datetime.datetime
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get the date 2016-04-13 encoded value as '1460505600' (Unix time).

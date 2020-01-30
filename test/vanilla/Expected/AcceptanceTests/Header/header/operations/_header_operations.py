@@ -45,7 +45,7 @@ class HeaderOperations(object):
         self,
         user_agent,  # type: str
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Send a post request with header value "User-Agent": "overwrite".
@@ -91,7 +91,7 @@ class HeaderOperations(object):
     def response_existing_key(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get a response with header value "User-Agent": "overwrite".
@@ -138,7 +138,7 @@ class HeaderOperations(object):
         self,
         content_type,  # type: str
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Send a post request with header value "Content-Type": "text/html".
@@ -184,7 +184,7 @@ class HeaderOperations(object):
     def response_protected_key(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get a response with header value "Content-Type": "text/html".
@@ -232,7 +232,7 @@ class HeaderOperations(object):
         scenario,  # type: str
         value,  # type: int
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Send a post request with header values "scenario": "positive", "value": 1 or "scenario": "negative", "value": -2.
@@ -282,7 +282,7 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get a response with header value "value": 1 or -2.
@@ -333,7 +333,7 @@ class HeaderOperations(object):
         scenario,  # type: str
         value,  # type: int
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Send a post request with header values "scenario": "positive", "value": 105 or "scenario": "negative", "value": -2.
@@ -383,7 +383,7 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get a response with header value "value": 105 or -2.
@@ -434,7 +434,7 @@ class HeaderOperations(object):
         scenario,  # type: str
         value,  # type: float
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario": "negative", "value": -3.0.
@@ -484,7 +484,7 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get a response with header value "value": 0.07 or -3.0.
@@ -535,7 +535,7 @@ class HeaderOperations(object):
         scenario,  # type: str
         value,  # type: float
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario": "negative", "value": -3.0.
@@ -585,7 +585,7 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get a response with header value "value": 7e120 or -3.0.
@@ -636,7 +636,7 @@ class HeaderOperations(object):
         scenario,  # type: str
         value,  # type: bool
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Send a post request with header values "scenario": "true", "value": true or "scenario": "false", "value": false.
@@ -686,7 +686,7 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get a response with header value "value": true or false.
@@ -737,7 +737,7 @@ class HeaderOperations(object):
         scenario,  # type: str
         value=None,  # type: Optional[str]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "".
@@ -788,7 +788,7 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get a response with header values "The quick brown fox jumps over the lazy dog" or null or "".
@@ -839,7 +839,7 @@ class HeaderOperations(object):
         scenario,  # type: str
         value,  # type: datetime.date
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01" or "scenario": "min", "value": "0001-01-01".
@@ -889,7 +889,7 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get a response with header values "2010-01-01" or "0001-01-01".
@@ -940,7 +940,7 @@ class HeaderOperations(object):
         scenario,  # type: str
         value,  # type: datetime.datetime
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or "scenario": "min", "value": "0001-01-01T00:00:00Z".
@@ -990,7 +990,7 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z".
@@ -1041,7 +1041,7 @@ class HeaderOperations(object):
         scenario,  # type: str
         value=None,  # type: Optional[datetime.datetime]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56 GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT".
@@ -1092,7 +1092,7 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT".
@@ -1143,7 +1143,7 @@ class HeaderOperations(object):
         scenario,  # type: str
         value,  # type: datetime.timedelta
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S".
@@ -1193,7 +1193,7 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get a response with header values "P123DT22H14M12.011S".
@@ -1244,7 +1244,7 @@ class HeaderOperations(object):
         scenario,  # type: str
         value,  # type: bytearray
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩".
@@ -1294,7 +1294,7 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get a response with header values "啊齄丂狛狜隣郎隣兀﨩".
@@ -1345,7 +1345,7 @@ class HeaderOperations(object):
         scenario,  # type: str
         value=None,  # type: Optional[Union[str, "GreyscaleColors"]]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario": "null", "value": null.
@@ -1396,7 +1396,7 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get a response with header values "GREY" or null.
@@ -1445,7 +1445,7 @@ class HeaderOperations(object):
     def custom_request_id(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.

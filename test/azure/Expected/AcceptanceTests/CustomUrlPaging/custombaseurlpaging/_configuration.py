@@ -29,7 +29,7 @@ class AutoRestParameterizedHostTestPagingClientConfiguration(Configuration):
         self,
         credential,  # type: "TokenCredential"
         host,  # type: str
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         if credential is None:
@@ -46,7 +46,7 @@ class AutoRestParameterizedHostTestPagingClientConfiguration(Configuration):
 
     def _configure(
         self,
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)

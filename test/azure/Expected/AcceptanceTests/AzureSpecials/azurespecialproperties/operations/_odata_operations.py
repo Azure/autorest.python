@@ -46,7 +46,7 @@ class OdataOperations(object):
         top=None,  # type: Optional[int]
         orderby=None,  # type: Optional[str]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'.

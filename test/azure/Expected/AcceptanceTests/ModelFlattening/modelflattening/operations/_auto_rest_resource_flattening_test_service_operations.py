@@ -23,7 +23,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         self,
         resource_array=None,  # type: Optional[List["Resource"]]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put External Resource as an Array.
@@ -74,7 +74,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def get_array(
         self,
         cls=None,  # type: ClsType[List["FlattenedProduct"]]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> List["FlattenedProduct"]
         """Get External Resource as an Array.
@@ -121,7 +121,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         self,
         resource_array=None,  # type: Optional[List["WrappedProduct"]]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """No need to have a route in Express server for this operation. Used to verify the type flattened is not removed if it's referenced in an array.
@@ -172,7 +172,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def get_wrapped_array(
         self,
         cls=None,  # type: ClsType[List["ProductWrapper"]]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> List["ProductWrapper"]
         """No need to have a route in Express server for this operation. Used to verify the type flattened is not removed if it's referenced in an array.
@@ -219,7 +219,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         self,
         resource_dictionary=None,  # type: Optional[Dict[str, "FlattenedProduct"]]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put External Resource as a Dictionary.
@@ -270,7 +270,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def get_dictionary(
         self,
         cls=None,  # type: ClsType[Dict[str, "FlattenedProduct"]]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, "FlattenedProduct"]
         """Get External Resource as a Dictionary.
@@ -317,7 +317,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         self,
         resource_complex_object=None,  # type: Optional["ResourceCollection"]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put External Resource as a ResourceCollection.
@@ -368,7 +368,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def get_resource_collection(
         self,
         cls=None,  # type: ClsType["ResourceCollection"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "ResourceCollection"
         """Get External Resource as a ResourceCollection.
@@ -415,7 +415,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         self,
         simple_body_product=None,  # type: Optional["SimpleProduct"]
         cls=None,  # type: ClsType["SimpleProduct"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "SimpleProduct"
         """Put Simple Product with client flattening true on the model.
@@ -472,7 +472,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         max_product_display_name=None,  # type: Optional[str]
         odatavalue=None,  # type: Optional[str]
         cls=None,  # type: ClsType["SimpleProduct"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "SimpleProduct"
         """Put Flattened Simple Product with client flattening true on the parameter.
@@ -533,7 +533,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         max_product_display_name=None,  # type: Optional[str]
         odatavalue=None,  # type: Optional[str]
         cls=None,  # type: ClsType["SimpleProduct"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "SimpleProduct"
         """Put Simple Product with client flattening true on the model.

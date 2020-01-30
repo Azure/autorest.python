@@ -44,7 +44,7 @@ class DurationOperations(object):
     def get_null(
         self,
         cls=None,  # type: ClsType[datetime.timedelta]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> datetime.timedelta
         """Get null duration value.
@@ -92,7 +92,7 @@ class DurationOperations(object):
         self,
         duration_body,  # type: datetime.timedelta
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put a positive duration value.
@@ -141,7 +141,7 @@ class DurationOperations(object):
     def get_positive_duration(
         self,
         cls=None,  # type: ClsType[datetime.timedelta]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> datetime.timedelta
         """Get a positive duration value.
@@ -188,7 +188,7 @@ class DurationOperations(object):
     def get_invalid(
         self,
         cls=None,  # type: ClsType[datetime.timedelta]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> datetime.timedelta
         """Get an invalid duration value.

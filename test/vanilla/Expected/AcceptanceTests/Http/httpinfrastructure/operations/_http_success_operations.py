@@ -43,7 +43,7 @@ class HttpSuccessOperations(object):
     def head200(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 200 status code if successful.
@@ -86,7 +86,7 @@ class HttpSuccessOperations(object):
     def get200(
         self,
         cls=None,  # type: ClsType[bool]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> bool
         """Get 200 success.
@@ -133,7 +133,7 @@ class HttpSuccessOperations(object):
     def options200(
         self,
         cls=None,  # type: ClsType[bool]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> bool
         """Options 200 success.
@@ -180,7 +180,7 @@ class HttpSuccessOperations(object):
     def put200(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put boolean value true returning 200 success.
@@ -231,7 +231,7 @@ class HttpSuccessOperations(object):
     def patch200(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Patch true Boolean value in request returning 200.
@@ -282,7 +282,7 @@ class HttpSuccessOperations(object):
     def post200(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Post bollean value true in request that returns a 200.
@@ -333,7 +333,7 @@ class HttpSuccessOperations(object):
     def delete200(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Delete simple boolean value true returns 200.
@@ -384,7 +384,7 @@ class HttpSuccessOperations(object):
     def put201(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put true Boolean value in request returns 201.
@@ -435,7 +435,7 @@ class HttpSuccessOperations(object):
     def post201(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Post true Boolean value in request returns 201 (Created).
@@ -486,7 +486,7 @@ class HttpSuccessOperations(object):
     def put202(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put true Boolean value in request returns 202 (Accepted).
@@ -537,7 +537,7 @@ class HttpSuccessOperations(object):
     def patch202(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Patch true Boolean value in request returns 202.
@@ -588,7 +588,7 @@ class HttpSuccessOperations(object):
     def post202(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Post true Boolean value in request returns 202 (Accepted).
@@ -639,7 +639,7 @@ class HttpSuccessOperations(object):
     def delete202(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Delete true Boolean value in request returns 202 (accepted).
@@ -690,7 +690,7 @@ class HttpSuccessOperations(object):
     def head204(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 204 status code if successful.
@@ -733,7 +733,7 @@ class HttpSuccessOperations(object):
     def put204(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put true Boolean value in request returns 204 (no content).
@@ -784,7 +784,7 @@ class HttpSuccessOperations(object):
     def patch204(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Patch true Boolean value in request returns 204 (no content).
@@ -835,7 +835,7 @@ class HttpSuccessOperations(object):
     def post204(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Post true Boolean value in request returns 204 (no content).
@@ -886,7 +886,7 @@ class HttpSuccessOperations(object):
     def delete204(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Delete true Boolean value in request returns 204 (no content).
@@ -937,7 +937,7 @@ class HttpSuccessOperations(object):
     def head404(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 404 status code.

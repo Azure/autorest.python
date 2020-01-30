@@ -38,7 +38,7 @@ class HttpSuccessOperations(object):
     def head200(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 200 status code if successful.
@@ -82,7 +82,7 @@ class HttpSuccessOperations(object):
     def head204(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 204 status code if successful.
@@ -126,7 +126,7 @@ class HttpSuccessOperations(object):
     def head404(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 404 status code if successful.

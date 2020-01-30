@@ -43,7 +43,7 @@ class FilesOperations(object):
     def get_file(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get file.
@@ -90,7 +90,7 @@ class FilesOperations(object):
     def get_file_large(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get a large file.
@@ -137,7 +137,7 @@ class FilesOperations(object):
     def get_empty_file(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get empty file.

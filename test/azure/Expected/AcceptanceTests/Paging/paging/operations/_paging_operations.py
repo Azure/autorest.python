@@ -48,7 +48,7 @@ class PagingOperations(object):
     def get_no_item_name_pages(
         self,
         cls=None,  # type: Callable[[HTTPResponse, "ProductResultValue", Dict[str, Any]], Any]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "ProductResultValue"
         """A paging operation that must return result of the default 'value' node..
@@ -112,7 +112,7 @@ class PagingOperations(object):
     def get_null_next_link_name_pages(
         self,
         cls=None,  # type: Callable[[HTTPResponse, "ProductResult", Dict[str, Any]], Any]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "ProductResult"
         """A paging operation that must ignore any kind of nextLink, and stop after page 1..
@@ -176,7 +176,7 @@ class PagingOperations(object):
     def get_single_pages(
         self,
         cls=None,  # type: Callable[[HTTPResponse, "ProductResult", Dict[str, Any]], Any]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "ProductResult"
         """A paging operation that finishes on the first call without a nextlink.
@@ -243,7 +243,7 @@ class PagingOperations(object):
         maxresults=None,  # type: Optional[int]
         timeout=None,  # type: Optional[int]
         cls=None,  # type: Callable[[HTTPResponse, "ProductResult", Dict[str, Any]], Any]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "ProductResult"
         """A paging operation that includes a nextLink that has 10 pages.
@@ -322,7 +322,7 @@ class PagingOperations(object):
         maxresults=None,  # type: Optional[int]
         timeout=None,  # type: Optional[int]
         cls=None,  # type: Callable[[HTTPResponse, "OdataProductResult", Dict[str, Any]], Any]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "OdataProductResult"
         """A paging operation that includes a nextLink in odata format that has 10 pages.
@@ -402,7 +402,7 @@ class PagingOperations(object):
         maxresults=None,  # type: Optional[int]
         timeout=None,  # type: Optional[int]
         cls=None,  # type: Callable[[HTTPResponse, "ProductResult", Dict[str, Any]], Any]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "ProductResult"
         """A paging operation that includes a nextLink that has 10 pages.
@@ -484,7 +484,7 @@ class PagingOperations(object):
     def get_multiple_pages_retry_first(
         self,
         cls=None,  # type: Callable[[HTTPResponse, "ProductResult", Dict[str, Any]], Any]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "ProductResult"
         """A paging operation that fails on the first call with 500 and then retries and then get a response including a nextLink that has 10 pages.
@@ -548,7 +548,7 @@ class PagingOperations(object):
     def get_multiple_pages_retry_second(
         self,
         cls=None,  # type: Callable[[HTTPResponse, "ProductResult", Dict[str, Any]], Any]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "ProductResult"
         """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first with 500. The client should retry and finish all 10 pages eventually..
@@ -612,7 +612,7 @@ class PagingOperations(object):
     def get_single_pages_failure(
         self,
         cls=None,  # type: Callable[[HTTPResponse, "ProductResult", Dict[str, Any]], Any]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "ProductResult"
         """A paging operation that receives a 400 on the first call.
@@ -676,7 +676,7 @@ class PagingOperations(object):
     def get_multiple_pages_failure(
         self,
         cls=None,  # type: Callable[[HTTPResponse, "ProductResult", Dict[str, Any]], Any]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "ProductResult"
         """A paging operation that receives a 400 on the second call.
@@ -740,7 +740,7 @@ class PagingOperations(object):
     def get_multiple_pages_failure_uri(
         self,
         cls=None,  # type: Callable[[HTTPResponse, "ProductResult", Dict[str, Any]], Any]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "ProductResult"
         """A paging operation that receives an invalid nextLink.
@@ -806,7 +806,7 @@ class PagingOperations(object):
         api_version,  # type: str
         tenant,  # type: str
         cls=None,  # type: Callable[[HTTPResponse, "OdataProductResult", Dict[str, Any]], Any]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "OdataProductResult"
         """A paging operation that doesn't return a full URL, just a fragment.
@@ -886,7 +886,7 @@ class PagingOperations(object):
         api_version,  # type: str
         tenant,  # type: str
         cls=None,  # type: Callable[[HTTPResponse, "OdataProductResult", Dict[str, Any]], Any]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "OdataProductResult"
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
@@ -967,7 +967,7 @@ class PagingOperations(object):
         maxresults=None,  # type: Optional[int]
         timeout=None,  # type: Optional[int]
         cls=None,  # type: ClsType["ProductResult"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "ProductResult"
         error_map = kwargs.pop('error_map', {})
@@ -1015,7 +1015,7 @@ class PagingOperations(object):
         timeout=None,  # type: Optional[int]
         cls=None,  # type: Callable[[HTTPResponse, "ProductResult", Dict[str, Any]], Any]
         polling=True,  # type: Optional[bool]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "ProductResult"
         """A long-running paging operation that includes a nextLink that has 10 pages.

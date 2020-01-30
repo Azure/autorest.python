@@ -44,7 +44,7 @@ class EnumOperations(object):
     def get_not_expandable(
         self,
         cls=None,  # type: ClsType[Union[str, "Colors"]]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> Union[str, "Colors"]
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'..
@@ -92,7 +92,7 @@ class EnumOperations(object):
         self,
         string_body,  # type: Union[str, "Colors"]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
@@ -141,7 +141,7 @@ class EnumOperations(object):
     def get_referenced(
         self,
         cls=None,  # type: ClsType[Union[str, "Colors"]]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> Union[str, "Colors"]
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'..
@@ -189,7 +189,7 @@ class EnumOperations(object):
         self,
         enum_string_body,  # type: Union[str, "Colors"]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
@@ -238,7 +238,7 @@ class EnumOperations(object):
     def get_referenced_constant(
         self,
         cls=None,  # type: ClsType["RefColorConstant"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "RefColorConstant"
         """Get value 'green-color' from the constant..
@@ -286,7 +286,7 @@ class EnumOperations(object):
         self,
         field1=None,  # type: Optional[str]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Sends value 'green-color' from a constant.

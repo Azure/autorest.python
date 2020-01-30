@@ -43,7 +43,7 @@ class HttpServerFailureOperations(object):
     def head501(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 501 status code - should be represented in the client as an error.
@@ -86,7 +86,7 @@ class HttpServerFailureOperations(object):
     def get501(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 501 status code - should be represented in the client as an error.
@@ -129,7 +129,7 @@ class HttpServerFailureOperations(object):
     def post505(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 505 status code - should be represented in the client as an error.
@@ -180,7 +180,7 @@ class HttpServerFailureOperations(object):
     def delete505(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 505 status code - should be represented in the client as an error.

@@ -44,7 +44,7 @@ class IntOperations(object):
     def get_null(
         self,
         cls=None,  # type: ClsType[int]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> int
         """Get null Int value.
@@ -91,7 +91,7 @@ class IntOperations(object):
     def get_invalid(
         self,
         cls=None,  # type: ClsType[int]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> int
         """Get invalid Int value.
@@ -138,7 +138,7 @@ class IntOperations(object):
     def get_overflow_int32(
         self,
         cls=None,  # type: ClsType[int]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> int
         """Get overflow Int32 value.
@@ -185,7 +185,7 @@ class IntOperations(object):
     def get_underflow_int32(
         self,
         cls=None,  # type: ClsType[int]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> int
         """Get underflow Int32 value.
@@ -232,7 +232,7 @@ class IntOperations(object):
     def get_overflow_int64(
         self,
         cls=None,  # type: ClsType[int]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> int
         """Get overflow Int64 value.
@@ -279,7 +279,7 @@ class IntOperations(object):
     def get_underflow_int64(
         self,
         cls=None,  # type: ClsType[int]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> int
         """Get underflow Int64 value.
@@ -327,7 +327,7 @@ class IntOperations(object):
         self,
         int_body,  # type: int
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put max int32 value.
@@ -377,7 +377,7 @@ class IntOperations(object):
         self,
         int_body,  # type: int
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put max int64 value.
@@ -427,7 +427,7 @@ class IntOperations(object):
         self,
         int_body,  # type: int
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put min int32 value.
@@ -477,7 +477,7 @@ class IntOperations(object):
         self,
         int_body,  # type: int
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put min int64 value.
@@ -526,7 +526,7 @@ class IntOperations(object):
     def get_unix_time(
         self,
         cls=None,  # type: ClsType[datetime.datetime]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> datetime.datetime
         """Get datetime encoded as Unix time value.
@@ -574,7 +574,7 @@ class IntOperations(object):
         self,
         int_body,  # type: datetime.datetime
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put datetime encoded as Unix time.
@@ -623,7 +623,7 @@ class IntOperations(object):
     def get_invalid_unix_time(
         self,
         cls=None,  # type: ClsType[datetime.datetime]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> datetime.datetime
         """Get invalid Unix time value.
@@ -670,7 +670,7 @@ class IntOperations(object):
     def get_null_unix_time(
         self,
         cls=None,  # type: ClsType[datetime.datetime]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> datetime.datetime
         """Get null Unix time value.

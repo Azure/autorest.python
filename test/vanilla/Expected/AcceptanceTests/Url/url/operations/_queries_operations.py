@@ -44,7 +44,7 @@ class QueriesOperations(object):
     def get_boolean_true(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get true Boolean value on path.
@@ -89,7 +89,7 @@ class QueriesOperations(object):
     def get_boolean_false(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get false Boolean value on path.
@@ -135,7 +135,7 @@ class QueriesOperations(object):
         self,
         bool_query=None,  # type: Optional[bool]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get null Boolean value on query (query string should be absent).
@@ -182,7 +182,7 @@ class QueriesOperations(object):
     def get_int_one_million(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '1000000' integer value.
@@ -227,7 +227,7 @@ class QueriesOperations(object):
     def get_int_negative_one_million(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '-1000000' integer value.
@@ -273,7 +273,7 @@ class QueriesOperations(object):
         self,
         int_query=None,  # type: Optional[int]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get null integer value (no query parameter).
@@ -320,7 +320,7 @@ class QueriesOperations(object):
     def get_ten_billion(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '10000000000' 64 bit integer value.
@@ -365,7 +365,7 @@ class QueriesOperations(object):
     def get_negative_ten_billion(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '-10000000000' 64 bit integer value.
@@ -411,7 +411,7 @@ class QueriesOperations(object):
         self,
         long_query=None,  # type: Optional[int]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get 'null 64 bit integer value (no query param in uri).
@@ -458,7 +458,7 @@ class QueriesOperations(object):
     def float_scientific_positive(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '1.034E+20' numeric value.
@@ -503,7 +503,7 @@ class QueriesOperations(object):
     def float_scientific_negative(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '-1.034E-20' numeric value.
@@ -549,7 +549,7 @@ class QueriesOperations(object):
         self,
         float_query=None,  # type: Optional[float]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get null numeric value (no query parameter).
@@ -596,7 +596,7 @@ class QueriesOperations(object):
     def double_decimal_positive(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '9999999.999' numeric value.
@@ -641,7 +641,7 @@ class QueriesOperations(object):
     def double_decimal_negative(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '-9999999.999' numeric value.
@@ -687,7 +687,7 @@ class QueriesOperations(object):
         self,
         double_query=None,  # type: Optional[float]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get null numeric value (no query parameter).
@@ -734,7 +734,7 @@ class QueriesOperations(object):
     def string_unicode(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
@@ -779,7 +779,7 @@ class QueriesOperations(object):
     def string_url_encoded(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get 'begin!*'();:@ &=+$,/?#[]end.
@@ -824,7 +824,7 @@ class QueriesOperations(object):
     def string_empty(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get ''.
@@ -870,7 +870,7 @@ class QueriesOperations(object):
         self,
         string_query=None,  # type: Optional[str]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get null (no query parameter in url).
@@ -918,7 +918,7 @@ class QueriesOperations(object):
         self,
         enum_query=None,  # type: Optional[Union[str, "UriColor"]]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get using uri with query parameter 'green color'.
@@ -966,7 +966,7 @@ class QueriesOperations(object):
         self,
         enum_query=None,  # type: Optional[Union[str, "UriColor"]]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get null (no query parameter in url).
@@ -1014,7 +1014,7 @@ class QueriesOperations(object):
         self,
         byte_query=None,  # type: Optional[bytearray]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
@@ -1061,7 +1061,7 @@ class QueriesOperations(object):
     def byte_empty(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '' as byte array.
@@ -1107,7 +1107,7 @@ class QueriesOperations(object):
         self,
         byte_query=None,  # type: Optional[bytearray]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get null as byte array (no query parameters in uri).
@@ -1154,7 +1154,7 @@ class QueriesOperations(object):
     def date_valid(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '2012-01-01' as date.
@@ -1200,7 +1200,7 @@ class QueriesOperations(object):
         self,
         date_query=None,  # type: Optional[datetime.date]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get null as date - this should result in no query parameters in uri.
@@ -1247,7 +1247,7 @@ class QueriesOperations(object):
     def date_time_valid(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get '2012-01-01T01:01:01Z' as date-time.
@@ -1293,7 +1293,7 @@ class QueriesOperations(object):
         self,
         date_time_query=None,  # type: Optional[datetime.datetime]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get null as date-time, should result in no query parameters in uri.
@@ -1341,7 +1341,7 @@ class QueriesOperations(object):
         self,
         array_query=None,  # type: Optional[List[str]]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
@@ -1389,7 +1389,7 @@ class QueriesOperations(object):
         self,
         array_query=None,  # type: Optional[List[str]]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get a null array of string using the csv-array format.
@@ -1437,7 +1437,7 @@ class QueriesOperations(object):
         self,
         array_query=None,  # type: Optional[List[str]]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get an empty array [] of string using the csv-array format.
@@ -1485,7 +1485,7 @@ class QueriesOperations(object):
         self,
         array_query=None,  # type: Optional[List[str]]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format.
@@ -1533,7 +1533,7 @@ class QueriesOperations(object):
         self,
         array_query=None,  # type: Optional[List[str]]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format.
@@ -1581,7 +1581,7 @@ class QueriesOperations(object):
         self,
         array_query=None,  # type: Optional[List[str]]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format.

@@ -26,7 +26,7 @@ class AutoRestHeadTestServiceConfiguration(Configuration):
     def __init__(
         self,
         credential,  # type: "TokenCredential"
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         if credential is None:
@@ -40,7 +40,7 @@ class AutoRestHeadTestServiceConfiguration(Configuration):
 
     def _configure(
         self,
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)

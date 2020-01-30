@@ -44,7 +44,7 @@ class PolymorphicrecursiveOperations(object):
     def get_valid(
         self,
         cls=None,  # type: ClsType["Fish"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "Fish"
         """Get complex types that are polymorphic and have recursive references.
@@ -92,7 +92,7 @@ class PolymorphicrecursiveOperations(object):
         self,
         complex_body,  # type: "Fish"
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types that are polymorphic and have recursive references.

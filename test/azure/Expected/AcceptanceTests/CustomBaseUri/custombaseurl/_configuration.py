@@ -26,7 +26,7 @@ class AutoRestParameterizedHostTestClientConfiguration(Configuration):
     def __init__(
         self,
         host,  # type: str
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         if host is None:
@@ -39,7 +39,7 @@ class AutoRestParameterizedHostTestClientConfiguration(Configuration):
 
     def _configure(
         self,
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)

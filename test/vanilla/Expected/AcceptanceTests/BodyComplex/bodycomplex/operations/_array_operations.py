@@ -44,7 +44,7 @@ class ArrayOperations(object):
     def get_valid(
         self,
         cls=None,  # type: ClsType["ArrayWrapper"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "ArrayWrapper"
         """Get complex types with array property.
@@ -92,7 +92,7 @@ class ArrayOperations(object):
         self,
         array=None,  # type: Optional[List[str]]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with array property.
@@ -142,7 +142,7 @@ class ArrayOperations(object):
     def get_empty(
         self,
         cls=None,  # type: ClsType["ArrayWrapper"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "ArrayWrapper"
         """Get complex types with array property which is empty.
@@ -190,7 +190,7 @@ class ArrayOperations(object):
         self,
         array=None,  # type: Optional[List[str]]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with array property which is empty.
@@ -240,7 +240,7 @@ class ArrayOperations(object):
     def get_not_provided(
         self,
         cls=None,  # type: ClsType["ArrayWrapper"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "ArrayWrapper"
         """Get complex types with array property while server doesn't provide a response payload.

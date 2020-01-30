@@ -22,7 +22,7 @@ class AdditionalPropertiesClientConfiguration(Configuration):
 
     def __init__(
         self,
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         super(AdditionalPropertiesClientConfiguration, self).__init__(**kwargs)
@@ -32,7 +32,7 @@ class AdditionalPropertiesClientConfiguration(Configuration):
 
     def _configure(
         self,
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)

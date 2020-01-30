@@ -43,7 +43,7 @@ class ByteOperations(object):
     def get_null(
         self,
         cls=None,  # type: ClsType[bytearray]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> bytearray
         """Get null byte value.
@@ -90,7 +90,7 @@ class ByteOperations(object):
     def get_empty(
         self,
         cls=None,  # type: ClsType[bytearray]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> bytearray
         """Get empty byte value ''.
@@ -137,7 +137,7 @@ class ByteOperations(object):
     def get_non_ascii(
         self,
         cls=None,  # type: ClsType[bytearray]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> bytearray
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
@@ -185,7 +185,7 @@ class ByteOperations(object):
         self,
         byte_body,  # type: bytearray
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
@@ -234,7 +234,7 @@ class ByteOperations(object):
     def get_invalid(
         self,
         cls=None,  # type: ClsType[bytearray]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> bytearray
         """Get invalid byte value ':::SWAGGER::::'.

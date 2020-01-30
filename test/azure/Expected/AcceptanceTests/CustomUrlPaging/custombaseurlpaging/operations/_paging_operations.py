@@ -47,7 +47,7 @@ class PagingOperations(object):
         self,
         account_name,  # type: str
         cls=None,  # type: Callable[[HTTPResponse, "ProductResult", Dict[str, Any]], Any]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "ProductResult"
         """A paging operation that combines custom url, paging and partial URL and expect to concat after host.
@@ -124,7 +124,7 @@ class PagingOperations(object):
         self,
         account_name,  # type: str
         cls=None,  # type: Callable[[HTTPResponse, "ProductResult", Dict[str, Any]], Any]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "ProductResult"
         """A paging operation that combines custom url, paging and partial URL with next operation.

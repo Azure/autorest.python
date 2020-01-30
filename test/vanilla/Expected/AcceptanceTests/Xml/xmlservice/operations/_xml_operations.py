@@ -44,7 +44,7 @@ class XmlOperations(object):
     def get_complex_type_ref_no_meta(
         self,
         cls=None,  # type: ClsType["RootWithRefAndNoMeta"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "RootWithRefAndNoMeta"
         """Get a complex type that has a ref to a complex type with no XML node.
@@ -92,7 +92,7 @@ class XmlOperations(object):
         self,
         model,  # type: "RootWithRefAndNoMeta"
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Puts a complex type that has a ref to a complex type with no XML node.
@@ -141,7 +141,7 @@ class XmlOperations(object):
     def get_complex_type_ref_with_meta(
         self,
         cls=None,  # type: ClsType["RootWithRefAndMeta"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "RootWithRefAndMeta"
         """Get a complex type that has a ref to a complex type with XML node.
@@ -189,7 +189,7 @@ class XmlOperations(object):
         self,
         model,  # type: "RootWithRefAndMeta"
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Puts a complex type that has a ref to a complex type with XML node.
@@ -238,7 +238,7 @@ class XmlOperations(object):
     def get_simple(
         self,
         cls=None,  # type: ClsType["Slideshow"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "Slideshow"
         """Get a simple XML document.
@@ -286,7 +286,7 @@ class XmlOperations(object):
         self,
         slideshow,  # type: "Slideshow"
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put a simple XML document.
@@ -335,7 +335,7 @@ class XmlOperations(object):
     def get_wrapped_lists(
         self,
         cls=None,  # type: ClsType["AppleBarrel"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "AppleBarrel"
         """Get an XML document with multiple wrapped lists.
@@ -383,7 +383,7 @@ class XmlOperations(object):
         self,
         wrapped_lists,  # type: "AppleBarrel"
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put an XML document with multiple wrapped lists.
@@ -432,7 +432,7 @@ class XmlOperations(object):
     def get_headers(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get strongly-typed response headers..
@@ -478,7 +478,7 @@ class XmlOperations(object):
     def get_empty_list(
         self,
         cls=None,  # type: ClsType["Slideshow"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "Slideshow"
         """Get an empty list..
@@ -526,7 +526,7 @@ class XmlOperations(object):
         self,
         slideshow,  # type: "Slideshow"
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Puts an empty list..
@@ -575,7 +575,7 @@ class XmlOperations(object):
     def get_empty_wrapped_lists(
         self,
         cls=None,  # type: ClsType["AppleBarrel"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "AppleBarrel"
         """Gets some empty wrapped lists..
@@ -623,7 +623,7 @@ class XmlOperations(object):
         self,
         apple_barrel,  # type: "AppleBarrel"
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Puts some empty wrapped lists..
@@ -672,7 +672,7 @@ class XmlOperations(object):
     def get_root_list(
         self,
         cls=None,  # type: ClsType[List["Banana"]]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> List["Banana"]
         """Gets a list as the root element..
@@ -720,7 +720,7 @@ class XmlOperations(object):
         self,
         bananas,  # type: List["Banana"]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Puts a list as the root element..
@@ -769,7 +769,7 @@ class XmlOperations(object):
     def get_root_list_single_item(
         self,
         cls=None,  # type: ClsType[List["Banana"]]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> List["Banana"]
         """Gets a list with a single item..
@@ -817,7 +817,7 @@ class XmlOperations(object):
         self,
         bananas,  # type: List["Banana"]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Puts a list with a single item..
@@ -866,7 +866,7 @@ class XmlOperations(object):
     def get_empty_root_list(
         self,
         cls=None,  # type: ClsType[List["Banana"]]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> List["Banana"]
         """Gets an empty list as the root element..
@@ -914,7 +914,7 @@ class XmlOperations(object):
         self,
         bananas,  # type: List["Banana"]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Puts an empty list as the root element..
@@ -963,7 +963,7 @@ class XmlOperations(object):
     def get_empty_child_element(
         self,
         cls=None,  # type: ClsType["Banana"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "Banana"
         """Gets an XML document with an empty child element..
@@ -1011,7 +1011,7 @@ class XmlOperations(object):
         self,
         banana,  # type: "Banana"
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Puts a value with an empty child element..
@@ -1060,7 +1060,7 @@ class XmlOperations(object):
     def list_containers(
         self,
         cls=None,  # type: ClsType["ListContainersResponse"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "ListContainersResponse"
         """Lists containers in a storage account..
@@ -1109,7 +1109,7 @@ class XmlOperations(object):
     def get_service_properties(
         self,
         cls=None,  # type: ClsType["StorageServiceProperties"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "StorageServiceProperties"
         """Gets storage service properties..
@@ -1161,7 +1161,7 @@ class XmlOperations(object):
         self,
         properties,  # type: "StorageServiceProperties"
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Puts storage service properties..
@@ -1214,7 +1214,7 @@ class XmlOperations(object):
     def get_acls(
         self,
         cls=None,  # type: ClsType[List["SignedIdentifier"]]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> List["SignedIdentifier"]
         """Gets storage ACLs for a container..
@@ -1266,7 +1266,7 @@ class XmlOperations(object):
         self,
         properties,  # type: List["SignedIdentifier"]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Puts storage ACLs for a container..
@@ -1319,7 +1319,7 @@ class XmlOperations(object):
     def list_blobs(
         self,
         cls=None,  # type: ClsType["ListBlobsResponse"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "ListBlobsResponse"
         """Lists blobs in a storage container..
@@ -1371,7 +1371,7 @@ class XmlOperations(object):
         self,
         id=None,  # type: Optional[int]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID number 42.
@@ -1421,7 +1421,7 @@ class XmlOperations(object):
     def json_output(
         self,
         cls=None,  # type: ClsType["JSONOutput"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "JSONOutput"
         """A Swagger with XML that has one operation that returns JSON. ID number 42.

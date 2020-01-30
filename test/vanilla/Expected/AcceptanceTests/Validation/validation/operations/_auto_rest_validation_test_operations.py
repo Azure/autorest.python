@@ -24,7 +24,7 @@ class AutoRestValidationTestOperationsMixin(object):
         resource_group_name,  # type: str
         id,  # type: int
         cls=None,  # type: ClsType["Product"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "Product"
         """Validates input parameters on the method. See swagger for details..
@@ -85,7 +85,7 @@ class AutoRestValidationTestOperationsMixin(object):
         id,  # type: int
         body=None,  # type: Optional["Product"]
         cls=None,  # type: ClsType["Product"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "Product"
         """Validates body parameters on the method. See swagger for details..
@@ -152,7 +152,7 @@ class AutoRestValidationTestOperationsMixin(object):
     def get_with_constant_in_path(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """MISSING·OPERATION-DESCRIPTION.
@@ -200,7 +200,7 @@ class AutoRestValidationTestOperationsMixin(object):
         self,
         body=None,  # type: Optional["Product"]
         cls=None,  # type: ClsType["Product"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "Product"
         """MISSING·OPERATION-DESCRIPTION.

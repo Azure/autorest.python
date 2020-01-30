@@ -43,7 +43,7 @@ class HttpRetryOperations(object):
     def head408(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 408 status code, then 200 after retry.
@@ -86,7 +86,7 @@ class HttpRetryOperations(object):
     def put500(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 500 status code, then 200 after retry.
@@ -137,7 +137,7 @@ class HttpRetryOperations(object):
     def patch500(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 500 status code, then 200 after retry.
@@ -188,7 +188,7 @@ class HttpRetryOperations(object):
     def get502(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 502 status code, then 200 after retry.
@@ -231,7 +231,7 @@ class HttpRetryOperations(object):
     def options502(
         self,
         cls=None,  # type: ClsType[bool]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> bool
         """Return 502 status code, then 200 after retry.
@@ -278,7 +278,7 @@ class HttpRetryOperations(object):
     def post503(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 503 status code, then 200 after retry.
@@ -329,7 +329,7 @@ class HttpRetryOperations(object):
     def delete503(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 503 status code, then 200 after retry.
@@ -380,7 +380,7 @@ class HttpRetryOperations(object):
     def put504(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 504 status code, then 200 after retry.
@@ -431,7 +431,7 @@ class HttpRetryOperations(object):
     def patch504(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 504 status code, then 200 after retry.

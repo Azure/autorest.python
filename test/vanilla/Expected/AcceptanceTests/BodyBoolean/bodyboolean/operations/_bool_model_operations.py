@@ -43,7 +43,7 @@ class BoolOperations(object):
     def get_true(
         self,
         cls=None,  # type: ClsType[bool]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> bool
         """Get true Boolean value.
@@ -90,7 +90,7 @@ class BoolOperations(object):
     def put_true(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Set Boolean value true.
@@ -138,7 +138,7 @@ class BoolOperations(object):
     def get_false(
         self,
         cls=None,  # type: ClsType[bool]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> bool
         """Get false Boolean value.
@@ -185,7 +185,7 @@ class BoolOperations(object):
     def put_false(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Set Boolean value false.
@@ -233,7 +233,7 @@ class BoolOperations(object):
     def get_null(
         self,
         cls=None,  # type: ClsType[bool]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> bool
         """Get null Boolean value.
@@ -280,7 +280,7 @@ class BoolOperations(object):
     def get_invalid(
         self,
         cls=None,  # type: ClsType[bool]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> bool
         """Get invalid Boolean value.

@@ -43,7 +43,7 @@ class HttpClientFailureOperations(object):
     def head400(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
@@ -86,7 +86,7 @@ class HttpClientFailureOperations(object):
     def get400(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
@@ -129,7 +129,7 @@ class HttpClientFailureOperations(object):
     def options400(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
@@ -172,7 +172,7 @@ class HttpClientFailureOperations(object):
     def put400(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
@@ -223,7 +223,7 @@ class HttpClientFailureOperations(object):
     def patch400(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
@@ -274,7 +274,7 @@ class HttpClientFailureOperations(object):
     def post400(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
@@ -325,7 +325,7 @@ class HttpClientFailureOperations(object):
     def delete400(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
@@ -376,7 +376,7 @@ class HttpClientFailureOperations(object):
     def head401(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 401 status code - should be represented in the client as an error.
@@ -419,7 +419,7 @@ class HttpClientFailureOperations(object):
     def get402(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 402 status code - should be represented in the client as an error.
@@ -462,7 +462,7 @@ class HttpClientFailureOperations(object):
     def options403(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 403 status code - should be represented in the client as an error.
@@ -505,7 +505,7 @@ class HttpClientFailureOperations(object):
     def get403(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 403 status code - should be represented in the client as an error.
@@ -548,7 +548,7 @@ class HttpClientFailureOperations(object):
     def put404(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 404 status code - should be represented in the client as an error.
@@ -599,7 +599,7 @@ class HttpClientFailureOperations(object):
     def patch405(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 405 status code - should be represented in the client as an error.
@@ -650,7 +650,7 @@ class HttpClientFailureOperations(object):
     def post406(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 406 status code - should be represented in the client as an error.
@@ -701,7 +701,7 @@ class HttpClientFailureOperations(object):
     def delete407(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 407 status code - should be represented in the client as an error.
@@ -752,7 +752,7 @@ class HttpClientFailureOperations(object):
     def put409(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 409 status code - should be represented in the client as an error.
@@ -803,7 +803,7 @@ class HttpClientFailureOperations(object):
     def head410(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 410 status code - should be represented in the client as an error.
@@ -846,7 +846,7 @@ class HttpClientFailureOperations(object):
     def get411(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 411 status code - should be represented in the client as an error.
@@ -889,7 +889,7 @@ class HttpClientFailureOperations(object):
     def options412(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 412 status code - should be represented in the client as an error.
@@ -932,7 +932,7 @@ class HttpClientFailureOperations(object):
     def get412(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 412 status code - should be represented in the client as an error.
@@ -975,7 +975,7 @@ class HttpClientFailureOperations(object):
     def put413(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 413 status code - should be represented in the client as an error.
@@ -1026,7 +1026,7 @@ class HttpClientFailureOperations(object):
     def patch414(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 414 status code - should be represented in the client as an error.
@@ -1077,7 +1077,7 @@ class HttpClientFailureOperations(object):
     def post415(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 415 status code - should be represented in the client as an error.
@@ -1128,7 +1128,7 @@ class HttpClientFailureOperations(object):
     def get416(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 416 status code - should be represented in the client as an error.
@@ -1171,7 +1171,7 @@ class HttpClientFailureOperations(object):
     def delete417(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 417 status code - should be represented in the client as an error.
@@ -1222,7 +1222,7 @@ class HttpClientFailureOperations(object):
     def head429(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 429 status code - should be represented in the client as an error.

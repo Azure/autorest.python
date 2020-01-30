@@ -43,7 +43,7 @@ class HttpFailureOperations(object):
     def get_empty_error(
         self,
         cls=None,  # type: ClsType[bool]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> bool
         """Get empty error form server.
@@ -90,7 +90,7 @@ class HttpFailureOperations(object):
     def get_no_model_error(
         self,
         cls=None,  # type: ClsType[bool]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> bool
         """Get empty error form server.
@@ -137,7 +137,7 @@ class HttpFailureOperations(object):
     def get_no_model_empty(
         self,
         cls=None,  # type: ClsType[bool]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> bool
         """Get empty response from server.

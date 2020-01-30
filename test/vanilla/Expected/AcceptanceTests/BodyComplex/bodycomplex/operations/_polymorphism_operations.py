@@ -44,7 +44,7 @@ class PolymorphismOperations(object):
     def get_valid(
         self,
         cls=None,  # type: ClsType["Fish"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "Fish"
         """Get complex types that are polymorphic.
@@ -92,7 +92,7 @@ class PolymorphismOperations(object):
         self,
         complex_body,  # type: "Fish"
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types that are polymorphic.
@@ -173,7 +173,7 @@ class PolymorphismOperations(object):
     def get_dot_syntax(
         self,
         cls=None,  # type: ClsType["DotFish"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "DotFish"
         """Get complex types that are polymorphic, JSON key contains a dot.
@@ -220,7 +220,7 @@ class PolymorphismOperations(object):
     def get_composed_with_discriminator(
         self,
         cls=None,  # type: ClsType["DotFishMarket"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "DotFishMarket"
         """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, with discriminator specified. Deserialization must NOT fail and use the discriminator type specified on the wire..
@@ -267,7 +267,7 @@ class PolymorphismOperations(object):
     def get_composed_without_discriminator(
         self,
         cls=None,  # type: ClsType["DotFishMarket"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "DotFishMarket"
         """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, without discriminator specified on wire. Deserialization must NOT fail and use the explicit type of the property..
@@ -314,7 +314,7 @@ class PolymorphismOperations(object):
     def get_complicated(
         self,
         cls=None,  # type: ClsType["Salmon"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "Salmon"
         """Get complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties.
@@ -362,7 +362,7 @@ class PolymorphismOperations(object):
         self,
         complex_body,  # type: "Salmon"
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties.
@@ -412,7 +412,7 @@ class PolymorphismOperations(object):
         self,
         complex_body,  # type: "Salmon"
         cls=None,  # type: ClsType["Salmon"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "Salmon"
         """Put complex types that are polymorphic, omitting the discriminator.
@@ -466,7 +466,7 @@ class PolymorphismOperations(object):
         self,
         complex_body,  # type: "Fish"
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the request should not be allowed from the client.

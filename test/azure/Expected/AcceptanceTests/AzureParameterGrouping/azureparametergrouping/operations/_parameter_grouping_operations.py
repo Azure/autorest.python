@@ -47,7 +47,7 @@ class ParameterGroupingOperations(object):
         custom_header=None,  # type: Optional[str]
         query=None,  # type: Optional[int]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Post a bunch of required parameters grouped.
@@ -112,7 +112,7 @@ class ParameterGroupingOperations(object):
         custom_header=None,  # type: Optional[str]
         query=None,  # type: Optional[int]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Post a bunch of optional parameters grouped.
@@ -167,7 +167,7 @@ class ParameterGroupingOperations(object):
         header_two=None,  # type: Optional[str]
         query_two=None,  # type: Optional[int]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Post parameters from multiple different parameter groups.
@@ -228,7 +228,7 @@ class ParameterGroupingOperations(object):
         header_one=None,  # type: Optional[str]
         query_one=None,  # type: Optional[int]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Post parameters with a shared parameter group object.

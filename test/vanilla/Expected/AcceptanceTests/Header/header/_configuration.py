@@ -22,7 +22,7 @@ class AutoRestSwaggerBATHeaderServiceConfiguration(Configuration):
 
     def __init__(
         self,
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         super(AutoRestSwaggerBATHeaderServiceConfiguration, self).__init__(**kwargs)
@@ -32,7 +32,7 @@ class AutoRestSwaggerBATHeaderServiceConfiguration(Configuration):
 
     def _configure(
         self,
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)

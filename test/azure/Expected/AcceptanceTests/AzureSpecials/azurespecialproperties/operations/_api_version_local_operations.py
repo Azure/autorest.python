@@ -43,7 +43,7 @@ class ApiVersionLocalOperations(object):
     def get_method_local_valid(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
@@ -86,7 +86,7 @@ class ApiVersionLocalOperations(object):
     def get_method_local_null(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get method with api-version modeled in the method.  pass in api-version = null to succeed.
@@ -129,7 +129,7 @@ class ApiVersionLocalOperations(object):
     def get_path_local_valid(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
@@ -172,7 +172,7 @@ class ApiVersionLocalOperations(object):
     def get_swagger_local_valid(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.

@@ -45,7 +45,7 @@ class ExplicitOperations(object):
         self,
         body_parameter,  # type: int
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly required integer. Please put null and the client library should throw before the request is sent..
@@ -95,7 +95,7 @@ class ExplicitOperations(object):
         self,
         body_parameter=None,  # type: Optional[int]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional integer. Please put null..
@@ -148,7 +148,7 @@ class ExplicitOperations(object):
         self,
         value,  # type: int
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the client library should throw before the request is sent..
@@ -199,7 +199,7 @@ class ExplicitOperations(object):
         self,
         value=None,  # type: Optional[int]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null..
@@ -253,7 +253,7 @@ class ExplicitOperations(object):
         self,
         header_parameter,  # type: int
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly required integer. Please put a header 'headerParameter' => null and the client library should throw before the request is sent..
@@ -300,7 +300,7 @@ class ExplicitOperations(object):
         self,
         header_parameter=None,  # type: Optional[int]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional integer. Please put a header 'headerParameter' => null..
@@ -348,7 +348,7 @@ class ExplicitOperations(object):
         self,
         body_parameter,  # type: str
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly required string. Please put null and the client library should throw before the request is sent..
@@ -398,7 +398,7 @@ class ExplicitOperations(object):
         self,
         body_parameter=None,  # type: Optional[str]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional string. Please put null..
@@ -451,7 +451,7 @@ class ExplicitOperations(object):
         self,
         value,  # type: str
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the client library should throw before the request is sent..
@@ -502,7 +502,7 @@ class ExplicitOperations(object):
         self,
         value=None,  # type: Optional[str]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null..
@@ -556,7 +556,7 @@ class ExplicitOperations(object):
         self,
         header_parameter,  # type: str
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly required string. Please put a header 'headerParameter' => null and the client library should throw before the request is sent..
@@ -603,7 +603,7 @@ class ExplicitOperations(object):
         self,
         body_parameter=None,  # type: Optional[str]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional string. Please put a header 'headerParameter' => null..
@@ -651,7 +651,7 @@ class ExplicitOperations(object):
         self,
         body_parameter,  # type: "Product"
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly required complex object. Please put null and the client library should throw before the request is sent..
@@ -701,7 +701,7 @@ class ExplicitOperations(object):
         self,
         body_parameter=None,  # type: Optional["Product"]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional complex object. Please put null..
@@ -754,7 +754,7 @@ class ExplicitOperations(object):
         self,
         value,  # type: "Product"
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null and the client library should throw before the request is sent..
@@ -805,7 +805,7 @@ class ExplicitOperations(object):
         self,
         value=None,  # type: Optional["Product"]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null..
@@ -859,7 +859,7 @@ class ExplicitOperations(object):
         self,
         body_parameter,  # type: List[str]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly required array. Please put null and the client library should throw before the request is sent..
@@ -909,7 +909,7 @@ class ExplicitOperations(object):
         self,
         body_parameter=None,  # type: Optional[List[str]]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional array. Please put null..
@@ -962,7 +962,7 @@ class ExplicitOperations(object):
         self,
         value,  # type: List[str]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the client library should throw before the request is sent..
@@ -1013,7 +1013,7 @@ class ExplicitOperations(object):
         self,
         value=None,  # type: Optional[List[str]]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null..
@@ -1067,7 +1067,7 @@ class ExplicitOperations(object):
         self,
         header_parameter,  # type: List[str]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly required array. Please put a header 'headerParameter' => null and the client library should throw before the request is sent..
@@ -1114,7 +1114,7 @@ class ExplicitOperations(object):
         self,
         header_parameter=None,  # type: Optional[List[str]]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test explicitly optional integer. Please put a header 'headerParameter' => null..

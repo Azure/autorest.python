@@ -47,7 +47,7 @@ class AvailabilitySetsOperations(object):
         avset,  # type: str
         availability_set_update_parameters_tags,  # type: Dict[str, str]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Updates the tags for an availability set..

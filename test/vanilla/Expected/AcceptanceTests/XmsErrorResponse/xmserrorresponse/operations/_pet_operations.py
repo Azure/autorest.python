@@ -45,7 +45,7 @@ class PetOperations(object):
         self,
         pet_id,  # type: str
         cls=None,  # type: ClsType["Pet"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "Pet"
         """Gets pets by id..
@@ -106,7 +106,7 @@ class PetOperations(object):
         self,
         what_action,  # type: str
         cls=None,  # type: ClsType["PetAction"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "PetAction"
         """Asks pet to do something.

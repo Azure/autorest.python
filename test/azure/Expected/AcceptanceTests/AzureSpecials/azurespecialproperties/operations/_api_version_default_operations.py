@@ -43,7 +43,7 @@ class ApiVersionDefaultOperations(object):
     def get_method_global_valid(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """GET method with api-version modeled in global settings..
@@ -86,7 +86,7 @@ class ApiVersionDefaultOperations(object):
     def get_method_global_not_provided_valid(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """GET method with api-version modeled in global settings..
@@ -129,7 +129,7 @@ class ApiVersionDefaultOperations(object):
     def get_path_global_valid(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """GET method with api-version modeled in global settings..
@@ -172,7 +172,7 @@ class ApiVersionDefaultOperations(object):
     def get_swagger_global_valid(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """GET method with api-version modeled in global settings..

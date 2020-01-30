@@ -44,7 +44,7 @@ class InheritanceOperations(object):
     def get_valid(
         self,
         cls=None,  # type: ClsType["Siamese"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "Siamese"
         """Get complex types that extend others.
@@ -92,7 +92,7 @@ class InheritanceOperations(object):
         self,
         complex_body,  # type: "Siamese"
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types that extend others.

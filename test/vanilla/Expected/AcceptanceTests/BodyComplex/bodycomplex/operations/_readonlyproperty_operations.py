@@ -44,7 +44,7 @@ class ReadonlypropertyOperations(object):
     def get_valid(
         self,
         cls=None,  # type: ClsType["ReadonlyObj"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "ReadonlyObj"
         """Get complex types that have readonly properties.
@@ -92,7 +92,7 @@ class ReadonlypropertyOperations(object):
         self,
         size=None,  # type: Optional[int]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types that have readonly properties.

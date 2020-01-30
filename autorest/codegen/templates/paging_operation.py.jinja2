@@ -22,7 +22,7 @@ def {{ operation.python_name }}(
     {{ param_signature }}
     {% endfor %}
     cls=None,  # type: Callable[[HTTPResponse, {{ keywords.return_type_annotation(operation) }}, Dict[str, Any]], Any]
-    **kwargs  # type: **Any
+    **kwargs  # type: Any
 ):
 {% endif %}{% endmacro %}
 {% macro return_docstring() %}

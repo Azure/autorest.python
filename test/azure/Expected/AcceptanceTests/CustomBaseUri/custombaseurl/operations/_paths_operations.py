@@ -44,7 +44,7 @@ class PathsOperations(object):
         self,
         account_name,  # type: str
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get a 200 to test a valid base uri.

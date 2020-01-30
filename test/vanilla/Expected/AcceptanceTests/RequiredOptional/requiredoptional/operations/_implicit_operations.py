@@ -44,7 +44,7 @@ class ImplicitOperations(object):
         self,
         path_parameter,  # type: str
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test implicitly required path parameter.
@@ -94,7 +94,7 @@ class ImplicitOperations(object):
         self,
         query_parameter=None,  # type: Optional[str]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test implicitly optional query parameter.
@@ -142,7 +142,7 @@ class ImplicitOperations(object):
         self,
         query_parameter=None,  # type: Optional[str]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test implicitly optional header parameter.
@@ -190,7 +190,7 @@ class ImplicitOperations(object):
         self,
         body_parameter=None,  # type: Optional[str]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test implicitly optional body parameter.
@@ -242,7 +242,7 @@ class ImplicitOperations(object):
     def get_required_global_path(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test implicitly required path parameter.
@@ -289,7 +289,7 @@ class ImplicitOperations(object):
     def get_required_global_query(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test implicitly required query parameter.
@@ -333,7 +333,7 @@ class ImplicitOperations(object):
     def get_optional_global_query(
         self,
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Test implicitly optional query parameter.

@@ -44,7 +44,7 @@ class FlattencomplexOperations(object):
     def get_valid(
         self,
         cls=None,  # type: ClsType["MyBaseType"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "MyBaseType"
         """MISSING·OPERATION-DESCRIPTION.

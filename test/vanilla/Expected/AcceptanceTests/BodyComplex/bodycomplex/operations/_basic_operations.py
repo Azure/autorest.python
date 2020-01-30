@@ -44,7 +44,7 @@ class BasicOperations(object):
     def get_valid(
         self,
         cls=None,  # type: ClsType["Basic"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "Basic"
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
@@ -92,7 +92,7 @@ class BasicOperations(object):
         self,
         complex_body,  # type: "Basic"
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
@@ -143,7 +143,7 @@ class BasicOperations(object):
     def get_invalid(
         self,
         cls=None,  # type: ClsType["Basic"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "Basic"
         """Get a basic complex type that is invalid for the local strong type.
@@ -190,7 +190,7 @@ class BasicOperations(object):
     def get_empty(
         self,
         cls=None,  # type: ClsType["Basic"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "Basic"
         """Get a basic complex type that is empty.
@@ -237,7 +237,7 @@ class BasicOperations(object):
     def get_null(
         self,
         cls=None,  # type: ClsType["Basic"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "Basic"
         """Get a basic complex type whose properties are null.
@@ -284,7 +284,7 @@ class BasicOperations(object):
     def get_not_provided(
         self,
         cls=None,  # type: ClsType["Basic"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "Basic"
         """Get a basic complex type while the server doesn't provide a response payload.

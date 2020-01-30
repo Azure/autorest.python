@@ -44,7 +44,7 @@ class DictionaryOperations(object):
     def get_valid(
         self,
         cls=None,  # type: ClsType["DictionaryWrapper"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "DictionaryWrapper"
         """Get complex types with dictionary property.
@@ -92,7 +92,7 @@ class DictionaryOperations(object):
         self,
         default_program=None,  # type: Optional[Dict[str, str]]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with dictionary property.
@@ -142,7 +142,7 @@ class DictionaryOperations(object):
     def get_empty(
         self,
         cls=None,  # type: ClsType["DictionaryWrapper"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "DictionaryWrapper"
         """Get complex types with dictionary property which is empty.
@@ -190,7 +190,7 @@ class DictionaryOperations(object):
         self,
         default_program=None,  # type: Optional[Dict[str, str]]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put complex types with dictionary property which is empty.
@@ -240,7 +240,7 @@ class DictionaryOperations(object):
     def get_null(
         self,
         cls=None,  # type: ClsType["DictionaryWrapper"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "DictionaryWrapper"
         """Get complex types with dictionary property which is null.
@@ -287,7 +287,7 @@ class DictionaryOperations(object):
     def get_not_provided(
         self,
         cls=None,  # type: ClsType["DictionaryWrapper"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "DictionaryWrapper"
         """Get complex types with dictionary property while server doesn't provide a response payload.

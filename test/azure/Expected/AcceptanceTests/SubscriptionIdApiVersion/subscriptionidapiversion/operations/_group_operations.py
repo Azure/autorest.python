@@ -45,7 +45,7 @@ class GroupOperations(object):
         self,
         resource_group_name,  # type: str
         cls=None,  # type: ClsType["SampleResourceGroup"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "SampleResourceGroup"
         """Provides a resouce group with name 'testgroup101' and location 'West US'..

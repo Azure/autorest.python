@@ -26,7 +26,7 @@ def {{ operation_name }}(
     {% endfor %}
     cls=None,  # type: Callable[[HTTPResponse, {{ keywords.return_type_annotation(operation) }}, Dict[str, Any]], Any]
     polling=True,  # type: Optional[bool]
-    **kwargs  # type: **Any
+    **kwargs  # type: Any
 ):
 {% endif %}{% endmacro %}
 {% macro return_docstring() %}

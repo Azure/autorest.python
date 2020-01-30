@@ -47,7 +47,7 @@ class PathsOperations(object):
         key_name,  # type: str
         key_version=None,  # type: Optional[str]
         cls=None,  # type: ClsType[None]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get a 200 to test a valid base uri.

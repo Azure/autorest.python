@@ -45,7 +45,7 @@ class PetsOperations(object):
         self,
         create_parameters,  # type: "PetAPTrue"
         cls=None,  # type: ClsType["PetAPTrue"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "PetAPTrue"
         """Create a Pet which contains more properties than what is defined..
@@ -99,7 +99,7 @@ class PetsOperations(object):
         self,
         create_parameters,  # type: "CatAPTrue"
         cls=None,  # type: ClsType["CatAPTrue"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "CatAPTrue"
         """Create a CatAPTrue which contains more properties than what is defined..
@@ -153,7 +153,7 @@ class PetsOperations(object):
         self,
         create_parameters,  # type: "PetAPObject"
         cls=None,  # type: ClsType["PetAPObject"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "PetAPObject"
         """Create a Pet which contains more properties than what is defined..
@@ -207,7 +207,7 @@ class PetsOperations(object):
         self,
         create_parameters,  # type: "PetAPString"
         cls=None,  # type: ClsType["PetAPString"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "PetAPString"
         """Create a Pet which contains more properties than what is defined..
@@ -261,7 +261,7 @@ class PetsOperations(object):
         self,
         create_parameters,  # type: "PetAPInProperties"
         cls=None,  # type: ClsType["PetAPInProperties"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "PetAPInProperties"
         """Create a Pet which contains more properties than what is defined..
@@ -315,7 +315,7 @@ class PetsOperations(object):
         self,
         create_parameters,  # type: "PetAPInPropertiesWithAPString"
         cls=None,  # type: ClsType["PetAPInPropertiesWithAPString"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "PetAPInPropertiesWithAPString"
         """Create a Pet which contains more properties than what is defined..

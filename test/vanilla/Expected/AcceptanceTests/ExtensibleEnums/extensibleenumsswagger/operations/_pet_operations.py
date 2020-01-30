@@ -45,7 +45,7 @@ class PetOperations(object):
         self,
         pet_id,  # type: str
         cls=None,  # type: ClsType["Pet"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "Pet"
         """MISSING·OPERATION-DESCRIPTION.
@@ -99,7 +99,7 @@ class PetOperations(object):
         self,
         pet_param=None,  # type: Optional["Pet"]
         cls=None,  # type: ClsType["Pet"]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> "Pet"
         """MISSING·OPERATION-DESCRIPTION.

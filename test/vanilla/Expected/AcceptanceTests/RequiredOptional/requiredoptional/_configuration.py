@@ -32,7 +32,7 @@ class AutoRestRequiredOptionalTestServiceConfiguration(Configuration):
         required_global_path,  # type: str
         required_global_query,  # type: str
         optional_global_query=None,  # type: Optional[int]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         if required_global_path is None:
@@ -49,7 +49,7 @@ class AutoRestRequiredOptionalTestServiceConfiguration(Configuration):
 
     def _configure(
         self,
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> None
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)

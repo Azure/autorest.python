@@ -22,7 +22,7 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
         self,
         qualifier=None,  # type: Optional[str]
         cls=None,  # type: ClsType[Dict[str, int]]
-        **kwargs  # type: **Any
+        **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, int]
         """Get test coverage report.
