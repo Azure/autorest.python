@@ -5,14 +5,8 @@
 # --------------------------------------------------------------------------
 from typing import List
 from .model_base_serializer import ModelBaseSerializer
-from ..models import (
-    PrimitiveSchema,
-    ListSchema,
-    DictionarySchema,
-    EnumSchema,
-    ObjectSchema,
-)
-from ..models.imports import FileImport, ImportType
+from ..models import ObjectSchema
+from ..models.imports import FileImport
 
 
 class ModelPython3Serializer(ModelBaseSerializer):
@@ -82,7 +76,7 @@ class ModelPython3Serializer(ModelBaseSerializer):
 
         return init_args
 
-    def imports(self):
+    def imports(self) -> FileImport:
         file_import = super(ModelPython3Serializer, self).imports()
         for model in self.code_model.sorted_schemas:
             init_line_parameters = [

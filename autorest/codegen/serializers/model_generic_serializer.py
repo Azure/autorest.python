@@ -33,6 +33,3 @@ class ModelGenericSerializer(ModelBaseSerializer):
                 else:
                     init_args.append("self.{} = '{}'".format(prop.name, model.discriminator_value))
         return init_args
-
-    def imports(self):
-        return super(ModelGenericSerializer, self).imports()
