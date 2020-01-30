@@ -9,8 +9,38 @@
 from msrest.serialization import Model
 
 
+class CustomParameterGroup(Model):
+    """Parameter group.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :param api_version: Required. Sets the api version to use.
+    :type api_version: str
+    :param tenant: Required. Sets the tenant to use.
+    :type tenant: str
+    """
+
+    _validation = {
+        'api_version': {'required': True},
+        'tenant': {'required': True},
+    }
+
+    _attribute_map = {
+        'api_version': {'key': 'api_version', 'type': 'str'},
+        'tenant': {'key': 'tenant', 'type': 'str'},
+    }
+
+    def __init__(
+        self,
+        **kwargs
+    ):
+        super(CustomParameterGroup, self).__init__(**kwargs)
+        self.api_version = kwargs.get('api_version', None)
+        self.tenant = kwargs.get('tenant', None)
+
+
 class OdataProductResult(Model):
-    """OdataProductResult.
+    """
 
     :param values:
     :type values: list[~paging.models.Product]
@@ -33,7 +63,7 @@ class OdataProductResult(Model):
 
 
 class OperationResult(Model):
-    """OperationResult.
+    """
 
     :param status: The status of the request. Possible values include: 'Succeeded',
      'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
@@ -53,8 +83,114 @@ class OperationResult(Model):
         self.status = kwargs.get('status', None)
 
 
+class PagingGetMultiplePagesLroOptions(Model):
+    """Parameter group.
+
+    :param maxresults: Sets the maximum number of items to return in the response.
+    :type maxresults: int
+    :param timeout: Sets the maximum time that the server can spend processing the
+     request, in seconds. The default is 30 seconds.
+    :type timeout: int
+    """
+
+    _attribute_map = {
+        'maxresults': {'key': 'maxresults', 'type': 'int'},
+        'timeout': {'key': 'timeout', 'type': 'int'},
+    }
+
+    def __init__(
+        self,
+        **kwargs
+    ):
+        super(PagingGetMultiplePagesLroOptions, self).__init__(**kwargs)
+        self.maxresults = kwargs.get('maxresults', None)
+        self.timeout = kwargs.get('timeout', 30)
+
+
+class PagingGetMultiplePagesOptions(Model):
+    """Parameter group.
+
+    :param maxresults: Sets the maximum number of items to return in the response.
+    :type maxresults: int
+    :param timeout: Sets the maximum time that the server can spend processing the
+     request, in seconds. The default is 30 seconds.
+    :type timeout: int
+    """
+
+    _attribute_map = {
+        'maxresults': {'key': 'maxresults', 'type': 'int'},
+        'timeout': {'key': 'timeout', 'type': 'int'},
+    }
+
+    def __init__(
+        self,
+        **kwargs
+    ):
+        super(PagingGetMultiplePagesOptions, self).__init__(**kwargs)
+        self.maxresults = kwargs.get('maxresults', None)
+        self.timeout = kwargs.get('timeout', 30)
+
+
+class PagingGetMultiplePagesWithOffsetOptions(Model):
+    """Parameter group.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :param maxresults: Sets the maximum number of items to return in the response.
+    :type maxresults: int
+    :param offset: Required. Offset of return value.
+    :type offset: int
+    :param timeout: Sets the maximum time that the server can spend processing the
+     request, in seconds. The default is 30 seconds.
+    :type timeout: int
+    """
+
+    _validation = {
+        'offset': {'required': True},
+    }
+
+    _attribute_map = {
+        'maxresults': {'key': 'maxresults', 'type': 'int'},
+        'offset': {'key': 'offset', 'type': 'int'},
+        'timeout': {'key': 'timeout', 'type': 'int'},
+    }
+
+    def __init__(
+        self,
+        **kwargs
+    ):
+        super(PagingGetMultiplePagesWithOffsetOptions, self).__init__(**kwargs)
+        self.maxresults = kwargs.get('maxresults', None)
+        self.offset = kwargs.get('offset', None)
+        self.timeout = kwargs.get('timeout', 30)
+
+
+class PagingGetOdataMultiplePagesOptions(Model):
+    """Parameter group.
+
+    :param maxresults: Sets the maximum number of items to return in the response.
+    :type maxresults: int
+    :param timeout: Sets the maximum time that the server can spend processing the
+     request, in seconds. The default is 30 seconds.
+    :type timeout: int
+    """
+
+    _attribute_map = {
+        'maxresults': {'key': 'maxresults', 'type': 'int'},
+        'timeout': {'key': 'timeout', 'type': 'int'},
+    }
+
+    def __init__(
+        self,
+        **kwargs
+    ):
+        super(PagingGetOdataMultiplePagesOptions, self).__init__(**kwargs)
+        self.maxresults = kwargs.get('maxresults', None)
+        self.timeout = kwargs.get('timeout', 30)
+
+
 class Product(Model):
-    """Product.
+    """
 
     :param properties:
     :type properties: ~paging.models.ProductProperties
@@ -73,7 +209,7 @@ class Product(Model):
 
 
 class ProductProperties(Model):
-    """ProductProperties.
+    """
 
     :param id:
     :type id: int
@@ -96,7 +232,7 @@ class ProductProperties(Model):
 
 
 class ProductResult(Model):
-    """ProductResult.
+    """
 
     :param values:
     :type values: list[~paging.models.Product]
@@ -119,7 +255,7 @@ class ProductResult(Model):
 
 
 class ProductResultValue(Model):
-    """ProductResultValue.
+    """
 
     :param value:
     :type value: list[~paging.models.Product]

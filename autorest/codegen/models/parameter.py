@@ -18,7 +18,6 @@ class ParameterLocation(Enum):
     Header = "header"
     Uri = "uri"
     Other = "other"
-    Flattened = "flattened"
 
 
 class ParameterStyle(Enum):
@@ -49,7 +48,9 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         constraints: List[Any],
         style: Optional[ParameterStyle] = None,
         *,
-        hidden: bool = False,
+        flattened: bool = False,
+        grouped_by: Optional["Parameter"] = None,
+        original_parameter: Optional["Parameter"] = None,
     ):
         super().__init__(yaml_data)
         self.schema = schema
@@ -62,7 +63,9 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.skip_url_encoding = skip_url_encoding
         self.constraints = constraints
         self.style = style
-        self.hidden = hidden
+        self.flattened = flattened
+        self.grouped_by = grouped_by
+        self.original_parameter = original_parameter
 
     @property
     def implementation(self) -> str:
@@ -93,8 +96,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any]) -> "Parameter":
 
-        # Assumes that if there is no protocol, it's flattening parameter
-        http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Flattened})
+        http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Other})
         return cls(
             yaml_data=yaml_data,
             schema=yaml_data.get("schema", None),  # FIXME replace by operation model
@@ -110,7 +112,9 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
             skip_url_encoding=yaml_data.get("extensions", {}).get("x-ms-skip-url-encoding", False),
             constraints=[], # FIXME constraints
             style=ParameterStyle(http_protocol["style"]) if "style" in http_protocol else None,
-            hidden=yaml_data.get("hidden", False),
+            grouped_by=yaml_data.get("groupedBy", None),
+            original_parameter=yaml_data.get("originalParameter", None),
+            flattened=yaml_data.get("flattened", False)
         )
 
     def imports(self) -> FileImport:

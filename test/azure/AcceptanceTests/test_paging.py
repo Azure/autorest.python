@@ -89,7 +89,6 @@ def test_get_multiple_pages_retry_second(client):
     items = [i for i in pages]
     assert len(items) == 10
 
-@pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/10")
 def test_get_multiple_pages_with_offset(client):
     from paging.models import PagingGetMultiplePagesWithOffsetOptions
     options = PagingGetMultiplePagesWithOffsetOptions(offset=100)

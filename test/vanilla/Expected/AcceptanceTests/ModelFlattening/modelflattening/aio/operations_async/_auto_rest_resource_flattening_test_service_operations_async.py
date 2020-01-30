@@ -467,7 +467,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     @distributed_trace_async
     async def post_flattened_simple_product(
         self,
+        product_id: str,
+        description: Optional[str] = None,
         max_product_display_name: Optional[str] = None,
+        generic_value: Optional[str] = None,
         odatavalue: Optional[str] = None,
         *,
         cls: ClsType["models.SimpleProduct"] = None,
@@ -477,8 +480,14 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         FIXME: add operation.summary
 
+        :param product_id: Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
+        :type product_id: str
+        :param description: Description of product.
+        :type description: str
         :param max_product_display_name: Display name of product.
         :type max_product_display_name: str
+        :param generic_value: Generic URL value.
+        :type generic_value: str
         :param odatavalue: URL value.
         :type odatavalue: str
         :param callable cls: A custom type or function that will be passed the direct response
@@ -487,7 +496,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :raises: ~modelflattening.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        simple_body_product = models.SimpleProduct(max_product_display_name=max_product_display_name, odatavalue=odatavalue)
+        simple_body_product = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odatavalue=odatavalue)
 
         # Construct URL
         url = self.post_flattened_simple_product.metadata['url']
@@ -527,9 +536,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     @distributed_trace_async
     async def put_simple_product_with_grouping(
         self,
-        name: str,
-        max_product_display_name: Optional[str] = None,
-        odatavalue: Optional[str] = None,
+        flatten_parameter_group: "models.FlattenParameterGroup",
         *,
         cls: ClsType["models.SimpleProduct"] = None,
         **kwargs: Any
@@ -538,19 +545,34 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         FIXME: add operation.summary
 
-        :param name: Product name with value 'groupproduct'.
-        :type name: str
-        :param max_product_display_name: Display name of product.
-        :type max_product_display_name: str
-        :param odatavalue: URL value.
-        :type odatavalue: str
+        :param flatten_parameter_group: Parameter group.
+        :type flatten_parameter_group: ~modelflattening.models.FlattenParameterGroup
         :param callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
         :raises: ~modelflattening.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        simple_body_product = models.SimpleProduct(max_product_display_name=max_product_display_name, odatavalue=odatavalue)
+        
+        name = None
+        simple_body_product = None
+        product_id = None
+        description = None
+        max_product_display_name = None
+        capacity = None
+        generic_value = None
+        odatavalue = None
+        if flatten_parameter_group is not None:
+            name = flatten_parameter_group.name
+            simple_body_product = flatten_parameter_group.simple_body_product
+            product_id = flatten_parameter_group.product_id
+            description = flatten_parameter_group.description
+            max_product_display_name = flatten_parameter_group.max_product_display_name
+            capacity = flatten_parameter_group.capacity
+            generic_value = flatten_parameter_group.generic_value
+            odatavalue = flatten_parameter_group.odatavalue
+
+        simple_body_product = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odatavalue=odatavalue, flatten_parameter_group=flatten_parameter_group)
 
         # Construct URL
         url = self.put_simple_product_with_grouping.metadata['url']

@@ -86,7 +86,6 @@ def unencoded_query():
 
 class TestParameter(object):
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/10")
     @pytest.mark.asyncio
     async def test_post_all_required_parameters(self, client, body_parameter, header_parameter, query_parameter, path_parameter):
         from azureparametergrouping.models import ParameterGroupingPostRequiredParameters
@@ -94,7 +93,6 @@ class TestParameter(object):
         required_parameters = ParameterGroupingPostRequiredParameters(body=body_parameter, path=path_parameter, custom_header=header_parameter, query=query_parameter)
         await client.parameter_grouping.post_required(required_parameters)
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/10")
     @pytest.mark.asyncio
     async def test_post_required_parameters_null_optional_parameters(self, client, body_parameter, path_parameter):
         from azureparametergrouping.models import ParameterGroupingPostRequiredParameters
@@ -102,7 +100,6 @@ class TestParameter(object):
         required_parameters = ParameterGroupingPostRequiredParameters(body=body_parameter, path=path_parameter, query=None)
         await client.parameter_grouping.post_required(required_parameters)
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/10")
     @pytest.mark.asyncio
     async def test_post_required_parameters_with_null_required_property(self, client, path_parameter):
         from azureparametergrouping.models import ParameterGroupingPostRequiredParameters
@@ -114,7 +111,6 @@ class TestParameter(object):
         with pytest.raises(ValidationError):
             await client.parameter_grouping.post_required(None)
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/10")
     @pytest.mark.asyncio
     async def test_post_all_optional(self, client, header_parameter, query_parameter):
         from azureparametergrouping.models import ParameterGroupingPostRequiredParameters, ParameterGroupingPostOptionalParameters
@@ -127,7 +123,6 @@ class TestParameter(object):
         #null optional paramters
         await client.parameter_grouping.post_optional(None)
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/10")
     @pytest.mark.asyncio
     async def test_post_all_multi_param_groups(self, client, header_parameter, query_parameter):
         from azureparametergrouping.models import FirstParameterGroup, ParameterGroupingPostMultiParamGroupsSecondParamGroup
@@ -137,7 +132,6 @@ class TestParameter(object):
 
         await client.parameter_grouping.post_multi_param_groups(first_group, second_group)
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/10")
     @pytest.mark.asyncio
     async def test_post_some_multi_param_groups(self, client, header_parameter):
         from azureparametergrouping.models import FirstParameterGroup, ParameterGroupingPostMultiParamGroupsSecondParamGroup
@@ -147,7 +141,6 @@ class TestParameter(object):
 
         await client.parameter_grouping.post_multi_param_groups(first_group, second_group)
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/10")
     @pytest.mark.asyncio
     async def test_post_shared_parameter_group_object(self, client, header_parameter):
         from azureparametergrouping.models import FirstParameterGroup

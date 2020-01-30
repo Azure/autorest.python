@@ -38,7 +38,7 @@ class ErrorException(HttpResponseError):
 
 
 class Error(Model):
-    """Error.
+    """
 
     :param status:
     :type status: int
@@ -65,7 +65,7 @@ class Error(Model):
 
 
 class RefColorConstant(Model):
-    """RefColorConstant.
+    """
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
