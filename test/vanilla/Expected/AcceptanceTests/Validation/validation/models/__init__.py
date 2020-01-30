@@ -12,10 +12,10 @@ try:
     from ._models_py3 import Error, ErrorException
     from ._models_py3 import Product
 except (SyntaxError, ImportError):
-    from ._models import ChildProduct
-    from ._models import ConstantProduct
-    from ._models import Error, ErrorException
-    from ._models import Product
+    from ._models import ChildProduct  # type: ignore
+    from ._models import ConstantProduct  # type: ignore
+    from ._models import Error, ErrorException  # type: ignore
+    from ._models import Product  # type: ignore
 
 __all__ = [
     'ChildProduct',
