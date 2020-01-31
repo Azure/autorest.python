@@ -60,6 +60,7 @@ class QueriesOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.array_string_multi_null.metadata['url']
 
@@ -68,10 +69,8 @@ class QueriesOperations(object):
         if array_query is not None:
             query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -108,6 +107,7 @@ class QueriesOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.array_string_multi_empty.metadata['url']
 
@@ -116,10 +116,8 @@ class QueriesOperations(object):
         if array_query is not None:
             query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -156,6 +154,7 @@ class QueriesOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.array_string_multi_valid.metadata['url']
 
@@ -164,10 +163,8 @@ class QueriesOperations(object):
         if array_query is not None:
             query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

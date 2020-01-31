@@ -57,17 +57,16 @@ class ByteOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -104,17 +103,16 @@ class ByteOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -151,17 +149,16 @@ class ByteOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get_non_ascii.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -201,17 +198,16 @@ class ByteOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.put_non_ascii.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(byte_body, 'bytearray')
@@ -248,17 +244,16 @@ class ByteOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get_invalid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

@@ -57,17 +57,16 @@ class FilesOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get_file.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'image/png'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -104,17 +103,16 @@ class FilesOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get_file_large.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'image/png'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -151,17 +149,16 @@ class FilesOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get_empty_file.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'image/png'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

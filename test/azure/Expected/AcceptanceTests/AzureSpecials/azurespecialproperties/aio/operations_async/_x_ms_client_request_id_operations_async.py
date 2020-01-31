@@ -57,16 +57,15 @@ class XMsClientRequestIdOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -103,17 +102,16 @@ class XMsClientRequestIdOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.param_get.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['x-ms-client-request-id'] = self._serialize.header("x_ms_client_request_id", x_ms_client_request_id, 'str')
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

@@ -58,17 +58,16 @@ class PrimitiveOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get_int.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -108,17 +107,16 @@ class PrimitiveOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.put_int.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'IntWrapper')
@@ -154,17 +152,16 @@ class PrimitiveOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get_long.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -204,17 +201,16 @@ class PrimitiveOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.put_long.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'LongWrapper')
@@ -250,17 +246,16 @@ class PrimitiveOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get_float.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -300,17 +295,16 @@ class PrimitiveOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.put_float.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'FloatWrapper')
@@ -346,17 +340,16 @@ class PrimitiveOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get_double.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -396,17 +389,16 @@ class PrimitiveOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.put_double.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'DoubleWrapper')
@@ -442,17 +434,16 @@ class PrimitiveOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get_bool.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -492,17 +483,16 @@ class PrimitiveOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.put_bool.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'BooleanWrapper')
@@ -538,17 +528,16 @@ class PrimitiveOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get_string.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -588,17 +577,16 @@ class PrimitiveOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.put_string.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'StringWrapper')
@@ -634,17 +622,16 @@ class PrimitiveOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get_date.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -684,17 +671,16 @@ class PrimitiveOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.put_date.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'DateWrapper')
@@ -730,17 +716,16 @@ class PrimitiveOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get_date_time.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -780,17 +765,16 @@ class PrimitiveOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.put_date_time.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'DatetimeWrapper')
@@ -826,17 +810,16 @@ class PrimitiveOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get_date_time_rfc1123.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -876,17 +859,16 @@ class PrimitiveOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.put_date_time_rfc1123.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'Datetimerfc1123Wrapper')
@@ -922,17 +904,16 @@ class PrimitiveOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get_duration.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -971,6 +952,7 @@ class PrimitiveOperations:
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         complex_body = models.DurationWrapper(field=field)
 
         # Construct URL
@@ -979,11 +961,9 @@ class PrimitiveOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'DurationWrapper')
@@ -1019,17 +999,16 @@ class PrimitiveOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get_byte.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1068,6 +1047,7 @@ class PrimitiveOperations:
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         complex_body = models.ByteWrapper(field=field)
 
         # Construct URL
@@ -1076,11 +1056,9 @@ class PrimitiveOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'ByteWrapper')

@@ -61,6 +61,7 @@ class PetOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get_by_pet_id.metadata['url']
         path_format_arguments = {
@@ -71,11 +72,9 @@ class PetOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -115,18 +114,17 @@ class PetOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.add_pet.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if pet_param is not None:

@@ -57,16 +57,15 @@ class HttpRedirectsOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.head300.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -104,17 +103,16 @@ class HttpRedirectsOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get300.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -155,16 +153,15 @@ class HttpRedirectsOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.head301.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -202,16 +199,15 @@ class HttpRedirectsOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get301.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -248,6 +244,7 @@ class HttpRedirectsOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         boolean_value = True
 
         # Construct URL
@@ -256,11 +253,9 @@ class HttpRedirectsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -303,16 +298,15 @@ class HttpRedirectsOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.head302.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -350,16 +344,15 @@ class HttpRedirectsOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get302.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -396,6 +389,7 @@ class HttpRedirectsOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         boolean_value = True
 
         # Construct URL
@@ -404,11 +398,9 @@ class HttpRedirectsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -450,6 +442,7 @@ class HttpRedirectsOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         boolean_value = True
 
         # Construct URL
@@ -458,11 +451,9 @@ class HttpRedirectsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -506,16 +497,15 @@ class HttpRedirectsOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.head307.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -553,16 +543,15 @@ class HttpRedirectsOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get307.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -600,16 +589,15 @@ class HttpRedirectsOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.options307.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.options(url, query_parameters, header_parameters)
@@ -646,6 +634,7 @@ class HttpRedirectsOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         boolean_value = True
 
         # Construct URL
@@ -654,11 +643,9 @@ class HttpRedirectsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -701,6 +688,7 @@ class HttpRedirectsOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         boolean_value = True
 
         # Construct URL
@@ -709,11 +697,9 @@ class HttpRedirectsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -756,6 +742,7 @@ class HttpRedirectsOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         boolean_value = True
 
         # Construct URL
@@ -764,11 +751,9 @@ class HttpRedirectsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -811,6 +796,7 @@ class HttpRedirectsOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         boolean_value = True
 
         # Construct URL
@@ -819,11 +805,9 @@ class HttpRedirectsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:

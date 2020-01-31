@@ -65,6 +65,7 @@ class StorageAccountsOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.check_name_availability.metadata['url']
         path_format_arguments = {
@@ -75,12 +76,10 @@ class StorageAccountsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(account_name, 'StorageAccountCheckNameAvailabilityParameters')
@@ -114,6 +113,7 @@ class StorageAccountsOperations(object):
         # type: (...) -> "models.StorageAccount"
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self._create_initial.metadata['url']
         path_format_arguments = {
@@ -126,12 +126,10 @@ class StorageAccountsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(parameters, 'StorageAccountCreateParameters')
@@ -210,7 +208,6 @@ class StorageAccountsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_create.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
-
     @distributed_trace
     def delete(
         self,
@@ -235,6 +232,7 @@ class StorageAccountsOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.delete.metadata['url']
         path_format_arguments = {
@@ -247,10 +245,8 @@ class StorageAccountsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -290,6 +286,7 @@ class StorageAccountsOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get_properties.metadata['url']
         path_format_arguments = {
@@ -302,11 +299,9 @@ class StorageAccountsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -352,6 +347,7 @@ class StorageAccountsOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.update.metadata['url']
         path_format_arguments = {
@@ -364,12 +360,10 @@ class StorageAccountsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(parameters, 'StorageAccountUpdateParameters')
@@ -415,6 +409,7 @@ class StorageAccountsOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.list_keys.metadata['url']
         path_format_arguments = {
@@ -427,11 +422,9 @@ class StorageAccountsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -483,11 +476,9 @@ class StorageAccountsOperations(object):
             # Construct parameters
             query_parameters = {}
 
-
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -516,7 +507,6 @@ class StorageAccountsOperations(object):
             get_next, extract_data
         )
     list.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts'}
-
 
     @distributed_trace
     def list_by_resource_group(
@@ -555,11 +545,9 @@ class StorageAccountsOperations(object):
             # Construct parameters
             query_parameters = {}
 
-
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -589,7 +577,6 @@ class StorageAccountsOperations(object):
         )
     list_by_resource_group.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts'}
 
-
     @distributed_trace
     def regenerate_key(
         self,
@@ -616,6 +603,7 @@ class StorageAccountsOperations(object):
         :raises: ~azure.mgmt.core.ARMError
         """
         error_map = kwargs.pop('error_map', {})
+
         regenerate_key = models.StorageAccountRegenerateKeyParameters(key_name=key_name)
 
         # Construct URL
@@ -630,12 +618,10 @@ class StorageAccountsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(regenerate_key, 'StorageAccountRegenerateKeyParameters')

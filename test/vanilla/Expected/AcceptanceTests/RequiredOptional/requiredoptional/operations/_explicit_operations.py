@@ -61,17 +61,16 @@ class ExplicitOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.post_required_integer_parameter.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'int')
@@ -111,17 +110,16 @@ class ExplicitOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.post_optional_integer_parameter.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body_parameter is not None:
@@ -163,6 +161,7 @@ class ExplicitOperations(object):
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         body_parameter = models.IntWrapper(value=value)
 
         # Construct URL
@@ -171,11 +170,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'IntWrapper')
@@ -214,6 +211,7 @@ class ExplicitOperations(object):
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         body_parameter = models.IntOptionalWrapper(value=value)
 
         # Construct URL
@@ -222,11 +220,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body_parameter is not None:
@@ -269,17 +265,16 @@ class ExplicitOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.post_required_integer_header.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'int')
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -316,18 +311,17 @@ class ExplicitOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.post_optional_integer_header.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         if header_parameter is not None:
             header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'int')
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -364,17 +358,16 @@ class ExplicitOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.post_required_string_parameter.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'str')
@@ -414,17 +407,16 @@ class ExplicitOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.post_optional_string_parameter.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body_parameter is not None:
@@ -466,6 +458,7 @@ class ExplicitOperations(object):
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         body_parameter = models.StringWrapper(value=value)
 
         # Construct URL
@@ -474,11 +467,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'StringWrapper')
@@ -517,6 +508,7 @@ class ExplicitOperations(object):
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         body_parameter = models.StringOptionalWrapper(value=value)
 
         # Construct URL
@@ -525,11 +517,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body_parameter is not None:
@@ -572,17 +562,16 @@ class ExplicitOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.post_required_string_header.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'str')
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -619,18 +608,17 @@ class ExplicitOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.post_optional_string_header.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         if body_parameter is not None:
             header_parameters['bodyParameter'] = self._serialize.header("body_parameter", body_parameter, 'str')
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -667,17 +655,16 @@ class ExplicitOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.post_required_class_parameter.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'Product')
@@ -717,17 +704,16 @@ class ExplicitOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.post_optional_class_parameter.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body_parameter is not None:
@@ -769,6 +755,7 @@ class ExplicitOperations(object):
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         body_parameter = models.ClassWrapper(value=value)
 
         # Construct URL
@@ -777,11 +764,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'ClassWrapper')
@@ -820,6 +805,7 @@ class ExplicitOperations(object):
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         body_parameter = models.ClassOptionalWrapper(value=value)
 
         # Construct URL
@@ -828,11 +814,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body_parameter is not None:
@@ -875,17 +859,16 @@ class ExplicitOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.post_required_array_parameter.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(body_parameter, '[str]')
@@ -925,17 +908,16 @@ class ExplicitOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.post_optional_array_parameter.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body_parameter is not None:
@@ -977,6 +959,7 @@ class ExplicitOperations(object):
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         body_parameter = models.ArrayWrapper(value=value)
 
         # Construct URL
@@ -985,11 +968,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'ArrayWrapper')
@@ -1028,6 +1009,7 @@ class ExplicitOperations(object):
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         body_parameter = models.ArrayOptionalWrapper(value=value)
 
         # Construct URL
@@ -1036,11 +1018,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body_parameter is not None:
@@ -1083,17 +1063,16 @@ class ExplicitOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.post_required_array_header.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, '[str]', div=',')
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -1130,18 +1109,17 @@ class ExplicitOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.post_optional_array_header.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         if header_parameter is not None:
             header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, '[str]', div=',')
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)

@@ -69,6 +69,7 @@ class PathItemsOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get_all_with_values.metadata['url']
         path_format_arguments = {
@@ -87,10 +88,8 @@ class PathItemsOperations:
         if local_string_query is not None:
             query_parameters['localStringQuery'] = self._serialize.query("local_string_query", local_string_query, 'str')
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -136,6 +135,7 @@ class PathItemsOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get_global_query_null.metadata['url']
         path_format_arguments = {
@@ -154,10 +154,8 @@ class PathItemsOperations:
         if local_string_query is not None:
             query_parameters['localStringQuery'] = self._serialize.query("local_string_query", local_string_query, 'str')
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -203,6 +201,7 @@ class PathItemsOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get_global_and_local_query_null.metadata['url']
         path_format_arguments = {
@@ -221,10 +220,8 @@ class PathItemsOperations:
         if local_string_query is not None:
             query_parameters['localStringQuery'] = self._serialize.query("local_string_query", local_string_query, 'str')
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -270,6 +267,7 @@ class PathItemsOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get_local_path_item_query_null.metadata['url']
         path_format_arguments = {
@@ -288,10 +286,8 @@ class PathItemsOperations:
         if local_string_query is not None:
             query_parameters['localStringQuery'] = self._serialize.query("local_string_query", local_string_query, 'str')
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

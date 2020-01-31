@@ -56,6 +56,7 @@ class SubscriptionInCredentialsOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.post_method_global_valid.metadata['url']
         path_format_arguments = {
@@ -66,10 +67,8 @@ class SubscriptionInCredentialsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -102,6 +101,7 @@ class SubscriptionInCredentialsOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.post_method_global_null.metadata['url']
         path_format_arguments = {
@@ -112,10 +112,8 @@ class SubscriptionInCredentialsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -148,6 +146,7 @@ class SubscriptionInCredentialsOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.post_method_global_not_provided_valid.metadata['url']
         path_format_arguments = {
@@ -158,10 +157,8 @@ class SubscriptionInCredentialsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -194,6 +191,7 @@ class SubscriptionInCredentialsOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.post_path_global_valid.metadata['url']
         path_format_arguments = {
@@ -204,10 +202,8 @@ class SubscriptionInCredentialsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -240,6 +236,7 @@ class SubscriptionInCredentialsOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.post_swagger_global_valid.metadata['url']
         path_format_arguments = {
@@ -250,10 +247,8 @@ class SubscriptionInCredentialsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)

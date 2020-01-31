@@ -69,6 +69,7 @@ class PathsOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get_empty.metadata['url']
         path_format_arguments = {
@@ -85,10 +86,8 @@ class PathsOperations(object):
         if key_version is not None:
             query_parameters['keyVersion'] = self._serialize.query("key_version", key_version, 'str')
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

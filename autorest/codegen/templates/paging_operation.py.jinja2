@@ -102,7 +102,7 @@ def {{ operation.python_name }}(
 {% if operation.parameters.constant|selectattr("implementation", "equalto", "Method") %}
     {% for constant_parameter in operation.parameters.constant|selectattr("implementation", "equalto", "Method") %}
     {{ constant_parameter.serialized_name }} = {{ constant_parameter.schema.get_constant_value() }}
-    {% endfor %}
+    {%- endfor %}
 {% endif %}
 
     def prepare_request(next_link=None):
@@ -141,9 +141,7 @@ def {{ operation.python_name }}(
 {% endif %}
 
         {{ op_tools.query_parameters(operation, async_mode)|indent(8) }}
-
         {{ op_tools.header_parameters(code_model, operation, async_mode)|indent(8) }}
-
     {% if operation.parameters.has_body %}
         # Construct body
         {% if not operation.parameters.body.is_stream %}

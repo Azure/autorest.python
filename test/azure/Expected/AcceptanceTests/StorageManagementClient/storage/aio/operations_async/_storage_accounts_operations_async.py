@@ -66,6 +66,7 @@ class StorageAccountsOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.check_name_availability.metadata['url']
         path_format_arguments = {
@@ -76,12 +77,10 @@ class StorageAccountsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(account_name, 'StorageAccountCheckNameAvailabilityParameters')
@@ -115,6 +114,7 @@ class StorageAccountsOperations:
     ) -> "models.StorageAccount":
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self._create_initial.metadata['url']
         path_format_arguments = {
@@ -127,12 +127,10 @@ class StorageAccountsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(parameters, 'StorageAccountCreateParameters')
@@ -211,7 +209,6 @@ class StorageAccountsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     create.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
-
     @distributed_trace_async
     async def delete(
         self,
@@ -236,6 +233,7 @@ class StorageAccountsOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.delete.metadata['url']
         path_format_arguments = {
@@ -248,10 +246,8 @@ class StorageAccountsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -291,6 +287,7 @@ class StorageAccountsOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.get_properties.metadata['url']
         path_format_arguments = {
@@ -303,11 +300,9 @@ class StorageAccountsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -353,6 +348,7 @@ class StorageAccountsOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.update.metadata['url']
         path_format_arguments = {
@@ -365,12 +361,10 @@ class StorageAccountsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(parameters, 'StorageAccountUpdateParameters')
@@ -416,6 +410,7 @@ class StorageAccountsOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.list_keys.metadata['url']
         path_format_arguments = {
@@ -428,11 +423,9 @@ class StorageAccountsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -483,11 +476,9 @@ class StorageAccountsOperations:
             # Construct parameters
             query_parameters: Dict[str, Any] = {}
 
-
             # Construct headers
             header_parameters: Dict[str, Any] = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -516,7 +507,6 @@ class StorageAccountsOperations:
             get_next, extract_data
         )
     list.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts'}
-
 
     @distributed_trace
     def list_by_resource_group(
@@ -555,11 +545,9 @@ class StorageAccountsOperations:
             # Construct parameters
             query_parameters: Dict[str, Any] = {}
 
-
             # Construct headers
             header_parameters: Dict[str, Any] = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -589,7 +577,6 @@ class StorageAccountsOperations:
         )
     list_by_resource_group.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts'}
 
-
     @distributed_trace_async
     async def regenerate_key(
         self,
@@ -616,6 +603,7 @@ class StorageAccountsOperations:
         :raises: ~azure.mgmt.core.ARMError
         """
         error_map = kwargs.pop('error_map', {})
+
         regenerate_key = models.StorageAccountRegenerateKeyParameters(key_name=key_name)
 
         # Construct URL
@@ -630,12 +618,10 @@ class StorageAccountsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(regenerate_key, 'StorageAccountRegenerateKeyParameters')

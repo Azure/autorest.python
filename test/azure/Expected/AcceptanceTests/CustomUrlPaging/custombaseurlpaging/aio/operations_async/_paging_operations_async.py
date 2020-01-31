@@ -85,11 +85,9 @@ class PagingOperations:
             # Construct parameters
             query_parameters: Dict[str, Any] = {}
 
-
             # Construct headers
             header_parameters: Dict[str, Any] = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -118,7 +116,6 @@ class PagingOperations:
             get_next, extract_data
         )
     get_pages_partial_url.metadata = {'url': '/paging/customurl/partialnextlink'}
-
 
     @distributed_trace
     def get_pages_partial_url_operation(
@@ -163,11 +160,9 @@ class PagingOperations:
             # Construct parameters
             query_parameters: Dict[str, Any] = {}
 
-
             # Construct headers
             header_parameters: Dict[str, Any] = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -196,4 +191,3 @@ class PagingOperations:
             get_next, extract_data
         )
     get_pages_partial_url_operation.metadata = {'url': '/paging/customurl/partialnextlinkop'}
-

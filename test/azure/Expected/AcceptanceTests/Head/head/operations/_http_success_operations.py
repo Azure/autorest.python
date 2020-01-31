@@ -52,16 +52,15 @@ class HttpSuccessOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.head200.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -96,16 +95,15 @@ class HttpSuccessOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.head204.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -140,16 +138,15 @@ class HttpSuccessOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
+
         # Construct URL
         url = self.head404.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
