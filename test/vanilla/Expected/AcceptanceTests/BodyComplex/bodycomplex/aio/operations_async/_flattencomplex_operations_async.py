@@ -46,7 +46,7 @@ class FlattencomplexOperations:
         cls: ClsType["models.MyBaseType"] = None,
         **kwargs: Any
     ) -> "models.MyBaseType":
-        """get_valid.
+        """
 
         FIXME: add operation.summary
 

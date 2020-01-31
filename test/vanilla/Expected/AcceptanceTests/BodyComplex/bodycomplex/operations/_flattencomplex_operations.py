@@ -47,7 +47,7 @@ class FlattencomplexOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.MyBaseType"
-        """get_valid.
+        """
 
         FIXME: add operation.summary
 

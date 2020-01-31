@@ -157,7 +157,7 @@ class AutoRestValidationTestOperationsMixin(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """get_with_constant_in_path.
+        """
 
         FIXME: add operation.summary
 
@@ -205,7 +205,7 @@ class AutoRestValidationTestOperationsMixin(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
-        """post_with_constant_in_body.
+        """
 
         FIXME: add operation.summary
 

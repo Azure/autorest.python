@@ -11,7 +11,7 @@ from msrest.serialization import Model
 
 
 class PetAPTrue(Model):
-    """PetAPTrue.
+    """
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -52,7 +52,7 @@ class PetAPTrue(Model):
 
 
 class CatAPTrue(PetAPTrue):
-    """CatAPTrue.
+    """
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -118,7 +118,7 @@ class ErrorException(HttpResponseError):
 
 
 class Error(Model):
-    """Error.
+    """
 
     :param status:
     :type status: int
@@ -142,7 +142,7 @@ class Error(Model):
 
 
 class PetAPInProperties(Model):
-    """PetAPInProperties.
+    """
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -183,7 +183,7 @@ class PetAPInProperties(Model):
 
 
 class PetAPInPropertiesWithAPString(Model):
-    """PetAPInPropertiesWithAPString.
+    """
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -234,7 +234,7 @@ class PetAPInPropertiesWithAPString(Model):
 
 
 class PetAPObject(Model):
-    """PetAPObject.
+    """
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -275,7 +275,7 @@ class PetAPObject(Model):
 
 
 class PetAPString(Model):
-    """PetAPString.
+    """
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
