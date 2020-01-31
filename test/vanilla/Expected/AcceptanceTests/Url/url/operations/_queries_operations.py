@@ -49,8 +49,6 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get true Boolean value on path.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -93,8 +91,6 @@ class QueriesOperations(object):
     ):
         # type: (...) -> None
         """Get false Boolean value on path.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -139,8 +135,6 @@ class QueriesOperations(object):
     ):
         # type: (...) -> None
         """Get null Boolean value on query (query string should be absent).
-
-        FIXME: add operation.summary
 
         :param bool_query: null boolean value.
         :type bool_query: bool
@@ -187,8 +181,6 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '1000000' integer value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -231,8 +223,6 @@ class QueriesOperations(object):
     ):
         # type: (...) -> None
         """Get '-1000000' integer value.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -277,8 +267,6 @@ class QueriesOperations(object):
     ):
         # type: (...) -> None
         """Get null integer value (no query parameter).
-
-        FIXME: add operation.summary
 
         :param int_query: null integer value.
         :type int_query: int
@@ -325,8 +313,6 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '10000000000' 64 bit integer value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -369,8 +355,6 @@ class QueriesOperations(object):
     ):
         # type: (...) -> None
         """Get '-10000000000' 64 bit integer value.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -415,8 +399,6 @@ class QueriesOperations(object):
     ):
         # type: (...) -> None
         """Get 'null 64 bit integer value (no query param in uri).
-
-        FIXME: add operation.summary
 
         :param long_query: null 64 bit integer value.
         :type long_query: long
@@ -463,8 +445,6 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '1.034E+20' numeric value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -507,8 +487,6 @@ class QueriesOperations(object):
     ):
         # type: (...) -> None
         """Get '-1.034E-20' numeric value.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -553,8 +531,6 @@ class QueriesOperations(object):
     ):
         # type: (...) -> None
         """Get null numeric value (no query parameter).
-
-        FIXME: add operation.summary
 
         :param float_query: null numeric value.
         :type float_query: float
@@ -601,8 +577,6 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '9999999.999' numeric value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -645,8 +619,6 @@ class QueriesOperations(object):
     ):
         # type: (...) -> None
         """Get '-9999999.999' numeric value.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -691,8 +663,6 @@ class QueriesOperations(object):
     ):
         # type: (...) -> None
         """Get null numeric value (no query parameter).
-
-        FIXME: add operation.summary
 
         :param double_query: null numeric value.
         :type double_query: float
@@ -739,8 +709,6 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -783,8 +751,6 @@ class QueriesOperations(object):
     ):
         # type: (...) -> None
         """Get 'begin!*'();:@ &=+$,/?#[]end.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -829,8 +795,6 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get ''.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -874,8 +838,6 @@ class QueriesOperations(object):
     ):
         # type: (...) -> None
         """Get null (no query parameter in url).
-
-        FIXME: add operation.summary
 
         :param string_query: null string value.
         :type string_query: str
@@ -923,8 +885,6 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get using uri with query parameter 'green color'.
 
-        FIXME: add operation.summary
-
         :param enum_query: 'green color' enum value.
         :type enum_query: str or ~url.models.UriColor
         :param callable cls: A custom type or function that will be passed the direct response
@@ -970,8 +930,6 @@ class QueriesOperations(object):
     ):
         # type: (...) -> None
         """Get null (no query parameter in url).
-
-        FIXME: add operation.summary
 
         :param enum_query: 'green color' enum value.
         :type enum_query: str or ~url.models.UriColor
@@ -1019,8 +977,6 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
-        FIXME: add operation.summary
-
         :param byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
         :type byte_query: bytearray
         :param callable cls: A custom type or function that will be passed the direct response
@@ -1066,8 +1022,6 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '' as byte array.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -1111,8 +1065,6 @@ class QueriesOperations(object):
     ):
         # type: (...) -> None
         """Get null as byte array (no query parameters in uri).
-
-        FIXME: add operation.summary
 
         :param byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
         :type byte_query: bytearray
@@ -1159,8 +1111,6 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '2012-01-01' as date.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -1204,8 +1154,6 @@ class QueriesOperations(object):
     ):
         # type: (...) -> None
         """Get null as date - this should result in no query parameters in uri.
-
-        FIXME: add operation.summary
 
         :param date_query: null as date (no query parameters in uri).
         :type date_query: ~datetime.date
@@ -1252,8 +1200,6 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get '2012-01-01T01:01:01Z' as date-time.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -1297,8 +1243,6 @@ class QueriesOperations(object):
     ):
         # type: (...) -> None
         """Get null as date-time, should result in no query parameters in uri.
-
-        FIXME: add operation.summary
 
         :param date_time_query: null as date-time (no query parameters).
         :type date_time_query: ~datetime.datetime
@@ -1346,8 +1290,6 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
 
-        FIXME: add operation.summary
-
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
         :type array_query: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
@@ -1393,8 +1335,6 @@ class QueriesOperations(object):
     ):
         # type: (...) -> None
         """Get a null array of string using the csv-array format.
-
-        FIXME: add operation.summary
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
         :type array_query: list[str]
@@ -1442,8 +1382,6 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get an empty array [] of string using the csv-array format.
 
-        FIXME: add operation.summary
-
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
         :type array_query: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
@@ -1489,8 +1427,6 @@ class QueriesOperations(object):
     ):
         # type: (...) -> None
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format.
-
-        FIXME: add operation.summary
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format.
         :type array_query: list[str]
@@ -1538,8 +1474,6 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format.
 
-        FIXME: add operation.summary
-
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format.
         :type array_query: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
@@ -1585,8 +1519,6 @@ class QueriesOperations(object):
     ):
         # type: (...) -> None
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format.
-
-        FIXME: add operation.summary
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format.
         :type array_query: list[str]

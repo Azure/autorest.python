@@ -51,8 +51,6 @@ class OdataOperations:
     ) -> None:
         """Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'.
 
-        FIXME: add operation.summary
-
         :param filter: The filter parameter with value '$filter=id gt 5 and name eq 'foo''.
         :type filter: str
         :param top: The top parameter with value 10.

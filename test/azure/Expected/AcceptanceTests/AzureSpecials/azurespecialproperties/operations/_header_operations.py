@@ -50,8 +50,6 @@ class HeaderOperations(object):
         # type: (...) -> None
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
-        FIXME: add operation.summary
-
         :param foo_client_request_id: The fooRequestId.
         :type foo_client_request_id: str
         :param callable cls: A custom type or function that will be passed the direct response
@@ -99,8 +97,6 @@ class HeaderOperations(object):
     ):
         # type: (...) -> None
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request, via a parameter group.
-
-        FIXME: add operation.summary
 
         :param header_custom_named_request_id_param_grouping_parameters: Parameter group.
         :type header_custom_named_request_id_param_grouping_parameters: ~azurespecialproperties.models.HeaderCustomNamedRequestIdParamGroupingParameters
@@ -154,8 +150,6 @@ class HeaderOperations(object):
     ):
         # type: (...) -> None
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
-
-        FIXME: add operation.summary
 
         :param foo_client_request_id: The fooRequestId.
         :type foo_client_request_id: str

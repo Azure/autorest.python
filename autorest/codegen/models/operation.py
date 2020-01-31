@@ -28,6 +28,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         description: str,
         url: str,
         method: str,
+        summary: Optional[str] = None,
         parameters: Optional[List[Parameter]] = None,
         responses: Optional[List[SchemaResponse]] = None,
         exceptions: Optional[List[SchemaResponse]] = None,
@@ -40,6 +41,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         self.description = description
         self.url = url
         self.method = method
+        self.summary = summary
         self.parameters = ParameterList(parameters)
         self.responses = responses or []
         self.exceptions = exceptions or []
@@ -252,6 +254,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
             description=yaml_data["language"]["python"]["description"],
             url=yaml_data["request"]["protocol"]["http"]["path"],
             method=yaml_data["request"]["protocol"]["http"]["method"],
+            summary=yaml_data["language"]["python"].get("summary"),
             parameters=parameters,
             responses=[
                 SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("responses", [])

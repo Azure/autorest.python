@@ -20,7 +20,7 @@ default_mappings = {
   'AcceptanceTests/BodyComplex': 'body-complex.json',
   'AcceptanceTests/BodyDate': 'body-date.json',
   'AcceptanceTests/BodyDateTime': 'body-datetime.json',
-  'AcceptanceTests/BodyDateTimeRfc1123': 'body-datetime-rfc1123.json',
+  # 'AcceptanceTests/BodyDateTimeRfc1123': 'body-datetime-rfc1123.json',
   'AcceptanceTests/BodyDuration': 'body-duration.json',
   'AcceptanceTests/BodyDictionary': 'body-dictionary.json',
   'AcceptanceTests/BodyFile': 'body-file.json',

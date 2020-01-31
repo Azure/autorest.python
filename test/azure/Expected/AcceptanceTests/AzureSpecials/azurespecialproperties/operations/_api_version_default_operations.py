@@ -48,8 +48,6 @@ class ApiVersionDefaultOperations(object):
         # type: (...) -> None
         """GET method with api-version modeled in global settings.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -90,8 +88,6 @@ class ApiVersionDefaultOperations(object):
     ):
         # type: (...) -> None
         """GET method with api-version modeled in global settings.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -134,8 +130,6 @@ class ApiVersionDefaultOperations(object):
         # type: (...) -> None
         """GET method with api-version modeled in global settings.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -176,8 +170,6 @@ class ApiVersionDefaultOperations(object):
     ):
         # type: (...) -> None
         """GET method with api-version modeled in global settings.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

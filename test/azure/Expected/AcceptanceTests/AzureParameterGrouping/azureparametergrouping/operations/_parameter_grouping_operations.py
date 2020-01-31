@@ -50,8 +50,6 @@ class ParameterGroupingOperations(object):
         # type: (...) -> None
         """Post a bunch of required parameters grouped.
 
-        FIXME: add operation.summary
-
         :param parameter_grouping_post_required_parameters: Parameter group.
         :type parameter_grouping_post_required_parameters: ~azureparametergrouping.models.ParameterGroupingPostRequiredParameters
         :param callable cls: A custom type or function that will be passed the direct response
@@ -119,8 +117,6 @@ class ParameterGroupingOperations(object):
         # type: (...) -> None
         """Post a bunch of optional parameters grouped.
 
-        FIXME: add operation.summary
-
         :param parameter_grouping_post_optional_parameters: Parameter group.
         :type parameter_grouping_post_optional_parameters: ~azureparametergrouping.models.ParameterGroupingPostOptionalParameters
         :param callable cls: A custom type or function that will be passed the direct response
@@ -176,8 +172,6 @@ class ParameterGroupingOperations(object):
     ):
         # type: (...) -> None
         """Post parameters from multiple different parameter groups.
-
-        FIXME: add operation.summary
 
         :param first_parameter_group: Parameter group.
         :type first_parameter_group: ~azureparametergrouping.models.FirstParameterGroup
@@ -244,8 +238,6 @@ class ParameterGroupingOperations(object):
     ):
         # type: (...) -> None
         """Post parameters with a shared parameter group object.
-
-        FIXME: add operation.summary
 
         :param first_parameter_group: Parameter group.
         :type first_parameter_group: ~azureparametergrouping.models.FirstParameterGroup

@@ -42,8 +42,6 @@ class HttpSuccessOperations:
     ) -> None:
         """Return 200 status code if successful.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -85,8 +83,6 @@ class HttpSuccessOperations:
     ) -> None:
         """Return 204 status code if successful.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -127,8 +123,6 @@ class HttpSuccessOperations:
         **kwargs: Any
     ) -> None:
         """Return 404 status code if successful.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

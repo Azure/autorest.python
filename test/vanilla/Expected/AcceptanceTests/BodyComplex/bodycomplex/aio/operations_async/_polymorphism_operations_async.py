@@ -48,8 +48,6 @@ class PolymorphismOperations:
     ) -> "models.Fish":
         """Get complex types that are polymorphic.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Fish or the result of cls(response)
         :rtype: ~bodycomplex.models.Fish
@@ -95,8 +93,6 @@ class PolymorphismOperations:
         **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic.
-
-        FIXME: add operation.summary
 
         :param complex_body: Please put a salmon that looks like this:
     {
@@ -176,8 +172,6 @@ class PolymorphismOperations:
     ) -> "models.DotFish":
         """Get complex types that are polymorphic, JSON key contains a dot.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DotFish or the result of cls(response)
         :rtype: ~bodycomplex.models.DotFish
@@ -221,8 +215,6 @@ class PolymorphismOperations:
         **kwargs: Any
     ) -> "models.DotFishMarket":
         """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, with discriminator specified. Deserialization must NOT fail and use the discriminator type specified on the wire.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DotFishMarket or the result of cls(response)
@@ -268,8 +260,6 @@ class PolymorphismOperations:
     ) -> "models.DotFishMarket":
         """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, without discriminator specified on wire. Deserialization must NOT fail and use the explicit type of the property.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DotFishMarket or the result of cls(response)
         :rtype: ~bodycomplex.models.DotFishMarket
@@ -313,8 +303,6 @@ class PolymorphismOperations:
         **kwargs: Any
     ) -> "models.Salmon":
         """Get complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Salmon or the result of cls(response)
@@ -361,8 +349,6 @@ class PolymorphismOperations:
         **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties.
-
-        FIXME: add operation.summary
 
         :param complex_body: 
         :type complex_body: ~bodycomplex.models.Salmon
@@ -411,8 +397,6 @@ class PolymorphismOperations:
         **kwargs: Any
     ) -> "models.Salmon":
         """Put complex types that are polymorphic, omitting the discriminator.
-
-        FIXME: add operation.summary
 
         :param complex_body: 
         :type complex_body: ~bodycomplex.models.Salmon
@@ -465,8 +449,6 @@ class PolymorphismOperations:
         **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the request should not be allowed from the client.
-
-        FIXME: add operation.summary
 
         :param complex_body: Please put a salmon that looks like this:
     {

@@ -50,8 +50,6 @@ class PetsOperations(object):
         # type: (...) -> "models.PetAPTrue"
         """Create a Pet which contains more properties than what is defined.
 
-        FIXME: add operation.summary
-
         :param create_parameters: 
         :type create_parameters: ~additionalproperties.models.PetAPTrue
         :param callable cls: A custom type or function that will be passed the direct response
@@ -103,8 +101,6 @@ class PetsOperations(object):
     ):
         # type: (...) -> "models.CatAPTrue"
         """Create a CatAPTrue which contains more properties than what is defined.
-
-        FIXME: add operation.summary
 
         :param create_parameters: 
         :type create_parameters: ~additionalproperties.models.CatAPTrue
@@ -158,8 +154,6 @@ class PetsOperations(object):
         # type: (...) -> "models.PetAPObject"
         """Create a Pet which contains more properties than what is defined.
 
-        FIXME: add operation.summary
-
         :param create_parameters: 
         :type create_parameters: ~additionalproperties.models.PetAPObject
         :param callable cls: A custom type or function that will be passed the direct response
@@ -211,8 +205,6 @@ class PetsOperations(object):
     ):
         # type: (...) -> "models.PetAPString"
         """Create a Pet which contains more properties than what is defined.
-
-        FIXME: add operation.summary
 
         :param create_parameters: 
         :type create_parameters: ~additionalproperties.models.PetAPString
@@ -266,8 +258,6 @@ class PetsOperations(object):
         # type: (...) -> "models.PetAPInProperties"
         """Create a Pet which contains more properties than what is defined.
 
-        FIXME: add operation.summary
-
         :param create_parameters: 
         :type create_parameters: ~additionalproperties.models.PetAPInProperties
         :param callable cls: A custom type or function that will be passed the direct response
@@ -319,8 +309,6 @@ class PetsOperations(object):
     ):
         # type: (...) -> "models.PetAPInPropertiesWithAPString"
         """Create a Pet which contains more properties than what is defined.
-
-        FIXME: add operation.summary
 
         :param create_parameters: 
         :type create_parameters: ~additionalproperties.models.PetAPInPropertiesWithAPString

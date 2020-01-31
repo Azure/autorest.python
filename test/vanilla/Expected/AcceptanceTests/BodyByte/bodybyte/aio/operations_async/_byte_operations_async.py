@@ -47,8 +47,6 @@ class ByteOperations:
     ) -> bytearray:
         """Get null byte value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: bytearray or the result of cls(response)
         :rtype: bytearray
@@ -93,8 +91,6 @@ class ByteOperations:
     ) -> bytearray:
         """Get empty byte value ''.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: bytearray or the result of cls(response)
         :rtype: bytearray
@@ -138,8 +134,6 @@ class ByteOperations:
         **kwargs: Any
     ) -> bytearray:
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: bytearray or the result of cls(response)
@@ -187,8 +181,6 @@ class ByteOperations:
     ) -> None:
         """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
-        FIXME: add operation.summary
-
         :param byte_body: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
         :type byte_body: bytearray
         :param callable cls: A custom type or function that will be passed the direct response
@@ -234,8 +226,6 @@ class ByteOperations:
         **kwargs: Any
     ) -> bytearray:
         """Get invalid byte value ':::SWAGGER::::'.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: bytearray or the result of cls(response)

@@ -48,8 +48,6 @@ class FlattencomplexOperations:
     ) -> "models.MyBaseType":
         """
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: MyBaseType or the result of cls(response)
         :rtype: ~bodycomplex.models.MyBaseType
