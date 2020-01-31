@@ -22,5 +22,4 @@ class Namer(YamlUpdatePlugin):
         """Convert in place the YAML str.
         """
         # FIXME https://github.com/Azure/autorest.modelerfour/issues/104
-        override_client_name = self._autorestapi.get_value("override-client-name")
-        NameConverter.convert_yaml_names(yaml_code_model, override_client_name)
+        NameConverter.convert_yaml_names(yaml_code_model)
