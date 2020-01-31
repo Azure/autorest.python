@@ -17,7 +17,7 @@ from .base_schema import BaseSchema
 _LOGGER = logging.getLogger(__name__)
 
 
-class Operation(BaseModel):  # pylint: disable=too-many-public-methods
+class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many-instance-attributes
     """Represent an operation.
     """
 
