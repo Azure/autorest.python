@@ -9,7 +9,7 @@
 from enum import Enum
 
 class OperationResultStatus(str, Enum):
-    
+
     succeeded = "Succeeded"
     failed = "Failed"
     canceled = "canceled"
