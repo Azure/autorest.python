@@ -126,22 +126,24 @@ class NameConverter:
 
     @staticmethod
     def _to_pascal_case(name):
-        name_list = re.split('[^a-zA-Z\\d]', name)
-        name_list = [s[0].upper() + s[1:] if len(s) > 1 else s.upper()
-                            for s in name_list]
-        return ''.join(name_list)
+        return name
+        # name_list = re.split('[^a-zA-Z\\d]', name)
+        # name_list = [s[0].upper() + s[1:] if len(s) > 1 else s.upper()
+        #                     for s in name_list]
+        # return ''.join(name_list)
 
     @staticmethod
     def _to_valid_python_name(name, *, pad_string=""):
-        if not name:
-            return pad_string
-        return NameConverter._to_python_case(
-            NameConverter._get_escaped_reserved_name(
-                NameConverter._to_valid_name(
-                    name.replace('-', '_'), '_'),
-                    pad_string
-                )
-            )
+        return name
+        # if not name:
+        #     return pad_string
+        # return NameConverter._to_python_case(
+        #     NameConverter._get_escaped_reserved_name(
+        #         NameConverter._to_valid_name(
+        #             name.replace('-', '_'), '_'),
+        #             pad_string
+        #         )
+        #     )
 
     @staticmethod
     def _to_python_case(name):
