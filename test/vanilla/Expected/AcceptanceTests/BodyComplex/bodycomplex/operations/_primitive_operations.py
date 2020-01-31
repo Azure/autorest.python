@@ -391,7 +391,8 @@ class PrimitiveOperations(object):
 
         FIXME: add operation.summary
 
-        :param complex_body: Please put 3e-100 and -0.000000000000000000000000000000000000000000000000000000005.
+        :param complex_body: Please put 3e-100 and
+         -0.000000000000000000000000000000000000000000000000000000005.
         :type complex_body: ~bodycomplex.models.DoubleWrapper
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

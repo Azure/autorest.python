@@ -58,7 +58,7 @@ def {{ operation.python_name }}(
 
 {% endif -%}
 {% for parameter in operation.parameters.method %}
-    :param {{ parameter.serialized_name }}: {{ parameter.description }}
+    :param {{ parameter.serialized_name }}: {{ parameter.description | wordwrap(width=80, break_long_words=False, wrapstring='\n     ')}}
     :type {{ parameter.serialized_name }}: {{ parameter.schema.docstring_type }}
 {% endfor %}
     :param callable cls: A custom type or function that will be passed the direct response
