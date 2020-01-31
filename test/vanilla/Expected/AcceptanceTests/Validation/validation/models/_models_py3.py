@@ -190,9 +190,9 @@ class Product(Model):
 
     def __init__(
         self,
+        *,
         child: "ChildProduct",
         const_child: "ConstantProduct",
-        *,
         display_names: Optional[List[str]] = None,
         capacity: Optional[int] = None,
         image: Optional[str] = None,

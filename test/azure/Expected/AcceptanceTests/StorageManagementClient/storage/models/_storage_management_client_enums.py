@@ -9,13 +9,13 @@
 from enum import Enum
 
 class ProvisioningState(str, Enum):
-    
+
     creating = "Creating"
     resolving_dns = "ResolvingDNS"
     succeeded = "Succeeded"
 
 class AccountType(str, Enum):
-    
+
     standard_lrs = "Standard_LRS"
     standard_zrs = "Standard_ZRS"
     standard_grs = "Standard_GRS"
@@ -23,12 +23,12 @@ class AccountType(str, Enum):
     premium_lrs = "Premium_LRS"
 
 class AccountStatus(str, Enum):
-    
+
     available = "Available"
     unavailable = "Unavailable"
 
 class UsageUnit(str, Enum):
-    
+
     count = "Count"
     bytes = "Bytes"
     seconds = "Seconds"
@@ -37,11 +37,11 @@ class UsageUnit(str, Enum):
     bytes_per_second = "BytesPerSecond"
 
 class Reason(str, Enum):
-    
+
     account_name_invalid = "AccountNameInvalid"
     already_exists = "AlreadyExists"
 
 class KeyName(str, Enum):
-    
+
     key1 = "key1"
     key2 = "key2"

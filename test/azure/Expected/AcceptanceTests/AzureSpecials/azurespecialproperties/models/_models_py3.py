@@ -96,6 +96,7 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(Model):
 
     def __init__(
         self,
+        *,
         foo_client_request_id: str,
         **kwargs
     ):

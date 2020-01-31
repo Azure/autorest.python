@@ -30,6 +30,7 @@ class AvailabilitySetUpdateParameters(Model):
 
     def __init__(
         self,
+        *,
         tags: Dict[str, str],
         **kwargs
     ):

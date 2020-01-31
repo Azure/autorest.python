@@ -198,8 +198,8 @@ class Resource(Model):
 
     def __init__(
         self,
-        location: str,
         *,
+        location: str,
         tags: Optional[Dict[str, str]] = None,
         **kwargs
     ):
@@ -297,8 +297,8 @@ class StorageAccount(Resource):
 
     def __init__(
         self,
-        location: str,
         *,
+        location: str,
         tags: Optional[Dict[str, str]] = None,
         provisioning_state: Optional[Union[str, "ProvisioningState"]] = None,
         account_type: Optional[Union[str, "AccountType"]] = None,
@@ -349,8 +349,8 @@ class StorageAccountCheckNameAvailabilityParameters(Model):
 
     def __init__(
         self,
-        name: str,
         *,
+        name: str,
         type: Optional[str] = "Microsoft.Storage/storageAccounts",
         **kwargs
     ):
@@ -399,8 +399,8 @@ class StorageAccountCreateParameters(Resource):
 
     def __init__(
         self,
-        location: str,
         *,
+        location: str,
         tags: Optional[Dict[str, str]] = None,
         account_type: Optional[Union[str, "AccountType"]] = None,
         **kwargs
@@ -665,8 +665,8 @@ class StorageAccountUpdateParameters(Resource):
 
     def __init__(
         self,
-        location: str,
         *,
+        location: str,
         tags: Optional[Dict[str, str]] = None,
         account_type: Optional[Union[str, "AccountType"]] = None,
         custom_domain: Optional["CustomDomain"] = None,

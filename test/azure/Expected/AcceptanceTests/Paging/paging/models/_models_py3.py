@@ -34,6 +34,7 @@ class CustomParameterGroup(Model):
 
     def __init__(
         self,
+        *,
         api_version: str,
         tenant: str,
         **kwargs
@@ -172,8 +173,8 @@ class PagingGetMultiplePagesWithOffsetOptions(Model):
 
     def __init__(
         self,
-        offset: int,
         *,
+        offset: int,
         maxresults: Optional[int] = None,
         timeout: Optional[int] = 30,
         **kwargs
