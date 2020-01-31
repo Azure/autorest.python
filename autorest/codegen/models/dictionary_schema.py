@@ -34,7 +34,7 @@ class DictionarySchema(BaseSchema):
         :return: The serialization value for msrest
         :rtype: str
         """
-        return "{{{}}}".format(self.element_type.get_serialization_type())
+        return f"{{{self.element_type.get_serialization_type()}}}"
 
     @property
     def type_annotation(self) -> str:
@@ -55,7 +55,7 @@ class DictionarySchema(BaseSchema):
 
         :param str namespace: Optional. The namespace for the models.
         """
-        return 'dict[str, {}]'.format(self.element_type.docstring_type)
+        return f'dict[str, {self.element_type.docstring_type}]'
 
     def xml_serialization_ctxt(self) -> Optional[str]:
         raise NotImplementedError("Dictionary schema does not support XML serialization.")

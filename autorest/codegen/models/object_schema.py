@@ -58,7 +58,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
 
     @property
     def docstring_type(self):
-        return '~{}.models.{}'.format(self.namespace, self.name)
+        return f'~{self.namespace}.models.{self.name}'
 
     @property
     def docstring_text(self) -> str:

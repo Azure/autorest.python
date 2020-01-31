@@ -80,8 +80,9 @@ class JinjaSerializer:
             ModelPython3Serializer(code_model=code_model, env=env).serialize()
         )
         if code_model.enums:
-            self._autorestapi.write_file(models_path / Path("_{}_enums.py".format(
-                code_model.module_name)), EnumSerializer(code_model=code_model, env=env).serialize()
+            self._autorestapi.write_file(
+                models_path / Path(f"_{code_model.module_name}_enums.py"),
+                EnumSerializer(code_model=code_model, env=env).serialize()
             )
         self._autorestapi.write_file(
             models_path / Path("__init__.py"),
@@ -147,7 +148,7 @@ class JinjaSerializer:
 
         # Write the service client
         self._autorestapi.write_file(
-            namespace_path / Path("_{}.py".format(code_model.module_name)),
+            namespace_path / Path(f"_{code_model.module_name}.py"),
             general_serializer.serialize_service_client_file()
         )
 
@@ -182,7 +183,7 @@ class JinjaSerializer:
 
         # Write the service client
         self._autorestapi.write_file(
-            aio_path / Path("_{}_async.py".format(code_model.module_name)),
+            aio_path / Path(f"_{code_model.module_name}_async.py"),
             aio_general_serializer.serialize_service_client_file()
         )
 
