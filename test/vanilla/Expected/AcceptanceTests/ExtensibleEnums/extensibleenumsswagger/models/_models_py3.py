@@ -12,7 +12,7 @@ from msrest.serialization import Model
 
 
 class Pet(Model):
-    """Pet.
+    """
 
     All required parameters must be populated in order to send to Azure.
 
@@ -39,8 +39,8 @@ class Pet(Model):
 
     def __init__(
         self,
-        int_enum: Union[str, "IntEnum"],
         *,
+        int_enum: Union[str, "IntEnum"],
         name: Optional[str] = None,
         days_of_week: Optional[Union[str, "DaysOfWeekExtensibleEnum"]] = "Friday",
         **kwargs

@@ -163,7 +163,7 @@ class Foo(Model):
 
 
 class Resource(Model):
-    """Resource.
+    """
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -198,8 +198,8 @@ class Resource(Model):
 
     def __init__(
         self,
-        location: str,
         *,
+        location: str,
         tags: Optional[Dict[str, str]] = None,
         **kwargs
     ):
@@ -297,8 +297,8 @@ class StorageAccount(Resource):
 
     def __init__(
         self,
-        location: str,
         *,
+        location: str,
         tags: Optional[Dict[str, str]] = None,
         provisioning_state: Optional[Union[str, "ProvisioningState"]] = None,
         account_type: Optional[Union[str, "AccountType"]] = None,
@@ -328,7 +328,7 @@ class StorageAccount(Resource):
 
 
 class StorageAccountCheckNameAvailabilityParameters(Model):
-    """StorageAccountCheckNameAvailabilityParameters.
+    """
 
     All required parameters must be populated in order to send to Azure.
 
@@ -349,8 +349,8 @@ class StorageAccountCheckNameAvailabilityParameters(Model):
 
     def __init__(
         self,
-        name: str,
         *,
+        name: str,
         type: Optional[str] = "Microsoft.Storage/storageAccounts",
         **kwargs
     ):
@@ -399,8 +399,8 @@ class StorageAccountCreateParameters(Resource):
 
     def __init__(
         self,
-        location: str,
         *,
+        location: str,
         tags: Optional[Dict[str, str]] = None,
         account_type: Optional[Union[str, "AccountType"]] = None,
         **kwargs
@@ -463,7 +463,7 @@ class StorageAccountListResult(Model):
 
 
 class StorageAccountProperties(Model):
-    """StorageAccountProperties.
+    """
 
     :param provisioning_state: Gets the status of the storage account at the time
      the operation was called. Possible values include: 'Creating', 'ResolvingDNS',
@@ -551,7 +551,7 @@ class StorageAccountProperties(Model):
 
 
 class StorageAccountPropertiesCreateParameters(Model):
-    """StorageAccountPropertiesCreateParameters.
+    """
 
     :param account_type: Gets or sets the account type. Possible values include:
      'Standard_LRS', 'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
@@ -573,7 +573,7 @@ class StorageAccountPropertiesCreateParameters(Model):
 
 
 class StorageAccountPropertiesUpdateParameters(Model):
-    """StorageAccountPropertiesUpdateParameters.
+    """
 
     :param account_type: Gets or sets the account type. Possible values include:
      'Standard_LRS', 'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
@@ -601,7 +601,7 @@ class StorageAccountPropertiesUpdateParameters(Model):
 
 
 class StorageAccountRegenerateKeyParameters(Model):
-    """StorageAccountRegenerateKeyParameters.
+    """
 
     :param key_name:  Possible values include: 'key1', 'key2'.
     :type key_name: str or ~storage.models.KeyName
@@ -665,8 +665,8 @@ class StorageAccountUpdateParameters(Resource):
 
     def __init__(
         self,
-        location: str,
         *,
+        location: str,
         tags: Optional[Dict[str, str]] = None,
         account_type: Optional[Union[str, "AccountType"]] = None,
         custom_domain: Optional["CustomDomain"] = None,
@@ -678,7 +678,7 @@ class StorageAccountUpdateParameters(Resource):
 
 
 class SubResource(Model):
-    """SubResource.
+    """
 
     :param id: Resource Id.
     :type id: str

@@ -12,7 +12,7 @@ from msrest.serialization import Model
 
 
 class AvailabilitySetUpdateParameters(Model):
-    """AvailabilitySetUpdateParameters.
+    """
 
     All required parameters must be populated in order to send to Azure.
 
@@ -30,6 +30,7 @@ class AvailabilitySetUpdateParameters(Model):
 
     def __init__(
         self,
+        *,
         tags: Dict[str, str],
         **kwargs
     ):

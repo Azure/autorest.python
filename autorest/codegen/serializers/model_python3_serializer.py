@@ -18,20 +18,19 @@ class ModelPython3Serializer(ModelBaseSerializer):
             for p in model.properties
             if not p.readonly and not p.is_discriminator and not p.constant
         ]
-        # init_line_parameters.sort(key=lambda x: x.required, reverse=True)
-        required_parameters = [p for p in init_line_parameters if p.required]
-        optional_parameters = [p for p in init_line_parameters if not p.required]
-        for param in required_parameters:
-            init_properties_declaration.append(
-                "{}: {}".format(param.name, param.type_annotation)
-            )
-        if optional_parameters:
+        init_line_parameters.sort(key=lambda x: x.required, reverse=True)
+        if init_line_parameters:
             init_properties_declaration.append("*")
-        for param in optional_parameters:
-            default_value = param.schema.get_default_value_declaration()
-            init_properties_declaration.append(
-                "{}: {} = {}".format(param.name, param.type_annotation, default_value)
-            )
+        for param in init_line_parameters:
+            if param.required:
+                init_properties_declaration.append(
+                    f"{param.name}: {param.type_annotation}"
+                )
+            else:
+                default_value = param.schema.get_default_value_declaration()
+                init_properties_declaration.append(
+                    f"{param.name}: {param.type_annotation} = {default_value}"
+                )
 
         return init_properties_declaration
 

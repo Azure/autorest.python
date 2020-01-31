@@ -9,7 +9,7 @@
 from enum import Enum
 
 class FlattenedProductPropertiesProvisioningStateValues(str, Enum):
-    
+
     succeeded = "Succeeded"
     failed = "Failed"
     canceled = "canceled"

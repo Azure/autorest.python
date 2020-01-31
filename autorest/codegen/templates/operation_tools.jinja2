@@ -11,6 +11,21 @@ deserialized = response.stream_download(self._client._pipeline)
 deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}', pipeline_response)
   {% endif %}
 {% endmacro %}
+{# write grouped parameters #}
+{% macro grouped_parameters(operation) %}
+{% if operation.parameters.grouped %}
+
+    {% for grouped_parameter in operation.parameters.grouped %}
+{{ grouped_parameter.serialized_name }} = None
+    {% endfor %}
+    {% for grouper_name, grouped_parameters in operation.parameters.grouped|groupby("grouped_by.serialized_name") %}
+if {{ grouper_name }} is not None:
+        {% for grouped_parameter in grouped_parameters %}
+    {{ grouped_parameter.serialized_name }} = {{ grouper_name }}.{{ grouped_parameter.serialized_name }}
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+{% endmacro %}
 {# write queryparameters #}
 {% macro query_parameters(operation, async_mode) %}
 # Construct parameters

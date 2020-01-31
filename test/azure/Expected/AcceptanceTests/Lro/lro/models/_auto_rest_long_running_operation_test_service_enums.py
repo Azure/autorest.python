@@ -9,7 +9,7 @@
 from enum import Enum
 
 class ProductPropertiesProvisioningStateValues(str, Enum):
-    
+
     succeeded = "Succeeded"
     failed = "Failed"
     canceled = "canceled"
@@ -23,7 +23,7 @@ class ProductPropertiesProvisioningStateValues(str, Enum):
     ok = "OK"
 
 class SubProductPropertiesProvisioningStateValues(str, Enum):
-    
+
     succeeded = "Succeeded"
     failed = "Failed"
     canceled = "canceled"
@@ -37,7 +37,7 @@ class SubProductPropertiesProvisioningStateValues(str, Enum):
     ok = "OK"
 
 class OperationResultStatus(str, Enum):
-    
+
     succeeded = "Succeeded"
     failed = "Failed"
     canceled = "canceled"

@@ -12,6 +12,7 @@ from azure.core.exceptions import map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
+from msrest.serialization import Model
 
 from .. import models
 
@@ -42,10 +43,7 @@ class ParameterGroupingOperations(object):
     @distributed_trace
     def post_required(
         self,
-        path,  # type: str
-        body,  # type: int
-        custom_header=None,  # type: Optional[str]
-        query=None,  # type: Optional[int]
+        parameter_grouping_post_required_parameters,  # type: "models.ParameterGroupingPostRequiredParameters"
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -54,20 +52,25 @@ class ParameterGroupingOperations(object):
 
         FIXME: add operation.summary
 
-        :param path: Path parameter.
-        :type path: str
-        :param body: 
-        :type body: int
-        :param custom_header: 
-        :type custom_header: str
-        :param query: Query parameter with default.
-        :type query: int
+        :param parameter_grouping_post_required_parameters: Parameter group.
+        :type parameter_grouping_post_required_parameters: ~azureparametergrouping.models.ParameterGroupingPostRequiredParameters
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azureparametergrouping.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+        
+        custom_header = None
+        query = None
+        path = None
+        body = None
+        if parameter_grouping_post_required_parameters is not None:
+            custom_header = parameter_grouping_post_required_parameters.custom_header
+            query = parameter_grouping_post_required_parameters.query
+            path = parameter_grouping_post_required_parameters.path
+            body = parameter_grouping_post_required_parameters.body
+
 
         # Construct URL
         url = self.post_required.metadata['url']
@@ -109,8 +112,7 @@ class ParameterGroupingOperations(object):
     @distributed_trace
     def post_optional(
         self,
-        custom_header=None,  # type: Optional[str]
-        query=None,  # type: Optional[int]
+        parameter_grouping_post_optional_parameters=None,  # type: Optional["models.ParameterGroupingPostOptionalParameters"]
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -119,16 +121,21 @@ class ParameterGroupingOperations(object):
 
         FIXME: add operation.summary
 
-        :param custom_header: 
-        :type custom_header: str
-        :param query: Query parameter with default.
-        :type query: int
+        :param parameter_grouping_post_optional_parameters: Parameter group.
+        :type parameter_grouping_post_optional_parameters: ~azureparametergrouping.models.ParameterGroupingPostOptionalParameters
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azureparametergrouping.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+        
+        custom_header = None
+        query = None
+        if parameter_grouping_post_optional_parameters is not None:
+            custom_header = parameter_grouping_post_optional_parameters.custom_header
+            query = parameter_grouping_post_optional_parameters.query
+
 
         # Construct URL
         url = self.post_optional.metadata['url']
@@ -162,10 +169,8 @@ class ParameterGroupingOperations(object):
     @distributed_trace
     def post_multi_param_groups(
         self,
-        header_one=None,  # type: Optional[str]
-        query_one=None,  # type: Optional[int]
-        header_two=None,  # type: Optional[str]
-        query_two=None,  # type: Optional[int]
+        first_parameter_group=None,  # type: Optional["models.FirstParameterGroup"]
+        parameter_grouping_post_multi_param_groups_second_param_group=None,  # type: Optional["models.ParameterGroupingPostMultiParamGroupsSecondParamGroup"]
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -174,20 +179,28 @@ class ParameterGroupingOperations(object):
 
         FIXME: add operation.summary
 
-        :param header_one: 
-        :type header_one: str
-        :param query_one: Query parameter with default.
-        :type query_one: int
-        :param header_two: 
-        :type header_two: str
-        :param query_two: Query parameter with default.
-        :type query_two: int
+        :param first_parameter_group: Parameter group.
+        :type first_parameter_group: ~azureparametergrouping.models.FirstParameterGroup
+        :param parameter_grouping_post_multi_param_groups_second_param_group: Parameter group.
+        :type parameter_grouping_post_multi_param_groups_second_param_group: ~azureparametergrouping.models.ParameterGroupingPostMultiParamGroupsSecondParamGroup
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azureparametergrouping.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+        
+        header_one = None
+        query_one = None
+        header_two = None
+        query_two = None
+        if first_parameter_group is not None:
+            header_one = first_parameter_group.header_one
+            query_one = first_parameter_group.query_one
+        if parameter_grouping_post_multi_param_groups_second_param_group is not None:
+            header_two = parameter_grouping_post_multi_param_groups_second_param_group.header_two
+            query_two = parameter_grouping_post_multi_param_groups_second_param_group.query_two
+
 
         # Construct URL
         url = self.post_multi_param_groups.metadata['url']
@@ -225,8 +238,7 @@ class ParameterGroupingOperations(object):
     @distributed_trace
     def post_shared_parameter_group_object(
         self,
-        header_one=None,  # type: Optional[str]
-        query_one=None,  # type: Optional[int]
+        first_parameter_group=None,  # type: Optional["models.FirstParameterGroup"]
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -235,16 +247,21 @@ class ParameterGroupingOperations(object):
 
         FIXME: add operation.summary
 
-        :param header_one: 
-        :type header_one: str
-        :param query_one: Query parameter with default.
-        :type query_one: int
+        :param first_parameter_group: Parameter group.
+        :type first_parameter_group: ~azureparametergrouping.models.FirstParameterGroup
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azureparametergrouping.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+        
+        header_one = None
+        query_one = None
+        if first_parameter_group is not None:
+            header_one = first_parameter_group.header_one
+            query_one = first_parameter_group.query_one
+
 
         # Construct URL
         url = self.post_shared_parameter_group_object.metadata['url']

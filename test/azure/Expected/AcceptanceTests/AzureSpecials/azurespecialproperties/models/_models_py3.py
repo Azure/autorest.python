@@ -38,7 +38,7 @@ class ErrorException(HttpResponseError):
 
 
 class Error(Model):
-    """Error.
+    """
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -77,8 +77,35 @@ class Error(Model):
         self.message = message
 
 
+class HeaderCustomNamedRequestIdParamGroupingParameters(Model):
+    """Parameter group.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :param foo_client_request_id: Required. The fooRequestId.
+    :type foo_client_request_id: str
+    """
+
+    _validation = {
+        'foo_client_request_id': {'required': True},
+    }
+
+    _attribute_map = {
+        'foo_client_request_id': {'key': 'foo-client-request-id', 'type': 'str'},
+    }
+
+    def __init__(
+        self,
+        *,
+        foo_client_request_id: str,
+        **kwargs
+    ):
+        super(HeaderCustomNamedRequestIdParamGroupingParameters, self).__init__(**kwargs)
+        self.foo_client_request_id = foo_client_request_id
+
+
 class OdataFilter(Model):
-    """OdataFilter.
+    """
 
     :param id:
     :type id: int

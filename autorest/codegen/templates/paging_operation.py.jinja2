@@ -93,6 +93,9 @@ def {{ operation.python_name }}(
 {% else %}
     error_map = kwargs.pop('error_map', {})
 {% endif %}
+{% if operation.parameters.grouped %}
+    {{ op_tools.grouped_parameters(operation)|indent }}
+{% endif %}
 {% if operation.parameters.is_flattened %}
     {{ operation.parameters.build_flattened_object() }}
 {% endif %}

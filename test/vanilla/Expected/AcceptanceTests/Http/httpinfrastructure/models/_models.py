@@ -36,7 +36,7 @@ class MyExceptionException(HttpResponseError):
 
 
 class MyException(Model):
-    """MyException.
+    """
 
     :param status_code:
     :type status_code: str
@@ -81,7 +81,7 @@ class BException(MyExceptionException):
 
 
 class B(MyException):
-    """B.
+    """
 
     :param status_code:
     :type status_code: str
@@ -104,7 +104,7 @@ class B(MyException):
 
 
 class C(Model):
-    """C.
+    """
 
     :param http_code:
     :type http_code: str
@@ -123,7 +123,7 @@ class C(Model):
 
 
 class D(Model):
-    """D.
+    """
 
     :param http_status_code:
     :type http_status_code: str
@@ -167,7 +167,7 @@ class ErrorException(HttpResponseError):
 
 
 class Error(Model):
-    """Error.
+    """
 
     :param status:
     :type status: int

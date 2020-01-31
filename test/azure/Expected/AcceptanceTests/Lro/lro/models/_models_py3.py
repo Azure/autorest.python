@@ -12,7 +12,7 @@ from msrest.serialization import Model
 
 
 class OperationResult(Model):
-    """OperationResult.
+    """
 
     :param status: The status of the request. Possible values include: 'Succeeded',
      'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
@@ -40,7 +40,7 @@ class OperationResult(Model):
 
 
 class OperationResultError(Model):
-    """OperationResultError.
+    """
 
     :param code: The error code for an operation failure.
     :type code: int
@@ -66,7 +66,7 @@ class OperationResultError(Model):
 
 
 class Resource(Model):
-    """Resource.
+    """
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -113,7 +113,7 @@ class Resource(Model):
 
 
 class Product(Resource):
-    """Product.
+    """
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -168,7 +168,7 @@ class Product(Resource):
 
 
 class ProductProperties(Model):
-    """ProductProperties.
+    """
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -202,7 +202,7 @@ class ProductProperties(Model):
 
 
 class Sku(Model):
-    """Sku.
+    """
 
     :param name:
     :type name: str
@@ -228,7 +228,7 @@ class Sku(Model):
 
 
 class SubResource(Model):
-    """SubResource.
+    """
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -253,7 +253,7 @@ class SubResource(Model):
 
 
 class SubProduct(SubResource):
-    """SubProduct.
+    """
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -291,7 +291,7 @@ class SubProduct(SubResource):
 
 
 class SubProductProperties(Model):
-    """SubProductProperties.
+    """
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
