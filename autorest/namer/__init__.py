@@ -21,5 +21,4 @@ class Namer(YamlUpdatePlugin):
     def update_yaml(self, yaml_code_model) -> None:
         """Convert in place the YAML str.
         """
-        # FIXME https://github.com/Azure/autorest.modelerfour/issues/104
         NameConverter.convert_yaml_names(yaml_code_model)
