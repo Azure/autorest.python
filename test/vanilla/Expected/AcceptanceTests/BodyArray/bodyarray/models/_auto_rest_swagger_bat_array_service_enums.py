@@ -9,13 +9,13 @@
 from enum import Enum
 
 class FooEnum(str, Enum):
-    
+
     foo1 = "foo1"
     foo2 = "foo2"
     foo3 = "foo3"
 
 class Enum0(str, Enum):
-    
+
     foo1 = "foo1"
     foo2 = "foo2"
     foo3 = "foo3"

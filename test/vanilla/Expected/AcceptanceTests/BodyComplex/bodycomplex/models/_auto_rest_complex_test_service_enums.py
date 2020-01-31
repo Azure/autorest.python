@@ -9,14 +9,14 @@
 from enum import Enum
 
 class CMYKColors(str, Enum):
-    
+
     cyan = "cyan"
     magenta = "Magenta"
     yellow = "YELLOW"
     blac_k = "blacK"
 
 class GoblinSharkColor(str, Enum):
-    
+
     pink = "pink"
     gray = "gray"
     brown = "brown"
