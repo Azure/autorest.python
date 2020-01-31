@@ -95,8 +95,8 @@ class InheritanceOperations(object):
         # type: (...) -> None
         """Put complex types that extend others.
 
-        :param complex_body: Please put a siamese with id=2, name="Siameee", color=green, breed=persion,
-         which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and
+        :param complex_body: Please put a siamese with id=2, name="Siameee", color=green,
+         breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and
          the 2nd one named "Tomato" with id=-1 and food="french fries".
         :type complex_body: ~bodycomplex.models.Siamese
         :param callable cls: A custom type or function that will be passed the direct response

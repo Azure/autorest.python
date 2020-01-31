@@ -218,20 +218,18 @@ class BlobProperties(Model):
     :type cache_control: str
     :param blob_sequence_number:
     :type blob_sequence_number: int
-    :param blob_type:  Possible values include: 'BlockBlob', 'PageBlob',
-     'AppendBlob'.
+    :param blob_type:  Possible values include: 'BlockBlob', 'PageBlob', 'AppendBlob'.
     :type blob_type: str or ~xmlservice.models.BlobType
     :param lease_status:  Possible values include: 'locked', 'unlocked'.
     :type lease_status: str or ~xmlservice.models.LeaseStatusType
-    :param lease_state:  Possible values include: 'available', 'leased', 'expired',
-     'breaking', 'broken'.
+    :param lease_state:  Possible values include: 'available', 'leased', 'expired', 'breaking',
+     'broken'.
     :type lease_state: str or ~xmlservice.models.LeaseStateType
     :param lease_duration:  Possible values include: 'infinite', 'fixed'.
     :type lease_duration: str or ~xmlservice.models.LeaseDurationType
     :param copy_id:
     :type copy_id: str
-    :param copy_status:  Possible values include: 'pending', 'success', 'aborted',
-     'failed'.
+    :param copy_status:  Possible values include: 'pending', 'success', 'aborted', 'failed'.
     :type copy_status: str or ~xmlservice.models.CopyStatusType
     :param copy_source:
     :type copy_source: str
@@ -251,13 +249,13 @@ class BlobProperties(Model):
     :type deleted_time: ~datetime.datetime
     :param remaining_retention_days:
     :type remaining_retention_days: int
-    :param access_tier:  Possible values include: 'P4', 'P6', 'P10', 'P20', 'P30',
-     'P40', 'P50', 'Hot', 'Cool', 'Archive'.
+    :param access_tier:  Possible values include: 'P4', 'P6', 'P10', 'P20', 'P30', 'P40', 'P50',
+     'Hot', 'Cool', 'Archive'.
     :type access_tier: str or ~xmlservice.models.AccessTier
     :param access_tier_inferred:
     :type access_tier_inferred: bool
-    :param archive_status:  Possible values include: 'rehydrate-pending-to-hot',
-     'rehydrate-pending-to-cool'.
+    :param archive_status:  Possible values include: 'rehydrate-pending-to-hot', 'rehydrate-
+     pending-to-cool'.
     :type archive_status: str or ~xmlservice.models.ArchiveStatus
     """
 
@@ -482,8 +480,8 @@ class ContainerProperties(Model):
     :type etag: str
     :param lease_status:  Possible values include: 'locked', 'unlocked'.
     :type lease_status: str or ~xmlservice.models.LeaseStatusType
-    :param lease_state:  Possible values include: 'available', 'leased', 'expired',
-     'breaking', 'broken'.
+    :param lease_state:  Possible values include: 'available', 'leased', 'expired', 'breaking',
+     'broken'.
     :type lease_state: str or ~xmlservice.models.LeaseStateType
     :param lease_duration:  Possible values include: 'infinite', 'fixed'.
     :type lease_duration: str or ~xmlservice.models.LeaseDurationType
@@ -530,24 +528,23 @@ class CorsRule(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param allowed_origins: Required. The origin domains that are permitted to make
-     a request against the storage service via CORS. The origin domain is the domain
-     from which the request originates. Note that the origin must be an exact case-
-     sensitive match with the origin that the user age sends to the service. You can
-     also use the wildcard character '*' to allow all origin domains to make requests
-     via CORS.
+    :param allowed_origins: Required. The origin domains that are permitted to make a request
+     against the storage service via CORS. The origin domain is the domain from which the request
+     originates. Note that the origin must be an exact case-sensitive match with the origin that the
+     user age sends to the service. You can also use the wildcard character '*' to allow all origin
+     domains to make requests via CORS.
     :type allowed_origins: str
-    :param allowed_methods: Required. The methods (HTTP request verbs) that the
-     origin domain may use for a CORS request. (comma separated).
+    :param allowed_methods: Required. The methods (HTTP request verbs) that the origin domain may
+     use for a CORS request. (comma separated).
     :type allowed_methods: str
-    :param allowed_headers: Required. the request headers that the origin domain may
-     specify on the CORS request.
+    :param allowed_headers: Required. the request headers that the origin domain may specify on the
+     CORS request.
     :type allowed_headers: str
-    :param exposed_headers: Required. The response headers that may be sent in the
-     response to the CORS request and exposed by the browser to the request issuer.
+    :param exposed_headers: Required. The response headers that may be sent in the response to the
+     CORS request and exposed by the browser to the request issuer.
     :type exposed_headers: str
-    :param max_age_in_seconds: Required. The maximum amount time that a browser
-     should cache the preflight OPTIONS request.
+    :param max_age_in_seconds: Required. The maximum amount time that a browser should cache the
+     preflight OPTIONS request.
     :type max_age_in_seconds: int
     """
 
@@ -870,11 +867,10 @@ class Metrics(Model):
 
     :param version: The version of Storage Analytics to configure.
     :type version: str
-    :param enabled: Required. Indicates whether metrics are enabled for the Blob
-     service.
+    :param enabled: Required. Indicates whether metrics are enabled for the Blob service.
     :type enabled: bool
-    :param include_apis: Indicates whether metrics should generate summary
-     statistics for called API operations.
+    :param include_apis: Indicates whether metrics should generate summary statistics for called
+     API operations.
     :type include_apis: bool
     :param retention_policy: the retention policy.
     :type retention_policy: ~xmlservice.models.RetentionPolicy
@@ -912,11 +908,11 @@ class RetentionPolicy(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param enabled: Required. Indicates whether a retention policy is enabled for
-     the storage service.
+    :param enabled: Required. Indicates whether a retention policy is enabled for the storage
+     service.
     :type enabled: bool
-    :param days: Indicates the number of days that metrics or logging or soft-
-     deleted data should be retained. All data older than this value will be deleted.
+    :param days: Indicates the number of days that metrics or logging or soft-deleted data should
+     be retained. All data older than this value will be deleted.
     :type days: int
     """
 
@@ -1114,9 +1110,9 @@ class StorageServiceProperties(Model):
     :type minute_metrics: ~xmlservice.models.Metrics
     :param cors: The set of CORS rules.
     :type cors: list[~xmlservice.models.CorsRule]
-    :param default_service_version: The default version to use for requests to the
-     Blob service if an incoming request's version is not specified. Possible values
-     include version 2008-10-27 and all more recent versions.
+    :param default_service_version: The default version to use for requests to the Blob service if
+     an incoming request's version is not specified. Possible values include version 2008-10-27 and
+     all more recent versions.
     :type default_service_version: str
     :param delete_retention_policy: the retention policy.
     :type delete_retention_policy: ~xmlservice.models.RetentionPolicy

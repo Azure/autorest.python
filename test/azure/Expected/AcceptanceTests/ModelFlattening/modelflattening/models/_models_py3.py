@@ -17,9 +17,9 @@ class BaseProduct(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param product_id: Required. Unique identifier representing a specific product
-     for a given latitude & longitude. For example, uberX in San Francisco will have
-     a different product_id than uberX in Los Angeles.
+    :param product_id: Required. Unique identifier representing a specific product for a given
+     latitude & longitude. For example, uberX in San Francisco will have a different product_id than
+     uberX in Los Angeles.
     :type product_id: str
     :param description: Description of product.
     :type description: str
@@ -170,9 +170,8 @@ class FlattenedProduct(Resource):
     :type p_name: str
     :param type_properties_type:
     :type type_properties_type: str
-    :ivar provisioning_state_values:  Possible values include: 'Succeeded',
-     'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
-     'Deleting', 'Deleted', 'OK'.
+    :ivar provisioning_state_values:  Possible values include: 'Succeeded', 'Failed', 'canceled',
+     'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'.
     :vartype provisioning_state_values: str or
      ~modelflattening.models.FlattenedProductPropertiesProvisioningStateValues
     :param provisioning_state:
@@ -224,9 +223,8 @@ class FlattenedProductProperties(Model):
     :type p_name: str
     :param type:
     :type type: str
-    :ivar provisioning_state_values:  Possible values include: 'Succeeded',
-     'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
-     'Deleting', 'Deleted', 'OK'.
+    :ivar provisioning_state_values:  Possible values include: 'Succeeded', 'Failed', 'canceled',
+     'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'.
     :vartype provisioning_state_values: str or
      ~modelflattening.models.FlattenedProductPropertiesProvisioningStateValues
     :param provisioning_state:
@@ -270,16 +268,15 @@ class FlattenParameterGroup(Model):
     :type name: str
     :param simple_body_product: Simple body product to put.
     :type simple_body_product: ~modelflattening.models.SimpleProduct
-    :param product_id: Required. Unique identifier representing a specific product
-     for a given latitude & longitude. For example, uberX in San Francisco will have
-     a different product_id than uberX in Los Angeles.
+    :param product_id: Required. Unique identifier representing a specific product for a given
+     latitude & longitude. For example, uberX in San Francisco will have a different product_id than
+     uberX in Los Angeles.
     :type product_id: str
     :param description: Description of product.
     :type description: str
     :param max_product_display_name: Display name of product.
     :type max_product_display_name: str
-    :ivar capacity: Capacity of product. For example, 4 people. Default value:
-     "Large".
+    :ivar capacity: Capacity of product. For example, 4 people. Default value: "Large".
     :vartype capacity: str
     :param generic_value: Generic URL value.
     :type generic_value: str
@@ -433,16 +430,15 @@ class SimpleProduct(BaseProduct):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param product_id: Required. Unique identifier representing a specific product
-     for a given latitude & longitude. For example, uberX in San Francisco will have
-     a different product_id than uberX in Los Angeles.
+    :param product_id: Required. Unique identifier representing a specific product for a given
+     latitude & longitude. For example, uberX in San Francisco will have a different product_id than
+     uberX in Los Angeles.
     :type product_id: str
     :param description: Description of product.
     :type description: str
     :param max_product_display_name: Display name of product.
     :type max_product_display_name: str
-    :ivar capacity: Capacity of product. For example, 4 people. Default value:
-     "Large".
+    :ivar capacity: Capacity of product. For example, 4 people. Default value: "Large".
     :vartype capacity: str
     :param generic_value: Generic URL value.
     :type generic_value: str
@@ -491,8 +487,7 @@ class SimpleProductProperties(Model):
 
     :param max_product_display_name: Required. Display name of product.
     :type max_product_display_name: str
-    :ivar capacity: Required. Capacity of product. For example, 4 people. Default
-     value: "Large".
+    :ivar capacity: Required. Capacity of product. For example, 4 people. Default value: "Large".
     :vartype capacity: str
     :param generic_value: Generic URL value.
     :type generic_value: str

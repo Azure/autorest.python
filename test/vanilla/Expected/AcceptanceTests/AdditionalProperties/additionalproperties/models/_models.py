@@ -17,8 +17,8 @@ class PetAPTrue(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param additional_properties: Unmatched properties from the message are
-     deserialized to this collection.
+    :param additional_properties: Unmatched properties from the message are deserialized to this
+     collection.
     :type additional_properties: dict[str, object]
     :param id: Required.
     :type id: int
@@ -58,8 +58,8 @@ class CatAPTrue(PetAPTrue):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param additional_properties: Unmatched properties from the message are
-     deserialized to this collection.
+    :param additional_properties: Unmatched properties from the message are deserialized to this
+     collection.
     :type additional_properties: dict[str, object]
     :param id: Required.
     :type id: int
@@ -189,8 +189,8 @@ class PetAPInPropertiesWithAPString(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param additional_properties: Unmatched properties from the message are
-     deserialized to this collection.
+    :param additional_properties: Unmatched properties from the message are deserialized to this
+     collection.
     :type additional_properties: dict[str, str]
     :param id: Required.
     :type id: int
@@ -240,8 +240,8 @@ class PetAPObject(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param additional_properties: Unmatched properties from the message are
-     deserialized to this collection.
+    :param additional_properties: Unmatched properties from the message are deserialized to this
+     collection.
     :type additional_properties: dict[str, object]
     :param id: Required.
     :type id: int
@@ -281,8 +281,8 @@ class PetAPString(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param additional_properties: Unmatched properties from the message are
-     deserialized to this collection.
+    :param additional_properties: Unmatched properties from the message are deserialized to this
+     collection.
     :type additional_properties: dict[str, str]
     :param id: Required.
     :type id: int

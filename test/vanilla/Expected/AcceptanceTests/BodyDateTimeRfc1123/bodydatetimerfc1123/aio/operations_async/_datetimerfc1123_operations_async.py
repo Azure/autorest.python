@@ -226,7 +226,7 @@ class Datetimerfc1123Operations:
     ) -> None:
         """Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT.
 
-        :param datetime_body: 
+        :param datetime_body:
         :type datetime_body: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -362,7 +362,7 @@ class Datetimerfc1123Operations:
     ) -> None:
         """Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
-        :param datetime_body: 
+        :param datetime_body:
         :type datetime_body: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

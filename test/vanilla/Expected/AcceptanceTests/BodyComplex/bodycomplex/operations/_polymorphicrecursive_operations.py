@@ -96,41 +96,38 @@ class PolymorphicrecursiveOperations(object):
         """Put complex types that are polymorphic and have recursive references.
 
         :param complex_body: Please put a salmon that looks like this:
-    {
-            'fishtype':'Salmon',
-         'location':'alaska',
-            'iswild':true,
-            'species':'king',
-         'length':1.0,
-            'siblings':[
-              {
-                'fishtype':'Shark',
-         'age':6,
-                'birthday': '2012-01-05T01:00:00Z',
-         'length':20.0,
-                'species':'predator',
-              },
-              {
-         'fishtype':'Sawshark',
-                'age':105,
-                'birthday':
-         '1900-01-05T01:00:00Z',
-                'length':10.0,
-                'picture': new
-         Buffer([255, 255, 255, 255, 254]).toString('base64'),
-         'species':'dangerous',
-              },
-              {
-                'fishtype':
-         'goblin',
-                'age': 1,
-                'birthday': '2015-08-08T00:00:00Z',
-         'length': 30.0,
-                'species': 'scary',
-                'jawsize': 5
-         }
-            ]
-          };.
+         {
+                 'fishtype':'Salmon',
+                 'location':'alaska',
+                 'iswild':true,
+                 'species':'king',
+                 'length':1.0,
+                 'siblings':[
+                   {
+                     'fishtype':'Shark',
+                     'age':6,
+                     'birthday': '2012-01-05T01:00:00Z',
+                     'length':20.0,
+                     'species':'predator',
+                   },
+                   {
+                     'fishtype':'Sawshark',
+                     'age':105,
+                     'birthday': '1900-01-05T01:00:00Z',
+                     'length':10.0,
+                     'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
+                     'species':'dangerous',
+                   },
+                   {
+                     'fishtype': 'goblin',
+                     'age': 1,
+                     'birthday': '2015-08-08T00:00:00Z',
+                     'length': 30.0,
+                     'species': 'scary',
+                     'jawsize': 5
+                   }
+                 ]
+               };.
         :type complex_body: ~bodycomplex.models.Fish
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

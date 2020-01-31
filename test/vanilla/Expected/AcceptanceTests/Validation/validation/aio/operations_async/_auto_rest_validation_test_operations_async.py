@@ -94,7 +94,7 @@ class AutoRestValidationTestOperationsMixin:
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
-        :param body: 
+        :param body:
         :type body: ~validation.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
@@ -200,7 +200,7 @@ class AutoRestValidationTestOperationsMixin:
     ) -> "models.Product":
         """post_with_constant_in_body.
 
-        :param body: 
+        :param body:
         :type body: ~validation.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)

@@ -102,7 +102,7 @@ class PetOperations:
     ) -> "models.Pet":
         """add_pet.
 
-        :param pet_param: 
+        :param pet_param:
         :type pet_param: ~extensibleenumsswagger.models.Pet
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Pet or the result of cls(response)

@@ -95,7 +95,7 @@ class DurationOperations(object):
         # type: (...) -> None
         """Put a positive duration value.
 
-        :param duration_body: 
+        :param duration_body:
         :type duration_body: ~datetime.timedelta
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

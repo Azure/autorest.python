@@ -230,7 +230,7 @@ class DateOperations(object):
         # type: (...) -> None
         """Put max date value 9999-12-31.
 
-        :param date_body: 
+        :param date_body:
         :type date_body: ~datetime.date
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -323,7 +323,7 @@ class DateOperations(object):
         # type: (...) -> None
         """Put min date value 0000-01-01.
 
-        :param date_body: 
+        :param date_body:
         :type date_body: ~datetime.date
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

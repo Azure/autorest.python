@@ -314,7 +314,7 @@ class IntOperations:
     ) -> None:
         """Put max int32 value.
 
-        :param int_body: 
+        :param int_body:
         :type int_body: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -362,7 +362,7 @@ class IntOperations:
     ) -> None:
         """Put max int64 value.
 
-        :param int_body: 
+        :param int_body:
         :type int_body: long
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -410,7 +410,7 @@ class IntOperations:
     ) -> None:
         """Put min int32 value.
 
-        :param int_body: 
+        :param int_body:
         :type int_body: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -458,7 +458,7 @@ class IntOperations:
     ) -> None:
         """Put min int64 value.
 
-        :param int_body: 
+        :param int_body:
         :type int_body: long
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -550,7 +550,7 @@ class IntOperations:
     ) -> None:
         """Put datetime encoded as Unix time.
 
-        :param int_body: 
+        :param int_body:
         :type int_body: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

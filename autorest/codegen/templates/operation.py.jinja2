@@ -36,6 +36,7 @@ def {{ operation.python_name }}(
 :rtype: None
 {%- endif -%}
 {% endmacro %}
+{% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 {% macro exception_name() %}{{ operation.default_exception.schema.name }}Exception{% endmacro %}
 {% set core_excep_name = 'ARMError' if code_model.options['azure_arm'] else 'HttpResponseError' %}
 {# actual template starts here #}
@@ -52,7 +53,7 @@ def {{ operation.python_name }}(
     """{{operation.description }}
     {% if operation.summary %}
 
-    {{ operation.summary | wordwrap(width=80, break_long_words=False, wrapstring='\n    ') }}
+    {{ operation.summary | wordwrap(width=95, break_long_words=False, wrapstring='\n    ') }}
     {% endif %}
 
 {% if operation.deprecated -%}
@@ -61,7 +62,9 @@ def {{ operation.python_name }}(
 
 {% endif -%}
 {% for parameter in operation.parameters.method %}
-    :param {{ parameter.serialized_name }}: {{ parameter.description | wordwrap(width=80, break_long_words=False, wrapstring='\n     ')}}
+    {%- for doc_string in param_documentation_string(parameter).replace('\n', '\n ').split('\n') %}
+    {{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n     ')}}
+    {% endfor %}
     :type {{ parameter.serialized_name }}: {{ parameter.schema.docstring_type }}
 {% endfor %}
     :param callable cls: A custom type or function that will be passed the direct response

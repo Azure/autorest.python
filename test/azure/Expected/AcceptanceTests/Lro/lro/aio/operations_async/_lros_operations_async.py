@@ -1520,7 +1520,7 @@ class LROsOperations:
     ) -> "models.SubProduct":
         """Long running put request with sub resource.
 
-        :param provisioning_state: 
+        :param provisioning_state:
         :type provisioning_state: str
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -1612,7 +1612,7 @@ class LROsOperations:
     ) -> "models.SubProduct":
         """Long running put request with sub resource.
 
-        :param provisioning_state: 
+        :param provisioning_state:
         :type provisioning_state: str
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a

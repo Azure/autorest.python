@@ -16,11 +16,9 @@ class Pet(Model):
 
     :param name:
     :type name: str
-    :param days_of_week: Type of Pet. Possible values include: 'Monday', 'Tuesday',
-     'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'. Default value:
-     "Friday".
-    :type days_of_week: str or
-     ~extensibleenumsswagger.models.DaysOfWeekExtensibleEnum
+    :param days_of_week: Type of Pet. Possible values include: 'Monday', 'Tuesday', 'Wednesday',
+     'Thursday', 'Friday', 'Saturday', 'Sunday'. Default value: "Friday".
+    :type days_of_week: str or ~extensibleenumsswagger.models.DaysOfWeekExtensibleEnum
     :param int_enum: Required.  Possible values include: '1', '2', '3'.
     :type int_enum: str or ~extensibleenumsswagger.models.IntEnum
     """

@@ -236,7 +236,7 @@ class PagingOperations:
     ) -> "models.ProductResult":
         """A paging operation that includes a nextLink that has 10 pages.
 
-        :param client_request_id: 
+        :param client_request_id:
         :type client_request_id: str
         :param paging_get_multiple_pages_options: Parameter group.
         :type paging_get_multiple_pages_options: ~paging.models.PagingGetMultiplePagesOptions
@@ -316,7 +316,7 @@ class PagingOperations:
     ) -> "models.OdataProductResult":
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
-        :param client_request_id: 
+        :param client_request_id:
         :type client_request_id: str
         :param paging_get_odata_multiple_pages_options: Parameter group.
         :type paging_get_odata_multiple_pages_options: ~paging.models.PagingGetOdataMultiplePagesOptions
@@ -398,7 +398,7 @@ class PagingOperations:
 
         :param paging_get_multiple_pages_with_offset_options: Parameter group.
         :type paging_get_multiple_pages_with_offset_options: ~paging.models.PagingGetMultiplePagesWithOffsetOptions
-        :param client_request_id: 
+        :param client_request_id:
         :type client_request_id: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
@@ -994,7 +994,7 @@ class PagingOperations:
     ) -> "models.ProductResult":
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
-        :param client_request_id: 
+        :param client_request_id:
         :type client_request_id: str
         :param paging_get_multiple_pages_lro_options: Parameter group.
         :type paging_get_multiple_pages_lro_options: ~paging.models.PagingGetMultiplePagesLroOptions
