@@ -47,8 +47,6 @@ class HttpClientFailureOperations:
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -88,8 +86,6 @@ class HttpClientFailureOperations:
         **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -131,8 +127,6 @@ class HttpClientFailureOperations:
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -172,8 +166,6 @@ class HttpClientFailureOperations:
         **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -223,8 +215,6 @@ class HttpClientFailureOperations:
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -272,8 +262,6 @@ class HttpClientFailureOperations:
         **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -323,8 +311,6 @@ class HttpClientFailureOperations:
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -373,8 +359,6 @@ class HttpClientFailureOperations:
     ) -> None:
         """Return 401 status code - should be represented in the client as an error.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -414,8 +398,6 @@ class HttpClientFailureOperations:
         **kwargs: Any
     ) -> None:
         """Return 402 status code - should be represented in the client as an error.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -457,8 +439,6 @@ class HttpClientFailureOperations:
     ) -> None:
         """Return 403 status code - should be represented in the client as an error.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -499,8 +479,6 @@ class HttpClientFailureOperations:
     ) -> None:
         """Return 403 status code - should be represented in the client as an error.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -540,8 +518,6 @@ class HttpClientFailureOperations:
         **kwargs: Any
     ) -> None:
         """Return 404 status code - should be represented in the client as an error.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -591,8 +567,6 @@ class HttpClientFailureOperations:
     ) -> None:
         """Return 405 status code - should be represented in the client as an error.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -640,8 +614,6 @@ class HttpClientFailureOperations:
         **kwargs: Any
     ) -> None:
         """Return 406 status code - should be represented in the client as an error.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -691,8 +663,6 @@ class HttpClientFailureOperations:
     ) -> None:
         """Return 407 status code - should be represented in the client as an error.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -740,8 +710,6 @@ class HttpClientFailureOperations:
         **kwargs: Any
     ) -> None:
         """Return 409 status code - should be represented in the client as an error.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -791,8 +759,6 @@ class HttpClientFailureOperations:
     ) -> None:
         """Return 410 status code - should be represented in the client as an error.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -832,8 +798,6 @@ class HttpClientFailureOperations:
         **kwargs: Any
     ) -> None:
         """Return 411 status code - should be represented in the client as an error.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -875,8 +839,6 @@ class HttpClientFailureOperations:
     ) -> None:
         """Return 412 status code - should be represented in the client as an error.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -917,8 +879,6 @@ class HttpClientFailureOperations:
     ) -> None:
         """Return 412 status code - should be represented in the client as an error.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -958,8 +918,6 @@ class HttpClientFailureOperations:
         **kwargs: Any
     ) -> None:
         """Return 413 status code - should be represented in the client as an error.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1009,8 +967,6 @@ class HttpClientFailureOperations:
     ) -> None:
         """Return 414 status code - should be represented in the client as an error.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -1058,8 +1014,6 @@ class HttpClientFailureOperations:
         **kwargs: Any
     ) -> None:
         """Return 415 status code - should be represented in the client as an error.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1109,8 +1063,6 @@ class HttpClientFailureOperations:
     ) -> None:
         """Return 416 status code - should be represented in the client as an error.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -1150,8 +1102,6 @@ class HttpClientFailureOperations:
         **kwargs: Any
     ) -> None:
         """Return 417 status code - should be represented in the client as an error.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1200,8 +1150,6 @@ class HttpClientFailureOperations:
         **kwargs: Any
     ) -> None:
         """Return 429 status code - should be represented in the client as an error.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

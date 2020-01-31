@@ -47,8 +47,6 @@ class HttpRetryOperations:
     ) -> None:
         """Return 408 status code, then 200 after retry.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -88,8 +86,6 @@ class HttpRetryOperations:
         **kwargs: Any
     ) -> None:
         """Return 500 status code, then 200 after retry.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -139,8 +135,6 @@ class HttpRetryOperations:
     ) -> None:
         """Return 500 status code, then 200 after retry.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -189,8 +183,6 @@ class HttpRetryOperations:
     ) -> None:
         """Return 502 status code, then 200 after retry.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -230,8 +222,6 @@ class HttpRetryOperations:
         **kwargs: Any
     ) -> bool:
         """Return 502 status code, then 200 after retry.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
@@ -276,8 +266,6 @@ class HttpRetryOperations:
         **kwargs: Any
     ) -> None:
         """Return 503 status code, then 200 after retry.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -327,8 +315,6 @@ class HttpRetryOperations:
     ) -> None:
         """Return 503 status code, then 200 after retry.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -377,8 +363,6 @@ class HttpRetryOperations:
     ) -> None:
         """Return 504 status code, then 200 after retry.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -426,8 +410,6 @@ class HttpRetryOperations:
         **kwargs: Any
     ) -> None:
         """Return 504 status code, then 200 after retry.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

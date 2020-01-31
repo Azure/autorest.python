@@ -30,8 +30,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         # type: (...) -> None
         """Put External Resource as an Array.
 
-        FIXME: add operation.summary
-
         :param resource_array: External Resource as an Array to put.
         :type resource_array: list[~modelflattening.models.Resource]
         :param callable cls: A custom type or function that will be passed the direct response
@@ -81,8 +79,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         # type: (...) -> List["FlattenedProduct"]
         """Get External Resource as an Array.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~modelflattening.models.FlattenedProduct]
@@ -127,8 +123,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     ):
         # type: (...) -> None
         """No need to have a route in Express server for this operation. Used to verify the type flattened is not removed if it's referenced in an array.
-
-        FIXME: add operation.summary
 
         :param resource_array: External Resource as an Array to put.
         :type resource_array: list[~modelflattening.models.WrappedProduct]
@@ -179,8 +173,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         # type: (...) -> List["ProductWrapper"]
         """No need to have a route in Express server for this operation. Used to verify the type flattened is not removed if it's referenced in an array.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~modelflattening.models.ProductWrapper]
@@ -225,8 +217,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     ):
         # type: (...) -> None
         """Put External Resource as a Dictionary.
-
-        FIXME: add operation.summary
 
         :param resource_dictionary: External Resource as a Dictionary to put.
         :type resource_dictionary: dict[str, ~modelflattening.models.FlattenedProduct]
@@ -277,8 +267,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         # type: (...) -> Dict[str, "FlattenedProduct"]
         """Get External Resource as a Dictionary.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~modelflattening.models.FlattenedProduct]
@@ -323,8 +311,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     ):
         # type: (...) -> None
         """Put External Resource as a ResourceCollection.
-
-        FIXME: add operation.summary
 
         :param resource_complex_object: External Resource as a ResourceCollection to put.
         :type resource_complex_object: ~modelflattening.models.ResourceCollection
@@ -375,8 +361,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         # type: (...) -> "models.ResourceCollection"
         """Get External Resource as a ResourceCollection.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ResourceCollection or the result of cls(response)
         :rtype: ~modelflattening.models.ResourceCollection
@@ -421,8 +405,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     ):
         # type: (...) -> "models.SimpleProduct"
         """Put Simple Product with client flattening true on the model.
-
-        FIXME: add operation.summary
 
         :param simple_body_product: Simple body product to put.
         :type simple_body_product: ~modelflattening.models.SimpleProduct
@@ -481,8 +463,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     ):
         # type: (...) -> "models.SimpleProduct"
         """Put Flattened Simple Product with client flattening true on the parameter.
-
-        FIXME: add operation.summary
 
         :param product_id: Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
         :type product_id: str
@@ -546,8 +526,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     ):
         # type: (...) -> "models.SimpleProduct"
         """Put Simple Product with client flattening true on the model.
-
-        FIXME: add operation.summary
 
         :param flatten_parameter_group: Parameter group.
         :type flatten_parameter_group: ~modelflattening.models.FlattenParameterGroup

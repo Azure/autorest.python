@@ -31,8 +31,6 @@ class AutoRestValidationTestOperationsMixin:
     ) -> "models.Product":
         """Validates input parameters on the method. See swagger for details.
 
-        FIXME: add operation.summary
-
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000.
@@ -91,8 +89,6 @@ class AutoRestValidationTestOperationsMixin:
         **kwargs: Any
     ) -> "models.Product":
         """Validates body parameters on the method. See swagger for details.
-
-        FIXME: add operation.summary
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
         :type resource_group_name: str
@@ -158,8 +154,6 @@ class AutoRestValidationTestOperationsMixin:
     ) -> None:
         """
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -205,8 +199,6 @@ class AutoRestValidationTestOperationsMixin:
         **kwargs: Any
     ) -> "models.Product":
         """
-
-        FIXME: add operation.summary
 
         :param body: 
         :type body: ~validation.models.Product

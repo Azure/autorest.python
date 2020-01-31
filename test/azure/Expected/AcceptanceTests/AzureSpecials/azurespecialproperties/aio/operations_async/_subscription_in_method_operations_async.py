@@ -49,8 +49,6 @@ class SubscriptionInMethodOperations:
     ) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id = '1234-5678-9012-3456' to succeed.
 
-        FIXME: add operation.summary
-
         :param subscription_id: This should appear as a method parameter, use value '1234-5678-9012-3456'.
         :type subscription_id: str
         :param callable cls: A custom type or function that will be passed the direct response
@@ -98,8 +96,6 @@ class SubscriptionInMethodOperations:
         **kwargs: Any
     ) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id = null, client-side validation should prevent you from making this call.
-
-        FIXME: add operation.summary
 
         :param subscription_id: This should appear as a method parameter, use value '1234-5678-9012-3456'.
         :type subscription_id: str
@@ -149,8 +145,6 @@ class SubscriptionInMethodOperations:
     ) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id = '1234-5678-9012-3456' to succeed.
 
-        FIXME: add operation.summary
-
         :param subscription_id: This should appear as a method parameter, use value '1234-5678-9012-3456'.
         :type subscription_id: str
         :param callable cls: A custom type or function that will be passed the direct response
@@ -198,8 +192,6 @@ class SubscriptionInMethodOperations:
         **kwargs: Any
     ) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id = '1234-5678-9012-3456' to succeed.
-
-        FIXME: add operation.summary
 
         :param subscription_id: This should appear as a method parameter, use value '1234-5678-9012-3456'.
         :type subscription_id: str

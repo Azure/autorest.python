@@ -50,8 +50,6 @@ class PetOperations(object):
         # type: (...) -> "models.Pet"
         """
 
-        FIXME: add operation.summary
-
         :param pet_id: Pet id.
         :type pet_id: str
         :param callable cls: A custom type or function that will be passed the direct response
@@ -103,8 +101,6 @@ class PetOperations(object):
     ):
         # type: (...) -> "models.Pet"
         """
-
-        FIXME: add operation.summary
 
         :param pet_param: 
         :type pet_param: ~extensibleenumsswagger.models.Pet

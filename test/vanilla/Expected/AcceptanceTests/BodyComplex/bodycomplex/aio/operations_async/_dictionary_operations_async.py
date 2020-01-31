@@ -48,8 +48,6 @@ class DictionaryOperations:
     ) -> "models.DictionaryWrapper":
         """Get complex types with dictionary property.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DictionaryWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DictionaryWrapper
@@ -95,8 +93,6 @@ class DictionaryOperations:
         **kwargs: Any
     ) -> None:
         """Put complex types with dictionary property.
-
-        FIXME: add operation.summary
 
         :param default_program: Dictionary of <components·schemas·dictionary_wrapper·properties·defaultprogram·additionalproperties>.
         :type default_program: dict[str, str]
@@ -145,8 +141,6 @@ class DictionaryOperations:
     ) -> "models.DictionaryWrapper":
         """Get complex types with dictionary property which is empty.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DictionaryWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DictionaryWrapper
@@ -192,8 +186,6 @@ class DictionaryOperations:
         **kwargs: Any
     ) -> None:
         """Put complex types with dictionary property which is empty.
-
-        FIXME: add operation.summary
 
         :param default_program: Dictionary of <components·schemas·dictionary_wrapper·properties·defaultprogram·additionalproperties>.
         :type default_program: dict[str, str]
@@ -242,8 +234,6 @@ class DictionaryOperations:
     ) -> "models.DictionaryWrapper":
         """Get complex types with dictionary property which is null.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DictionaryWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DictionaryWrapper
@@ -287,8 +277,6 @@ class DictionaryOperations:
         **kwargs: Any
     ) -> "models.DictionaryWrapper":
         """Get complex types with dictionary property while server doesn't provide a response payload.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DictionaryWrapper or the result of cls(response)

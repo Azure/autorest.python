@@ -101,6 +101,13 @@ class NameConverter:
             schema_description += "."
         schema['language']['python']['description'] = schema_description
 
+        schema_summary = schema['language']['python'].get('summary')
+        if schema_summary:
+            schema_summary = schema_summary.strip()
+            if schema_summary[-1] != ".":
+                schema_summary += "."
+            schema['language']['python']['summary'] = schema_summary
+
     @staticmethod
     def _convert_language_default_pascal_case(schema):
         if schema['language'].get('python'):

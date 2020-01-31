@@ -48,8 +48,6 @@ class EnumOperations:
     ) -> Union[str, "models.Colors"]:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Colors or the result of cls(response)
         :rtype: str or ~bodystring.models.Colors
@@ -95,8 +93,6 @@ class EnumOperations:
         **kwargs: Any
     ) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
-
-        FIXME: add operation.summary
 
         :param string_body: 
         :type string_body: str or ~bodystring.models.Colors
@@ -144,8 +140,6 @@ class EnumOperations:
     ) -> Union[str, "models.Colors"]:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Colors or the result of cls(response)
         :rtype: str or ~bodystring.models.Colors
@@ -191,8 +185,6 @@ class EnumOperations:
         **kwargs: Any
     ) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
-
-        FIXME: add operation.summary
 
         :param enum_string_body: 
         :type enum_string_body: str or ~bodystring.models.Colors
@@ -240,8 +232,6 @@ class EnumOperations:
     ) -> "models.RefColorConstant":
         """Get value 'green-color' from the constant.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: RefColorConstant or the result of cls(response)
         :rtype: ~bodystring.models.RefColorConstant
@@ -287,8 +277,6 @@ class EnumOperations:
         **kwargs: Any
     ) -> None:
         """Sends value 'green-color' from a constant.
-
-        FIXME: add operation.summary
 
         :param field1: Sample string.
         :type field1: str
