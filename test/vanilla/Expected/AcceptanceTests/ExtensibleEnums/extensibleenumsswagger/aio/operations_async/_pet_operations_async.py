@@ -48,7 +48,7 @@ class PetOperations:
         cls: ClsType["models.Pet"] = None,
         **kwargs: Any
     ) -> "models.Pet":
-        """
+        """get_by_pet_id.
 
         FIXME: add operation.summary
 
@@ -102,7 +102,7 @@ class PetOperations:
         cls: ClsType["models.Pet"] = None,
         **kwargs: Any
     ) -> "models.Pet":
-        """
+        """add_pet.
 
         FIXME: add operation.summary
 

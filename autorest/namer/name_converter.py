@@ -96,6 +96,8 @@ class NameConverter:
         schema['language']['python']['name'] = schema_python_name
 
         schema_description = schema['language']['default']['description'].strip()
+        if kwargs.get('pad_string') == 'Method' and not schema_description:
+            schema_description = schema['language']['python']['name']
         if schema_description and schema_description[-1] != ".":
             schema_description += "."
         schema['language']['python']['description'] = schema_description

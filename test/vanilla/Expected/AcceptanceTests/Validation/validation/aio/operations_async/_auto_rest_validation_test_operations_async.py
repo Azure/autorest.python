@@ -156,7 +156,7 @@ class AutoRestValidationTestOperationsMixin:
         cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
-        """
+        """get_with_constant_in_path.
 
         FIXME: add operation.summary
 
@@ -204,7 +204,7 @@ class AutoRestValidationTestOperationsMixin:
         cls: ClsType["models.Product"] = None,
         **kwargs: Any
     ) -> "models.Product":
-        """
+        """post_with_constant_in_body.
 
         FIXME: add operation.summary
 

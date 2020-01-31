@@ -48,7 +48,7 @@ class PetOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Pet"
-        """
+        """get_by_pet_id.
 
         FIXME: add operation.summary
 
@@ -102,7 +102,7 @@ class PetOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Pet"
-        """
+        """add_pet.
 
         FIXME: add operation.summary
 
