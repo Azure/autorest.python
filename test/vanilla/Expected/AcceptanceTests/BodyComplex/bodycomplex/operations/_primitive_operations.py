@@ -375,7 +375,8 @@ class PrimitiveOperations(object):
         # type: (...) -> None
         """Put complex types with double properties.
 
-        :param complex_body: Please put 3e-100 and -0.000000000000000000000000000000000000000000000000000000005.
+        :param complex_body: Please put 3e-100 and
+         -0.000000000000000000000000000000000000000000000000000000005.
         :type complex_body: ~bodycomplex.models.DoubleWrapper
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -840,7 +841,8 @@ class PrimitiveOperations(object):
         # type: (...) -> None
         """Put complex types with datetimeRfc1123 properties.
 
-        :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00 GMT'.
+        :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
+         GMT'.
         :type complex_body: ~bodycomplex.models.Datetimerfc1123Wrapper
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -933,7 +935,7 @@ class PrimitiveOperations(object):
         # type: (...) -> None
         """Put complex types with duration properties.
 
-        :param field: 
+        :param field:
         :type field: ~datetime.timedelta
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1027,7 +1029,7 @@ class PrimitiveOperations(object):
         # type: (...) -> None
         """Put complex types with byte properties.
 
-        :param field: 
+        :param field:
         :type field: bytearray
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

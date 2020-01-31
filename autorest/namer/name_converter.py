@@ -92,11 +92,8 @@ class NameConverter:
         schema['language']['python']['name'] = schema_python_name
 
         schema_description = schema['language']['default']['description'].strip()
-        if schema_description == 'MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA':
-            # what is being used for empty property descriptions
+        if kwargs.get('pad_string') == 'Method' and not schema_description:
             schema_description = schema['language']['python']['name']
-        elif 'MISSING' in schema_description:
-            schema_description = ""
         if schema_description and schema_description[-1] != ".":
             schema_description += "."
         schema['language']['python']['description'] = schema_description
@@ -120,7 +117,7 @@ class NameConverter:
         schema['language']['python']['name'] = schema_python_name
 
         schema_description = schema['language']['default']['description'].strip()
-        if schema_description == 'MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA':
+        if not schema_description:
             # what is being used for empty ObjectSchema descriptions
             schema_description = schema['language']['python']['name']
         if schema_description and schema_description[-1] != ".":

@@ -225,7 +225,7 @@ class NumberOperations:
     ) -> None:
         """Put big float value 3.402823e+20.
 
-        :param number_body: 
+        :param number_body:
         :type number_body: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -317,7 +317,7 @@ class NumberOperations:
     ) -> None:
         """Put big double value 2.5976931e+101.
 
-        :param number_body: 
+        :param number_body:
         :type number_body: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -587,7 +587,7 @@ class NumberOperations:
     ) -> None:
         """Put big decimal value 2.5976931e+101.
 
-        :param number_body: 
+        :param number_body:
         :type number_body: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -857,7 +857,7 @@ class NumberOperations:
     ) -> None:
         """Put small float value 3.402823e-20.
 
-        :param number_body: 
+        :param number_body:
         :type number_body: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -949,7 +949,7 @@ class NumberOperations:
     ) -> None:
         """Put small double value 2.5976931e-101.
 
-        :param number_body: 
+        :param number_body:
         :type number_body: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1041,7 +1041,7 @@ class NumberOperations:
     ) -> None:
         """Put small decimal value 2.5976931e-101.
 
-        :param number_body: 
+        :param number_body:
         :type number_body: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

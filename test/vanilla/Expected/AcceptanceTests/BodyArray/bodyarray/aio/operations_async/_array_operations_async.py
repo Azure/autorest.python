@@ -183,7 +183,7 @@ class ArrayOperations:
     ) -> None:
         """Set array value empty [].
 
-        :param array_body: 
+        :param array_body:
         :type array_body: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -275,7 +275,7 @@ class ArrayOperations:
     ) -> None:
         """Set array value empty [true, false, false, true].
 
-        :param array_body: 
+        :param array_body:
         :type array_body: list[bool]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -455,7 +455,7 @@ class ArrayOperations:
     ) -> None:
         """Set array value empty [1, -1, 3, 300].
 
-        :param array_body: 
+        :param array_body:
         :type array_body: list[int]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -635,7 +635,7 @@ class ArrayOperations:
     ) -> None:
         """Set array value empty [1, -1, 3, 300].
 
-        :param array_body: 
+        :param array_body:
         :type array_body: list[long]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -815,7 +815,7 @@ class ArrayOperations:
     ) -> None:
         """Set array value [0, -0.01, 1.2e20].
 
-        :param array_body: 
+        :param array_body:
         :type array_body: list[float]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -995,7 +995,7 @@ class ArrayOperations:
     ) -> None:
         """Set array value [0, -0.01, 1.2e20].
 
-        :param array_body: 
+        :param array_body:
         :type array_body: list[float]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1175,7 +1175,7 @@ class ArrayOperations:
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
-        :param array_body: 
+        :param array_body:
         :type array_body: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1267,7 +1267,7 @@ class ArrayOperations:
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
-        :param array_body: 
+        :param array_body:
         :type array_body: list[str or ~bodyarray.models.FooEnum]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1359,7 +1359,7 @@ class ArrayOperations:
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
-        :param array_body: 
+        :param array_body:
         :type array_body: list[str or ~bodyarray.models.Enum0]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1539,7 +1539,7 @@ class ArrayOperations:
     ) -> None:
         """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
-        :param array_body: 
+        :param array_body:
         :type array_body: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1675,7 +1675,7 @@ class ArrayOperations:
     ) -> None:
         """Set array value  ['2000-12-01', '1980-01-02', '1492-10-12'].
 
-        :param array_body: 
+        :param array_body:
         :type array_body: list[~datetime.date]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1855,7 +1855,7 @@ class ArrayOperations:
     ) -> None:
         """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00', '1492-10-12T10:15:01-08:00'].
 
-        :param array_body: 
+        :param array_body:
         :type array_body: list[~datetime.datetime]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -2035,7 +2035,7 @@ class ArrayOperations:
     ) -> None:
         """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12 Oct 1492 10:15:01 GMT'].
 
-        :param array_body: 
+        :param array_body:
         :type array_body: list[~datetime.datetime]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -2127,7 +2127,7 @@ class ArrayOperations:
     ) -> None:
         """Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
-        :param array_body: 
+        :param array_body:
         :type array_body: list[~datetime.timedelta]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -2219,7 +2219,7 @@ class ArrayOperations:
     ) -> None:
         """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each elementencoded in base 64.
 
-        :param array_body: 
+        :param array_body:
         :type array_body: list[bytearray]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -2575,7 +2575,7 @@ class ArrayOperations:
     ) -> None:
         """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'}, {'integer': 5, 'string': '6'}].
 
-        :param array_body: 
+        :param array_body:
         :type array_body: list[~bodyarray.models.Product]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -2843,7 +2843,7 @@ class ArrayOperations:
     ) -> None:
         """Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
 
-        :param array_body: 
+        :param array_body:
         :type array_body: list[list[str]]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -3111,7 +3111,7 @@ class ArrayOperations:
     ) -> None:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3': 'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
-        :param array_body: 
+        :param array_body:
         :type array_body: list[dict[str, str]]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

@@ -94,7 +94,7 @@ class XmlOperations:
     ) -> None:
         """Puts a complex type that has a ref to a complex type with no XML node.
 
-        :param model: 
+        :param model:
         :type model: ~xmlservice.models.RootWithRefAndNoMeta
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -186,7 +186,7 @@ class XmlOperations:
     ) -> None:
         """Puts a complex type that has a ref to a complex type with XML node.
 
-        :param model: 
+        :param model:
         :type model: ~xmlservice.models.RootWithRefAndMeta
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -278,7 +278,7 @@ class XmlOperations:
     ) -> None:
         """Put a simple XML document.
 
-        :param slideshow: 
+        :param slideshow:
         :type slideshow: ~xmlservice.models.Slideshow
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -370,7 +370,7 @@ class XmlOperations:
     ) -> None:
         """Put an XML document with multiple wrapped lists.
 
-        :param wrapped_lists: 
+        :param wrapped_lists:
         :type wrapped_lists: ~xmlservice.models.AppleBarrel
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -505,7 +505,7 @@ class XmlOperations:
     ) -> None:
         """Puts an empty list.
 
-        :param slideshow: 
+        :param slideshow:
         :type slideshow: ~xmlservice.models.Slideshow
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -597,7 +597,7 @@ class XmlOperations:
     ) -> None:
         """Puts some empty wrapped lists.
 
-        :param apple_barrel: 
+        :param apple_barrel:
         :type apple_barrel: ~xmlservice.models.AppleBarrel
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -689,7 +689,7 @@ class XmlOperations:
     ) -> None:
         """Puts a list as the root element.
 
-        :param bananas: 
+        :param bananas:
         :type bananas: list[~xmlservice.models.Banana]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -782,7 +782,7 @@ class XmlOperations:
     ) -> None:
         """Puts a list with a single item.
 
-        :param bananas: 
+        :param bananas:
         :type bananas: list[~xmlservice.models.Banana]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -875,7 +875,7 @@ class XmlOperations:
     ) -> None:
         """Puts an empty list as the root element.
 
-        :param bananas: 
+        :param bananas:
         :type bananas: list[~xmlservice.models.Banana]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -968,7 +968,7 @@ class XmlOperations:
     ) -> None:
         """Puts a value with an empty child element.
 
-        :param banana: 
+        :param banana:
         :type banana: ~xmlservice.models.Banana
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1110,7 +1110,7 @@ class XmlOperations:
     ) -> None:
         """Puts storage service properties.
 
-        :param properties: 
+        :param properties:
         :type properties: ~xmlservice.models.StorageServiceProperties
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1210,7 +1210,7 @@ class XmlOperations:
     ) -> None:
         """Puts storage ACLs for a container.
 
-        :param properties: 
+        :param properties:
         :type properties: list[~xmlservice.models.SignedIdentifier]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1311,7 +1311,7 @@ class XmlOperations:
     ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID number 42.
 
-        :param id: 
+        :param id:
         :type id: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

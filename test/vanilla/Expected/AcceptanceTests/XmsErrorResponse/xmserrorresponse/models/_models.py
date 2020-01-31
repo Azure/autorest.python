@@ -11,7 +11,7 @@ from msrest.serialization import Model
 
 
 class Animal(Model):
-    """
+    """Animal.
 
     :param ani_type:
     :type ani_type: str
@@ -30,7 +30,7 @@ class Animal(Model):
 
 
 class BaseError(Model):
-    """
+    """BaseError.
 
     :param some_base_prop:
     :type some_base_prop: str
@@ -74,7 +74,7 @@ class NotFoundErrorBaseException(HttpResponseError):
 
 
 class NotFoundErrorBase(BaseError):
-    """
+    """NotFoundErrorBase.
 
     You probably want to use the sub-classes and not this class directly. Known
     sub-classes are: AnimalNotFound, LinkNotFound.
@@ -139,7 +139,7 @@ class AnimalNotFoundException(NotFoundErrorBaseException):
 
 
 class AnimalNotFound(NotFoundErrorBase):
-    """
+    """AnimalNotFound.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -200,7 +200,7 @@ class LinkNotFoundException(NotFoundErrorBaseException):
 
 
 class LinkNotFound(NotFoundErrorBase):
-    """
+    """LinkNotFound.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -236,7 +236,7 @@ class LinkNotFound(NotFoundErrorBase):
 
 
 class Pet(Animal):
-    """
+    """Pet.
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -264,7 +264,7 @@ class Pet(Animal):
 
 
 class PetAction(Model):
-    """
+    """PetAction.
 
     :param action_response: action feedback.
     :type action_response: str
@@ -308,7 +308,7 @@ class PetActionErrorException(HttpResponseError):
 
 
 class PetActionError(Model):
-    """
+    """PetActionError.
 
     You probably want to use the sub-classes and not this class directly. Known
     sub-classes are: PetSadError.
@@ -370,7 +370,7 @@ class PetSadErrorException(PetActionErrorException):
 
 
 class PetSadError(PetActionError):
-    """
+    """PetSadError.
 
     You probably want to use the sub-classes and not this class directly. Known
     sub-classes are: PetHungryOrThirstyError.
@@ -435,7 +435,7 @@ class PetHungryOrThirstyErrorException(PetSadErrorException):
 
 
 class PetHungryOrThirstyError(PetSadError):
-    """
+    """PetHungryOrThirstyError.
 
     All required parameters must be populated in order to send to Azure.
 

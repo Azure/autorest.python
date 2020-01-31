@@ -540,7 +540,7 @@ class StringOperations:
     ) -> None:
         """Put value that is base64url encoded.
 
-        :param string_body: 
+        :param string_body:
         :type string_body: bytes
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
