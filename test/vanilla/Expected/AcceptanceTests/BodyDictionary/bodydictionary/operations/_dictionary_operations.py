@@ -50,8 +50,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, int]
         """Get null dictionary value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, int]
@@ -96,8 +94,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> Dict[str, int]
         """Get empty dictionary value {}.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
@@ -144,8 +140,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> None
         """Set dictionary value empty {}.
-
-        FIXME: add operation.summary
 
         :param array_body: 
         :type array_body: dict[str, str]
@@ -194,8 +188,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, str]
         """Get Dictionary with null value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, str]
@@ -240,8 +232,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> Dict[str, str]
         """Get Dictionary with null key.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
@@ -288,8 +278,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, str]
         """Get Dictionary with key as empty string.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, str]
@@ -334,8 +322,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> Dict[str, str]
         """Get invalid Dictionary value.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
@@ -382,8 +368,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, bool]
         """Get boolean dictionary value {"0": true, "1": false, "2": false, "3": true }.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, bool]
@@ -429,8 +413,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> None
         """Set dictionary value empty {"0": true, "1": false, "2": false, "3": true }.
-
-        FIXME: add operation.summary
 
         :param array_body: 
         :type array_body: dict[str, bool]
@@ -479,8 +461,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, bool]
         """Get boolean dictionary value {"0": true, "1": null, "2": false }.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, bool]
@@ -525,8 +505,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> Dict[str, bool]
         """Get boolean dictionary value '{"0": true, "1": "boolean", "2": false}'.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
@@ -573,8 +551,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, int]
         """Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, int]
@@ -620,8 +596,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> None
         """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
-
-        FIXME: add operation.summary
 
         :param array_body: 
         :type array_body: dict[str, int]
@@ -670,8 +644,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, int]
         """Get integer dictionary value {"0": 1, "1": null, "2": 0}.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, int]
@@ -716,8 +688,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> Dict[str, int]
         """Get integer dictionary value {"0": 1, "1": "integer", "2": 0}.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
@@ -764,8 +734,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, int]
         """Get integer dictionary value {"0": 1, "1": -1, "2": 3, "3": 300}.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, long]
@@ -811,8 +779,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> None
         """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
-
-        FIXME: add operation.summary
 
         :param array_body: 
         :type array_body: dict[str, long]
@@ -861,8 +827,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, int]
         """Get long dictionary value {"0": 1, "1": null, "2": 0}.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, long]
@@ -907,8 +871,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> Dict[str, int]
         """Get long dictionary value {"0": 1, "1": "integer", "2": 0}.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
@@ -955,8 +917,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, float]
         """Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, float]
@@ -1002,8 +962,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> None
         """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
-
-        FIXME: add operation.summary
 
         :param array_body: 
         :type array_body: dict[str, float]
@@ -1052,8 +1010,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, float]
         """Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, float]
@@ -1098,8 +1054,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> Dict[str, float]
         """Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
@@ -1146,8 +1100,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, float]
         """Get float dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, float]
@@ -1193,8 +1145,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> None
         """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
-
-        FIXME: add operation.summary
 
         :param array_body: 
         :type array_body: dict[str, float]
@@ -1243,8 +1193,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, float]
         """Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, float]
@@ -1289,8 +1237,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> Dict[str, float]
         """Get boolean dictionary value {"0": 1.0, "1": "number", "2": 0.0}.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
@@ -1337,8 +1283,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, str]
         """Get string dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, str]
@@ -1384,8 +1328,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> None
         """Set dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
-
-        FIXME: add operation.summary
 
         :param array_body: 
         :type array_body: dict[str, str]
@@ -1434,8 +1376,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, str]
         """Get string dictionary value {"0": "foo", "1": null, "2": "foo2"}.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, str]
@@ -1480,8 +1420,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> Dict[str, str]
         """Get string dictionary value {"0": "foo", "1": 123, "2": "foo2"}.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
@@ -1528,8 +1466,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, datetime.date]
         """Get integer dictionary value {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~datetime.date]
@@ -1575,8 +1511,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> None
         """Set dictionary value  {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
-
-        FIXME: add operation.summary
 
         :param array_body: 
         :type array_body: dict[str, ~datetime.date]
@@ -1625,8 +1559,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, datetime.date]
         """Get date dictionary value {"0": "2012-01-01", "1": null, "2": "1776-07-04"}.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~datetime.date]
@@ -1671,8 +1603,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> Dict[str, datetime.date]
         """Get date dictionary value {"0": "2011-03-22", "1": "date"}.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
@@ -1719,8 +1649,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, datetime.datetime]
         """Get date-time dictionary value {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2": "1492-10-12T10:15:01-08:00"}.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~datetime.datetime]
@@ -1766,8 +1694,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> None
         """Set dictionary value  {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2": "1492-10-12T10:15:01-08:00"}.
-
-        FIXME: add operation.summary
 
         :param array_body: 
         :type array_body: dict[str, ~datetime.datetime]
@@ -1816,8 +1742,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, datetime.datetime]
         """Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": null}.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~datetime.datetime]
@@ -1862,8 +1786,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> Dict[str, datetime.datetime]
         """Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": "date-time"}.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
@@ -1910,8 +1832,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, datetime.datetime]
         """Get date-time-rfc1123 dictionary value {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980 00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~datetime.datetime]
@@ -1957,8 +1877,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> None
         """Set dictionary value empty {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980 00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
-
-        FIXME: add operation.summary
 
         :param array_body: 
         :type array_body: dict[str, ~datetime.datetime]
@@ -2007,8 +1925,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, datetime.timedelta]
         """Get duration dictionary value {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~datetime.timedelta]
@@ -2054,8 +1970,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> None
         """Set dictionary value  {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
-
-        FIXME: add operation.summary
 
         :param array_body: 
         :type array_body: dict[str, ~datetime.timedelta]
@@ -2104,8 +2018,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, bytearray]
         """Get byte dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)} with each item encoded in base64.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, bytearray]
@@ -2151,8 +2063,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> None
         """Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)} with each elementencoded in base 64.
-
-        FIXME: add operation.summary
 
         :param array_body: 
         :type array_body: dict[str, bytearray]
@@ -2201,8 +2111,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, bytearray]
         """Get byte dictionary value {"0": hex(FF FF FF FA), "1": null} with the first item base64 encoded.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, bytearray]
@@ -2247,8 +2155,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> Dict[str, bytes]
         """Get base64url dictionary value {"0": "a string that gets encoded with base64url", "1": "test string", "2": "Lorem ipsum"}.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
@@ -2295,8 +2201,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, "Widget"]
         """Get dictionary of complex type null value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
@@ -2341,8 +2245,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> Dict[str, "Widget"]
         """Get empty dictionary of complex type {}.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
@@ -2389,8 +2291,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, "Widget"]
         """Get dictionary of complex type with null item {"0": {"integer": 1, "string": "2"}, "1": null, "2": {"integer": 5, "string": "6"}}.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
@@ -2435,8 +2335,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> Dict[str, "Widget"]
         """Get dictionary of complex type with empty item {"0": {"integer": 1, "string": "2"}, "1:" {}, "2": {"integer": 5, "string": "6"}}.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
@@ -2483,8 +2381,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, "Widget"]
         """Get dictionary of complex type with {"0": {"integer": 1, "string": "2"}, "1": {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
@@ -2530,8 +2426,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> None
         """Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1": {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
-
-        FIXME: add operation.summary
 
         :param array_body: 
         :type array_body: dict[str, ~bodydictionary.models.Widget]
@@ -2580,8 +2474,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, List[str]]
         """Get a null array.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, list[str]]
@@ -2626,8 +2518,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> Dict[str, List[str]]
         """Get an empty dictionary {}.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
@@ -2674,8 +2564,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, List[str]]
         """Get an dictionary of array of strings {"0": ["1", "2", "3"], "1": null, "2": ["7", "8", "9"]}.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, list[str]]
@@ -2720,8 +2608,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> Dict[str, List[str]]
         """Get an array of array of strings [{"0": ["1", "2", "3"], "1": [], "2": ["7", "8", "9"]}.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
@@ -2768,8 +2654,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, List[str]]
         """Get an array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8", "9"]}.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, list[str]]
@@ -2815,8 +2699,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> None
         """Put An array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8", "9"]}.
-
-        FIXME: add operation.summary
 
         :param array_body: 
         :type array_body: dict[str, list[str]]
@@ -2865,8 +2747,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, object]
         """Get an dictionaries of dictionaries with value null.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, object]
@@ -2911,8 +2791,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> Dict[str, object]
         """Get an dictionaries of dictionaries of type <string, string> with value {}.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
@@ -2959,8 +2837,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, object]
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2": "two", "3": "three"}, "1": null, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, object]
@@ -3005,8 +2881,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> Dict[str, object]
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2": "two", "3": "three"}, "1": {}, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
@@ -3053,8 +2927,6 @@ class DictionaryOperations(object):
         # type: (...) -> Dict[str, object]
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2": "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, object]
@@ -3100,8 +2972,6 @@ class DictionaryOperations(object):
     ):
         # type: (...) -> None
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2": "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
-
-        FIXME: add operation.summary
 
         :param array_body: 
         :type array_body: dict[str, object]

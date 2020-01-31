@@ -105,9 +105,6 @@ class LROSADsOperations(object):
         # type: (...) -> "models.Product"
         """Long running put request, service returns a 400 to the initial request.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -203,9 +200,6 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> "models.Product"
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201 response code.
-
-        FIXME: add operation.summary
-
 
         :param product: Product to put.
         :type product: ~lro.models.Product
@@ -303,9 +297,6 @@ class LROSADsOperations(object):
         # type: (...) -> "models.Product"
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201 response code.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -401,9 +392,6 @@ class LROSADsOperations(object):
         # type: (...) -> "models.Product"
         """Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -491,9 +479,6 @@ class LROSADsOperations(object):
         # type: (...) -> None
         """Long running delete request, service returns a 400 with an error body.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -569,9 +554,6 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> None
         """Long running delete request, service returns a 202 with a location header.
-
-        FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -649,9 +631,6 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> None
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
-
-        FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -737,9 +716,6 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> None
         """Long running post request, service returns a 400 with no error body.
-
-        FIXME: add operation.summary
-
 
         :param product: Product to put.
         :type product: ~lro.models.Product
@@ -829,9 +805,6 @@ class LROSADsOperations(object):
         # type: (...) -> None
         """Long running post request, service returns a 202 with a location header.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -920,9 +893,6 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> None
         """Long running post request, service returns a 202 to the initial request Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
-
-        FIXME: add operation.summary
-
 
         :param product: Product to put.
         :type product: ~lro.models.Product
@@ -1016,9 +986,6 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> "models.Product"
         """Long running put request, service returns a 201 to the initial request with no payload.
-
-        FIXME: add operation.summary
-
 
         :param product: Product to put.
         :type product: ~lro.models.Product
@@ -1114,9 +1081,6 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> "models.Product"
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
-
-        FIXME: add operation.summary
-
 
         :param product: Product to put.
         :type product: ~lro.models.Product
@@ -1218,9 +1182,6 @@ class LROSADsOperations(object):
         # type: (...) -> "models.Product"
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -1304,9 +1265,6 @@ class LROSADsOperations(object):
         # type: (...) -> None
         """Long running delete request, service returns a 204 to the initial request, indicating success.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -1383,9 +1341,6 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> None
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
-
-        FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -1471,9 +1426,6 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> None
         """Long running post request, service returns a 202 to the initial request, without a location header.
-
-        FIXME: add operation.summary
-
 
         :param product: Product to put.
         :type product: ~lro.models.Product
@@ -1564,9 +1516,6 @@ class LROSADsOperations(object):
         # type: (...) -> None
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -1656,9 +1605,6 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> "models.Product"
         """Long running put request, service returns a 200 to the initial request, with an entity that is not a valid json.
-
-        FIXME: add operation.summary
-
 
         :param product: Product to put.
         :type product: ~lro.models.Product
@@ -1754,9 +1700,6 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> "models.Product"
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header is invalid.
-
-        FIXME: add operation.summary
-
 
         :param product: Product to put.
         :type product: ~lro.models.Product
@@ -1858,9 +1801,6 @@ class LROSADsOperations(object):
         # type: (...) -> "models.Product"
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -1948,9 +1888,6 @@ class LROSADsOperations(object):
         # type: (...) -> None
         """Long running delete request, service returns a 202 to the initial request receing a reponse with an invalid 'Location' and 'Retry-After' headers.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -2028,9 +1965,6 @@ class LROSADsOperations(object):
         # type: (...) -> None
         """Long running delete request, service returns a 202 to the initial request. The endpoint indicated in the Azure-AsyncOperation header is invalid.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -2107,9 +2041,6 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> None
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
-
-        FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -2195,9 +2126,6 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> None
         """Long running post request, service returns a 202 to the initial request, with invalid 'Location' and 'Retry-After' headers.
-
-        FIXME: add operation.summary
-
 
         :param product: Product to put.
         :type product: ~lro.models.Product
@@ -2288,9 +2216,6 @@ class LROSADsOperations(object):
         # type: (...) -> None
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header is invalid.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -2379,9 +2304,6 @@ class LROSADsOperations(object):
     ):
         # type: (...) -> None
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
-
-        FIXME: add operation.summary
-
 
         :param product: Product to put.
         :type product: ~lro.models.Product

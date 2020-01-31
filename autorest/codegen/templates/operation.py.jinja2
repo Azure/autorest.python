@@ -49,9 +49,11 @@ def {{ operation.python_name }}(
     {{ keywords.sync_return_type_annotation(operation) }}
 {% endif %}
 {% if operation.want_description_docstring %}
-    """{{operation.description.strip() }}
+    """{{operation.description }}
+    {% if operation.summary %}
 
-    FIXME: add operation.summary
+    {{ operation.summary | wordwrap(width=80, break_long_words=False, wrapstring='\n    ') }}
+    {% endif %}
 
 {% if operation.deprecated -%}
     .. warning::

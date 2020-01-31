@@ -49,8 +49,6 @@ class SkipUrlEncodingOperations:
     ) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
-        FIXME: add operation.summary
-
         :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'.
         :type unencoded_path_param: str
         :param callable cls: A custom type or function that will be passed the direct response
@@ -99,8 +97,6 @@ class SkipUrlEncodingOperations:
     ) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
-        FIXME: add operation.summary
-
         :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'.
         :type unencoded_path_param: str
         :param callable cls: A custom type or function that will be passed the direct response
@@ -146,8 +142,6 @@ class SkipUrlEncodingOperations:
         **kwargs: Any
     ) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -196,8 +190,6 @@ class SkipUrlEncodingOperations:
     ) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
-        FIXME: add operation.summary
-
         :param q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
         :type q1: str
         :param callable cls: A custom type or function that will be passed the direct response
@@ -242,8 +234,6 @@ class SkipUrlEncodingOperations:
         **kwargs: Any
     ) -> None:
         """Get method with unencoded query parameter with value null.
-
-        FIXME: add operation.summary
 
         :param q1: Unencoded query parameter with value null.
         :type q1: str
@@ -291,8 +281,6 @@ class SkipUrlEncodingOperations:
     ) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
-        FIXME: add operation.summary
-
         :param q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
         :type q1: str
         :param callable cls: A custom type or function that will be passed the direct response
@@ -335,8 +323,6 @@ class SkipUrlEncodingOperations:
         **kwargs: Any
     ) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

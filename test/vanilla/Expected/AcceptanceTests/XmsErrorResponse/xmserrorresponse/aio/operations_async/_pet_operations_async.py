@@ -50,8 +50,6 @@ class PetOperations:
     ) -> "models.Pet":
         """Gets pets by id.
 
-        FIXME: add operation.summary
-
         :param pet_id: pet id.
         :type pet_id: str
         :param callable cls: A custom type or function that will be passed the direct response
@@ -110,8 +108,6 @@ class PetOperations:
         **kwargs: Any
     ) -> "models.PetAction":
         """Asks pet to do something.
-
-        FIXME: add operation.summary
 
         :param what_action: what action the pet should do.
         :type what_action: str

@@ -48,8 +48,6 @@ class PolymorphicrecursiveOperations:
     ) -> "models.Fish":
         """Get complex types that are polymorphic and have recursive references.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Fish or the result of cls(response)
         :rtype: ~bodycomplex.models.Fish
@@ -95,8 +93,6 @@ class PolymorphicrecursiveOperations:
         **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic and have recursive references.
-
-        FIXME: add operation.summary
 
         :param complex_body: Please put a salmon that looks like this:
     {

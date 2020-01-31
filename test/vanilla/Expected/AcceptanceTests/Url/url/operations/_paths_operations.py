@@ -49,8 +49,6 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get true Boolean value on path.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -96,8 +94,6 @@ class PathsOperations(object):
     ):
         # type: (...) -> None
         """Get false Boolean value on path.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -145,8 +141,6 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get '1000000' integer value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -192,8 +186,6 @@ class PathsOperations(object):
     ):
         # type: (...) -> None
         """Get '-1000000' integer value.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -241,8 +233,6 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get '10000000000' 64 bit integer value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -288,8 +278,6 @@ class PathsOperations(object):
     ):
         # type: (...) -> None
         """Get '-10000000000' 64 bit integer value.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -337,8 +325,6 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get '1.034E+20' numeric value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -384,8 +370,6 @@ class PathsOperations(object):
     ):
         # type: (...) -> None
         """Get '-1.034E-20' numeric value.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -433,8 +417,6 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get '9999999.999' numeric value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -480,8 +462,6 @@ class PathsOperations(object):
     ):
         # type: (...) -> None
         """Get '-9999999.999' numeric value.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -529,8 +509,6 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -576,8 +554,6 @@ class PathsOperations(object):
     ):
         # type: (...) -> None
         """Get 'begin!*'();:@ &=+$,/?#[]end.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -625,7 +601,8 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get 'begin!*'();:@&=+$,end.
 
-        FIXME: add operation.summary
+        https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not
+        encoded.
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -673,8 +650,6 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get ''.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -721,8 +696,6 @@ class PathsOperations(object):
     ):
         # type: (...) -> None
         """Get null (should throw).
-
-        FIXME: add operation.summary
 
         :param string_path: null string value.
         :type string_path: str
@@ -772,8 +745,6 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get using uri with 'green color' in path parameter.
 
-        FIXME: add operation.summary
-
         :param enum_path: send the value green.
         :type enum_path: str or ~url.models.UriColor
         :param callable cls: A custom type or function that will be passed the direct response
@@ -821,8 +792,6 @@ class PathsOperations(object):
     ):
         # type: (...) -> None
         """Get null (should throw on the client before the request is sent on wire).
-
-        FIXME: add operation.summary
 
         :param enum_path: send the value green.
         :type enum_path: str or ~url.models.UriColor
@@ -872,8 +841,6 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
-        FIXME: add operation.summary
-
         :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
         :type byte_path: bytearray
         :param callable cls: A custom type or function that will be passed the direct response
@@ -920,8 +887,6 @@ class PathsOperations(object):
     ):
         # type: (...) -> None
         """Get '' as byte array.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -970,8 +935,6 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get null as byte array (should throw).
 
-        FIXME: add operation.summary
-
         :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
         :type byte_path: bytearray
         :param callable cls: A custom type or function that will be passed the direct response
@@ -1018,8 +981,6 @@ class PathsOperations(object):
     ):
         # type: (...) -> None
         """Get '2012-01-01' as date.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1068,8 +1029,6 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get null as date - this should throw or be unusable on the client side, depending on date representation.
 
-        FIXME: add operation.summary
-
         :param date_path: null as date (should throw).
         :type date_path: ~datetime.date
         :param callable cls: A custom type or function that will be passed the direct response
@@ -1117,8 +1076,6 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get '2012-01-01T01:01:01Z' as date-time.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -1165,8 +1122,6 @@ class PathsOperations(object):
     ):
         # type: (...) -> None
         """Get null as date-time, should be disallowed or throw depending on representation of date-time.
-
-        FIXME: add operation.summary
 
         :param date_time_path: null as date-time.
         :type date_time_path: ~datetime.datetime
@@ -1216,8 +1171,6 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get 'lorem' encoded value as 'bG9yZW0' (base64url).
 
-        FIXME: add operation.summary
-
         :param base64_url_path: base64url encoded value.
         :type base64_url_path: bytes
         :param callable cls: A custom type or function that will be passed the direct response
@@ -1266,8 +1219,6 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
 
-        FIXME: add operation.summary
-
         :param array_path: an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
         :type array_path: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
@@ -1315,8 +1266,6 @@ class PathsOperations(object):
     ):
         # type: (...) -> None
         """Get the date 2016-04-13 encoded value as '1460505600' (Unix time).
-
-        FIXME: add operation.summary
 
         :param unix_time_url_path: Unix time encoded value.
         :type unix_time_url_path: ~datetime.datetime

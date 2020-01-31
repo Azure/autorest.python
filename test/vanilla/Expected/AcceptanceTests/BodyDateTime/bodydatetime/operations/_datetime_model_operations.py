@@ -49,8 +49,6 @@ class DatetimeOperations(object):
         # type: (...) -> datetime.datetime
         """Get null datetime value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
@@ -95,8 +93,6 @@ class DatetimeOperations(object):
     ):
         # type: (...) -> datetime.datetime
         """Get invalid datetime value.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
@@ -143,8 +139,6 @@ class DatetimeOperations(object):
         # type: (...) -> datetime.datetime
         """Get overflow datetime value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
@@ -189,8 +183,6 @@ class DatetimeOperations(object):
     ):
         # type: (...) -> datetime.datetime
         """Get underflow datetime value.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
@@ -237,8 +229,6 @@ class DatetimeOperations(object):
     ):
         # type: (...) -> None
         """Put max datetime value 9999-12-31T23:59:59.999Z.
-
-        FIXME: add operation.summary
 
         :param datetime_body: 
         :type datetime_body: ~datetime.datetime
@@ -288,7 +278,8 @@ class DatetimeOperations(object):
         # type: (...) -> None
         """Put max datetime value 9999-12-31T23:59:59.9999999Z.
 
-        FIXME: add operation.summary
+        This is against the recommendation that asks for 3 digits, but allow to test
+        what happens in that scenario.
 
         :param datetime_body: 
         :type datetime_body: ~datetime.datetime
@@ -337,8 +328,6 @@ class DatetimeOperations(object):
         # type: (...) -> datetime.datetime
         """Get max datetime value 9999-12-31t23:59:59.999z.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
@@ -383,8 +372,6 @@ class DatetimeOperations(object):
     ):
         # type: (...) -> datetime.datetime
         """Get max datetime value 9999-12-31T23:59:59.999Z.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
@@ -431,7 +418,8 @@ class DatetimeOperations(object):
         # type: (...) -> datetime.datetime
         """Get max datetime value 9999-12-31T23:59:59.9999999Z.
 
-        FIXME: add operation.summary
+        This is against the recommendation that asks for 3 digits, but allow to test
+        what happens in that scenario.
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
@@ -478,8 +466,6 @@ class DatetimeOperations(object):
     ):
         # type: (...) -> None
         """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999+14:00.
-
-        FIXME: add operation.summary
 
         :param datetime_body: 
         :type datetime_body: ~datetime.datetime
@@ -528,8 +514,6 @@ class DatetimeOperations(object):
         # type: (...) -> datetime.datetime
         """Get max datetime value with positive num offset 9999-12-31t23:59:59.999+14:00.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
@@ -574,8 +558,6 @@ class DatetimeOperations(object):
     ):
         # type: (...) -> datetime.datetime
         """Get max datetime value with positive num offset 9999-12-31T23:59:59.999+14:00.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
@@ -622,8 +604,6 @@ class DatetimeOperations(object):
     ):
         # type: (...) -> None
         """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999-14:00.
-
-        FIXME: add operation.summary
 
         :param datetime_body: 
         :type datetime_body: ~datetime.datetime
@@ -672,8 +652,6 @@ class DatetimeOperations(object):
         # type: (...) -> datetime.datetime
         """Get max datetime value with positive num offset 9999-12-31T23:59:59.999-14:00.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
@@ -718,8 +696,6 @@ class DatetimeOperations(object):
     ):
         # type: (...) -> datetime.datetime
         """Get max datetime value with positive num offset 9999-12-31t23:59:59.999-14:00.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
@@ -766,8 +742,6 @@ class DatetimeOperations(object):
     ):
         # type: (...) -> None
         """Put min datetime value 0001-01-01T00:00:00Z.
-
-        FIXME: add operation.summary
 
         :param datetime_body: 
         :type datetime_body: ~datetime.datetime
@@ -816,8 +790,6 @@ class DatetimeOperations(object):
         # type: (...) -> datetime.datetime
         """Get min datetime value 0001-01-01T00:00:00Z.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
@@ -863,8 +835,6 @@ class DatetimeOperations(object):
     ):
         # type: (...) -> None
         """Put min datetime value 0001-01-01T00:00:00+14:00.
-
-        FIXME: add operation.summary
 
         :param datetime_body: 
         :type datetime_body: ~datetime.datetime
@@ -913,8 +883,6 @@ class DatetimeOperations(object):
         # type: (...) -> datetime.datetime
         """Get min datetime value 0001-01-01T00:00:00+14:00.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
@@ -960,8 +928,6 @@ class DatetimeOperations(object):
     ):
         # type: (...) -> None
         """Put min datetime value 0001-01-01T00:00:00-14:00.
-
-        FIXME: add operation.summary
 
         :param datetime_body: 
         :type datetime_body: ~datetime.datetime
@@ -1009,8 +975,6 @@ class DatetimeOperations(object):
     ):
         # type: (...) -> datetime.datetime
         """Get min datetime value 0001-01-01T00:00:00-14:00.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)

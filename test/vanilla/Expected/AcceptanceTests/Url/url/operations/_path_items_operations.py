@@ -52,8 +52,6 @@ class PathItemsOperations(object):
         # type: (...) -> None
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
-        FIXME: add operation.summary
-
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
         :type path_item_string_path: str
         :param local_string_path: should contain value 'localStringPath'.
@@ -118,8 +116,6 @@ class PathItemsOperations(object):
     ):
         # type: (...) -> None
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
-
-        FIXME: add operation.summary
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
         :type path_item_string_path: str
@@ -186,8 +182,6 @@ class PathItemsOperations(object):
         # type: (...) -> None
         """send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
 
-        FIXME: add operation.summary
-
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
         :type path_item_string_path: str
         :param local_string_path: should contain value 'localStringPath'.
@@ -252,8 +246,6 @@ class PathItemsOperations(object):
     ):
         # type: (...) -> None
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery=null, localStringQuery=null.
-
-        FIXME: add operation.summary
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
         :type path_item_string_path: str

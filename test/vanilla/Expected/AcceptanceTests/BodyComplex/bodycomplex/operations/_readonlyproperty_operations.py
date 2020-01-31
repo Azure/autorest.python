@@ -49,8 +49,6 @@ class ReadonlypropertyOperations(object):
         # type: (...) -> "models.ReadonlyObj"
         """Get complex types that have readonly properties.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ReadonlyObj or the result of cls(response)
         :rtype: ~bodycomplex.models.ReadonlyObj
@@ -96,8 +94,6 @@ class ReadonlypropertyOperations(object):
     ):
         # type: (...) -> None
         """Put complex types that have readonly properties.
-
-        FIXME: add operation.summary
 
         :param size: 
         :type size: int

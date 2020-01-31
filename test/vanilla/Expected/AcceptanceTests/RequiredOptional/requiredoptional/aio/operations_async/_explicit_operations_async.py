@@ -50,8 +50,6 @@ class ExplicitOperations:
     ) -> None:
         """Test explicitly required integer. Please put null and the client library should throw before the request is sent.
 
-        FIXME: add operation.summary
-
         :param body_parameter: 
         :type body_parameter: int
         :param callable cls: A custom type or function that will be passed the direct response
@@ -99,8 +97,6 @@ class ExplicitOperations:
         **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put null.
-
-        FIXME: add operation.summary
 
         :param body_parameter: 
         :type body_parameter: int
@@ -153,8 +149,6 @@ class ExplicitOperations:
     ) -> None:
         """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the client library should throw before the request is sent.
 
-        FIXME: add operation.summary
-
         :param value: 
         :type value: int
         :param callable cls: A custom type or function that will be passed the direct response
@@ -203,8 +197,6 @@ class ExplicitOperations:
         **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
-
-        FIXME: add operation.summary
 
         :param value: 
         :type value: int
@@ -258,8 +250,6 @@ class ExplicitOperations:
     ) -> None:
         """Test explicitly required integer. Please put a header 'headerParameter' => null and the client library should throw before the request is sent.
 
-        FIXME: add operation.summary
-
         :param header_parameter: 
         :type header_parameter: int
         :param callable cls: A custom type or function that will be passed the direct response
@@ -304,8 +294,6 @@ class ExplicitOperations:
         **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
-
-        FIXME: add operation.summary
 
         :param header_parameter: 
         :type header_parameter: int
@@ -352,8 +340,6 @@ class ExplicitOperations:
         **kwargs: Any
     ) -> None:
         """Test explicitly required string. Please put null and the client library should throw before the request is sent.
-
-        FIXME: add operation.summary
 
         :param body_parameter: 
         :type body_parameter: str
@@ -402,8 +388,6 @@ class ExplicitOperations:
         **kwargs: Any
     ) -> None:
         """Test explicitly optional string. Please put null.
-
-        FIXME: add operation.summary
 
         :param body_parameter: 
         :type body_parameter: str
@@ -456,8 +440,6 @@ class ExplicitOperations:
     ) -> None:
         """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the client library should throw before the request is sent.
 
-        FIXME: add operation.summary
-
         :param value: 
         :type value: str
         :param callable cls: A custom type or function that will be passed the direct response
@@ -506,8 +488,6 @@ class ExplicitOperations:
         **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
-
-        FIXME: add operation.summary
 
         :param value: 
         :type value: str
@@ -561,8 +541,6 @@ class ExplicitOperations:
     ) -> None:
         """Test explicitly required string. Please put a header 'headerParameter' => null and the client library should throw before the request is sent.
 
-        FIXME: add operation.summary
-
         :param header_parameter: 
         :type header_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
@@ -607,8 +585,6 @@ class ExplicitOperations:
         **kwargs: Any
     ) -> None:
         """Test explicitly optional string. Please put a header 'headerParameter' => null.
-
-        FIXME: add operation.summary
 
         :param body_parameter: 
         :type body_parameter: str
@@ -655,8 +631,6 @@ class ExplicitOperations:
         **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put null and the client library should throw before the request is sent.
-
-        FIXME: add operation.summary
 
         :param body_parameter: 
         :type body_parameter: ~requiredoptional.models.Product
@@ -705,8 +679,6 @@ class ExplicitOperations:
         **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put null.
-
-        FIXME: add operation.summary
 
         :param body_parameter: 
         :type body_parameter: ~requiredoptional.models.Product
@@ -759,8 +731,6 @@ class ExplicitOperations:
     ) -> None:
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null and the client library should throw before the request is sent.
 
-        FIXME: add operation.summary
-
         :param value: 
         :type value: ~requiredoptional.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -809,8 +779,6 @@ class ExplicitOperations:
         **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
-
-        FIXME: add operation.summary
 
         :param value: 
         :type value: ~requiredoptional.models.Product
@@ -864,8 +832,6 @@ class ExplicitOperations:
     ) -> None:
         """Test explicitly required array. Please put null and the client library should throw before the request is sent.
 
-        FIXME: add operation.summary
-
         :param body_parameter: 
         :type body_parameter: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
@@ -913,8 +879,6 @@ class ExplicitOperations:
         **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put null.
-
-        FIXME: add operation.summary
 
         :param body_parameter: 
         :type body_parameter: list[str]
@@ -967,8 +931,6 @@ class ExplicitOperations:
     ) -> None:
         """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the client library should throw before the request is sent.
 
-        FIXME: add operation.summary
-
         :param value: 
         :type value: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
@@ -1017,8 +979,6 @@ class ExplicitOperations:
         **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
-
-        FIXME: add operation.summary
 
         :param value: 
         :type value: list[str]
@@ -1072,8 +1032,6 @@ class ExplicitOperations:
     ) -> None:
         """Test explicitly required array. Please put a header 'headerParameter' => null and the client library should throw before the request is sent.
 
-        FIXME: add operation.summary
-
         :param header_parameter: 
         :type header_parameter: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
@@ -1118,8 +1076,6 @@ class ExplicitOperations:
         **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
-
-        FIXME: add operation.summary
 
         :param header_parameter: 
         :type header_parameter: list[str]

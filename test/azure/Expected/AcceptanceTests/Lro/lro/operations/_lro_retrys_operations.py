@@ -105,9 +105,6 @@ class LRORetrysOperations(object):
         # type: (...) -> "models.Product"
         """Long running put request, service returns a 500, then a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -202,9 +199,6 @@ class LRORetrysOperations(object):
     ):
         # type: (...) -> "models.Product"
         """Long running put request, service returns a 500, then a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
-
-        FIXME: add operation.summary
-
 
         :param product: Product to put.
         :type product: ~lro.models.Product
@@ -301,9 +295,6 @@ class LRORetrysOperations(object):
         # type: (...) -> "models.Product"
         """Long running delete request, service returns a 500, then a  202 to the initial request, with an entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -387,9 +378,6 @@ class LRORetrysOperations(object):
         # type: (...) -> None
         """Long running delete request, service returns a 500, then a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -466,9 +454,6 @@ class LRORetrysOperations(object):
     ):
         # type: (...) -> None
         """Long running delete request, service returns a 500, then a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
-
-        FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -554,9 +539,6 @@ class LRORetrysOperations(object):
     ):
         # type: (...) -> None
         """Long running post request, service returns a 500, then a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
-
-        FIXME: add operation.summary
-
 
         :param product: Product to put.
         :type product: ~lro.models.Product
@@ -646,9 +628,6 @@ class LRORetrysOperations(object):
     ):
         # type: (...) -> None
         """Long running post request, service returns a 500, then a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
-
-        FIXME: add operation.summary
-
 
         :param product: Product to put.
         :type product: ~lro.models.Product

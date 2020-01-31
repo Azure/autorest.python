@@ -48,8 +48,6 @@ class DurationOperations:
     ) -> datetime.timedelta:
         """Get null duration value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: timedelta or the result of cls(response)
         :rtype: ~datetime.timedelta
@@ -95,8 +93,6 @@ class DurationOperations:
         **kwargs: Any
     ) -> None:
         """Put a positive duration value.
-
-        FIXME: add operation.summary
 
         :param duration_body: 
         :type duration_body: ~datetime.timedelta
@@ -144,8 +140,6 @@ class DurationOperations:
     ) -> datetime.timedelta:
         """Get a positive duration value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: timedelta or the result of cls(response)
         :rtype: ~datetime.timedelta
@@ -189,8 +183,6 @@ class DurationOperations:
         **kwargs: Any
     ) -> datetime.timedelta:
         """Get an invalid duration value.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: timedelta or the result of cls(response)
