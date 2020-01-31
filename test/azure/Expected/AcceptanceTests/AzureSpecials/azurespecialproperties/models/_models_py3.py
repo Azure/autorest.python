@@ -38,7 +38,7 @@ class ErrorException(HttpResponseError):
 
 
 class Error(Model):
-    """
+    """Error.
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -105,7 +105,7 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(Model):
 
 
 class OdataFilter(Model):
-    """
+    """OdataFilter.
 
     :param id:
     :type id: int

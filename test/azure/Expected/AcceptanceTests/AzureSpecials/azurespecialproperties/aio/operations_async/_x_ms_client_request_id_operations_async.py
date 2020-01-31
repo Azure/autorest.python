@@ -90,7 +90,8 @@ class XMsClientRequestIdOperations:
     ) -> None:
         """Get method that overwrites x-ms-client-request header with value 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
-        :param x_ms_client_request_id: This should appear as a method parameter, use value '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'.
+        :param x_ms_client_request_id: This should appear as a method parameter, use value
+         '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'.
         :type x_ms_client_request_id: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

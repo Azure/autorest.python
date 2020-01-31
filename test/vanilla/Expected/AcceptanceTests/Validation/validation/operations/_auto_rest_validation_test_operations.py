@@ -153,7 +153,7 @@ class AutoRestValidationTestOperationsMixin(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """
+        """get_with_constant_in_path.
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -199,7 +199,7 @@ class AutoRestValidationTestOperationsMixin(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
-        """
+        """post_with_constant_in_body.
 
         :param body: 
         :type body: ~validation.models.Product

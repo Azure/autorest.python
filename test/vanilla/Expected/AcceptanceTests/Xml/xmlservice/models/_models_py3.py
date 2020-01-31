@@ -167,7 +167,7 @@ class Blob(Model):
 
 
 class BlobPrefix(Model):
-    """
+    """BlobPrefix.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -362,7 +362,7 @@ class BlobProperties(Model):
 
 
 class Blobs(Model):
-    """
+    """Blobs.
 
     :param blob_prefix:
     :type blob_prefix: list[~xmlservice.models.BlobPrefix]
@@ -614,7 +614,7 @@ class ErrorException(HttpResponseError):
 
 
 class Error(Model):
-    """
+    """Error.
 
     :param status:
     :type status: int
@@ -641,7 +641,7 @@ class Error(Model):
 
 
 class JSONInput(Model):
-    """
+    """JSONInput.
 
     :param id:
     :type id: int
@@ -662,7 +662,7 @@ class JSONInput(Model):
 
 
 class JSONOutput(Model):
-    """
+    """JSONOutput.
 
     :param id:
     :type id: int
@@ -864,7 +864,7 @@ class Logging(Model):
 
 
 class Metrics(Model):
-    """
+    """Metrics.
 
     All required parameters must be populated in order to send to Azure.
 

@@ -714,7 +714,8 @@ class HeaderOperations:
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
-        :param value: Send a post request with header values "The quick brown fox jumps over the lazy dog" or null or "".
+        :param value: Send a post request with header values "The quick brown fox jumps over the lazy
+         dog" or null or "".
         :type value: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -909,7 +910,8 @@ class HeaderOperations:
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
-        :param value: Send a post request with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z".
+        :param value: Send a post request with header values "2010-01-01T12:34:56Z" or
+         "0001-01-01T00:00:00Z".
         :type value: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1006,7 +1008,8 @@ class HeaderOperations:
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
-        :param value: Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT".
+        :param value: Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon,
+         01 Jan 0001 00:00:00 GMT".
         :type value: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
