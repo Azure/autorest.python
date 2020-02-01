@@ -38,7 +38,7 @@ def {{ operation_name }}(
 {% macro response_headers(response) %}
 response_headers = {
     {% for response_header in response.headers %}
-    '{{ response_header.name }}': self._deserialize('{{ response_header.schema.get_serialization_type() }}', response.headers.get('{{ response_header.name }}')),
+    '{{ response_header.name }}': self._deserialize('{{ response_header.schema.serialization_type }}', response.headers.get('{{ response_header.name }}')),
     {% endfor %}
 }
 {% endmacro %}

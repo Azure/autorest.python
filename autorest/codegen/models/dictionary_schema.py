@@ -28,13 +28,14 @@ class DictionarySchema(BaseSchema):
         self.additional_properties = additional_properties
 
 
-    def get_serialization_type(self) -> str:
+    @property
+    def serialization_type(self) -> str:
         """Returns the serialization value for msrest.
 
         :return: The serialization value for msrest
         :rtype: str
         """
-        return "{{{}}}".format(self.element_type.get_serialization_type())
+        return "{{{}}}".format(self.element_type.serialization_type)
 
     @property
     def type_annotation(self) -> str:

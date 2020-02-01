@@ -47,8 +47,9 @@ class BaseSchema(BaseModel, ABC):
     def imports(self) -> FileImport:  # pylint: disable=no-self-use
         return FileImport()
 
+    @property
     @abstractmethod
-    def get_serialization_type(self) -> str:
+    def serialization_type(self) -> str:
         """The tag recognized by 'msrest' as a serialization/deserialization.
 
         'str', 'int', 'float', 'bool' or

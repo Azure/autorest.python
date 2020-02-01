@@ -23,7 +23,8 @@ class PrimitiveSchema(BaseSchema):
     def _to_python_type(self) -> str:
         return self._TYPE_MAPPINGS.get(self.yaml_data['type'], "str")
 
-    def get_serialization_type(self) -> str:
+    @property
+    def serialization_type(self) -> str:
         return self._to_python_type()
 
     @property
@@ -39,7 +40,8 @@ class PrimitiveSchema(BaseSchema):
         return self.docstring_type
 
 class AnySchema(PrimitiveSchema):
-    def get_serialization_type(self) -> str:
+    @property
+    def serialization_type(self) -> str:
         return 'object'
 
     @property
@@ -84,7 +86,8 @@ class NumberSchema(PrimitiveSchema):
         return validation_map or None
 
 
-    def get_serialization_type(self) -> str:
+    @property
+    def serialization_type(self) -> str:
         if self.yaml_data['type'] == "integer":
             if self.precision == 64:
                 return "long"
@@ -148,7 +151,8 @@ class DatetimeSchema(PrimitiveSchema):
         datetime = "date-time"
         rfc1123 = "date-time-rfc1123"
 
-    def get_serialization_type(self) -> str:
+    @property
+    def serialization_type(self) -> str:
         formats_to_attribute_type = {
             self.Formats.datetime: "iso-8601",
             self.Formats.rfc1123: "rfc-1123"
@@ -181,7 +185,8 @@ class DatetimeSchema(PrimitiveSchema):
 
 class UnixTimeSchema(PrimitiveSchema):
 
-    def get_serialization_type(self) -> str:
+    @property
+    def serialization_type(self) -> str:
         return "unix-time"
 
     @property
@@ -210,7 +215,8 @@ class UnixTimeSchema(PrimitiveSchema):
 
 class DateSchema(PrimitiveSchema):
 
-    def get_serialization_type(self) -> str:
+    @property
+    def serialization_type(self) -> str:
         return "date"
 
     @property
@@ -239,7 +245,8 @@ class DateSchema(PrimitiveSchema):
 
 class DurationSchema(PrimitiveSchema):
 
-    def get_serialization_type(self) -> str:
+    @property
+    def serialization_type(self) -> str:
         return "duration"
 
     @property
@@ -275,7 +282,8 @@ class ByteArraySchema(PrimitiveSchema):
         base64url = "base64url"
         byte = "byte"
 
-    def get_serialization_type(self) -> str:
+    @property
+    def serialization_type(self) -> str:
         if self.format == ByteArraySchema.Formats.base64url:
             return "base64"
         return "bytearray"
