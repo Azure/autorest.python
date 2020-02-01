@@ -58,7 +58,6 @@ class SkipUrlEncodingOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_method_path_valid.metadata['url']
         path_format_arguments = {
@@ -69,8 +68,10 @@ class SkipUrlEncodingOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -105,7 +106,6 @@ class SkipUrlEncodingOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_path_path_valid.metadata['url']
         path_format_arguments = {
@@ -116,8 +116,10 @@ class SkipUrlEncodingOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -147,7 +149,6 @@ class SkipUrlEncodingOperations:
         :raises: ~azurespecialproperties.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         unencoded_path_param = "path1/path2/path3"
 
         # Construct URL
@@ -160,8 +161,10 @@ class SkipUrlEncodingOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -196,7 +199,6 @@ class SkipUrlEncodingOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_method_query_valid.metadata['url']
 
@@ -204,8 +206,10 @@ class SkipUrlEncodingOperations:
         query_parameters: Dict[str, Any] = {}
         query_parameters['q1'] = self._serialize.query("q1", q1, 'str', skip_quote=True)
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -240,7 +244,6 @@ class SkipUrlEncodingOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_method_query_null.metadata['url']
 
@@ -249,8 +252,10 @@ class SkipUrlEncodingOperations:
         if q1 is not None:
             query_parameters['q1'] = self._serialize.query("q1", q1, 'str', skip_quote=True)
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -285,7 +290,6 @@ class SkipUrlEncodingOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_path_query_valid.metadata['url']
 
@@ -293,8 +297,10 @@ class SkipUrlEncodingOperations:
         query_parameters: Dict[str, Any] = {}
         query_parameters['q1'] = self._serialize.query("q1", q1, 'str', skip_quote=True)
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -324,7 +330,6 @@ class SkipUrlEncodingOperations:
         :raises: ~azurespecialproperties.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         q1 = "value1&q2=value2&q3=value3"
 
         # Construct URL
@@ -334,8 +339,10 @@ class SkipUrlEncodingOperations:
         query_parameters: Dict[str, Any] = {}
         query_parameters['q1'] = self._serialize.query("q1", q1, 'str', skip_quote=True)
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

@@ -56,16 +56,17 @@ class BasicOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -102,7 +103,6 @@ class BasicOperations(object):
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         api_version = "2016-02-29"
 
         # Construct URL
@@ -112,9 +112,11 @@ class BasicOperations(object):
         query_parameters = {}
         query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'Basic')
@@ -149,16 +151,17 @@ class BasicOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_invalid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -193,16 +196,17 @@ class BasicOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -237,16 +241,17 @@ class BasicOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -281,16 +286,17 @@ class BasicOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_not_provided.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

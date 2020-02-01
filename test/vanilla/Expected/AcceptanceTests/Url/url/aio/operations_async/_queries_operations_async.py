@@ -54,7 +54,6 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         bool_query = True
 
         # Construct URL
@@ -64,8 +63,10 @@ class QueriesOperations:
         query_parameters: Dict[str, Any] = {}
         query_parameters['boolQuery'] = self._serialize.query("bool_query", bool_query, 'bool')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -95,7 +96,6 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         bool_query = False
 
         # Construct URL
@@ -105,8 +105,10 @@ class QueriesOperations:
         query_parameters: Dict[str, Any] = {}
         query_parameters['boolQuery'] = self._serialize.query("bool_query", bool_query, 'bool')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -141,7 +143,6 @@ class QueriesOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_boolean_null.metadata['url']
 
@@ -150,8 +151,10 @@ class QueriesOperations:
         if bool_query is not None:
             query_parameters['boolQuery'] = self._serialize.query("bool_query", bool_query, 'bool')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -181,7 +184,6 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         int_query = 1000000
 
         # Construct URL
@@ -191,8 +193,10 @@ class QueriesOperations:
         query_parameters: Dict[str, Any] = {}
         query_parameters['intQuery'] = self._serialize.query("int_query", int_query, 'float')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -222,7 +226,6 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         int_query = -1000000
 
         # Construct URL
@@ -232,8 +235,10 @@ class QueriesOperations:
         query_parameters: Dict[str, Any] = {}
         query_parameters['intQuery'] = self._serialize.query("int_query", int_query, 'float')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -268,7 +273,6 @@ class QueriesOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_int_null.metadata['url']
 
@@ -277,8 +281,10 @@ class QueriesOperations:
         if int_query is not None:
             query_parameters['intQuery'] = self._serialize.query("int_query", int_query, 'int')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -308,7 +314,6 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         long_query = 10000000000
 
         # Construct URL
@@ -318,8 +323,10 @@ class QueriesOperations:
         query_parameters: Dict[str, Any] = {}
         query_parameters['longQuery'] = self._serialize.query("long_query", long_query, 'float')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -349,7 +356,6 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         long_query = -10000000000
 
         # Construct URL
@@ -359,8 +365,10 @@ class QueriesOperations:
         query_parameters: Dict[str, Any] = {}
         query_parameters['longQuery'] = self._serialize.query("long_query", long_query, 'float')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -395,7 +403,6 @@ class QueriesOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_long_null.metadata['url']
 
@@ -404,8 +411,10 @@ class QueriesOperations:
         if long_query is not None:
             query_parameters['longQuery'] = self._serialize.query("long_query", long_query, 'long')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -435,7 +444,6 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         float_query = 103400000000000000000
 
         # Construct URL
@@ -445,8 +453,10 @@ class QueriesOperations:
         query_parameters: Dict[str, Any] = {}
         query_parameters['floatQuery'] = self._serialize.query("float_query", float_query, 'float')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -476,7 +486,6 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         float_query = -1.034e-20
 
         # Construct URL
@@ -486,8 +495,10 @@ class QueriesOperations:
         query_parameters: Dict[str, Any] = {}
         query_parameters['floatQuery'] = self._serialize.query("float_query", float_query, 'float')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -522,7 +533,6 @@ class QueriesOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.float_null.metadata['url']
 
@@ -531,8 +541,10 @@ class QueriesOperations:
         if float_query is not None:
             query_parameters['floatQuery'] = self._serialize.query("float_query", float_query, 'float')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -562,7 +574,6 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         double_query = 9999999.999
 
         # Construct URL
@@ -572,8 +583,10 @@ class QueriesOperations:
         query_parameters: Dict[str, Any] = {}
         query_parameters['doubleQuery'] = self._serialize.query("double_query", double_query, 'float')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -603,7 +616,6 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         double_query = -9999999.999
 
         # Construct URL
@@ -613,8 +625,10 @@ class QueriesOperations:
         query_parameters: Dict[str, Any] = {}
         query_parameters['doubleQuery'] = self._serialize.query("double_query", double_query, 'float')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -649,7 +663,6 @@ class QueriesOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.double_null.metadata['url']
 
@@ -658,8 +671,10 @@ class QueriesOperations:
         if double_query is not None:
             query_parameters['doubleQuery'] = self._serialize.query("double_query", double_query, 'float')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -689,7 +704,6 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         string_query = "啊齄丂狛狜隣郎隣兀﨩"
 
         # Construct URL
@@ -699,8 +713,10 @@ class QueriesOperations:
         query_parameters: Dict[str, Any] = {}
         query_parameters['stringQuery'] = self._serialize.query("string_query", string_query, 'str')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -730,7 +746,6 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         string_query = "begin!*'();:@ &=+$,/?#[]end"
 
         # Construct URL
@@ -740,8 +755,10 @@ class QueriesOperations:
         query_parameters: Dict[str, Any] = {}
         query_parameters['stringQuery'] = self._serialize.query("string_query", string_query, 'str')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -771,7 +788,6 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         string_query = ""
 
         # Construct URL
@@ -781,8 +797,10 @@ class QueriesOperations:
         query_parameters: Dict[str, Any] = {}
         query_parameters['stringQuery'] = self._serialize.query("string_query", string_query, 'str')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -817,7 +835,6 @@ class QueriesOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.string_null.metadata['url']
 
@@ -826,8 +843,10 @@ class QueriesOperations:
         if string_query is not None:
             query_parameters['stringQuery'] = self._serialize.query("string_query", string_query, 'str')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -862,7 +881,6 @@ class QueriesOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.enum_valid.metadata['url']
 
@@ -871,8 +889,10 @@ class QueriesOperations:
         if enum_query is not None:
             query_parameters['enumQuery'] = self._serialize.query("enum_query", enum_query, 'str')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -907,7 +927,6 @@ class QueriesOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.enum_null.metadata['url']
 
@@ -916,8 +935,10 @@ class QueriesOperations:
         if enum_query is not None:
             query_parameters['enumQuery'] = self._serialize.query("enum_query", enum_query, 'str')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -952,7 +973,6 @@ class QueriesOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.byte_multi_byte.metadata['url']
 
@@ -961,8 +981,10 @@ class QueriesOperations:
         if byte_query is not None:
             query_parameters['byteQuery'] = self._serialize.query("byte_query", byte_query, 'bytearray')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -992,7 +1014,6 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         byte_query = bytearray("", encoding="utf-8")
 
         # Construct URL
@@ -1002,8 +1023,10 @@ class QueriesOperations:
         query_parameters: Dict[str, Any] = {}
         query_parameters['byteQuery'] = self._serialize.query("byte_query", byte_query, 'bytearray')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1038,7 +1061,6 @@ class QueriesOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.byte_null.metadata['url']
 
@@ -1047,8 +1069,10 @@ class QueriesOperations:
         if byte_query is not None:
             query_parameters['byteQuery'] = self._serialize.query("byte_query", byte_query, 'bytearray')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1078,7 +1102,6 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         date_query = "2012-01-01"
 
         # Construct URL
@@ -1088,8 +1111,10 @@ class QueriesOperations:
         query_parameters: Dict[str, Any] = {}
         query_parameters['dateQuery'] = self._serialize.query("date_query", date_query, 'date')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1124,7 +1149,6 @@ class QueriesOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.date_null.metadata['url']
 
@@ -1133,8 +1157,10 @@ class QueriesOperations:
         if date_query is not None:
             query_parameters['dateQuery'] = self._serialize.query("date_query", date_query, 'date')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1164,7 +1190,6 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         date_time_query = "2012-01-01T01:01:01Z"
 
         # Construct URL
@@ -1174,8 +1199,10 @@ class QueriesOperations:
         query_parameters: Dict[str, Any] = {}
         query_parameters['dateTimeQuery'] = self._serialize.query("date_time_query", date_time_query, 'iso-8601')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1210,7 +1237,6 @@ class QueriesOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.date_time_null.metadata['url']
 
@@ -1219,8 +1245,10 @@ class QueriesOperations:
         if date_time_query is not None:
             query_parameters['dateTimeQuery'] = self._serialize.query("date_time_query", date_time_query, 'iso-8601')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1256,7 +1284,6 @@ class QueriesOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.array_string_csv_valid.metadata['url']
 
@@ -1265,8 +1292,10 @@ class QueriesOperations:
         if array_query is not None:
             query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1302,7 +1331,6 @@ class QueriesOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.array_string_csv_null.metadata['url']
 
@@ -1311,8 +1339,10 @@ class QueriesOperations:
         if array_query is not None:
             query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1348,7 +1378,6 @@ class QueriesOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.array_string_csv_empty.metadata['url']
 
@@ -1357,8 +1386,10 @@ class QueriesOperations:
         if array_query is not None:
             query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1394,7 +1425,6 @@ class QueriesOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.array_string_ssv_valid.metadata['url']
 
@@ -1403,8 +1433,10 @@ class QueriesOperations:
         if array_query is not None:
             query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=' ')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1440,7 +1472,6 @@ class QueriesOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.array_string_tsv_valid.metadata['url']
 
@@ -1449,8 +1480,10 @@ class QueriesOperations:
         if array_query is not None:
             query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div='	')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1486,7 +1519,6 @@ class QueriesOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.array_string_pipes_valid.metadata['url']
 
@@ -1495,8 +1527,10 @@ class QueriesOperations:
         if array_query is not None:
             query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div='|')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

@@ -59,7 +59,6 @@ class SubscriptionInMethodOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.post_method_local_valid.metadata['url']
         path_format_arguments = {
@@ -70,8 +69,10 @@ class SubscriptionInMethodOperations(object):
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -107,7 +108,6 @@ class SubscriptionInMethodOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.post_method_local_null.metadata['url']
         path_format_arguments = {
@@ -118,8 +118,10 @@ class SubscriptionInMethodOperations(object):
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -155,7 +157,6 @@ class SubscriptionInMethodOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.post_path_local_valid.metadata['url']
         path_format_arguments = {
@@ -166,8 +167,10 @@ class SubscriptionInMethodOperations(object):
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -203,7 +206,6 @@ class SubscriptionInMethodOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.post_swagger_local_valid.metadata['url']
         path_format_arguments = {
@@ -214,8 +216,10 @@ class SubscriptionInMethodOperations(object):
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)

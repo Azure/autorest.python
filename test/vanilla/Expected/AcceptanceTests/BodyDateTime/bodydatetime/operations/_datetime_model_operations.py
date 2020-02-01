@@ -56,16 +56,17 @@ class DatetimeOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -100,16 +101,17 @@ class DatetimeOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_invalid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -144,16 +146,17 @@ class DatetimeOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_overflow.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -188,16 +191,17 @@ class DatetimeOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_underflow.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -235,16 +239,17 @@ class DatetimeOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.put_utc_max_date_time.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         body_content = self._serialize.body(datetime_body, 'iso-8601')
@@ -285,16 +290,17 @@ class DatetimeOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.put_utc_max_date_time7_digits.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         body_content = self._serialize.body(datetime_body, 'iso-8601')
@@ -329,16 +335,17 @@ class DatetimeOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_utc_lowercase_max_date_time.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -373,16 +380,17 @@ class DatetimeOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_utc_uppercase_max_date_time.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -420,16 +428,17 @@ class DatetimeOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_utc_uppercase_max_date_time7_digits.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -467,16 +476,17 @@ class DatetimeOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.put_local_positive_offset_max_date_time.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         body_content = self._serialize.body(datetime_body, 'iso-8601')
@@ -511,16 +521,17 @@ class DatetimeOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_local_positive_offset_lowercase_max_date_time.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -555,16 +566,17 @@ class DatetimeOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_local_positive_offset_uppercase_max_date_time.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -602,16 +614,17 @@ class DatetimeOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.put_local_negative_offset_max_date_time.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         body_content = self._serialize.body(datetime_body, 'iso-8601')
@@ -646,16 +659,17 @@ class DatetimeOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_local_negative_offset_uppercase_max_date_time.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -690,16 +704,17 @@ class DatetimeOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_local_negative_offset_lowercase_max_date_time.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -737,16 +752,17 @@ class DatetimeOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.put_utc_min_date_time.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         body_content = self._serialize.body(datetime_body, 'iso-8601')
@@ -781,16 +797,17 @@ class DatetimeOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_utc_min_date_time.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -828,16 +845,17 @@ class DatetimeOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.put_local_positive_offset_min_date_time.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         body_content = self._serialize.body(datetime_body, 'iso-8601')
@@ -872,16 +890,17 @@ class DatetimeOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_local_positive_offset_min_date_time.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -919,16 +938,17 @@ class DatetimeOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.put_local_negative_offset_min_date_time.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         body_content = self._serialize.body(datetime_body, 'iso-8601')
@@ -963,16 +983,17 @@ class DatetimeOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_local_negative_offset_min_date_time.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

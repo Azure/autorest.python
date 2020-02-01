@@ -20,7 +20,6 @@ T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 class AutoRestValidationTestOperationsMixin:
-
     @distributed_trace_async
     async def validation_of_method_parameters(
         self,
@@ -42,7 +41,6 @@ class AutoRestValidationTestOperationsMixin:
         :raises: ~validation.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         api_version = "1.0.0"
 
         # Construct URL
@@ -58,9 +56,11 @@ class AutoRestValidationTestOperationsMixin:
         query_parameters: Dict[str, Any] = {}
         query_parameters['apiVersion'] = self._serialize.query("api_version", api_version, 'str')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -78,7 +78,6 @@ class AutoRestValidationTestOperationsMixin:
 
         return deserialized
     validation_of_method_parameters.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
-
     @distributed_trace_async
     async def validation_of_body(
         self,
@@ -103,7 +102,6 @@ class AutoRestValidationTestOperationsMixin:
         :raises: ~validation.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         api_version = "1.0.0"
 
         # Construct URL
@@ -119,10 +117,12 @@ class AutoRestValidationTestOperationsMixin:
         query_parameters: Dict[str, Any] = {}
         query_parameters['apiVersion'] = self._serialize.query("api_version", api_version, 'str')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         if body is not None:
@@ -146,7 +146,6 @@ class AutoRestValidationTestOperationsMixin:
 
         return deserialized
     validation_of_body.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
-
     @distributed_trace_async
     async def get_with_constant_in_path(
         self,
@@ -161,7 +160,6 @@ class AutoRestValidationTestOperationsMixin:
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
-
         constant_param = "constant"
 
         # Construct URL
@@ -174,8 +172,10 @@ class AutoRestValidationTestOperationsMixin:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -190,7 +190,6 @@ class AutoRestValidationTestOperationsMixin:
           return cls(pipeline_response, None, {})
 
     get_with_constant_in_path.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}
-
     @distributed_trace_async
     async def post_with_constant_in_body(
         self,
@@ -209,7 +208,6 @@ class AutoRestValidationTestOperationsMixin:
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
-
         constant_param = "constant"
 
         # Construct URL
@@ -222,10 +220,12 @@ class AutoRestValidationTestOperationsMixin:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         if body is not None:

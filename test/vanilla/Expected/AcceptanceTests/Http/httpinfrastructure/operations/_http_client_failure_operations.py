@@ -55,15 +55,16 @@ class HttpClientFailureOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.head400.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
+
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -95,15 +96,16 @@ class HttpClientFailureOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get400.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -135,15 +137,16 @@ class HttpClientFailureOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.options400.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
+
 
         # Construct and send request
         request = self._client.options(url, query_parameters, header_parameters)
@@ -174,7 +177,6 @@ class HttpClientFailureOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         boolean_value = True
 
         # Construct URL
@@ -183,9 +185,11 @@ class HttpClientFailureOperations(object):
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         if boolean_value is not None:
@@ -222,7 +226,6 @@ class HttpClientFailureOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         boolean_value = True
 
         # Construct URL
@@ -231,9 +234,11 @@ class HttpClientFailureOperations(object):
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         if boolean_value is not None:
@@ -270,7 +275,6 @@ class HttpClientFailureOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         boolean_value = True
 
         # Construct URL
@@ -279,9 +283,11 @@ class HttpClientFailureOperations(object):
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         if boolean_value is not None:
@@ -318,7 +324,6 @@ class HttpClientFailureOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         boolean_value = True
 
         # Construct URL
@@ -327,9 +332,11 @@ class HttpClientFailureOperations(object):
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         if boolean_value is not None:
@@ -367,15 +374,16 @@ class HttpClientFailureOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.head401.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
+
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -407,15 +415,16 @@ class HttpClientFailureOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get402.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -447,15 +456,16 @@ class HttpClientFailureOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.options403.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
+
 
         # Construct and send request
         request = self._client.options(url, query_parameters, header_parameters)
@@ -487,15 +497,16 @@ class HttpClientFailureOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get403.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -526,7 +537,6 @@ class HttpClientFailureOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         boolean_value = True
 
         # Construct URL
@@ -535,9 +545,11 @@ class HttpClientFailureOperations(object):
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         if boolean_value is not None:
@@ -574,7 +586,6 @@ class HttpClientFailureOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         boolean_value = True
 
         # Construct URL
@@ -583,9 +594,11 @@ class HttpClientFailureOperations(object):
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         if boolean_value is not None:
@@ -622,7 +635,6 @@ class HttpClientFailureOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         boolean_value = True
 
         # Construct URL
@@ -631,9 +643,11 @@ class HttpClientFailureOperations(object):
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         if boolean_value is not None:
@@ -670,7 +684,6 @@ class HttpClientFailureOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         boolean_value = True
 
         # Construct URL
@@ -679,9 +692,11 @@ class HttpClientFailureOperations(object):
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         if boolean_value is not None:
@@ -718,7 +733,6 @@ class HttpClientFailureOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         boolean_value = True
 
         # Construct URL
@@ -727,9 +741,11 @@ class HttpClientFailureOperations(object):
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         if boolean_value is not None:
@@ -767,15 +783,16 @@ class HttpClientFailureOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.head410.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
+
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -807,15 +824,16 @@ class HttpClientFailureOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get411.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -847,15 +865,16 @@ class HttpClientFailureOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.options412.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
+
 
         # Construct and send request
         request = self._client.options(url, query_parameters, header_parameters)
@@ -887,15 +906,16 @@ class HttpClientFailureOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get412.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -926,7 +946,6 @@ class HttpClientFailureOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         boolean_value = True
 
         # Construct URL
@@ -935,9 +954,11 @@ class HttpClientFailureOperations(object):
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         if boolean_value is not None:
@@ -974,7 +995,6 @@ class HttpClientFailureOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         boolean_value = True
 
         # Construct URL
@@ -983,9 +1003,11 @@ class HttpClientFailureOperations(object):
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         if boolean_value is not None:
@@ -1022,7 +1044,6 @@ class HttpClientFailureOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         boolean_value = True
 
         # Construct URL
@@ -1031,9 +1052,11 @@ class HttpClientFailureOperations(object):
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         if boolean_value is not None:
@@ -1071,15 +1094,16 @@ class HttpClientFailureOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get416.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1110,7 +1134,6 @@ class HttpClientFailureOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         boolean_value = True
 
         # Construct URL
@@ -1119,9 +1142,11 @@ class HttpClientFailureOperations(object):
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         if boolean_value is not None:
@@ -1159,15 +1184,16 @@ class HttpClientFailureOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.head429.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
+
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)

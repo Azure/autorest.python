@@ -58,7 +58,6 @@ class SkipUrlEncodingOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_method_path_valid.metadata['url']
         path_format_arguments = {
@@ -69,8 +68,10 @@ class SkipUrlEncodingOperations(object):
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -105,7 +106,6 @@ class SkipUrlEncodingOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_path_path_valid.metadata['url']
         path_format_arguments = {
@@ -116,8 +116,10 @@ class SkipUrlEncodingOperations(object):
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -148,7 +150,6 @@ class SkipUrlEncodingOperations(object):
         :raises: ~azurespecialproperties.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         unencoded_path_param = "path1/path2/path3"
 
         # Construct URL
@@ -161,8 +162,10 @@ class SkipUrlEncodingOperations(object):
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -197,7 +200,6 @@ class SkipUrlEncodingOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_method_query_valid.metadata['url']
 
@@ -205,8 +207,10 @@ class SkipUrlEncodingOperations(object):
         query_parameters = {}
         query_parameters['q1'] = self._serialize.query("q1", q1, 'str', skip_quote=True)
 
+
         # Construct headers
         header_parameters = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -241,7 +245,6 @@ class SkipUrlEncodingOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_method_query_null.metadata['url']
 
@@ -250,8 +253,10 @@ class SkipUrlEncodingOperations(object):
         if q1 is not None:
             query_parameters['q1'] = self._serialize.query("q1", q1, 'str', skip_quote=True)
 
+
         # Construct headers
         header_parameters = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -286,7 +291,6 @@ class SkipUrlEncodingOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_path_query_valid.metadata['url']
 
@@ -294,8 +298,10 @@ class SkipUrlEncodingOperations(object):
         query_parameters = {}
         query_parameters['q1'] = self._serialize.query("q1", q1, 'str', skip_quote=True)
 
+
         # Construct headers
         header_parameters = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -326,7 +332,6 @@ class SkipUrlEncodingOperations(object):
         :raises: ~azurespecialproperties.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         q1 = "value1&q2=value2&q3=value3"
 
         # Construct URL
@@ -336,8 +341,10 @@ class SkipUrlEncodingOperations(object):
         query_parameters = {}
         query_parameters['q1'] = self._serialize.query("q1", q1, 'str', skip_quote=True)
 
+
         # Construct headers
         header_parameters = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

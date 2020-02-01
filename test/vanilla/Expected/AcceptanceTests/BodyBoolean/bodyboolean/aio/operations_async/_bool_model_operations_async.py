@@ -54,16 +54,17 @@ class BoolOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_true.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -96,7 +97,6 @@ class BoolOperations:
         :raises: ~bodyboolean.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         bool_body = True
 
         # Construct URL
@@ -105,9 +105,11 @@ class BoolOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         body_content = self._serialize.body(bool_body, 'bool')
@@ -141,16 +143,17 @@ class BoolOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_false.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -183,7 +186,6 @@ class BoolOperations:
         :raises: ~bodyboolean.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         bool_body = False
 
         # Construct URL
@@ -192,9 +194,11 @@ class BoolOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         body_content = self._serialize.body(bool_body, 'bool')
@@ -228,16 +232,17 @@ class BoolOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_null.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -271,16 +276,17 @@ class BoolOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_invalid.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

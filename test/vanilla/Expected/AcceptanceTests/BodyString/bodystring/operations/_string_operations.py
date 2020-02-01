@@ -55,16 +55,17 @@ class StringOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -98,7 +99,6 @@ class StringOperations(object):
         :raises: ~bodystring.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         string_body = None
 
         # Construct URL
@@ -107,9 +107,11 @@ class StringOperations(object):
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         if string_body is not None:
@@ -147,16 +149,17 @@ class StringOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_empty.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -190,7 +193,6 @@ class StringOperations(object):
         :raises: ~bodystring.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         string_body = ""
 
         # Construct URL
@@ -199,9 +201,11 @@ class StringOperations(object):
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         body_content = self._serialize.body(string_body, 'str')
@@ -236,16 +240,17 @@ class StringOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_mbcs.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -279,7 +284,6 @@ class StringOperations(object):
         :raises: ~bodystring.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         string_body = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
 
         # Construct URL
@@ -288,9 +292,11 @@ class StringOperations(object):
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         body_content = self._serialize.body(string_body, 'str')
@@ -325,16 +331,17 @@ class StringOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_whitespace.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -368,7 +375,6 @@ class StringOperations(object):
         :raises: ~bodystring.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         string_body = "    Now is the time for all good men to come to the aid of their country    "
 
         # Construct URL
@@ -377,9 +383,11 @@ class StringOperations(object):
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         body_content = self._serialize.body(string_body, 'str')
@@ -414,16 +422,17 @@ class StringOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_not_provided.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -458,16 +467,17 @@ class StringOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_base64_encoded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -502,16 +512,17 @@ class StringOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_base64_url_encoded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -549,16 +560,17 @@ class StringOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.put_base64_url_encoded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         body_content = self._serialize.body(string_body, 'base64')
@@ -593,16 +605,17 @@ class StringOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_null_base64_url_encoded.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

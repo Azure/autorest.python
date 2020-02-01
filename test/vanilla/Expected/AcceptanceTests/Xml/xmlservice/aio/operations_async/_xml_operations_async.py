@@ -55,16 +55,17 @@ class XmlOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_complex_type_ref_no_meta.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -102,16 +103,17 @@ class XmlOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.put_complex_type_ref_no_meta.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/xml'
+
 
         # Construct body
         body_content = self._serialize.body(model, 'RootWithRefAndNoMeta', is_xml=True)
@@ -145,16 +147,17 @@ class XmlOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_complex_type_ref_with_meta.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -192,16 +195,17 @@ class XmlOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.put_complex_type_ref_with_meta.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/xml'
+
 
         # Construct body
         body_content = self._serialize.body(model, 'RootWithRefAndMeta', is_xml=True)
@@ -235,16 +239,17 @@ class XmlOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_simple.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -282,16 +287,17 @@ class XmlOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.put_simple.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/xml'
+
 
         # Construct body
         body_content = self._serialize.body(slideshow, 'Slideshow', is_xml=True)
@@ -325,16 +331,17 @@ class XmlOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_wrapped_lists.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -372,16 +379,17 @@ class XmlOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.put_wrapped_lists.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/xml'
+
 
         # Construct body
         body_content = self._serialize.body(wrapped_lists, 'AppleBarrel', is_xml=True)
@@ -415,15 +423,16 @@ class XmlOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_headers.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -457,16 +466,17 @@ class XmlOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_empty_list.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -504,16 +514,17 @@ class XmlOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.put_empty_list.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/xml'
+
 
         # Construct body
         body_content = self._serialize.body(slideshow, 'Slideshow', is_xml=True)
@@ -547,16 +558,17 @@ class XmlOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_empty_wrapped_lists.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -594,16 +606,17 @@ class XmlOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.put_empty_wrapped_lists.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/xml'
+
 
         # Construct body
         body_content = self._serialize.body(apple_barrel, 'AppleBarrel', is_xml=True)
@@ -637,16 +650,17 @@ class XmlOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_root_list.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -684,16 +698,17 @@ class XmlOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.put_root_list.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/xml'
+
 
         # Construct body
         serialization_ctxt = {'xml': {'name': 'bananas', 'wrapped': True, 'itemsName': 'banana'}}
@@ -728,16 +743,17 @@ class XmlOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_root_list_single_item.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -775,16 +791,17 @@ class XmlOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.put_root_list_single_item.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/xml'
+
 
         # Construct body
         serialization_ctxt = {'xml': {'name': 'bananas', 'wrapped': True, 'itemsName': 'banana'}}
@@ -819,16 +836,17 @@ class XmlOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_empty_root_list.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -866,16 +884,17 @@ class XmlOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.put_empty_root_list.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/xml'
+
 
         # Construct body
         serialization_ctxt = {'xml': {'name': 'bananas', 'wrapped': True, 'itemsName': 'banana'}}
@@ -910,16 +929,17 @@ class XmlOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_empty_child_element.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -957,16 +977,17 @@ class XmlOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.put_empty_child_element.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/xml'
+
 
         # Construct body
         body_content = self._serialize.body(banana, 'Banana', is_xml=True)
@@ -999,7 +1020,6 @@ class XmlOperations:
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
-
         comp = "list"
 
         # Construct URL
@@ -1009,9 +1029,11 @@ class XmlOperations:
         query_parameters: Dict[str, Any] = {}
         query_parameters['comp'] = self._serialize.query("comp", comp, 'str')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1044,7 +1066,6 @@ class XmlOperations:
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
-
         comp = "properties"
         restype = "service"
 
@@ -1056,9 +1077,11 @@ class XmlOperations:
         query_parameters['comp'] = self._serialize.query("comp", comp, 'str')
         query_parameters['restype'] = self._serialize.query("restype", restype, 'str')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1095,7 +1118,6 @@ class XmlOperations:
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
-
         comp = "properties"
         restype = "service"
 
@@ -1107,9 +1129,11 @@ class XmlOperations:
         query_parameters['comp'] = self._serialize.query("comp", comp, 'str')
         query_parameters['restype'] = self._serialize.query("restype", restype, 'str')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/xml'
+
 
         # Construct body
         body_content = self._serialize.body(properties, 'StorageServiceProperties', is_xml=True)
@@ -1142,7 +1166,6 @@ class XmlOperations:
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
-
         comp = "acl"
         restype = "container"
 
@@ -1154,9 +1177,11 @@ class XmlOperations:
         query_parameters['comp'] = self._serialize.query("comp", comp, 'str')
         query_parameters['restype'] = self._serialize.query("restype", restype, 'str')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1193,7 +1218,6 @@ class XmlOperations:
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
-
         comp = "acl"
         restype = "container"
 
@@ -1205,9 +1229,11 @@ class XmlOperations:
         query_parameters['comp'] = self._serialize.query("comp", comp, 'str')
         query_parameters['restype'] = self._serialize.query("restype", restype, 'str')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/xml'
+
 
         # Construct body
         serialization_ctxt = {'xml': {'name': 'SignedIdentifiers', 'wrapped': True, 'itemsName': 'SignedIdentifier'}}
@@ -1241,7 +1267,6 @@ class XmlOperations:
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
-
         comp = "list"
         restype = "container"
 
@@ -1253,9 +1278,11 @@ class XmlOperations:
         query_parameters['comp'] = self._serialize.query("comp", comp, 'str')
         query_parameters['restype'] = self._serialize.query("restype", restype, 'str')
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/xml'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1292,7 +1319,6 @@ class XmlOperations:
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
-
         properties = models.JSONInput(id=id)
 
         # Construct URL
@@ -1301,9 +1327,11 @@ class XmlOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         body_content = self._serialize.body(properties, 'JSONInput')
@@ -1337,16 +1365,17 @@ class XmlOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.json_output.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

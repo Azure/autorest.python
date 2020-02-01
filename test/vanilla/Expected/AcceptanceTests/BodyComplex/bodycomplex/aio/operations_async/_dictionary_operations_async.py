@@ -55,16 +55,17 @@ class DictionaryOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_valid.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -102,7 +103,6 @@ class DictionaryOperations:
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         complex_body = models.DictionaryWrapper(default_program=default_program)
 
         # Construct URL
@@ -111,9 +111,11 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'DictionaryWrapper')
@@ -147,16 +149,17 @@ class DictionaryOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_empty.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -194,7 +197,6 @@ class DictionaryOperations:
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         complex_body = models.DictionaryWrapper(default_program=default_program)
 
         # Construct URL
@@ -203,9 +205,11 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'DictionaryWrapper')
@@ -239,16 +243,17 @@ class DictionaryOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_null.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -282,16 +287,17 @@ class DictionaryOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.get_not_provided.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
+
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
+
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

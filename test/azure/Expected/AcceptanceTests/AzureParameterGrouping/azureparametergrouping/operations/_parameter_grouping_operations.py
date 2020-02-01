@@ -58,7 +58,6 @@ class ParameterGroupingOperations(object):
         :raises: ~azureparametergrouping.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         
         custom_header = None
         query = None
@@ -83,11 +82,13 @@ class ParameterGroupingOperations(object):
         if query is not None:
             query_parameters['query'] = self._serialize.query("query", query, 'int')
 
+
         # Construct headers
         header_parameters = {}
         if custom_header is not None:
             header_parameters['customHeader'] = self._serialize.header("custom_header", custom_header, 'str')
         header_parameters['Content-Type'] = 'application/json'
+
 
         # Construct body
         body_content = self._serialize.body(body, 'int')
@@ -124,7 +125,6 @@ class ParameterGroupingOperations(object):
         :raises: ~azureparametergrouping.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         
         custom_header = None
         query = None
@@ -141,10 +141,12 @@ class ParameterGroupingOperations(object):
         if query is not None:
             query_parameters['query'] = self._serialize.query("query", query, 'int')
 
+
         # Construct headers
         header_parameters = {}
         if custom_header is not None:
             header_parameters['customHeader'] = self._serialize.header("custom_header", custom_header, 'str')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -181,7 +183,6 @@ class ParameterGroupingOperations(object):
         :raises: ~azureparametergrouping.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         
         header_one = None
         query_one = None
@@ -205,12 +206,14 @@ class ParameterGroupingOperations(object):
         if query_two is not None:
             query_parameters['query-two'] = self._serialize.query("query_two", query_two, 'int')
 
+
         # Construct headers
         header_parameters = {}
         if header_one is not None:
             header_parameters['header-one'] = self._serialize.header("header_one", header_one, 'str')
         if header_two is not None:
             header_parameters['header-two'] = self._serialize.header("header_two", header_two, 'str')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -244,7 +247,6 @@ class ParameterGroupingOperations(object):
         :raises: ~azureparametergrouping.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-
         
         header_one = None
         query_one = None
@@ -261,10 +263,12 @@ class ParameterGroupingOperations(object):
         if query_one is not None:
             query_parameters['query-one'] = self._serialize.query("query_one", query_one, 'int')
 
+
         # Construct headers
         header_parameters = {}
         if header_one is not None:
             header_parameters['header-one'] = self._serialize.header("header_one", header_one, 'str')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)

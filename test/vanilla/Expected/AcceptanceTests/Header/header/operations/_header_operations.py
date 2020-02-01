@@ -59,16 +59,17 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.param_existing_key.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['User-Agent'] = self._serialize.header("user_agent", user_agent, 'str')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -100,15 +101,16 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.response_existing_key.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -146,16 +148,17 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.param_protected_key.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -187,15 +190,16 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.response_protected_key.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -236,17 +240,18 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.param_integer.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'int')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -281,16 +286,17 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.response_integer.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -331,17 +337,18 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.param_long.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'long')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -376,16 +383,17 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.response_long.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -426,17 +434,18 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.param_float.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'float')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -471,16 +480,17 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.response_float.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -521,17 +531,18 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.param_double.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'float')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -566,16 +577,17 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.response_double.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -616,17 +628,18 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.param_bool.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'bool')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -661,16 +674,17 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.response_bool.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -712,18 +726,19 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.param_string.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         if value is not None:
             header_parameters['value'] = self._serialize.header("value", value, 'str')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -758,16 +773,17 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.response_string.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -808,17 +824,18 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.param_date.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'date')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -853,16 +870,17 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.response_date.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -904,17 +922,18 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.param_datetime.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'iso-8601')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -949,16 +968,17 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.response_datetime.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -1000,18 +1020,19 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.param_datetime_rfc1123.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         if value is not None:
             header_parameters['value'] = self._serialize.header("value", value, 'rfc-1123')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -1046,16 +1067,17 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.response_datetime_rfc1123.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -1096,17 +1118,18 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.param_duration.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'duration')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -1141,16 +1164,17 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.response_duration.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -1191,17 +1215,18 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.param_byte.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'bytearray')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -1236,16 +1261,17 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.response_byte.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -1286,18 +1312,19 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.param_enum.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         if value is not None:
             header_parameters['value'] = self._serialize.header("value", value, 'str')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -1332,16 +1359,17 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.response_enum.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -1376,15 +1404,16 @@ class HeaderOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-
         # Construct URL
         url = self.custom_request_id.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
+
         # Construct headers
         header_parameters = {}
+
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
