@@ -117,3 +117,6 @@ generated
 
 # VS code
 .vscode/
+
+# Generated test folders
+test/services/*/_generated

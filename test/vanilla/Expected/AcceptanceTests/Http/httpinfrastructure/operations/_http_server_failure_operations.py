@@ -48,8 +48,6 @@ class HttpServerFailureOperations(object):
         # type: (...) -> None
         """Return 501 status code - should be represented in the client as an error.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -90,8 +88,6 @@ class HttpServerFailureOperations(object):
         # type: (...) -> None
         """Return 501 status code - should be represented in the client as an error.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -131,8 +127,6 @@ class HttpServerFailureOperations(object):
     ):
         # type: (...) -> None
         """Return 505 status code - should be represented in the client as an error.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -181,8 +175,6 @@ class HttpServerFailureOperations(object):
     ):
         # type: (...) -> None
         """Return 505 status code - should be represented in the client as an error.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

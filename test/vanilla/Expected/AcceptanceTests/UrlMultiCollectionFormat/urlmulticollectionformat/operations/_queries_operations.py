@@ -49,8 +49,6 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get a null array of string using the multi-array format.
 
-        FIXME: add operation.summary
-
         :param array_query: a null array of string using the multi-array format.
         :type array_query: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
@@ -96,8 +94,6 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get an empty array [] of string using the multi-array format.
 
-        FIXME: add operation.summary
-
         :param array_query: an empty array [] of string using the multi-array format.
         :type array_query: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
@@ -142,8 +138,6 @@ class QueriesOperations(object):
     ):
         # type: (...) -> None
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the mult-array format.
-
-        FIXME: add operation.summary
 
         :param array_query: an empty array [] of string using the multi-array format.
         :type array_query: list[str]

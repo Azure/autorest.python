@@ -46,9 +46,7 @@ class FlattencomplexOperations:
         cls: ClsType["models.MyBaseType"] = None,
         **kwargs: Any
     ) -> "models.MyBaseType":
-        """
-
-        FIXME: add operation.summary
+        """get_valid.
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: MyBaseType or the result of cls(response)

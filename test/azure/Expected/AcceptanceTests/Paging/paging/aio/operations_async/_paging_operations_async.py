@@ -53,9 +53,6 @@ class PagingOperations:
     ) -> "models.ProductResultValue":
         """A paging operation that must return result of the default 'value' node.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ProductResultValue or the result of cls(response)
         :rtype: ~paging.models.ProductResultValue
@@ -113,9 +110,6 @@ class PagingOperations:
     ) -> "models.ProductResult":
         """A paging operation that must ignore any kind of nextLink, and stop after page 1.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
         :rtype: ~paging.models.ProductResult
@@ -172,9 +166,6 @@ class PagingOperations:
         **kwargs
     ) -> "models.ProductResult":
         """A paging operation that finishes on the first call without a nextlink.
-
-        FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
@@ -236,10 +227,7 @@ class PagingOperations:
     ) -> "models.ProductResult":
         """A paging operation that includes a nextLink that has 10 pages.
 
-        FIXME: add operation.summary
-
-
-        :param client_request_id: 
+        :param client_request_id:
         :type client_request_id: str
         :param paging_get_multiple_pages_options: Parameter group.
         :type paging_get_multiple_pages_options: ~paging.models.PagingGetMultiplePagesOptions
@@ -316,10 +304,7 @@ class PagingOperations:
     ) -> "models.OdataProductResult":
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
-        FIXME: add operation.summary
-
-
-        :param client_request_id: 
+        :param client_request_id:
         :type client_request_id: str
         :param paging_get_odata_multiple_pages_options: Parameter group.
         :type paging_get_odata_multiple_pages_options: ~paging.models.PagingGetOdataMultiplePagesOptions
@@ -396,12 +381,9 @@ class PagingOperations:
     ) -> "models.ProductResult":
         """A paging operation that includes a nextLink that has 10 pages.
 
-        FIXME: add operation.summary
-
-
         :param paging_get_multiple_pages_with_offset_options: Parameter group.
         :type paging_get_multiple_pages_with_offset_options: ~paging.models.PagingGetMultiplePagesWithOffsetOptions
-        :param client_request_id: 
+        :param client_request_id:
         :type client_request_id: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
@@ -479,9 +461,6 @@ class PagingOperations:
     ) -> "models.ProductResult":
         """A paging operation that fails on the first call with 500 and then retries and then get a response including a nextLink that has 10 pages.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
         :rtype: ~paging.models.ProductResult
@@ -538,9 +517,6 @@ class PagingOperations:
         **kwargs
     ) -> "models.ProductResult":
         """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first with 500. The client should retry and finish all 10 pages eventually.
-
-        FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
@@ -599,9 +575,6 @@ class PagingOperations:
     ) -> "models.ProductResult":
         """A paging operation that receives a 400 on the first call.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
         :rtype: ~paging.models.ProductResult
@@ -659,9 +632,6 @@ class PagingOperations:
     ) -> "models.ProductResult":
         """A paging operation that receives a 400 on the second call.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
         :rtype: ~paging.models.ProductResult
@@ -718,9 +688,6 @@ class PagingOperations:
         **kwargs
     ) -> "models.ProductResult":
         """A paging operation that receives an invalid nextLink.
-
-        FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
@@ -781,9 +748,6 @@ class PagingOperations:
         **kwargs
     ) -> "models.OdataProductResult":
         """A paging operation that doesn't return a full URL, just a fragment.
-
-        FIXME: add operation.summary
-
 
         :param api_version: Sets the api version to use.
         :type api_version: str
@@ -857,9 +821,6 @@ class PagingOperations:
         **kwargs
     ) -> "models.OdataProductResult":
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
-
-        FIXME: add operation.summary
-
 
         :param custom_parameter_group: Parameter group.
         :type custom_parameter_group: ~paging.models.CustomParameterGroup
@@ -993,10 +954,7 @@ class PagingOperations:
     ) -> "models.ProductResult":
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
-        FIXME: add operation.summary
-
-
-        :param client_request_id: 
+        :param client_request_id:
         :type client_request_id: str
         :param paging_get_multiple_pages_lro_options: Parameter group.
         :type paging_get_multiple_pages_lro_options: ~paging.models.PagingGetMultiplePagesLroOptions

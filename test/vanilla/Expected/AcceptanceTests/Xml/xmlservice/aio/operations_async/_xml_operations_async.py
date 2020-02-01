@@ -48,8 +48,6 @@ class XmlOperations:
     ) -> "models.RootWithRefAndNoMeta":
         """Get a complex type that has a ref to a complex type with no XML node.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: RootWithRefAndNoMeta or the result of cls(response)
         :rtype: ~xmlservice.models.RootWithRefAndNoMeta
@@ -95,9 +93,7 @@ class XmlOperations:
     ) -> None:
         """Puts a complex type that has a ref to a complex type with no XML node.
 
-        FIXME: add operation.summary
-
-        :param model: 
+        :param model:
         :type model: ~xmlservice.models.RootWithRefAndNoMeta
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -141,8 +137,6 @@ class XmlOperations:
         **kwargs: Any
     ) -> "models.RootWithRefAndMeta":
         """Get a complex type that has a ref to a complex type with XML node.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: RootWithRefAndMeta or the result of cls(response)
@@ -189,9 +183,7 @@ class XmlOperations:
     ) -> None:
         """Puts a complex type that has a ref to a complex type with XML node.
 
-        FIXME: add operation.summary
-
-        :param model: 
+        :param model:
         :type model: ~xmlservice.models.RootWithRefAndMeta
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -235,8 +227,6 @@ class XmlOperations:
         **kwargs: Any
     ) -> "models.Slideshow":
         """Get a simple XML document.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Slideshow or the result of cls(response)
@@ -283,9 +273,7 @@ class XmlOperations:
     ) -> None:
         """Put a simple XML document.
 
-        FIXME: add operation.summary
-
-        :param slideshow: 
+        :param slideshow:
         :type slideshow: ~xmlservice.models.Slideshow
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -329,8 +317,6 @@ class XmlOperations:
         **kwargs: Any
     ) -> "models.AppleBarrel":
         """Get an XML document with multiple wrapped lists.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: AppleBarrel or the result of cls(response)
@@ -377,9 +363,7 @@ class XmlOperations:
     ) -> None:
         """Put an XML document with multiple wrapped lists.
 
-        FIXME: add operation.summary
-
-        :param wrapped_lists: 
+        :param wrapped_lists:
         :type wrapped_lists: ~xmlservice.models.AppleBarrel
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -424,8 +408,6 @@ class XmlOperations:
     ) -> None:
         """Get strongly-typed response headers.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -467,8 +449,6 @@ class XmlOperations:
         **kwargs: Any
     ) -> "models.Slideshow":
         """Get an empty list.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Slideshow or the result of cls(response)
@@ -515,9 +495,7 @@ class XmlOperations:
     ) -> None:
         """Puts an empty list.
 
-        FIXME: add operation.summary
-
-        :param slideshow: 
+        :param slideshow:
         :type slideshow: ~xmlservice.models.Slideshow
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -561,8 +539,6 @@ class XmlOperations:
         **kwargs: Any
     ) -> "models.AppleBarrel":
         """Gets some empty wrapped lists.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: AppleBarrel or the result of cls(response)
@@ -609,9 +585,7 @@ class XmlOperations:
     ) -> None:
         """Puts some empty wrapped lists.
 
-        FIXME: add operation.summary
-
-        :param apple_barrel: 
+        :param apple_barrel:
         :type apple_barrel: ~xmlservice.models.AppleBarrel
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -655,8 +629,6 @@ class XmlOperations:
         **kwargs: Any
     ) -> List["Banana"]:
         """Gets a list as the root element.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
@@ -703,9 +675,7 @@ class XmlOperations:
     ) -> None:
         """Puts a list as the root element.
 
-        FIXME: add operation.summary
-
-        :param bananas: 
+        :param bananas:
         :type bananas: list[~xmlservice.models.Banana]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -750,8 +720,6 @@ class XmlOperations:
         **kwargs: Any
     ) -> List["Banana"]:
         """Gets a list with a single item.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
@@ -798,9 +766,7 @@ class XmlOperations:
     ) -> None:
         """Puts a list with a single item.
 
-        FIXME: add operation.summary
-
-        :param bananas: 
+        :param bananas:
         :type bananas: list[~xmlservice.models.Banana]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -845,8 +811,6 @@ class XmlOperations:
         **kwargs: Any
     ) -> List["Banana"]:
         """Gets an empty list as the root element.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
@@ -893,9 +857,7 @@ class XmlOperations:
     ) -> None:
         """Puts an empty list as the root element.
 
-        FIXME: add operation.summary
-
-        :param bananas: 
+        :param bananas:
         :type bananas: list[~xmlservice.models.Banana]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -940,8 +902,6 @@ class XmlOperations:
         **kwargs: Any
     ) -> "models.Banana":
         """Gets an XML document with an empty child element.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Banana or the result of cls(response)
@@ -988,9 +948,7 @@ class XmlOperations:
     ) -> None:
         """Puts a value with an empty child element.
 
-        FIXME: add operation.summary
-
-        :param banana: 
+        :param banana:
         :type banana: ~xmlservice.models.Banana
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1034,8 +992,6 @@ class XmlOperations:
         **kwargs: Any
     ) -> "models.ListContainersResponse":
         """Lists containers in a storage account.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ListContainersResponse or the result of cls(response)
@@ -1081,8 +1037,6 @@ class XmlOperations:
         **kwargs: Any
     ) -> "models.StorageServiceProperties":
         """Gets storage service properties.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: StorageServiceProperties or the result of cls(response)
@@ -1133,9 +1087,7 @@ class XmlOperations:
     ) -> None:
         """Puts storage service properties.
 
-        FIXME: add operation.summary
-
-        :param properties: 
+        :param properties:
         :type properties: ~xmlservice.models.StorageServiceProperties
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1183,8 +1135,6 @@ class XmlOperations:
         **kwargs: Any
     ) -> List["SignedIdentifier"]:
         """Gets storage ACLs for a container.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
@@ -1235,9 +1185,7 @@ class XmlOperations:
     ) -> None:
         """Puts storage ACLs for a container.
 
-        FIXME: add operation.summary
-
-        :param properties: 
+        :param properties:
         :type properties: list[~xmlservice.models.SignedIdentifier]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1286,8 +1234,6 @@ class XmlOperations:
         **kwargs: Any
     ) -> "models.ListBlobsResponse":
         """Lists blobs in a storage container.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ListBlobsResponse or the result of cls(response)
@@ -1338,9 +1284,7 @@ class XmlOperations:
     ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID number 42.
 
-        FIXME: add operation.summary
-
-        :param id: 
+        :param id:
         :type id: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1385,8 +1329,6 @@ class XmlOperations:
         **kwargs: Any
     ) -> "models.JSONOutput":
         """A Swagger with XML that has one operation that returns JSON. ID number 42.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: JSONOutput or the result of cls(response)

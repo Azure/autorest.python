@@ -52,8 +52,6 @@ class AvailabilitySetsOperations(object):
         # type: (...) -> None
         """Updates the tags for an availability set.
 
-        FIXME: add operation.summary
-
         :param resource_group_name: The name of the resource group.
         :type resource_group_name: str
         :param avset: The name of the storage availability set.

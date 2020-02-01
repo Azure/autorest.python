@@ -49,8 +49,6 @@ class Datetimerfc1123Operations(object):
         # type: (...) -> datetime.datetime
         """Get null datetime value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
@@ -94,8 +92,6 @@ class Datetimerfc1123Operations(object):
     ):
         # type: (...) -> datetime.datetime
         """Get invalid datetime value.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
@@ -141,8 +137,6 @@ class Datetimerfc1123Operations(object):
         # type: (...) -> datetime.datetime
         """Get overflow datetime value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
@@ -186,8 +180,6 @@ class Datetimerfc1123Operations(object):
     ):
         # type: (...) -> datetime.datetime
         """Get underflow datetime value.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
@@ -234,9 +226,7 @@ class Datetimerfc1123Operations(object):
         # type: (...) -> None
         """Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT.
 
-        FIXME: add operation.summary
-
-        :param datetime_body: 
+        :param datetime_body:
         :type datetime_body: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -282,8 +272,6 @@ class Datetimerfc1123Operations(object):
         # type: (...) -> datetime.datetime
         """Get max datetime value fri, 31 dec 9999 23:59:59 gmt.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
@@ -327,8 +315,6 @@ class Datetimerfc1123Operations(object):
     ):
         # type: (...) -> datetime.datetime
         """Get max datetime value FRI, 31 DEC 9999 23:59:59 GMT.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
@@ -375,9 +361,7 @@ class Datetimerfc1123Operations(object):
         # type: (...) -> None
         """Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
-        FIXME: add operation.summary
-
-        :param datetime_body: 
+        :param datetime_body:
         :type datetime_body: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -422,8 +406,6 @@ class Datetimerfc1123Operations(object):
     ):
         # type: (...) -> datetime.datetime
         """Get min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)

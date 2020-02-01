@@ -48,8 +48,6 @@ class BoolOperations(object):
         # type: (...) -> bool
         """Get true Boolean value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
         :rtype: bool
@@ -93,8 +91,6 @@ class BoolOperations(object):
     ):
         # type: (...) -> None
         """Set Boolean value true.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -141,8 +137,6 @@ class BoolOperations(object):
         # type: (...) -> bool
         """Get false Boolean value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
         :rtype: bool
@@ -186,8 +180,6 @@ class BoolOperations(object):
     ):
         # type: (...) -> None
         """Set Boolean value false.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -234,8 +226,6 @@ class BoolOperations(object):
         # type: (...) -> bool
         """Get null Boolean value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
         :rtype: bool
@@ -279,8 +269,6 @@ class BoolOperations(object):
     ):
         # type: (...) -> bool
         """Get invalid Boolean value.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)

@@ -11,7 +11,7 @@ from msrest.serialization import Model
 
 
 class ArrayWrapper(Model):
-    """
+    """ArrayWrapper.
 
     :param array:
     :type array: list[str]
@@ -30,12 +30,12 @@ class ArrayWrapper(Model):
 
 
 class Basic(Model):
-    """
+    """Basic.
 
     :param id: Basic Id.
     :type id: int
-    :param name: Name property with a very long description that does not fit on a
-     single line and a line break.
+    :param name: Name property with a very long description that does not fit on a single line and
+     a line break.
     :type name: str
     :param color:  Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'.
     :type color: str or ~bodycomplex.models.CMYKColors
@@ -58,7 +58,7 @@ class Basic(Model):
 
 
 class BooleanWrapper(Model):
-    """
+    """BooleanWrapper.
 
     :param field_true:
     :type field_true: bool
@@ -81,7 +81,7 @@ class BooleanWrapper(Model):
 
 
 class ByteWrapper(Model):
-    """
+    """ByteWrapper.
 
     :param field:
     :type field: bytearray
@@ -100,7 +100,7 @@ class ByteWrapper(Model):
 
 
 class Pet(Model):
-    """
+    """Pet.
 
     :param id:
     :type id: int
@@ -123,7 +123,7 @@ class Pet(Model):
 
 
 class Cat(Pet):
-    """
+    """Cat.
 
     :param id:
     :type id: int
@@ -152,7 +152,7 @@ class Cat(Pet):
 
 
 class Fish(Model):
-    """
+    """Fish.
 
     You probably want to use the sub-classes and not this class directly. Known
     sub-classes are: Salmon, Shark.
@@ -197,7 +197,7 @@ class Fish(Model):
 
 
 class Shark(Fish):
-    """
+    """Shark.
 
     You probably want to use the sub-classes and not this class directly. Known
     sub-classes are: Cookiecuttershark, Goblinshark, Sawshark.
@@ -248,7 +248,7 @@ class Shark(Fish):
 
 
 class Cookiecuttershark(Shark):
-    """
+    """Cookiecuttershark.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -290,7 +290,7 @@ class Cookiecuttershark(Shark):
 
 
 class Datetimerfc1123Wrapper(Model):
-    """
+    """Datetimerfc1123Wrapper.
 
     :param field:
     :type field: ~datetime.datetime
@@ -313,7 +313,7 @@ class Datetimerfc1123Wrapper(Model):
 
 
 class DatetimeWrapper(Model):
-    """
+    """DatetimeWrapper.
 
     :param field:
     :type field: ~datetime.datetime
@@ -336,7 +336,7 @@ class DatetimeWrapper(Model):
 
 
 class DateWrapper(Model):
-    """
+    """DateWrapper.
 
     :param field:
     :type field: ~datetime.date
@@ -359,7 +359,7 @@ class DateWrapper(Model):
 
 
 class DictionaryWrapper(Model):
-    """
+    """DictionaryWrapper.
 
     :param default_program: Dictionary of
      <components·schemas·dictionary_wrapper·properties·defaultprogram·additionalproperties>.
@@ -379,7 +379,7 @@ class DictionaryWrapper(Model):
 
 
 class Dog(Pet):
-    """
+    """Dog.
 
     :param id:
     :type id: int
@@ -404,7 +404,7 @@ class Dog(Pet):
 
 
 class DotFish(Model):
-    """
+    """DotFish.
 
     You probably want to use the sub-classes and not this class directly. Known
     sub-classes are: DotSalmon.
@@ -440,7 +440,7 @@ class DotFish(Model):
 
 
 class DotFishMarket(Model):
-    """
+    """DotFishMarket.
 
     :param sample_salmon:
     :type sample_salmon: ~bodycomplex.models.DotSalmon
@@ -471,7 +471,7 @@ class DotFishMarket(Model):
 
 
 class DotSalmon(DotFish):
-    """
+    """DotSalmon.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -507,7 +507,7 @@ class DotSalmon(DotFish):
 
 
 class DoubleWrapper(Model):
-    """
+    """DoubleWrapper.
 
     :param field1:
     :type field1: float
@@ -533,7 +533,7 @@ class DoubleWrapper(Model):
 
 
 class DurationWrapper(Model):
-    """
+    """DurationWrapper.
 
     :param field:
     :type field: ~datetime.timedelta
@@ -577,7 +577,7 @@ class ErrorException(HttpResponseError):
 
 
 class Error(Model):
-    """
+    """Error.
 
     :param status:
     :type status: int
@@ -601,7 +601,7 @@ class Error(Model):
 
 
 class FloatWrapper(Model):
-    """
+    """FloatWrapper.
 
     :param field1:
     :type field1: float
@@ -624,7 +624,7 @@ class FloatWrapper(Model):
 
 
 class Goblinshark(Shark):
-    """
+    """Goblinshark.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -642,8 +642,8 @@ class Goblinshark(Shark):
     :type birthday: ~datetime.datetime
     :param jawsize:
     :type jawsize: int
-    :param color: Colors possible. Possible values include: 'pink', 'gray', 'brown',
-     'RED', 'red'. Default value: "gray".
+    :param color: Colors possible. Possible values include: 'pink', 'gray', 'brown', 'RED', 'red'.
+     Default value: "gray".
     :type color: str or ~bodycomplex.models.GoblinSharkColor
     """
 
@@ -675,7 +675,7 @@ class Goblinshark(Shark):
 
 
 class IntWrapper(Model):
-    """
+    """IntWrapper.
 
     :param field1:
     :type field1: int
@@ -698,7 +698,7 @@ class IntWrapper(Model):
 
 
 class LongWrapper(Model):
-    """
+    """LongWrapper.
 
     :param field1:
     :type field1: long
@@ -721,7 +721,7 @@ class LongWrapper(Model):
 
 
 class MyBaseHelperType(Model):
-    """
+    """MyBaseHelperType.
 
     :param prop_bh1:
     :type prop_bh1: str
@@ -740,7 +740,7 @@ class MyBaseHelperType(Model):
 
 
 class MyBaseType(Model):
-    """
+    """MyBaseType.
 
     You probably want to use the sub-classes and not this class directly. Known
     sub-classes are: MyDerivedType.
@@ -780,7 +780,7 @@ class MyBaseType(Model):
 
 
 class MyDerivedType(MyBaseType):
-    """
+    """MyDerivedType.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -815,7 +815,7 @@ class MyDerivedType(MyBaseType):
 
 
 class ReadonlyObj(Model):
-    """
+    """ReadonlyObj.
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -844,7 +844,7 @@ class ReadonlyObj(Model):
 
 
 class Salmon(Fish):
-    """
+    """Salmon.
 
     You probably want to use the sub-classes and not this class directly. Known
     sub-classes are: SmartSalmon.
@@ -894,7 +894,7 @@ class Salmon(Fish):
 
 
 class Sawshark(Shark):
-    """
+    """Sawshark.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -940,7 +940,7 @@ class Sawshark(Shark):
 
 
 class Siamese(Cat):
-    """
+    """Siamese.
 
     :param id:
     :type id: int
@@ -971,7 +971,7 @@ class Siamese(Cat):
 
 
 class SmartSalmon(Salmon):
-    """
+    """SmartSalmon.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -987,8 +987,8 @@ class SmartSalmon(Salmon):
     :type location: str
     :param iswild:
     :type iswild: bool
-    :param additional_properties: Unmatched properties from the message are
-     deserialized to this collection.
+    :param additional_properties: Unmatched properties from the message are deserialized to this
+     collection.
     :type additional_properties: dict[str, object]
     :param college_degree:
     :type college_degree: str
@@ -1021,7 +1021,7 @@ class SmartSalmon(Salmon):
 
 
 class StringWrapper(Model):
-    """
+    """StringWrapper.
 
     :param field:
     :type field: str

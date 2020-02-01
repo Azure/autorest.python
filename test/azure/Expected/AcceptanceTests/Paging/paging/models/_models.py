@@ -40,7 +40,7 @@ class CustomParameterGroup(Model):
 
 
 class OdataProductResult(Model):
-    """
+    """OdataProductResult.
 
     :param values:
     :type values: list[~paging.models.Product]
@@ -63,11 +63,11 @@ class OdataProductResult(Model):
 
 
 class OperationResult(Model):
-    """
+    """OperationResult.
 
-    :param status: The status of the request. Possible values include: 'Succeeded',
-     'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
-     'Deleting', 'Deleted', 'OK'.
+    :param status: The status of the request. Possible values include: 'Succeeded', 'Failed',
+     'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted',
+     'OK'.
     :type status: str or ~paging.models.OperationResultStatus
     """
 
@@ -88,8 +88,8 @@ class PagingGetMultiplePagesLroOptions(Model):
 
     :param maxresults: Sets the maximum number of items to return in the response.
     :type maxresults: int
-    :param timeout: Sets the maximum time that the server can spend processing the
-     request, in seconds. The default is 30 seconds.
+    :param timeout: Sets the maximum time that the server can spend processing the request, in
+     seconds. The default is 30 seconds.
     :type timeout: int
     """
 
@@ -112,8 +112,8 @@ class PagingGetMultiplePagesOptions(Model):
 
     :param maxresults: Sets the maximum number of items to return in the response.
     :type maxresults: int
-    :param timeout: Sets the maximum time that the server can spend processing the
-     request, in seconds. The default is 30 seconds.
+    :param timeout: Sets the maximum time that the server can spend processing the request, in
+     seconds. The default is 30 seconds.
     :type timeout: int
     """
 
@@ -140,8 +140,8 @@ class PagingGetMultiplePagesWithOffsetOptions(Model):
     :type maxresults: int
     :param offset: Required. Offset of return value.
     :type offset: int
-    :param timeout: Sets the maximum time that the server can spend processing the
-     request, in seconds. The default is 30 seconds.
+    :param timeout: Sets the maximum time that the server can spend processing the request, in
+     seconds. The default is 30 seconds.
     :type timeout: int
     """
 
@@ -170,8 +170,8 @@ class PagingGetOdataMultiplePagesOptions(Model):
 
     :param maxresults: Sets the maximum number of items to return in the response.
     :type maxresults: int
-    :param timeout: Sets the maximum time that the server can spend processing the
-     request, in seconds. The default is 30 seconds.
+    :param timeout: Sets the maximum time that the server can spend processing the request, in
+     seconds. The default is 30 seconds.
     :type timeout: int
     """
 
@@ -190,7 +190,7 @@ class PagingGetOdataMultiplePagesOptions(Model):
 
 
 class Product(Model):
-    """
+    """Product.
 
     :param properties:
     :type properties: ~paging.models.ProductProperties
@@ -209,7 +209,7 @@ class Product(Model):
 
 
 class ProductProperties(Model):
-    """
+    """ProductProperties.
 
     :param id:
     :type id: int
@@ -232,7 +232,7 @@ class ProductProperties(Model):
 
 
 class ProductResult(Model):
-    """
+    """ProductResult.
 
     :param values:
     :type values: list[~paging.models.Product]
@@ -255,7 +255,7 @@ class ProductResult(Model):
 
 
 class ProductResultValue(Model):
-    """
+    """ProductResultValue.
 
     :param value:
     :type value: list[~paging.models.Product]

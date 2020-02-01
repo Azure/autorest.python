@@ -49,8 +49,6 @@ class ArrayOperations(object):
         # type: (...) -> "models.ArrayWrapper"
         """Get complex types with array property.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ArrayWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
@@ -96,9 +94,7 @@ class ArrayOperations(object):
         # type: (...) -> None
         """Put complex types with array property.
 
-        FIXME: add operation.summary
-
-        :param array: 
+        :param array:
         :type array: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -145,8 +141,6 @@ class ArrayOperations(object):
         # type: (...) -> "models.ArrayWrapper"
         """Get complex types with array property which is empty.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ArrayWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
@@ -192,9 +186,7 @@ class ArrayOperations(object):
         # type: (...) -> None
         """Put complex types with array property which is empty.
 
-        FIXME: add operation.summary
-
-        :param array: 
+        :param array:
         :type array: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -240,8 +232,6 @@ class ArrayOperations(object):
     ):
         # type: (...) -> "models.ArrayWrapper"
         """Get complex types with array property while server doesn't provide a response payload.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ArrayWrapper or the result of cls(response)

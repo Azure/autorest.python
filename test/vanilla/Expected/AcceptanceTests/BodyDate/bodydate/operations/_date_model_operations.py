@@ -49,8 +49,6 @@ class DateOperations(object):
         # type: (...) -> datetime.date
         """Get null date value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: date or the result of cls(response)
         :rtype: ~datetime.date
@@ -94,8 +92,6 @@ class DateOperations(object):
     ):
         # type: (...) -> datetime.date
         """Get invalid date value.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: date or the result of cls(response)
@@ -141,8 +137,6 @@ class DateOperations(object):
         # type: (...) -> datetime.date
         """Get overflow date value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: date or the result of cls(response)
         :rtype: ~datetime.date
@@ -186,8 +180,6 @@ class DateOperations(object):
     ):
         # type: (...) -> datetime.date
         """Get underflow date value.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: date or the result of cls(response)
@@ -234,9 +226,7 @@ class DateOperations(object):
         # type: (...) -> None
         """Put max date value 9999-12-31.
 
-        FIXME: add operation.summary
-
-        :param date_body: 
+        :param date_body:
         :type date_body: ~datetime.date
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -281,8 +271,6 @@ class DateOperations(object):
     ):
         # type: (...) -> datetime.date
         """Get max date value 9999-12-31.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: date or the result of cls(response)
@@ -329,9 +317,7 @@ class DateOperations(object):
         # type: (...) -> None
         """Put min date value 0000-01-01.
 
-        FIXME: add operation.summary
-
-        :param date_body: 
+        :param date_body:
         :type date_body: ~datetime.date
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -376,8 +362,6 @@ class DateOperations(object):
     ):
         # type: (...) -> datetime.date
         """Get min date value 0000-01-01.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: date or the result of cls(response)

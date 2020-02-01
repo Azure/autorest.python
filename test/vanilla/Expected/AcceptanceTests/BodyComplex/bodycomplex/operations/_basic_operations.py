@@ -49,8 +49,6 @@ class BasicOperations(object):
         # type: (...) -> "models.Basic"
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
         :rtype: ~bodycomplex.models.Basic
@@ -95,8 +93,6 @@ class BasicOperations(object):
     ):
         # type: (...) -> None
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
-
-        FIXME: add operation.summary
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}.
         :type complex_body: ~bodycomplex.models.Basic
@@ -146,8 +142,6 @@ class BasicOperations(object):
         # type: (...) -> "models.Basic"
         """Get a basic complex type that is invalid for the local strong type.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
         :rtype: ~bodycomplex.models.Basic
@@ -191,8 +185,6 @@ class BasicOperations(object):
     ):
         # type: (...) -> "models.Basic"
         """Get a basic complex type that is empty.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
@@ -238,8 +230,6 @@ class BasicOperations(object):
         # type: (...) -> "models.Basic"
         """Get a basic complex type whose properties are null.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
         :rtype: ~bodycomplex.models.Basic
@@ -283,8 +273,6 @@ class BasicOperations(object):
     ):
         # type: (...) -> "models.Basic"
         """Get a basic complex type while the server doesn't provide a response payload.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)

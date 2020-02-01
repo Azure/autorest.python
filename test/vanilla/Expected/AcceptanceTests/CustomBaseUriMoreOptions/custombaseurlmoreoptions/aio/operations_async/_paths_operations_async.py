@@ -52,8 +52,6 @@ class PathsOperations:
     ) -> None:
         """Get a 200 to test a valid base uri.
 
-        FIXME: add operation.summary
-
         :param vault: The vault name, e.g. https://myvault.
         :type vault: str
         :param secret: Secret value.

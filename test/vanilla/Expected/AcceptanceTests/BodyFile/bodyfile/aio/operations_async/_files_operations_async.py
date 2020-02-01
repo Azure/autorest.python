@@ -47,8 +47,6 @@ class FilesOperations:
     ) -> IO:
         """Get file.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: IO or the result of cls(response)
         :rtype: IO
@@ -92,8 +90,6 @@ class FilesOperations:
     ) -> IO:
         """Get a large file.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: IO or the result of cls(response)
         :rtype: IO
@@ -136,8 +132,6 @@ class FilesOperations:
         **kwargs: Any
     ) -> IO:
         """Get empty file.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: IO or the result of cls(response)

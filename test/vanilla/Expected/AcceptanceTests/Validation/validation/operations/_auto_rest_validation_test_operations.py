@@ -32,8 +32,6 @@ class AutoRestValidationTestOperationsMixin(object):
         # type: (...) -> "models.Product"
         """Validates input parameters on the method. See swagger for details.
 
-        FIXME: add operation.summary
-
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000.
@@ -93,13 +91,11 @@ class AutoRestValidationTestOperationsMixin(object):
         # type: (...) -> "models.Product"
         """Validates body parameters on the method. See swagger for details.
 
-        FIXME: add operation.summary
-
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
-        :param body: 
+        :param body:
         :type body: ~validation.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
@@ -158,9 +154,7 @@ class AutoRestValidationTestOperationsMixin(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """
-
-        FIXME: add operation.summary
+        """get_with_constant_in_path.
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -206,11 +200,9 @@ class AutoRestValidationTestOperationsMixin(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
-        """
+        """post_with_constant_in_body.
 
-        FIXME: add operation.summary
-
-        :param body: 
+        :param body:
         :type body: ~validation.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)

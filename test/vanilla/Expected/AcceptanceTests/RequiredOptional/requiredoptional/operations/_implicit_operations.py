@@ -49,9 +49,7 @@ class ImplicitOperations(object):
         # type: (...) -> None
         """Test implicitly required path parameter.
 
-        FIXME: add operation.summary
-
-        :param path_parameter: 
+        :param path_parameter:
         :type path_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -98,9 +96,7 @@ class ImplicitOperations(object):
         # type: (...) -> None
         """Test implicitly optional query parameter.
 
-        FIXME: add operation.summary
-
-        :param query_parameter: 
+        :param query_parameter:
         :type query_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -145,9 +141,7 @@ class ImplicitOperations(object):
         # type: (...) -> None
         """Test implicitly optional header parameter.
 
-        FIXME: add operation.summary
-
-        :param query_parameter: 
+        :param query_parameter:
         :type query_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -192,9 +186,7 @@ class ImplicitOperations(object):
         # type: (...) -> None
         """Test implicitly optional body parameter.
 
-        FIXME: add operation.summary
-
-        :param body_parameter: 
+        :param body_parameter:
         :type body_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -243,8 +235,6 @@ class ImplicitOperations(object):
         # type: (...) -> None
         """Test implicitly required path parameter.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -289,8 +279,6 @@ class ImplicitOperations(object):
         # type: (...) -> None
         """Test implicitly required query parameter.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -331,8 +319,6 @@ class ImplicitOperations(object):
     ):
         # type: (...) -> None
         """Test implicitly optional query parameter.
-
-        FIXME: add operation.summary
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
