@@ -101,6 +101,7 @@ class ArrayOperations(object):
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         complex_body = models.ArrayWrapper(array=array)
 
         # Construct URL
@@ -191,6 +192,7 @@ class ArrayOperations(object):
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         complex_body = models.ArrayWrapper(array=array)
 
         # Construct URL

@@ -246,7 +246,6 @@ class PagingOperations(object):
             maxresults = paging_get_multiple_pages_options.maxresults
             timeout = paging_get_multiple_pages_options.timeout
 
-
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
@@ -322,7 +321,6 @@ class PagingOperations(object):
         if paging_get_odata_multiple_pages_options is not None:
             maxresults = paging_get_odata_multiple_pages_options.maxresults
             timeout = paging_get_odata_multiple_pages_options.timeout
-
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -401,7 +399,6 @@ class PagingOperations(object):
             maxresults = paging_get_multiple_pages_with_offset_options.maxresults
             offset = paging_get_multiple_pages_with_offset_options.offset
             timeout = paging_get_multiple_pages_with_offset_options.timeout
-
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -844,7 +841,6 @@ class PagingOperations(object):
             api_version = custom_parameter_group.api_version
             tenant = custom_parameter_group.tenant
 
-
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
@@ -912,7 +908,6 @@ class PagingOperations(object):
         if paging_get_multiple_pages_lro_options is not None:
             maxresults = paging_get_multiple_pages_lro_options.maxresults
             timeout = paging_get_multiple_pages_lro_options.timeout
-
 
         # Construct URL
         url = self._get_multiple_pages_lro_initial.metadata['url']

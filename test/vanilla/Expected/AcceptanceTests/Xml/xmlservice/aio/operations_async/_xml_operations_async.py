@@ -1265,6 +1265,7 @@ class XmlOperations:
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
+
         properties = models.JSONInput(id=id)
 
         # Construct URL

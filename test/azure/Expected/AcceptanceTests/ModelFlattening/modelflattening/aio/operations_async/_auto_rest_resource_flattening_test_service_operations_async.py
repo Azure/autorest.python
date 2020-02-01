@@ -470,6 +470,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :raises: ~modelflattening.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         simple_body_product = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odatavalue=odatavalue)
 
         # Construct URL

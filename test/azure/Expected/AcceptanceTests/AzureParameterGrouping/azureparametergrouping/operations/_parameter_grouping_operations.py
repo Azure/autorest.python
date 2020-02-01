@@ -69,7 +69,6 @@ class ParameterGroupingOperations(object):
             path = parameter_grouping_post_required_parameters.path
             body = parameter_grouping_post_required_parameters.body
 
-
         # Construct URL
         url = self.post_required.metadata['url']
         path_format_arguments = {
@@ -129,7 +128,6 @@ class ParameterGroupingOperations(object):
         if parameter_grouping_post_optional_parameters is not None:
             custom_header = parameter_grouping_post_optional_parameters.custom_header
             query = parameter_grouping_post_optional_parameters.query
-
 
         # Construct URL
         url = self.post_optional.metadata['url']
@@ -191,7 +189,6 @@ class ParameterGroupingOperations(object):
             header_two = parameter_grouping_post_multi_param_groups_second_param_group.header_two
             query_two = parameter_grouping_post_multi_param_groups_second_param_group.query_two
 
-
         # Construct URL
         url = self.post_multi_param_groups.metadata['url']
 
@@ -247,7 +244,6 @@ class ParameterGroupingOperations(object):
         if first_parameter_group is not None:
             header_one = first_parameter_group.header_one
             query_one = first_parameter_group.query_one
-
 
         # Construct URL
         url = self.post_shared_parameter_group_object.metadata['url']

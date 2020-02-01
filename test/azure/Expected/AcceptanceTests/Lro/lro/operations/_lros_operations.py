@@ -1410,6 +1410,7 @@ class LROsOperations(object):
     ):
         # type: (...) -> "models.SubProduct"
         error_map = kwargs.pop('error_map', {})
+
         product = models.SubProduct(provisioning_state=provisioning_state)
 
         # Construct URL
@@ -1498,6 +1499,7 @@ class LROsOperations(object):
     ):
         # type: (...) -> "models.SubProduct"
         error_map = kwargs.pop('error_map', {})
+
         product = models.SubProduct(provisioning_state=provisioning_state)
 
         # Construct URL

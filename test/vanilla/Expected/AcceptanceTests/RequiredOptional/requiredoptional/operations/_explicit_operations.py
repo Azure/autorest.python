@@ -153,6 +153,7 @@ class ExplicitOperations(object):
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         body_parameter = models.IntWrapper(value=value)
 
         # Construct URL
@@ -200,6 +201,7 @@ class ExplicitOperations(object):
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         body_parameter = models.IntOptionalWrapper(value=value)
 
         # Construct URL
@@ -432,6 +434,7 @@ class ExplicitOperations(object):
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         body_parameter = models.StringWrapper(value=value)
 
         # Construct URL
@@ -479,6 +482,7 @@ class ExplicitOperations(object):
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         body_parameter = models.StringOptionalWrapper(value=value)
 
         # Construct URL
@@ -711,6 +715,7 @@ class ExplicitOperations(object):
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         body_parameter = models.ClassWrapper(value=value)
 
         # Construct URL
@@ -758,6 +763,7 @@ class ExplicitOperations(object):
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         body_parameter = models.ClassOptionalWrapper(value=value)
 
         # Construct URL
@@ -903,6 +909,7 @@ class ExplicitOperations(object):
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         body_parameter = models.ArrayWrapper(value=value)
 
         # Construct URL
@@ -950,6 +957,7 @@ class ExplicitOperations(object):
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         body_parameter = models.ArrayOptionalWrapper(value=value)
 
         # Construct URL

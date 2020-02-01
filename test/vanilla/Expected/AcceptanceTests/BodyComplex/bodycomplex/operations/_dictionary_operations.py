@@ -102,6 +102,7 @@ class DictionaryOperations(object):
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         complex_body = models.DictionaryWrapper(default_program=default_program)
 
         # Construct URL
@@ -193,6 +194,7 @@ class DictionaryOperations(object):
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         complex_body = models.DictionaryWrapper(default_program=default_program)
 
         # Construct URL

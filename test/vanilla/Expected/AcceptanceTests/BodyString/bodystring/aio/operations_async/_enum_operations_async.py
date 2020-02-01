@@ -276,6 +276,7 @@ class EnumOperations:
         :raises: ~bodystring.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         enum_string_body = models.RefColorConstant(field1=field1)
 
         # Construct URL

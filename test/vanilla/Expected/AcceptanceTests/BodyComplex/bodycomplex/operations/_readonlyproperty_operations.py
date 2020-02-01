@@ -101,6 +101,7 @@ class ReadonlypropertyOperations(object):
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         complex_body = models.ReadonlyObj(size=size)
 
         # Construct URL

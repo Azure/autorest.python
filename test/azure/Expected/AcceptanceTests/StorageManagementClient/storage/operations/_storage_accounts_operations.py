@@ -590,6 +590,7 @@ class StorageAccountsOperations(object):
         :raises: ~azure.mgmt.core.ARMError
         """
         error_map = kwargs.pop('error_map', {})
+
         regenerate_key = models.StorageAccountRegenerateKeyParameters(key_name=key_name)
 
         # Construct URL
