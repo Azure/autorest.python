@@ -65,11 +65,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'int')
@@ -113,11 +111,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body_parameter is not None:
@@ -165,11 +161,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'IntWrapper')
@@ -214,11 +208,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body_parameter is not None:
@@ -265,11 +257,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'int')
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -310,12 +300,10 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         if header_parameter is not None:
             header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'int')
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -356,11 +344,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'str')
@@ -404,11 +390,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body_parameter is not None:
@@ -456,11 +440,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'StringWrapper')
@@ -505,11 +487,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body_parameter is not None:
@@ -556,11 +536,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'str')
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -601,12 +579,10 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         if body_parameter is not None:
             header_parameters['bodyParameter'] = self._serialize.header("body_parameter", body_parameter, 'str')
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -647,11 +623,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'Product')
@@ -695,11 +669,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body_parameter is not None:
@@ -747,11 +719,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'ClassWrapper')
@@ -796,11 +766,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body_parameter is not None:
@@ -847,11 +815,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(body_parameter, '[str]')
@@ -895,11 +861,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body_parameter is not None:
@@ -947,11 +911,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'ArrayWrapper')
@@ -996,11 +958,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body_parameter is not None:
@@ -1047,11 +1007,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, '[str]', div=',')
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -1092,12 +1050,10 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         if header_parameter is not None:
             header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, '[str]', div=',')
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)

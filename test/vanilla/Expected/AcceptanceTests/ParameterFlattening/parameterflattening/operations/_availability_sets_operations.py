@@ -77,11 +77,9 @@ class AvailabilitySetsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(tags, 'AvailabilitySetUpdateParameters')

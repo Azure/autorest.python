@@ -65,11 +65,9 @@ class HeaderOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", foo_client_request_id, 'str')
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -118,11 +116,9 @@ class HeaderOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", foo_client_request_id, 'str')
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -166,11 +162,9 @@ class HeaderOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", foo_client_request_id, 'str')
-
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)

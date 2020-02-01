@@ -75,12 +75,10 @@ class StorageAccountsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(account_name, 'StorageAccountCheckNameAvailabilityParameters')
@@ -126,12 +124,10 @@ class StorageAccountsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(parameters, 'StorageAccountCreateParameters')
@@ -209,7 +205,6 @@ class StorageAccountsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_create.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
-
     @distributed_trace
     def delete(
         self,
@@ -246,10 +241,8 @@ class StorageAccountsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -301,11 +294,9 @@ class StorageAccountsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -364,12 +355,10 @@ class StorageAccountsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(parameters, 'StorageAccountUpdateParameters')
@@ -427,11 +416,9 @@ class StorageAccountsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -480,11 +467,9 @@ class StorageAccountsOperations(object):
             # Construct parameters
             query_parameters = {}
 
-
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -513,7 +498,6 @@ class StorageAccountsOperations(object):
             get_next, extract_data
         )
     list.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts'}
-
 
     @distributed_trace
     def list_by_resource_group(
@@ -549,11 +533,9 @@ class StorageAccountsOperations(object):
             # Construct parameters
             query_parameters = {}
 
-
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -582,7 +564,6 @@ class StorageAccountsOperations(object):
             get_next, extract_data
         )
     list_by_resource_group.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts'}
-
 
     @distributed_trace
     def regenerate_key(
@@ -624,12 +605,10 @@ class StorageAccountsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(regenerate_key, 'StorageAccountRegenerateKeyParameters')
