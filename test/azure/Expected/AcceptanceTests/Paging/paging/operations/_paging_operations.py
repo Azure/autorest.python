@@ -897,7 +897,6 @@ class PagingOperations(object):
         )
     get_multiple_pages_fragment_with_grouping_next_link.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}'}
 
-    
     def _get_multiple_pages_lro_initial(
         self,
         client_request_id=None,  # type: Optional[str]

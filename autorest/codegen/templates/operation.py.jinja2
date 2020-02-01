@@ -42,8 +42,6 @@ def {{ operation.python_name }}(
 {# actual template starts here #}
 {%- if code_model.options['tracing'] and operation.want_tracing -%}
 {{ trace_decorator }}
-{% else %}
-
 {% endif %}
 {{ method_signature() }}
 {%- if not async_mode %}

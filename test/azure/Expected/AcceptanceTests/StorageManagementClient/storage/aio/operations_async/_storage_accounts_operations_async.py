@@ -101,7 +101,6 @@ class StorageAccountsOperations:
         return deserialized
     check_name_availability.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability'}
 
-    
     async def _create_initial(
         self,
         resource_group_name: str,

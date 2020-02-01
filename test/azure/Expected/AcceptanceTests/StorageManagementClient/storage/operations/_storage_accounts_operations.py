@@ -100,7 +100,6 @@ class StorageAccountsOperations(object):
         return deserialized
     check_name_availability.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability'}
 
-    
     def _create_initial(
         self,
         resource_group_name,  # type: str
