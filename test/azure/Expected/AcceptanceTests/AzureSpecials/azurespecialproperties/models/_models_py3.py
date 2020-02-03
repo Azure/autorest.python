@@ -6,6 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import Optional
+
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
 
@@ -63,10 +65,43 @@ class Error(Model):
 
     constant_id = 1
 
-    def __init__(self, *, status: int=None, message: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        status: Optional[int] = None,
+        message: Optional[str] = None,
+        **kwargs
+    ):
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
+
+
+class HeaderCustomNamedRequestIdParamGroupingParameters(Model):
+    """Parameter group.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :param foo_client_request_id: Required. The fooRequestId.
+    :type foo_client_request_id: str
+    """
+
+    _validation = {
+        'foo_client_request_id': {'required': True},
+    }
+
+    _attribute_map = {
+        'foo_client_request_id': {'key': 'foo-client-request-id', 'type': 'str'},
+    }
+
+    def __init__(
+        self,
+        *,
+        foo_client_request_id: str,
+        **kwargs
+    ):
+        super(HeaderCustomNamedRequestIdParamGroupingParameters, self).__init__(**kwargs)
+        self.foo_client_request_id = foo_client_request_id
 
 
 class OdataFilter(Model):
@@ -83,7 +118,13 @@ class OdataFilter(Model):
         'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, *, id: int=None, name: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        id: Optional[int] = None,
+        name: Optional[str] = None,
+        **kwargs
+    ):
         super(OdataFilter, self).__init__(**kwargs)
         self.id = id
         self.name = name

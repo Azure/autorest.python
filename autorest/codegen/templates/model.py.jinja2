@@ -56,8 +56,10 @@ class {{ model.name }}(Model):
 
     {% if model.properties != None %}
         {% for p in model.properties %}
-    {{ prop_documentation_string(p) | wordwrap(width=80, break_long_words=False, wrapstring='\n     ') }}
-    {{ prop_type_documentation_string(p) | wordwrap(width=80, break_long_words=False, wrapstring='\n     ') }}
+            {% for doc_string in prop_documentation_string(p).replace('\n', '\n ').split('\n') %}
+    {{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n     ') }}
+            {% endfor %}
+    {{ prop_type_documentation_string(p) | wordwrap(width=95, break_long_words=False, wrapstring='\n     ') }}
         {% endfor %}
     {% endif %}
     """
@@ -76,7 +78,8 @@ class {{ model.name }}(Model):
     _attribute_map = {
         {% if model.properties != None %}
             {% for p in model.properties %}
-        '{{ p.name }}': {'key': '{{ p.escaped_swagger_name }}', 'type': '{{ p.schema.get_serialization_type()}}'},
+        {% set xml_metadata = (", 'xml': {" + p.schema.xml_serialization_ctxt() + "}") if p.schema.has_xml_serialization_ctxt else "" %}
+        '{{ p.name }}': {'key': '{{ p.escaped_swagger_name }}', 'type': '{{ p.schema.serialization_type}}'{{ xml_metadata }}},
             {% endfor %}
         {% else%}
         {% endif %}
@@ -87,6 +90,11 @@ class {{ model.name }}(Model):
         '{{ model.discriminator_name }}': {{ str(model.subtype_map) }}
     }
     {% endif %}
+    {% if model.xml_metadata %}
+    _xml_map = {
+        {{ model.xml_map_content() }}
+    }
+    {% endif %}
     {% if (model.properties | selectattr('constant') | first) is defined %}
 
         {% for p in model.properties | selectattr('constant')%}
@@ -94,7 +102,13 @@ class {{ model.name }}(Model):
         {% endfor %}
     {% endif %}
 
-    {{ init_line(model) }}
+    def __init__(
+        self,
+        {% for param_signature in init_line(model) %}
+        {{ param_signature }},
+        {% endfor %}
+        **kwargs
+    ):
     {% for arg in init_args(model) %}
         {{ arg }}
     {% endfor %}

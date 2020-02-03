@@ -9,6 +9,36 @@
 from msrest.serialization import Model
 
 
+class CustomParameterGroup(Model):
+    """Parameter group.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :param api_version: Required. Sets the api version to use.
+    :type api_version: str
+    :param tenant: Required. Sets the tenant to use.
+    :type tenant: str
+    """
+
+    _validation = {
+        'api_version': {'required': True},
+        'tenant': {'required': True},
+    }
+
+    _attribute_map = {
+        'api_version': {'key': 'api_version', 'type': 'str'},
+        'tenant': {'key': 'tenant', 'type': 'str'},
+    }
+
+    def __init__(
+        self,
+        **kwargs
+    ):
+        super(CustomParameterGroup, self).__init__(**kwargs)
+        self.api_version = kwargs.get('api_version', None)
+        self.tenant = kwargs.get('tenant', None)
+
+
 class OdataProductResult(Model):
     """OdataProductResult.
 
@@ -23,7 +53,10 @@ class OdataProductResult(Model):
         'odata_next_link': {'key': 'odata\\.nextLink', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(OdataProductResult, self).__init__(**kwargs)
         self.values = kwargs.get('values', None)
         self.odata_next_link = kwargs.get('odata_next_link', None)
@@ -32,9 +65,9 @@ class OdataProductResult(Model):
 class OperationResult(Model):
     """OperationResult.
 
-    :param status: The status of the request. Possible values include: 'Succeeded',
-     'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
-     'Deleting', 'Deleted', 'OK'.
+    :param status: The status of the request. Possible values include: 'Succeeded', 'Failed',
+     'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted',
+     'OK'.
     :type status: str or ~paging.models.OperationResultStatus
     """
 
@@ -42,9 +75,118 @@ class OperationResult(Model):
         'status': {'key': 'status', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(OperationResult, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
+
+
+class PagingGetMultiplePagesLroOptions(Model):
+    """Parameter group.
+
+    :param maxresults: Sets the maximum number of items to return in the response.
+    :type maxresults: int
+    :param timeout: Sets the maximum time that the server can spend processing the request, in
+     seconds. The default is 30 seconds.
+    :type timeout: int
+    """
+
+    _attribute_map = {
+        'maxresults': {'key': 'maxresults', 'type': 'int'},
+        'timeout': {'key': 'timeout', 'type': 'int'},
+    }
+
+    def __init__(
+        self,
+        **kwargs
+    ):
+        super(PagingGetMultiplePagesLroOptions, self).__init__(**kwargs)
+        self.maxresults = kwargs.get('maxresults', None)
+        self.timeout = kwargs.get('timeout', 30)
+
+
+class PagingGetMultiplePagesOptions(Model):
+    """Parameter group.
+
+    :param maxresults: Sets the maximum number of items to return in the response.
+    :type maxresults: int
+    :param timeout: Sets the maximum time that the server can spend processing the request, in
+     seconds. The default is 30 seconds.
+    :type timeout: int
+    """
+
+    _attribute_map = {
+        'maxresults': {'key': 'maxresults', 'type': 'int'},
+        'timeout': {'key': 'timeout', 'type': 'int'},
+    }
+
+    def __init__(
+        self,
+        **kwargs
+    ):
+        super(PagingGetMultiplePagesOptions, self).__init__(**kwargs)
+        self.maxresults = kwargs.get('maxresults', None)
+        self.timeout = kwargs.get('timeout', 30)
+
+
+class PagingGetMultiplePagesWithOffsetOptions(Model):
+    """Parameter group.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :param maxresults: Sets the maximum number of items to return in the response.
+    :type maxresults: int
+    :param offset: Required. Offset of return value.
+    :type offset: int
+    :param timeout: Sets the maximum time that the server can spend processing the request, in
+     seconds. The default is 30 seconds.
+    :type timeout: int
+    """
+
+    _validation = {
+        'offset': {'required': True},
+    }
+
+    _attribute_map = {
+        'maxresults': {'key': 'maxresults', 'type': 'int'},
+        'offset': {'key': 'offset', 'type': 'int'},
+        'timeout': {'key': 'timeout', 'type': 'int'},
+    }
+
+    def __init__(
+        self,
+        **kwargs
+    ):
+        super(PagingGetMultiplePagesWithOffsetOptions, self).__init__(**kwargs)
+        self.maxresults = kwargs.get('maxresults', None)
+        self.offset = kwargs.get('offset', None)
+        self.timeout = kwargs.get('timeout', 30)
+
+
+class PagingGetOdataMultiplePagesOptions(Model):
+    """Parameter group.
+
+    :param maxresults: Sets the maximum number of items to return in the response.
+    :type maxresults: int
+    :param timeout: Sets the maximum time that the server can spend processing the request, in
+     seconds. The default is 30 seconds.
+    :type timeout: int
+    """
+
+    _attribute_map = {
+        'maxresults': {'key': 'maxresults', 'type': 'int'},
+        'timeout': {'key': 'timeout', 'type': 'int'},
+    }
+
+    def __init__(
+        self,
+        **kwargs
+    ):
+        super(PagingGetOdataMultiplePagesOptions, self).__init__(**kwargs)
+        self.maxresults = kwargs.get('maxresults', None)
+        self.timeout = kwargs.get('timeout', 30)
 
 
 class Product(Model):
@@ -58,7 +200,10 @@ class Product(Model):
         'properties': {'key': 'properties', 'type': 'ProductProperties'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Product, self).__init__(**kwargs)
         self.properties = kwargs.get('properties', None)
 
@@ -77,7 +222,10 @@ class ProductProperties(Model):
         'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(ProductProperties, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
@@ -97,7 +245,10 @@ class ProductResult(Model):
         'next_link': {'key': 'nextLink', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(ProductResult, self).__init__(**kwargs)
         self.values = kwargs.get('values', None)
         self.next_link = kwargs.get('next_link', None)
@@ -117,7 +268,10 @@ class ProductResultValue(Model):
         'next_link': {'key': 'nextLink', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(ProductResultValue, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
         self.next_link = kwargs.get('next_link', None)

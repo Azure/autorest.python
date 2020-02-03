@@ -10,8 +10,8 @@ try:
     from ._models_py3 import Error, ErrorException
     from ._models_py3 import SampleResourceGroup
 except (SyntaxError, ImportError):
-    from ._models import Error, ErrorException
-    from ._models import SampleResourceGroup
+    from ._models import Error, ErrorException  # type: ignore
+    from ._models import SampleResourceGroup  # type: ignore
 
 __all__ = [
     'Error', 'ErrorException',

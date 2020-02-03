@@ -7,6 +7,7 @@ import logging
 from typing import Dict, Any, Optional
 from .base_schema import BaseSchema
 from .primitive_schemas import get_primitive_schema, PrimitiveSchema
+from .imports import FileImport
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -40,13 +41,14 @@ class ConstantSchema(BaseSchema):
             return "None"
         return self.schema.get_declaration(self.value)
 
-    def get_serialization_type(self) -> str:
+    @property
+    def serialization_type(self) -> str:
         """Returns the serialization value for msrest.
 
         :return: The serialization value for msrest
         :rtype: str
         """
-        return self.schema.get_serialization_type()
+        return self.schema.serialization_type
 
     @property
     def docstring_text(self) -> str:
@@ -60,8 +62,9 @@ class ConstantSchema(BaseSchema):
         """
         return self.schema.docstring_type
 
-    def get_python_type_annotation(self) -> str:
-        return self.schema.get_python_type_annotation()
+    @property
+    def type_annotation(self) -> str:
+        return self.schema.type_annotation
 
     @classmethod
     def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs) -> "ConstantSchema":
@@ -81,3 +84,8 @@ class ConstantSchema(BaseSchema):
             schema=get_primitive_schema(namespace=namespace, yaml_data=yaml_data['valueType']),
             value=yaml_data.get("value", {}).get("value", None)
         )
+
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.merge(self.schema.imports())
+        return file_import

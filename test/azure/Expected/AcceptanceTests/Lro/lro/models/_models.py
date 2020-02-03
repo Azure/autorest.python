@@ -12,9 +12,9 @@ from msrest.serialization import Model
 class OperationResult(Model):
     """OperationResult.
 
-    :param status: The status of the request. Possible values include: 'Succeeded',
-     'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
-     'Deleting', 'Deleted', 'OK'.
+    :param status: The status of the request. Possible values include: 'Succeeded', 'Failed',
+     'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted',
+     'OK'.
     :type status: str or ~lro.models.OperationResultStatus
     :param error:
     :type error: ~lro.models.OperationResultError
@@ -25,7 +25,10 @@ class OperationResult(Model):
         'error': {'key': 'error', 'type': 'OperationResultError'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(OperationResult, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
         self.error = kwargs.get('error', None)
@@ -45,7 +48,10 @@ class OperationResultError(Model):
         'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(OperationResultError, self).__init__(**kwargs)
         self.code = kwargs.get('code', None)
         self.message = kwargs.get('message', None)
@@ -83,7 +89,10 @@ class Resource(Model):
         'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Resource, self).__init__(**kwargs)
         self.id = None
         self.type = None
@@ -110,11 +119,9 @@ class Product(Resource):
     :vartype name: str
     :param provisioning_state:
     :type provisioning_state: str
-    :ivar provisioning_state_values:  Possible values include: 'Succeeded',
-     'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
-     'Deleting', 'Deleted', 'OK'.
-    :vartype provisioning_state_values: str or
-     ~lro.models.ProductPropertiesProvisioningStateValues
+    :ivar provisioning_state_values:  Possible values include: 'Succeeded', 'Failed', 'canceled',
+     'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'.
+    :vartype provisioning_state_values: str or ~lro.models.ProductPropertiesProvisioningStateValues
     """
 
     _validation = {
@@ -134,7 +141,10 @@ class Product(Resource):
         'provisioning_state_values': {'key': 'properties.provisioningStateValues', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Product, self).__init__(**kwargs)
         self.provisioning_state = kwargs.get('provisioning_state', None)
         self.provisioning_state_values = None
@@ -147,11 +157,9 @@ class ProductProperties(Model):
 
     :param provisioning_state:
     :type provisioning_state: str
-    :ivar provisioning_state_values:  Possible values include: 'Succeeded',
-     'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
-     'Deleting', 'Deleted', 'OK'.
-    :vartype provisioning_state_values: str or
-     ~lro.models.ProductPropertiesProvisioningStateValues
+    :ivar provisioning_state_values:  Possible values include: 'Succeeded', 'Failed', 'canceled',
+     'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'.
+    :vartype provisioning_state_values: str or ~lro.models.ProductPropertiesProvisioningStateValues
     """
 
     _validation = {
@@ -163,7 +171,10 @@ class ProductProperties(Model):
         'provisioning_state_values': {'key': 'provisioningStateValues', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(ProductProperties, self).__init__(**kwargs)
         self.provisioning_state = kwargs.get('provisioning_state', None)
         self.provisioning_state_values = None
@@ -183,7 +194,10 @@ class Sku(Model):
         'id': {'key': 'id', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Sku, self).__init__(**kwargs)
         self.name = kwargs.get('name', None)
         self.id = kwargs.get('id', None)
@@ -206,7 +220,10 @@ class SubResource(Model):
         'id': {'key': 'id', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(SubResource, self).__init__(**kwargs)
         self.id = None
 
@@ -220,9 +237,8 @@ class SubProduct(SubResource):
     :vartype id: str
     :param provisioning_state:
     :type provisioning_state: str
-    :ivar provisioning_state_values:  Possible values include: 'Succeeded',
-     'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
-     'Deleting', 'Deleted', 'OK'.
+    :ivar provisioning_state_values:  Possible values include: 'Succeeded', 'Failed', 'canceled',
+     'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'.
     :vartype provisioning_state_values: str or
      ~lro.models.SubProductPropertiesProvisioningStateValues
     """
@@ -238,7 +254,10 @@ class SubProduct(SubResource):
         'provisioning_state_values': {'key': 'properties.provisioningStateValues', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(SubProduct, self).__init__(**kwargs)
         self.provisioning_state = kwargs.get('provisioning_state', None)
         self.provisioning_state_values = None
@@ -251,9 +270,8 @@ class SubProductProperties(Model):
 
     :param provisioning_state:
     :type provisioning_state: str
-    :ivar provisioning_state_values:  Possible values include: 'Succeeded',
-     'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
-     'Deleting', 'Deleted', 'OK'.
+    :ivar provisioning_state_values:  Possible values include: 'Succeeded', 'Failed', 'canceled',
+     'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'.
     :vartype provisioning_state_values: str or
      ~lro.models.SubProductPropertiesProvisioningStateValues
     """
@@ -267,7 +285,10 @@ class SubProductProperties(Model):
         'provisioning_state_values': {'key': 'provisioningStateValues', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(SubProductProperties, self).__init__(**kwargs)
         self.provisioning_state = kwargs.get('provisioning_state', None)
         self.provisioning_state_values = None

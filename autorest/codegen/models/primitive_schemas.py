@@ -9,6 +9,7 @@ from enum import Enum
 from typing import cast, Any, Dict, List, Optional, Union
 
 from .base_schema import BaseSchema
+from .imports import FileImport, ImportType
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -22,14 +23,16 @@ class PrimitiveSchema(BaseSchema):
     def _to_python_type(self) -> str:
         return self._TYPE_MAPPINGS.get(self.yaml_data['type'], "str")
 
-    def get_serialization_type(self) -> str:
+    @property
+    def serialization_type(self) -> str:
         return self._to_python_type()
 
     @property
     def docstring_type(self) -> str:
         return self._to_python_type()
 
-    def get_python_type_annotation(self) -> str:
+    @property
+    def type_annotation(self) -> str:
         return self.docstring_type
 
     @property
@@ -37,7 +40,8 @@ class PrimitiveSchema(BaseSchema):
         return self.docstring_type
 
 class AnySchema(PrimitiveSchema):
-    def get_serialization_type(self) -> str:
+    @property
+    def serialization_type(self) -> str:
         return 'object'
 
     @property
@@ -82,7 +86,8 @@ class NumberSchema(PrimitiveSchema):
         return validation_map or None
 
 
-    def get_serialization_type(self) -> str:
+    @property
+    def serialization_type(self) -> str:
         if self.yaml_data['type'] == "integer":
             if self.precision == 64:
                 return "long"
@@ -97,7 +102,8 @@ class NumberSchema(PrimitiveSchema):
             return "int"
         return "float"
 
-    def get_python_type_annotation(self) -> str:
+    @property
+    def type_annotation(self) -> str:
         python_type = self.docstring_type
         if python_type == "long":
             return "int"
@@ -145,7 +151,8 @@ class DatetimeSchema(PrimitiveSchema):
         datetime = "date-time"
         rfc1123 = "date-time-rfc1123"
 
-    def get_serialization_type(self) -> str:
+    @property
+    def serialization_type(self) -> str:
         formats_to_attribute_type = {
             self.Formats.datetime: "iso-8601",
             self.Formats.rfc1123: "rfc-1123"
@@ -154,9 +161,10 @@ class DatetimeSchema(PrimitiveSchema):
 
     @property
     def docstring_type(self) -> str:
-        return "~"+self.get_python_type_annotation()
+        return "~" + self.type_annotation
 
-    def get_python_type_annotation(self) -> str:
+    @property
+    def type_annotation(self) -> str:
         return "datetime.datetime"
 
     @property
@@ -168,18 +176,25 @@ class DatetimeSchema(PrimitiveSchema):
         but msrest will do fine.
         """
         return f'"{value}"'
+
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_import("datetime", ImportType.STDLIB)
+        return file_import
 
 
 class UnixTimeSchema(PrimitiveSchema):
 
-    def get_serialization_type(self) -> str:
+    @property
+    def serialization_type(self) -> str:
         return "unix-time"
 
     @property
     def docstring_type(self) -> str:
-        return "~"+self.get_python_type_annotation()
+        return "~" + self.type_annotation
 
-    def get_python_type_annotation(self) -> str:
+    @property
+    def type_annotation(self) -> str:
         return "datetime.datetime"
 
     @property
@@ -192,17 +207,24 @@ class UnixTimeSchema(PrimitiveSchema):
         """
         return f'"{value}"'
 
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_import("datetime", ImportType.STDLIB)
+        return file_import
+
 
 class DateSchema(PrimitiveSchema):
 
-    def get_serialization_type(self) -> str:
+    @property
+    def serialization_type(self) -> str:
         return "date"
 
     @property
     def docstring_type(self) -> str:
-        return "~"+self.get_python_type_annotation()
+        return "~" + self.type_annotation
 
-    def get_python_type_annotation(self):
+    @property
+    def type_annotation(self) -> str:
         return "datetime.date"
 
     @property
@@ -215,17 +237,24 @@ class DateSchema(PrimitiveSchema):
         """
         return f'"{value}"'
 
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_import("datetime", ImportType.STDLIB)
+        return file_import
+
 
 class DurationSchema(PrimitiveSchema):
 
-    def get_serialization_type(self) -> str:
+    @property
+    def serialization_type(self) -> str:
         return "duration"
 
     @property
     def docstring_type(self) -> str:
-        return "~"+self.get_python_type_annotation()
+        return "~" + self.type_annotation
 
-    def get_python_type_annotation(self) -> str:
+    @property
+    def type_annotation(self) -> str:
         return "datetime.timedelta"
 
     @property
@@ -238,6 +267,11 @@ class DurationSchema(PrimitiveSchema):
         """
         return f'"{value}"'
 
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_import("datetime", ImportType.STDLIB)
+        return file_import
+
 
 class ByteArraySchema(PrimitiveSchema):
     def __init__(self, namespace: str, yaml_data: Dict[str, Any]):
@@ -248,7 +282,8 @@ class ByteArraySchema(PrimitiveSchema):
         base64url = "base64url"
         byte = "byte"
 
-    def get_serialization_type(self) -> str:
+    @property
+    def serialization_type(self) -> str:
         if self.format == ByteArraySchema.Formats.base64url:
             return "base64"
         return "bytearray"
@@ -270,6 +305,7 @@ def get_primitive_schema(namespace: str, yaml_data: Dict[str, Any]) -> "Primitiv
         'integer': NumberSchema,
         'number': NumberSchema,
         'string': StringSchema,
+        'char': StringSchema,
         'date-time': DatetimeSchema,
         'unixtime': UnixTimeSchema,
         'date': DateSchema,

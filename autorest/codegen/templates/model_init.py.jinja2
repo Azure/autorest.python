@@ -12,9 +12,9 @@ try:
 except (SyntaxError, ImportError):
     {% for schema in schemas %}
     {% if schema.is_exception %}
-    from ._models import {{ schema.name }}, {{ schema.name + "Exception" }}
+    from ._models import {{ schema.name }}, {{ schema.name + "Exception" }}  # type: ignore
     {% else %}
-    from ._models import {{ schema.name }}
+    from ._models import {{ schema.name }}  # type: ignore
     {% endif %}
     {% endfor %}
 {% if enums %}

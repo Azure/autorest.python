@@ -28,6 +28,11 @@ class AvailabilitySetUpdateParameters(Model):
         'tags': {'key': 'tags', 'type': '{str}'},
     }
 
-    def __init__(self, *, tags: Dict[str, str], **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        tags: Dict[str, str],
+        **kwargs
+    ):
         super(AvailabilitySetUpdateParameters, self).__init__(**kwargs)
         self.tags = tags

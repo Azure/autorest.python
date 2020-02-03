@@ -18,16 +18,16 @@ try:
     from ._models_py3 import StringOptionalWrapper
     from ._models_py3 import StringWrapper
 except (SyntaxError, ImportError):
-    from ._models import ArrayOptionalWrapper
-    from ._models import ArrayWrapper
-    from ._models import ClassOptionalWrapper
-    from ._models import ClassWrapper
-    from ._models import Error, ErrorException
-    from ._models import IntOptionalWrapper
-    from ._models import IntWrapper
-    from ._models import Product
-    from ._models import StringOptionalWrapper
-    from ._models import StringWrapper
+    from ._models import ArrayOptionalWrapper  # type: ignore
+    from ._models import ArrayWrapper  # type: ignore
+    from ._models import ClassOptionalWrapper  # type: ignore
+    from ._models import ClassWrapper  # type: ignore
+    from ._models import Error, ErrorException  # type: ignore
+    from ._models import IntOptionalWrapper  # type: ignore
+    from ._models import IntWrapper  # type: ignore
+    from ._models import Product  # type: ignore
+    from ._models import StringOptionalWrapper  # type: ignore
+    from ._models import StringWrapper  # type: ignore
 
 __all__ = [
     'ArrayOptionalWrapper',

@@ -33,9 +33,14 @@ tag: package-2019-05
 This swagger is ready for C# and Java.
 !!! READ THIS !!!
 
+https://github.com/Azure/autorest.csharp/blob/6398c8a58af4aaac10e1680ccb58aeb11a86c825/samples/CognitiveSearch/readme.md
+
 ### Settings
 ``` yaml
-input-file: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/search/data-plane/Microsoft.Azure.Search.Service/stable/2019-05-06/searchservice.json
+title: AzureSearch
+input-file:
+#- https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/search/data-plane/Microsoft.Azure.Search.Service/stable/2019-05-06/searchservice.json
+- https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/search/data-plane/Microsoft.Azure.Search.Data/stable/2019-05-06/searchindex.json
 output-folder: _generated
 package-name: azure-search
 namespace: azure.search

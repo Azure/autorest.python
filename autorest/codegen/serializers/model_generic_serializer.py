@@ -11,13 +11,13 @@ from ..models import ObjectSchema
 class ModelGenericSerializer(ModelBaseSerializer):
 
     @staticmethod
-    def init_line(model: ObjectSchema) -> str:
-        return "def __init__(self, **kwargs):"
+    def init_line(model: ObjectSchema) -> List[str]:
+        return []
 
     @staticmethod
     def init_args(model: ObjectSchema) -> List[str]:
         init_args = []
-        init_args.append("super({}, self).__init__(**kwargs)".format(model.name))
+        init_args.append(f"super({model.name}, self).__init__(**kwargs)")
 
         for prop in model.properties:
             if model.base_model and prop in model.base_model.properties and not prop.is_discriminator:
@@ -25,11 +25,11 @@ class ModelGenericSerializer(ModelBaseSerializer):
             if prop.constant:
                 continue
             if not prop.readonly and not prop.is_discriminator:
-                default_value = "\"" + prop.schema.default_value + "\"" if prop.schema.default_value else "None"
-                init_args.append("self.{} = kwargs.get('{}', {})".format(prop.name, prop.name, default_value))
+                default_value = prop.schema.get_default_value_declaration()
+                init_args.append(f"self.{prop.name} = kwargs.get('{prop.name}', {default_value})")
             else:
                 if not model.discriminator_value:
-                    init_args.append("self.{} = None".format(prop.name))
+                    init_args.append(f"self.{prop.name} = None")
                 else:
-                    init_args.append("self.{} = '{}'".format(prop.name, model.discriminator_value))
+                    init_args.append(f"self.{prop.name} = '{model.discriminator_value}'")
         return init_args

@@ -2,22 +2,37 @@
 {% macro response_handling(response) %}
   {% if response.headers %}
     {% for response_header in response.headers %}
-response_headers['{{ response_header.name }}']=self._deserialize('{{ response_header.schema.get_serialization_type() }}', response.headers.get('{{ response_header.name }}'))
+response_headers['{{ response_header.name }}']=self._deserialize('{{ response_header.schema.serialization_type }}', response.headers.get('{{ response_header.name }}'))
     {% endfor %}
   {% endif %}
   {% if response.is_stream_response %}
 deserialized = response.stream_download(self._client._pipeline)
   {% elif response.has_body %}
-deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}', response)
+deserialized = self._deserialize('{{ response.schema.serialization_type }}', pipeline_response)
   {% endif %}
 {% endmacro %}
+{# write grouped parameters #}
+{% macro grouped_parameters(operation) %}
+{% if operation.parameters.grouped %}
+
+    {% for grouped_parameter in operation.parameters.grouped %}
+{{ grouped_parameter.serialized_name }} = None
+    {% endfor %}
+    {% for grouper_name, grouped_parameters in operation.parameters.grouped|groupby("grouped_by.serialized_name") %}
+if {{ grouper_name }} is not None:
+        {% for grouped_parameter in grouped_parameters %}
+    {{ grouped_parameter.serialized_name }} = {{ grouper_name }}.{{ grouped_parameter.serialized_name }}
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+{% endmacro %}
 {# write queryparameters #}
-{% macro query_parameters(operation) %}
+{% macro query_parameters(operation, async_mode) %}
 # Construct parameters
-query_parameters = {}
+query_parameters{{": Dict[str, Any]" if async_mode else "" }} = {}
 {% if operation.parameters.query %}
     {% for query_parameter in operation.parameters.query %}
-        {%if query_parameter.is_required %}
+        {%if query_parameter.required %}
 query_parameters['{{ query_parameter.rest_api_name }}'] = {{ operation.build_serialize_data_call(query_parameter, "query") }}
         {% else %}
 if {{ query_parameter.full_serialized_name }} is not None:
@@ -27,12 +42,12 @@ if {{ query_parameter.full_serialized_name }} is not None:
 {% endif %}
 {% endmacro %}
 {# write request headers #}
-{% macro header_parameters(code_model, operation) %}
+{% macro header_parameters(code_model, operation, async_mode) %}
 # Construct headers
-header_parameters = {}
+header_parameters{{": Dict[str, Any]" if async_mode else "" }} = {}
 {% if operation.parameters.headers %}
     {% for header_parameter in operation.parameters.headers %}
-        {%if header_parameter.is_required %}
+        {%if header_parameter.required %}
 header_parameters['{{ header_parameter.rest_api_name }}'] = {{ operation.build_serialize_data_call(header_parameter, "header") }}
         {% else %}
 if {{ header_parameter.full_serialized_name }} is not None:

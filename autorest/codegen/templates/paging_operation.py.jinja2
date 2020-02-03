@@ -2,6 +2,29 @@
 {% import 'operation_tools.jinja2' as op_tools %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
 {% set request_as_xml = ", is_xml=False" if "xml" in operation.request_content_type else "" %}
+{% macro method_signature() %}
+{% if async_mode %}
+def {{ operation.python_name }}(
+    self,
+    {% for param_signature in operation.parameters.async_method_signature %}
+    {{ param_signature }},
+    {% endfor %}
+    {% if operation.parameters.method | first %}
+    *,
+    {% endif %}
+    cls: ClsType[{{ keywords.return_type_annotation(operation) }}] = None,
+    **kwargs
+){{ keywords.async_return_type_annotation(operation) }}:
+{% else %}
+def {{ operation.python_name }}(
+    self,
+    {% for param_signature in operation.parameters.sync_method_signature %}
+    {{ param_signature }}
+    {% endfor %}
+    cls=None,  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
+    **kwargs  # type: Any
+):
+{% endif %}{% endmacro %}
 {% macro return_docstring() %}
 {% if operation.responses | selectattr('has_body') | first %}
 :return: {{ operation.responses|map(attribute='schema')|map(attribute='docstring_text')|join(' or ') }} or the result of cls(response)
@@ -11,6 +34,7 @@
 :rtype: None
 {% endif %}
 {% endmacro %}
+{% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 {% macro exception_name() %}{{ operation.default_exception.schema.name }}Exception{% endmacro %}
 {% set core_excep_name = 'ARMError' if code_model.options['azure_arm'] else 'HttpResponseError' %}
 {% set next_link_str = "deserialized." + operation.next_link_name if operation.next_link_name else "None" %}
@@ -20,11 +44,16 @@
 {% else %}
 
 {% endif %}
-def {{ operation.python_name }}(self{{ operation.parameters.method_signature }}, cls=None, **kwargs):
+{{ method_signature() }}
+{%- if not async_mode %}
+    {{ keywords.sync_return_type_annotation(operation) }}
+{% endif %}
 {% if operation.want_description_docstring %}
     """{{operation.description }}
+    {% if operation.summary %}
 
-    {{ "FIXME: add operation.summary\n" }}
+    {{ operation.summary | wordwrap(width=95, break_long_words=False, wrapstring='\n    ') }}
+    {% endif %}
 
 {% if operation.deprecated -%}
     .. warning::
@@ -32,7 +61,9 @@ def {{ operation.python_name }}(self{{ operation.parameters.method_signature }},
 
 {% endif -%}
 {% for parameter in operation.parameters.method %}
-    :param {{ parameter.serialized_name }}: {{ parameter.description }}
+    {%- for doc_string in param_documentation_string(parameter).replace('\n', '\n ').split('\n') %}
+    {{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n     ')}}
+    {% endfor %}
     :type {{ parameter.serialized_name }}: {{ parameter.schema.docstring_type }}
 {% endfor %}
     :param callable cls: A custom type or function that will be passed the direct response
@@ -56,7 +87,7 @@ def {{ operation.python_name }}(self{{ operation.parameters.method_signature }},
     {% for excep in operation.status_code_exceptions %}
         {% for status_code in excep.status_codes %}
             {% if excep.schema.is_exception %}
-        {{ status_code }}: lambda response: models.{{ excep.schema.get_serialization_type() }}Exception.from_response(response, self._deserialize),
+        {{ status_code }}: lambda response: models.{{ excep.schema.serialization_type }}Exception.from_response(response, self._deserialize),
             {% else  %}
         {{ status_code }}: {{ core_excep_name }},
             {% endif %}
@@ -67,6 +98,9 @@ def {{ operation.python_name }}(self{{ operation.parameters.method_signature }},
 {% else %}
     error_map = kwargs.pop('error_map', {})
 {% endif %}
+{% if operation.parameters.grouped %}
+    {{ op_tools.grouped_parameters(operation)|indent }}
+{%- endif -%}
 {% if operation.parameters.is_flattened %}
     {{ operation.parameters.build_flattened_object() }}
 {% endif %}
@@ -111,18 +145,16 @@ def {{ operation.python_name }}(self{{ operation.parameters.method_signature }},
         {% endif %}
 {% endif %}
 
-        {{ op_tools.query_parameters(operation)|indent(8) }}
-
-        {{ op_tools.header_parameters(code_model, operation)|indent(8) }}
-
+        {{ op_tools.query_parameters(operation, async_mode)|indent(8) }}
+        {{ op_tools.header_parameters(code_model, operation, async_mode)|indent(8) }}
     {% if operation.parameters.has_body %}
         # Construct body
         {% if not operation.parameters.body.is_stream %}
-            {% if operation.parameters.body.is_required %}
-        body_content = self._serialize.body({{ operation.parameters.body.serialized_name }}, '{{ operation.parameters.body.schema.get_serialization_type() }}'{{ request_as_xml }}{{ operation.serialization_context }})
+            {% if operation.parameters.body.required %}
+        body_content = self._serialize.body({{ operation.parameters.body.serialized_name }}, '{{ operation.parameters.body.schema.serialization_type }}'{{ request_as_xml }}{{ operation.serialization_context }})
             {% else %}
         if {{ operation.parameters.body.serialized_name }} is not None:
-            body_content = self._serialize.body({{ operation.parameters.body.serialized_name }}, '{{ operation.parameters.body.schema.get_serialization_type() }}'{{ request_as_xml }}{{ operation.serialization_context }})
+            body_content = self._serialize.body({{ operation.parameters.body.serialized_name }}, '{{ operation.parameters.body.schema.serialization_type }}'{{ request_as_xml }}{{ operation.serialization_context }})
         else:
             body_content = None
             {% endif %}
@@ -151,9 +183,9 @@ def {{ operation.python_name }}(self{{ operation.parameters.method_signature }},
     {% endif %}
         return request
 
-    {{ keywords.def }} extract_data(response):
+    {{ keywords.def }} extract_data(pipeline_response):
         {% set response = operation.responses[0] %}
-        deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}', response)
+        deserialized = self._deserialize('{{ response.schema.serialization_type }}', pipeline_response)
         list_of_elem = deserialized.{{ operation.item_name }}
         if cls:
             list_of_elem = cls(list_of_elem)
@@ -177,7 +209,7 @@ def {{ operation.python_name }}(self{{ operation.parameters.method_signature }},
             raise models.{{ exception_name() }}.from_response(response, self._deserialize)
             {% endif %}
 
-        return response
+        return pipeline_response
 
 {% if async_mode %}
     return AsyncItemPaged(

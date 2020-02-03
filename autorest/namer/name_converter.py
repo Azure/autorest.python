@@ -9,18 +9,14 @@ from .python_mappings import basic_latin_chars, reserved_words
 class NameConverter:
 
     @staticmethod
-    def convert_yaml_names(yaml_code, override_client_name):
+    def convert_yaml_names(yaml_code):
         NameConverter._convert_language_default_python_case(yaml_code)
-        if override_client_name:
-            yaml_code['info']['python_title'] = NameConverter._to_valid_python_name(override_client_name)
-            yaml_code['info']['pascal_case_title'] = NameConverter._to_pascal_case(override_client_name)
-        else:
-            yaml_code['info']['python_title'] = NameConverter._to_valid_python_name(
-                yaml_code['info']['title'].replace(" ", "")
-            )
-            yaml_code['info']['pascal_case_title'] = NameConverter._to_pascal_case(
-                yaml_code['info']['title'].replace(" ", "")
-            )
+        yaml_code['info']['python_title'] = NameConverter._to_valid_python_name(
+            yaml_code['info']['title'].replace(" ", "")
+        )
+        yaml_code['info']['pascal_case_title'] = NameConverter._to_pascal_case(
+            yaml_code['info']['title'].replace(" ", "")
+        )
         NameConverter._convert_schemas(yaml_code['schemas'])
         NameConverter._convert_operation_groups(yaml_code['operationGroups'], yaml_code['info']['pascal_case_title'])
         if yaml_code.get('globalParameters'):
@@ -54,7 +50,7 @@ class NameConverter:
     def _convert_schemas(schemas):
         for enum in schemas.get('sealedChoices', []) + schemas.get('choices', []):
             NameConverter._convert_enum_schema(enum)
-        for obj in schemas.get('objects', []):
+        for obj in schemas.get('objects', []) + schemas.get('groups', []):
             NameConverter._convert_object_schema(obj)
         for type_list, schema_yamls in schemas.items():
             for schema in schema_yamls:
@@ -96,14 +92,18 @@ class NameConverter:
         schema['language']['python']['name'] = schema_python_name
 
         schema_description = schema['language']['default']['description'].strip()
-        if schema_description == 'MISSING-SCHEMA-DESCRIPTION-OBJECTSCHEMA':
-            # what is being used for empty property descriptions
+        if kwargs.get('pad_string') == 'Method' and not schema_description:
             schema_description = schema['language']['python']['name']
-        elif 'MISSING' in schema_description:
-            schema_description = ""
         if schema_description and schema_description[-1] != ".":
             schema_description += "."
         schema['language']['python']['description'] = schema_description
+
+        schema_summary = schema['language']['python'].get('summary')
+        if schema_summary:
+            schema_summary = schema_summary.strip()
+            if schema_summary[-1] != ".":
+                schema_summary += "."
+            schema['language']['python']['summary'] = schema_summary
 
     @staticmethod
     def _convert_language_default_pascal_case(schema):
@@ -117,7 +117,7 @@ class NameConverter:
         schema['language']['python']['name'] = schema_python_name
 
         schema_description = schema['language']['default']['description'].strip()
-        if schema_description == 'MISSING·SCHEMA-DESCRIPTION-OBJECTSCHEMA':
+        if not schema_description:
             # what is being used for empty ObjectSchema descriptions
             schema_description = schema['language']['python']['name']
         if schema_description and schema_description[-1] != ".":

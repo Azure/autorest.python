@@ -6,6 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import Any, Optional
+
 from azure.mgmt.core import ARMPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -24,7 +26,13 @@ class AutoRestPagingTestService(object):
     :param str base_url: Service URL
     """
 
-    def __init__(self, credential, base_url=None, **kwargs):
+    def __init__(
+        self,
+        credential,  # type: "TokenCredential"
+        base_url=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestPagingTestServiceConfiguration(credential, **kwargs)
@@ -38,11 +46,14 @@ class AutoRestPagingTestService(object):
             self._client, self._config, self._serialize, self._deserialize)
 
     def close(self):
+        # type: () -> None
         self._client.close()
 
     def __enter__(self):
+        # type: () -> AutoRestPagingTestService
         self._client.__enter__()
         return self
 
     def __exit__(self, *exc_details):
+        # type: (Any) -> None
         self._client.__exit__(*exc_details)

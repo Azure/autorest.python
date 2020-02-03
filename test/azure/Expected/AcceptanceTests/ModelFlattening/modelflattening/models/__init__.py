@@ -9,6 +9,7 @@
 try:
     from ._models_py3 import BaseProduct
     from ._models_py3 import Error, ErrorException
+    from ._models_py3 import FlattenParameterGroup
     from ._models_py3 import FlattenedProduct
     from ._models_py3 import FlattenedProductProperties
     from ._models_py3 import GenericUrl
@@ -20,18 +21,19 @@ try:
     from ._models_py3 import SimpleProductProperties
     from ._models_py3 import WrappedProduct
 except (SyntaxError, ImportError):
-    from ._models import BaseProduct
-    from ._models import Error, ErrorException
-    from ._models import FlattenedProduct
-    from ._models import FlattenedProductProperties
-    from ._models import GenericUrl
-    from ._models import ProductUrl
-    from ._models import ProductWrapper
-    from ._models import Resource
-    from ._models import ResourceCollection
-    from ._models import SimpleProduct
-    from ._models import SimpleProductProperties
-    from ._models import WrappedProduct
+    from ._models import BaseProduct  # type: ignore
+    from ._models import Error, ErrorException  # type: ignore
+    from ._models import FlattenParameterGroup  # type: ignore
+    from ._models import FlattenedProduct  # type: ignore
+    from ._models import FlattenedProductProperties  # type: ignore
+    from ._models import GenericUrl  # type: ignore
+    from ._models import ProductUrl  # type: ignore
+    from ._models import ProductWrapper  # type: ignore
+    from ._models import Resource  # type: ignore
+    from ._models import ResourceCollection  # type: ignore
+    from ._models import SimpleProduct  # type: ignore
+    from ._models import SimpleProductProperties  # type: ignore
+    from ._models import WrappedProduct  # type: ignore
 from ._auto_rest_resource_flattening_test_service_enums import (
     FlattenedProductPropertiesProvisioningStateValues,
 )
@@ -39,6 +41,7 @@ from ._auto_rest_resource_flattening_test_service_enums import (
 __all__ = [
     'BaseProduct',
     'Error', 'ErrorException',
+    'FlattenParameterGroup',
     'FlattenedProduct',
     'FlattenedProductProperties',
     'GenericUrl',

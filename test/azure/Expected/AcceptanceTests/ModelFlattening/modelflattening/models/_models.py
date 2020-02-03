@@ -15,9 +15,9 @@ class BaseProduct(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param product_id: Required. Unique identifier representing a specific product
-     for a given latitude & longitude. For example, uberX in San Francisco will have
-     a different product_id than uberX in Los Angeles.
+    :param product_id: Required. Unique identifier representing a specific product for a given
+     latitude & longitude. For example, uberX in San Francisco will have a different product_id than
+     uberX in Los Angeles.
     :type product_id: str
     :param description: Description of product.
     :type description: str
@@ -32,7 +32,10 @@ class BaseProduct(Model):
         'description': {'key': 'base_product_description', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(BaseProduct, self).__init__(**kwargs)
         self.product_id = kwargs.get('product_id', None)
         self.description = kwargs.get('description', None)
@@ -81,7 +84,10 @@ class Error(Model):
         'parent_error': {'key': 'parentError', 'type': 'Error'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
@@ -120,7 +126,10 @@ class Resource(Model):
         'name': {'key': 'name', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Resource, self).__init__(**kwargs)
         self.id = None
         self.type = None
@@ -149,9 +158,8 @@ class FlattenedProduct(Resource):
     :type p_name: str
     :param type_properties_type:
     :type type_properties_type: str
-    :ivar provisioning_state_values:  Possible values include: 'Succeeded',
-     'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
-     'Deleting', 'Deleted', 'OK'.
+    :ivar provisioning_state_values:  Possible values include: 'Succeeded', 'Failed', 'canceled',
+     'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'.
     :vartype provisioning_state_values: str or
      ~modelflattening.models.FlattenedProductPropertiesProvisioningStateValues
     :param provisioning_state:
@@ -177,7 +185,10 @@ class FlattenedProduct(Resource):
         'provisioning_state': {'key': 'properties.provisioningState', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(FlattenedProduct, self).__init__(**kwargs)
         self.p_name = kwargs.get('p_name', None)
         self.type_properties_type = kwargs.get('type_properties_type', None)
@@ -194,9 +205,8 @@ class FlattenedProductProperties(Model):
     :type p_name: str
     :param type:
     :type type: str
-    :ivar provisioning_state_values:  Possible values include: 'Succeeded',
-     'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
-     'Deleting', 'Deleted', 'OK'.
+    :ivar provisioning_state_values:  Possible values include: 'Succeeded', 'Failed', 'canceled',
+     'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'.
     :vartype provisioning_state_values: str or
      ~modelflattening.models.FlattenedProductPropertiesProvisioningStateValues
     :param provisioning_state:
@@ -214,12 +224,75 @@ class FlattenedProductProperties(Model):
         'provisioning_state': {'key': 'provisioningState', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(FlattenedProductProperties, self).__init__(**kwargs)
         self.p_name = kwargs.get('p_name', None)
         self.type = kwargs.get('type', None)
         self.provisioning_state_values = None
         self.provisioning_state = kwargs.get('provisioning_state', None)
+
+
+class FlattenParameterGroup(Model):
+    """Parameter group.
+
+    Variables are only populated by the server, and will be ignored when sending a request.
+
+    All required parameters must be populated in order to send to Azure.
+
+    :param name: Required. Product name with value 'groupproduct'.
+    :type name: str
+    :param simple_body_product: Simple body product to put.
+    :type simple_body_product: ~modelflattening.models.SimpleProduct
+    :param product_id: Required. Unique identifier representing a specific product for a given
+     latitude & longitude. For example, uberX in San Francisco will have a different product_id than
+     uberX in Los Angeles.
+    :type product_id: str
+    :param description: Description of product.
+    :type description: str
+    :param max_product_display_name: Display name of product.
+    :type max_product_display_name: str
+    :ivar capacity: Capacity of product. For example, 4 people. Default value: "Large".
+    :vartype capacity: str
+    :param generic_value: Generic URL value.
+    :type generic_value: str
+    :param odatavalue: URL value.
+    :type odatavalue: str
+    """
+
+    _validation = {
+        'name': {'required': True},
+        'product_id': {'required': True},
+        'capacity': {'constant': True},
+    }
+
+    _attribute_map = {
+        'name': {'key': 'name', 'type': 'str'},
+        'simple_body_product': {'key': 'SimpleBodyProduct', 'type': 'SimpleProduct'},
+        'product_id': {'key': 'productId', 'type': 'str'},
+        'description': {'key': 'description', 'type': 'str'},
+        'max_product_display_name': {'key': 'max_product_display_name', 'type': 'str'},
+        'capacity': {'key': 'capacity', 'type': 'str'},
+        'generic_value': {'key': 'generic_value', 'type': 'str'},
+        'odatavalue': {'key': '@odata\\.value', 'type': 'str'},
+    }
+
+    capacity = "Large"
+
+    def __init__(
+        self,
+        **kwargs
+    ):
+        super(FlattenParameterGroup, self).__init__(**kwargs)
+        self.name = kwargs.get('name', None)
+        self.simple_body_product = kwargs.get('simple_body_product', None)
+        self.product_id = kwargs.get('product_id', None)
+        self.description = kwargs.get('description', None)
+        self.max_product_display_name = kwargs.get('max_product_display_name', None)
+        self.generic_value = kwargs.get('generic_value', None)
+        self.odatavalue = kwargs.get('odatavalue', None)
 
 
 class GenericUrl(Model):
@@ -233,7 +306,10 @@ class GenericUrl(Model):
         'generic_value': {'key': 'generic_value', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(GenericUrl, self).__init__(**kwargs)
         self.generic_value = kwargs.get('generic_value', None)
 
@@ -252,7 +328,10 @@ class ProductUrl(GenericUrl):
         'odata_value': {'key': '@odata\\.value', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(ProductUrl, self).__init__(**kwargs)
         self.odata_value = kwargs.get('odata_value', None)
 
@@ -268,7 +347,10 @@ class ProductWrapper(Model):
         'value': {'key': 'property.value', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(ProductWrapper, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)
 
@@ -290,7 +372,10 @@ class ResourceCollection(Model):
         'dictionaryofresources': {'key': 'dictionaryofresources', 'type': '{FlattenedProduct}'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(ResourceCollection, self).__init__(**kwargs)
         self.productresource = kwargs.get('productresource', None)
         self.arrayofresources = kwargs.get('arrayofresources', None)
@@ -304,17 +389,18 @@ class SimpleProduct(BaseProduct):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param product_id: Required. Unique identifier representing a specific product
-     for a given latitude & longitude. For example, uberX in San Francisco will have
-     a different product_id than uberX in Los Angeles.
+    :param product_id: Required. Unique identifier representing a specific product for a given
+     latitude & longitude. For example, uberX in San Francisco will have a different product_id than
+     uberX in Los Angeles.
     :type product_id: str
     :param description: Description of product.
     :type description: str
     :param max_product_display_name: Display name of product.
     :type max_product_display_name: str
-    :ivar capacity: Capacity of product. For example, 4 people. Default value:
-     "Large".
+    :ivar capacity: Capacity of product. For example, 4 people. Default value: "Large".
     :vartype capacity: str
+    :param generic_value: Generic URL value.
+    :type generic_value: str
     :param odata_value: URL value.
     :type odata_value: str
     """
@@ -329,14 +415,19 @@ class SimpleProduct(BaseProduct):
         'description': {'key': 'base_product_description', 'type': 'str'},
         'max_product_display_name': {'key': 'details.max_product_display_name', 'type': 'str'},
         'capacity': {'key': 'details.max_product_capacity', 'type': 'str'},
+        'generic_value': {'key': 'details.max_product_image.generic_value', 'type': 'str'},
         'odata_value': {'key': 'details.max_product_image.@odata\\.value', 'type': 'str'},
     }
 
     capacity = "Large"
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(SimpleProduct, self).__init__(**kwargs)
         self.max_product_display_name = kwargs.get('max_product_display_name', None)
+        self.generic_value = kwargs.get('generic_value', None)
         self.odata_value = kwargs.get('odata_value', None)
 
 
@@ -349,9 +440,10 @@ class SimpleProductProperties(Model):
 
     :param max_product_display_name: Required. Display name of product.
     :type max_product_display_name: str
-    :ivar capacity: Required. Capacity of product. For example, 4 people. Default
-     value: "Large".
+    :ivar capacity: Required. Capacity of product. For example, 4 people. Default value: "Large".
     :vartype capacity: str
+    :param generic_value: Generic URL value.
+    :type generic_value: str
     :param odata_value: URL value.
     :type odata_value: str
     """
@@ -364,14 +456,19 @@ class SimpleProductProperties(Model):
     _attribute_map = {
         'max_product_display_name': {'key': 'max_product_display_name', 'type': 'str'},
         'capacity': {'key': 'max_product_capacity', 'type': 'str'},
+        'generic_value': {'key': 'max_product_image.generic_value', 'type': 'str'},
         'odata_value': {'key': 'max_product_image.@odata\\.value', 'type': 'str'},
     }
 
     capacity = "Large"
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(SimpleProductProperties, self).__init__(**kwargs)
         self.max_product_display_name = kwargs.get('max_product_display_name', None)
+        self.generic_value = kwargs.get('generic_value', None)
         self.odata_value = kwargs.get('odata_value', None)
 
 
@@ -386,6 +483,9 @@ class WrappedProduct(Model):
         'value': {'key': 'value', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(WrappedProduct, self).__init__(**kwargs)
         self.value = kwargs.get('value', None)

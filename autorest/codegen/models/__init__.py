@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict
 from .base_model import BaseModel
-from .code_model import CodeModel
+from .code_model import CodeModel, CredentialSchema
 from .object_schema import ObjectSchema
 from .dictionary_schema import DictionarySchema
 from .list_schema import ListSchema
@@ -13,9 +13,11 @@ from .primitive_schemas import get_primitive_schema, PrimitiveSchema
 from .enum_schema import EnumSchema
 from .base_schema import BaseSchema
 from .constant_schema import ConstantSchema
-from .imports import FileImport
+from .imports import FileImport, ImportType
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
+from .parameter import Parameter
+from .operation import Operation
 from .property import Property
 from .operation_group import OperationGroup
 
@@ -24,16 +26,20 @@ __all__ = [
     "BaseModel",
     "BaseSchema",
     "CodeModel",
+    "CredentialSchema",
     "ConstantSchema",
     "ObjectSchema",
     "DictionarySchema",
     "ListSchema",
     "EnumSchema",
     "FileImport",
+    "ImportType",
     "PrimitiveSchema",
     "LROOperation",
-    "OperationGroup",
+    "Operation",
     "PagingOperation",
+    "Parameter",
+    "OperationGroup",
     "Property"
 ]
 
@@ -66,7 +72,7 @@ def build_schema(yaml_data: Dict[str, Any], **kwargs) -> BaseSchema:
         schema = DictionarySchema.from_yaml(namespace=namespace, yaml_data=yaml_data, **kwargs)
         code_model.primitives[yaml_id] = schema
 
-    elif schema_type in ['object', 'and']:
+    elif schema_type in ['object', 'and', 'group']:
         # To avoid infinite loop, create the right instance in memory,
         # put it in the index, and then parse the object.
         schema = ObjectSchema(namespace, yaml_data, "_", "")

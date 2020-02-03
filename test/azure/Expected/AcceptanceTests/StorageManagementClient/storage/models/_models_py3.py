@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 import datetime
-from typing import Dict, List, Union
+from typing import Dict, List, Optional, Union
 
 from msrest.serialization import Model
 
@@ -15,8 +15,8 @@ from msrest.serialization import Model
 class Bar(Model):
     """The URIs that are used to perform a retrieval of a public blob, queue or table object.
 
-    :param recursive_point: The URIs that are used to perform a retrieval of a
-     public blob, queue or table object.
+    :param recursive_point: The URIs that are used to perform a retrieval of a public blob, queue
+     or table object.
     :type recursive_point: ~storage.models.Endpoints
     """
 
@@ -24,7 +24,12 @@ class Bar(Model):
         'recursive_point': {'key': 'RecursivePoint', 'type': 'Endpoints'},
     }
 
-    def __init__(self, *, recursive_point: "Endpoints"=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        recursive_point: Optional["Endpoints"] = None,
+        **kwargs
+    ):
         super(Bar, self).__init__(**kwargs)
         self.recursive_point = recursive_point
 
@@ -32,16 +37,15 @@ class Bar(Model):
 class CheckNameAvailabilityResult(Model):
     """The CheckNameAvailability operation response.
 
-    :param name_available: Gets a boolean value that indicates whether the name is
-     available for you to use. If true, the name is available. If false, the name has
-     already been taken or invalid and cannot be used.
+    :param name_available: Gets a boolean value that indicates whether the name is available for
+     you to use. If true, the name is available. If false, the name has already been taken or
+     invalid and cannot be used.
     :type name_available: bool
-    :param reason: Gets the reason that a storage account name could not be used.
-     The Reason element is only returned if NameAvailable is false. Possible values
-     include: 'AccountNameInvalid', 'AlreadyExists'.
+    :param reason: Gets the reason that a storage account name could not be used. The Reason
+     element is only returned if NameAvailable is false. Possible values include:
+     'AccountNameInvalid', 'AlreadyExists'.
     :type reason: str or ~storage.models.Reason
-    :param message: Gets an error message explaining the Reason value in more
-     detail.
+    :param message: Gets an error message explaining the Reason value in more detail.
     :type message: str
     """
 
@@ -51,7 +55,14 @@ class CheckNameAvailabilityResult(Model):
         'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, *, name_available: bool=None, reason: Union[str, "Reason"]=None, message: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        name_available: Optional[bool] = None,
+        reason: Optional[Union[str, "Reason"]] = None,
+        message: Optional[str] = None,
+        **kwargs
+    ):
         super(CheckNameAvailabilityResult, self).__init__(**kwargs)
         self.name_available = name_available
         self.reason = reason
@@ -63,8 +74,8 @@ class CustomDomain(Model):
 
     :param name: Gets or sets the custom domain name. Name is the CNAME source.
     :type name: str
-    :param use_sub_domain: Indicates whether indirect CName validation is enabled.
-     Default value is false. This should only be set on updates.
+    :param use_sub_domain: Indicates whether indirect CName validation is enabled. Default value is
+     false. This should only be set on updates.
     :type use_sub_domain: bool
     """
 
@@ -73,7 +84,13 @@ class CustomDomain(Model):
         'use_sub_domain': {'key': 'useSubDomain', 'type': 'bool'},
     }
 
-    def __init__(self, *, name: str=None, use_sub_domain: bool=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        name: Optional[str] = None,
+        use_sub_domain: Optional[bool] = None,
+        **kwargs
+    ):
         super(CustomDomain, self).__init__(**kwargs)
         self.name = name
         self.use_sub_domain = use_sub_domain
@@ -88,11 +105,11 @@ class Endpoints(Model):
     :type queue: str
     :param table: Gets the table endpoint.
     :type table: str
-    :param dummy_end_point: The URIs that are used to perform a retrieval of a
-     public blob, queue or table object.
+    :param dummy_end_point: The URIs that are used to perform a retrieval of a public blob, queue
+     or table object.
     :type dummy_end_point: ~storage.models.Endpoints
-    :param foo_point: The URIs that are used to perform a retrieval of a public
-     blob, queue or table object.
+    :param foo_point: The URIs that are used to perform a retrieval of a public blob, queue or
+     table object.
     :type foo_point: ~storage.models.Foo
     """
 
@@ -104,7 +121,16 @@ class Endpoints(Model):
         'foo_point': {'key': 'FooPoint', 'type': 'Foo'},
     }
 
-    def __init__(self, *, blob: str=None, queue: str=None, table: str=None, dummy_end_point: "Endpoints"=None, foo_point: "Foo"=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        blob: Optional[str] = None,
+        queue: Optional[str] = None,
+        table: Optional[str] = None,
+        dummy_end_point: Optional["Endpoints"] = None,
+        foo_point: Optional["Foo"] = None,
+        **kwargs
+    ):
         super(Endpoints, self).__init__(**kwargs)
         self.blob = blob
         self.queue = queue
@@ -116,8 +142,8 @@ class Endpoints(Model):
 class Foo(Model):
     """The URIs that are used to perform a retrieval of a public blob, queue or table object.
 
-    :param bar_point: The URIs that are used to perform a retrieval of a public
-     blob, queue or table object.
+    :param bar_point: The URIs that are used to perform a retrieval of a public blob, queue or
+     table object.
     :type bar_point: ~storage.models.Bar
     """
 
@@ -125,7 +151,12 @@ class Foo(Model):
         'bar_point': {'key': 'Bar\\.Point', 'type': 'Bar'},
     }
 
-    def __init__(self, *, bar_point: "Bar"=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        bar_point: Optional["Bar"] = None,
+        **kwargs
+    ):
         super(Foo, self).__init__(**kwargs)
         self.bar_point = bar_point
 
@@ -164,7 +195,13 @@ class Resource(Model):
         'tags': {'key': 'tags', 'type': '{str}'},
     }
 
-    def __init__(self, *, location: str, tags: Dict[str, str]=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        location: str,
+        tags: Optional[Dict[str, str]] = None,
+        **kwargs
+    ):
         super(Resource, self).__init__(**kwargs)
         self.id = None
         self.name = None
@@ -190,44 +227,40 @@ class StorageAccount(Resource):
     :type location: str
     :param tags: A set of tags. Resource tags.
     :type tags: dict[str, str]
-    :param provisioning_state: Gets the status of the storage account at the time
-     the operation was called. Possible values include: 'Creating', 'ResolvingDNS',
-     'Succeeded'.
+    :param provisioning_state: Gets the status of the storage account at the time the operation was
+     called. Possible values include: 'Creating', 'ResolvingDNS', 'Succeeded'.
     :type provisioning_state: str or ~storage.models.ProvisioningState
-    :param account_type: Gets or sets the account type. Possible values include:
-     'Standard_LRS', 'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
+    :param account_type: Gets or sets the account type. Possible values include: 'Standard_LRS',
+     'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
     :type account_type: str or ~storage.models.AccountType
-    :param primary_endpoints: The URIs that are used to perform a retrieval of a
-     public blob, queue or table object.
+    :param primary_endpoints: The URIs that are used to perform a retrieval of a public blob, queue
+     or table object.
     :type primary_endpoints: ~storage.models.Endpoints
-    :param primary_location: Gets the location of the primary for the storage
-     account.
+    :param primary_location: Gets the location of the primary for the storage account.
     :type primary_location: str
-    :param status_of_primary: Gets the status indicating whether the primary
-     location of the storage account is available or unavailable. Possible values
-     include: 'Available', 'Unavailable'.
+    :param status_of_primary: Gets the status indicating whether the primary location of the
+     storage account is available or unavailable. Possible values include: 'Available',
+     'Unavailable'.
     :type status_of_primary: str or ~storage.models.AccountStatus
-    :param last_geo_failover_time: Gets the timestamp of the most recent instance of
-     a failover to the secondary location. Only the most recent timestamp is
-     retained. This element is not returned if there has never been a failover
-     instance. Only available if the accountType is StandardGRS or StandardRAGRS.
+    :param last_geo_failover_time: Gets the timestamp of the most recent instance of a failover to
+     the secondary location. Only the most recent timestamp is retained. This element is not
+     returned if there has never been a failover instance. Only available if the accountType is
+     StandardGRS or StandardRAGRS.
     :type last_geo_failover_time: ~datetime.datetime
-    :param secondary_location: Gets the location of the geo replicated secondary for
-     the storage account. Only available if the accountType is StandardGRS or
-     StandardRAGRS.
+    :param secondary_location: Gets the location of the geo replicated secondary for the storage
+     account. Only available if the accountType is StandardGRS or StandardRAGRS.
     :type secondary_location: str
-    :param status_of_secondary: Gets the status indicating whether the primary
-     location of the storage account is available or unavailable. Possible values
-     include: 'Available', 'Unavailable'.
+    :param status_of_secondary: Gets the status indicating whether the primary location of the
+     storage account is available or unavailable. Possible values include: 'Available',
+     'Unavailable'.
     :type status_of_secondary: str or ~storage.models.AccountStatus
-    :param creation_time: Gets the creation date and time of the storage account in
-     UTC.
+    :param creation_time: Gets the creation date and time of the storage account in UTC.
     :type creation_time: ~datetime.datetime
-    :param custom_domain: The custom domain assigned to this storage account. This
-     can be set via Update.
+    :param custom_domain: The custom domain assigned to this storage account. This can be set via
+     Update.
     :type custom_domain: ~storage.models.CustomDomain
-    :param secondary_endpoints: The URIs that are used to perform a retrieval of a
-     public blob, queue or table object.
+    :param secondary_endpoints: The URIs that are used to perform a retrieval of a public blob,
+     queue or table object.
     :type secondary_endpoints: ~storage.models.Endpoints
     """
 
@@ -257,7 +290,24 @@ class StorageAccount(Resource):
         'secondary_endpoints': {'key': 'properties.secondaryEndpoints', 'type': 'Endpoints'},
     }
 
-    def __init__(self, *, location: str, tags: Dict[str, str]=None, provisioning_state: Union[str, "ProvisioningState"]=None, account_type: Union[str, "AccountType"]=None, primary_endpoints: "Endpoints"=None, primary_location: str=None, status_of_primary: Union[str, "AccountStatus"]=None, last_geo_failover_time: datetime.datetime=None, secondary_location: str=None, status_of_secondary: Union[str, "AccountStatus"]=None, creation_time: datetime.datetime=None, custom_domain: "CustomDomain"=None, secondary_endpoints: "Endpoints"=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        location: str,
+        tags: Optional[Dict[str, str]] = None,
+        provisioning_state: Optional[Union[str, "ProvisioningState"]] = None,
+        account_type: Optional[Union[str, "AccountType"]] = None,
+        primary_endpoints: Optional["Endpoints"] = None,
+        primary_location: Optional[str] = None,
+        status_of_primary: Optional[Union[str, "AccountStatus"]] = None,
+        last_geo_failover_time: Optional[datetime.datetime] = None,
+        secondary_location: Optional[str] = None,
+        status_of_secondary: Optional[Union[str, "AccountStatus"]] = None,
+        creation_time: Optional[datetime.datetime] = None,
+        custom_domain: Optional["CustomDomain"] = None,
+        secondary_endpoints: Optional["Endpoints"] = None,
+        **kwargs
+    ):
         super(StorageAccount, self).__init__(location=location, tags=tags, **kwargs)
         self.provisioning_state = provisioning_state
         self.account_type = account_type
@@ -292,7 +342,13 @@ class StorageAccountCheckNameAvailabilityParameters(Model):
         'type': {'key': 'type', 'type': 'str'},
     }
 
-    def __init__(self, *, name: str, type: str="Microsoft.Storage/storageAccounts", **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        name: str,
+        type: Optional[str] = "Microsoft.Storage/storageAccounts",
+        **kwargs
+    ):
         super(StorageAccountCheckNameAvailabilityParameters, self).__init__(**kwargs)
         self.name = name
         self.type = type
@@ -315,8 +371,8 @@ class StorageAccountCreateParameters(Resource):
     :type location: str
     :param tags: A set of tags. Resource tags.
     :type tags: dict[str, str]
-    :param account_type: Gets or sets the account type. Possible values include:
-     'Standard_LRS', 'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
+    :param account_type: Gets or sets the account type. Possible values include: 'Standard_LRS',
+     'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
     :type account_type: str or ~storage.models.AccountType
     """
 
@@ -336,7 +392,14 @@ class StorageAccountCreateParameters(Resource):
         'account_type': {'key': 'properties.accountType', 'type': 'str'},
     }
 
-    def __init__(self, *, location: str, tags: Dict[str, str]=None, account_type: Union[str, "AccountType"]=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        location: str,
+        tags: Optional[Dict[str, str]] = None,
+        account_type: Optional[Union[str, "AccountType"]] = None,
+        **kwargs
+    ):
         super(StorageAccountCreateParameters, self).__init__(location=location, tags=tags, **kwargs)
         self.account_type = account_type
 
@@ -355,7 +418,13 @@ class StorageAccountKeys(Model):
         'key2': {'key': 'key2', 'type': 'str'},
     }
 
-    def __init__(self, *, key1: str=None, key2: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        key1: Optional[str] = None,
+        key2: Optional[str] = None,
+        **kwargs
+    ):
         super(StorageAccountKeys, self).__init__(**kwargs)
         self.key1 = key1
         self.key2 = key2
@@ -366,8 +435,8 @@ class StorageAccountListResult(Model):
 
     :param value: Gets the list of storage accounts and their properties.
     :type value: list[~storage.models.StorageAccount]
-    :param next_link: Gets the link to the next set of results. Currently this will
-     always be empty as the API does not support pagination.
+    :param next_link: Gets the link to the next set of results. Currently this will always be empty
+     as the API does not support pagination.
     :type next_link: str
     """
 
@@ -376,7 +445,13 @@ class StorageAccountListResult(Model):
         'next_link': {'key': 'nextLink', 'type': 'str'},
     }
 
-    def __init__(self, *, value: List["StorageAccount"]=None, next_link: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        value: Optional[List["StorageAccount"]] = None,
+        next_link: Optional[str] = None,
+        **kwargs
+    ):
         super(StorageAccountListResult, self).__init__(**kwargs)
         self.value = value
         self.next_link = next_link
@@ -385,44 +460,40 @@ class StorageAccountListResult(Model):
 class StorageAccountProperties(Model):
     """StorageAccountProperties.
 
-    :param provisioning_state: Gets the status of the storage account at the time
-     the operation was called. Possible values include: 'Creating', 'ResolvingDNS',
-     'Succeeded'.
+    :param provisioning_state: Gets the status of the storage account at the time the operation was
+     called. Possible values include: 'Creating', 'ResolvingDNS', 'Succeeded'.
     :type provisioning_state: str or ~storage.models.ProvisioningState
-    :param account_type: Gets or sets the account type. Possible values include:
-     'Standard_LRS', 'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
+    :param account_type: Gets or sets the account type. Possible values include: 'Standard_LRS',
+     'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
     :type account_type: str or ~storage.models.AccountType
-    :param primary_endpoints: The URIs that are used to perform a retrieval of a
-     public blob, queue or table object.
+    :param primary_endpoints: The URIs that are used to perform a retrieval of a public blob, queue
+     or table object.
     :type primary_endpoints: ~storage.models.Endpoints
-    :param primary_location: Gets the location of the primary for the storage
-     account.
+    :param primary_location: Gets the location of the primary for the storage account.
     :type primary_location: str
-    :param status_of_primary: Gets the status indicating whether the primary
-     location of the storage account is available or unavailable. Possible values
-     include: 'Available', 'Unavailable'.
+    :param status_of_primary: Gets the status indicating whether the primary location of the
+     storage account is available or unavailable. Possible values include: 'Available',
+     'Unavailable'.
     :type status_of_primary: str or ~storage.models.AccountStatus
-    :param last_geo_failover_time: Gets the timestamp of the most recent instance of
-     a failover to the secondary location. Only the most recent timestamp is
-     retained. This element is not returned if there has never been a failover
-     instance. Only available if the accountType is StandardGRS or StandardRAGRS.
+    :param last_geo_failover_time: Gets the timestamp of the most recent instance of a failover to
+     the secondary location. Only the most recent timestamp is retained. This element is not
+     returned if there has never been a failover instance. Only available if the accountType is
+     StandardGRS or StandardRAGRS.
     :type last_geo_failover_time: ~datetime.datetime
-    :param secondary_location: Gets the location of the geo replicated secondary for
-     the storage account. Only available if the accountType is StandardGRS or
-     StandardRAGRS.
+    :param secondary_location: Gets the location of the geo replicated secondary for the storage
+     account. Only available if the accountType is StandardGRS or StandardRAGRS.
     :type secondary_location: str
-    :param status_of_secondary: Gets the status indicating whether the primary
-     location of the storage account is available or unavailable. Possible values
-     include: 'Available', 'Unavailable'.
+    :param status_of_secondary: Gets the status indicating whether the primary location of the
+     storage account is available or unavailable. Possible values include: 'Available',
+     'Unavailable'.
     :type status_of_secondary: str or ~storage.models.AccountStatus
-    :param creation_time: Gets the creation date and time of the storage account in
-     UTC.
+    :param creation_time: Gets the creation date and time of the storage account in UTC.
     :type creation_time: ~datetime.datetime
-    :param custom_domain: The custom domain assigned to this storage account. This
-     can be set via Update.
+    :param custom_domain: The custom domain assigned to this storage account. This can be set via
+     Update.
     :type custom_domain: ~storage.models.CustomDomain
-    :param secondary_endpoints: The URIs that are used to perform a retrieval of a
-     public blob, queue or table object.
+    :param secondary_endpoints: The URIs that are used to perform a retrieval of a public blob,
+     queue or table object.
     :type secondary_endpoints: ~storage.models.Endpoints
     """
 
@@ -440,7 +511,22 @@ class StorageAccountProperties(Model):
         'secondary_endpoints': {'key': 'secondaryEndpoints', 'type': 'Endpoints'},
     }
 
-    def __init__(self, *, provisioning_state: Union[str, "ProvisioningState"]=None, account_type: Union[str, "AccountType"]=None, primary_endpoints: "Endpoints"=None, primary_location: str=None, status_of_primary: Union[str, "AccountStatus"]=None, last_geo_failover_time: datetime.datetime=None, secondary_location: str=None, status_of_secondary: Union[str, "AccountStatus"]=None, creation_time: datetime.datetime=None, custom_domain: "CustomDomain"=None, secondary_endpoints: "Endpoints"=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        provisioning_state: Optional[Union[str, "ProvisioningState"]] = None,
+        account_type: Optional[Union[str, "AccountType"]] = None,
+        primary_endpoints: Optional["Endpoints"] = None,
+        primary_location: Optional[str] = None,
+        status_of_primary: Optional[Union[str, "AccountStatus"]] = None,
+        last_geo_failover_time: Optional[datetime.datetime] = None,
+        secondary_location: Optional[str] = None,
+        status_of_secondary: Optional[Union[str, "AccountStatus"]] = None,
+        creation_time: Optional[datetime.datetime] = None,
+        custom_domain: Optional["CustomDomain"] = None,
+        secondary_endpoints: Optional["Endpoints"] = None,
+        **kwargs
+    ):
         super(StorageAccountProperties, self).__init__(**kwargs)
         self.provisioning_state = provisioning_state
         self.account_type = account_type
@@ -458,8 +544,8 @@ class StorageAccountProperties(Model):
 class StorageAccountPropertiesCreateParameters(Model):
     """StorageAccountPropertiesCreateParameters.
 
-    :param account_type: Gets or sets the account type. Possible values include:
-     'Standard_LRS', 'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
+    :param account_type: Gets or sets the account type. Possible values include: 'Standard_LRS',
+     'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
     :type account_type: str or ~storage.models.AccountType
     """
 
@@ -467,7 +553,12 @@ class StorageAccountPropertiesCreateParameters(Model):
         'account_type': {'key': 'accountType', 'type': 'str'},
     }
 
-    def __init__(self, *, account_type: Union[str, "AccountType"]=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        account_type: Optional[Union[str, "AccountType"]] = None,
+        **kwargs
+    ):
         super(StorageAccountPropertiesCreateParameters, self).__init__(**kwargs)
         self.account_type = account_type
 
@@ -475,11 +566,11 @@ class StorageAccountPropertiesCreateParameters(Model):
 class StorageAccountPropertiesUpdateParameters(Model):
     """StorageAccountPropertiesUpdateParameters.
 
-    :param account_type: Gets or sets the account type. Possible values include:
-     'Standard_LRS', 'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
+    :param account_type: Gets or sets the account type. Possible values include: 'Standard_LRS',
+     'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
     :type account_type: str or ~storage.models.AccountType
-    :param custom_domain: The custom domain assigned to this storage account. This
-     can be set via Update.
+    :param custom_domain: The custom domain assigned to this storage account. This can be set via
+     Update.
     :type custom_domain: ~storage.models.CustomDomain
     """
 
@@ -488,7 +579,13 @@ class StorageAccountPropertiesUpdateParameters(Model):
         'custom_domain': {'key': 'customDomain', 'type': 'CustomDomain'},
     }
 
-    def __init__(self, *, account_type: Union[str, "AccountType"]=None, custom_domain: "CustomDomain"=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        account_type: Optional[Union[str, "AccountType"]] = None,
+        custom_domain: Optional["CustomDomain"] = None,
+        **kwargs
+    ):
         super(StorageAccountPropertiesUpdateParameters, self).__init__(**kwargs)
         self.account_type = account_type
         self.custom_domain = custom_domain
@@ -505,7 +602,12 @@ class StorageAccountRegenerateKeyParameters(Model):
         'key_name': {'key': 'keyName', 'type': 'str'},
     }
 
-    def __init__(self, *, key_name: Union[str, "KeyName"]=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        key_name: Optional[Union[str, "KeyName"]] = None,
+        **kwargs
+    ):
         super(StorageAccountRegenerateKeyParameters, self).__init__(**kwargs)
         self.key_name = key_name
 
@@ -527,11 +629,11 @@ class StorageAccountUpdateParameters(Resource):
     :type location: str
     :param tags: A set of tags. Resource tags.
     :type tags: dict[str, str]
-    :param account_type: Gets or sets the account type. Possible values include:
-     'Standard_LRS', 'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
+    :param account_type: Gets or sets the account type. Possible values include: 'Standard_LRS',
+     'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
     :type account_type: str or ~storage.models.AccountType
-    :param custom_domain: The custom domain assigned to this storage account. This
-     can be set via Update.
+    :param custom_domain: The custom domain assigned to this storage account. This can be set via
+     Update.
     :type custom_domain: ~storage.models.CustomDomain
     """
 
@@ -552,7 +654,15 @@ class StorageAccountUpdateParameters(Resource):
         'custom_domain': {'key': 'properties.customDomain', 'type': 'CustomDomain'},
     }
 
-    def __init__(self, *, location: str, tags: Dict[str, str]=None, account_type: Union[str, "AccountType"]=None, custom_domain: "CustomDomain"=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        location: str,
+        tags: Optional[Dict[str, str]] = None,
+        account_type: Optional[Union[str, "AccountType"]] = None,
+        custom_domain: Optional["CustomDomain"] = None,
+        **kwargs
+    ):
         super(StorageAccountUpdateParameters, self).__init__(location=location, tags=tags, **kwargs)
         self.account_type = account_type
         self.custom_domain = custom_domain
@@ -569,7 +679,12 @@ class SubResource(Model):
         'id': {'key': 'id', 'type': 'str'},
     }
 
-    def __init__(self, *, id: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        id: Optional[str] = None,
+        **kwargs
+    ):
         super(SubResource, self).__init__(**kwargs)
         self.id = id
 
@@ -577,14 +692,13 @@ class SubResource(Model):
 class Usage(Model):
     """Describes Storage Resource Usage.
 
-    :param unit: Gets the unit of measurement. Possible values include: 'Count',
-     'Bytes', 'Seconds', 'Percent', 'CountsPerSecond', 'BytesPerSecond'.
+    :param unit: Gets the unit of measurement. Possible values include: 'Count', 'Bytes',
+     'Seconds', 'Percent', 'CountsPerSecond', 'BytesPerSecond'.
     :type unit: str or ~storage.models.UsageUnit
-    :param current_value: Gets the current count of the allocated resources in the
-     subscription.
+    :param current_value: Gets the current count of the allocated resources in the subscription.
     :type current_value: int
-    :param limit: Gets the maximum count of the resources that can be allocated in
-     the subscription.
+    :param limit: Gets the maximum count of the resources that can be allocated in the
+     subscription.
     :type limit: int
     :param name: The Usage Names.
     :type name: ~storage.models.UsageName
@@ -597,7 +711,15 @@ class Usage(Model):
         'name': {'key': 'name', 'type': 'UsageName'},
     }
 
-    def __init__(self, *, unit: Union[str, "UsageUnit"]=None, current_value: int=None, limit: int=None, name: "UsageName"=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        unit: Optional[Union[str, "UsageUnit"]] = None,
+        current_value: Optional[int] = None,
+        limit: Optional[int] = None,
+        name: Optional["UsageName"] = None,
+        **kwargs
+    ):
         super(Usage, self).__init__(**kwargs)
         self.unit = unit
         self.current_value = current_value
@@ -616,7 +738,12 @@ class UsageListResult(Model):
         'value': {'key': 'value', 'type': '[Usage]'},
     }
 
-    def __init__(self, *, value: List["Usage"]=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        value: Optional[List["Usage"]] = None,
+        **kwargs
+    ):
         super(UsageListResult, self).__init__(**kwargs)
         self.value = value
 
@@ -635,7 +762,13 @@ class UsageName(Model):
         'localized_value': {'key': 'localizedValue', 'type': 'str'},
     }
 
-    def __init__(self, *, value: str=None, localized_value: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        value: Optional[str] = None,
+        localized_value: Optional[str] = None,
+        **kwargs
+    ):
         super(UsageName, self).__init__(**kwargs)
         self.value = value
         self.localized_value = localized_value

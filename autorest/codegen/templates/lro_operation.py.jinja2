@@ -3,28 +3,59 @@
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set async_prefix = "Async" if async_mode else "" %}
 {% set poller = "async_poller" if async_mode else "LROPoller" %}
+{% set operation_name = operation.python_name if async_mode else "begin_"+operation.python_name %}
+{% macro method_signature() %}
+{% if async_mode %}
+async def {{ operation_name }}(
+    self,
+    {% for param_signature in operation.parameters.async_method_signature %}
+    {{ param_signature }},
+    {% endfor %}
+    {% if operation.parameters.method | first %}
+    *,
+    {% endif %}
+    cls: ClsType[{{ keywords.return_type_annotation(operation) }}] = None,
+    polling: Optional[bool] = True,
+    **kwargs
+){{ keywords.async_return_type_annotation(operation) }}:
+{% else %}
+def {{ operation_name }}(
+    self,
+    {% for param_signature in operation.parameters.sync_method_signature %}
+    {{ param_signature }}
+    {% endfor %}
+    cls=None,  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
+    polling=True,  # type: Optional[bool]
+    **kwargs  # type: Any
+):
+{% endif %}{% endmacro %}
 {% macro return_docstring() %}
 :return: An instance of LROPoller that returns {{ operation.responses[0].schema.name if operation.responses[0].has_body else "None"}}
     :rtype: ~azure.core.polling.LROPoller[{{ operation.responses[0].schema.docstring_type if operation.responses[0].has_body else "None" }}]
 {% endmacro %}
+{% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 {% macro exception_name() %}{{ operation.exceptions[0].schema.name }}Exception{% endmacro %}
 {% macro response_headers(response) %}
 response_headers = {
     {% for response_header in response.headers %}
-    '{{ response_header.name }}': self._deserialize('{{ response_header.schema.get_serialization_type() }}', response.headers.get('{{ response_header.name }}')),
+    '{{ response_header.name }}': self._deserialize('{{ response_header.schema.serialization_type }}', response.headers.get('{{ response_header.name }}')),
     {% endfor %}
 }
 {% endmacro %}
 {% set lro_options = (", lro_options={'final-state-via': '"+ operation.lro_options['final-state-via'] + "'}") if operation.lro_options else "" %}
-{% set operation_name = operation.python_name if async_mode else "begin_"+operation.python_name %}
 {# actual template starts here #}
 {% if code_model.options['tracing'] %}
 {{ trace_decorator }}
 {% endif %}
-{{ keywords.def }} {{ operation_name }}(self{{ operation.parameters.method_signature }}, cls=None, polling=True, **kwargs):
+{{ method_signature() }}
+{%- if not async_mode %}
+    {{ keywords.sync_return_type_annotation(operation) }}
+{% endif %}
     """{{operation.description }}
+    {% if operation.summary %}
 
-    {{ "FIXME: add operation.summary\n" }}
+    {{ operation.summary | wordwrap(width=95, break_long_words=False, wrapstring='\n    ') }}
+    {% endif %}
 
 {% if operation.deprecated -%}
     .. warning::
@@ -32,7 +63,9 @@ response_headers = {
 
 {% endif -%}
 {% for parameter in operation.parameters.method %}
-    :param {{ parameter.serialized_name }}: {{ parameter.description }}
+    {%- for doc_string in param_documentation_string(parameter).replace('\n', '\n ').split('\n') %}
+    {{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n     ')}}
+    {% endfor %}
     :type {{ parameter.serialized_name }}: {{ parameter.schema.docstring_type }}
 {% endfor %}
     :param callable cls: A custom type or function that will be passed the direct response
@@ -57,15 +90,16 @@ response_headers = {
         **kwargs
     )
 
-    def get_long_running_output(response):
+    def get_long_running_output(pipeline_response):
         {% if operation.lro_response.has_headers %}
         response_headers = {}
+        response = pipeline_response.http_response
         {% endif %}
         {% if operation.lro_response %}
         {{ response_handling(operation.lro_response)|indent(8) }}
         {% endif %}
         if cls:
-            return cls(response, {{ 'deserialized' if operation.lro_response.has_body else 'None'}}, {{ 'response_headers' if operation.lro_response.has_headers else '{}' }})
+            return cls(pipeline_response, {{ 'deserialized' if operation.lro_response.has_body else 'None'}}, {{ 'response_headers' if operation.lro_response.has_headers else '{}' }})
         {% if operation.lro_response.has_body %}
         return deserialized
         {% endif %}

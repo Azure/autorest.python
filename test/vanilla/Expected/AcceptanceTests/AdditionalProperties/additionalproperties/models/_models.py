@@ -17,8 +17,8 @@ class PetAPTrue(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param additional_properties: Unmatched properties from the message are
-     deserialized to this collection.
+    :param additional_properties: Unmatched properties from the message are deserialized to this
+     collection.
     :type additional_properties: dict[str, object]
     :param id: Required.
     :type id: int
@@ -40,7 +40,10 @@ class PetAPTrue(Model):
         'status': {'key': 'status', 'type': 'bool'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(PetAPTrue, self).__init__(**kwargs)
         self.additional_properties = kwargs.get('additional_properties', None)
         self.id = kwargs.get('id', None)
@@ -55,8 +58,8 @@ class CatAPTrue(PetAPTrue):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param additional_properties: Unmatched properties from the message are
-     deserialized to this collection.
+    :param additional_properties: Unmatched properties from the message are deserialized to this
+     collection.
     :type additional_properties: dict[str, object]
     :param id: Required.
     :type id: int
@@ -81,7 +84,10 @@ class CatAPTrue(PetAPTrue):
         'friendly': {'key': 'friendly', 'type': 'bool'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(CatAPTrue, self).__init__(**kwargs)
         self.friendly = kwargs.get('friendly', None)
 
@@ -126,7 +132,10 @@ class Error(Model):
         'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
@@ -162,7 +171,10 @@ class PetAPInProperties(Model):
         'additional_properties': {'key': 'additionalProperties', 'type': '{float}'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(PetAPInProperties, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
@@ -177,8 +189,8 @@ class PetAPInPropertiesWithAPString(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param additional_properties: Unmatched properties from the message are
-     deserialized to this collection.
+    :param additional_properties: Unmatched properties from the message are deserialized to this
+     collection.
     :type additional_properties: dict[str, str]
     :param id: Required.
     :type id: int
@@ -208,7 +220,10 @@ class PetAPInPropertiesWithAPString(Model):
         'additional_properties1': {'key': 'additionalProperties', 'type': '{float}'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(PetAPInPropertiesWithAPString, self).__init__(**kwargs)
         self.additional_properties = kwargs.get('additional_properties', None)
         self.id = kwargs.get('id', None)
@@ -225,8 +240,8 @@ class PetAPObject(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param additional_properties: Unmatched properties from the message are
-     deserialized to this collection.
+    :param additional_properties: Unmatched properties from the message are deserialized to this
+     collection.
     :type additional_properties: dict[str, object]
     :param id: Required.
     :type id: int
@@ -248,7 +263,10 @@ class PetAPObject(Model):
         'status': {'key': 'status', 'type': 'bool'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(PetAPObject, self).__init__(**kwargs)
         self.additional_properties = kwargs.get('additional_properties', None)
         self.id = kwargs.get('id', None)
@@ -263,8 +281,8 @@ class PetAPString(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param additional_properties: Unmatched properties from the message are
-     deserialized to this collection.
+    :param additional_properties: Unmatched properties from the message are deserialized to this
+     collection.
     :type additional_properties: dict[str, str]
     :param id: Required.
     :type id: int
@@ -286,7 +304,10 @@ class PetAPString(Model):
         'status': {'key': 'status', 'type': 'bool'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(PetAPString, self).__init__(**kwargs)
         self.additional_properties = kwargs.get('additional_properties', None)
         self.id = kwargs.get('id', None)

@@ -6,6 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import Any, Optional
+
 from azure.core import AsyncPipelineClient
 from msrest import Deserializer, Serializer
 
@@ -31,7 +33,14 @@ class AutoRestRequiredOptionalTestService(object):
     :param str base_url: Service URL
     """
 
-    def __init__(self, required_global_path, required_global_query, optional_global_query=None, base_url=None, **kwargs):
+    def __init__(
+        self,
+        required_global_path: str,
+        required_global_query: str,
+        optional_global_query: Optional[int] = None,
+        base_url: Optional[str] = None,
+        **kwargs: Any
+    ) -> None:
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestRequiredOptionalTestServiceConfiguration(required_global_path, required_global_query, optional_global_query, **kwargs)
@@ -46,12 +55,12 @@ class AutoRestRequiredOptionalTestService(object):
         self.explicit = ExplicitOperations(
             self._client, self._config, self._serialize, self._deserialize)
 
-    async def close(self):
+    async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self):
+    async def __aenter__(self) -> "AutoRestRequiredOptionalTestService":
         await self._client.__aenter__()
         return self
 
-    async def __aexit__(self, *exc_details):
+    async def __aexit__(self, *exc_details) -> None:
         await self._client.__aexit__(*exc_details)

@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 import datetime
-from typing import Dict, List, Union
+from typing import Dict, List, Optional, Union
 
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
@@ -38,7 +38,14 @@ class AccessPolicy(Model):
         'permission': {'key': 'Permission', 'type': 'str'},
     }
 
-    def __init__(self, *, start: datetime.datetime, expiry: datetime.datetime, permission: str, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        start: datetime.datetime,
+        expiry: datetime.datetime,
+        permission: str,
+        **kwargs
+    ):
         super(AccessPolicy, self).__init__(**kwargs)
         self.start = start
         self.expiry = expiry
@@ -55,11 +62,17 @@ class AppleBarrel(Model):
     """
 
     _attribute_map = {
-        'good_apples': {'key': 'GoodApples', 'type': '[str]'},
-        'bad_apples': {'key': 'BadApples', 'type': '[str]'},
+        'good_apples': {'key': 'GoodApples', 'type': '[str]', 'xml': {'wrapped': True, 'itemsName': 'Apple'}},
+        'bad_apples': {'key': 'BadApples', 'type': '[str]', 'xml': {'wrapped': True, 'itemsName': 'Apple'}},
     }
 
-    def __init__(self, *, good_apples: List[str]=None, bad_apples: List[str]=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        good_apples: Optional[List[str]] = None,
+        bad_apples: Optional[List[str]] = None,
+        **kwargs
+    ):
         super(AppleBarrel, self).__init__(**kwargs)
         self.good_apples = good_apples
         self.bad_apples = bad_apples
@@ -77,12 +90,22 @@ class Banana(Model):
     """
 
     _attribute_map = {
-        'name': {'key': 'name', 'type': 'str'},
-        'flavor': {'key': 'flavor', 'type': 'str'},
-        'expiration': {'key': 'expiration', 'type': 'iso-8601'},
+        'name': {'key': 'name', 'type': 'str', 'xml': {'name': 'name'}},
+        'flavor': {'key': 'flavor', 'type': 'str', 'xml': {'name': 'flavor'}},
+        'expiration': {'key': 'expiration', 'type': 'iso-8601', 'xml': {'name': 'expiration'}},
+    }
+    _xml_map = {
+        'name': 'banana'
     }
 
-    def __init__(self, *, name: str=None, flavor: str=None, expiration: datetime.datetime=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        name: Optional[str] = None,
+        flavor: Optional[str] = None,
+        expiration: Optional[datetime.datetime] = None,
+        **kwargs
+    ):
         super(Banana, self).__init__(**kwargs)
         self.name = name
         self.flavor = flavor
@@ -121,8 +144,20 @@ class Blob(Model):
         'properties': {'key': 'Properties', 'type': 'BlobProperties'},
         'metadata': {'key': 'Metadata', 'type': '{str}'},
     }
+    _xml_map = {
+        'name': 'Blob'
+    }
 
-    def __init__(self, *, name: str, deleted: bool, snapshot: str, properties: "BlobProperties", metadata: Dict[str, str]=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        name: str,
+        deleted: bool,
+        snapshot: str,
+        properties: "BlobProperties",
+        metadata: Optional[Dict[str, str]] = None,
+        **kwargs
+    ):
         super(Blob, self).__init__(**kwargs)
         self.name = name
         self.deleted = deleted
@@ -148,7 +183,12 @@ class BlobPrefix(Model):
         'name': {'key': 'Name', 'type': 'str'},
     }
 
-    def __init__(self, *, name: str, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        name: str,
+        **kwargs
+    ):
         super(BlobPrefix, self).__init__(**kwargs)
         self.name = name
 
@@ -178,20 +218,18 @@ class BlobProperties(Model):
     :type cache_control: str
     :param blob_sequence_number:
     :type blob_sequence_number: int
-    :param blob_type:  Possible values include: 'BlockBlob', 'PageBlob',
-     'AppendBlob'.
+    :param blob_type:  Possible values include: 'BlockBlob', 'PageBlob', 'AppendBlob'.
     :type blob_type: str or ~xmlservice.models.BlobType
     :param lease_status:  Possible values include: 'locked', 'unlocked'.
     :type lease_status: str or ~xmlservice.models.LeaseStatusType
-    :param lease_state:  Possible values include: 'available', 'leased', 'expired',
-     'breaking', 'broken'.
+    :param lease_state:  Possible values include: 'available', 'leased', 'expired', 'breaking',
+     'broken'.
     :type lease_state: str or ~xmlservice.models.LeaseStateType
     :param lease_duration:  Possible values include: 'infinite', 'fixed'.
     :type lease_duration: str or ~xmlservice.models.LeaseDurationType
     :param copy_id:
     :type copy_id: str
-    :param copy_status:  Possible values include: 'pending', 'success', 'aborted',
-     'failed'.
+    :param copy_status:  Possible values include: 'pending', 'success', 'aborted', 'failed'.
     :type copy_status: str or ~xmlservice.models.CopyStatusType
     :param copy_source:
     :type copy_source: str
@@ -211,13 +249,13 @@ class BlobProperties(Model):
     :type deleted_time: ~datetime.datetime
     :param remaining_retention_days:
     :type remaining_retention_days: int
-    :param access_tier:  Possible values include: 'P4', 'P6', 'P10', 'P20', 'P30',
-     'P40', 'P50', 'Hot', 'Cool', 'Archive'.
+    :param access_tier:  Possible values include: 'P4', 'P6', 'P10', 'P20', 'P30', 'P40', 'P50',
+     'Hot', 'Cool', 'Archive'.
     :type access_tier: str or ~xmlservice.models.AccessTier
     :param access_tier_inferred:
     :type access_tier_inferred: bool
-    :param archive_status:  Possible values include: 'rehydrate-pending-to-hot',
-     'rehydrate-pending-to-cool'.
+    :param archive_status:  Possible values include: 'rehydrate-pending-to-hot', 'rehydrate-
+     pending-to-cool'.
     :type archive_status: str or ~xmlservice.models.ArchiveStatus
     """
 
@@ -257,7 +295,39 @@ class BlobProperties(Model):
         'archive_status': {'key': 'ArchiveStatus', 'type': 'str'},
     }
 
-    def __init__(self, *, last_modified: datetime.datetime, etag: str, content_length: int=None, content_type: str=None, content_encoding: str=None, content_language: str=None, content_md5: str=None, content_disposition: str=None, cache_control: str=None, blob_sequence_number: int=None, blob_type: Union[str, "BlobType"]=None, lease_status: Union[str, "LeaseStatusType"]=None, lease_state: Union[str, "LeaseStateType"]=None, lease_duration: Union[str, "LeaseDurationType"]=None, copy_id: str=None, copy_status: Union[str, "CopyStatusType"]=None, copy_source: str=None, copy_progress: str=None, copy_completion_time: datetime.datetime=None, copy_status_description: str=None, server_encrypted: bool=None, incremental_copy: bool=None, destination_snapshot: str=None, deleted_time: datetime.datetime=None, remaining_retention_days: int=None, access_tier: Union[str, "AccessTier"]=None, access_tier_inferred: bool=None, archive_status: Union[str, "ArchiveStatus"]=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        last_modified: datetime.datetime,
+        etag: str,
+        content_length: Optional[int] = None,
+        content_type: Optional[str] = None,
+        content_encoding: Optional[str] = None,
+        content_language: Optional[str] = None,
+        content_md5: Optional[str] = None,
+        content_disposition: Optional[str] = None,
+        cache_control: Optional[str] = None,
+        blob_sequence_number: Optional[int] = None,
+        blob_type: Optional[Union[str, "BlobType"]] = None,
+        lease_status: Optional[Union[str, "LeaseStatusType"]] = None,
+        lease_state: Optional[Union[str, "LeaseStateType"]] = None,
+        lease_duration: Optional[Union[str, "LeaseDurationType"]] = None,
+        copy_id: Optional[str] = None,
+        copy_status: Optional[Union[str, "CopyStatusType"]] = None,
+        copy_source: Optional[str] = None,
+        copy_progress: Optional[str] = None,
+        copy_completion_time: Optional[datetime.datetime] = None,
+        copy_status_description: Optional[str] = None,
+        server_encrypted: Optional[bool] = None,
+        incremental_copy: Optional[bool] = None,
+        destination_snapshot: Optional[str] = None,
+        deleted_time: Optional[datetime.datetime] = None,
+        remaining_retention_days: Optional[int] = None,
+        access_tier: Optional[Union[str, "AccessTier"]] = None,
+        access_tier_inferred: Optional[bool] = None,
+        archive_status: Optional[Union[str, "ArchiveStatus"]] = None,
+        **kwargs
+    ):
         super(BlobProperties, self).__init__(**kwargs)
         self.last_modified = last_modified
         self.etag = etag
@@ -303,7 +373,13 @@ class Blobs(Model):
         'blob': {'key': 'Blob', 'type': '[Blob]'},
     }
 
-    def __init__(self, *, blob_prefix: List["BlobPrefix"]=None, blob: List["Blob"]=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        blob_prefix: Optional[List["BlobPrefix"]] = None,
+        blob: Optional[List["Blob"]] = None,
+        **kwargs
+    ):
         super(Blobs, self).__init__(**kwargs)
         self.blob_prefix = blob_prefix
         self.blob = blob
@@ -320,7 +396,12 @@ class ComplexTypeNoMeta(Model):
         'id': {'key': 'ID', 'type': 'str'},
     }
 
-    def __init__(self, *, id: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        id: Optional[str] = None,
+        **kwargs
+    ):
         super(ComplexTypeNoMeta, self).__init__(**kwargs)
         self.id = id
 
@@ -335,8 +416,16 @@ class ComplexTypeWithMeta(Model):
     _attribute_map = {
         'id': {'key': 'ID', 'type': 'str'},
     }
+    _xml_map = {
+        'name': 'XMLComplexTypeWithMeta'
+    }
 
-    def __init__(self, *, id: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        id: Optional[str] = None,
+        **kwargs
+    ):
         super(ComplexTypeWithMeta, self).__init__(**kwargs)
         self.id = id
 
@@ -366,7 +455,14 @@ class Container(Model):
         'metadata': {'key': 'Metadata', 'type': '{str}'},
     }
 
-    def __init__(self, *, name: str, properties: "ContainerProperties", metadata: Dict[str, str]=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        name: str,
+        properties: "ContainerProperties",
+        metadata: Optional[Dict[str, str]] = None,
+        **kwargs
+    ):
         super(Container, self).__init__(**kwargs)
         self.name = name
         self.properties = properties
@@ -384,8 +480,8 @@ class ContainerProperties(Model):
     :type etag: str
     :param lease_status:  Possible values include: 'locked', 'unlocked'.
     :type lease_status: str or ~xmlservice.models.LeaseStatusType
-    :param lease_state:  Possible values include: 'available', 'leased', 'expired',
-     'breaking', 'broken'.
+    :param lease_state:  Possible values include: 'available', 'leased', 'expired', 'breaking',
+     'broken'.
     :type lease_state: str or ~xmlservice.models.LeaseStateType
     :param lease_duration:  Possible values include: 'infinite', 'fixed'.
     :type lease_duration: str or ~xmlservice.models.LeaseDurationType
@@ -407,7 +503,17 @@ class ContainerProperties(Model):
         'public_access': {'key': 'PublicAccess', 'type': 'str'},
     }
 
-    def __init__(self, *, last_modified: datetime.datetime, etag: str, lease_status: Union[str, "LeaseStatusType"]=None, lease_state: Union[str, "LeaseStateType"]=None, lease_duration: Union[str, "LeaseDurationType"]=None, public_access: Union[str, "PublicAccessType"]=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        last_modified: datetime.datetime,
+        etag: str,
+        lease_status: Optional[Union[str, "LeaseStatusType"]] = None,
+        lease_state: Optional[Union[str, "LeaseStateType"]] = None,
+        lease_duration: Optional[Union[str, "LeaseDurationType"]] = None,
+        public_access: Optional[Union[str, "PublicAccessType"]] = None,
+        **kwargs
+    ):
         super(ContainerProperties, self).__init__(**kwargs)
         self.last_modified = last_modified
         self.etag = etag
@@ -422,24 +528,23 @@ class CorsRule(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param allowed_origins: Required. The origin domains that are permitted to make
-     a request against the storage service via CORS. The origin domain is the domain
-     from which the request originates. Note that the origin must be an exact case-
-     sensitive match with the origin that the user age sends to the service. You can
-     also use the wildcard character '*' to allow all origin domains to make requests
-     via CORS.
+    :param allowed_origins: Required. The origin domains that are permitted to make a request
+     against the storage service via CORS. The origin domain is the domain from which the request
+     originates. Note that the origin must be an exact case-sensitive match with the origin that the
+     user age sends to the service. You can also use the wildcard character '*' to allow all origin
+     domains to make requests via CORS.
     :type allowed_origins: str
-    :param allowed_methods: Required. The methods (HTTP request verbs) that the
-     origin domain may use for a CORS request. (comma separated).
+    :param allowed_methods: Required. The methods (HTTP request verbs) that the origin domain may
+     use for a CORS request. (comma separated).
     :type allowed_methods: str
-    :param allowed_headers: Required. the request headers that the origin domain may
-     specify on the CORS request.
+    :param allowed_headers: Required. the request headers that the origin domain may specify on the
+     CORS request.
     :type allowed_headers: str
-    :param exposed_headers: Required. The response headers that may be sent in the
-     response to the CORS request and exposed by the browser to the request issuer.
+    :param exposed_headers: Required. The response headers that may be sent in the response to the
+     CORS request and exposed by the browser to the request issuer.
     :type exposed_headers: str
-    :param max_age_in_seconds: Required. The maximum amount time that a browser
-     should cache the preflight OPTIONS request.
+    :param max_age_in_seconds: Required. The maximum amount time that a browser should cache the
+     preflight OPTIONS request.
     :type max_age_in_seconds: int
     """
 
@@ -458,8 +563,20 @@ class CorsRule(Model):
         'exposed_headers': {'key': 'ExposedHeaders', 'type': 'str'},
         'max_age_in_seconds': {'key': 'MaxAgeInSeconds', 'type': 'int'},
     }
+    _xml_map = {
+        'name': 'CorsRule'
+    }
 
-    def __init__(self, *, allowed_origins: str, allowed_methods: str, allowed_headers: str, exposed_headers: str, max_age_in_seconds: int, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        allowed_origins: str,
+        allowed_methods: str,
+        allowed_headers: str,
+        exposed_headers: str,
+        max_age_in_seconds: int,
+        **kwargs
+    ):
         super(CorsRule, self).__init__(**kwargs)
         self.allowed_origins = allowed_origins
         self.allowed_methods = allowed_methods
@@ -508,7 +625,13 @@ class Error(Model):
         'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, *, status: int=None, message: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        status: Optional[int] = None,
+        message: Optional[str] = None,
+        **kwargs
+    ):
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
@@ -525,7 +648,12 @@ class JSONInput(Model):
         'id': {'key': 'id', 'type': 'int'},
     }
 
-    def __init__(self, *, id: int=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        id: Optional[int] = None,
+        **kwargs
+    ):
         super(JSONInput, self).__init__(**kwargs)
         self.id = id
 
@@ -541,7 +669,12 @@ class JSONOutput(Model):
         'id': {'key': 'id', 'type': 'int'},
     }
 
-    def __init__(self, *, id: int=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        id: Optional[int] = None,
+        **kwargs
+    ):
         super(JSONOutput, self).__init__(**kwargs)
         self.id = id
 
@@ -581,8 +714,8 @@ class ListBlobsResponse(Model):
     }
 
     _attribute_map = {
-        'service_endpoint': {'key': 'ServiceEndpoint', 'type': 'str'},
-        'container_name': {'key': 'ContainerName', 'type': 'str'},
+        'service_endpoint': {'key': 'ServiceEndpoint', 'type': 'str', 'xml': {'attr': True}},
+        'container_name': {'key': 'ContainerName', 'type': 'str', 'xml': {'attr': True}},
         'prefix': {'key': 'Prefix', 'type': 'str'},
         'marker': {'key': 'Marker', 'type': 'str'},
         'max_results': {'key': 'MaxResults', 'type': 'int'},
@@ -590,8 +723,23 @@ class ListBlobsResponse(Model):
         'blobs': {'key': 'Blobs', 'type': 'Blobs'},
         'next_marker': {'key': 'NextMarker', 'type': 'str'},
     }
+    _xml_map = {
+        'name': 'EnumerationResults'
+    }
 
-    def __init__(self, *, service_endpoint: str, container_name: str, prefix: str, marker: str, max_results: int, delimiter: str, blobs: "Blobs", next_marker: str, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        service_endpoint: str,
+        container_name: str,
+        prefix: str,
+        marker: str,
+        max_results: int,
+        delimiter: str,
+        blobs: "Blobs",
+        next_marker: str,
+        **kwargs
+    ):
         super(ListBlobsResponse, self).__init__(**kwargs)
         self.service_endpoint = service_endpoint
         self.container_name = container_name
@@ -630,15 +778,28 @@ class ListContainersResponse(Model):
     }
 
     _attribute_map = {
-        'service_endpoint': {'key': 'ServiceEndpoint', 'type': 'str'},
+        'service_endpoint': {'key': 'ServiceEndpoint', 'type': 'str', 'xml': {'attr': True}},
         'prefix': {'key': 'Prefix', 'type': 'str'},
         'marker': {'key': 'Marker', 'type': 'str'},
         'max_results': {'key': 'MaxResults', 'type': 'int'},
-        'containers': {'key': 'Containers', 'type': '[Container]'},
+        'containers': {'key': 'Containers', 'type': '[Container]', 'xml': {'wrapped': True}},
         'next_marker': {'key': 'NextMarker', 'type': 'str'},
     }
+    _xml_map = {
+        'name': 'EnumerationResults'
+    }
 
-    def __init__(self, *, service_endpoint: str, prefix: str, max_results: int, next_marker: str, marker: str=None, containers: List["Container"]=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        service_endpoint: str,
+        prefix: str,
+        max_results: int,
+        next_marker: str,
+        marker: Optional[str] = None,
+        containers: Optional[List["Container"]] = None,
+        **kwargs
+    ):
         super(ListContainersResponse, self).__init__(**kwargs)
         self.service_endpoint = service_endpoint
         self.prefix = prefix
@@ -681,7 +842,16 @@ class Logging(Model):
         'retention_policy': {'key': 'RetentionPolicy', 'type': 'RetentionPolicy'},
     }
 
-    def __init__(self, *, version: str, delete: bool, read: bool, write: bool, retention_policy: "RetentionPolicy", **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        version: str,
+        delete: bool,
+        read: bool,
+        write: bool,
+        retention_policy: "RetentionPolicy",
+        **kwargs
+    ):
         super(Logging, self).__init__(**kwargs)
         self.version = version
         self.delete = delete
@@ -697,11 +867,10 @@ class Metrics(Model):
 
     :param version: The version of Storage Analytics to configure.
     :type version: str
-    :param enabled: Required. Indicates whether metrics are enabled for the Blob
-     service.
+    :param enabled: Required. Indicates whether metrics are enabled for the Blob service.
     :type enabled: bool
-    :param include_apis: Indicates whether metrics should generate summary
-     statistics for called API operations.
+    :param include_apis: Indicates whether metrics should generate summary statistics for called
+     API operations.
     :type include_apis: bool
     :param retention_policy: the retention policy.
     :type retention_policy: ~xmlservice.models.RetentionPolicy
@@ -718,7 +887,15 @@ class Metrics(Model):
         'retention_policy': {'key': 'RetentionPolicy', 'type': 'RetentionPolicy'},
     }
 
-    def __init__(self, *, enabled: bool, version: str=None, include_apis: bool=None, retention_policy: "RetentionPolicy"=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        enabled: bool,
+        version: Optional[str] = None,
+        include_apis: Optional[bool] = None,
+        retention_policy: Optional["RetentionPolicy"] = None,
+        **kwargs
+    ):
         super(Metrics, self).__init__(**kwargs)
         self.version = version
         self.enabled = enabled
@@ -731,11 +908,11 @@ class RetentionPolicy(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param enabled: Required. Indicates whether a retention policy is enabled for
-     the storage service.
+    :param enabled: Required. Indicates whether a retention policy is enabled for the storage
+     service.
     :type enabled: bool
-    :param days: Indicates the number of days that metrics or logging or soft-
-     deleted data should be retained. All data older than this value will be deleted.
+    :param days: Indicates the number of days that metrics or logging or soft-deleted data should
+     be retained. All data older than this value will be deleted.
     :type days: int
     """
 
@@ -749,7 +926,13 @@ class RetentionPolicy(Model):
         'days': {'key': 'Days', 'type': 'int'},
     }
 
-    def __init__(self, *, enabled: bool, days: int=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        enabled: bool,
+        days: Optional[int] = None,
+        **kwargs
+    ):
         super(RetentionPolicy, self).__init__(**kwargs)
         self.enabled = enabled
         self.days = days
@@ -769,7 +952,13 @@ class RootWithRefAndMeta(Model):
         'something': {'key': 'Something', 'type': 'str'},
     }
 
-    def __init__(self, *, ref_to_model: "ComplexTypeWithMeta"=None, something: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        ref_to_model: Optional["ComplexTypeWithMeta"] = None,
+        something: Optional[str] = None,
+        **kwargs
+    ):
         super(RootWithRefAndMeta, self).__init__(**kwargs)
         self.ref_to_model = ref_to_model
         self.something = something
@@ -789,7 +978,13 @@ class RootWithRefAndNoMeta(Model):
         'something': {'key': 'Something', 'type': 'str'},
     }
 
-    def __init__(self, *, ref_to_model: "ComplexTypeNoMeta"=None, something: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        ref_to_model: Optional["ComplexTypeNoMeta"] = None,
+        something: Optional[str] = None,
+        **kwargs
+    ):
         super(RootWithRefAndNoMeta, self).__init__(**kwargs)
         self.ref_to_model = ref_to_model
         self.something = something
@@ -815,8 +1010,17 @@ class SignedIdentifier(Model):
         'id': {'key': 'Id', 'type': 'str'},
         'access_policy': {'key': 'AccessPolicy', 'type': 'AccessPolicy'},
     }
+    _xml_map = {
+        'name': 'SignedIdentifier'
+    }
 
-    def __init__(self, *, id: str, access_policy: "AccessPolicy", **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        id: str,
+        access_policy: "AccessPolicy",
+        **kwargs
+    ):
         super(SignedIdentifier, self).__init__(**kwargs)
         self.id = id
         self.access_policy = access_policy
@@ -834,12 +1038,22 @@ class Slide(Model):
     """
 
     _attribute_map = {
-        'type': {'key': 'type', 'type': 'str'},
+        'type': {'key': 'type', 'type': 'str', 'xml': {'attr': True}},
         'title': {'key': 'title', 'type': 'str'},
-        'items': {'key': 'items', 'type': '[str]'},
+        'items': {'key': 'items', 'type': '[str]', 'xml': {'itemsName': 'item'}},
+    }
+    _xml_map = {
+        'name': 'slide'
     }
 
-    def __init__(self, *, type: str=None, title: str=None, items: List[str]=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        type: Optional[str] = None,
+        title: Optional[str] = None,
+        items: Optional[List[str]] = None,
+        **kwargs
+    ):
         super(Slide, self).__init__(**kwargs)
         self.type = type
         self.title = title
@@ -860,13 +1074,24 @@ class Slideshow(Model):
     """
 
     _attribute_map = {
-        'title': {'key': 'title', 'type': 'str'},
-        'date_property': {'key': 'date', 'type': 'str'},
-        'author': {'key': 'author', 'type': 'str'},
+        'title': {'key': 'title', 'type': 'str', 'xml': {'attr': True}},
+        'date_property': {'key': 'date', 'type': 'str', 'xml': {'attr': True}},
+        'author': {'key': 'author', 'type': 'str', 'xml': {'attr': True}},
         'slides': {'key': 'slides', 'type': '[Slide]'},
     }
+    _xml_map = {
+        'name': 'slideshow'
+    }
 
-    def __init__(self, *, title: str=None, date_property: str=None, author: str=None, slides: List["Slide"]=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        title: Optional[str] = None,
+        date_property: Optional[str] = None,
+        author: Optional[str] = None,
+        slides: Optional[List["Slide"]] = None,
+        **kwargs
+    ):
         super(Slideshow, self).__init__(**kwargs)
         self.title = title
         self.date_property = date_property
@@ -885,9 +1110,9 @@ class StorageServiceProperties(Model):
     :type minute_metrics: ~xmlservice.models.Metrics
     :param cors: The set of CORS rules.
     :type cors: list[~xmlservice.models.CorsRule]
-    :param default_service_version: The default version to use for requests to the
-     Blob service if an incoming request's version is not specified. Possible values
-     include version 2008-10-27 and all more recent versions.
+    :param default_service_version: The default version to use for requests to the Blob service if
+     an incoming request's version is not specified. Possible values include version 2008-10-27 and
+     all more recent versions.
     :type default_service_version: str
     :param delete_retention_policy: the retention policy.
     :type delete_retention_policy: ~xmlservice.models.RetentionPolicy
@@ -897,12 +1122,22 @@ class StorageServiceProperties(Model):
         'logging': {'key': 'Logging', 'type': 'Logging'},
         'hour_metrics': {'key': 'HourMetrics', 'type': 'Metrics'},
         'minute_metrics': {'key': 'MinuteMetrics', 'type': 'Metrics'},
-        'cors': {'key': 'Cors', 'type': '[CorsRule]'},
+        'cors': {'key': 'Cors', 'type': '[CorsRule]', 'xml': {'wrapped': True, 'itemsName': 'CorsRule'}},
         'default_service_version': {'key': 'DefaultServiceVersion', 'type': 'str'},
         'delete_retention_policy': {'key': 'DeleteRetentionPolicy', 'type': 'RetentionPolicy'},
     }
 
-    def __init__(self, *, logging: "Logging"=None, hour_metrics: "Metrics"=None, minute_metrics: "Metrics"=None, cors: List["CorsRule"]=None, default_service_version: str=None, delete_retention_policy: "RetentionPolicy"=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        logging: Optional["Logging"] = None,
+        hour_metrics: Optional["Metrics"] = None,
+        minute_metrics: Optional["Metrics"] = None,
+        cors: Optional[List["CorsRule"]] = None,
+        default_service_version: Optional[str] = None,
+        delete_retention_policy: Optional["RetentionPolicy"] = None,
+        **kwargs
+    ):
         super(StorageServiceProperties, self).__init__(**kwargs)
         self.logging = logging
         self.hour_metrics = hour_metrics

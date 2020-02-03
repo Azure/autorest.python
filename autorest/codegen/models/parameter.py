@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 from enum import Enum
 from typing import Dict, Optional, List, Any
+from .imports import FileImport, ImportType
 
 from .base_model import BaseModel
 from .base_schema import BaseSchema
@@ -17,7 +18,6 @@ class ParameterLocation(Enum):
     Header = "header"
     Uri = "uri"
     Other = "other"
-    Flattened = "flattened"
 
 
 class ParameterStyle(Enum):
@@ -42,13 +42,15 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         serialized_name: str,
         description: str,
         implementation: str,
-        is_required: bool,
+        required: bool,
         location: ParameterLocation,
         skip_url_encoding: bool,
         constraints: List[Any],
         style: Optional[ParameterStyle] = None,
         *,
-        hidden: bool = False,
+        flattened: bool = False,
+        grouped_by: Optional["Parameter"] = None,
+        original_parameter: Optional["Parameter"] = None,
     ):
         super().__init__(yaml_data)
         self.schema = schema
@@ -56,12 +58,14 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.serialized_name = serialized_name
         self.description = description
         self._implementation = implementation
-        self.is_required = is_required
+        self.required = required
         self.location = location
         self.skip_url_encoding = skip_url_encoding
         self.constraints = constraints
         self.style = style
-        self.hidden = hidden
+        self.flattened = flattened
+        self.grouped_by = grouped_by
+        self.original_parameter = original_parameter
 
     @property
     def implementation(self) -> str:
@@ -71,10 +75,16 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         return self._implementation
 
     @property
-    def for_method_signature(self) -> str:
-        if self.is_required:
-            return self.serialized_name
-        return f"{self.serialized_name}=None"
+    def sync_method_signature(self) -> str:
+        if self.required:
+            return f"{self.serialized_name},  # type: {self.schema.operation_type_annotation}"
+        return f"{self.serialized_name}=None,  # type: Optional[{self.schema.operation_type_annotation}]"
+
+    @property
+    def async_method_signature(self) -> str:
+        if self.required:
+            return f"{self.serialized_name}: {self.schema.operation_type_annotation}"
+        return f"{self.serialized_name}: Optional[{self.schema.operation_type_annotation}] = None"
 
     @property
     def full_serialized_name(self) -> str:
@@ -86,8 +96,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any]) -> "Parameter":
 
-        # Assumes that if there is no protocol, it's flattening parameter
-        http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Flattened})
+        http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Other})
         return cls(
             yaml_data=yaml_data,
             schema=yaml_data.get("schema", None),  # FIXME replace by operation model
@@ -97,11 +106,19 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
             ),
             serialized_name=yaml_data['language']['python']['name'],
             description=yaml_data["language"]["python"]["description"],
-            implementation=yaml_data.get("implementation", "Method"),
-            is_required=yaml_data.get("required", False),
+            implementation=yaml_data["implementation"],
+            required=yaml_data.get("required", False),
             location=ParameterLocation(http_protocol["in"]),
             skip_url_encoding=yaml_data.get("extensions", {}).get("x-ms-skip-url-encoding", False),
             constraints=[], # FIXME constraints
             style=ParameterStyle(http_protocol["style"]) if "style" in http_protocol else None,
-            hidden=yaml_data.get("hidden", False),
+            grouped_by=yaml_data.get("groupedBy", None),
+            original_parameter=yaml_data.get("originalParameter", None),
+            flattened=yaml_data.get("flattened", False)
         )
+
+    def imports(self) -> FileImport:
+        file_import = self.schema.imports()
+        if not self.required:
+            file_import.add_from_import("typing", "Optional", ImportType.STDLIB)
+        return file_import

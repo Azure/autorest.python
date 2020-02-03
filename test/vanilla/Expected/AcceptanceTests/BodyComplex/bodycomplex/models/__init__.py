@@ -41,39 +41,39 @@ try:
     from ._models_py3 import SmartSalmon
     from ._models_py3 import StringWrapper
 except (SyntaxError, ImportError):
-    from ._models import ArrayWrapper
-    from ._models import Basic
-    from ._models import BooleanWrapper
-    from ._models import ByteWrapper
-    from ._models import Cat
-    from ._models import Cookiecuttershark
-    from ._models import DateWrapper
-    from ._models import DatetimeWrapper
-    from ._models import Datetimerfc1123Wrapper
-    from ._models import DictionaryWrapper
-    from ._models import Dog
-    from ._models import DotFish
-    from ._models import DotFishMarket
-    from ._models import DotSalmon
-    from ._models import DoubleWrapper
-    from ._models import DurationWrapper
-    from ._models import Error, ErrorException
-    from ._models import Fish
-    from ._models import FloatWrapper
-    from ._models import Goblinshark
-    from ._models import IntWrapper
-    from ._models import LongWrapper
-    from ._models import MyBaseHelperType
-    from ._models import MyBaseType
-    from ._models import MyDerivedType
-    from ._models import Pet
-    from ._models import ReadonlyObj
-    from ._models import Salmon
-    from ._models import Sawshark
-    from ._models import Shark
-    from ._models import Siamese
-    from ._models import SmartSalmon
-    from ._models import StringWrapper
+    from ._models import ArrayWrapper  # type: ignore
+    from ._models import Basic  # type: ignore
+    from ._models import BooleanWrapper  # type: ignore
+    from ._models import ByteWrapper  # type: ignore
+    from ._models import Cat  # type: ignore
+    from ._models import Cookiecuttershark  # type: ignore
+    from ._models import DateWrapper  # type: ignore
+    from ._models import DatetimeWrapper  # type: ignore
+    from ._models import Datetimerfc1123Wrapper  # type: ignore
+    from ._models import DictionaryWrapper  # type: ignore
+    from ._models import Dog  # type: ignore
+    from ._models import DotFish  # type: ignore
+    from ._models import DotFishMarket  # type: ignore
+    from ._models import DotSalmon  # type: ignore
+    from ._models import DoubleWrapper  # type: ignore
+    from ._models import DurationWrapper  # type: ignore
+    from ._models import Error, ErrorException  # type: ignore
+    from ._models import Fish  # type: ignore
+    from ._models import FloatWrapper  # type: ignore
+    from ._models import Goblinshark  # type: ignore
+    from ._models import IntWrapper  # type: ignore
+    from ._models import LongWrapper  # type: ignore
+    from ._models import MyBaseHelperType  # type: ignore
+    from ._models import MyBaseType  # type: ignore
+    from ._models import MyDerivedType  # type: ignore
+    from ._models import Pet  # type: ignore
+    from ._models import ReadonlyObj  # type: ignore
+    from ._models import Salmon  # type: ignore
+    from ._models import Sawshark  # type: ignore
+    from ._models import Shark  # type: ignore
+    from ._models import Siamese  # type: ignore
+    from ._models import SmartSalmon  # type: ignore
+    from ._models import StringWrapper  # type: ignore
 from ._auto_rest_complex_test_service_enums import (
     CMYKColors,
     GoblinSharkColor,

@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict, Optional, Union
 from .base_schema import BaseSchema
+from .imports import FileImport, ImportType
 
 
 class ListSchema(BaseSchema):
@@ -25,11 +26,13 @@ class ListSchema(BaseSchema):
         self.unique_items = unique_items
 
 
-    def get_serialization_type(self) -> str:
-        return '[{}]'.format(self.element_type.get_serialization_type())
+    @property
+    def serialization_type(self) -> str:
+        return f'[{self.element_type.serialization_type}]'
 
-    def get_python_type_annotation(self) -> str:
-        return f'List[{self.element_type.get_python_type_annotation()}]'
+    @property
+    def type_annotation(self) -> str:
+        return f'List[{self.element_type.type_annotation}]'
 
     @property
     def docstring_type(self) -> str:
@@ -50,6 +53,31 @@ class ListSchema(BaseSchema):
             validation_map['unique'] = True
         return validation_map or None
 
+    @property
+    def has_xml_serialization_ctxt(self):
+        return super().has_xml_serialization_ctxt or self.element_type.has_xml_serialization_ctxt
+
+    def xml_serialization_ctxt(self) -> Optional[str]:
+        attrs_list = []
+        base_xml_map = super().xml_serialization_ctxt()
+        if base_xml_map:
+            attrs_list.append(base_xml_map)
+
+        # Attribute at the list level
+        if self.xml_metadata.get('wrapped', False):
+            attrs_list.append("'wrapped': True")
+
+        # Attributes of the items
+        item_xml_metadata = self.element_type.xml_metadata
+        if item_xml_metadata.get('name'):
+            attrs_list.append(f"'itemsName': '{item_xml_metadata['name']}'")
+        if item_xml_metadata.get('prefix', False):
+            attrs_list.append(f"'itemsPrefix': '{item_xml_metadata['prefix']}'")
+        if item_xml_metadata.get('namespace', False):
+            attrs_list.append(f"'itemsNs': '{item_xml_metadata['namespace']}'")
+
+        return ", ".join(attrs_list)
+
     @classmethod
     def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs) -> "ListSchema":
         # TODO: for items, if the type is a primitive is it listed in type instead of $ref?
@@ -69,3 +97,9 @@ class ListSchema(BaseSchema):
             min_items=yaml_data.get('minItems'),
             unique_items=yaml_data.get('uniqueItems'),
         )
+
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_from_import("typing", "List", ImportType.STDLIB)
+        file_import.merge(self.element_type.imports())
+        return file_import

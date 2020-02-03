@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict, List, Optional, Set
 from .base_schema import BaseSchema
-
+from .imports import FileImport, ImportType
 
 class EnumValue:
     """Model containing necessary information for a single value of an enum.
@@ -59,7 +59,8 @@ class EnumSchema(BaseSchema):
         self.enum_type = enum_type
         self.values = values
 
-    def get_serialization_type(self) -> str:
+    @property
+    def serialization_type(self) -> str:
         """Returns the serialization value for msrest.
 
         :return: The serialization value for msrest
@@ -67,13 +68,26 @@ class EnumSchema(BaseSchema):
         """
         return "str"
 
-    def get_python_type_annotation(self) -> str:
+    @property
+    def type_annotation(self) -> str:
         """The python type used for type annotation
 
         :return: The type annotation for this schema
         :rtype: str
         """
         return f'Union[str, \"{self.enum_type}\"]'
+
+    @property
+    def operation_type_annotation(self) -> str:
+        """The python type used for type annotation
+
+        :return: The type annotation for this schema
+        :rtype: str
+        """
+        return f'Union[str, \"models.{self.enum_type}\"]'
+
+    def get_declaration(self, value) -> str:
+        return f'"{value}"'
 
     @property
     def docstring_text(self) -> str:
@@ -125,3 +139,8 @@ class EnumSchema(BaseSchema):
             enum_type=enum_type,
             values=values
         )
+
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_from_import("typing", "Union", ImportType.STDLIB)
+        return file_import

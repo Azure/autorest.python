@@ -12,10 +12,10 @@ try:
     from ._models_py3 import ProductProperties
     from ._models_py3 import ProductResult
 except (SyntaxError, ImportError):
-    from ._models import Error
-    from ._models import Product
-    from ._models import ProductProperties
-    from ._models import ProductResult
+    from ._models import Error  # type: ignore
+    from ._models import Product  # type: ignore
+    from ._models import ProductProperties  # type: ignore
+    from ._models import ProductResult  # type: ignore
 
 __all__ = [
     'Error',

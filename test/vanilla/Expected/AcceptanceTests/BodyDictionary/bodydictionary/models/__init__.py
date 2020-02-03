@@ -10,8 +10,8 @@ try:
     from ._models_py3 import Error, ErrorException
     from ._models_py3 import Widget
 except (SyntaxError, ImportError):
-    from ._models import Error, ErrorException
-    from ._models import Widget
+    from ._models import Error, ErrorException  # type: ignore
+    from ._models import Widget  # type: ignore
 
 __all__ = [
     'Error', 'ErrorException',

@@ -4,19 +4,20 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, List, Any, Optional, Union
+from typing import cast, Dict, List, Any, Optional, Union
 
 from .base_model import BaseModel
 from .imports import FileImport, ImportType
 from .schema_response import SchemaResponse
 from .parameter import Parameter, ParameterStyle
 from .parameter_list import ParameterList
+from .base_schema import BaseSchema
 
 
 _LOGGER = logging.getLogger(__name__)
 
 
-class Operation(BaseModel):  # pylint: disable=too-many-public-methods
+class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many-instance-attributes
     """Represent an operation.
     """
 
@@ -27,6 +28,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         description: str,
         url: str,
         method: str,
+        summary: Optional[str] = None,
         parameters: Optional[List[Parameter]] = None,
         responses: Optional[List[SchemaResponse]] = None,
         exceptions: Optional[List[SchemaResponse]] = None,
@@ -39,6 +41,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         self.description = description
         self.url = url
         self.method = method
+        self.summary = summary
         self.parameters = ParameterList(parameters)
         self.responses = responses or []
         self.exceptions = exceptions or []
@@ -121,7 +124,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         origin_name = parameter.full_serialized_name
 
         return (f"""self._serialize.{function_name}("{origin_name}", {origin_name}, """ +
-        f"""'{parameter.schema.get_serialization_type()}'{optional_parameters_string})""")
+        f"""'{parameter.schema.serialization_type}'{optional_parameters_string})""")
 
     @property
     def serialization_context(self) -> str:
@@ -189,6 +192,27 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
                 file_import.add_from_import(
                     "azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE
                 )
+        for parameter in self.parameters:
+            file_import.merge(parameter.imports())
+
+        for response in [r for r in self.responses if r.has_body]:
+            file_import.merge(cast(BaseSchema, response.schema).imports())
+
+        if len([r for r in self.responses if r.has_body]) > 1:
+            file_import.add_from_import("typing", "Union", ImportType.STDLIB)
+
+        file_import.add_from_import("typing", "Callable", ImportType.STDLIB)
+        file_import.add_from_import("typing", "Optional", ImportType.STDLIB)
+        file_import.add_from_import("typing", "Dict", ImportType.STDLIB)
+        file_import.add_from_import("typing", "Any", ImportType.STDLIB)
+        file_import.add_from_import("typing", "TypeVar", ImportType.STDLIB)
+        file_import.add_from_import("typing", "Generic", ImportType.STDLIB)
+        file_import.add_from_import("azure.core.pipeline", "PipelineResponse", ImportType.AZURECORE)
+        file_import.add_from_import("azure.core.pipeline.transport", "HttpRequest", ImportType.AZURECORE)
+        if async_mode:
+            file_import.add_from_import("azure.core.pipeline.transport", "AsyncHttpResponse", ImportType.AZURECORE)
+        else:
+            file_import.add_from_import("azure.core.pipeline.transport", "HttpResponse", ImportType.AZURECORE)
 
         # Deprecation
         # FIXME: Replace with "the YAML contains deprecated:true"
@@ -209,16 +233,29 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods
         name = yaml_data["language"]["python"]["name"]
         _LOGGER.debug("Parsing %s operation", name)
 
+        parameters = [Parameter.from_yaml(yaml)
+            for yaml in yaml_data["request"].get("parameters", [])
+        ]
+        parameters_index = {id(parameter.yaml_data): parameter for parameter in parameters}
+
+        # Need to connect the groupBy and originalParameter
+        for parameter in parameters:
+            parameter_grouped_by_id = id(parameter.grouped_by)
+            if parameter_grouped_by_id in parameters_index:
+                parameter.grouped_by = parameters_index[parameter_grouped_by_id]
+
+            parameter_original_id = id(parameter.original_parameter)
+            if parameter_original_id in parameters_index:
+                parameter.original_parameter = parameters_index[parameter_original_id]
+
         return cls(
             yaml_data=yaml_data,
             name=name,
             description=yaml_data["language"]["python"]["description"],
             url=yaml_data["request"]["protocol"]["http"]["path"],
             method=yaml_data["request"]["protocol"]["http"]["method"],
-            parameters=[
-                Parameter.from_yaml(yaml)
-                for yaml in yaml_data["request"].get("parameters", [])
-            ],
+            summary=yaml_data["language"]["python"].get("summary"),
+            parameters=parameters,
             responses=[
                 SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("responses", [])
             ],

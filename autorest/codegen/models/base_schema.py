@@ -20,16 +20,36 @@ class BaseSchema(BaseModel, ABC):
         super().__init__(yaml_data)
         self.namespace = namespace
         self.default_value = yaml_data.get('defaultValue', None)
+        self.xml_metadata = yaml_data.get('serialization', {}).get('xml', {})
 
     @classmethod
     def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs) -> "BaseSchema":  # pylint: disable=unused-argument
         return cls(namespace=namespace, yaml_data=yaml_data)
 
+    @property
+    def has_xml_serialization_ctxt(self):
+        return bool(self.xml_metadata)
+
+    def xml_serialization_ctxt(self) -> Optional[str]:
+        """Return the serialization context in case this schema is used in an operation.
+        """
+        attrs_list = []
+        if self.xml_metadata.get('name'):
+            attrs_list.append(f"'name': '{self.xml_metadata['name']}'")
+        if self.xml_metadata.get('attribute', False):
+            attrs_list.append("'attr': True")
+        if self.xml_metadata.get('prefix', False):
+            attrs_list.append(f"'prefix': '{self.xml_metadata['prefix']}'")
+        if self.xml_metadata.get('namespace', False):
+            attrs_list.append(f"'ns': '{self.xml_metadata['namespace']}'")
+        return ", ".join(attrs_list)
+
     def imports(self) -> FileImport:  # pylint: disable=no-self-use
         return FileImport()
 
+    @property
     @abstractmethod
-    def get_serialization_type(self) -> str:
+    def serialization_type(self) -> str:
         """The tag recognized by 'msrest' as a serialization/deserialization.
 
         'str', 'int', 'float', 'bool' or
@@ -58,13 +78,17 @@ class BaseSchema(BaseModel, ABC):
         """
         ...
 
-    @abstractmethod
-    def get_python_type_annotation(self) -> str:
+    @property
+    def type_annotation(self) -> str:
         """The python type used for type annotation
 
         Special case for enum, for instance: Union[str, "EnumName"]
         """
         ...
+
+    @property
+    def operation_type_annotation(self) -> str:
+        return self.type_annotation
 
     def get_declaration(self, value: Any) -> str: # pylint: disable=no-self-use
         """Return the current value from YAML as a Python string that represents the constant.
@@ -78,6 +102,13 @@ class BaseSchema(BaseModel, ABC):
         By default, return value, since it works sometimes (integer)
         """
         return str(value)
+
+    def get_default_value_declaration(self) -> str:
+        """Return the default value as string using get_declaration.
+        """
+        if self.default_value is None:
+            return "None"
+        return self.get_declaration(self.default_value)
 
     def get_validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]: # pylint: disable=no-self-use
         return None

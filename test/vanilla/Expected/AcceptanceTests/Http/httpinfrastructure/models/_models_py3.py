@@ -6,6 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import Optional
+
 from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
 
@@ -47,7 +49,12 @@ class MyException(Model):
         'status_code': {'key': 'statusCode', 'type': 'str'},
     }
 
-    def __init__(self, *, status_code: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        status_code: Optional[str] = None,
+        **kwargs
+    ):
         super(MyException, self).__init__(**kwargs)
         self.status_code = status_code
 
@@ -92,7 +99,13 @@ class B(MyException):
         'text_status_code': {'key': 'textStatusCode', 'type': 'str'},
     }
 
-    def __init__(self, *, status_code: str=None, text_status_code: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        status_code: Optional[str] = None,
+        text_status_code: Optional[str] = None,
+        **kwargs
+    ):
         super(B, self).__init__(status_code=status_code, **kwargs)
         self.text_status_code = text_status_code
 
@@ -108,7 +121,12 @@ class C(Model):
         'http_code': {'key': 'httpCode', 'type': 'str'},
     }
 
-    def __init__(self, *, http_code: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        http_code: Optional[str] = None,
+        **kwargs
+    ):
         super(C, self).__init__(**kwargs)
         self.http_code = http_code
 
@@ -124,7 +142,12 @@ class D(Model):
         'http_status_code': {'key': 'httpStatusCode', 'type': 'str'},
     }
 
-    def __init__(self, *, http_status_code: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        http_status_code: Optional[str] = None,
+        **kwargs
+    ):
         super(D, self).__init__(**kwargs)
         self.http_status_code = http_status_code
 
@@ -169,7 +192,13 @@ class Error(Model):
         'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, *, status: int=None, message: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        status: Optional[int] = None,
+        message: Optional[str] = None,
+        **kwargs
+    ):
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message

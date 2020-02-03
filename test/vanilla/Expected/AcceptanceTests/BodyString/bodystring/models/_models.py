@@ -50,7 +50,10 @@ class Error(Model):
         'message': {'key': 'message', 'type': 'str'},
     }
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
@@ -63,8 +66,8 @@ class RefColorConstant(Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :ivar color_constant: Required. Referenced Color Constant Description. Default
-     value: "green-color".
+    :ivar color_constant: Required. Referenced Color Constant Description. Default value: "green-
+     color".
     :vartype color_constant: str
     :param field1: Sample string.
     :type field1: str
@@ -81,6 +84,9 @@ class RefColorConstant(Model):
 
     color_constant = "green-color"
 
-    def __init__(self, **kwargs):
+    def __init__(
+        self,
+        **kwargs
+    ):
         super(RefColorConstant, self).__init__(**kwargs)
         self.field1 = kwargs.get('field1', None)

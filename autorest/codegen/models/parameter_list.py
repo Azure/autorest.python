@@ -89,6 +89,10 @@ class ParameterList(MutableSequence):
         return self.get_from_location(ParameterLocation.Header)
 
     @property
+    def grouped(self) -> List[Parameter]:
+        return self.get_from_predicate(lambda parameter: cast(bool, parameter.grouped_by))
+
+    @property
     def constant(self) -> List[Parameter]:
         """Return the constants of this parameter list.
 
@@ -98,7 +102,7 @@ class ParameterList(MutableSequence):
         """
         return self.get_from_predicate(
             lambda parameter: isinstance(parameter.schema, ConstantSchema)
-            and parameter.location != ParameterLocation.Flattened
+            and not parameter.flattened
         )
 
     @property
@@ -107,18 +111,27 @@ class ParameterList(MutableSequence):
         """
 
         def is_parameter_in_signature(parameter):
-            """A predicate to tell if this parmater deserves to be in the signature.
+            """A predicate to tell if this parameter deserves to be in the signature.
             """
             return not (
+                # Constant are never on signature
                 isinstance(parameter.schema, ConstantSchema)
+
+                # Client level should not be on Method, etc.
                 or parameter.implementation != self.implementation
+
+                # If I'm grouped, my grouper will be on signature, not me
+                or parameter.grouped_by
+
+                # If I'm body and it's flattened, I'm not either
+                or (parameter.location == ParameterLocation.Body and self.is_flattened)
             )
 
         signature_parameters_required = []
         signature_parameters_optional = []
         for parameter in self.parameters:
             if is_parameter_in_signature(parameter):
-                if parameter.is_required:
+                if parameter.required:
                     signature_parameters_required.append(parameter)
                 else:
                     signature_parameters_optional.append(parameter)
@@ -126,22 +139,19 @@ class ParameterList(MutableSequence):
         signature_parameters = (
             signature_parameters_required + signature_parameters_optional
         )
-        if self.is_flattened:
-            signature_parameters.remove(self.body)
         return signature_parameters
 
     @property
-    def method_signature(self) -> str:
-        signature = ", ".join(
-            [parameter.for_method_signature for parameter in self.method]
-        )
-        if signature:
-            signature = ", " + signature
-        return signature
+    def sync_method_signature(self) -> List[str]:
+        return [parameter.sync_method_signature for parameter in self.method]
+
+    @property
+    def async_method_signature(self) -> List[str]:
+        return [parameter.async_method_signature for parameter in self.method]
 
     @property
     def is_flattened(self) -> bool:
-        return self.has_any_location(ParameterLocation.Flattened)
+        return cast(bool, self.get_from_predicate(lambda parameter: parameter.flattened))
 
     def build_flattened_object(self) -> str:
         if not self.is_flattened:
@@ -150,7 +160,7 @@ class ParameterList(MutableSequence):
             )
 
         parameters = self.get_from_predicate(
-            lambda parameter: parameter.location == ParameterLocation.Flattened
+            lambda parameter: parameter.location == ParameterLocation.Other
             and not isinstance(parameter.schema, ConstantSchema)
         )
         parameter_string = ", ".join(
