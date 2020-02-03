@@ -116,7 +116,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
                                 schema=additional_properties_schema,
                                 original_swagger_name="",
                                 yaml_data={},
-                                description="Unmatched properties from the message are deserialized to this collection.",
+                                description="Unmatched properties from the message are deserialized to this collection."
                             )
                         )
                     elif immediate_parent["language"]["default"]["name"] != yaml_data["language"]["default"]["name"]:

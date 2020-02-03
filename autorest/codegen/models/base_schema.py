@@ -25,8 +25,8 @@ class BaseSchema(BaseModel, ABC):
 
     @classmethod
     def from_yaml(
-        cls, namespace: str, yaml_data: Dict[str, Any], **kwargs
-    ) -> "BaseSchema":  # pylint: disable=unused-argument
+        cls, namespace: str, yaml_data: Dict[str, Any], **kwargs  # pylint: disable=unused-argument
+    ) -> "BaseSchema":
         return cls(namespace=namespace, yaml_data=yaml_data)
 
     @property
