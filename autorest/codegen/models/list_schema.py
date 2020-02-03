@@ -28,7 +28,7 @@ class ListSchema(BaseSchema):
 
     @property
     def serialization_type(self) -> str:
-        return '[{}]'.format(self.element_type.serialization_type)
+        return f'[{self.element_type.serialization_type}]'
 
     @property
     def type_annotation(self) -> str:
