@@ -27,25 +27,25 @@ class AutorestRender(m2r.RestRenderer):
 class M2R(YamlUpdatePlugin):
     """A plugin to convert any description and summary from MD to RST.
     """
-    def update_yaml(self, yaml_code_model) -> None:
+    def update_yaml(self, yaml_data) -> None:
         """Convert in place the YAML str.
         """
-        self._convert_docstring_no_cycles(yaml_code_model, set())
+        self._convert_docstring_no_cycles(yaml_data, set())
 
-    def _convert_docstring_no_cycles(self, yaml_code_model, node_list) -> None:
+    def _convert_docstring_no_cycles(self, yaml_data, node_list) -> None:
         """Walk the YAML tree to convert MD to RST.
         """
-        if id(yaml_code_model) in node_list:
+        if id(yaml_data) in node_list:
             return
-        node_list.add(id(yaml_code_model))
+        node_list.add(id(yaml_data))
 
-        if isinstance(yaml_code_model, list):
-            for elt in yaml_code_model:
+        if isinstance(yaml_data, list):
+            for elt in yaml_data:
                 self._convert_docstring_no_cycles(elt, node_list)
-        elif isinstance(yaml_code_model, dict):
-            for key, value in yaml_code_model.items():
+        elif isinstance(yaml_data, dict):
+            for key, value in yaml_data.items():
                 if key in ["description", "summary"]:
-                    yaml_code_model[key] = self.convert_to_rst(value)
+                    yaml_data[key] = self.convert_to_rst(value)
                     continue
                 self._convert_docstring_no_cycles(value, node_list)
 

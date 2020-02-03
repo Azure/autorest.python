@@ -48,17 +48,17 @@ class YamlUpdatePlugin(Plugin):
             raise ValueError("code-model-v4-no-tags.yaml must be a possible input")
 
         file_content = self._autorestapi.read_file("code-model-v4-no-tags.yaml")
-        yaml_code_model = yaml.safe_load(file_content)
+        yaml_data = yaml.safe_load(file_content)
 
-        self.update_yaml(yaml_code_model)
+        self.update_yaml(yaml_data)
 
-        yaml_string = yaml.safe_dump(yaml_code_model)
+        yaml_string = yaml.safe_dump(yaml_data)
 
         self._autorestapi.write_file("code-model-v4-no-tags.yaml", yaml_string)
         return True
 
     @abstractmethod
-    def update_yaml(self, yaml_code_model):
+    def update_yaml(self, yaml_data):
         """The code-model-v4-no-tags yaml model tree.
 
         :rtype: None

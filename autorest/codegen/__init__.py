@@ -55,20 +55,20 @@ class CodeGenerator(Plugin):
                     exceptions_set.add(exception['schema']['language']['python']['name'])
         return exceptions_set
 
-    def _create_code_model(self, yaml_code_model, options):
+    def _create_code_model(self, yaml_data, options):
         # Create a code model
         code_model = CodeModel(options)
-        code_model.module_name = yaml_code_model['info']['python_title']
-        code_model.class_name = yaml_code_model['info']['pascal_case_title']
+        code_model.module_name = yaml_data['info']['python_title']
+        code_model.class_name = yaml_data['info']['pascal_case_title']
         code_model.description = (
-            yaml_code_model['info']['description']
-            if yaml_code_model['info'].get('description') else ""
+            yaml_data['info']['description']
+            if yaml_data['info'].get('description') else ""
         )
 
 
         # Global parameters
         code_model.global_parameters = ParameterList([
-            Parameter.from_yaml(param) for param in yaml_code_model.get('globalParameters', [])
+            Parameter.from_yaml(param) for param in yaml_data.get('globalParameters', [])
         ], implementation="Client")
 
         # Custom URL
@@ -77,7 +77,7 @@ class CodeGenerator(Plugin):
             # We don't want to support multi-api customurl YET (will see if that goes well....)
             # So far now, let's get the first one in the first operation
             # UGLY as hell.....
-            first_operation_of_first_group = yaml_code_model['operationGroups'][0]['operations'][0]
+            first_operation_of_first_group = yaml_data['operationGroups'][0]['operations'][0]
             code_model.custom_base_url = first_operation_of_first_group['request']['protocol']['http']['uri']
         else:
             dollar_host_parameter = dollar_host[0]
@@ -86,20 +86,20 @@ class CodeGenerator(Plugin):
 
         # Create operations
         code_model.operation_groups = [
-            OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_code_model['operationGroups']
+            OperationGroup.from_yaml(code_model, op_group) for op_group in yaml_data['operationGroups']
         ]
 
         # Get my namespace
         namespace = self._autorestapi.get_value("namespace")
         _LOGGER.debug("Namespace parameter was %s", namespace)
         if not namespace:
-            namespace = yaml_code_model["info"]["python_title"]
+            namespace = yaml_data["info"]["python_title"]
         code_model.namespace = namespace
 
-        if yaml_code_model.get('schemas'):
-            exceptions_set = CodeGenerator._build_exceptions_set(yaml_data=yaml_code_model['operationGroups'])
+        if yaml_data.get('schemas'):
+            exceptions_set = CodeGenerator._build_exceptions_set(yaml_data=yaml_data['operationGroups'])
 
-            for type_list in yaml_code_model['schemas'].values():
+            for type_list in yaml_data['schemas'].values():
                 for schema in type_list:
                     build_schema(
                         yaml_data=schema,
@@ -177,14 +177,14 @@ class CodeGenerator(Plugin):
         file_content = self._autorestapi.read_file("code-model-v4-no-tags.yaml")
 
         # Parse the received YAML
-        yaml_code_model = yaml.safe_load(file_content)
+        yaml_data = yaml.safe_load(file_content)
 
         options = self._build_code_model_options()
 
         if options['azure_arm']:
-            self.remove_cloud_errors(yaml_code_model)
+            self.remove_cloud_errors(yaml_data)
 
-        code_model = self._create_code_model(yaml_code_model=yaml_code_model, options=options)
+        code_model = self._create_code_model(yaml_data=yaml_data, options=options)
 
         serializer = JinjaSerializer(self._autorestapi)
         serializer.serialize(code_model)
