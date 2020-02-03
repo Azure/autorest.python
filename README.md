@@ -24,7 +24,7 @@ AutoRest needs the below config to pick this up as a plug-in - see https://githu
 ``` yaml
 version: 3.0.6198
 use-extension:
-  "@autorest/modelerfour": "4.4.167"
+  "@autorest/modelerfour": "4.5.172"
 
 modelerfour:
   group-parameters: true
@@ -39,6 +39,13 @@ modelerfour:
     choiceValue:  uppercase
     constant:  uppercase
     type:  pascalcase
+    override:
+      lro: LRO
+      $host: $host
+      xms: XMS
+      xml: XML
+      ap: AP
+      bat: BAT
 
 
 pipeline:

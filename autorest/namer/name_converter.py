@@ -14,9 +14,7 @@ class NameConverter:
         yaml_code['info']['python_title'] = NameConverter._to_valid_python_name(
             yaml_code['info']['title'].replace(" ", "")
         )
-        yaml_code['info']['pascal_case_title'] = NameConverter._to_pascal_case(
-            yaml_code['info']['title'].replace(" ", "")
-        )
+        yaml_code['info']['pascal_case_title'] = yaml_code["language"]["default"]["name"]
         NameConverter._convert_schemas(yaml_code['schemas'])
         NameConverter._convert_operation_groups(yaml_code['operationGroups'], yaml_code['info']['pascal_case_title'])
         if yaml_code.get('globalParameters'):
