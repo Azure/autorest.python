@@ -17,7 +17,7 @@ class ListSchema(BaseSchema):
         *,
         max_items: int = None,
         min_items: int = None,
-        unique_items: int = None
+        unique_items: int = None,
     ):
         super(ListSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.element_type = element_type
@@ -25,18 +25,17 @@ class ListSchema(BaseSchema):
         self.min_items = min_items
         self.unique_items = unique_items
 
-
     @property
     def serialization_type(self) -> str:
-        return f'[{self.element_type.serialization_type}]'
+        return f"[{self.element_type.serialization_type}]"
 
     @property
     def type_annotation(self) -> str:
-        return f'List[{self.element_type.type_annotation}]'
+        return f"List[{self.element_type.type_annotation}]"
 
     @property
     def docstring_type(self) -> str:
-        return f'list[{self.element_type.docstring_type}]'
+        return f"list[{self.element_type.docstring_type}]"
 
     @property
     def docstring_text(self) -> str:
@@ -45,12 +44,12 @@ class ListSchema(BaseSchema):
     def get_validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
         validation_map: Dict[str, Union[bool, int, str]] = {}
         if self.max_items:
-            validation_map['max_items'] = self.max_items
-            validation_map['min_items'] = self.min_items or 0
+            validation_map["max_items"] = self.max_items
+            validation_map["min_items"] = self.min_items or 0
         if self.min_items:
-            validation_map['min_items'] = self.min_items
+            validation_map["min_items"] = self.min_items
         if self.unique_items:
-            validation_map['unique'] = True
+            validation_map["unique"] = True
         return validation_map or None
 
     @property
@@ -64,16 +63,16 @@ class ListSchema(BaseSchema):
             attrs_list.append(base_xml_map)
 
         # Attribute at the list level
-        if self.xml_metadata.get('wrapped', False):
+        if self.xml_metadata.get("wrapped", False):
             attrs_list.append("'wrapped': True")
 
         # Attributes of the items
         item_xml_metadata = self.element_type.xml_metadata
-        if item_xml_metadata.get('name'):
+        if item_xml_metadata.get("name"):
             attrs_list.append(f"'itemsName': '{item_xml_metadata['name']}'")
-        if item_xml_metadata.get('prefix', False):
+        if item_xml_metadata.get("prefix", False):
             attrs_list.append(f"'itemsPrefix': '{item_xml_metadata['prefix']}'")
-        if item_xml_metadata.get('namespace', False):
+        if item_xml_metadata.get("namespace", False):
             attrs_list.append(f"'itemsNs': '{item_xml_metadata['namespace']}'")
 
         return ", ".join(attrs_list)
@@ -81,21 +80,19 @@ class ListSchema(BaseSchema):
     @classmethod
     def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs) -> "ListSchema":
         # TODO: for items, if the type is a primitive is it listed in type instead of $ref?
-        element_schema = yaml_data['elementType']
+        element_schema = yaml_data["elementType"]
 
         from . import build_schema  # pylint: disable=import-outside-toplevel
-        element_type = build_schema(
-            yaml_data=element_schema,
-            **kwargs
-        )
+
+        element_type = build_schema(yaml_data=element_schema, **kwargs)
 
         return cls(
             namespace=namespace,
             yaml_data=yaml_data,
             element_type=element_type,
-            max_items=yaml_data.get('maxItems'),
-            min_items=yaml_data.get('minItems'),
-            unique_items=yaml_data.get('uniqueItems'),
+            max_items=yaml_data.get("maxItems"),
+            min_items=yaml_data.get("minItems"),
+            unique_items=yaml_data.get("uniqueItems"),
         )
 
     def imports(self) -> FileImport:

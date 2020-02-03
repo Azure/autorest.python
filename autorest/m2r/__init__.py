@@ -19,6 +19,7 @@ class AutorestRender(m2r.RestRenderer):
     """Redefine the concept of inline HTML in the renderer, we don't want to define a new format
     in the description/summary.
     """
+
     def inline_html(self, html):
         """Do not render inline HTML with a role definition."""
         return f":code:`{html}`"
@@ -27,6 +28,7 @@ class AutorestRender(m2r.RestRenderer):
 class M2R(YamlUpdatePlugin):
     """A plugin to convert any description and summary from MD to RST.
     """
+
     def update_yaml(self, yaml_code_model) -> None:
         """Convert in place the YAML str.
         """

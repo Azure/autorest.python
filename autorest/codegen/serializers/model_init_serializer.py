@@ -6,6 +6,7 @@
 from jinja2 import Environment
 from ..models import CodeModel
 
+
 class ModelInitSerializer:
     def __init__(self, code_model: CodeModel, env: Environment):
         self.code_model = code_model
@@ -19,8 +20,4 @@ class ModelInitSerializer:
             enums.sort()
 
         template = self.env.get_template("model_init.py.jinja2")
-        return template.render(
-            code_model=self.code_model,
-            schemas=schemas,
-            enums=enums
-        )
+        return template.render(code_model=self.code_model, schemas=schemas, enums=enums)

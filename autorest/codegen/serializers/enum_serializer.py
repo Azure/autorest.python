@@ -7,6 +7,7 @@
 from jinja2 import Environment
 from ..models import CodeModel
 
+
 class EnumSerializer:
     def __init__(self, code_model: CodeModel, env: Environment):
         self.code_model = code_model

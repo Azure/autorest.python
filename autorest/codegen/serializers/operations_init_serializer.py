@@ -17,7 +17,5 @@ class OperationsInitSerializer:
         operation_group_init_template = self.env.get_template("operations_container_init.py.jinja2")
 
         return operation_group_init_template.render(
-            code_model=self.code_model,
-            operation_groups=self.code_model.operation_groups,
-            async_mode=self.async_mode
+            code_model=self.code_model, operation_groups=self.code_model.operation_groups, async_mode=self.async_mode
         )

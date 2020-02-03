@@ -9,7 +9,6 @@ from ..models import ObjectSchema
 
 
 class ModelGenericSerializer(ModelBaseSerializer):
-
     @staticmethod
     def init_line(model: ObjectSchema) -> List[str]:
         return []

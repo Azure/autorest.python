@@ -26,19 +26,14 @@ class GeneralSerializer:
 
     def serialize_init_file(self) -> str:
         template = self.env.get_template("init.py.jinja2")
-        return template.render(
-            code_model=self.code_model,
-            async_mode=self.async_mode,
-        )
+        return template.render(code_model=self.code_model, async_mode=self.async_mode,)
 
     def serialize_service_client_file(self) -> str:
         template = self.env.get_template("service_client.py.jinja2")
         return template.render(
             code_model=self.code_model,
             async_mode=self.async_mode,
-            imports=FileImportSerializer(
-                self.code_model.service_client.imports(self.code_model, self.async_mode)
-            ),
+            imports=FileImportSerializer(self.code_model.service_client.imports(self.code_model, self.async_mode)),
         )
 
     def serialize_config_file(self) -> str:
@@ -47,18 +42,19 @@ class GeneralSerializer:
             file_import.add_from_import("azure.core.configuration", "Configuration", ImportType.AZURECORE)
             file_import.add_from_import("azure.core.pipeline", "policies", ImportType.AZURECORE)
             file_import.add_from_import("typing", "Any", ImportType.STDLIB)
-            if self.code_model.options['package_version']:
+            if self.code_model.options["package_version"]:
                 file_import.add_from_import(".._version" if async_mode else "._version", "VERSION", ImportType.LOCAL)
             if any(not gp.required for gp in self.code_model.global_parameters):
                 file_import.add_from_import("typing", "Optional", ImportType.STDLIB)
             # if self.code_model.options['credential']:
             #     file_import.add_from_import("azure.core.credentials", "TokenCredential", ImportType.AZURECORE)
             return file_import
+
         template = self.env.get_template("config.py.jinja2")
         return template.render(
             code_model=self.code_model,
             async_mode=self.async_mode,
-            imports=FileImportSerializer(_config_imports(self.async_mode))
+            imports=FileImportSerializer(_config_imports(self.async_mode)),
         )
 
     def serialize_version_file(self) -> str:

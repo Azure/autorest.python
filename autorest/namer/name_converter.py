@@ -6,21 +6,21 @@
 import re
 from .python_mappings import basic_latin_chars, reserved_words
 
-class NameConverter:
 
+class NameConverter:
     @staticmethod
     def convert_yaml_names(yaml_code):
         NameConverter._convert_language_default_python_case(yaml_code)
-        yaml_code['info']['python_title'] = NameConverter._to_valid_python_name(
-            yaml_code['info']['title'].replace(" ", "")
+        yaml_code["info"]["python_title"] = NameConverter._to_valid_python_name(
+            yaml_code["info"]["title"].replace(" ", "")
         )
-        yaml_code['info']['pascal_case_title'] = NameConverter._to_pascal_case(
-            yaml_code['info']['title'].replace(" ", "")
+        yaml_code["info"]["pascal_case_title"] = NameConverter._to_pascal_case(
+            yaml_code["info"]["title"].replace(" ", "")
         )
-        NameConverter._convert_schemas(yaml_code['schemas'])
-        NameConverter._convert_operation_groups(yaml_code['operationGroups'], yaml_code['info']['pascal_case_title'])
-        if yaml_code.get('globalParameters'):
-            NameConverter._convert_global_parameters(yaml_code['globalParameters'])
+        NameConverter._convert_schemas(yaml_code["schemas"])
+        NameConverter._convert_operation_groups(yaml_code["operationGroups"], yaml_code["info"]["pascal_case_title"])
+        if yaml_code.get("globalParameters"):
+            NameConverter._convert_global_parameters(yaml_code["globalParameters"])
 
     @staticmethod
     def _convert_global_parameters(global_parameters):
@@ -31,105 +31,105 @@ class NameConverter:
     def _convert_operation_groups(operation_groups, code_model_title):
         for operation_group in operation_groups:
             NameConverter._convert_language_default_python_case(operation_group, pad_string="Model")
-            if not operation_group['language']['default']['name']:
-                operation_group['language']['python']['className'] = code_model_title + "OperationsMixin"
+            if not operation_group["language"]["default"]["name"]:
+                operation_group["language"]["python"]["className"] = code_model_title + "OperationsMixin"
             else:
-                operation_group['language']['python']['className'] = NameConverter._to_pascal_case(
-                    operation_group['language']['default']['name']) + "Operations"
-            for operation in operation_group['operations']:
-                NameConverter._convert_language_default_python_case(operation, pad_string='Method')
-                for exception in operation_group.get('exceptions', []):
+                operation_group["language"]["python"]["className"] = (
+                    NameConverter._to_pascal_case(operation_group["language"]["default"]["name"]) + "Operations"
+                )
+            for operation in operation_group["operations"]:
+                NameConverter._convert_language_default_python_case(operation, pad_string="Method")
+                for exception in operation_group.get("exceptions", []):
                     NameConverter._convert_language_default_python_case(exception)
-                NameConverter._convert_language_default_python_case(operation['request'])
-                for parameter in operation['request'].get('parameters', []):
+                NameConverter._convert_language_default_python_case(operation["request"])
+                for parameter in operation["request"].get("parameters", []):
                     NameConverter._convert_language_default_python_case(parameter, pad_string="Parameter")
-                for response in operation.get('responses', []):
+                for response in operation.get("responses", []):
                     NameConverter._convert_language_default_python_case(response)
 
     @staticmethod
     def _convert_schemas(schemas):
-        for enum in schemas.get('sealedChoices', []) + schemas.get('choices', []):
+        for enum in schemas.get("sealedChoices", []) + schemas.get("choices", []):
             NameConverter._convert_enum_schema(enum)
-        for obj in schemas.get('objects', []) + schemas.get('groups', []):
+        for obj in schemas.get("objects", []) + schemas.get("groups", []):
             NameConverter._convert_object_schema(obj)
         for type_list, schema_yamls in schemas.items():
             for schema in schema_yamls:
-                if type_list == 'objects':
+                if type_list == "objects":
                     continue
-                if type_list in ['arrays', 'dictionaries']:
+                if type_list in ["arrays", "dictionaries"]:
                     NameConverter._convert_language_default_python_case(schema)
-                    NameConverter._convert_language_default_python_case(schema['elementType'])
-                elif type_list == 'constants':
+                    NameConverter._convert_language_default_python_case(schema["elementType"])
+                elif type_list == "constants":
                     NameConverter._convert_language_default_python_case(schema)
-                    NameConverter._convert_language_default_python_case(schema['value'])
-                    NameConverter._convert_language_default_python_case(schema['valueType'])
+                    NameConverter._convert_language_default_python_case(schema["value"])
+                    NameConverter._convert_language_default_python_case(schema["valueType"])
                 else:
                     NameConverter._convert_language_default_python_case(schema)
 
     @staticmethod
     def _convert_enum_schema(schema):
         NameConverter._convert_language_default_pascal_case(schema)
-        NameConverter._convert_language_default_python_case(schema['choiceType'])
+        NameConverter._convert_language_default_python_case(schema["choiceType"])
 
-        for choice in schema['choices']:
-            NameConverter._convert_language_default_python_case(choice, pad_string='Enum')
+        for choice in schema["choices"]:
+            NameConverter._convert_language_default_python_case(choice, pad_string="Enum")
 
     @staticmethod
     def _convert_object_schema(schema):
         NameConverter._convert_language_default_pascal_case(schema)
-        for prop in schema.get('properties', []):
-            NameConverter._convert_language_default_python_case(schema=prop, pad_string='Property')
+        for prop in schema.get("properties", []):
+            NameConverter._convert_language_default_python_case(schema=prop, pad_string="Property")
 
     @staticmethod
     def _convert_language_default_python_case(schema, **kwargs):
-        if schema['language'].get('python'):
+        if schema["language"].get("python"):
             return
-        schema['language']['python'] = dict(schema['language']['default'])
-        schema_name = schema['language']['default']['name']
-        schema_python_name = schema['language']['python']['name']
+        schema["language"]["python"] = dict(schema["language"]["default"])
+        schema_name = schema["language"]["default"]["name"]
+        schema_python_name = schema["language"]["python"]["name"]
 
         schema_python_name = NameConverter._to_valid_python_name(schema_name, **kwargs)
-        schema['language']['python']['name'] = schema_python_name
+        schema["language"]["python"]["name"] = schema_python_name
 
-        schema_description = schema['language']['default']['description'].strip()
-        if kwargs.get('pad_string') == 'Method' and not schema_description:
-            schema_description = schema['language']['python']['name']
+        schema_description = schema["language"]["default"]["description"].strip()
+        if kwargs.get("pad_string") == "Method" and not schema_description:
+            schema_description = schema["language"]["python"]["name"]
         if schema_description and schema_description[-1] != ".":
             schema_description += "."
-        schema['language']['python']['description'] = schema_description
+        schema["language"]["python"]["description"] = schema_description
 
-        schema_summary = schema['language']['python'].get('summary')
+        schema_summary = schema["language"]["python"].get("summary")
         if schema_summary:
             schema_summary = schema_summary.strip()
             if schema_summary[-1] != ".":
                 schema_summary += "."
-            schema['language']['python']['summary'] = schema_summary
+            schema["language"]["python"]["summary"] = schema_summary
 
     @staticmethod
     def _convert_language_default_pascal_case(schema):
-        if schema['language'].get('python'):
+        if schema["language"].get("python"):
             return
-        schema['language']['python'] = dict(schema['language']['default'])
-        schema_name = schema['language']['default']['name']
-        schema_python_name = schema['language']['python']['name']
+        schema["language"]["python"] = dict(schema["language"]["default"])
+        schema_name = schema["language"]["default"]["name"]
+        schema_python_name = schema["language"]["python"]["name"]
 
         schema_python_name = NameConverter._to_pascal_case(schema_name)
-        schema['language']['python']['name'] = schema_python_name
+        schema["language"]["python"]["name"] = schema_python_name
 
-        schema_description = schema['language']['default']['description'].strip()
+        schema_description = schema["language"]["default"]["description"].strip()
         if not schema_description:
             # what is being used for empty ObjectSchema descriptions
-            schema_description = schema['language']['python']['name']
+            schema_description = schema["language"]["python"]["name"]
         if schema_description and schema_description[-1] != ".":
             schema_description += "."
-        schema['language']['python']['description'] = schema_description
+        schema["language"]["python"]["description"] = schema_description
 
     @staticmethod
     def _to_pascal_case(name):
-        name_list = re.split('[^a-zA-Z\\d]', name)
-        name_list = [s[0].upper() + s[1:] if len(s) > 1 else s.upper()
-                            for s in name_list]
-        return ''.join(name_list)
+        name_list = re.split("[^a-zA-Z\\d]", name)
+        name_list = [s[0].upper() + s[1:] if len(s) > 1 else s.upper() for s in name_list]
+        return "".join(name_list)
 
     @staticmethod
     def _to_valid_python_name(name, *, pad_string=""):
@@ -137,28 +137,29 @@ class NameConverter:
             return pad_string
         return NameConverter._to_python_case(
             NameConverter._get_escaped_reserved_name(
-                NameConverter._to_valid_name(
-                    name.replace('-', '_'), '_'),
-                    pad_string
-                )
+                NameConverter._to_valid_name(name.replace("-", "_"), "_"), pad_string
             )
+        )
 
     @staticmethod
     def _to_python_case(name):
         def replace_upper_characters(m):
             match_str = m.group().lower()
-            if m.start() > 0 and name[m.start() - 1] == '_':
+            if m.start() > 0 and name[m.start() - 1] == "_":
                 # we are good if a '_' already exists
                 return match_str
             # the first letter should not have _
-            prefix = '_' if m.start() > 0 else ''
+            prefix = "_" if m.start() > 0 else ""
 
             # we will add an extra _ if there are multiple upper case chars together
             next_non_upper_case_char_location = m.start() + len(match_str)
-            if (len(match_str) > 2 and len(name) - next_non_upper_case_char_location > 1 and
-                name[next_non_upper_case_char_location].isalpha()):
+            if (
+                len(match_str) > 2
+                and len(name) - next_non_upper_case_char_location > 1
+                and name[next_non_upper_case_char_location].isalpha()
+            ):
 
-                return prefix + match_str[: len(match_str) - 1] + '_' + match_str[len(match_str) - 1]
+                return prefix + match_str[: len(match_str) - 1] + "_" + match_str[len(match_str) - 1]
 
             return prefix + match_str
 
@@ -176,8 +177,8 @@ class NameConverter:
 
     @staticmethod
     def _remove_invalid_characters(name, allowed_characters):
-        name = name.replace('[]', 'Sequence')
-        valid_string = ''.join([n for n in name if n.isalpha() or n.isdigit() or n in allowed_characters])
+        name = name.replace("[]", "Sequence")
+        valid_string = "".join([n for n in name if n.isalpha() or n.isdigit() or n in allowed_characters])
         return valid_string
 
     @staticmethod

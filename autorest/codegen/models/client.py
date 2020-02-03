@@ -24,12 +24,8 @@ class Client:
     def imports(code_model, async_mode: bool) -> FileImport:
         file_import = FileImport()
 
-        file_import.add_from_import(
-            "msrest", "Serializer", ImportType.AZURECORE
-        )
-        file_import.add_from_import(
-            "msrest", "Deserializer", ImportType.AZURECORE
-        )
+        file_import.add_from_import("msrest", "Serializer", ImportType.AZURECORE)
+        file_import.add_from_import("msrest", "Deserializer", ImportType.AZURECORE)
         file_import.add_from_import("typing", "Any", ImportType.STDLIB)
 
         # if code_model.options["credential"]:

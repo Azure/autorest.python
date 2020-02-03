@@ -7,6 +7,7 @@ from typing import Any, Dict, Optional
 from .base_schema import BaseSchema
 from .imports import FileImport, ImportType
 
+
 class DictionarySchema(BaseSchema):
     """Schema for dictionaries that will be serialized.
 
@@ -15,18 +16,18 @@ class DictionarySchema(BaseSchema):
     :param element_type: The type of the value for the dictionary
     :type element_type: ~autorest.models.BaseSchema
     """
+
     def __init__(
         self,
         namespace: str,
         yaml_data: Dict[str, Any],
         element_type: "BaseSchema",
         *,
-        additional_properties: bool = False
+        additional_properties: bool = False,
     ):
         super(DictionarySchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.element_type = element_type
         self.additional_properties = additional_properties
-
 
     @property
     def serialization_type(self) -> str:
@@ -44,7 +45,7 @@ class DictionarySchema(BaseSchema):
         :return: The type annotation for this schema
         :rtype: str
         """
-        return f'Dict[str, {self.element_type.type_annotation}]'
+        return f"Dict[str, {self.element_type.type_annotation}]"
 
     @property
     def docstring_text(self) -> str:
@@ -56,7 +57,7 @@ class DictionarySchema(BaseSchema):
 
         :param str namespace: Optional. The namespace for the models.
         """
-        return f'dict[str, {self.element_type.docstring_type}]'
+        return f"dict[str, {self.element_type.docstring_type}]"
 
     def xml_serialization_ctxt(self) -> Optional[str]:
         raise NotImplementedError("Dictionary schema does not support XML serialization.")
@@ -71,22 +72,21 @@ class DictionarySchema(BaseSchema):
         :return: A created DictionarySchema
         :rtype: ~autorest.models.DictionarySchema
         """
-        for_additional_properties = kwargs.pop('for_additional_properties', False)
+        for_additional_properties = kwargs.pop("for_additional_properties", False)
 
-        element_schema = yaml_data['elementType']
+        element_schema = yaml_data["elementType"]
 
         from . import build_schema  # pylint: disable=import-outside-toplevel
+
         element_type = build_schema(
-            yaml_data=element_schema,
-            for_additional_properties=for_additional_properties,
-            **kwargs
+            yaml_data=element_schema, for_additional_properties=for_additional_properties, **kwargs
         )
 
         return cls(
             namespace=namespace,
             yaml_data=yaml_data,
             element_type=element_type,
-            additional_properties=for_additional_properties
+            additional_properties=for_additional_properties,
         )
 
     def imports(self) -> FileImport:

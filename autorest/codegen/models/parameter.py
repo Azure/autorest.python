@@ -104,17 +104,17 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
             rest_api_name=yaml_data["language"]["default"].get(
                 "serializedName", yaml_data["language"]["default"]["name"]
             ),
-            serialized_name=yaml_data['language']['python']['name'],
+            serialized_name=yaml_data["language"]["python"]["name"],
             description=yaml_data["language"]["python"]["description"],
             implementation=yaml_data["implementation"],
             required=yaml_data.get("required", False),
             location=ParameterLocation(http_protocol["in"]),
             skip_url_encoding=yaml_data.get("extensions", {}).get("x-ms-skip-url-encoding", False),
-            constraints=[], # FIXME constraints
+            constraints=[],  # FIXME constraints
             style=ParameterStyle(http_protocol["style"]) if "style" in http_protocol else None,
             grouped_by=yaml_data.get("groupedBy", None),
             original_parameter=yaml_data.get("originalParameter", None),
-            flattened=yaml_data.get("flattened", False)
+            flattened=yaml_data.get("flattened", False),
         )
 
     def imports(self) -> FileImport:

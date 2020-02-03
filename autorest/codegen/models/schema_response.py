@@ -57,11 +57,10 @@ class SchemaResponse(BaseModel):
             schema=yaml_data.get("schema", None),  # FIXME replace by operation model
             media_types=yaml_data["protocol"]["http"].get("mediaTypes", []),
             status_codes=[
-                int(code) if code != "default" else "default"
-                for code in yaml_data["protocol"]["http"]["statusCodes"]
+                int(code) if code != "default" else "default" for code in yaml_data["protocol"]["http"]["statusCodes"]
             ],
             headers=[
-                HeaderResponse(header_prop['header'], header_prop['schema'])
+                HeaderResponse(header_prop["header"], header_prop["schema"])
                 for header_prop in yaml_data["protocol"]["http"].get("headers", [])
             ],
             binary=yaml_data.get("binary", False),
