@@ -20,6 +20,7 @@ T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 class AutoRestResourceFlatteningTestServiceOperationsMixin:
+
     @distributed_trace_async
     async def put_array(
         self,
@@ -45,11 +46,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if resource_array is not None:
@@ -70,6 +69,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
           return cls(pipeline_response, None, {})
 
     put_array.metadata = {'url': '/model-flatten/array'}
+
     @distributed_trace_async
     async def get_array(
         self,
@@ -91,11 +91,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -113,6 +111,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         return deserialized
     get_array.metadata = {'url': '/model-flatten/array'}
+
     @distributed_trace_async
     async def put_wrapped_array(
         self,
@@ -138,11 +137,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if resource_array is not None:
@@ -163,6 +160,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
           return cls(pipeline_response, None, {})
 
     put_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}
+
     @distributed_trace_async
     async def get_wrapped_array(
         self,
@@ -184,11 +182,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -206,6 +202,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         return deserialized
     get_wrapped_array.metadata = {'url': '/model-flatten/wrappedarray'}
+
     @distributed_trace_async
     async def put_dictionary(
         self,
@@ -231,11 +228,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if resource_dictionary is not None:
@@ -256,6 +251,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
           return cls(pipeline_response, None, {})
 
     put_dictionary.metadata = {'url': '/model-flatten/dictionary'}
+
     @distributed_trace_async
     async def get_dictionary(
         self,
@@ -277,11 +273,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -299,6 +293,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         return deserialized
     get_dictionary.metadata = {'url': '/model-flatten/dictionary'}
+
     @distributed_trace_async
     async def put_resource_collection(
         self,
@@ -324,11 +319,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if resource_complex_object is not None:
@@ -349,6 +342,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
           return cls(pipeline_response, None, {})
 
     put_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}
+
     @distributed_trace_async
     async def get_resource_collection(
         self,
@@ -370,11 +364,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -392,6 +384,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         return deserialized
     get_resource_collection.metadata = {'url': '/model-flatten/resourcecollection'}
+
     @distributed_trace_async
     async def put_simple_product(
         self,
@@ -417,12 +410,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if simple_body_product is not None:
@@ -446,6 +437,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         return deserialized
     put_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
+
     @distributed_trace_async
     async def post_flattened_simple_product(
         self,
@@ -478,6 +470,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :raises: ~modelflattening.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         simple_body_product = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odatavalue=odatavalue)
 
         # Construct URL
@@ -486,12 +479,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if simple_body_product is not None:
@@ -515,6 +506,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         return deserialized
     post_flattened_simple_product.metadata = {'url': '/model-flatten/customFlattening'}
+
     @distributed_trace_async
     async def put_simple_product_with_grouping(
         self,
@@ -564,12 +556,10 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if simple_body_product is not None:

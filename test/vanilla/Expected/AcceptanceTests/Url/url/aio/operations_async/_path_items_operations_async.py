@@ -86,10 +86,8 @@ class PathItemsOperations:
         if local_string_query is not None:
             query_parameters['localStringQuery'] = self._serialize.query("local_string_query", local_string_query, 'str')
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -152,10 +150,8 @@ class PathItemsOperations:
         if local_string_query is not None:
             query_parameters['localStringQuery'] = self._serialize.query("local_string_query", local_string_query, 'str')
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -218,10 +214,8 @@ class PathItemsOperations:
         if local_string_query is not None:
             query_parameters['localStringQuery'] = self._serialize.query("local_string_query", local_string_query, 'str')
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -284,10 +278,8 @@ class PathItemsOperations:
         if local_string_query is not None:
             query_parameters['localStringQuery'] = self._serialize.query("local_string_query", local_string_query, 'str')
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

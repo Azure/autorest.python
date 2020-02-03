@@ -62,11 +62,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -106,11 +104,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -154,11 +150,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(array_body, '{str}')
@@ -198,11 +192,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -242,11 +234,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -286,11 +276,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -330,11 +318,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -374,11 +360,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -422,11 +406,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(array_body, '{bool}')
@@ -466,11 +448,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -510,11 +490,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -554,11 +532,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -602,11 +578,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(array_body, '{int}')
@@ -646,11 +620,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -690,11 +662,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -734,11 +704,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -782,11 +750,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(array_body, '{long}')
@@ -826,11 +792,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -870,11 +834,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -914,11 +876,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -962,11 +922,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(array_body, '{float}')
@@ -1006,11 +964,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1050,11 +1006,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1094,11 +1048,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1142,11 +1094,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(array_body, '{float}')
@@ -1186,11 +1136,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1230,11 +1178,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1274,11 +1220,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1322,11 +1266,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(array_body, '{str}')
@@ -1366,11 +1308,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1410,11 +1350,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1454,11 +1392,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1502,11 +1438,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(array_body, '{date}')
@@ -1546,11 +1480,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1590,11 +1522,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1634,11 +1564,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1682,11 +1610,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(array_body, '{iso-8601}')
@@ -1726,11 +1652,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1770,11 +1694,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1814,11 +1736,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1862,11 +1782,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(array_body, '{rfc-1123}')
@@ -1906,11 +1824,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1954,11 +1870,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(array_body, '{duration}')
@@ -1998,11 +1912,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -2046,11 +1958,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(array_body, '{bytearray}')
@@ -2090,11 +2000,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -2134,11 +2042,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -2178,11 +2084,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -2222,11 +2126,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -2266,11 +2168,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -2310,11 +2210,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -2354,11 +2252,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -2402,11 +2298,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(array_body, '{Widget}')
@@ -2446,11 +2340,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -2490,11 +2382,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -2534,11 +2424,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -2578,11 +2466,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -2622,11 +2508,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -2670,11 +2554,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(array_body, '{[str]}')
@@ -2714,11 +2596,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -2758,11 +2638,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -2802,11 +2680,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -2846,11 +2722,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -2890,11 +2764,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -2938,11 +2810,9 @@ class DictionaryOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(array_body, '{object}')

@@ -40,10 +40,8 @@ def {{ operation.python_name }}(
 {% macro exception_name() %}{{ operation.default_exception.schema.name }}Exception{% endmacro %}
 {% set core_excep_name = 'ARMError' if code_model.options['azure_arm'] else 'HttpResponseError' %}
 {# actual template starts here #}
-{% if code_model.options['tracing'] and operation.want_tracing %}
+{%- if code_model.options['tracing'] and operation.want_tracing -%}
 {{ trace_decorator }}
-{% else %}
-
 {% endif %}
 {{ method_signature() }}
 {%- if not async_mode %}
@@ -101,8 +99,9 @@ def {{ operation.python_name }}(
 {% endif %}
 {% if operation.parameters.grouped %}
     {{ op_tools.grouped_parameters(operation)|indent }}
-{% endif %}
+{%- endif -%}
 {% if operation.parameters.is_flattened %}
+
     {{ operation.parameters.build_flattened_object() }}
 {% endif %}
 {% if operation.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None) %}
@@ -123,9 +122,7 @@ def {{ operation.python_name }}(
 {% endif %}
 
     {{ op_tools.query_parameters(operation, async_mode)|indent }}
-
     {{ op_tools.header_parameters(code_model, operation, async_mode)|indent }}
-
 {% if operation.parameters.has_body %}
     # Construct body
     {% if not operation.parameters.body.is_stream %}

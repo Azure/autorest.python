@@ -100,7 +100,7 @@ def {{ operation.python_name }}(
 {% endif %}
 {% if operation.parameters.grouped %}
     {{ op_tools.grouped_parameters(operation)|indent }}
-{% endif %}
+{%- endif -%}
 {% if operation.parameters.is_flattened %}
     {{ operation.parameters.build_flattened_object() }}
 {% endif %}
@@ -146,9 +146,7 @@ def {{ operation.python_name }}(
 {% endif %}
 
         {{ op_tools.query_parameters(operation, async_mode)|indent(8) }}
-
         {{ op_tools.header_parameters(code_model, operation, async_mode)|indent(8) }}
-
     {% if operation.parameters.has_body %}
         # Construct body
         {% if not operation.parameters.body.is_stream %}

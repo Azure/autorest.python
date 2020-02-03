@@ -70,11 +70,9 @@ class PagingOperations:
             # Construct parameters
             query_parameters: Dict[str, Any] = {}
 
-
             # Construct headers
             header_parameters: Dict[str, Any] = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -104,7 +102,6 @@ class PagingOperations:
         )
     get_no_item_name_pages.metadata = {'url': '/paging/noitemname'}
 
-
     @distributed_trace
     def get_null_next_link_name_pages(
         self,
@@ -130,11 +127,9 @@ class PagingOperations:
             # Construct parameters
             query_parameters: Dict[str, Any] = {}
 
-
             # Construct headers
             header_parameters: Dict[str, Any] = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -164,7 +159,6 @@ class PagingOperations:
         )
     get_null_next_link_name_pages.metadata = {'url': '/paging/nullnextlink'}
 
-
     @distributed_trace
     def get_single_pages(
         self,
@@ -190,11 +184,9 @@ class PagingOperations:
             # Construct parameters
             query_parameters: Dict[str, Any] = {}
 
-
             # Construct headers
             header_parameters: Dict[str, Any] = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -224,7 +216,6 @@ class PagingOperations:
         )
     get_single_pages.metadata = {'url': '/paging/single'}
 
-
     @distributed_trace
     def get_multiple_pages(
         self,
@@ -253,7 +244,6 @@ class PagingOperations:
             maxresults = paging_get_multiple_pages_options.maxresults
             timeout = paging_get_multiple_pages_options.timeout
 
-
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
@@ -264,7 +254,6 @@ class PagingOperations:
             # Construct parameters
             query_parameters: Dict[str, Any] = {}
 
-
             # Construct headers
             header_parameters: Dict[str, Any] = {}
             if client_request_id is not None:
@@ -274,7 +263,6 @@ class PagingOperations:
             if timeout is not None:
                 header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -304,7 +292,6 @@ class PagingOperations:
         )
     get_multiple_pages.metadata = {'url': '/paging/multiple'}
 
-
     @distributed_trace
     def get_odata_multiple_pages(
         self,
@@ -333,7 +320,6 @@ class PagingOperations:
             maxresults = paging_get_odata_multiple_pages_options.maxresults
             timeout = paging_get_odata_multiple_pages_options.timeout
 
-
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
@@ -344,7 +330,6 @@ class PagingOperations:
             # Construct parameters
             query_parameters: Dict[str, Any] = {}
 
-
             # Construct headers
             header_parameters: Dict[str, Any] = {}
             if client_request_id is not None:
@@ -354,7 +339,6 @@ class PagingOperations:
             if timeout is not None:
                 header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -383,7 +367,6 @@ class PagingOperations:
             get_next, extract_data
         )
     get_odata_multiple_pages.metadata = {'url': '/paging/multiple/odata'}
-
 
     @distributed_trace
     def get_multiple_pages_with_offset(
@@ -415,7 +398,6 @@ class PagingOperations:
             offset = paging_get_multiple_pages_with_offset_options.offset
             timeout = paging_get_multiple_pages_with_offset_options.timeout
 
-
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
@@ -430,7 +412,6 @@ class PagingOperations:
             # Construct parameters
             query_parameters: Dict[str, Any] = {}
 
-
             # Construct headers
             header_parameters: Dict[str, Any] = {}
             if client_request_id is not None:
@@ -440,7 +421,6 @@ class PagingOperations:
             if timeout is not None:
                 header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -470,7 +450,6 @@ class PagingOperations:
         )
     get_multiple_pages_with_offset.metadata = {'url': '/paging/multiple/withpath/{offset}'}
 
-
     @distributed_trace
     def get_multiple_pages_retry_first(
         self,
@@ -496,11 +475,9 @@ class PagingOperations:
             # Construct parameters
             query_parameters: Dict[str, Any] = {}
 
-
             # Construct headers
             header_parameters: Dict[str, Any] = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -530,7 +507,6 @@ class PagingOperations:
         )
     get_multiple_pages_retry_first.metadata = {'url': '/paging/multiple/retryfirst'}
 
-
     @distributed_trace
     def get_multiple_pages_retry_second(
         self,
@@ -556,11 +532,9 @@ class PagingOperations:
             # Construct parameters
             query_parameters: Dict[str, Any] = {}
 
-
             # Construct headers
             header_parameters: Dict[str, Any] = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -590,7 +564,6 @@ class PagingOperations:
         )
     get_multiple_pages_retry_second.metadata = {'url': '/paging/multiple/retrysecond'}
 
-
     @distributed_trace
     def get_single_pages_failure(
         self,
@@ -616,11 +589,9 @@ class PagingOperations:
             # Construct parameters
             query_parameters: Dict[str, Any] = {}
 
-
             # Construct headers
             header_parameters: Dict[str, Any] = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -650,7 +621,6 @@ class PagingOperations:
         )
     get_single_pages_failure.metadata = {'url': '/paging/single/failure'}
 
-
     @distributed_trace
     def get_multiple_pages_failure(
         self,
@@ -676,11 +646,9 @@ class PagingOperations:
             # Construct parameters
             query_parameters: Dict[str, Any] = {}
 
-
             # Construct headers
             header_parameters: Dict[str, Any] = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -710,7 +678,6 @@ class PagingOperations:
         )
     get_multiple_pages_failure.metadata = {'url': '/paging/multiple/failure'}
 
-
     @distributed_trace
     def get_multiple_pages_failure_uri(
         self,
@@ -736,11 +703,9 @@ class PagingOperations:
             # Construct parameters
             query_parameters: Dict[str, Any] = {}
 
-
             # Construct headers
             header_parameters: Dict[str, Any] = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -769,7 +734,6 @@ class PagingOperations:
             get_next, extract_data
         )
     get_multiple_pages_failure_uri.metadata = {'url': '/paging/multiple/failureuri'}
-
 
     @distributed_trace
     def get_multiple_pages_fragment_next_link(
@@ -813,11 +777,9 @@ class PagingOperations:
             query_parameters: Dict[str, Any] = {}
             query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
 
-
             # Construct headers
             header_parameters: Dict[str, Any] = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -847,7 +809,6 @@ class PagingOperations:
         )
     get_multiple_pages_fragment_next_link.metadata = {'url': '/paging/multiple/fragment/{tenant}'}
 
-
     @distributed_trace
     def get_multiple_pages_fragment_with_grouping_next_link(
         self,
@@ -873,7 +834,6 @@ class PagingOperations:
             api_version = custom_parameter_group.api_version
             tenant = custom_parameter_group.tenant
 
-
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
@@ -894,11 +854,9 @@ class PagingOperations:
             query_parameters: Dict[str, Any] = {}
             query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
 
-
             # Construct headers
             header_parameters: Dict[str, Any] = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -928,8 +886,6 @@ class PagingOperations:
         )
     get_multiple_pages_fragment_with_grouping_next_link.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}'}
 
-
-    
     async def _get_multiple_pages_lro_initial(
         self,
         client_request_id: Optional[str] = None,
@@ -946,13 +902,11 @@ class PagingOperations:
             maxresults = paging_get_multiple_pages_lro_options.maxresults
             timeout = paging_get_multiple_pages_lro_options.timeout
 
-
         # Construct URL
         url = self._get_multiple_pages_lro_initial.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
-
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
@@ -963,7 +917,6 @@ class PagingOperations:
         if timeout is not None:
             header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -1029,4 +982,3 @@ class PagingOperations:
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     get_multiple_pages_lro.metadata = {'url': '/paging/multiple/lro'}
-

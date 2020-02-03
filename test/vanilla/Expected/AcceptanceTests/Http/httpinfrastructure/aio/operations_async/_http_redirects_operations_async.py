@@ -60,10 +60,8 @@ class HttpRedirectsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -104,11 +102,9 @@ class HttpRedirectsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -152,10 +148,8 @@ class HttpRedirectsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -196,10 +190,8 @@ class HttpRedirectsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -241,11 +233,9 @@ class HttpRedirectsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -291,10 +281,8 @@ class HttpRedirectsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -335,10 +323,8 @@ class HttpRedirectsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -380,11 +366,9 @@ class HttpRedirectsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -431,11 +415,9 @@ class HttpRedirectsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -482,10 +464,8 @@ class HttpRedirectsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -526,10 +506,8 @@ class HttpRedirectsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -570,10 +548,8 @@ class HttpRedirectsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.options(url, query_parameters, header_parameters)
@@ -615,11 +591,9 @@ class HttpRedirectsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -667,11 +641,9 @@ class HttpRedirectsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -719,11 +691,9 @@ class HttpRedirectsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -771,11 +741,9 @@ class HttpRedirectsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
