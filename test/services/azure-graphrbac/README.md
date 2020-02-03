@@ -37,6 +37,8 @@ package-name: azure-graphrbac
 namespace: azure.graphrbac
 no-namespace-folders: true
 license-header: MICROSOFT_MIT_NO_VERSION
+add-credentials: true
+credential-scopes: https://graph.windows.net/
 payload-flattening-threshold: 2
 package-version: 0.61.1
 ```
