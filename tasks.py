@@ -11,6 +11,14 @@ from invoke import task, run
 init()
 _AUTOREST_CMD_LINE = "autorest-beta"
 
+service_to_readme_path = {
+    'azure-ai-textanalytics': 'test/services/azure-ai-textanalytics/README.md',
+    'azure-storage-blob': '../azure-sdk-for-python/sdk/storage/azure-storage-blob/swagger/README.md',
+    'azure-mgmt-storage': 'test/services/azure-mgmt-storage/README.md',
+    'azure-graphrbac': 'test/services/azure-graphrbac/README.md',
+    'azure-search': 'test/services/azure-search/README.md',
+}
+
 default_mappings = {
   'AcceptanceTests/AdditionalProperties': 'additionalProperties.json',
   'AcceptanceTests/ParameterFlattening': 'parameter-flattening.json',
@@ -80,10 +88,10 @@ def regen_expected(c, opts, debug):
 
         swagger_files = (opts_mappings_value[0] if isinstance(opts_mappings_value, list) else opts_mappings_value).split(';')
         args = [
-            "--use={}".format(base_dir),
+            f"--use={base_dir}",
             # "--{}".format(opts['language']),
             "--clear-output-folder",
-            "--output-folder={}/{}".format(output_dir, key),
+            f"--output-folder={output_dir}/{key}",
             "--license-header={}".format(opts['header'] if opts.get('header') else 'MICROSOFT_MIT_NO_VERSION'),
             "--enable-xml",
             "--basic-setup-py",
@@ -94,7 +102,7 @@ def regen_expected(c, opts, debug):
 
         for swagger_file in swagger_files:
             input_file_name = "{}/{}".format(opts['input_base_dir'], swagger_file) if opts.get('input_base_dir') else swagger_file
-            args.append("--input-file={}".format(input_file_name))
+            args.append(f"--input-file={input_file_name}")
 
         if debug:
             args.append("--debug")
@@ -109,38 +117,38 @@ def regen_expected(c, opts, debug):
             args.append("--azure-arm=true")
 
         if opts.get('flattening_threshold'):
-            args.append("--payload-flattening-threshold={}".format(opts['flattening_threshold']))
+            args.append(f"--payload-flattening-threshold={opts['flattening_threshold']}")
 
         if opts.get('keep_version') and opts['keep_version']:
             args.append("--keep-version-file=true")
 
         if opts.get('ns_prefix'):
             if isinstance(opts_mappings_value, list) and len(opts_mappings_value) > 1:
-                args.append("--namespace={}".format(opts_mappings_value[1]))
+                args.append(f"--namespace={opts_mappings_value[1]}")
             else:
                 namespace = key.split('/')[-1].lower()
-                args.append("--namespace={}".format(namespace))
+                args.append(f"--namespace={namespace}")
 
         if opts.get('override-info.version'):
-            args.append("--override-info.version={}".format(opts['override-info.version']))
+            args.append(f"--override-info.version={opts['override-info.version']}")
         if opts.get('override-info.title'):
-            args.append("--override-info.title={}".format(opts['override-info.title']))
+            args.append(f"--override-info.title={opts['override-info.title']}")
         if opts.get('override-info.description'):
-            args.append("--override-info.description={}".format(opts['override-info.description']))
+            args.append(f"--override-info.description={opts['override-info.description']}")
 
         cmd_line = '{} {}'.format(_AUTOREST_CMD_LINE, " ".join(args))
         print(Fore.YELLOW + f'Queuing up: {cmd_line}')
         cmds.append(cmd_line)
 
     if len(cmds) == 1:
-        run_autorest(cmds[0])
+        run_autorest(cmds[0], debug=debug)
     else:
         # Execute actual taks in parallel
         with Pool() as pool:
             pool.map(run_autorest, cmds)
 
-def run_autorest(cmd_line):
-    result = run(cmd_line, warn=True, hide=True)
+def run_autorest(cmd_line, debug=False):
+    result = run(cmd_line, warn=True, hide=not debug)
     if result.ok or result.return_code is None:
         print(Fore.GREEN + f'Call "{cmd_line}" done with success')
     else:
@@ -214,7 +222,33 @@ def regenerate(c, swagger_name=None, debug=False):
 def test(c, env=None):
     # run language-specific tests
     cmd = f'tox -e {env}' if env else 'tox'
-    os.chdir("{}/test/vanilla/".format(base_dir))
+    os.chdir(f"{base_dir}/test/vanilla/")
     c.run(cmd)
-    os.chdir("{}/test/azure/".format(base_dir))
+    os.chdir(f"{base_dir}/test/azure/")
     c.run(cmd)
+
+
+@task
+def regenerate_services(c, swagger_name=None, debug=False):
+    # regenerate service from swagger
+    if swagger_name:
+        service_mapping = {k: v for k, v in service_to_readme_path.items() if swagger_name.lower() in k.lower()}
+    else:
+        service_mapping = service_to_readme_path
+
+    cmds = []
+    for service in service_mapping:
+        readme_path = service_to_readme_path[service]
+        service = service.strip()
+        cmd_line = f'{_AUTOREST_CMD_LINE} {readme_path} --use=. --output-artifact=code-model-v4-no-tags'
+        if debug:
+            cmd_line += " --debug"
+        print(Fore.YELLOW + f'Queuing up: {cmd_line}')
+        cmds.append(cmd_line)
+
+    if len(cmds) == 1:
+        run_autorest(cmds[0], debug=debug)
+    else:
+        # Execute actual taks in parallel
+        with Pool() as pool:
+            pool.map(run_autorest, cmds)

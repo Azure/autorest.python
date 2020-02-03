@@ -49,8 +49,6 @@ class DurationOperations(object):
         # type: (...) -> datetime.timedelta
         """Get null duration value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: timedelta or the result of cls(response)
         :rtype: ~datetime.timedelta
@@ -64,11 +62,9 @@ class DurationOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -97,9 +93,7 @@ class DurationOperations(object):
         # type: (...) -> None
         """Put a positive duration value.
 
-        FIXME: add operation.summary
-
-        :param duration_body: 
+        :param duration_body:
         :type duration_body: ~datetime.timedelta
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -114,11 +108,9 @@ class DurationOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(duration_body, 'duration')
@@ -146,8 +138,6 @@ class DurationOperations(object):
         # type: (...) -> datetime.timedelta
         """Get a positive duration value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: timedelta or the result of cls(response)
         :rtype: ~datetime.timedelta
@@ -161,11 +151,9 @@ class DurationOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -193,8 +181,6 @@ class DurationOperations(object):
         # type: (...) -> datetime.timedelta
         """Get an invalid duration value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: timedelta or the result of cls(response)
         :rtype: ~datetime.timedelta
@@ -208,11 +194,9 @@ class DurationOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

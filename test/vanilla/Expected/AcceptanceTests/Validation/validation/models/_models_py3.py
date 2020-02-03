@@ -105,7 +105,7 @@ class ErrorException(HttpResponseError):
 
 
 class Error(Model):
-    """
+    """Error.
 
     :param code:
     :type code: int
@@ -157,8 +157,7 @@ class Product(Model):
     :vartype const_int: float
     :ivar const_string: Required. Constant string. Default value: "constant".
     :vartype const_string: str
-    :ivar const_string_as_enum: Constant string as Enum. Default value:
-     "constant_string_as_enum".
+    :ivar const_string_as_enum: Constant string as Enum. Default value: "constant_string_as_enum".
     :vartype const_string_as_enum: str
     """
 
@@ -190,9 +189,9 @@ class Product(Model):
 
     def __init__(
         self,
+        *,
         child: "ChildProduct",
         const_child: "ConstantProduct",
-        *,
         display_names: Optional[List[str]] = None,
         capacity: Optional[int] = None,
         image: Optional[str] = None,

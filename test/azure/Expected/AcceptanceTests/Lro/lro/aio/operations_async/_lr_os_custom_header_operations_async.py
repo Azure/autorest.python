@@ -43,7 +43,6 @@ class LROsCustomHeaderOperations:
         self._deserialize = deserializer
         self._config = config
 
-    
     async def _put_async_retry_succeeded_initial(
         self,
         product: Optional["models.Product"] = None,
@@ -59,12 +58,10 @@ class LROsCustomHeaderOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -104,9 +101,6 @@ class LROsCustomHeaderOperations:
     ) -> "models.Product":
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -145,8 +139,6 @@ class LROsCustomHeaderOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put_async_retry_succeeded.metadata = {'url': '/lro/customheader/putasync/retry/succeeded'}
 
-
-    
     async def _put201_creating_succeeded200_initial(
         self,
         product: Optional["models.Product"] = None,
@@ -162,12 +154,10 @@ class LROsCustomHeaderOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -208,9 +198,6 @@ class LROsCustomHeaderOperations:
     ) -> "models.Product":
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -244,8 +231,6 @@ class LROsCustomHeaderOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put201_creating_succeeded200.metadata = {'url': '/lro/customheader/put/201/creating/succeeded/200'}
 
-
-    
     async def _post202_retry200_initial(
         self,
         product: Optional["models.Product"] = None,
@@ -261,11 +246,9 @@ class LROsCustomHeaderOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -302,9 +285,6 @@ class LROsCustomHeaderOperations:
     ) -> None:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running post request, service returns a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -335,8 +315,6 @@ class LROsCustomHeaderOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     post202_retry200.metadata = {'url': '/lro/customheader/post/202/retry/200'}
 
-
-    
     async def _post_async_retry_succeeded_initial(
         self,
         product: Optional["models.Product"] = None,
@@ -352,11 +330,9 @@ class LROsCustomHeaderOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -394,9 +370,6 @@ class LROsCustomHeaderOperations:
     ) -> None:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -426,4 +399,3 @@ class LROsCustomHeaderOperations:
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     post_async_retry_succeeded.metadata = {'url': '/lro/customheader/postasync/retry/succeeded'}
-

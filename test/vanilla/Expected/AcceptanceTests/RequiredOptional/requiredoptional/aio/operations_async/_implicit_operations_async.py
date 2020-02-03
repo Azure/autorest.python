@@ -49,9 +49,7 @@ class ImplicitOperations:
     ) -> None:
         """Test implicitly required path parameter.
 
-        FIXME: add operation.summary
-
-        :param path_parameter: 
+        :param path_parameter:
         :type path_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -70,10 +68,8 @@ class ImplicitOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -99,9 +95,7 @@ class ImplicitOperations:
     ) -> None:
         """Test implicitly optional query parameter.
 
-        FIXME: add operation.summary
-
-        :param query_parameter: 
+        :param query_parameter:
         :type query_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -118,10 +112,8 @@ class ImplicitOperations:
         if query_parameter is not None:
             query_parameters['queryParameter'] = self._serialize.query("query_parameter", query_parameter, 'str')
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters)
@@ -147,9 +139,7 @@ class ImplicitOperations:
     ) -> None:
         """Test implicitly optional header parameter.
 
-        FIXME: add operation.summary
-
-        :param query_parameter: 
+        :param query_parameter:
         :type query_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -164,12 +154,10 @@ class ImplicitOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         if query_parameter is not None:
             header_parameters['queryParameter'] = self._serialize.header("query_parameter", query_parameter, 'str')
-
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters)
@@ -195,9 +183,7 @@ class ImplicitOperations:
     ) -> None:
         """Test implicitly optional body parameter.
 
-        FIXME: add operation.summary
-
-        :param body_parameter: 
+        :param body_parameter:
         :type body_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -212,11 +198,9 @@ class ImplicitOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body_parameter is not None:
@@ -246,8 +230,6 @@ class ImplicitOperations:
     ) -> None:
         """Test implicitly required path parameter.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -265,10 +247,8 @@ class ImplicitOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -292,8 +272,6 @@ class ImplicitOperations:
     ) -> None:
         """Test implicitly required query parameter.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -308,10 +286,8 @@ class ImplicitOperations:
         query_parameters: Dict[str, Any] = {}
         query_parameters['required-global-query'] = self._serialize.query("self._config.required_global_query", self._config.required_global_query, 'str')
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -335,8 +311,6 @@ class ImplicitOperations:
     ) -> None:
         """Test implicitly optional query parameter.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -352,10 +326,8 @@ class ImplicitOperations:
         if self._config.optional_global_query is not None:
             query_parameters['optional-global-query'] = self._serialize.query("self._config.optional_global_query", self._config.optional_global_query, 'int')
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

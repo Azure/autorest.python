@@ -47,8 +47,6 @@ class FilesOperations:
     ) -> IO:
         """Get file.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: IO or the result of cls(response)
         :rtype: IO
@@ -62,11 +60,9 @@ class FilesOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'image/png'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -93,8 +89,6 @@ class FilesOperations:
     ) -> IO:
         """Get a large file.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: IO or the result of cls(response)
         :rtype: IO
@@ -108,11 +102,9 @@ class FilesOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'image/png'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -139,8 +131,6 @@ class FilesOperations:
     ) -> IO:
         """Get empty file.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: IO or the result of cls(response)
         :rtype: IO
@@ -154,11 +144,9 @@ class FilesOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'image/png'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

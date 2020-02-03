@@ -50,9 +50,7 @@ class PetsOperations(object):
         # type: (...) -> "models.PetAPTrue"
         """Create a Pet which contains more properties than what is defined.
 
-        FIXME: add operation.summary
-
-        :param create_parameters: 
+        :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPTrue
         :param callable cls: A custom type or function that will be passed the direct response
         :return: PetAPTrue or the result of cls(response)
@@ -67,12 +65,10 @@ class PetsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(create_parameters, 'PetAPTrue')
@@ -104,9 +100,7 @@ class PetsOperations(object):
         # type: (...) -> "models.CatAPTrue"
         """Create a CatAPTrue which contains more properties than what is defined.
 
-        FIXME: add operation.summary
-
-        :param create_parameters: 
+        :param create_parameters:
         :type create_parameters: ~additionalproperties.models.CatAPTrue
         :param callable cls: A custom type or function that will be passed the direct response
         :return: CatAPTrue or the result of cls(response)
@@ -121,12 +115,10 @@ class PetsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(create_parameters, 'CatAPTrue')
@@ -158,9 +150,7 @@ class PetsOperations(object):
         # type: (...) -> "models.PetAPObject"
         """Create a Pet which contains more properties than what is defined.
 
-        FIXME: add operation.summary
-
-        :param create_parameters: 
+        :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPObject
         :param callable cls: A custom type or function that will be passed the direct response
         :return: PetAPObject or the result of cls(response)
@@ -175,12 +165,10 @@ class PetsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(create_parameters, 'PetAPObject')
@@ -212,9 +200,7 @@ class PetsOperations(object):
         # type: (...) -> "models.PetAPString"
         """Create a Pet which contains more properties than what is defined.
 
-        FIXME: add operation.summary
-
-        :param create_parameters: 
+        :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPString
         :param callable cls: A custom type or function that will be passed the direct response
         :return: PetAPString or the result of cls(response)
@@ -229,12 +215,10 @@ class PetsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(create_parameters, 'PetAPString')
@@ -266,9 +250,7 @@ class PetsOperations(object):
         # type: (...) -> "models.PetAPInProperties"
         """Create a Pet which contains more properties than what is defined.
 
-        FIXME: add operation.summary
-
-        :param create_parameters: 
+        :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPInProperties
         :param callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInProperties or the result of cls(response)
@@ -283,12 +265,10 @@ class PetsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(create_parameters, 'PetAPInProperties')
@@ -320,9 +300,7 @@ class PetsOperations(object):
         # type: (...) -> "models.PetAPInPropertiesWithAPString"
         """Create a Pet which contains more properties than what is defined.
 
-        FIXME: add operation.summary
-
-        :param create_parameters: 
+        :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPInPropertiesWithAPString
         :param callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInPropertiesWithAPString or the result of cls(response)
@@ -337,12 +315,10 @@ class PetsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(create_parameters, 'PetAPInPropertiesWithAPString')

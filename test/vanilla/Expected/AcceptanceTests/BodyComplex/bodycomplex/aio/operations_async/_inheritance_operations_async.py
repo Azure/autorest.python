@@ -48,8 +48,6 @@ class InheritanceOperations:
     ) -> "models.Siamese":
         """Get complex types that extend others.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Siamese or the result of cls(response)
         :rtype: ~bodycomplex.models.Siamese
@@ -63,11 +61,9 @@ class InheritanceOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -96,9 +92,9 @@ class InheritanceOperations:
     ) -> None:
         """Put complex types that extend others.
 
-        FIXME: add operation.summary
-
-        :param complex_body: Please put a siamese with id=2, name="Siameee", color=green, breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and the 2nd one named "Tomato" with id=-1 and food="french fries".
+        :param complex_body: Please put a siamese with id=2, name="Siameee", color=green,
+         breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and
+         the 2nd one named "Tomato" with id=-1 and food="french fries".
         :type complex_body: ~bodycomplex.models.Siamese
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -113,11 +109,9 @@ class InheritanceOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'Siamese')

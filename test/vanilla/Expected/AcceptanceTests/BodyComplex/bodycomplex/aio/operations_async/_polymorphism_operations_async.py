@@ -48,8 +48,6 @@ class PolymorphismOperations:
     ) -> "models.Fish":
         """Get complex types that are polymorphic.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Fish or the result of cls(response)
         :rtype: ~bodycomplex.models.Fish
@@ -63,11 +61,9 @@ class PolymorphismOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -96,41 +92,39 @@ class PolymorphismOperations:
     ) -> None:
         """Put complex types that are polymorphic.
 
-        FIXME: add operation.summary
-
         :param complex_body: Please put a salmon that looks like this:
-    {
-            'fishtype':'Salmon',
-            'location':'alaska',
-            'iswild':true,
-            'species':'king',
-            'length':1.0,
-            'siblings':[
-              {
-                'fishtype':'Shark',
-                'age':6,
-                'birthday': '2012-01-05T01:00:00Z',
-                'length':20.0,
-                'species':'predator',
-              },
-              {
-                'fishtype':'Sawshark',
-                'age':105,
-                'birthday': '1900-01-05T01:00:00Z',
-                'length':10.0,
-                'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
-                'species':'dangerous',
-              },
-              {
-                'fishtype': 'goblin',
-                'age': 1,
-                'birthday': '2015-08-08T00:00:00Z',
-                'length': 30.0,
-                'species': 'scary',
-                'jawsize': 5
-              }
-            ]
-          };.
+         {
+                 'fishtype':'Salmon',
+                 'location':'alaska',
+                 'iswild':true,
+                 'species':'king',
+                 'length':1.0,
+                 'siblings':[
+                   {
+                     'fishtype':'Shark',
+                     'age':6,
+                     'birthday': '2012-01-05T01:00:00Z',
+                     'length':20.0,
+                     'species':'predator',
+                   },
+                   {
+                     'fishtype':'Sawshark',
+                     'age':105,
+                     'birthday': '1900-01-05T01:00:00Z',
+                     'length':10.0,
+                     'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
+                     'species':'dangerous',
+                   },
+                   {
+                     'fishtype': 'goblin',
+                     'age': 1,
+                     'birthday': '2015-08-08T00:00:00Z',
+                     'length': 30.0,
+                     'species': 'scary',
+                     'jawsize': 5
+                   }
+                 ]
+               };.
         :type complex_body: ~bodycomplex.models.Fish
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -145,11 +139,9 @@ class PolymorphismOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'Fish')
@@ -176,8 +168,6 @@ class PolymorphismOperations:
     ) -> "models.DotFish":
         """Get complex types that are polymorphic, JSON key contains a dot.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DotFish or the result of cls(response)
         :rtype: ~bodycomplex.models.DotFish
@@ -191,11 +181,9 @@ class PolymorphismOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -222,8 +210,6 @@ class PolymorphismOperations:
     ) -> "models.DotFishMarket":
         """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, with discriminator specified. Deserialization must NOT fail and use the discriminator type specified on the wire.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DotFishMarket or the result of cls(response)
         :rtype: ~bodycomplex.models.DotFishMarket
@@ -237,11 +223,9 @@ class PolymorphismOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -268,8 +252,6 @@ class PolymorphismOperations:
     ) -> "models.DotFishMarket":
         """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, without discriminator specified on wire. Deserialization must NOT fail and use the explicit type of the property.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DotFishMarket or the result of cls(response)
         :rtype: ~bodycomplex.models.DotFishMarket
@@ -283,11 +265,9 @@ class PolymorphismOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -314,8 +294,6 @@ class PolymorphismOperations:
     ) -> "models.Salmon":
         """Get complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Salmon or the result of cls(response)
         :rtype: ~bodycomplex.models.Salmon
@@ -329,11 +307,9 @@ class PolymorphismOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -362,9 +338,7 @@ class PolymorphismOperations:
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties.
 
-        FIXME: add operation.summary
-
-        :param complex_body: 
+        :param complex_body:
         :type complex_body: ~bodycomplex.models.Salmon
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -379,11 +353,9 @@ class PolymorphismOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'Salmon')
@@ -412,9 +384,7 @@ class PolymorphismOperations:
     ) -> "models.Salmon":
         """Put complex types that are polymorphic, omitting the discriminator.
 
-        FIXME: add operation.summary
-
-        :param complex_body: 
+        :param complex_body:
         :type complex_body: ~bodycomplex.models.Salmon
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Salmon or the result of cls(response)
@@ -429,12 +399,10 @@ class PolymorphismOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'Salmon')
@@ -466,41 +434,39 @@ class PolymorphismOperations:
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the request should not be allowed from the client.
 
-        FIXME: add operation.summary
-
         :param complex_body: Please put a salmon that looks like this:
-    {
-            'fishtype':'Salmon',
-            'location':'alaska',
-            'iswild':true,
-            'species':'king',
-            'length':1.0,
-            'siblings':[
-              {
-                'fishtype':'Shark',
-                'age':6,
-                'birthday': '2012-01-05T01:00:00Z',
-                'length':20.0,
-                'species':'predator',
-              },
-              {
-                'fishtype':'Sawshark',
-                'age':105,
-                'birthday': '1900-01-05T01:00:00Z',
-                'length':10.0,
-                'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
-                'species':'dangerous',
-              },
-              {
-                'fishtype': 'goblin',
-                'age': 1,
-                'birthday': '2015-08-08T00:00:00Z',
-                'length': 30.0,
-                'species': 'scary',
-                'jawsize': 5
-              }
-            ]
-          };.
+         {
+                 'fishtype':'Salmon',
+                 'location':'alaska',
+                 'iswild':true,
+                 'species':'king',
+                 'length':1.0,
+                 'siblings':[
+                   {
+                     'fishtype':'Shark',
+                     'age':6,
+                     'birthday': '2012-01-05T01:00:00Z',
+                     'length':20.0,
+                     'species':'predator',
+                   },
+                   {
+                     'fishtype':'Sawshark',
+                     'age':105,
+                     'birthday': '1900-01-05T01:00:00Z',
+                     'length':10.0,
+                     'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
+                     'species':'dangerous',
+                   },
+                   {
+                     'fishtype': 'goblin',
+                     'age': 1,
+                     'birthday': '2015-08-08T00:00:00Z',
+                     'length': 30.0,
+                     'species': 'scary',
+                     'jawsize': 5
+                   }
+                 ]
+               };.
         :type complex_body: ~bodycomplex.models.Fish
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -515,11 +481,9 @@ class PolymorphismOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'Fish')

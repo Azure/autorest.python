@@ -43,7 +43,6 @@ class LRORetrysOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    
     def _put201_creating_succeeded200_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -59,12 +58,10 @@ class LRORetrysOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -105,9 +102,6 @@ class LRORetrysOperations(object):
         # type: (...) -> "models.Product"
         """Long running put request, service returns a 500, then a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -141,8 +135,6 @@ class LRORetrysOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put201_creating_succeeded200.metadata = {'url': '/lro/retryerror/put/201/creating/succeeded/200'}
 
-
-    
     def _put_async_relative_retry_succeeded_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -158,12 +150,10 @@ class LRORetrysOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -203,9 +193,6 @@ class LRORetrysOperations(object):
         # type: (...) -> "models.Product"
         """Long running put request, service returns a 500, then a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -244,8 +231,6 @@ class LRORetrysOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/putasync/retry/succeeded'}
 
-
-    
     def _delete_provisioning202_accepted200_succeeded_initial(
         self,
         cls=None,  # type: ClsType["models.Product"]
@@ -260,11 +245,9 @@ class LRORetrysOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -301,9 +284,6 @@ class LRORetrysOperations(object):
         # type: (...) -> "models.Product"
         """Long running delete request, service returns a 500, then a  202 to the initial request, with an entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -338,8 +318,6 @@ class LRORetrysOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_provisioning202_accepted200_succeeded.metadata = {'url': '/lro/retryerror/delete/provisioning/202/accepted/200/succeeded'}
 
-
-    
     def _delete202_retry200_initial(
         self,
         cls=None,  # type: ClsType[None]
@@ -354,10 +332,8 @@ class LRORetrysOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -387,9 +363,6 @@ class LRORetrysOperations(object):
         # type: (...) -> None
         """Long running delete request, service returns a 500, then a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -417,8 +390,6 @@ class LRORetrysOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete202_retry200.metadata = {'url': '/lro/retryerror/delete/202/retry/200'}
 
-
-    
     def _delete_async_relative_retry_succeeded_initial(
         self,
         cls=None,  # type: ClsType[None]
@@ -433,10 +404,8 @@ class LRORetrysOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -467,9 +436,6 @@ class LRORetrysOperations(object):
         # type: (...) -> None
         """Long running delete request, service returns a 500, then a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -497,8 +463,6 @@ class LRORetrysOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/deleteasync/retry/succeeded'}
 
-
-    
     def _post202_retry200_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -514,11 +478,9 @@ class LRORetrysOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -555,9 +517,6 @@ class LRORetrysOperations(object):
         # type: (...) -> None
         """Long running post request, service returns a 500, then a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -588,8 +547,6 @@ class LRORetrysOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post202_retry200.metadata = {'url': '/lro/retryerror/post/202/retry/200'}
 
-
-    
     def _post_async_relative_retry_succeeded_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -605,11 +562,9 @@ class LRORetrysOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -647,9 +602,6 @@ class LRORetrysOperations(object):
         # type: (...) -> None
         """Long running post request, service returns a 500, then a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -679,4 +631,3 @@ class LRORetrysOperations(object):
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/postasync/retry/succeeded'}
-

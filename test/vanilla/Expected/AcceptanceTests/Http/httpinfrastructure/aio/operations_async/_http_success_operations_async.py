@@ -47,8 +47,6 @@ class HttpSuccessOperations:
     ) -> None:
         """Return 200 status code if successful.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -62,10 +60,8 @@ class HttpSuccessOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -89,8 +85,6 @@ class HttpSuccessOperations:
     ) -> bool:
         """Get 200 success.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
         :rtype: bool
@@ -104,11 +98,9 @@ class HttpSuccessOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -135,8 +127,6 @@ class HttpSuccessOperations:
     ) -> bool:
         """Options 200 success.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
         :rtype: bool
@@ -150,11 +140,9 @@ class HttpSuccessOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.options(url, query_parameters, header_parameters)
@@ -181,8 +169,6 @@ class HttpSuccessOperations:
     ) -> None:
         """Put boolean value true returning 200 success.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -197,11 +183,9 @@ class HttpSuccessOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -231,8 +215,6 @@ class HttpSuccessOperations:
     ) -> None:
         """Patch true Boolean value in request returning 200.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -247,11 +229,9 @@ class HttpSuccessOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -281,8 +261,6 @@ class HttpSuccessOperations:
     ) -> None:
         """Post bollean value true in request that returns a 200.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -297,11 +275,9 @@ class HttpSuccessOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -331,8 +307,6 @@ class HttpSuccessOperations:
     ) -> None:
         """Delete simple boolean value true returns 200.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -347,11 +321,9 @@ class HttpSuccessOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -381,8 +353,6 @@ class HttpSuccessOperations:
     ) -> None:
         """Put true Boolean value in request returns 201.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -397,11 +367,9 @@ class HttpSuccessOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -431,8 +399,6 @@ class HttpSuccessOperations:
     ) -> None:
         """Post true Boolean value in request returns 201 (Created).
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -447,11 +413,9 @@ class HttpSuccessOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -481,8 +445,6 @@ class HttpSuccessOperations:
     ) -> None:
         """Put true Boolean value in request returns 202 (Accepted).
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -497,11 +459,9 @@ class HttpSuccessOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -531,8 +491,6 @@ class HttpSuccessOperations:
     ) -> None:
         """Patch true Boolean value in request returns 202.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -547,11 +505,9 @@ class HttpSuccessOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -581,8 +537,6 @@ class HttpSuccessOperations:
     ) -> None:
         """Post true Boolean value in request returns 202 (Accepted).
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -597,11 +551,9 @@ class HttpSuccessOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -631,8 +583,6 @@ class HttpSuccessOperations:
     ) -> None:
         """Delete true Boolean value in request returns 202 (accepted).
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -647,11 +597,9 @@ class HttpSuccessOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -681,8 +629,6 @@ class HttpSuccessOperations:
     ) -> None:
         """Return 204 status code if successful.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -696,10 +642,8 @@ class HttpSuccessOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -723,8 +667,6 @@ class HttpSuccessOperations:
     ) -> None:
         """Put true Boolean value in request returns 204 (no content).
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -739,11 +681,9 @@ class HttpSuccessOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -773,8 +713,6 @@ class HttpSuccessOperations:
     ) -> None:
         """Patch true Boolean value in request returns 204 (no content).
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -789,11 +727,9 @@ class HttpSuccessOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -823,8 +759,6 @@ class HttpSuccessOperations:
     ) -> None:
         """Post true Boolean value in request returns 204 (no content).
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -839,11 +773,9 @@ class HttpSuccessOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -873,8 +805,6 @@ class HttpSuccessOperations:
     ) -> None:
         """Delete true Boolean value in request returns 204 (no content).
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -889,11 +819,9 @@ class HttpSuccessOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -923,8 +851,6 @@ class HttpSuccessOperations:
     ) -> None:
         """Return 404 status code.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -938,10 +864,8 @@ class HttpSuccessOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)

@@ -52,8 +52,6 @@ class AvailabilitySetsOperations(object):
         # type: (...) -> None
         """Updates the tags for an availability set.
 
-        FIXME: add operation.summary
-
         :param resource_group_name: The name of the resource group.
         :type resource_group_name: str
         :param avset: The name of the storage availability set.
@@ -66,6 +64,7 @@ class AvailabilitySetsOperations(object):
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
+
         tags = models.AvailabilitySetUpdateParameters(availability_set_update_parameters_tags=availability_set_update_parameters_tags)
 
         # Construct URL
@@ -79,11 +78,9 @@ class AvailabilitySetsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(tags, 'AvailabilitySetUpdateParameters')

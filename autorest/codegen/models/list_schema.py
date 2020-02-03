@@ -26,8 +26,9 @@ class ListSchema(BaseSchema):
         self.unique_items = unique_items
 
 
-    def get_serialization_type(self) -> str:
-        return '[{}]'.format(self.element_type.get_serialization_type())
+    @property
+    def serialization_type(self) -> str:
+        return f'[{self.element_type.serialization_type}]'
 
     @property
     def type_annotation(self) -> str:

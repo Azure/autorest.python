@@ -38,7 +38,7 @@ class ErrorException(HttpResponseError):
 
 
 class Error(Model):
-    """
+    """Error.
 
     :param status:
     :type status: int
@@ -171,9 +171,9 @@ class ParameterGroupingPostRequiredParameters(Model):
 
     def __init__(
         self,
+        *,
         path: str,
         body: int,
-        *,
         custom_header: Optional[str] = None,
         query: Optional[int] = 30,
         **kwargs

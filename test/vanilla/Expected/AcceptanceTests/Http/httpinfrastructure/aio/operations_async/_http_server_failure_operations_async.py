@@ -47,8 +47,6 @@ class HttpServerFailureOperations:
     ) -> None:
         """Return 501 status code - should be represented in the client as an error.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -62,10 +60,8 @@ class HttpServerFailureOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -89,8 +85,6 @@ class HttpServerFailureOperations:
     ) -> None:
         """Return 501 status code - should be represented in the client as an error.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -104,10 +98,8 @@ class HttpServerFailureOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -131,8 +123,6 @@ class HttpServerFailureOperations:
     ) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -147,11 +137,9 @@ class HttpServerFailureOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -181,8 +169,6 @@ class HttpServerFailureOperations:
     ) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -197,11 +183,9 @@ class HttpServerFailureOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:

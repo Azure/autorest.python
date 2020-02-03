@@ -50,8 +50,6 @@ class UsageOperations(object):
         # type: (...) -> "models.UsageListResult"
         """Gets the current usage count and the limit for the resources under the subscription.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: UsageListResult or the result of cls(response)
         :rtype: ~storage.models.UsageListResult
@@ -69,11 +67,9 @@ class UsageOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

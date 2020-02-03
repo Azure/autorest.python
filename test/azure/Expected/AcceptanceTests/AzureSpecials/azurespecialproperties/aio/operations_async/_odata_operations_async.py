@@ -51,8 +51,6 @@ class OdataOperations:
     ) -> None:
         """Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'.
 
-        FIXME: add operation.summary
-
         :param filter: The filter parameter with value '$filter=id gt 5 and name eq 'foo''.
         :type filter: str
         :param top: The top parameter with value 10.
@@ -78,10 +76,8 @@ class OdataOperations:
         if orderby is not None:
             query_parameters['$orderby'] = self._serialize.query("orderby", orderby, 'str')
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

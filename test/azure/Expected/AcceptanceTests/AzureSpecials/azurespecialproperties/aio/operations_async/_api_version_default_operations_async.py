@@ -47,8 +47,6 @@ class ApiVersionDefaultOperations:
     ) -> None:
         """GET method with api-version modeled in global settings.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -62,10 +60,8 @@ class ApiVersionDefaultOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -89,8 +85,6 @@ class ApiVersionDefaultOperations:
     ) -> None:
         """GET method with api-version modeled in global settings.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -104,10 +98,8 @@ class ApiVersionDefaultOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -131,8 +123,6 @@ class ApiVersionDefaultOperations:
     ) -> None:
         """GET method with api-version modeled in global settings.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -146,10 +136,8 @@ class ApiVersionDefaultOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -173,8 +161,6 @@ class ApiVersionDefaultOperations:
     ) -> None:
         """GET method with api-version modeled in global settings.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -188,10 +174,8 @@ class ApiVersionDefaultOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

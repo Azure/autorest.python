@@ -48,8 +48,6 @@ class IntOperations:
     ) -> int:
         """Get null Int value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: int or the result of cls(response)
         :rtype: int
@@ -63,11 +61,9 @@ class IntOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -94,8 +90,6 @@ class IntOperations:
     ) -> int:
         """Get invalid Int value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: int or the result of cls(response)
         :rtype: int
@@ -109,11 +103,9 @@ class IntOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -140,8 +132,6 @@ class IntOperations:
     ) -> int:
         """Get overflow Int32 value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: int or the result of cls(response)
         :rtype: int
@@ -155,11 +145,9 @@ class IntOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -186,8 +174,6 @@ class IntOperations:
     ) -> int:
         """Get underflow Int32 value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: int or the result of cls(response)
         :rtype: int
@@ -201,11 +187,9 @@ class IntOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -232,8 +216,6 @@ class IntOperations:
     ) -> int:
         """Get overflow Int64 value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: long or the result of cls(response)
         :rtype: long
@@ -247,11 +229,9 @@ class IntOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -278,8 +258,6 @@ class IntOperations:
     ) -> int:
         """Get underflow Int64 value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: long or the result of cls(response)
         :rtype: long
@@ -293,11 +271,9 @@ class IntOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -326,9 +302,7 @@ class IntOperations:
     ) -> None:
         """Put max int32 value.
 
-        FIXME: add operation.summary
-
-        :param int_body: 
+        :param int_body:
         :type int_body: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -343,11 +317,9 @@ class IntOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(int_body, 'int')
@@ -376,9 +348,7 @@ class IntOperations:
     ) -> None:
         """Put max int64 value.
 
-        FIXME: add operation.summary
-
-        :param int_body: 
+        :param int_body:
         :type int_body: long
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -393,11 +363,9 @@ class IntOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(int_body, 'long')
@@ -426,9 +394,7 @@ class IntOperations:
     ) -> None:
         """Put min int32 value.
 
-        FIXME: add operation.summary
-
-        :param int_body: 
+        :param int_body:
         :type int_body: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -443,11 +409,9 @@ class IntOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(int_body, 'int')
@@ -476,9 +440,7 @@ class IntOperations:
     ) -> None:
         """Put min int64 value.
 
-        FIXME: add operation.summary
-
-        :param int_body: 
+        :param int_body:
         :type int_body: long
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -493,11 +455,9 @@ class IntOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(int_body, 'long')
@@ -524,8 +484,6 @@ class IntOperations:
     ) -> datetime.datetime:
         """Get datetime encoded as Unix time value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
@@ -539,11 +497,9 @@ class IntOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -572,9 +528,7 @@ class IntOperations:
     ) -> None:
         """Put datetime encoded as Unix time.
 
-        FIXME: add operation.summary
-
-        :param int_body: 
+        :param int_body:
         :type int_body: ~datetime.datetime
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -589,11 +543,9 @@ class IntOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(int_body, 'unix-time')
@@ -620,8 +572,6 @@ class IntOperations:
     ) -> datetime.datetime:
         """Get invalid Unix time value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
@@ -635,11 +585,9 @@ class IntOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -666,8 +614,6 @@ class IntOperations:
     ) -> datetime.datetime:
         """Get null Unix time value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
@@ -681,11 +627,9 @@ class IntOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

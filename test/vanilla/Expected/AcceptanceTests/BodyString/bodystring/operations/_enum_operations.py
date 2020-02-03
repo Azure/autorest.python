@@ -49,8 +49,6 @@ class EnumOperations(object):
         # type: (...) -> Union[str, "models.Colors"]
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Colors or the result of cls(response)
         :rtype: str or ~bodystring.models.Colors
@@ -64,11 +62,9 @@ class EnumOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -97,9 +93,7 @@ class EnumOperations(object):
         # type: (...) -> None
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-        FIXME: add operation.summary
-
-        :param string_body: 
+        :param string_body:
         :type string_body: str or ~bodystring.models.Colors
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -114,11 +108,9 @@ class EnumOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(string_body, 'str')
@@ -146,8 +138,6 @@ class EnumOperations(object):
         # type: (...) -> Union[str, "models.Colors"]
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Colors or the result of cls(response)
         :rtype: str or ~bodystring.models.Colors
@@ -161,11 +151,9 @@ class EnumOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -194,9 +182,7 @@ class EnumOperations(object):
         # type: (...) -> None
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-        FIXME: add operation.summary
-
-        :param enum_string_body: 
+        :param enum_string_body:
         :type enum_string_body: str or ~bodystring.models.Colors
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -211,11 +197,9 @@ class EnumOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(enum_string_body, 'str')
@@ -243,8 +227,6 @@ class EnumOperations(object):
         # type: (...) -> "models.RefColorConstant"
         """Get value 'green-color' from the constant.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: RefColorConstant or the result of cls(response)
         :rtype: ~bodystring.models.RefColorConstant
@@ -258,11 +240,9 @@ class EnumOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -291,8 +271,6 @@ class EnumOperations(object):
         # type: (...) -> None
         """Sends value 'green-color' from a constant.
 
-        FIXME: add operation.summary
-
         :param field1: Sample string.
         :type field1: str
         :param callable cls: A custom type or function that will be passed the direct response
@@ -301,6 +279,7 @@ class EnumOperations(object):
         :raises: ~bodystring.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         enum_string_body = models.RefColorConstant(field1=field1)
 
         # Construct URL
@@ -309,11 +288,9 @@ class EnumOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(enum_string_body, 'RefColorConstant')

@@ -29,7 +29,8 @@ class CredentialSchema(BaseSchema):
     def __init__(self):  # pylint: disable=super-init-not-called
         self.type = 'azure.core.credentials.TokenCredential'
 
-    def get_serialization_type(self) -> str:
+    @property
+    def serialization_type(self) -> str:
         return self.type
 
     @property
@@ -48,7 +49,8 @@ class IOSchema(BaseSchema):
     def __init__(self):  # pylint: disable=super-init-not-called
         self.type = 'IO'
 
-    def get_serialization_type(self) -> str:
+    @property
+    def serialization_type(self) -> str:
         return self.type
 
     @property

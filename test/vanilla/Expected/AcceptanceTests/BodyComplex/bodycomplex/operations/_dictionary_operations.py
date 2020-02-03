@@ -49,8 +49,6 @@ class DictionaryOperations(object):
         # type: (...) -> "models.DictionaryWrapper"
         """Get complex types with dictionary property.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DictionaryWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DictionaryWrapper
@@ -64,11 +62,9 @@ class DictionaryOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -97,9 +93,8 @@ class DictionaryOperations(object):
         # type: (...) -> None
         """Put complex types with dictionary property.
 
-        FIXME: add operation.summary
-
-        :param default_program: Dictionary of <components·schemas·dictionary_wrapper·properties·defaultprogram·additionalproperties>.
+        :param default_program: Dictionary of
+         <components·schemas·dictionary_wrapper·properties·defaultprogram·additionalproperties>.
         :type default_program: dict[str, str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -107,6 +102,7 @@ class DictionaryOperations(object):
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         complex_body = models.DictionaryWrapper(default_program=default_program)
 
         # Construct URL
@@ -115,11 +111,9 @@ class DictionaryOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'DictionaryWrapper')
@@ -147,8 +141,6 @@ class DictionaryOperations(object):
         # type: (...) -> "models.DictionaryWrapper"
         """Get complex types with dictionary property which is empty.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DictionaryWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DictionaryWrapper
@@ -162,11 +154,9 @@ class DictionaryOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -195,9 +185,8 @@ class DictionaryOperations(object):
         # type: (...) -> None
         """Put complex types with dictionary property which is empty.
 
-        FIXME: add operation.summary
-
-        :param default_program: Dictionary of <components·schemas·dictionary_wrapper·properties·defaultprogram·additionalproperties>.
+        :param default_program: Dictionary of
+         <components·schemas·dictionary_wrapper·properties·defaultprogram·additionalproperties>.
         :type default_program: dict[str, str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -205,6 +194,7 @@ class DictionaryOperations(object):
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         complex_body = models.DictionaryWrapper(default_program=default_program)
 
         # Construct URL
@@ -213,11 +203,9 @@ class DictionaryOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'DictionaryWrapper')
@@ -245,8 +233,6 @@ class DictionaryOperations(object):
         # type: (...) -> "models.DictionaryWrapper"
         """Get complex types with dictionary property which is null.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DictionaryWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DictionaryWrapper
@@ -260,11 +246,9 @@ class DictionaryOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -292,8 +276,6 @@ class DictionaryOperations(object):
         # type: (...) -> "models.DictionaryWrapper"
         """Get complex types with dictionary property while server doesn't provide a response payload.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DictionaryWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DictionaryWrapper
@@ -307,11 +289,9 @@ class DictionaryOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

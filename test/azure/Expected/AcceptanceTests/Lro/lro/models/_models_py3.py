@@ -12,11 +12,11 @@ from msrest.serialization import Model
 
 
 class OperationResult(Model):
-    """
+    """OperationResult.
 
-    :param status: The status of the request. Possible values include: 'Succeeded',
-     'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
-     'Deleting', 'Deleted', 'OK'.
+    :param status: The status of the request. Possible values include: 'Succeeded', 'Failed',
+     'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted',
+     'OK'.
     :type status: str or ~lro.models.OperationResultStatus
     :param error:
     :type error: ~lro.models.OperationResultError
@@ -40,7 +40,7 @@ class OperationResult(Model):
 
 
 class OperationResultError(Model):
-    """
+    """OperationResultError.
 
     :param code: The error code for an operation failure.
     :type code: int
@@ -66,7 +66,7 @@ class OperationResultError(Model):
 
 
 class Resource(Model):
-    """
+    """Resource.
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -113,7 +113,7 @@ class Resource(Model):
 
 
 class Product(Resource):
-    """
+    """Product.
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -130,11 +130,9 @@ class Product(Resource):
     :vartype name: str
     :param provisioning_state:
     :type provisioning_state: str
-    :ivar provisioning_state_values:  Possible values include: 'Succeeded',
-     'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
-     'Deleting', 'Deleted', 'OK'.
-    :vartype provisioning_state_values: str or
-     ~lro.models.ProductPropertiesProvisioningStateValues
+    :ivar provisioning_state_values:  Possible values include: 'Succeeded', 'Failed', 'canceled',
+     'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'.
+    :vartype provisioning_state_values: str or ~lro.models.ProductPropertiesProvisioningStateValues
     """
 
     _validation = {
@@ -168,17 +166,15 @@ class Product(Resource):
 
 
 class ProductProperties(Model):
-    """
+    """ProductProperties.
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
     :param provisioning_state:
     :type provisioning_state: str
-    :ivar provisioning_state_values:  Possible values include: 'Succeeded',
-     'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
-     'Deleting', 'Deleted', 'OK'.
-    :vartype provisioning_state_values: str or
-     ~lro.models.ProductPropertiesProvisioningStateValues
+    :ivar provisioning_state_values:  Possible values include: 'Succeeded', 'Failed', 'canceled',
+     'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'.
+    :vartype provisioning_state_values: str or ~lro.models.ProductPropertiesProvisioningStateValues
     """
 
     _validation = {
@@ -202,7 +198,7 @@ class ProductProperties(Model):
 
 
 class Sku(Model):
-    """
+    """Sku.
 
     :param name:
     :type name: str
@@ -228,7 +224,7 @@ class Sku(Model):
 
 
 class SubResource(Model):
-    """
+    """SubResource.
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -253,7 +249,7 @@ class SubResource(Model):
 
 
 class SubProduct(SubResource):
-    """
+    """SubProduct.
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -261,9 +257,8 @@ class SubProduct(SubResource):
     :vartype id: str
     :param provisioning_state:
     :type provisioning_state: str
-    :ivar provisioning_state_values:  Possible values include: 'Succeeded',
-     'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
-     'Deleting', 'Deleted', 'OK'.
+    :ivar provisioning_state_values:  Possible values include: 'Succeeded', 'Failed', 'canceled',
+     'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'.
     :vartype provisioning_state_values: str or
      ~lro.models.SubProductPropertiesProvisioningStateValues
     """
@@ -291,15 +286,14 @@ class SubProduct(SubResource):
 
 
 class SubProductProperties(Model):
-    """
+    """SubProductProperties.
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
     :param provisioning_state:
     :type provisioning_state: str
-    :ivar provisioning_state_values:  Possible values include: 'Succeeded',
-     'Failed', 'canceled', 'Accepted', 'Creating', 'Created', 'Updating', 'Updated',
-     'Deleting', 'Deleted', 'OK'.
+    :ivar provisioning_state_values:  Possible values include: 'Succeeded', 'Failed', 'canceled',
+     'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'.
     :vartype provisioning_state_values: str or
      ~lro.models.SubProductPropertiesProvisioningStateValues
     """

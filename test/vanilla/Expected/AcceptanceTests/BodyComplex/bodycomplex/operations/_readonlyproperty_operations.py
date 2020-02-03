@@ -49,8 +49,6 @@ class ReadonlypropertyOperations(object):
         # type: (...) -> "models.ReadonlyObj"
         """Get complex types that have readonly properties.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ReadonlyObj or the result of cls(response)
         :rtype: ~bodycomplex.models.ReadonlyObj
@@ -64,11 +62,9 @@ class ReadonlypropertyOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -97,9 +93,7 @@ class ReadonlypropertyOperations(object):
         # type: (...) -> None
         """Put complex types that have readonly properties.
 
-        FIXME: add operation.summary
-
-        :param size: 
+        :param size:
         :type size: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -107,6 +101,7 @@ class ReadonlypropertyOperations(object):
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         complex_body = models.ReadonlyObj(size=size)
 
         # Construct URL
@@ -115,11 +110,9 @@ class ReadonlypropertyOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'ReadonlyObj')

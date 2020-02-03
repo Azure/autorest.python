@@ -19,6 +19,7 @@ T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 class AutoRestReportServiceForAzureOperationsMixin(object):
+
     @distributed_trace
     def get_report(
         self,
@@ -29,9 +30,9 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
         # type: (...) -> Dict[str, int]
         """Get test coverage report.
 
-        FIXME: add operation.summary
-
-        :param qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in for Python). The only effect is, that generators that run all tests several times, can distinguish the generated reports.
+        :param qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in
+         for Python). The only effect is, that generators that run all tests several times, can
+         distinguish the generated reports.
         :type qualifier: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
@@ -48,11 +49,9 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
         if qualifier is not None:
             query_parameters['qualifier'] = self._serialize.query("qualifier", qualifier, 'str')
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

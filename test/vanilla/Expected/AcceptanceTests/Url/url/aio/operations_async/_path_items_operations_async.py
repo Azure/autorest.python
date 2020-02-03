@@ -52,13 +52,12 @@ class PathItemsOperations:
     ) -> None:
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
-        FIXME: add operation.summary
-
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
         :type path_item_string_path: str
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
-        :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query parameter.
+        :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
+         parameter.
         :type path_item_string_query: str
         :param local_string_query: should contain value 'localStringQuery'.
         :type local_string_query: str
@@ -87,10 +86,8 @@ class PathItemsOperations:
         if local_string_query is not None:
             query_parameters['localStringQuery'] = self._serialize.query("local_string_query", local_string_query, 'str')
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -119,13 +116,12 @@ class PathItemsOperations:
     ) -> None:
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
-        FIXME: add operation.summary
-
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
         :type path_item_string_path: str
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
-        :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query parameter.
+        :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
+         parameter.
         :type path_item_string_query: str
         :param local_string_query: should contain value 'localStringQuery'.
         :type local_string_query: str
@@ -154,10 +150,8 @@ class PathItemsOperations:
         if local_string_query is not None:
             query_parameters['localStringQuery'] = self._serialize.query("local_string_query", local_string_query, 'str')
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -186,13 +180,12 @@ class PathItemsOperations:
     ) -> None:
         """send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
 
-        FIXME: add operation.summary
-
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
         :type path_item_string_path: str
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
-        :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query parameter.
+        :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
+         parameter.
         :type path_item_string_query: str
         :param local_string_query: should contain value 'localStringQuery'.
         :type local_string_query: str
@@ -221,10 +214,8 @@ class PathItemsOperations:
         if local_string_query is not None:
             query_parameters['localStringQuery'] = self._serialize.query("local_string_query", local_string_query, 'str')
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -253,13 +244,12 @@ class PathItemsOperations:
     ) -> None:
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery=null, localStringQuery=null.
 
-        FIXME: add operation.summary
-
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
         :type path_item_string_path: str
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
-        :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query parameter.
+        :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
+         parameter.
         :type path_item_string_query: str
         :param local_string_query: should contain value 'localStringQuery'.
         :type local_string_query: str
@@ -288,10 +278,8 @@ class PathItemsOperations:
         if local_string_query is not None:
             query_parameters['localStringQuery'] = self._serialize.query("local_string_query", local_string_query, 'str')
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

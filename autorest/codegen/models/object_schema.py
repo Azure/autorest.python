@@ -45,7 +45,8 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
             file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
         return file_import
 
-    def get_serialization_type(self) -> str:
+    @property
+    def serialization_type(self) -> str:
         return self.name
 
     @property
@@ -58,7 +59,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
 
     @property
     def docstring_type(self):
-        return '~{}.models.{}'.format(self.namespace, self.name)
+        return f'~{self.namespace}.models.{self.name}'
 
     @property
     def docstring_text(self) -> str:

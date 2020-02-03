@@ -18,20 +18,19 @@ class ModelPython3Serializer(ModelBaseSerializer):
             for p in model.properties
             if not p.readonly and not p.is_discriminator and not p.constant
         ]
-        # init_line_parameters.sort(key=lambda x: x.required, reverse=True)
-        required_parameters = [p for p in init_line_parameters if p.required]
-        optional_parameters = [p for p in init_line_parameters if not p.required]
-        for param in required_parameters:
-            init_properties_declaration.append(
-                "{}: {}".format(param.name, param.type_annotation)
-            )
-        if optional_parameters:
+        init_line_parameters.sort(key=lambda x: x.required, reverse=True)
+        if init_line_parameters:
             init_properties_declaration.append("*")
-        for param in optional_parameters:
-            default_value = param.schema.get_default_value_declaration()
-            init_properties_declaration.append(
-                "{}: {} = {}".format(param.name, param.type_annotation, default_value)
-            )
+        for param in init_line_parameters:
+            if param.required:
+                init_properties_declaration.append(
+                    f"{param.name}: {param.type_annotation}"
+                )
+            else:
+                default_value = param.schema.get_default_value_declaration()
+                init_properties_declaration.append(
+                    f"{param.name}: {param.type_annotation} = {default_value}"
+                )
 
         return init_properties_declaration
 
@@ -48,7 +47,7 @@ class ModelPython3Serializer(ModelBaseSerializer):
                     and not prop.constant
                     and not prop.readonly
                 ):
-                    properties_to_pass.append("{}={}".format(prop.name, prop.name))
+                    properties_to_pass.append(f"{prop.name}={prop.name}")
                 elif (
                     prop not in model.base_model.properties
                     or prop.is_discriminator
@@ -62,17 +61,17 @@ class ModelPython3Serializer(ModelBaseSerializer):
                 )
             )
         else:
-            init_args.append("super({}, self).__init__(**kwargs)".format(model.name))
+            init_args.append(f"super({model.name}, self).__init__(**kwargs)")
             properties_to_initialize = model.properties
         for prop in properties_to_initialize:
             if prop.readonly:
-                init_args.append("self.{} = None".format(prop.name))
+                init_args.append(f"self.{prop.name} = None")
             elif prop.is_discriminator:
                 init_args.append(
-                    "self.{} = '{}'".format(prop.name, model.discriminator_value)
+                    f"self.{prop.name} = '{model.discriminator_value}'"
                 )
             elif not prop.constant:
-                init_args.append("self.{} = {}".format(prop.name, prop.name))
+                init_args.append(f"self.{prop.name} = {prop.name}")
 
         return init_args
 

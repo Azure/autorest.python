@@ -53,9 +53,6 @@ class PagingOperations(object):
         # type: (...) -> "models.ProductResultValue"
         """A paging operation that must return result of the default 'value' node.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ProductResultValue or the result of cls(response)
         :rtype: ~paging.models.ProductResultValue
@@ -73,11 +70,9 @@ class PagingOperations(object):
             # Construct parameters
             query_parameters = {}
 
-
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -107,7 +102,6 @@ class PagingOperations(object):
         )
     get_no_item_name_pages.metadata = {'url': '/paging/noitemname'}
 
-
     @distributed_trace
     def get_null_next_link_name_pages(
         self,
@@ -116,9 +110,6 @@ class PagingOperations(object):
     ):
         # type: (...) -> "models.ProductResult"
         """A paging operation that must ignore any kind of nextLink, and stop after page 1.
-
-        FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
@@ -137,11 +128,9 @@ class PagingOperations(object):
             # Construct parameters
             query_parameters = {}
 
-
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -171,7 +160,6 @@ class PagingOperations(object):
         )
     get_null_next_link_name_pages.metadata = {'url': '/paging/nullnextlink'}
 
-
     @distributed_trace
     def get_single_pages(
         self,
@@ -180,9 +168,6 @@ class PagingOperations(object):
     ):
         # type: (...) -> "models.ProductResult"
         """A paging operation that finishes on the first call without a nextlink.
-
-        FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
@@ -201,11 +186,9 @@ class PagingOperations(object):
             # Construct parameters
             query_parameters = {}
 
-
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -235,7 +218,6 @@ class PagingOperations(object):
         )
     get_single_pages.metadata = {'url': '/paging/single'}
 
-
     @distributed_trace
     def get_multiple_pages(
         self,
@@ -247,10 +229,7 @@ class PagingOperations(object):
         # type: (...) -> "models.ProductResult"
         """A paging operation that includes a nextLink that has 10 pages.
 
-        FIXME: add operation.summary
-
-
-        :param client_request_id: 
+        :param client_request_id:
         :type client_request_id: str
         :param paging_get_multiple_pages_options: Parameter group.
         :type paging_get_multiple_pages_options: ~paging.models.PagingGetMultiplePagesOptions
@@ -267,7 +246,6 @@ class PagingOperations(object):
             maxresults = paging_get_multiple_pages_options.maxresults
             timeout = paging_get_multiple_pages_options.timeout
 
-
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
@@ -278,7 +256,6 @@ class PagingOperations(object):
             # Construct parameters
             query_parameters = {}
 
-
             # Construct headers
             header_parameters = {}
             if client_request_id is not None:
@@ -288,7 +265,6 @@ class PagingOperations(object):
             if timeout is not None:
                 header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -318,7 +294,6 @@ class PagingOperations(object):
         )
     get_multiple_pages.metadata = {'url': '/paging/multiple'}
 
-
     @distributed_trace
     def get_odata_multiple_pages(
         self,
@@ -330,10 +305,7 @@ class PagingOperations(object):
         # type: (...) -> "models.OdataProductResult"
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
-        FIXME: add operation.summary
-
-
-        :param client_request_id: 
+        :param client_request_id:
         :type client_request_id: str
         :param paging_get_odata_multiple_pages_options: Parameter group.
         :type paging_get_odata_multiple_pages_options: ~paging.models.PagingGetOdataMultiplePagesOptions
@@ -350,7 +322,6 @@ class PagingOperations(object):
             maxresults = paging_get_odata_multiple_pages_options.maxresults
             timeout = paging_get_odata_multiple_pages_options.timeout
 
-
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
@@ -361,7 +332,6 @@ class PagingOperations(object):
             # Construct parameters
             query_parameters = {}
 
-
             # Construct headers
             header_parameters = {}
             if client_request_id is not None:
@@ -371,7 +341,6 @@ class PagingOperations(object):
             if timeout is not None:
                 header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -401,7 +370,6 @@ class PagingOperations(object):
         )
     get_odata_multiple_pages.metadata = {'url': '/paging/multiple/odata'}
 
-
     @distributed_trace
     def get_multiple_pages_with_offset(
         self,
@@ -413,12 +381,9 @@ class PagingOperations(object):
         # type: (...) -> "models.ProductResult"
         """A paging operation that includes a nextLink that has 10 pages.
 
-        FIXME: add operation.summary
-
-
         :param paging_get_multiple_pages_with_offset_options: Parameter group.
         :type paging_get_multiple_pages_with_offset_options: ~paging.models.PagingGetMultiplePagesWithOffsetOptions
-        :param client_request_id: 
+        :param client_request_id:
         :type client_request_id: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
@@ -435,7 +400,6 @@ class PagingOperations(object):
             offset = paging_get_multiple_pages_with_offset_options.offset
             timeout = paging_get_multiple_pages_with_offset_options.timeout
 
-
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
@@ -450,7 +414,6 @@ class PagingOperations(object):
             # Construct parameters
             query_parameters = {}
 
-
             # Construct headers
             header_parameters = {}
             if client_request_id is not None:
@@ -460,7 +423,6 @@ class PagingOperations(object):
             if timeout is not None:
                 header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -490,7 +452,6 @@ class PagingOperations(object):
         )
     get_multiple_pages_with_offset.metadata = {'url': '/paging/multiple/withpath/{offset}'}
 
-
     @distributed_trace
     def get_multiple_pages_retry_first(
         self,
@@ -499,9 +460,6 @@ class PagingOperations(object):
     ):
         # type: (...) -> "models.ProductResult"
         """A paging operation that fails on the first call with 500 and then retries and then get a response including a nextLink that has 10 pages.
-
-        FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
@@ -520,11 +478,9 @@ class PagingOperations(object):
             # Construct parameters
             query_parameters = {}
 
-
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -554,7 +510,6 @@ class PagingOperations(object):
         )
     get_multiple_pages_retry_first.metadata = {'url': '/paging/multiple/retryfirst'}
 
-
     @distributed_trace
     def get_multiple_pages_retry_second(
         self,
@@ -563,9 +518,6 @@ class PagingOperations(object):
     ):
         # type: (...) -> "models.ProductResult"
         """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first with 500. The client should retry and finish all 10 pages eventually.
-
-        FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
@@ -584,11 +536,9 @@ class PagingOperations(object):
             # Construct parameters
             query_parameters = {}
 
-
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -618,7 +568,6 @@ class PagingOperations(object):
         )
     get_multiple_pages_retry_second.metadata = {'url': '/paging/multiple/retrysecond'}
 
-
     @distributed_trace
     def get_single_pages_failure(
         self,
@@ -627,9 +576,6 @@ class PagingOperations(object):
     ):
         # type: (...) -> "models.ProductResult"
         """A paging operation that receives a 400 on the first call.
-
-        FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
@@ -648,11 +594,9 @@ class PagingOperations(object):
             # Construct parameters
             query_parameters = {}
 
-
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -682,7 +626,6 @@ class PagingOperations(object):
         )
     get_single_pages_failure.metadata = {'url': '/paging/single/failure'}
 
-
     @distributed_trace
     def get_multiple_pages_failure(
         self,
@@ -691,9 +634,6 @@ class PagingOperations(object):
     ):
         # type: (...) -> "models.ProductResult"
         """A paging operation that receives a 400 on the second call.
-
-        FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
@@ -712,11 +652,9 @@ class PagingOperations(object):
             # Construct parameters
             query_parameters = {}
 
-
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -746,7 +684,6 @@ class PagingOperations(object):
         )
     get_multiple_pages_failure.metadata = {'url': '/paging/multiple/failure'}
 
-
     @distributed_trace
     def get_multiple_pages_failure_uri(
         self,
@@ -755,9 +692,6 @@ class PagingOperations(object):
     ):
         # type: (...) -> "models.ProductResult"
         """A paging operation that receives an invalid nextLink.
-
-        FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
@@ -776,11 +710,9 @@ class PagingOperations(object):
             # Construct parameters
             query_parameters = {}
 
-
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -810,7 +742,6 @@ class PagingOperations(object):
         )
     get_multiple_pages_failure_uri.metadata = {'url': '/paging/multiple/failureuri'}
 
-
     @distributed_trace
     def get_multiple_pages_fragment_next_link(
         self,
@@ -821,9 +752,6 @@ class PagingOperations(object):
     ):
         # type: (...) -> "models.OdataProductResult"
         """A paging operation that doesn't return a full URL, just a fragment.
-
-        FIXME: add operation.summary
-
 
         :param api_version: Sets the api version to use.
         :type api_version: str
@@ -856,11 +784,9 @@ class PagingOperations(object):
             query_parameters = {}
             query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
 
-
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -890,7 +816,6 @@ class PagingOperations(object):
         )
     get_multiple_pages_fragment_next_link.metadata = {'url': '/paging/multiple/fragment/{tenant}'}
 
-
     @distributed_trace
     def get_multiple_pages_fragment_with_grouping_next_link(
         self,
@@ -900,9 +825,6 @@ class PagingOperations(object):
     ):
         # type: (...) -> "models.OdataProductResult"
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
-
-        FIXME: add operation.summary
-
 
         :param custom_parameter_group: Parameter group.
         :type custom_parameter_group: ~paging.models.CustomParameterGroup
@@ -918,7 +840,6 @@ class PagingOperations(object):
         if custom_parameter_group is not None:
             api_version = custom_parameter_group.api_version
             tenant = custom_parameter_group.tenant
-
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -940,11 +861,9 @@ class PagingOperations(object):
             query_parameters = {}
             query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
 
-
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -974,8 +893,6 @@ class PagingOperations(object):
         )
     get_multiple_pages_fragment_with_grouping_next_link.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}'}
 
-
-    
     def _get_multiple_pages_lro_initial(
         self,
         client_request_id=None,  # type: Optional[str]
@@ -992,13 +909,11 @@ class PagingOperations(object):
             maxresults = paging_get_multiple_pages_lro_options.maxresults
             timeout = paging_get_multiple_pages_lro_options.timeout
 
-
         # Construct URL
         url = self._get_multiple_pages_lro_initial.metadata['url']
 
         # Construct parameters
         query_parameters = {}
-
 
         # Construct headers
         header_parameters = {}
@@ -1009,7 +924,6 @@ class PagingOperations(object):
         if timeout is not None:
             header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -1040,10 +954,7 @@ class PagingOperations(object):
         # type: (...) -> "models.ProductResult"
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
-        FIXME: add operation.summary
-
-
-        :param client_request_id: 
+        :param client_request_id:
         :type client_request_id: str
         :param paging_get_multiple_pages_lro_options: Parameter group.
         :type paging_get_multiple_pages_lro_options: ~paging.models.PagingGetMultiplePagesLroOptions
@@ -1078,4 +989,3 @@ class PagingOperations(object):
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_get_multiple_pages_lro.metadata = {'url': '/paging/multiple/lro'}
-

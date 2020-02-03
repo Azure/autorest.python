@@ -50,9 +50,7 @@ class ExplicitOperations(object):
         # type: (...) -> None
         """Test explicitly required integer. Please put null and the client library should throw before the request is sent.
 
-        FIXME: add operation.summary
-
-        :param body_parameter: 
+        :param body_parameter:
         :type body_parameter: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -67,11 +65,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'int')
@@ -100,9 +96,7 @@ class ExplicitOperations(object):
         # type: (...) -> None
         """Test explicitly optional integer. Please put null.
 
-        FIXME: add operation.summary
-
-        :param body_parameter: 
+        :param body_parameter:
         :type body_parameter: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -117,11 +111,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body_parameter is not None:
@@ -153,9 +145,7 @@ class ExplicitOperations(object):
         # type: (...) -> None
         """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the client library should throw before the request is sent.
 
-        FIXME: add operation.summary
-
-        :param value: 
+        :param value:
         :type value: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -163,6 +153,7 @@ class ExplicitOperations(object):
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         body_parameter = models.IntWrapper(value=value)
 
         # Construct URL
@@ -171,11 +162,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'IntWrapper')
@@ -204,9 +193,7 @@ class ExplicitOperations(object):
         # type: (...) -> None
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
-        FIXME: add operation.summary
-
-        :param value: 
+        :param value:
         :type value: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -214,6 +201,7 @@ class ExplicitOperations(object):
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         body_parameter = models.IntOptionalWrapper(value=value)
 
         # Construct URL
@@ -222,11 +210,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body_parameter is not None:
@@ -258,9 +244,7 @@ class ExplicitOperations(object):
         # type: (...) -> None
         """Test explicitly required integer. Please put a header 'headerParameter' => null and the client library should throw before the request is sent.
 
-        FIXME: add operation.summary
-
-        :param header_parameter: 
+        :param header_parameter:
         :type header_parameter: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -275,11 +259,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'int')
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -305,9 +287,7 @@ class ExplicitOperations(object):
         # type: (...) -> None
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
-        FIXME: add operation.summary
-
-        :param header_parameter: 
+        :param header_parameter:
         :type header_parameter: int
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -322,12 +302,10 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         if header_parameter is not None:
             header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'int')
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -353,9 +331,7 @@ class ExplicitOperations(object):
         # type: (...) -> None
         """Test explicitly required string. Please put null and the client library should throw before the request is sent.
 
-        FIXME: add operation.summary
-
-        :param body_parameter: 
+        :param body_parameter:
         :type body_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -370,11 +346,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'str')
@@ -403,9 +377,7 @@ class ExplicitOperations(object):
         # type: (...) -> None
         """Test explicitly optional string. Please put null.
 
-        FIXME: add operation.summary
-
-        :param body_parameter: 
+        :param body_parameter:
         :type body_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -420,11 +392,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body_parameter is not None:
@@ -456,9 +426,7 @@ class ExplicitOperations(object):
         # type: (...) -> None
         """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the client library should throw before the request is sent.
 
-        FIXME: add operation.summary
-
-        :param value: 
+        :param value:
         :type value: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -466,6 +434,7 @@ class ExplicitOperations(object):
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         body_parameter = models.StringWrapper(value=value)
 
         # Construct URL
@@ -474,11 +443,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'StringWrapper')
@@ -507,9 +474,7 @@ class ExplicitOperations(object):
         # type: (...) -> None
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
-        FIXME: add operation.summary
-
-        :param value: 
+        :param value:
         :type value: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -517,6 +482,7 @@ class ExplicitOperations(object):
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         body_parameter = models.StringOptionalWrapper(value=value)
 
         # Construct URL
@@ -525,11 +491,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body_parameter is not None:
@@ -561,9 +525,7 @@ class ExplicitOperations(object):
         # type: (...) -> None
         """Test explicitly required string. Please put a header 'headerParameter' => null and the client library should throw before the request is sent.
 
-        FIXME: add operation.summary
-
-        :param header_parameter: 
+        :param header_parameter:
         :type header_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -578,11 +540,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, 'str')
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -608,9 +568,7 @@ class ExplicitOperations(object):
         # type: (...) -> None
         """Test explicitly optional string. Please put a header 'headerParameter' => null.
 
-        FIXME: add operation.summary
-
-        :param body_parameter: 
+        :param body_parameter:
         :type body_parameter: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -625,12 +583,10 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         if body_parameter is not None:
             header_parameters['bodyParameter'] = self._serialize.header("body_parameter", body_parameter, 'str')
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -656,9 +612,7 @@ class ExplicitOperations(object):
         # type: (...) -> None
         """Test explicitly required complex object. Please put null and the client library should throw before the request is sent.
 
-        FIXME: add operation.summary
-
-        :param body_parameter: 
+        :param body_parameter:
         :type body_parameter: ~requiredoptional.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -673,11 +627,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'Product')
@@ -706,9 +658,7 @@ class ExplicitOperations(object):
         # type: (...) -> None
         """Test explicitly optional complex object. Please put null.
 
-        FIXME: add operation.summary
-
-        :param body_parameter: 
+        :param body_parameter:
         :type body_parameter: ~requiredoptional.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -723,11 +673,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body_parameter is not None:
@@ -759,9 +707,7 @@ class ExplicitOperations(object):
         # type: (...) -> None
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null and the client library should throw before the request is sent.
 
-        FIXME: add operation.summary
-
-        :param value: 
+        :param value:
         :type value: ~requiredoptional.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -769,6 +715,7 @@ class ExplicitOperations(object):
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         body_parameter = models.ClassWrapper(value=value)
 
         # Construct URL
@@ -777,11 +724,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'ClassWrapper')
@@ -810,9 +755,7 @@ class ExplicitOperations(object):
         # type: (...) -> None
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
-        FIXME: add operation.summary
-
-        :param value: 
+        :param value:
         :type value: ~requiredoptional.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -820,6 +763,7 @@ class ExplicitOperations(object):
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         body_parameter = models.ClassOptionalWrapper(value=value)
 
         # Construct URL
@@ -828,11 +772,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body_parameter is not None:
@@ -864,9 +806,7 @@ class ExplicitOperations(object):
         # type: (...) -> None
         """Test explicitly required array. Please put null and the client library should throw before the request is sent.
 
-        FIXME: add operation.summary
-
-        :param body_parameter: 
+        :param body_parameter:
         :type body_parameter: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -881,11 +821,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(body_parameter, '[str]')
@@ -914,9 +852,7 @@ class ExplicitOperations(object):
         # type: (...) -> None
         """Test explicitly optional array. Please put null.
 
-        FIXME: add operation.summary
-
-        :param body_parameter: 
+        :param body_parameter:
         :type body_parameter: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -931,11 +867,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body_parameter is not None:
@@ -967,9 +901,7 @@ class ExplicitOperations(object):
         # type: (...) -> None
         """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the client library should throw before the request is sent.
 
-        FIXME: add operation.summary
-
-        :param value: 
+        :param value:
         :type value: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -977,6 +909,7 @@ class ExplicitOperations(object):
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         body_parameter = models.ArrayWrapper(value=value)
 
         # Construct URL
@@ -985,11 +918,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'ArrayWrapper')
@@ -1018,9 +949,7 @@ class ExplicitOperations(object):
         # type: (...) -> None
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
-        FIXME: add operation.summary
-
-        :param value: 
+        :param value:
         :type value: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1028,6 +957,7 @@ class ExplicitOperations(object):
         :raises: ~requiredoptional.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         body_parameter = models.ArrayOptionalWrapper(value=value)
 
         # Construct URL
@@ -1036,11 +966,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body_parameter is not None:
@@ -1072,9 +1000,7 @@ class ExplicitOperations(object):
         # type: (...) -> None
         """Test explicitly required array. Please put a header 'headerParameter' => null and the client library should throw before the request is sent.
 
-        FIXME: add operation.summary
-
-        :param header_parameter: 
+        :param header_parameter:
         :type header_parameter: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1089,11 +1015,9 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, '[str]', div=',')
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -1119,9 +1043,7 @@ class ExplicitOperations(object):
         # type: (...) -> None
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
-        FIXME: add operation.summary
-
-        :param header_parameter: 
+        :param header_parameter:
         :type header_parameter: list[str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1136,12 +1058,10 @@ class ExplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         if header_parameter is not None:
             header_parameters['headerParameter'] = self._serialize.header("header_parameter", header_parameter, '[str]', div=',')
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)

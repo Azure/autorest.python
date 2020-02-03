@@ -54,9 +54,9 @@ class StorageAccountsOperations(object):
         # type: (...) -> "models.CheckNameAvailabilityResult"
         """Checks that account name is valid and is not in use.
 
-        FIXME: add operation.summary
-
-        :param account_name: The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+        :param account_name: The name of the storage account within the specified resource group.
+         Storage account names must be between 3 and 24 characters in length and use numbers and lower-
+         case letters only.
         :type account_name: ~storage.models.StorageAccountCheckNameAvailabilityParameters
         :param callable cls: A custom type or function that will be passed the direct response
         :return: CheckNameAvailabilityResult or the result of cls(response)
@@ -75,12 +75,10 @@ class StorageAccountsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(account_name, 'StorageAccountCheckNameAvailabilityParameters')
@@ -102,7 +100,6 @@ class StorageAccountsOperations(object):
         return deserialized
     check_name_availability.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability'}
 
-    
     def _create_initial(
         self,
         resource_group_name,  # type: str
@@ -126,12 +123,10 @@ class StorageAccountsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(parameters, 'StorageAccountCreateParameters')
@@ -168,12 +163,11 @@ class StorageAccountsOperations(object):
         # type: (...) -> "models.StorageAccount"
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts cannot be updated with this API and should instead use the Update Storage Account API. If an account is already created and subsequent PUT request is issued with exact same set of properties, then HTTP 200 would be returned.
 
-        FIXME: add operation.summary
-
-
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
-        :param account_name: The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+        :param account_name: The name of the storage account within the specified resource group.
+         Storage account names must be between 3 and 24 characters in length and use numbers and lower-
+         case letters only.
         :type account_name: str
         :param parameters: The parameters to provide for the created account.
         :type parameters: ~storage.models.StorageAccountCreateParameters
@@ -210,7 +204,6 @@ class StorageAccountsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_create.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}'}
 
-
     @distributed_trace
     def delete(
         self,
@@ -222,11 +215,11 @@ class StorageAccountsOperations(object):
         # type: (...) -> None
         """Deletes a storage account in Microsoft Azure.
 
-        FIXME: add operation.summary
-
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
-        :param account_name: The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+        :param account_name: The name of the storage account within the specified resource group.
+         Storage account names must be between 3 and 24 characters in length and use numbers and lower-
+         case letters only.
         :type account_name: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -247,10 +240,8 @@ class StorageAccountsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -277,11 +268,11 @@ class StorageAccountsOperations(object):
         # type: (...) -> "models.StorageAccount"
         """Returns the properties for the specified storage account including but not limited to name, account type, location, and account status. The ListKeys operation should be used to retrieve storage keys.
 
-        FIXME: add operation.summary
-
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
-        :param account_name: The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+        :param account_name: The name of the storage account within the specified resource group.
+         Storage account names must be between 3 and 24 characters in length and use numbers and lower-
+         case letters only.
         :type account_name: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount or the result of cls(response)
@@ -302,11 +293,9 @@ class StorageAccountsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -337,13 +326,14 @@ class StorageAccountsOperations(object):
         # type: (...) -> "models.StorageAccount"
         """Updates the account type or tags for a storage account. It can also be used to add a custom domain (note that custom domains cannot be added via the Create operation). Only one custom domain is supported per storage account. This API can only be used to update one of tags, accountType, or customDomain per call. To update multiple of these properties, call the API multiple times with one change per call. This call does not change the storage keys for the account. If you want to change storage account keys, use the RegenerateKey operation. The location and name of the storage account cannot be changed after creation.
 
-        FIXME: add operation.summary
-
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
-        :param account_name: The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+        :param account_name: The name of the storage account within the specified resource group.
+         Storage account names must be between 3 and 24 characters in length and use numbers and lower-
+         case letters only.
         :type account_name: str
-        :param parameters: The parameters to update on the account. Note that only one property can be changed at a time using this API.
+        :param parameters: The parameters to update on the account. Note that only one property can be
+         changed at a time using this API.
         :type parameters: ~storage.models.StorageAccountUpdateParameters
         :param callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount or the result of cls(response)
@@ -364,12 +354,10 @@ class StorageAccountsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(parameters, 'StorageAccountUpdateParameters')
@@ -402,11 +390,11 @@ class StorageAccountsOperations(object):
         # type: (...) -> "models.StorageAccountKeys"
         """Lists the access keys for the specified storage account.
 
-        FIXME: add operation.summary
-
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
-        :param account_name: The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+        :param account_name: The name of the storage account within the specified resource group.
+         Storage account names must be between 3 and 24 characters in length and use numbers and lower-
+         case letters only.
         :type account_name: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountKeys or the result of cls(response)
@@ -427,11 +415,9 @@ class StorageAccountsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -459,9 +445,6 @@ class StorageAccountsOperations(object):
         # type: (...) -> "models.StorageAccountListResult"
         """Lists all the storage accounts available under the subscription. Note that storage keys are not returned; use the ListKeys operation for this.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountListResult or the result of cls(response)
         :rtype: ~storage.models.StorageAccountListResult
@@ -483,11 +466,9 @@ class StorageAccountsOperations(object):
             # Construct parameters
             query_parameters = {}
 
-
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -517,7 +498,6 @@ class StorageAccountsOperations(object):
         )
     list.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts'}
 
-
     @distributed_trace
     def list_by_resource_group(
         self,
@@ -527,9 +507,6 @@ class StorageAccountsOperations(object):
     ):
         # type: (...) -> "models.StorageAccountListResult"
         """Lists all the storage accounts available under the given resource group. Note that storage keys are not returned; use the ListKeys operation for this.
-
-        FIXME: add operation.summary
-
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
@@ -555,11 +532,9 @@ class StorageAccountsOperations(object):
             # Construct parameters
             query_parameters = {}
 
-
             # Construct headers
             header_parameters = {}
             header_parameters['Accept'] = 'application/json'
-
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -589,7 +564,6 @@ class StorageAccountsOperations(object):
         )
     list_by_resource_group.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts'}
 
-
     @distributed_trace
     def regenerate_key(
         self,
@@ -602,13 +576,13 @@ class StorageAccountsOperations(object):
         # type: (...) -> "models.StorageAccountKeys"
         """Regenerates the access keys for the specified storage account.
 
-        FIXME: add operation.summary
-
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
-        :param account_name: The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+        :param account_name: The name of the storage account within the specified resource group.
+         Storage account names must be between 3 and 24 characters in length and use numbers and lower-
+         case letters only.
         :type account_name: str
-        :param key_name: 
+        :param key_name:
         :type key_name: str or ~storage.models.KeyName
         :param callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountKeys or the result of cls(response)
@@ -616,6 +590,7 @@ class StorageAccountsOperations(object):
         :raises: ~azure.mgmt.core.ARMError
         """
         error_map = kwargs.pop('error_map', {})
+
         regenerate_key = models.StorageAccountRegenerateKeyParameters(key_name=key_name)
 
         # Construct URL
@@ -630,12 +605,10 @@ class StorageAccountsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(regenerate_key, 'StorageAccountRegenerateKeyParameters')

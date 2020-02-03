@@ -33,11 +33,12 @@ def {{ operation_name }}(
 :return: An instance of LROPoller that returns {{ operation.responses[0].schema.name if operation.responses[0].has_body else "None"}}
     :rtype: ~azure.core.polling.LROPoller[{{ operation.responses[0].schema.docstring_type if operation.responses[0].has_body else "None" }}]
 {% endmacro %}
+{% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 {% macro exception_name() %}{{ operation.exceptions[0].schema.name }}Exception{% endmacro %}
 {% macro response_headers(response) %}
 response_headers = {
     {% for response_header in response.headers %}
-    '{{ response_header.name }}': self._deserialize('{{ response_header.schema.get_serialization_type() }}', response.headers.get('{{ response_header.name }}')),
+    '{{ response_header.name }}': self._deserialize('{{ response_header.schema.serialization_type }}', response.headers.get('{{ response_header.name }}')),
     {% endfor %}
 }
 {% endmacro %}
@@ -50,9 +51,11 @@ response_headers = {
 {%- if not async_mode %}
     {{ keywords.sync_return_type_annotation(operation) }}
 {% endif %}
-    """{{operation.description.strip() }}
+    """{{operation.description }}
+    {% if operation.summary %}
 
-    {{ "FIXME: add operation.summary\n" }}
+    {{ operation.summary | wordwrap(width=95, break_long_words=False, wrapstring='\n    ') }}
+    {% endif %}
 
 {% if operation.deprecated -%}
     .. warning::
@@ -60,7 +63,9 @@ response_headers = {
 
 {% endif -%}
 {% for parameter in operation.parameters.method %}
-    :param {{ parameter.serialized_name }}: {{ parameter.description }}
+    {%- for doc_string in param_documentation_string(parameter).replace('\n', '\n ').split('\n') %}
+    {{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n     ')}}
+    {% endfor %}
     :type {{ parameter.serialized_name }}: {{ parameter.schema.docstring_type }}
 {% endfor %}
     :param callable cls: A custom type or function that will be passed the direct response

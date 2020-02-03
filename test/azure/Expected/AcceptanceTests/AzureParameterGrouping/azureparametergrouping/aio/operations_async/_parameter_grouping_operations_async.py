@@ -50,8 +50,6 @@ class ParameterGroupingOperations:
     ) -> None:
         """Post a bunch of required parameters grouped.
 
-        FIXME: add operation.summary
-
         :param parameter_grouping_post_required_parameters: Parameter group.
         :type parameter_grouping_post_required_parameters: ~azureparametergrouping.models.ParameterGroupingPostRequiredParameters
         :param callable cls: A custom type or function that will be passed the direct response
@@ -71,7 +69,6 @@ class ParameterGroupingOperations:
             path = parameter_grouping_post_required_parameters.path
             body = parameter_grouping_post_required_parameters.body
 
-
         # Construct URL
         url = self.post_required.metadata['url']
         path_format_arguments = {
@@ -84,13 +81,11 @@ class ParameterGroupingOperations:
         if query is not None:
             query_parameters['query'] = self._serialize.query("query", query, 'int')
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         if custom_header is not None:
             header_parameters['customHeader'] = self._serialize.header("custom_header", custom_header, 'str')
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(body, 'int')
@@ -119,8 +114,6 @@ class ParameterGroupingOperations:
     ) -> None:
         """Post a bunch of optional parameters grouped.
 
-        FIXME: add operation.summary
-
         :param parameter_grouping_post_optional_parameters: Parameter group.
         :type parameter_grouping_post_optional_parameters: ~azureparametergrouping.models.ParameterGroupingPostOptionalParameters
         :param callable cls: A custom type or function that will be passed the direct response
@@ -136,7 +129,6 @@ class ParameterGroupingOperations:
             custom_header = parameter_grouping_post_optional_parameters.custom_header
             query = parameter_grouping_post_optional_parameters.query
 
-
         # Construct URL
         url = self.post_optional.metadata['url']
 
@@ -145,12 +137,10 @@ class ParameterGroupingOperations:
         if query is not None:
             query_parameters['query'] = self._serialize.query("query", query, 'int')
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         if custom_header is not None:
             header_parameters['customHeader'] = self._serialize.header("custom_header", custom_header, 'str')
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -177,8 +167,6 @@ class ParameterGroupingOperations:
     ) -> None:
         """Post parameters from multiple different parameter groups.
 
-        FIXME: add operation.summary
-
         :param first_parameter_group: Parameter group.
         :type first_parameter_group: ~azureparametergrouping.models.FirstParameterGroup
         :param parameter_grouping_post_multi_param_groups_second_param_group: Parameter group.
@@ -201,7 +189,6 @@ class ParameterGroupingOperations:
             header_two = parameter_grouping_post_multi_param_groups_second_param_group.header_two
             query_two = parameter_grouping_post_multi_param_groups_second_param_group.query_two
 
-
         # Construct URL
         url = self.post_multi_param_groups.metadata['url']
 
@@ -212,14 +199,12 @@ class ParameterGroupingOperations:
         if query_two is not None:
             query_parameters['query-two'] = self._serialize.query("query_two", query_two, 'int')
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         if header_one is not None:
             header_parameters['header-one'] = self._serialize.header("header_one", header_one, 'str')
         if header_two is not None:
             header_parameters['header-two'] = self._serialize.header("header_two", header_two, 'str')
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -245,8 +230,6 @@ class ParameterGroupingOperations:
     ) -> None:
         """Post parameters with a shared parameter group object.
 
-        FIXME: add operation.summary
-
         :param first_parameter_group: Parameter group.
         :type first_parameter_group: ~azureparametergrouping.models.FirstParameterGroup
         :param callable cls: A custom type or function that will be passed the direct response
@@ -262,7 +245,6 @@ class ParameterGroupingOperations:
             header_one = first_parameter_group.header_one
             query_one = first_parameter_group.query_one
 
-
         # Construct URL
         url = self.post_shared_parameter_group_object.metadata['url']
 
@@ -271,12 +253,10 @@ class ParameterGroupingOperations:
         if query_one is not None:
             query_parameters['query-one'] = self._serialize.query("query_one", query_one, 'int')
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         if header_one is not None:
             header_parameters['header-one'] = self._serialize.header("header_one", header_one, 'str')
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)

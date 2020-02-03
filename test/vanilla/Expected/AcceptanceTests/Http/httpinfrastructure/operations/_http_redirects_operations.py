@@ -48,8 +48,6 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Return 300 status code and redirect to /http/success/200.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -63,10 +61,8 @@ class HttpRedirectsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -95,8 +91,6 @@ class HttpRedirectsOperations(object):
         # type: (...) -> List[str]
         """Return 300 status code and redirect to /http/success/200.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or list or the result of cls(response)
         :rtype: None or list[str]
@@ -110,11 +104,9 @@ class HttpRedirectsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -146,8 +138,6 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Return 301 status code and redirect to /http/success/200.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -161,10 +151,8 @@ class HttpRedirectsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -193,8 +181,6 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Return 301 status code and redirect to /http/success/200.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -208,10 +194,8 @@ class HttpRedirectsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -240,8 +224,6 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Put true Boolean value in request returns 301.  This request should not be automatically redirected, but should return the received 301 to the caller for evaluation.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -256,11 +238,9 @@ class HttpRedirectsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -294,8 +274,6 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Return 302 status code and redirect to /http/success/200.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -309,10 +287,8 @@ class HttpRedirectsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -341,8 +317,6 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Return 302 status code and redirect to /http/success/200.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -356,10 +330,8 @@ class HttpRedirectsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -388,8 +360,6 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Patch true Boolean value in request returns 302.  This request should not be automatically redirected, but should return the received 302 to the caller for evaluation.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -404,11 +374,9 @@ class HttpRedirectsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -442,8 +410,6 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Post true Boolean value in request returns 303.  This request should be automatically redirected usign a get, ultimately returning a 200 status code.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -458,11 +424,9 @@ class HttpRedirectsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -497,8 +461,6 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Redirect with 307, resulting in a 200 success.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -512,10 +474,8 @@ class HttpRedirectsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -544,8 +504,6 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Redirect get with 307, resulting in a 200 success.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -559,10 +517,8 @@ class HttpRedirectsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -591,8 +547,6 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """options redirected with 307, resulting in a 200 after redirect.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -606,10 +560,8 @@ class HttpRedirectsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.options(url, query_parameters, header_parameters)
@@ -638,8 +590,6 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Put redirected with 307, resulting in a 200 after redirect.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -654,11 +604,9 @@ class HttpRedirectsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -693,8 +641,6 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Patch redirected with 307, resulting in a 200 after redirect.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -709,11 +655,9 @@ class HttpRedirectsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -748,8 +692,6 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Post redirected with 307, resulting in a 200 after redirect.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -764,11 +706,9 @@ class HttpRedirectsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -803,8 +743,6 @@ class HttpRedirectsOperations(object):
         # type: (...) -> None
         """Delete redirected with 307, resulting in a 200 after redirect.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -819,11 +757,9 @@ class HttpRedirectsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:

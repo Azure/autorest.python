@@ -48,8 +48,6 @@ class HttpRetryOperations(object):
         # type: (...) -> None
         """Return 408 status code, then 200 after retry.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -63,10 +61,8 @@ class HttpRetryOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -91,8 +87,6 @@ class HttpRetryOperations(object):
         # type: (...) -> None
         """Return 500 status code, then 200 after retry.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -107,11 +101,9 @@ class HttpRetryOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -142,8 +134,6 @@ class HttpRetryOperations(object):
         # type: (...) -> None
         """Return 500 status code, then 200 after retry.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -158,11 +148,9 @@ class HttpRetryOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -193,8 +181,6 @@ class HttpRetryOperations(object):
         # type: (...) -> None
         """Return 502 status code, then 200 after retry.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -208,10 +194,8 @@ class HttpRetryOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -236,8 +220,6 @@ class HttpRetryOperations(object):
         # type: (...) -> bool
         """Return 502 status code, then 200 after retry.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
         :rtype: bool
@@ -251,11 +233,9 @@ class HttpRetryOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.options(url, query_parameters, header_parameters)
@@ -283,8 +263,6 @@ class HttpRetryOperations(object):
         # type: (...) -> None
         """Return 503 status code, then 200 after retry.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -299,11 +277,9 @@ class HttpRetryOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -334,8 +310,6 @@ class HttpRetryOperations(object):
         # type: (...) -> None
         """Return 503 status code, then 200 after retry.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -350,11 +324,9 @@ class HttpRetryOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -385,8 +357,6 @@ class HttpRetryOperations(object):
         # type: (...) -> None
         """Return 504 status code, then 200 after retry.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -401,11 +371,9 @@ class HttpRetryOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:
@@ -436,8 +404,6 @@ class HttpRetryOperations(object):
         # type: (...) -> None
         """Return 504 status code, then 200 after retry.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -452,11 +418,9 @@ class HttpRetryOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if boolean_value is not None:

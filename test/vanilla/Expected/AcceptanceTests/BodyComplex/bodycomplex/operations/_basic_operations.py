@@ -49,8 +49,6 @@ class BasicOperations(object):
         # type: (...) -> "models.Basic"
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
         :rtype: ~bodycomplex.models.Basic
@@ -64,11 +62,9 @@ class BasicOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -97,8 +93,6 @@ class BasicOperations(object):
         # type: (...) -> None
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
-        FIXME: add operation.summary
-
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}.
         :type complex_body: ~bodycomplex.models.Basic
         :param callable cls: A custom type or function that will be passed the direct response
@@ -116,11 +110,9 @@ class BasicOperations(object):
         query_parameters = {}
         query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'Basic')
@@ -148,8 +140,6 @@ class BasicOperations(object):
         # type: (...) -> "models.Basic"
         """Get a basic complex type that is invalid for the local strong type.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
         :rtype: ~bodycomplex.models.Basic
@@ -163,11 +153,9 @@ class BasicOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -195,8 +183,6 @@ class BasicOperations(object):
         # type: (...) -> "models.Basic"
         """Get a basic complex type that is empty.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
         :rtype: ~bodycomplex.models.Basic
@@ -210,11 +196,9 @@ class BasicOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -242,8 +226,6 @@ class BasicOperations(object):
         # type: (...) -> "models.Basic"
         """Get a basic complex type whose properties are null.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
         :rtype: ~bodycomplex.models.Basic
@@ -257,11 +239,9 @@ class BasicOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -289,8 +269,6 @@ class BasicOperations(object):
         # type: (...) -> "models.Basic"
         """Get a basic complex type while the server doesn't provide a response payload.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
         :rtype: ~bodycomplex.models.Basic
@@ -304,11 +282,9 @@ class BasicOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

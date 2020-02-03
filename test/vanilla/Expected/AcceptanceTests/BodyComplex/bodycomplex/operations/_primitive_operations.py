@@ -50,8 +50,6 @@ class PrimitiveOperations(object):
         # type: (...) -> "models.IntWrapper"
         """Get complex types with integer properties.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: IntWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.IntWrapper
@@ -65,11 +63,9 @@ class PrimitiveOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -98,8 +94,6 @@ class PrimitiveOperations(object):
         # type: (...) -> None
         """Put complex types with integer properties.
 
-        FIXME: add operation.summary
-
         :param complex_body: Please put -1 and 2.
         :type complex_body: ~bodycomplex.models.IntWrapper
         :param callable cls: A custom type or function that will be passed the direct response
@@ -115,11 +109,9 @@ class PrimitiveOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'IntWrapper')
@@ -147,8 +139,6 @@ class PrimitiveOperations(object):
         # type: (...) -> "models.LongWrapper"
         """Get complex types with long properties.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: LongWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.LongWrapper
@@ -162,11 +152,9 @@ class PrimitiveOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -195,8 +183,6 @@ class PrimitiveOperations(object):
         # type: (...) -> None
         """Put complex types with long properties.
 
-        FIXME: add operation.summary
-
         :param complex_body: Please put 1099511627775 and -999511627788.
         :type complex_body: ~bodycomplex.models.LongWrapper
         :param callable cls: A custom type or function that will be passed the direct response
@@ -212,11 +198,9 @@ class PrimitiveOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'LongWrapper')
@@ -244,8 +228,6 @@ class PrimitiveOperations(object):
         # type: (...) -> "models.FloatWrapper"
         """Get complex types with float properties.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: FloatWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.FloatWrapper
@@ -259,11 +241,9 @@ class PrimitiveOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -292,8 +272,6 @@ class PrimitiveOperations(object):
         # type: (...) -> None
         """Put complex types with float properties.
 
-        FIXME: add operation.summary
-
         :param complex_body: Please put 1.05 and -0.003.
         :type complex_body: ~bodycomplex.models.FloatWrapper
         :param callable cls: A custom type or function that will be passed the direct response
@@ -309,11 +287,9 @@ class PrimitiveOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'FloatWrapper')
@@ -341,8 +317,6 @@ class PrimitiveOperations(object):
         # type: (...) -> "models.DoubleWrapper"
         """Get complex types with double properties.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DoubleWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DoubleWrapper
@@ -356,11 +330,9 @@ class PrimitiveOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -389,9 +361,8 @@ class PrimitiveOperations(object):
         # type: (...) -> None
         """Put complex types with double properties.
 
-        FIXME: add operation.summary
-
-        :param complex_body: Please put 3e-100 and -0.000000000000000000000000000000000000000000000000000000005.
+        :param complex_body: Please put 3e-100 and
+         -0.000000000000000000000000000000000000000000000000000000005.
         :type complex_body: ~bodycomplex.models.DoubleWrapper
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -406,11 +377,9 @@ class PrimitiveOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'DoubleWrapper')
@@ -438,8 +407,6 @@ class PrimitiveOperations(object):
         # type: (...) -> "models.BooleanWrapper"
         """Get complex types with bool properties.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: BooleanWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.BooleanWrapper
@@ -453,11 +420,9 @@ class PrimitiveOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -486,8 +451,6 @@ class PrimitiveOperations(object):
         # type: (...) -> None
         """Put complex types with bool properties.
 
-        FIXME: add operation.summary
-
         :param complex_body: Please put true and false.
         :type complex_body: ~bodycomplex.models.BooleanWrapper
         :param callable cls: A custom type or function that will be passed the direct response
@@ -503,11 +466,9 @@ class PrimitiveOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'BooleanWrapper')
@@ -535,8 +496,6 @@ class PrimitiveOperations(object):
         # type: (...) -> "models.StringWrapper"
         """Get complex types with string properties.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: StringWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.StringWrapper
@@ -550,11 +509,9 @@ class PrimitiveOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -583,8 +540,6 @@ class PrimitiveOperations(object):
         # type: (...) -> None
         """Put complex types with string properties.
 
-        FIXME: add operation.summary
-
         :param complex_body: Please put 'goodrequest', '', and null.
         :type complex_body: ~bodycomplex.models.StringWrapper
         :param callable cls: A custom type or function that will be passed the direct response
@@ -600,11 +555,9 @@ class PrimitiveOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'StringWrapper')
@@ -632,8 +585,6 @@ class PrimitiveOperations(object):
         # type: (...) -> "models.DateWrapper"
         """Get complex types with date properties.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DateWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DateWrapper
@@ -647,11 +598,9 @@ class PrimitiveOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -680,8 +629,6 @@ class PrimitiveOperations(object):
         # type: (...) -> None
         """Put complex types with date properties.
 
-        FIXME: add operation.summary
-
         :param complex_body: Please put '0001-01-01' and '2016-02-29'.
         :type complex_body: ~bodycomplex.models.DateWrapper
         :param callable cls: A custom type or function that will be passed the direct response
@@ -697,11 +644,9 @@ class PrimitiveOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'DateWrapper')
@@ -729,8 +674,6 @@ class PrimitiveOperations(object):
         # type: (...) -> "models.DatetimeWrapper"
         """Get complex types with datetime properties.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DatetimeWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DatetimeWrapper
@@ -744,11 +687,9 @@ class PrimitiveOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -777,8 +718,6 @@ class PrimitiveOperations(object):
         # type: (...) -> None
         """Put complex types with datetime properties.
 
-        FIXME: add operation.summary
-
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
         :type complex_body: ~bodycomplex.models.DatetimeWrapper
         :param callable cls: A custom type or function that will be passed the direct response
@@ -794,11 +733,9 @@ class PrimitiveOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'DatetimeWrapper')
@@ -826,8 +763,6 @@ class PrimitiveOperations(object):
         # type: (...) -> "models.Datetimerfc1123Wrapper"
         """Get complex types with datetimeRfc1123 properties.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Datetimerfc1123Wrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.Datetimerfc1123Wrapper
@@ -841,11 +776,9 @@ class PrimitiveOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -874,9 +807,8 @@ class PrimitiveOperations(object):
         # type: (...) -> None
         """Put complex types with datetimeRfc1123 properties.
 
-        FIXME: add operation.summary
-
-        :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00 GMT'.
+        :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
+         GMT'.
         :type complex_body: ~bodycomplex.models.Datetimerfc1123Wrapper
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -891,11 +823,9 @@ class PrimitiveOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'Datetimerfc1123Wrapper')
@@ -923,8 +853,6 @@ class PrimitiveOperations(object):
         # type: (...) -> "models.DurationWrapper"
         """Get complex types with duration properties.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DurationWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DurationWrapper
@@ -938,11 +866,9 @@ class PrimitiveOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -971,9 +897,7 @@ class PrimitiveOperations(object):
         # type: (...) -> None
         """Put complex types with duration properties.
 
-        FIXME: add operation.summary
-
-        :param field: 
+        :param field:
         :type field: ~datetime.timedelta
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -981,6 +905,7 @@ class PrimitiveOperations(object):
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         complex_body = models.DurationWrapper(field=field)
 
         # Construct URL
@@ -989,11 +914,9 @@ class PrimitiveOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'DurationWrapper')
@@ -1021,8 +944,6 @@ class PrimitiveOperations(object):
         # type: (...) -> "models.ByteWrapper"
         """Get complex types with byte properties.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ByteWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ByteWrapper
@@ -1036,11 +957,9 @@ class PrimitiveOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1069,9 +988,7 @@ class PrimitiveOperations(object):
         # type: (...) -> None
         """Put complex types with byte properties.
 
-        FIXME: add operation.summary
-
-        :param field: 
+        :param field:
         :type field: bytearray
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1079,6 +996,7 @@ class PrimitiveOperations(object):
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         complex_body = models.ByteWrapper(field=field)
 
         # Construct URL
@@ -1087,11 +1005,9 @@ class PrimitiveOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'ByteWrapper')

@@ -43,7 +43,6 @@ class LROsOperations(object):
         self._deserialize = deserializer
         self._config = config
 
-    
     def _put200_succeeded_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -59,12 +58,10 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -102,9 +99,6 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Succeeded’.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -138,8 +132,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put200_succeeded.metadata = {'url': '/lro/put/200/succeeded'}
 
-
-    
     def _put200_succeeded_no_state_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -155,12 +147,10 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -196,9 +186,6 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         """Long running put request, service returns a 200 to the initial request, with an entity that does not contain ProvisioningState=’Succeeded’.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -232,8 +219,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put200_succeeded_no_state.metadata = {'url': '/lro/put/200/succeeded/nostate'}
 
-
-    
     def _put202_retry200_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -249,12 +234,10 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -290,9 +273,6 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         """Long running put request, service returns a 202 to the initial request, with a location header that points to a polling URL that returns a 200 and an entity that doesn't contains ProvisioningState.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -326,8 +306,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put202_retry200.metadata = {'url': '/lro/put/202/retry/200'}
 
-
-    
     def _put201_creating_succeeded200_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -343,12 +321,10 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -389,9 +365,6 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         """Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -425,8 +398,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put201_creating_succeeded200.metadata = {'url': '/lro/put/201/creating/succeeded/200'}
 
-
-    
     def _put200_updating_succeeded204_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -442,12 +413,10 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -483,9 +452,6 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         """Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -519,8 +485,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put200_updating_succeeded204.metadata = {'url': '/lro/put/200/updating/succeeded/200'}
 
-
-    
     def _put201_creating_failed200_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -536,12 +500,10 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -582,9 +544,6 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         """Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Failed’.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -618,8 +577,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put201_creating_failed200.metadata = {'url': '/lro/put/201/created/failed/200'}
 
-
-    
     def _put200_acceptedcanceled200_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -635,12 +592,10 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -676,9 +631,6 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         """Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Canceled’.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -712,8 +664,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put200_acceptedcanceled200.metadata = {'url': '/lro/put/200/accepted/canceled/200'}
 
-
-    
     def _put_no_header_in_retry_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -729,12 +679,10 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -772,9 +720,6 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         """Long running put request, service returns a 202 to the initial request with location header. Subsequent calls to operation status do not contain location header.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -811,8 +756,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_no_header_in_retry.metadata = {'url': '/lro/put/noheader/202/200'}
 
-
-    
     def _put_async_retry_succeeded_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -828,12 +771,10 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -873,9 +814,6 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -914,8 +852,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_retry_succeeded.metadata = {'url': '/lro/putasync/retry/succeeded'}
 
-
-    
     def _put_async_no_retry_succeeded_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -931,12 +867,10 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -975,9 +909,6 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -1015,8 +946,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_no_retry_succeeded.metadata = {'url': '/lro/putasync/noretry/succeeded'}
 
-
-    
     def _put_async_retry_failed_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -1032,12 +961,10 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -1077,9 +1004,6 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -1118,8 +1042,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_retry_failed.metadata = {'url': '/lro/putasync/retry/failed'}
 
-
-    
     def _put_async_no_retrycanceled_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -1135,12 +1057,10 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -1179,9 +1099,6 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -1219,8 +1136,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_no_retrycanceled.metadata = {'url': '/lro/putasync/noretry/canceled'}
 
-
-    
     def _put_async_no_header_in_retry_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -1236,12 +1151,10 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -1279,9 +1192,6 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         """Long running put request, service returns a 202 to the initial request with Azure-AsyncOperation header. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -1318,8 +1228,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_no_header_in_retry.metadata = {'url': '/lro/putasync/noheader/201/200'}
 
-
-    
     def _put_non_resource_initial(
         self,
         sku=None,  # type: Optional["models.Sku"]
@@ -1335,12 +1243,10 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if sku is not None:
@@ -1376,9 +1282,6 @@ class LROsOperations(object):
         # type: (...) -> "models.Sku"
         """Long running put request with non resource.
 
-        FIXME: add operation.summary
-
-
         :param sku: sku to put.
         :type sku: ~lro.models.Sku
         :param callable cls: A custom type or function that will be passed the direct response
@@ -1412,8 +1315,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_non_resource.metadata = {'url': '/lro/putnonresource/202/200'}
 
-
-    
     def _put_async_non_resource_initial(
         self,
         sku=None,  # type: Optional["models.Sku"]
@@ -1429,12 +1330,10 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if sku is not None:
@@ -1470,9 +1369,6 @@ class LROsOperations(object):
         # type: (...) -> "models.Sku"
         """Long running put request with non resource.
 
-        FIXME: add operation.summary
-
-
         :param sku: sku to put.
         :type sku: ~lro.models.Sku
         :param callable cls: A custom type or function that will be passed the direct response
@@ -1506,8 +1402,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_non_resource.metadata = {'url': '/lro/putnonresourceasync/202/200'}
 
-
-    
     def _put_sub_resource_initial(
         self,
         provisioning_state=None,  # type: Optional[str]
@@ -1516,6 +1410,7 @@ class LROsOperations(object):
     ):
         # type: (...) -> "models.SubProduct"
         error_map = kwargs.pop('error_map', {})
+
         product = models.SubProduct(provisioning_state=provisioning_state)
 
         # Construct URL
@@ -1524,12 +1419,10 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -1565,10 +1458,7 @@ class LROsOperations(object):
         # type: (...) -> "models.SubProduct"
         """Long running put request with sub resource.
 
-        FIXME: add operation.summary
-
-
-        :param provisioning_state: 
+        :param provisioning_state:
         :type provisioning_state: str
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -1601,8 +1491,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_sub_resource.metadata = {'url': '/lro/putsubresource/202/200'}
 
-
-    
     def _put_async_sub_resource_initial(
         self,
         provisioning_state=None,  # type: Optional[str]
@@ -1611,6 +1499,7 @@ class LROsOperations(object):
     ):
         # type: (...) -> "models.SubProduct"
         error_map = kwargs.pop('error_map', {})
+
         product = models.SubProduct(provisioning_state=provisioning_state)
 
         # Construct URL
@@ -1619,12 +1508,10 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -1660,10 +1547,7 @@ class LROsOperations(object):
         # type: (...) -> "models.SubProduct"
         """Long running put request with sub resource.
 
-        FIXME: add operation.summary
-
-
-        :param provisioning_state: 
+        :param provisioning_state:
         :type provisioning_state: str
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -1696,8 +1580,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_sub_resource.metadata = {'url': '/lro/putsubresourceasync/202/200'}
 
-
-    
     def _delete_provisioning202_accepted200_succeeded_initial(
         self,
         cls=None,  # type: ClsType["models.Product"]
@@ -1712,11 +1594,9 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -1753,9 +1633,6 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         """Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -1790,8 +1667,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_provisioning202_accepted200_succeeded.metadata = {'url': '/lro/delete/provisioning/202/accepted/200/succeeded'}
 
-
-    
     def _delete_provisioning202_deleting_failed200_initial(
         self,
         cls=None,  # type: ClsType["models.Product"]
@@ -1806,11 +1681,9 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -1847,9 +1720,6 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         """Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Failed’.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -1884,8 +1754,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_provisioning202_deleting_failed200.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/failed'}
 
-
-    
     def _delete_provisioning202_deletingcanceled200_initial(
         self,
         cls=None,  # type: ClsType["models.Product"]
@@ -1900,11 +1768,9 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -1941,9 +1807,6 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         """Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Canceled’.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -1978,8 +1841,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_provisioning202_deletingcanceled200.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/canceled'}
 
-
-    
     def _delete204_succeeded_initial(
         self,
         cls=None,  # type: ClsType[None]
@@ -1994,10 +1855,8 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -2022,9 +1881,6 @@ class LROsOperations(object):
     ):
         # type: (...) -> None
         """Long running delete succeeds and returns right away.
-
-        FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -2053,8 +1909,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete204_succeeded.metadata = {'url': '/lro/delete/204/succeeded'}
 
-
-    
     def _delete202_retry200_initial(
         self,
         cls=None,  # type: ClsType["models.Product"]
@@ -2069,11 +1923,9 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -2109,9 +1961,6 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         """Long running delete request, service returns a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -2142,8 +1991,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete202_retry200.metadata = {'url': '/lro/delete/202/retry/200'}
 
-
-    
     def _delete202_no_retry204_initial(
         self,
         cls=None,  # type: ClsType["models.Product"]
@@ -2158,11 +2005,9 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -2198,9 +2043,6 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         """Long running delete request, service returns a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -2231,8 +2073,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete202_no_retry204.metadata = {'url': '/lro/delete/202/noretry/204'}
 
-
-    
     def _delete_no_header_in_retry_initial(
         self,
         cls=None,  # type: ClsType[None]
@@ -2247,10 +2087,8 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -2280,9 +2118,6 @@ class LROsOperations(object):
         # type: (...) -> None
         """Long running delete request, service returns a location header in the initial request. Subsequent calls to operation status do not contain location header.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -2310,8 +2145,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_no_header_in_retry.metadata = {'url': '/lro/delete/noheader'}
 
-
-    
     def _delete_async_no_header_in_retry_initial(
         self,
         cls=None,  # type: ClsType[None]
@@ -2326,10 +2159,8 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -2359,9 +2190,6 @@ class LROsOperations(object):
         # type: (...) -> None
         """Long running delete request, service returns an Azure-AsyncOperation header in the initial request. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -2389,8 +2217,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_no_header_in_retry.metadata = {'url': '/lro/deleteasync/noheader/202/204'}
 
-
-    
     def _delete_async_retry_succeeded_initial(
         self,
         cls=None,  # type: ClsType[None]
@@ -2405,10 +2231,8 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -2439,9 +2263,6 @@ class LROsOperations(object):
         # type: (...) -> None
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -2469,8 +2290,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_retry_succeeded.metadata = {'url': '/lro/deleteasync/retry/succeeded'}
 
-
-    
     def _delete_async_no_retry_succeeded_initial(
         self,
         cls=None,  # type: ClsType[None]
@@ -2485,10 +2304,8 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -2519,9 +2336,6 @@ class LROsOperations(object):
         # type: (...) -> None
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -2549,8 +2363,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_no_retry_succeeded.metadata = {'url': '/lro/deleteasync/noretry/succeeded'}
 
-
-    
     def _delete_async_retry_failed_initial(
         self,
         cls=None,  # type: ClsType[None]
@@ -2565,10 +2377,8 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -2599,9 +2409,6 @@ class LROsOperations(object):
         # type: (...) -> None
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -2629,8 +2436,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_retry_failed.metadata = {'url': '/lro/deleteasync/retry/failed'}
 
-
-    
     def _delete_async_retrycanceled_initial(
         self,
         cls=None,  # type: ClsType[None]
@@ -2645,10 +2450,8 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -2679,9 +2482,6 @@ class LROsOperations(object):
         # type: (...) -> None
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -2709,8 +2509,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_retrycanceled.metadata = {'url': '/lro/deleteasync/retry/canceled'}
 
-
-    
     def _post200_with_payload_initial(
         self,
         cls=None,  # type: ClsType["models.Sku"]
@@ -2725,11 +2523,9 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -2763,9 +2559,6 @@ class LROsOperations(object):
         # type: (...) -> "models.Sku"
         """Long running post request, service returns a 202 to the initial request, with 'Location' header. Poll returns a 200 with a response body after success.
 
-        FIXME: add operation.summary
-
-
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
@@ -2796,8 +2589,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post200_with_payload.metadata = {'url': '/lro/post/payload/200'}
 
-
-    
     def _post202_retry200_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -2813,11 +2604,9 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -2854,9 +2643,6 @@ class LROsOperations(object):
         # type: (...) -> None
         """Long running post request, service returns a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -2887,8 +2673,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post202_retry200.metadata = {'url': '/lro/post/202/retry/200'}
 
-
-    
     def _post202_no_retry204_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -2904,12 +2688,10 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -2948,9 +2730,6 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         """Long running post request, service returns a 202 to the initial request, with 'Location' header, 204 with noresponse body after success.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -2988,8 +2767,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post202_no_retry204.metadata = {'url': '/lro/post/202/noretry/204'}
 
-
-    
     def _post_double_headers_final_location_get_initial(
         self,
         cls=None,  # type: ClsType["models.Product"]
@@ -3004,11 +2781,9 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -3036,9 +2811,6 @@ class LROsOperations(object):
     ):
         # type: (...) -> "models.Product"
         """Long running post request, service returns a 202 to the initial request with both Location and Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final object.
-
-        FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -3070,8 +2842,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_double_headers_final_location_get.metadata = {'url': '/lro/LROPostDoubleHeadersFinalLocationGet'}
 
-
-    
     def _post_double_headers_final_azure_header_get_initial(
         self,
         cls=None,  # type: ClsType["models.Product"]
@@ -3086,11 +2856,9 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -3118,9 +2886,6 @@ class LROsOperations(object):
     ):
         # type: (...) -> "models.Product"
         """Long running post request, service returns a 202 to the initial request with both Location and Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final object.
-
-        FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -3152,8 +2917,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_double_headers_final_azure_header_get.metadata = {'url': '/lro/LROPostDoubleHeadersFinalAzureHeaderGet'}
 
-
-    
     def _post_double_headers_final_azure_header_get_default_initial(
         self,
         cls=None,  # type: ClsType["models.Product"]
@@ -3168,11 +2931,9 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -3200,9 +2961,6 @@ class LROsOperations(object):
     ):
         # type: (...) -> "models.Product"
         """Long running post request, service returns a 202 to the initial request with both Location and Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final object if you support initial Autorest behavior.
-
-        FIXME: add operation.summary
-
 
         :param callable cls: A custom type or function that will be passed the direct response
         :param polling: True for ARMPolling, False for no polling, or a
@@ -3234,8 +2992,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_double_headers_final_azure_header_get_default.metadata = {'url': '/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault'}
 
-
-    
     def _post_async_retry_succeeded_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -3251,12 +3007,10 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -3300,9 +3054,6 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -3336,8 +3087,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_retry_succeeded.metadata = {'url': '/lro/postasync/retry/succeeded'}
 
-
-    
     def _post_async_no_retry_succeeded_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -3353,12 +3102,10 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -3402,9 +3149,6 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -3438,8 +3182,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_no_retry_succeeded.metadata = {'url': '/lro/postasync/noretry/succeeded'}
 
-
-    
     def _post_async_retry_failed_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -3455,11 +3197,9 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -3497,9 +3237,6 @@ class LROsOperations(object):
         # type: (...) -> None
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -3530,8 +3267,6 @@ class LROsOperations(object):
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_retry_failed.metadata = {'url': '/lro/postasync/retry/failed'}
 
-
-    
     def _post_async_retrycanceled_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -3547,11 +3282,9 @@ class LROsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -3589,9 +3322,6 @@ class LROsOperations(object):
         # type: (...) -> None
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        FIXME: add operation.summary
-
-
         :param product: Product to put.
         :type product: ~lro.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
@@ -3621,4 +3351,3 @@ class LROsOperations(object):
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_retrycanceled.metadata = {'url': '/lro/postasync/retry/canceled'}
-

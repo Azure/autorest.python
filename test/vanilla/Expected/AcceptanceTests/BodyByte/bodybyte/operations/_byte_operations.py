@@ -48,8 +48,6 @@ class ByteOperations(object):
         # type: (...) -> bytearray
         """Get null byte value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: bytearray or the result of cls(response)
         :rtype: bytearray
@@ -63,11 +61,9 @@ class ByteOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -95,8 +91,6 @@ class ByteOperations(object):
         # type: (...) -> bytearray
         """Get empty byte value ''.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: bytearray or the result of cls(response)
         :rtype: bytearray
@@ -110,11 +104,9 @@ class ByteOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -142,8 +134,6 @@ class ByteOperations(object):
         # type: (...) -> bytearray
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: bytearray or the result of cls(response)
         :rtype: bytearray
@@ -157,11 +147,9 @@ class ByteOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -190,8 +178,6 @@ class ByteOperations(object):
         # type: (...) -> None
         """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
-        FIXME: add operation.summary
-
         :param byte_body: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
         :type byte_body: bytearray
         :param callable cls: A custom type or function that will be passed the direct response
@@ -207,11 +193,9 @@ class ByteOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(byte_body, 'bytearray')
@@ -239,8 +223,6 @@ class ByteOperations(object):
         # type: (...) -> bytearray
         """Get invalid byte value ':::SWAGGER::::'.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: bytearray or the result of cls(response)
         :rtype: bytearray
@@ -254,11 +236,9 @@ class ByteOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

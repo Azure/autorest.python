@@ -48,8 +48,6 @@ class NumberOperations(object):
         # type: (...) -> float
         """Get null Number value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
@@ -63,11 +61,9 @@ class NumberOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -95,8 +91,6 @@ class NumberOperations(object):
         # type: (...) -> float
         """Get invalid float Number value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
@@ -110,11 +104,9 @@ class NumberOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -142,8 +134,6 @@ class NumberOperations(object):
         # type: (...) -> float
         """Get invalid double Number value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
@@ -157,11 +147,9 @@ class NumberOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -189,8 +177,6 @@ class NumberOperations(object):
         # type: (...) -> float
         """Get invalid decimal Number value.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
@@ -204,11 +190,9 @@ class NumberOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -237,9 +221,7 @@ class NumberOperations(object):
         # type: (...) -> None
         """Put big float value 3.402823e+20.
 
-        FIXME: add operation.summary
-
-        :param number_body: 
+        :param number_body:
         :type number_body: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -254,11 +236,9 @@ class NumberOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
@@ -286,8 +266,6 @@ class NumberOperations(object):
         # type: (...) -> float
         """Get big float value 3.402823e+20.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
@@ -301,11 +279,9 @@ class NumberOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -334,9 +310,7 @@ class NumberOperations(object):
         # type: (...) -> None
         """Put big double value 2.5976931e+101.
 
-        FIXME: add operation.summary
-
-        :param number_body: 
+        :param number_body:
         :type number_body: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -351,11 +325,9 @@ class NumberOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
@@ -383,8 +355,6 @@ class NumberOperations(object):
         # type: (...) -> float
         """Get big double value 2.5976931e+101.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
@@ -398,11 +368,9 @@ class NumberOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -430,8 +398,6 @@ class NumberOperations(object):
         # type: (...) -> None
         """Put big double value 99999999.99.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -446,11 +412,9 @@ class NumberOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
@@ -478,8 +442,6 @@ class NumberOperations(object):
         # type: (...) -> float
         """Get big double value 99999999.99.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
@@ -493,11 +455,9 @@ class NumberOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -525,8 +485,6 @@ class NumberOperations(object):
         # type: (...) -> None
         """Put big double value -99999999.99.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -541,11 +499,9 @@ class NumberOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
@@ -573,8 +529,6 @@ class NumberOperations(object):
         # type: (...) -> float
         """Get big double value -99999999.99.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
@@ -588,11 +542,9 @@ class NumberOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -621,9 +573,7 @@ class NumberOperations(object):
         # type: (...) -> None
         """Put big decimal value 2.5976931e+101.
 
-        FIXME: add operation.summary
-
-        :param number_body: 
+        :param number_body:
         :type number_body: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -638,11 +588,9 @@ class NumberOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
@@ -670,8 +618,6 @@ class NumberOperations(object):
         # type: (...) -> float
         """Get big decimal value 2.5976931e+101.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
@@ -685,11 +631,9 @@ class NumberOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -717,8 +661,6 @@ class NumberOperations(object):
         # type: (...) -> None
         """Put big decimal value 99999999.99.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -733,11 +675,9 @@ class NumberOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
@@ -765,8 +705,6 @@ class NumberOperations(object):
         # type: (...) -> float
         """Get big decimal value 99999999.99.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
@@ -780,11 +718,9 @@ class NumberOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -812,8 +748,6 @@ class NumberOperations(object):
         # type: (...) -> None
         """Put big decimal value -99999999.99.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -828,11 +762,9 @@ class NumberOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
@@ -860,8 +792,6 @@ class NumberOperations(object):
         # type: (...) -> float
         """Get big decimal value -99999999.99.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
@@ -875,11 +805,9 @@ class NumberOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -908,9 +836,7 @@ class NumberOperations(object):
         # type: (...) -> None
         """Put small float value 3.402823e-20.
 
-        FIXME: add operation.summary
-
-        :param number_body: 
+        :param number_body:
         :type number_body: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -925,11 +851,9 @@ class NumberOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
@@ -957,8 +881,6 @@ class NumberOperations(object):
         # type: (...) -> float
         """Get big double value 3.402823e-20.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
@@ -972,11 +894,9 @@ class NumberOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1005,9 +925,7 @@ class NumberOperations(object):
         # type: (...) -> None
         """Put small double value 2.5976931e-101.
 
-        FIXME: add operation.summary
-
-        :param number_body: 
+        :param number_body:
         :type number_body: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1022,11 +940,9 @@ class NumberOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
@@ -1054,8 +970,6 @@ class NumberOperations(object):
         # type: (...) -> float
         """Get big double value 2.5976931e-101.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
@@ -1069,11 +983,9 @@ class NumberOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1102,9 +1014,7 @@ class NumberOperations(object):
         # type: (...) -> None
         """Put small decimal value 2.5976931e-101.
 
-        FIXME: add operation.summary
-
-        :param number_body: 
+        :param number_body:
         :type number_body: float
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1119,11 +1029,9 @@ class NumberOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
@@ -1151,8 +1059,6 @@ class NumberOperations(object):
         # type: (...) -> float
         """Get small decimal value 2.5976931e-101.
 
-        FIXME: add operation.summary
-
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
@@ -1166,11 +1072,9 @@ class NumberOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

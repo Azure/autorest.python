@@ -50,8 +50,6 @@ class GroupOperations(object):
         # type: (...) -> "models.SampleResourceGroup"
         """Provides a resouce group with name 'testgroup101' and location 'West US'.
 
-        FIXME: add operation.summary
-
         :param resource_group_name: Resource Group name 'testgroup101'.
         :type resource_group_name: str
         :param callable cls: A custom type or function that will be passed the direct response
@@ -72,11 +70,9 @@ class GroupOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

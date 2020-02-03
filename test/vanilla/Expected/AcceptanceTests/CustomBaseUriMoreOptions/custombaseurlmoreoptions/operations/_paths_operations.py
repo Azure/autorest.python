@@ -52,8 +52,6 @@ class PathsOperations(object):
         # type: (...) -> None
         """Get a 200 to test a valid base uri.
 
-        FIXME: add operation.summary
-
         :param vault: The vault name, e.g. https://myvault.
         :type vault: str
         :param secret: Secret value.
@@ -85,10 +83,8 @@ class PathsOperations(object):
         if key_version is not None:
             query_parameters['keyVersion'] = self._serialize.query("key_version", key_version, 'str')
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

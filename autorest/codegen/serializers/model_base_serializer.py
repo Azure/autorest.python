@@ -39,9 +39,9 @@ class ModelBaseSerializer:
     def prop_documentation_string(prop: Property) -> str:
         # building the param line of the property doc
         if prop.constant or prop.readonly:
-            param_doc_string = ":ivar {}:".format(prop.name)
+            param_doc_string = f":ivar {prop.name}:"
         else:
-            param_doc_string = ":param {}:".format(prop.name)
+            param_doc_string = f":param {prop.name}:"
         description = prop.description
         if description and description[-1] != ".":
             description += "."
@@ -54,14 +54,14 @@ class ModelBaseSerializer:
                 description = "Required. "
         if prop.constant:
             constant_prop = cast(ConstantSchema, prop.schema)
-            description += " Default value: \"{}\".".format(constant_prop.value)
+            description += f" Default value: \"{constant_prop.value}\"."
         if prop.is_discriminator:
             description += "Constant filled by server. "
         if isinstance(prop.schema, EnumSchema):
             values = ["\'" + v.value + "\'" for v in prop.schema.values]
             description += " Possible values include: {}.".format(", ".join(values))
             if prop.schema.default_value:
-                description += " Default value: \"{}\".".format(prop.schema.default_value)
+                description += f" Default value: \"{prop.schema.default_value}\"."
         if description:
             param_doc_string += " " + description
         return param_doc_string
@@ -70,9 +70,9 @@ class ModelBaseSerializer:
     def prop_type_documentation_string(prop: Property) -> str:
         # building the type line of the property doc
         if prop.constant or prop.readonly:
-            type_doc_string = ":vartype {}: ".format(prop.name)
+            type_doc_string = f":vartype {prop.name}: "
         else:
-            type_doc_string = ":type {}: ".format(prop.name)
+            type_doc_string = f":type {prop.name}: "
         type_doc_string += prop.schema.docstring_type
         return type_doc_string
 

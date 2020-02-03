@@ -48,9 +48,7 @@ class PetOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Pet"
-        """
-
-        FIXME: add operation.summary
+        """get_by_pet_id.
 
         :param pet_id: Pet id.
         :type pet_id: str
@@ -71,11 +69,9 @@ class PetOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -102,11 +98,9 @@ class PetOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Pet"
-        """
+        """add_pet.
 
-        FIXME: add operation.summary
-
-        :param pet_param: 
+        :param pet_param:
         :type pet_param: ~extensibleenumsswagger.models.Pet
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Pet or the result of cls(response)
@@ -121,12 +115,10 @@ class PetOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if pet_param is not None:

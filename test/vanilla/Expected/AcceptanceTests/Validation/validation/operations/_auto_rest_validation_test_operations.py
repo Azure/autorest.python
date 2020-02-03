@@ -20,6 +20,7 @@ T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 class AutoRestValidationTestOperationsMixin(object):
+
     @distributed_trace
     def validation_of_method_parameters(
         self,
@@ -30,8 +31,6 @@ class AutoRestValidationTestOperationsMixin(object):
     ):
         # type: (...) -> "models.Product"
         """Validates input parameters on the method. See swagger for details.
-
-        FIXME: add operation.summary
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
         :type resource_group_name: str
@@ -58,11 +57,9 @@ class AutoRestValidationTestOperationsMixin(object):
         query_parameters = {}
         query_parameters['apiVersion'] = self._serialize.query("api_version", api_version, 'str')
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -80,6 +77,7 @@ class AutoRestValidationTestOperationsMixin(object):
 
         return deserialized
     validation_of_method_parameters.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
+
     @distributed_trace
     def validation_of_body(
         self,
@@ -92,13 +90,11 @@ class AutoRestValidationTestOperationsMixin(object):
         # type: (...) -> "models.Product"
         """Validates body parameters on the method. See swagger for details.
 
-        FIXME: add operation.summary
-
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
-        :param body: 
+        :param body:
         :type body: ~validation.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
@@ -121,12 +117,10 @@ class AutoRestValidationTestOperationsMixin(object):
         query_parameters = {}
         query_parameters['apiVersion'] = self._serialize.query("api_version", api_version, 'str')
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body is not None:
@@ -150,6 +144,7 @@ class AutoRestValidationTestOperationsMixin(object):
 
         return deserialized
     validation_of_body.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
+
     @distributed_trace
     def get_with_constant_in_path(
         self,
@@ -157,9 +152,7 @@ class AutoRestValidationTestOperationsMixin(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """
-
-        FIXME: add operation.summary
+        """get_with_constant_in_path.
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -179,10 +172,8 @@ class AutoRestValidationTestOperationsMixin(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -197,6 +188,7 @@ class AutoRestValidationTestOperationsMixin(object):
           return cls(pipeline_response, None, {})
 
     get_with_constant_in_path.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}
+
     @distributed_trace
     def post_with_constant_in_body(
         self,
@@ -205,11 +197,9 @@ class AutoRestValidationTestOperationsMixin(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
-        """
+        """post_with_constant_in_body.
 
-        FIXME: add operation.summary
-
-        :param body: 
+        :param body:
         :type body: ~validation.models.Product
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
@@ -229,12 +219,10 @@ class AutoRestValidationTestOperationsMixin(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body is not None:

@@ -47,9 +47,7 @@ class FlattencomplexOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.MyBaseType"
-        """
-
-        FIXME: add operation.summary
+        """get_valid.
 
         :param callable cls: A custom type or function that will be passed the direct response
         :return: MyBaseType or the result of cls(response)
@@ -64,11 +62,9 @@ class FlattencomplexOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

@@ -49,8 +49,6 @@ class PathsOperations:
     ) -> None:
         """Get a 200 to test a valid base uri.
 
-        FIXME: add operation.summary
-
         :param account_name: Account Name.
         :type account_name: str
         :param callable cls: A custom type or function that will be passed the direct response
@@ -71,10 +69,8 @@ class PathsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

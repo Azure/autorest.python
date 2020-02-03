@@ -59,7 +59,8 @@ class EnumSchema(BaseSchema):
         self.enum_type = enum_type
         self.values = values
 
-    def get_serialization_type(self) -> str:
+    @property
+    def serialization_type(self) -> str:
         """Returns the serialization value for msrest.
 
         :return: The serialization value for msrest
