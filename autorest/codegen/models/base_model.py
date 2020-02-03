@@ -12,9 +12,9 @@ class BaseModel:
     :param yaml_data: the yaml data for this schema
     :type yaml_data: dict[str, Any]
     """
+
     def __init__(
-        self,
-        yaml_data: Dict[str, Any],
+        self, yaml_data: Dict[str, Any],
     ):
         self.yaml_data = yaml_data
 

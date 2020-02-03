@@ -28,7 +28,7 @@ def read_message(stream: BinaryIO = sys.stdin.buffer) -> str:
     try:
         bytes_size = int(order.split(b":")[1].strip())
     except Exception as err:
-        raise ValueError(f"Was unable to read length from {order}") from err # type: ignore
+        raise ValueError(f"Was unable to read length from {order}") from err  # type: ignore
     # Double new line, so read another emptyline and ignore it
     stream.readline()
 
@@ -36,9 +36,9 @@ def read_message(stream: BinaryIO = sys.stdin.buffer) -> str:
     _LOGGER.debug("Trying to read the message")
     message = stream.read(bytes_size)
     assert isinstance(message, bytes)
-    message_str = message.decode('utf-8')
+    message_str = message.decode("utf-8")
     _LOGGER.debug("Received a %d bytes message", len(message_str))
-    #_LOGGER.debug("Read %s", message)
+    # _LOGGER.debug("Read %s", message)
 
     return message_str
 
@@ -55,6 +55,7 @@ def write_message(message: str, stream: BinaryIO = sys.stdout.buffer) -> None:
 class StdStreamAutorestAPI(AutorestAPI):
     """The stream API with Autorest
     """
+
     def __init__(self, session_id: str):
         super().__init__()
         self.session_id = session_id
@@ -64,70 +65,36 @@ class StdStreamAutorestAPI(AutorestAPI):
         filename = os.fspath(filename)
         request = JSONRPC20Request(
             method="WriteFile",
-            params=[
-                self.session_id,
-                filename,
-                file_content,
-                None  # sourceMap ?
-            ],
-            is_notification=True
+            params=[self.session_id, filename, file_content, None],  # sourceMap ?
+            is_notification=True,
         )
         write_message(request.json)
 
     def read_file(self, filename: Union[str, Path]) -> str:
         _LOGGER.debug("Asking content for file %s", filename)
         filename = os.fspath(filename)
-        request = JSONRPC20Request(
-            method="ReadFile",
-            params=[
-                self.session_id,
-                filename
-            ],
-            _id=42
-        )
+        request = JSONRPC20Request(method="ReadFile", params=[self.session_id, filename], _id=42)
         write_message(request.json)
         return json.loads(read_message())["result"]
 
     def list_inputs(self) -> List[str]:
         _LOGGER.debug("Calling list inputs to Autorest")
-        request = JSONRPC20Request(
-            method="ListInputs",
-            params=[
-                self.session_id,
-                None
-            ],
-            _id=42
-        )
+        request = JSONRPC20Request(method="ListInputs", params=[self.session_id, None], _id=42)
         write_message(request.json)
         return json.loads(read_message())["result"]
 
     def get_value(self, key: str) -> Any:
         _LOGGER.debug("Calling get value to Autorest: %s", key)
-        request = JSONRPC20Request(
-            method="GetValue",
-            params=[
-                self.session_id,
-                key
-            ],
-            _id=42
-        )
+        request = JSONRPC20Request(method="GetValue", params=[self.session_id, key], _id=42)
         write_message(request.json)
         return json.loads(read_message())["result"]
-
 
     def message(self, channel: Channel, text: str) -> None:
         # https://github.com/Azure/autorest/blob/ad7f01ffe17aa74ad0075d6b1562a3fa78fd2e96/src/autorest-core/lib/message.ts#L53
         # Don't log anything here, or you will create a cycle with the autorest handler
         message = {
-            'Channel': channel.value,
-            'Text': text,
+            "Channel": channel.value,
+            "Text": text,
         }
-        request = JSONRPC20Request(
-            method="Message",
-            params=[
-                self.session_id,
-                message
-            ],
-            is_notification=True
-        )
+        request = JSONRPC20Request(method="Message", params=[self.session_id, message], is_notification=True)
         write_message(request.json)

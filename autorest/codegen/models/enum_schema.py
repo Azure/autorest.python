@@ -7,6 +7,7 @@ from typing import Any, Dict, List, Optional, Set
 from .base_schema import BaseSchema
 from .imports import FileImport, ImportType
 
+
 class EnumValue:
     """Model containing necessary information for a single value of an enum.
 
@@ -14,6 +15,7 @@ class EnumValue:
     :param str value: The value of this enum value
     :param str description: Optional. The description for this enum value
     """
+
     def __init__(self, name: str, value: str, description: Optional[str] = None):
         self.name = name
         self.value = value
@@ -30,10 +32,11 @@ class EnumValue:
         :rtype: ~autorest.models.EnumValue
         """
         return cls(
-            name=yaml_data['language']['python']['name'],
-            value=yaml_data['value'],
-            description=yaml_data['language']['python'].get('description')
+            name=yaml_data["language"]["python"]["name"],
+            value=yaml_data["value"],
+            description=yaml_data["language"]["python"].get("description"),
         )
+
 
 class EnumSchema(BaseSchema):
     """Schema for enums that will be serialized.
@@ -46,13 +49,9 @@ class EnumSchema(BaseSchema):
     :param values: List of the values for this enum
     :type values: list[~autorest.models.EnumValue]
     """
+
     def __init__(
-        self,
-        namespace: str,
-        yaml_data: Dict[str, Any],
-        description: str,
-        enum_type: str,
-        values: List["EnumValue"]
+        self, namespace: str, yaml_data: Dict[str, Any], description: str, enum_type: str, values: List["EnumValue"]
     ):
         super(EnumSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.description = description
@@ -75,7 +74,7 @@ class EnumSchema(BaseSchema):
         :return: The type annotation for this schema
         :rtype: str
         """
-        return f'Union[str, \"{self.enum_type}\"]'
+        return f'Union[str, "{self.enum_type}"]'
 
     @property
     def operation_type_annotation(self) -> str:
@@ -84,7 +83,7 @@ class EnumSchema(BaseSchema):
         :return: The type annotation for this schema
         :rtype: str
         """
-        return f'Union[str, \"models.{self.enum_type}\"]'
+        return f'Union[str, "models.{self.enum_type}"]'
 
     def get_declaration(self, value) -> str:
         return f'"{value}"'
@@ -112,7 +111,7 @@ class EnumSchema(BaseSchema):
         seen_enums: Set[str] = set()
 
         for enum in yaml_data:
-            enum_name = enum['language']['python']['name']
+            enum_name = enum["language"]["python"]["name"]
             if enum_name in seen_enums:
                 continue
             values.append(EnumValue.from_yaml(enum))
@@ -129,15 +128,15 @@ class EnumSchema(BaseSchema):
         :return: A created EnumSchema
         :rtype: ~autorest.models.EnumSchema
         """
-        enum_type = yaml_data['language']['python']['name']
-        values = EnumSchema._get_enum_values(yaml_data['choices'])
+        enum_type = yaml_data["language"]["python"]["name"]
+        values = EnumSchema._get_enum_values(yaml_data["choices"])
 
         return cls(
             namespace=namespace,
             yaml_data=yaml_data,
-            description=yaml_data['language']['python']['description'],
+            description=yaml_data["language"]["python"]["description"],
             enum_type=enum_type,
-            values=values
+            values=values,
         )
 
     def imports(self) -> FileImport:

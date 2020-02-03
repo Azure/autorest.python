@@ -16,14 +16,17 @@ class BaseSchema(BaseModel, ABC):
     :param yaml_data: the yaml data for this schema
     :type yaml_data: dict[str, Any]
     """
+
     def __init__(self, namespace: str, yaml_data: Dict[str, Any]):
         super().__init__(yaml_data)
         self.namespace = namespace
-        self.default_value = yaml_data.get('defaultValue', None)
-        self.xml_metadata = yaml_data.get('serialization', {}).get('xml', {})
+        self.default_value = yaml_data.get("defaultValue", None)
+        self.xml_metadata = yaml_data.get("serialization", {}).get("xml", {})
 
     @classmethod
-    def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs) -> "BaseSchema":  # pylint: disable=unused-argument
+    def from_yaml(
+        cls, namespace: str, yaml_data: Dict[str, Any], **kwargs  # pylint: disable=unused-argument
+    ) -> "BaseSchema":
         return cls(namespace=namespace, yaml_data=yaml_data)
 
     @property
@@ -34,13 +37,13 @@ class BaseSchema(BaseModel, ABC):
         """Return the serialization context in case this schema is used in an operation.
         """
         attrs_list = []
-        if self.xml_metadata.get('name'):
+        if self.xml_metadata.get("name"):
             attrs_list.append(f"'name': '{self.xml_metadata['name']}'")
-        if self.xml_metadata.get('attribute', False):
+        if self.xml_metadata.get("attribute", False):
             attrs_list.append("'attr': True")
-        if self.xml_metadata.get('prefix', False):
+        if self.xml_metadata.get("prefix", False):
             attrs_list.append(f"'prefix': '{self.xml_metadata['prefix']}'")
-        if self.xml_metadata.get('namespace', False):
+        if self.xml_metadata.get("namespace", False):
             attrs_list.append(f"'ns': '{self.xml_metadata['namespace']}'")
         return ", ".join(attrs_list)
 
@@ -90,7 +93,7 @@ class BaseSchema(BaseModel, ABC):
     def operation_type_annotation(self) -> str:
         return self.type_annotation
 
-    def get_declaration(self, value: Any) -> str: # pylint: disable=no-self-use
+    def get_declaration(self, value: Any) -> str:  # pylint: disable=no-self-use
         """Return the current value from YAML as a Python string that represents the constant.
 
         Example, if schema is "bytearray" and value is "foo",
@@ -110,8 +113,8 @@ class BaseSchema(BaseModel, ABC):
             return "None"
         return self.get_declaration(self.default_value)
 
-    def get_validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]: # pylint: disable=no-self-use
+    def get_validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:  # pylint: disable=no-self-use
         return None
 
-    def get_serialization_constraints(self) -> Optional[List[str]]: # pylint: disable=no-self-use
+    def get_serialization_constraints(self) -> Optional[List[str]]:  # pylint: disable=no-self-use
         return None

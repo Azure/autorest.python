@@ -6,3 +6,4 @@ pylint==2.4.4
 pytest
 ptvsd
 mypy
+black

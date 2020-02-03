@@ -19,6 +19,7 @@ class AutorestRender(m2r.RestRenderer):
     """Redefine the concept of inline HTML in the renderer, we don't want to define a new format
     in the description/summary.
     """
+
     def inline_html(self, html):
         """Do not render inline HTML with a role definition."""
         return f":code:`{html}`"
