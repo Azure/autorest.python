@@ -87,7 +87,7 @@ def {{ operation.python_name }}(
     {% for excep in operation.status_code_exceptions %}
         {% for status_code in excep.status_codes %}
             {% if excep.schema.is_exception %}
-        {{ status_code }}: lambda response: models.{{ excep.schema.get_serialization_type() }}Exception.from_response(response, self._deserialize),
+        {{ status_code }}: lambda response: models.{{ excep.schema.serialization_type }}Exception.from_response(response, self._deserialize),
             {% else  %}
         {{ status_code }}: {{ core_excep_name }},
             {% endif %}
@@ -153,10 +153,10 @@ def {{ operation.python_name }}(
         # Construct body
         {% if not operation.parameters.body.is_stream %}
             {% if operation.parameters.body.required %}
-        body_content = self._serialize.body({{ operation.parameters.body.serialized_name }}, '{{ operation.parameters.body.schema.get_serialization_type() }}'{{ request_as_xml }}{{ operation.serialization_context }})
+        body_content = self._serialize.body({{ operation.parameters.body.serialized_name }}, '{{ operation.parameters.body.schema.serialization_type }}'{{ request_as_xml }}{{ operation.serialization_context }})
             {% else %}
         if {{ operation.parameters.body.serialized_name }} is not None:
-            body_content = self._serialize.body({{ operation.parameters.body.serialized_name }}, '{{ operation.parameters.body.schema.get_serialization_type() }}'{{ request_as_xml }}{{ operation.serialization_context }})
+            body_content = self._serialize.body({{ operation.parameters.body.serialized_name }}, '{{ operation.parameters.body.schema.serialization_type }}'{{ request_as_xml }}{{ operation.serialization_context }})
         else:
             body_content = None
             {% endif %}
@@ -187,7 +187,7 @@ def {{ operation.python_name }}(
 
     {{ keywords.def }} extract_data(pipeline_response):
         {% set response = operation.responses[0] %}
-        deserialized = self._deserialize('{{ response.schema.get_serialization_type() }}', pipeline_response)
+        deserialized = self._deserialize('{{ response.schema.serialization_type }}', pipeline_response)
         list_of_elem = deserialized.{{ operation.item_name }}
         if cls:
             list_of_elem = cls(list_of_elem)

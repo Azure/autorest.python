@@ -88,7 +88,7 @@ def {{ operation.python_name }}(
     {% for excep in operation.status_code_exceptions %}
         {% for status_code in excep.status_codes %}
             {% if excep.schema.is_exception %}
-        {{ status_code }}: lambda response: models.{{ excep.schema.get_serialization_type() }}Exception.from_response(response, self._deserialize),
+        {{ status_code }}: lambda response: models.{{ excep.schema.serialization_type }}Exception.from_response(response, self._deserialize),
             {% else  %}
         {{ status_code }}: {{ core_excep_name }},
             {% endif %}
@@ -134,10 +134,10 @@ def {{ operation.python_name }}(
     serialization_ctxt = {'xml': {{ "{" }}{{ ser_ctxt }}{{ "}}" }}
         {% endif %}
         {% if operation.parameters.body.required %}
-    body_content = self._serialize.body({{ operation.parameters.body.serialized_name }}, '{{ operation.parameters.body.schema.get_serialization_type() }}'{{ request_as_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
+    body_content = self._serialize.body({{ operation.parameters.body.serialized_name }}, '{{ operation.parameters.body.schema.serialization_type }}'{{ request_as_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
         {% else %}
     if {{ operation.parameters.body.serialized_name }} is not None:
-        body_content = self._serialize.body({{ operation.parameters.body.serialized_name }}, '{{ operation.parameters.body.schema.get_serialization_type() }}'{{ request_as_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
+        body_content = self._serialize.body({{ operation.parameters.body.serialized_name }}, '{{ operation.parameters.body.schema.serialization_type }}'{{ request_as_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
     else:
         body_content = None
         {% endif %}

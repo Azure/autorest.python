@@ -41,13 +41,14 @@ class ConstantSchema(BaseSchema):
             return "None"
         return self.schema.get_declaration(self.value)
 
-    def get_serialization_type(self) -> str:
+    @property
+    def serialization_type(self) -> str:
         """Returns the serialization value for msrest.
 
         :return: The serialization value for msrest
         :rtype: str
         """
-        return self.schema.get_serialization_type()
+        return self.schema.serialization_type
 
     @property
     def docstring_text(self) -> str:
