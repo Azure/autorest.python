@@ -97,7 +97,7 @@ class StringOperations(object):
         :raises: ~bodystring.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        string_body = None
+        stringBody = None
 
         # Construct URL
         url = self.put_null.metadata['url']
@@ -110,8 +110,8 @@ class StringOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if string_body is not None:
-            body_content = self._serialize.body(string_body, 'str')
+        if stringBody is not None:
+            body_content = self._serialize.body(stringBody, 'str')
         else:
             body_content = None
 
@@ -187,7 +187,7 @@ class StringOperations(object):
         :raises: ~bodystring.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        string_body = ""
+        stringBody = ""
 
         # Construct URL
         url = self.put_empty.metadata['url']
@@ -200,7 +200,7 @@ class StringOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(string_body, 'str')
+        body_content = self._serialize.body(stringBody, 'str')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
@@ -274,7 +274,7 @@ class StringOperations(object):
         :raises: ~bodystring.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        string_body = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
+        stringBody = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
 
         # Construct URL
         url = self.put_mbcs.metadata['url']
@@ -287,7 +287,7 @@ class StringOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(string_body, 'str')
+        body_content = self._serialize.body(stringBody, 'str')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
@@ -361,7 +361,7 @@ class StringOperations(object):
         :raises: ~bodystring.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        string_body = "    Now is the time for all good men to come to the aid of their country    "
+        stringBody = "    Now is the time for all good men to come to the aid of their country    "
 
         # Construct URL
         url = self.put_whitespace.metadata['url']
@@ -374,7 +374,7 @@ class StringOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(string_body, 'str')
+        body_content = self._serialize.body(stringBody, 'str')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)

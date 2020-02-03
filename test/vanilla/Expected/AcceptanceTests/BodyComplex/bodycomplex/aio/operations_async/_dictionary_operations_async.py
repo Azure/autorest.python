@@ -102,7 +102,7 @@ class DictionaryOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-        complex_body = models.DictionaryWrapper(default_program=default_program)
+        complexBody = models.DictionaryWrapper(default_program=default_program)
 
         # Construct URL
         url = self.put_valid.metadata['url']
@@ -115,7 +115,7 @@ class DictionaryOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(complex_body, 'DictionaryWrapper')
+        body_content = self._serialize.body(complexBody, 'DictionaryWrapper')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
@@ -193,7 +193,7 @@ class DictionaryOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-        complex_body = models.DictionaryWrapper(default_program=default_program)
+        complexBody = models.DictionaryWrapper(default_program=default_program)
 
         # Construct URL
         url = self.put_empty.metadata['url']
@@ -206,7 +206,7 @@ class DictionaryOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(complex_body, 'DictionaryWrapper')
+        body_content = self._serialize.body(complexBody, 'DictionaryWrapper')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)

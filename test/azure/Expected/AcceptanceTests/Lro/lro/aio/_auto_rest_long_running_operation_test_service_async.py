@@ -12,24 +12,24 @@ from azure.mgmt.core import AsyncARMPipelineClient
 from msrest import Deserializer, Serializer
 
 from ._configuration_async import AutoRestLongRunningOperationTestServiceConfiguration
-from .operations_async import LROsOperations
-from .operations_async import LRORetrysOperations
-from .operations_async import LROSADsOperations
-from .operations_async import LROsCustomHeaderOperations
+from .operations_async import LrOSOperations
+from .operations_async import LroRetrysOperations
+from .operations_async import LrosaDsOperations
+from .operations_async import LrOSCustomHeaderOperations
 from .. import models
 
 
 class AutoRestLongRunningOperationTestService(object):
     """Long-running Operation for AutoRest
 
-    :ivar lros: LROsOperations operations
-    :vartype lros: lro.aio.operations_async.LROsOperations
-    :ivar lro_retrys: LRORetrysOperations operations
-    :vartype lro_retrys: lro.aio.operations_async.LRORetrysOperations
-    :ivar lrosads: LROSADsOperations operations
-    :vartype lrosads: lro.aio.operations_async.LROSADsOperations
-    :ivar lr_os_custom_header: LROsCustomHeaderOperations operations
-    :vartype lr_os_custom_header: lro.aio.operations_async.LROsCustomHeaderOperations
+    :ivar lr_os: LrOSOperations operations
+    :vartype lr_os: lro.aio.operations_async.LrOSOperations
+    :ivar lro_retrys: LroRetrysOperations operations
+    :vartype lro_retrys: lro.aio.operations_async.LroRetrysOperations
+    :ivar lrosa_ds: LrosaDsOperations operations
+    :vartype lrosa_ds: lro.aio.operations_async.LrosaDsOperations
+    :ivar lr_os_custom_header: LrOSCustomHeaderOperations operations
+    :vartype lr_os_custom_header: lro.aio.operations_async.LrOSCustomHeaderOperations
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: azure.core.credentials.TokenCredential
     :param str base_url: Service URL
@@ -50,13 +50,13 @@ class AutoRestLongRunningOperationTestService(object):
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
 
-        self.lros = LROsOperations(
+        self.lr_os = LrOSOperations(
             self._client, self._config, self._serialize, self._deserialize)
-        self.lro_retrys = LRORetrysOperations(
+        self.lro_retrys = LroRetrysOperations(
             self._client, self._config, self._serialize, self._deserialize)
-        self.lrosads = LROSADsOperations(
+        self.lrosa_ds = LrosaDsOperations(
             self._client, self._config, self._serialize, self._deserialize)
-        self.lr_os_custom_header = LROsCustomHeaderOperations(
+        self.lr_os_custom_header = LrOSCustomHeaderOperations(
             self._client, self._config, self._serialize, self._deserialize)
 
     async def close(self) -> None:

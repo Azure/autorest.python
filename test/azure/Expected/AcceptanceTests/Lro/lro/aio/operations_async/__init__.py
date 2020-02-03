@@ -6,14 +6,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._lros_operations_async import LROsOperations
-from ._lro_retrys_operations_async import LRORetrysOperations
-from ._lrosads_operations_async import LROSADsOperations
-from ._lr_os_custom_header_operations_async import LROsCustomHeaderOperations
+from ._lr_os_operations_async import LrOSOperations
+from ._lro_retrys_operations_async import LroRetrysOperations
+from ._lrosa_ds_operations_async import LrosaDsOperations
+from ._lr_os_custom_header_operations_async import LrOSCustomHeaderOperations
 
 __all__ = [
-    'LROsOperations',
-    'LRORetrysOperations',
-    'LROSADsOperations',
-    'LROsCustomHeaderOperations',
+    'LrOSOperations',
+    'LroRetrysOperations',
+    'LrosaDsOperations',
+    'LrOSCustomHeaderOperations',
 ]

@@ -101,7 +101,7 @@ class ReadonlypropertyOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-        complex_body = models.ReadonlyObj(size=size)
+        complexBody = models.ReadonlyObj(size=size)
 
         # Construct URL
         url = self.put_valid.metadata['url']
@@ -114,7 +114,7 @@ class ReadonlypropertyOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(complex_body, 'ReadonlyObj')
+        body_content = self._serialize.body(complexBody, 'ReadonlyObj')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)

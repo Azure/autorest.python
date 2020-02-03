@@ -91,7 +91,7 @@ class HttpRetryOperations:
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        boolean_value = True
+        booleanValue = True
 
         # Construct URL
         url = self.put500.metadata['url']
@@ -104,8 +104,8 @@ class HttpRetryOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, 'bool')
+        if booleanValue is not None:
+            body_content = self._serialize.body(booleanValue, 'bool')
         else:
             body_content = None
 
@@ -137,7 +137,7 @@ class HttpRetryOperations:
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        boolean_value = True
+        booleanValue = True
 
         # Construct URL
         url = self.patch500.metadata['url']
@@ -150,8 +150,8 @@ class HttpRetryOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, 'bool')
+        if booleanValue is not None:
+            body_content = self._serialize.body(booleanValue, 'bool')
         else:
             body_content = None
 
@@ -263,7 +263,7 @@ class HttpRetryOperations:
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        boolean_value = True
+        booleanValue = True
 
         # Construct URL
         url = self.post503.metadata['url']
@@ -276,8 +276,8 @@ class HttpRetryOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, 'bool')
+        if booleanValue is not None:
+            body_content = self._serialize.body(booleanValue, 'bool')
         else:
             body_content = None
 
@@ -309,7 +309,7 @@ class HttpRetryOperations:
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        boolean_value = True
+        booleanValue = True
 
         # Construct URL
         url = self.delete503.metadata['url']
@@ -322,8 +322,8 @@ class HttpRetryOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, 'bool')
+        if booleanValue is not None:
+            body_content = self._serialize.body(booleanValue, 'bool')
         else:
             body_content = None
 
@@ -355,7 +355,7 @@ class HttpRetryOperations:
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        boolean_value = True
+        booleanValue = True
 
         # Construct URL
         url = self.put504.metadata['url']
@@ -368,8 +368,8 @@ class HttpRetryOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, 'bool')
+        if booleanValue is not None:
+            body_content = self._serialize.body(booleanValue, 'bool')
         else:
             body_content = None
 
@@ -401,7 +401,7 @@ class HttpRetryOperations:
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        boolean_value = True
+        booleanValue = True
 
         # Construct URL
         url = self.patch504.metadata['url']
@@ -414,8 +414,8 @@ class HttpRetryOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, 'bool')
+        if booleanValue is not None:
+            body_content = self._serialize.body(booleanValue, 'bool')
         else:
             body_content = None
 

@@ -280,8 +280,8 @@ class FlattenParameterGroup(Model):
     :vartype capacity: str
     :param generic_value: Generic URL value.
     :type generic_value: str
-    :param odatavalue: URL value.
-    :type odatavalue: str
+    :param odata_value: URL value.
+    :type odata_value: str
     """
 
     _validation = {
@@ -298,7 +298,7 @@ class FlattenParameterGroup(Model):
         'max_product_display_name': {'key': 'max_product_display_name', 'type': 'str'},
         'capacity': {'key': 'capacity', 'type': 'str'},
         'generic_value': {'key': 'generic_value', 'type': 'str'},
-        'odatavalue': {'key': '@odata\\.value', 'type': 'str'},
+        'odata_value': {'key': '@odata\\.value', 'type': 'str'},
     }
 
     capacity = "Large"
@@ -312,7 +312,7 @@ class FlattenParameterGroup(Model):
         description: Optional[str] = None,
         max_product_display_name: Optional[str] = None,
         generic_value: Optional[str] = None,
-        odatavalue: Optional[str] = None,
+        odata_value: Optional[str] = None,
         **kwargs
     ):
         super(FlattenParameterGroup, self).__init__(**kwargs)
@@ -322,7 +322,7 @@ class FlattenParameterGroup(Model):
         self.description = description
         self.max_product_display_name = max_product_display_name
         self.generic_value = generic_value
-        self.odatavalue = odatavalue
+        self.odata_value = odata_value
 
 
 class GenericUrl(Model):

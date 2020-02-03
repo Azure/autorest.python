@@ -1266,7 +1266,7 @@ class XmlOperations:
         """
         error_map = kwargs.pop('error_map', {})
 
-        properties = models.JSONInput(id=id)
+        properties = models.JsonInput(id=id)
 
         # Construct URL
         url = self.json_input.metadata['url']
@@ -1279,7 +1279,7 @@ class XmlOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(properties, 'JSONInput')
+        body_content = self._serialize.body(properties, 'JsonInput')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
@@ -1298,14 +1298,14 @@ class XmlOperations:
     @distributed_trace_async
     async def json_output(
         self,
-        cls: ClsType["models.JSONOutput"] = None,
+        cls: ClsType["models.JsonOutput"] = None,
         **kwargs: Any
-    ) -> "models.JSONOutput":
+    ) -> "models.JsonOutput":
         """A Swagger with XML that has one operation that returns JSON. ID number 42.
 
         :param callable cls: A custom type or function that will be passed the direct response
-        :return: JSONOutput or the result of cls(response)
-        :rtype: ~xmlservice.models.JSONOutput
+        :return: JsonOutput or the result of cls(response)
+        :rtype: ~xmlservice.models.JsonOutput
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
@@ -1329,7 +1329,7 @@ class XmlOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize('JSONOutput', pipeline_response)
+        deserialized = self._deserialize('JsonOutput', pipeline_response)
 
         if cls:
           return cls(pipeline_response, deserialized, {})

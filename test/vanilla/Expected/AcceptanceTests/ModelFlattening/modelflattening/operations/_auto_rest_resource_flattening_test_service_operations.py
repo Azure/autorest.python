@@ -449,7 +449,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         description=None,  # type: Optional[str]
         max_product_display_name=None,  # type: Optional[str]
         generic_value=None,  # type: Optional[str]
-        odatavalue=None,  # type: Optional[str]
+        odata_value=None,  # type: Optional[str]
         cls=None,  # type: ClsType["models.SimpleProduct"]
         **kwargs  # type: Any
     ):
@@ -466,8 +466,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :type max_product_display_name: str
         :param generic_value: Generic URL value.
         :type generic_value: str
-        :param odatavalue: URL value.
-        :type odatavalue: str
+        :param odata_value: URL value.
+        :type odata_value: str
         :param callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
@@ -475,7 +475,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-        simple_body_product = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odatavalue=odatavalue)
+        SimpleBodyProduct = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odata_value=odata_value)
 
         # Construct URL
         url = self.post_flattened_simple_product.metadata['url']
@@ -489,8 +489,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if simple_body_product is not None:
-            body_content = self._serialize.body(simple_body_product, 'SimpleProduct')
+        if SimpleBodyProduct is not None:
+            body_content = self._serialize.body(SimpleBodyProduct, 'SimpleProduct')
         else:
             body_content = None
 
@@ -531,24 +531,24 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         error_map = kwargs.pop('error_map', {})
         
         name = None
-        simple_body_product = None
-        product_id = None
+        SimpleBodyProduct = None
+        productId = None
         description = None
         max_product_display_name = None
         capacity = None
         generic_value = None
-        odatavalue = None
+        @odata.value = None
         if flatten_parameter_group is not None:
             name = flatten_parameter_group.name
-            simple_body_product = flatten_parameter_group.simple_body_product
-            product_id = flatten_parameter_group.product_id
+            SimpleBodyProduct = flatten_parameter_group.SimpleBodyProduct
+            productId = flatten_parameter_group.productId
             description = flatten_parameter_group.description
             max_product_display_name = flatten_parameter_group.max_product_display_name
             capacity = flatten_parameter_group.capacity
             generic_value = flatten_parameter_group.generic_value
-            odatavalue = flatten_parameter_group.odatavalue
+            @odata.value = flatten_parameter_group.@odata.value
 
-        simple_body_product = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odatavalue=odatavalue, flatten_parameter_group=flatten_parameter_group)
+        SimpleBodyProduct = models.SimpleProduct(productId=productId, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, @odata.value=@odata.value, flatten_parameter_group=flatten_parameter_group)
 
         # Construct URL
         url = self.put_simple_product_with_grouping.metadata['url']
@@ -566,8 +566,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if simple_body_product is not None:
-            body_content = self._serialize.body(simple_body_product, 'SimpleProduct')
+        if SimpleBodyProduct is not None:
+            body_content = self._serialize.body(SimpleBodyProduct, 'SimpleProduct')
         else:
             body_content = None
 

@@ -45,7 +45,7 @@ class AvailabilitySetsOperations(object):
         self,
         resource_group_name,  # type: str
         avset,  # type: str
-        availability_set_update_parameters_tags,  # type: Dict[str, str]
+        tags,  # type: Dict[str, str]
         cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
@@ -56,8 +56,8 @@ class AvailabilitySetsOperations(object):
         :type resource_group_name: str
         :param avset: The name of the storage availability set.
         :type avset: str
-        :param availability_set_update_parameters_tags: A description about the set of tags.
-        :type availability_set_update_parameters_tags: dict[str, str]
+        :param tags: A description about the set of tags.
+        :type tags: dict[str, str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -65,7 +65,7 @@ class AvailabilitySetsOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-        tags = models.AvailabilitySetUpdateParameters(availability_set_update_parameters_tags=availability_set_update_parameters_tags)
+        tags = models.AvailabilitySetUpdateParameters(tags=tags)
 
         # Construct URL
         url = self.update.metadata['url']

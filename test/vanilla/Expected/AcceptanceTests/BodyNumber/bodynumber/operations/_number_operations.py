@@ -404,7 +404,7 @@ class NumberOperations(object):
         :raises: ~bodynumber.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        number_body = 99999999.99
+        numberBody = 99999999.99
 
         # Construct URL
         url = self.put_big_double_positive_decimal.metadata['url']
@@ -417,7 +417,7 @@ class NumberOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(number_body, 'float')
+        body_content = self._serialize.body(numberBody, 'float')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
@@ -491,7 +491,7 @@ class NumberOperations(object):
         :raises: ~bodynumber.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        number_body = -99999999.99
+        numberBody = -99999999.99
 
         # Construct URL
         url = self.put_big_double_negative_decimal.metadata['url']
@@ -504,7 +504,7 @@ class NumberOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(number_body, 'float')
+        body_content = self._serialize.body(numberBody, 'float')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
@@ -667,7 +667,7 @@ class NumberOperations(object):
         :raises: ~bodynumber.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        number_body = 99999999.99
+        numberBody = 99999999.99
 
         # Construct URL
         url = self.put_big_decimal_positive_decimal.metadata['url']
@@ -680,7 +680,7 @@ class NumberOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(number_body, 'float')
+        body_content = self._serialize.body(numberBody, 'float')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
@@ -754,7 +754,7 @@ class NumberOperations(object):
         :raises: ~bodynumber.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        number_body = -99999999.99
+        numberBody = -99999999.99
 
         # Construct URL
         url = self.put_big_decimal_negative_decimal.metadata['url']
@@ -767,7 +767,7 @@ class NumberOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(number_body, 'float')
+        body_content = self._serialize.body(numberBody, 'float')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)

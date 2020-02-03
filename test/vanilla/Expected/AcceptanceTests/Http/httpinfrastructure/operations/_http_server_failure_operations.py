@@ -132,7 +132,7 @@ class HttpServerFailureOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        boolean_value = True
+        booleanValue = True
 
         # Construct URL
         url = self.post505.metadata['url']
@@ -145,8 +145,8 @@ class HttpServerFailureOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, 'bool')
+        if booleanValue is not None:
+            body_content = self._serialize.body(booleanValue, 'bool')
         else:
             body_content = None
 
@@ -179,7 +179,7 @@ class HttpServerFailureOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        boolean_value = True
+        booleanValue = True
 
         # Construct URL
         url = self.delete505.metadata['url']
@@ -192,8 +192,8 @@ class HttpServerFailureOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, 'bool')
+        if booleanValue is not None:
+            body_content = self._serialize.body(booleanValue, 'bool')
         else:
             body_content = None
 

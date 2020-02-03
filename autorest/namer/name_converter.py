@@ -30,12 +30,11 @@ class NameConverter:
     @staticmethod
     def _convert_operation_groups(operation_groups, code_model_title):
         for operation_group in operation_groups:
-            NameConverter._convert_language_default_python_case(operation_group, pad_string="Model")
+            NameConverter._convert_language_default_python_case(operation_group, pad_string="Model", convert_name=True)
             if not operation_group['language']['default']['name']:
                 operation_group['language']['python']['className'] = code_model_title + "OperationsMixin"
             else:
-                operation_group['language']['python']['className'] = NameConverter._to_pascal_case(
-                    operation_group['language']['default']['name']) + "Operations"
+                operation_group['language']['python']['className'] = operation_group['language']['default']['name'] + "Operations"
             for operation in operation_group['operations']:
                 NameConverter._convert_language_default_python_case(operation, pad_string='Method')
                 for exception in operation_group.get('exceptions', []):
@@ -85,11 +84,12 @@ class NameConverter:
         if schema['language'].get('python'):
             return
         schema['language']['python'] = dict(schema['language']['default'])
-        schema_name = schema['language']['default']['name']
-        schema_python_name = schema['language']['python']['name']
+        if kwargs.pop('convert_name', False):
+            schema_name = schema['language']['default']['name']
+            schema_python_name = schema['language']['python']['name']
 
-        schema_python_name = NameConverter._to_valid_python_name(schema_name, **kwargs)
-        schema['language']['python']['name'] = schema_python_name
+            schema_python_name = NameConverter._to_valid_python_name(schema_name, **kwargs)
+            schema['language']['python']['name'] = schema_python_name
 
         schema_description = schema['language']['default']['description'].strip()
         if kwargs.get('pad_string') == 'Method' and not schema_description:
@@ -110,11 +110,6 @@ class NameConverter:
         if schema['language'].get('python'):
             return
         schema['language']['python'] = dict(schema['language']['default'])
-        schema_name = schema['language']['default']['name']
-        schema_python_name = schema['language']['python']['name']
-
-        schema_python_name = NameConverter._to_pascal_case(schema_name)
-        schema['language']['python']['name'] = schema_python_name
 
         schema_description = schema['language']['default']['description'].strip()
         if not schema_description:
@@ -126,24 +121,22 @@ class NameConverter:
 
     @staticmethod
     def _to_pascal_case(name):
-        return name
-        # name_list = re.split('[^a-zA-Z\\d]', name)
-        # name_list = [s[0].upper() + s[1:] if len(s) > 1 else s.upper()
-        #                     for s in name_list]
-        # return ''.join(name_list)
+        name_list = re.split('[^a-zA-Z\\d]', name)
+        name_list = [s[0].upper() + s[1:] if len(s) > 1 else s.upper()
+                            for s in name_list]
+        return ''.join(name_list)
 
     @staticmethod
     def _to_valid_python_name(name, *, pad_string=""):
-        return name
-        # if not name:
-        #     return pad_string
-        # return NameConverter._to_python_case(
-        #     NameConverter._get_escaped_reserved_name(
-        #         NameConverter._to_valid_name(
-        #             name.replace('-', '_'), '_'),
-        #             pad_string
-        #         )
-        #     )
+        if not name:
+            return pad_string
+        return NameConverter._to_python_case(
+            NameConverter._get_escaped_reserved_name(
+                NameConverter._to_valid_name(
+                    name.replace('-', '_'), '_'),
+                    pad_string
+                )
+            )
 
     @staticmethod
     def _to_python_case(name):

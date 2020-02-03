@@ -65,7 +65,6 @@ class CodeGenerator(Plugin):
             if yaml_code_model['info'].get('description') else ""
         )
 
-
         # Global parameters
         code_model.global_parameters = ParameterList([
             Parameter.from_yaml(param) for param in yaml_code_model.get('globalParameters', [])

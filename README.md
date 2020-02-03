@@ -24,7 +24,7 @@ AutoRest needs the below config to pick this up as a plug-in - see https://githu
 ``` yaml
 version: 3.0.6198
 use-extension:
-  "@autorest/modelerfour": "4.4.165"
+  "@autorest/modelerfour": "4.4.167"
 
 modelerfour:
   group-parameters: true

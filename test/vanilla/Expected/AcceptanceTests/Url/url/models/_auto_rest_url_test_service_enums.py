@@ -10,6 +10,6 @@ from enum import Enum
 
 class UriColor(str, Enum):
 
-    redcolor = "red color"
-    greencolor = "green color"
-    bluecolor = "blue color"
+    RED_COLOR = "red color"
+    GREEN_COLOR = "green color"
+    BLUE_COLOR = "blue color"

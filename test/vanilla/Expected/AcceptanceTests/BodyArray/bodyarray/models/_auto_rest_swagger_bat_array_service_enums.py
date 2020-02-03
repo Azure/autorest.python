@@ -10,12 +10,12 @@ from enum import Enum
 
 class FooEnum(str, Enum):
 
-    foo1 = "foo1"
-    foo2 = "foo2"
-    foo3 = "foo3"
+    FOO1 = "foo1"
+    FOO2 = "foo2"
+    FOO3 = "foo3"
 
 class Enum0(str, Enum):
 
-    foo1 = "foo1"
-    foo2 = "foo2"
-    foo3 = "foo3"
+    FOO1 = "foo1"
+    FOO2 = "foo2"
+    FOO3 = "foo3"

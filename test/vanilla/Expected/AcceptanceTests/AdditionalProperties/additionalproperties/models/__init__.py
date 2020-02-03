@@ -7,28 +7,28 @@
 # --------------------------------------------------------------------------
 
 try:
-    from ._models_py3 import CatAPTrue
+    from ._models_py3 import CatApTrue
     from ._models_py3 import Error, ErrorException
-    from ._models_py3 import PetAPInProperties
-    from ._models_py3 import PetAPInPropertiesWithAPString
-    from ._models_py3 import PetAPObject
-    from ._models_py3 import PetAPString
-    from ._models_py3 import PetAPTrue
+    from ._models_py3 import PetApInProperties
+    from ._models_py3 import PetApInPropertiesWithApstring
+    from ._models_py3 import PetApObject
+    from ._models_py3 import PetApString
+    from ._models_py3 import PetApTrue
 except (SyntaxError, ImportError):
-    from ._models import CatAPTrue  # type: ignore
+    from ._models import CatApTrue  # type: ignore
     from ._models import Error, ErrorException  # type: ignore
-    from ._models import PetAPInProperties  # type: ignore
-    from ._models import PetAPInPropertiesWithAPString  # type: ignore
-    from ._models import PetAPObject  # type: ignore
-    from ._models import PetAPString  # type: ignore
-    from ._models import PetAPTrue  # type: ignore
+    from ._models import PetApInProperties  # type: ignore
+    from ._models import PetApInPropertiesWithApstring  # type: ignore
+    from ._models import PetApObject  # type: ignore
+    from ._models import PetApString  # type: ignore
+    from ._models import PetApTrue  # type: ignore
 
 __all__ = [
-    'CatAPTrue',
+    'CatApTrue',
     'Error', 'ErrorException',
-    'PetAPInProperties',
-    'PetAPInPropertiesWithAPString',
-    'PetAPObject',
-    'PetAPString',
-    'PetAPTrue',
+    'PetApInProperties',
+    'PetApInPropertiesWithApstring',
+    'PetApObject',
+    'PetApString',
+    'PetApTrue',
 ]

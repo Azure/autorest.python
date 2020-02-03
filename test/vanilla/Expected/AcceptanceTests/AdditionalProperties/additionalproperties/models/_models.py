@@ -10,8 +10,8 @@ from azure.core.exceptions import HttpResponseError
 from msrest.serialization import Model
 
 
-class PetAPTrue(Model):
-    """PetAPTrue.
+class PetApTrue(Model):
+    """PetApTrue.
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -44,15 +44,15 @@ class PetAPTrue(Model):
         self,
         **kwargs
     ):
-        super(PetAPTrue, self).__init__(**kwargs)
+        super(PetApTrue, self).__init__(**kwargs)
         self.additional_properties = kwargs.get('additional_properties', None)
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
         self.status = None
 
 
-class CatAPTrue(PetAPTrue):
-    """CatAPTrue.
+class CatApTrue(PetApTrue):
+    """CatApTrue.
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -88,7 +88,7 @@ class CatAPTrue(PetAPTrue):
         self,
         **kwargs
     ):
-        super(CatAPTrue, self).__init__(**kwargs)
+        super(CatApTrue, self).__init__(**kwargs)
         self.friendly = kwargs.get('friendly', None)
 
 
@@ -141,8 +141,8 @@ class Error(Model):
         self.message = kwargs.get('message', None)
 
 
-class PetAPInProperties(Model):
-    """PetAPInProperties.
+class PetApInProperties(Model):
+    """PetApInProperties.
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -175,15 +175,15 @@ class PetAPInProperties(Model):
         self,
         **kwargs
     ):
-        super(PetAPInProperties, self).__init__(**kwargs)
+        super(PetApInProperties, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
         self.status = None
         self.additional_properties = kwargs.get('additional_properties', None)
 
 
-class PetAPInPropertiesWithAPString(Model):
-    """PetAPInPropertiesWithAPString.
+class PetApInPropertiesWithApstring(Model):
+    """PetApInPropertiesWithApstring.
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -224,7 +224,7 @@ class PetAPInPropertiesWithAPString(Model):
         self,
         **kwargs
     ):
-        super(PetAPInPropertiesWithAPString, self).__init__(**kwargs)
+        super(PetApInPropertiesWithApstring, self).__init__(**kwargs)
         self.additional_properties = kwargs.get('additional_properties', None)
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
@@ -233,8 +233,8 @@ class PetAPInPropertiesWithAPString(Model):
         self.additional_properties1 = kwargs.get('additional_properties1', None)
 
 
-class PetAPObject(Model):
-    """PetAPObject.
+class PetApObject(Model):
+    """PetApObject.
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -267,15 +267,15 @@ class PetAPObject(Model):
         self,
         **kwargs
     ):
-        super(PetAPObject, self).__init__(**kwargs)
+        super(PetApObject, self).__init__(**kwargs)
         self.additional_properties = kwargs.get('additional_properties', None)
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)
         self.status = None
 
 
-class PetAPString(Model):
-    """PetAPString.
+class PetApString(Model):
+    """PetApString.
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -308,7 +308,7 @@ class PetAPString(Model):
         self,
         **kwargs
     ):
-        super(PetAPString, self).__init__(**kwargs)
+        super(PetApString, self).__init__(**kwargs)
         self.additional_properties = kwargs.get('additional_properties', None)
         self.id = kwargs.get('id', None)
         self.name = kwargs.get('name', None)

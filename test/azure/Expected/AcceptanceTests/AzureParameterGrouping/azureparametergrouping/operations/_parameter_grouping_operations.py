@@ -59,12 +59,12 @@ class ParameterGroupingOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
         
-        custom_header = None
+        customHeader = None
         query = None
         path = None
         body = None
         if parameter_grouping_post_required_parameters is not None:
-            custom_header = parameter_grouping_post_required_parameters.custom_header
+            customHeader = parameter_grouping_post_required_parameters.customHeader
             query = parameter_grouping_post_required_parameters.query
             path = parameter_grouping_post_required_parameters.path
             body = parameter_grouping_post_required_parameters.body
@@ -83,8 +83,8 @@ class ParameterGroupingOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_header is not None:
-            header_parameters['customHeader'] = self._serialize.header("custom_header", custom_header, 'str')
+        if customHeader is not None:
+            header_parameters['customHeader'] = self._serialize.header("customHeader", customHeader, 'str')
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
@@ -123,10 +123,10 @@ class ParameterGroupingOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
         
-        custom_header = None
+        customHeader = None
         query = None
         if parameter_grouping_post_optional_parameters is not None:
-            custom_header = parameter_grouping_post_optional_parameters.custom_header
+            customHeader = parameter_grouping_post_optional_parameters.customHeader
             query = parameter_grouping_post_optional_parameters.query
 
         # Construct URL
@@ -139,8 +139,8 @@ class ParameterGroupingOperations(object):
 
         # Construct headers
         header_parameters = {}
-        if custom_header is not None:
-            header_parameters['customHeader'] = self._serialize.header("custom_header", custom_header, 'str')
+        if customHeader is not None:
+            header_parameters['customHeader'] = self._serialize.header("customHeader", customHeader, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -178,33 +178,33 @@ class ParameterGroupingOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
         
-        header_one = None
-        query_one = None
-        header_two = None
-        query_two = None
+        header-one = None
+        query-one = None
+        header-two = None
+        query-two = None
         if first_parameter_group is not None:
-            header_one = first_parameter_group.header_one
-            query_one = first_parameter_group.query_one
+            header-one = first_parameter_group.header-one
+            query-one = first_parameter_group.query-one
         if parameter_grouping_post_multi_param_groups_second_param_group is not None:
-            header_two = parameter_grouping_post_multi_param_groups_second_param_group.header_two
-            query_two = parameter_grouping_post_multi_param_groups_second_param_group.query_two
+            header-two = parameter_grouping_post_multi_param_groups_second_param_group.header-two
+            query-two = parameter_grouping_post_multi_param_groups_second_param_group.query-two
 
         # Construct URL
         url = self.post_multi_param_groups.metadata['url']
 
         # Construct parameters
         query_parameters = {}
-        if query_one is not None:
-            query_parameters['query-one'] = self._serialize.query("query_one", query_one, 'int')
-        if query_two is not None:
-            query_parameters['query-two'] = self._serialize.query("query_two", query_two, 'int')
+        if query-one is not None:
+            query_parameters['query-one'] = self._serialize.query("query-one", query-one, 'int')
+        if query-two is not None:
+            query_parameters['query-two'] = self._serialize.query("query-two", query-two, 'int')
 
         # Construct headers
         header_parameters = {}
-        if header_one is not None:
-            header_parameters['header-one'] = self._serialize.header("header_one", header_one, 'str')
-        if header_two is not None:
-            header_parameters['header-two'] = self._serialize.header("header_two", header_two, 'str')
+        if header-one is not None:
+            header_parameters['header-one'] = self._serialize.header("header-one", header-one, 'str')
+        if header-two is not None:
+            header_parameters['header-two'] = self._serialize.header("header-two", header-two, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -239,24 +239,24 @@ class ParameterGroupingOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
         
-        header_one = None
-        query_one = None
+        header-one = None
+        query-one = None
         if first_parameter_group is not None:
-            header_one = first_parameter_group.header_one
-            query_one = first_parameter_group.query_one
+            header-one = first_parameter_group.header-one
+            query-one = first_parameter_group.query-one
 
         # Construct URL
         url = self.post_shared_parameter_group_object.metadata['url']
 
         # Construct parameters
         query_parameters = {}
-        if query_one is not None:
-            query_parameters['query-one'] = self._serialize.query("query_one", query_one, 'int')
+        if query-one is not None:
+            query_parameters['query-one'] = self._serialize.query("query-one", query-one, 'int')
 
         # Construct headers
         header_parameters = {}
-        if header_one is not None:
-            header_parameters['header-one'] = self._serialize.header("header_one", header_one, 'str')
+        if header-one is not None:
+            header_parameters['header-one'] = self._serialize.header("header-one", header-one, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)

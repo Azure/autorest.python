@@ -225,7 +225,7 @@ class HttpRedirectsOperations:
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        boolean_value = True
+        booleanValue = True
 
         # Construct URL
         url = self.put301.metadata['url']
@@ -238,8 +238,8 @@ class HttpRedirectsOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, 'bool')
+        if booleanValue is not None:
+            body_content = self._serialize.body(booleanValue, 'bool')
         else:
             body_content = None
 
@@ -358,7 +358,7 @@ class HttpRedirectsOperations:
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        boolean_value = True
+        booleanValue = True
 
         # Construct URL
         url = self.patch302.metadata['url']
@@ -371,8 +371,8 @@ class HttpRedirectsOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, 'bool')
+        if booleanValue is not None:
+            body_content = self._serialize.body(booleanValue, 'bool')
         else:
             body_content = None
 
@@ -407,7 +407,7 @@ class HttpRedirectsOperations:
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        boolean_value = True
+        booleanValue = True
 
         # Construct URL
         url = self.post303.metadata['url']
@@ -420,8 +420,8 @@ class HttpRedirectsOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, 'bool')
+        if booleanValue is not None:
+            body_content = self._serialize.body(booleanValue, 'bool')
         else:
             body_content = None
 
@@ -583,7 +583,7 @@ class HttpRedirectsOperations:
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        boolean_value = True
+        booleanValue = True
 
         # Construct URL
         url = self.put307.metadata['url']
@@ -596,8 +596,8 @@ class HttpRedirectsOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, 'bool')
+        if booleanValue is not None:
+            body_content = self._serialize.body(booleanValue, 'bool')
         else:
             body_content = None
 
@@ -633,7 +633,7 @@ class HttpRedirectsOperations:
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        boolean_value = True
+        booleanValue = True
 
         # Construct URL
         url = self.patch307.metadata['url']
@@ -646,8 +646,8 @@ class HttpRedirectsOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, 'bool')
+        if booleanValue is not None:
+            body_content = self._serialize.body(booleanValue, 'bool')
         else:
             body_content = None
 
@@ -683,7 +683,7 @@ class HttpRedirectsOperations:
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        boolean_value = True
+        booleanValue = True
 
         # Construct URL
         url = self.post307.metadata['url']
@@ -696,8 +696,8 @@ class HttpRedirectsOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, 'bool')
+        if booleanValue is not None:
+            body_content = self._serialize.body(booleanValue, 'bool')
         else:
             body_content = None
 
@@ -733,7 +733,7 @@ class HttpRedirectsOperations:
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        boolean_value = True
+        booleanValue = True
 
         # Construct URL
         url = self.delete307.metadata['url']
@@ -746,8 +746,8 @@ class HttpRedirectsOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, 'bool')
+        if booleanValue is not None:
+            body_content = self._serialize.body(booleanValue, 'bool')
         else:
             body_content = None
 

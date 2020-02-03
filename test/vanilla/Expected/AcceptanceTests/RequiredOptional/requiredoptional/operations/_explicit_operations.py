@@ -154,7 +154,7 @@ class ExplicitOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-        body_parameter = models.IntWrapper(value=value)
+        bodyParameter = models.IntWrapper(value=value)
 
         # Construct URL
         url = self.post_required_integer_property.metadata['url']
@@ -167,7 +167,7 @@ class ExplicitOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(body_parameter, 'IntWrapper')
+        body_content = self._serialize.body(bodyParameter, 'IntWrapper')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
@@ -202,7 +202,7 @@ class ExplicitOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-        body_parameter = models.IntOptionalWrapper(value=value)
+        bodyParameter = models.IntOptionalWrapper(value=value)
 
         # Construct URL
         url = self.post_optional_integer_property.metadata['url']
@@ -215,8 +215,8 @@ class ExplicitOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if body_parameter is not None:
-            body_content = self._serialize.body(body_parameter, 'IntOptionalWrapper')
+        if bodyParameter is not None:
+            body_content = self._serialize.body(bodyParameter, 'IntOptionalWrapper')
         else:
             body_content = None
 
@@ -435,7 +435,7 @@ class ExplicitOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-        body_parameter = models.StringWrapper(value=value)
+        bodyParameter = models.StringWrapper(value=value)
 
         # Construct URL
         url = self.post_required_string_property.metadata['url']
@@ -448,7 +448,7 @@ class ExplicitOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(body_parameter, 'StringWrapper')
+        body_content = self._serialize.body(bodyParameter, 'StringWrapper')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
@@ -483,7 +483,7 @@ class ExplicitOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-        body_parameter = models.StringOptionalWrapper(value=value)
+        bodyParameter = models.StringOptionalWrapper(value=value)
 
         # Construct URL
         url = self.post_optional_string_property.metadata['url']
@@ -496,8 +496,8 @@ class ExplicitOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if body_parameter is not None:
-            body_content = self._serialize.body(body_parameter, 'StringOptionalWrapper')
+        if bodyParameter is not None:
+            body_content = self._serialize.body(bodyParameter, 'StringOptionalWrapper')
         else:
             body_content = None
 
@@ -716,7 +716,7 @@ class ExplicitOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-        body_parameter = models.ClassWrapper(value=value)
+        bodyParameter = models.ClassWrapper(value=value)
 
         # Construct URL
         url = self.post_required_class_property.metadata['url']
@@ -729,7 +729,7 @@ class ExplicitOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(body_parameter, 'ClassWrapper')
+        body_content = self._serialize.body(bodyParameter, 'ClassWrapper')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
@@ -764,7 +764,7 @@ class ExplicitOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-        body_parameter = models.ClassOptionalWrapper(value=value)
+        bodyParameter = models.ClassOptionalWrapper(value=value)
 
         # Construct URL
         url = self.post_optional_class_property.metadata['url']
@@ -777,8 +777,8 @@ class ExplicitOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if body_parameter is not None:
-            body_content = self._serialize.body(body_parameter, 'ClassOptionalWrapper')
+        if bodyParameter is not None:
+            body_content = self._serialize.body(bodyParameter, 'ClassOptionalWrapper')
         else:
             body_content = None
 
@@ -910,7 +910,7 @@ class ExplicitOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-        body_parameter = models.ArrayWrapper(value=value)
+        bodyParameter = models.ArrayWrapper(value=value)
 
         # Construct URL
         url = self.post_required_array_property.metadata['url']
@@ -923,7 +923,7 @@ class ExplicitOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(body_parameter, 'ArrayWrapper')
+        body_content = self._serialize.body(bodyParameter, 'ArrayWrapper')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
@@ -958,7 +958,7 @@ class ExplicitOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-        body_parameter = models.ArrayOptionalWrapper(value=value)
+        bodyParameter = models.ArrayOptionalWrapper(value=value)
 
         # Construct URL
         url = self.post_optional_array_property.metadata['url']
@@ -971,8 +971,8 @@ class ExplicitOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if body_parameter is not None:
-            body_content = self._serialize.body(body_parameter, 'ArrayOptionalWrapper')
+        if bodyParameter is not None:
+            body_content = self._serialize.body(bodyParameter, 'ArrayOptionalWrapper')
         else:
             body_content = None
 

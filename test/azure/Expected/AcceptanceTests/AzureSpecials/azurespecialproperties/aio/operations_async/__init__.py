@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._x_ms_client_request_id_operations_async import XMsClientRequestIdOperations
+from ._xms_client_request_id_operations_async import XMSClientRequestIdOperations
 from ._subscription_in_credentials_operations_async import SubscriptionInCredentialsOperations
 from ._subscription_in_method_operations_async import SubscriptionInMethodOperations
 from ._api_version_default_operations_async import ApiVersionDefaultOperations
@@ -16,7 +16,7 @@ from ._odata_operations_async import OdataOperations
 from ._header_operations_async import HeaderOperations
 
 __all__ = [
-    'XMsClientRequestIdOperations',
+    'XMSClientRequestIdOperations',
     'SubscriptionInCredentialsOperations',
     'SubscriptionInMethodOperations',
     'ApiVersionDefaultOperations',

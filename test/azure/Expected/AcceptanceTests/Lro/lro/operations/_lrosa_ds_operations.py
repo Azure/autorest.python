@@ -10,20 +10,20 @@ import warnings
 
 from azure.core.exceptions import map_error
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
-from azure.core.polling import AsyncNoPolling, async_poller
-from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.pipeline.transport import HttpRequest, HttpResponse
+from azure.core.polling import LROPoller, NoPolling
+from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMError
-from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
+from azure.mgmt.core.polling.arm_polling import ARMPolling
 from msrest.serialization import Model
 
-from ... import models
+from .. import models
 
 T = TypeVar('T')
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
-class LROSADsOperations:
-    """LROSADsOperations async operations.
+class LrosaDsOperations(object):
+    """LrosaDsOperations operations.
 
     You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
 
@@ -37,29 +37,29 @@ class LROSADsOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
         self._config = config
 
-    async def _put_non_retry400_initial(
+    def _put_non_retry400_initial(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_non_retry400_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -71,7 +71,7 @@ class LROSADsOperations:
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
@@ -91,15 +91,15 @@ class LROSADsOperations:
         return deserialized
     _put_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/put/400'}
 
-    @distributed_trace_async
-    async def put_non_retry400(
+    @distributed_trace
+    def begin_put_non_retry400(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
-        **kwargs
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType["models.Product"]
+        polling=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         """Long running put request, service returns a 400 to the initial request.
 
         :param product: Product to put.
@@ -112,7 +112,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        raw_result = await self._put_non_retry400_initial(
+        raw_result = self._put_non_retry400_initial(
             product=product,
             cls=lambda x,y,z: x,
             **kwargs
@@ -129,29 +129,29 @@ class LROSADsOperations:
             'polling_interval',
             self._config.polling_interval
         )
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_non_retry400.metadata = {'url': '/lro/nonretryerror/put/400'}
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_put_non_retry400.metadata = {'url': '/lro/nonretryerror/put/400'}
 
-    async def _put_non_retry201_creating400_initial(
+    def _put_non_retry201_creating400_initial(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_non_retry201_creating400_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -163,7 +163,7 @@ class LROSADsOperations:
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
@@ -183,15 +183,15 @@ class LROSADsOperations:
         return deserialized
     _put_non_retry201_creating400_initial.metadata = {'url': '/lro/nonretryerror/put/201/creating/400'}
 
-    @distributed_trace_async
-    async def put_non_retry201_creating400(
+    @distributed_trace
+    def begin_put_non_retry201_creating400(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
-        **kwargs
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType["models.Product"]
+        polling=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201 response code.
 
         :param product: Product to put.
@@ -204,7 +204,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        raw_result = await self._put_non_retry201_creating400_initial(
+        raw_result = self._put_non_retry201_creating400_initial(
             product=product,
             cls=lambda x,y,z: x,
             **kwargs
@@ -221,29 +221,29 @@ class LROSADsOperations:
             'polling_interval',
             self._config.polling_interval
         )
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_non_retry201_creating400.metadata = {'url': '/lro/nonretryerror/put/201/creating/400'}
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_put_non_retry201_creating400.metadata = {'url': '/lro/nonretryerror/put/201/creating/400'}
 
-    async def _put_non_retry201_creating400_invalid_json_initial(
+    def _put_non_retry201_creating400_invalid_json_initial(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_non_retry201_creating400_invalid_json_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -255,7 +255,7 @@ class LROSADsOperations:
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
@@ -275,15 +275,15 @@ class LROSADsOperations:
         return deserialized
     _put_non_retry201_creating400_invalid_json_initial.metadata = {'url': '/lro/nonretryerror/put/201/creating/400/invalidjson'}
 
-    @distributed_trace_async
-    async def put_non_retry201_creating400_invalid_json(
+    @distributed_trace
+    def begin_put_non_retry201_creating400_invalid_json(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
-        **kwargs
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType["models.Product"]
+        polling=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201 response code.
 
         :param product: Product to put.
@@ -296,7 +296,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        raw_result = await self._put_non_retry201_creating400_invalid_json_initial(
+        raw_result = self._put_non_retry201_creating400_invalid_json_initial(
             product=product,
             cls=lambda x,y,z: x,
             **kwargs
@@ -313,29 +313,29 @@ class LROSADsOperations:
             'polling_interval',
             self._config.polling_interval
         )
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_non_retry201_creating400_invalid_json.metadata = {'url': '/lro/nonretryerror/put/201/creating/400/invalidjson'}
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_put_non_retry201_creating400_invalid_json.metadata = {'url': '/lro/nonretryerror/put/201/creating/400/invalidjson'}
 
-    async def _put_async_relative_retry400_initial(
+    def _put_async_relative_retry400_initial(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_async_relative_retry400_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -347,7 +347,7 @@ class LROSADsOperations:
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -366,15 +366,15 @@ class LROSADsOperations:
         return deserialized
     _put_async_relative_retry400_initial.metadata = {'url': '/lro/nonretryerror/putasync/retry/400'}
 
-    @distributed_trace_async
-    async def put_async_relative_retry400(
+    @distributed_trace
+    def begin_put_async_relative_retry400(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
-        **kwargs
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType["models.Product"]
+        polling=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         """Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
@@ -387,7 +387,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        raw_result = await self._put_async_relative_retry400_initial(
+        raw_result = self._put_async_relative_retry400_initial(
             product=product,
             cls=lambda x,y,z: x,
             **kwargs
@@ -409,31 +409,32 @@ class LROSADsOperations:
             'polling_interval',
             self._config.polling_interval
         )
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_relative_retry400.metadata = {'url': '/lro/nonretryerror/putasync/retry/400'}
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_put_async_relative_retry400.metadata = {'url': '/lro/nonretryerror/putasync/retry/400'}
 
-    async def _delete_non_retry400_initial(
+    def _delete_non_retry400_initial(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
-    ) -> None:
+        cls=None,  # type: ClsType[None]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete_non_retry400_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
@@ -449,13 +450,14 @@ class LROSADsOperations:
 
     _delete_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/delete/400'}
 
-    @distributed_trace_async
-    async def delete_non_retry400(
+    @distributed_trace
+    def begin_delete_non_retry400(
         self,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
-        **kwargs
-    ) -> None:
+        cls=None,  # type: ClsType[None]
+        polling=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running delete request, service returns a 400 with an error body.
 
         :param callable cls: A custom type or function that will be passed the direct response
@@ -466,7 +468,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        raw_result = await self._delete_non_retry400_initial(
+        raw_result = self._delete_non_retry400_initial(
             cls=lambda x,y,z: x,
             **kwargs
         )
@@ -479,31 +481,32 @@ class LROSADsOperations:
             'polling_interval',
             self._config.polling_interval
         )
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_non_retry400.metadata = {'url': '/lro/nonretryerror/delete/400'}
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_delete_non_retry400.metadata = {'url': '/lro/nonretryerror/delete/400'}
 
-    async def _delete202_non_retry400_initial(
+    def _delete202_non_retry400_initial(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
-    ) -> None:
+        cls=None,  # type: ClsType[None]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete202_non_retry400_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
@@ -519,13 +522,14 @@ class LROSADsOperations:
 
     _delete202_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/delete/202/retry/400'}
 
-    @distributed_trace_async
-    async def delete202_non_retry400(
+    @distributed_trace
+    def begin_delete202_non_retry400(
         self,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
-        **kwargs
-    ) -> None:
+        cls=None,  # type: ClsType[None]
+        polling=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running delete request, service returns a 202 with a location header.
 
         :param callable cls: A custom type or function that will be passed the direct response
@@ -536,7 +540,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        raw_result = await self._delete202_non_retry400_initial(
+        raw_result = self._delete202_non_retry400_initial(
             cls=lambda x,y,z: x,
             **kwargs
         )
@@ -549,31 +553,32 @@ class LROSADsOperations:
             'polling_interval',
             self._config.polling_interval
         )
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete202_non_retry400.metadata = {'url': '/lro/nonretryerror/delete/202/retry/400'}
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_delete202_non_retry400.metadata = {'url': '/lro/nonretryerror/delete/202/retry/400'}
 
-    async def _delete_async_relative_retry400_initial(
+    def _delete_async_relative_retry400_initial(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
-    ) -> None:
+        cls=None,  # type: ClsType[None]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete_async_relative_retry400_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
@@ -590,13 +595,14 @@ class LROSADsOperations:
 
     _delete_async_relative_retry400_initial.metadata = {'url': '/lro/nonretryerror/deleteasync/retry/400'}
 
-    @distributed_trace_async
-    async def delete_async_relative_retry400(
+    @distributed_trace
+    def begin_delete_async_relative_retry400(
         self,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
-        **kwargs
-    ) -> None:
+        cls=None,  # type: ClsType[None]
+        polling=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param callable cls: A custom type or function that will be passed the direct response
@@ -607,7 +613,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        raw_result = await self._delete_async_relative_retry400_initial(
+        raw_result = self._delete_async_relative_retry400_initial(
             cls=lambda x,y,z: x,
             **kwargs
         )
@@ -620,29 +626,29 @@ class LROSADsOperations:
             'polling_interval',
             self._config.polling_interval
         )
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_async_relative_retry400.metadata = {'url': '/lro/nonretryerror/deleteasync/retry/400'}
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_delete_async_relative_retry400.metadata = {'url': '/lro/nonretryerror/deleteasync/retry/400'}
 
-    async def _post_non_retry400_initial(
+    def _post_non_retry400_initial(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
-    ) -> None:
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType[None]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post_non_retry400_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
@@ -653,7 +659,7 @@ class LROSADsOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
@@ -669,15 +675,15 @@ class LROSADsOperations:
 
     _post_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/post/400'}
 
-    @distributed_trace_async
-    async def post_non_retry400(
+    @distributed_trace
+    def begin_post_non_retry400(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
-        **kwargs
-    ) -> None:
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType[None]
+        polling=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running post request, service returns a 400 with no error body.
 
         :param product: Product to put.
@@ -690,7 +696,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        raw_result = await self._post_non_retry400_initial(
+        raw_result = self._post_non_retry400_initial(
             product=product,
             cls=lambda x,y,z: x,
             **kwargs
@@ -704,29 +710,29 @@ class LROSADsOperations:
             'polling_interval',
             self._config.polling_interval
         )
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post_non_retry400.metadata = {'url': '/lro/nonretryerror/post/400'}
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_post_non_retry400.metadata = {'url': '/lro/nonretryerror/post/400'}
 
-    async def _post202_non_retry400_initial(
+    def _post202_non_retry400_initial(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
-    ) -> None:
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType[None]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post202_non_retry400_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
@@ -737,7 +743,7 @@ class LROSADsOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
@@ -753,15 +759,15 @@ class LROSADsOperations:
 
     _post202_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/post/202/retry/400'}
 
-    @distributed_trace_async
-    async def post202_non_retry400(
+    @distributed_trace
+    def begin_post202_non_retry400(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
-        **kwargs
-    ) -> None:
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType[None]
+        polling=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running post request, service returns a 202 with a location header.
 
         :param product: Product to put.
@@ -774,7 +780,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        raw_result = await self._post202_non_retry400_initial(
+        raw_result = self._post202_non_retry400_initial(
             product=product,
             cls=lambda x,y,z: x,
             **kwargs
@@ -788,29 +794,29 @@ class LROSADsOperations:
             'polling_interval',
             self._config.polling_interval
         )
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post202_non_retry400.metadata = {'url': '/lro/nonretryerror/post/202/retry/400'}
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_post202_non_retry400.metadata = {'url': '/lro/nonretryerror/post/202/retry/400'}
 
-    async def _post_async_relative_retry400_initial(
+    def _post_async_relative_retry400_initial(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
-    ) -> None:
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType[None]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post_async_relative_retry400_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
@@ -821,7 +827,7 @@ class LROSADsOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
@@ -838,15 +844,15 @@ class LROSADsOperations:
 
     _post_async_relative_retry400_initial.metadata = {'url': '/lro/nonretryerror/postasync/retry/400'}
 
-    @distributed_trace_async
-    async def post_async_relative_retry400(
+    @distributed_trace
+    def begin_post_async_relative_retry400(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
-        **kwargs
-    ) -> None:
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType[None]
+        polling=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running post request, service returns a 202 to the initial request Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
@@ -859,7 +865,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        raw_result = await self._post_async_relative_retry400_initial(
+        raw_result = self._post_async_relative_retry400_initial(
             product=product,
             cls=lambda x,y,z: x,
             **kwargs
@@ -873,29 +879,29 @@ class LROSADsOperations:
             'polling_interval',
             self._config.polling_interval
         )
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post_async_relative_retry400.metadata = {'url': '/lro/nonretryerror/postasync/retry/400'}
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_post_async_relative_retry400.metadata = {'url': '/lro/nonretryerror/postasync/retry/400'}
 
-    async def _put_error201_no_provisioning_state_payload_initial(
+    def _put_error201_no_provisioning_state_payload_initial(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_error201_no_provisioning_state_payload_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -907,7 +913,7 @@ class LROSADsOperations:
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
@@ -927,15 +933,15 @@ class LROSADsOperations:
         return deserialized
     _put_error201_no_provisioning_state_payload_initial.metadata = {'url': '/lro/error/put/201/noprovisioningstatepayload'}
 
-    @distributed_trace_async
-    async def put_error201_no_provisioning_state_payload(
+    @distributed_trace
+    def begin_put_error201_no_provisioning_state_payload(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
-        **kwargs
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType["models.Product"]
+        polling=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         """Long running put request, service returns a 201 to the initial request with no payload.
 
         :param product: Product to put.
@@ -948,7 +954,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        raw_result = await self._put_error201_no_provisioning_state_payload_initial(
+        raw_result = self._put_error201_no_provisioning_state_payload_initial(
             product=product,
             cls=lambda x,y,z: x,
             **kwargs
@@ -965,29 +971,29 @@ class LROSADsOperations:
             'polling_interval',
             self._config.polling_interval
         )
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_error201_no_provisioning_state_payload.metadata = {'url': '/lro/error/put/201/noprovisioningstatepayload'}
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_put_error201_no_provisioning_state_payload.metadata = {'url': '/lro/error/put/201/noprovisioningstatepayload'}
 
-    async def _put_async_relative_retry_no_status_initial(
+    def _put_async_relative_retry_no_status_initial(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_async_relative_retry_no_status_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -999,7 +1005,7 @@ class LROSADsOperations:
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1018,15 +1024,15 @@ class LROSADsOperations:
         return deserialized
     _put_async_relative_retry_no_status_initial.metadata = {'url': '/lro/error/putasync/retry/nostatus'}
 
-    @distributed_trace_async
-    async def put_async_relative_retry_no_status(
+    @distributed_trace
+    def begin_put_async_relative_retry_no_status(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
-        **kwargs
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType["models.Product"]
+        polling=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
@@ -1039,7 +1045,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        raw_result = await self._put_async_relative_retry_no_status_initial(
+        raw_result = self._put_async_relative_retry_no_status_initial(
             product=product,
             cls=lambda x,y,z: x,
             **kwargs
@@ -1061,29 +1067,29 @@ class LROSADsOperations:
             'polling_interval',
             self._config.polling_interval
         )
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_relative_retry_no_status.metadata = {'url': '/lro/error/putasync/retry/nostatus'}
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_put_async_relative_retry_no_status.metadata = {'url': '/lro/error/putasync/retry/nostatus'}
 
-    async def _put_async_relative_retry_no_status_payload_initial(
+    def _put_async_relative_retry_no_status_payload_initial(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_async_relative_retry_no_status_payload_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -1095,7 +1101,7 @@ class LROSADsOperations:
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1114,15 +1120,15 @@ class LROSADsOperations:
         return deserialized
     _put_async_relative_retry_no_status_payload_initial.metadata = {'url': '/lro/error/putasync/retry/nostatuspayload'}
 
-    @distributed_trace_async
-    async def put_async_relative_retry_no_status_payload(
+    @distributed_trace
+    def begin_put_async_relative_retry_no_status_payload(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
-        **kwargs
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType["models.Product"]
+        polling=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
@@ -1135,7 +1141,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        raw_result = await self._put_async_relative_retry_no_status_payload_initial(
+        raw_result = self._put_async_relative_retry_no_status_payload_initial(
             product=product,
             cls=lambda x,y,z: x,
             **kwargs
@@ -1157,31 +1163,32 @@ class LROSADsOperations:
             'polling_interval',
             self._config.polling_interval
         )
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_relative_retry_no_status_payload.metadata = {'url': '/lro/error/putasync/retry/nostatuspayload'}
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_put_async_relative_retry_no_status_payload.metadata = {'url': '/lro/error/putasync/retry/nostatuspayload'}
 
-    async def _delete204_succeeded_initial(
+    def _delete204_succeeded_initial(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
-    ) -> None:
+        cls=None,  # type: ClsType[None]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete204_succeeded_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
@@ -1193,13 +1200,14 @@ class LROSADsOperations:
 
     _delete204_succeeded_initial.metadata = {'url': '/lro/error/delete/204/nolocation'}
 
-    @distributed_trace_async
-    async def delete204_succeeded(
+    @distributed_trace
+    def begin_delete204_succeeded(
         self,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
-        **kwargs
-    ) -> None:
+        cls=None,  # type: ClsType[None]
+        polling=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running delete request, service returns a 204 to the initial request, indicating success.
 
         :param callable cls: A custom type or function that will be passed the direct response
@@ -1210,7 +1218,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        raw_result = await self._delete204_succeeded_initial(
+        raw_result = self._delete204_succeeded_initial(
             cls=lambda x,y,z: x,
             **kwargs
         )
@@ -1223,31 +1231,32 @@ class LROSADsOperations:
             'polling_interval',
             self._config.polling_interval
         )
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete204_succeeded.metadata = {'url': '/lro/error/delete/204/nolocation'}
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_delete204_succeeded.metadata = {'url': '/lro/error/delete/204/nolocation'}
 
-    async def _delete_async_relative_retry_no_status_initial(
+    def _delete_async_relative_retry_no_status_initial(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
-    ) -> None:
+        cls=None,  # type: ClsType[None]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete_async_relative_retry_no_status_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
@@ -1264,13 +1273,14 @@ class LROSADsOperations:
 
     _delete_async_relative_retry_no_status_initial.metadata = {'url': '/lro/error/deleteasync/retry/nostatus'}
 
-    @distributed_trace_async
-    async def delete_async_relative_retry_no_status(
+    @distributed_trace
+    def begin_delete_async_relative_retry_no_status(
         self,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
-        **kwargs
-    ) -> None:
+        cls=None,  # type: ClsType[None]
+        polling=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param callable cls: A custom type or function that will be passed the direct response
@@ -1281,7 +1291,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        raw_result = await self._delete_async_relative_retry_no_status_initial(
+        raw_result = self._delete_async_relative_retry_no_status_initial(
             cls=lambda x,y,z: x,
             **kwargs
         )
@@ -1294,29 +1304,29 @@ class LROSADsOperations:
             'polling_interval',
             self._config.polling_interval
         )
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_async_relative_retry_no_status.metadata = {'url': '/lro/error/deleteasync/retry/nostatus'}
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_delete_async_relative_retry_no_status.metadata = {'url': '/lro/error/deleteasync/retry/nostatus'}
 
-    async def _post202_no_location_initial(
+    def _post202_no_location_initial(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
-    ) -> None:
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType[None]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post202_no_location_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
@@ -1327,7 +1337,7 @@ class LROSADsOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
@@ -1343,15 +1353,15 @@ class LROSADsOperations:
 
     _post202_no_location_initial.metadata = {'url': '/lro/error/post/202/nolocation'}
 
-    @distributed_trace_async
-    async def post202_no_location(
+    @distributed_trace
+    def begin_post202_no_location(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
-        **kwargs
-    ) -> None:
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType[None]
+        polling=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running post request, service returns a 202 to the initial request, without a location header.
 
         :param product: Product to put.
@@ -1364,7 +1374,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        raw_result = await self._post202_no_location_initial(
+        raw_result = self._post202_no_location_initial(
             product=product,
             cls=lambda x,y,z: x,
             **kwargs
@@ -1378,29 +1388,29 @@ class LROSADsOperations:
             'polling_interval',
             self._config.polling_interval
         )
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post202_no_location.metadata = {'url': '/lro/error/post/202/nolocation'}
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_post202_no_location.metadata = {'url': '/lro/error/post/202/nolocation'}
 
-    async def _post_async_relative_retry_no_payload_initial(
+    def _post_async_relative_retry_no_payload_initial(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
-    ) -> None:
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType[None]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post_async_relative_retry_no_payload_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
@@ -1411,7 +1421,7 @@ class LROSADsOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
@@ -1428,15 +1438,15 @@ class LROSADsOperations:
 
     _post_async_relative_retry_no_payload_initial.metadata = {'url': '/lro/error/postasync/retry/nopayload'}
 
-    @distributed_trace_async
-    async def post_async_relative_retry_no_payload(
+    @distributed_trace
+    def begin_post_async_relative_retry_no_payload(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
-        **kwargs
-    ) -> None:
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType[None]
+        polling=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
@@ -1449,7 +1459,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        raw_result = await self._post_async_relative_retry_no_payload_initial(
+        raw_result = self._post_async_relative_retry_no_payload_initial(
             product=product,
             cls=lambda x,y,z: x,
             **kwargs
@@ -1463,29 +1473,29 @@ class LROSADsOperations:
             'polling_interval',
             self._config.polling_interval
         )
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post_async_relative_retry_no_payload.metadata = {'url': '/lro/error/postasync/retry/nopayload'}
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_post_async_relative_retry_no_payload.metadata = {'url': '/lro/error/postasync/retry/nopayload'}
 
-    async def _put200_invalid_json_initial(
+    def _put200_invalid_json_initial(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put200_invalid_json_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -1497,7 +1507,7 @@ class LROSADsOperations:
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
@@ -1514,15 +1524,15 @@ class LROSADsOperations:
         return deserialized
     _put200_invalid_json_initial.metadata = {'url': '/lro/error/put/200/invalidjson'}
 
-    @distributed_trace_async
-    async def put200_invalid_json(
+    @distributed_trace
+    def begin_put200_invalid_json(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
-        **kwargs
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType["models.Product"]
+        polling=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         """Long running put request, service returns a 200 to the initial request, with an entity that is not a valid json.
 
         :param product: Product to put.
@@ -1535,7 +1545,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        raw_result = await self._put200_invalid_json_initial(
+        raw_result = self._put200_invalid_json_initial(
             product=product,
             cls=lambda x,y,z: x,
             **kwargs
@@ -1552,29 +1562,29 @@ class LROSADsOperations:
             'polling_interval',
             self._config.polling_interval
         )
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put200_invalid_json.metadata = {'url': '/lro/error/put/200/invalidjson'}
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_put200_invalid_json.metadata = {'url': '/lro/error/put/200/invalidjson'}
 
-    async def _put_async_relative_retry_invalid_header_initial(
+    def _put_async_relative_retry_invalid_header_initial(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_async_relative_retry_invalid_header_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -1586,7 +1596,7 @@ class LROSADsOperations:
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1605,15 +1615,15 @@ class LROSADsOperations:
         return deserialized
     _put_async_relative_retry_invalid_header_initial.metadata = {'url': '/lro/error/putasync/retry/invalidheader'}
 
-    @distributed_trace_async
-    async def put_async_relative_retry_invalid_header(
+    @distributed_trace
+    def begin_put_async_relative_retry_invalid_header(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
-        **kwargs
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType["models.Product"]
+        polling=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header is invalid.
 
         :param product: Product to put.
@@ -1626,7 +1636,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        raw_result = await self._put_async_relative_retry_invalid_header_initial(
+        raw_result = self._put_async_relative_retry_invalid_header_initial(
             product=product,
             cls=lambda x,y,z: x,
             **kwargs
@@ -1648,29 +1658,29 @@ class LROSADsOperations:
             'polling_interval',
             self._config.polling_interval
         )
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_relative_retry_invalid_header.metadata = {'url': '/lro/error/putasync/retry/invalidheader'}
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_put_async_relative_retry_invalid_header.metadata = {'url': '/lro/error/putasync/retry/invalidheader'}
 
-    async def _put_async_relative_retry_invalid_json_polling_initial(
+    def _put_async_relative_retry_invalid_json_polling_initial(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_async_relative_retry_invalid_json_polling_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
 
@@ -1682,7 +1692,7 @@ class LROSADsOperations:
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
@@ -1701,15 +1711,15 @@ class LROSADsOperations:
         return deserialized
     _put_async_relative_retry_invalid_json_polling_initial.metadata = {'url': '/lro/error/putasync/retry/invalidjsonpolling'}
 
-    @distributed_trace_async
-    async def put_async_relative_retry_invalid_json_polling(
+    @distributed_trace
+    def begin_put_async_relative_retry_invalid_json_polling(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
-        **kwargs
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType["models.Product"]
+        polling=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
@@ -1722,7 +1732,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        raw_result = await self._put_async_relative_retry_invalid_json_polling_initial(
+        raw_result = self._put_async_relative_retry_invalid_json_polling_initial(
             product=product,
             cls=lambda x,y,z: x,
             **kwargs
@@ -1744,31 +1754,32 @@ class LROSADsOperations:
             'polling_interval',
             self._config.polling_interval
         )
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_relative_retry_invalid_json_polling.metadata = {'url': '/lro/error/putasync/retry/invalidjsonpolling'}
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_put_async_relative_retry_invalid_json_polling.metadata = {'url': '/lro/error/putasync/retry/invalidjsonpolling'}
 
-    async def _delete202_retry_invalid_header_initial(
+    def _delete202_retry_invalid_header_initial(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
-    ) -> None:
+        cls=None,  # type: ClsType[None]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete202_retry_invalid_header_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
@@ -1784,13 +1795,14 @@ class LROSADsOperations:
 
     _delete202_retry_invalid_header_initial.metadata = {'url': '/lro/error/delete/202/retry/invalidheader'}
 
-    @distributed_trace_async
-    async def delete202_retry_invalid_header(
+    @distributed_trace
+    def begin_delete202_retry_invalid_header(
         self,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
-        **kwargs
-    ) -> None:
+        cls=None,  # type: ClsType[None]
+        polling=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running delete request, service returns a 202 to the initial request receing a reponse with an invalid 'Location' and 'Retry-After' headers.
 
         :param callable cls: A custom type or function that will be passed the direct response
@@ -1801,7 +1813,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        raw_result = await self._delete202_retry_invalid_header_initial(
+        raw_result = self._delete202_retry_invalid_header_initial(
             cls=lambda x,y,z: x,
             **kwargs
         )
@@ -1814,31 +1826,32 @@ class LROSADsOperations:
             'polling_interval',
             self._config.polling_interval
         )
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete202_retry_invalid_header.metadata = {'url': '/lro/error/delete/202/retry/invalidheader'}
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_delete202_retry_invalid_header.metadata = {'url': '/lro/error/delete/202/retry/invalidheader'}
 
-    async def _delete_async_relative_retry_invalid_header_initial(
+    def _delete_async_relative_retry_invalid_header_initial(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
-    ) -> None:
+        cls=None,  # type: ClsType[None]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete_async_relative_retry_invalid_header_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
@@ -1855,13 +1868,14 @@ class LROSADsOperations:
 
     _delete_async_relative_retry_invalid_header_initial.metadata = {'url': '/lro/error/deleteasync/retry/invalidheader'}
 
-    @distributed_trace_async
-    async def delete_async_relative_retry_invalid_header(
+    @distributed_trace
+    def begin_delete_async_relative_retry_invalid_header(
         self,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
-        **kwargs
-    ) -> None:
+        cls=None,  # type: ClsType[None]
+        polling=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running delete request, service returns a 202 to the initial request. The endpoint indicated in the Azure-AsyncOperation header is invalid.
 
         :param callable cls: A custom type or function that will be passed the direct response
@@ -1872,7 +1886,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        raw_result = await self._delete_async_relative_retry_invalid_header_initial(
+        raw_result = self._delete_async_relative_retry_invalid_header_initial(
             cls=lambda x,y,z: x,
             **kwargs
         )
@@ -1885,31 +1899,32 @@ class LROSADsOperations:
             'polling_interval',
             self._config.polling_interval
         )
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_async_relative_retry_invalid_header.metadata = {'url': '/lro/error/deleteasync/retry/invalidheader'}
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_delete_async_relative_retry_invalid_header.metadata = {'url': '/lro/error/deleteasync/retry/invalidheader'}
 
-    async def _delete_async_relative_retry_invalid_json_polling_initial(
+    def _delete_async_relative_retry_invalid_json_polling_initial(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
-    ) -> None:
+        cls=None,  # type: ClsType[None]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete_async_relative_retry_invalid_json_polling_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
@@ -1926,13 +1941,14 @@ class LROSADsOperations:
 
     _delete_async_relative_retry_invalid_json_polling_initial.metadata = {'url': '/lro/error/deleteasync/retry/invalidjsonpolling'}
 
-    @distributed_trace_async
-    async def delete_async_relative_retry_invalid_json_polling(
+    @distributed_trace
+    def begin_delete_async_relative_retry_invalid_json_polling(
         self,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
-        **kwargs
-    ) -> None:
+        cls=None,  # type: ClsType[None]
+        polling=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param callable cls: A custom type or function that will be passed the direct response
@@ -1943,7 +1959,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        raw_result = await self._delete_async_relative_retry_invalid_json_polling_initial(
+        raw_result = self._delete_async_relative_retry_invalid_json_polling_initial(
             cls=lambda x,y,z: x,
             **kwargs
         )
@@ -1956,29 +1972,29 @@ class LROSADsOperations:
             'polling_interval',
             self._config.polling_interval
         )
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_async_relative_retry_invalid_json_polling.metadata = {'url': '/lro/error/deleteasync/retry/invalidjsonpolling'}
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_delete_async_relative_retry_invalid_json_polling.metadata = {'url': '/lro/error/deleteasync/retry/invalidjsonpolling'}
 
-    async def _post202_retry_invalid_header_initial(
+    def _post202_retry_invalid_header_initial(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
-    ) -> None:
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType[None]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post202_retry_invalid_header_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
@@ -1989,7 +2005,7 @@ class LROSADsOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
@@ -2005,15 +2021,15 @@ class LROSADsOperations:
 
     _post202_retry_invalid_header_initial.metadata = {'url': '/lro/error/post/202/retry/invalidheader'}
 
-    @distributed_trace_async
-    async def post202_retry_invalid_header(
+    @distributed_trace
+    def begin_post202_retry_invalid_header(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
-        **kwargs
-    ) -> None:
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType[None]
+        polling=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running post request, service returns a 202 to the initial request, with invalid 'Location' and 'Retry-After' headers.
 
         :param product: Product to put.
@@ -2026,7 +2042,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        raw_result = await self._post202_retry_invalid_header_initial(
+        raw_result = self._post202_retry_invalid_header_initial(
             product=product,
             cls=lambda x,y,z: x,
             **kwargs
@@ -2040,29 +2056,29 @@ class LROSADsOperations:
             'polling_interval',
             self._config.polling_interval
         )
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post202_retry_invalid_header.metadata = {'url': '/lro/error/post/202/retry/invalidheader'}
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_post202_retry_invalid_header.metadata = {'url': '/lro/error/post/202/retry/invalidheader'}
 
-    async def _post_async_relative_retry_invalid_header_initial(
+    def _post_async_relative_retry_invalid_header_initial(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
-    ) -> None:
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType[None]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post_async_relative_retry_invalid_header_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
@@ -2073,7 +2089,7 @@ class LROSADsOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
@@ -2090,15 +2106,15 @@ class LROSADsOperations:
 
     _post_async_relative_retry_invalid_header_initial.metadata = {'url': '/lro/error/postasync/retry/invalidheader'}
 
-    @distributed_trace_async
-    async def post_async_relative_retry_invalid_header(
+    @distributed_trace
+    def begin_post_async_relative_retry_invalid_header(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
-        **kwargs
-    ) -> None:
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType[None]
+        polling=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header is invalid.
 
         :param product: Product to put.
@@ -2111,7 +2127,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        raw_result = await self._post_async_relative_retry_invalid_header_initial(
+        raw_result = self._post_async_relative_retry_invalid_header_initial(
             product=product,
             cls=lambda x,y,z: x,
             **kwargs
@@ -2125,29 +2141,29 @@ class LROSADsOperations:
             'polling_interval',
             self._config.polling_interval
         )
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post_async_relative_retry_invalid_header.metadata = {'url': '/lro/error/postasync/retry/invalidheader'}
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_post_async_relative_retry_invalid_header.metadata = {'url': '/lro/error/postasync/retry/invalidheader'}
 
-    async def _post_async_relative_retry_invalid_json_polling_initial(
+    def _post_async_relative_retry_invalid_json_polling_initial(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
-    ) -> None:
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType[None]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post_async_relative_retry_invalid_json_polling_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
@@ -2158,7 +2174,7 @@ class LROSADsOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+        pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
@@ -2175,15 +2191,15 @@ class LROSADsOperations:
 
     _post_async_relative_retry_invalid_json_polling_initial.metadata = {'url': '/lro/error/postasync/retry/invalidjsonpolling'}
 
-    @distributed_trace_async
-    async def post_async_relative_retry_invalid_json_polling(
+    @distributed_trace
+    def begin_post_async_relative_retry_invalid_json_polling(
         self,
-        product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
-        **kwargs
-    ) -> None:
+        product=None,  # type: Optional["models.Product"]
+        cls=None,  # type: ClsType[None]
+        polling=True,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
@@ -2196,7 +2212,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        raw_result = await self._post_async_relative_retry_invalid_json_polling_initial(
+        raw_result = self._post_async_relative_retry_invalid_json_polling_initial(
             product=product,
             cls=lambda x,y,z: x,
             **kwargs
@@ -2210,8 +2226,8 @@ class LROSADsOperations:
             'polling_interval',
             self._config.polling_interval
         )
-        if polling is True: polling_method = AsyncARMPolling(lro_delay,  **kwargs)
-        elif polling is False: polling_method = AsyncNoPolling()
+        if polling is True: polling_method = ARMPolling(lro_delay,  **kwargs)
+        elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
-        return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post_async_relative_retry_invalid_json_polling.metadata = {'url': '/lro/error/postasync/retry/invalidjsonpolling'}
+        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_post_async_relative_retry_invalid_json_polling.metadata = {'url': '/lro/error/postasync/retry/invalidjsonpolling'}

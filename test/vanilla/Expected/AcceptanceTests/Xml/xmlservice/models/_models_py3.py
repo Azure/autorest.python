@@ -637,8 +637,8 @@ class Error(Model):
         self.message = message
 
 
-class JSONInput(Model):
-    """JSONInput.
+class JsonInput(Model):
+    """JsonInput.
 
     :param id:
     :type id: int
@@ -654,12 +654,12 @@ class JSONInput(Model):
         id: Optional[int] = None,
         **kwargs
     ):
-        super(JSONInput, self).__init__(**kwargs)
+        super(JsonInput, self).__init__(**kwargs)
         self.id = id
 
 
-class JSONOutput(Model):
-    """JSONOutput.
+class JsonOutput(Model):
+    """JsonOutput.
 
     :param id:
     :type id: int
@@ -675,7 +675,7 @@ class JSONOutput(Model):
         id: Optional[int] = None,
         **kwargs
     ):
-        super(JSONOutput, self).__init__(**kwargs)
+        super(JsonOutput, self).__init__(**kwargs)
         self.id = id
 
 
@@ -869,9 +869,9 @@ class Metrics(Model):
     :type version: str
     :param enabled: Required. Indicates whether metrics are enabled for the Blob service.
     :type enabled: bool
-    :param include_apis: Indicates whether metrics should generate summary statistics for called
+    :param include_ap_is: Indicates whether metrics should generate summary statistics for called
      API operations.
-    :type include_apis: bool
+    :type include_ap_is: bool
     :param retention_policy: the retention policy.
     :type retention_policy: ~xmlservice.models.RetentionPolicy
     """
@@ -883,7 +883,7 @@ class Metrics(Model):
     _attribute_map = {
         'version': {'key': 'Version', 'type': 'str'},
         'enabled': {'key': 'Enabled', 'type': 'bool'},
-        'include_apis': {'key': 'IncludeAPIs', 'type': 'bool'},
+        'include_ap_is': {'key': 'IncludeAPIs', 'type': 'bool'},
         'retention_policy': {'key': 'RetentionPolicy', 'type': 'RetentionPolicy'},
     }
 
@@ -892,14 +892,14 @@ class Metrics(Model):
         *,
         enabled: bool,
         version: Optional[str] = None,
-        include_apis: Optional[bool] = None,
+        include_ap_is: Optional[bool] = None,
         retention_policy: Optional["RetentionPolicy"] = None,
         **kwargs
     ):
         super(Metrics, self).__init__(**kwargs)
         self.version = version
         self.enabled = enabled
-        self.include_apis = include_apis
+        self.include_ap_is = include_ap_is
         self.retention_policy = retention_policy
 
 
@@ -1065,8 +1065,8 @@ class Slideshow(Model):
 
     :param title:
     :type title: str
-    :param date_property:
-    :type date_property: str
+    :param date:
+    :type date: str
     :param author:
     :type author: str
     :param slides:
@@ -1075,7 +1075,7 @@ class Slideshow(Model):
 
     _attribute_map = {
         'title': {'key': 'title', 'type': 'str', 'xml': {'attr': True}},
-        'date_property': {'key': 'date', 'type': 'str', 'xml': {'attr': True}},
+        'date': {'key': 'date', 'type': 'str', 'xml': {'attr': True}},
         'author': {'key': 'author', 'type': 'str', 'xml': {'attr': True}},
         'slides': {'key': 'slides', 'type': '[Slide]'},
     }
@@ -1087,14 +1087,14 @@ class Slideshow(Model):
         self,
         *,
         title: Optional[str] = None,
-        date_property: Optional[str] = None,
+        date: Optional[str] = None,
         author: Optional[str] = None,
         slides: Optional[List["Slide"]] = None,
         **kwargs
     ):
         super(Slideshow, self).__init__(**kwargs)
         self.title = title
-        self.date_property = date_property
+        self.date = date
         self.author = author
         self.slides = slides
 
