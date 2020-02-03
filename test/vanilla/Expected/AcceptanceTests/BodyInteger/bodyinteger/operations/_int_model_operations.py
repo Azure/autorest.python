@@ -62,11 +62,9 @@ class IntOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -107,11 +105,9 @@ class IntOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -152,11 +148,9 @@ class IntOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -197,11 +191,9 @@ class IntOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -242,11 +234,9 @@ class IntOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -287,11 +277,9 @@ class IntOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -335,11 +323,9 @@ class IntOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(int_body, 'int')
@@ -383,11 +369,9 @@ class IntOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(int_body, 'long')
@@ -431,11 +415,9 @@ class IntOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(int_body, 'int')
@@ -479,11 +461,9 @@ class IntOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(int_body, 'long')
@@ -524,11 +504,9 @@ class IntOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -572,11 +550,9 @@ class IntOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(int_body, 'unix-time')
@@ -617,11 +593,9 @@ class IntOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -662,11 +636,9 @@ class IntOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

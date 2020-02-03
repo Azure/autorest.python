@@ -62,11 +62,9 @@ class DictionaryOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -104,6 +102,7 @@ class DictionaryOperations(object):
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         complex_body = models.DictionaryWrapper(default_program=default_program)
 
         # Construct URL
@@ -112,11 +111,9 @@ class DictionaryOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'DictionaryWrapper')
@@ -157,11 +154,9 @@ class DictionaryOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -199,6 +194,7 @@ class DictionaryOperations(object):
         :raises: ~bodycomplex.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
+
         complex_body = models.DictionaryWrapper(default_program=default_program)
 
         # Construct URL
@@ -207,11 +203,9 @@ class DictionaryOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'DictionaryWrapper')
@@ -252,11 +246,9 @@ class DictionaryOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -297,11 +289,9 @@ class DictionaryOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

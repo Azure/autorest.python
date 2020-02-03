@@ -67,10 +67,8 @@ class PathsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -113,10 +111,8 @@ class PathsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -159,10 +155,8 @@ class PathsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -205,10 +199,8 @@ class PathsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -251,10 +243,8 @@ class PathsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -297,10 +287,8 @@ class PathsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -343,10 +331,8 @@ class PathsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -389,10 +375,8 @@ class PathsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -435,10 +419,8 @@ class PathsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -481,10 +463,8 @@ class PathsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -527,10 +507,8 @@ class PathsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -573,10 +551,8 @@ class PathsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -621,10 +597,8 @@ class PathsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -667,10 +641,8 @@ class PathsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -715,10 +687,8 @@ class PathsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -763,10 +733,8 @@ class PathsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -811,10 +779,8 @@ class PathsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -859,10 +825,8 @@ class PathsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -905,10 +869,8 @@ class PathsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -953,10 +915,8 @@ class PathsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -999,10 +959,8 @@ class PathsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1047,10 +1005,8 @@ class PathsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1093,10 +1049,8 @@ class PathsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1141,10 +1095,8 @@ class PathsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1189,10 +1141,8 @@ class PathsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1238,10 +1188,8 @@ class PathsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1286,10 +1234,8 @@ class PathsOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
