@@ -31,7 +31,7 @@ autorest --use=C:/work/autorest.python --version=2.0.4280
 
 ### Settings
 ``` yaml
-input-file: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/96e30c6e5713b364c17c154a99131ebf14a3083a/specification/graphrbac/data-plane/Microsoft.GraphRbac/stable/1.6/graphrbac.json
+input-file: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/graphrbac/data-plane/Microsoft.GraphRbac/stable/1.6/graphrbac.json
 output-folder: _generated
 package-name: azure-graphrbac
 namespace: azure.graphrbac
