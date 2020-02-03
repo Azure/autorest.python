@@ -17,6 +17,7 @@ service_to_readme_path = {
     'azure-mgmt-storage': 'test/services/azure-mgmt-storage/README.md',
     'azure-graphrbac': 'test/services/azure-graphrbac/README.md',
     'azure-search': 'test/services/azure-search/README.md',
+    'azure-keyvault': 'test/services/azure-keyvault/README.md'
 }
 
 default_mappings = {
