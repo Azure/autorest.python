@@ -76,10 +76,8 @@ class OdataOperations(object):
         if orderby is not None:
             query_parameters['$orderby'] = self._serialize.query("orderby", orderby, 'str')
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

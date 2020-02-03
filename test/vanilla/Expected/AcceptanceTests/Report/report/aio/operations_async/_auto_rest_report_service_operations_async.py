@@ -19,6 +19,7 @@ T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 class AutoRestReportServiceOperationsMixin:
+
     @distributed_trace_async
     async def get_report(
         self,
@@ -48,11 +49,9 @@ class AutoRestReportServiceOperationsMixin:
         if qualifier is not None:
             query_parameters['qualifier'] = self._serialize.query("qualifier", qualifier, 'str')
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -70,6 +69,7 @@ class AutoRestReportServiceOperationsMixin:
 
         return deserialized
     get_report.metadata = {'url': '/report'}
+
     @distributed_trace_async
     async def get_optional_report(
         self,
@@ -99,11 +99,9 @@ class AutoRestReportServiceOperationsMixin:
         if qualifier is not None:
             query_parameters['qualifier'] = self._serialize.query("qualifier", qualifier, 'str')
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

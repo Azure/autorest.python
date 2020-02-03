@@ -43,7 +43,6 @@ class LROsOperations:
         self._deserialize = deserializer
         self._config = config
 
-    
     async def _put200_succeeded_initial(
         self,
         product: Optional["models.Product"] = None,
@@ -59,12 +58,10 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -135,8 +132,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put200_succeeded.metadata = {'url': '/lro/put/200/succeeded'}
 
-
-    
     async def _put200_succeeded_no_state_initial(
         self,
         product: Optional["models.Product"] = None,
@@ -152,12 +147,10 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -226,8 +219,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put200_succeeded_no_state.metadata = {'url': '/lro/put/200/succeeded/nostate'}
 
-
-    
     async def _put202_retry200_initial(
         self,
         product: Optional["models.Product"] = None,
@@ -243,12 +234,10 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -317,8 +306,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put202_retry200.metadata = {'url': '/lro/put/202/retry/200'}
 
-
-    
     async def _put201_creating_succeeded200_initial(
         self,
         product: Optional["models.Product"] = None,
@@ -334,12 +321,10 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -413,8 +398,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put201_creating_succeeded200.metadata = {'url': '/lro/put/201/creating/succeeded/200'}
 
-
-    
     async def _put200_updating_succeeded204_initial(
         self,
         product: Optional["models.Product"] = None,
@@ -430,12 +413,10 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -504,8 +485,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put200_updating_succeeded204.metadata = {'url': '/lro/put/200/updating/succeeded/200'}
 
-
-    
     async def _put201_creating_failed200_initial(
         self,
         product: Optional["models.Product"] = None,
@@ -521,12 +500,10 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -600,8 +577,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put201_creating_failed200.metadata = {'url': '/lro/put/201/created/failed/200'}
 
-
-    
     async def _put200_acceptedcanceled200_initial(
         self,
         product: Optional["models.Product"] = None,
@@ -617,12 +592,10 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -691,8 +664,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put200_acceptedcanceled200.metadata = {'url': '/lro/put/200/accepted/canceled/200'}
 
-
-    
     async def _put_no_header_in_retry_initial(
         self,
         product: Optional["models.Product"] = None,
@@ -708,12 +679,10 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -787,8 +756,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put_no_header_in_retry.metadata = {'url': '/lro/put/noheader/202/200'}
 
-
-    
     async def _put_async_retry_succeeded_initial(
         self,
         product: Optional["models.Product"] = None,
@@ -804,12 +771,10 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -887,8 +852,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put_async_retry_succeeded.metadata = {'url': '/lro/putasync/retry/succeeded'}
 
-
-    
     async def _put_async_no_retry_succeeded_initial(
         self,
         product: Optional["models.Product"] = None,
@@ -904,12 +867,10 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -985,8 +946,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put_async_no_retry_succeeded.metadata = {'url': '/lro/putasync/noretry/succeeded'}
 
-
-    
     async def _put_async_retry_failed_initial(
         self,
         product: Optional["models.Product"] = None,
@@ -1002,12 +961,10 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -1085,8 +1042,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put_async_retry_failed.metadata = {'url': '/lro/putasync/retry/failed'}
 
-
-    
     async def _put_async_no_retrycanceled_initial(
         self,
         product: Optional["models.Product"] = None,
@@ -1102,12 +1057,10 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -1183,8 +1136,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put_async_no_retrycanceled.metadata = {'url': '/lro/putasync/noretry/canceled'}
 
-
-    
     async def _put_async_no_header_in_retry_initial(
         self,
         product: Optional["models.Product"] = None,
@@ -1200,12 +1151,10 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -1279,8 +1228,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put_async_no_header_in_retry.metadata = {'url': '/lro/putasync/noheader/201/200'}
 
-
-    
     async def _put_non_resource_initial(
         self,
         sku: Optional["models.Sku"] = None,
@@ -1296,12 +1243,10 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if sku is not None:
@@ -1370,8 +1315,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put_non_resource.metadata = {'url': '/lro/putnonresource/202/200'}
 
-
-    
     async def _put_async_non_resource_initial(
         self,
         sku: Optional["models.Sku"] = None,
@@ -1387,12 +1330,10 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if sku is not None:
@@ -1461,8 +1402,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put_async_non_resource.metadata = {'url': '/lro/putnonresourceasync/202/200'}
 
-
-    
     async def _put_sub_resource_initial(
         self,
         provisioning_state: Optional[str] = None,
@@ -1471,6 +1410,7 @@ class LROsOperations:
         **kwargs: Any
     ) -> "models.SubProduct":
         error_map = kwargs.pop('error_map', {})
+
         product = models.SubProduct(provisioning_state=provisioning_state)
 
         # Construct URL
@@ -1479,12 +1419,10 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -1553,8 +1491,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put_sub_resource.metadata = {'url': '/lro/putsubresource/202/200'}
 
-
-    
     async def _put_async_sub_resource_initial(
         self,
         provisioning_state: Optional[str] = None,
@@ -1563,6 +1499,7 @@ class LROsOperations:
         **kwargs: Any
     ) -> "models.SubProduct":
         error_map = kwargs.pop('error_map', {})
+
         product = models.SubProduct(provisioning_state=provisioning_state)
 
         # Construct URL
@@ -1571,12 +1508,10 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -1645,8 +1580,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     put_async_sub_resource.metadata = {'url': '/lro/putsubresourceasync/202/200'}
 
-
-    
     async def _delete_provisioning202_accepted200_succeeded_initial(
         self,
         cls: ClsType["models.Product"] = None,
@@ -1660,11 +1593,9 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -1734,8 +1665,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     delete_provisioning202_accepted200_succeeded.metadata = {'url': '/lro/delete/provisioning/202/accepted/200/succeeded'}
 
-
-    
     async def _delete_provisioning202_deleting_failed200_initial(
         self,
         cls: ClsType["models.Product"] = None,
@@ -1749,11 +1678,9 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -1823,8 +1750,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     delete_provisioning202_deleting_failed200.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/failed'}
 
-
-    
     async def _delete_provisioning202_deletingcanceled200_initial(
         self,
         cls: ClsType["models.Product"] = None,
@@ -1838,11 +1763,9 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -1912,8 +1835,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     delete_provisioning202_deletingcanceled200.metadata = {'url': '/lro/delete/provisioning/202/deleting/200/canceled'}
 
-
-    
     async def _delete204_succeeded_initial(
         self,
         cls: ClsType[None] = None,
@@ -1927,10 +1848,8 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -1982,8 +1901,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     delete204_succeeded.metadata = {'url': '/lro/delete/204/succeeded'}
 
-
-    
     async def _delete202_retry200_initial(
         self,
         cls: ClsType["models.Product"] = None,
@@ -1997,11 +1914,9 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -2066,8 +1981,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     delete202_retry200.metadata = {'url': '/lro/delete/202/retry/200'}
 
-
-    
     async def _delete202_no_retry204_initial(
         self,
         cls: ClsType["models.Product"] = None,
@@ -2081,11 +1994,9 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -2150,8 +2061,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     delete202_no_retry204.metadata = {'url': '/lro/delete/202/noretry/204'}
 
-
-    
     async def _delete_no_header_in_retry_initial(
         self,
         cls: ClsType[None] = None,
@@ -2165,10 +2074,8 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -2224,8 +2131,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     delete_no_header_in_retry.metadata = {'url': '/lro/delete/noheader'}
 
-
-    
     async def _delete_async_no_header_in_retry_initial(
         self,
         cls: ClsType[None] = None,
@@ -2239,10 +2144,8 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -2298,8 +2201,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     delete_async_no_header_in_retry.metadata = {'url': '/lro/deleteasync/noheader/202/204'}
 
-
-    
     async def _delete_async_retry_succeeded_initial(
         self,
         cls: ClsType[None] = None,
@@ -2313,10 +2214,8 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -2373,8 +2272,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     delete_async_retry_succeeded.metadata = {'url': '/lro/deleteasync/retry/succeeded'}
 
-
-    
     async def _delete_async_no_retry_succeeded_initial(
         self,
         cls: ClsType[None] = None,
@@ -2388,10 +2285,8 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -2448,8 +2343,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     delete_async_no_retry_succeeded.metadata = {'url': '/lro/deleteasync/noretry/succeeded'}
 
-
-    
     async def _delete_async_retry_failed_initial(
         self,
         cls: ClsType[None] = None,
@@ -2463,10 +2356,8 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -2523,8 +2414,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     delete_async_retry_failed.metadata = {'url': '/lro/deleteasync/retry/failed'}
 
-
-    
     async def _delete_async_retrycanceled_initial(
         self,
         cls: ClsType[None] = None,
@@ -2538,10 +2427,8 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -2598,8 +2485,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     delete_async_retrycanceled.metadata = {'url': '/lro/deleteasync/retry/canceled'}
 
-
-    
     async def _post200_with_payload_initial(
         self,
         cls: ClsType["models.Sku"] = None,
@@ -2613,11 +2498,9 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -2680,8 +2563,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     post200_with_payload.metadata = {'url': '/lro/post/payload/200'}
 
-
-    
     async def _post202_retry200_initial(
         self,
         product: Optional["models.Product"] = None,
@@ -2697,11 +2578,9 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -2768,8 +2647,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     post202_retry200.metadata = {'url': '/lro/post/202/retry/200'}
 
-
-    
     async def _post202_no_retry204_initial(
         self,
         product: Optional["models.Product"] = None,
@@ -2785,12 +2662,10 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -2866,8 +2741,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     post202_no_retry204.metadata = {'url': '/lro/post/202/noretry/204'}
 
-
-    
     async def _post_double_headers_final_location_get_initial(
         self,
         cls: ClsType["models.Product"] = None,
@@ -2881,11 +2754,9 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -2943,8 +2814,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     post_double_headers_final_location_get.metadata = {'url': '/lro/LROPostDoubleHeadersFinalLocationGet'}
 
-
-    
     async def _post_double_headers_final_azure_header_get_initial(
         self,
         cls: ClsType["models.Product"] = None,
@@ -2958,11 +2827,9 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -3020,8 +2887,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     post_double_headers_final_azure_header_get.metadata = {'url': '/lro/LROPostDoubleHeadersFinalAzureHeaderGet'}
 
-
-    
     async def _post_double_headers_final_azure_header_get_default_initial(
         self,
         cls: ClsType["models.Product"] = None,
@@ -3035,11 +2900,9 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -3097,8 +2960,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     post_double_headers_final_azure_header_get_default.metadata = {'url': '/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault'}
 
-
-    
     async def _post_async_retry_succeeded_initial(
         self,
         product: Optional["models.Product"] = None,
@@ -3114,12 +2975,10 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -3196,8 +3055,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     post_async_retry_succeeded.metadata = {'url': '/lro/postasync/retry/succeeded'}
 
-
-    
     async def _post_async_no_retry_succeeded_initial(
         self,
         product: Optional["models.Product"] = None,
@@ -3213,12 +3070,10 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -3295,8 +3150,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     post_async_no_retry_succeeded.metadata = {'url': '/lro/postasync/noretry/succeeded'}
 
-
-    
     async def _post_async_retry_failed_initial(
         self,
         product: Optional["models.Product"] = None,
@@ -3312,11 +3165,9 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -3384,8 +3235,6 @@ class LROsOperations:
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     post_async_retry_failed.metadata = {'url': '/lro/postasync/retry/failed'}
 
-
-    
     async def _post_async_retrycanceled_initial(
         self,
         product: Optional["models.Product"] = None,
@@ -3401,11 +3250,9 @@ class LROsOperations:
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
 
-
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if product is not None:
@@ -3472,4 +3319,3 @@ class LROsOperations:
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
     post_async_retrycanceled.metadata = {'url': '/lro/postasync/retry/canceled'}
-

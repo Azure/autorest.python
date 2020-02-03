@@ -56,10 +56,8 @@ class HttpSuccessOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -98,10 +96,8 @@ class HttpSuccessOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -140,10 +136,8 @@ class HttpSuccessOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)

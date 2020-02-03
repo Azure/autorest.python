@@ -124,7 +124,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         origin_name = parameter.full_serialized_name
 
         return (f"""self._serialize.{function_name}("{origin_name}", {origin_name}, """ +
-        f"""'{parameter.schema.get_serialization_type()}'{optional_parameters_string})""")
+        f"""'{parameter.schema.serialization_type}'{optional_parameters_string})""")
 
     @property
     def serialization_context(self) -> str:

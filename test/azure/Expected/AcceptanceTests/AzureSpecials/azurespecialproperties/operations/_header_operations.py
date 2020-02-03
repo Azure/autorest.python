@@ -65,11 +65,9 @@ class HeaderOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", foo_client_request_id, 'str')
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -111,18 +109,15 @@ class HeaderOperations(object):
         if header_custom_named_request_id_param_grouping_parameters is not None:
             foo_client_request_id = header_custom_named_request_id_param_grouping_parameters.foo_client_request_id
 
-
         # Construct URL
         url = self.custom_named_request_id_param_grouping.metadata['url']
 
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", foo_client_request_id, 'str')
-
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -166,11 +161,9 @@ class HeaderOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", foo_client_request_id, 'str')
-
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)

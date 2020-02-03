@@ -68,10 +68,8 @@ class ImplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -114,10 +112,8 @@ class ImplicitOperations(object):
         if query_parameter is not None:
             query_parameters['queryParameter'] = self._serialize.query("query_parameter", query_parameter, 'str')
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters)
@@ -158,12 +154,10 @@ class ImplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         if query_parameter is not None:
             header_parameters['queryParameter'] = self._serialize.header("query_parameter", query_parameter, 'str')
-
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters)
@@ -204,11 +198,9 @@ class ImplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
         header_parameters['Content-Type'] = 'application/json'
-
 
         # Construct body
         if body_parameter is not None:
@@ -256,10 +248,8 @@ class ImplicitOperations(object):
         # Construct parameters
         query_parameters = {}
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -298,10 +288,8 @@ class ImplicitOperations(object):
         query_parameters = {}
         query_parameters['required-global-query'] = self._serialize.query("self._config.required_global_query", self._config.required_global_query, 'str')
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -341,10 +329,8 @@ class ImplicitOperations(object):
         if self._config.optional_global_query is not None:
             query_parameters['optional-global-query'] = self._serialize.query("self._config.optional_global_query", self._config.optional_global_query, 'int')
 
-
         # Construct headers
         header_parameters = {}
-
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
