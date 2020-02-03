@@ -16,9 +16,7 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class ParameterList(MutableSequence):
-    def __init__(
-        self, parameters: List[Parameter] = None, implementation: str = "Method"
-    ):
+    def __init__(self, parameters: List[Parameter] = None, implementation: str = "Method"):
         self.parameters = parameters or []
         self.implementation = implementation
 
@@ -44,17 +42,9 @@ class ParameterList(MutableSequence):
     # Parameter helpers
 
     def has_any_location(self, location: ParameterLocation) -> bool:
-        return bool(
-            [
-                parameter
-                for parameter in self.parameters
-                if parameter.location == location
-            ]
-        )
+        return bool([parameter for parameter in self.parameters if parameter.location == location])
 
-    def get_from_predicate(
-        self, predicate: Callable[[Parameter], bool]
-    ) -> List[Parameter]:
+    def get_from_predicate(self, predicate: Callable[[Parameter], bool]) -> List[Parameter]:
         return [parameter for parameter in self.parameters if predicate(parameter)]
 
     def get_from_location(self, location: ParameterLocation) -> List[Parameter]:
@@ -101,8 +91,7 @@ class ParameterList(MutableSequence):
         not have impact on any generation at this level
         """
         return self.get_from_predicate(
-            lambda parameter: isinstance(parameter.schema, ConstantSchema)
-            and not parameter.flattened
+            lambda parameter: isinstance(parameter.schema, ConstantSchema) and not parameter.flattened
         )
 
     @property
@@ -116,13 +105,10 @@ class ParameterList(MutableSequence):
             return not (
                 # Constant are never on signature
                 isinstance(parameter.schema, ConstantSchema)
-
                 # Client level should not be on Method, etc.
                 or parameter.implementation != self.implementation
-
                 # If I'm grouped, my grouper will be on signature, not me
                 or parameter.grouped_by
-
                 # If I'm body and it's flattened, I'm not either
                 or (parameter.location == ParameterLocation.Body and self.is_flattened)
             )
@@ -136,9 +122,7 @@ class ParameterList(MutableSequence):
                 else:
                     signature_parameters_optional.append(parameter)
 
-        signature_parameters = (
-            signature_parameters_required + signature_parameters_optional
-        )
+        signature_parameters = signature_parameters_required + signature_parameters_optional
         return signature_parameters
 
     @property
@@ -155,16 +139,12 @@ class ParameterList(MutableSequence):
 
     def build_flattened_object(self) -> str:
         if not self.is_flattened:
-            raise ValueError(
-                "This method can't be called if the operation doesn't need parameter flattening"
-            )
+            raise ValueError("This method can't be called if the operation doesn't need parameter flattening")
 
         parameters = self.get_from_predicate(
             lambda parameter: parameter.location == ParameterLocation.Other
             and not isinstance(parameter.schema, ConstantSchema)
         )
-        parameter_string = ", ".join(
-            [f"{param.serialized_name}={param.serialized_name}" for param in parameters]
-        )
+        parameter_string = ", ".join([f"{param.serialized_name}={param.serialized_name}" for param in parameters])
         object_schema = cast(ObjectSchema, self.body.schema)
         return f"{self.body.serialized_name} = models.{object_schema.name}({parameter_string})"

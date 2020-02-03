@@ -13,6 +13,7 @@ from .imports import ImportType
 
 _LOGGER = logging.getLogger(__name__)
 
+
 class LROOperation(Operation):
     def __init__(
         self,
@@ -27,7 +28,7 @@ class LROOperation(Operation):
         exceptions: List[SchemaResponse] = None,
         media_types: List[str] = None,
         want_description_docstring: Optional[bool] = True,
-        want_tracing: Optional[bool] = True
+        want_tracing: Optional[bool] = True,
     ) -> None:
         super(LROOperation, self).__init__(
             yaml_data,
@@ -41,7 +42,7 @@ class LROOperation(Operation):
             exceptions,
             media_types,
             want_description_docstring,
-            want_tracing
+            want_tracing,
         )
         self.lro_response: Optional[SchemaResponse] = None
         self.lro_options = yaml_data.get("extensions", {}).get("x-ms-long-running-operation-options", {})
@@ -59,23 +60,13 @@ class LROOperation(Operation):
         file_import = super().imports(code_model, async_mode)
         if async_mode:
             file_import.add_from_import("typing", "Optional", ImportType.STDLIB)
-            file_import.add_from_import(
-                "azure.core.polling", "async_poller", ImportType.AZURECORE
-            )
-            file_import.add_from_import(
-                "azure.core.polling", "AsyncNoPolling", ImportType.AZURECORE
-            )
+            file_import.add_from_import("azure.core.polling", "async_poller", ImportType.AZURECORE)
+            file_import.add_from_import("azure.core.polling", "AsyncNoPolling", ImportType.AZURECORE)
             file_import.add_from_import(
                 "azure.mgmt.core.polling.async_arm_polling", "AsyncARMPolling", ImportType.AZURECORE
             )
         else:
-            file_import.add_from_import(
-                "azure.core.polling", "LROPoller", ImportType.AZURECORE
-            )
-            file_import.add_from_import(
-                "azure.core.polling", "NoPolling", ImportType.AZURECORE
-            )
-            file_import.add_from_import(
-                "azure.mgmt.core.polling.arm_polling", "ARMPolling", ImportType.AZURECORE
-            )
+            file_import.add_from_import("azure.core.polling", "LROPoller", ImportType.AZURECORE)
+            file_import.add_from_import("azure.core.polling", "NoPolling", ImportType.AZURECORE)
+            file_import.add_from_import("azure.mgmt.core.polling.arm_polling", "ARMPolling", ImportType.AZURECORE)
         return file_import

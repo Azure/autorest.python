@@ -18,25 +18,19 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
     :param properties: the optional properties of the class.
     :type properties: dict(str, str)
     """
-    def __init__(
-        self,
-        namespace: str,
-        yaml_data: Dict[str, Any],
-        name: str,
-        description: str = "",
-        **kwargs
-    ):
+
+    def __init__(self, namespace: str, yaml_data: Dict[str, Any], name: str, description: str = "", **kwargs):
         super(ObjectSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.name = name
         self.description = description
-        self.max_properties = kwargs.pop('max_properties', None)
-        self.min_properties = kwargs.pop('min_properties', None)
-        self.properties = kwargs.pop('properties', None)
-        self.is_exception = kwargs.pop('is_exception', False)
-        self.base_model = kwargs.pop('base_model', None)
-        self.subtype_map = kwargs.pop('subtype_map', None)
-        self.discriminator_name = kwargs.pop('discriminator_name', None)
-        self.discriminator_value = kwargs.pop('discriminator_value', None)
+        self.max_properties = kwargs.pop("max_properties", None)
+        self.min_properties = kwargs.pop("min_properties", None)
+        self.properties = kwargs.pop("properties", None)
+        self.is_exception = kwargs.pop("is_exception", False)
+        self.base_model = kwargs.pop("base_model", None)
+        self.subtype_map = kwargs.pop("subtype_map", None)
+        self.discriminator_name = kwargs.pop("discriminator_name", None)
+        self.discriminator_value = kwargs.pop("discriminator_value", None)
 
     def imports(self) -> FileImport:
         file_import = FileImport()
@@ -51,15 +45,15 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
 
     @property
     def type_annotation(self) -> str:
-        return f'\"{self.name}\"'
+        return f'"{self.name}"'
 
     @property
     def operation_type_annotation(self) -> str:
-        return f'\"models.{self.name}\"'
+        return f'"models.{self.name}"'
 
     @property
     def docstring_type(self):
-        return f'~{self.namespace}.models.{self.name}'
+        return f"~{self.namespace}.models.{self.name}"
 
     @property
     def docstring_text(self) -> str:
@@ -107,17 +101,14 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         base_model = None
 
         # checking to see if there is a parent class and / or additional properties
-        if yaml_data.get('parents'):
-            immediate_parents = yaml_data['parents']['immediate']
-        # checking if object has a parent
+        if yaml_data.get("parents"):
+            immediate_parents = yaml_data["parents"]["immediate"]
+            # checking if object has a parent
             if immediate_parents:
                 for immediate_parent in immediate_parents:
-                    if immediate_parent['type'] == 'dictionary':
+                    if immediate_parent["type"] == "dictionary":
                         additional_properties_schema = DictionarySchema.from_yaml(
-                            namespace=namespace,
-                            yaml_data=immediate_parent,
-                            for_additional_properties=True,
-                            **kwargs
+                            namespace=namespace, yaml_data=immediate_parent, for_additional_properties=True, **kwargs
                         )
                         properties.append(
                             Property(
@@ -125,35 +116,34 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
                                 schema=additional_properties_schema,
                                 original_swagger_name="",
                                 yaml_data={},
-                                description='Unmatched properties from the message are deserialized to this collection.'
+                                description="Unmatched properties from the message are deserialized to this collection.",
                             )
                         )
-                    elif immediate_parent['language']['default']['name'] != yaml_data['language']['default']['name']:
+                    elif immediate_parent["language"]["default"]["name"] != yaml_data["language"]["default"]["name"]:
                         base_model = id(immediate_parent)
-
 
         # checking to see if this is a polymorphic class
         subtype_map = None
-        if yaml_data.get('discriminator'):
+        if yaml_data.get("discriminator"):
             subtype_map = {}
             # map of discriminator value to child's name
-            for children_yaml in yaml_data['discriminator']['immediate'].values():
-                subtype_map[children_yaml['discriminatorValue']] = children_yaml['language']['python']['name']
+            for children_yaml in yaml_data["discriminator"]["immediate"].values():
+                subtype_map[children_yaml["discriminatorValue"]] = children_yaml["language"]["python"]["name"]
 
-        if yaml_data.get('properties'):
+        if yaml_data.get("properties"):
             properties += [
                 Property.from_yaml(p, has_additional_properties=len(properties) > 0, **kwargs)
-                for p in yaml_data['properties']
+                for p in yaml_data["properties"]
             ]
         # this is to ensure that the attribute map type and property type are generated correctly
 
-        name = yaml_data['language']['python']['name']
+        name = yaml_data["language"]["python"]["name"]
 
-        description = yaml_data['language']['python']['description']
+        description = yaml_data["language"]["python"]["description"]
         is_exception = None
-        exceptions_set = kwargs.pop('exceptions_set', None)
+        exceptions_set = kwargs.pop("exceptions_set", None)
         if exceptions_set:
-            if yaml_data['language']['python']['name'] in exceptions_set:
+            if yaml_data["language"]["python"]["name"] in exceptions_set:
                 is_exception = True
 
         self.yaml_data = yaml_data
@@ -164,10 +154,11 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         self.is_exception = is_exception
         self.subtype_map = subtype_map
         self.discriminator_name = (
-            yaml_data['discriminator']['property']['language']['python']['name']
-            if yaml_data.get('discriminator') else None
+            yaml_data["discriminator"]["property"]["language"]["python"]["name"]
+            if yaml_data.get("discriminator")
+            else None
         )
-        self.discriminator_value = yaml_data.get('discriminatorValue', None)
+        self.discriminator_value = yaml_data.get("discriminatorValue", None)
 
     @property
     def has_readonly_or_constant_property(self) -> bool:

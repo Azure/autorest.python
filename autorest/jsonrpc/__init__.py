@@ -10,7 +10,6 @@ import logging
 from pathlib import Path
 
 
-
 class Channel(Enum):
     # Information is considered the mildest of responses; not necesarily actionable.
     Information = "information"
@@ -30,6 +29,7 @@ class Channel(Enum):
     # Catastrophic failure, likely abending the process.
     Fatal = "fatal"
 
+
 _LEVEL_MAPPING = {
     logging.CRITICAL: Channel.Fatal,
     logging.ERROR: Channel.Error,
@@ -38,8 +38,8 @@ _LEVEL_MAPPING = {
     logging.DEBUG: Channel.Debug,
 }
 
-class AutorestHandler(logging.Handler):
 
+class AutorestHandler(logging.Handler):
     def __init__(self, autorest_api):
         # Initialize this handler with the max loglevel, since
         # autorest is deciding what to show, not us
@@ -56,10 +56,7 @@ class AutorestHandler(logging.Handler):
     def emit(self, record: logging.LogRecord) -> None:
         try:
             msg = self.format(record)
-            self._autorest_api.message(
-                self._get_log_level(record.levelno),
-                msg
-            )
+            self._autorest_api.message(self._get_log_level(record.levelno), msg)
         except RecursionError:  # See issue 36272
             raise
         except Exception:  # pylint: disable=broad-except
@@ -69,6 +66,7 @@ class AutorestHandler(logging.Handler):
 class AutorestAPI(ABC):
     """Defines the base interface of communication to Autorest from the plugin.
     """
+
     def __init__(self):
         if Path("logging.conf").exists():
             logging.config.fileConfig(Path("logging.conf"))
@@ -134,13 +132,13 @@ class AutorestAPI(ABC):
         result = self.get_value(key)
         if result is None:
             return default
-        if result == {}: # autorest received --myoption
+        if result == {}:  # autorest received --myoption
             return True
         if isinstance(result, bool):
             return result
         # Try as a string
         try:
             return result.lower() == "true"
-        except AttributeError: # not a string
+        except AttributeError:  # not a string
             pass
         return result == 1
