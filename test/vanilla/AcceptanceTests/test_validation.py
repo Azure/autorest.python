@@ -52,10 +52,11 @@ def client():
 
 class TestValidation(object):
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/83")
     def test_with_constant_in_path(self, client):
         client.get_with_constant_in_path()
 
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/83")
+    def test_post_with_constant_in_body(client):
         body = Product(child=ChildProduct())
         product = client.post_with_constant_in_body(body=body)
         assert product is not None
