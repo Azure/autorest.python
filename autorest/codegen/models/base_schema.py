@@ -106,7 +106,8 @@ class BaseSchema(BaseModel, ABC):
         """
         return str(value)
 
-    def get_default_value_declaration(self) -> str:
+    @property
+    def default_value_declaration(self) -> str:
         """Return the default value as string using get_declaration.
         """
         if self.default_value is None:
