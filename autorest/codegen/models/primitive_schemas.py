@@ -60,7 +60,8 @@ class NumberSchema(PrimitiveSchema):
         self.exclusive_maximum = cast(int, yaml_data.get("exclusiveMaximum"))
         self.exclusive_minimum = cast(int, yaml_data.get("exclusiveMinimum"))
 
-    def get_serialization_constraints(self) -> List[str]:
+    @property
+    def serialization_constraints(self) -> List[str]:
         validation_constraints = [
             f"maximum_ex={self.maximum}" if self.maximum is not None and self.exclusive_maximum else None,
             f"maximum={self.maximum}" if self.maximum is not None and not self.exclusive_maximum else None,
@@ -120,7 +121,8 @@ class StringSchema(PrimitiveSchema):
         )
         self.pattern = cast(int, yaml_data.get("pattern"))
 
-    def get_serialization_constraints(self) -> List[str]:
+    @property
+    def serialization_constraints(self) -> List[str]:
         validation_constraints = [
             f"max_length={self.max_length}" if self.max_length is not None else None,
             f"min_length={self.min_length}" if self.min_length is not None else None,
