@@ -76,15 +76,17 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
 
     @property
     def sync_method_signature(self) -> str:
+        default_value = self.schema.get_default_value_declaration()
         if self.required:
             return f"{self.serialized_name},  # type: {self.schema.operation_type_annotation}"
-        return f"{self.serialized_name}=None,  # type: Optional[{self.schema.operation_type_annotation}]"
+        return f"{self.serialized_name}={default_value},  # type: Optional[{self.schema.operation_type_annotation}]"
 
     @property
     def async_method_signature(self) -> str:
+        default_value = self.schema.get_default_value_declaration()
         if self.required:
             return f"{self.serialized_name}: {self.schema.operation_type_annotation}"
-        return f"{self.serialized_name}: Optional[{self.schema.operation_type_annotation}] = None"
+        return f"{self.serialized_name}: Optional[{self.schema.operation_type_annotation}] = {default_value}"
 
     @property
     def full_serialized_name(self) -> str:

@@ -28,6 +28,7 @@ _LOGGER = logging.getLogger(__name__)
 class CredentialSchema(BaseSchema):
     def __init__(self):  # pylint: disable=super-init-not-called
         self.type = "azure.core.credentials.TokenCredential"
+        self.default_value = None
 
     @property
     def serialization_type(self) -> str:
