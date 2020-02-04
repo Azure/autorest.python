@@ -216,7 +216,7 @@ class Fish(Model):
         **kwargs
     ):
         super(Fish, self).__init__(**kwargs)
-        self.fishtype = 'None'
+        self.fishtype = None
         self.species = species
         self.length = length
         self.siblings = siblings
@@ -490,7 +490,7 @@ class DotFish(Model):
         **kwargs
     ):
         super(DotFish, self).__init__(**kwargs)
-        self.fish_type = 'None'
+        self.fish_type = None
         self.species = species
 
 
@@ -868,7 +868,7 @@ class MyBaseType(Model):
         **kwargs
     ):
         super(MyBaseType, self).__init__(**kwargs)
-        self.kind = 'None'
+        self.kind = None
         self.prop_b1 = prop_b1
         self.prop_bh1 = prop_bh1
 
