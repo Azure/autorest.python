@@ -46,8 +46,8 @@ class Property(BaseModel):
             validation_map["readonly"] = True
         if self.constant:
             validation_map["constant"] = True
-        if self.schema.get_validation_map():
-            validation_map_from_schema = cast(Dict[str, Union[bool, int, str]], self.schema.get_validation_map())
+        if self.schema.validation_map:
+            validation_map_from_schema = cast(Dict[str, Union[bool, int, str]], self.schema.validation_map)
             validation_map.update(validation_map_from_schema)
         self.validation_map = validation_map or None
 

@@ -70,7 +70,8 @@ class NumberSchema(PrimitiveSchema):
         ]
         return [x for x in validation_constraints if x is not None]
 
-    def get_validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
+    @property
+    def validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
         validation_map: Dict[str, Union[bool, int, str]] = {}
         if self.maximum is not None:
             if self.exclusive_maximum:
@@ -127,7 +128,8 @@ class StringSchema(PrimitiveSchema):
         ]
         return [x for x in validation_constraints if x is not None]
 
-    def get_validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
+    @property
+    def validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
         validation_map: Dict[str, Union[bool, int, str]] = {}
         if self.max_length is not None:
             validation_map["max_length"] = self.max_length

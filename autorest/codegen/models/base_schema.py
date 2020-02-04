@@ -114,7 +114,8 @@ class BaseSchema(BaseModel, ABC):
             return "None"
         return self.get_declaration(self.default_value)
 
-    def get_validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:  # pylint: disable=no-self-use
+    @property
+    def validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:  # pylint: disable=no-self-use
         return None
 
     def get_serialization_constraints(self) -> Optional[List[str]]:  # pylint: disable=no-self-use
