@@ -46,7 +46,6 @@ class TestAcceptance(object):
         missing_features_or_bugs = {
             'FileStreamVeryLarge' : 1,
             'ConstantsInBody': 1,  # https://github.com/Azure/autorest.modelerfour/issues/83
-            'CustomBaseUriMoreOptions': 1, # https://github.com/Azure/autorest.testserver/issues/97
             'putModelFlattenArray': 1, # https://github.com/Azure/autorest.modelerfour/issues/14
             'putModelFlattenDictionary': 1, # https://github.com/Azure/autorest.modelerfour/issues/14
             'putModelFlattenResourceCollection': 1, # https://github.com/Azure/autorest.modelerfour/issues/14
