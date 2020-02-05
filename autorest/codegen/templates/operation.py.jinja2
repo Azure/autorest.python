@@ -106,7 +106,7 @@ def {{ operation.python_name }}(
 {% endif %}
 {% if operation.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None) %}
     {% for constant_parameter in operation.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None) %}
-    {{ constant_parameter.serialized_name }} = {{ constant_parameter.schema.get_constant_value() }}
+    {{ constant_parameter.serialized_name }} = {{ constant_parameter.schema.constant_value }}
     {% endfor %}
 {% endif %}
 

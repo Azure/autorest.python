@@ -41,7 +41,8 @@ class ListSchema(BaseSchema):
     def docstring_text(self) -> str:
         return "list"
 
-    def get_validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
+    @property
+    def validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
         validation_map: Dict[str, Union[bool, int, str]] = {}
         if self.max_items:
             validation_map["max_items"] = self.max_items
