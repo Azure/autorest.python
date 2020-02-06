@@ -10,11 +10,11 @@ from ..models import EnumSchema, ObjectSchema, CodeModel, Property, ConstantSche
 from ..models.imports import FileImport
 from .import_serializer import FileImportSerializer
 
+
 class ModelBaseSerializer:
     def __init__(self, code_model: CodeModel, env: Environment):
         self.code_model = code_model
         self.env = env
-
 
     def serialize(self) -> str:
         # Generate the models
@@ -26,7 +26,7 @@ class ModelBaseSerializer:
             init_line=self.init_line,
             init_args=self.init_args,
             prop_documentation_string=ModelBaseSerializer.prop_documentation_string,
-            prop_type_documentation_string=ModelBaseSerializer.prop_type_documentation_string
+            prop_type_documentation_string=ModelBaseSerializer.prop_type_documentation_string,
         )
 
     def imports(self) -> FileImport:
@@ -45,7 +45,7 @@ class ModelBaseSerializer:
         description = prop.description
         if description and description[-1] != ".":
             description += "."
-        if prop.name == 'tags':
+        if prop.name == "tags":
             description = "A set of tags. " + description
         if prop.required:
             if description:
@@ -54,14 +54,14 @@ class ModelBaseSerializer:
                 description = "Required. "
         if prop.constant:
             constant_prop = cast(ConstantSchema, prop.schema)
-            description += f" Default value: \"{constant_prop.value}\"."
+            description += f' Default value: "{constant_prop.value}".'
         if prop.is_discriminator:
             description += "Constant filled by server. "
         if isinstance(prop.schema, EnumSchema):
-            values = ["\'" + v.value + "\'" for v in prop.schema.values]
+            values = ["'" + v.value + "'" for v in prop.schema.values]
             description += " Possible values include: {}.".format(", ".join(values))
             if prop.schema.default_value:
-                description += f" Default value: \"{prop.schema.default_value}\"."
+                description += f' Default value: "{prop.schema.default_value}".'
         if description:
             param_doc_string += " " + description
         return param_doc_string

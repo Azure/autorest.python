@@ -11,6 +11,7 @@ from .imports import FileImport
 
 _LOGGER = logging.getLogger(__name__)
 
+
 class ConstantSchema(BaseSchema):
     """Schema for constants that will be serialized.
 
@@ -20,21 +21,19 @@ class ConstantSchema(BaseSchema):
     :param schema: The schema for the value of this constant.
     :type schema: ~autorest.models.PrimitiveSchema
     """
+
     def __init__(
-        self,
-        namespace: str,
-        yaml_data: Dict[str, Any],
-        schema: PrimitiveSchema,
-        value: Optional[str],
+        self, namespace: str, yaml_data: Dict[str, Any], schema: PrimitiveSchema, value: Optional[str],
     ):
         super(ConstantSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.value = value
         self.schema = schema
 
     def get_declaration(self, value: Any):
-        raise TypeError('Should not call get_declaration on a ConstantSchema. Call get_constant_value instead')
+        raise TypeError("Should not call get_declaration on a ConstantSchema. Use the constant_value property instead")
 
-    def get_constant_value(self) -> str:
+    @property
+    def constant_value(self) -> str:
         """This string is used directly in template, as-is
         """
         if self.value is None:
@@ -76,13 +75,13 @@ class ConstantSchema(BaseSchema):
         :return: A created ConstantSchema
         :rtype: ~autorest.models.ConstantSchema
         """
-        name = yaml_data["language"]["python"]["name"] if yaml_data["language"]["python"].get('name') else ""
+        name = yaml_data["language"]["python"]["name"] if yaml_data["language"]["python"].get("name") else ""
         _LOGGER.debug("Parsing %s constant", name)
         return cls(
             namespace=namespace,
             yaml_data=yaml_data,
-            schema=get_primitive_schema(namespace=namespace, yaml_data=yaml_data['valueType']),
-            value=yaml_data.get("value", {}).get("value", None)
+            schema=get_primitive_schema(namespace=namespace, yaml_data=yaml_data["valueType"]),
+            value=yaml_data.get("value", {}).get("value", None),
         )
 
     def imports(self) -> FileImport:

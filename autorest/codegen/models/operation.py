@@ -34,7 +34,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         exceptions: Optional[List[SchemaResponse]] = None,
         media_types: Optional[List[str]] = None,
         want_description_docstring: Optional[bool] = True,
-        want_tracing: Optional[bool] = True
+        want_tracing: Optional[bool] = True,
     ) -> None:
         super().__init__(yaml_data)
         self.name = name
@@ -73,11 +73,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
 
     @property
     def accept_content_type(self) -> str:
-        media_types = set(
-            media_type
-            for response in self.responses
-            for media_type in response.media_types
-        )
+        media_types = set(media_type for response in self.responses for media_type in response.media_types)
         return self._suggest_content_type(list(media_types))
 
     @property
@@ -105,26 +101,28 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
 
         if parameter.style:
             if parameter.style in [ParameterStyle.simple, ParameterStyle.form]:
-                div_char = ','
+                div_char = ","
             elif parameter.style in [ParameterStyle.spaceDelimited]:
-                div_char = ' '
+                div_char = " "
             elif parameter.style in [ParameterStyle.pipeDelimited]:
-                div_char = '|'
+                div_char = "|"
             elif parameter.style in [ParameterStyle.tabDelimited]:
-                div_char = '\t'
+                div_char = "\t"
             else:
                 raise ValueError(f"Do not support {parameter.style} yet")
             optional_parameters.append(f"div='{div_char}'")
 
-        serialization_constraints = parameter.schema.get_serialization_constraints()
+        serialization_constraints = parameter.schema.serialization_constraints
         optional_parameters += serialization_constraints if serialization_constraints else ""
 
         optional_parameters_string = "" if not optional_parameters else ", " + ", ".join(optional_parameters)
 
         origin_name = parameter.full_serialized_name
 
-        return (f"""self._serialize.{function_name}("{origin_name}", {origin_name}, """ +
-        f"""'{parameter.schema.serialization_type}'{optional_parameters_string})""")
+        return (
+            f"""self._serialize.{function_name}("{origin_name}", {origin_name}, """
+            + f"""'{parameter.schema.serialization_type}'{optional_parameters_string})"""
+        )
 
     @property
     def serialization_context(self) -> str:
@@ -151,47 +149,29 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
     def success_status_code(self) -> List[Union[str, int]]:
         """The list of all successfull status code.
         """
-        return [
-            code
-            for response in self.responses
-            for code in response.status_codes
-            if code != "default"
-        ]
+        return [code for response in self.responses for code in response.status_codes if code != "default"]
 
     @property
     def default_exception(self) -> Optional[SchemaResponse]:
-        default_excp = [
-            excp
-            for excp in self.exceptions
-            for code in excp.status_codes
-            if code == "default"
-        ]
+        default_excp = [excp for excp in self.exceptions for code in excp.status_codes if code == "default"]
         if default_excp:
             return default_excp[0]
         return None
 
     @property
     def status_code_exceptions(self) -> List[SchemaResponse]:
-        return [
-            excp
-            for excp in self.exceptions
-            if list(excp.status_codes) != ["default"]
-        ]
+        return [excp for excp in self.exceptions if list(excp.status_codes) != ["default"]]
 
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = FileImport()
 
         # Exceptions
-        file_import.add_from_import(
-            "azure.core.exceptions", "map_error", ImportType.AZURECORE
-        )
+        file_import.add_from_import("azure.core.exceptions", "map_error", ImportType.AZURECORE)
         if not self.default_exception:
-            if code_model.options['azure_arm']:
+            if code_model.options["azure_arm"]:
                 file_import.add_from_import("azure.mgmt.core.exceptions", "ARMError", ImportType.AZURECORE)
             else:
-                file_import.add_from_import(
-                    "azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE
-                )
+                file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
         for parameter in self.parameters:
             file_import.merge(parameter.imports())
 
@@ -233,9 +213,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         name = yaml_data["language"]["python"]["name"]
         _LOGGER.debug("Parsing %s operation", name)
 
-        parameters = [Parameter.from_yaml(yaml)
-            for yaml in yaml_data["request"].get("parameters", [])
-        ]
+        parameters = [Parameter.from_yaml(yaml) for yaml in yaml_data["request"].get("parameters", [])]
         parameters_index = {id(parameter.yaml_data): parameter for parameter in parameters}
 
         # Need to connect the groupBy and originalParameter
@@ -256,12 +234,8 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
             method=yaml_data["request"]["protocol"]["http"]["method"],
             summary=yaml_data["language"]["python"].get("summary"),
             parameters=parameters,
-            responses=[
-                SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("responses", [])
-            ],
+            responses=[SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("responses", [])],
             # Exception with no schema means default exception, we don't store them
-            exceptions=[
-                SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("exceptions", []) if "schema" in yaml
-            ],
-            media_types=yaml_data["request"]["protocol"]["http"].get("mediaTypes", [])
+            exceptions=[SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("exceptions", []) if "schema" in yaml],
+            media_types=yaml_data["request"]["protocol"]["http"].get("mediaTypes", []),
         )

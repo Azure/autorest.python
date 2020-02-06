@@ -8,14 +8,9 @@ from jinja2 import Environment
 from .import_serializer import FileImportSerializer
 from ..models import LROOperation, PagingOperation, CodeModel, OperationGroup
 
+
 class OperationGroupSerializer:
-    def __init__(
-        self,
-        code_model: CodeModel,
-        env: Environment,
-        operation_group: OperationGroup,
-        async_mode: bool
-    ):
+    def __init__(self, code_model: CodeModel, env: Environment, operation_group: OperationGroup, async_mode: bool):
         self.code_model = code_model
         self.env = env
         self.operation_group = operation_group
@@ -24,6 +19,7 @@ class OperationGroupSerializer:
     def serialize(self) -> str:
         def _is_lro(operation):
             return isinstance(operation, LROOperation)
+
         def _is_paging(operation):
             return isinstance(operation, PagingOperation)
 
@@ -37,7 +33,7 @@ class OperationGroupSerializer:
             imports=FileImportSerializer(self.operation_group.imports(self.async_mode)),
             async_mode=self.async_mode,
             is_lro=_is_lro,
-            is_paging=_is_paging
+            is_paging=_is_paging,
         )
 
     def filename(self) -> str:

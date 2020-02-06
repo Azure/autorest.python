@@ -9,7 +9,6 @@ from ..models import ObjectSchema
 
 
 class ModelGenericSerializer(ModelBaseSerializer):
-
     @staticmethod
     def init_line(model: ObjectSchema) -> List[str]:
         return []
@@ -25,7 +24,7 @@ class ModelGenericSerializer(ModelBaseSerializer):
             if prop.constant:
                 continue
             if not prop.readonly and not prop.is_discriminator:
-                default_value = prop.schema.get_default_value_declaration()
+                default_value = prop.schema.default_value_declaration
                 init_args.append(f"self.{prop.name} = kwargs.get('{prop.name}', {default_value})")
             else:
                 if not model.discriminator_value:
