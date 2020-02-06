@@ -62,7 +62,7 @@ class {{ client_name }}({% if mixin_operations %}{{ client_name }}OperationsMixi
         _PROFILE_TAG + " latest"
     )
 
-    def __init__(self, credential{% if has_subscription_id %}, subscription_id{% endif %}, api_version=None, base_url=None, profile=KnownProfiles.default):
+    def __init__(self, credential{% if has_subscription_id %}, subscription_id{% endif %}, api_version=None, base_url=None, profile=KnownProfiles.default, **kwargs):
         if not base_url:
             base_url = 'https://management.azure.com'
         self._config = {{ client_name }}Configuration(credential{% if has_subscription_id %}, subscription_id{% endif %}, **kwargs)
