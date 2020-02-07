@@ -13,6 +13,7 @@ _AUTOREST_CMD_LINE = "autorest-beta"
 
 service_to_readme_path = {
     'azure-ai-textanalytics': 'test/services/azure-ai-textanalytics/README.md',
+    'azure-ai-formrecognizer': 'test/services/azure-ai-formrecognizer/README.md',
     'azure-storage-blob': '../azure-sdk-for-python/sdk/storage/azure-storage-blob/swagger/README.md',
     'azure-mgmt-storage': 'test/services/azure-mgmt-storage/README.md',
     'azure-graphrbac': 'test/services/azure-graphrbac/README.md',
