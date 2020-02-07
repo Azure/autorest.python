@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from azure.core.exceptions import HttpResponseError
-from msrest.serialization import Model
+import msrest.serialization
 
 
 class ErrorException(HttpResponseError):
@@ -35,7 +35,7 @@ class ErrorException(HttpResponseError):
         return error._EXCEPTION_TYPE(response, error)
 
 
-class Error(Model):
+class Error(msrest.serialization.Model):
     """Error.
 
     :param status:
@@ -59,7 +59,7 @@ class Error(Model):
         self.message = kwargs.get('message', None)
 
 
-class Product(Model):
+class Product(msrest.serialization.Model):
     """Product.
 
     :param integer:

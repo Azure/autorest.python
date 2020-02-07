@@ -37,7 +37,7 @@ class {{ exception_name }}(HttpResponseError):
 {% if basename %}
 class {{ model.name }}({{ basename }}):
 {% else %}
-class {{ model.name }}(Model):
+class {{ model.name }}(msrest.serialization.Model):
 {% endif %}
     """{{ model.description }}
     {% if model.discriminator_name %}

@@ -7,10 +7,10 @@
 # --------------------------------------------------------------------------
 
 from azure.core.exceptions import HttpResponseError
-from msrest.serialization import Model
+import msrest.serialization
 
 
-class Animal(Model):
+class Animal(msrest.serialization.Model):
     """Animal.
 
     :param ani_type:
@@ -29,7 +29,7 @@ class Animal(Model):
         self.ani_type = kwargs.get('ani_type', None)
 
 
-class BaseError(Model):
+class BaseError(msrest.serialization.Model):
     """BaseError.
 
     :param some_base_prop:
@@ -263,7 +263,7 @@ class Pet(Animal):
         self.name = None
 
 
-class PetAction(Model):
+class PetAction(msrest.serialization.Model):
     """PetAction.
 
     :param action_response: action feedback.
@@ -307,7 +307,7 @@ class PetActionErrorException(HttpResponseError):
         return error._EXCEPTION_TYPE(response, error)
 
 
-class PetActionError(Model):
+class PetActionError(msrest.serialization.Model):
     """PetActionError.
 
     You probably want to use the sub-classes and not this class directly. Known

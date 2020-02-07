@@ -9,7 +9,7 @@
 from typing import Optional
 
 from azure.core.exceptions import HttpResponseError
-from msrest.serialization import Model
+import msrest.serialization
 
 
 class MyExceptionException(HttpResponseError):
@@ -37,7 +37,7 @@ class MyExceptionException(HttpResponseError):
         return error._EXCEPTION_TYPE(response, error)
 
 
-class MyException(Model):
+class MyException(msrest.serialization.Model):
     """MyException.
 
     :param status_code:
@@ -110,7 +110,7 @@ class B(MyException):
         self.text_status_code = text_status_code
 
 
-class C(Model):
+class C(msrest.serialization.Model):
     """C.
 
     :param http_code:
@@ -131,7 +131,7 @@ class C(Model):
         self.http_code = http_code
 
 
-class D(Model):
+class D(msrest.serialization.Model):
     """D.
 
     :param http_status_code:
@@ -177,7 +177,7 @@ class ErrorException(HttpResponseError):
         return error._EXCEPTION_TYPE(response, error)
 
 
-class Error(Model):
+class Error(msrest.serialization.Model):
     """Error.
 
     :param status:
