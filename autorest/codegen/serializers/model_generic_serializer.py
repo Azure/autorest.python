@@ -25,6 +25,6 @@ class ModelGenericSerializer(ModelBaseSerializer):
                 discriminator_value = f"'{model.discriminator_value}'" if model.discriminator_value else None
                 init_args.append(f"self.{prop.name} = {discriminator_value}")
             elif not prop.constant:
-                default_value = prop.schema.get_default_value_declaration()
+                default_value = prop.schema.default_value_declaration
                 init_args.append(f"self.{prop.name} = kwargs.get('{prop.name}', {default_value})")
         return init_args
