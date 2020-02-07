@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import HttpResponseError, map_error
+from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
@@ -53,7 +53,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.RootWithRefAndNoMeta
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_complex_type_ref_no_meta.metadata['url']
@@ -99,7 +99,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.put_complex_type_ref_no_meta.metadata['url']
@@ -141,7 +141,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.RootWithRefAndMeta
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_complex_type_ref_with_meta.metadata['url']
@@ -187,7 +187,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.put_complex_type_ref_with_meta.metadata['url']
@@ -229,7 +229,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.Slideshow
         :raises: ~xmlservice.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_simple.metadata['url']
@@ -275,7 +275,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~xmlservice.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.put_simple.metadata['url']
@@ -317,7 +317,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.AppleBarrel
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_wrapped_lists.metadata['url']
@@ -363,7 +363,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~xmlservice.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.put_wrapped_lists.metadata['url']
@@ -405,7 +405,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_headers.metadata['url']
@@ -446,7 +446,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.Slideshow
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_empty_list.metadata['url']
@@ -492,7 +492,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.put_empty_list.metadata['url']
@@ -534,7 +534,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.AppleBarrel
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_empty_wrapped_lists.metadata['url']
@@ -580,7 +580,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.put_empty_wrapped_lists.metadata['url']
@@ -622,7 +622,7 @@ class XmlOperations:
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_root_list.metadata['url']
@@ -668,7 +668,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.put_root_list.metadata['url']
@@ -711,7 +711,7 @@ class XmlOperations:
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_root_list_single_item.metadata['url']
@@ -757,7 +757,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.put_root_list_single_item.metadata['url']
@@ -800,7 +800,7 @@ class XmlOperations:
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_empty_root_list.metadata['url']
@@ -846,7 +846,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.put_empty_root_list.metadata['url']
@@ -889,7 +889,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.Banana
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_empty_child_element.metadata['url']
@@ -935,7 +935,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.put_empty_child_element.metadata['url']
@@ -977,7 +977,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.ListContainersResponse
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         comp = "list"
 
         # Construct URL
@@ -1021,7 +1021,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.StorageServiceProperties
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         comp = "properties"
         restype = "service"
 
@@ -1071,7 +1071,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         comp = "properties"
         restype = "service"
 
@@ -1117,7 +1117,7 @@ class XmlOperations:
         :rtype: list[~xmlservice.models.SignedIdentifier]
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         comp = "acl"
         restype = "container"
 
@@ -1167,7 +1167,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         comp = "acl"
         restype = "container"
 
@@ -1214,7 +1214,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.ListBlobsResponse
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         comp = "list"
         restype = "container"
 
@@ -1264,7 +1264,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         properties = models.JSONInput(id=id)
 
@@ -1308,7 +1308,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.JSONOutput
         :raises: ~azure.core.HttpResponseError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.json_output.metadata['url']

@@ -83,6 +83,7 @@ def {{ operation.python_name }}(
 {% endif %}
 {%if operation.status_code_exceptions %}
     error_map = {
+        404: ResourceNotFoundError,
     {% for excep in operation.status_code_exceptions %}
         {% for status_code in excep.status_codes %}
             {% if excep.schema.is_exception %}
@@ -95,7 +96,7 @@ def {{ operation.python_name }}(
     }
     error_map.update(kwargs.pop('error_map', {}))
 {% else %}
-    error_map = kwargs.pop('error_map', {})
+    error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 {% endif %}
 {% if operation.parameters.grouped %}
     {{ op_tools.grouped_parameters(operation)|indent }}

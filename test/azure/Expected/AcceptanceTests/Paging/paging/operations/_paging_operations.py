@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import map_error
+from azure.core.exceptions import ResourceNotFoundError, map_error
 from azure.core.paging import ItemPaged
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
@@ -58,7 +58,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductResultValue
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -116,7 +116,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -174,7 +174,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -238,7 +238,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         
         maxresults = None
         timeout = None
@@ -314,7 +314,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.OdataProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         
         maxresults = None
         timeout = None
@@ -390,7 +390,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         
         maxresults = None
         offset = None
@@ -466,7 +466,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -524,7 +524,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -582,7 +582,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -640,7 +640,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -698,7 +698,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -762,7 +762,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.OdataProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -833,7 +833,7 @@ class PagingOperations(object):
         :rtype: ~paging.models.OdataProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         
         api_version = None
         tenant = None
@@ -901,7 +901,7 @@ class PagingOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.ProductResult"
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         
         maxresults = None
         timeout = None

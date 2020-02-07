@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import HttpResponseError, map_error
+from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
@@ -58,6 +58,7 @@ class PetOperations:
         :raises: ~azure.core.HttpResponseError
         """
         error_map = {
+            404: ResourceNotFoundError,
             400: HttpResponseError,
             404: lambda response: models.NotFoundErrorBaseException.from_response(response, self._deserialize),
             501: HttpResponseError,
@@ -115,6 +116,7 @@ class PetOperations:
         :raises: ~xmserrorresponse.models.PetActionErrorException:
         """
         error_map = {
+            404: ResourceNotFoundError,
             500: lambda response: models.PetActionErrorException.from_response(response, self._deserialize),
         }
         error_map.update(kwargs.pop('error_map', {}))

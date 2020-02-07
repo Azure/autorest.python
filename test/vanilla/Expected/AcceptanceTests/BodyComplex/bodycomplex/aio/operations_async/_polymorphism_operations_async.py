@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import map_error
+from azure.core.exceptions import ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
@@ -53,7 +53,7 @@ class PolymorphismOperations:
         :rtype: ~bodycomplex.models.Fish
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_valid.metadata['url']
@@ -131,7 +131,7 @@ class PolymorphismOperations:
         :rtype: None
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.put_valid.metadata['url']
@@ -173,7 +173,7 @@ class PolymorphismOperations:
         :rtype: ~bodycomplex.models.DotFish
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_dot_syntax.metadata['url']
@@ -215,7 +215,7 @@ class PolymorphismOperations:
         :rtype: ~bodycomplex.models.DotFishMarket
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_composed_with_discriminator.metadata['url']
@@ -257,7 +257,7 @@ class PolymorphismOperations:
         :rtype: ~bodycomplex.models.DotFishMarket
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_composed_without_discriminator.metadata['url']
@@ -299,7 +299,7 @@ class PolymorphismOperations:
         :rtype: ~bodycomplex.models.Salmon
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_complicated.metadata['url']
@@ -345,7 +345,7 @@ class PolymorphismOperations:
         :rtype: None
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.put_complicated.metadata['url']
@@ -391,7 +391,7 @@ class PolymorphismOperations:
         :rtype: ~bodycomplex.models.Salmon
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.put_missing_discriminator.metadata['url']
@@ -473,7 +473,7 @@ class PolymorphismOperations:
         :rtype: None
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.put_valid_missing_required.metadata['url']

@@ -9,7 +9,7 @@ import datetime
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import map_error
+from azure.core.exceptions import ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -54,7 +54,7 @@ class DateOperations(object):
         :rtype: ~datetime.date
         :raises: ~bodydate.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_null.metadata['url']
@@ -97,7 +97,7 @@ class DateOperations(object):
         :rtype: ~datetime.date
         :raises: ~bodydate.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_invalid_date.metadata['url']
@@ -140,7 +140,7 @@ class DateOperations(object):
         :rtype: ~datetime.date
         :raises: ~bodydate.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_overflow_date.metadata['url']
@@ -183,7 +183,7 @@ class DateOperations(object):
         :rtype: ~datetime.date
         :raises: ~bodydate.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_underflow_date.metadata['url']
@@ -229,7 +229,7 @@ class DateOperations(object):
         :rtype: None
         :raises: ~bodydate.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.put_max_date.metadata['url']
@@ -272,7 +272,7 @@ class DateOperations(object):
         :rtype: ~datetime.date
         :raises: ~bodydate.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_max_date.metadata['url']
@@ -318,7 +318,7 @@ class DateOperations(object):
         :rtype: None
         :raises: ~bodydate.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.put_min_date.metadata['url']
@@ -361,7 +361,7 @@ class DateOperations(object):
         :rtype: ~datetime.date
         :raises: ~bodydate.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_min_date.metadata['url']

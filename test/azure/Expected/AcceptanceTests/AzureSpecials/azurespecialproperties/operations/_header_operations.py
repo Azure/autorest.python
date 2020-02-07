@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import map_error
+from azure.core.exceptions import ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -57,7 +57,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.custom_named_request_id.metadata['url']
@@ -103,7 +103,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         
         foo_client_request_id = None
         if header_custom_named_request_id_param_grouping_parameters is not None:
@@ -153,7 +153,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.custom_named_request_id_head.metadata['url']

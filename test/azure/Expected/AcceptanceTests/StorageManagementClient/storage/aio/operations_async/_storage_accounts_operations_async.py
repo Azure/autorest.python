@@ -9,7 +9,7 @@ from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 import warnings
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
-from azure.core.exceptions import map_error
+from azure.core.exceptions import ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.polling import AsyncNoPolling, async_poller
@@ -64,7 +64,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.CheckNameAvailabilityResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.check_name_availability.metadata['url']
@@ -110,7 +110,7 @@ class StorageAccountsOperations:
         cls: ClsType["models.StorageAccount"] = None,
         **kwargs: Any
     ) -> "models.StorageAccount":
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self._create_initial.metadata['url']
@@ -227,7 +227,7 @@ class StorageAccountsOperations:
         :rtype: None
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.delete.metadata['url']
@@ -280,7 +280,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.StorageAccount
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_properties.metadata['url']
@@ -341,7 +341,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.StorageAccount
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.update.metadata['url']
@@ -402,7 +402,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.StorageAccountKeys
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.list_keys.metadata['url']
@@ -450,7 +450,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.StorageAccountListResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -515,7 +515,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.StorageAccountListResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -589,7 +589,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.StorageAccountKeys
         :raises: ~azure.mgmt.core.ARMError
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         regenerate_key = models.StorageAccountRegenerateKeyParameters(key_name=key_name)
 
