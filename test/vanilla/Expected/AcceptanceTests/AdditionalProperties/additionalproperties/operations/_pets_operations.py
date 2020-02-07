@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import map_error
+from azure.core.exceptions import ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -57,7 +57,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.PetAPTrue
         :raises: ~additionalproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.create_ap_true.metadata['url']
@@ -107,7 +107,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.CatAPTrue
         :raises: ~additionalproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.create_cat_ap_true.metadata['url']
@@ -157,7 +157,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.PetAPObject
         :raises: ~additionalproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.create_ap_object.metadata['url']
@@ -207,7 +207,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.PetAPString
         :raises: ~additionalproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.create_ap_string.metadata['url']
@@ -257,7 +257,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.PetAPInProperties
         :raises: ~additionalproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.create_ap_in_properties.metadata['url']
@@ -307,7 +307,7 @@ class PetsOperations(object):
         :rtype: ~additionalproperties.models.PetAPInPropertiesWithAPString
         :raises: ~additionalproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.create_ap_in_properties_with_ap_string.metadata['url']

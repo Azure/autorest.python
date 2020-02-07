@@ -83,7 +83,9 @@ def {{ operation.python_name }}(
 {% endif %}
 {%if operation.status_code_exceptions %}
     error_map = {
+        {% if not [404] in operation.status_code_exceptions | map(attribute='status_codes') %}
         404: ResourceNotFoundError,
+        {% endif %}
     {% for excep in operation.status_code_exceptions %}
         {% for status_code in excep.status_codes %}
             {% if excep.schema.is_exception %}

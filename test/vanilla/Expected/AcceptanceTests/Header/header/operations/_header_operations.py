@@ -9,7 +9,7 @@ import datetime
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 import warnings
 
-from azure.core.exceptions import map_error
+from azure.core.exceptions import ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -57,7 +57,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.param_existing_key.metadata['url']
@@ -97,7 +97,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.response_existing_key.metadata['url']
@@ -142,7 +142,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.param_protected_key.metadata['url']
@@ -182,7 +182,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.response_protected_key.metadata['url']
@@ -230,7 +230,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.param_integer.metadata['url']
@@ -274,7 +274,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.response_integer.metadata['url']
@@ -323,7 +323,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.param_long.metadata['url']
@@ -367,7 +367,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.response_long.metadata['url']
@@ -416,7 +416,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.param_float.metadata['url']
@@ -460,7 +460,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.response_float.metadata['url']
@@ -509,7 +509,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.param_double.metadata['url']
@@ -553,7 +553,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.response_double.metadata['url']
@@ -602,7 +602,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.param_bool.metadata['url']
@@ -646,7 +646,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.response_bool.metadata['url']
@@ -696,7 +696,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.param_string.metadata['url']
@@ -741,7 +741,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.response_string.metadata['url']
@@ -790,7 +790,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.param_date.metadata['url']
@@ -834,7 +834,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.response_date.metadata['url']
@@ -884,7 +884,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.param_datetime.metadata['url']
@@ -928,7 +928,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.response_datetime.metadata['url']
@@ -978,7 +978,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.param_datetime_rfc1123.metadata['url']
@@ -1023,7 +1023,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.response_datetime_rfc1123.metadata['url']
@@ -1072,7 +1072,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.param_duration.metadata['url']
@@ -1116,7 +1116,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.response_duration.metadata['url']
@@ -1165,7 +1165,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.param_byte.metadata['url']
@@ -1209,7 +1209,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.response_byte.metadata['url']
@@ -1258,7 +1258,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.param_enum.metadata['url']
@@ -1303,7 +1303,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.response_enum.metadata['url']
@@ -1346,7 +1346,7 @@ class HeaderOperations(object):
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.custom_request_id.metadata['url']
