@@ -107,7 +107,7 @@ class LROsCustomHeaderOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: bool = kwargs.pop('polling', False)
+        polling: bool = kwargs.pop('polling', True)
         cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._put_async_retry_succeeded_initial(
             product=product,
@@ -202,7 +202,7 @@ class LROsCustomHeaderOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: bool = kwargs.pop('polling', False)
+        polling: bool = kwargs.pop('polling', True)
         cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._put201_creating_succeeded200_initial(
             product=product,
@@ -287,7 +287,7 @@ class LROsCustomHeaderOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: bool = kwargs.pop('polling', False)
+        polling: bool = kwargs.pop('polling', True)
         cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._post202_retry200_initial(
             product=product,
@@ -370,7 +370,7 @@ class LROsCustomHeaderOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: bool = kwargs.pop('polling', False)
+        polling: bool = kwargs.pop('polling', True)
         cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._post_async_retry_succeeded_initial(
             product=product,

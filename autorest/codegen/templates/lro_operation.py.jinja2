@@ -58,10 +58,10 @@ response_headers = {
     {% endif %}
     """
     {% if async_mode %}
-    polling: bool = kwargs.pop('polling', False)
+    polling: bool = kwargs.pop('polling', True)
     cls: ClsType[{{ keywords.return_type_annotation(operation) }}] = kwargs.pop('cls', None )
     {% else %}
-    polling = kwargs.pop('polling', False)  # type: bool
+    polling = kwargs.pop('polling', True)  # type: bool
     cls = kwargs.pop('cls', None )  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
     {% endif %}
     raw_result = {{ keywords.await }}self._{{ operation.name }}_initial(
