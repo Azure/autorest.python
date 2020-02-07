@@ -34,9 +34,11 @@ class NameConverter:
             if not operation_group["language"]["default"]["name"]:
                 operation_group["language"]["python"]["className"] = code_model_title + "OperationsMixin"
             else:
-                operation_group["language"]["python"]["className"] = (
-                    NameConverter._to_pascal_case(operation_group["language"]["default"]["name"]) + "Operations"
-                )
+                operation_group_yaml_pascal_name = NameConverter._to_pascal_case(operation_group["language"]["default"]["name"])
+                if operation_group_yaml_pascal_name == "Operations":
+                    operation_group["language"]["python"]["className"] = operation_group_yaml_pascal_name
+                else:
+                    operation_group["language"]["python"]["className"] = operation_group_yaml_pascal_name + "Operations"
             for operation in operation_group["operations"]:
                 NameConverter._convert_language_default_python_case(operation, pad_string="Method")
                 for exception in operation_group.get("exceptions", []):
