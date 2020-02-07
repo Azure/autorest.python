@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import ResourceNotFoundError, map_error
+from azure.core.exceptions import map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -53,7 +53,7 @@ class BasicOperations(object):
         :rtype: ~bodycomplex.models.Basic
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_valid.metadata['url']
@@ -99,7 +99,7 @@ class BasicOperations(object):
         :rtype: None
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
         api_version = "2016-02-29"
 
         # Construct URL
@@ -144,7 +144,7 @@ class BasicOperations(object):
         :rtype: ~bodycomplex.models.Basic
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_invalid.metadata['url']
@@ -187,7 +187,7 @@ class BasicOperations(object):
         :rtype: ~bodycomplex.models.Basic
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_empty.metadata['url']
@@ -230,7 +230,7 @@ class BasicOperations(object):
         :rtype: ~bodycomplex.models.Basic
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_null.metadata['url']
@@ -273,7 +273,7 @@ class BasicOperations(object):
         :rtype: ~bodycomplex.models.Basic
         :raises: ~bodycomplex.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_not_provided.metadata['url']

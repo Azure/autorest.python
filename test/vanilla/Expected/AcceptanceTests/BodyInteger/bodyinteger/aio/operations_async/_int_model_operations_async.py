@@ -9,7 +9,7 @@ import datetime
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import ResourceNotFoundError, map_error
+from azure.core.exceptions import map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
@@ -53,7 +53,7 @@ class IntOperations:
         :rtype: int
         :raises: ~bodyinteger.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_null.metadata['url']
@@ -95,7 +95,7 @@ class IntOperations:
         :rtype: int
         :raises: ~bodyinteger.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_invalid.metadata['url']
@@ -137,7 +137,7 @@ class IntOperations:
         :rtype: int
         :raises: ~bodyinteger.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_overflow_int32.metadata['url']
@@ -179,7 +179,7 @@ class IntOperations:
         :rtype: int
         :raises: ~bodyinteger.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_underflow_int32.metadata['url']
@@ -221,7 +221,7 @@ class IntOperations:
         :rtype: long
         :raises: ~bodyinteger.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_overflow_int64.metadata['url']
@@ -263,7 +263,7 @@ class IntOperations:
         :rtype: long
         :raises: ~bodyinteger.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_underflow_int64.metadata['url']
@@ -309,7 +309,7 @@ class IntOperations:
         :rtype: None
         :raises: ~bodyinteger.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_max32.metadata['url']
@@ -355,7 +355,7 @@ class IntOperations:
         :rtype: None
         :raises: ~bodyinteger.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_max64.metadata['url']
@@ -401,7 +401,7 @@ class IntOperations:
         :rtype: None
         :raises: ~bodyinteger.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_min32.metadata['url']
@@ -447,7 +447,7 @@ class IntOperations:
         :rtype: None
         :raises: ~bodyinteger.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_min64.metadata['url']
@@ -489,7 +489,7 @@ class IntOperations:
         :rtype: ~datetime.datetime
         :raises: ~bodyinteger.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_unix_time.metadata['url']
@@ -535,7 +535,7 @@ class IntOperations:
         :rtype: None
         :raises: ~bodyinteger.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_unix_time_date.metadata['url']
@@ -577,7 +577,7 @@ class IntOperations:
         :rtype: ~datetime.datetime
         :raises: ~bodyinteger.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_invalid_unix_time.metadata['url']
@@ -619,7 +619,7 @@ class IntOperations:
         :rtype: ~datetime.datetime
         :raises: ~bodyinteger.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_null_unix_time.metadata['url']

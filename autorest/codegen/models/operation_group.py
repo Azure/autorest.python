@@ -32,7 +32,6 @@ class OperationGroup(BaseModel):
 
     def imports(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
-        file_import.add_from_import("azure.core.exceptions", "ResourceNotFoundError", ImportType.AZURECORE)
         for operation in self.operations:
             file_import.merge(operation.imports(self.code_model, async_mode))
         if self.code_model.options["tracing"]:
