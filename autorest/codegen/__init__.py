@@ -148,6 +148,7 @@ class CodeGenerator(Plugin):
             "package_version": self._autorestapi.get_value("package-version"),
             "client_side_validation": self._autorestapi.get_boolean_value("client-side-validation", True),
             "tracing": self._autorestapi.get_boolean_value("trace", False),
+            "multiapi": self._autorestapi.get_boolean_value("multiapi", False)
         }
 
         if options["basic_setup_py"] and not options["package_version"]:
