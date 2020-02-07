@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import map_error
+from azure.core.exceptions import ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -56,7 +56,7 @@ class ImplicitOperations(object):
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_required_path.metadata['url']
@@ -102,7 +102,7 @@ class ImplicitOperations(object):
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.put_optional_query.metadata['url']
@@ -146,7 +146,7 @@ class ImplicitOperations(object):
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.put_optional_header.metadata['url']
@@ -190,7 +190,7 @@ class ImplicitOperations(object):
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.put_optional_body.metadata['url']
@@ -236,7 +236,7 @@ class ImplicitOperations(object):
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_required_global_path.metadata['url']
@@ -279,7 +279,7 @@ class ImplicitOperations(object):
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_required_global_query.metadata['url']
@@ -319,7 +319,7 @@ class ImplicitOperations(object):
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_optional_global_query.metadata['url']

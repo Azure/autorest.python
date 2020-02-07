@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import map_error
+from azure.core.exceptions import ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
@@ -52,7 +52,7 @@ class StringOperations:
         :rtype: str
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_null.metadata['url']
@@ -94,7 +94,7 @@ class StringOperations:
         :rtype: None
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         string_body = None
 
         # Construct URL
@@ -140,7 +140,7 @@ class StringOperations:
         :rtype: str
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_empty.metadata['url']
@@ -182,7 +182,7 @@ class StringOperations:
         :rtype: None
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         string_body = ""
 
         # Construct URL
@@ -225,7 +225,7 @@ class StringOperations:
         :rtype: str
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_mbcs.metadata['url']
@@ -267,7 +267,7 @@ class StringOperations:
         :rtype: None
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         string_body = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
 
         # Construct URL
@@ -310,7 +310,7 @@ class StringOperations:
         :rtype: str
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_whitespace.metadata['url']
@@ -352,7 +352,7 @@ class StringOperations:
         :rtype: None
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         string_body = "    Now is the time for all good men to come to the aid of their country    "
 
         # Construct URL
@@ -395,7 +395,7 @@ class StringOperations:
         :rtype: str
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_not_provided.metadata['url']
@@ -437,7 +437,7 @@ class StringOperations:
         :rtype: bytes
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_base64_encoded.metadata['url']
@@ -479,7 +479,7 @@ class StringOperations:
         :rtype: bytes
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_base64_url_encoded.metadata['url']
@@ -525,7 +525,7 @@ class StringOperations:
         :rtype: None
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.put_base64_url_encoded.metadata['url']
@@ -567,7 +567,7 @@ class StringOperations:
         :rtype: bytes
         :raises: ~bodystring.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
         url = self.get_null_base64_url_encoded.metadata['url']
