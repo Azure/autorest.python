@@ -46,18 +46,18 @@ class PagingOperations:
         self._config = config
 
     @distributed_trace
-    def get_no_item_name_pages(
+    async def get_no_item_name_pages(
         self,
-        cls: ClsType["models.ProductResultValue"] = None,
         **kwargs
     ) -> "models.ProductResultValue":
         """A paging operation that must return result of the default 'value' node.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ProductResultValue or the result of cls(response)
         :rtype: ~paging.models.ProductResultValue
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls: ClsType["models.ProductResultValue"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -103,18 +103,18 @@ class PagingOperations:
     get_no_item_name_pages.metadata = {'url': '/paging/noitemname'}
 
     @distributed_trace
-    def get_null_next_link_name_pages(
+    async def get_null_next_link_name_pages(
         self,
-        cls: ClsType["models.ProductResult"] = None,
         **kwargs
     ) -> "models.ProductResult":
         """A paging operation that must ignore any kind of nextLink, and stop after page 1.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -160,18 +160,18 @@ class PagingOperations:
     get_null_next_link_name_pages.metadata = {'url': '/paging/nullnextlink'}
 
     @distributed_trace
-    def get_single_pages(
+    async def get_single_pages(
         self,
-        cls: ClsType["models.ProductResult"] = None,
         **kwargs
     ) -> "models.ProductResult":
         """A paging operation that finishes on the first call without a nextlink.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -217,12 +217,10 @@ class PagingOperations:
     get_single_pages.metadata = {'url': '/paging/single'}
 
     @distributed_trace
-    def get_multiple_pages(
+    async def get_multiple_pages(
         self,
         client_request_id: Optional[str] = None,
         paging_get_multiple_pages_options: Optional["models.PagingGetMultiplePagesOptions"] = None,
-        *,
-        cls: ClsType["models.ProductResult"] = None,
         **kwargs
     ) -> "models.ProductResult":
         """A paging operation that includes a nextLink that has 10 pages.
@@ -231,11 +229,12 @@ class PagingOperations:
         :type client_request_id: str
         :param paging_get_multiple_pages_options: Parameter group.
         :type paging_get_multiple_pages_options: ~paging.models.PagingGetMultiplePagesOptions
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         
         maxresults = None
@@ -293,12 +292,10 @@ class PagingOperations:
     get_multiple_pages.metadata = {'url': '/paging/multiple'}
 
     @distributed_trace
-    def get_odata_multiple_pages(
+    async def get_odata_multiple_pages(
         self,
         client_request_id: Optional[str] = None,
         paging_get_odata_multiple_pages_options: Optional["models.PagingGetOdataMultiplePagesOptions"] = None,
-        *,
-        cls: ClsType["models.OdataProductResult"] = None,
         **kwargs
     ) -> "models.OdataProductResult":
         """A paging operation that includes a nextLink in odata format that has 10 pages.
@@ -307,11 +304,12 @@ class PagingOperations:
         :type client_request_id: str
         :param paging_get_odata_multiple_pages_options: Parameter group.
         :type paging_get_odata_multiple_pages_options: ~paging.models.PagingGetOdataMultiplePagesOptions
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: OdataProductResult or the result of cls(response)
         :rtype: ~paging.models.OdataProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls: ClsType["models.OdataProductResult"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         
         maxresults = None
@@ -369,12 +367,10 @@ class PagingOperations:
     get_odata_multiple_pages.metadata = {'url': '/paging/multiple/odata'}
 
     @distributed_trace
-    def get_multiple_pages_with_offset(
+    async def get_multiple_pages_with_offset(
         self,
         paging_get_multiple_pages_with_offset_options: "models.PagingGetMultiplePagesWithOffsetOptions",
         client_request_id: Optional[str] = None,
-        *,
-        cls: ClsType["models.ProductResult"] = None,
         **kwargs
     ) -> "models.ProductResult":
         """A paging operation that includes a nextLink that has 10 pages.
@@ -383,11 +379,12 @@ class PagingOperations:
         :type paging_get_multiple_pages_with_offset_options: ~paging.models.PagingGetMultiplePagesWithOffsetOptions
         :param client_request_id:
         :type client_request_id: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         
         maxresults = None
@@ -451,18 +448,18 @@ class PagingOperations:
     get_multiple_pages_with_offset.metadata = {'url': '/paging/multiple/withpath/{offset}'}
 
     @distributed_trace
-    def get_multiple_pages_retry_first(
+    async def get_multiple_pages_retry_first(
         self,
-        cls: ClsType["models.ProductResult"] = None,
         **kwargs
     ) -> "models.ProductResult":
         """A paging operation that fails on the first call with 500 and then retries and then get a response including a nextLink that has 10 pages.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -508,18 +505,18 @@ class PagingOperations:
     get_multiple_pages_retry_first.metadata = {'url': '/paging/multiple/retryfirst'}
 
     @distributed_trace
-    def get_multiple_pages_retry_second(
+    async def get_multiple_pages_retry_second(
         self,
-        cls: ClsType["models.ProductResult"] = None,
         **kwargs
     ) -> "models.ProductResult":
         """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first with 500. The client should retry and finish all 10 pages eventually.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -565,18 +562,18 @@ class PagingOperations:
     get_multiple_pages_retry_second.metadata = {'url': '/paging/multiple/retrysecond'}
 
     @distributed_trace
-    def get_single_pages_failure(
+    async def get_single_pages_failure(
         self,
-        cls: ClsType["models.ProductResult"] = None,
         **kwargs
     ) -> "models.ProductResult":
         """A paging operation that receives a 400 on the first call.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -622,18 +619,18 @@ class PagingOperations:
     get_single_pages_failure.metadata = {'url': '/paging/single/failure'}
 
     @distributed_trace
-    def get_multiple_pages_failure(
+    async def get_multiple_pages_failure(
         self,
-        cls: ClsType["models.ProductResult"] = None,
         **kwargs
     ) -> "models.ProductResult":
         """A paging operation that receives a 400 on the second call.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -679,18 +676,18 @@ class PagingOperations:
     get_multiple_pages_failure.metadata = {'url': '/paging/multiple/failure'}
 
     @distributed_trace
-    def get_multiple_pages_failure_uri(
+    async def get_multiple_pages_failure_uri(
         self,
-        cls: ClsType["models.ProductResult"] = None,
         **kwargs
     ) -> "models.ProductResult":
         """A paging operation that receives an invalid nextLink.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -736,12 +733,10 @@ class PagingOperations:
     get_multiple_pages_failure_uri.metadata = {'url': '/paging/multiple/failureuri'}
 
     @distributed_trace
-    def get_multiple_pages_fragment_next_link(
+    async def get_multiple_pages_fragment_next_link(
         self,
         api_version: str,
         tenant: str,
-        *,
-        cls: ClsType["models.OdataProductResult"] = None,
         **kwargs
     ) -> "models.OdataProductResult":
         """A paging operation that doesn't return a full URL, just a fragment.
@@ -750,11 +745,12 @@ class PagingOperations:
         :type api_version: str
         :param tenant: Sets the tenant to use.
         :type tenant: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: OdataProductResult or the result of cls(response)
         :rtype: ~paging.models.OdataProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls: ClsType["models.OdataProductResult"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -810,22 +806,21 @@ class PagingOperations:
     get_multiple_pages_fragment_next_link.metadata = {'url': '/paging/multiple/fragment/{tenant}'}
 
     @distributed_trace
-    def get_multiple_pages_fragment_with_grouping_next_link(
+    async def get_multiple_pages_fragment_with_grouping_next_link(
         self,
         custom_parameter_group: "models.CustomParameterGroup",
-        *,
-        cls: ClsType["models.OdataProductResult"] = None,
         **kwargs
     ) -> "models.OdataProductResult":
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
 
         :param custom_parameter_group: Parameter group.
         :type custom_parameter_group: ~paging.models.CustomParameterGroup
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: OdataProductResult or the result of cls(response)
         :rtype: ~paging.models.OdataProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls: ClsType["models.OdataProductResult"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         
         api_version = None
@@ -890,10 +885,9 @@ class PagingOperations:
         self,
         client_request_id: Optional[str] = None,
         paging_get_multiple_pages_lro_options: Optional["models.PagingGetMultiplePagesLroOptions"] = None,
-        *,
-        cls: ClsType["models.ProductResult"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.ProductResult":
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         
         maxresults = None
@@ -940,9 +934,6 @@ class PagingOperations:
         self,
         client_request_id: Optional[str] = None,
         paging_get_multiple_pages_lro_options: Optional["models.PagingGetMultiplePagesLroOptions"] = None,
-        *,
-        cls: ClsType["models.ProductResult"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.ProductResult":
         """A long-running paging operation that includes a nextLink that has 10 pages.
@@ -951,14 +942,16 @@ class PagingOperations:
         :type client_request_id: str
         :param paging_get_multiple_pages_lro_options: Parameter group.
         :type paging_get_multiple_pages_lro_options: ~paging.models.PagingGetMultiplePagesLroOptions
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns ProductResult
         :rtype: ~azure.core.polling.LROPoller[~paging.models.ProductResult]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
         raw_result = await self._get_multiple_pages_lro_initial(
             client_request_id=client_request_id,
             paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,

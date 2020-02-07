@@ -44,16 +44,16 @@ class UsageOperations:
     @distributed_trace_async
     async def list(
         self,
-        cls: ClsType["models.UsageListResult"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.UsageListResult":
         """Gets the current usage count and the limit for the resources under the subscription.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: UsageListResult or the result of cls(response)
         :rtype: ~storage.models.UsageListResult
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls: ClsType["models.UsageListResult"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

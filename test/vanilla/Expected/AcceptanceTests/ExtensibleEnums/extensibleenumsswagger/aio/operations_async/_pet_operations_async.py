@@ -44,19 +44,18 @@ class PetOperations:
     async def get_by_pet_id(
         self,
         pet_id: str,
-        *,
-        cls: ClsType["models.Pet"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Pet":
         """get_by_pet_id.
 
         :param pet_id: Pet id.
         :type pet_id: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Pet or the result of cls(response)
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.Pet"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -94,19 +93,18 @@ class PetOperations:
     async def add_pet(
         self,
         pet_param: Optional["models.Pet"] = None,
-        *,
-        cls: ClsType["models.Pet"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Pet":
         """add_pet.
 
         :param pet_param:
         :type pet_param: ~extensibleenumsswagger.models.Pet
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Pet or the result of cls(response)
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.Pet"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

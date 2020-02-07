@@ -1,3 +1,23 @@
+{% import 'keywords.jinja2' as keywords with context %}
+{# get method signature #}
+{% macro method_signature(operation, operation_name, async_mode) %}
+{% if async_mode %}
+async def {{ operation_name }}(
+    self,
+    {% for param_signature in operation.parameters.async_method_signature %}
+    {{ param_signature }},
+    {% endfor %}
+    **kwargs
+){{ keywords.async_return_type_annotation(operation) }}:
+{% else %}
+def {{ operation_name }}(
+    self,
+    {% for param_signature in operation.parameters.sync_method_signature %}
+    {{ param_signature }}
+    {% endfor %}
+    **kwargs  # type: Any
+):
+{% endif %}{% endmacro %}
 {# handle response headers/deserialization #}
 {% macro response_handling(response) %}
   {% if response.headers %}

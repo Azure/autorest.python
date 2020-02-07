@@ -46,9 +46,7 @@ class AvailabilitySetsOperations:
         resource_group_name: str,
         avset: str,
         availability_set_update_parameters_tags: Dict[str, str],
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Updates the tags for an availability set.
 
@@ -58,11 +56,12 @@ class AvailabilitySetsOperations:
         :type avset: str
         :param availability_set_update_parameters_tags: A description about the set of tags.
         :type availability_set_update_parameters_tags: dict[str, str]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         tags = models.AvailabilitySetUpdateParameters(availability_set_update_parameters_tags=availability_set_update_parameters_tags)

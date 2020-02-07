@@ -42,16 +42,16 @@ class BoolOperations:
     @distributed_trace_async
     async def get_true(
         self,
-        cls: ClsType[bool] = None,
-        **kwargs: Any
+        **kwargs
     ) -> bool:
         """Get true Boolean value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
         :rtype: bool
         :raises: ~bodyboolean.models.ErrorException:
         """
+        cls: ClsType[bool] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -84,16 +84,16 @@ class BoolOperations:
     @distributed_trace_async
     async def put_true(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Set Boolean value true.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodyboolean.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         bool_body = True
 
@@ -127,16 +127,16 @@ class BoolOperations:
     @distributed_trace_async
     async def get_false(
         self,
-        cls: ClsType[bool] = None,
-        **kwargs: Any
+        **kwargs
     ) -> bool:
         """Get false Boolean value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
         :rtype: bool
         :raises: ~bodyboolean.models.ErrorException:
         """
+        cls: ClsType[bool] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -169,16 +169,16 @@ class BoolOperations:
     @distributed_trace_async
     async def put_false(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Set Boolean value false.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodyboolean.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         bool_body = False
 
@@ -212,16 +212,16 @@ class BoolOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        cls: ClsType[bool] = None,
-        **kwargs: Any
+        **kwargs
     ) -> bool:
         """Get null Boolean value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
         :rtype: bool
         :raises: ~bodyboolean.models.ErrorException:
         """
+        cls: ClsType[bool] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -254,16 +254,16 @@ class BoolOperations:
     @distributed_trace_async
     async def get_invalid(
         self,
-        cls: ClsType[bool] = None,
-        **kwargs: Any
+        **kwargs
     ) -> bool:
         """Get invalid Boolean value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
         :rtype: bool
         :raises: ~bodyboolean.models.ErrorException:
         """
+        cls: ClsType[bool] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

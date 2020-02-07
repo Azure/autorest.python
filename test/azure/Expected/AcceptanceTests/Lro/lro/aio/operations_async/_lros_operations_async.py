@@ -46,10 +46,9 @@ class LROsOperations:
     async def _put200_succeeded_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -92,23 +91,22 @@ class LROsOperations:
     async def put200_succeeded(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Succeeded’.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._put200_succeeded_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -135,10 +133,9 @@ class LROsOperations:
     async def _put200_succeeded_no_state_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -179,23 +176,22 @@ class LROsOperations:
     async def put200_succeeded_no_state(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running put request, service returns a 200 to the initial request, with an entity that does not contain ProvisioningState=’Succeeded’.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._put200_succeeded_no_state_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -222,10 +218,9 @@ class LROsOperations:
     async def _put202_retry200_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -266,23 +261,22 @@ class LROsOperations:
     async def put202_retry200(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running put request, service returns a 202 to the initial request, with a location header that points to a polling URL that returns a 200 and an entity that doesn't contains ProvisioningState.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._put202_retry200_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -309,10 +303,9 @@ class LROsOperations:
     async def _put201_creating_succeeded200_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -358,23 +351,22 @@ class LROsOperations:
     async def put201_creating_succeeded200(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._put201_creating_succeeded200_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -401,10 +393,9 @@ class LROsOperations:
     async def _put200_updating_succeeded204_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -445,23 +436,22 @@ class LROsOperations:
     async def put200_updating_succeeded204(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._put200_updating_succeeded204_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -488,10 +478,9 @@ class LROsOperations:
     async def _put201_creating_failed200_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -537,23 +526,22 @@ class LROsOperations:
     async def put201_creating_failed200(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Failed’.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._put201_creating_failed200_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -580,10 +568,9 @@ class LROsOperations:
     async def _put200_acceptedcanceled200_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -624,23 +611,22 @@ class LROsOperations:
     async def put200_acceptedcanceled200(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Canceled’.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._put200_acceptedcanceled200_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -667,10 +653,9 @@ class LROsOperations:
     async def _put_no_header_in_retry_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -713,23 +698,22 @@ class LROsOperations:
     async def put_no_header_in_retry(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running put request, service returns a 202 to the initial request with location header. Subsequent calls to operation status do not contain location header.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._put_no_header_in_retry_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -759,10 +743,9 @@ class LROsOperations:
     async def _put_async_retry_succeeded_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -807,23 +790,22 @@ class LROsOperations:
     async def put_async_retry_succeeded(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._put_async_retry_succeeded_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -855,10 +837,9 @@ class LROsOperations:
     async def _put_async_no_retry_succeeded_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -902,23 +883,22 @@ class LROsOperations:
     async def put_async_no_retry_succeeded(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._put_async_no_retry_succeeded_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -949,10 +929,9 @@ class LROsOperations:
     async def _put_async_retry_failed_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -997,23 +976,22 @@ class LROsOperations:
     async def put_async_retry_failed(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._put_async_retry_failed_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -1045,10 +1023,9 @@ class LROsOperations:
     async def _put_async_no_retrycanceled_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1092,23 +1069,22 @@ class LROsOperations:
     async def put_async_no_retrycanceled(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._put_async_no_retrycanceled_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -1139,10 +1115,9 @@ class LROsOperations:
     async def _put_async_no_header_in_retry_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1185,23 +1160,22 @@ class LROsOperations:
     async def put_async_no_header_in_retry(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running put request, service returns a 202 to the initial request with Azure-AsyncOperation header. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._put_async_no_header_in_retry_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -1231,10 +1205,9 @@ class LROsOperations:
     async def _put_non_resource_initial(
         self,
         sku: Optional["models.Sku"] = None,
-        *,
-        cls: ClsType["models.Sku"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Sku":
+        cls: ClsType["models.Sku"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1275,23 +1248,22 @@ class LROsOperations:
     async def put_non_resource(
         self,
         sku: Optional["models.Sku"] = None,
-        *,
-        cls: ClsType["models.Sku"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Sku":
         """Long running put request with non resource.
 
         :param sku: sku to put.
         :type sku: ~lro.models.Sku
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Sku
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Sku]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.Sku"] = kwargs.pop('cls', None )
         raw_result = await self._put_non_resource_initial(
             sku=sku,
             cls=lambda x,y,z: x,
@@ -1318,10 +1290,9 @@ class LROsOperations:
     async def _put_async_non_resource_initial(
         self,
         sku: Optional["models.Sku"] = None,
-        *,
-        cls: ClsType["models.Sku"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Sku":
+        cls: ClsType["models.Sku"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1362,23 +1333,22 @@ class LROsOperations:
     async def put_async_non_resource(
         self,
         sku: Optional["models.Sku"] = None,
-        *,
-        cls: ClsType["models.Sku"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Sku":
         """Long running put request with non resource.
 
         :param sku: sku to put.
         :type sku: ~lro.models.Sku
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Sku
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Sku]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.Sku"] = kwargs.pop('cls', None )
         raw_result = await self._put_async_non_resource_initial(
             sku=sku,
             cls=lambda x,y,z: x,
@@ -1405,10 +1375,9 @@ class LROsOperations:
     async def _put_sub_resource_initial(
         self,
         provisioning_state: Optional[str] = None,
-        *,
-        cls: ClsType["models.SubProduct"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.SubProduct":
+        cls: ClsType["models.SubProduct"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         product = models.SubProduct(provisioning_state=provisioning_state)
@@ -1451,23 +1420,22 @@ class LROsOperations:
     async def put_sub_resource(
         self,
         provisioning_state: Optional[str] = None,
-        *,
-        cls: ClsType["models.SubProduct"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.SubProduct":
         """Long running put request with sub resource.
 
         :param provisioning_state:
         :type provisioning_state: str
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns SubProduct
         :rtype: ~azure.core.polling.LROPoller[~lro.models.SubProduct]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.SubProduct"] = kwargs.pop('cls', None )
         raw_result = await self._put_sub_resource_initial(
             provisioning_state=provisioning_state,
             cls=lambda x,y,z: x,
@@ -1494,10 +1462,9 @@ class LROsOperations:
     async def _put_async_sub_resource_initial(
         self,
         provisioning_state: Optional[str] = None,
-        *,
-        cls: ClsType["models.SubProduct"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.SubProduct":
+        cls: ClsType["models.SubProduct"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         product = models.SubProduct(provisioning_state=provisioning_state)
@@ -1540,23 +1507,22 @@ class LROsOperations:
     async def put_async_sub_resource(
         self,
         provisioning_state: Optional[str] = None,
-        *,
-        cls: ClsType["models.SubProduct"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.SubProduct":
         """Long running put request with sub resource.
 
         :param provisioning_state:
         :type provisioning_state: str
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns SubProduct
         :rtype: ~azure.core.polling.LROPoller[~lro.models.SubProduct]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.SubProduct"] = kwargs.pop('cls', None )
         raw_result = await self._put_async_sub_resource_initial(
             provisioning_state=provisioning_state,
             cls=lambda x,y,z: x,
@@ -1582,9 +1548,9 @@ class LROsOperations:
 
     async def _delete_provisioning202_accepted200_succeeded_initial(
         self,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1625,20 +1591,20 @@ class LROsOperations:
     @distributed_trace_async
     async def delete_provisioning202_accepted200_succeeded(
         self,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._delete_provisioning202_accepted200_succeeded_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -1667,9 +1633,9 @@ class LROsOperations:
 
     async def _delete_provisioning202_deleting_failed200_initial(
         self,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1710,20 +1676,20 @@ class LROsOperations:
     @distributed_trace_async
     async def delete_provisioning202_deleting_failed200(
         self,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Failed’.
 
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._delete_provisioning202_deleting_failed200_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -1752,9 +1718,9 @@ class LROsOperations:
 
     async def _delete_provisioning202_deletingcanceled200_initial(
         self,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1795,20 +1761,20 @@ class LROsOperations:
     @distributed_trace_async
     async def delete_provisioning202_deletingcanceled200(
         self,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Canceled’.
 
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._delete_provisioning202_deletingcanceled200_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -1837,9 +1803,9 @@ class LROsOperations:
 
     async def _delete204_succeeded_initial(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1868,20 +1834,20 @@ class LROsOperations:
     @distributed_trace_async
     async def delete204_succeeded(
         self,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Long running delete succeeds and returns right away.
 
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._delete204_succeeded_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -1903,9 +1869,9 @@ class LROsOperations:
 
     async def _delete202_retry200_initial(
         self,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1945,20 +1911,20 @@ class LROsOperations:
     @distributed_trace_async
     async def delete202_retry200(
         self,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running delete request, service returns a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._delete202_retry200_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -1983,9 +1949,9 @@ class LROsOperations:
 
     async def _delete202_no_retry204_initial(
         self,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2025,20 +1991,20 @@ class LROsOperations:
     @distributed_trace_async
     async def delete202_no_retry204(
         self,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running delete request, service returns a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._delete202_no_retry204_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2063,9 +2029,9 @@ class LROsOperations:
 
     async def _delete_no_header_in_retry_initial(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2098,20 +2064,20 @@ class LROsOperations:
     @distributed_trace_async
     async def delete_no_header_in_retry(
         self,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Long running delete request, service returns a location header in the initial request. Subsequent calls to operation status do not contain location header.
 
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._delete_no_header_in_retry_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2133,9 +2099,9 @@ class LROsOperations:
 
     async def _delete_async_no_header_in_retry_initial(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2168,20 +2134,20 @@ class LROsOperations:
     @distributed_trace_async
     async def delete_async_no_header_in_retry(
         self,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Long running delete request, service returns an Azure-AsyncOperation header in the initial request. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
 
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._delete_async_no_header_in_retry_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2203,9 +2169,9 @@ class LROsOperations:
 
     async def _delete_async_retry_succeeded_initial(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2239,20 +2205,20 @@ class LROsOperations:
     @distributed_trace_async
     async def delete_async_retry_succeeded(
         self,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._delete_async_retry_succeeded_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2274,9 +2240,9 @@ class LROsOperations:
 
     async def _delete_async_no_retry_succeeded_initial(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2310,20 +2276,20 @@ class LROsOperations:
     @distributed_trace_async
     async def delete_async_no_retry_succeeded(
         self,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._delete_async_no_retry_succeeded_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2345,9 +2311,9 @@ class LROsOperations:
 
     async def _delete_async_retry_failed_initial(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2381,20 +2347,20 @@ class LROsOperations:
     @distributed_trace_async
     async def delete_async_retry_failed(
         self,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._delete_async_retry_failed_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2416,9 +2382,9 @@ class LROsOperations:
 
     async def _delete_async_retrycanceled_initial(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2452,20 +2418,20 @@ class LROsOperations:
     @distributed_trace_async
     async def delete_async_retrycanceled(
         self,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._delete_async_retrycanceled_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2487,9 +2453,9 @@ class LROsOperations:
 
     async def _post200_with_payload_initial(
         self,
-        cls: ClsType["models.Sku"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Sku":
+        cls: ClsType["models.Sku"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2527,20 +2493,20 @@ class LROsOperations:
     @distributed_trace_async
     async def post200_with_payload(
         self,
-        cls: ClsType["models.Sku"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Sku":
         """Long running post request, service returns a 202 to the initial request, with 'Location' header. Poll returns a 200 with a response body after success.
 
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Sku
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Sku]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.Sku"] = kwargs.pop('cls', None )
         raw_result = await self._post200_with_payload_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2566,10 +2532,9 @@ class LROsOperations:
     async def _post202_retry200_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2610,23 +2575,22 @@ class LROsOperations:
     async def post202_retry200(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Long running post request, service returns a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._post202_retry200_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -2650,10 +2614,9 @@ class LROsOperations:
     async def _post202_no_retry204_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2697,23 +2660,22 @@ class LROsOperations:
     async def post202_no_retry204(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running post request, service returns a 202 to the initial request, with 'Location' header, 204 with noresponse body after success.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._post202_no_retry204_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -2743,9 +2705,9 @@ class LROsOperations:
 
     async def _post_double_headers_final_location_get_initial(
         self,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2778,20 +2740,20 @@ class LROsOperations:
     @distributed_trace_async
     async def post_double_headers_final_location_get(
         self,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running post request, service returns a 202 to the initial request with both Location and Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final object.
 
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._post_double_headers_final_location_get_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2816,9 +2778,9 @@ class LROsOperations:
 
     async def _post_double_headers_final_azure_header_get_initial(
         self,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2851,20 +2813,20 @@ class LROsOperations:
     @distributed_trace_async
     async def post_double_headers_final_azure_header_get(
         self,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running post request, service returns a 202 to the initial request with both Location and Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final object.
 
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._post_double_headers_final_azure_header_get_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2889,9 +2851,9 @@ class LROsOperations:
 
     async def _post_double_headers_final_azure_header_get_default_initial(
         self,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2924,20 +2886,20 @@ class LROsOperations:
     @distributed_trace_async
     async def post_double_headers_final_azure_header_get_default(
         self,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running post request, service returns a 202 to the initial request with both Location and Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final object if you support initial Autorest behavior.
 
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._post_double_headers_final_azure_header_get_default_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2963,10 +2925,9 @@ class LROsOperations:
     async def _post_async_retry_succeeded_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -3015,23 +2976,22 @@ class LROsOperations:
     async def post_async_retry_succeeded(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._post_async_retry_succeeded_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -3058,10 +3018,9 @@ class LROsOperations:
     async def _post_async_no_retry_succeeded_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -3110,23 +3069,22 @@ class LROsOperations:
     async def post_async_no_retry_succeeded(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._post_async_no_retry_succeeded_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -3153,10 +3111,9 @@ class LROsOperations:
     async def _post_async_retry_failed_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -3198,23 +3155,22 @@ class LROsOperations:
     async def post_async_retry_failed(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._post_async_retry_failed_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -3238,10 +3194,9 @@ class LROsOperations:
     async def _post_async_retrycanceled_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -3283,23 +3238,22 @@ class LROsOperations:
     async def post_async_retrycanceled(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: bool = kwargs.pop('polling', False)
+        cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._post_async_retrycanceled_initial(
             product=product,
             cls=lambda x,y,z: x,

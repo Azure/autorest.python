@@ -43,17 +43,17 @@ class PolymorphicrecursiveOperations(object):
     @distributed_trace
     def get_valid(
         self,
-        cls=None,  # type: ClsType["models.Fish"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Fish"
         """Get complex types that are polymorphic and have recursive references.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Fish or the result of cls(response)
         :rtype: ~bodycomplex.models.Fish
         :raises: ~bodycomplex.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.Fish"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -87,7 +87,6 @@ class PolymorphicrecursiveOperations(object):
     def put_valid(
         self,
         complex_body,  # type: "models.Fish"
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -127,11 +126,12 @@ class PolymorphicrecursiveOperations(object):
                  ]
                };.
         :type complex_body: ~bodycomplex.models.Fish
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodycomplex.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

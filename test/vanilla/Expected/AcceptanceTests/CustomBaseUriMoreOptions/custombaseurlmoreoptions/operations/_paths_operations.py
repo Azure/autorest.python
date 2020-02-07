@@ -46,7 +46,6 @@ class PathsOperations(object):
         secret,  # type: str
         key_name,  # type: str
         key_version=None,  # type: Optional[str]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -60,11 +59,12 @@ class PathsOperations(object):
         :type key_name: str
         :param key_version: The key version. Default value 'v1'.
         :type key_version: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~custombaseurlmoreoptions.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

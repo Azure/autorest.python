@@ -43,17 +43,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_valid(
         self,
-        cls=None,  # type: ClsType["models.ArrayWrapper"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.ArrayWrapper"
         """Get complex types with array property.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ArrayWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: ~bodycomplex.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.ArrayWrapper"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -87,7 +87,6 @@ class ArrayOperations(object):
     def put_valid(
         self,
         array=None,  # type: Optional[List[str]]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -95,11 +94,12 @@ class ArrayOperations(object):
 
         :param array:
         :type array: list[str]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodycomplex.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         complex_body = models.ArrayWrapper(array=array)
@@ -134,17 +134,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_empty(
         self,
-        cls=None,  # type: ClsType["models.ArrayWrapper"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.ArrayWrapper"
         """Get complex types with array property which is empty.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ArrayWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: ~bodycomplex.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.ArrayWrapper"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -178,7 +178,6 @@ class ArrayOperations(object):
     def put_empty(
         self,
         array=None,  # type: Optional[List[str]]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -186,11 +185,12 @@ class ArrayOperations(object):
 
         :param array:
         :type array: list[str]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodycomplex.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         complex_body = models.ArrayWrapper(array=array)
@@ -225,17 +225,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_not_provided(
         self,
-        cls=None,  # type: ClsType["models.ArrayWrapper"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.ArrayWrapper"
         """Get complex types with array property while server doesn't provide a response payload.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ArrayWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: ~bodycomplex.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.ArrayWrapper"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
