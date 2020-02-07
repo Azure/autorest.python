@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import ResourceNotFoundError, map_error
+from azure.core.exceptions import map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -62,7 +62,7 @@ class OdataOperations(object):
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_with_filter.metadata['url']

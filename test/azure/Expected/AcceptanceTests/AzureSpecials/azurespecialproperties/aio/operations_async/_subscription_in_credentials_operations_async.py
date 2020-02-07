@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import ResourceNotFoundError, map_error
+from azure.core.exceptions import map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
@@ -52,7 +52,7 @@ class SubscriptionInCredentialsOperations:
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.post_method_global_valid.metadata['url']
@@ -94,7 +94,7 @@ class SubscriptionInCredentialsOperations:
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.post_method_global_null.metadata['url']
@@ -136,7 +136,7 @@ class SubscriptionInCredentialsOperations:
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.post_method_global_not_provided_valid.metadata['url']
@@ -178,7 +178,7 @@ class SubscriptionInCredentialsOperations:
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.post_path_global_valid.metadata['url']
@@ -220,7 +220,7 @@ class SubscriptionInCredentialsOperations:
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.post_swagger_global_valid.metadata['url']

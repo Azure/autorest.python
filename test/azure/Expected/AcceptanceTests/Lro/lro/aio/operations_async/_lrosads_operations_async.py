@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 import warnings
 
-from azure.core.exceptions import ResourceNotFoundError, map_error
+from azure.core.exceptions import map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.polling import AsyncNoPolling, async_poller
@@ -50,7 +50,7 @@ class LROSADsOperations:
         cls: ClsType["models.Product"] = None,
         **kwargs: Any
     ) -> "models.Product":
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_non_retry400_initial.metadata['url']
@@ -142,7 +142,7 @@ class LROSADsOperations:
         cls: ClsType["models.Product"] = None,
         **kwargs: Any
     ) -> "models.Product":
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_non_retry201_creating400_initial.metadata['url']
@@ -234,7 +234,7 @@ class LROSADsOperations:
         cls: ClsType["models.Product"] = None,
         **kwargs: Any
     ) -> "models.Product":
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_non_retry201_creating400_invalid_json_initial.metadata['url']
@@ -326,7 +326,7 @@ class LROSADsOperations:
         cls: ClsType["models.Product"] = None,
         **kwargs: Any
     ) -> "models.Product":
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_async_relative_retry400_initial.metadata['url']
@@ -420,7 +420,7 @@ class LROSADsOperations:
         cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete_non_retry400_initial.metadata['url']
@@ -490,7 +490,7 @@ class LROSADsOperations:
         cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete202_non_retry400_initial.metadata['url']
@@ -560,7 +560,7 @@ class LROSADsOperations:
         cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete_async_relative_retry400_initial.metadata['url']
@@ -633,7 +633,7 @@ class LROSADsOperations:
         cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post_non_retry400_initial.metadata['url']
@@ -717,7 +717,7 @@ class LROSADsOperations:
         cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post202_non_retry400_initial.metadata['url']
@@ -801,7 +801,7 @@ class LROSADsOperations:
         cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post_async_relative_retry400_initial.metadata['url']
@@ -886,7 +886,7 @@ class LROSADsOperations:
         cls: ClsType["models.Product"] = None,
         **kwargs: Any
     ) -> "models.Product":
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_error201_no_provisioning_state_payload_initial.metadata['url']
@@ -978,7 +978,7 @@ class LROSADsOperations:
         cls: ClsType["models.Product"] = None,
         **kwargs: Any
     ) -> "models.Product":
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_async_relative_retry_no_status_initial.metadata['url']
@@ -1074,7 +1074,7 @@ class LROSADsOperations:
         cls: ClsType["models.Product"] = None,
         **kwargs: Any
     ) -> "models.Product":
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_async_relative_retry_no_status_payload_initial.metadata['url']
@@ -1168,7 +1168,7 @@ class LROSADsOperations:
         cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete204_succeeded_initial.metadata['url']
@@ -1234,7 +1234,7 @@ class LROSADsOperations:
         cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete_async_relative_retry_no_status_initial.metadata['url']
@@ -1307,7 +1307,7 @@ class LROSADsOperations:
         cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post202_no_location_initial.metadata['url']
@@ -1391,7 +1391,7 @@ class LROSADsOperations:
         cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post_async_relative_retry_no_payload_initial.metadata['url']
@@ -1476,7 +1476,7 @@ class LROSADsOperations:
         cls: ClsType["models.Product"] = None,
         **kwargs: Any
     ) -> "models.Product":
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put200_invalid_json_initial.metadata['url']
@@ -1565,7 +1565,7 @@ class LROSADsOperations:
         cls: ClsType["models.Product"] = None,
         **kwargs: Any
     ) -> "models.Product":
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_async_relative_retry_invalid_header_initial.metadata['url']
@@ -1661,7 +1661,7 @@ class LROSADsOperations:
         cls: ClsType["models.Product"] = None,
         **kwargs: Any
     ) -> "models.Product":
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_async_relative_retry_invalid_json_polling_initial.metadata['url']
@@ -1755,7 +1755,7 @@ class LROSADsOperations:
         cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete202_retry_invalid_header_initial.metadata['url']
@@ -1825,7 +1825,7 @@ class LROSADsOperations:
         cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete_async_relative_retry_invalid_header_initial.metadata['url']
@@ -1896,7 +1896,7 @@ class LROSADsOperations:
         cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete_async_relative_retry_invalid_json_polling_initial.metadata['url']
@@ -1969,7 +1969,7 @@ class LROSADsOperations:
         cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post202_retry_invalid_header_initial.metadata['url']
@@ -2053,7 +2053,7 @@ class LROSADsOperations:
         cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post_async_relative_retry_invalid_header_initial.metadata['url']
@@ -2138,7 +2138,7 @@ class LROSADsOperations:
         cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post_async_relative_retry_invalid_json_polling_initial.metadata['url']

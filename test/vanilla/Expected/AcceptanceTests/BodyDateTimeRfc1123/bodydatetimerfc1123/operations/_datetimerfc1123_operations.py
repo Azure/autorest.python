@@ -9,7 +9,7 @@ import datetime
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import ResourceNotFoundError, map_error
+from azure.core.exceptions import map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -54,7 +54,7 @@ class Datetimerfc1123Operations(object):
         :rtype: ~datetime.datetime
         :raises: ~bodydatetimerfc1123.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_null.metadata['url']
@@ -97,7 +97,7 @@ class Datetimerfc1123Operations(object):
         :rtype: ~datetime.datetime
         :raises: ~bodydatetimerfc1123.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_invalid.metadata['url']
@@ -140,7 +140,7 @@ class Datetimerfc1123Operations(object):
         :rtype: ~datetime.datetime
         :raises: ~bodydatetimerfc1123.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_overflow.metadata['url']
@@ -183,7 +183,7 @@ class Datetimerfc1123Operations(object):
         :rtype: ~datetime.datetime
         :raises: ~bodydatetimerfc1123.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_underflow.metadata['url']
@@ -229,7 +229,7 @@ class Datetimerfc1123Operations(object):
         :rtype: None
         :raises: ~bodydatetimerfc1123.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_utc_max_date_time.metadata['url']
@@ -272,7 +272,7 @@ class Datetimerfc1123Operations(object):
         :rtype: ~datetime.datetime
         :raises: ~bodydatetimerfc1123.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_utc_lowercase_max_date_time.metadata['url']
@@ -315,7 +315,7 @@ class Datetimerfc1123Operations(object):
         :rtype: ~datetime.datetime
         :raises: ~bodydatetimerfc1123.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_utc_uppercase_max_date_time.metadata['url']
@@ -361,7 +361,7 @@ class Datetimerfc1123Operations(object):
         :rtype: None
         :raises: ~bodydatetimerfc1123.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_utc_min_date_time.metadata['url']
@@ -404,7 +404,7 @@ class Datetimerfc1123Operations(object):
         :rtype: ~datetime.datetime
         :raises: ~bodydatetimerfc1123.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_utc_min_date_time.metadata['url']

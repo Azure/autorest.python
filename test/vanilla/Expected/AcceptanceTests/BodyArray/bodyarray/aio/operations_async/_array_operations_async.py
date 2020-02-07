@@ -9,7 +9,7 @@ import datetime
 from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar, Union
 import warnings
 
-from azure.core.exceptions import ResourceNotFoundError, map_error
+from azure.core.exceptions import map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
@@ -54,7 +54,7 @@ class ArrayOperations:
         :rtype: list[int]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_null.metadata['url']
@@ -96,7 +96,7 @@ class ArrayOperations:
         :rtype: list[int]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_invalid.metadata['url']
@@ -138,7 +138,7 @@ class ArrayOperations:
         :rtype: list[int]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_empty.metadata['url']
@@ -184,7 +184,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_empty.metadata['url']
@@ -226,7 +226,7 @@ class ArrayOperations:
         :rtype: list[bool]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_boolean_tfft.metadata['url']
@@ -272,7 +272,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_boolean_tfft.metadata['url']
@@ -314,7 +314,7 @@ class ArrayOperations:
         :rtype: list[bool]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_boolean_invalid_null.metadata['url']
@@ -356,7 +356,7 @@ class ArrayOperations:
         :rtype: list[bool]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_boolean_invalid_string.metadata['url']
@@ -398,7 +398,7 @@ class ArrayOperations:
         :rtype: list[int]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_integer_valid.metadata['url']
@@ -444,7 +444,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_integer_valid.metadata['url']
@@ -486,7 +486,7 @@ class ArrayOperations:
         :rtype: list[int]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_int_invalid_null.metadata['url']
@@ -528,7 +528,7 @@ class ArrayOperations:
         :rtype: list[int]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_int_invalid_string.metadata['url']
@@ -570,7 +570,7 @@ class ArrayOperations:
         :rtype: list[long]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_long_valid.metadata['url']
@@ -616,7 +616,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_long_valid.metadata['url']
@@ -658,7 +658,7 @@ class ArrayOperations:
         :rtype: list[long]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_long_invalid_null.metadata['url']
@@ -700,7 +700,7 @@ class ArrayOperations:
         :rtype: list[long]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_long_invalid_string.metadata['url']
@@ -742,7 +742,7 @@ class ArrayOperations:
         :rtype: list[float]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_float_valid.metadata['url']
@@ -788,7 +788,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_float_valid.metadata['url']
@@ -830,7 +830,7 @@ class ArrayOperations:
         :rtype: list[float]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_float_invalid_null.metadata['url']
@@ -872,7 +872,7 @@ class ArrayOperations:
         :rtype: list[float]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_float_invalid_string.metadata['url']
@@ -914,7 +914,7 @@ class ArrayOperations:
         :rtype: list[float]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_double_valid.metadata['url']
@@ -960,7 +960,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_double_valid.metadata['url']
@@ -1002,7 +1002,7 @@ class ArrayOperations:
         :rtype: list[float]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_double_invalid_null.metadata['url']
@@ -1044,7 +1044,7 @@ class ArrayOperations:
         :rtype: list[float]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_double_invalid_string.metadata['url']
@@ -1086,7 +1086,7 @@ class ArrayOperations:
         :rtype: list[str]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_string_valid.metadata['url']
@@ -1132,7 +1132,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_string_valid.metadata['url']
@@ -1174,7 +1174,7 @@ class ArrayOperations:
         :rtype: list[str or ~bodyarray.models.FooEnum]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_enum_valid.metadata['url']
@@ -1220,7 +1220,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_enum_valid.metadata['url']
@@ -1262,7 +1262,7 @@ class ArrayOperations:
         :rtype: list[str or ~bodyarray.models.Enum0]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_string_enum_valid.metadata['url']
@@ -1308,7 +1308,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_string_enum_valid.metadata['url']
@@ -1350,7 +1350,7 @@ class ArrayOperations:
         :rtype: list[str]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_string_with_null.metadata['url']
@@ -1392,7 +1392,7 @@ class ArrayOperations:
         :rtype: list[str]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_string_with_invalid.metadata['url']
@@ -1434,7 +1434,7 @@ class ArrayOperations:
         :rtype: list[str]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_uuid_valid.metadata['url']
@@ -1480,7 +1480,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_uuid_valid.metadata['url']
@@ -1522,7 +1522,7 @@ class ArrayOperations:
         :rtype: list[str]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_uuid_invalid_chars.metadata['url']
@@ -1564,7 +1564,7 @@ class ArrayOperations:
         :rtype: list[~datetime.date]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_date_valid.metadata['url']
@@ -1610,7 +1610,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_date_valid.metadata['url']
@@ -1652,7 +1652,7 @@ class ArrayOperations:
         :rtype: list[~datetime.date]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_date_invalid_null.metadata['url']
@@ -1694,7 +1694,7 @@ class ArrayOperations:
         :rtype: list[~datetime.date]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_date_invalid_chars.metadata['url']
@@ -1736,7 +1736,7 @@ class ArrayOperations:
         :rtype: list[~datetime.datetime]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_date_time_valid.metadata['url']
@@ -1782,7 +1782,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_date_time_valid.metadata['url']
@@ -1824,7 +1824,7 @@ class ArrayOperations:
         :rtype: list[~datetime.datetime]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_date_time_invalid_null.metadata['url']
@@ -1866,7 +1866,7 @@ class ArrayOperations:
         :rtype: list[~datetime.datetime]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_date_time_invalid_chars.metadata['url']
@@ -1908,7 +1908,7 @@ class ArrayOperations:
         :rtype: list[~datetime.datetime]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_date_time_rfc1123_valid.metadata['url']
@@ -1954,7 +1954,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_date_time_rfc1123_valid.metadata['url']
@@ -1996,7 +1996,7 @@ class ArrayOperations:
         :rtype: list[~datetime.timedelta]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_duration_valid.metadata['url']
@@ -2042,7 +2042,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_duration_valid.metadata['url']
@@ -2084,7 +2084,7 @@ class ArrayOperations:
         :rtype: list[bytearray]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_byte_valid.metadata['url']
@@ -2130,7 +2130,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_byte_valid.metadata['url']
@@ -2172,7 +2172,7 @@ class ArrayOperations:
         :rtype: list[bytearray]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_byte_invalid_null.metadata['url']
@@ -2214,7 +2214,7 @@ class ArrayOperations:
         :rtype: list[bytes]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_base64_url.metadata['url']
@@ -2256,7 +2256,7 @@ class ArrayOperations:
         :rtype: list[~bodyarray.models.Product]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_complex_null.metadata['url']
@@ -2298,7 +2298,7 @@ class ArrayOperations:
         :rtype: list[~bodyarray.models.Product]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_complex_empty.metadata['url']
@@ -2340,7 +2340,7 @@ class ArrayOperations:
         :rtype: list[~bodyarray.models.Product]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_complex_item_null.metadata['url']
@@ -2382,7 +2382,7 @@ class ArrayOperations:
         :rtype: list[~bodyarray.models.Product]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_complex_item_empty.metadata['url']
@@ -2424,7 +2424,7 @@ class ArrayOperations:
         :rtype: list[~bodyarray.models.Product]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_complex_valid.metadata['url']
@@ -2470,7 +2470,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_complex_valid.metadata['url']
@@ -2512,7 +2512,7 @@ class ArrayOperations:
         :rtype: list[list[str]]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_array_null.metadata['url']
@@ -2554,7 +2554,7 @@ class ArrayOperations:
         :rtype: list[list[str]]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_array_empty.metadata['url']
@@ -2596,7 +2596,7 @@ class ArrayOperations:
         :rtype: list[list[str]]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_array_item_null.metadata['url']
@@ -2638,7 +2638,7 @@ class ArrayOperations:
         :rtype: list[list[str]]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_array_item_empty.metadata['url']
@@ -2680,7 +2680,7 @@ class ArrayOperations:
         :rtype: list[list[str]]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_array_valid.metadata['url']
@@ -2726,7 +2726,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_array_valid.metadata['url']
@@ -2768,7 +2768,7 @@ class ArrayOperations:
         :rtype: list[dict[str, str]]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_dictionary_null.metadata['url']
@@ -2810,7 +2810,7 @@ class ArrayOperations:
         :rtype: list[dict[str, str]]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_dictionary_empty.metadata['url']
@@ -2852,7 +2852,7 @@ class ArrayOperations:
         :rtype: list[dict[str, str]]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_dictionary_item_null.metadata['url']
@@ -2894,7 +2894,7 @@ class ArrayOperations:
         :rtype: list[dict[str, str]]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_dictionary_item_empty.metadata['url']
@@ -2936,7 +2936,7 @@ class ArrayOperations:
         :rtype: list[dict[str, str]]
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_dictionary_valid.metadata['url']
@@ -2982,7 +2982,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_dictionary_valid.metadata['url']

@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import ResourceNotFoundError, map_error
+from azure.core.exceptions import map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -38,7 +38,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :rtype: None
         :raises: ~modelflattening.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_array.metadata['url']
@@ -84,7 +84,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :rtype: list[~modelflattening.models.FlattenedProduct]
         :raises: ~modelflattening.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_array.metadata['url']
@@ -130,7 +130,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :rtype: None
         :raises: ~modelflattening.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_wrapped_array.metadata['url']
@@ -176,7 +176,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :rtype: list[~modelflattening.models.ProductWrapper]
         :raises: ~modelflattening.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_wrapped_array.metadata['url']
@@ -222,7 +222,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :rtype: None
         :raises: ~modelflattening.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_dictionary.metadata['url']
@@ -268,7 +268,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :rtype: dict[str, ~modelflattening.models.FlattenedProduct]
         :raises: ~modelflattening.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_dictionary.metadata['url']
@@ -314,7 +314,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :rtype: None
         :raises: ~modelflattening.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_resource_collection.metadata['url']
@@ -360,7 +360,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :rtype: ~modelflattening.models.ResourceCollection
         :raises: ~modelflattening.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_resource_collection.metadata['url']
@@ -406,7 +406,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :rtype: ~modelflattening.models.SimpleProduct
         :raises: ~modelflattening.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_simple_product.metadata['url']
@@ -473,7 +473,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :rtype: ~modelflattening.models.SimpleProduct
         :raises: ~modelflattening.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         simple_body_product = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odatavalue=odatavalue)
 
@@ -528,7 +528,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :rtype: ~modelflattening.models.SimpleProduct
         :raises: ~modelflattening.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
         
         name = None
         simple_body_product = None

@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import ResourceNotFoundError, map_error
+from azure.core.exceptions import map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
@@ -56,7 +56,7 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_method_path_valid.metadata['url']
@@ -102,7 +102,7 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_path_path_valid.metadata['url']
@@ -144,7 +144,7 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
         unencoded_path_param = "path1/path2/path3"
 
         # Construct URL
@@ -191,7 +191,7 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_method_query_valid.metadata['url']
@@ -234,7 +234,7 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_method_query_null.metadata['url']
@@ -278,7 +278,7 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_path_query_valid.metadata['url']
@@ -317,7 +317,7 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
         q1 = "value1&q2=value2&q3=value3"
 
         # Construct URL

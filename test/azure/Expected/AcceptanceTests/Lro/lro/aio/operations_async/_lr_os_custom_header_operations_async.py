@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 import warnings
 
-from azure.core.exceptions import ResourceNotFoundError, map_error
+from azure.core.exceptions import map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.polling import AsyncNoPolling, async_poller
@@ -50,7 +50,7 @@ class LROsCustomHeaderOperations:
         cls: ClsType["models.Product"] = None,
         **kwargs: Any
     ) -> "models.Product":
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_async_retry_succeeded_initial.metadata['url']
@@ -146,7 +146,7 @@ class LROsCustomHeaderOperations:
         cls: ClsType["models.Product"] = None,
         **kwargs: Any
     ) -> "models.Product":
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put201_creating_succeeded200_initial.metadata['url']
@@ -238,7 +238,7 @@ class LROsCustomHeaderOperations:
         cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post202_retry200_initial.metadata['url']
@@ -322,7 +322,7 @@ class LROsCustomHeaderOperations:
         cls: ClsType[None] = None,
         **kwargs: Any
     ) -> None:
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post_async_retry_succeeded_initial.metadata['url']
