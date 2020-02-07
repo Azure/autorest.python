@@ -16,7 +16,6 @@ from azure.core.polling import LROPoller, NoPolling
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMError
 from azure.mgmt.core.polling.arm_polling import ARMPolling
-from msrest.serialization import Model
 
 from .. import models
 

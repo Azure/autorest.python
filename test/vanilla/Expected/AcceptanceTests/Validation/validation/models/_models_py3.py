@@ -9,10 +9,10 @@
 from typing import List, Optional
 
 from azure.core.exceptions import HttpResponseError
-from msrest.serialization import Model
+import msrest.serialization
 
 
-class ChildProduct(Model):
+class ChildProduct(msrest.serialization.Model):
     """The product documentation.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -46,7 +46,7 @@ class ChildProduct(Model):
         self.count = count
 
 
-class ConstantProduct(Model):
+class ConstantProduct(msrest.serialization.Model):
     """The product documentation.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -104,7 +104,7 @@ class ErrorException(HttpResponseError):
         return error._EXCEPTION_TYPE(response, error)
 
 
-class Error(Model):
+class Error(msrest.serialization.Model):
     """Error.
 
     :param code:
@@ -136,7 +136,7 @@ class Error(Model):
         self.fields = fields
 
 
-class Product(Model):
+class Product(msrest.serialization.Model):
     """The product documentation.
 
     Variables are only populated by the server, and will be ignored when sending a request.

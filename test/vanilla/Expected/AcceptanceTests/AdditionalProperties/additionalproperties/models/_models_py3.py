@@ -9,10 +9,10 @@
 from typing import Dict, Optional
 
 from azure.core.exceptions import HttpResponseError
-from msrest.serialization import Model
+import msrest.serialization
 
 
-class PetAPTrue(Model):
+class PetAPTrue(msrest.serialization.Model):
     """PetAPTrue.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -128,7 +128,7 @@ class ErrorException(HttpResponseError):
         return error._EXCEPTION_TYPE(response, error)
 
 
-class Error(Model):
+class Error(msrest.serialization.Model):
     """Error.
 
     :param status:
@@ -155,7 +155,7 @@ class Error(Model):
         self.message = message
 
 
-class PetAPInProperties(Model):
+class PetAPInProperties(msrest.serialization.Model):
     """PetAPInProperties.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -200,7 +200,7 @@ class PetAPInProperties(Model):
         self.additional_properties = additional_properties
 
 
-class PetAPInPropertiesWithAPString(Model):
+class PetAPInPropertiesWithAPString(msrest.serialization.Model):
     """PetAPInPropertiesWithAPString.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -257,7 +257,7 @@ class PetAPInPropertiesWithAPString(Model):
         self.additional_properties1 = additional_properties1
 
 
-class PetAPObject(Model):
+class PetAPObject(msrest.serialization.Model):
     """PetAPObject.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -302,7 +302,7 @@ class PetAPObject(Model):
         self.status = None
 
 
-class PetAPString(Model):
+class PetAPString(msrest.serialization.Model):
     """PetAPString.
 
     Variables are only populated by the server, and will be ignored when sending a request.

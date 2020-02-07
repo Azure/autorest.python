@@ -32,13 +32,6 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         self.discriminator_name = kwargs.pop("discriminator_name", None)
         self.discriminator_value = kwargs.pop("discriminator_value", None)
 
-    def imports(self) -> FileImport:
-        file_import = FileImport()
-        file_import.add_from_import("msrest.serialization", "Model", ImportType.AZURECORE)
-        if self.is_exception:
-            file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
-        return file_import
-
     @property
     def serialization_type(self) -> str:
         return self.name

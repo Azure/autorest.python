@@ -9,10 +9,10 @@
 from typing import Dict, List, Optional
 
 from azure.core.exceptions import HttpResponseError
-from msrest.serialization import Model
+import msrest.serialization
 
 
-class BaseProduct(Model):
+class BaseProduct(msrest.serialization.Model):
     """The product documentation.
 
     All required parameters must be populated in order to send to Azure.
@@ -71,7 +71,7 @@ class ErrorException(HttpResponseError):
         return error._EXCEPTION_TYPE(response, error)
 
 
-class Error(Model):
+class Error(msrest.serialization.Model):
     """Error.
 
     :param status:
@@ -103,7 +103,7 @@ class Error(Model):
         self.parent_error = parent_error
 
 
-class Resource(Model):
+class Resource(msrest.serialization.Model):
     """Resource.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -214,7 +214,7 @@ class FlattenedProduct(Resource):
         self.provisioning_state = provisioning_state
 
 
-class FlattenedProductProperties(Model):
+class FlattenedProductProperties(msrest.serialization.Model):
     """FlattenedProductProperties.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -257,7 +257,7 @@ class FlattenedProductProperties(Model):
         self.provisioning_state = provisioning_state
 
 
-class FlattenParameterGroup(Model):
+class FlattenParameterGroup(msrest.serialization.Model):
     """Parameter group.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -325,7 +325,7 @@ class FlattenParameterGroup(Model):
         self.odatavalue = odatavalue
 
 
-class GenericUrl(Model):
+class GenericUrl(msrest.serialization.Model):
     """The Generic URL.
 
     :param generic_value: Generic URL value.
@@ -371,7 +371,7 @@ class ProductUrl(GenericUrl):
         self.odata_value = odata_value
 
 
-class ProductWrapper(Model):
+class ProductWrapper(msrest.serialization.Model):
     """The wrapped produc.
 
     :param value: the product value.
@@ -392,7 +392,7 @@ class ProductWrapper(Model):
         self.value = value
 
 
-class ResourceCollection(Model):
+class ResourceCollection(msrest.serialization.Model):
     """ResourceCollection.
 
     :param productresource: Flattened product.
@@ -478,7 +478,7 @@ class SimpleProduct(BaseProduct):
         self.odata_value = odata_value
 
 
-class SimpleProductProperties(Model):
+class SimpleProductProperties(msrest.serialization.Model):
     """The product documentation.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -523,7 +523,7 @@ class SimpleProductProperties(Model):
         self.odata_value = odata_value
 
 
-class WrappedProduct(Model):
+class WrappedProduct(msrest.serialization.Model):
     """The wrapped produc.
 
     :param value: the product value.

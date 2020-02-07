@@ -9,7 +9,7 @@
 from typing import Optional
 
 from azure.core.exceptions import HttpResponseError
-from msrest.serialization import Model
+import msrest.serialization
 
 
 class ErrorException(HttpResponseError):
@@ -37,7 +37,7 @@ class ErrorException(HttpResponseError):
         return error._EXCEPTION_TYPE(response, error)
 
 
-class Error(Model):
+class Error(msrest.serialization.Model):
     """Error.
 
     :param code:
@@ -64,7 +64,7 @@ class Error(Model):
         self.message = message
 
 
-class SampleResourceGroup(Model):
+class SampleResourceGroup(msrest.serialization.Model):
     """SampleResourceGroup.
 
     :param name: resource group name 'testgroup101'.
