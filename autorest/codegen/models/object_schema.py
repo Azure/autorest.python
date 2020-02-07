@@ -6,7 +6,6 @@
 from typing import Any, Dict, Optional
 from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
-from .imports import FileImport, ImportType
 from .property import Property
 
 
