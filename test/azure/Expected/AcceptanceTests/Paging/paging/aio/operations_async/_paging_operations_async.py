@@ -45,7 +45,7 @@ class PagingOperations:
         self._config = config
 
     @distributed_trace
-    async def get_no_item_name_pages(
+    def get_no_item_name_pages(
         self,
         **kwargs
     ) -> "models.ProductResultValue":
@@ -102,7 +102,7 @@ class PagingOperations:
     get_no_item_name_pages.metadata = {'url': '/paging/noitemname'}
 
     @distributed_trace
-    async def get_null_next_link_name_pages(
+    def get_null_next_link_name_pages(
         self,
         **kwargs
     ) -> "models.ProductResult":
@@ -159,7 +159,7 @@ class PagingOperations:
     get_null_next_link_name_pages.metadata = {'url': '/paging/nullnextlink'}
 
     @distributed_trace
-    async def get_single_pages(
+    def get_single_pages(
         self,
         **kwargs
     ) -> "models.ProductResult":
@@ -216,7 +216,7 @@ class PagingOperations:
     get_single_pages.metadata = {'url': '/paging/single'}
 
     @distributed_trace
-    async def get_multiple_pages(
+    def get_multiple_pages(
         self,
         client_request_id: Optional[str] = None,
         paging_get_multiple_pages_options: Optional["models.PagingGetMultiplePagesOptions"] = None,
@@ -291,7 +291,7 @@ class PagingOperations:
     get_multiple_pages.metadata = {'url': '/paging/multiple'}
 
     @distributed_trace
-    async def get_odata_multiple_pages(
+    def get_odata_multiple_pages(
         self,
         client_request_id: Optional[str] = None,
         paging_get_odata_multiple_pages_options: Optional["models.PagingGetOdataMultiplePagesOptions"] = None,
@@ -366,7 +366,7 @@ class PagingOperations:
     get_odata_multiple_pages.metadata = {'url': '/paging/multiple/odata'}
 
     @distributed_trace
-    async def get_multiple_pages_with_offset(
+    def get_multiple_pages_with_offset(
         self,
         paging_get_multiple_pages_with_offset_options: "models.PagingGetMultiplePagesWithOffsetOptions",
         client_request_id: Optional[str] = None,
@@ -447,7 +447,7 @@ class PagingOperations:
     get_multiple_pages_with_offset.metadata = {'url': '/paging/multiple/withpath/{offset}'}
 
     @distributed_trace
-    async def get_multiple_pages_retry_first(
+    def get_multiple_pages_retry_first(
         self,
         **kwargs
     ) -> "models.ProductResult":
@@ -504,7 +504,7 @@ class PagingOperations:
     get_multiple_pages_retry_first.metadata = {'url': '/paging/multiple/retryfirst'}
 
     @distributed_trace
-    async def get_multiple_pages_retry_second(
+    def get_multiple_pages_retry_second(
         self,
         **kwargs
     ) -> "models.ProductResult":
@@ -561,7 +561,7 @@ class PagingOperations:
     get_multiple_pages_retry_second.metadata = {'url': '/paging/multiple/retrysecond'}
 
     @distributed_trace
-    async def get_single_pages_failure(
+    def get_single_pages_failure(
         self,
         **kwargs
     ) -> "models.ProductResult":
@@ -618,7 +618,7 @@ class PagingOperations:
     get_single_pages_failure.metadata = {'url': '/paging/single/failure'}
 
     @distributed_trace
-    async def get_multiple_pages_failure(
+    def get_multiple_pages_failure(
         self,
         **kwargs
     ) -> "models.ProductResult":
@@ -675,7 +675,7 @@ class PagingOperations:
     get_multiple_pages_failure.metadata = {'url': '/paging/multiple/failure'}
 
     @distributed_trace
-    async def get_multiple_pages_failure_uri(
+    def get_multiple_pages_failure_uri(
         self,
         **kwargs
     ) -> "models.ProductResult":
@@ -732,7 +732,7 @@ class PagingOperations:
     get_multiple_pages_failure_uri.metadata = {'url': '/paging/multiple/failureuri'}
 
     @distributed_trace
-    async def get_multiple_pages_fragment_next_link(
+    def get_multiple_pages_fragment_next_link(
         self,
         api_version: str,
         tenant: str,
@@ -805,7 +805,7 @@ class PagingOperations:
     get_multiple_pages_fragment_next_link.metadata = {'url': '/paging/multiple/fragment/{tenant}'}
 
     @distributed_trace
-    async def get_multiple_pages_fragment_with_grouping_next_link(
+    def get_multiple_pages_fragment_with_grouping_next_link(
         self,
         custom_parameter_group: "models.CustomParameterGroup",
         **kwargs

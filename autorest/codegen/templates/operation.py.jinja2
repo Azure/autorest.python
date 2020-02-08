@@ -20,7 +20,7 @@
 {%- if code_model.options['tracing'] and operation.want_tracing -%}
 {{ trace_decorator }}
 {% endif %}
-{{ op_tools.method_signature(operation, operation.python_name, async_mode) }}
+{{ op_tools.method_signature(operation, operation.python_name, async_mode, is_paging=False) }}
 {%- if not async_mode %}
     {{ keywords.sync_return_type_annotation(operation) }}
 {% endif %}

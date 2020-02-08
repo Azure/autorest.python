@@ -430,7 +430,7 @@ class StorageAccountsOperations:
     list_keys.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys'}
 
     @distributed_trace
-    async def list(
+    def list(
         self,
         **kwargs
     ) -> "models.StorageAccountListResult":
@@ -491,7 +491,7 @@ class StorageAccountsOperations:
     list.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts'}
 
     @distributed_trace
-    async def list_by_resource_group(
+    def list_by_resource_group(
         self,
         resource_group_name: str,
         **kwargs
