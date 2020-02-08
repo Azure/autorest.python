@@ -51,7 +51,7 @@ class PrimitiveOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: IntWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.IntWrapper
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -72,7 +72,7 @@ class PrimitiveOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('IntWrapper', pipeline_response)
 
@@ -97,7 +97,7 @@ class PrimitiveOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -121,7 +121,7 @@ class PrimitiveOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -139,7 +139,7 @@ class PrimitiveOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: LongWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.LongWrapper
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -160,7 +160,7 @@ class PrimitiveOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('LongWrapper', pipeline_response)
 
@@ -185,7 +185,7 @@ class PrimitiveOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -209,7 +209,7 @@ class PrimitiveOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -227,7 +227,7 @@ class PrimitiveOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: FloatWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.FloatWrapper
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -248,7 +248,7 @@ class PrimitiveOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('FloatWrapper', pipeline_response)
 
@@ -273,7 +273,7 @@ class PrimitiveOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -297,7 +297,7 @@ class PrimitiveOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -315,7 +315,7 @@ class PrimitiveOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DoubleWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DoubleWrapper
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -336,7 +336,7 @@ class PrimitiveOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('DoubleWrapper', pipeline_response)
 
@@ -362,7 +362,7 @@ class PrimitiveOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -386,7 +386,7 @@ class PrimitiveOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -404,7 +404,7 @@ class PrimitiveOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: BooleanWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.BooleanWrapper
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -425,7 +425,7 @@ class PrimitiveOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('BooleanWrapper', pipeline_response)
 
@@ -450,7 +450,7 @@ class PrimitiveOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -474,7 +474,7 @@ class PrimitiveOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -492,7 +492,7 @@ class PrimitiveOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: StringWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.StringWrapper
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -513,7 +513,7 @@ class PrimitiveOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('StringWrapper', pipeline_response)
 
@@ -538,7 +538,7 @@ class PrimitiveOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -562,7 +562,7 @@ class PrimitiveOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -580,7 +580,7 @@ class PrimitiveOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DateWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DateWrapper
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -601,7 +601,7 @@ class PrimitiveOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('DateWrapper', pipeline_response)
 
@@ -626,7 +626,7 @@ class PrimitiveOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -650,7 +650,7 @@ class PrimitiveOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -668,7 +668,7 @@ class PrimitiveOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DatetimeWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DatetimeWrapper
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -689,7 +689,7 @@ class PrimitiveOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('DatetimeWrapper', pipeline_response)
 
@@ -714,7 +714,7 @@ class PrimitiveOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -738,7 +738,7 @@ class PrimitiveOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -756,7 +756,7 @@ class PrimitiveOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Datetimerfc1123Wrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.Datetimerfc1123Wrapper
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -777,7 +777,7 @@ class PrimitiveOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('Datetimerfc1123Wrapper', pipeline_response)
 
@@ -803,7 +803,7 @@ class PrimitiveOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -827,7 +827,7 @@ class PrimitiveOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -845,7 +845,7 @@ class PrimitiveOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: DurationWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DurationWrapper
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -866,7 +866,7 @@ class PrimitiveOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('DurationWrapper', pipeline_response)
 
@@ -891,7 +891,7 @@ class PrimitiveOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -917,7 +917,7 @@ class PrimitiveOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -935,7 +935,7 @@ class PrimitiveOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: ByteWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ByteWrapper
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -956,7 +956,7 @@ class PrimitiveOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('ByteWrapper', pipeline_response)
 
@@ -981,7 +981,7 @@ class PrimitiveOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1007,7 +1007,7 @@ class PrimitiveOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})

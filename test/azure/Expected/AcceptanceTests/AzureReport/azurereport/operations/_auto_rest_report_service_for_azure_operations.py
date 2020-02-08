@@ -37,7 +37,7 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, int]
-        :raises: ~azurereport.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -60,7 +60,7 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{int}', pipeline_response)
 

@@ -52,7 +52,7 @@ class PathsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         bool_path = True
@@ -77,7 +77,7 @@ class PathsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -96,7 +96,7 @@ class PathsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         bool_path = False
@@ -121,7 +121,7 @@ class PathsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -140,7 +140,7 @@ class PathsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         int_path = 1000000
@@ -165,7 +165,7 @@ class PathsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -184,7 +184,7 @@ class PathsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         int_path = -1000000
@@ -209,7 +209,7 @@ class PathsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -228,7 +228,7 @@ class PathsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         long_path = 10000000000
@@ -253,7 +253,7 @@ class PathsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -272,7 +272,7 @@ class PathsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         long_path = -10000000000
@@ -297,7 +297,7 @@ class PathsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -316,7 +316,7 @@ class PathsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         float_path = 103400000000000000000
@@ -341,7 +341,7 @@ class PathsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -360,7 +360,7 @@ class PathsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         float_path = -1.034e-20
@@ -385,7 +385,7 @@ class PathsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -404,7 +404,7 @@ class PathsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         double_path = 9999999.999
@@ -429,7 +429,7 @@ class PathsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -448,7 +448,7 @@ class PathsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         double_path = -9999999.999
@@ -473,7 +473,7 @@ class PathsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -492,7 +492,7 @@ class PathsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         string_path = "啊齄丂狛狜隣郎隣兀﨩"
@@ -517,7 +517,7 @@ class PathsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -536,7 +536,7 @@ class PathsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         string_path = "begin!*'();:@ &=+$,/?#[]end"
@@ -561,7 +561,7 @@ class PathsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -582,7 +582,7 @@ class PathsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         string_path = "begin!*'();:@&=+$,end"
@@ -607,7 +607,7 @@ class PathsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -626,7 +626,7 @@ class PathsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         string_path = ""
@@ -651,7 +651,7 @@ class PathsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -673,7 +673,7 @@ class PathsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -697,7 +697,7 @@ class PathsOperations(object):
 
         if response.status_code not in [400]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -719,7 +719,7 @@ class PathsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -743,7 +743,7 @@ class PathsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -765,7 +765,7 @@ class PathsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -789,7 +789,7 @@ class PathsOperations(object):
 
         if response.status_code not in [400]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -811,7 +811,7 @@ class PathsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -835,7 +835,7 @@ class PathsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -854,7 +854,7 @@ class PathsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         byte_path = bytearray("", encoding="utf-8")
@@ -879,7 +879,7 @@ class PathsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -901,7 +901,7 @@ class PathsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -925,7 +925,7 @@ class PathsOperations(object):
 
         if response.status_code not in [400]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -944,7 +944,7 @@ class PathsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         date_path = "2012-01-01"
@@ -969,7 +969,7 @@ class PathsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -991,7 +991,7 @@ class PathsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1015,7 +1015,7 @@ class PathsOperations(object):
 
         if response.status_code not in [400]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -1034,7 +1034,7 @@ class PathsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         date_time_path = "2012-01-01T01:01:01Z"
@@ -1059,7 +1059,7 @@ class PathsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -1081,7 +1081,7 @@ class PathsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1105,7 +1105,7 @@ class PathsOperations(object):
 
         if response.status_code not in [400]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -1127,7 +1127,7 @@ class PathsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1151,7 +1151,7 @@ class PathsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -1174,7 +1174,7 @@ class PathsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1198,7 +1198,7 @@ class PathsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -1220,7 +1220,7 @@ class PathsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1244,7 +1244,7 @@ class PathsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})

@@ -34,7 +34,6 @@ def {{ operation_name }}(
     :rtype: ~azure.core.polling.LROPoller[{{ operation.responses[0].schema.docstring_type if operation.responses[0].has_body else "None" }}]
 {% endmacro %}
 {% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
-{% macro exception_name() %}{{ operation.exceptions[0].schema.name }}Exception{% endmacro %}
 {% macro response_headers(response) %}
 response_headers = {
     {% for response_header in response.headers %}
@@ -72,14 +71,10 @@ response_headers = {
     :param polling: True for ARMPolling, False for no polling, or a
      polling object for personal polling strategy
     {{ return_docstring() }}
-    {% if not operation.exceptions %}
-        {% if code_model.options['azure_arm'] %}
+    {% if code_model.options['azure_arm'] %}
     :raises ~azure.mgmt.core.ARMError:
-        {% else %}
-    :raises ~azure.core.HttpResponseError:
-        {% endif %}
     {% else %}
-    :raises ~{{ code_model.namespace }}.models.{{ exception_name() }}:
+    :raises ~azure.core.HttpResponseError:
     {% endif %}
     """
     raw_result = {{ keywords.await }}self._{{ operation.name }}_initial(

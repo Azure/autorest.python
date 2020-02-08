@@ -50,7 +50,7 @@ class EnumOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Colors or the result of cls(response)
         :rtype: str or ~bodystring.models.Colors
-        :raises: ~bodystring.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -71,7 +71,7 @@ class EnumOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('str', pipeline_response)
 
@@ -96,7 +96,7 @@ class EnumOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodystring.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -120,7 +120,7 @@ class EnumOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -138,7 +138,7 @@ class EnumOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Colors or the result of cls(response)
         :rtype: str or ~bodystring.models.Colors
-        :raises: ~bodystring.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -159,7 +159,7 @@ class EnumOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('str', pipeline_response)
 
@@ -184,7 +184,7 @@ class EnumOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodystring.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -208,7 +208,7 @@ class EnumOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -226,7 +226,7 @@ class EnumOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: RefColorConstant or the result of cls(response)
         :rtype: ~bodystring.models.RefColorConstant
-        :raises: ~bodystring.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -247,7 +247,7 @@ class EnumOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('RefColorConstant', pipeline_response)
 
@@ -272,7 +272,7 @@ class EnumOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodystring.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -298,7 +298,7 @@ class EnumOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})

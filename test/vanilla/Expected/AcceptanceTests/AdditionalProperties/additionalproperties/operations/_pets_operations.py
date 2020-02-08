@@ -54,7 +54,7 @@ class PetsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: PetAPTrue or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPTrue
-        :raises: ~additionalproperties.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -79,7 +79,7 @@ class PetsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('PetAPTrue', pipeline_response)
 
@@ -104,7 +104,7 @@ class PetsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: CatAPTrue or the result of cls(response)
         :rtype: ~additionalproperties.models.CatAPTrue
-        :raises: ~additionalproperties.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -129,7 +129,7 @@ class PetsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('CatAPTrue', pipeline_response)
 
@@ -154,7 +154,7 @@ class PetsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: PetAPObject or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPObject
-        :raises: ~additionalproperties.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -179,7 +179,7 @@ class PetsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('PetAPObject', pipeline_response)
 
@@ -204,7 +204,7 @@ class PetsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: PetAPString or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPString
-        :raises: ~additionalproperties.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -229,7 +229,7 @@ class PetsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('PetAPString', pipeline_response)
 
@@ -254,7 +254,7 @@ class PetsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInProperties or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInProperties
-        :raises: ~additionalproperties.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -279,7 +279,7 @@ class PetsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('PetAPInProperties', pipeline_response)
 
@@ -304,7 +304,7 @@ class PetsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInPropertiesWithAPString or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInPropertiesWithAPString
-        :raises: ~additionalproperties.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -329,7 +329,7 @@ class PetsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('PetAPInPropertiesWithAPString', pipeline_response)
 

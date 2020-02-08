@@ -54,7 +54,7 @@ class SkipUrlEncodingOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azurespecialproperties.models.ErrorException:
+        :raises: ~azure.mgmt.core.ARMError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -78,7 +78,7 @@ class SkipUrlEncodingOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise ARMError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -100,7 +100,7 @@ class SkipUrlEncodingOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azurespecialproperties.models.ErrorException:
+        :raises: ~azure.mgmt.core.ARMError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -124,7 +124,7 @@ class SkipUrlEncodingOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise ARMError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -143,7 +143,7 @@ class SkipUrlEncodingOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azurespecialproperties.models.ErrorException:
+        :raises: ~azure.mgmt.core.ARMError
         """
         error_map = kwargs.pop('error_map', {})
         unencoded_path_param = "path1/path2/path3"
@@ -168,7 +168,7 @@ class SkipUrlEncodingOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise ARMError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -190,7 +190,7 @@ class SkipUrlEncodingOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azurespecialproperties.models.ErrorException:
+        :raises: ~azure.mgmt.core.ARMError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -211,7 +211,7 @@ class SkipUrlEncodingOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise ARMError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -233,7 +233,7 @@ class SkipUrlEncodingOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azurespecialproperties.models.ErrorException:
+        :raises: ~azure.mgmt.core.ARMError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -255,7 +255,7 @@ class SkipUrlEncodingOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise ARMError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -277,7 +277,7 @@ class SkipUrlEncodingOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azurespecialproperties.models.ErrorException:
+        :raises: ~azure.mgmt.core.ARMError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -298,7 +298,7 @@ class SkipUrlEncodingOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise ARMError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -317,7 +317,7 @@ class SkipUrlEncodingOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azurespecialproperties.models.ErrorException:
+        :raises: ~azure.mgmt.core.ARMError
         """
         error_map = kwargs.pop('error_map', {})
         q1 = "value1&q2=value2&q3=value3"
@@ -339,7 +339,7 @@ class SkipUrlEncodingOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise ARMError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})

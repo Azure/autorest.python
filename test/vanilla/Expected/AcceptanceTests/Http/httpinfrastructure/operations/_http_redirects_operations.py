@@ -51,7 +51,7 @@ class HttpRedirectsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -71,7 +71,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 300]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         if response.status_code == 300:
@@ -94,7 +94,7 @@ class HttpRedirectsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return:  or list or the result of cls(response)
         :rtype: None or list[str]
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -115,7 +115,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 300]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         deserialized = None
@@ -141,7 +141,7 @@ class HttpRedirectsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -161,7 +161,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 301]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         if response.status_code == 301:
@@ -184,7 +184,7 @@ class HttpRedirectsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -204,7 +204,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 301]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         if response.status_code == 301:
@@ -227,7 +227,7 @@ class HttpRedirectsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
@@ -255,7 +255,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [301]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
@@ -277,7 +277,7 @@ class HttpRedirectsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -297,7 +297,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 302]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         if response.status_code == 302:
@@ -320,7 +320,7 @@ class HttpRedirectsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -340,7 +340,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 302]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         if response.status_code == 302:
@@ -363,7 +363,7 @@ class HttpRedirectsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
@@ -391,7 +391,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [302]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
@@ -413,7 +413,7 @@ class HttpRedirectsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
@@ -441,7 +441,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 303]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         if response.status_code == 303:
@@ -464,7 +464,7 @@ class HttpRedirectsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -484,7 +484,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         if response.status_code == 307:
@@ -507,7 +507,7 @@ class HttpRedirectsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -527,7 +527,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         if response.status_code == 307:
@@ -550,7 +550,7 @@ class HttpRedirectsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -570,7 +570,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         if response.status_code == 307:
@@ -593,7 +593,7 @@ class HttpRedirectsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
@@ -621,7 +621,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         if response.status_code == 307:
@@ -644,7 +644,7 @@ class HttpRedirectsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
@@ -672,7 +672,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         if response.status_code == 307:
@@ -695,7 +695,7 @@ class HttpRedirectsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
@@ -723,7 +723,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         if response.status_code == 307:
@@ -746,7 +746,7 @@ class HttpRedirectsOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
@@ -774,7 +774,7 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         response_headers = {}
         if response.status_code == 307:

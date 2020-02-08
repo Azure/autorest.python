@@ -52,7 +52,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, int]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -73,7 +73,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{int}', pipeline_response)
 
@@ -95,7 +95,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, int]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -116,7 +116,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{int}', pipeline_response)
 
@@ -141,7 +141,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -165,7 +165,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -184,7 +184,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, str]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -205,7 +205,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{str}', pipeline_response)
 
@@ -227,7 +227,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, str]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -248,7 +248,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{str}', pipeline_response)
 
@@ -270,7 +270,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, str]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -291,7 +291,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{str}', pipeline_response)
 
@@ -313,7 +313,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, str]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -334,7 +334,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{str}', pipeline_response)
 
@@ -356,7 +356,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, bool]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -377,7 +377,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{bool}', pipeline_response)
 
@@ -402,7 +402,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -426,7 +426,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -445,7 +445,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, bool]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -466,7 +466,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{bool}', pipeline_response)
 
@@ -488,7 +488,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, bool]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -509,7 +509,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{bool}', pipeline_response)
 
@@ -531,7 +531,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, int]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -552,7 +552,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{int}', pipeline_response)
 
@@ -577,7 +577,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -601,7 +601,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -620,7 +620,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, int]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -641,7 +641,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{int}', pipeline_response)
 
@@ -663,7 +663,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, int]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -684,7 +684,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{int}', pipeline_response)
 
@@ -706,7 +706,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, long]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -727,7 +727,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{long}', pipeline_response)
 
@@ -752,7 +752,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -776,7 +776,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -795,7 +795,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, long]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -816,7 +816,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{long}', pipeline_response)
 
@@ -838,7 +838,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, long]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -859,7 +859,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{long}', pipeline_response)
 
@@ -881,7 +881,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, float]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -902,7 +902,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{float}', pipeline_response)
 
@@ -927,7 +927,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -951,7 +951,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -970,7 +970,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, float]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -991,7 +991,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{float}', pipeline_response)
 
@@ -1013,7 +1013,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, float]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1034,7 +1034,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{float}', pipeline_response)
 
@@ -1056,7 +1056,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, float]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1077,7 +1077,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{float}', pipeline_response)
 
@@ -1102,7 +1102,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1126,7 +1126,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -1145,7 +1145,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, float]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1166,7 +1166,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{float}', pipeline_response)
 
@@ -1188,7 +1188,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, float]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1209,7 +1209,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{float}', pipeline_response)
 
@@ -1231,7 +1231,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, str]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1252,7 +1252,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{str}', pipeline_response)
 
@@ -1277,7 +1277,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1301,7 +1301,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -1320,7 +1320,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, str]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1341,7 +1341,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{str}', pipeline_response)
 
@@ -1363,7 +1363,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, str]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1384,7 +1384,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{str}', pipeline_response)
 
@@ -1406,7 +1406,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~datetime.date]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1427,7 +1427,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{date}', pipeline_response)
 
@@ -1452,7 +1452,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1476,7 +1476,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -1495,7 +1495,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~datetime.date]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1516,7 +1516,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{date}', pipeline_response)
 
@@ -1538,7 +1538,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~datetime.date]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1559,7 +1559,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{date}', pipeline_response)
 
@@ -1581,7 +1581,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~datetime.datetime]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1602,7 +1602,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{iso-8601}', pipeline_response)
 
@@ -1627,7 +1627,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1651,7 +1651,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -1670,7 +1670,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~datetime.datetime]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1691,7 +1691,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{iso-8601}', pipeline_response)
 
@@ -1713,7 +1713,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~datetime.datetime]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1734,7 +1734,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{iso-8601}', pipeline_response)
 
@@ -1756,7 +1756,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~datetime.datetime]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1777,7 +1777,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{rfc-1123}', pipeline_response)
 
@@ -1802,7 +1802,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1826,7 +1826,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -1845,7 +1845,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~datetime.timedelta]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1866,7 +1866,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{duration}', pipeline_response)
 
@@ -1891,7 +1891,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1915,7 +1915,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -1934,7 +1934,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, bytearray]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1955,7 +1955,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{bytearray}', pipeline_response)
 
@@ -1980,7 +1980,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -2004,7 +2004,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -2023,7 +2023,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, bytearray]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -2044,7 +2044,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{bytearray}', pipeline_response)
 
@@ -2066,7 +2066,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, bytes]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -2087,7 +2087,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{base64}', pipeline_response)
 
@@ -2109,7 +2109,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -2130,7 +2130,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{Widget}', pipeline_response)
 
@@ -2152,7 +2152,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -2173,7 +2173,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{Widget}', pipeline_response)
 
@@ -2195,7 +2195,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -2216,7 +2216,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{Widget}', pipeline_response)
 
@@ -2238,7 +2238,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -2259,7 +2259,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{Widget}', pipeline_response)
 
@@ -2281,7 +2281,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -2302,7 +2302,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{Widget}', pipeline_response)
 
@@ -2327,7 +2327,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -2351,7 +2351,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -2370,7 +2370,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, list[str]]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -2391,7 +2391,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{[str]}', pipeline_response)
 
@@ -2413,7 +2413,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, list[str]]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -2434,7 +2434,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{[str]}', pipeline_response)
 
@@ -2456,7 +2456,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, list[str]]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -2477,7 +2477,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{[str]}', pipeline_response)
 
@@ -2499,7 +2499,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, list[str]]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -2520,7 +2520,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{[str]}', pipeline_response)
 
@@ -2542,7 +2542,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, list[str]]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -2563,7 +2563,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{[str]}', pipeline_response)
 
@@ -2588,7 +2588,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -2612,7 +2612,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -2631,7 +2631,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, object]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -2652,7 +2652,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{object}', pipeline_response)
 
@@ -2674,7 +2674,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, object]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -2695,7 +2695,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{object}', pipeline_response)
 
@@ -2717,7 +2717,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, object]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -2738,7 +2738,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{object}', pipeline_response)
 
@@ -2760,7 +2760,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, object]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -2781,7 +2781,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{object}', pipeline_response)
 
@@ -2803,7 +2803,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, object]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -2824,7 +2824,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('{object}', pipeline_response)
 
@@ -2849,7 +2849,7 @@ class DictionaryOperations(object):
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -2873,7 +2873,7 @@ class DictionaryOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})

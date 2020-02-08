@@ -38,7 +38,7 @@ class AutoRestValidationTestOperationsMixin:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
-        :raises: ~validation.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         api_version = "1.0.0"
@@ -67,7 +67,7 @@ class AutoRestValidationTestOperationsMixin:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('Product', pipeline_response)
 
@@ -98,7 +98,7 @@ class AutoRestValidationTestOperationsMixin:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
-        :raises: ~validation.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         api_version = "1.0.0"
@@ -134,7 +134,7 @@ class AutoRestValidationTestOperationsMixin:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('Product', pipeline_response)
 

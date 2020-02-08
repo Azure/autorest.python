@@ -37,7 +37,6 @@ def {{ operation.python_name }}(
 {%- endif -%}
 {% endmacro %}
 {% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
-{% macro exception_name() %}{{ operation.default_exception.schema.name }}Exception{% endmacro %}
 {% set core_excep_name = 'ARMError' if code_model.options['azure_arm'] else 'HttpResponseError' %}
 {# actual template starts here #}
 {%- if code_model.options['tracing'] and operation.want_tracing -%}
@@ -67,14 +66,10 @@ def {{ operation.python_name }}(
 {% endfor %}
     :param callable cls: A custom type or function that will be passed the direct response
     {{ return_docstring()|indent }}
-    {% if not operation.default_exception %}
-        {% if code_model.options['azure_arm'] %}
+    {% if code_model.options['azure_arm'] %}
     :raises: ~azure.mgmt.core.ARMError
-        {% else %}
-    :raises: ~azure.core.HttpResponseError
-        {% endif %}
     {% else %}
-    :raises: ~{{ code_model.namespace }}.models.{{ exception_name() }}:
+    :raises: ~azure.core.HttpResponseError
     {% endif %}
     """
 {% endif %}
@@ -166,11 +161,7 @@ def {{ operation.python_name }}(
 
     if response.status_code not in {{ operation.success_status_code|string() }}:
         map_error(status_code=response.status_code, response=response, error_map=error_map)
-        {% if not operation.default_exception %}
         raise {{ core_excep_name }}(response=response)
-        {% else %}
-        raise models.{{ exception_name() }}.from_response(response, self._deserialize)
-        {% endif %}
 
 {% if operation.any_response_has_headers %}
     response_headers = {}

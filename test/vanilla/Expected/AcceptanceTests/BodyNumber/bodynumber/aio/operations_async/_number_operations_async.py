@@ -50,7 +50,7 @@ class NumberOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -71,7 +71,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('float', pipeline_response)
 
@@ -92,7 +92,7 @@ class NumberOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -113,7 +113,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('float', pipeline_response)
 
@@ -134,7 +134,7 @@ class NumberOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -155,7 +155,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('float', pipeline_response)
 
@@ -176,7 +176,7 @@ class NumberOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -197,7 +197,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('float', pipeline_response)
 
@@ -222,7 +222,7 @@ class NumberOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -246,7 +246,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -264,7 +264,7 @@ class NumberOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -285,7 +285,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('float', pipeline_response)
 
@@ -310,7 +310,7 @@ class NumberOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -334,7 +334,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -352,7 +352,7 @@ class NumberOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -373,7 +373,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('float', pipeline_response)
 
@@ -394,7 +394,7 @@ class NumberOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         number_body = 99999999.99
@@ -419,7 +419,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -437,7 +437,7 @@ class NumberOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -458,7 +458,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('float', pipeline_response)
 
@@ -479,7 +479,7 @@ class NumberOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         number_body = -99999999.99
@@ -504,7 +504,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -522,7 +522,7 @@ class NumberOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -543,7 +543,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('float', pipeline_response)
 
@@ -568,7 +568,7 @@ class NumberOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -592,7 +592,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -610,7 +610,7 @@ class NumberOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -631,7 +631,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('float', pipeline_response)
 
@@ -652,7 +652,7 @@ class NumberOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         number_body = 99999999.99
@@ -677,7 +677,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -695,7 +695,7 @@ class NumberOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -716,7 +716,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('float', pipeline_response)
 
@@ -737,7 +737,7 @@ class NumberOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
         number_body = -99999999.99
@@ -762,7 +762,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -780,7 +780,7 @@ class NumberOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -801,7 +801,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('float', pipeline_response)
 
@@ -826,7 +826,7 @@ class NumberOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -850,7 +850,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -868,7 +868,7 @@ class NumberOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -889,7 +889,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('float', pipeline_response)
 
@@ -914,7 +914,7 @@ class NumberOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -938,7 +938,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -956,7 +956,7 @@ class NumberOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -977,7 +977,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('float', pipeline_response)
 
@@ -1002,7 +1002,7 @@ class NumberOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1026,7 +1026,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -1044,7 +1044,7 @@ class NumberOperations:
         :param callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
 
@@ -1065,7 +1065,7 @@ class NumberOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            raise HttpResponseError(response=response)
 
         deserialized = self._deserialize('float', pipeline_response)
 
