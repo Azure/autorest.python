@@ -510,31 +510,6 @@ class CorsRule(msrest.serialization.Model):
         self.max_age_in_seconds = kwargs.get('max_age_in_seconds', None)
 
 
-class ErrorException(HttpResponseError):
-    """Server responded with exception of type: 'Error'.
-
-    :param response: Server response to be deserialized.
-    :param error_model: A deserialized model of the response body as model.
-    """
-
-    def __init__(self, response, error_model):
-        self.error = error_model
-        super(ErrorException, self).__init__(response=response, error_model=error_model)
-
-    @classmethod
-    def from_response(cls, response, deserialize):
-        """Deserialize this response as this exception, or a subclass of this exception.
-
-        :param response: Server response to be deserialized.
-        :param deserialize: A deserializer
-        """
-        model_name = 'Error'
-        error = deserialize(model_name, response)
-        if error is None:
-            error = deserialize.dependencies[model_name]()
-        return error._EXCEPTION_TYPE(response, error)
-
-
 class Error(msrest.serialization.Model):
     """Error.
 
@@ -543,7 +518,6 @@ class Error(msrest.serialization.Model):
     :param message:
     :type message: str
     """
-    _EXCEPTION_TYPE = ErrorException
 
     _attribute_map = {
         'status': {'key': 'status', 'type': 'int'},
