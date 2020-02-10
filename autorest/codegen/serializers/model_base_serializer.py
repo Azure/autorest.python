@@ -39,6 +39,17 @@ class ModelBaseSerializer:
         return file_import
 
     @staticmethod
+    def get_properties_to_initialize(model: ObjectSchema) -> List[Property]:
+        if model.base_model:
+            properties_to_initialize = []
+            for prop in model.properties:
+                if prop not in model.base_model.properties or prop.is_discriminator or prop.constant:
+                    properties_to_initialize.append(prop)
+        else:
+            properties_to_initialize = model.properties
+        return properties_to_initialize
+
+    @staticmethod
     def prop_documentation_string(prop: Property) -> str:
         # building the param line of the property doc
         if prop.constant or prop.readonly:
