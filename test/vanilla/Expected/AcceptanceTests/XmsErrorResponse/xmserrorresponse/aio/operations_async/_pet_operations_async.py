@@ -58,7 +58,7 @@ class PetOperations:
         """
         error_map = {
             400: HttpResponseError,
-            404: lambda response: models.NotFoundErrorBaseException.from_response(response, self._deserialize),
+            404: lambda response: HttpResponseError(response=response, model=self._deserialize(models.NotFoundErrorBase, response)),
             501: HttpResponseError,
         }
         error_map.update(kwargs.pop('error_map', {}))
@@ -114,7 +114,7 @@ class PetOperations:
         :raises: ~azure.core.HttpResponseError
         """
         error_map = {
-            500: lambda response: models.PetActionErrorException.from_response(response, self._deserialize),
+            500: lambda response: HttpResponseError(response=response, model=self._deserialize(models.PetActionError, response)),
         }
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -139,7 +139,8 @@ class PetOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.PetActionError, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('PetAction', pipeline_response)
 

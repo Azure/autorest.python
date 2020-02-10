@@ -9,7 +9,7 @@ import datetime
 from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import map_error
+from azure.core.exceptions import HttpResponseError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
@@ -72,7 +72,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{int}', pipeline_response)
 
@@ -114,7 +115,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{int}', pipeline_response)
 
@@ -163,7 +165,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -202,7 +205,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{str}', pipeline_response)
 
@@ -244,7 +248,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{str}', pipeline_response)
 
@@ -286,7 +291,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{str}', pipeline_response)
 
@@ -328,7 +334,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{str}', pipeline_response)
 
@@ -370,7 +377,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{bool}', pipeline_response)
 
@@ -419,7 +427,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -458,7 +467,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{bool}', pipeline_response)
 
@@ -500,7 +510,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{bool}', pipeline_response)
 
@@ -542,7 +553,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{int}', pipeline_response)
 
@@ -591,7 +603,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -630,7 +643,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{int}', pipeline_response)
 
@@ -672,7 +686,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{int}', pipeline_response)
 
@@ -714,7 +729,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{long}', pipeline_response)
 
@@ -763,7 +779,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -802,7 +819,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{long}', pipeline_response)
 
@@ -844,7 +862,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{long}', pipeline_response)
 
@@ -886,7 +905,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{float}', pipeline_response)
 
@@ -935,7 +955,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -974,7 +995,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{float}', pipeline_response)
 
@@ -1016,7 +1038,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{float}', pipeline_response)
 
@@ -1058,7 +1081,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{float}', pipeline_response)
 
@@ -1107,7 +1131,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -1146,7 +1171,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{float}', pipeline_response)
 
@@ -1188,7 +1214,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{float}', pipeline_response)
 
@@ -1230,7 +1257,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{str}', pipeline_response)
 
@@ -1279,7 +1307,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -1318,7 +1347,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{str}', pipeline_response)
 
@@ -1360,7 +1390,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{str}', pipeline_response)
 
@@ -1402,7 +1433,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{date}', pipeline_response)
 
@@ -1451,7 +1483,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -1490,7 +1523,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{date}', pipeline_response)
 
@@ -1532,7 +1566,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{date}', pipeline_response)
 
@@ -1574,7 +1609,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{iso-8601}', pipeline_response)
 
@@ -1623,7 +1659,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -1662,7 +1699,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{iso-8601}', pipeline_response)
 
@@ -1704,7 +1742,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{iso-8601}', pipeline_response)
 
@@ -1746,7 +1785,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{rfc-1123}', pipeline_response)
 
@@ -1795,7 +1835,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -1834,7 +1875,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{duration}', pipeline_response)
 
@@ -1883,7 +1925,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -1922,7 +1965,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{bytearray}', pipeline_response)
 
@@ -1971,7 +2015,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -2010,7 +2055,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{bytearray}', pipeline_response)
 
@@ -2052,7 +2098,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{base64}', pipeline_response)
 
@@ -2094,7 +2141,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{Widget}', pipeline_response)
 
@@ -2136,7 +2184,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{Widget}', pipeline_response)
 
@@ -2178,7 +2227,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{Widget}', pipeline_response)
 
@@ -2220,7 +2270,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{Widget}', pipeline_response)
 
@@ -2262,7 +2313,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{Widget}', pipeline_response)
 
@@ -2311,7 +2363,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -2350,7 +2403,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{[str]}', pipeline_response)
 
@@ -2392,7 +2446,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{[str]}', pipeline_response)
 
@@ -2434,7 +2489,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{[str]}', pipeline_response)
 
@@ -2476,7 +2532,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{[str]}', pipeline_response)
 
@@ -2518,7 +2575,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{[str]}', pipeline_response)
 
@@ -2567,7 +2625,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -2606,7 +2665,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{object}', pipeline_response)
 
@@ -2648,7 +2708,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{object}', pipeline_response)
 
@@ -2690,7 +2751,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{object}', pipeline_response)
 
@@ -2732,7 +2794,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{object}', pipeline_response)
 
@@ -2774,7 +2837,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{object}', pipeline_response)
 
@@ -2823,7 +2887,8 @@ class DictionaryOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})

@@ -36,7 +36,7 @@ from azure.core.exceptions import DecodeError
 from msrest.exceptions import DeserializationError
 
 from bodydictionary import AutoRestSwaggerBATdictionaryService
-from bodydictionary.models import Widget, ErrorException
+from bodydictionary.models import Widget
 
 import pytest
 

@@ -19,7 +19,7 @@ try:
     from ._models_py3 import Container
     from ._models_py3 import ContainerProperties
     from ._models_py3 import CorsRule
-    from ._models_py3 import Error, ErrorException
+    from ._models_py3 import Error
     from ._models_py3 import JSONInput
     from ._models_py3 import JSONOutput
     from ._models_py3 import ListBlobsResponse
@@ -46,7 +46,7 @@ except (SyntaxError, ImportError):
     from ._models import Container  # type: ignore
     from ._models import ContainerProperties  # type: ignore
     from ._models import CorsRule  # type: ignore
-    from ._models import Error, ErrorException  # type: ignore
+    from ._models import Error  # type: ignore
     from ._models import JSONInput  # type: ignore
     from ._models import JSONOutput  # type: ignore
     from ._models import ListBlobsResponse  # type: ignore
@@ -84,7 +84,7 @@ __all__ = [
     'Container',
     'ContainerProperties',
     'CorsRule',
-    'Error', 'ErrorException',
+    'Error',
     'JSONInput',
     'JSONOutput',
     'ListBlobsResponse',

@@ -197,8 +197,11 @@ def {{ operation.python_name }}(
         response = pipeline_response.http_response
 
         if response.status_code not in {{ operation.success_status_code|string() }}:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise {{ core_excep_name }}(response=response)
+            {% if operation.default_exception %}
+            error = self._deserialize(models.{{ operation.default_exception.schema.name }}, response)
+            {% endif %}
+            map_error(status_code=response.status_code, response=response, error_map=error_map{{ ", model=error" if operation.default_exception else "" }})
+            raise {{ core_excep_name }}(response=response{{ ", model=error" if operation.default_exception else "" }})
 
         return pipeline_response
 

@@ -40,7 +40,7 @@ from msrest.exceptions import (
 from azure.core.exceptions import ServiceRequestError
 
 from custombaseurl import AutoRestParameterizedHostTestClient
-from custombaseurl.models import Error, ErrorException
+from custombaseurl.models import Error
 from custombaseurlmoreoptions import AutoRestParameterizedCustomHostTestClient
 
 import pytest

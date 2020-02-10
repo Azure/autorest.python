@@ -81,7 +81,7 @@ def {{ operation.python_name }}(
     {% for excep in operation.status_code_exceptions %}
         {% for status_code in excep.status_codes %}
             {% if excep.schema.is_exception %}
-        {{ status_code }}: lambda response: models.{{ excep.schema.serialization_type }}Exception.from_response(response, self._deserialize),
+        {{ status_code }}: lambda response: HttpResponseError(response=response, model=self._deserialize(models.{{ excep.schema.serialization_type }}, response)),
             {% else  %}
         {{ status_code }}: {{ core_excep_name }},
             {% endif %}
@@ -161,7 +161,10 @@ def {{ operation.python_name }}(
 
     if response.status_code not in {{ operation.success_status_code|string() }}:
         map_error(status_code=response.status_code, response=response, error_map=error_map)
-        raise {{ core_excep_name }}(response=response)
+        {% if operation.default_exception %}
+        error = self._deserialize(models.{{ operation.default_exception.schema.name }}, response)
+        {% endif %}
+        raise {{ core_excep_name }}(response=response{{ ", model=error" if operation.default_exception else "" }})
 
 {% if operation.any_response_has_headers %}
     response_headers = {}

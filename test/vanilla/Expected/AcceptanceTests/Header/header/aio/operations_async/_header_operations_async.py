@@ -9,7 +9,7 @@ import datetime
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 import warnings
 
-from azure.core.exceptions import map_error
+from azure.core.exceptions import HttpResponseError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
@@ -76,7 +76,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -114,7 +115,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         response_headers['User-Agent']=self._deserialize('str', response.headers.get('User-Agent'))
@@ -160,7 +162,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -198,7 +201,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         response_headers['Content-Type']=self._deserialize('str', response.headers.get('Content-Type'))
@@ -248,7 +252,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -291,7 +296,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         response_headers['value']=self._deserialize('int', response.headers.get('value'))
@@ -341,7 +347,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -384,7 +391,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         response_headers['value']=self._deserialize('long', response.headers.get('value'))
@@ -434,7 +442,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -477,7 +486,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         response_headers['value']=self._deserialize('float', response.headers.get('value'))
@@ -527,7 +537,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -570,7 +581,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         response_headers['value']=self._deserialize('float', response.headers.get('value'))
@@ -620,7 +632,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -663,7 +676,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         response_headers['value']=self._deserialize('bool', response.headers.get('value'))
@@ -715,7 +729,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -758,7 +773,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         response_headers['value']=self._deserialize('str', response.headers.get('value'))
@@ -808,7 +824,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -851,7 +868,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         response_headers['value']=self._deserialize('date', response.headers.get('value'))
@@ -902,7 +920,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -945,7 +964,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         response_headers['value']=self._deserialize('iso-8601', response.headers.get('value'))
@@ -997,7 +1017,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -1040,7 +1061,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         response_headers['value']=self._deserialize('rfc-1123', response.headers.get('value'))
@@ -1090,7 +1112,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -1133,7 +1156,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         response_headers['value']=self._deserialize('duration', response.headers.get('value'))
@@ -1183,7 +1207,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -1226,7 +1251,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         response_headers['value']=self._deserialize('bytearray', response.headers.get('value'))
@@ -1277,7 +1303,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -1320,7 +1347,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         response_headers['value']=self._deserialize('str', response.headers.get('value'))
@@ -1361,7 +1389,8 @@ class HeaderOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})

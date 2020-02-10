@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import map_error
+from azure.core.exceptions import HttpResponseError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -71,7 +71,8 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 300]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         if response.status_code == 300:
@@ -115,7 +116,8 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 300]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         deserialized = None
@@ -161,7 +163,8 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 301]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         if response.status_code == 301:
@@ -204,7 +207,8 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 301]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         if response.status_code == 301:
@@ -255,7 +259,8 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [301]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
@@ -297,7 +302,8 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 302]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         if response.status_code == 302:
@@ -340,7 +346,8 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 302]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         if response.status_code == 302:
@@ -391,7 +398,8 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [302]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
@@ -441,7 +449,8 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 303]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         if response.status_code == 303:
@@ -484,7 +493,8 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         if response.status_code == 307:
@@ -527,7 +537,8 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         if response.status_code == 307:
@@ -570,7 +581,8 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         if response.status_code == 307:
@@ -621,7 +633,8 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         if response.status_code == 307:
@@ -672,7 +685,8 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         if response.status_code == 307:
@@ -723,7 +737,8 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         if response.status_code == 307:
@@ -774,7 +789,8 @@ class HttpRedirectsOperations(object):
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         if response.status_code == 307:
