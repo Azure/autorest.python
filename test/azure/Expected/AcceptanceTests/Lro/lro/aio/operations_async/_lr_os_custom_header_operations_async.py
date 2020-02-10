@@ -11,7 +11,7 @@ import warnings
 from azure.core.exceptions import map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
-from azure.core.polling import AsyncNoPolling, async_poller
+from azure.core.polling import AsyncNoPolling, AsyncPollingMethod, async_poller
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMError
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
@@ -101,12 +101,13 @@ class LROsCustomHeaderOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: bool = kwargs.pop('polling', True)
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
         cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._put_async_retry_succeeded_initial(
             product=product,
@@ -196,12 +197,13 @@ class LROsCustomHeaderOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: bool = kwargs.pop('polling', True)
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
         cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._put201_creating_succeeded200_initial(
             product=product,
@@ -281,12 +283,13 @@ class LROsCustomHeaderOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: bool = kwargs.pop('polling', True)
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
         cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._post202_retry200_initial(
             product=product,
@@ -364,12 +367,13 @@ class LROsCustomHeaderOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: bool = kwargs.pop('polling', True)
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
         cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._post_async_retry_succeeded_initial(
             product=product,

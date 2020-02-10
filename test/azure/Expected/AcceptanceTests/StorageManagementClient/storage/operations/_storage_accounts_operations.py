@@ -12,7 +12,7 @@ from azure.core.exceptions import map_error
 from azure.core.paging import ItemPaged
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
-from azure.core.polling import LROPoller, NoPolling
+from azure.core.polling import LROPoller, NoPolling, PollingMethod
 from azure.core.tracing.decorator import distributed_trace
 from azure.mgmt.core.exceptions import ARMError
 from azure.mgmt.core.polling.arm_polling import ARMPolling
@@ -171,12 +171,13 @@ class StorageAccountsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :return: An instance of LROPoller that returns StorageAccount
         :rtype: ~azure.core.polling.LROPoller[~storage.models.StorageAccount]
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling = kwargs.pop('polling', True)  # type: bool
+        polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None )  # type: ClsType["models.StorageAccount"]
         raw_result = self._create_initial(
             resource_group_name=resource_group_name,
