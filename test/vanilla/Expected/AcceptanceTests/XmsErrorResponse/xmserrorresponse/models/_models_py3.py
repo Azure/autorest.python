@@ -363,7 +363,7 @@ class PetActionError(msrest.serialization.Model):
         **kwargs
     ):
         super(PetActionError, self).__init__(**kwargs)
-        self.error_type = 'None'
+        self.error_type = None
         self.error_message = error_message
 
 
