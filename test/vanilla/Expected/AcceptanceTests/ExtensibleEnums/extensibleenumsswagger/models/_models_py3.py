@@ -8,10 +8,10 @@
 
 from typing import Optional, Union
 
-from msrest.serialization import Model
+import msrest.serialization
 
 
-class Pet(Model):
+class Pet(msrest.serialization.Model):
     """Pet.
 
     All required parameters must be populated in order to send to Azure.

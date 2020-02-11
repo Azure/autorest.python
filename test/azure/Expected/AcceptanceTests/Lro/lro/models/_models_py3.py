@@ -8,10 +8,10 @@
 
 from typing import Dict, Optional, Union
 
-from msrest.serialization import Model
+import msrest.serialization
 
 
-class OperationResult(Model):
+class OperationResult(msrest.serialization.Model):
     """OperationResult.
 
     :param status: The status of the request. Possible values include: 'Succeeded', 'Failed',
@@ -39,7 +39,7 @@ class OperationResult(Model):
         self.error = error
 
 
-class OperationResultError(Model):
+class OperationResultError(msrest.serialization.Model):
     """OperationResultError.
 
     :param code: The error code for an operation failure.
@@ -65,7 +65,7 @@ class OperationResultError(Model):
         self.message = message
 
 
-class Resource(Model):
+class Resource(msrest.serialization.Model):
     """Resource.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -165,7 +165,7 @@ class Product(Resource):
         self.provisioning_state_values = None
 
 
-class ProductProperties(Model):
+class ProductProperties(msrest.serialization.Model):
     """ProductProperties.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -197,7 +197,7 @@ class ProductProperties(Model):
         self.provisioning_state_values = None
 
 
-class Sku(Model):
+class Sku(msrest.serialization.Model):
     """Sku.
 
     :param name:
@@ -223,7 +223,7 @@ class Sku(Model):
         self.id = id
 
 
-class SubResource(Model):
+class SubResource(msrest.serialization.Model):
     """SubResource.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -285,7 +285,7 @@ class SubProduct(SubResource):
         self.provisioning_state_values = None
 
 
-class SubProductProperties(Model):
+class SubProductProperties(msrest.serialization.Model):
     """SubProductProperties.
 
     Variables are only populated by the server, and will be ignored when sending a request.

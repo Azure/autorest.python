@@ -7,11 +7,11 @@
 # --------------------------------------------------------------------------
 
 from azure.core.exceptions import HttpResponseError
-from msrest.serialization import Model
+import msrest.serialization
 
 
-class PetApTrue(Model):
-    """PetApTrue.
+class PetAPTrue(msrest.serialization.Model):
+    """PetAPTrue.
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -117,7 +117,7 @@ class ErrorException(HttpResponseError):
         return error._EXCEPTION_TYPE(response, error)
 
 
-class Error(Model):
+class Error(msrest.serialization.Model):
     """Error.
 
     :param status:
@@ -141,8 +141,13 @@ class Error(Model):
         self.message = kwargs.get('message', None)
 
 
+<<<<<<< HEAD
 class PetApInProperties(Model):
     """PetApInProperties.
+=======
+class PetAPInProperties(msrest.serialization.Model):
+    """PetAPInProperties.
+>>>>>>> 59376ad54d67a95a2d71c7644965f68d6f8c71e4
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -182,8 +187,13 @@ class PetApInProperties(Model):
         self.additional_properties = kwargs.get('additional_properties', None)
 
 
+<<<<<<< HEAD
 class PetApInPropertiesWithApstring(Model):
     """PetApInPropertiesWithApstring.
+=======
+class PetAPInPropertiesWithAPString(msrest.serialization.Model):
+    """PetAPInPropertiesWithAPString.
+>>>>>>> 59376ad54d67a95a2d71c7644965f68d6f8c71e4
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -233,8 +243,13 @@ class PetApInPropertiesWithApstring(Model):
         self.additional_properties1 = kwargs.get('additional_properties1', None)
 
 
+<<<<<<< HEAD
 class PetApObject(Model):
     """PetApObject.
+=======
+class PetAPObject(msrest.serialization.Model):
+    """PetAPObject.
+>>>>>>> 59376ad54d67a95a2d71c7644965f68d6f8c71e4
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -274,8 +289,13 @@ class PetApObject(Model):
         self.status = None
 
 
+<<<<<<< HEAD
 class PetApString(Model):
     """PetApString.
+=======
+class PetAPString(msrest.serialization.Model):
+    """PetAPString.
+>>>>>>> 59376ad54d67a95a2d71c7644965f68d6f8c71e4
 
     Variables are only populated by the server, and will be ignored when sending a request.
 

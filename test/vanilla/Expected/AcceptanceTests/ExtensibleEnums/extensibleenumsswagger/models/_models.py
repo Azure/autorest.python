@@ -6,10 +6,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.serialization import Model
+import msrest.serialization
 
 
-class Pet(Model):
+class Pet(msrest.serialization.Model):
     """Pet.
 
     All required parameters must be populated in order to send to Azure.

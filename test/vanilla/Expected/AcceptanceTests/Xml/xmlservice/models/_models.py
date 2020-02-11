@@ -7,10 +7,10 @@
 # --------------------------------------------------------------------------
 
 from azure.core.exceptions import HttpResponseError
-from msrest.serialization import Model
+import msrest.serialization
 
 
-class AccessPolicy(Model):
+class AccessPolicy(msrest.serialization.Model):
     """An Access policy.
 
     All required parameters must be populated in order to send to Azure.
@@ -45,7 +45,7 @@ class AccessPolicy(Model):
         self.permission = kwargs.get('permission', None)
 
 
-class AppleBarrel(Model):
+class AppleBarrel(msrest.serialization.Model):
     """A barrel of apples.
 
     :param good_apples:
@@ -68,7 +68,7 @@ class AppleBarrel(Model):
         self.bad_apples = kwargs.get('bad_apples', None)
 
 
-class Banana(Model):
+class Banana(msrest.serialization.Model):
     """A banana.
 
     :param name:
@@ -98,7 +98,7 @@ class Banana(Model):
         self.expiration = kwargs.get('expiration', None)
 
 
-class Blob(Model):
+class Blob(msrest.serialization.Model):
     """An Azure Storage blob.
 
     All required parameters must be populated in order to send to Azure.
@@ -146,7 +146,7 @@ class Blob(Model):
         self.metadata = kwargs.get('metadata', None)
 
 
-class BlobPrefix(Model):
+class BlobPrefix(msrest.serialization.Model):
     """BlobPrefix.
 
     All required parameters must be populated in order to send to Azure.
@@ -171,7 +171,7 @@ class BlobPrefix(Model):
         self.name = kwargs.get('name', None)
 
 
-class BlobProperties(Model):
+class BlobProperties(msrest.serialization.Model):
     """Properties of a blob.
 
     All required parameters must be populated in order to send to Azure.
@@ -308,7 +308,7 @@ class BlobProperties(Model):
         self.archive_status = kwargs.get('archive_status', None)
 
 
-class Blobs(Model):
+class Blobs(msrest.serialization.Model):
     """Blobs.
 
     :param blob_prefix:
@@ -331,7 +331,7 @@ class Blobs(Model):
         self.blob = kwargs.get('blob', None)
 
 
-class ComplexTypeNoMeta(Model):
+class ComplexTypeNoMeta(msrest.serialization.Model):
     """I am a complex type with no XML node.
 
     :param id: The id of the res.
@@ -350,7 +350,7 @@ class ComplexTypeNoMeta(Model):
         self.id = kwargs.get('id', None)
 
 
-class ComplexTypeWithMeta(Model):
+class ComplexTypeWithMeta(msrest.serialization.Model):
     """I am a complex type with XML node.
 
     :param id: The id of the res.
@@ -372,7 +372,7 @@ class ComplexTypeWithMeta(Model):
         self.id = kwargs.get('id', None)
 
 
-class Container(Model):
+class Container(msrest.serialization.Model):
     """An Azure Storage container.
 
     All required parameters must be populated in order to send to Azure.
@@ -407,7 +407,7 @@ class Container(Model):
         self.metadata = kwargs.get('metadata', None)
 
 
-class ContainerProperties(Model):
+class ContainerProperties(msrest.serialization.Model):
     """Properties of a container.
 
     All required parameters must be populated in order to send to Azure.
@@ -454,7 +454,7 @@ class ContainerProperties(Model):
         self.public_access = kwargs.get('public_access', None)
 
 
-class CorsRule(Model):
+class CorsRule(msrest.serialization.Model):
     """CORS is an HTTP feature that enables a web application running under one domain to access resources in another domain. Web browsers implement a security restriction known as same-origin policy that prevents a web page from calling APIs in a different domain; CORS provides a secure way to allow one domain (the origin domain) to call APIs in another domain.
 
     All required parameters must be populated in order to send to Azure.
@@ -535,7 +535,7 @@ class ErrorException(HttpResponseError):
         return error._EXCEPTION_TYPE(response, error)
 
 
-class Error(Model):
+class Error(msrest.serialization.Model):
     """Error.
 
     :param status:
@@ -559,8 +559,13 @@ class Error(Model):
         self.message = kwargs.get('message', None)
 
 
+<<<<<<< HEAD
 class JsonInput(Model):
     """JsonInput.
+=======
+class JSONInput(msrest.serialization.Model):
+    """JSONInput.
+>>>>>>> 59376ad54d67a95a2d71c7644965f68d6f8c71e4
 
     :param id:
     :type id: int
@@ -578,8 +583,13 @@ class JsonInput(Model):
         self.id = kwargs.get('id', None)
 
 
+<<<<<<< HEAD
 class JsonOutput(Model):
     """JsonOutput.
+=======
+class JSONOutput(msrest.serialization.Model):
+    """JSONOutput.
+>>>>>>> 59376ad54d67a95a2d71c7644965f68d6f8c71e4
 
     :param id:
     :type id: int
@@ -597,7 +607,7 @@ class JsonOutput(Model):
         self.id = kwargs.get('id', None)
 
 
-class ListBlobsResponse(Model):
+class ListBlobsResponse(msrest.serialization.Model):
     """An enumeration of blobs.
 
     All required parameters must be populated in order to send to Azure.
@@ -660,7 +670,7 @@ class ListBlobsResponse(Model):
         self.next_marker = kwargs.get('next_marker', None)
 
 
-class ListContainersResponse(Model):
+class ListContainersResponse(msrest.serialization.Model):
     """An enumeration of containers.
 
     All required parameters must be populated in order to send to Azure.
@@ -711,7 +721,7 @@ class ListContainersResponse(Model):
         self.next_marker = kwargs.get('next_marker', None)
 
 
-class Logging(Model):
+class Logging(msrest.serialization.Model):
     """Azure Analytics Logging settings.
 
     All required parameters must be populated in order to send to Azure.
@@ -756,7 +766,7 @@ class Logging(Model):
         self.retention_policy = kwargs.get('retention_policy', None)
 
 
-class Metrics(Model):
+class Metrics(msrest.serialization.Model):
     """Metrics.
 
     All required parameters must be populated in order to send to Azure.
@@ -794,7 +804,7 @@ class Metrics(Model):
         self.retention_policy = kwargs.get('retention_policy', None)
 
 
-class RetentionPolicy(Model):
+class RetentionPolicy(msrest.serialization.Model):
     """the retention policy.
 
     All required parameters must be populated in order to send to Azure.
@@ -826,7 +836,7 @@ class RetentionPolicy(Model):
         self.days = kwargs.get('days', None)
 
 
-class RootWithRefAndMeta(Model):
+class RootWithRefAndMeta(msrest.serialization.Model):
     """I am root, and I ref a model WITH meta.
 
     :param ref_to_model: I am a complex type with XML node.
@@ -849,7 +859,7 @@ class RootWithRefAndMeta(Model):
         self.something = kwargs.get('something', None)
 
 
-class RootWithRefAndNoMeta(Model):
+class RootWithRefAndNoMeta(msrest.serialization.Model):
     """I am root, and I ref a model with no meta.
 
     :param ref_to_model: I am a complex type with no XML node.
@@ -872,7 +882,7 @@ class RootWithRefAndNoMeta(Model):
         self.something = kwargs.get('something', None)
 
 
-class SignedIdentifier(Model):
+class SignedIdentifier(msrest.serialization.Model):
     """signed identifier.
 
     All required parameters must be populated in order to send to Azure.
@@ -905,7 +915,7 @@ class SignedIdentifier(Model):
         self.access_policy = kwargs.get('access_policy', None)
 
 
-class Slide(Model):
+class Slide(msrest.serialization.Model):
     """A slide in a slideshow.
 
     :param type:
@@ -935,7 +945,7 @@ class Slide(Model):
         self.items = kwargs.get('items', None)
 
 
-class Slideshow(Model):
+class Slideshow(msrest.serialization.Model):
     """Data about a slideshow.
 
     :param title:
@@ -969,7 +979,7 @@ class Slideshow(Model):
         self.slides = kwargs.get('slides', None)
 
 
-class StorageServiceProperties(Model):
+class StorageServiceProperties(msrest.serialization.Model):
     """Storage Service Properties.
 
     :param logging: Azure Analytics Logging settings.
