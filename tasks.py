@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 from multiprocessing import Pool
 import os
+import shutil
 from colorama import init, Fore
 from invoke import task, run
 
@@ -13,6 +14,7 @@ _AUTOREST_CMD_LINE = "autorest-beta"
 
 service_to_readme_path = {
     'azure-ai-textanalytics': 'test/services/azure-ai-textanalytics/README.md',
+    'azure-ai-formrecognizer': 'test/services/azure-ai-formrecognizer/README.md',
     'azure-storage-blob': '../azure-sdk-for-python/sdk/storage/azure-storage-blob/swagger/README.md',
     'azure-mgmt-storage': 'test/services/azure-mgmt-storage/README.md',
     'azure-graphrbac': 'test/services/azure-graphrbac/README.md',
@@ -33,7 +35,7 @@ default_mappings = {
   'AcceptanceTests/BodyDuration': 'body-duration.json',
   'AcceptanceTests/BodyDictionary': 'body-dictionary.json',
   'AcceptanceTests/BodyFile': 'body-file.json',
-  'AcceptanceTests/BodyFormData': 'body-formdata.json',
+#  'AcceptanceTests/BodyFormData': 'body-formdata.json',
   'AcceptanceTests/BodyInteger': 'body-integer.json',
   'AcceptanceTests/BodyNumber': 'body-number.json',
   'AcceptanceTests/BodyString': 'body-string.json',
@@ -89,11 +91,12 @@ def regen_expected(c, opts, debug):
         key = key.strip()
 
         swagger_files = (opts_mappings_value[0] if isinstance(opts_mappings_value, list) else opts_mappings_value).split(';')
+        output_folder = f"{output_dir}/{key}"
         args = [
             f"--use={base_dir}",
             # "--{}".format(opts['language']),
             "--clear-output-folder",
-            f"--output-folder={output_dir}/{key}",
+            f"--output-folder={output_folder}",
             "--license-header={}".format(opts['header'] if opts.get('header') else 'MICROSOFT_MIT_NO_VERSION'),
             "--enable-xml",
             "--basic-setup-py",
@@ -141,21 +144,28 @@ def regen_expected(c, opts, debug):
         cmd_line = '{} {}'.format(_AUTOREST_CMD_LINE, " ".join(args))
         print(Fore.YELLOW + f'Queuing up: {cmd_line}')
         cmds.append(cmd_line)
+        # Delete the old code, we can catch when it's not generating
+        shutil.rmtree(output_folder, ignore_errors=True)
 
     if len(cmds) == 1:
-        run_autorest(cmds[0], debug=debug)
+        success = run_autorest(cmds[0], debug=debug)
     else:
         # Execute actual taks in parallel
         with Pool() as pool:
-            pool.map(run_autorest, cmds)
+            result = pool.map(run_autorest, cmds)
+        success = all(result)
+
+    if not success:
+        raise SystemExit("Autorest generation fails")
 
 def run_autorest(cmd_line, debug=False):
     result = run(cmd_line, warn=True, hide=not debug)
     if result.ok or result.return_code is None:
         print(Fore.GREEN + f'Call "{cmd_line}" done with success')
+        return True
     else:
         print(Fore.RED + f'Call "{cmd_line}" failed with {result.return_code}\n{result.stdout}\n{result.stderr}')
-    return result
+        return False
 
 
 @task
@@ -249,8 +259,12 @@ def regenerate_services(c, swagger_name=None, debug=False):
         cmds.append(cmd_line)
 
     if len(cmds) == 1:
-        run_autorest(cmds[0], debug=debug)
+        success = run_autorest(cmds[0], debug=debug)
     else:
         # Execute actual taks in parallel
         with Pool() as pool:
-            pool.map(run_autorest, cmds)
+            result = pool.map(run_autorest, cmds)
+        success = all(result)
+
+    if not success:
+        raise SystemExit("Autorest generation fails")

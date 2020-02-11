@@ -9,7 +9,7 @@
 from typing import Optional
 
 from azure.core.exceptions import HttpResponseError
-from msrest.serialization import Model
+import msrest.serialization
 
 
 class ErrorException(HttpResponseError):
@@ -37,7 +37,7 @@ class ErrorException(HttpResponseError):
         return error._EXCEPTION_TYPE(response, error)
 
 
-class Error(Model):
+class Error(msrest.serialization.Model):
     """Error.
 
     :param status:
@@ -64,7 +64,7 @@ class Error(Model):
         self.message = message
 
 
-class FirstParameterGroup(Model):
+class FirstParameterGroup(msrest.serialization.Model):
     """Parameter group.
 
     :param header_one:
@@ -90,7 +90,7 @@ class FirstParameterGroup(Model):
         self.query_one = query_one
 
 
-class ParameterGroupingPostMultiParamGroupsSecondParamGroup(Model):
+class ParameterGroupingPostMultiParamGroupsSecondParamGroup(msrest.serialization.Model):
     """Parameter group.
 
     :param header_two:
@@ -116,7 +116,7 @@ class ParameterGroupingPostMultiParamGroupsSecondParamGroup(Model):
         self.query_two = query_two
 
 
-class ParameterGroupingPostOptionalParameters(Model):
+class ParameterGroupingPostOptionalParameters(msrest.serialization.Model):
     """Parameter group.
 
     :param custom_header:
@@ -142,7 +142,7 @@ class ParameterGroupingPostOptionalParameters(Model):
         self.query = query
 
 
-class ParameterGroupingPostRequiredParameters(Model):
+class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
     """Parameter group.
 
     All required parameters must be populated in order to send to Azure.

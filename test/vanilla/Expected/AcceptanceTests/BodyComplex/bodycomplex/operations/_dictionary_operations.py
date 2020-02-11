@@ -12,7 +12,6 @@ from azure.core.exceptions import map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
-from msrest.serialization import Model
 
 from .. import models
 
@@ -93,8 +92,7 @@ class DictionaryOperations(object):
         # type: (...) -> None
         """Put complex types with dictionary property.
 
-        :param default_program: Dictionary of
-         <components·schemas·dictionary_wrapper·properties·defaultprogram·additionalproperties>.
+        :param default_program: Dictionary of :code:`<string>`.
         :type default_program: dict[str, str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -185,8 +183,7 @@ class DictionaryOperations(object):
         # type: (...) -> None
         """Put complex types with dictionary property which is empty.
 
-        :param default_program: Dictionary of
-         <components·schemas·dictionary_wrapper·properties·defaultprogram·additionalproperties>.
+        :param default_program: Dictionary of :code:`<string>`.
         :type default_program: dict[str, str]
         :param callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

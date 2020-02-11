@@ -8,10 +8,10 @@
 
 from typing import Dict
 
-from msrest.serialization import Model
+import msrest.serialization
 
 
-class AvailabilitySetUpdateParameters(Model):
+class AvailabilitySetUpdateParameters(msrest.serialization.Model):
     """AvailabilitySetUpdateParameters.
 
     All required parameters must be populated in order to send to Azure.

@@ -34,9 +34,11 @@ class NameConverter:
             if not operation_group["language"]["default"]["name"]:
                 operation_group["language"]["python"]["className"] = code_model_title + "OperationsMixin"
             else:
-                operation_group["language"]["python"]["className"] = (
-                    NameConverter._to_pascal_case(operation_group["language"]["default"]["name"]) + "Operations"
-                )
+                operation_group_name = NameConverter._to_pascal_case(operation_group["language"]["default"]["name"])
+                if operation_group_name == "Operations":
+                    operation_group["language"]["python"]["className"] = operation_group_name
+                else:
+                    operation_group["language"]["python"]["className"] = operation_group_name + "Operations"
             for operation in operation_group["operations"]:
                 NameConverter._convert_language_default_python_case(operation, pad_string="Method")
                 for exception in operation_group.get("exceptions", []):
@@ -83,7 +85,7 @@ class NameConverter:
 
     @staticmethod
     def _convert_language_default_python_case(schema, **kwargs):
-        if schema["language"].get("python"):
+        if not schema.get("language") or schema["language"].get("python"):
             return
         schema["language"]["python"] = dict(schema["language"]["default"])
         schema_name = schema["language"]["default"]["name"]

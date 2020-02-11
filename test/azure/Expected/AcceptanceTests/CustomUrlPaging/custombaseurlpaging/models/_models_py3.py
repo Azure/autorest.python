@@ -8,10 +8,10 @@
 
 from typing import List, Optional
 
-from msrest.serialization import Model
+import msrest.serialization
 
 
-class Error(Model):
+class Error(msrest.serialization.Model):
     """Error.
 
     :param status:
@@ -37,7 +37,7 @@ class Error(Model):
         self.message = message
 
 
-class Product(Model):
+class Product(msrest.serialization.Model):
     """Product.
 
     :param properties:
@@ -58,7 +58,7 @@ class Product(Model):
         self.properties = properties
 
 
-class ProductProperties(Model):
+class ProductProperties(msrest.serialization.Model):
     """ProductProperties.
 
     :param id:
@@ -84,7 +84,7 @@ class ProductProperties(Model):
         self.name = name
 
 
-class ProductResult(Model):
+class ProductResult(msrest.serialization.Model):
     """ProductResult.
 
     :param values:
