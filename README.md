@@ -22,9 +22,9 @@ AutoRest needs the below config to pick this up as a plug-in - see https://githu
 #### Python code gen
 
 ``` yaml
-version: 3.0.6198
+version: 3.0.6220
 use-extension:
-  "@autorest/modelerfour": "4.5.172"
+  "@autorest/modelerfour": "4.6.191"
 
 modelerfour:
   group-parameters: true
@@ -36,8 +36,8 @@ modelerfour:
     operation: snakecase
     operationGroup:  pascalcase
     choice:  pascalcase
-    choiceValue:  uppercase
-    constant:  uppercase
+    choiceValue:  snakecase
+    constant:  snakecase
     type:  pascalcase
     override:
       lro: LRO
@@ -46,6 +46,7 @@ modelerfour:
       xml: XML
       ap: AP
       bat: BAT
+      rfc: RFC
 
 
 pipeline:
