@@ -19,7 +19,7 @@
 {% if code_model.options['tracing'] and operation.want_tracing %}
 @distributed_trace
 {% endif %}
-{{ op_tools.method_signature(operation, operation.python_name, async_mode, coroutine_when_async=False) }}
+{{ op_tools.method_signature(operation, operation.python_name, async_mode=async_mode, coroutine=False) }}
 {%- if not async_mode %}
     {{ keywords.sync_return_type_annotation(operation) }}
 {% endif %}
