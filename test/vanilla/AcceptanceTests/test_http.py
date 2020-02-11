@@ -82,7 +82,8 @@ class TestHttp(object):
             pytest.fail()
 
         except HttpResponseError as err:
-            assert err.message == msg
+            assert msg in err.message
+            assert msg in str(err)
 
     def assert_raises_with_model(self, code, model, func, *args, **kwargs):
         try:
@@ -90,8 +91,11 @@ class TestHttp(object):
             pytest.fail()
 
         except HttpResponseError as err:
-            assert isinstance(err.error, model)
-            assert err.response.status_code == code
+            if hasattr(err, 'model'):  # azure-core >= 1.3.0
+                assert isinstance(err.model, model)
+            else:
+                assert isinstance(err.error, model)
+            assert err.status_code == code
 
     def assert_raises_with_status(self, code, func, *args, **kwargs):
         try:
@@ -99,7 +103,7 @@ class TestHttp(object):
             pytest.fail()
 
         except HttpResponseError as err:
-            assert err.response.status_code == code
+            assert err.status_code == code
 
     def assert_raises_with_status_and_message(self, code, msg, func, *args, **kwargs):
         try:
@@ -107,8 +111,9 @@ class TestHttp(object):
             pytest.fail()
 
         except HttpResponseError as err:
-            assert err.message == msg
-            assert err.response.status_code == code
+            assert msg in err.message
+            assert msg in str(err)
+            assert err.status_code == code
 
     def assert_raises_with_status_and_response_contains(self, code, msg, func, *args, **kwargs):
         try:
