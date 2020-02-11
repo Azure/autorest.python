@@ -43,19 +43,18 @@ class PathsOperations:
     async def get_empty(
         self,
         account_name: str,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get a 200 to test a valid base uri.
 
         :param account_name: Account Name.
         :type account_name: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~custombaseurl.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

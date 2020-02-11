@@ -45,7 +45,6 @@ class OdataOperations(object):
         filter=None,  # type: Optional[str]
         top=None,  # type: Optional[int]
         orderby=None,  # type: Optional[str]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -57,11 +56,12 @@ class OdataOperations(object):
         :type top: int
         :param orderby: The orderby parameter with value id.
         :type orderby: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

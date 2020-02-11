@@ -43,7 +43,6 @@ class HeaderOperations(object):
     def custom_named_request_id(
         self,
         foo_client_request_id,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -51,11 +50,12 @@ class HeaderOperations(object):
 
         :param foo_client_request_id: The fooRequestId.
         :type foo_client_request_id: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -89,7 +89,6 @@ class HeaderOperations(object):
     def custom_named_request_id_param_grouping(
         self,
         header_custom_named_request_id_param_grouping_parameters,  # type: "models.HeaderCustomNamedRequestIdParamGroupingParameters"
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -97,11 +96,12 @@ class HeaderOperations(object):
 
         :param header_custom_named_request_id_param_grouping_parameters: Parameter group.
         :type header_custom_named_request_id_param_grouping_parameters: ~azurespecialproperties.models.HeaderCustomNamedRequestIdParamGroupingParameters
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         
         foo_client_request_id = None
@@ -139,7 +139,6 @@ class HeaderOperations(object):
     def custom_named_request_id_head(
         self,
         foo_client_request_id,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -147,11 +146,12 @@ class HeaderOperations(object):
 
         :param foo_client_request_id: The fooRequestId.
         :type foo_client_request_id: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
