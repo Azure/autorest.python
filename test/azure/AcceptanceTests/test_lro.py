@@ -108,6 +108,7 @@ def custom_headers():
     return {"x-ms-client-request-id": '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'}
 
 
+@pytest.mark.skip("LRO implementation in azure-core branch is deprecated")
 class TestLro:
 
     def assert_raises_with_message(self, msg, func, *args, **kwargs):
