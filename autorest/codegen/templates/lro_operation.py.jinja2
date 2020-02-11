@@ -22,7 +22,7 @@ response_headers = {
 {% if code_model.options['tracing'] %}
 {{ trace_decorator }}
 {% endif %}
-{{ op_tools.method_signature(operation, operation_name, async_mode, coroutine_when_async=True) }}
+{{ op_tools.method_signature(operation, operation_name, async_mode=async_mode, coroutine=async_mode) }}
 {%- if not async_mode %}
     {{ keywords.sync_return_type_annotation(operation) }}
 {% endif %}
