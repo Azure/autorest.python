@@ -1,4 +1,4 @@
-# Azure Text Analytics for Python
+# Azure Mgmt Storage for Python
 
 > see https://aka.ms/autorest
 
