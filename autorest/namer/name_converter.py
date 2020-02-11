@@ -85,7 +85,7 @@ class NameConverter:
 
     @staticmethod
     def _convert_language_default_python_case(schema, **kwargs):
-        if schema["language"].get("python"):
+        if not schema.get("language") or schema["language"].get("python"):
             return
         schema["language"]["python"] = dict(schema["language"]["default"])
         schema_name = schema["language"]["default"]["name"]
