@@ -145,6 +145,8 @@ class ParameterList(MutableSequence):
             lambda parameter: parameter.location == ParameterLocation.Other
             and not isinstance(parameter.schema, ConstantSchema)
         )
-        parameter_string = ", ".join([f"{param.serialized_name}={param.serialized_name}" for param in parameters])
         object_schema = cast(ObjectSchema, self.body.schema)
+        parameter_string = ", ".join(
+            [f"{model_property.name}={param.serialized_name}" for param, model_property in zip(parameters, object_schema.properties)
+        ])
         return f"{self.body.serialized_name} = models.{object_schema.name}({parameter_string})"

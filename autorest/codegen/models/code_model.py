@@ -209,27 +209,23 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
 
     def remove_next_operation(self) -> None:
         """Linking paging operations together.
-
-        Could disapear if https://github.com/Azure/autorest.modelerfour/issues/85 done
         """
-        for operation_group in self.operation_groups:
-            # Build an index to be faster
-            op_index = {
-                operation.yaml_data.get("language", {}).get("default", {}).get("name"): operation
-                for operation in operation_group.operations
-            }
+        def _lookup_operation(yaml_id: int) -> Operation:
+            for operation_group in self.operation_groups:
+                for operation in operation_group.operations:
+                    if id(operation.yaml_data) == yaml_id:
+                        return operation
+            raise KeyError("Didn't find it!!!!!")
 
+        for operation_group in self.operation_groups:
             next_operations = []
             for operation in operation_group.operations:
-                if isinstance(operation, PagingOperation) and operation.operation_name:
-                    short_op_name = operation.operation_name.split("_")[-1]
-                    if short_op_name not in op_index:
-                        raise ValueError(
-                            f"Could not find {operation.operation_name} in op group "
-                            + f"{operation_group.name} I have {op_index.keys()}"
-                        )
-
-                    next_operation = op_index[short_op_name]
+                # when we add in "LRO" functions we don't include yaml_data, so yaml_data can be empty in these cases
+                next_link_yaml = None
+                if operation.yaml_data and operation.yaml_data['language']['python'].get('paging'):
+                    next_link_yaml = operation.yaml_data['language']['python']['paging'].get('nextLinkOperation')
+                if isinstance(operation, PagingOperation) and next_link_yaml:
+                    next_operation = _lookup_operation(id(next_link_yaml))
                     operation.next_operation = next_operation
                     next_operations.append(next_operation)
 
