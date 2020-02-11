@@ -54,14 +54,14 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        boolQuery = True
+        bool_query = True
 
         # Construct URL
         url = self.get_boolean_true.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
-        query_parameters['boolQuery'] = self._serialize.query("boolQuery", boolQuery, 'bool')
+        query_parameters['boolQuery'] = self._serialize.query("bool_query", bool_query, 'bool')
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
@@ -94,14 +94,14 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        boolQuery = False
+        bool_query = False
 
         # Construct URL
         url = self.get_boolean_false.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
-        query_parameters['boolQuery'] = self._serialize.query("boolQuery", boolQuery, 'bool')
+        query_parameters['boolQuery'] = self._serialize.query("bool_query", bool_query, 'bool')
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
@@ -178,14 +178,14 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        intQuery = 1000000
+        int_query = 1000000
 
         # Construct URL
         url = self.get_int_one_million.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
-        query_parameters['intQuery'] = self._serialize.query("intQuery", intQuery, 'float')
+        query_parameters['intQuery'] = self._serialize.query("int_query", int_query, 'float')
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
@@ -218,14 +218,14 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        intQuery = -1000000
+        int_query = -1000000
 
         # Construct URL
         url = self.get_int_negative_one_million.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
-        query_parameters['intQuery'] = self._serialize.query("intQuery", intQuery, 'float')
+        query_parameters['intQuery'] = self._serialize.query("int_query", int_query, 'float')
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
@@ -302,14 +302,14 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        longQuery = 10000000000
+        long_query = 10000000000
 
         # Construct URL
         url = self.get_ten_billion.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
-        query_parameters['longQuery'] = self._serialize.query("longQuery", longQuery, 'float')
+        query_parameters['longQuery'] = self._serialize.query("long_query", long_query, 'float')
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
@@ -342,14 +342,14 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        longQuery = -10000000000
+        long_query = -10000000000
 
         # Construct URL
         url = self.get_negative_ten_billion.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
-        query_parameters['longQuery'] = self._serialize.query("longQuery", longQuery, 'float')
+        query_parameters['longQuery'] = self._serialize.query("long_query", long_query, 'float')
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
@@ -426,14 +426,14 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        floatQuery = 103400000000000000000
+        float_query = 103400000000000000000
 
         # Construct URL
         url = self.float_scientific_positive.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
-        query_parameters['floatQuery'] = self._serialize.query("floatQuery", floatQuery, 'float')
+        query_parameters['floatQuery'] = self._serialize.query("float_query", float_query, 'float')
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
@@ -466,14 +466,14 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        floatQuery = -1.034e-20
+        float_query = -1.034e-20
 
         # Construct URL
         url = self.float_scientific_negative.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
-        query_parameters['floatQuery'] = self._serialize.query("floatQuery", floatQuery, 'float')
+        query_parameters['floatQuery'] = self._serialize.query("float_query", float_query, 'float')
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
@@ -550,14 +550,14 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        doubleQuery = 9999999.999
+        double_query = 9999999.999
 
         # Construct URL
         url = self.double_decimal_positive.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
-        query_parameters['doubleQuery'] = self._serialize.query("doubleQuery", doubleQuery, 'float')
+        query_parameters['doubleQuery'] = self._serialize.query("double_query", double_query, 'float')
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
@@ -590,14 +590,14 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        doubleQuery = -9999999.999
+        double_query = -9999999.999
 
         # Construct URL
         url = self.double_decimal_negative.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
-        query_parameters['doubleQuery'] = self._serialize.query("doubleQuery", doubleQuery, 'float')
+        query_parameters['doubleQuery'] = self._serialize.query("double_query", double_query, 'float')
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
@@ -674,14 +674,14 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        stringQuery = "啊齄丂狛狜隣郎隣兀﨩"
+        string_query = "啊齄丂狛狜隣郎隣兀﨩"
 
         # Construct URL
         url = self.string_unicode.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
-        query_parameters['stringQuery'] = self._serialize.query("stringQuery", stringQuery, 'str')
+        query_parameters['stringQuery'] = self._serialize.query("string_query", string_query, 'str')
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
@@ -714,14 +714,14 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        stringQuery = "begin!*'();:@ &=+$,/?#[]end"
+        string_query = "begin!*'();:@ &=+$,/?#[]end"
 
         # Construct URL
         url = self.string_url_encoded.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
-        query_parameters['stringQuery'] = self._serialize.query("stringQuery", stringQuery, 'str')
+        query_parameters['stringQuery'] = self._serialize.query("string_query", string_query, 'str')
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
@@ -754,14 +754,14 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        stringQuery = ""
+        string_query = ""
 
         # Construct URL
         url = self.string_empty.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
-        query_parameters['stringQuery'] = self._serialize.query("stringQuery", stringQuery, 'str')
+        query_parameters['stringQuery'] = self._serialize.query("string_query", string_query, 'str')
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
@@ -970,14 +970,14 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        byteQuery = bytearray("", encoding="utf-8")
+        byte_query = bytearray("", encoding="utf-8")
 
         # Construct URL
         url = self.byte_empty.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
-        query_parameters['byteQuery'] = self._serialize.query("byteQuery", byteQuery, 'bytearray')
+        query_parameters['byteQuery'] = self._serialize.query("byte_query", byte_query, 'bytearray')
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
@@ -1054,14 +1054,14 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        dateQuery = "2012-01-01"
+        date_query = "2012-01-01"
 
         # Construct URL
         url = self.date_valid.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
-        query_parameters['dateQuery'] = self._serialize.query("dateQuery", dateQuery, 'date')
+        query_parameters['dateQuery'] = self._serialize.query("date_query", date_query, 'date')
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
@@ -1138,14 +1138,14 @@ class QueriesOperations:
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        dateTimeQuery = "2012-01-01T01:01:01Z"
+        date_time_query = "2012-01-01T01:01:01Z"
 
         # Construct URL
         url = self.date_time_valid.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
-        query_parameters['dateTimeQuery'] = self._serialize.query("dateTimeQuery", dateTimeQuery, 'iso-8601')
+        query_parameters['dateTimeQuery'] = self._serialize.query("date_time_query", date_time_query, 'iso-8601')
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}

@@ -97,7 +97,7 @@ class BoolOperations(object):
         :raises: ~bodyboolean.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        boolBody = True
+        bool_body = True
 
         # Construct URL
         url = self.put_true.metadata['url']
@@ -110,7 +110,7 @@ class BoolOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(boolBody, 'bool')
+        body_content = self._serialize.body(bool_body, 'bool')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
@@ -184,7 +184,7 @@ class BoolOperations(object):
         :raises: ~bodyboolean.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        boolBody = False
+        bool_body = False
 
         # Construct URL
         url = self.put_false.metadata['url']
@@ -197,7 +197,7 @@ class BoolOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(boolBody, 'bool')
+        body_content = self._serialize.body(bool_body, 'bool')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)

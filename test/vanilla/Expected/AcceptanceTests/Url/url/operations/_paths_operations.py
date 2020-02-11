@@ -55,12 +55,12 @@ class PathsOperations(object):
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        boolPath = True
+        bool_path = True
 
         # Construct URL
         url = self.get_boolean_true.metadata['url']
         path_format_arguments = {
-            'boolPath': self._serialize.url("boolPath", boolPath, 'bool'),
+            'boolPath': self._serialize.url("bool_path", bool_path, 'bool'),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -99,12 +99,12 @@ class PathsOperations(object):
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        boolPath = False
+        bool_path = False
 
         # Construct URL
         url = self.get_boolean_false.metadata['url']
         path_format_arguments = {
-            'boolPath': self._serialize.url("boolPath", boolPath, 'bool'),
+            'boolPath': self._serialize.url("bool_path", bool_path, 'bool'),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -143,12 +143,12 @@ class PathsOperations(object):
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        intPath = 1000000
+        int_path = 1000000
 
         # Construct URL
         url = self.get_int_one_million.metadata['url']
         path_format_arguments = {
-            'intPath': self._serialize.url("intPath", intPath, 'float'),
+            'intPath': self._serialize.url("int_path", int_path, 'float'),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -187,12 +187,12 @@ class PathsOperations(object):
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        intPath = -1000000
+        int_path = -1000000
 
         # Construct URL
         url = self.get_int_negative_one_million.metadata['url']
         path_format_arguments = {
-            'intPath': self._serialize.url("intPath", intPath, 'float'),
+            'intPath': self._serialize.url("int_path", int_path, 'float'),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -231,12 +231,12 @@ class PathsOperations(object):
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        longPath = 10000000000
+        long_path = 10000000000
 
         # Construct URL
         url = self.get_ten_billion.metadata['url']
         path_format_arguments = {
-            'longPath': self._serialize.url("longPath", longPath, 'float'),
+            'longPath': self._serialize.url("long_path", long_path, 'float'),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -275,12 +275,12 @@ class PathsOperations(object):
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        longPath = -10000000000
+        long_path = -10000000000
 
         # Construct URL
         url = self.get_negative_ten_billion.metadata['url']
         path_format_arguments = {
-            'longPath': self._serialize.url("longPath", longPath, 'float'),
+            'longPath': self._serialize.url("long_path", long_path, 'float'),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -319,12 +319,12 @@ class PathsOperations(object):
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        floatPath = 103400000000000000000
+        float_path = 103400000000000000000
 
         # Construct URL
         url = self.float_scientific_positive.metadata['url']
         path_format_arguments = {
-            'floatPath': self._serialize.url("floatPath", floatPath, 'float'),
+            'floatPath': self._serialize.url("float_path", float_path, 'float'),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -363,12 +363,12 @@ class PathsOperations(object):
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        floatPath = -1.034e-20
+        float_path = -1.034e-20
 
         # Construct URL
         url = self.float_scientific_negative.metadata['url']
         path_format_arguments = {
-            'floatPath': self._serialize.url("floatPath", floatPath, 'float'),
+            'floatPath': self._serialize.url("float_path", float_path, 'float'),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -407,12 +407,12 @@ class PathsOperations(object):
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        doublePath = 9999999.999
+        double_path = 9999999.999
 
         # Construct URL
         url = self.double_decimal_positive.metadata['url']
         path_format_arguments = {
-            'doublePath': self._serialize.url("doublePath", doublePath, 'float'),
+            'doublePath': self._serialize.url("double_path", double_path, 'float'),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -451,12 +451,12 @@ class PathsOperations(object):
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        doublePath = -9999999.999
+        double_path = -9999999.999
 
         # Construct URL
         url = self.double_decimal_negative.metadata['url']
         path_format_arguments = {
-            'doublePath': self._serialize.url("doublePath", doublePath, 'float'),
+            'doublePath': self._serialize.url("double_path", double_path, 'float'),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -495,12 +495,12 @@ class PathsOperations(object):
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        stringPath = "啊齄丂狛狜隣郎隣兀﨩"
+        string_path = "啊齄丂狛狜隣郎隣兀﨩"
 
         # Construct URL
         url = self.string_unicode.metadata['url']
         path_format_arguments = {
-            'stringPath': self._serialize.url("stringPath", stringPath, 'str'),
+            'stringPath': self._serialize.url("string_path", string_path, 'str'),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -539,12 +539,12 @@ class PathsOperations(object):
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        stringPath = "begin!*'();:@ &=+$,/?#[]end"
+        string_path = "begin!*'();:@ &=+$,/?#[]end"
 
         # Construct URL
         url = self.string_url_encoded.metadata['url']
         path_format_arguments = {
-            'stringPath': self._serialize.url("stringPath", stringPath, 'str'),
+            'stringPath': self._serialize.url("string_path", string_path, 'str'),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -585,12 +585,12 @@ class PathsOperations(object):
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        stringPath = "begin!*'();:@&=+$,end"
+        string_path = "begin!*'();:@&=+$,end"
 
         # Construct URL
         url = self.string_url_non_encoded.metadata['url']
         path_format_arguments = {
-            'stringPath': self._serialize.url("stringPath", stringPath, 'str', skip_quote=True),
+            'stringPath': self._serialize.url("string_path", string_path, 'str', skip_quote=True),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -629,12 +629,12 @@ class PathsOperations(object):
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        stringPath = ""
+        string_path = ""
 
         # Construct URL
         url = self.string_empty.metadata['url']
         path_format_arguments = {
-            'stringPath': self._serialize.url("stringPath", stringPath, 'str'),
+            'stringPath': self._serialize.url("string_path", string_path, 'str'),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -857,12 +857,12 @@ class PathsOperations(object):
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        bytePath = bytearray("", encoding="utf-8")
+        byte_path = bytearray("", encoding="utf-8")
 
         # Construct URL
         url = self.byte_empty.metadata['url']
         path_format_arguments = {
-            'bytePath': self._serialize.url("bytePath", bytePath, 'bytearray'),
+            'bytePath': self._serialize.url("byte_path", byte_path, 'bytearray'),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -947,12 +947,12 @@ class PathsOperations(object):
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        datePath = "2012-01-01"
+        date_path = "2012-01-01"
 
         # Construct URL
         url = self.date_valid.metadata['url']
         path_format_arguments = {
-            'datePath': self._serialize.url("datePath", datePath, 'date'),
+            'datePath': self._serialize.url("date_path", date_path, 'date'),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -1037,12 +1037,12 @@ class PathsOperations(object):
         :raises: ~url.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        dateTimePath = "2012-01-01T01:01:01Z"
+        date_time_path = "2012-01-01T01:01:01Z"
 
         # Construct URL
         url = self.date_time_valid.metadata['url']
         path_format_arguments = {
-            'dateTimePath': self._serialize.url("dateTimePath", dateTimePath, 'iso-8601'),
+            'dateTimePath': self._serialize.url("date_time_path", date_time_path, 'iso-8601'),
         }
         url = self._client.format_url(url, **path_format_arguments)
 

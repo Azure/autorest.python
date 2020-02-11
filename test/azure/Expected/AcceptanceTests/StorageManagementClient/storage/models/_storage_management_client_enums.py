@@ -10,38 +10,38 @@ from enum import Enum
 
 class ProvisioningState(str, Enum):
 
-    CREATING = "Creating"
-    RESOLVING_DNS = "ResolvingDNS"
-    SUCCEEDED = "Succeeded"
+    creating = "Creating"
+    resolving_dns = "ResolvingDNS"
+    succeeded = "Succeeded"
 
 class AccountType(str, Enum):
 
-    STANDARD_LRS = "Standard_LRS"
-    STANDARD_ZRS = "Standard_ZRS"
-    STANDARD_GRS = "Standard_GRS"
-    STANDARD_RAGRS = "Standard_RAGRS"
-    PREMIUM_LRS = "Premium_LRS"
+    standard_lrs = "Standard_LRS"
+    standard_zrs = "Standard_ZRS"
+    standard_grs = "Standard_GRS"
+    standard_ragrs = "Standard_RAGRS"
+    premium_lrs = "Premium_LRS"
 
 class AccountStatus(str, Enum):
 
-    AVAILABLE = "Available"
-    UNAVAILABLE = "Unavailable"
+    available = "Available"
+    unavailable = "Unavailable"
 
 class UsageUnit(str, Enum):
 
-    COUNT = "Count"
-    BYTES = "Bytes"
-    SECONDS = "Seconds"
-    PERCENT = "Percent"
-    COUNTS_PER_SECOND = "CountsPerSecond"
-    BYTES_PER_SECOND = "BytesPerSecond"
+    count = "Count"
+    bytes = "Bytes"
+    seconds = "Seconds"
+    percent = "Percent"
+    counts_per_second = "CountsPerSecond"
+    bytes_per_second = "BytesPerSecond"
 
 class Reason(str, Enum):
 
-    ACCOUNT_NAME_INVALID = "AccountNameInvalid"
-    ALREADY_EXISTS = "AlreadyExists"
+    account_name_invalid = "AccountNameInvalid"
+    already_exists = "AlreadyExists"
 
 class KeyName(str, Enum):
 
-    KEY1 = "key1"
-    KEY2 = "key2"
+    key1 = "key1"
+    key2 = "key2"

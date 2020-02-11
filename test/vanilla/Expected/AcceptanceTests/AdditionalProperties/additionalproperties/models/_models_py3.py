@@ -50,15 +50,15 @@ class PetAPTrue(msrest.serialization.Model):
         name: Optional[str] = None,
         **kwargs
     ):
-        super(PetApTrue, self).__init__(**kwargs)
+        super(PetAPTrue, self).__init__(**kwargs)
         self.additional_properties = additional_properties
         self.id = id
         self.name = name
         self.status = None
 
 
-class CatApTrue(PetApTrue):
-    """CatApTrue.
+class CatAPTrue(PetAPTrue):
+    """CatAPTrue.
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -99,7 +99,7 @@ class CatApTrue(PetApTrue):
         friendly: Optional[bool] = None,
         **kwargs
     ):
-        super(CatApTrue, self).__init__(additional_properties=additional_properties, id=id, name=name, **kwargs)
+        super(CatAPTrue, self).__init__(additional_properties=additional_properties, id=id, name=name, **kwargs)
         self.friendly = friendly
 
 
@@ -155,13 +155,8 @@ class Error(msrest.serialization.Model):
         self.message = message
 
 
-<<<<<<< HEAD
-class PetApInProperties(Model):
-    """PetApInProperties.
-=======
 class PetAPInProperties(msrest.serialization.Model):
     """PetAPInProperties.
->>>>>>> 59376ad54d67a95a2d71c7644965f68d6f8c71e4
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -198,20 +193,15 @@ class PetAPInProperties(msrest.serialization.Model):
         additional_properties: Optional[Dict[str, float]] = None,
         **kwargs
     ):
-        super(PetApInProperties, self).__init__(**kwargs)
+        super(PetAPInProperties, self).__init__(**kwargs)
         self.id = id
         self.name = name
         self.status = None
         self.additional_properties = additional_properties
 
 
-<<<<<<< HEAD
-class PetApInPropertiesWithApstring(Model):
-    """PetApInPropertiesWithApstring.
-=======
 class PetAPInPropertiesWithAPString(msrest.serialization.Model):
     """PetAPInPropertiesWithAPString.
->>>>>>> 59376ad54d67a95a2d71c7644965f68d6f8c71e4
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -258,7 +248,7 @@ class PetAPInPropertiesWithAPString(msrest.serialization.Model):
         additional_properties1: Optional[Dict[str, float]] = None,
         **kwargs
     ):
-        super(PetApInPropertiesWithApstring, self).__init__(**kwargs)
+        super(PetAPInPropertiesWithAPString, self).__init__(**kwargs)
         self.additional_properties = additional_properties
         self.id = id
         self.name = name
@@ -267,13 +257,8 @@ class PetAPInPropertiesWithAPString(msrest.serialization.Model):
         self.additional_properties1 = additional_properties1
 
 
-<<<<<<< HEAD
-class PetApObject(Model):
-    """PetApObject.
-=======
 class PetAPObject(msrest.serialization.Model):
     """PetAPObject.
->>>>>>> 59376ad54d67a95a2d71c7644965f68d6f8c71e4
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -310,20 +295,15 @@ class PetAPObject(msrest.serialization.Model):
         name: Optional[str] = None,
         **kwargs
     ):
-        super(PetApObject, self).__init__(**kwargs)
+        super(PetAPObject, self).__init__(**kwargs)
         self.additional_properties = additional_properties
         self.id = id
         self.name = name
         self.status = None
 
 
-<<<<<<< HEAD
-class PetApString(Model):
-    """PetApString.
-=======
 class PetAPString(msrest.serialization.Model):
     """PetAPString.
->>>>>>> 59376ad54d67a95a2d71c7644965f68d6f8c71e4
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
@@ -360,7 +340,7 @@ class PetAPString(msrest.serialization.Model):
         name: Optional[str] = None,
         **kwargs
     ):
-        super(PetApString, self).__init__(**kwargs)
+        super(PetAPString, self).__init__(**kwargs)
         self.additional_properties = additional_properties
         self.id = id
         self.name = name

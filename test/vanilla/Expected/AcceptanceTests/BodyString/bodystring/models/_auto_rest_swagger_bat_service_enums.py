@@ -10,6 +10,6 @@ from enum import Enum
 
 class Colors(str, Enum):
 
-    RED_COLOR = "red color"
-    GREEN_COLOR = "green-color"
-    BLUE_COLOR = "blue_color"
+    redcolor = "red color"
+    green_color = "green-color"
+    blue_color = "blue_color"

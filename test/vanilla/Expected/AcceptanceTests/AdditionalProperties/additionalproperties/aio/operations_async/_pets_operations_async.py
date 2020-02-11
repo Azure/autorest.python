@@ -42,18 +42,18 @@ class PetsOperations:
     @distributed_trace_async
     async def create_ap_true(
         self,
-        create_parameters: "models.PetApTrue",
+        create_parameters: "models.PetAPTrue",
         *,
-        cls: ClsType["models.PetApTrue"] = None,
+        cls: ClsType["models.PetAPTrue"] = None,
         **kwargs: Any
-    ) -> "models.PetApTrue":
+    ) -> "models.PetAPTrue":
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
-        :type create_parameters: ~additionalproperties.models.PetApTrue
+        :type create_parameters: ~additionalproperties.models.PetAPTrue
         :param callable cls: A custom type or function that will be passed the direct response
-        :return: PetApTrue or the result of cls(response)
-        :rtype: ~additionalproperties.models.PetApTrue
+        :return: PetAPTrue or the result of cls(response)
+        :rtype: ~additionalproperties.models.PetAPTrue
         :raises: ~additionalproperties.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -70,7 +70,7 @@ class PetsOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(create_parameters, 'PetApTrue')
+        body_content = self._serialize.body(create_parameters, 'PetAPTrue')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
@@ -81,7 +81,7 @@ class PetsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('PetApTrue', pipeline_response)
+        deserialized = self._deserialize('PetAPTrue', pipeline_response)
 
         if cls:
           return cls(pipeline_response, deserialized, {})
@@ -92,18 +92,18 @@ class PetsOperations:
     @distributed_trace_async
     async def create_cat_ap_true(
         self,
-        create_parameters: "models.CatApTrue",
+        create_parameters: "models.CatAPTrue",
         *,
-        cls: ClsType["models.CatApTrue"] = None,
+        cls: ClsType["models.CatAPTrue"] = None,
         **kwargs: Any
-    ) -> "models.CatApTrue":
+    ) -> "models.CatAPTrue":
         """Create a CatAPTrue which contains more properties than what is defined.
 
         :param create_parameters:
-        :type create_parameters: ~additionalproperties.models.CatApTrue
+        :type create_parameters: ~additionalproperties.models.CatAPTrue
         :param callable cls: A custom type or function that will be passed the direct response
-        :return: CatApTrue or the result of cls(response)
-        :rtype: ~additionalproperties.models.CatApTrue
+        :return: CatAPTrue or the result of cls(response)
+        :rtype: ~additionalproperties.models.CatAPTrue
         :raises: ~additionalproperties.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -120,7 +120,7 @@ class PetsOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(create_parameters, 'CatApTrue')
+        body_content = self._serialize.body(create_parameters, 'CatAPTrue')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
@@ -131,7 +131,7 @@ class PetsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('CatApTrue', pipeline_response)
+        deserialized = self._deserialize('CatAPTrue', pipeline_response)
 
         if cls:
           return cls(pipeline_response, deserialized, {})
@@ -142,18 +142,18 @@ class PetsOperations:
     @distributed_trace_async
     async def create_ap_object(
         self,
-        create_parameters: "models.PetApObject",
+        create_parameters: "models.PetAPObject",
         *,
-        cls: ClsType["models.PetApObject"] = None,
+        cls: ClsType["models.PetAPObject"] = None,
         **kwargs: Any
-    ) -> "models.PetApObject":
+    ) -> "models.PetAPObject":
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
-        :type create_parameters: ~additionalproperties.models.PetApObject
+        :type create_parameters: ~additionalproperties.models.PetAPObject
         :param callable cls: A custom type or function that will be passed the direct response
-        :return: PetApObject or the result of cls(response)
-        :rtype: ~additionalproperties.models.PetApObject
+        :return: PetAPObject or the result of cls(response)
+        :rtype: ~additionalproperties.models.PetAPObject
         :raises: ~additionalproperties.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -170,7 +170,7 @@ class PetsOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(create_parameters, 'PetApObject')
+        body_content = self._serialize.body(create_parameters, 'PetAPObject')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
@@ -181,7 +181,7 @@ class PetsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('PetApObject', pipeline_response)
+        deserialized = self._deserialize('PetAPObject', pipeline_response)
 
         if cls:
           return cls(pipeline_response, deserialized, {})
@@ -192,18 +192,18 @@ class PetsOperations:
     @distributed_trace_async
     async def create_ap_string(
         self,
-        create_parameters: "models.PetApString",
+        create_parameters: "models.PetAPString",
         *,
-        cls: ClsType["models.PetApString"] = None,
+        cls: ClsType["models.PetAPString"] = None,
         **kwargs: Any
-    ) -> "models.PetApString":
+    ) -> "models.PetAPString":
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
-        :type create_parameters: ~additionalproperties.models.PetApString
+        :type create_parameters: ~additionalproperties.models.PetAPString
         :param callable cls: A custom type or function that will be passed the direct response
-        :return: PetApString or the result of cls(response)
-        :rtype: ~additionalproperties.models.PetApString
+        :return: PetAPString or the result of cls(response)
+        :rtype: ~additionalproperties.models.PetAPString
         :raises: ~additionalproperties.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -220,7 +220,7 @@ class PetsOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(create_parameters, 'PetApString')
+        body_content = self._serialize.body(create_parameters, 'PetAPString')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
@@ -231,7 +231,7 @@ class PetsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('PetApString', pipeline_response)
+        deserialized = self._deserialize('PetAPString', pipeline_response)
 
         if cls:
           return cls(pipeline_response, deserialized, {})
@@ -242,18 +242,18 @@ class PetsOperations:
     @distributed_trace_async
     async def create_ap_in_properties(
         self,
-        create_parameters: "models.PetApInProperties",
+        create_parameters: "models.PetAPInProperties",
         *,
-        cls: ClsType["models.PetApInProperties"] = None,
+        cls: ClsType["models.PetAPInProperties"] = None,
         **kwargs: Any
-    ) -> "models.PetApInProperties":
+    ) -> "models.PetAPInProperties":
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
-        :type create_parameters: ~additionalproperties.models.PetApInProperties
+        :type create_parameters: ~additionalproperties.models.PetAPInProperties
         :param callable cls: A custom type or function that will be passed the direct response
-        :return: PetApInProperties or the result of cls(response)
-        :rtype: ~additionalproperties.models.PetApInProperties
+        :return: PetAPInProperties or the result of cls(response)
+        :rtype: ~additionalproperties.models.PetAPInProperties
         :raises: ~additionalproperties.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
@@ -270,7 +270,7 @@ class PetsOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(create_parameters, 'PetApInProperties')
+        body_content = self._serialize.body(create_parameters, 'PetAPInProperties')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
@@ -281,7 +281,7 @@ class PetsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('PetApInProperties', pipeline_response)
+        deserialized = self._deserialize('PetAPInProperties', pipeline_response)
 
         if cls:
           return cls(pipeline_response, deserialized, {})
@@ -290,26 +290,26 @@ class PetsOperations:
     create_ap_in_properties.metadata = {'url': '/additionalProperties/in/properties'}
 
     @distributed_trace_async
-    async def create_ap_in_properties_with_apstring(
+    async def create_ap_in_properties_with_ap_string(
         self,
-        create_parameters: "models.PetApInPropertiesWithApstring",
+        create_parameters: "models.PetAPInPropertiesWithAPString",
         *,
-        cls: ClsType["models.PetApInPropertiesWithApstring"] = None,
+        cls: ClsType["models.PetAPInPropertiesWithAPString"] = None,
         **kwargs: Any
-    ) -> "models.PetApInPropertiesWithApstring":
+    ) -> "models.PetAPInPropertiesWithAPString":
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
-        :type create_parameters: ~additionalproperties.models.PetApInPropertiesWithApstring
+        :type create_parameters: ~additionalproperties.models.PetAPInPropertiesWithAPString
         :param callable cls: A custom type or function that will be passed the direct response
-        :return: PetApInPropertiesWithApstring or the result of cls(response)
-        :rtype: ~additionalproperties.models.PetApInPropertiesWithApstring
+        :return: PetAPInPropertiesWithAPString or the result of cls(response)
+        :rtype: ~additionalproperties.models.PetAPInPropertiesWithAPString
         :raises: ~additionalproperties.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
-        url = self.create_ap_in_properties_with_apstring.metadata['url']
+        url = self.create_ap_in_properties_with_ap_string.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
@@ -320,7 +320,7 @@ class PetsOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(create_parameters, 'PetApInPropertiesWithApstring')
+        body_content = self._serialize.body(create_parameters, 'PetAPInPropertiesWithAPString')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
@@ -331,10 +331,10 @@ class PetsOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise models.ErrorException.from_response(response, self._deserialize)
 
-        deserialized = self._deserialize('PetApInPropertiesWithApstring', pipeline_response)
+        deserialized = self._deserialize('PetAPInPropertiesWithAPString', pipeline_response)
 
         if cls:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    create_ap_in_properties_with_apstring.metadata = {'url': '/additionalProperties/in/properties/with/additionalProperties/string'}
+    create_ap_in_properties_with_ap_string.metadata = {'url': '/additionalProperties/in/properties/with/additionalProperties/string'}

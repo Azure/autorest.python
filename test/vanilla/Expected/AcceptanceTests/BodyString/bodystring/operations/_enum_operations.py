@@ -279,7 +279,7 @@ class EnumOperations(object):
         """
         error_map = kwargs.pop('error_map', {})
 
-        enumStringBody = models.RefColorConstant(field1=field1)
+        enum_string_body = models.RefColorConstant(field1=field1)
 
         # Construct URL
         url = self.put_referenced_constant.metadata['url']
@@ -292,7 +292,7 @@ class EnumOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(enumStringBody, 'RefColorConstant')
+        body_content = self._serialize.body(enum_string_body, 'RefColorConstant')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)

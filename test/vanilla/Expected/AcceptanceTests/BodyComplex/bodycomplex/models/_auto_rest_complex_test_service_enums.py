@@ -8,17 +8,17 @@
 
 from enum import Enum
 
-class CmykColors(str, Enum):
+class CMYKColors(str, Enum):
 
-    CYAN = "cyan"
-    MAGENTA = "Magenta"
-    YELLOW = "YELLOW"
-    BLAC_K = "blacK"
+    cyan = "cyan"
+    magenta = "Magenta"
+    yellow = "YELLOW"
+    blac_k = "blacK"
 
 class GoblinSharkColor(str, Enum):
 
-    PINK = "pink"
-    GRAY = "gray"
-    BROWN = "brown"
-    UPPER_RED = "RED"  #: Uppercase RED.
-    LOWER_RED = "red"  #: Lowercase RED.
+    pink = "pink"
+    gray = "gray"
+    brown = "brown"
+    upper_red = "RED"  #: Uppercase RED.
+    lower_red = "red"  #: Lowercase RED.

@@ -10,16 +10,16 @@ from enum import Enum
 
 class DaysOfWeekExtensibleEnum(str, Enum):
 
-    MONDAY = "Monday"
-    TUESDAY = "Tuesday"
-    WEDNESDAY = "Wednesday"
-    THURSDAY = "Thursday"
-    FRIDAY = "Friday"
-    SATURDAY = "Saturday"
-    SUNDAY = "Sunday"
+    monday = "Monday"
+    tuesday = "Tuesday"
+    wednesday = "Wednesday"
+    thursday = "Thursday"
+    friday = "Friday"
+    saturday = "Saturday"
+    sunday = "Sunday"
 
 class IntEnum(str, Enum):
 
-    ONE = "1"  #: one.
-    TWO = "2"  #: two.
-    THREE = "3"  #: three.
+    one = "1"  #: one.
+    two = "2"  #: two.
+    three = "3"  #: three.

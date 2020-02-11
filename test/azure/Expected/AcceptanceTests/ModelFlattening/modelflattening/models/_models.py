@@ -258,8 +258,8 @@ class FlattenParameterGroup(msrest.serialization.Model):
     :vartype capacity: str
     :param generic_value: Generic URL value.
     :type generic_value: str
-    :param odata_value: URL value.
-    :type odata_value: str
+    :param odatavalue: URL value.
+    :type odatavalue: str
     """
 
     _validation = {
@@ -276,7 +276,7 @@ class FlattenParameterGroup(msrest.serialization.Model):
         'max_product_display_name': {'key': 'max_product_display_name', 'type': 'str'},
         'capacity': {'key': 'capacity', 'type': 'str'},
         'generic_value': {'key': 'generic_value', 'type': 'str'},
-        'odata_value': {'key': '@odata\\.value', 'type': 'str'},
+        'odatavalue': {'key': '@odata\\.value', 'type': 'str'},
     }
 
     capacity = "Large"
@@ -292,7 +292,7 @@ class FlattenParameterGroup(msrest.serialization.Model):
         self.description = kwargs.get('description', None)
         self.max_product_display_name = kwargs.get('max_product_display_name', None)
         self.generic_value = kwargs.get('generic_value', None)
-        self.odata_value = kwargs.get('odata_value', None)
+        self.odatavalue = kwargs.get('odatavalue', None)
 
 
 class GenericUrl(msrest.serialization.Model):

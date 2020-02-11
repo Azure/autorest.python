@@ -559,13 +559,8 @@ class Error(msrest.serialization.Model):
         self.message = kwargs.get('message', None)
 
 
-<<<<<<< HEAD
-class JsonInput(Model):
-    """JsonInput.
-=======
 class JSONInput(msrest.serialization.Model):
     """JSONInput.
->>>>>>> 59376ad54d67a95a2d71c7644965f68d6f8c71e4
 
     :param id:
     :type id: int
@@ -579,17 +574,12 @@ class JSONInput(msrest.serialization.Model):
         self,
         **kwargs
     ):
-        super(JsonInput, self).__init__(**kwargs)
+        super(JSONInput, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
 
 
-<<<<<<< HEAD
-class JsonOutput(Model):
-    """JsonOutput.
-=======
 class JSONOutput(msrest.serialization.Model):
     """JSONOutput.
->>>>>>> 59376ad54d67a95a2d71c7644965f68d6f8c71e4
 
     :param id:
     :type id: int
@@ -603,7 +593,7 @@ class JSONOutput(msrest.serialization.Model):
         self,
         **kwargs
     ):
-        super(JsonOutput, self).__init__(**kwargs)
+        super(JSONOutput, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
 
 
@@ -775,9 +765,9 @@ class Metrics(msrest.serialization.Model):
     :type version: str
     :param enabled: Required. Indicates whether metrics are enabled for the Blob service.
     :type enabled: bool
-    :param include_ap_is: Indicates whether metrics should generate summary statistics for called
+    :param include_apis: Indicates whether metrics should generate summary statistics for called
      API operations.
-    :type include_ap_is: bool
+    :type include_apis: bool
     :param retention_policy: the retention policy.
     :type retention_policy: ~xmlservice.models.RetentionPolicy
     """
@@ -789,7 +779,7 @@ class Metrics(msrest.serialization.Model):
     _attribute_map = {
         'version': {'key': 'Version', 'type': 'str'},
         'enabled': {'key': 'Enabled', 'type': 'bool'},
-        'include_ap_is': {'key': 'IncludeAPIs', 'type': 'bool'},
+        'include_apis': {'key': 'IncludeAPIs', 'type': 'bool'},
         'retention_policy': {'key': 'RetentionPolicy', 'type': 'RetentionPolicy'},
     }
 
@@ -800,7 +790,7 @@ class Metrics(msrest.serialization.Model):
         super(Metrics, self).__init__(**kwargs)
         self.version = kwargs.get('version', None)
         self.enabled = kwargs.get('enabled', None)
-        self.include_ap_is = kwargs.get('include_ap_is', None)
+        self.include_apis = kwargs.get('include_apis', None)
         self.retention_policy = kwargs.get('retention_policy', None)
 
 
@@ -950,8 +940,8 @@ class Slideshow(msrest.serialization.Model):
 
     :param title:
     :type title: str
-    :param date:
-    :type date: str
+    :param date_property:
+    :type date_property: str
     :param author:
     :type author: str
     :param slides:
@@ -960,7 +950,7 @@ class Slideshow(msrest.serialization.Model):
 
     _attribute_map = {
         'title': {'key': 'title', 'type': 'str', 'xml': {'attr': True}},
-        'date': {'key': 'date', 'type': 'str', 'xml': {'attr': True}},
+        'date_property': {'key': 'date', 'type': 'str', 'xml': {'attr': True}},
         'author': {'key': 'author', 'type': 'str', 'xml': {'attr': True}},
         'slides': {'key': 'slides', 'type': '[Slide]'},
     }
@@ -974,7 +964,7 @@ class Slideshow(msrest.serialization.Model):
     ):
         super(Slideshow, self).__init__(**kwargs)
         self.title = kwargs.get('title', None)
-        self.date = kwargs.get('date', None)
+        self.date_property = kwargs.get('date_property', None)
         self.author = kwargs.get('author', None)
         self.slides = kwargs.get('slides', None)
 

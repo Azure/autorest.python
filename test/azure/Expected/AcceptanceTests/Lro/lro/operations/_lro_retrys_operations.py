@@ -21,8 +21,8 @@ from .. import models
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
-class LroRetrysOperations(object):
-    """LroRetrysOperations operations.
+class LRORetrysOperations(object):
+    """LRORetrysOperations operations.
 
     You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
 

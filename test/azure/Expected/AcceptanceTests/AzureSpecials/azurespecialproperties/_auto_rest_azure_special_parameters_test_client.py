@@ -12,7 +12,7 @@ from azure.mgmt.core import ARMPipelineClient
 from msrest import Deserializer, Serializer
 
 from ._configuration import AutoRestAzureSpecialParametersTestClientConfiguration
-from .operations import XMSClientRequestIdOperations
+from .operations import XMsClientRequestIdOperations
 from .operations import SubscriptionInCredentialsOperations
 from .operations import SubscriptionInMethodOperations
 from .operations import ApiVersionDefaultOperations
@@ -26,8 +26,8 @@ from . import models
 class AutoRestAzureSpecialParametersTestClient(object):
     """Test Infrastructure for AutoRest
 
-    :ivar xms_client_request_id: XMSClientRequestIdOperations operations
-    :vartype xms_client_request_id: azurespecialproperties.operations.XMSClientRequestIdOperations
+    :ivar x_ms_client_request_id: XMsClientRequestIdOperations operations
+    :vartype x_ms_client_request_id: azurespecialproperties.operations.XMsClientRequestIdOperations
     :ivar subscription_in_credentials: SubscriptionInCredentialsOperations operations
     :vartype subscription_in_credentials: azurespecialproperties.operations.SubscriptionInCredentialsOperations
     :ivar subscription_in_method: SubscriptionInMethodOperations operations
@@ -66,7 +66,7 @@ class AutoRestAzureSpecialParametersTestClient(object):
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
 
-        self.xms_client_request_id = XMSClientRequestIdOperations(
+        self.x_ms_client_request_id = XMsClientRequestIdOperations(
             self._client, self._config, self._serialize, self._deserialize)
         self.subscription_in_credentials = SubscriptionInCredentialsOperations(
             self._client, self._config, self._serialize, self._deserialize)

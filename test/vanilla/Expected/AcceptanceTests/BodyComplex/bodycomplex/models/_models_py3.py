@@ -43,7 +43,7 @@ class Basic(msrest.serialization.Model):
      a line break.
     :type name: str
     :param color:  Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'.
-    :type color: str or ~bodycomplex.models.CmykColors
+    :type color: str or ~bodycomplex.models.CMYKColors
     """
 
     _attribute_map = {
@@ -57,7 +57,7 @@ class Basic(msrest.serialization.Model):
         *,
         id: Optional[int] = None,
         name: Optional[str] = None,
-        color: Optional[Union[str, "CmykColors"]] = None,
+        color: Optional[Union[str, "CMYKColors"]] = None,
         **kwargs
     ):
         super(Basic, self).__init__(**kwargs)
@@ -576,27 +576,27 @@ class DoubleWrapper(msrest.serialization.Model):
     :param field1:
     :type field1: float
     :param
-     field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
+     field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_along_field_name_on_purpose:
     :type
-     field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
+     field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_along_field_name_on_purpose:
      float
     """
 
     _attribute_map = {
         'field1': {'key': 'field1', 'type': 'float'},
-        'field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose': {'key': 'field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose', 'type': 'float'},
+        'field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_along_field_name_on_purpose': {'key': 'field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose', 'type': 'float'},
     }
 
     def __init__(
         self,
         *,
         field1: Optional[float] = None,
-        field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose: Optional[float] = None,
+        field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_along_field_name_on_purpose: Optional[float] = None,
         **kwargs
     ):
         super(DoubleWrapper, self).__init__(**kwargs)
         self.field1 = field1
-        self.field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose = field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose
+        self.field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_along_field_name_on_purpose = field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_along_field_name_on_purpose
 
 
 class DurationWrapper(msrest.serialization.Model):

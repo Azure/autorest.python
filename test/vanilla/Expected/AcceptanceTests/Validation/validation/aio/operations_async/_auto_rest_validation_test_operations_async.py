@@ -158,12 +158,12 @@ class AutoRestValidationTestOperationsMixin:
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
-        constantParam = "constant"
+        constant_param = "constant"
 
         # Construct URL
         url = self.get_with_constant_in_path.metadata['url']
         path_format_arguments = {
-            'constantParam': self._serialize.url("constantParam", constantParam, 'str'),
+            'constantParam': self._serialize.url("constant_param", constant_param, 'str'),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -205,12 +205,12 @@ class AutoRestValidationTestOperationsMixin:
         :raises: ~azure.core.HttpResponseError
         """
         error_map = kwargs.pop('error_map', {})
-        constantParam = "constant"
+        constant_param = "constant"
 
         # Construct URL
         url = self.post_with_constant_in_body.metadata['url']
         path_format_arguments = {
-            'constantParam': self._serialize.url("constantParam", constantParam, 'str'),
+            'constantParam': self._serialize.url("constant_param", constant_param, 'str'),
         }
         url = self._client.format_url(url, **path_format_arguments)
 

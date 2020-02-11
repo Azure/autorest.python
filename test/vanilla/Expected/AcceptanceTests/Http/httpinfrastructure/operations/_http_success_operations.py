@@ -179,7 +179,7 @@ class HttpSuccessOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        booleanValue = True
+        boolean_value = True
 
         # Construct URL
         url = self.put200.metadata['url']
@@ -192,8 +192,8 @@ class HttpSuccessOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if booleanValue is not None:
-            body_content = self._serialize.body(booleanValue, 'bool')
+        if boolean_value is not None:
+            body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
 
@@ -226,7 +226,7 @@ class HttpSuccessOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        booleanValue = True
+        boolean_value = True
 
         # Construct URL
         url = self.patch200.metadata['url']
@@ -239,8 +239,8 @@ class HttpSuccessOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if booleanValue is not None:
-            body_content = self._serialize.body(booleanValue, 'bool')
+        if boolean_value is not None:
+            body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
 
@@ -273,7 +273,7 @@ class HttpSuccessOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        booleanValue = True
+        boolean_value = True
 
         # Construct URL
         url = self.post200.metadata['url']
@@ -286,8 +286,8 @@ class HttpSuccessOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if booleanValue is not None:
-            body_content = self._serialize.body(booleanValue, 'bool')
+        if boolean_value is not None:
+            body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
 
@@ -320,7 +320,7 @@ class HttpSuccessOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        booleanValue = True
+        boolean_value = True
 
         # Construct URL
         url = self.delete200.metadata['url']
@@ -333,8 +333,8 @@ class HttpSuccessOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if booleanValue is not None:
-            body_content = self._serialize.body(booleanValue, 'bool')
+        if boolean_value is not None:
+            body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
 
@@ -367,7 +367,7 @@ class HttpSuccessOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        booleanValue = True
+        boolean_value = True
 
         # Construct URL
         url = self.put201.metadata['url']
@@ -380,8 +380,8 @@ class HttpSuccessOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if booleanValue is not None:
-            body_content = self._serialize.body(booleanValue, 'bool')
+        if boolean_value is not None:
+            body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
 
@@ -414,7 +414,7 @@ class HttpSuccessOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        booleanValue = True
+        boolean_value = True
 
         # Construct URL
         url = self.post201.metadata['url']
@@ -427,8 +427,8 @@ class HttpSuccessOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if booleanValue is not None:
-            body_content = self._serialize.body(booleanValue, 'bool')
+        if boolean_value is not None:
+            body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
 
@@ -461,7 +461,7 @@ class HttpSuccessOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        booleanValue = True
+        boolean_value = True
 
         # Construct URL
         url = self.put202.metadata['url']
@@ -474,8 +474,8 @@ class HttpSuccessOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if booleanValue is not None:
-            body_content = self._serialize.body(booleanValue, 'bool')
+        if boolean_value is not None:
+            body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
 
@@ -508,7 +508,7 @@ class HttpSuccessOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        booleanValue = True
+        boolean_value = True
 
         # Construct URL
         url = self.patch202.metadata['url']
@@ -521,8 +521,8 @@ class HttpSuccessOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if booleanValue is not None:
-            body_content = self._serialize.body(booleanValue, 'bool')
+        if boolean_value is not None:
+            body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
 
@@ -555,7 +555,7 @@ class HttpSuccessOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        booleanValue = True
+        boolean_value = True
 
         # Construct URL
         url = self.post202.metadata['url']
@@ -568,8 +568,8 @@ class HttpSuccessOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if booleanValue is not None:
-            body_content = self._serialize.body(booleanValue, 'bool')
+        if boolean_value is not None:
+            body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
 
@@ -602,7 +602,7 @@ class HttpSuccessOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        booleanValue = True
+        boolean_value = True
 
         # Construct URL
         url = self.delete202.metadata['url']
@@ -615,8 +615,8 @@ class HttpSuccessOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if booleanValue is not None:
-            body_content = self._serialize.body(booleanValue, 'bool')
+        if boolean_value is not None:
+            body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
 
@@ -688,7 +688,7 @@ class HttpSuccessOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        booleanValue = True
+        boolean_value = True
 
         # Construct URL
         url = self.put204.metadata['url']
@@ -701,8 +701,8 @@ class HttpSuccessOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if booleanValue is not None:
-            body_content = self._serialize.body(booleanValue, 'bool')
+        if boolean_value is not None:
+            body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
 
@@ -735,7 +735,7 @@ class HttpSuccessOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        booleanValue = True
+        boolean_value = True
 
         # Construct URL
         url = self.patch204.metadata['url']
@@ -748,8 +748,8 @@ class HttpSuccessOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if booleanValue is not None:
-            body_content = self._serialize.body(booleanValue, 'bool')
+        if boolean_value is not None:
+            body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
 
@@ -782,7 +782,7 @@ class HttpSuccessOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        booleanValue = True
+        boolean_value = True
 
         # Construct URL
         url = self.post204.metadata['url']
@@ -795,8 +795,8 @@ class HttpSuccessOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if booleanValue is not None:
-            body_content = self._serialize.body(booleanValue, 'bool')
+        if boolean_value is not None:
+            body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
 
@@ -829,7 +829,7 @@ class HttpSuccessOperations(object):
         :raises: ~httpinfrastructure.models.ErrorException:
         """
         error_map = kwargs.pop('error_map', {})
-        booleanValue = True
+        boolean_value = True
 
         # Construct URL
         url = self.delete204.metadata['url']
@@ -842,8 +842,8 @@ class HttpSuccessOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if booleanValue is not None:
-            body_content = self._serialize.body(booleanValue, 'bool')
+        if boolean_value is not None:
+            body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
 
