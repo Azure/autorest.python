@@ -1,0 +1,83 @@
+{% set version_import = ".._version" if async_mode else "._version" %}
+{% set credential_scopes = "*self.credential_scopes, " if code_model.options['credential_scopes'] else "" %}
+{% macro method_signature() %}
+def __init__(
+    self,
+    {% if async_mode %}
+    {% for param_signature in code_model.global_parameters.async_method_signature %}
+    {{ param_signature }},
+    {% endfor %}
+    **kwargs: Any
+    {% else %}
+    {% for param_signature in code_model.global_parameters.sync_method_signature %}
+    {{ param_signature }}
+    {% endfor %}
+    **kwargs  # type: Any
+    {% endif %}
+){{" -> None" if async_mode else "" }}:{% endmacro %}
+{# actual template starts here #}
+# coding=utf-8
+{{ code_model.options['license_header'] }}
+
+{{ imports }}
+
+{% if not code_model.options['package_version'] %}
+VERSION = "unknown"
+{% endif %}
+
+class {{ code_model.class_name }}Configuration(Configuration):
+    """Configuration for {{ code_model.class_name }}
+    Note that all parameters used to create this instance are saved as instance
+    attributes.
+{% if code_model.global_parameters | first %}
+
+{% endif %}
+{% for parameter in code_model.global_parameters.method %}
+    :param {{ parameter.serialized_name }}: {{ parameter.description }}
+    :type {{ parameter.serialized_name }}: {{ parameter.schema.docstring_type }}
+{% endfor %}
+    """
+
+    {{ method_signature()|indent }}
+    {% if not async_mode %}
+        # type: (...) -> None
+    {% endif %}
+{% for parameter in code_model.global_parameters.method|selectattr('required') %}
+        if {{ parameter.serialized_name }} is None:
+            raise ValueError("Parameter '{{ parameter.serialized_name }}' must not be None.")
+{% endfor %}
+        super({{ code_model.class_name }}Configuration, self).__init__(**kwargs)
+
+{% for parameter in code_model.global_parameters.method %}
+        self.{{ parameter.serialized_name }} = {{ parameter.serialized_name }}
+{% endfor %}
+{% if code_model.global_parameters.constant %}
+    {% for constant_parameter in code_model.global_parameters.constant %}
+        self.{{ constant_parameter.serialized_name }} = {{ constant_parameter.schema.constant_value }}
+    {% endfor %}
+{% endif %}
+{% if code_model.options['credential_scopes'] %}
+        self.credential_scopes = {{ code_model.options['credential_scopes'] }}
+{% endif %}
+        self._configure(**kwargs)
+        self.user_agent_policy.add_user_agent('azsdk-python-{{ code_model.class_name|lower }}/{}'.format(VERSION))
+
+    def _configure(
+        self,
+        **kwargs{{": Any" if async_mode else "  # type: Any"}}
+    ){{ " -> None" if async_mode else "" }}:
+        {% if not async_mode %}
+        # type: (...) -> None
+        {% endif %}
+        self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)
+        self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)
+        self.proxy_policy = kwargs.get('proxy_policy') or policies.ProxyPolicy(**kwargs)
+        self.logging_policy = kwargs.get('logging_policy') or policies.NetworkTraceLoggingPolicy(**kwargs)
+        self.retry_policy = kwargs.get('retry_policy') or policies.RetryPolicy(**kwargs)
+        self.custom_hook_policy = kwargs.get('custom_hook_policy') or policies.CustomHookPolicy(**kwargs)
+        self.redirect_policy = kwargs.get('redirect_policy') or policies.RedirectPolicy(**kwargs)
+        self.authentication_policy = kwargs.get('authentication_policy')
+        {% if code_model.options['credential'] %}
+        if self.credential and not self.authentication_policy:
+            self.authentication_policy = policies.BearerTokenCredentialPolicy(self.credential, {{ credential_scopes }}**kwargs)
+        {% endif %}

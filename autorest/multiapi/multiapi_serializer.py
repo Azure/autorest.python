@@ -13,7 +13,7 @@ class MultiAPISerializer:
         self.conf = conf
         self.output_filename = output_filename
         self.env = Environment(
-            loader=PackageLoader("autorest.multiapi", "."),
+            loader=PackageLoader("autorest.multiapi", "templates"),
             keep_trailing_newline=True,
             line_statement_prefix="##",
             line_comment_prefix="###",
