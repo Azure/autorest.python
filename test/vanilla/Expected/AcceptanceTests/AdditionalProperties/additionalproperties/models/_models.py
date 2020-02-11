@@ -128,8 +128,7 @@ class PetAPInProperties(msrest.serialization.Model):
     :type name: str
     :ivar status:
     :vartype status: bool
-    :param additional_properties: Dictionary of
-     <components·schemas·petapinproperties·properties·additionalproperties·additionalproperties>.
+    :param additional_properties: Dictionary of :code:`<number>`.
     :type additional_properties: dict[str, float]
     """
 
@@ -174,8 +173,7 @@ class PetAPInPropertiesWithAPString(msrest.serialization.Model):
     :vartype status: bool
     :param odata_location: Required.
     :type odata_location: str
-    :param additional_properties1: Dictionary of
-     <components·schemas·petapinproperties·properties·additionalproperties·additionalproperties>.
+    :param additional_properties1: Dictionary of :code:`<number>`.
     :type additional_properties1: dict[str, float]
     """
 

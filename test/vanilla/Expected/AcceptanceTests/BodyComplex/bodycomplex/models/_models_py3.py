@@ -216,7 +216,7 @@ class Fish(msrest.serialization.Model):
         **kwargs
     ):
         super(Fish, self).__init__(**kwargs)
-        self.fishtype = 'None'
+        self.fishtype = None
         self.species = species
         self.length = length
         self.siblings = siblings
@@ -408,8 +408,7 @@ class DateWrapper(msrest.serialization.Model):
 class DictionaryWrapper(msrest.serialization.Model):
     """DictionaryWrapper.
 
-    :param default_program: Dictionary of
-     <components·schemas·dictionary_wrapper·properties·defaultprogram·additionalproperties>.
+    :param default_program: Dictionary of :code:`<string>`.
     :type default_program: dict[str, str]
     """
 
@@ -490,7 +489,7 @@ class DotFish(msrest.serialization.Model):
         **kwargs
     ):
         super(DotFish, self).__init__(**kwargs)
-        self.fish_type = 'None'
+        self.fish_type = None
         self.species = species
 
 
@@ -842,7 +841,7 @@ class MyBaseType(msrest.serialization.Model):
         **kwargs
     ):
         super(MyBaseType, self).__init__(**kwargs)
-        self.kind = 'None'
+        self.kind = None
         self.prop_b1 = prop_b1
         self.prop_bh1 = prop_bh1
 

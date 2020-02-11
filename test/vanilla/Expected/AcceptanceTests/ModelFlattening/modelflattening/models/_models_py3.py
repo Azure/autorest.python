@@ -86,8 +86,7 @@ class Resource(msrest.serialization.Model):
     :vartype id: str
     :ivar type: Resource Type.
     :vartype type: str
-    :param tags: A set of tags. Dictionary of
-     <components·schemas·resource·properties·tags·additionalproperties>.
+    :param tags: A set of tags. Dictionary of :code:`<string>`.
     :type tags: dict[str, str]
     :param location: Resource Location.
     :type location: str
@@ -133,8 +132,7 @@ class FlattenedProduct(Resource):
     :vartype id: str
     :ivar type: Resource Type.
     :vartype type: str
-    :param tags: A set of tags. Dictionary of
-     <components·schemas·resource·properties·tags·additionalproperties>.
+    :param tags: A set of tags. Dictionary of :code:`<string>`.
     :type tags: dict[str, str]
     :param location: Resource Location.
     :type location: str

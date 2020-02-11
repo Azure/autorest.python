@@ -125,8 +125,7 @@ class Blob(msrest.serialization.Model):
     :type snapshot: str
     :param properties: Required. Properties of a blob.
     :type properties: ~xmlservice.models.BlobProperties
-    :param metadata: Dictionary of <paths·xml-
-     headers·get·responses·200·headers·custom_header·schema>.
+    :param metadata: Dictionary of :code:`<string>`.
     :type metadata: dict[str, str]
     """
 
@@ -439,8 +438,7 @@ class Container(msrest.serialization.Model):
     :type name: str
     :param properties: Required. Properties of a container.
     :type properties: ~xmlservice.models.ContainerProperties
-    :param metadata: Dictionary of <paths·xml-
-     headers·get·responses·200·headers·custom_header·schema>.
+    :param metadata: Dictionary of :code:`<string>`.
     :type metadata: dict[str, str]
     """
 
