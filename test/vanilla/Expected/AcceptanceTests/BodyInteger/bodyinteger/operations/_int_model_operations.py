@@ -43,17 +43,17 @@ class IntOperations(object):
     @distributed_trace
     def get_null(
         self,
-        cls=None,  # type: ClsType[int]
         **kwargs  # type: Any
     ):
         # type: (...) -> int
         """Get null Int value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: int or the result of cls(response)
         :rtype: int
         :raises: ~bodyinteger.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[int]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -86,17 +86,17 @@ class IntOperations(object):
     @distributed_trace
     def get_invalid(
         self,
-        cls=None,  # type: ClsType[int]
         **kwargs  # type: Any
     ):
         # type: (...) -> int
         """Get invalid Int value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: int or the result of cls(response)
         :rtype: int
         :raises: ~bodyinteger.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[int]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -129,17 +129,17 @@ class IntOperations(object):
     @distributed_trace
     def get_overflow_int32(
         self,
-        cls=None,  # type: ClsType[int]
         **kwargs  # type: Any
     ):
         # type: (...) -> int
         """Get overflow Int32 value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: int or the result of cls(response)
         :rtype: int
         :raises: ~bodyinteger.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[int]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -172,17 +172,17 @@ class IntOperations(object):
     @distributed_trace
     def get_underflow_int32(
         self,
-        cls=None,  # type: ClsType[int]
         **kwargs  # type: Any
     ):
         # type: (...) -> int
         """Get underflow Int32 value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: int or the result of cls(response)
         :rtype: int
         :raises: ~bodyinteger.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[int]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -215,17 +215,17 @@ class IntOperations(object):
     @distributed_trace
     def get_overflow_int64(
         self,
-        cls=None,  # type: ClsType[int]
         **kwargs  # type: Any
     ):
         # type: (...) -> int
         """Get overflow Int64 value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: long or the result of cls(response)
         :rtype: long
         :raises: ~bodyinteger.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[int]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -258,17 +258,17 @@ class IntOperations(object):
     @distributed_trace
     def get_underflow_int64(
         self,
-        cls=None,  # type: ClsType[int]
         **kwargs  # type: Any
     ):
         # type: (...) -> int
         """Get underflow Int64 value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: long or the result of cls(response)
         :rtype: long
         :raises: ~bodyinteger.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[int]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -302,7 +302,6 @@ class IntOperations(object):
     def put_max32(
         self,
         int_body,  # type: int
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -310,11 +309,12 @@ class IntOperations(object):
 
         :param int_body:
         :type int_body: int
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodyinteger.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -348,7 +348,6 @@ class IntOperations(object):
     def put_max64(
         self,
         int_body,  # type: int
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -356,11 +355,12 @@ class IntOperations(object):
 
         :param int_body:
         :type int_body: long
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodyinteger.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -394,7 +394,6 @@ class IntOperations(object):
     def put_min32(
         self,
         int_body,  # type: int
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -402,11 +401,12 @@ class IntOperations(object):
 
         :param int_body:
         :type int_body: int
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodyinteger.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -440,7 +440,6 @@ class IntOperations(object):
     def put_min64(
         self,
         int_body,  # type: int
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -448,11 +447,12 @@ class IntOperations(object):
 
         :param int_body:
         :type int_body: long
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodyinteger.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -485,17 +485,17 @@ class IntOperations(object):
     @distributed_trace
     def get_unix_time(
         self,
-        cls=None,  # type: ClsType[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.datetime
         """Get datetime encoded as Unix time value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~bodyinteger.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -529,7 +529,6 @@ class IntOperations(object):
     def put_unix_time_date(
         self,
         int_body,  # type: datetime.datetime
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -537,11 +536,12 @@ class IntOperations(object):
 
         :param int_body:
         :type int_body: ~datetime.datetime
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodyinteger.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -574,17 +574,17 @@ class IntOperations(object):
     @distributed_trace
     def get_invalid_unix_time(
         self,
-        cls=None,  # type: ClsType[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.datetime
         """Get invalid Unix time value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~bodyinteger.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -617,17 +617,17 @@ class IntOperations(object):
     @distributed_trace
     def get_null_unix_time(
         self,
-        cls=None,  # type: ClsType[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.datetime
         """Get null Unix time value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~bodyinteger.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

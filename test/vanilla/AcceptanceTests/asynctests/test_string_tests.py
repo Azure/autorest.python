@@ -52,7 +52,7 @@ class TestString(object):
     @pytest.mark.asyncio
     async def test_null(self, client):
         assert await client.string.get_null() is None
-        await client.string.put_null(None)
+        await client.string.put_null(cls=None)
 
     @pytest.mark.asyncio
     async def test_empty(self, client):

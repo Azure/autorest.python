@@ -43,17 +43,17 @@ class XMsClientRequestIdOperations(object):
     @distributed_trace
     def get(
         self,
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get method that overwrites x-ms-client-request header with value 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -83,7 +83,6 @@ class XMsClientRequestIdOperations(object):
     def param_get(
         self,
         x_ms_client_request_id,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -92,11 +91,12 @@ class XMsClientRequestIdOperations(object):
         :param x_ms_client_request_id: This should appear as a method parameter, use value
          '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'.
         :type x_ms_client_request_id: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

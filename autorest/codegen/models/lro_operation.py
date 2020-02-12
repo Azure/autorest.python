@@ -58,6 +58,7 @@ class LROOperation(Operation):
 
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = super().imports(code_model, async_mode)
+        file_import.add_from_import("typing", "Union", ImportType.STDLIB)
         if async_mode:
             file_import.add_from_import("typing", "Optional", ImportType.STDLIB)
             file_import.add_from_import("azure.core.polling", "async_poller", ImportType.AZURECORE)
@@ -65,8 +66,10 @@ class LROOperation(Operation):
             file_import.add_from_import(
                 "azure.mgmt.core.polling.async_arm_polling", "AsyncARMPolling", ImportType.AZURECORE
             )
+            file_import.add_from_import("azure.core.polling", "AsyncPollingMethod", ImportType.AZURECORE)
         else:
             file_import.add_from_import("azure.core.polling", "LROPoller", ImportType.AZURECORE)
             file_import.add_from_import("azure.core.polling", "NoPolling", ImportType.AZURECORE)
+            file_import.add_from_import("azure.core.polling", "PollingMethod", ImportType.AZURECORE)
             file_import.add_from_import("azure.mgmt.core.polling.arm_polling", "ARMPolling", ImportType.AZURECORE)
         return file_import
