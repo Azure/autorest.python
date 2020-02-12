@@ -42,16 +42,16 @@ class ArrayOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        cls: ClsType["models.ArrayWrapper"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.ArrayWrapper":
         """Get complex types with array property.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ArrayWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.ArrayWrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -86,19 +86,18 @@ class ArrayOperations:
     async def put_valid(
         self,
         array: Optional[List[str]] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put complex types with array property.
 
         :param array:
         :type array: list[str]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         complex_body = models.ArrayWrapper(array=array)
@@ -134,16 +133,16 @@ class ArrayOperations:
     @distributed_trace_async
     async def get_empty(
         self,
-        cls: ClsType["models.ArrayWrapper"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.ArrayWrapper":
         """Get complex types with array property which is empty.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ArrayWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.ArrayWrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -178,19 +177,18 @@ class ArrayOperations:
     async def put_empty(
         self,
         array: Optional[List[str]] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put complex types with array property which is empty.
 
         :param array:
         :type array: list[str]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         complex_body = models.ArrayWrapper(array=array)
@@ -226,16 +224,16 @@ class ArrayOperations:
     @distributed_trace_async
     async def get_not_provided(
         self,
-        cls: ClsType["models.ArrayWrapper"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.ArrayWrapper":
         """Get complex types with array property while server doesn't provide a response payload.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ArrayWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.ArrayWrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

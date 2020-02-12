@@ -44,7 +44,6 @@ class SkipUrlEncodingOperations(object):
     def get_method_path_valid(
         self,
         unencoded_path_param,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -52,11 +51,12 @@ class SkipUrlEncodingOperations(object):
 
         :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'.
         :type unencoded_path_param: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -91,7 +91,6 @@ class SkipUrlEncodingOperations(object):
     def get_path_path_valid(
         self,
         unencoded_path_param,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -99,11 +98,12 @@ class SkipUrlEncodingOperations(object):
 
         :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'.
         :type unencoded_path_param: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -137,17 +137,17 @@ class SkipUrlEncodingOperations(object):
     @distributed_trace
     def get_swagger_path_valid(
         self,
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         unencoded_path_param = "path1/path2/path3"
 
@@ -183,7 +183,6 @@ class SkipUrlEncodingOperations(object):
     def get_method_query_valid(
         self,
         q1,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -191,11 +190,12 @@ class SkipUrlEncodingOperations(object):
 
         :param q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
         :type q1: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -227,7 +227,6 @@ class SkipUrlEncodingOperations(object):
     def get_method_query_null(
         self,
         q1=None,  # type: Optional[str]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -235,11 +234,12 @@ class SkipUrlEncodingOperations(object):
 
         :param q1: Unencoded query parameter with value null.
         :type q1: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -272,7 +272,6 @@ class SkipUrlEncodingOperations(object):
     def get_path_query_valid(
         self,
         q1,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -280,11 +279,12 @@ class SkipUrlEncodingOperations(object):
 
         :param q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
         :type q1: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -315,17 +315,17 @@ class SkipUrlEncodingOperations(object):
     @distributed_trace
     def get_swagger_query_valid(
         self,
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         q1 = "value1&q2=value2&q3=value3"
 

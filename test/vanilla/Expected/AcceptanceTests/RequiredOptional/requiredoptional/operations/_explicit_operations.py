@@ -43,7 +43,6 @@ class ExplicitOperations(object):
     def post_required_integer_parameter(
         self,
         body_parameter,  # type: int
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -51,11 +50,12 @@ class ExplicitOperations(object):
 
         :param body_parameter:
         :type body_parameter: int
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -90,7 +90,6 @@ class ExplicitOperations(object):
     def post_optional_integer_parameter(
         self,
         body_parameter=None,  # type: Optional[int]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -98,11 +97,12 @@ class ExplicitOperations(object):
 
         :param body_parameter:
         :type body_parameter: int
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -140,7 +140,6 @@ class ExplicitOperations(object):
     def post_required_integer_property(
         self,
         value,  # type: int
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -148,11 +147,12 @@ class ExplicitOperations(object):
 
         :param value:
         :type value: int
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         body_parameter = models.IntWrapper(value=value)
@@ -189,7 +189,6 @@ class ExplicitOperations(object):
     def post_optional_integer_property(
         self,
         value=None,  # type: Optional[int]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -197,11 +196,12 @@ class ExplicitOperations(object):
 
         :param value:
         :type value: int
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         body_parameter = models.IntOptionalWrapper(value=value)
@@ -241,7 +241,6 @@ class ExplicitOperations(object):
     def post_required_integer_header(
         self,
         header_parameter,  # type: int
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -249,11 +248,12 @@ class ExplicitOperations(object):
 
         :param header_parameter:
         :type header_parameter: int
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -285,7 +285,6 @@ class ExplicitOperations(object):
     def post_optional_integer_header(
         self,
         header_parameter=None,  # type: Optional[int]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -293,11 +292,12 @@ class ExplicitOperations(object):
 
         :param header_parameter:
         :type header_parameter: int
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -330,7 +330,6 @@ class ExplicitOperations(object):
     def post_required_string_parameter(
         self,
         body_parameter,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -338,11 +337,12 @@ class ExplicitOperations(object):
 
         :param body_parameter:
         :type body_parameter: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -377,7 +377,6 @@ class ExplicitOperations(object):
     def post_optional_string_parameter(
         self,
         body_parameter=None,  # type: Optional[str]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -385,11 +384,12 @@ class ExplicitOperations(object):
 
         :param body_parameter:
         :type body_parameter: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -427,7 +427,6 @@ class ExplicitOperations(object):
     def post_required_string_property(
         self,
         value,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -435,11 +434,12 @@ class ExplicitOperations(object):
 
         :param value:
         :type value: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         body_parameter = models.StringWrapper(value=value)
@@ -476,7 +476,6 @@ class ExplicitOperations(object):
     def post_optional_string_property(
         self,
         value=None,  # type: Optional[str]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -484,11 +483,12 @@ class ExplicitOperations(object):
 
         :param value:
         :type value: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         body_parameter = models.StringOptionalWrapper(value=value)
@@ -528,7 +528,6 @@ class ExplicitOperations(object):
     def post_required_string_header(
         self,
         header_parameter,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -536,11 +535,12 @@ class ExplicitOperations(object):
 
         :param header_parameter:
         :type header_parameter: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -572,7 +572,6 @@ class ExplicitOperations(object):
     def post_optional_string_header(
         self,
         body_parameter=None,  # type: Optional[str]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -580,11 +579,12 @@ class ExplicitOperations(object):
 
         :param body_parameter:
         :type body_parameter: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -617,7 +617,6 @@ class ExplicitOperations(object):
     def post_required_class_parameter(
         self,
         body_parameter,  # type: "models.Product"
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -625,11 +624,12 @@ class ExplicitOperations(object):
 
         :param body_parameter:
         :type body_parameter: ~requiredoptional.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -664,7 +664,6 @@ class ExplicitOperations(object):
     def post_optional_class_parameter(
         self,
         body_parameter=None,  # type: Optional["models.Product"]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -672,11 +671,12 @@ class ExplicitOperations(object):
 
         :param body_parameter:
         :type body_parameter: ~requiredoptional.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -714,7 +714,6 @@ class ExplicitOperations(object):
     def post_required_class_property(
         self,
         value,  # type: "models.Product"
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -722,11 +721,12 @@ class ExplicitOperations(object):
 
         :param value:
         :type value: ~requiredoptional.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         body_parameter = models.ClassWrapper(value=value)
@@ -763,7 +763,6 @@ class ExplicitOperations(object):
     def post_optional_class_property(
         self,
         value=None,  # type: Optional["models.Product"]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -771,11 +770,12 @@ class ExplicitOperations(object):
 
         :param value:
         :type value: ~requiredoptional.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         body_parameter = models.ClassOptionalWrapper(value=value)
@@ -815,7 +815,6 @@ class ExplicitOperations(object):
     def post_required_array_parameter(
         self,
         body_parameter,  # type: List[str]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -823,11 +822,12 @@ class ExplicitOperations(object):
 
         :param body_parameter:
         :type body_parameter: list[str]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -862,7 +862,6 @@ class ExplicitOperations(object):
     def post_optional_array_parameter(
         self,
         body_parameter=None,  # type: Optional[List[str]]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -870,11 +869,12 @@ class ExplicitOperations(object):
 
         :param body_parameter:
         :type body_parameter: list[str]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -912,7 +912,6 @@ class ExplicitOperations(object):
     def post_required_array_property(
         self,
         value,  # type: List[str]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -920,11 +919,12 @@ class ExplicitOperations(object):
 
         :param value:
         :type value: list[str]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         body_parameter = models.ArrayWrapper(value=value)
@@ -961,7 +961,6 @@ class ExplicitOperations(object):
     def post_optional_array_property(
         self,
         value=None,  # type: Optional[List[str]]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -969,11 +968,12 @@ class ExplicitOperations(object):
 
         :param value:
         :type value: list[str]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         body_parameter = models.ArrayOptionalWrapper(value=value)
@@ -1013,7 +1013,6 @@ class ExplicitOperations(object):
     def post_required_array_header(
         self,
         header_parameter,  # type: List[str]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1021,11 +1020,12 @@ class ExplicitOperations(object):
 
         :param header_parameter:
         :type header_parameter: list[str]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1057,7 +1057,6 @@ class ExplicitOperations(object):
     def post_optional_array_header(
         self,
         header_parameter=None,  # type: Optional[List[str]]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1065,11 +1064,12 @@ class ExplicitOperations(object):
 
         :param header_parameter:
         :type header_parameter: list[str]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

@@ -46,9 +46,7 @@ class PathItemsOperations:
         local_string_path: str,
         path_item_string_query: Optional[str] = None,
         local_string_query: Optional[str] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
@@ -61,11 +59,12 @@ class PathItemsOperations:
         :type path_item_string_query: str
         :param local_string_query: should contain value 'localStringQuery'.
         :type local_string_query: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -111,9 +110,7 @@ class PathItemsOperations:
         local_string_path: str,
         path_item_string_query: Optional[str] = None,
         local_string_query: Optional[str] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
@@ -126,11 +123,12 @@ class PathItemsOperations:
         :type path_item_string_query: str
         :param local_string_query: should contain value 'localStringQuery'.
         :type local_string_query: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -176,9 +174,7 @@ class PathItemsOperations:
         local_string_path: str,
         path_item_string_query: Optional[str] = None,
         local_string_query: Optional[str] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
 
@@ -191,11 +187,12 @@ class PathItemsOperations:
         :type path_item_string_query: str
         :param local_string_query: should contain value 'localStringQuery'.
         :type local_string_query: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -241,9 +238,7 @@ class PathItemsOperations:
         local_string_path: str,
         path_item_string_query: Optional[str] = None,
         local_string_query: Optional[str] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery=null, localStringQuery=null.
 
@@ -256,11 +251,12 @@ class PathItemsOperations:
         :type path_item_string_query: str
         :param local_string_query: should contain value 'localStringQuery'.
         :type local_string_query: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

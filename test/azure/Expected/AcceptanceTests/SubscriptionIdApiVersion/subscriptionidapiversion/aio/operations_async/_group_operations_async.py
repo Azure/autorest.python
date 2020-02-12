@@ -44,19 +44,18 @@ class GroupOperations:
     async def get_sample_resource_group(
         self,
         resource_group_name: str,
-        *,
-        cls: ClsType["models.SampleResourceGroup"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.SampleResourceGroup":
         """Provides a resouce group with name 'testgroup101' and location 'West US'.
 
         :param resource_group_name: Resource Group name 'testgroup101'.
         :type resource_group_name: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SampleResourceGroup or the result of cls(response)
         :rtype: ~subscriptionidapiversion.models.SampleResourceGroup
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls: ClsType["models.SampleResourceGroup"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

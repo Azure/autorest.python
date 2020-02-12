@@ -42,17 +42,17 @@ class HttpFailureOperations(object):
     @distributed_trace
     def get_empty_error(
         self,
-        cls=None,  # type: ClsType[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> bool
         """Get empty error form server.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -86,17 +86,17 @@ class HttpFailureOperations(object):
     @distributed_trace
     def get_no_model_error(
         self,
-        cls=None,  # type: ClsType[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> bool
         """Get empty error form server.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -129,17 +129,17 @@ class HttpFailureOperations(object):
     @distributed_trace
     def get_no_model_empty(
         self,
-        cls=None,  # type: ClsType[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> bool
         """Get empty response from server.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

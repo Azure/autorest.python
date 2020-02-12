@@ -42,17 +42,17 @@ class BoolOperations(object):
     @distributed_trace
     def get_true(
         self,
-        cls=None,  # type: ClsType[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> bool
         """Get true Boolean value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -86,17 +86,17 @@ class BoolOperations(object):
     @distributed_trace
     def put_true(
         self,
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Set Boolean value true.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         bool_body = True
 
@@ -131,17 +131,17 @@ class BoolOperations(object):
     @distributed_trace
     def get_false(
         self,
-        cls=None,  # type: ClsType[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> bool
         """Get false Boolean value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -175,17 +175,17 @@ class BoolOperations(object):
     @distributed_trace
     def put_false(
         self,
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Set Boolean value false.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         bool_body = False
 
@@ -220,17 +220,17 @@ class BoolOperations(object):
     @distributed_trace
     def get_null(
         self,
-        cls=None,  # type: ClsType[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> bool
         """Get null Boolean value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -264,17 +264,17 @@ class BoolOperations(object):
     @distributed_trace
     def get_invalid(
         self,
-        cls=None,  # type: ClsType[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> bool
         """Get invalid Boolean value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
         :rtype: bool
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

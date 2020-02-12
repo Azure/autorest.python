@@ -42,17 +42,17 @@ class FilesOperations(object):
     @distributed_trace
     def get_file(
         self,
-        cls=None,  # type: ClsType[IO]
         **kwargs  # type: Any
     ):
         # type: (...) -> IO
         """Get file.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: IO or the result of cls(response)
         :rtype: IO
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[IO]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -86,17 +86,17 @@ class FilesOperations(object):
     @distributed_trace
     def get_file_large(
         self,
-        cls=None,  # type: ClsType[IO]
         **kwargs  # type: Any
     ):
         # type: (...) -> IO
         """Get a large file.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: IO or the result of cls(response)
         :rtype: IO
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[IO]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -130,17 +130,17 @@ class FilesOperations(object):
     @distributed_trace
     def get_empty_file(
         self,
-        cls=None,  # type: ClsType[IO]
         **kwargs  # type: Any
     ):
         # type: (...) -> IO
         """Get empty file.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: IO or the result of cls(response)
         :rtype: IO
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[IO]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

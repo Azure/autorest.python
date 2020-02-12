@@ -42,16 +42,16 @@ class BasicOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        cls: ClsType["models.Basic"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Basic":
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.Basic"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -86,19 +86,18 @@ class BasicOperations:
     async def put_valid(
         self,
         complex_body: "models.Basic",
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}.
         :type complex_body: ~bodycomplex.models.Basic
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         api_version = "2016-02-29"
 
@@ -134,16 +133,16 @@ class BasicOperations:
     @distributed_trace_async
     async def get_invalid(
         self,
-        cls: ClsType["models.Basic"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Basic":
         """Get a basic complex type that is invalid for the local strong type.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.Basic"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -177,16 +176,16 @@ class BasicOperations:
     @distributed_trace_async
     async def get_empty(
         self,
-        cls: ClsType["models.Basic"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Basic":
         """Get a basic complex type that is empty.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.Basic"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -220,16 +219,16 @@ class BasicOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        cls: ClsType["models.Basic"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Basic":
         """Get a basic complex type whose properties are null.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.Basic"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -263,16 +262,16 @@ class BasicOperations:
     @distributed_trace_async
     async def get_not_provided(
         self,
-        cls: ClsType["models.Basic"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Basic":
         """Get a basic complex type while the server doesn't provide a response payload.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Basic or the result of cls(response)
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.Basic"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

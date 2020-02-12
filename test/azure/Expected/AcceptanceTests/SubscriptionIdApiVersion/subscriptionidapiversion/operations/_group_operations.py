@@ -44,7 +44,6 @@ class GroupOperations(object):
     def get_sample_resource_group(
         self,
         resource_group_name,  # type: str
-        cls=None,  # type: ClsType["models.SampleResourceGroup"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.SampleResourceGroup"
@@ -52,11 +51,12 @@ class GroupOperations(object):
 
         :param resource_group_name: Resource Group name 'testgroup101'.
         :type resource_group_name: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SampleResourceGroup or the result of cls(response)
         :rtype: ~subscriptionidapiversion.models.SampleResourceGroup
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.SampleResourceGroup"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

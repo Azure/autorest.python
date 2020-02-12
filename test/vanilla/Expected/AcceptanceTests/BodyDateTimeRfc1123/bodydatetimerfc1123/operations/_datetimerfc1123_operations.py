@@ -43,17 +43,17 @@ class Datetimerfc1123Operations(object):
     @distributed_trace
     def get_null(
         self,
-        cls=None,  # type: ClsType[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.datetime
         """Get null datetime value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -87,17 +87,17 @@ class Datetimerfc1123Operations(object):
     @distributed_trace
     def get_invalid(
         self,
-        cls=None,  # type: ClsType[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.datetime
         """Get invalid datetime value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -131,17 +131,17 @@ class Datetimerfc1123Operations(object):
     @distributed_trace
     def get_overflow(
         self,
-        cls=None,  # type: ClsType[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.datetime
         """Get overflow datetime value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -175,17 +175,17 @@ class Datetimerfc1123Operations(object):
     @distributed_trace
     def get_underflow(
         self,
-        cls=None,  # type: ClsType[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.datetime
         """Get underflow datetime value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -220,7 +220,6 @@ class Datetimerfc1123Operations(object):
     def put_utc_max_date_time(
         self,
         datetime_body,  # type: datetime.datetime
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -228,11 +227,12 @@ class Datetimerfc1123Operations(object):
 
         :param datetime_body:
         :type datetime_body: ~datetime.datetime
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -266,17 +266,17 @@ class Datetimerfc1123Operations(object):
     @distributed_trace
     def get_utc_lowercase_max_date_time(
         self,
-        cls=None,  # type: ClsType[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.datetime
         """Get max datetime value fri, 31 dec 9999 23:59:59 gmt.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -310,17 +310,17 @@ class Datetimerfc1123Operations(object):
     @distributed_trace
     def get_utc_uppercase_max_date_time(
         self,
-        cls=None,  # type: ClsType[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.datetime
         """Get max datetime value FRI, 31 DEC 9999 23:59:59 GMT.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -355,7 +355,6 @@ class Datetimerfc1123Operations(object):
     def put_utc_min_date_time(
         self,
         datetime_body,  # type: datetime.datetime
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -363,11 +362,12 @@ class Datetimerfc1123Operations(object):
 
         :param datetime_body:
         :type datetime_body: ~datetime.datetime
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -401,17 +401,17 @@ class Datetimerfc1123Operations(object):
     @distributed_trace
     def get_utc_min_date_time(
         self,
-        cls=None,  # type: ClsType[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.datetime
         """Get min datetime value Mon, 1 Jan 0001 00:00:00 GMT.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

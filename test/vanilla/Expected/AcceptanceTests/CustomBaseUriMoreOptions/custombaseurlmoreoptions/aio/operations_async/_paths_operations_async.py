@@ -46,9 +46,7 @@ class PathsOperations:
         secret: str,
         key_name: str,
         key_version: Optional[str] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get a 200 to test a valid base uri.
 
@@ -60,11 +58,12 @@ class PathsOperations:
         :type key_name: str
         :param key_version: The key version. Default value 'v1'.
         :type key_version: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

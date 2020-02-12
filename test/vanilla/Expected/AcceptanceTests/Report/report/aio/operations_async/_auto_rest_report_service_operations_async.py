@@ -24,9 +24,7 @@ class AutoRestReportServiceOperationsMixin:
     async def get_report(
         self,
         qualifier: Optional[str] = None,
-        *,
-        cls: ClsType[Dict[str, int]] = None,
-        **kwargs: Any
+        **kwargs
     ) -> Dict[str, int]:
         """Get test coverage report.
 
@@ -34,11 +32,12 @@ class AutoRestReportServiceOperationsMixin:
          for Python). The only effect is, that generators that run all tests several times, can
          distinguish the generated reports.
         :type qualifier: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, int]
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[Dict[str, int]] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -75,9 +74,7 @@ class AutoRestReportServiceOperationsMixin:
     async def get_optional_report(
         self,
         qualifier: Optional[str] = None,
-        *,
-        cls: ClsType[Dict[str, int]] = None,
-        **kwargs: Any
+        **kwargs
     ) -> Dict[str, int]:
         """Get optional test coverage report.
 
@@ -85,11 +82,12 @@ class AutoRestReportServiceOperationsMixin:
          for Python). The only effect is, that generators that run all tests several times, can
          distinguish the generated reports.
         :type qualifier: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, int]
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[Dict[str, int]] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

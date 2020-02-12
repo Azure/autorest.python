@@ -43,16 +43,16 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_int(
         self,
-        cls: ClsType["models.IntWrapper"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.IntWrapper":
         """Get complex types with integer properties.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: IntWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.IntWrapper
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.IntWrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -87,19 +87,18 @@ class PrimitiveOperations:
     async def put_int(
         self,
         complex_body: "models.IntWrapper",
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put complex types with integer properties.
 
         :param complex_body: Please put -1 and 2.
         :type complex_body: ~bodycomplex.models.IntWrapper
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -133,16 +132,16 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_long(
         self,
-        cls: ClsType["models.LongWrapper"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.LongWrapper":
         """Get complex types with long properties.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: LongWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.LongWrapper
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.LongWrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -177,19 +176,18 @@ class PrimitiveOperations:
     async def put_long(
         self,
         complex_body: "models.LongWrapper",
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put complex types with long properties.
 
         :param complex_body: Please put 1099511627775 and -999511627788.
         :type complex_body: ~bodycomplex.models.LongWrapper
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -223,16 +221,16 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_float(
         self,
-        cls: ClsType["models.FloatWrapper"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.FloatWrapper":
         """Get complex types with float properties.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: FloatWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.FloatWrapper
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.FloatWrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -267,19 +265,18 @@ class PrimitiveOperations:
     async def put_float(
         self,
         complex_body: "models.FloatWrapper",
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put complex types with float properties.
 
         :param complex_body: Please put 1.05 and -0.003.
         :type complex_body: ~bodycomplex.models.FloatWrapper
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -313,16 +310,16 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_double(
         self,
-        cls: ClsType["models.DoubleWrapper"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.DoubleWrapper":
         """Get complex types with double properties.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DoubleWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DoubleWrapper
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.DoubleWrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -357,20 +354,19 @@ class PrimitiveOperations:
     async def put_double(
         self,
         complex_body: "models.DoubleWrapper",
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
          -0.000000000000000000000000000000000000000000000000000000005.
         :type complex_body: ~bodycomplex.models.DoubleWrapper
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -404,16 +400,16 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_bool(
         self,
-        cls: ClsType["models.BooleanWrapper"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.BooleanWrapper":
         """Get complex types with bool properties.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: BooleanWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.BooleanWrapper
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.BooleanWrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -448,19 +444,18 @@ class PrimitiveOperations:
     async def put_bool(
         self,
         complex_body: "models.BooleanWrapper",
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put complex types with bool properties.
 
         :param complex_body: Please put true and false.
         :type complex_body: ~bodycomplex.models.BooleanWrapper
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -494,16 +489,16 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_string(
         self,
-        cls: ClsType["models.StringWrapper"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.StringWrapper":
         """Get complex types with string properties.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StringWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.StringWrapper
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.StringWrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -538,19 +533,18 @@ class PrimitiveOperations:
     async def put_string(
         self,
         complex_body: "models.StringWrapper",
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put complex types with string properties.
 
         :param complex_body: Please put 'goodrequest', '', and null.
         :type complex_body: ~bodycomplex.models.StringWrapper
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -584,16 +578,16 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_date(
         self,
-        cls: ClsType["models.DateWrapper"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.DateWrapper":
         """Get complex types with date properties.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DateWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DateWrapper
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.DateWrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -628,19 +622,18 @@ class PrimitiveOperations:
     async def put_date(
         self,
         complex_body: "models.DateWrapper",
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put complex types with date properties.
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'.
         :type complex_body: ~bodycomplex.models.DateWrapper
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -674,16 +667,16 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_date_time(
         self,
-        cls: ClsType["models.DatetimeWrapper"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.DatetimeWrapper":
         """Get complex types with datetime properties.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DatetimeWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DatetimeWrapper
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.DatetimeWrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -718,19 +711,18 @@ class PrimitiveOperations:
     async def put_date_time(
         self,
         complex_body: "models.DatetimeWrapper",
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
         :type complex_body: ~bodycomplex.models.DatetimeWrapper
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -764,16 +756,16 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_date_time_rfc1123(
         self,
-        cls: ClsType["models.Datetimerfc1123Wrapper"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Datetimerfc1123Wrapper":
         """Get complex types with datetimeRfc1123 properties.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Datetimerfc1123Wrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.Datetimerfc1123Wrapper
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.Datetimerfc1123Wrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -808,20 +800,19 @@ class PrimitiveOperations:
     async def put_date_time_rfc1123(
         self,
         complex_body: "models.Datetimerfc1123Wrapper",
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
          GMT'.
         :type complex_body: ~bodycomplex.models.Datetimerfc1123Wrapper
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -855,16 +846,16 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_duration(
         self,
-        cls: ClsType["models.DurationWrapper"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.DurationWrapper":
         """Get complex types with duration properties.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DurationWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DurationWrapper
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.DurationWrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -899,19 +890,18 @@ class PrimitiveOperations:
     async def put_duration(
         self,
         field: Optional[datetime.timedelta] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put complex types with duration properties.
 
         :param field:
         :type field: ~datetime.timedelta
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         complex_body = models.DurationWrapper(field=field)
@@ -947,16 +937,16 @@ class PrimitiveOperations:
     @distributed_trace_async
     async def get_byte(
         self,
-        cls: ClsType["models.ByteWrapper"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.ByteWrapper":
         """Get complex types with byte properties.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ByteWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ByteWrapper
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.ByteWrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -991,19 +981,18 @@ class PrimitiveOperations:
     async def put_byte(
         self,
         field: Optional[bytearray] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put complex types with byte properties.
 
         :param field:
         :type field: bytearray
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         complex_body = models.ByteWrapper(field=field)

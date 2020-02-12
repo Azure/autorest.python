@@ -43,7 +43,6 @@ class QueriesOperations(object):
     def array_string_multi_null(
         self,
         array_query=None,  # type: Optional[List[str]]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -51,11 +50,12 @@ class QueriesOperations(object):
 
         :param array_query: a null array of string using the multi-array format.
         :type array_query: list[str]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -88,7 +88,6 @@ class QueriesOperations(object):
     def array_string_multi_empty(
         self,
         array_query=None,  # type: Optional[List[str]]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -96,11 +95,12 @@ class QueriesOperations(object):
 
         :param array_query: an empty array [] of string using the multi-array format.
         :type array_query: list[str]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -133,7 +133,6 @@ class QueriesOperations(object):
     def array_string_multi_valid(
         self,
         array_query=None,  # type: Optional[List[str]]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -141,11 +140,12 @@ class QueriesOperations(object):
 
         :param array_query: an empty array [] of string using the multi-array format.
         :type array_query: list[str]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

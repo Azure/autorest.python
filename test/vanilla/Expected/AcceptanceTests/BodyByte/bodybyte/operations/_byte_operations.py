@@ -42,17 +42,17 @@ class ByteOperations(object):
     @distributed_trace
     def get_null(
         self,
-        cls=None,  # type: ClsType[bytearray]
         **kwargs  # type: Any
     ):
         # type: (...) -> bytearray
         """Get null byte value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytearray or the result of cls(response)
         :rtype: bytearray
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[bytearray]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -86,17 +86,17 @@ class ByteOperations(object):
     @distributed_trace
     def get_empty(
         self,
-        cls=None,  # type: ClsType[bytearray]
         **kwargs  # type: Any
     ):
         # type: (...) -> bytearray
         """Get empty byte value ''.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytearray or the result of cls(response)
         :rtype: bytearray
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[bytearray]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -130,17 +130,17 @@ class ByteOperations(object):
     @distributed_trace
     def get_non_ascii(
         self,
-        cls=None,  # type: ClsType[bytearray]
         **kwargs  # type: Any
     ):
         # type: (...) -> bytearray
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytearray or the result of cls(response)
         :rtype: bytearray
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[bytearray]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -175,7 +175,6 @@ class ByteOperations(object):
     def put_non_ascii(
         self,
         byte_body,  # type: bytearray
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -183,11 +182,12 @@ class ByteOperations(object):
 
         :param byte_body: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
         :type byte_body: bytearray
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -221,17 +221,17 @@ class ByteOperations(object):
     @distributed_trace
     def get_invalid(
         self,
-        cls=None,  # type: ClsType[bytearray]
         **kwargs  # type: Any
     ):
         # type: (...) -> bytearray
         """Get invalid byte value ':::SWAGGER::::'.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytearray or the result of cls(response)
         :rtype: bytearray
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[bytearray]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

@@ -43,7 +43,6 @@ class PetsOperations(object):
     def create_ap_true(
         self,
         create_parameters,  # type: "models.PetAPTrue"
-        cls=None,  # type: ClsType["models.PetAPTrue"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.PetAPTrue"
@@ -51,11 +50,12 @@ class PetsOperations(object):
 
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPTrue
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPTrue or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPTrue
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.PetAPTrue"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -94,7 +94,6 @@ class PetsOperations(object):
     def create_cat_ap_true(
         self,
         create_parameters,  # type: "models.CatAPTrue"
-        cls=None,  # type: ClsType["models.CatAPTrue"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.CatAPTrue"
@@ -102,11 +101,12 @@ class PetsOperations(object):
 
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.CatAPTrue
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CatAPTrue or the result of cls(response)
         :rtype: ~additionalproperties.models.CatAPTrue
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.CatAPTrue"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -145,7 +145,6 @@ class PetsOperations(object):
     def create_ap_object(
         self,
         create_parameters,  # type: "models.PetAPObject"
-        cls=None,  # type: ClsType["models.PetAPObject"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.PetAPObject"
@@ -153,11 +152,12 @@ class PetsOperations(object):
 
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPObject
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPObject or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPObject
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.PetAPObject"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -196,7 +196,6 @@ class PetsOperations(object):
     def create_ap_string(
         self,
         create_parameters,  # type: "models.PetAPString"
-        cls=None,  # type: ClsType["models.PetAPString"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.PetAPString"
@@ -204,11 +203,12 @@ class PetsOperations(object):
 
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPString
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPString or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPString
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.PetAPString"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -247,7 +247,6 @@ class PetsOperations(object):
     def create_ap_in_properties(
         self,
         create_parameters,  # type: "models.PetAPInProperties"
-        cls=None,  # type: ClsType["models.PetAPInProperties"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.PetAPInProperties"
@@ -255,11 +254,12 @@ class PetsOperations(object):
 
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPInProperties
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInProperties or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInProperties
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.PetAPInProperties"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -298,7 +298,6 @@ class PetsOperations(object):
     def create_ap_in_properties_with_ap_string(
         self,
         create_parameters,  # type: "models.PetAPInPropertiesWithAPString"
-        cls=None,  # type: ClsType["models.PetAPInPropertiesWithAPString"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.PetAPInPropertiesWithAPString"
@@ -306,11 +305,12 @@ class PetsOperations(object):
 
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPInPropertiesWithAPString
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInPropertiesWithAPString or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInPropertiesWithAPString
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.PetAPInPropertiesWithAPString"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

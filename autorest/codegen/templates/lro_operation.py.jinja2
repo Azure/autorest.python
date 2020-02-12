@@ -1,34 +1,9 @@
 {% import 'keywords.jinja2' as keywords with context %}
-{% from 'operation_tools.jinja2' import response_handling %}
+{% import 'operation_tools.jinja2' as op_tools %}
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set async_prefix = "Async" if async_mode else "" %}
 {% set poller = "async_poller" if async_mode else "LROPoller" %}
 {% set operation_name = operation.python_name if async_mode else "begin_"+operation.python_name %}
-{% macro method_signature() %}
-{% if async_mode %}
-async def {{ operation_name }}(
-    self,
-    {% for param_signature in operation.parameters.async_method_signature %}
-    {{ param_signature }},
-    {% endfor %}
-    {% if operation.parameters.method | first %}
-    *,
-    {% endif %}
-    cls: ClsType[{{ keywords.return_type_annotation(operation) }}] = None,
-    polling: Optional[bool] = True,
-    **kwargs
-){{ keywords.async_return_type_annotation(operation) }}:
-{% else %}
-def {{ operation_name }}(
-    self,
-    {% for param_signature in operation.parameters.sync_method_signature %}
-    {{ param_signature }}
-    {% endfor %}
-    cls=None,  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
-    polling=True,  # type: Optional[bool]
-    **kwargs  # type: Any
-):
-{% endif %}{% endmacro %}
 {% macro return_docstring() %}
 :return: An instance of LROPoller that returns {{ operation.responses[0].schema.name if operation.responses[0].has_body else "None"}}
     :rtype: ~azure.core.polling.LROPoller[{{ operation.responses[0].schema.docstring_type if operation.responses[0].has_body else "None" }}]
@@ -46,7 +21,7 @@ response_headers = {
 {% if code_model.options['tracing'] %}
 {{ trace_decorator }}
 {% endif %}
-{{ method_signature() }}
+{{ op_tools.method_signature(operation, operation_name, async_mode=async_mode, coroutine=async_mode) }}
 {%- if not async_mode %}
     {{ keywords.sync_return_type_annotation(operation) }}
 {% endif %}
@@ -67,9 +42,10 @@ response_headers = {
     {% endfor %}
     :type {{ parameter.serialized_name }}: {{ parameter.schema.docstring_type }}
 {% endfor %}
-    :param callable cls: A custom type or function that will be passed the direct response
-    :param polling: True for ARMPolling, False for no polling, or a
+    :keyword callable cls: A custom type or function that will be passed the direct response
+    :keyword polling: True for ARMPolling, False for no polling, or a
      polling object for personal polling strategy
+    :paramtype polling: bool or ~azure.core.polling.{{ "Async" if async_mode else "" }}PollingMethod
     {{ return_docstring() }}
     {% if code_model.options['azure_arm'] %}
     :raises ~azure.mgmt.core.ARMError:
@@ -77,6 +53,13 @@ response_headers = {
     :raises ~azure.core.HttpResponseError:
     {% endif %}
     """
+    {% if async_mode %}
+    polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})
+    cls: ClsType[{{ keywords.return_type_annotation(operation) }}] = kwargs.pop('cls', None )
+    {% else %}
+    polling = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})  # type: Union[bool, PollingMethod]
+    cls = kwargs.pop('cls', None )  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
+    {% endif %}
     raw_result = {{ keywords.await }}self._{{ operation.name }}_initial(
         {% for parameter in operation.parameters.method %}
         {{ parameter.serialized_name }}={{ parameter.serialized_name }},
@@ -91,7 +74,7 @@ response_headers = {
         response = pipeline_response.http_response
         {% endif %}
         {% if operation.lro_response %}
-        {{ response_handling(operation.lro_response)|indent(8) }}
+        {{ op_tools.response_handling(operation.lro_response)|indent(8) }}
         {% endif %}
         if cls:
             return cls(pipeline_response, {{ 'deserialized' if operation.lro_response.has_body else 'None'}}, {{ 'response_headers' if operation.lro_response.has_headers else '{}' }})
@@ -103,7 +86,11 @@ response_headers = {
         'polling_interval',
         self._config.polling_interval
     )
+    {% if code_model.options['azure_arm'] %}
     if polling is True: polling_method = {{ async_prefix }}ARMPolling(lro_delay{{ lro_options }},  **kwargs)
+    {% else %}
+    if polling is True: raise ValueError("polling being True is not valid because no default polling implemetation has been defined.")
+    {% endif %}
     elif polling is False: polling_method = {{ async_prefix }}NoPolling()
     else: polling_method = polling
     return {{ keywords.await }}{{ poller }}(self._client, raw_result, get_long_running_output, polling_method)

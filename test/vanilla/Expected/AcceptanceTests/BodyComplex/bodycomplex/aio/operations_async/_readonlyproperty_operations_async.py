@@ -42,16 +42,16 @@ class ReadonlypropertyOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        cls: ClsType["models.ReadonlyObj"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.ReadonlyObj":
         """Get complex types that have readonly properties.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ReadonlyObj or the result of cls(response)
         :rtype: ~bodycomplex.models.ReadonlyObj
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.ReadonlyObj"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -86,19 +86,18 @@ class ReadonlypropertyOperations:
     async def put_valid(
         self,
         size: Optional[int] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put complex types that have readonly properties.
 
         :param size:
         :type size: int
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         complex_body = models.ReadonlyObj(size=size)

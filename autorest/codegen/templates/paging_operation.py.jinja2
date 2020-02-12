@@ -2,29 +2,6 @@
 {% import 'operation_tools.jinja2' as op_tools %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
 {% set request_as_xml = ", is_xml=False" if "xml" in operation.request_content_type else "" %}
-{% macro method_signature() %}
-{% if async_mode %}
-def {{ operation.python_name }}(
-    self,
-    {% for param_signature in operation.parameters.async_method_signature %}
-    {{ param_signature }},
-    {% endfor %}
-    {% if operation.parameters.method | first %}
-    *,
-    {% endif %}
-    cls: ClsType[{{ keywords.return_type_annotation(operation) }}] = None,
-    **kwargs
-){{ keywords.async_return_type_annotation(operation) }}:
-{% else %}
-def {{ operation.python_name }}(
-    self,
-    {% for param_signature in operation.parameters.sync_method_signature %}
-    {{ param_signature }}
-    {% endfor %}
-    cls=None,  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
-    **kwargs  # type: Any
-):
-{% endif %}{% endmacro %}
 {% macro return_docstring() %}
 {% if operation.responses | selectattr('has_body') | first %}
 :return: {{ operation.responses|map(attribute='schema')|map(attribute='docstring_text')|join(' or ') }} or the result of cls(response)
@@ -40,10 +17,8 @@ def {{ operation.python_name }}(
 {# actual template starts here #}
 {% if code_model.options['tracing'] and operation.want_tracing %}
 @distributed_trace
-{% else %}
-
 {% endif %}
-{{ method_signature() }}
+{{ op_tools.method_signature(operation, operation.python_name, async_mode=async_mode, coroutine=False) }}
 {%- if not async_mode %}
     {{ keywords.sync_return_type_annotation(operation) }}
 {% endif %}
@@ -65,7 +40,7 @@ def {{ operation.python_name }}(
     {% endfor %}
     :type {{ parameter.serialized_name }}: {{ parameter.schema.docstring_type }}
 {% endfor %}
-    :param callable cls: A custom type or function that will be passed the direct response
+    :keyword callable cls: A custom type or function that will be passed the direct response
     {{ return_docstring() }}
     {% if code_model.options['azure_arm'] %}
     :raises: ~azure.mgmt.core.ARMError
@@ -77,6 +52,11 @@ def {{ operation.python_name }}(
 {% if operation.deprecated %}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
+    {% if async_mode %}
+    cls: ClsType[{{ keywords.return_type_annotation(operation) }}] = kwargs.pop('cls', None )
+    {% else %}
+    cls = kwargs.pop('cls', None )  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
+    {% endif %}
 {%if operation.status_code_exceptions %}
     error_map = {
     {% for excep in operation.status_code_exceptions %}

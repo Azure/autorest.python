@@ -42,16 +42,16 @@ class EnumOperations:
     @distributed_trace_async
     async def get_not_expandable(
         self,
-        cls: ClsType[Union[str, "models.Colors"]] = None,
-        **kwargs: Any
+        **kwargs
     ) -> Union[str, "models.Colors"]:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Colors or the result of cls(response)
         :rtype: str or ~bodystring.models.Colors
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[Union[str, "models.Colors"]] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -86,19 +86,18 @@ class EnumOperations:
     async def put_not_expandable(
         self,
         string_body: Union[str, "models.Colors"],
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :param string_body:
         :type string_body: str or ~bodystring.models.Colors
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -132,16 +131,16 @@ class EnumOperations:
     @distributed_trace_async
     async def get_referenced(
         self,
-        cls: ClsType[Union[str, "models.Colors"]] = None,
-        **kwargs: Any
+        **kwargs
     ) -> Union[str, "models.Colors"]:
         """Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Colors or the result of cls(response)
         :rtype: str or ~bodystring.models.Colors
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[Union[str, "models.Colors"]] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -176,19 +175,18 @@ class EnumOperations:
     async def put_referenced(
         self,
         enum_string_body: Union[str, "models.Colors"],
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :param enum_string_body:
         :type enum_string_body: str or ~bodystring.models.Colors
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -222,16 +220,16 @@ class EnumOperations:
     @distributed_trace_async
     async def get_referenced_constant(
         self,
-        cls: ClsType["models.RefColorConstant"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.RefColorConstant":
         """Get value 'green-color' from the constant.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: RefColorConstant or the result of cls(response)
         :rtype: ~bodystring.models.RefColorConstant
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.RefColorConstant"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -266,19 +264,18 @@ class EnumOperations:
     async def put_referenced_constant(
         self,
         field1: Optional[str] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Sends value 'green-color' from a constant.
 
         :param field1: Sample string.
         :type field1: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         enum_string_body = models.RefColorConstant(field1=field1)

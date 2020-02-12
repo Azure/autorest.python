@@ -42,16 +42,16 @@ class FilesOperations:
     @distributed_trace_async
     async def get_file(
         self,
-        cls: ClsType[IO] = None,
-        **kwargs: Any
+        **kwargs
     ) -> IO:
         """Get file.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: IO or the result of cls(response)
         :rtype: IO
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[IO] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -85,16 +85,16 @@ class FilesOperations:
     @distributed_trace_async
     async def get_file_large(
         self,
-        cls: ClsType[IO] = None,
-        **kwargs: Any
+        **kwargs
     ) -> IO:
         """Get a large file.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: IO or the result of cls(response)
         :rtype: IO
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[IO] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -128,16 +128,16 @@ class FilesOperations:
     @distributed_trace_async
     async def get_empty_file(
         self,
-        cls: ClsType[IO] = None,
-        **kwargs: Any
+        **kwargs
     ) -> IO:
         """Get empty file.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: IO or the result of cls(response)
         :rtype: IO
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[IO] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

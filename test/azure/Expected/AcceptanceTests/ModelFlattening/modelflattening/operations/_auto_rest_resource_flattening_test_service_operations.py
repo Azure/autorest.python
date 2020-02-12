@@ -24,7 +24,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def put_array(
         self,
         resource_array=None,  # type: Optional[List["Resource"]]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -32,11 +31,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         :param resource_array: External Resource as an Array to put.
         :type resource_array: list[~modelflattening.models.Resource]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -73,17 +73,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def get_array(
         self,
-        cls=None,  # type: ClsType[List["FlattenedProduct"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List["FlattenedProduct"]
         """Get External Resource as an Array.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~modelflattening.models.FlattenedProduct]
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List["FlattenedProduct"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -118,7 +118,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def put_wrapped_array(
         self,
         resource_array=None,  # type: Optional[List["WrappedProduct"]]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -126,11 +125,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         :param resource_array: External Resource as an Array to put.
         :type resource_array: list[~modelflattening.models.WrappedProduct]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -167,17 +167,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def get_wrapped_array(
         self,
-        cls=None,  # type: ClsType[List["ProductWrapper"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List["ProductWrapper"]
         """No need to have a route in Express server for this operation. Used to verify the type flattened is not removed if it's referenced in an array.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~modelflattening.models.ProductWrapper]
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List["ProductWrapper"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -212,7 +212,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def put_dictionary(
         self,
         resource_dictionary=None,  # type: Optional[Dict[str, "FlattenedProduct"]]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -220,11 +219,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         :param resource_dictionary: External Resource as a Dictionary to put.
         :type resource_dictionary: dict[str, ~modelflattening.models.FlattenedProduct]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -261,17 +261,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def get_dictionary(
         self,
-        cls=None,  # type: ClsType[Dict[str, "FlattenedProduct"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, "FlattenedProduct"]
         """Get External Resource as a Dictionary.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~modelflattening.models.FlattenedProduct]
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, "FlattenedProduct"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -306,7 +306,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def put_resource_collection(
         self,
         resource_complex_object=None,  # type: Optional["models.ResourceCollection"]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -314,11 +313,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         :param resource_complex_object: External Resource as a ResourceCollection to put.
         :type resource_complex_object: ~modelflattening.models.ResourceCollection
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -355,17 +355,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def get_resource_collection(
         self,
-        cls=None,  # type: ClsType["models.ResourceCollection"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.ResourceCollection"
         """Get External Resource as a ResourceCollection.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ResourceCollection or the result of cls(response)
         :rtype: ~modelflattening.models.ResourceCollection
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.ResourceCollection"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -400,7 +400,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def put_simple_product(
         self,
         simple_body_product=None,  # type: Optional["models.SimpleProduct"]
-        cls=None,  # type: ClsType["models.SimpleProduct"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.SimpleProduct"
@@ -408,11 +407,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         :param simple_body_product: Simple body product to put.
         :type simple_body_product: ~modelflattening.models.SimpleProduct
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.SimpleProduct"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -458,7 +458,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         max_product_display_name=None,  # type: Optional[str]
         generic_value=None,  # type: Optional[str]
         odatavalue=None,  # type: Optional[str]
-        cls=None,  # type: ClsType["models.SimpleProduct"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.SimpleProduct"
@@ -476,11 +475,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :type generic_value: str
         :param odatavalue: URL value.
         :type odatavalue: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.SimpleProduct"]
         error_map = kwargs.pop('error_map', {})
 
         simple_body_product = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odatavalue=odatavalue)
@@ -524,7 +524,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def put_simple_product_with_grouping(
         self,
         flatten_parameter_group,  # type: "models.FlattenParameterGroup"
-        cls=None,  # type: ClsType["models.SimpleProduct"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.SimpleProduct"
@@ -532,11 +531,12 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         :param flatten_parameter_group: Parameter group.
         :type flatten_parameter_group: ~modelflattening.models.FlattenParameterGroup
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.SimpleProduct"]
         error_map = kwargs.pop('error_map', {})
         
         name = None
