@@ -59,10 +59,10 @@ response_headers = {
     {% endif %}
     """
     {% if async_mode %}
-    polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+    polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})
     cls: ClsType[{{ keywords.return_type_annotation(operation) }}] = kwargs.pop('cls', None )
     {% else %}
-    polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
+    polling = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})  # type: Union[bool, PollingMethod]
     cls = kwargs.pop('cls', None )  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
     {% endif %}
     raw_result = {{ keywords.await }}self._{{ operation.name }}_initial(
@@ -91,7 +91,11 @@ response_headers = {
         'polling_interval',
         self._config.polling_interval
     )
+    {% if code_model.options['azure_arm'] %}
     if polling is True: polling_method = {{ async_prefix }}ARMPolling(lro_delay{{ lro_options }},  **kwargs)
+    {% else %}
+    if polling is True: raise ValueError("polling being True is not valid because no default polling implemetation has been defined.")
+    {% endif %}
     elif polling is False: polling_method = {{ async_prefix }}NoPolling()
     else: polling_method = polling
     return {{ keywords.await }}{{ poller }}(self._client, raw_result, get_long_running_output, polling_method)
