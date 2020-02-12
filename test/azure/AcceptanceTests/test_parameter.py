@@ -169,7 +169,7 @@ class TestParameter(object):
 
     def test_skip_url_encoding(self, azure_client, unencoded_path, unencoded_query):
         azure_client.skip_url_encoding.get_method_path_valid(unencoded_path)
-        azure_client.skip_url_encoding.get_path_path_valid(unencoded_path)
+        azure_client.skip_url_encoding.get_path_valid(unencoded_path)
         azure_client.skip_url_encoding.get_swagger_path_valid()
         azure_client.skip_url_encoding.get_method_query_valid(unencoded_query)
         azure_client.skip_url_encoding.get_path_query_valid(unencoded_query)
