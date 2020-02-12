@@ -43,16 +43,16 @@ class DurationOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        cls: ClsType[datetime.timedelta] = None,
-        **kwargs: Any
+        **kwargs
     ) -> datetime.timedelta:
         """Get null duration value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: timedelta or the result of cls(response)
         :rtype: ~datetime.timedelta
         :raises: ~bodyduration.models.ErrorException:
         """
+        cls: ClsType[datetime.timedelta] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -86,19 +86,18 @@ class DurationOperations:
     async def put_positive_duration(
         self,
         duration_body: datetime.timedelta,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put a positive duration value.
 
         :param duration_body:
         :type duration_body: ~datetime.timedelta
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodyduration.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -131,16 +130,16 @@ class DurationOperations:
     @distributed_trace_async
     async def get_positive_duration(
         self,
-        cls: ClsType[datetime.timedelta] = None,
-        **kwargs: Any
+        **kwargs
     ) -> datetime.timedelta:
         """Get a positive duration value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: timedelta or the result of cls(response)
         :rtype: ~datetime.timedelta
         :raises: ~bodyduration.models.ErrorException:
         """
+        cls: ClsType[datetime.timedelta] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -173,16 +172,16 @@ class DurationOperations:
     @distributed_trace_async
     async def get_invalid(
         self,
-        cls: ClsType[datetime.timedelta] = None,
-        **kwargs: Any
+        **kwargs
     ) -> datetime.timedelta:
         """Get an invalid duration value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: timedelta or the result of cls(response)
         :rtype: ~datetime.timedelta
         :raises: ~bodyduration.models.ErrorException:
         """
+        cls: ClsType[datetime.timedelta] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

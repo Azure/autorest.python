@@ -43,7 +43,6 @@ class PetOperations(object):
     def get_pet_by_id(
         self,
         pet_id,  # type: str
-        cls=None,  # type: ClsType["models.Pet"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Pet"
@@ -51,11 +50,12 @@ class PetOperations(object):
 
         :param pet_id: pet id.
         :type pet_id: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Pet or  or the result of cls(response)
         :rtype: ~xmserrorresponse.models.Pet or None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.Pet"]
         error_map = {
             400: HttpResponseError,
             404: lambda response: models.NotFoundErrorBaseException.from_response(response, self._deserialize),
@@ -100,7 +100,6 @@ class PetOperations(object):
     def do_something(
         self,
         what_action,  # type: str
-        cls=None,  # type: ClsType["models.PetAction"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.PetAction"
@@ -108,11 +107,12 @@ class PetOperations(object):
 
         :param what_action: what action the pet should do.
         :type what_action: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAction or the result of cls(response)
         :rtype: ~xmserrorresponse.models.PetAction
         :raises: ~xmserrorresponse.models.PetActionErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.PetAction"]
         error_map = {
             500: lambda response: models.PetActionErrorException.from_response(response, self._deserialize),
         }

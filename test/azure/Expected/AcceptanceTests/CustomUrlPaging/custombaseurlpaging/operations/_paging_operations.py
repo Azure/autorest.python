@@ -45,7 +45,6 @@ class PagingOperations(object):
     def get_pages_partial_url(
         self,
         account_name,  # type: str
-        cls=None,  # type: ClsType["models.ProductResult"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.ProductResult"
@@ -53,11 +52,12 @@ class PagingOperations(object):
 
         :param account_name: Account Name.
         :type account_name: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
         :rtype: ~custombaseurlpaging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.ProductResult"]
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -116,7 +116,6 @@ class PagingOperations(object):
     def get_pages_partial_url_operation(
         self,
         account_name,  # type: str
-        cls=None,  # type: ClsType["models.ProductResult"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.ProductResult"
@@ -124,11 +123,12 @@ class PagingOperations(object):
 
         :param account_name: Account Name.
         :type account_name: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
         :rtype: ~custombaseurlpaging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.ProductResult"]
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):

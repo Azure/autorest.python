@@ -43,19 +43,18 @@ class ParameterGroupingOperations:
     async def post_required(
         self,
         parameter_grouping_post_required_parameters: "models.ParameterGroupingPostRequiredParameters",
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Post a bunch of required parameters grouped.
 
         :param parameter_grouping_post_required_parameters: Parameter group.
         :type parameter_grouping_post_required_parameters: ~azureparametergrouping.models.ParameterGroupingPostRequiredParameters
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azureparametergrouping.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         
         custom_header = None
@@ -107,19 +106,18 @@ class ParameterGroupingOperations:
     async def post_optional(
         self,
         parameter_grouping_post_optional_parameters: Optional["models.ParameterGroupingPostOptionalParameters"] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Post a bunch of optional parameters grouped.
 
         :param parameter_grouping_post_optional_parameters: Parameter group.
         :type parameter_grouping_post_optional_parameters: ~azureparametergrouping.models.ParameterGroupingPostOptionalParameters
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azureparametergrouping.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         
         custom_header = None
@@ -160,9 +158,7 @@ class ParameterGroupingOperations:
         self,
         first_parameter_group: Optional["models.FirstParameterGroup"] = None,
         parameter_grouping_post_multi_param_groups_second_param_group: Optional["models.ParameterGroupingPostMultiParamGroupsSecondParamGroup"] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Post parameters from multiple different parameter groups.
 
@@ -170,11 +166,12 @@ class ParameterGroupingOperations:
         :type first_parameter_group: ~azureparametergrouping.models.FirstParameterGroup
         :param parameter_grouping_post_multi_param_groups_second_param_group: Parameter group.
         :type parameter_grouping_post_multi_param_groups_second_param_group: ~azureparametergrouping.models.ParameterGroupingPostMultiParamGroupsSecondParamGroup
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azureparametergrouping.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         
         header_one = None
@@ -223,19 +220,18 @@ class ParameterGroupingOperations:
     async def post_shared_parameter_group_object(
         self,
         first_parameter_group: Optional["models.FirstParameterGroup"] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Post parameters with a shared parameter group object.
 
         :param first_parameter_group: Parameter group.
         :type first_parameter_group: ~azureparametergrouping.models.FirstParameterGroup
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azureparametergrouping.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         
         header_one = None
