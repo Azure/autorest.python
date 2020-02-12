@@ -94,7 +94,7 @@ response_headers = {
     {% if code_model.options['azure_arm'] %}
     if polling is True: polling_method = {{ async_prefix }}ARMPolling(lro_delay{{ lro_options }},  **kwargs)
     {% else %}
-    if polling is True: raise ValueError("You are attempting to use ARM polling for a non-ARM operation. Set polling to False for non ARM polling")
+    if polling is True: raise ValueError("polling being True is not valid because no default polling implemetation has been defined.")
     {% endif %}
     elif polling is False: polling_method = {{ async_prefix }}NoPolling()
     else: polling_method = polling
