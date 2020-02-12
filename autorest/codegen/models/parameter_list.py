@@ -147,6 +147,10 @@ class ParameterList(MutableSequence):
         )
         object_schema = cast(ObjectSchema, self.body.schema)
         parameter_string = ", ".join(
-            [f"{model_property.name}={param.serialized_name}" for param, model_property in zip(parameters, object_schema.properties)
+            [f"{model_property.name}={param.serialized_name}"
+            for param, model_property in zip(
+                parameters,
+                [p for p in object_schema.properties if not p.constant and not p.readonly]
+            )
         ])
         return f"{self.body.serialized_name} = models.{object_schema.name}({parameter_string})"
