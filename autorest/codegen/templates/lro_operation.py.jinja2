@@ -47,11 +47,7 @@ response_headers = {
      polling object for personal polling strategy
     :paramtype polling: bool or ~azure.core.polling.{{ "Async" if async_mode else "" }}PollingMethod
     {{ return_docstring() }}
-    {% if code_model.options['azure_arm'] %}
-    :raises ~azure.mgmt.core.ARMError:
-    {% else %}
     :raises ~azure.core.HttpResponseError:
-    {% endif %}
     """
     {% if async_mode %}
     polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})

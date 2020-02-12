@@ -39,7 +39,7 @@ from azure.core.polling import LROPoller
 from azure.core.pipeline.policies import ContentDecodePolicy, RetryPolicy, HeadersPolicy, RequestIdPolicy
 
 from azure.mgmt.core.polling.arm_polling import ARMPolling
-from azure.mgmt.core.exceptions import ARMError
+from azure.mgmt.core.exceptions import HttpResponseError
 
 from lro import AutoRestLongRunningOperationTestService
 from lro.models import *  # pylint: disable=W0614
@@ -104,7 +104,7 @@ class TestLro:
             self.lro_result(func, *args, **kwargs)
             pytest.fail("HttpResponseError wasn't raised as expected")
 
-        except ARMError as err:
+        except HttpResponseError as err:
             assert err.response is not None
             print("BODY: "+err.response.text())
 

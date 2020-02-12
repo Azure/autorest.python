@@ -168,9 +168,8 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         # Exceptions
         file_import.add_from_import("azure.core.exceptions", "map_error", ImportType.AZURECORE)
         if code_model.options["azure_arm"]:
-            file_import.add_from_import("azure.mgmt.core.exceptions", "ARMError", ImportType.AZURECORE)
-        else:
-            file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
+            file_import.add_from_import("azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.AZURECORE)
+        file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
         for parameter in self.parameters:
             file_import.merge(parameter.imports())
 

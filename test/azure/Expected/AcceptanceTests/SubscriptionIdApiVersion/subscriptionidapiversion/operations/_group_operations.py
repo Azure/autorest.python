@@ -8,11 +8,11 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import map_error
+from azure.core.exceptions import HttpResponseError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
-from azure.mgmt.core.exceptions import ARMError
+from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models
 
@@ -54,7 +54,7 @@ class GroupOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SampleResourceGroup or the result of cls(response)
         :rtype: ~subscriptionidapiversion.models.SampleResourceGroup
-        :raises: ~azure.mgmt.core.ARMError
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType["models.SampleResourceGroup"]
         error_map = kwargs.pop('error_map', {})
@@ -82,7 +82,7 @@ class GroupOperations(object):
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize(models.Error, response)
-            raise ARMError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize('SampleResourceGroup', pipeline_response)
 
