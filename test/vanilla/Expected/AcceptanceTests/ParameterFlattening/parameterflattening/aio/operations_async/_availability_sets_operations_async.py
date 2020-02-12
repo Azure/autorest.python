@@ -44,7 +44,7 @@ class AvailabilitySetsOperations:
         self,
         resource_group_name: str,
         avset: str,
-        availability_set_update_parameters_tags: Dict[str, str],
+        tags: Dict[str, str],
         **kwargs
     ) -> None:
         """Updates the tags for an availability set.
@@ -53,8 +53,8 @@ class AvailabilitySetsOperations:
         :type resource_group_name: str
         :param avset: The name of the storage availability set.
         :type avset: str
-        :param availability_set_update_parameters_tags: A description about the set of tags.
-        :type availability_set_update_parameters_tags: dict[str, str]
+        :param tags: A description about the set of tags.
+        :type tags: dict[str, str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -63,7 +63,7 @@ class AvailabilitySetsOperations:
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
-        tags = models.AvailabilitySetUpdateParameters(availability_set_update_parameters_tags=availability_set_update_parameters_tags)
+        _tags = models.AvailabilitySetUpdateParameters(tags=tags)
 
         # Construct URL
         url = self.update.metadata['url']
@@ -81,7 +81,7 @@ class AvailabilitySetsOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(tags, 'AvailabilitySetUpdateParameters')
+        body_content = self._serialize.body(_tags, 'AvailabilitySetUpdateParameters')
 
         # Construct and send request
         request = self._client.patch(url, query_parameters, header_parameters, body_content)

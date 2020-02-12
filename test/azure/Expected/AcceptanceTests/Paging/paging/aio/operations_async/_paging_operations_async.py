@@ -236,11 +236,11 @@ class PagingOperations:
         cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         
-        maxresults = None
-        timeout = None
+        _maxresults = None
+        _timeout = None
         if paging_get_multiple_pages_options is not None:
-            maxresults = paging_get_multiple_pages_options.maxresults
-            timeout = paging_get_multiple_pages_options.timeout
+            _maxresults = paging_get_multiple_pages_options.maxresults
+            _timeout = paging_get_multiple_pages_options.timeout
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -256,10 +256,10 @@ class PagingOperations:
             header_parameters: Dict[str, Any] = {}
             if client_request_id is not None:
                 header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
-            if maxresults is not None:
-                header_parameters['maxresults'] = self._serialize.header("maxresults", maxresults, 'int')
-            if timeout is not None:
-                header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
+            if _maxresults is not None:
+                header_parameters['maxresults'] = self._serialize.header("maxresults", _maxresults, 'int')
+            if _timeout is not None:
+                header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
             header_parameters['Accept'] = 'application/json'
 
             # Construct and send request
@@ -311,11 +311,11 @@ class PagingOperations:
         cls: ClsType["models.OdataProductResult"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         
-        maxresults = None
-        timeout = None
+        _maxresults = None
+        _timeout = None
         if paging_get_odata_multiple_pages_options is not None:
-            maxresults = paging_get_odata_multiple_pages_options.maxresults
-            timeout = paging_get_odata_multiple_pages_options.timeout
+            _maxresults = paging_get_odata_multiple_pages_options.maxresults
+            _timeout = paging_get_odata_multiple_pages_options.timeout
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -331,10 +331,10 @@ class PagingOperations:
             header_parameters: Dict[str, Any] = {}
             if client_request_id is not None:
                 header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
-            if maxresults is not None:
-                header_parameters['maxresults'] = self._serialize.header("maxresults", maxresults, 'int')
-            if timeout is not None:
-                header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
+            if _maxresults is not None:
+                header_parameters['maxresults'] = self._serialize.header("maxresults", _maxresults, 'int')
+            if _timeout is not None:
+                header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
             header_parameters['Accept'] = 'application/json'
 
             # Construct and send request
@@ -386,20 +386,20 @@ class PagingOperations:
         cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         
-        maxresults = None
-        offset = None
-        timeout = None
+        _maxresults = None
+        _offset = None
+        _timeout = None
         if paging_get_multiple_pages_with_offset_options is not None:
-            maxresults = paging_get_multiple_pages_with_offset_options.maxresults
-            offset = paging_get_multiple_pages_with_offset_options.offset
-            timeout = paging_get_multiple_pages_with_offset_options.timeout
+            _maxresults = paging_get_multiple_pages_with_offset_options.maxresults
+            _offset = paging_get_multiple_pages_with_offset_options.offset
+            _timeout = paging_get_multiple_pages_with_offset_options.timeout
 
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages_with_offset.metadata['url']
                 path_format_arguments = {
-                    'offset': self._serialize.url("offset", offset, 'int'),
+                    'offset': self._serialize.url("offset", _offset, 'int'),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
             else:
@@ -412,10 +412,10 @@ class PagingOperations:
             header_parameters: Dict[str, Any] = {}
             if client_request_id is not None:
                 header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
-            if maxresults is not None:
-                header_parameters['maxresults'] = self._serialize.header("maxresults", maxresults, 'int')
-            if timeout is not None:
-                header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
+            if _maxresults is not None:
+                header_parameters['maxresults'] = self._serialize.header("maxresults", _maxresults, 'int')
+            if _timeout is not None:
+                header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
             header_parameters['Accept'] = 'application/json'
 
             # Construct and send request
@@ -822,31 +822,31 @@ class PagingOperations:
         cls: ClsType["models.OdataProductResult"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         
-        api_version = None
-        tenant = None
+        _api_version = None
+        _tenant = None
         if custom_parameter_group is not None:
-            api_version = custom_parameter_group.api_version
-            tenant = custom_parameter_group.tenant
+            _api_version = custom_parameter_group.api_version
+            _tenant = custom_parameter_group.tenant
 
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages_fragment_with_grouping_next_link.metadata['url']
                 path_format_arguments = {
-                    'tenant': self._serialize.url("tenant", tenant, 'str'),
+                    'tenant': self._serialize.url("tenant", _tenant, 'str'),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
             else:
                 url = '/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}'
                 path_format_arguments = {
-                    'tenant': self._serialize.url("tenant", tenant, 'str'),
+                    'tenant': self._serialize.url("tenant", _tenant, 'str'),
                     'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
 
             # Construct parameters
             query_parameters: Dict[str, Any] = {}
-            query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
+            query_parameters['api_version'] = self._serialize.query("api_version", _api_version, 'str')
 
             # Construct headers
             header_parameters: Dict[str, Any] = {}
@@ -889,11 +889,11 @@ class PagingOperations:
         cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         
-        maxresults = None
-        timeout = None
+        _maxresults = None
+        _timeout = None
         if paging_get_multiple_pages_lro_options is not None:
-            maxresults = paging_get_multiple_pages_lro_options.maxresults
-            timeout = paging_get_multiple_pages_lro_options.timeout
+            _maxresults = paging_get_multiple_pages_lro_options.maxresults
+            _timeout = paging_get_multiple_pages_lro_options.timeout
 
         # Construct URL
         url = self._get_multiple_pages_lro_initial.metadata['url']
@@ -905,10 +905,10 @@ class PagingOperations:
         header_parameters: Dict[str, Any] = {}
         if client_request_id is not None:
             header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
-        if maxresults is not None:
-            header_parameters['maxresults'] = self._serialize.header("maxresults", maxresults, 'int')
-        if timeout is not None:
-            header_parameters['timeout'] = self._serialize.header("timeout", timeout, 'int')
+        if _maxresults is not None:
+            header_parameters['maxresults'] = self._serialize.header("maxresults", _maxresults, 'int')
+        if _timeout is not None:
+            header_parameters['timeout'] = self._serialize.header("timeout", _timeout, 'int')
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request

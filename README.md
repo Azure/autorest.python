@@ -24,7 +24,7 @@ AutoRest needs the below config to pick this up as a plug-in - see https://githu
 ``` yaml
 version: 3.0.6220
 use-extension:
-  "@autorest/modelerfour": "4.6.198"
+  "@autorest/modelerfour": "4.6.199"
 
 modelerfour:
   group-parameters: true
@@ -39,18 +39,13 @@ modelerfour:
     choiceValue:  snakecase
     constant:  snakecase
     type:  pascalcase
-    local: "_" + snakecase
+    local: _ + snakecase
     global: snakecase
+    preserve-uppercase-max-length: 6
     override:
-      lro: LRO
       $host: $host
-      xms: XMS
-      xml: XML
-      ap: AP
-      bat: BAT
-      rfc: RFC
       json: JSON
-      api: API
+      base64: base64
 
 
 pipeline:

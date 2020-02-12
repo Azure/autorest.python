@@ -36,13 +36,13 @@ from os.path import dirname, pardir, join, realpath
 
 from msrest.exceptions import DeserializationError
 
-from bodydatetimerfc1123 import AutoRestRfc1123DateTimeTestService
+from bodydatetimerfc1123 import AutoRestRFC1123DateTimeTestService
 
 import pytest
 
 @pytest.fixture
 def client():
-    with AutoRestRfc1123DateTimeTestService(base_url="http://localhost:3000") as client:
+    with AutoRestRFC1123DateTimeTestService(base_url="http://localhost:3000") as client:
         yield client
 
 class TestDateTimeRfc(object):

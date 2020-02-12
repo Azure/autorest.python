@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._x_ms_client_request_id_operations import XMsClientRequestIdOperations
+from ._xms_client_request_id_operations import XMsClientRequestIdOperations
 from ._subscription_in_credentials_operations import SubscriptionInCredentialsOperations
 from ._subscription_in_method_operations import SubscriptionInMethodOperations
 from ._api_version_default_operations import ApiVersionDefaultOperations

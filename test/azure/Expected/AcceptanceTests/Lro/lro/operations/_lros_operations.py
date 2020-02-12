@@ -1425,7 +1425,7 @@ class LROsOperations(object):
         cls = kwargs.pop('cls', None )  # type: ClsType["models.SubProduct"]
         error_map = kwargs.pop('error_map', {})
 
-        product = models.SubProduct(provisioning_state=provisioning_state)
+        _product = models.SubProduct(provisioning_state=provisioning_state)
 
         # Construct URL
         url = self._put_sub_resource_initial.metadata['url']
@@ -1439,8 +1439,8 @@ class LROsOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if product is not None:
-            body_content = self._serialize.body(product, 'SubProduct')
+        if _product is not None:
+            body_content = self._serialize.body(_product, 'SubProduct')
         else:
             body_content = None
 
@@ -1515,7 +1515,7 @@ class LROsOperations(object):
         cls = kwargs.pop('cls', None )  # type: ClsType["models.SubProduct"]
         error_map = kwargs.pop('error_map', {})
 
-        product = models.SubProduct(provisioning_state=provisioning_state)
+        _product = models.SubProduct(provisioning_state=provisioning_state)
 
         # Construct URL
         url = self._put_async_sub_resource_initial.metadata['url']
@@ -1529,8 +1529,8 @@ class LROsOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if product is not None:
-            body_content = self._serialize.body(product, 'SubProduct')
+        if _product is not None:
+            body_content = self._serialize.body(_product, 'SubProduct')
         else:
             body_content = None
 
