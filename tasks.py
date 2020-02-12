@@ -17,9 +17,10 @@ service_to_readme_path = {
     'azure-ai-formrecognizer': 'test/services/azure-ai-formrecognizer/README.md',
     'azure-storage-blob': '../azure-sdk-for-python/sdk/storage/azure-storage-blob/swagger/README.md',
     'azure-mgmt-storage': 'test/services/azure-mgmt-storage/README.md',
+    'azure-mgmt-network': 'test/services/azure-mgmt-network/README.md',
     'azure-graphrbac': 'test/services/azure-graphrbac/README.md',
     'azure-search': 'test/services/azure-search/README.md',
-    'azure-keyvault': 'test/services/azure-keyvault/README.md'
+    'azure-keyvault': 'test/services/azure-keyvault/README.md',
 }
 
 default_mappings = {
