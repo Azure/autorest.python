@@ -139,7 +139,7 @@ class TestUrl(object):
 
     @pytest.mark.asyncio
     async def test_enum_valid(self, client):
-        await client.paths.enum_valid(UriColor.greencolor)
+        await client.paths.enum_valid(UriColor.green_color)
 
     @pytest.mark.asyncio
     async def test_enum_null(self, client):
@@ -205,7 +205,7 @@ class TestUrl(object):
 
     @pytest.mark.asyncio
     async def test_queries_enum(self, client):
-        await client.queries.enum_valid(UriColor.greencolor)
+        await client.queries.enum_valid(UriColor.green_color)
         await client.queries.enum_null(None)
 
     @pytest.mark.asyncio

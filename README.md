@@ -39,7 +39,7 @@ modelerfour:
     choiceValue:  snakecase
     constant:  snakecase
     type:  pascalcase
-    local: _ + snakecase
+    local: snakecase
     global: snakecase
     override:
       lro: LRO
@@ -49,6 +49,8 @@ modelerfour:
       ap: AP
       bat: BAT
       rfc: RFC
+      json: JSON
+      api: API
 
 
 pipeline:

@@ -120,7 +120,7 @@ class TestUrl(object):
         client.paths.string_url_non_encoded()
 
     def test_enum_valid(self, client):
-        client.paths.enum_valid(UriColor.greencolor)
+        client.paths.enum_valid(UriColor.green_color)
 
     def test_enum_null(self, client):
         with pytest.raises(ValidationError):
@@ -174,7 +174,7 @@ class TestUrl(object):
         client.queries.string_url_encoded()
 
     def test_queries_enum(self, client):
-        client.queries.enum_valid(UriColor.greencolor)
+        client.queries.enum_valid(UriColor.green_color)
         client.queries.enum_null(None)
 
     def test_array_string_csv(self, client, test_array_query):
