@@ -9,7 +9,6 @@ from .imports import FileImport, ImportType
 
 from .base_model import BaseModel
 from .base_schema import BaseSchema
-from .property import Property
 
 
 class ParameterLocation(Enum):
