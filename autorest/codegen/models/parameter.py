@@ -4,11 +4,12 @@
 # license information.
 # --------------------------------------------------------------------------
 from enum import Enum
-from typing import Dict, Optional, List, Any
+from typing import Dict, Optional, List, Any, Union
 from .imports import FileImport, ImportType
 
 from .base_model import BaseModel
 from .base_schema import BaseSchema
+from .property import Property
 
 
 class ParameterLocation(Enum):
@@ -46,6 +47,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         location: ParameterLocation,
         skip_url_encoding: bool,
         constraints: List[Any],
+        target_property_name: Optional[Union[int, str]] = None,  # first uses id as placeholder
         style: Optional[ParameterStyle] = None,
         *,
         flattened: bool = False,
@@ -62,6 +64,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.location = location
         self.skip_url_encoding = skip_url_encoding
         self.constraints = constraints
+        self.target_property_name = target_property_name
         self.style = style
         self.flattened = flattened
         self.grouped_by = grouped_by
@@ -95,7 +98,6 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
 
     @classmethod
     def from_yaml(cls, yaml_data: Dict[str, Any]) -> "Parameter":
-
         http_protocol = yaml_data["protocol"].get("http", {"in": ParameterLocation.Other})
         return cls(
             yaml_data=yaml_data,
@@ -111,6 +113,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
             location=ParameterLocation(http_protocol["in"]),
             skip_url_encoding=yaml_data.get("extensions", {}).get("x-ms-skip-url-encoding", False),
             constraints=[],  # FIXME constraints
+            target_property_name=id(yaml_data["targetProperty"]) if yaml_data.get("targetProperty") else None,
             style=ParameterStyle(http_protocol["style"]) if "style" in http_protocol else None,
             grouped_by=yaml_data.get("groupedBy", None),
             original_parameter=yaml_data.get("originalParameter", None),

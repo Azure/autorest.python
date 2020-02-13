@@ -213,7 +213,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         def _lookup_operation(yaml_id: int) -> Operation:
             for operation_group in self.operation_groups:
                 for operation in operation_group.operations:
-                    if id(operation.yaml_data) == yaml_id:
+                    if operation.id == yaml_id:
                         return operation
             raise KeyError("Didn't find it!!!!!")
 
@@ -280,6 +280,14 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self._add_properties_from_inheritance()
         self._add_exceptions_from_inheritance()
 
+    def _populate_target_property(self, parameter: Parameter) -> None:
+        for obj in self.sorted_schemas:
+            for prop in obj.properties:
+                if prop.id == parameter.target_property_name:
+                    parameter.target_property_name = prop.name
+                    return
+        raise KeyError("Didn't find the target property")
+
     def _populate_schema(self, obj: Any) -> None:
         schema_obj = obj.schema
 
@@ -291,6 +299,8 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             except KeyError:
                 _LOGGER.critical("Unable to ref the object")
                 raise
+        if isinstance(obj, Parameter) and obj.target_property_name:
+            self._populate_target_property(obj)
         if isinstance(obj, SchemaResponse) and obj.is_stream_response:
             obj.schema = IOSchema()
 
