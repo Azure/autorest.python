@@ -60,7 +60,6 @@ default_azure_mappings = {
   'AcceptanceTests/AzureBodyDuration': ['body-duration.json', 'bodyduration'],
   'AcceptanceTests/AzureReport': 'azure-report.json',
   'AcceptanceTests/AzureParameterGrouping': 'azure-parameter-grouping.json',
-  'AcceptanceTests/ModelFlattening': 'model-flattening.json',
   'AcceptanceTests/CustomBaseUri': ['custom-baseUrl.json', 'custombaseurl'],
 }
 
