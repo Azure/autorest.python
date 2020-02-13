@@ -24,13 +24,13 @@ class MetadataSerializer:
                 },
                 "operation_groups": {
                     operation_group.name: operation_group.class_name for operation_group in self.code_model.operation_groups if not operation_group.is_empty_operation_group
-                }
+                },
                 "operation_mixins": {
                     operation.name: {
                         doc: "FIXME",
                         signature: "FIXME",
                         call: "FIXME"
-                    } for operation in next((operation_group for operation_groups in self.code_model.operation_groups if operation_group.is_empty_operation_group), [])
+                    } for operation in next((operation_group for operation_group in self.code_model.operation_groups if operation_group.is_empty_operation_group), [])
                 }
                 # "operation_mixins": {
                 #     operation_group.name: {
