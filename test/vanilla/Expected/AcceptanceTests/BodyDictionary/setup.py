@@ -24,10 +24,10 @@ REQUIRES = ["msrest>=0.6.0", "azure-core<2.0.0,>=1.2.0"]
 setup(
     name=NAME,
     version=VERSION,
-    description="AutoRestSwaggerBATdictionaryService",
+    description="AutoRestSwaggerBATDictionaryService",
     author_email="",
     url="",
-    keywords=["Swagger", "AutoRestSwaggerBATdictionaryService"],
+    keywords=["Swagger", "AutoRestSwaggerBATDictionaryService"],
     install_requires=REQUIRES,
     packages=find_packages(),
     include_package_data=True,

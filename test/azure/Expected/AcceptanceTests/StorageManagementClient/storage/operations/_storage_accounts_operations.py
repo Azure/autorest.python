@@ -591,7 +591,7 @@ class StorageAccountsOperations(object):
         cls = kwargs.pop('cls', None )  # type: ClsType["models.StorageAccountKeys"]
         error_map = kwargs.pop('error_map', {})
 
-        regenerate_key = models.StorageAccountRegenerateKeyParameters(key_name=key_name)
+        _regenerate_key = models.StorageAccountRegenerateKeyParameters(key_name=key_name)
 
         # Construct URL
         url = self.regenerate_key.metadata['url']
@@ -611,7 +611,7 @@ class StorageAccountsOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(regenerate_key, 'StorageAccountRegenerateKeyParameters')
+        body_content = self._serialize.body(_regenerate_key, 'StorageAccountRegenerateKeyParameters')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)

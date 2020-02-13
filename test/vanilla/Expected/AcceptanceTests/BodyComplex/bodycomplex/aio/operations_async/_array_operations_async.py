@@ -99,7 +99,7 @@ class ArrayOperations:
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
-        complex_body = models.ArrayWrapper(array=array)
+        _complex_body = models.ArrayWrapper(array=array)
 
         # Construct URL
         url = self.put_valid.metadata['url']
@@ -112,7 +112,7 @@ class ArrayOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(complex_body, 'ArrayWrapper')
+        body_content = self._serialize.body(_complex_body, 'ArrayWrapper')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
@@ -188,7 +188,7 @@ class ArrayOperations:
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
-        complex_body = models.ArrayWrapper(array=array)
+        _complex_body = models.ArrayWrapper(array=array)
 
         # Construct URL
         url = self.put_empty.metadata['url']
@@ -201,7 +201,7 @@ class ArrayOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(complex_body, 'ArrayWrapper')
+        body_content = self._serialize.body(_complex_body, 'ArrayWrapper')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)

@@ -448,7 +448,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         description=None,  # type: Optional[str]
         max_product_display_name=None,  # type: Optional[str]
         generic_value=None,  # type: Optional[str]
-        odatavalue=None,  # type: Optional[str]
+        odata_value=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.SimpleProduct"
@@ -464,8 +464,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :type max_product_display_name: str
         :param generic_value: Generic URL value.
         :type generic_value: str
-        :param odatavalue: URL value.
-        :type odatavalue: str
+        :param odata_value: URL value.
+        :type odata_value: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
@@ -474,7 +474,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         cls = kwargs.pop('cls', None )  # type: ClsType["models.SimpleProduct"]
         error_map = kwargs.pop('error_map', {})
 
-        simple_body_product = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odatavalue=odatavalue)
+        _simple_body_product = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odata_value=odata_value)
 
         # Construct URL
         url = self.post_flattened_simple_product.metadata['url']
@@ -488,8 +488,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if simple_body_product is not None:
-            body_content = self._serialize.body(simple_body_product, 'SimpleProduct')
+        if _simple_body_product is not None:
+            body_content = self._serialize.body(_simple_body_product, 'SimpleProduct')
         else:
             body_content = None
 
@@ -529,30 +529,28 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         cls = kwargs.pop('cls', None )  # type: ClsType["models.SimpleProduct"]
         error_map = kwargs.pop('error_map', {})
         
-        name = None
-        simple_body_product = None
-        product_id = None
-        description = None
-        max_product_display_name = None
-        capacity = None
-        generic_value = None
-        odatavalue = None
+        _name = None
+        _simple_body_product = None
+        _product_id = None
+        _description = None
+        _max_product_display_name = None
+        _generic_value = None
+        _odata_value = None
         if flatten_parameter_group is not None:
-            name = flatten_parameter_group.name
-            simple_body_product = flatten_parameter_group.simple_body_product
-            product_id = flatten_parameter_group.product_id
-            description = flatten_parameter_group.description
-            max_product_display_name = flatten_parameter_group.max_product_display_name
-            capacity = flatten_parameter_group.capacity
-            generic_value = flatten_parameter_group.generic_value
-            odatavalue = flatten_parameter_group.odatavalue
+            _name = flatten_parameter_group.name
+            _simple_body_product = flatten_parameter_group.simple_body_product
+            _product_id = flatten_parameter_group.product_id
+            _description = flatten_parameter_group.description
+            _max_product_display_name = flatten_parameter_group.max_product_display_name
+            _generic_value = flatten_parameter_group.generic_value
+            _odata_value = flatten_parameter_group.odata_value
 
-        simple_body_product = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odatavalue=odatavalue, flatten_parameter_group=flatten_parameter_group)
+        _simple_body_product = models.SimpleProduct(product_id=_product_id, description=_description, max_product_display_name=_max_product_display_name, generic_value=_generic_value, odata_value=_odata_value)
 
         # Construct URL
         url = self.put_simple_product_with_grouping.metadata['url']
         path_format_arguments = {
-            'name': self._serialize.url("name", name, 'str'),
+            'name': self._serialize.url("name", _name, 'str'),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -565,8 +563,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if simple_body_product is not None:
-            body_content = self._serialize.body(simple_body_product, 'SimpleProduct')
+        if _simple_body_product is not None:
+            body_content = self._serialize.body(_simple_body_product, 'SimpleProduct')
         else:
             body_content = None
 

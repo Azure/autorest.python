@@ -763,9 +763,9 @@ class Metrics(msrest.serialization.Model):
     :type version: str
     :param enabled: Required. Indicates whether metrics are enabled for the Blob service.
     :type enabled: bool
-    :param include_apis: Indicates whether metrics should generate summary statistics for called
+    :param include_ap_is: Indicates whether metrics should generate summary statistics for called
      API operations.
-    :type include_apis: bool
+    :type include_ap_is: bool
     :param retention_policy: the retention policy.
     :type retention_policy: ~xmlservice.models.RetentionPolicy
     """
@@ -777,7 +777,7 @@ class Metrics(msrest.serialization.Model):
     _attribute_map = {
         'version': {'key': 'Version', 'type': 'str'},
         'enabled': {'key': 'Enabled', 'type': 'bool'},
-        'include_apis': {'key': 'IncludeAPIs', 'type': 'bool'},
+        'include_ap_is': {'key': 'IncludeAPIs', 'type': 'bool'},
         'retention_policy': {'key': 'RetentionPolicy', 'type': 'RetentionPolicy'},
     }
 
@@ -788,7 +788,7 @@ class Metrics(msrest.serialization.Model):
         super(Metrics, self).__init__(**kwargs)
         self.version = kwargs.get('version', None)
         self.enabled = kwargs.get('enabled', None)
-        self.include_apis = kwargs.get('include_apis', None)
+        self.include_ap_is = kwargs.get('include_ap_is', None)
         self.retention_policy = kwargs.get('retention_policy', None)
 
 
@@ -938,8 +938,8 @@ class Slideshow(msrest.serialization.Model):
 
     :param title:
     :type title: str
-    :param date_property:
-    :type date_property: str
+    :param date:
+    :type date: str
     :param author:
     :type author: str
     :param slides:
@@ -948,7 +948,7 @@ class Slideshow(msrest.serialization.Model):
 
     _attribute_map = {
         'title': {'key': 'title', 'type': 'str', 'xml': {'attr': True}},
-        'date_property': {'key': 'date', 'type': 'str', 'xml': {'attr': True}},
+        'date': {'key': 'date', 'type': 'str', 'xml': {'attr': True}},
         'author': {'key': 'author', 'type': 'str', 'xml': {'attr': True}},
         'slides': {'key': 'slides', 'type': '[Slide]'},
     }
@@ -962,7 +962,7 @@ class Slideshow(msrest.serialization.Model):
     ):
         super(Slideshow, self).__init__(**kwargs)
         self.title = kwargs.get('title', None)
-        self.date_property = kwargs.get('date_property', None)
+        self.date = kwargs.get('date', None)
         self.author = kwargs.get('author', None)
         self.slides = kwargs.get('slides', None)
 
