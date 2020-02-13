@@ -52,7 +52,6 @@ async def client():
 
 class TestModelFlatteningTests(object):
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     @pytest.mark.asyncio
     async def test_flattening_array(self, client):
 
@@ -62,8 +61,8 @@ class TestModelFlatteningTests(object):
         # Resource 1
         assert "1" ==  result[0].id
         assert "OK" ==  result[0].provisioning_state_values
-        assert "Product1" ==  result[0].pname
-        assert "Flat" ==  result[0].flattened_product_type
+        assert "Product1" ==  result[0].p_name
+        assert "Flat" ==  result[0].type_properties_type
         assert "Building 44" ==  result[0].location
         assert "Resource1" ==  result[0].name
         assert "Succeeded" ==  result[0].provisioning_state
@@ -87,7 +86,6 @@ class TestModelFlatteningTests(object):
 
         await client.put_array(resourceArray)
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     @pytest.mark.asyncio
     async def test_flattening_dictionary(self, client):
 
@@ -97,8 +95,8 @@ class TestModelFlatteningTests(object):
         # Resource 1
         assert "1" ==  resultDictionary["Product1"].id
         assert "OK" ==  resultDictionary["Product1"].provisioning_state_values
-        assert "Product1" ==  resultDictionary["Product1"].pname
-        assert "Flat" ==  resultDictionary["Product1"].flattened_product_type
+        assert "Product1" ==  resultDictionary["Product1"].p_name
+        assert "Flat" ==  resultDictionary["Product1"].type_properties_type
         assert "Building 44" ==  resultDictionary["Product1"].location
         assert "Resource1" ==  resultDictionary["Product1"].name
         assert "Succeeded" ==  resultDictionary["Product1"].provisioning_state
@@ -117,16 +115,15 @@ class TestModelFlatteningTests(object):
                 "Resource1": {
                     'location': "West US",
                     'tags': {"tag1":"value1", "tag2":"value3"},
-                    'pname': "Product1",
-                    'flattened_product_type': "Flat"},
+                    'p_name': "Product1",
+                    'type_properties_type': "Flat"},
                 "Resource2": {
                     'location': "Building 44",
-                    'pname': "Product2",
-                    'flattened_product_type': "Flat"}}
+                    'p_name': "Product2",
+                    'type_properties_type': "Flat"}}
 
         await client.put_dictionary(resourceDictionary)
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     @pytest.mark.asyncio
     async def test_flattening_complex_object(self, client):
 
@@ -138,8 +135,8 @@ class TestModelFlatteningTests(object):
         # Resource 1
         assert "1" ==  resultResource.dictionaryofresources["Product1"].id
         assert "OK" ==  resultResource.dictionaryofresources["Product1"].provisioning_state_values
-        assert "Product1" ==  resultResource.dictionaryofresources["Product1"].pname
-        assert "Flat" ==  resultResource.dictionaryofresources["Product1"].flattened_product_type
+        assert "Product1" ==  resultResource.dictionaryofresources["Product1"].p_name
+        assert "Flat" ==  resultResource.dictionaryofresources["Product1"].type_properties_type
         assert "Building 44" ==  resultResource.dictionaryofresources["Product1"].location
         assert "Resource1" ==  resultResource.dictionaryofresources["Product1"].name
         assert "Succeeded" ==  resultResource.dictionaryofresources["Product1"].provisioning_state
@@ -159,8 +156,8 @@ class TestModelFlatteningTests(object):
         # Resource 1
         assert "4" ==  resultResource.arrayofresources[0].id
         assert "OK" ==  resultResource.arrayofresources[0].provisioning_state_values
-        assert "Product4" ==  resultResource.arrayofresources[0].pname
-        assert "Flat" ==  resultResource.arrayofresources[0].flattened_product_type
+        assert "Product4" ==  resultResource.arrayofresources[0].p_name
+        assert "Flat" ==  resultResource.arrayofresources[0].type_properties_type
         assert "Building 44" ==  resultResource.arrayofresources[0].location
         assert "Resource4" ==  resultResource.arrayofresources[0].name
         assert "Succeeded" ==  resultResource.arrayofresources[0].provisioning_state
@@ -183,12 +180,12 @@ class TestModelFlatteningTests(object):
                 "Resource1": FlattenedProduct(
                     location = "West US",
                     tags = {"tag1":"value1", "tag2":"value3"},
-                    pname = "Product1",
-                    flattened_product_type = "Flat"),
+                    p_name = "Product1",
+                    type_properties_type = "Flat"),
                 "Resource2": FlattenedProduct(
                     location = "Building 44",
-                    pname = "Product2",
-                    flattened_product_type = "Flat")}
+                    p_name = "Product2",
+                    type_properties_type = "Flat")}
 
         resourceComplexObject = ResourceCollection(
                 dictionaryofresources = resourceDictionary,
@@ -196,20 +193,19 @@ class TestModelFlatteningTests(object):
                     FlattenedProduct(
                         location = "West US",
                         tags = {"tag1":"value1", "tag2":"value3"},
-                        pname = "Product1",
-                        flattened_product_type = "Flat"),
+                        p_name = "Product1",
+                        type_properties_type = "Flat"),
                     FlattenedProduct(
                         location = "East US",
-                        pname = "Product2",
-                        flattened_product_type = "Flat")],
+                        p_name = "Product2",
+                        type_properties_type = "Flat")],
                 productresource = FlattenedProduct(
                     location = "India",
-                    pname = "Azure",
-                    flattened_product_type = "Flat"))
+                    p_name = "Azure",
+                    type_properties_type = "Flat"))
 
         await client.put_resource_collection(resourceComplexObject)
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     @pytest.mark.asyncio
     async def test_model_flattening_simple(self, client):
 
@@ -217,7 +213,7 @@ class TestModelFlatteningTests(object):
             product_id = "123",
             description = "product description",
             max_product_display_name = "max name",
-            odatavalue = "http://foo",
+            odata_value = "http://foo",
             generic_value = "https://generic"
         )
         simple_product.additional_properties = {} # Not the purpose of this test. This enables the ==.
@@ -226,7 +222,6 @@ class TestModelFlatteningTests(object):
         result.additional_properties = {} # Not the purpose of this test. This enables the ==.
         assert result ==  simple_product
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     @pytest.mark.asyncio
     async def test_model_flattening_with_parameter_flattening(self, client):
 
@@ -234,15 +229,20 @@ class TestModelFlatteningTests(object):
             product_id = "123",
             description = "product description",
             max_product_display_name = "max name",
-            odatavalue = "http://foo"
+            odata_value = "http://foo"
         )
         simple_product.additional_properties = {} # Not the purpose of this test. This enables the ==.
 
-        result = await client.post_flattened_simple_product("123", "max name", "product description", None, "http://foo")
+        result = await client.post_flattened_simple_product(
+            "123", # product_id
+            "product description", # description
+            "max name", # max_product_display_name
+            None, # generic_value
+            "http://foo", # odata_value
+        )
         result.additional_properties = {} # Not the purpose of this test. This enables the ==.
         assert result ==  simple_product
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     @pytest.mark.asyncio
     async def test_model_flattening_with_grouping(self, client):
         from modelflattening.models import FlattenParameterGroup
@@ -251,7 +251,7 @@ class TestModelFlatteningTests(object):
             product_id = "123",
             description = "product description",
             max_product_display_name = "max name",
-            odatavalue = "http://foo"
+            odata_value = "http://foo"
         )
         simple_product.additional_properties = {} # Not the purpose of this test. This enables the ==.
 
@@ -259,7 +259,7 @@ class TestModelFlatteningTests(object):
             product_id = "123",
             description = "product description",
             max_product_display_name="max name",
-            odatavalue="http://foo",
+            odata_value="http://foo",
             name="groupproduct")
 
         result = await client.put_simple_product_with_grouping(group)
