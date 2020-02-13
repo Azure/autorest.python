@@ -10,10 +10,10 @@ import datetime
 from typing import Dict, List, Optional, Union
 
 from azure.core.exceptions import HttpResponseError
-from msrest.serialization import Model
+import msrest.serialization
 
 
-class AccessPolicy(Model):
+class AccessPolicy(msrest.serialization.Model):
     """An Access policy.
 
     All required parameters must be populated in order to send to Azure.
@@ -52,7 +52,7 @@ class AccessPolicy(Model):
         self.permission = permission
 
 
-class AppleBarrel(Model):
+class AppleBarrel(msrest.serialization.Model):
     """A barrel of apples.
 
     :param good_apples:
@@ -78,7 +78,7 @@ class AppleBarrel(Model):
         self.bad_apples = bad_apples
 
 
-class Banana(Model):
+class Banana(msrest.serialization.Model):
     """A banana.
 
     :param name:
@@ -112,7 +112,7 @@ class Banana(Model):
         self.expiration = expiration
 
 
-class Blob(Model):
+class Blob(msrest.serialization.Model):
     """An Azure Storage blob.
 
     All required parameters must be populated in order to send to Azure.
@@ -125,8 +125,7 @@ class Blob(Model):
     :type snapshot: str
     :param properties: Required. Properties of a blob.
     :type properties: ~xmlservice.models.BlobProperties
-    :param metadata: Dictionary of <paths·xml-
-     headers·get·responses·200·headers·custom_header·schema>.
+    :param metadata: Dictionary of :code:`<string>`.
     :type metadata: dict[str, str]
     """
 
@@ -166,7 +165,7 @@ class Blob(Model):
         self.metadata = metadata
 
 
-class BlobPrefix(Model):
+class BlobPrefix(msrest.serialization.Model):
     """BlobPrefix.
 
     All required parameters must be populated in order to send to Azure.
@@ -193,7 +192,7 @@ class BlobPrefix(Model):
         self.name = name
 
 
-class BlobProperties(Model):
+class BlobProperties(msrest.serialization.Model):
     """Properties of a blob.
 
     All required parameters must be populated in order to send to Azure.
@@ -359,7 +358,7 @@ class BlobProperties(Model):
         self.archive_status = archive_status
 
 
-class Blobs(Model):
+class Blobs(msrest.serialization.Model):
     """Blobs.
 
     :param blob_prefix:
@@ -385,7 +384,7 @@ class Blobs(Model):
         self.blob = blob
 
 
-class ComplexTypeNoMeta(Model):
+class ComplexTypeNoMeta(msrest.serialization.Model):
     """I am a complex type with no XML node.
 
     :param id: The id of the res.
@@ -406,7 +405,7 @@ class ComplexTypeNoMeta(Model):
         self.id = id
 
 
-class ComplexTypeWithMeta(Model):
+class ComplexTypeWithMeta(msrest.serialization.Model):
     """I am a complex type with XML node.
 
     :param id: The id of the res.
@@ -430,7 +429,7 @@ class ComplexTypeWithMeta(Model):
         self.id = id
 
 
-class Container(Model):
+class Container(msrest.serialization.Model):
     """An Azure Storage container.
 
     All required parameters must be populated in order to send to Azure.
@@ -439,8 +438,7 @@ class Container(Model):
     :type name: str
     :param properties: Required. Properties of a container.
     :type properties: ~xmlservice.models.ContainerProperties
-    :param metadata: Dictionary of <paths·xml-
-     headers·get·responses·200·headers·custom_header·schema>.
+    :param metadata: Dictionary of :code:`<string>`.
     :type metadata: dict[str, str]
     """
 
@@ -469,7 +467,7 @@ class Container(Model):
         self.metadata = metadata
 
 
-class ContainerProperties(Model):
+class ContainerProperties(msrest.serialization.Model):
     """Properties of a container.
 
     All required parameters must be populated in order to send to Azure.
@@ -523,7 +521,7 @@ class ContainerProperties(Model):
         self.public_access = public_access
 
 
-class CorsRule(Model):
+class CorsRule(msrest.serialization.Model):
     """CORS is an HTTP feature that enables a web application running under one domain to access resources in another domain. Web browsers implement a security restriction known as same-origin policy that prevents a web page from calling APIs in a different domain; CORS provides a secure way to allow one domain (the origin domain) to call APIs in another domain.
 
     All required parameters must be populated in order to send to Azure.
@@ -610,7 +608,7 @@ class ErrorException(HttpResponseError):
         return error._EXCEPTION_TYPE(response, error)
 
 
-class Error(Model):
+class Error(msrest.serialization.Model):
     """Error.
 
     :param status:
@@ -637,7 +635,7 @@ class Error(Model):
         self.message = message
 
 
-class JSONInput(Model):
+class JSONInput(msrest.serialization.Model):
     """JSONInput.
 
     :param id:
@@ -658,7 +656,7 @@ class JSONInput(Model):
         self.id = id
 
 
-class JSONOutput(Model):
+class JSONOutput(msrest.serialization.Model):
     """JSONOutput.
 
     :param id:
@@ -679,7 +677,7 @@ class JSONOutput(Model):
         self.id = id
 
 
-class ListBlobsResponse(Model):
+class ListBlobsResponse(msrest.serialization.Model):
     """An enumeration of blobs.
 
     All required parameters must be populated in order to send to Azure.
@@ -751,7 +749,7 @@ class ListBlobsResponse(Model):
         self.next_marker = next_marker
 
 
-class ListContainersResponse(Model):
+class ListContainersResponse(msrest.serialization.Model):
     """An enumeration of containers.
 
     All required parameters must be populated in order to send to Azure.
@@ -809,7 +807,7 @@ class ListContainersResponse(Model):
         self.next_marker = next_marker
 
 
-class Logging(Model):
+class Logging(msrest.serialization.Model):
     """Azure Analytics Logging settings.
 
     All required parameters must be populated in order to send to Azure.
@@ -860,7 +858,7 @@ class Logging(Model):
         self.retention_policy = retention_policy
 
 
-class Metrics(Model):
+class Metrics(msrest.serialization.Model):
     """Metrics.
 
     All required parameters must be populated in order to send to Azure.
@@ -869,9 +867,9 @@ class Metrics(Model):
     :type version: str
     :param enabled: Required. Indicates whether metrics are enabled for the Blob service.
     :type enabled: bool
-    :param include_apis: Indicates whether metrics should generate summary statistics for called
+    :param include_ap_is: Indicates whether metrics should generate summary statistics for called
      API operations.
-    :type include_apis: bool
+    :type include_ap_is: bool
     :param retention_policy: the retention policy.
     :type retention_policy: ~xmlservice.models.RetentionPolicy
     """
@@ -883,7 +881,7 @@ class Metrics(Model):
     _attribute_map = {
         'version': {'key': 'Version', 'type': 'str'},
         'enabled': {'key': 'Enabled', 'type': 'bool'},
-        'include_apis': {'key': 'IncludeAPIs', 'type': 'bool'},
+        'include_ap_is': {'key': 'IncludeAPIs', 'type': 'bool'},
         'retention_policy': {'key': 'RetentionPolicy', 'type': 'RetentionPolicy'},
     }
 
@@ -892,18 +890,18 @@ class Metrics(Model):
         *,
         enabled: bool,
         version: Optional[str] = None,
-        include_apis: Optional[bool] = None,
+        include_ap_is: Optional[bool] = None,
         retention_policy: Optional["RetentionPolicy"] = None,
         **kwargs
     ):
         super(Metrics, self).__init__(**kwargs)
         self.version = version
         self.enabled = enabled
-        self.include_apis = include_apis
+        self.include_ap_is = include_ap_is
         self.retention_policy = retention_policy
 
 
-class RetentionPolicy(Model):
+class RetentionPolicy(msrest.serialization.Model):
     """the retention policy.
 
     All required parameters must be populated in order to send to Azure.
@@ -938,7 +936,7 @@ class RetentionPolicy(Model):
         self.days = days
 
 
-class RootWithRefAndMeta(Model):
+class RootWithRefAndMeta(msrest.serialization.Model):
     """I am root, and I ref a model WITH meta.
 
     :param ref_to_model: I am a complex type with XML node.
@@ -964,7 +962,7 @@ class RootWithRefAndMeta(Model):
         self.something = something
 
 
-class RootWithRefAndNoMeta(Model):
+class RootWithRefAndNoMeta(msrest.serialization.Model):
     """I am root, and I ref a model with no meta.
 
     :param ref_to_model: I am a complex type with no XML node.
@@ -990,7 +988,7 @@ class RootWithRefAndNoMeta(Model):
         self.something = something
 
 
-class SignedIdentifier(Model):
+class SignedIdentifier(msrest.serialization.Model):
     """signed identifier.
 
     All required parameters must be populated in order to send to Azure.
@@ -1026,7 +1024,7 @@ class SignedIdentifier(Model):
         self.access_policy = access_policy
 
 
-class Slide(Model):
+class Slide(msrest.serialization.Model):
     """A slide in a slideshow.
 
     :param type:
@@ -1060,13 +1058,13 @@ class Slide(Model):
         self.items = items
 
 
-class Slideshow(Model):
+class Slideshow(msrest.serialization.Model):
     """Data about a slideshow.
 
     :param title:
     :type title: str
-    :param date_property:
-    :type date_property: str
+    :param date:
+    :type date: str
     :param author:
     :type author: str
     :param slides:
@@ -1075,7 +1073,7 @@ class Slideshow(Model):
 
     _attribute_map = {
         'title': {'key': 'title', 'type': 'str', 'xml': {'attr': True}},
-        'date_property': {'key': 'date', 'type': 'str', 'xml': {'attr': True}},
+        'date': {'key': 'date', 'type': 'str', 'xml': {'attr': True}},
         'author': {'key': 'author', 'type': 'str', 'xml': {'attr': True}},
         'slides': {'key': 'slides', 'type': '[Slide]'},
     }
@@ -1087,19 +1085,19 @@ class Slideshow(Model):
         self,
         *,
         title: Optional[str] = None,
-        date_property: Optional[str] = None,
+        date: Optional[str] = None,
         author: Optional[str] = None,
         slides: Optional[List["Slide"]] = None,
         **kwargs
     ):
         super(Slideshow, self).__init__(**kwargs)
         self.title = title
-        self.date_property = date_property
+        self.date = date
         self.author = author
         self.slides = slides
 
 
-class StorageServiceProperties(Model):
+class StorageServiceProperties(msrest.serialization.Model):
     """Storage Service Properties.
 
     :param logging: Azure Analytics Logging settings.

@@ -182,7 +182,7 @@ class TestParameter(object):
     @pytest.mark.asyncio
     async def test_skip_url_encoding(self, azure_client, unencoded_path, unencoded_query):
         await azure_client.skip_url_encoding.get_method_path_valid(unencoded_path)
-        await azure_client.skip_url_encoding.get_path_path_valid(unencoded_path)
+        await azure_client.skip_url_encoding.get_path_valid(unencoded_path)
         await azure_client.skip_url_encoding.get_swagger_path_valid()
         await azure_client.skip_url_encoding.get_method_query_valid(unencoded_query)
         await azure_client.skip_url_encoding.get_path_query_valid(unencoded_query)

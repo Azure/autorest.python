@@ -6,8 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._auto_rest_swagger_ba_tdictionary_service import AutoRestSwaggerBATdictionaryService
+from ._auto_rest_swagger_ba_tdictionary_service import AutoRestSwaggerBATDictionaryService
 from ._version import VERSION
 
 __version__ = VERSION
-__all__ = ['AutoRestSwaggerBATdictionaryService']
+__all__ = ['AutoRestSwaggerBATDictionaryService']

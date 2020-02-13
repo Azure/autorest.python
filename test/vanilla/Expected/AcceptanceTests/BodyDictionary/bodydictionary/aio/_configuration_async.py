@@ -14,8 +14,8 @@ from azure.core.pipeline import policies
 from .._version import VERSION
 
 
-class AutoRestSwaggerBATdictionaryServiceConfiguration(Configuration):
-    """Configuration for AutoRestSwaggerBATdictionaryService
+class AutoRestSwaggerBATDictionaryServiceConfiguration(Configuration):
+    """Configuration for AutoRestSwaggerBATDictionaryService
     Note that all parameters used to create this instance are saved as instance
     attributes.
     """
@@ -24,7 +24,7 @@ class AutoRestSwaggerBATdictionaryServiceConfiguration(Configuration):
         self,
         **kwargs: Any
     ) -> None:
-        super(AutoRestSwaggerBATdictionaryServiceConfiguration, self).__init__(**kwargs)
+        super(AutoRestSwaggerBATDictionaryServiceConfiguration, self).__init__(**kwargs)
 
         self._configure(**kwargs)
         self.user_agent_policy.add_user_agent('azsdk-python-autorestswaggerbatdictionaryservice/{}'.format(VERSION))

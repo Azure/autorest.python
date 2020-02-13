@@ -26,8 +26,7 @@ class FileImportSerializer:
         if module_list != {None}:
             buffer.append(
                 "from {} import {}".format(
-                    package_name,
-                    ", ".join(sorted([mod for mod in module_list if mod is not None]))
+                    package_name, ", ".join(sorted([mod for mod in module_list if mod is not None]))
                 )
             )
         return "\n".join(buffer)

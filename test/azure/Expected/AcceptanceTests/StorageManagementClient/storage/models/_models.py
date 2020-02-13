@@ -6,10 +6,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.serialization import Model
+import msrest.serialization
 
 
-class Bar(Model):
+class Bar(msrest.serialization.Model):
     """The URIs that are used to perform a retrieval of a public blob, queue or table object.
 
     :param recursive_point: The URIs that are used to perform a retrieval of a public blob, queue
@@ -29,7 +29,7 @@ class Bar(Model):
         self.recursive_point = kwargs.get('recursive_point', None)
 
 
-class CheckNameAvailabilityResult(Model):
+class CheckNameAvailabilityResult(msrest.serialization.Model):
     """The CheckNameAvailability operation response.
 
     :param name_available: Gets a boolean value that indicates whether the name is available for
@@ -60,7 +60,7 @@ class CheckNameAvailabilityResult(Model):
         self.message = kwargs.get('message', None)
 
 
-class CustomDomain(Model):
+class CustomDomain(msrest.serialization.Model):
     """The custom domain assigned to this storage account. This can be set via Update.
 
     :param name: Gets or sets the custom domain name. Name is the CNAME source.
@@ -84,7 +84,7 @@ class CustomDomain(Model):
         self.use_sub_domain = kwargs.get('use_sub_domain', None)
 
 
-class Endpoints(Model):
+class Endpoints(msrest.serialization.Model):
     """The URIs that are used to perform a retrieval of a public blob, queue or table object.
 
     :param blob: Gets the blob endpoint.
@@ -121,7 +121,7 @@ class Endpoints(Model):
         self.foo_point = kwargs.get('foo_point', None)
 
 
-class Foo(Model):
+class Foo(msrest.serialization.Model):
     """The URIs that are used to perform a retrieval of a public blob, queue or table object.
 
     :param bar_point: The URIs that are used to perform a retrieval of a public blob, queue or
@@ -141,7 +141,7 @@ class Foo(Model):
         self.bar_point = kwargs.get('bar_point', None)
 
 
-class Resource(Model):
+class Resource(msrest.serialization.Model):
     """Resource.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -285,7 +285,7 @@ class StorageAccount(Resource):
         self.secondary_endpoints = kwargs.get('secondary_endpoints', None)
 
 
-class StorageAccountCheckNameAvailabilityParameters(Model):
+class StorageAccountCheckNameAvailabilityParameters(msrest.serialization.Model):
     """StorageAccountCheckNameAvailabilityParameters.
 
     All required parameters must be populated in order to send to Azure.
@@ -360,7 +360,7 @@ class StorageAccountCreateParameters(Resource):
         self.account_type = kwargs.get('account_type', None)
 
 
-class StorageAccountKeys(Model):
+class StorageAccountKeys(msrest.serialization.Model):
     """The access keys for the storage account.
 
     :param key1: Gets the value of key 1.
@@ -383,7 +383,7 @@ class StorageAccountKeys(Model):
         self.key2 = kwargs.get('key2', None)
 
 
-class StorageAccountListResult(Model):
+class StorageAccountListResult(msrest.serialization.Model):
     """The list storage accounts operation response.
 
     :param value: Gets the list of storage accounts and their properties.
@@ -407,7 +407,7 @@ class StorageAccountListResult(Model):
         self.next_link = kwargs.get('next_link', None)
 
 
-class StorageAccountProperties(Model):
+class StorageAccountProperties(msrest.serialization.Model):
     """StorageAccountProperties.
 
     :param provisioning_state: Gets the status of the storage account at the time the operation was
@@ -479,7 +479,7 @@ class StorageAccountProperties(Model):
         self.secondary_endpoints = kwargs.get('secondary_endpoints', None)
 
 
-class StorageAccountPropertiesCreateParameters(Model):
+class StorageAccountPropertiesCreateParameters(msrest.serialization.Model):
     """StorageAccountPropertiesCreateParameters.
 
     :param account_type: Gets or sets the account type. Possible values include: 'Standard_LRS',
@@ -499,7 +499,7 @@ class StorageAccountPropertiesCreateParameters(Model):
         self.account_type = kwargs.get('account_type', None)
 
 
-class StorageAccountPropertiesUpdateParameters(Model):
+class StorageAccountPropertiesUpdateParameters(msrest.serialization.Model):
     """StorageAccountPropertiesUpdateParameters.
 
     :param account_type: Gets or sets the account type. Possible values include: 'Standard_LRS',
@@ -524,7 +524,7 @@ class StorageAccountPropertiesUpdateParameters(Model):
         self.custom_domain = kwargs.get('custom_domain', None)
 
 
-class StorageAccountRegenerateKeyParameters(Model):
+class StorageAccountRegenerateKeyParameters(msrest.serialization.Model):
     """StorageAccountRegenerateKeyParameters.
 
     :param key_name:  Possible values include: 'key1', 'key2'.
@@ -594,7 +594,7 @@ class StorageAccountUpdateParameters(Resource):
         self.custom_domain = kwargs.get('custom_domain', None)
 
 
-class SubResource(Model):
+class SubResource(msrest.serialization.Model):
     """SubResource.
 
     :param id: Resource Id.
@@ -613,7 +613,7 @@ class SubResource(Model):
         self.id = kwargs.get('id', None)
 
 
-class Usage(Model):
+class Usage(msrest.serialization.Model):
     """Describes Storage Resource Usage.
 
     :param unit: Gets the unit of measurement. Possible values include: 'Count', 'Bytes',
@@ -646,7 +646,7 @@ class Usage(Model):
         self.name = kwargs.get('name', None)
 
 
-class UsageListResult(Model):
+class UsageListResult(msrest.serialization.Model):
     """The List Usages operation response.
 
     :param value: Gets or sets the list Storage Resource Usages.
@@ -665,7 +665,7 @@ class UsageListResult(Model):
         self.value = kwargs.get('value', None)
 
 
-class UsageName(Model):
+class UsageName(msrest.serialization.Model):
     """The Usage Names.
 
     :param value: Gets a string describing the resource name.

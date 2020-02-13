@@ -44,7 +44,6 @@ class HeaderOperations(object):
     def param_existing_key(
         self,
         user_agent,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -52,11 +51,12 @@ class HeaderOperations(object):
 
         :param user_agent: Send a post request with header value "User-Agent": "overwrite".
         :type user_agent: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -86,17 +86,17 @@ class HeaderOperations(object):
     @distributed_trace
     def response_existing_key(
         self,
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get a response with header value "User-Agent": "overwrite".
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -129,7 +129,6 @@ class HeaderOperations(object):
     def param_protected_key(
         self,
         content_type,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -137,11 +136,12 @@ class HeaderOperations(object):
 
         :param content_type: Send a post request with header value "Content-Type": "text/html".
         :type content_type: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -171,17 +171,17 @@ class HeaderOperations(object):
     @distributed_trace
     def response_protected_key(
         self,
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get a response with header value "Content-Type": "text/html".
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -215,7 +215,6 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         value,  # type: int
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -225,11 +224,12 @@ class HeaderOperations(object):
         :type scenario: str
         :param value: Send a post request with header values 1 or -2.
         :type value: int
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -261,7 +261,6 @@ class HeaderOperations(object):
     def response_integer(
         self,
         scenario,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -269,11 +268,12 @@ class HeaderOperations(object):
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -308,7 +308,6 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         value,  # type: int
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -318,11 +317,12 @@ class HeaderOperations(object):
         :type scenario: str
         :param value: Send a post request with header values 105 or -2.
         :type value: long
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -354,7 +354,6 @@ class HeaderOperations(object):
     def response_long(
         self,
         scenario,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -362,11 +361,12 @@ class HeaderOperations(object):
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -401,7 +401,6 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         value,  # type: float
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -411,11 +410,12 @@ class HeaderOperations(object):
         :type scenario: str
         :param value: Send a post request with header values 0.07 or -3.0.
         :type value: float
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -447,7 +447,6 @@ class HeaderOperations(object):
     def response_float(
         self,
         scenario,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -455,11 +454,12 @@ class HeaderOperations(object):
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -494,7 +494,6 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         value,  # type: float
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -504,11 +503,12 @@ class HeaderOperations(object):
         :type scenario: str
         :param value: Send a post request with header values 7e120 or -3.0.
         :type value: float
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -540,7 +540,6 @@ class HeaderOperations(object):
     def response_double(
         self,
         scenario,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -548,11 +547,12 @@ class HeaderOperations(object):
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -587,7 +587,6 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         value,  # type: bool
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -597,11 +596,12 @@ class HeaderOperations(object):
         :type scenario: str
         :param value: Send a post request with header values true or false.
         :type value: bool
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -633,7 +633,6 @@ class HeaderOperations(object):
     def response_bool(
         self,
         scenario,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -641,11 +640,12 @@ class HeaderOperations(object):
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -680,7 +680,6 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         value=None,  # type: Optional[str]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -691,11 +690,12 @@ class HeaderOperations(object):
         :param value: Send a post request with header values "The quick brown fox jumps over the lazy
          dog" or null or "".
         :type value: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -728,7 +728,6 @@ class HeaderOperations(object):
     def response_string(
         self,
         scenario,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -736,11 +735,12 @@ class HeaderOperations(object):
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -775,7 +775,6 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         value,  # type: datetime.date
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -785,11 +784,12 @@ class HeaderOperations(object):
         :type scenario: str
         :param value: Send a post request with header values "2010-01-01" or "0001-01-01".
         :type value: ~datetime.date
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -821,7 +821,6 @@ class HeaderOperations(object):
     def response_date(
         self,
         scenario,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -829,11 +828,12 @@ class HeaderOperations(object):
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -868,7 +868,6 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         value,  # type: datetime.datetime
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -879,11 +878,12 @@ class HeaderOperations(object):
         :param value: Send a post request with header values "2010-01-01T12:34:56Z" or
          "0001-01-01T00:00:00Z".
         :type value: ~datetime.datetime
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -915,7 +915,6 @@ class HeaderOperations(object):
     def response_datetime(
         self,
         scenario,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -923,11 +922,12 @@ class HeaderOperations(object):
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -962,7 +962,6 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         value=None,  # type: Optional[datetime.datetime]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -973,11 +972,12 @@ class HeaderOperations(object):
         :param value: Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon,
          01 Jan 0001 00:00:00 GMT".
         :type value: ~datetime.datetime
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1010,7 +1010,6 @@ class HeaderOperations(object):
     def response_datetime_rfc1123(
         self,
         scenario,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1018,11 +1017,12 @@ class HeaderOperations(object):
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1057,7 +1057,6 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         value,  # type: datetime.timedelta
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1067,11 +1066,12 @@ class HeaderOperations(object):
         :type scenario: str
         :param value: Send a post request with header values "P123DT22H14M12.011S".
         :type value: ~datetime.timedelta
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1103,7 +1103,6 @@ class HeaderOperations(object):
     def response_duration(
         self,
         scenario,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1111,11 +1110,12 @@ class HeaderOperations(object):
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1150,7 +1150,6 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         value,  # type: bytearray
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1160,11 +1159,12 @@ class HeaderOperations(object):
         :type scenario: str
         :param value: Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩".
         :type value: bytearray
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1196,7 +1196,6 @@ class HeaderOperations(object):
     def response_byte(
         self,
         scenario,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1204,11 +1203,12 @@ class HeaderOperations(object):
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1243,7 +1243,6 @@ class HeaderOperations(object):
         self,
         scenario,  # type: str
         value=None,  # type: Optional[Union[str, "models.GreyscaleColors"]]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1253,11 +1252,12 @@ class HeaderOperations(object):
         :type scenario: str
         :param value: Send a post request with header values 'GREY'.
         :type value: str or ~header.models.GreyscaleColors
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1290,7 +1290,6 @@ class HeaderOperations(object):
     def response_enum(
         self,
         scenario,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1298,11 +1297,12 @@ class HeaderOperations(object):
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
         :type scenario: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1335,17 +1335,17 @@ class HeaderOperations(object):
     @distributed_trace
     def custom_request_id(
         self,
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~header.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

@@ -7,10 +7,10 @@
 # --------------------------------------------------------------------------
 
 from azure.core.exceptions import HttpResponseError
-from msrest.serialization import Model
+import msrest.serialization
 
 
-class ArrayOptionalWrapper(Model):
+class ArrayOptionalWrapper(msrest.serialization.Model):
     """ArrayOptionalWrapper.
 
     :param value:
@@ -29,7 +29,7 @@ class ArrayOptionalWrapper(Model):
         self.value = kwargs.get('value', None)
 
 
-class ArrayWrapper(Model):
+class ArrayWrapper(msrest.serialization.Model):
     """ArrayWrapper.
 
     All required parameters must be populated in order to send to Azure.
@@ -54,7 +54,7 @@ class ArrayWrapper(Model):
         self.value = kwargs.get('value', None)
 
 
-class ClassOptionalWrapper(Model):
+class ClassOptionalWrapper(msrest.serialization.Model):
     """ClassOptionalWrapper.
 
     :param value:
@@ -73,7 +73,7 @@ class ClassOptionalWrapper(Model):
         self.value = kwargs.get('value', None)
 
 
-class ClassWrapper(Model):
+class ClassWrapper(msrest.serialization.Model):
     """ClassWrapper.
 
     All required parameters must be populated in order to send to Azure.
@@ -123,7 +123,7 @@ class ErrorException(HttpResponseError):
         return error._EXCEPTION_TYPE(response, error)
 
 
-class Error(Model):
+class Error(msrest.serialization.Model):
     """Error.
 
     :param status:
@@ -147,7 +147,7 @@ class Error(Model):
         self.message = kwargs.get('message', None)
 
 
-class IntOptionalWrapper(Model):
+class IntOptionalWrapper(msrest.serialization.Model):
     """IntOptionalWrapper.
 
     :param value:
@@ -166,7 +166,7 @@ class IntOptionalWrapper(Model):
         self.value = kwargs.get('value', None)
 
 
-class IntWrapper(Model):
+class IntWrapper(msrest.serialization.Model):
     """IntWrapper.
 
     All required parameters must be populated in order to send to Azure.
@@ -191,7 +191,7 @@ class IntWrapper(Model):
         self.value = kwargs.get('value', None)
 
 
-class Product(Model):
+class Product(msrest.serialization.Model):
     """Product.
 
     All required parameters must be populated in order to send to Azure.
@@ -220,7 +220,7 @@ class Product(Model):
         self.name = kwargs.get('name', None)
 
 
-class StringOptionalWrapper(Model):
+class StringOptionalWrapper(msrest.serialization.Model):
     """StringOptionalWrapper.
 
     :param value:
@@ -239,7 +239,7 @@ class StringOptionalWrapper(Model):
         self.value = kwargs.get('value', None)
 
 
-class StringWrapper(Model):
+class StringWrapper(msrest.serialization.Model):
     """StringWrapper.
 
     All required parameters must be populated in order to send to Azure.

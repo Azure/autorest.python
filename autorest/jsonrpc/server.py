@@ -19,21 +19,23 @@ _LOGGER = logging.getLogger(__name__)
 def GetPluginNames():
     return ["codegen", "m2r", "namer"]
 
+
 @dispatcher.add_method
 def Process(plugin_name: str, session_id):
     # pylint: disable=import-outside-toplevel
     """JSON-RPC process call.
     """
     from .stdstream import StdStreamAutorestAPI
+
     with contextlib.closing(StdStreamAutorestAPI(session_id)) as stdstream_connection:
 
         _LOGGER.debug("Autorest called process with plugin_name '%s' and session_id: '%s'", plugin_name, session_id)
         if plugin_name == "m2r":
             from ..m2r import M2R as PluginToLoad
         elif plugin_name == "namer":
-            from ..namer import Namer as PluginToLoad # type: ignore
+            from ..namer import Namer as PluginToLoad  # type: ignore
         elif plugin_name == "codegen":
-            from ..codegen import CodeGenerator as PluginToLoad # type: ignore
+            from ..codegen import CodeGenerator as PluginToLoad  # type: ignore
         else:
             _LOGGER.fatal("Unknown plugin name %s", plugin_name)
             raise RuntimeError(f"Unknown plugin name {plugin_name}")
@@ -43,7 +45,7 @@ def Process(plugin_name: str, session_id):
         try:
             _LOGGER.debug("Starting plugin %s", PluginToLoad.__name__)
             return plugin.process()
-        except Exception:   # pylint: disable=broad-except
+        except Exception:  # pylint: disable=broad-except
             _LOGGER.exception("Python generator raised an exception")
 
 
@@ -55,8 +57,7 @@ def main():
             raise SystemExit("Please pip install ptvsd in order to use VSCode debugging")
 
         # 5678 is the default attach port in the VS Code debug configurations
-        print("Waiting for debugger attach")
-        ptvsd.enable_attach(address=('localhost', 5678), redirect_output=True)
+        ptvsd.enable_attach(address=("localhost", 5678), redirect_output=True)
         ptvsd.wait_for_attach()
         breakpoint()  # pylint: disable=undefined-variable
 
@@ -72,6 +73,7 @@ def main():
         _LOGGER.debug("Message processed")
 
     _LOGGER.debug("Ending JSON RPC server")
+
 
 if __name__ == "__main__":
     main()

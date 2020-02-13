@@ -18,7 +18,7 @@ class Namer(YamlUpdatePlugin):
     """Add Python naming information.
     """
 
-    def update_yaml(self, yaml_code_model) -> None:
+    def update_yaml(self, yaml_data) -> None:
         """Convert in place the YAML str.
         """
-        NameConverter.convert_yaml_names(yaml_code_model)
+        NameConverter.convert_yaml_names(yaml_data)

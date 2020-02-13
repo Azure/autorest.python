@@ -68,7 +68,7 @@ class TestRequiredOptional(object):
         client_required.implicit.put_optional_header(None)
 
     def test_get_optional_global_query(self, client_required):
-        client_required.implicit.get_optional_global_query(None)
+        client_required.implicit.get_optional_global_query(cls=None)
 
     def test_post_optional_integer(self, client_required):
         client_required.explicit.post_optional_integer_parameter(None)

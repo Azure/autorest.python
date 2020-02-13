@@ -43,16 +43,16 @@ class PathsOperations:
     @distributed_trace_async
     async def get_boolean_true(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get true Boolean value on path.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~url.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         bool_path = True
 
@@ -86,16 +86,16 @@ class PathsOperations:
     @distributed_trace_async
     async def get_boolean_false(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get false Boolean value on path.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~url.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         bool_path = False
 
@@ -129,16 +129,16 @@ class PathsOperations:
     @distributed_trace_async
     async def get_int_one_million(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get '1000000' integer value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~url.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         int_path = 1000000
 
@@ -172,16 +172,16 @@ class PathsOperations:
     @distributed_trace_async
     async def get_int_negative_one_million(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get '-1000000' integer value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~url.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         int_path = -1000000
 
@@ -215,16 +215,16 @@ class PathsOperations:
     @distributed_trace_async
     async def get_ten_billion(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get '10000000000' 64 bit integer value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~url.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         long_path = 10000000000
 
@@ -258,16 +258,16 @@ class PathsOperations:
     @distributed_trace_async
     async def get_negative_ten_billion(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get '-10000000000' 64 bit integer value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~url.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         long_path = -10000000000
 
@@ -301,16 +301,16 @@ class PathsOperations:
     @distributed_trace_async
     async def float_scientific_positive(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get '1.034E+20' numeric value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~url.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         float_path = 103400000000000000000
 
@@ -344,16 +344,16 @@ class PathsOperations:
     @distributed_trace_async
     async def float_scientific_negative(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get '-1.034E-20' numeric value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~url.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         float_path = -1.034e-20
 
@@ -387,16 +387,16 @@ class PathsOperations:
     @distributed_trace_async
     async def double_decimal_positive(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get '9999999.999' numeric value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~url.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         double_path = 9999999.999
 
@@ -430,16 +430,16 @@ class PathsOperations:
     @distributed_trace_async
     async def double_decimal_negative(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get '-9999999.999' numeric value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~url.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         double_path = -9999999.999
 
@@ -473,16 +473,16 @@ class PathsOperations:
     @distributed_trace_async
     async def string_unicode(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~url.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         string_path = "啊齄丂狛狜隣郎隣兀﨩"
 
@@ -516,16 +516,16 @@ class PathsOperations:
     @distributed_trace_async
     async def string_url_encoded(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~url.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         string_path = "begin!*'();:@ &=+$,/?#[]end"
 
@@ -559,18 +559,18 @@ class PathsOperations:
     @distributed_trace_async
     async def string_url_non_encoded(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get 'begin!*'();:@&=+$,end.
 
         https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~url.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         string_path = "begin!*'();:@&=+$,end"
 
@@ -604,16 +604,16 @@ class PathsOperations:
     @distributed_trace_async
     async def string_empty(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get ''.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~url.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         string_path = ""
 
@@ -648,19 +648,18 @@ class PathsOperations:
     async def string_null(
         self,
         string_path: str,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get null (should throw).
 
         :param string_path: null string value.
         :type string_path: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~url.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -694,19 +693,18 @@ class PathsOperations:
     async def enum_valid(
         self,
         enum_path: Union[str, "models.UriColor"],
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get using uri with 'green color' in path parameter.
 
         :param enum_path: send the value green.
         :type enum_path: str or ~url.models.UriColor
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~url.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -740,19 +738,18 @@ class PathsOperations:
     async def enum_null(
         self,
         enum_path: Union[str, "models.UriColor"],
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get null (should throw on the client before the request is sent on wire).
 
         :param enum_path: send the value green.
         :type enum_path: str or ~url.models.UriColor
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~url.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -786,19 +783,18 @@ class PathsOperations:
     async def byte_multi_byte(
         self,
         byte_path: bytearray,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
         :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
         :type byte_path: bytearray
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~url.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -831,16 +827,16 @@ class PathsOperations:
     @distributed_trace_async
     async def byte_empty(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get '' as byte array.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~url.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         byte_path = bytearray("", encoding="utf-8")
 
@@ -875,19 +871,18 @@ class PathsOperations:
     async def byte_null(
         self,
         byte_path: bytearray,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get null as byte array (should throw).
 
         :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
         :type byte_path: bytearray
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~url.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -920,16 +915,16 @@ class PathsOperations:
     @distributed_trace_async
     async def date_valid(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get '2012-01-01' as date.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~url.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         date_path = "2012-01-01"
 
@@ -964,19 +959,18 @@ class PathsOperations:
     async def date_null(
         self,
         date_path: datetime.date,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get null as date - this should throw or be unusable on the client side, depending on date representation.
 
         :param date_path: null as date (should throw).
         :type date_path: ~datetime.date
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~url.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1009,16 +1003,16 @@ class PathsOperations:
     @distributed_trace_async
     async def date_time_valid(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get '2012-01-01T01:01:01Z' as date-time.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~url.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         date_time_path = "2012-01-01T01:01:01Z"
 
@@ -1053,19 +1047,18 @@ class PathsOperations:
     async def date_time_null(
         self,
         date_time_path: datetime.datetime,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get null as date-time, should be disallowed or throw depending on representation of date-time.
 
         :param date_time_path: null as date-time.
         :type date_time_path: ~datetime.datetime
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~url.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1099,19 +1092,18 @@ class PathsOperations:
     async def base64_url(
         self,
         base64_url_path: bytes,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get 'lorem' encoded value as 'bG9yZW0' (base64url).
 
         :param base64_url_path: base64url encoded value.
         :type base64_url_path: bytes
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~url.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1145,20 +1137,19 @@ class PathsOperations:
     async def array_csv_in_path(
         self,
         array_path: List[str],
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
 
         :param array_path: an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
          using the csv-array format.
         :type array_path: list[str]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~url.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1192,19 +1183,18 @@ class PathsOperations:
     async def unix_time_url(
         self,
         unix_time_url_path: datetime.datetime,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get the date 2016-04-13 encoded value as '1460505600' (Unix time).
 
         :param unix_time_url_path: Unix time encoded value.
         :type unix_time_url_path: ~datetime.datetime
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~url.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

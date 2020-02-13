@@ -27,7 +27,7 @@ _LOGGER = logging.getLogger(__name__)
 
 class CredentialSchema(BaseSchema):
     def __init__(self):  # pylint: disable=super-init-not-called
-        self.type = 'azure.core.credentials.TokenCredential'
+        self.type = "azure.core.credentials.TokenCredential"
 
     @property
     def serialization_type(self) -> str:
@@ -39,15 +39,16 @@ class CredentialSchema(BaseSchema):
 
     @property
     def type_annotation(self) -> str:
-        return "\"TokenCredential\""
+        return '"TokenCredential"'
 
     @property
     def docstring_text(self) -> str:
-        return 'credential'
+        return "credential"
+
 
 class IOSchema(BaseSchema):
     def __init__(self):  # pylint: disable=super-init-not-called
-        self.type = 'IO'
+        self.type = "IO"
 
     @property
     def serialization_type(self) -> str:
@@ -63,7 +64,7 @@ class IOSchema(BaseSchema):
 
     @property
     def docstring_text(self) -> str:
-        return 'IO'
+        return "IO"
 
     def imports(self):
         file_import = FileImport()
@@ -96,6 +97,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
     :param str custom_base_url: Optional. If user specifies a custom base url, this will override the default
     :param str base_url: Optional. The default base_url. Will include the host from yaml
     """
+
     def __init__(self, options: Dict[str, Any]):
         self.options = options
         self.module_name: str = ""
@@ -122,7 +124,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         :raises: KeyError if schema is not found
         """
         for attr in [self.schemas, self.enums, self.primitives]:
-            for elt_key, elt_value in attr.items(): # type: ignore
+            for elt_key, elt_value in attr.items():  # type: ignore
                 if schema_id == elt_key:
                     return elt_value
         raise KeyError("Didn't find it!!!!!")
@@ -169,7 +171,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             required=True,
             location=ParameterLocation.Other,
             skip_url_encoding=True,
-            constraints=[]
+            constraints=[],
         )
         self.global_parameters.insert(0, credential_parameter)
 
@@ -186,7 +188,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             exceptions=operation.exceptions,
             media_types=operation.media_types,
             want_description_docstring=False,
-            want_tracing=False
+            want_tracing=False,
         )
 
     def format_lro_operations(self) -> None:
@@ -207,36 +209,28 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
 
     def remove_next_operation(self) -> None:
         """Linking paging operations together.
-
-        Could disapear if https://github.com/Azure/autorest.modelerfour/issues/85 done
         """
-        for operation_group in self.operation_groups:
-            # Build an index to be faster
-            op_index = {
-                operation.yaml_data.get('language', {}).get('default', {}).get('name'): operation
-                for operation
-                in operation_group.operations
-            }
+        def _lookup_operation(yaml_id: int) -> Operation:
+            for operation_group in self.operation_groups:
+                for operation in operation_group.operations:
+                    if operation.id == yaml_id:
+                        return operation
+            raise KeyError("Didn't find it!!!!!")
 
+        for operation_group in self.operation_groups:
             next_operations = []
             for operation in operation_group.operations:
-                if isinstance(operation, PagingOperation) and operation.operation_name:
-                    short_op_name = operation.operation_name.split('_')[-1]
-                    if short_op_name not in op_index:
-                        raise ValueError(
-                            f"Could not find {operation.operation_name} in op group " +
-                            f"{operation_group.name} I have {op_index.keys()}"
-                        )
-
-                    next_operation = op_index[short_op_name]
+                # when we add in "LRO" functions we don't include yaml_data, so yaml_data can be empty in these cases
+                next_link_yaml = None
+                if operation.yaml_data and operation.yaml_data['language']['python'].get('paging'):
+                    next_link_yaml = operation.yaml_data['language']['python']['paging'].get('nextLinkOperation')
+                if isinstance(operation, PagingOperation) and next_link_yaml:
+                    next_operation = _lookup_operation(id(next_link_yaml))
                     operation.next_operation = next_operation
                     next_operations.append(next_operation)
 
             operation_group.operations = [
-                operation
-                for operation
-                in operation_group.operations
-                if operation not in next_operations
+                operation for operation in operation_group.operations if operation not in next_operations
             ]
 
     def _add_properties_from_inheritance(self) -> None:
@@ -252,8 +246,9 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                     schema.properties = parent.properties + schema.properties
                     seen_properties: Set[Property] = set()
                     schema.properties = [
-                        p for p in schema.properties
-                        if p.name not in seen_properties and not seen_properties.add(p.name) # type: ignore
+                        p
+                        for p in schema.properties
+                        if p.name not in seen_properties and not seen_properties.add(p.name)  # type: ignore
                     ]
                     parent = parent.base_model
 
@@ -285,6 +280,14 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         self._add_properties_from_inheritance()
         self._add_exceptions_from_inheritance()
 
+    def _populate_target_property(self, parameter: Parameter) -> None:
+        for obj in self.sorted_schemas:
+            for prop in obj.properties:
+                if prop.id == parameter.target_property_name:
+                    parameter.target_property_name = prop.name
+                    return
+        raise KeyError("Didn't find the target property")
+
     def _populate_schema(self, obj: Any) -> None:
         schema_obj = obj.schema
 
@@ -296,6 +299,8 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             except KeyError:
                 _LOGGER.critical("Unable to ref the object")
                 raise
+        if isinstance(obj, Parameter) and obj.target_property_name:
+            self._populate_target_property(obj)
         if isinstance(obj, SchemaResponse) and obj.is_stream_response:
             obj.schema = IOSchema()
 
@@ -312,7 +317,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                     operation.parameters,
                     operation.responses,
                     operation.exceptions,
-                    chain.from_iterable(response.headers for response in operation.responses)
+                    chain.from_iterable(response.headers for response in operation.responses),
                 ):
                     self._populate_schema(obj)
 

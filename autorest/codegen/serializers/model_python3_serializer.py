@@ -14,23 +14,17 @@ class ModelPython3Serializer(ModelBaseSerializer):
     def init_line(model: ObjectSchema) -> List[str]:
         init_properties_declaration = []
         init_line_parameters = [
-            p
-            for p in model.properties
-            if not p.readonly and not p.is_discriminator and not p.constant
+            p for p in model.properties if not p.readonly and not p.is_discriminator and not p.constant
         ]
         init_line_parameters.sort(key=lambda x: x.required, reverse=True)
         if init_line_parameters:
             init_properties_declaration.append("*")
         for param in init_line_parameters:
             if param.required:
-                init_properties_declaration.append(
-                    f"{param.name}: {param.type_annotation}"
-                )
+                init_properties_declaration.append(f"{param.name}: {param.type_annotation}")
             else:
-                default_value = param.schema.get_default_value_declaration()
-                init_properties_declaration.append(
-                    f"{param.name}: {param.type_annotation} = {default_value}"
-                )
+                default_value = param.schema.default_value_declaration
+                init_properties_declaration.append(f"{param.name}: {param.type_annotation} = {default_value}")
 
         return init_properties_declaration
 
@@ -38,7 +32,6 @@ class ModelPython3Serializer(ModelBaseSerializer):
     def init_args(model: ObjectSchema) -> List[str]:
         init_args = []
         if model.base_model:
-            properties_to_initialize = []
             properties_to_pass = []
             for prop in model.properties:
                 if (
@@ -48,28 +41,16 @@ class ModelPython3Serializer(ModelBaseSerializer):
                     and not prop.readonly
                 ):
                     properties_to_pass.append(f"{prop.name}={prop.name}")
-                elif (
-                    prop not in model.base_model.properties
-                    or prop.is_discriminator
-                    or prop.constant
-                ):
-                    properties_to_initialize.append(prop)
             properties_to_pass.append("**kwargs")
-            init_args.append(
-                "super({}, self).__init__({})".format(
-                    model.name, ", ".join(properties_to_pass)
-                )
-            )
+            init_args.append("super({}, self).__init__({})".format(model.name, ", ".join(properties_to_pass)))
         else:
             init_args.append(f"super({model.name}, self).__init__(**kwargs)")
-            properties_to_initialize = model.properties
-        for prop in properties_to_initialize:
+        for prop in ModelPython3Serializer.get_properties_to_initialize(model):
             if prop.readonly:
                 init_args.append(f"self.{prop.name} = None")
             elif prop.is_discriminator:
-                init_args.append(
-                    f"self.{prop.name} = '{model.discriminator_value}'"
-                )
+                discriminator_value = f"'{model.discriminator_value}'" if model.discriminator_value else None
+                init_args.append(f"self.{prop.name} = {discriminator_value}")
             elif not prop.constant:
                 init_args.append(f"self.{prop.name} = {prop.name}")
 
@@ -78,9 +59,7 @@ class ModelPython3Serializer(ModelBaseSerializer):
     def imports(self) -> FileImport:
         file_import = super(ModelPython3Serializer, self).imports()
         for model in self.code_model.sorted_schemas:
-            init_line_parameters = [
-                p for p in model.properties if not p.readonly and not p.is_discriminator
-            ]
+            init_line_parameters = [p for p in model.properties if not p.readonly and not p.is_discriminator]
             for param in init_line_parameters:
                 file_import.merge(param.imports())
 

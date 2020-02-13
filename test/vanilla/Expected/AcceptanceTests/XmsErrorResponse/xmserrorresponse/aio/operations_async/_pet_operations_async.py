@@ -12,7 +12,6 @@ from azure.core.exceptions import HttpResponseError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
-from msrest.serialization import Model
 
 from ... import models
 
@@ -44,19 +43,18 @@ class PetOperations:
     async def get_pet_by_id(
         self,
         pet_id: str,
-        *,
-        cls: ClsType["models.Pet"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Pet":
         """Gets pets by id.
 
         :param pet_id: pet id.
         :type pet_id: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Pet or  or the result of cls(response)
         :rtype: ~xmserrorresponse.models.Pet or None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.Pet"] = kwargs.pop('cls', None )
         error_map = {
             400: HttpResponseError,
             404: lambda response: models.NotFoundErrorBaseException.from_response(response, self._deserialize),
@@ -101,19 +99,18 @@ class PetOperations:
     async def do_something(
         self,
         what_action: str,
-        *,
-        cls: ClsType["models.PetAction"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.PetAction":
         """Asks pet to do something.
 
         :param what_action: what action the pet should do.
         :type what_action: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAction or the result of cls(response)
         :rtype: ~xmserrorresponse.models.PetAction
         :raises: ~xmserrorresponse.models.PetActionErrorException:
         """
+        cls: ClsType["models.PetAction"] = kwargs.pop('cls', None )
         error_map = {
             500: lambda response: models.PetActionErrorException.from_response(response, self._deserialize),
         }

@@ -42,17 +42,17 @@ class ApiVersionDefaultOperations(object):
     @distributed_trace
     def get_method_global_valid(
         self,
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """GET method with api-version modeled in global settings.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -81,17 +81,17 @@ class ApiVersionDefaultOperations(object):
     @distributed_trace
     def get_method_global_not_provided_valid(
         self,
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """GET method with api-version modeled in global settings.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -120,17 +120,17 @@ class ApiVersionDefaultOperations(object):
     @distributed_trace
     def get_path_global_valid(
         self,
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """GET method with api-version modeled in global settings.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -159,17 +159,17 @@ class ApiVersionDefaultOperations(object):
     @distributed_trace
     def get_swagger_global_valid(
         self,
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """GET method with api-version modeled in global settings.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

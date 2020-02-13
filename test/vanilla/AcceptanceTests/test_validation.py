@@ -50,14 +50,25 @@ def client():
         client.api_version = "12-34-5678"
         yield client
 
+@pytest.fixture
+def constant_body():
+    """This is NOT considering the constant body, this should work with
+    the commented line.
+    See https://github.com/Azure/autorest.modelerfour/issues/83
+    """
+    #return Product(child=ChildProduct())
+    return Product(
+        child=ChildProduct(),
+        const_child=ConstantProduct(),
+    )
+
 class TestValidation(object):
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/83")
     def test_with_constant_in_path(self, client):
         client.get_with_constant_in_path()
 
-        body = Product(child=ChildProduct())
-        product = client.post_with_constant_in_body(body=body)
+    def test_post_with_constant_in_body(self, client, constant_body):
+        product = client.post_with_constant_in_body(body=constant_body)
         assert product is not None
 
     def test_min_length_validation(self, client):
@@ -102,30 +113,26 @@ class TestValidation(object):
             assert err.rule ==  "maximum"
             assert err.target ==  "id"
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/83")
-    def test_minimum_ex_validation(self, client):
+    def test_minimum_ex_validation(self, client, constant_body):
         try:
-            tempproduct=Product(child=ChildProduct(), capacity=0)
-            client.validation_of_body("123", 150, tempproduct)
+            constant_body.capacity = 0
+            client.validation_of_body("123", 150, constant_body)
         except ValidationError as err:
             assert err.rule ==  "minimum_ex"
             assert "capacity" in  err.target
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/83")
-    def test_maximum_ex_validation(self, client):
+    def test_maximum_ex_validation(self, client, constant_body):
         try:
-            tempproduct=Product(child=ChildProduct(), capacity=100)
-            client.validation_of_body("123", 150, tempproduct)
+            constant_body.capacity = 100
+            client.validation_of_body("123", 150, constant_body)
         except ValidationError as err:
             assert err.rule ==  "maximum_ex"
             assert "capacity" in  err.target
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/83")
-    def test_max_items_validation(self, client):
+    def test_max_items_validation(self, client, constant_body):
         try:
-            tempproduct=Product(child=ChildProduct(),
-                display_names=["item1","item2","item3","item4","item5","item6","item7"])
-            client.validation_of_body("123", 150, tempproduct)
+            constant_body.display_names = ["item1","item2","item3","item4","item5","item6","item7"]
+            client.validation_of_body("123", 150, constant_body)
         except ValidationError as err:
             assert err.rule ==  "max_items"
             assert "display_names" in  err.target

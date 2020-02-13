@@ -13,6 +13,7 @@ class ImportType(Enum):
     AZURECORE = auto()
     LOCAL = auto()
 
+
 class FileImport:
     def __init__(self):
         # Basic implementation
@@ -22,13 +23,7 @@ class FileImport:
         self._imports: Dict[ImportType, Dict[str, Set[Optional[str]]]] = dict()
 
     def _add_import(self, from_section: str, import_type: ImportType, name_import: Optional[str] = None) -> None:
-        self._imports.setdefault(
-            import_type,
-            dict()
-        ).setdefault(
-            from_section,
-            set()
-        ).add(name_import)
+        self._imports.setdefault(import_type, dict()).setdefault(from_section, set()).add(name_import)
 
     def add_from_import(self, from_section: str, name_import: str, import_type: ImportType) -> None:
         """Add an import to this import block.
