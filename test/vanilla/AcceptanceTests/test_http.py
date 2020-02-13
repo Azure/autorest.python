@@ -102,6 +102,8 @@ class TestHttp(object):
 
         except HttpResponseError as err:
             assert err.model.message == msg
+            assert msg in err.message
+            assert msg in str(err)
             assert err.response.status_code == code
 
     def assert_raises_with_status_and_response_contains(self, code, msg, func, *args, **kwargs):
