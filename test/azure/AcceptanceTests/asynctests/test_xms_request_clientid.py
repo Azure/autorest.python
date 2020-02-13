@@ -60,7 +60,7 @@ class TestXmsRequestClientId(object):
         # expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
 
         try:
-            await client.x_ms_client_request_id.get()
+            await client.xms_client_request_id.get()
             self.fail("HttpResponseError wasn't raised as expected")
 
         except HttpResponseError as err:
@@ -69,4 +69,4 @@ class TestXmsRequestClientId(object):
     @pytest.mark.asyncio
     async def test_xms_request_client_id_in_client(self, client):
         # expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
-        await client.x_ms_client_request_id.get(request_id=None)
+        await client.xms_client_request_id.get(request_id=None)

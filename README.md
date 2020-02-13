@@ -22,14 +22,30 @@ AutoRest needs the below config to pick this up as a plug-in - see https://githu
 #### Python code gen
 
 ``` yaml
-version: 3.0.6198
+version: 3.0.6220
 use-extension:
-  "@autorest/modelerfour": "4.4.162"
+  "@autorest/modelerfour": "4.6.199"
 
 modelerfour:
   group-parameters: true
   flatten-models: true
   flatten-payloads: true
+  naming:
+    parameter: snakecase
+    property: snakecase
+    operation: snakecase
+    operationGroup:  pascalcase
+    choice:  pascalcase
+    choiceValue:  snakecase
+    constant:  snakecase
+    type:  pascalcase
+    local: _ + snakecase
+    global: snakecase
+    preserve-uppercase-max-length: 6
+    override:
+      $host: $host
+      base64: base64
+
 
 pipeline:
 

@@ -111,9 +111,9 @@ class TestString(object):
 
     @pytest.mark.asyncio
     async def test_enum_not_expandable(self, client):
-        assert Colors.redcolor ==  (await client.enum.get_not_expandable())
+        assert Colors.red_color ==  (await client.enum.get_not_expandable())
         await client.enum.put_not_expandable('red color')
-        await client.enum.put_not_expandable(Colors.redcolor)
+        await client.enum.put_not_expandable(Colors.red_color)
         with pytest.raises(HttpResponseError):
             await client.enum.put_not_expandable('not a colour')
 
@@ -132,10 +132,10 @@ class TestString(object):
 
     @pytest.mark.asyncio
     async def test_enum_referenced(self, client):
-        await client.enum.put_referenced(Colors.redcolor)
+        await client.enum.put_referenced(Colors.red_color)
         await client.enum.put_referenced("red color")
 
-        assert (await client.enum.get_referenced()) ==  Colors.redcolor
+        assert (await client.enum.get_referenced()) ==  Colors.red_color
 
     @pytest.mark.asyncio
     async def test_enum_referenced_constant(self, client):

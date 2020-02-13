@@ -409,7 +409,7 @@ class MultipleResponsesOperations:
     get200_model201_model_default_error400_valid.metadata = {'url': '/http/payloads/200/A/201/B/default/Error/response/400/valid'}
 
     @distributed_trace_async
-    async def get200_model_a201_model_c404_model_ddefault_error200_valid(
+    async def get200_model_a201_model_c404_model_d_default_error200_valid(
         self,
         **kwargs
     ) -> Union["models.MyException", "models.C", "models.D"]:
@@ -424,7 +424,7 @@ class MultipleResponsesOperations:
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
-        url = self.get200_model_a201_model_c404_model_ddefault_error200_valid.metadata['url']
+        url = self.get200_model_a201_model_c404_model_d_default_error200_valid.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
@@ -457,10 +457,10 @@ class MultipleResponsesOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200_model_a201_model_c404_model_ddefault_error200_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid'}
+    get200_model_a201_model_c404_model_d_default_error200_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid'}
 
     @distributed_trace_async
-    async def get200_model_a201_model_c404_model_ddefault_error201_valid(
+    async def get200_model_a201_model_c404_model_d_default_error201_valid(
         self,
         **kwargs
     ) -> Union["models.MyException", "models.C", "models.D"]:
@@ -475,7 +475,7 @@ class MultipleResponsesOperations:
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
-        url = self.get200_model_a201_model_c404_model_ddefault_error201_valid.metadata['url']
+        url = self.get200_model_a201_model_c404_model_d_default_error201_valid.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
@@ -508,10 +508,10 @@ class MultipleResponsesOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200_model_a201_model_c404_model_ddefault_error201_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid'}
+    get200_model_a201_model_c404_model_d_default_error201_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid'}
 
     @distributed_trace_async
-    async def get200_model_a201_model_c404_model_ddefault_error404_valid(
+    async def get200_model_a201_model_c404_model_d_default_error404_valid(
         self,
         **kwargs
     ) -> Union["models.MyException", "models.C", "models.D"]:
@@ -526,7 +526,7 @@ class MultipleResponsesOperations:
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
-        url = self.get200_model_a201_model_c404_model_ddefault_error404_valid.metadata['url']
+        url = self.get200_model_a201_model_c404_model_d_default_error404_valid.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
@@ -559,10 +559,10 @@ class MultipleResponsesOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200_model_a201_model_c404_model_ddefault_error404_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid'}
+    get200_model_a201_model_c404_model_d_default_error404_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid'}
 
     @distributed_trace_async
-    async def get200_model_a201_model_c404_model_ddefault_error400_valid(
+    async def get200_model_a201_model_c404_model_d_default_error400_valid(
         self,
         **kwargs
     ) -> Union["models.MyException", "models.C", "models.D"]:
@@ -577,7 +577,7 @@ class MultipleResponsesOperations:
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
-        url = self.get200_model_a201_model_c404_model_ddefault_error400_valid.metadata['url']
+        url = self.get200_model_a201_model_c404_model_d_default_error400_valid.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
@@ -610,7 +610,7 @@ class MultipleResponsesOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200_model_a201_model_c404_model_ddefault_error400_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid'}
+    get200_model_a201_model_c404_model_d_default_error400_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid'}
 
     @distributed_trace_async
     async def get202_none204_none_default_error202_none(

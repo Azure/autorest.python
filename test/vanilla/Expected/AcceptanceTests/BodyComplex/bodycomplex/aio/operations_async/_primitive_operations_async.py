@@ -904,7 +904,7 @@ class PrimitiveOperations:
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
-        complex_body = models.DurationWrapper(field=field)
+        _complex_body = models.DurationWrapper(field=field)
 
         # Construct URL
         url = self.put_duration.metadata['url']
@@ -917,7 +917,7 @@ class PrimitiveOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(complex_body, 'DurationWrapper')
+        body_content = self._serialize.body(_complex_body, 'DurationWrapper')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
@@ -995,7 +995,7 @@ class PrimitiveOperations:
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
-        complex_body = models.ByteWrapper(field=field)
+        _complex_body = models.ByteWrapper(field=field)
 
         # Construct URL
         url = self.put_byte.metadata['url']
@@ -1008,7 +1008,7 @@ class PrimitiveOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(complex_body, 'ByteWrapper')
+        body_content = self._serialize.body(_complex_body, 'ByteWrapper')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)

@@ -104,9 +104,9 @@ class TestString(object):
         assert client.string.get_not_provided() is None
 
     def test_enum_not_expandable(self, client):
-        assert Colors.redcolor ==  client.enum.get_not_expandable()
+        assert Colors.red_color ==  client.enum.get_not_expandable()
         client.enum.put_not_expandable('red color')
-        client.enum.put_not_expandable(Colors.redcolor)
+        client.enum.put_not_expandable(Colors.red_color)
         # Autorest v3 is switching behavior here. Old Autorest would have thrown a serialization error,
         # but now we allow the user to pass strings as enums, so the raised exception is different.
         with pytest.raises(HttpResponseError):
@@ -123,10 +123,10 @@ class TestString(object):
         assert client.string.get_null_base64_url_encoded() is None
 
     def test_enum_referenced(self, client):
-        client.enum.put_referenced(Colors.redcolor)
+        client.enum.put_referenced(Colors.red_color)
         client.enum.put_referenced("red color")
 
-        assert client.enum.get_referenced() ==  Colors.redcolor
+        assert client.enum.get_referenced() ==  Colors.red_color
 
     def test_enum_referenced_constant(self, client):
         client.enum.put_referenced_constant()
