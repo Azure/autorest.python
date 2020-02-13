@@ -13,6 +13,9 @@ class MetadataSerializer:
         self.code_model = code_model
 
     def serialize(self) -> Dict[str, Any]:
+        operation_mixin_groups = next((operation_group for operation_group in self.code_model.operation_groups if operation_group.is_empty_operation_group), [])
+        if operation_mixin_groups:
+            operation_mixin_groups = operation_mixin_groups.operations
         return json.dumps(
             {
                 "version": self.code_model.options['package_version'],
@@ -27,10 +30,10 @@ class MetadataSerializer:
                 },
                 "operation_mixins": {
                     operation.name: {
-                        doc: "FIXME",
-                        signature: "FIXME",
-                        call: "FIXME"
-                    } for operation in next((operation_group for operation_group in self.code_model.operation_groups if operation_group.is_empty_operation_group), [])
+                        "doc": "FIXME",
+                        "signature": "FIXME",
+                        "call": "FIXME"
+                    } for operation in operation_mixin_groups
                 }
                 # "operation_mixins": {
                 #     operation_group.name: {
