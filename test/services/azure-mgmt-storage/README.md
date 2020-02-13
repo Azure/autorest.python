@@ -53,7 +53,7 @@ input-file:
 - https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/storage/resource-manager/Microsoft.Storage/stable/2019-06-01/blob.json
 - https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/storage/resource-manager/Microsoft.Storage/stable/2019-06-01/file.json
 namespace: azure.mgmt.storage.v2019_06_01
-output-folder: F:/azure-sdk-for-python/sdk/storage/azure-mgmt-storage/azure/mgmt/storage/v2019_06_01
+output-folder: generated/azure/mgmt/storage/v2019_06_01
 package-version: '2019-06-01'
 ```
 
@@ -64,7 +64,7 @@ input-file:
 - https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/storage/resource-manager/Microsoft.Storage/stable/2019-04-01/blob.json
 - https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/storage/resource-manager/Microsoft.Storage/stable/2019-04-01/file.json
 namespace: azure.mgmt.storage.v2019_04_01
-output-folder: F:/azure-sdk-for-python/sdk/storage/azure-mgmt-storage/azure/mgmt/storage/v2019_04_01
+output-folder: generated/azure/mgmt/storage/v2019_04_01
 package-version: '2019-04-01'
 ```
 
@@ -75,7 +75,7 @@ input-file:
 - https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/storage/resource-manager/Microsoft.Storage/stable/2018-11-01/storage.json
 - https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/storage/resource-manager/Microsoft.Storage/stable/2018-11-01/blob.json
 namespace: azure.mgmt.storage.v2018_11_01
-output-folder: F:/azure-sdk-for-python/sdk/storage/azure-mgmt-storage/azure/mgmt/storage/v2018_11_01
+output-folder: generated/azure/mgmt/storage/v2018_11_01
 package-version: '2018-11-01'
 ```
 
@@ -87,7 +87,7 @@ input-file:
 - https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/storage/resource-manager/Microsoft.Storage/stable/2018-07-01/blob.json
 - https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/storage/resource-manager/Microsoft.Storage/preview/2018-03-01-preview/managementpolicy.json
 namespace: azure.mgmt.storage.v2018_07_01
-output-folder: F:/azure-sdk-for-python/sdk/storage/azure-mgmt-storage/azure/mgmt/storage/v2018_07_01
+output-folder: generated/azure/mgmt/storage/v2018_07_01
 package-version: '2018-07-01'
 ```
 
@@ -98,7 +98,7 @@ input-file:
 - https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/storage/resource-manager/Microsoft.Storage/preview/2018-03-01-preview/storage.json
 - https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/storage/resource-manager/Microsoft.Storage/preview/2018-03-01-preview/blob.json
 namespace: azure.mgmt.storage.v2018_03_01_preview
-output-folder: F:/azure-sdk-for-python/sdk/storage/azure-mgmt-storage/azure/mgmt/storage/v2018_03_01_preview
+output-folder: generated/azure/mgmt/storage/v2018_03_01_preview
 package-version: '2018-03-01-preview'
 ```
 
@@ -109,7 +109,7 @@ input-file:
 - https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/storage/resource-manager/Microsoft.Storage/stable/2018-02-01/storage.json
 - https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/storage/resource-manager/Microsoft.Storage/stable/2018-02-01/blob.json
 namespace: azure.mgmt.storage.v2018_02_01
-output-folder: F:/azure-sdk-for-python/sdk/storage/azure-mgmt-storage/azure/mgmt/storage/v2018_02_01
+output-folder: generated/azure/mgmt/storage/v2018_02_01
 package-version: '2018-02-01'
 ```
 
@@ -119,7 +119,7 @@ package-version: '2018-02-01'
 input-file:
 - https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/storage/resource-manager/Microsoft.Storage/stable/2017-10-01/storage.json
 namespace: azure.mgmt.storage.v2017_10_01
-output-folder: F:/azure-sdk-for-python/sdk/storage/azure-mgmt-storage/azure/mgmt/storage/v2017_10_01
+output-folder: generated/azure/mgmt/storage/v2017_10_01
 package-version: '2017-10-01'
 ```
 
@@ -129,7 +129,7 @@ package-version: '2017-10-01'
 input-file:
 - https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/storage/resource-manager/Microsoft.Storage/stable/2017-06-01/storage.json
 namespace: azure.mgmt.storage.v2017_06_01
-output-folder: F:/azure-sdk-for-python/sdk/storage/azure-mgmt-storage/azure/mgmt/storage/v2017_06_01
+output-folder: generated/azure/mgmt/storage/v2017_06_01
 package-version: '2017-06-01'
 ```
 
@@ -139,7 +139,7 @@ package-version: '2017-06-01'
 input-file:
 - https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/storage/resource-manager/Microsoft.Storage/stable/2016-12-01/storage.json
 namespace: azure.mgmt.storage.v2016_12_01
-output-folder: F:/azure-sdk-for-python/sdk/storage/azure-mgmt-storage/azure/mgmt/storage/v2016_12_01
+output-folder: generated/azure/mgmt/storage/v2016_12_01
 package-version: '2016-12-01'
 ```
 
@@ -149,7 +149,7 @@ package-version: '2016-12-01'
 input-file:
 - https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/storage/resource-manager/Microsoft.Storage/stable/2016-01-01/storage.json
 namespace: azure.mgmt.storage.v2016_01_01
-output-folder: F:/azure-sdk-for-python/sdk/storage/azure-mgmt-storage/azure/mgmt/storage/v2016_01_01
+output-folder: generated/azure/mgmt/storage/v2016_01_01
 package-version: '2016-01-01'
 ```
 
@@ -159,6 +159,6 @@ package-version: '2016-01-01'
 input-file:
 - https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/storage/resource-manager/Microsoft.Storage/stable/2015-06-15/storage.json
 namespace: azure.mgmt.storage.v2015_06_15
-output-folder: F:/azure-sdk-for-python/sdk/storage/azure-mgmt-storage/azure/mgmt/storage/v2015_06_15
+output-folder: generated/azure/mgmt/storage/v2015_06_15
 package-version: '2015-06-15'
 ```
