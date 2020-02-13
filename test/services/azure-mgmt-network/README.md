@@ -22,6 +22,9 @@ autorest --use=C:/work/autorest.python --version=2.0.4280
 
 ### Settings
 ``` yaml
+title: NetworkManagementClient
+description: Network Client
+openapi-type: arm
 package-name: azure-mgmt-network
 license-header: MICROSOFT_MIT_NO_VERSION
 azure-arm: true
