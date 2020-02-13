@@ -228,11 +228,16 @@ class TestModelFlatteningTests(object):
         )
         simple_product.additional_properties = {} # Not the purpose of this test. This enables the ==.
 
-        result = client.post_flattened_simple_product("123", "max name", "product description", None, "http://foo")
+        result = client.post_flattened_simple_product(
+            "123", # product_id
+            "product description", # description
+            "max name", # max_product_display_name
+            None, # generic_value
+            "http://foo", # odata_value
+        )
         result.additional_properties = {} # Not the purpose of this test. This enables the ==.
         assert result ==  simple_product
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/14")
     def test_model_flattening_with_grouping(self, client):
         from modelflattening.models import FlattenParameterGroup
 
