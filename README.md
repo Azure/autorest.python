@@ -44,7 +44,6 @@ modelerfour:
     preserve-uppercase-max-length: 6
     override:
       $host: $host
-      json: JSON
       base64: base64
 
 
