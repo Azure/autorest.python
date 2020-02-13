@@ -3,44 +3,38 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import importlib
-import pkgutil
 import sys
 import argparse
 import logging
-import azure
 import json
 import shutil
 
 from collections import defaultdict
 from pathlib import Path
-from typing import Any, Dict, List, Tuple, Optional, Union
-
+from typing import Dict, List, Tuple, Optional, Union, cast
+import pkg_resources
 from .multiapi_serializer import MultiAPISerializer
 
-try:
-    import msrestazure
-except:  # Install msrestazure. Would be best to mock it, since we don't need it, but all scenarios I know are fine with a pip install for now
-    import subprocess
-
-    subprocess.call(
-        sys.executable + " -m pip install msrestazure", shell=True
-    )  # Use shell to use venv if available
-
-try:
-    from jinja2 import Template, FileSystemLoader, Environment
-except:
-    import subprocess
-
-    subprocess.call(
-        sys.executable + " -m pip install jinja2", shell=True
-    )  # Use shell to use venv if available
-    from jinja2 import Template, FileSystemLoader, Environment
-
-import pkg_resources
 pkg_resources.declare_namespace("azure")
 
 _LOGGER = logging.getLogger(__name__)
+
+def _patch_import(file_path: Union[str, Path]) -> None:
+    """If multi-client package, we need to patch import to be
+    from ..version
+    and not
+    from .version
+    That should probably means those files should become a template, but since right now
+    it's literally one dot, let's do it the raw way.
+    """
+    # That's a dirty hack, maybe it's worth making configuration a template?
+    with open(file_path, "rb") as read_fd:
+        conf_bytes = read_fd.read()
+    conf_bytes = conf_bytes.replace(
+        b" .version", b" ..version"
+    )  # Just a dot right? Worth its own template for that? :)
+    with open(file_path, "wb") as write_fd:
+        write_fd.write(conf_bytes)
 
 def _parse_input(input_parameter: str):
     """From a syntax like package_name#submodule, build a package name
@@ -66,17 +60,18 @@ def _resolve_package_directory(package_name: str, sdk_root: Path):
 
     if len(packages) > 1:
         print(
-            f"There should only be a single package matched in either repository structure. The following were found: {packages}"
+            "There should only be a single package matched in either repository structure." +
+            f" The following were found: {packages}"
         )
         sys.exit(1)
     return str(packages[0].relative_to(sdk_root))
 
-def _get_paths_to_versions(path_to_package: str) -> List[str]:
+def _get_paths_to_versions(path_to_package: Path) -> List[Path]:
 
     paths_to_versions = []
     for child in [x for x in path_to_package.iterdir() if x.is_dir()]:
         child_dir = (path_to_package / child).resolve()
-        if Path(child_dir / '_metadata.json') in [x for x in child_dir.iterdir()]:
+        if Path(child_dir / '_metadata.json') in child_dir.iterdir():
             paths_to_versions.append(child_dir)
     return paths_to_versions
 
@@ -110,8 +105,8 @@ def _build_operation_meta(paths_to_versions: List[Path]):
     }
     mod_to_api_version => {'v2018_05_01': '2018-05-01'}
     """
-    mod_to_api_version = defaultdict(str)
-    versioned_operations_dict = defaultdict(list)
+    mod_to_api_version: Dict[str, str] = defaultdict(str)
+    versioned_operations_dict: Dict[str, List[Tuple[str, str]]] = defaultdict(list)
     for version_path in paths_to_versions:
         with open(version_path / "_metadata.json") as f:
             metadata_json = json.load(f)
@@ -122,7 +117,7 @@ def _build_operation_meta(paths_to_versions: List[Path]):
             versioned_operations_dict[operation_group].append((version_path.name, operation_group_class_name))
     return versioned_operations_dict, mod_to_api_version
 
-def _build_operation_mixin_meta(paths_to_versions: List[Path]):
+def _build_operation_mixin_meta(paths_to_versions: List[Path]) -> Dict[str, Dict[str, List[str]]]:
     """Introspect the client:
 
     version_dict => {
@@ -136,7 +131,7 @@ def _build_operation_mixin_meta(paths_to_versions: List[Path]):
         }
     }
     """
-    mixin_operations = {}
+    mixin_operations: Dict[str, Dict[str, List[str]]] = {}
     for version_path in paths_to_versions:
         with open(version_path / "_metadata.json") as f:
             metadata_json = json.load(f)
@@ -150,15 +145,15 @@ def _build_operation_mixin_meta(paths_to_versions: List[Path]):
             ).append(version_path.name)
             mixin_operations[func_name]['doc'] = func['doc']
             mixin_operations[func_name]['signature'] = func['signature']
-            mixin_operations[func_name][call] = func['call']
+            mixin_operations[func_name]['call'] = func['call']
     return mixin_operations
 
 def _build_last_rt_list(
     versioned_operations_dict: Dict[str, Tuple[str, str]],
-    mixin_operations: Dict[str, Dict[str, Union[str, List[str]]]],
+    mixin_operations: Dict[str, Dict[str, List[str]]],
     last_api_version: str,
     preview_mode: bool
-):
+) -> Dict[str, str]:
     """Build the a mapping RT => API version if RT doesn't exist in latest detected API version.
 
     Example:
@@ -174,10 +169,11 @@ def _build_last_rt_list(
     Then, if I put "RT2: 2019-06-01-preview" in the list, this means I have to make
     "2019-06-01-preview" the default for models loading (otherwise "RT2: 2019-06-01-preview" won't work).
     But this likely breaks RT1 default operations at "2019-05-01", with default models at "2019-06-01-preview"
-    since "models" are shared for the entire set of operations groups (I wished models would be split by operation groups, but meh, that's not the case)
+    since "models" are shared for the entire set of operations groups (I wished models would be split by
+    operation groups, but meh, that's not the case)
 
-    So, until we have a smarter Autorest to deal with that, only preview RTs which do not share models with a stable RT can be added to this map.
-    In this case, RT2 is out, RT3 is in.
+    So, until we have a smarter Autorest to deal with that, only preview RTs which do not share models with
+    a stable RT can be added to this map. In this case, RT2 is out, RT3 is in.
     """
 
     def there_is_a_rt_that_contains_api_version(rt_dict, api_version):
@@ -205,7 +201,8 @@ def _build_last_rt_list(
         local_last_api_version = _get_floating_latest(api_versions_list, preview_mode)
         if local_last_api_version == last_api_version:
             continue
-        # If some others RT contains "local_last_api_version", and it's greater than the future default, danger, don't profile it
+        # If some others RT contains "local_last_api_version", and
+        # if it's greater than the future default, danger, don't profile it
         if (
             there_is_a_rt_that_contains_api_version(
                 versioned_dict, local_last_api_version
@@ -224,7 +221,7 @@ class MultiAPI:
     def process(self) -> bool:
         # If True, means the auto-profile will consider preview versions.
         # If not, if it exists a stable API version for a global or RT, will always be used
-        preview_mode = self.default_api and "preview" in self.default_api
+        preview_mode = cast(bool, self.default_api and "preview" in self.default_api)
 
         # The only known multi-client package right now is azure-mgmt-resource
         is_multi_client_package = "#" in self.input_str
@@ -252,19 +249,15 @@ class MultiAPI:
             ][0]
             _LOGGER.info("Default API version will be: %s", last_api_version)
 
-        last_api_path = path_to_package / last_api_version
-
         # I need default_api to be v2019_06_07_preview shaped if it exists, let's be smart
         # and change it automatically so I can take both syntax as input
         if self.default_api and not self.default_api.startswith("v"):
             last_api_version = [
                 mod_api
                 for mod_api, real_api in mod_to_api_version.items()
-                if real_api == default_api
+                if real_api == self.default_api
             ][0]
             _LOGGER.info("Default API version will be: %s", last_api_version)
-
-        last_api_path = path_to_package / last_api_version
 
         # In case we are transitioning from a single api generation, clean old folders
         shutil.rmtree(str(path_to_package / "operations"), ignore_errors=True)
@@ -280,8 +273,8 @@ class MultiAPI:
         )
         if is_multi_client_package:
             _LOGGER.warning("Patching multi-api client basic files")
-            patch_import(path_to_package / "_configuration.py")
-            patch_import(path_to_package / "__init__.py")
+            _patch_import(path_to_package / "_configuration.py")
+            _patch_import(path_to_package / "__init__.py")
 
         # Detect if this client is using an operation mixin (Network)
         # Operation mixins are available since Autorest.Python 4.x

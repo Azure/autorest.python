@@ -5,7 +5,6 @@
 # --------------------------------------------------------------------------
 
 from jinja2 import Environment, PackageLoader
-from typing import Dict, List, Union
 
 
 class MultiAPISerializer:
@@ -21,7 +20,7 @@ class MultiAPISerializer:
             lstrip_blocks=True,
         )
 
-    def serialize(self) -> str:
+    def serialize(self):
         template = self.env.get_template("multiapi_service_client.py.jinja2")
         result = template.render(**self.conf)
 
