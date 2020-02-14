@@ -4,13 +4,24 @@
 # license information.
 # --------------------------------------------------------------------------
 import json
-from typing import Any, List, Dict, Optional
+from typing import Any, List, Dict, Optional, Set, Tuple
 from ..models import CodeModel, Operation, OperationGroup
+
 
 
 class MetadataSerializer:
     def __init__(self, code_model: CodeModel):
         self.code_model = code_model
+
+    def _choose_api_version(self) -> Tuple[str, List[str]]:
+        chosen_version = ""
+        total_api_version_set: Set[str] = set()
+        for operation_group in self.code_model.operation_groups:
+            total_api_version_set.update(operation_group.api_versions)
+        if len(total_api_version_set) == 1:
+            chosen_version = total_api_version_set[0]
+        return chosen_version, total_api_version_set
+
 
     def serialize(self) -> str:
         mixin_operation_group: Optional[OperationGroup] = next(
@@ -21,9 +32,12 @@ class MetadataSerializer:
         mixin_operations: List[Operation] = []
         if mixin_operation_group:
             mixin_operations = mixin_operation_group.operations
+        chosen_version, total_api_version_set = self._choose_api_version()
+
         return json.dumps(
             {
-                "version": self.code_model.options['package_version'],
+                "chosen_version": chosen_version,
+                "all_versions": total_api_version_set,
                 "client": {
                     "name": self.code_model.class_name,
                     "filename": f"_{self.code_model.module_name}.py",

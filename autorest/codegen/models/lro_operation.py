@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Any, Optional, Set
 from .imports import FileImport
 from .operation import Operation
 from .parameter import Parameter
@@ -22,6 +22,7 @@ class LROOperation(Operation):
         description: str,
         url: str,
         method: str,
+        api_versions: Set[str],
         summary: Optional[str] = None,
         parameters: List[Parameter] = None,
         responses: List[SchemaResponse] = None,
@@ -36,6 +37,7 @@ class LROOperation(Operation):
             description,
             url,
             method,
+            api_versions,
             summary,
             parameters,
             responses,
