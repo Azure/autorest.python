@@ -156,7 +156,7 @@ class Product(msrest.serialization.Model):
     _validation = {
         'display_names': {'max_items': 6, 'min_items': 0, 'unique': True},
         'capacity': {'maximum_ex': 100, 'minimum_ex': 0},
-        'image': {'pattern': 'http://\\w+'},
+        'image': {'pattern': r'http://\w+'},
         'child': {'required': True},
         'const_child': {'required': True},
         'const_int': {'required': True, 'constant': True},
