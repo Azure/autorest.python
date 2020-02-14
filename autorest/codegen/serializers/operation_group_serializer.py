@@ -41,5 +41,6 @@ class OperationGroupSerializer:
         if self.operation_group.is_empty_operation_group:
             basename = self.code_model.module_name
         async_suffix = "_async" if self.async_mode else ""
-
+        if basename == 'operations':
+            return f"_operations{async_suffix}.py"
         return f"_{basename}_operations{async_suffix}.py"

@@ -68,7 +68,7 @@ class TestXml(object):
 
         slideshow = client.xml.get_simple()
         assert slideshow.title == "Sample Slide Show"
-        assert slideshow.date == "Date of publication"
+        assert slideshow.date_property == "Date of publication"
         assert slideshow.author == "Yours Truly"
         assert len(slideshow.slides) == 2
         slides = slideshow.slides
