@@ -290,7 +290,7 @@ class MultiAPI:
         mixin_operations = _build_operation_mixin_meta(paths_to_versions)
 
         # get client name from default api version
-        path_to_default_version = ""
+        path_to_default_version = Path()
         for path_to_version in paths_to_versions:
             if last_api_version.replace("-", "_") == path_to_version.stem:
                 path_to_default_version = path_to_version
