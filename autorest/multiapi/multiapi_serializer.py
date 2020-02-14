@@ -20,9 +20,12 @@ class MultiAPISerializer:
             lstrip_blocks=True,
         )
 
-    def serialize(self):
+    def serialize_multiapi_client(self):
         template = self.env.get_template("multiapi_service_client.py.jinja2")
         result = template.render(**self.conf)
 
         with self.output_filename.open("w") as fd:
             fd.write(result)
+
+    def serialize_multiapi_operation_mixins(self):
+        template = self.env.get_template("multiapi_operations_mixin.py.jinja2")
