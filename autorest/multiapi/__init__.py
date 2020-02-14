@@ -11,10 +11,7 @@ import shutil
 from collections import defaultdict
 from pathlib import Path
 from typing import Dict, List, Tuple, Union, cast
-import pkg_resources
 from .multiapi_serializer import MultiAPISerializer
-
-pkg_resources.declare_namespace("azure")
 
 _LOGGER = logging.getLogger(__name__)
 
