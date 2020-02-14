@@ -18,9 +18,17 @@ class MetadataSerializer:
         total_api_version_set: Set[str] = set()
         for operation_group in self.code_model.operation_groups:
             total_api_version_set.update(operation_group.api_versions)
-        if len(total_api_version_set) == 1:
-            chosen_version = total_api_version_set[0]
-        return chosen_version, total_api_version_set
+
+        total_api_version_list = list(total_api_version_set)
+        if len(total_api_version_list) == 1:
+            chosen_version = total_api_version_list[0]
+        elif len(total_api_version_list) > 1:
+            module_version = self.code_model.namespace.split(".")[-1]
+            for api_version in total_api_version_list:
+                if "v{}".format(api_version.replace("-", "_")) == module_version:
+                    chosen_version = api_version
+
+        return chosen_version, total_api_version_list
 
 
     def serialize(self) -> str:
@@ -32,12 +40,12 @@ class MetadataSerializer:
         mixin_operations: List[Operation] = []
         if mixin_operation_group:
             mixin_operations = mixin_operation_group.operations
-        chosen_version, total_api_version_set = self._choose_api_version()
+        chosen_version, total_api_version_list = self._choose_api_version()
 
         return json.dumps(
             {
                 "chosen_version": chosen_version,
-                "all_versions": total_api_version_set,
+                "total_api_version_list": total_api_version_list,
                 "client": {
                     "name": self.code_model.class_name,
                     "filename": f"_{self.code_model.module_name}.py",

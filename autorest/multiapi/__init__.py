@@ -110,7 +110,17 @@ def _build_operation_meta(paths_to_versions: List[Path]):
         with open(version_path / "_metadata.json") as f:
             metadata_json = json.load(f)
         operation_groups = metadata_json['operation_groups']
-        version = metadata_json['version']
+        version = metadata_json['chosen_version']
+        total_api_version_list = metadata_json['total_api_version_list']
+        if not version:
+            if total_api_version_list:
+                sys.exit(
+                    f"Unable to match {total_api_version_list} to label {version_path.stem}"
+                )
+            else:
+                sys.exit(
+                    f"Unable to extract api version of {version_path.stem}"
+                )
         mod_to_api_version[version_path.name] = version
         for operation_group, operation_group_class_name in operation_groups.items():
             versioned_operations_dict[operation_group].append((version_path.name, operation_group_class_name))
@@ -279,8 +289,13 @@ class MultiAPI:
         # Operation mixins are available since Autorest.Python 4.x
         mixin_operations = _build_operation_mixin_meta(paths_to_versions)
 
-        # get client name from latest api version
-        with open(paths_to_versions[-1] / "_metadata.json") as f:
+        # get client name from default api version
+        path_to_default_version = ""
+        for path_to_version in paths_to_versions:
+            if last_api_version.replace("-", "_") == path_to_version.stem:
+                path_to_default_version = path_to_version
+                break
+        with open(path_to_default_version / "_metadata.json") as f:
             metadata_json = json.load(f)
 
         # versioned_operations_dict => {
@@ -321,7 +336,6 @@ class MultiAPI:
                 {last_api_version} | {versions for _, versions in last_rt_list.items()}
             ),
         }
-
         MultiAPISerializer(conf, path_to_package / metadata_json["client"]["filename"]).serialize()
 
         return True
