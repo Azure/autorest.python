@@ -43,6 +43,10 @@ __all__ = [
     "Property",
 ]
 
+def _generate_as_object_or_any_schema(yaml_data: Dict[str, Any]) -> bool:
+    if yaml_data.get('properties'):
+        return True
+    
 
 def build_schema(yaml_data: Dict[str, Any], **kwargs) -> BaseSchema:
     code_model = kwargs.get("code_model", None)
