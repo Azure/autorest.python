@@ -21,7 +21,11 @@ parser.add_argument(
     help="Force default API version, do not detect it. [default: %(default)s]",
 )
 parser.add_argument("package_name", help="The package name.")
-parser.add_argument("python_sdks_folder", help="The root of your python sdk repo.")
+parser.add_argument(
+    "--python-sdks-folder",
+    dest="python_sdks_folder",
+    help="The root of your python sdk repo."
+)
 
 args = parser.parse_args()
 

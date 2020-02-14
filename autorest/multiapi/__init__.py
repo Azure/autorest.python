@@ -202,9 +202,9 @@ def _build_last_rt_list(
 
 class MultiAPI:
     def __init__(self, args):
-        self.input_package_name = args.package_name
-        self.python_sdks_folder = Path(args.python_sdks_folder)
-        self.default_api = args.default_api
+        self.input_package_name: str = args.package_name
+        self.python_sdks_folder: Path = Path(args.python_sdks_folder).resolve()
+        self.default_api: str = args.default_api
 
     def _resolve_package_directory(self, package_name: str):
         """Returns the appropriate relative diff between the python sdks root and the actual package_directory
@@ -212,8 +212,7 @@ class MultiAPI:
         packages = [
             p.parent
             for p in (
-                list(self.python_sdks_folder.glob(f"{package_name}/setup.py")) +
-                list(self.python_sdks_folder.glob(f"sdk/*/{package_name}/setup.py"))
+                list(self.python_sdks_folder.glob(f"*/{package_name}/setup.py"))
             )
         ]
 
@@ -223,9 +222,15 @@ class MultiAPI:
                 f" The following were found: {packages}"
             )
             sys.exit(1)
+        if not packages:
+            print(
+                f"Was unable to find {self.input_package_name} anything in {self.python_sdks_folder}"
+            )
+            sys.exit(1)
         return str(packages[0].relative_to(self.python_sdks_folder))
 
     def process(self) -> bool:
+        _LOGGER.info("Generating multiapi client")
         # If True, means the auto-profile will consider preview versions.
         # If not, if it exists a stable API version for a global or RT, will always be used
         preview_mode = cast(bool, self.default_api and "preview" in self.default_api)
@@ -335,4 +340,5 @@ class MultiAPI:
         }
         MultiAPISerializer(conf, path_to_package / metadata_json["client"]["filename"]).serialize()
 
+        _LOGGER.info("Done!")
         return True
