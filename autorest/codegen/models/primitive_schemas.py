@@ -146,7 +146,7 @@ class StringSchema(PrimitiveSchema):
         if self.min_length is not None:
             validation_map["min_length"] = self.min_length
         if self.pattern:
-            validation_map["pattern"] = RawString(self.pattern)
+            validation_map["pattern"] = RawString(self.pattern)  # type: ignore
         return validation_map or None
 
     def get_declaration(self, value) -> str:
