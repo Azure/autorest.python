@@ -10,7 +10,7 @@ import shutil
 
 from collections import defaultdict
 from pathlib import Path
-from typing import Dict, List, Tuple, Optional, Union, cast
+from typing import Dict, List, Tuple, Union, cast
 import pkg_resources
 from .multiapi_serializer import MultiAPISerializer
 
@@ -45,25 +45,6 @@ def _parse_input(input_parameter: str):
     if len(split_package_name) >= 2:
         module_name = ".".join([module_name, split_package_name[1]])
     return package_name, module_name
-
-def _resolve_package_directory(package_name: str, sdk_root: Path):
-    """Returns the appropriate relative diff between the sdk_root and the actual package_directory
-    """
-    packages = [
-        p.parent
-        for p in (
-            list(sdk_root.glob(f"{package_name}/setup.py")) +
-            list(sdk_root.glob(f"sdk/*/{package_name}/setup.py"))
-        )
-    ]
-
-    if len(packages) > 1:
-        print(
-            "There should only be a single package matched in either repository structure." +
-            f" The following were found: {packages}"
-        )
-        sys.exit(1)
-    return str(packages[0].relative_to(sdk_root))
 
 def _get_paths_to_versions(path_to_package: Path) -> List[Path]:
 
@@ -223,9 +204,29 @@ def _build_last_rt_list(
     return last_rt_list
 
 class MultiAPI:
-    def __init__(self, input_str: str, default_api: Optional[str] = None):
-        self.input_str = input_str
-        self.default_api = default_api
+    def __init__(self, args):
+        self.input_package_name = args.package_name
+        self.python_sdks_folder = Path(args.python_sdks_folder)
+        self.default_api = args.default_api
+
+    def _resolve_package_directory(self, package_name: str):
+        """Returns the appropriate relative diff between the python sdks root and the actual package_directory
+        """
+        packages = [
+            p.parent
+            for p in (
+                list(self.python_sdks_folder.glob(f"{package_name}/setup.py")) +
+                list(self.python_sdks_folder.glob(f"sdk/*/{package_name}/setup.py"))
+            )
+        ]
+
+        if len(packages) > 1:
+            print(
+                "There should only be a single package matched in either repository structure." +
+                f" The following were found: {packages}"
+            )
+            sys.exit(1)
+        return str(packages[0].relative_to(self.python_sdks_folder))
 
     def process(self) -> bool:
         # If True, means the auto-profile will consider preview versions.
@@ -233,12 +234,11 @@ class MultiAPI:
         preview_mode = cast(bool, self.default_api and "preview" in self.default_api)
 
         # The only known multi-client package right now is azure-mgmt-resource
-        is_multi_client_package = "#" in self.input_str
+        is_multi_client_package = "#" in self.input_package_name
 
-        package_name, module_name = _parse_input(self.input_str)
-        sdk_root = Path(__file__).parents[3] / "azure-sdk-for-python"
+        package_name, module_name = _parse_input(self.input_package_name)
         path_to_package = (
-            sdk_root / _resolve_package_directory(package_name, sdk_root) /
+            self.python_sdks_folder / self._resolve_package_directory(package_name) /
             Path(*(module_name.split(".")))
         ).resolve()
         paths_to_versions = _get_paths_to_versions(path_to_package)

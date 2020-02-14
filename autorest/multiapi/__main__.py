@@ -21,6 +21,7 @@ parser.add_argument(
     help="Force default API version, do not detect it. [default: %(default)s]",
 )
 parser.add_argument("package_name", help="The package name.")
+parser.add_argument("python_sdks_folder", help="The root of your python sdk repo.")
 
 args = parser.parse_args()
 
@@ -28,4 +29,4 @@ main_logger = logging.getLogger()
 logging.basicConfig()
 main_logger.setLevel(logging.DEBUG if args.debug else logging.INFO)
 
-MultiAPI(args.package_name, args.default_api).process()
+MultiAPI(args).process()
