@@ -7,6 +7,7 @@ import sys
 import logging
 import json
 import shutil
+import os
 
 from collections import defaultdict
 from pathlib import Path
@@ -206,7 +207,7 @@ class MultiAPI:
         self.python_sdks_folder = Path(args.python_sdks_folder)
         self.default_api = args.default_api
 
-    def _resolve_package_directory(self, package_name: str):
+    def _resolve_package_directory(self, package_name: str) -> str:
         """Returns the appropriate relative diff between the python sdks root and the actual package_directory
         """
         packages = [
@@ -236,7 +237,7 @@ class MultiAPI:
         package_name, module_name = _parse_input(self.input_package_name)
         path_to_package = (
             self.python_sdks_folder / self._resolve_package_directory(package_name) /
-            Path(*(module_name.split(".")))
+            Path(module_name.replace(".", os.sep))
         ).resolve()
         paths_to_versions = _get_paths_to_versions(path_to_package)
         versioned_operations_dict, mod_to_api_version = _build_operation_meta(
@@ -333,6 +334,9 @@ class MultiAPI:
                 {last_api_version} | {versions for _, versions in last_rt_list.items()}
             ),
         }
-        MultiAPISerializer(conf, path_to_package / metadata_json["client"]["filename"]).serialize()
+        multiapi_serializer = MultiAPISerializer(conf=conf, path_to_package=path_to_package, service_client_name=metadata_json["client"]["filename"])
+        multiapi_serializer.serialize_multiapi_client()
+        if mixin_operations:
+            multiapi_serializer.serialize_multiapi_operation_mixins()
 
         return True

@@ -100,7 +100,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
                 for immediate_parent in immediate_parents:
                     if immediate_parent["type"] == "dictionary":
                         additional_properties_schema = DictionarySchema.from_yaml(
-                            namespace=namespace, yaml_data=immediate_parent, for_additional_properties=True, **kwargs
+                            namespace=namespace, yaml_data=immediate_parent, **kwargs
                         )
                         properties.append(
                             Property(
