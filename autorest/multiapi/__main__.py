@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 import argparse
 import logging
+import sys
 from . import MultiAPI
 
 
@@ -21,7 +22,11 @@ parser.add_argument(
     help="Force default API version, do not detect it. [default: %(default)s]",
 )
 parser.add_argument("package_name", help="The package name.")
-parser.add_argument("python_sdks_folder", help="The root of your python sdk repo.")
+parser.add_argument(
+    "--python-sdks-folder",
+    dest="python_sdks_folder",
+    help="The root of your python sdk repo."
+)
 
 args = parser.parse_args()
 
@@ -29,4 +34,14 @@ main_logger = logging.getLogger()
 logging.basicConfig()
 main_logger.setLevel(logging.DEBUG if args.debug else logging.INFO)
 
-MultiAPI(args).process()
+input_package_name: str = args.package_name
+python_sdks_folder: str = args.python_sdks_folder
+default_api: str = args.default_api
+
+generator = MultiAPI(
+    input_package_name,
+    python_sdks_folder,
+    default_api
+)
+if not generator.process():
+    sys.exit(1)
