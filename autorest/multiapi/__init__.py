@@ -11,10 +11,26 @@ import os
 
 from collections import defaultdict
 from pathlib import Path
-from typing import Dict, List, Tuple, Union, cast
+from typing import Dict, List, Tuple, Union, Optional, cast
 from .multiapi_serializer import MultiAPISerializer
 
+from .. import Plugin
+
 _LOGGER = logging.getLogger(__name__)
+
+
+class MultiApiScriptPlugin(Plugin):
+    def process(self) -> bool:
+        input_package_name: str = self._autorestapi.get_value("package-name")
+        python_sdks_folder: str = self._autorestapi.get_value("python-sdks-folder")
+        default_api: str = self._autorestapi.get_value("default-api")
+        generator = MultiAPI(
+            input_package_name,
+            python_sdks_folder,
+            default_api
+        )
+        return generator.process()
+
 
 def _patch_import(file_path: Union[str, Path]) -> None:
     """If multi-client package, we need to patch import to be
@@ -202,10 +218,10 @@ def _build_last_rt_list(
     return last_rt_list
 
 class MultiAPI:
-    def __init__(self, args):
-        self.input_package_name = args.package_name
-        self.python_sdks_folder = Path(args.python_sdks_folder)
-        self.default_api = args.default_api
+    def __init__(self, input_package_name: str, python_sdks_folder: str, default_api: Optional[str] = None):
+        self.input_package_name = input_package_name
+        self.python_sdks_folder = Path(python_sdks_folder).resolve()
+        self.default_api = default_api
 
     def _resolve_package_directory(self, package_name: str) -> str:
         """Returns the appropriate relative diff between the python sdks root and the actual package_directory
@@ -213,8 +229,7 @@ class MultiAPI:
         packages = [
             p.parent
             for p in (
-                list(self.python_sdks_folder.glob(f"{package_name}/setup.py")) +
-                list(self.python_sdks_folder.glob(f"sdk/*/{package_name}/setup.py"))
+                list(self.python_sdks_folder.glob(f"*/{package_name}/setup.py"))
             )
         ]
 
@@ -224,9 +239,15 @@ class MultiAPI:
                 f" The following were found: {packages}"
             )
             sys.exit(1)
+        if not packages:
+            print(
+                f"Was unable to find {self.input_package_name} anything in {self.python_sdks_folder}"
+            )
+            sys.exit(1)
         return str(packages[0].relative_to(self.python_sdks_folder))
 
     def process(self) -> bool:
+        _LOGGER.info("Generating multiapi client")
         # If True, means the auto-profile will consider preview versions.
         # If not, if it exists a stable API version for a global or RT, will always be used
         preview_mode = cast(bool, self.default_api and "preview" in self.default_api)
@@ -339,4 +360,5 @@ class MultiAPI:
         if mixin_operations:
             multiapi_serializer.serialize_multiapi_operation_mixins()
 
+        _LOGGER.info("Done!")
         return True

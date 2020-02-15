@@ -14,8 +14,7 @@ from msrest import Serializer, Deserializer
 class {{ client_name }}OperationsMixin(object):
 
 {% for operation_name, metadata in mixin_operations|dictsort %}
-    {{ metadata['signature'] | indent }}
-{{ metadata['doc'] | indent}}
+    {{ metadata['signature'] | indent }}{{ metadata['doc'] | indent}}
 
         api_version = self._get_api_version('{{ operation_name }}')
         {% for api in metadata['available_apis'] %}
