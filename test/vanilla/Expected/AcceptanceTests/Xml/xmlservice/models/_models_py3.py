@@ -1063,8 +1063,8 @@ class Slideshow(msrest.serialization.Model):
 
     :param title:
     :type title: str
-    :param date:
-    :type date: str
+    :param date_property:
+    :type date_property: str
     :param author:
     :type author: str
     :param slides:
@@ -1073,7 +1073,7 @@ class Slideshow(msrest.serialization.Model):
 
     _attribute_map = {
         'title': {'key': 'title', 'type': 'str', 'xml': {'attr': True}},
-        'date': {'key': 'date', 'type': 'str', 'xml': {'attr': True}},
+        'date_property': {'key': 'date', 'type': 'str', 'xml': {'attr': True}},
         'author': {'key': 'author', 'type': 'str', 'xml': {'attr': True}},
         'slides': {'key': 'slides', 'type': '[Slide]'},
     }
@@ -1085,14 +1085,14 @@ class Slideshow(msrest.serialization.Model):
         self,
         *,
         title: Optional[str] = None,
-        date: Optional[str] = None,
+        date_property: Optional[str] = None,
         author: Optional[str] = None,
         slides: Optional[List["Slide"]] = None,
         **kwargs
     ):
         super(Slideshow, self).__init__(**kwargs)
         self.title = title
-        self.date = date
+        self.date_property = date_property
         self.author = author
         self.slides = slides
 
