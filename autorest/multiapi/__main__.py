@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 import argparse
 import logging
+import sys
 from . import MultiAPI
 
 
@@ -33,4 +34,14 @@ main_logger = logging.getLogger()
 logging.basicConfig()
 main_logger.setLevel(logging.DEBUG if args.debug else logging.INFO)
 
-MultiAPI(args).process()
+input_package_name: str = args.package_name
+python_sdks_folder: str = args.python_sdks_folder
+default_api: str = args.default_api
+
+generator = MultiAPI(
+    input_package_name,
+    python_sdks_folder,
+    default_api
+)
+if not generator.process():
+    sys.exit(1)
