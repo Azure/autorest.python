@@ -123,9 +123,9 @@ def _build_operation_mixin_meta(paths_to_versions: List[Path]) -> Dict[str, Dict
     for version_path in paths_to_versions:
         with open(version_path / "_metadata.json") as f:
             metadata_json = json.load(f)
-        if not metadata_json.get('operation_mixin_functions'):
+        if not metadata_json.get('operation_mixins'):
             continue
-        for func_name, func in metadata_json['operation_mixin_functions'].items():
+        for func_name, func in metadata_json['operation_mixins'].items():
             if func_name.startswith("_"):
                 continue
             mixin_operations.setdefault(func_name, {}).setdefault(
