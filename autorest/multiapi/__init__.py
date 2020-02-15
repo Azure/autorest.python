@@ -229,7 +229,8 @@ class MultiAPI:
         packages = [
             p.parent
             for p in (
-                list(self.python_sdks_folder.glob(f"*/{package_name}/setup.py"))
+                list(self.python_sdks_folder.glob(f"*/{package_name}/setup.py")) +
+                list(self.python_sdks_folder.glob(f"sdk/*/{package_name}/setup.py"))
             )
         ]
 
