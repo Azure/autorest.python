@@ -21,9 +21,9 @@
     "operation_mixins": {
         {% for operation in mixin_operations %}
         {{ operation.name | tojson }} : {
-            "doc": {{ op_tools.operation_docstring(operation) }},
-            "signature": {{ op_tools.method_signature(operation, operation.name, False, True) }},
-            "call": {{ operation.parameters.method | join(', ') }}
+            "doc": {{ op_tools.operation_docstring(operation) | tojson }},
+            "signature": {{ op_tools.method_signature(operation, operation.name, False, False) | tojson }},
+            "call": {{ operation.parameters.method | join(', ') | tojson }}
         }
         {% endfor %}
     }
