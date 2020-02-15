@@ -12,7 +12,7 @@ class NameConverter:
     def convert_yaml_names(yaml_data):
         NameConverter._convert_language_default_python_case(yaml_data)
         yaml_data["info"]["python_title"] = NameConverter._to_valid_python_name(
-            yaml_data["info"]["title"].replace(" ", "")
+            yaml_data["info"]["title"].replace(" ", ""), convert_name=True
         )
         yaml_data['info']['pascal_case_title'] = yaml_data["language"]["default"]["name"]
         NameConverter._convert_schemas(yaml_data['schemas'])
@@ -86,13 +86,12 @@ class NameConverter:
         if not schema.get("language") or schema["language"].get("python"):
             return
         schema['language']['python'] = dict(schema['language']['default'])
-        if kwargs.pop('convert_name', False):
-            schema_name = schema['language']['default']['name']
-            schema_python_name = schema['language']['python']['name']
+        schema_name = schema['language']['default']['name']
+        schema_python_name = schema['language']['python']['name']
 
-            schema_python_name = NameConverter._to_valid_python_name(schema_name, **kwargs)
-            schema['language']['python']['name'] = schema_python_name
-        schema['language']['python']['name'] = schema['language']['python']['name'].lower()
+        schema_python_name = NameConverter._to_valid_python_name(schema_name, **kwargs)
+        schema['language']['python']['name'] = schema_python_name.lower()
+
         schema_description = schema["language"]["default"]["description"].strip()
         if kwargs.get("pad_string") == "Method" and not schema_description:
             schema_description = schema["language"]["python"]["name"]
@@ -128,14 +127,15 @@ class NameConverter:
         return "".join(name_list)
 
     @staticmethod
-    def _to_valid_python_name(name, *, pad_string=""):
+    def _to_valid_python_name(name, *, pad_string="", convert_name=False):
         if not name:
-            return pad_string
-        return NameConverter._to_python_case(
-            NameConverter._get_escaped_reserved_name(
-                NameConverter._to_valid_name(name.replace("-", "_"), "_"), pad_string
-            )
+            return NameConverter._to_python_case(pad_string)
+        escaped_name = NameConverter._get_escaped_reserved_name(
+            NameConverter._to_valid_name(name.replace("-", "_"), "_"), pad_string
         )
+        if convert_name or name != escaped_name:
+            return NameConverter._to_python_case(escaped_name)
+        return escaped_name
 
     @staticmethod
     def _to_python_case(name):
