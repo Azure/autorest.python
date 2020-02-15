@@ -35,12 +35,3 @@ class OperationGroupSerializer:
             is_lro=_is_lro,
             is_paging=_is_paging,
         )
-
-    def filename(self) -> str:
-        basename = self.operation_group.name
-        if self.operation_group.is_empty_operation_group:
-            basename = self.code_model.module_name
-        async_suffix = "_async" if self.async_mode else ""
-        if basename == 'operations':
-            return f"_operations{async_suffix}.py"
-        return f"_{basename}_operations{async_suffix}.py"

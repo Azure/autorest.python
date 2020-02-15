@@ -51,6 +51,16 @@ class OperationGroup(BaseModel):
                 )
         return file_import
 
+    def get_filename(self, async_mode) -> str:
+        basename = self.name
+        if self.is_empty_operation_group:
+            basename = self.code_model.module_name
+        async_suffix = "_async" if async_mode else ""
+
+        if basename == "operations":
+            return f"_operations{async_suffix}"
+        return f"_{basename}_operations{async_suffix}"
+
     @property
     def is_empty_operation_group(self) -> bool:
         """The operation group with no name is the direct client methods.
