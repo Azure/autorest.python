@@ -4,14 +4,16 @@
 # license information.
 # --------------------------------------------------------------------------
 import json
+from jinja2 import Environment
 from typing import List, Optional, Set, Tuple
 from ..models import CodeModel, Operation, OperationGroup
 
 
 
 class MetadataSerializer:
-    def __init__(self, code_model: CodeModel):
+    def __init__(self, code_model: CodeModel, env: Environment):
         self.code_model = code_model
+        self.env = env
 
     def _choose_api_version(self) -> Tuple[str, List[str]]:
         chosen_version = ""
@@ -20,6 +22,9 @@ class MetadataSerializer:
             total_api_version_set.update(operation_group.api_versions)
 
         total_api_version_list = list(total_api_version_set)
+
+        # switching ' to " so json can decode the dict we end up writing to file
+        total_api_version_list = [str(api_version).replace("'", "\"") for api_version in total_api_version_list]
         if len(total_api_version_list) == 1:
             chosen_version = total_api_version_list[0]
         elif len(total_api_version_list) > 1:
@@ -42,39 +47,27 @@ class MetadataSerializer:
             mixin_operations = mixin_operation_group.operations
         chosen_version, total_api_version_list = self._choose_api_version()
 
-        return json.dumps(
-            {
-                "chosen_version": chosen_version,
-                "total_api_version_list": total_api_version_list,
-                "client": {
-                    "name": self.code_model.class_name,
-                    "filename": f"_{self.code_model.module_name}.py",
-                    "description": self.code_model.description,
-                    "has_subscription_id": any(
-                        [
-                            gp for gp in self.code_model.global_parameters.method
-                            if gp.serialized_name == "subscription_id"
-                        ]
-                    )
-                },
-                "operation_groups": {
-                    operation_group.name: operation_group.class_name
-                    for operation_group in self.code_model.operation_groups
-                    if not operation_group.is_empty_operation_group
-                },
-                "operation_mixins": {
-                    operation.name: {
-                        "doc": "FIXME",
-                        "signature": "FIXME",
-                        "call": "FIXME"
-                    } for operation in mixin_operations
-                }
-                # "operation_mixins": {
-                #     operation_group.name: {
-                #         "description": operation_group.description,
-                #         "signature": ___,
-                #         "call": __
-                #     }
-                # }
-            }
-        )
+        metadata_obj = {
+            "chosen_version": chosen_version,
+            "total_api_version_list": total_api_version_list,
+            "client": {
+                "name": self.code_model.class_name,
+                "filename": f"_{self.code_model.module_name}.py",
+                "description": self.code_model.description,
+                "has_subscription_id": any(
+                    [
+                        gp for gp in self.code_model.global_parameters.method
+                        if gp.serialized_name == "subscription_id"
+                    ]
+                )
+            },
+            "operation_groups": {
+                operation_group.name: operation_group.class_name
+                for operation_group in self.code_model.operation_groups
+                if not operation_group.is_empty_operation_group
+            },
+            "mixin_operations": mixin_operations
+        }
+
+        template = self.env.get_template("metadata.json.jinja2")
+        return template.render(**metadata_obj, str=str)

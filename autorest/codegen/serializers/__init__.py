@@ -56,7 +56,7 @@ class JinjaSerializer:
 
         if code_model.options["multiapi"]:
             self._serialize_and_write_metadata(
-                code_model, namespace_path=namespace_path
+                code_model, env=env, namespace_path=namespace_path
             )
 
     def _serialize_and_write_models_folder(self, code_model: CodeModel, env: Environment, namespace_path: Path) -> None:
@@ -181,6 +181,6 @@ class JinjaSerializer:
             aio_path / Path("_configuration_async.py"), aio_general_serializer.serialize_config_file()
         )
 
-    def _serialize_and_write_metadata(self, code_model: CodeModel, namespace_path: Path) -> None:
-        metadata_serializer = MetadataSerializer(code_model)
+    def _serialize_and_write_metadata(self, code_model: CodeModel, env: Environment, namespace_path: Path) -> None:
+        metadata_serializer = MetadataSerializer(code_model, env)
         self._autorestapi.write_file(namespace_path / Path("_metadata.json"), metadata_serializer.serialize())

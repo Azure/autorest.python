@@ -1,0 +1,30 @@
+{% import 'operation_tools.jinja2' as op_tools %}
+{% macro operation_call(operation) %}
+{{ "async " if coroutine else "" }}def {{ operation_name }}(
+{% if async_mode %}
+    {% for param_signature in operation.parameters.sync_method_signature %}
+    {{ param_signature }}
+    {% endfor %}
+    **kwargs  # type: Any
+):
+{% endif %}{% endmacro %}
+{
+    "chosen_version": {{ chosen_version | tojson }},
+    "total_api_version_list": {{ total_api_version_list | tojson }},
+    "client": {
+        "name": {{ client["name"] | tojson }},
+        "filename": {{ client["filename"] | tojson }},
+    "description": {{ client["description"] | tojson }},
+        "has_subscription_id": {{ client["has_subscription_id"] | tojson }}
+    },
+    "operation_groups": {{ operation_groups | tojson }},
+    "operation_mixins": {
+        {% for operation in mixin_operations %}
+        {{ operation.name | tojson }} : {
+            "doc": {{ op_tools.operation_docstring(operation) }},
+            "signature": {{ op_tools.method_signature(operation, operation.name, False, True) }},
+            "call": {{ operation.parameters.method | join(', ') }}
+        }
+        {% endfor %}
+    }
+}
