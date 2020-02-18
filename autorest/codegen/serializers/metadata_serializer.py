@@ -3,9 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import json
-from jinja2 import Environment
 from typing import List, Optional, Set, Tuple
+from jinja2 import Environment
 from ..models import CodeModel, Operation, OperationGroup
 
 

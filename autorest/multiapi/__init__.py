@@ -356,7 +356,9 @@ class MultiAPI:
                 {last_api_version} | {versions for _, versions in last_rt_list.items()}
             ),
         }
-        multiapi_serializer = MultiAPISerializer(conf=conf, path_to_package=path_to_package, service_client_name=metadata_json["client"]["filename"])
+        multiapi_serializer = MultiAPISerializer(
+            conf=conf, path_to_package=path_to_package, service_client_name=metadata_json["client"]["filename"]
+        )
         multiapi_serializer.serialize_multiapi_client()
         if mixin_operations:
             multiapi_serializer.serialize_multiapi_operation_mixins()
