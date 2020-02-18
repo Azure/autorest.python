@@ -7,7 +7,7 @@ from abc import abstractmethod
 from typing import cast, List
 from jinja2 import Environment
 from ..models import EnumSchema, ObjectSchema, CodeModel, Property, ConstantSchema
-from ..models.imports import FileImport
+from ..models.imports import FileImport, ImportType
 from .import_serializer import FileImportSerializer
 
 
@@ -31,9 +31,23 @@ class ModelBaseSerializer:
 
     def imports(self) -> FileImport:
         file_import = FileImport()
+        file_import.add_import("msrest.serialization", ImportType.AZURECORE)
+        if any(os.is_exception for os in self.code_model.sorted_schemas):
+            file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
         for model in self.code_model.sorted_schemas:
             file_import.merge(model.imports())
         return file_import
+
+    @staticmethod
+    def get_properties_to_initialize(model: ObjectSchema) -> List[Property]:
+        if model.base_model:
+            properties_to_initialize = []
+            for prop in model.properties:
+                if prop not in model.base_model.properties or prop.is_discriminator or prop.constant:
+                    properties_to_initialize.append(prop)
+        else:
+            properties_to_initialize = model.properties
+        return properties_to_initialize
 
     @staticmethod
     def prop_documentation_string(prop: Property) -> str:

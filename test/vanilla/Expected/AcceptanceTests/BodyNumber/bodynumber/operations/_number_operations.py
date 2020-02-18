@@ -42,17 +42,17 @@ class NumberOperations(object):
     @distributed_trace
     def get_null(
         self,
-        cls=None,  # type: ClsType[float]
         **kwargs  # type: Any
     ):
         # type: (...) -> float
         """Get null Number value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -85,17 +85,17 @@ class NumberOperations(object):
     @distributed_trace
     def get_invalid_float(
         self,
-        cls=None,  # type: ClsType[float]
         **kwargs  # type: Any
     ):
         # type: (...) -> float
         """Get invalid float Number value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -128,17 +128,17 @@ class NumberOperations(object):
     @distributed_trace
     def get_invalid_double(
         self,
-        cls=None,  # type: ClsType[float]
         **kwargs  # type: Any
     ):
         # type: (...) -> float
         """Get invalid double Number value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -171,17 +171,17 @@ class NumberOperations(object):
     @distributed_trace
     def get_invalid_decimal(
         self,
-        cls=None,  # type: ClsType[float]
         **kwargs  # type: Any
     ):
         # type: (...) -> float
         """Get invalid decimal Number value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -214,8 +214,6 @@ class NumberOperations(object):
     @distributed_trace
     def put_big_float(
         self,
-        number_body,  # type: float
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -223,11 +221,12 @@ class NumberOperations(object):
 
         :param number_body:
         :type number_body: float
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodynumber.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -260,17 +259,17 @@ class NumberOperations(object):
     @distributed_trace
     def get_big_float(
         self,
-        cls=None,  # type: ClsType[float]
         **kwargs  # type: Any
     ):
         # type: (...) -> float
         """Get big float value 3.402823e+20.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -303,8 +302,6 @@ class NumberOperations(object):
     @distributed_trace
     def put_big_double(
         self,
-        number_body,  # type: float
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -312,11 +309,12 @@ class NumberOperations(object):
 
         :param number_body:
         :type number_body: float
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodynumber.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -349,17 +347,17 @@ class NumberOperations(object):
     @distributed_trace
     def get_big_double(
         self,
-        cls=None,  # type: ClsType[float]
         **kwargs  # type: Any
     ):
         # type: (...) -> float
         """Get big double value 2.5976931e+101.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -392,17 +390,17 @@ class NumberOperations(object):
     @distributed_trace
     def put_big_double_positive_decimal(
         self,
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put big double value 99999999.99.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodynumber.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         number_body = 99999999.99
 
@@ -436,17 +434,17 @@ class NumberOperations(object):
     @distributed_trace
     def get_big_double_positive_decimal(
         self,
-        cls=None,  # type: ClsType[float]
         **kwargs  # type: Any
     ):
         # type: (...) -> float
         """Get big double value 99999999.99.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -479,17 +477,17 @@ class NumberOperations(object):
     @distributed_trace
     def put_big_double_negative_decimal(
         self,
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put big double value -99999999.99.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodynumber.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         number_body = -99999999.99
 
@@ -523,17 +521,17 @@ class NumberOperations(object):
     @distributed_trace
     def get_big_double_negative_decimal(
         self,
-        cls=None,  # type: ClsType[float]
         **kwargs  # type: Any
     ):
         # type: (...) -> float
         """Get big double value -99999999.99.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -566,8 +564,6 @@ class NumberOperations(object):
     @distributed_trace
     def put_big_decimal(
         self,
-        number_body,  # type: float
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -575,11 +571,12 @@ class NumberOperations(object):
 
         :param number_body:
         :type number_body: float
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodynumber.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -612,17 +609,17 @@ class NumberOperations(object):
     @distributed_trace
     def get_big_decimal(
         self,
-        cls=None,  # type: ClsType[float]
         **kwargs  # type: Any
     ):
         # type: (...) -> float
         """Get big decimal value 2.5976931e+101.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -655,17 +652,17 @@ class NumberOperations(object):
     @distributed_trace
     def put_big_decimal_positive_decimal(
         self,
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put big decimal value 99999999.99.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodynumber.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         number_body = 99999999.99
 
@@ -699,17 +696,17 @@ class NumberOperations(object):
     @distributed_trace
     def get_big_decimal_positive_decimal(
         self,
-        cls=None,  # type: ClsType[float]
         **kwargs  # type: Any
     ):
         # type: (...) -> float
         """Get big decimal value 99999999.99.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -742,17 +739,17 @@ class NumberOperations(object):
     @distributed_trace
     def put_big_decimal_negative_decimal(
         self,
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put big decimal value -99999999.99.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodynumber.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         number_body = -99999999.99
 
@@ -786,17 +783,17 @@ class NumberOperations(object):
     @distributed_trace
     def get_big_decimal_negative_decimal(
         self,
-        cls=None,  # type: ClsType[float]
         **kwargs  # type: Any
     ):
         # type: (...) -> float
         """Get big decimal value -99999999.99.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -829,8 +826,6 @@ class NumberOperations(object):
     @distributed_trace
     def put_small_float(
         self,
-        number_body,  # type: float
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -838,11 +833,12 @@ class NumberOperations(object):
 
         :param number_body:
         :type number_body: float
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodynumber.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -875,17 +871,17 @@ class NumberOperations(object):
     @distributed_trace
     def get_small_float(
         self,
-        cls=None,  # type: ClsType[float]
         **kwargs  # type: Any
     ):
         # type: (...) -> float
         """Get big double value 3.402823e-20.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -918,8 +914,6 @@ class NumberOperations(object):
     @distributed_trace
     def put_small_double(
         self,
-        number_body,  # type: float
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -927,11 +921,12 @@ class NumberOperations(object):
 
         :param number_body:
         :type number_body: float
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodynumber.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -964,17 +959,17 @@ class NumberOperations(object):
     @distributed_trace
     def get_small_double(
         self,
-        cls=None,  # type: ClsType[float]
         **kwargs  # type: Any
     ):
         # type: (...) -> float
         """Get big double value 2.5976931e-101.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1007,8 +1002,6 @@ class NumberOperations(object):
     @distributed_trace
     def put_small_decimal(
         self,
-        number_body,  # type: float
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1016,11 +1009,12 @@ class NumberOperations(object):
 
         :param number_body:
         :type number_body: float
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodynumber.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1053,17 +1047,17 @@ class NumberOperations(object):
     @distributed_trace
     def get_small_decimal(
         self,
-        cls=None,  # type: ClsType[float]
         **kwargs  # type: Any
     ):
         # type: (...) -> float
         """Get small decimal value 2.5976931e-101.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
         :raises: ~bodynumber.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

@@ -42,20 +42,18 @@ class SkipUrlEncodingOperations:
     @distributed_trace_async
     async def get_method_path_valid(
         self,
-        unencoded_path_param: str,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
         :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'.
         :type unencoded_path_param: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -86,26 +84,24 @@ class SkipUrlEncodingOperations:
     get_method_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}'}
 
     @distributed_trace_async
-    async def get_path_path_valid(
+    async def get_path_valid(
         self,
-        unencoded_path_param: str,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
         :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'.
         :type unencoded_path_param: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
-        url = self.get_path_path_valid.metadata['url']
+        url = self.get_path_valid.metadata['url']
         path_format_arguments = {
             'unencodedPathParam': self._serialize.url("unencoded_path_param", unencoded_path_param, 'str', skip_quote=True),
         }
@@ -129,21 +125,21 @@ class SkipUrlEncodingOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_path_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}'}
+    get_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}'}
 
     @distributed_trace_async
     async def get_swagger_path_valid(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         unencoded_path_param = "path1/path2/path3"
 
@@ -177,20 +173,18 @@ class SkipUrlEncodingOperations:
     @distributed_trace_async
     async def get_method_query_valid(
         self,
-        q1: str,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
         :param q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
         :type q1: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -220,20 +214,18 @@ class SkipUrlEncodingOperations:
     @distributed_trace_async
     async def get_method_query_null(
         self,
-        q1: Optional[str] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get method with unencoded query parameter with value null.
 
         :param q1: Unencoded query parameter with value null.
         :type q1: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -264,20 +256,18 @@ class SkipUrlEncodingOperations:
     @distributed_trace_async
     async def get_path_query_valid(
         self,
-        q1: str,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
         :param q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
         :type q1: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -307,16 +297,16 @@ class SkipUrlEncodingOperations:
     @distributed_trace_async
     async def get_swagger_query_valid(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         q1 = "value1&q2=value2&q3=value3"
 

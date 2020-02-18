@@ -43,17 +43,17 @@ class DateOperations(object):
     @distributed_trace
     def get_null(
         self,
-        cls=None,  # type: ClsType[datetime.date]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.date
         """Get null date value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: date or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~bodydate.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.date]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -86,17 +86,17 @@ class DateOperations(object):
     @distributed_trace
     def get_invalid_date(
         self,
-        cls=None,  # type: ClsType[datetime.date]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.date
         """Get invalid date value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: date or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~bodydate.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.date]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -129,17 +129,17 @@ class DateOperations(object):
     @distributed_trace
     def get_overflow_date(
         self,
-        cls=None,  # type: ClsType[datetime.date]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.date
         """Get overflow date value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: date or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~bodydate.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.date]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -172,17 +172,17 @@ class DateOperations(object):
     @distributed_trace
     def get_underflow_date(
         self,
-        cls=None,  # type: ClsType[datetime.date]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.date
         """Get underflow date value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: date or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~bodydate.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.date]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -215,8 +215,6 @@ class DateOperations(object):
     @distributed_trace
     def put_max_date(
         self,
-        date_body,  # type: datetime.date
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -224,11 +222,12 @@ class DateOperations(object):
 
         :param date_body:
         :type date_body: ~datetime.date
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodydate.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -261,17 +260,17 @@ class DateOperations(object):
     @distributed_trace
     def get_max_date(
         self,
-        cls=None,  # type: ClsType[datetime.date]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.date
         """Get max date value 9999-12-31.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: date or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~bodydate.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.date]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -304,8 +303,6 @@ class DateOperations(object):
     @distributed_trace
     def put_min_date(
         self,
-        date_body,  # type: datetime.date
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -313,11 +310,12 @@ class DateOperations(object):
 
         :param date_body:
         :type date_body: ~datetime.date
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodydate.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -350,17 +348,17 @@ class DateOperations(object):
     @distributed_trace
     def get_min_date(
         self,
-        cls=None,  # type: ClsType[datetime.date]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.date
         """Get min date value 0000-01-01.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: date or the result of cls(response)
         :rtype: ~datetime.date
         :raises: ~bodydate.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.date]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

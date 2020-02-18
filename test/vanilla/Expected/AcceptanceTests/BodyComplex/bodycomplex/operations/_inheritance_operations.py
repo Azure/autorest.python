@@ -12,7 +12,6 @@ from azure.core.exceptions import map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
-from msrest.serialization import Model
 
 from .. import models
 
@@ -43,17 +42,17 @@ class InheritanceOperations(object):
     @distributed_trace
     def get_valid(
         self,
-        cls=None,  # type: ClsType["models.Siamese"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Siamese"
         """Get complex types that extend others.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Siamese or the result of cls(response)
         :rtype: ~bodycomplex.models.Siamese
         :raises: ~bodycomplex.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.Siamese"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -86,8 +85,6 @@ class InheritanceOperations(object):
     @distributed_trace
     def put_valid(
         self,
-        complex_body,  # type: "models.Siamese"
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -97,11 +94,12 @@ class InheritanceOperations(object):
          breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and
          the 2nd one named "Tomato" with id=-1 and food="french fries".
         :type complex_body: ~bodycomplex.models.Siamese
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodycomplex.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

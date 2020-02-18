@@ -13,7 +13,6 @@ from azure.core.exceptions import map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
-from msrest.serialization import Model
 
 from .. import models
 
@@ -44,17 +43,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_null(
         self,
-        cls=None,  # type: ClsType[List[int]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[int]
         """Get null array value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[int]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[int]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -87,17 +86,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_invalid(
         self,
-        cls=None,  # type: ClsType[List[int]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[int]
         """Get invalid array [1, 2, 3.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[int]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[int]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -130,17 +129,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_empty(
         self,
-        cls=None,  # type: ClsType[List[int]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[int]
         """Get empty array value [].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[int]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[int]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -173,8 +172,6 @@ class ArrayOperations(object):
     @distributed_trace
     def put_empty(
         self,
-        array_body,  # type: List[str]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -182,11 +179,12 @@ class ArrayOperations(object):
 
         :param array_body:
         :type array_body: list[str]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -219,17 +217,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_boolean_tfft(
         self,
-        cls=None,  # type: ClsType[List[bool]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[bool]
         """Get boolean array value [true, false, false, true].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[bool]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[bool]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -262,8 +260,6 @@ class ArrayOperations(object):
     @distributed_trace
     def put_boolean_tfft(
         self,
-        array_body,  # type: List[bool]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -271,11 +267,12 @@ class ArrayOperations(object):
 
         :param array_body:
         :type array_body: list[bool]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -308,17 +305,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_boolean_invalid_null(
         self,
-        cls=None,  # type: ClsType[List[bool]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[bool]
         """Get boolean array value [true, null, false].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[bool]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[bool]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -351,17 +348,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_boolean_invalid_string(
         self,
-        cls=None,  # type: ClsType[List[bool]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[bool]
         """Get boolean array value [true, 'boolean', false].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[bool]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[bool]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -394,17 +391,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_integer_valid(
         self,
-        cls=None,  # type: ClsType[List[int]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[int]
         """Get integer array value [1, -1, 3, 300].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[int]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[int]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -437,8 +434,6 @@ class ArrayOperations(object):
     @distributed_trace
     def put_integer_valid(
         self,
-        array_body,  # type: List[int]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -446,11 +441,12 @@ class ArrayOperations(object):
 
         :param array_body:
         :type array_body: list[int]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -483,17 +479,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_int_invalid_null(
         self,
-        cls=None,  # type: ClsType[List[int]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[int]
         """Get integer array value [1, null, 0].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[int]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[int]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -526,17 +522,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_int_invalid_string(
         self,
-        cls=None,  # type: ClsType[List[int]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[int]
         """Get integer array value [1, 'integer', 0].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[int]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[int]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -569,17 +565,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_long_valid(
         self,
-        cls=None,  # type: ClsType[List[int]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[int]
         """Get integer array value [1, -1, 3, 300].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[long]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[int]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -612,8 +608,6 @@ class ArrayOperations(object):
     @distributed_trace
     def put_long_valid(
         self,
-        array_body,  # type: List[int]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -621,11 +615,12 @@ class ArrayOperations(object):
 
         :param array_body:
         :type array_body: list[long]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -658,17 +653,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_long_invalid_null(
         self,
-        cls=None,  # type: ClsType[List[int]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[int]
         """Get long array value [1, null, 0].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[long]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[int]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -701,17 +696,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_long_invalid_string(
         self,
-        cls=None,  # type: ClsType[List[int]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[int]
         """Get long array value [1, 'integer', 0].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[long]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[int]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -744,17 +739,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_float_valid(
         self,
-        cls=None,  # type: ClsType[List[float]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[float]
         """Get float array value [0, -0.01, 1.2e20].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[float]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[float]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -787,8 +782,6 @@ class ArrayOperations(object):
     @distributed_trace
     def put_float_valid(
         self,
-        array_body,  # type: List[float]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -796,11 +789,12 @@ class ArrayOperations(object):
 
         :param array_body:
         :type array_body: list[float]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -833,17 +827,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_float_invalid_null(
         self,
-        cls=None,  # type: ClsType[List[float]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[float]
         """Get float array value [0.0, null, -1.2e20].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[float]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[float]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -876,17 +870,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_float_invalid_string(
         self,
-        cls=None,  # type: ClsType[List[float]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[float]
         """Get boolean array value [1.0, 'number', 0.0].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[float]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[float]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -919,17 +913,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_double_valid(
         self,
-        cls=None,  # type: ClsType[List[float]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[float]
         """Get float array value [0, -0.01, 1.2e20].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[float]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[float]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -962,8 +956,6 @@ class ArrayOperations(object):
     @distributed_trace
     def put_double_valid(
         self,
-        array_body,  # type: List[float]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -971,11 +963,12 @@ class ArrayOperations(object):
 
         :param array_body:
         :type array_body: list[float]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1008,17 +1001,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_double_invalid_null(
         self,
-        cls=None,  # type: ClsType[List[float]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[float]
         """Get float array value [0.0, null, -1.2e20].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[float]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[float]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1051,17 +1044,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_double_invalid_string(
         self,
-        cls=None,  # type: ClsType[List[float]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[float]
         """Get boolean array value [1.0, 'number', 0.0].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[float]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[float]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1094,17 +1087,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_string_valid(
         self,
-        cls=None,  # type: ClsType[List[str]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[str]
         """Get string array value ['foo1', 'foo2', 'foo3'].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[str]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[str]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1137,8 +1130,6 @@ class ArrayOperations(object):
     @distributed_trace
     def put_string_valid(
         self,
-        array_body,  # type: List[str]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1146,11 +1137,12 @@ class ArrayOperations(object):
 
         :param array_body:
         :type array_body: list[str]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1183,17 +1175,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_enum_valid(
         self,
-        cls=None,  # type: ClsType[List[Union[str, "FooEnum"]]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[Union[str, "FooEnum"]]
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[str or ~bodyarray.models.FooEnum]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[Union[str, "FooEnum"]]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1226,8 +1218,6 @@ class ArrayOperations(object):
     @distributed_trace
     def put_enum_valid(
         self,
-        array_body,  # type: List[Union[str, "FooEnum"]]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1235,11 +1225,12 @@ class ArrayOperations(object):
 
         :param array_body:
         :type array_body: list[str or ~bodyarray.models.FooEnum]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1272,17 +1263,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_string_enum_valid(
         self,
-        cls=None,  # type: ClsType[List[Union[str, "Enum0"]]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[Union[str, "Enum0"]]
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[str or ~bodyarray.models.Enum0]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[Union[str, "Enum0"]]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1315,8 +1306,6 @@ class ArrayOperations(object):
     @distributed_trace
     def put_string_enum_valid(
         self,
-        array_body,  # type: List[Union[str, "Enum0"]]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1324,11 +1313,12 @@ class ArrayOperations(object):
 
         :param array_body:
         :type array_body: list[str or ~bodyarray.models.Enum0]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1361,17 +1351,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_string_with_null(
         self,
-        cls=None,  # type: ClsType[List[str]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[str]
         """Get string array value ['foo', null, 'foo2'].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[str]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[str]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1404,17 +1394,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_string_with_invalid(
         self,
-        cls=None,  # type: ClsType[List[str]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[str]
         """Get string array value ['foo', 123, 'foo2'].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[str]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[str]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1447,17 +1437,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_uuid_valid(
         self,
-        cls=None,  # type: ClsType[List[str]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[str]
         """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[str]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[str]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1490,8 +1480,6 @@ class ArrayOperations(object):
     @distributed_trace
     def put_uuid_valid(
         self,
-        array_body,  # type: List[str]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1499,11 +1487,12 @@ class ArrayOperations(object):
 
         :param array_body:
         :type array_body: list[str]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1536,17 +1525,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_uuid_invalid_chars(
         self,
-        cls=None,  # type: ClsType[List[str]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[str]
         """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'foo'].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[str]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[str]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1579,17 +1568,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_date_valid(
         self,
-        cls=None,  # type: ClsType[List[datetime.date]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[datetime.date]
         """Get integer array value ['2000-12-01', '1980-01-02', '1492-10-12'].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~datetime.date]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[datetime.date]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1622,8 +1611,6 @@ class ArrayOperations(object):
     @distributed_trace
     def put_date_valid(
         self,
-        array_body,  # type: List[datetime.date]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1631,11 +1618,12 @@ class ArrayOperations(object):
 
         :param array_body:
         :type array_body: list[~datetime.date]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1668,17 +1656,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_date_invalid_null(
         self,
-        cls=None,  # type: ClsType[List[datetime.date]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[datetime.date]
         """Get date array value ['2012-01-01', null, '1776-07-04'].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~datetime.date]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[datetime.date]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1711,17 +1699,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_date_invalid_chars(
         self,
-        cls=None,  # type: ClsType[List[datetime.date]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[datetime.date]
         """Get date array value ['2011-03-22', 'date'].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~datetime.date]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[datetime.date]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1754,17 +1742,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_date_time_valid(
         self,
-        cls=None,  # type: ClsType[List[datetime.datetime]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[datetime.datetime]
         """Get date-time array value ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00', '1492-10-12T10:15:01-08:00'].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[datetime.datetime]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1797,8 +1785,6 @@ class ArrayOperations(object):
     @distributed_trace
     def put_date_time_valid(
         self,
-        array_body,  # type: List[datetime.datetime]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1806,11 +1792,12 @@ class ArrayOperations(object):
 
         :param array_body:
         :type array_body: list[~datetime.datetime]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1843,17 +1830,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_date_time_invalid_null(
         self,
-        cls=None,  # type: ClsType[List[datetime.datetime]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[datetime.datetime]
         """Get date array value ['2000-12-01t00:00:01z', null].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[datetime.datetime]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1886,17 +1873,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_date_time_invalid_chars(
         self,
-        cls=None,  # type: ClsType[List[datetime.datetime]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[datetime.datetime]
         """Get date array value ['2000-12-01t00:00:01z', 'date-time'].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[datetime.datetime]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1929,17 +1916,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_date_time_rfc1123_valid(
         self,
-        cls=None,  # type: ClsType[List[datetime.datetime]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[datetime.datetime]
         """Get date-time array value ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12 Oct 1492 10:15:01 GMT'].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[datetime.datetime]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1972,8 +1959,6 @@ class ArrayOperations(object):
     @distributed_trace
     def put_date_time_rfc1123_valid(
         self,
-        array_body,  # type: List[datetime.datetime]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1981,11 +1966,12 @@ class ArrayOperations(object):
 
         :param array_body:
         :type array_body: list[~datetime.datetime]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2018,17 +2004,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_duration_valid(
         self,
-        cls=None,  # type: ClsType[List[datetime.timedelta]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[datetime.timedelta]
         """Get duration array value ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~datetime.timedelta]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[datetime.timedelta]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2061,8 +2047,6 @@ class ArrayOperations(object):
     @distributed_trace
     def put_duration_valid(
         self,
-        array_body,  # type: List[datetime.timedelta]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -2070,11 +2054,12 @@ class ArrayOperations(object):
 
         :param array_body:
         :type array_body: list[~datetime.timedelta]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2107,17 +2092,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_byte_valid(
         self,
-        cls=None,  # type: ClsType[List[bytearray]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[bytearray]
         """Get byte array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each item encoded in base64.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[bytearray]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[bytearray]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2150,8 +2135,6 @@ class ArrayOperations(object):
     @distributed_trace
     def put_byte_valid(
         self,
-        array_body,  # type: List[bytearray]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -2159,11 +2142,12 @@ class ArrayOperations(object):
 
         :param array_body:
         :type array_body: list[bytearray]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2196,17 +2180,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_byte_invalid_null(
         self,
-        cls=None,  # type: ClsType[List[bytearray]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[bytearray]
         """Get byte array value [hex(AB, AC, AD), null] with the first item base64 encoded.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[bytearray]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[bytearray]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2239,17 +2223,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_base64_url(
         self,
-        cls=None,  # type: ClsType[List[bytes]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[bytes]
         """Get array value ['a string that gets encoded with base64url', 'test string' 'Lorem ipsum'] with the items base64url encoded.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[bytes]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[bytes]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2282,17 +2266,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_complex_null(
         self,
-        cls=None,  # type: ClsType[List["Product"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List["Product"]
         """Get array of complex type null value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List["Product"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2325,17 +2309,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_complex_empty(
         self,
-        cls=None,  # type: ClsType[List["Product"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List["Product"]
         """Get empty array of complex type [].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List["Product"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2368,17 +2352,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_complex_item_null(
         self,
-        cls=None,  # type: ClsType[List["Product"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List["Product"]
         """Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5, 'string': '6'}].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List["Product"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2411,17 +2395,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_complex_item_empty(
         self,
-        cls=None,  # type: ClsType[List["Product"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List["Product"]
         """Get array of complex type with empty item [{'integer': 1 'string': '2'}, {}, {'integer': 5, 'string': '6'}].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List["Product"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2454,17 +2438,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_complex_valid(
         self,
-        cls=None,  # type: ClsType[List["Product"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List["Product"]
         """Get array of complex type with [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'}, {'integer': 5, 'string': '6'}].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List["Product"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2497,8 +2481,6 @@ class ArrayOperations(object):
     @distributed_trace
     def put_complex_valid(
         self,
-        array_body,  # type: List["Product"]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -2506,11 +2488,12 @@ class ArrayOperations(object):
 
         :param array_body:
         :type array_body: list[~bodyarray.models.Product]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2543,17 +2526,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_array_null(
         self,
-        cls=None,  # type: ClsType[List[List[str]]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[List[str]]
         """Get a null array.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[List[str]]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2586,17 +2569,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_array_empty(
         self,
-        cls=None,  # type: ClsType[List[List[str]]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[List[str]]
         """Get an empty array [].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[List[str]]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2629,17 +2612,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_array_item_null(
         self,
-        cls=None,  # type: ClsType[List[List[str]]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[List[str]]
         """Get an array of array of strings [['1', '2', '3'], null, ['7', '8', '9']].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[List[str]]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2672,17 +2655,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_array_item_empty(
         self,
-        cls=None,  # type: ClsType[List[List[str]]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[List[str]]
         """Get an array of array of strings [['1', '2', '3'], [], ['7', '8', '9']].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[List[str]]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2715,17 +2698,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_array_valid(
         self,
-        cls=None,  # type: ClsType[List[List[str]]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[List[str]]
         """Get an array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[list[str]]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[List[str]]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2758,8 +2741,6 @@ class ArrayOperations(object):
     @distributed_trace
     def put_array_valid(
         self,
-        array_body,  # type: List[List[str]]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -2767,11 +2748,12 @@ class ArrayOperations(object):
 
         :param array_body:
         :type array_body: list[list[str]]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2804,17 +2786,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_dictionary_null(
         self,
-        cls=None,  # type: ClsType[List[Dict[str, str]]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[Dict[str, str]]
         """Get an array of Dictionaries with value null.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[Dict[str, str]]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2847,17 +2829,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_dictionary_empty(
         self,
-        cls=None,  # type: ClsType[List[Dict[str, str]]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[Dict[str, str]]
         """Get an array of Dictionaries of type <string, string> with value [].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[Dict[str, str]]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2890,17 +2872,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_dictionary_item_null(
         self,
-        cls=None,  # type: ClsType[List[Dict[str, str]]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[Dict[str, str]]
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3': 'three'}, null, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[Dict[str, str]]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2933,17 +2915,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_dictionary_item_empty(
         self,
-        cls=None,  # type: ClsType[List[Dict[str, str]]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[Dict[str, str]]
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3': 'three'}, {}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[Dict[str, str]]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2976,17 +2958,17 @@ class ArrayOperations(object):
     @distributed_trace
     def get_dictionary_valid(
         self,
-        cls=None,  # type: ClsType[List[Dict[str, str]]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List[Dict[str, str]]
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3': 'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[List[Dict[str, str]]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -3019,8 +3001,6 @@ class ArrayOperations(object):
     @distributed_trace
     def put_dictionary_valid(
         self,
-        array_body,  # type: List[Dict[str, str]]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -3028,11 +3008,12 @@ class ArrayOperations(object):
 
         :param array_body:
         :type array_body: list[dict[str, str]]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodyarray.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

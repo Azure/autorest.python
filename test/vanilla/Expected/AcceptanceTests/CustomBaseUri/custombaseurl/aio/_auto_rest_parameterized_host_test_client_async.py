@@ -27,7 +27,6 @@ class AutoRestParameterizedHostTestClient(object):
 
     def __init__(
         self,
-        host: str,
         **kwargs: Any
     ) -> None:
         base_url = 'http://{accountName}{host}'

@@ -27,7 +27,6 @@ class AutoRestParameterizedHostTestClient(object):
 
     def __init__(
         self,
-        host,  # type: str
         base_url=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):

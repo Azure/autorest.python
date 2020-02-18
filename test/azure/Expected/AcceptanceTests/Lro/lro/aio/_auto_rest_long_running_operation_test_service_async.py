@@ -37,7 +37,6 @@ class AutoRestLongRunningOperationTestService(object):
 
     def __init__(
         self,
-        credential: "TokenCredential",
         base_url: Optional[str] = None,
         **kwargs: Any
     ) -> None:

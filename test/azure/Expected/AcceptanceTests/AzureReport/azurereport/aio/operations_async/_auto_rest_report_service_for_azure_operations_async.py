@@ -23,10 +23,7 @@ class AutoRestReportServiceForAzureOperationsMixin:
     @distributed_trace_async
     async def get_report(
         self,
-        qualifier: Optional[str] = None,
-        *,
-        cls: ClsType[Dict[str, int]] = None,
-        **kwargs: Any
+        **kwargs
     ) -> Dict[str, int]:
         """Get test coverage report.
 
@@ -34,11 +31,12 @@ class AutoRestReportServiceForAzureOperationsMixin:
          for Python). The only effect is, that generators that run all tests several times, can
          distinguish the generated reports.
         :type qualifier: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, int]
         :raises: ~azurereport.models.ErrorException:
         """
+        cls: ClsType[Dict[str, int]] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

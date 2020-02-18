@@ -42,20 +42,18 @@ class ImplicitOperations:
     @distributed_trace_async
     async def get_required_path(
         self,
-        path_parameter: str,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Test implicitly required path parameter.
 
         :param path_parameter:
         :type path_parameter: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -88,20 +86,18 @@ class ImplicitOperations:
     @distributed_trace_async
     async def put_optional_query(
         self,
-        query_parameter: Optional[str] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Test implicitly optional query parameter.
 
         :param query_parameter:
         :type query_parameter: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -132,20 +128,18 @@ class ImplicitOperations:
     @distributed_trace_async
     async def put_optional_header(
         self,
-        query_parameter: Optional[str] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Test implicitly optional header parameter.
 
         :param query_parameter:
         :type query_parameter: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -176,20 +170,18 @@ class ImplicitOperations:
     @distributed_trace_async
     async def put_optional_body(
         self,
-        body_parameter: Optional[str] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Test implicitly optional body parameter.
 
         :param body_parameter:
         :type body_parameter: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -225,16 +217,16 @@ class ImplicitOperations:
     @distributed_trace_async
     async def get_required_global_path(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Test implicitly required path parameter.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -267,16 +259,16 @@ class ImplicitOperations:
     @distributed_trace_async
     async def get_required_global_query(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Test implicitly required query parameter.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -306,16 +298,16 @@ class ImplicitOperations:
     @distributed_trace_async
     async def get_optional_global_query(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Test implicitly optional query parameter.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

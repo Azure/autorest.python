@@ -14,6 +14,13 @@ from .imports import FileImport, ImportType
 
 _LOGGER = logging.getLogger(__name__)
 
+class RawString(object):
+    def __init__(self, string: str):
+        self.string = string
+
+    def __repr__(self) -> str:
+        return f"r'{self.string}'"
+
 
 class PrimitiveSchema(BaseSchema):
     _TYPE_MAPPINGS = {
@@ -60,7 +67,8 @@ class NumberSchema(PrimitiveSchema):
         self.exclusive_maximum = cast(int, yaml_data.get("exclusiveMaximum"))
         self.exclusive_minimum = cast(int, yaml_data.get("exclusiveMinimum"))
 
-    def get_serialization_constraints(self) -> List[str]:
+    @property
+    def serialization_constraints(self) -> List[str]:
         validation_constraints = [
             f"maximum_ex={self.maximum}" if self.maximum is not None and self.exclusive_maximum else None,
             f"maximum={self.maximum}" if self.maximum is not None and not self.exclusive_maximum else None,
@@ -70,7 +78,8 @@ class NumberSchema(PrimitiveSchema):
         ]
         return [x for x in validation_constraints if x is not None]
 
-    def get_validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
+    @property
+    def validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
         validation_map: Dict[str, Union[bool, int, str]] = {}
         if self.maximum is not None:
             if self.exclusive_maximum:
@@ -111,30 +120,34 @@ class NumberSchema(PrimitiveSchema):
 
 
 class StringSchema(PrimitiveSchema):
+
     def __init__(self, namespace: str, yaml_data: Dict[str, Any]):
         super(StringSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.max_length = cast(int, yaml_data.get("maxLength"))
         self.min_length = cast(
             int, (yaml_data.get("minLength", 0) if yaml_data.get("maxLength") else yaml_data.get("minLength"))
         )
-        self.pattern = cast(int, yaml_data.get("pattern"))
+        self.pattern = cast(str, yaml_data.get("pattern"))
 
-    def get_serialization_constraints(self) -> List[str]:
+    @property
+    def serialization_constraints(self) -> List[str]:
         validation_constraints = [
             f"max_length={self.max_length}" if self.max_length is not None else None,
             f"min_length={self.min_length}" if self.min_length is not None else None,
-            f"pattern='{self.pattern}'" if self.pattern is not None else None,
+            f"pattern={RawString(self.pattern)}" if self.pattern else None,
         ]
         return [x for x in validation_constraints if x is not None]
 
-    def get_validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
+    @property
+    def validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
         validation_map: Dict[str, Union[bool, int, str]] = {}
         if self.max_length is not None:
             validation_map["max_length"] = self.max_length
         if self.min_length is not None:
             validation_map["min_length"] = self.min_length
-        if self.pattern is not None:
-            validation_map["pattern"] = self.pattern
+        if self.pattern:
+            # https://github.com/Azure/autorest.python/issues/407
+            validation_map["pattern"] = RawString(self.pattern)  # type: ignore
         return validation_map or None
 
     def get_declaration(self, value) -> str:

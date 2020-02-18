@@ -37,7 +37,7 @@ class {{ exception_name }}(HttpResponseError):
 {% if basename %}
 class {{ model.name }}({{ basename }}):
 {% else %}
-class {{ model.name }}(Model):
+class {{ model.name }}(msrest.serialization.Model):
 {% endif %}
     """{{ model.description }}
     {% if model.discriminator_name %}
@@ -98,7 +98,7 @@ class {{ model.name }}(Model):
     {% if (model.properties | selectattr('constant') | first) is defined %}
 
         {% for p in model.properties | selectattr('constant')%}
-    {{ p.name }} = {{ p.schema.get_constant_value() }}
+    {{ p.name }} = {{ p.schema.constant_value }}
         {% endfor %}
     {% endif %}
 

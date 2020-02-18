@@ -12,7 +12,6 @@ from azure.core.exceptions import map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
-from msrest.serialization import Model
 
 from ... import models
 
@@ -43,16 +42,16 @@ class PolymorphicrecursiveOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        cls: ClsType["models.Fish"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Fish":
         """Get complex types that are polymorphic and have recursive references.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Fish or the result of cls(response)
         :rtype: ~bodycomplex.models.Fish
         :raises: ~bodycomplex.models.ErrorException:
         """
+        cls: ClsType["models.Fish"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -85,10 +84,7 @@ class PolymorphicrecursiveOperations:
     @distributed_trace_async
     async def put_valid(
         self,
-        complex_body: "models.Fish",
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
@@ -126,11 +122,12 @@ class PolymorphicrecursiveOperations:
                  ]
                };.
         :type complex_body: ~bodycomplex.models.Fish
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodycomplex.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

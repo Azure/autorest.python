@@ -12,12 +12,11 @@ from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
-from azure.core.polling import AsyncNoPolling, async_poller
+from azure.core.polling import AsyncNoPolling, AsyncPollingMethod, async_poller
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMError
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
-from msrest.serialization import Model
 
 from ... import models
 
@@ -48,10 +47,7 @@ class StorageAccountsOperations:
     @distributed_trace_async
     async def check_name_availability(
         self,
-        account_name: "models.StorageAccountCheckNameAvailabilityParameters",
-        *,
-        cls: ClsType["models.CheckNameAvailabilityResult"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.CheckNameAvailabilityResult":
         """Checks that account name is valid and is not in use.
 
@@ -59,11 +55,12 @@ class StorageAccountsOperations:
          Storage account names must be between 3 and 24 characters in length and use numbers and lower-
          case letters only.
         :type account_name: ~storage.models.StorageAccountCheckNameAvailabilityParameters
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CheckNameAvailabilityResult or the result of cls(response)
         :rtype: ~storage.models.CheckNameAvailabilityResult
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls: ClsType["models.CheckNameAvailabilityResult"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -103,13 +100,9 @@ class StorageAccountsOperations:
 
     async def _create_initial(
         self,
-        resource_group_name: str,
-        account_name: str,
-        parameters: "models.StorageAccountCreateParameters",
-        *,
-        cls: ClsType["models.StorageAccount"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.StorageAccount":
+        cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -154,12 +147,6 @@ class StorageAccountsOperations:
     @distributed_trace_async
     async def create(
         self,
-        resource_group_name: str,
-        account_name: str,
-        parameters: "models.StorageAccountCreateParameters",
-        *,
-        cls: ClsType["models.StorageAccount"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.StorageAccount":
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts cannot be updated with this API and should instead use the Update Storage Account API. If an account is already created and subsequent PUT request is issued with exact same set of properties, then HTTP 200 would be returned.
@@ -172,14 +159,17 @@ class StorageAccountsOperations:
         :type account_name: str
         :param parameters: The parameters to provide for the created account.
         :type parameters: ~storage.models.StorageAccountCreateParameters
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns StorageAccount
         :rtype: ~azure.core.polling.LROPoller[~storage.models.StorageAccount]
 
         :raises ~azure.mgmt.core.ARMError:
         """
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None )
         raw_result = await self._create_initial(
             resource_group_name=resource_group_name,
             account_name=account_name,
@@ -208,11 +198,7 @@ class StorageAccountsOperations:
     @distributed_trace_async
     async def delete(
         self,
-        resource_group_name: str,
-        account_name: str,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Deletes a storage account in Microsoft Azure.
 
@@ -222,11 +208,12 @@ class StorageAccountsOperations:
          Storage account names must be between 3 and 24 characters in length and use numbers and lower-
          case letters only.
         :type account_name: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -261,11 +248,7 @@ class StorageAccountsOperations:
     @distributed_trace_async
     async def get_properties(
         self,
-        resource_group_name: str,
-        account_name: str,
-        *,
-        cls: ClsType["models.StorageAccount"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.StorageAccount":
         """Returns the properties for the specified storage account including but not limited to name, account type, location, and account status. The ListKeys operation should be used to retrieve storage keys.
 
@@ -275,11 +258,12 @@ class StorageAccountsOperations:
          Storage account names must be between 3 and 24 characters in length and use numbers and lower-
          case letters only.
         :type account_name: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -318,12 +302,7 @@ class StorageAccountsOperations:
     @distributed_trace_async
     async def update(
         self,
-        resource_group_name: str,
-        account_name: str,
-        parameters: "models.StorageAccountUpdateParameters",
-        *,
-        cls: ClsType["models.StorageAccount"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.StorageAccount":
         """Updates the account type or tags for a storage account. It can also be used to add a custom domain (note that custom domains cannot be added via the Create operation). Only one custom domain is supported per storage account. This API can only be used to update one of tags, accountType, or customDomain per call. To update multiple of these properties, call the API multiple times with one change per call. This call does not change the storage keys for the account. If you want to change storage account keys, use the RegenerateKey operation. The location and name of the storage account cannot be changed after creation.
 
@@ -336,11 +315,12 @@ class StorageAccountsOperations:
         :param parameters: The parameters to update on the account. Note that only one property can be
          changed at a time using this API.
         :type parameters: ~storage.models.StorageAccountUpdateParameters
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -383,11 +363,7 @@ class StorageAccountsOperations:
     @distributed_trace_async
     async def list_keys(
         self,
-        resource_group_name: str,
-        account_name: str,
-        *,
-        cls: ClsType["models.StorageAccountKeys"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.StorageAccountKeys":
         """Lists the access keys for the specified storage account.
 
@@ -397,11 +373,12 @@ class StorageAccountsOperations:
          Storage account names must be between 3 and 24 characters in length and use numbers and lower-
          case letters only.
         :type account_name: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountKeys or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls: ClsType["models.StorageAccountKeys"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -440,16 +417,16 @@ class StorageAccountsOperations:
     @distributed_trace
     def list(
         self,
-        cls: ClsType["models.StorageAccountListResult"] = None,
         **kwargs
     ) -> "models.StorageAccountListResult":
         """Lists all the storage accounts available under the subscription. Note that storage keys are not returned; use the ListKeys operation for this.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountListResult or the result of cls(response)
         :rtype: ~storage.models.StorageAccountListResult
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls: ClsType["models.StorageAccountListResult"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -501,20 +478,18 @@ class StorageAccountsOperations:
     @distributed_trace
     def list_by_resource_group(
         self,
-        resource_group_name: str,
-        *,
-        cls: ClsType["models.StorageAccountListResult"] = None,
         **kwargs
     ) -> "models.StorageAccountListResult":
         """Lists all the storage accounts available under the given resource group. Note that storage keys are not returned; use the ListKeys operation for this.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountListResult or the result of cls(response)
         :rtype: ~storage.models.StorageAccountListResult
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls: ClsType["models.StorageAccountListResult"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -567,12 +542,7 @@ class StorageAccountsOperations:
     @distributed_trace_async
     async def regenerate_key(
         self,
-        resource_group_name: str,
-        account_name: str,
-        key_name: Optional[Union[str, "models.KeyName"]] = None,
-        *,
-        cls: ClsType["models.StorageAccountKeys"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.StorageAccountKeys":
         """Regenerates the access keys for the specified storage account.
 
@@ -584,14 +554,15 @@ class StorageAccountsOperations:
         :type account_name: str
         :param key_name:
         :type key_name: str or ~storage.models.KeyName
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountKeys or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys
         :raises: ~azure.mgmt.core.ARMError
         """
+        cls: ClsType["models.StorageAccountKeys"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
-        regenerate_key = models.StorageAccountRegenerateKeyParameters(key_name=key_name)
+        _regenerate_key = models.StorageAccountRegenerateKeyParameters(key_name=key_name)
 
         # Construct URL
         url = self.regenerate_key.metadata['url']
@@ -611,7 +582,7 @@ class StorageAccountsOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(regenerate_key, 'StorageAccountRegenerateKeyParameters')
+        body_content = self._serialize.body(_regenerate_key, 'StorageAccountRegenerateKeyParameters')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)

@@ -41,14 +41,14 @@ sys.path.append(join(tests, "BodyDictionary"))
 from azure.core.exceptions import DecodeError
 from msrest.exceptions import DeserializationError
 
-from bodydictionary.aio import AutoRestSwaggerBATdictionaryService
+from bodydictionary.aio import AutoRestSwaggerBATDictionaryService
 from bodydictionary.models import Widget, ErrorException
 
 import pytest
 
 @pytest.fixture
 async def client():
-    async with AutoRestSwaggerBATdictionaryService(base_url="http://localhost:3000") as client:
+    async with AutoRestSwaggerBATDictionaryService(base_url="http://localhost:3000") as client:
         yield client
 
 @pytest.fixture

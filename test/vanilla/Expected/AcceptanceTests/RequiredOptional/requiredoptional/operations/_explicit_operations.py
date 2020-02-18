@@ -12,7 +12,6 @@ from azure.core.exceptions import map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
-from msrest.serialization import Model
 
 from .. import models
 
@@ -43,8 +42,6 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_integer_parameter(
         self,
-        body_parameter,  # type: int
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -52,11 +49,12 @@ class ExplicitOperations(object):
 
         :param body_parameter:
         :type body_parameter: int
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -89,8 +87,6 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_integer_parameter(
         self,
-        body_parameter=None,  # type: Optional[int]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -98,11 +94,12 @@ class ExplicitOperations(object):
 
         :param body_parameter:
         :type body_parameter: int
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -138,8 +135,6 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_integer_property(
         self,
-        value,  # type: int
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -147,14 +142,15 @@ class ExplicitOperations(object):
 
         :param value:
         :type value: int
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
-        body_parameter = models.IntWrapper(value=value)
+        _body_parameter = models.IntWrapper(value=value)
 
         # Construct URL
         url = self.post_required_integer_property.metadata['url']
@@ -167,7 +163,7 @@ class ExplicitOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(body_parameter, 'IntWrapper')
+        body_content = self._serialize.body(_body_parameter, 'IntWrapper')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
@@ -186,8 +182,6 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_integer_property(
         self,
-        value=None,  # type: Optional[int]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -195,14 +189,15 @@ class ExplicitOperations(object):
 
         :param value:
         :type value: int
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
-        body_parameter = models.IntOptionalWrapper(value=value)
+        _body_parameter = models.IntOptionalWrapper(value=value)
 
         # Construct URL
         url = self.post_optional_integer_property.metadata['url']
@@ -215,8 +210,8 @@ class ExplicitOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if body_parameter is not None:
-            body_content = self._serialize.body(body_parameter, 'IntOptionalWrapper')
+        if _body_parameter is not None:
+            body_content = self._serialize.body(_body_parameter, 'IntOptionalWrapper')
         else:
             body_content = None
 
@@ -237,8 +232,6 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_integer_header(
         self,
-        header_parameter,  # type: int
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -246,11 +239,12 @@ class ExplicitOperations(object):
 
         :param header_parameter:
         :type header_parameter: int
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -280,8 +274,6 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_integer_header(
         self,
-        header_parameter=None,  # type: Optional[int]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -289,11 +281,12 @@ class ExplicitOperations(object):
 
         :param header_parameter:
         :type header_parameter: int
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -324,8 +317,6 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_string_parameter(
         self,
-        body_parameter,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -333,11 +324,12 @@ class ExplicitOperations(object):
 
         :param body_parameter:
         :type body_parameter: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -370,8 +362,6 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_string_parameter(
         self,
-        body_parameter=None,  # type: Optional[str]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -379,11 +369,12 @@ class ExplicitOperations(object):
 
         :param body_parameter:
         :type body_parameter: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -419,8 +410,6 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_string_property(
         self,
-        value,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -428,14 +417,15 @@ class ExplicitOperations(object):
 
         :param value:
         :type value: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
-        body_parameter = models.StringWrapper(value=value)
+        _body_parameter = models.StringWrapper(value=value)
 
         # Construct URL
         url = self.post_required_string_property.metadata['url']
@@ -448,7 +438,7 @@ class ExplicitOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(body_parameter, 'StringWrapper')
+        body_content = self._serialize.body(_body_parameter, 'StringWrapper')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
@@ -467,8 +457,6 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_string_property(
         self,
-        value=None,  # type: Optional[str]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -476,14 +464,15 @@ class ExplicitOperations(object):
 
         :param value:
         :type value: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
-        body_parameter = models.StringOptionalWrapper(value=value)
+        _body_parameter = models.StringOptionalWrapper(value=value)
 
         # Construct URL
         url = self.post_optional_string_property.metadata['url']
@@ -496,8 +485,8 @@ class ExplicitOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if body_parameter is not None:
-            body_content = self._serialize.body(body_parameter, 'StringOptionalWrapper')
+        if _body_parameter is not None:
+            body_content = self._serialize.body(_body_parameter, 'StringOptionalWrapper')
         else:
             body_content = None
 
@@ -518,8 +507,6 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_string_header(
         self,
-        header_parameter,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -527,11 +514,12 @@ class ExplicitOperations(object):
 
         :param header_parameter:
         :type header_parameter: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -561,8 +549,6 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_string_header(
         self,
-        body_parameter=None,  # type: Optional[str]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -570,11 +556,12 @@ class ExplicitOperations(object):
 
         :param body_parameter:
         :type body_parameter: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -605,8 +592,6 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_class_parameter(
         self,
-        body_parameter,  # type: "models.Product"
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -614,11 +599,12 @@ class ExplicitOperations(object):
 
         :param body_parameter:
         :type body_parameter: ~requiredoptional.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -651,8 +637,6 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_class_parameter(
         self,
-        body_parameter=None,  # type: Optional["models.Product"]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -660,11 +644,12 @@ class ExplicitOperations(object):
 
         :param body_parameter:
         :type body_parameter: ~requiredoptional.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -700,8 +685,6 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_class_property(
         self,
-        value,  # type: "models.Product"
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -709,14 +692,15 @@ class ExplicitOperations(object):
 
         :param value:
         :type value: ~requiredoptional.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
-        body_parameter = models.ClassWrapper(value=value)
+        _body_parameter = models.ClassWrapper(value=value)
 
         # Construct URL
         url = self.post_required_class_property.metadata['url']
@@ -729,7 +713,7 @@ class ExplicitOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(body_parameter, 'ClassWrapper')
+        body_content = self._serialize.body(_body_parameter, 'ClassWrapper')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
@@ -748,8 +732,6 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_class_property(
         self,
-        value=None,  # type: Optional["models.Product"]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -757,14 +739,15 @@ class ExplicitOperations(object):
 
         :param value:
         :type value: ~requiredoptional.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
-        body_parameter = models.ClassOptionalWrapper(value=value)
+        _body_parameter = models.ClassOptionalWrapper(value=value)
 
         # Construct URL
         url = self.post_optional_class_property.metadata['url']
@@ -777,8 +760,8 @@ class ExplicitOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if body_parameter is not None:
-            body_content = self._serialize.body(body_parameter, 'ClassOptionalWrapper')
+        if _body_parameter is not None:
+            body_content = self._serialize.body(_body_parameter, 'ClassOptionalWrapper')
         else:
             body_content = None
 
@@ -799,8 +782,6 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_array_parameter(
         self,
-        body_parameter,  # type: List[str]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -808,11 +789,12 @@ class ExplicitOperations(object):
 
         :param body_parameter:
         :type body_parameter: list[str]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -845,8 +827,6 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_array_parameter(
         self,
-        body_parameter=None,  # type: Optional[List[str]]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -854,11 +834,12 @@ class ExplicitOperations(object):
 
         :param body_parameter:
         :type body_parameter: list[str]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -894,8 +875,6 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_array_property(
         self,
-        value,  # type: List[str]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -903,14 +882,15 @@ class ExplicitOperations(object):
 
         :param value:
         :type value: list[str]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
-        body_parameter = models.ArrayWrapper(value=value)
+        _body_parameter = models.ArrayWrapper(value=value)
 
         # Construct URL
         url = self.post_required_array_property.metadata['url']
@@ -923,7 +903,7 @@ class ExplicitOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(body_parameter, 'ArrayWrapper')
+        body_content = self._serialize.body(_body_parameter, 'ArrayWrapper')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
@@ -942,8 +922,6 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_array_property(
         self,
-        value=None,  # type: Optional[List[str]]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -951,14 +929,15 @@ class ExplicitOperations(object):
 
         :param value:
         :type value: list[str]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
-        body_parameter = models.ArrayOptionalWrapper(value=value)
+        _body_parameter = models.ArrayOptionalWrapper(value=value)
 
         # Construct URL
         url = self.post_optional_array_property.metadata['url']
@@ -971,8 +950,8 @@ class ExplicitOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if body_parameter is not None:
-            body_content = self._serialize.body(body_parameter, 'ArrayOptionalWrapper')
+        if _body_parameter is not None:
+            body_content = self._serialize.body(_body_parameter, 'ArrayOptionalWrapper')
         else:
             body_content = None
 
@@ -993,8 +972,6 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_array_header(
         self,
-        header_parameter,  # type: List[str]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1002,11 +979,12 @@ class ExplicitOperations(object):
 
         :param header_parameter:
         :type header_parameter: list[str]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1036,8 +1014,6 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_array_header(
         self,
-        header_parameter=None,  # type: Optional[List[str]]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1045,11 +1021,12 @@ class ExplicitOperations(object):
 
         :param header_parameter:
         :type header_parameter: list[str]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~requiredoptional.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

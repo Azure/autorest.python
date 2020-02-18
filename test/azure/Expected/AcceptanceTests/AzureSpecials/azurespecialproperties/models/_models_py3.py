@@ -9,7 +9,7 @@
 from typing import Optional
 
 from azure.core.exceptions import HttpResponseError
-from msrest.serialization import Model
+import msrest.serialization
 
 
 class ErrorException(HttpResponseError):
@@ -37,7 +37,7 @@ class ErrorException(HttpResponseError):
         return error._EXCEPTION_TYPE(response, error)
 
 
-class Error(Model):
+class Error(msrest.serialization.Model):
     """Error.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -77,7 +77,7 @@ class Error(Model):
         self.message = message
 
 
-class HeaderCustomNamedRequestIdParamGroupingParameters(Model):
+class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Model):
     """Parameter group.
 
     All required parameters must be populated in order to send to Azure.
@@ -104,7 +104,7 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(Model):
         self.foo_client_request_id = foo_client_request_id
 
 
-class OdataFilter(Model):
+class OdataFilter(msrest.serialization.Model):
     """OdataFilter.
 
     :param id:

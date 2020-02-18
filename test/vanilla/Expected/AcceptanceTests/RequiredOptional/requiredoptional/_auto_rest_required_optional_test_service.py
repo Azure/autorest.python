@@ -35,9 +35,6 @@ class AutoRestRequiredOptionalTestService(object):
 
     def __init__(
         self,
-        required_global_path,  # type: str
-        required_global_query,  # type: str
-        optional_global_query=None,  # type: Optional[int]
         base_url=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):

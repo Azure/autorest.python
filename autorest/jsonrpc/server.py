@@ -57,7 +57,6 @@ def main():
             raise SystemExit("Please pip install ptvsd in order to use VSCode debugging")
 
         # 5678 is the default attach port in the VS Code debug configurations
-        print("Waiting for debugger attach")
         ptvsd.enable_attach(address=("localhost", 5678), redirect_output=True)
         ptvsd.wait_for_attach()
         breakpoint()  # pylint: disable=undefined-variable

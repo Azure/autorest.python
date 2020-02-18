@@ -27,8 +27,6 @@ class AutoRestParameterizedHostTestPagingClientConfiguration(Configuration):
 
     def __init__(
         self,
-        credential,  # type: "TokenCredential"
-        host,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None

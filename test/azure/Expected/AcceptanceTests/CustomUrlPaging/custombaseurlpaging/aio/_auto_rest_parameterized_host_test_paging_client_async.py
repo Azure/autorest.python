@@ -29,8 +29,6 @@ class AutoRestParameterizedHostTestPagingClient(object):
 
     def __init__(
         self,
-        credential: "TokenCredential",
-        host: str,
         **kwargs: Any
     ) -> None:
         base_url = 'http://{accountName}{host}'

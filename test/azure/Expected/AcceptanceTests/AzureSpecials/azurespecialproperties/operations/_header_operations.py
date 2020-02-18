@@ -12,7 +12,6 @@ from azure.core.exceptions import map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
-from msrest.serialization import Model
 
 from .. import models
 
@@ -43,8 +42,6 @@ class HeaderOperations(object):
     @distributed_trace
     def custom_named_request_id(
         self,
-        foo_client_request_id,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -52,11 +49,12 @@ class HeaderOperations(object):
 
         :param foo_client_request_id: The fooRequestId.
         :type foo_client_request_id: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -89,8 +87,6 @@ class HeaderOperations(object):
     @distributed_trace
     def custom_named_request_id_param_grouping(
         self,
-        header_custom_named_request_id_param_grouping_parameters,  # type: "models.HeaderCustomNamedRequestIdParamGroupingParameters"
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -98,16 +94,17 @@ class HeaderOperations(object):
 
         :param header_custom_named_request_id_param_grouping_parameters: Parameter group.
         :type header_custom_named_request_id_param_grouping_parameters: ~azurespecialproperties.models.HeaderCustomNamedRequestIdParamGroupingParameters
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         
-        foo_client_request_id = None
+        _foo_client_request_id = None
         if header_custom_named_request_id_param_grouping_parameters is not None:
-            foo_client_request_id = header_custom_named_request_id_param_grouping_parameters.foo_client_request_id
+            _foo_client_request_id = header_custom_named_request_id_param_grouping_parameters.foo_client_request_id
 
         # Construct URL
         url = self.custom_named_request_id_param_grouping.metadata['url']
@@ -117,7 +114,7 @@ class HeaderOperations(object):
 
         # Construct headers
         header_parameters = {}
-        header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", foo_client_request_id, 'str')
+        header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", _foo_client_request_id, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -139,8 +136,6 @@ class HeaderOperations(object):
     @distributed_trace
     def custom_named_request_id_head(
         self,
-        foo_client_request_id,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -148,11 +143,12 @@ class HeaderOperations(object):
 
         :param foo_client_request_id: The fooRequestId.
         :type foo_client_request_id: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

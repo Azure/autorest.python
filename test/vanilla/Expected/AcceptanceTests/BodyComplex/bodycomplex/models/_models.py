@@ -7,10 +7,10 @@
 # --------------------------------------------------------------------------
 
 from azure.core.exceptions import HttpResponseError
-from msrest.serialization import Model
+import msrest.serialization
 
 
-class ArrayWrapper(Model):
+class ArrayWrapper(msrest.serialization.Model):
     """ArrayWrapper.
 
     :param array:
@@ -29,7 +29,7 @@ class ArrayWrapper(Model):
         self.array = kwargs.get('array', None)
 
 
-class Basic(Model):
+class Basic(msrest.serialization.Model):
     """Basic.
 
     :param id: Basic Id.
@@ -57,7 +57,7 @@ class Basic(Model):
         self.color = kwargs.get('color', None)
 
 
-class BooleanWrapper(Model):
+class BooleanWrapper(msrest.serialization.Model):
     """BooleanWrapper.
 
     :param field_true:
@@ -80,7 +80,7 @@ class BooleanWrapper(Model):
         self.field_false = kwargs.get('field_false', None)
 
 
-class ByteWrapper(Model):
+class ByteWrapper(msrest.serialization.Model):
     """ByteWrapper.
 
     :param field:
@@ -99,7 +99,7 @@ class ByteWrapper(Model):
         self.field = kwargs.get('field', None)
 
 
-class Pet(Model):
+class Pet(msrest.serialization.Model):
     """Pet.
 
     :param id:
@@ -151,7 +151,7 @@ class Cat(Pet):
         self.hates = kwargs.get('hates', None)
 
 
-class Fish(Model):
+class Fish(msrest.serialization.Model):
     """Fish.
 
     You probably want to use the sub-classes and not this class directly. Known
@@ -289,7 +289,7 @@ class Cookiecuttershark(Shark):
         self.fishtype = 'cookiecuttershark'
 
 
-class Datetimerfc1123Wrapper(Model):
+class Datetimerfc1123Wrapper(msrest.serialization.Model):
     """Datetimerfc1123Wrapper.
 
     :param field:
@@ -312,7 +312,7 @@ class Datetimerfc1123Wrapper(Model):
         self.now = kwargs.get('now', None)
 
 
-class DatetimeWrapper(Model):
+class DatetimeWrapper(msrest.serialization.Model):
     """DatetimeWrapper.
 
     :param field:
@@ -335,7 +335,7 @@ class DatetimeWrapper(Model):
         self.now = kwargs.get('now', None)
 
 
-class DateWrapper(Model):
+class DateWrapper(msrest.serialization.Model):
     """DateWrapper.
 
     :param field:
@@ -358,11 +358,10 @@ class DateWrapper(Model):
         self.leap = kwargs.get('leap', None)
 
 
-class DictionaryWrapper(Model):
+class DictionaryWrapper(msrest.serialization.Model):
     """DictionaryWrapper.
 
-    :param default_program: Dictionary of
-     <components·schemas·dictionary_wrapper·properties·defaultprogram·additionalproperties>.
+    :param default_program: Dictionary of :code:`<string>`.
     :type default_program: dict[str, str]
     """
 
@@ -403,7 +402,7 @@ class Dog(Pet):
         self.food = kwargs.get('food', None)
 
 
-class DotFish(Model):
+class DotFish(msrest.serialization.Model):
     """DotFish.
 
     You probably want to use the sub-classes and not this class directly. Known
@@ -439,7 +438,7 @@ class DotFish(Model):
         self.species = kwargs.get('species', None)
 
 
-class DotFishMarket(Model):
+class DotFishMarket(msrest.serialization.Model):
     """DotFishMarket.
 
     :param sample_salmon:
@@ -506,21 +505,21 @@ class DotSalmon(DotFish):
         self.iswild = kwargs.get('iswild', None)
 
 
-class DoubleWrapper(Model):
+class DoubleWrapper(msrest.serialization.Model):
     """DoubleWrapper.
 
     :param field1:
     :type field1: float
     :param
-     field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_along_field_name_on_purpose:
+     field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
     :type
-     field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_along_field_name_on_purpose:
+     field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
      float
     """
 
     _attribute_map = {
         'field1': {'key': 'field1', 'type': 'float'},
-        'field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_along_field_name_on_purpose': {'key': 'field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose', 'type': 'float'},
+        'field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose': {'key': 'field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose', 'type': 'float'},
     }
 
     def __init__(
@@ -529,10 +528,10 @@ class DoubleWrapper(Model):
     ):
         super(DoubleWrapper, self).__init__(**kwargs)
         self.field1 = kwargs.get('field1', None)
-        self.field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_along_field_name_on_purpose = kwargs.get('field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_along_field_name_on_purpose', None)
+        self.field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose = kwargs.get('field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose', None)
 
 
-class DurationWrapper(Model):
+class DurationWrapper(msrest.serialization.Model):
     """DurationWrapper.
 
     :param field:
@@ -576,7 +575,7 @@ class ErrorException(HttpResponseError):
         return error._EXCEPTION_TYPE(response, error)
 
 
-class Error(Model):
+class Error(msrest.serialization.Model):
     """Error.
 
     :param status:
@@ -600,7 +599,7 @@ class Error(Model):
         self.message = kwargs.get('message', None)
 
 
-class FloatWrapper(Model):
+class FloatWrapper(msrest.serialization.Model):
     """FloatWrapper.
 
     :param field1:
@@ -674,7 +673,7 @@ class Goblinshark(Shark):
         self.color = kwargs.get('color', "gray")
 
 
-class IntWrapper(Model):
+class IntWrapper(msrest.serialization.Model):
     """IntWrapper.
 
     :param field1:
@@ -697,7 +696,7 @@ class IntWrapper(Model):
         self.field2 = kwargs.get('field2', None)
 
 
-class LongWrapper(Model):
+class LongWrapper(msrest.serialization.Model):
     """LongWrapper.
 
     :param field1:
@@ -720,7 +719,7 @@ class LongWrapper(Model):
         self.field2 = kwargs.get('field2', None)
 
 
-class MyBaseHelperType(Model):
+class MyBaseHelperType(msrest.serialization.Model):
     """MyBaseHelperType.
 
     :param prop_bh1:
@@ -739,7 +738,7 @@ class MyBaseHelperType(Model):
         self.prop_bh1 = kwargs.get('prop_bh1', None)
 
 
-class MyBaseType(Model):
+class MyBaseType(msrest.serialization.Model):
     """MyBaseType.
 
     You probably want to use the sub-classes and not this class directly. Known
@@ -814,7 +813,7 @@ class MyDerivedType(MyBaseType):
         self.prop_d1 = kwargs.get('prop_d1', None)
 
 
-class ReadonlyObj(Model):
+class ReadonlyObj(msrest.serialization.Model):
     """ReadonlyObj.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -1020,7 +1019,7 @@ class SmartSalmon(Salmon):
         self.college_degree = kwargs.get('college_degree', None)
 
 
-class StringWrapper(Model):
+class StringWrapper(msrest.serialization.Model):
     """StringWrapper.
 
     :param field:

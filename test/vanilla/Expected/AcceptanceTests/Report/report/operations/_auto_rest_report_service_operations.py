@@ -23,8 +23,6 @@ class AutoRestReportServiceOperationsMixin(object):
     @distributed_trace
     def get_report(
         self,
-        qualifier=None,  # type: Optional[str]
-        cls=None,  # type: ClsType[Dict[str, int]]
         **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, int]
@@ -34,11 +32,12 @@ class AutoRestReportServiceOperationsMixin(object):
          for Python). The only effect is, that generators that run all tests several times, can
          distinguish the generated reports.
         :type qualifier: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, int]
         :raises: ~report.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, int]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -73,8 +72,6 @@ class AutoRestReportServiceOperationsMixin(object):
     @distributed_trace
     def get_optional_report(
         self,
-        qualifier=None,  # type: Optional[str]
-        cls=None,  # type: ClsType[Dict[str, int]]
         **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, int]
@@ -84,11 +81,12 @@ class AutoRestReportServiceOperationsMixin(object):
          for Python). The only effect is, that generators that run all tests several times, can
          distinguish the generated reports.
         :type qualifier: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, int]
         :raises: ~report.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, int]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

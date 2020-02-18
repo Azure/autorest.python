@@ -12,7 +12,6 @@ from azure.core.exceptions import HttpResponseError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
-from msrest.serialization import Model
 
 from .. import models
 
@@ -24,9 +23,6 @@ class AutoRestValidationTestOperationsMixin(object):
     @distributed_trace
     def validation_of_method_parameters(
         self,
-        resource_group_name,  # type: str
-        id,  # type: int
-        cls=None,  # type: ClsType["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -36,11 +32,12 @@ class AutoRestValidationTestOperationsMixin(object):
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
         :raises: ~validation.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
         api_version = "1.0.0"
 
@@ -48,7 +45,7 @@ class AutoRestValidationTestOperationsMixin(object):
         url = self.validation_of_method_parameters.metadata['url']
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
-            'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern='[a-zA-Z0-9]+'),
+            'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern=r'[a-zA-Z0-9]+'),
             'id': self._serialize.url("id", id, 'int', maximum=1000, minimum=100, multiple=10),
         }
         url = self._client.format_url(url, **path_format_arguments)
@@ -81,10 +78,6 @@ class AutoRestValidationTestOperationsMixin(object):
     @distributed_trace
     def validation_of_body(
         self,
-        resource_group_name,  # type: str
-        id,  # type: int
-        body=None,  # type: Optional["models.Product"]
-        cls=None,  # type: ClsType["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -96,11 +89,12 @@ class AutoRestValidationTestOperationsMixin(object):
         :type id: int
         :param body:
         :type body: ~validation.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
         :raises: ~validation.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
         api_version = "1.0.0"
 
@@ -108,7 +102,7 @@ class AutoRestValidationTestOperationsMixin(object):
         url = self.validation_of_body.metadata['url']
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
-            'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern='[a-zA-Z0-9]+'),
+            'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern=r'[a-zA-Z0-9]+'),
             'id': self._serialize.url("id", id, 'int', maximum=1000, minimum=100, multiple=10),
         }
         url = self._client.format_url(url, **path_format_arguments)
@@ -148,17 +142,17 @@ class AutoRestValidationTestOperationsMixin(object):
     @distributed_trace
     def get_with_constant_in_path(
         self,
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """get_with_constant_in_path.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         constant_param = "constant"
 
@@ -192,8 +186,6 @@ class AutoRestValidationTestOperationsMixin(object):
     @distributed_trace
     def post_with_constant_in_body(
         self,
-        body=None,  # type: Optional["models.Product"]
-        cls=None,  # type: ClsType["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -201,11 +193,12 @@ class AutoRestValidationTestOperationsMixin(object):
 
         :param body:
         :type body: ~validation.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
         constant_param = "constant"
 

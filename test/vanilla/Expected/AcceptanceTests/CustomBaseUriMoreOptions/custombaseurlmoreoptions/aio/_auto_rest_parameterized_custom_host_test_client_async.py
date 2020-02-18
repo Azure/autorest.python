@@ -29,8 +29,6 @@ class AutoRestParameterizedCustomHostTestClient(object):
 
     def __init__(
         self,
-        subscription_id: str,
-        dns_suffix: str,
         **kwargs: Any
     ) -> None:
         base_url = '{vault}{secret}{dnsSuffix}'

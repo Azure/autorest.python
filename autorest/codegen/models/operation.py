@@ -112,7 +112,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
                 raise ValueError(f"Do not support {parameter.style} yet")
             optional_parameters.append(f"div='{div_char}'")
 
-        serialization_constraints = parameter.schema.get_serialization_constraints()
+        serialization_constraints = parameter.schema.serialization_constraints
         optional_parameters += serialization_constraints if serialization_constraints else ""
 
         optional_parameters_string = "" if not optional_parameters else ", " + ", ".join(optional_parameters)
@@ -120,7 +120,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         origin_name = parameter.full_serialized_name
 
         return (
-            f"""self._serialize.{function_name}("{origin_name}", {origin_name}, """
+            f"""self._serialize.{function_name}("{origin_name.lstrip('_')}", {origin_name}, """
             + f"""'{parameter.schema.serialization_type}'{optional_parameters_string})"""
         )
 

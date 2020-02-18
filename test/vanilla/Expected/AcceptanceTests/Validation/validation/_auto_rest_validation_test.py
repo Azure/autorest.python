@@ -26,7 +26,6 @@ class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
 
     def __init__(
         self,
-        subscription_id,  # type: str
         base_url=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):

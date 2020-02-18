@@ -26,8 +26,8 @@ from .. import models
 class AutoRestAzureSpecialParametersTestClient(object):
     """Test Infrastructure for AutoRest
 
-    :ivar x_ms_client_request_id: XMsClientRequestIdOperations operations
-    :vartype x_ms_client_request_id: azurespecialproperties.aio.operations_async.XMsClientRequestIdOperations
+    :ivar xms_client_request_id: XMsClientRequestIdOperations operations
+    :vartype xms_client_request_id: azurespecialproperties.aio.operations_async.XMsClientRequestIdOperations
     :ivar subscription_in_credentials: SubscriptionInCredentialsOperations operations
     :vartype subscription_in_credentials: azurespecialproperties.aio.operations_async.SubscriptionInCredentialsOperations
     :ivar subscription_in_method: SubscriptionInMethodOperations operations
@@ -51,8 +51,6 @@ class AutoRestAzureSpecialParametersTestClient(object):
 
     def __init__(
         self,
-        credential: "TokenCredential",
-        subscription_id: str,
         base_url: Optional[str] = None,
         **kwargs: Any
     ) -> None:
@@ -65,7 +63,7 @@ class AutoRestAzureSpecialParametersTestClient(object):
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
 
-        self.x_ms_client_request_id = XMsClientRequestIdOperations(
+        self.xms_client_request_id = XMsClientRequestIdOperations(
             self._client, self._config, self._serialize, self._deserialize)
         self.subscription_in_credentials = SubscriptionInCredentialsOperations(
             self._client, self._config, self._serialize, self._deserialize)

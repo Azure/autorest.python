@@ -42,17 +42,17 @@ class StringOperations(object):
     @distributed_trace
     def get_null(
         self,
-        cls=None,  # type: ClsType[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> str
         """Get null string value value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
         :raises: ~bodystring.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[str]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -85,17 +85,17 @@ class StringOperations(object):
     @distributed_trace
     def put_null(
         self,
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Set string value null.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodystring.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         string_body = None
 
@@ -132,17 +132,17 @@ class StringOperations(object):
     @distributed_trace
     def get_empty(
         self,
-        cls=None,  # type: ClsType[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> str
         """Get empty string value value ''.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
         :raises: ~bodystring.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[str]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -175,17 +175,17 @@ class StringOperations(object):
     @distributed_trace
     def put_empty(
         self,
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Set string value empty ''.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodystring.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         string_body = ""
 
@@ -219,17 +219,17 @@ class StringOperations(object):
     @distributed_trace
     def get_mbcs(
         self,
-        cls=None,  # type: ClsType[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> str
         """Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
         :raises: ~bodystring.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[str]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -262,17 +262,17 @@ class StringOperations(object):
     @distributed_trace
     def put_mbcs(
         self,
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodystring.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         string_body = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
 
@@ -306,17 +306,17 @@ class StringOperations(object):
     @distributed_trace
     def get_whitespace(
         self,
-        cls=None,  # type: ClsType[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> str
         """Get string value with leading and trailing whitespace ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
         :raises: ~bodystring.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[str]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -349,17 +349,17 @@ class StringOperations(object):
     @distributed_trace
     def put_whitespace(
         self,
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Set String value with leading and trailing whitespace ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodystring.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         string_body = "    Now is the time for all good men to come to the aid of their country    "
 
@@ -393,17 +393,17 @@ class StringOperations(object):
     @distributed_trace
     def get_not_provided(
         self,
-        cls=None,  # type: ClsType[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> str
         """Get String value when no string value is sent in response payload.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
         :raises: ~bodystring.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[str]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -436,17 +436,17 @@ class StringOperations(object):
     @distributed_trace
     def get_base64_encoded(
         self,
-        cls=None,  # type: ClsType[bytes]
         **kwargs  # type: Any
     ):
         # type: (...) -> bytes
         """Get value that is base64 encoded.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytes or the result of cls(response)
         :rtype: bytes
         :raises: ~bodystring.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[bytes]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -479,17 +479,17 @@ class StringOperations(object):
     @distributed_trace
     def get_base64_url_encoded(
         self,
-        cls=None,  # type: ClsType[bytes]
         **kwargs  # type: Any
     ):
         # type: (...) -> bytes
         """Get value that is base64url encoded.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytes or the result of cls(response)
         :rtype: bytes
         :raises: ~bodystring.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[bytes]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -522,8 +522,6 @@ class StringOperations(object):
     @distributed_trace
     def put_base64_url_encoded(
         self,
-        string_body,  # type: bytes
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -531,11 +529,12 @@ class StringOperations(object):
 
         :param string_body:
         :type string_body: bytes
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodystring.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -568,17 +567,17 @@ class StringOperations(object):
     @distributed_trace
     def get_null_base64_url_encoded(
         self,
-        cls=None,  # type: ClsType[bytes]
         **kwargs  # type: Any
     ):
         # type: (...) -> bytes
         """Get null value that is expected to be base64url encoded.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytes or the result of cls(response)
         :rtype: bytes
         :raises: ~bodystring.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[bytes]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

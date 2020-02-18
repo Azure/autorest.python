@@ -6,7 +6,6 @@
 from typing import Any, Dict, Optional
 from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
-from .imports import FileImport, ImportType
 from .property import Property
 
 
@@ -31,13 +30,6 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         self.subtype_map = kwargs.pop("subtype_map", None)
         self.discriminator_name = kwargs.pop("discriminator_name", None)
         self.discriminator_value = kwargs.pop("discriminator_value", None)
-
-    def imports(self) -> FileImport:
-        file_import = FileImport()
-        file_import.add_from_import("msrest.serialization", "Model", ImportType.AZURECORE)
-        if self.is_exception:
-            file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
-        return file_import
 
     @property
     def serialization_type(self) -> str:
@@ -108,7 +100,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
                 for immediate_parent in immediate_parents:
                     if immediate_parent["type"] == "dictionary":
                         additional_properties_schema = DictionarySchema.from_yaml(
-                            namespace=namespace, yaml_data=immediate_parent, for_additional_properties=True, **kwargs
+                            namespace=namespace, yaml_data=immediate_parent, **kwargs
                         )
                         properties.append(
                             Property(

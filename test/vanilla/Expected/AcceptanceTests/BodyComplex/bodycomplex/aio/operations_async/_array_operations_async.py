@@ -12,7 +12,6 @@ from azure.core.exceptions import map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
-from msrest.serialization import Model
 
 from ... import models
 
@@ -43,16 +42,16 @@ class ArrayOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        cls: ClsType["models.ArrayWrapper"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.ArrayWrapper":
         """Get complex types with array property.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ArrayWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: ~bodycomplex.models.ErrorException:
         """
+        cls: ClsType["models.ArrayWrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -85,23 +84,21 @@ class ArrayOperations:
     @distributed_trace_async
     async def put_valid(
         self,
-        array: Optional[List[str]] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put complex types with array property.
 
         :param array:
         :type array: list[str]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodycomplex.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
-        complex_body = models.ArrayWrapper(array=array)
+        _complex_body = models.ArrayWrapper(array=array)
 
         # Construct URL
         url = self.put_valid.metadata['url']
@@ -114,7 +111,7 @@ class ArrayOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(complex_body, 'ArrayWrapper')
+        body_content = self._serialize.body(_complex_body, 'ArrayWrapper')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
@@ -133,16 +130,16 @@ class ArrayOperations:
     @distributed_trace_async
     async def get_empty(
         self,
-        cls: ClsType["models.ArrayWrapper"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.ArrayWrapper":
         """Get complex types with array property which is empty.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ArrayWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: ~bodycomplex.models.ErrorException:
         """
+        cls: ClsType["models.ArrayWrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -175,23 +172,21 @@ class ArrayOperations:
     @distributed_trace_async
     async def put_empty(
         self,
-        array: Optional[List[str]] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put complex types with array property which is empty.
 
         :param array:
         :type array: list[str]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~bodycomplex.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
-        complex_body = models.ArrayWrapper(array=array)
+        _complex_body = models.ArrayWrapper(array=array)
 
         # Construct URL
         url = self.put_empty.metadata['url']
@@ -204,7 +199,7 @@ class ArrayOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(complex_body, 'ArrayWrapper')
+        body_content = self._serialize.body(_complex_body, 'ArrayWrapper')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
@@ -223,16 +218,16 @@ class ArrayOperations:
     @distributed_trace_async
     async def get_not_provided(
         self,
-        cls: ClsType["models.ArrayWrapper"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.ArrayWrapper":
         """Get complex types with array property while server doesn't provide a response payload.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ArrayWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: ~bodycomplex.models.ErrorException:
         """
+        cls: ClsType["models.ArrayWrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

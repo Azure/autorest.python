@@ -42,12 +42,7 @@ class OdataOperations:
     @distributed_trace_async
     async def get_with_filter(
         self,
-        filter: Optional[str] = None,
-        top: Optional[int] = None,
-        orderby: Optional[str] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'.
 
@@ -57,11 +52,12 @@ class OdataOperations:
         :type top: int
         :param orderby: The orderby parameter with value id.
         :type orderby: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

@@ -42,8 +42,6 @@ class SubscriptionInMethodOperations(object):
     @distributed_trace
     def post_method_local_valid(
         self,
-        subscription_id,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -52,11 +50,12 @@ class SubscriptionInMethodOperations(object):
         :param subscription_id: This should appear as a method parameter, use value
          '1234-5678-9012-3456'.
         :type subscription_id: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -89,8 +88,6 @@ class SubscriptionInMethodOperations(object):
     @distributed_trace
     def post_method_local_null(
         self,
-        subscription_id,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -99,11 +96,12 @@ class SubscriptionInMethodOperations(object):
         :param subscription_id: This should appear as a method parameter, use value
          '1234-5678-9012-3456'.
         :type subscription_id: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -136,8 +134,6 @@ class SubscriptionInMethodOperations(object):
     @distributed_trace
     def post_path_local_valid(
         self,
-        subscription_id,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -146,11 +142,12 @@ class SubscriptionInMethodOperations(object):
         :param subscription_id: This should appear as a method parameter, use value
          '1234-5678-9012-3456'.
         :type subscription_id: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -183,8 +180,6 @@ class SubscriptionInMethodOperations(object):
     @distributed_trace
     def post_swagger_local_valid(
         self,
-        subscription_id,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -193,11 +188,12 @@ class SubscriptionInMethodOperations(object):
         :param subscription_id: This should appear as a method parameter, use value
          '1234-5678-9012-3456'.
         :type subscription_id: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azurespecialproperties.models.ErrorException:
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

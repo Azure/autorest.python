@@ -140,20 +140,20 @@ class TestHttp(object):
             client.multiple_responses.get200_model201_model_default_error400_valid)
 
     def test_get200_model_a201_model_c404(self, client):
-        a_model = client.multiple_responses.get200_model_a201_model_c404_model_ddefault_error200_valid()
+        a_model = client.multiple_responses.get200_model_a201_model_c404_model_d_default_error200_valid()
         assert a_model is not None
         assert a_model.status_code ==  "200"
 
-        c_model = client.multiple_responses.get200_model_a201_model_c404_model_ddefault_error201_valid()
+        c_model = client.multiple_responses.get200_model_a201_model_c404_model_d_default_error201_valid()
         assert c_model is not None
         assert c_model.http_code ==  "201"
 
-        d_model = client.multiple_responses.get200_model_a201_model_c404_model_ddefault_error404_valid()
+        d_model = client.multiple_responses.get200_model_a201_model_c404_model_d_default_error404_valid()
         assert d_model is not None
         assert d_model.http_status_code ==  "404"
 
         self.assert_raises_with_status_and_message(400, "client error",
-            client.multiple_responses.get200_model_a201_model_c404_model_ddefault_error400_valid)
+            client.multiple_responses.get200_model_a201_model_c404_model_d_default_error400_valid)
 
     def test_get202_none204(self, client):
         client.multiple_responses.get202_none204_none_default_error202_none()

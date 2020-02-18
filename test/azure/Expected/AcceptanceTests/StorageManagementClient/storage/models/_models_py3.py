@@ -9,10 +9,10 @@
 import datetime
 from typing import Dict, List, Optional, Union
 
-from msrest.serialization import Model
+import msrest.serialization
 
 
-class Bar(Model):
+class Bar(msrest.serialization.Model):
     """The URIs that are used to perform a retrieval of a public blob, queue or table object.
 
     :param recursive_point: The URIs that are used to perform a retrieval of a public blob, queue
@@ -34,7 +34,7 @@ class Bar(Model):
         self.recursive_point = recursive_point
 
 
-class CheckNameAvailabilityResult(Model):
+class CheckNameAvailabilityResult(msrest.serialization.Model):
     """The CheckNameAvailability operation response.
 
     :param name_available: Gets a boolean value that indicates whether the name is available for
@@ -69,7 +69,7 @@ class CheckNameAvailabilityResult(Model):
         self.message = message
 
 
-class CustomDomain(Model):
+class CustomDomain(msrest.serialization.Model):
     """The custom domain assigned to this storage account. This can be set via Update.
 
     :param name: Gets or sets the custom domain name. Name is the CNAME source.
@@ -96,7 +96,7 @@ class CustomDomain(Model):
         self.use_sub_domain = use_sub_domain
 
 
-class Endpoints(Model):
+class Endpoints(msrest.serialization.Model):
     """The URIs that are used to perform a retrieval of a public blob, queue or table object.
 
     :param blob: Gets the blob endpoint.
@@ -139,7 +139,7 @@ class Endpoints(Model):
         self.foo_point = foo_point
 
 
-class Foo(Model):
+class Foo(msrest.serialization.Model):
     """The URIs that are used to perform a retrieval of a public blob, queue or table object.
 
     :param bar_point: The URIs that are used to perform a retrieval of a public blob, queue or
@@ -161,7 +161,7 @@ class Foo(Model):
         self.bar_point = bar_point
 
 
-class Resource(Model):
+class Resource(msrest.serialization.Model):
     """Resource.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -322,7 +322,7 @@ class StorageAccount(Resource):
         self.secondary_endpoints = secondary_endpoints
 
 
-class StorageAccountCheckNameAvailabilityParameters(Model):
+class StorageAccountCheckNameAvailabilityParameters(msrest.serialization.Model):
     """StorageAccountCheckNameAvailabilityParameters.
 
     All required parameters must be populated in order to send to Azure.
@@ -404,7 +404,7 @@ class StorageAccountCreateParameters(Resource):
         self.account_type = account_type
 
 
-class StorageAccountKeys(Model):
+class StorageAccountKeys(msrest.serialization.Model):
     """The access keys for the storage account.
 
     :param key1: Gets the value of key 1.
@@ -430,7 +430,7 @@ class StorageAccountKeys(Model):
         self.key2 = key2
 
 
-class StorageAccountListResult(Model):
+class StorageAccountListResult(msrest.serialization.Model):
     """The list storage accounts operation response.
 
     :param value: Gets the list of storage accounts and their properties.
@@ -457,7 +457,7 @@ class StorageAccountListResult(Model):
         self.next_link = next_link
 
 
-class StorageAccountProperties(Model):
+class StorageAccountProperties(msrest.serialization.Model):
     """StorageAccountProperties.
 
     :param provisioning_state: Gets the status of the storage account at the time the operation was
@@ -541,7 +541,7 @@ class StorageAccountProperties(Model):
         self.secondary_endpoints = secondary_endpoints
 
 
-class StorageAccountPropertiesCreateParameters(Model):
+class StorageAccountPropertiesCreateParameters(msrest.serialization.Model):
     """StorageAccountPropertiesCreateParameters.
 
     :param account_type: Gets or sets the account type. Possible values include: 'Standard_LRS',
@@ -563,7 +563,7 @@ class StorageAccountPropertiesCreateParameters(Model):
         self.account_type = account_type
 
 
-class StorageAccountPropertiesUpdateParameters(Model):
+class StorageAccountPropertiesUpdateParameters(msrest.serialization.Model):
     """StorageAccountPropertiesUpdateParameters.
 
     :param account_type: Gets or sets the account type. Possible values include: 'Standard_LRS',
@@ -591,7 +591,7 @@ class StorageAccountPropertiesUpdateParameters(Model):
         self.custom_domain = custom_domain
 
 
-class StorageAccountRegenerateKeyParameters(Model):
+class StorageAccountRegenerateKeyParameters(msrest.serialization.Model):
     """StorageAccountRegenerateKeyParameters.
 
     :param key_name:  Possible values include: 'key1', 'key2'.
@@ -668,7 +668,7 @@ class StorageAccountUpdateParameters(Resource):
         self.custom_domain = custom_domain
 
 
-class SubResource(Model):
+class SubResource(msrest.serialization.Model):
     """SubResource.
 
     :param id: Resource Id.
@@ -689,7 +689,7 @@ class SubResource(Model):
         self.id = id
 
 
-class Usage(Model):
+class Usage(msrest.serialization.Model):
     """Describes Storage Resource Usage.
 
     :param unit: Gets the unit of measurement. Possible values include: 'Count', 'Bytes',
@@ -727,7 +727,7 @@ class Usage(Model):
         self.name = name
 
 
-class UsageListResult(Model):
+class UsageListResult(msrest.serialization.Model):
     """The List Usages operation response.
 
     :param value: Gets or sets the list Storage Resource Usages.
@@ -748,7 +748,7 @@ class UsageListResult(Model):
         self.value = value
 
 
-class UsageName(Model):
+class UsageName(msrest.serialization.Model):
     """The Usage Names.
 
     :param value: Gets a string describing the resource name.
