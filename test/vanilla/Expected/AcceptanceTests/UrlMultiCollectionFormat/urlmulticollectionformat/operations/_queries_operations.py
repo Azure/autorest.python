@@ -42,6 +42,7 @@ class QueriesOperations(object):
     @distributed_trace
     def array_string_multi_null(
         self,
+        array_query=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -85,6 +86,7 @@ class QueriesOperations(object):
     @distributed_trace
     def array_string_multi_empty(
         self,
+        array_query=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -128,6 +130,7 @@ class QueriesOperations(object):
     @distributed_trace
     def array_string_multi_valid(
         self,
+        array_query=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

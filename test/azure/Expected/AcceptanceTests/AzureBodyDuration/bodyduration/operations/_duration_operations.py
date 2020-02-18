@@ -86,6 +86,7 @@ class DurationOperations(object):
     @distributed_trace
     def put_positive_duration(
         self,
+        duration_body,  # type: datetime.timedelta
         **kwargs  # type: Any
     ):
         # type: (...) -> None

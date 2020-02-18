@@ -215,6 +215,7 @@ class DateOperations(object):
     @distributed_trace
     def put_max_date(
         self,
+        date_body,  # type: datetime.date
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -303,6 +304,7 @@ class DateOperations(object):
     @distributed_trace
     def put_min_date(
         self,
+        date_body,  # type: datetime.date
         **kwargs  # type: Any
     ):
         # type: (...) -> None

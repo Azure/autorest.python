@@ -42,6 +42,7 @@ class HeaderOperations(object):
     @distributed_trace
     def custom_named_request_id(
         self,
+        foo_client_request_id,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -87,6 +88,7 @@ class HeaderOperations(object):
     @distributed_trace
     def custom_named_request_id_param_grouping(
         self,
+        header_custom_named_request_id_param_grouping_parameters,  # type: "models.HeaderCustomNamedRequestIdParamGroupingParameters"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -136,6 +138,7 @@ class HeaderOperations(object):
     @distributed_trace
     def custom_named_request_id_head(
         self,
+        foo_client_request_id,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None

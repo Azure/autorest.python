@@ -36,6 +36,8 @@ class AutoRestUrlTestService(object):
 
     def __init__(
         self,
+        global_string_path: str,
+        global_string_query: Optional[str] = None,
         base_url: Optional[str] = None,
         **kwargs: Any
     ) -> None:

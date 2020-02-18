@@ -23,6 +23,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     @distributed_trace_async
     async def put_array(
         self,
+        resource_array: Optional[List["Resource"]] = None,
         **kwargs
     ) -> None:
         """Put External Resource as an Array.
@@ -112,6 +113,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     @distributed_trace_async
     async def put_wrapped_array(
         self,
+        resource_array: Optional[List["WrappedProduct"]] = None,
         **kwargs
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened is not removed if it's referenced in an array.
@@ -201,6 +203,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     @distributed_trace_async
     async def put_dictionary(
         self,
+        resource_dictionary: Optional[Dict[str, "FlattenedProduct"]] = None,
         **kwargs
     ) -> None:
         """Put External Resource as a Dictionary.
@@ -290,6 +293,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     @distributed_trace_async
     async def put_resource_collection(
         self,
+        resource_complex_object: Optional["models.ResourceCollection"] = None,
         **kwargs
     ) -> None:
         """Put External Resource as a ResourceCollection.
@@ -379,6 +383,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     @distributed_trace_async
     async def put_simple_product(
         self,
+        simple_body_product: Optional["models.SimpleProduct"] = None,
         **kwargs
     ) -> "models.SimpleProduct":
         """Put Simple Product with client flattening true on the model.
@@ -430,6 +435,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     @distributed_trace_async
     async def post_flattened_simple_product(
         self,
+        product_id: str,
+        description: Optional[str] = None,
+        max_product_display_name: Optional[str] = None,
+        generic_value: Optional[str] = None,
+        odata_value: Optional[str] = None,
         **kwargs
     ) -> "models.SimpleProduct":
         """Put Flattened Simple Product with client flattening true on the parameter.
@@ -493,6 +503,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     @distributed_trace_async
     async def put_simple_product_with_grouping(
         self,
+        flatten_parameter_group: "models.FlattenParameterGroup",
         **kwargs
     ) -> "models.SimpleProduct":
         """Put Simple Product with client flattening true on the model.

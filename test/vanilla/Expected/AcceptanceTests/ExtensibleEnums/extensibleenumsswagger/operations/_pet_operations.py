@@ -42,6 +42,7 @@ class PetOperations(object):
     @distributed_trace
     def get_by_pet_id(
         self,
+        pet_id,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Pet"
@@ -91,6 +92,7 @@ class PetOperations(object):
     @distributed_trace
     def add_pet(
         self,
+        pet_param=None,  # type: Optional["models.Pet"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Pet"

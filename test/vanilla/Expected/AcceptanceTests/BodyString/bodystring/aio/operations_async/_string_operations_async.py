@@ -511,6 +511,7 @@ class StringOperations:
     @distributed_trace_async
     async def put_base64_url_encoded(
         self,
+        string_body: bytes,
         **kwargs
     ) -> None:
         """Put value that is base64url encoded.

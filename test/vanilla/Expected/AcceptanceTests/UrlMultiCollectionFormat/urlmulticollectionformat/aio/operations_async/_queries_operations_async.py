@@ -42,6 +42,7 @@ class QueriesOperations:
     @distributed_trace_async
     async def array_string_multi_null(
         self,
+        array_query: Optional[List[str]] = None,
         **kwargs
     ) -> None:
         """Get a null array of string using the multi-array format.
@@ -84,6 +85,7 @@ class QueriesOperations:
     @distributed_trace_async
     async def array_string_multi_empty(
         self,
+        array_query: Optional[List[str]] = None,
         **kwargs
     ) -> None:
         """Get an empty array [] of string using the multi-array format.
@@ -126,6 +128,7 @@ class QueriesOperations:
     @distributed_trace_async
     async def array_string_multi_valid(
         self,
+        array_query: Optional[List[str]] = None,
         **kwargs
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the mult-array format.

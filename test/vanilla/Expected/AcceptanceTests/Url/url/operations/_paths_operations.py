@@ -661,6 +661,7 @@ class PathsOperations(object):
     @distributed_trace
     def string_null(
         self,
+        string_path,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -706,6 +707,7 @@ class PathsOperations(object):
     @distributed_trace
     def enum_valid(
         self,
+        enum_path,  # type: Union[str, "models.UriColor"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -751,6 +753,7 @@ class PathsOperations(object):
     @distributed_trace
     def enum_null(
         self,
+        enum_path,  # type: Union[str, "models.UriColor"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -796,6 +799,7 @@ class PathsOperations(object):
     @distributed_trace
     def byte_multi_byte(
         self,
+        byte_path,  # type: bytearray
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -885,6 +889,7 @@ class PathsOperations(object):
     @distributed_trace
     def byte_null(
         self,
+        byte_path,  # type: bytearray
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -974,6 +979,7 @@ class PathsOperations(object):
     @distributed_trace
     def date_null(
         self,
+        date_path,  # type: datetime.date
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1063,6 +1069,7 @@ class PathsOperations(object):
     @distributed_trace
     def date_time_null(
         self,
+        date_time_path,  # type: datetime.datetime
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1108,6 +1115,7 @@ class PathsOperations(object):
     @distributed_trace
     def base64_url(
         self,
+        base64_url_path,  # type: bytes
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1153,6 +1161,7 @@ class PathsOperations(object):
     @distributed_trace
     def array_csv_in_path(
         self,
+        array_path,  # type: List[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1199,6 +1208,7 @@ class PathsOperations(object):
     @distributed_trace
     def unix_time_url(
         self,
+        unix_time_url_path,  # type: datetime.datetime
         **kwargs  # type: Any
     ):
         # type: (...) -> None

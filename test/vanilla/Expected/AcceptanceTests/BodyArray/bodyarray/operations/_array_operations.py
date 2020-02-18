@@ -172,6 +172,7 @@ class ArrayOperations(object):
     @distributed_trace
     def put_empty(
         self,
+        array_body,  # type: List[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -260,6 +261,7 @@ class ArrayOperations(object):
     @distributed_trace
     def put_boolean_tfft(
         self,
+        array_body,  # type: List[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -434,6 +436,7 @@ class ArrayOperations(object):
     @distributed_trace
     def put_integer_valid(
         self,
+        array_body,  # type: List[int]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -608,6 +611,7 @@ class ArrayOperations(object):
     @distributed_trace
     def put_long_valid(
         self,
+        array_body,  # type: List[int]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -782,6 +786,7 @@ class ArrayOperations(object):
     @distributed_trace
     def put_float_valid(
         self,
+        array_body,  # type: List[float]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -956,6 +961,7 @@ class ArrayOperations(object):
     @distributed_trace
     def put_double_valid(
         self,
+        array_body,  # type: List[float]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1130,6 +1136,7 @@ class ArrayOperations(object):
     @distributed_trace
     def put_string_valid(
         self,
+        array_body,  # type: List[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1218,6 +1225,7 @@ class ArrayOperations(object):
     @distributed_trace
     def put_enum_valid(
         self,
+        array_body,  # type: List[Union[str, "FooEnum"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1306,6 +1314,7 @@ class ArrayOperations(object):
     @distributed_trace
     def put_string_enum_valid(
         self,
+        array_body,  # type: List[Union[str, "Enum0"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1480,6 +1489,7 @@ class ArrayOperations(object):
     @distributed_trace
     def put_uuid_valid(
         self,
+        array_body,  # type: List[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1611,6 +1621,7 @@ class ArrayOperations(object):
     @distributed_trace
     def put_date_valid(
         self,
+        array_body,  # type: List[datetime.date]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1785,6 +1796,7 @@ class ArrayOperations(object):
     @distributed_trace
     def put_date_time_valid(
         self,
+        array_body,  # type: List[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1959,6 +1971,7 @@ class ArrayOperations(object):
     @distributed_trace
     def put_date_time_rfc1123_valid(
         self,
+        array_body,  # type: List[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -2047,6 +2060,7 @@ class ArrayOperations(object):
     @distributed_trace
     def put_duration_valid(
         self,
+        array_body,  # type: List[datetime.timedelta]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -2135,6 +2149,7 @@ class ArrayOperations(object):
     @distributed_trace
     def put_byte_valid(
         self,
+        array_body,  # type: List[bytearray]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -2481,6 +2496,7 @@ class ArrayOperations(object):
     @distributed_trace
     def put_complex_valid(
         self,
+        array_body,  # type: List["Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -2741,6 +2757,7 @@ class ArrayOperations(object):
     @distributed_trace
     def put_array_valid(
         self,
+        array_body,  # type: List[List[str]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -3001,6 +3018,7 @@ class ArrayOperations(object):
     @distributed_trace
     def put_dictionary_valid(
         self,
+        array_body,  # type: List[Dict[str, str]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

@@ -42,6 +42,7 @@ class PathsOperations(object):
     @distributed_trace
     def get_empty(
         self,
+        account_name,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None

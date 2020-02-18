@@ -44,6 +44,7 @@ class LRORetrysOperations(object):
 
     def _put201_creating_succeeded200_initial(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -92,6 +93,7 @@ class LRORetrysOperations(object):
     @distributed_trace
     def begin_put201_creating_succeeded200(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -135,6 +137,7 @@ class LRORetrysOperations(object):
 
     def _put_async_relative_retry_succeeded_initial(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -182,6 +185,7 @@ class LRORetrysOperations(object):
     @distributed_trace
     def begin_put_async_relative_retry_succeeded(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -465,6 +469,7 @@ class LRORetrysOperations(object):
 
     def _post202_retry200_initial(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -508,6 +513,7 @@ class LRORetrysOperations(object):
     @distributed_trace
     def begin_post202_retry200(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -548,6 +554,7 @@ class LRORetrysOperations(object):
 
     def _post_async_relative_retry_succeeded_initial(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -592,6 +599,7 @@ class LRORetrysOperations(object):
     @distributed_trace
     def begin_post_async_relative_retry_succeeded(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

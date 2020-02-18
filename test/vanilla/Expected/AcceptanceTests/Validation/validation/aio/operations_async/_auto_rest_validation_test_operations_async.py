@@ -23,6 +23,8 @@ class AutoRestValidationTestOperationsMixin:
     @distributed_trace_async
     async def validation_of_method_parameters(
         self,
+        resource_group_name: str,
+        id: int,
         **kwargs
     ) -> "models.Product":
         """Validates input parameters on the method. See swagger for details.
@@ -77,6 +79,9 @@ class AutoRestValidationTestOperationsMixin:
     @distributed_trace_async
     async def validation_of_body(
         self,
+        resource_group_name: str,
+        id: int,
+        body: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
         """Validates body parameters on the method. See swagger for details.
@@ -183,6 +188,7 @@ class AutoRestValidationTestOperationsMixin:
     @distributed_trace_async
     async def post_with_constant_in_body(
         self,
+        body: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
         """post_with_constant_in_body.

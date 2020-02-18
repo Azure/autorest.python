@@ -171,6 +171,7 @@ class ByteOperations(object):
     @distributed_trace
     def put_non_ascii(
         self,
+        byte_body,  # type: bytearray
         **kwargs  # type: Any
     ):
         # type: (...) -> None

@@ -84,6 +84,7 @@ class ArrayOperations:
     @distributed_trace_async
     async def put_valid(
         self,
+        array: Optional[List[str]] = None,
         **kwargs
     ) -> None:
         """Put complex types with array property.
@@ -172,6 +173,7 @@ class ArrayOperations:
     @distributed_trace_async
     async def put_empty(
         self,
+        array: Optional[List[str]] = None,
         **kwargs
     ) -> None:
         """Put complex types with array property which is empty.

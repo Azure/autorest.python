@@ -84,6 +84,7 @@ class BasicOperations:
     @distributed_trace_async
     async def put_valid(
         self,
+        complex_body: "models.Basic",
         **kwargs
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.

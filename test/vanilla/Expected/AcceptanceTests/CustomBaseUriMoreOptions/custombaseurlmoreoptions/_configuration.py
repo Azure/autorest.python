@@ -27,6 +27,8 @@ class AutoRestParameterizedCustomHostTestClientConfiguration(Configuration):
 
     def __init__(
         self,
+        subscription_id,  # type: str
+        dns_suffix,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None

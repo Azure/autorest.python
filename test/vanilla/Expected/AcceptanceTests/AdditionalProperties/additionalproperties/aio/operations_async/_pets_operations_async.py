@@ -42,6 +42,7 @@ class PetsOperations:
     @distributed_trace_async
     async def create_ap_true(
         self,
+        create_parameters: "models.PetAPTrue",
         **kwargs
     ) -> "models.PetAPTrue":
         """Create a Pet which contains more properties than what is defined.
@@ -90,6 +91,7 @@ class PetsOperations:
     @distributed_trace_async
     async def create_cat_ap_true(
         self,
+        create_parameters: "models.CatAPTrue",
         **kwargs
     ) -> "models.CatAPTrue":
         """Create a CatAPTrue which contains more properties than what is defined.
@@ -138,6 +140,7 @@ class PetsOperations:
     @distributed_trace_async
     async def create_ap_object(
         self,
+        create_parameters: "models.PetAPObject",
         **kwargs
     ) -> "models.PetAPObject":
         """Create a Pet which contains more properties than what is defined.
@@ -186,6 +189,7 @@ class PetsOperations:
     @distributed_trace_async
     async def create_ap_string(
         self,
+        create_parameters: "models.PetAPString",
         **kwargs
     ) -> "models.PetAPString":
         """Create a Pet which contains more properties than what is defined.
@@ -234,6 +238,7 @@ class PetsOperations:
     @distributed_trace_async
     async def create_ap_in_properties(
         self,
+        create_parameters: "models.PetAPInProperties",
         **kwargs
     ) -> "models.PetAPInProperties":
         """Create a Pet which contains more properties than what is defined.
@@ -282,6 +287,7 @@ class PetsOperations:
     @distributed_trace_async
     async def create_ap_in_properties_with_ap_string(
         self,
+        create_parameters: "models.PetAPInPropertiesWithAPString",
         **kwargs
     ) -> "models.PetAPInPropertiesWithAPString":
         """Create a Pet which contains more properties than what is defined.

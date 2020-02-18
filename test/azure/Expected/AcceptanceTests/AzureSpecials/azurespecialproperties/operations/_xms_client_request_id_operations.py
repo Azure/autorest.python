@@ -82,6 +82,7 @@ class XMsClientRequestIdOperations(object):
     @distributed_trace
     def param_get(
         self,
+        x_ms_client_request_id,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None

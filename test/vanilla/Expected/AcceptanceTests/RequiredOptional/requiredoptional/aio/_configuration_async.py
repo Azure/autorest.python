@@ -29,6 +29,9 @@ class AutoRestRequiredOptionalTestServiceConfiguration(Configuration):
 
     def __init__(
         self,
+        required_global_path: str,
+        required_global_query: str,
+        optional_global_query: Optional[int] = None,
         **kwargs: Any
     ) -> None:
         if required_global_path is None:

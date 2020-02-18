@@ -42,6 +42,7 @@ class PetOperations:
     @distributed_trace_async
     async def get_by_pet_id(
         self,
+        pet_id: str,
         **kwargs
     ) -> "models.Pet":
         """get_by_pet_id.
@@ -90,6 +91,7 @@ class PetOperations:
     @distributed_trace_async
     async def add_pet(
         self,
+        pet_param: Optional["models.Pet"] = None,
         **kwargs
     ) -> "models.Pet":
         """add_pet.

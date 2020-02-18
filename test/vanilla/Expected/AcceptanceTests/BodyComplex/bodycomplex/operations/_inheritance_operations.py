@@ -85,6 +85,7 @@ class InheritanceOperations(object):
     @distributed_trace
     def put_valid(
         self,
+        complex_body,  # type: "models.Siamese"
         **kwargs  # type: Any
     ):
         # type: (...) -> None

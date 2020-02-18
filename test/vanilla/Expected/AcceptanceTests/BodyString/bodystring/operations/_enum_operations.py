@@ -85,6 +85,7 @@ class EnumOperations(object):
     @distributed_trace
     def put_not_expandable(
         self,
+        string_body,  # type: Union[str, "models.Colors"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -173,6 +174,7 @@ class EnumOperations(object):
     @distributed_trace
     def put_referenced(
         self,
+        enum_string_body,  # type: Union[str, "models.Colors"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -261,6 +263,7 @@ class EnumOperations(object):
     @distributed_trace
     def put_referenced_constant(
         self,
+        field1=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

@@ -42,6 +42,7 @@ class SubscriptionInMethodOperations(object):
     @distributed_trace
     def post_method_local_valid(
         self,
+        subscription_id,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -88,6 +89,7 @@ class SubscriptionInMethodOperations(object):
     @distributed_trace
     def post_method_local_null(
         self,
+        subscription_id,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -134,6 +136,7 @@ class SubscriptionInMethodOperations(object):
     @distributed_trace
     def post_path_local_valid(
         self,
+        subscription_id,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -180,6 +183,7 @@ class SubscriptionInMethodOperations(object):
     @distributed_trace
     def post_swagger_local_valid(
         self,
+        subscription_id,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None

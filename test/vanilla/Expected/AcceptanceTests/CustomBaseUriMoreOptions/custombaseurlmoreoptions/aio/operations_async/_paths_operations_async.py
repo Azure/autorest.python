@@ -42,6 +42,10 @@ class PathsOperations:
     @distributed_trace_async
     async def get_empty(
         self,
+        vault: str,
+        secret: str,
+        key_name: str,
+        key_version: Optional[str] = "v1",
         **kwargs
     ) -> None:
         """Get a 200 to test a valid base uri.

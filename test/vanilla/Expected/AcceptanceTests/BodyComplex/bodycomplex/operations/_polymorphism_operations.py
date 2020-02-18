@@ -85,6 +85,7 @@ class PolymorphismOperations(object):
     @distributed_trace
     def put_valid(
         self,
+        complex_body,  # type: "models.Fish"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -334,6 +335,7 @@ class PolymorphismOperations(object):
     @distributed_trace
     def put_complicated(
         self,
+        complex_body,  # type: "models.Salmon"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -379,6 +381,7 @@ class PolymorphismOperations(object):
     @distributed_trace
     def put_missing_discriminator(
         self,
+        complex_body,  # type: "models.Salmon"
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Salmon"
@@ -428,6 +431,7 @@ class PolymorphismOperations(object):
     @distributed_trace
     def put_valid_missing_required(
         self,
+        complex_body,  # type: "models.Fish"
         **kwargs  # type: Any
     ):
         # type: (...) -> None

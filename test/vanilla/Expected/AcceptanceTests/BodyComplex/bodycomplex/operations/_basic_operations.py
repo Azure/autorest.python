@@ -85,6 +85,7 @@ class BasicOperations(object):
     @distributed_trace
     def put_valid(
         self,
+        complex_body,  # type: "models.Basic"
         **kwargs  # type: Any
     ):
         # type: (...) -> None

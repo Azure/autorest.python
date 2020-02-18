@@ -42,6 +42,7 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_true(
         self,
+        create_parameters,  # type: "models.PetAPTrue"
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.PetAPTrue"
@@ -91,6 +92,7 @@ class PetsOperations(object):
     @distributed_trace
     def create_cat_ap_true(
         self,
+        create_parameters,  # type: "models.CatAPTrue"
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.CatAPTrue"
@@ -140,6 +142,7 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_object(
         self,
+        create_parameters,  # type: "models.PetAPObject"
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.PetAPObject"
@@ -189,6 +192,7 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_string(
         self,
+        create_parameters,  # type: "models.PetAPString"
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.PetAPString"
@@ -238,6 +242,7 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_in_properties(
         self,
+        create_parameters,  # type: "models.PetAPInProperties"
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.PetAPInProperties"
@@ -287,6 +292,7 @@ class PetsOperations(object):
     @distributed_trace
     def create_ap_in_properties_with_ap_string(
         self,
+        create_parameters,  # type: "models.PetAPInPropertiesWithAPString"
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.PetAPInPropertiesWithAPString"

@@ -85,6 +85,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def put_valid(
         self,
+        default_program=None,  # type: Optional[Dict[str, str]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -175,6 +176,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def put_empty(
         self,
+        default_program=None,  # type: Optional[Dict[str, str]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

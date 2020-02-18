@@ -647,6 +647,7 @@ class PathsOperations:
     @distributed_trace_async
     async def string_null(
         self,
+        string_path: str,
         **kwargs
     ) -> None:
         """Get null (should throw).
@@ -691,6 +692,7 @@ class PathsOperations:
     @distributed_trace_async
     async def enum_valid(
         self,
+        enum_path: Union[str, "models.UriColor"],
         **kwargs
     ) -> None:
         """Get using uri with 'green color' in path parameter.
@@ -735,6 +737,7 @@ class PathsOperations:
     @distributed_trace_async
     async def enum_null(
         self,
+        enum_path: Union[str, "models.UriColor"],
         **kwargs
     ) -> None:
         """Get null (should throw on the client before the request is sent on wire).
@@ -779,6 +782,7 @@ class PathsOperations:
     @distributed_trace_async
     async def byte_multi_byte(
         self,
+        byte_path: bytearray,
         **kwargs
     ) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
@@ -866,6 +870,7 @@ class PathsOperations:
     @distributed_trace_async
     async def byte_null(
         self,
+        byte_path: bytearray,
         **kwargs
     ) -> None:
         """Get null as byte array (should throw).
@@ -953,6 +958,7 @@ class PathsOperations:
     @distributed_trace_async
     async def date_null(
         self,
+        date_path: datetime.date,
         **kwargs
     ) -> None:
         """Get null as date - this should throw or be unusable on the client side, depending on date representation.
@@ -1040,6 +1046,7 @@ class PathsOperations:
     @distributed_trace_async
     async def date_time_null(
         self,
+        date_time_path: datetime.datetime,
         **kwargs
     ) -> None:
         """Get null as date-time, should be disallowed or throw depending on representation of date-time.
@@ -1084,6 +1091,7 @@ class PathsOperations:
     @distributed_trace_async
     async def base64_url(
         self,
+        base64_url_path: bytes,
         **kwargs
     ) -> None:
         """Get 'lorem' encoded value as 'bG9yZW0' (base64url).
@@ -1128,6 +1136,7 @@ class PathsOperations:
     @distributed_trace_async
     async def array_csv_in_path(
         self,
+        array_path: List[str],
         **kwargs
     ) -> None:
         """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
@@ -1173,6 +1182,7 @@ class PathsOperations:
     @distributed_trace_async
     async def unix_time_url(
         self,
+        unix_time_url_path: datetime.datetime,
         **kwargs
     ) -> None:
         """Get the date 2016-04-13 encoded value as '1460505600' (Unix time).

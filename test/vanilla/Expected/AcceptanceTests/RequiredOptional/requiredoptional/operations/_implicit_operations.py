@@ -42,6 +42,7 @@ class ImplicitOperations(object):
     @distributed_trace
     def get_required_path(
         self,
+        path_parameter,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -87,6 +88,7 @@ class ImplicitOperations(object):
     @distributed_trace
     def put_optional_query(
         self,
+        query_parameter=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -130,6 +132,7 @@ class ImplicitOperations(object):
     @distributed_trace
     def put_optional_header(
         self,
+        query_parameter=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -173,6 +176,7 @@ class ImplicitOperations(object):
     @distributed_trace
     def put_optional_body(
         self,
+        body_parameter=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

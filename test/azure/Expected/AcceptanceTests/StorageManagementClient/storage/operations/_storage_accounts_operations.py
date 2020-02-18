@@ -46,6 +46,7 @@ class StorageAccountsOperations(object):
     @distributed_trace
     def check_name_availability(
         self,
+        account_name,  # type: "models.StorageAccountCheckNameAvailabilityParameters"
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.CheckNameAvailabilityResult"
@@ -100,6 +101,9 @@ class StorageAccountsOperations(object):
 
     def _create_initial(
         self,
+        resource_group_name,  # type: str
+        account_name,  # type: str
+        parameters,  # type: "models.StorageAccountCreateParameters"
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.StorageAccount"
@@ -148,6 +152,9 @@ class StorageAccountsOperations(object):
     @distributed_trace
     def begin_create(
         self,
+        resource_group_name,  # type: str
+        account_name,  # type: str
+        parameters,  # type: "models.StorageAccountCreateParameters"
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.StorageAccount"
@@ -200,6 +207,8 @@ class StorageAccountsOperations(object):
     @distributed_trace
     def delete(
         self,
+        resource_group_name,  # type: str
+        account_name,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -251,6 +260,8 @@ class StorageAccountsOperations(object):
     @distributed_trace
     def get_properties(
         self,
+        resource_group_name,  # type: str
+        account_name,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.StorageAccount"
@@ -306,6 +317,9 @@ class StorageAccountsOperations(object):
     @distributed_trace
     def update(
         self,
+        resource_group_name,  # type: str
+        account_name,  # type: str
+        parameters,  # type: "models.StorageAccountUpdateParameters"
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.StorageAccount"
@@ -368,6 +382,8 @@ class StorageAccountsOperations(object):
     @distributed_trace
     def list_keys(
         self,
+        resource_group_name,  # type: str
+        account_name,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.StorageAccountKeys"
@@ -485,6 +501,7 @@ class StorageAccountsOperations(object):
     @distributed_trace
     def list_by_resource_group(
         self,
+        resource_group_name,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.StorageAccountListResult"
@@ -550,6 +567,9 @@ class StorageAccountsOperations(object):
     @distributed_trace
     def regenerate_key(
         self,
+        resource_group_name,  # type: str
+        account_name,  # type: str
+        key_name=None,  # type: Optional[Union[str, "models.KeyName"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.StorageAccountKeys"

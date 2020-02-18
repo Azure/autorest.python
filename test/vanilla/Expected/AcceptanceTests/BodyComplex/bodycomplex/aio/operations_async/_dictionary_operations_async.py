@@ -84,6 +84,7 @@ class DictionaryOperations:
     @distributed_trace_async
     async def put_valid(
         self,
+        default_program: Optional[Dict[str, str]] = None,
         **kwargs
     ) -> None:
         """Put complex types with dictionary property.
@@ -172,6 +173,7 @@ class DictionaryOperations:
     @distributed_trace_async
     async def put_empty(
         self,
+        default_program: Optional[Dict[str, str]] = None,
         **kwargs
     ) -> None:
         """Put complex types with dictionary property which is empty.

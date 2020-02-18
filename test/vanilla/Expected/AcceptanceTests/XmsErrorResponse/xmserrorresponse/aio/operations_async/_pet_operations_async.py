@@ -42,6 +42,7 @@ class PetOperations:
     @distributed_trace_async
     async def get_pet_by_id(
         self,
+        pet_id: str,
         **kwargs
     ) -> "models.Pet":
         """Gets pets by id.
@@ -97,6 +98,7 @@ class PetOperations:
     @distributed_trace_async
     async def do_something(
         self,
+        what_action: str,
         **kwargs
     ) -> "models.PetAction":
         """Asks pet to do something.

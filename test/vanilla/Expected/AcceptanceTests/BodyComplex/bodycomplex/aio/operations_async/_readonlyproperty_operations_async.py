@@ -84,6 +84,7 @@ class ReadonlypropertyOperations:
     @distributed_trace_async
     async def put_valid(
         self,
+        size: Optional[int] = None,
         **kwargs
     ) -> None:
         """Put complex types that have readonly properties.

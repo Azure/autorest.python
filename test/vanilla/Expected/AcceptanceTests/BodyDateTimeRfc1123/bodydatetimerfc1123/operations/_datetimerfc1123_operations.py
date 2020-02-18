@@ -215,6 +215,7 @@ class Datetimerfc1123Operations(object):
     @distributed_trace
     def put_utc_max_date_time(
         self,
+        datetime_body,  # type: datetime.datetime
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -346,6 +347,7 @@ class Datetimerfc1123Operations(object):
     @distributed_trace
     def put_utc_min_date_time(
         self,
+        datetime_body,  # type: datetime.datetime
         **kwargs  # type: Any
     ):
         # type: (...) -> None

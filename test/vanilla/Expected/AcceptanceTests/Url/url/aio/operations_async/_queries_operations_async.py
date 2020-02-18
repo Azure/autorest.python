@@ -123,6 +123,7 @@ class QueriesOperations:
     @distributed_trace_async
     async def get_boolean_null(
         self,
+        bool_query: Optional[bool] = None,
         **kwargs
     ) -> None:
         """Get null Boolean value on query (query string should be absent).
@@ -245,6 +246,7 @@ class QueriesOperations:
     @distributed_trace_async
     async def get_int_null(
         self,
+        int_query: Optional[int] = None,
         **kwargs
     ) -> None:
         """Get null integer value (no query parameter).
@@ -367,6 +369,7 @@ class QueriesOperations:
     @distributed_trace_async
     async def get_long_null(
         self,
+        long_query: Optional[int] = None,
         **kwargs
     ) -> None:
         """Get 'null 64 bit integer value (no query param in uri).
@@ -489,6 +492,7 @@ class QueriesOperations:
     @distributed_trace_async
     async def float_null(
         self,
+        float_query: Optional[float] = None,
         **kwargs
     ) -> None:
         """Get null numeric value (no query parameter).
@@ -611,6 +615,7 @@ class QueriesOperations:
     @distributed_trace_async
     async def double_null(
         self,
+        double_query: Optional[float] = None,
         **kwargs
     ) -> None:
         """Get null numeric value (no query parameter).
@@ -773,6 +778,7 @@ class QueriesOperations:
     @distributed_trace_async
     async def string_null(
         self,
+        string_query: Optional[str] = None,
         **kwargs
     ) -> None:
         """Get null (no query parameter in url).
@@ -815,6 +821,7 @@ class QueriesOperations:
     @distributed_trace_async
     async def enum_valid(
         self,
+        enum_query: Optional[Union[str, "models.UriColor"]] = None,
         **kwargs
     ) -> None:
         """Get using uri with query parameter 'green color'.
@@ -857,6 +864,7 @@ class QueriesOperations:
     @distributed_trace_async
     async def enum_null(
         self,
+        enum_query: Optional[Union[str, "models.UriColor"]] = None,
         **kwargs
     ) -> None:
         """Get null (no query parameter in url).
@@ -899,6 +907,7 @@ class QueriesOperations:
     @distributed_trace_async
     async def byte_multi_byte(
         self,
+        byte_query: Optional[bytearray] = None,
         **kwargs
     ) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
@@ -981,6 +990,7 @@ class QueriesOperations:
     @distributed_trace_async
     async def byte_null(
         self,
+        byte_query: Optional[bytearray] = None,
         **kwargs
     ) -> None:
         """Get null as byte array (no query parameters in uri).
@@ -1063,6 +1073,7 @@ class QueriesOperations:
     @distributed_trace_async
     async def date_null(
         self,
+        date_query: Optional[datetime.date] = None,
         **kwargs
     ) -> None:
         """Get null as date - this should result in no query parameters in uri.
@@ -1145,6 +1156,7 @@ class QueriesOperations:
     @distributed_trace_async
     async def date_time_null(
         self,
+        date_time_query: Optional[datetime.datetime] = None,
         **kwargs
     ) -> None:
         """Get null as date-time, should result in no query parameters in uri.
@@ -1187,6 +1199,7 @@ class QueriesOperations:
     @distributed_trace_async
     async def array_string_csv_valid(
         self,
+        array_query: Optional[List[str]] = None,
         **kwargs
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
@@ -1230,6 +1243,7 @@ class QueriesOperations:
     @distributed_trace_async
     async def array_string_csv_null(
         self,
+        array_query: Optional[List[str]] = None,
         **kwargs
     ) -> None:
         """Get a null array of string using the csv-array format.
@@ -1273,6 +1287,7 @@ class QueriesOperations:
     @distributed_trace_async
     async def array_string_csv_empty(
         self,
+        array_query: Optional[List[str]] = None,
         **kwargs
     ) -> None:
         """Get an empty array [] of string using the csv-array format.
@@ -1316,6 +1331,7 @@ class QueriesOperations:
     @distributed_trace_async
     async def array_string_ssv_valid(
         self,
+        array_query: Optional[List[str]] = None,
         **kwargs
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format.
@@ -1359,6 +1375,7 @@ class QueriesOperations:
     @distributed_trace_async
     async def array_string_tsv_valid(
         self,
+        array_query: Optional[List[str]] = None,
         **kwargs
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format.
@@ -1402,6 +1419,7 @@ class QueriesOperations:
     @distributed_trace_async
     async def array_string_pipes_valid(
         self,
+        array_query: Optional[List[str]] = None,
         **kwargs
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format.

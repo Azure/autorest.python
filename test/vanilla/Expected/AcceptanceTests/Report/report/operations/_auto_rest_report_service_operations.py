@@ -23,6 +23,7 @@ class AutoRestReportServiceOperationsMixin(object):
     @distributed_trace
     def get_report(
         self,
+        qualifier=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, int]
@@ -72,6 +73,7 @@ class AutoRestReportServiceOperationsMixin(object):
     @distributed_trace
     def get_optional_report(
         self,
+        qualifier=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, int]

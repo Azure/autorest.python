@@ -215,6 +215,7 @@ class DatetimeOperations(object):
     @distributed_trace
     def put_utc_max_date_time(
         self,
+        datetime_body,  # type: datetime.datetime
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -260,6 +261,7 @@ class DatetimeOperations(object):
     @distributed_trace
     def put_utc_max_date_time7_digits(
         self,
+        datetime_body,  # type: datetime.datetime
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -440,6 +442,7 @@ class DatetimeOperations(object):
     @distributed_trace
     def put_local_positive_offset_max_date_time(
         self,
+        datetime_body,  # type: datetime.datetime
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -571,6 +574,7 @@ class DatetimeOperations(object):
     @distributed_trace
     def put_local_negative_offset_max_date_time(
         self,
+        datetime_body,  # type: datetime.datetime
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -702,6 +706,7 @@ class DatetimeOperations(object):
     @distributed_trace
     def put_utc_min_date_time(
         self,
+        datetime_body,  # type: datetime.datetime
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -790,6 +795,7 @@ class DatetimeOperations(object):
     @distributed_trace
     def put_local_positive_offset_min_date_time(
         self,
+        datetime_body,  # type: datetime.datetime
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -878,6 +884,7 @@ class DatetimeOperations(object):
     @distributed_trace
     def put_local_negative_offset_min_date_time(
         self,
+        datetime_body,  # type: datetime.datetime
         **kwargs  # type: Any
     ):
         # type: (...) -> None

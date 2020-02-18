@@ -214,6 +214,7 @@ class NumberOperations(object):
     @distributed_trace
     def put_big_float(
         self,
+        number_body,  # type: float
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -302,6 +303,7 @@ class NumberOperations(object):
     @distributed_trace
     def put_big_double(
         self,
+        number_body,  # type: float
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -564,6 +566,7 @@ class NumberOperations(object):
     @distributed_trace
     def put_big_decimal(
         self,
+        number_body,  # type: float
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -826,6 +829,7 @@ class NumberOperations(object):
     @distributed_trace
     def put_small_float(
         self,
+        number_body,  # type: float
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -914,6 +918,7 @@ class NumberOperations(object):
     @distributed_trace
     def put_small_double(
         self,
+        number_body,  # type: float
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1002,6 +1007,7 @@ class NumberOperations(object):
     @distributed_trace
     def put_small_decimal(
         self,
+        number_body,  # type: float
         **kwargs  # type: Any
     ):
         # type: (...) -> None

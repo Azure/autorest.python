@@ -84,6 +84,7 @@ class XmlOperations:
     @distributed_trace_async
     async def put_complex_type_ref_no_meta(
         self,
+        model: "models.RootWithRefAndNoMeta",
         **kwargs
     ) -> None:
         """Puts a complex type that has a ref to a complex type with no XML node.
@@ -170,6 +171,7 @@ class XmlOperations:
     @distributed_trace_async
     async def put_complex_type_ref_with_meta(
         self,
+        model: "models.RootWithRefAndMeta",
         **kwargs
     ) -> None:
         """Puts a complex type that has a ref to a complex type with XML node.
@@ -256,6 +258,7 @@ class XmlOperations:
     @distributed_trace_async
     async def put_simple(
         self,
+        slideshow: "models.Slideshow",
         **kwargs
     ) -> None:
         """Put a simple XML document.
@@ -342,6 +345,7 @@ class XmlOperations:
     @distributed_trace_async
     async def put_wrapped_lists(
         self,
+        wrapped_lists: "models.AppleBarrel",
         **kwargs
     ) -> None:
         """Put an XML document with multiple wrapped lists.
@@ -469,6 +473,7 @@ class XmlOperations:
     @distributed_trace_async
     async def put_empty_list(
         self,
+        slideshow: "models.Slideshow",
         **kwargs
     ) -> None:
         """Puts an empty list.
@@ -555,6 +560,7 @@ class XmlOperations:
     @distributed_trace_async
     async def put_empty_wrapped_lists(
         self,
+        apple_barrel: "models.AppleBarrel",
         **kwargs
     ) -> None:
         """Puts some empty wrapped lists.
@@ -641,6 +647,7 @@ class XmlOperations:
     @distributed_trace_async
     async def put_root_list(
         self,
+        bananas: List["Banana"],
         **kwargs
     ) -> None:
         """Puts a list as the root element.
@@ -728,6 +735,7 @@ class XmlOperations:
     @distributed_trace_async
     async def put_root_list_single_item(
         self,
+        bananas: List["Banana"],
         **kwargs
     ) -> None:
         """Puts a list with a single item.
@@ -815,6 +823,7 @@ class XmlOperations:
     @distributed_trace_async
     async def put_empty_root_list(
         self,
+        bananas: List["Banana"],
         **kwargs
     ) -> None:
         """Puts an empty list as the root element.
@@ -902,6 +911,7 @@ class XmlOperations:
     @distributed_trace_async
     async def put_empty_child_element(
         self,
+        banana: "models.Banana",
         **kwargs
     ) -> None:
         """Puts a value with an empty child element.
@@ -1036,6 +1046,7 @@ class XmlOperations:
     @distributed_trace_async
     async def put_service_properties(
         self,
+        properties: "models.StorageServiceProperties",
         **kwargs
     ) -> None:
         """Puts storage service properties.
@@ -1130,6 +1141,7 @@ class XmlOperations:
     @distributed_trace_async
     async def put_acls(
         self,
+        properties: List["SignedIdentifier"],
         **kwargs
     ) -> None:
         """Puts storage ACLs for a container.
@@ -1225,6 +1237,7 @@ class XmlOperations:
     @distributed_trace_async
     async def json_input(
         self,
+        id: Optional[int] = None,
         **kwargs
     ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID number 42.

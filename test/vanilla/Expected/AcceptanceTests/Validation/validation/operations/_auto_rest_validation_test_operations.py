@@ -23,6 +23,8 @@ class AutoRestValidationTestOperationsMixin(object):
     @distributed_trace
     def validation_of_method_parameters(
         self,
+        resource_group_name,  # type: str
+        id,  # type: int
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -78,6 +80,9 @@ class AutoRestValidationTestOperationsMixin(object):
     @distributed_trace
     def validation_of_body(
         self,
+        resource_group_name,  # type: str
+        id,  # type: int
+        body=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -186,6 +191,7 @@ class AutoRestValidationTestOperationsMixin(object):
     @distributed_trace
     def post_with_constant_in_body(
         self,
+        body=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"

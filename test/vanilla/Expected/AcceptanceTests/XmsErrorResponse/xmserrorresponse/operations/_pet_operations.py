@@ -42,6 +42,7 @@ class PetOperations(object):
     @distributed_trace
     def get_pet_by_id(
         self,
+        pet_id,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Pet"
@@ -98,6 +99,7 @@ class PetOperations(object):
     @distributed_trace
     def do_something(
         self,
+        what_action,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.PetAction"

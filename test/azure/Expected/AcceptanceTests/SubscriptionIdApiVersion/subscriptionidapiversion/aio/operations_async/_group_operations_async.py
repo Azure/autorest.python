@@ -42,6 +42,7 @@ class GroupOperations:
     @distributed_trace_async
     async def get_sample_resource_group(
         self,
+        resource_group_name: str,
         **kwargs
     ) -> "models.SampleResourceGroup":
         """Provides a resouce group with name 'testgroup101' and location 'West US'.

@@ -23,6 +23,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def put_array(
         self,
+        resource_array=None,  # type: Optional[List["Resource"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -114,6 +115,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def put_wrapped_array(
         self,
+        resource_array=None,  # type: Optional[List["WrappedProduct"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -205,6 +207,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def put_dictionary(
         self,
+        resource_dictionary=None,  # type: Optional[Dict[str, "FlattenedProduct"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -296,6 +299,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def put_resource_collection(
         self,
+        resource_complex_object=None,  # type: Optional["models.ResourceCollection"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -387,6 +391,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def put_simple_product(
         self,
+        simple_body_product=None,  # type: Optional["models.SimpleProduct"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.SimpleProduct"
@@ -439,6 +444,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def post_flattened_simple_product(
         self,
+        product_id,  # type: str
+        description=None,  # type: Optional[str]
+        max_product_display_name=None,  # type: Optional[str]
+        generic_value=None,  # type: Optional[str]
+        odata_value=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.SimpleProduct"
@@ -503,6 +513,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def put_simple_product_with_grouping(
         self,
+        flatten_parameter_group,  # type: "models.FlattenParameterGroup"
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.SimpleProduct"

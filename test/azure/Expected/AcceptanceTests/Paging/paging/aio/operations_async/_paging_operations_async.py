@@ -218,6 +218,8 @@ class PagingOperations:
     @distributed_trace
     def get_multiple_pages(
         self,
+        client_request_id: Optional[str] = None,
+        paging_get_multiple_pages_options: Optional["models.PagingGetMultiplePagesOptions"] = None,
         **kwargs
     ) -> "models.ProductResult":
         """A paging operation that includes a nextLink that has 10 pages.
@@ -291,6 +293,8 @@ class PagingOperations:
     @distributed_trace
     def get_odata_multiple_pages(
         self,
+        client_request_id: Optional[str] = None,
+        paging_get_odata_multiple_pages_options: Optional["models.PagingGetOdataMultiplePagesOptions"] = None,
         **kwargs
     ) -> "models.OdataProductResult":
         """A paging operation that includes a nextLink in odata format that has 10 pages.
@@ -364,6 +368,8 @@ class PagingOperations:
     @distributed_trace
     def get_multiple_pages_with_offset(
         self,
+        paging_get_multiple_pages_with_offset_options: "models.PagingGetMultiplePagesWithOffsetOptions",
+        client_request_id: Optional[str] = None,
         **kwargs
     ) -> "models.ProductResult":
         """A paging operation that includes a nextLink that has 10 pages.
@@ -728,6 +734,8 @@ class PagingOperations:
     @distributed_trace
     def get_multiple_pages_fragment_next_link(
         self,
+        api_version: str,
+        tenant: str,
         **kwargs
     ) -> "models.OdataProductResult":
         """A paging operation that doesn't return a full URL, just a fragment.
@@ -799,6 +807,7 @@ class PagingOperations:
     @distributed_trace
     def get_multiple_pages_fragment_with_grouping_next_link(
         self,
+        custom_parameter_group: "models.CustomParameterGroup",
         **kwargs
     ) -> "models.OdataProductResult":
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
@@ -873,6 +882,8 @@ class PagingOperations:
 
     async def _get_multiple_pages_lro_initial(
         self,
+        client_request_id: Optional[str] = None,
+        paging_get_multiple_pages_lro_options: Optional["models.PagingGetMultiplePagesLroOptions"] = None,
         **kwargs
     ) -> "models.ProductResult":
         cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
@@ -920,6 +931,8 @@ class PagingOperations:
     @distributed_trace_async
     async def get_multiple_pages_lro(
         self,
+        client_request_id: Optional[str] = None,
+        paging_get_multiple_pages_lro_options: Optional["models.PagingGetMultiplePagesLroOptions"] = None,
         **kwargs
     ) -> "models.ProductResult":
         """A long-running paging operation that includes a nextLink that has 10 pages.

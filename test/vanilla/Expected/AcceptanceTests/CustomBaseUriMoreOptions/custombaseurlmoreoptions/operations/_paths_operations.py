@@ -42,6 +42,10 @@ class PathsOperations(object):
     @distributed_trace
     def get_empty(
         self,
+        vault,  # type: str
+        secret,  # type: str
+        key_name,  # type: str
+        key_version="v1",  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

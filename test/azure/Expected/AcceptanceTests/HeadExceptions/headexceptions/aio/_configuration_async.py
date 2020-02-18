@@ -25,6 +25,7 @@ class AutoRestHeadExceptionTestServiceConfiguration(Configuration):
 
     def __init__(
         self,
+        credential: "TokenCredential",
         **kwargs: Any
     ) -> None:
         if credential is None:

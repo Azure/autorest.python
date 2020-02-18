@@ -168,6 +168,7 @@ class ByteOperations:
     @distributed_trace_async
     async def put_non_ascii(
         self,
+        byte_body: bytearray,
         **kwargs
     ) -> None:
         """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).

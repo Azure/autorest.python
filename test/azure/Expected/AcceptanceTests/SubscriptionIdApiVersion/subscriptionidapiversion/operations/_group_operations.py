@@ -42,6 +42,7 @@ class GroupOperations(object):
     @distributed_trace
     def get_sample_resource_group(
         self,
+        resource_group_name,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.SampleResourceGroup"

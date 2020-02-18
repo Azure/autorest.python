@@ -301,6 +301,7 @@ class IntOperations(object):
     @distributed_trace
     def put_max32(
         self,
+        int_body,  # type: int
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -346,6 +347,7 @@ class IntOperations(object):
     @distributed_trace
     def put_max64(
         self,
+        int_body,  # type: int
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -391,6 +393,7 @@ class IntOperations(object):
     @distributed_trace
     def put_min32(
         self,
+        int_body,  # type: int
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -436,6 +439,7 @@ class IntOperations(object):
     @distributed_trace
     def put_min64(
         self,
+        int_body,  # type: int
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -524,6 +528,7 @@ class IntOperations(object):
     @distributed_trace
     def put_unix_time_date(
         self,
+        int_body,  # type: datetime.datetime
         **kwargs  # type: Any
     ):
         # type: (...) -> None

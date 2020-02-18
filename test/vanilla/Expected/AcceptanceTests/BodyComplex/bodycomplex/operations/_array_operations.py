@@ -85,6 +85,7 @@ class ArrayOperations(object):
     @distributed_trace
     def put_valid(
         self,
+        array=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -175,6 +176,7 @@ class ArrayOperations(object):
     @distributed_trace
     def put_empty(
         self,
+        array=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

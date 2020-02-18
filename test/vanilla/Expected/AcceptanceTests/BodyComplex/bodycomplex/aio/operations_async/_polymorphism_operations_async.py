@@ -84,6 +84,7 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def put_valid(
         self,
+        complex_body: "models.Fish",
         **kwargs
     ) -> None:
         """Put complex types that are polymorphic.
@@ -328,6 +329,7 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def put_complicated(
         self,
+        complex_body: "models.Salmon",
         **kwargs
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties.
@@ -372,6 +374,7 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def put_missing_discriminator(
         self,
+        complex_body: "models.Salmon",
         **kwargs
     ) -> "models.Salmon":
         """Put complex types that are polymorphic, omitting the discriminator.
@@ -420,6 +423,7 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def put_valid_missing_required(
         self,
+        complex_body: "models.Fish",
         **kwargs
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the request should not be allowed from the client.

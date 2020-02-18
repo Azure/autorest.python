@@ -23,6 +23,7 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
     @distributed_trace
     def get_report(
         self,
+        qualifier=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, int]

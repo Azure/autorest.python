@@ -27,6 +27,8 @@ class AutoRestAzureSpecialParametersTestClientConfiguration(Configuration):
 
     def __init__(
         self,
+        credential,  # type: "TokenCredential"
+        subscription_id,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None

@@ -27,6 +27,8 @@ class StorageManagementClientConfiguration(Configuration):
 
     def __init__(
         self,
+        credential: "TokenCredential",
+        subscription_id: str,
         **kwargs: Any
     ) -> None:
         if credential is None:

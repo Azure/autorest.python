@@ -27,6 +27,7 @@ class AutoRestHeadTestService(object):
 
     def __init__(
         self,
+        credential,  # type: "TokenCredential"
         base_url=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):

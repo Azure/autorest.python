@@ -85,6 +85,7 @@ class ReadonlypropertyOperations(object):
     @distributed_trace
     def put_valid(
         self,
+        size=None,  # type: Optional[int]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

@@ -85,6 +85,7 @@ class DurationOperations:
     @distributed_trace_async
     async def put_positive_duration(
         self,
+        duration_body: datetime.timedelta,
         **kwargs
     ) -> None:
         """Put a positive duration value.

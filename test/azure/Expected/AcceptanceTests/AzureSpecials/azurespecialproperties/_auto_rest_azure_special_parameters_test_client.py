@@ -51,6 +51,8 @@ class AutoRestAzureSpecialParametersTestClient(object):
 
     def __init__(
         self,
+        credential,  # type: "TokenCredential"
+        subscription_id,  # type: str
         base_url=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):

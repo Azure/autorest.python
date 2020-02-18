@@ -42,6 +42,7 @@ class SkipUrlEncodingOperations:
     @distributed_trace_async
     async def get_method_path_valid(
         self,
+        unencoded_path_param: str,
         **kwargs
     ) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
@@ -86,6 +87,7 @@ class SkipUrlEncodingOperations:
     @distributed_trace_async
     async def get_path_valid(
         self,
+        unencoded_path_param: str,
         **kwargs
     ) -> None:
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
@@ -173,6 +175,7 @@ class SkipUrlEncodingOperations:
     @distributed_trace_async
     async def get_method_query_valid(
         self,
+        q1: str,
         **kwargs
     ) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
@@ -214,6 +217,7 @@ class SkipUrlEncodingOperations:
     @distributed_trace_async
     async def get_method_query_null(
         self,
+        q1: Optional[str] = None,
         **kwargs
     ) -> None:
         """Get method with unencoded query parameter with value null.
@@ -256,6 +260,7 @@ class SkipUrlEncodingOperations:
     @distributed_trace_async
     async def get_path_query_valid(
         self,
+        q1: str,
         **kwargs
     ) -> None:
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.

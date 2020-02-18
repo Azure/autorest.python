@@ -42,6 +42,7 @@ class SkipUrlEncodingOperations(object):
     @distributed_trace
     def get_method_path_valid(
         self,
+        unencoded_path_param,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -87,6 +88,7 @@ class SkipUrlEncodingOperations(object):
     @distributed_trace
     def get_path_valid(
         self,
+        unencoded_path_param,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -176,6 +178,7 @@ class SkipUrlEncodingOperations(object):
     @distributed_trace
     def get_method_query_valid(
         self,
+        q1,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -218,6 +221,7 @@ class SkipUrlEncodingOperations(object):
     @distributed_trace
     def get_method_query_null(
         self,
+        q1=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -261,6 +265,7 @@ class SkipUrlEncodingOperations(object):
     @distributed_trace
     def get_path_query_valid(
         self,
+        q1,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None

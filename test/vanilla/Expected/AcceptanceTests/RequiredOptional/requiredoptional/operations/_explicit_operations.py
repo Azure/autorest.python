@@ -42,6 +42,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_integer_parameter(
         self,
+        body_parameter,  # type: int
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -87,6 +88,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_integer_parameter(
         self,
+        body_parameter=None,  # type: Optional[int]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -135,6 +137,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_integer_property(
         self,
+        value,  # type: int
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -182,6 +185,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_integer_property(
         self,
+        value=None,  # type: Optional[int]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -232,6 +236,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_integer_header(
         self,
+        header_parameter,  # type: int
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -274,6 +279,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_integer_header(
         self,
+        header_parameter=None,  # type: Optional[int]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -317,6 +323,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_string_parameter(
         self,
+        body_parameter,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -362,6 +369,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_string_parameter(
         self,
+        body_parameter=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -410,6 +418,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_string_property(
         self,
+        value,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -457,6 +466,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_string_property(
         self,
+        value=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -507,6 +517,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_string_header(
         self,
+        header_parameter,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -549,6 +560,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_string_header(
         self,
+        body_parameter=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -592,6 +604,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_class_parameter(
         self,
+        body_parameter,  # type: "models.Product"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -637,6 +650,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_class_parameter(
         self,
+        body_parameter=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -685,6 +699,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_class_property(
         self,
+        value,  # type: "models.Product"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -732,6 +747,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_class_property(
         self,
+        value=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -782,6 +798,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_array_parameter(
         self,
+        body_parameter,  # type: List[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -827,6 +844,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_array_parameter(
         self,
+        body_parameter=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -875,6 +893,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_array_property(
         self,
+        value,  # type: List[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -922,6 +941,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_array_property(
         self,
+        value=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -972,6 +992,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_required_array_header(
         self,
+        header_parameter,  # type: List[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1014,6 +1035,7 @@ class ExplicitOperations(object):
     @distributed_trace
     def post_optional_array_header(
         self,
+        header_parameter=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

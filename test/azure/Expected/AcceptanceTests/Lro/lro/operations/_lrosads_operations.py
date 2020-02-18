@@ -44,6 +44,7 @@ class LROSADsOperations(object):
 
     def _put_non_retry400_initial(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -92,6 +93,7 @@ class LROSADsOperations(object):
     @distributed_trace
     def begin_put_non_retry400(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -135,6 +137,7 @@ class LROSADsOperations(object):
 
     def _put_non_retry201_creating400_initial(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -183,6 +186,7 @@ class LROSADsOperations(object):
     @distributed_trace
     def begin_put_non_retry201_creating400(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -226,6 +230,7 @@ class LROSADsOperations(object):
 
     def _put_non_retry201_creating400_invalid_json_initial(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -274,6 +279,7 @@ class LROSADsOperations(object):
     @distributed_trace
     def begin_put_non_retry201_creating400_invalid_json(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -317,6 +323,7 @@ class LROSADsOperations(object):
 
     def _put_async_relative_retry400_initial(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -364,6 +371,7 @@ class LROSADsOperations(object):
     @distributed_trace
     def begin_put_async_relative_retry400(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -632,6 +640,7 @@ class LROSADsOperations(object):
 
     def _post_non_retry400_initial(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -675,6 +684,7 @@ class LROSADsOperations(object):
     @distributed_trace
     def begin_post_non_retry400(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -715,6 +725,7 @@ class LROSADsOperations(object):
 
     def _post202_non_retry400_initial(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -758,6 +769,7 @@ class LROSADsOperations(object):
     @distributed_trace
     def begin_post202_non_retry400(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -798,6 +810,7 @@ class LROSADsOperations(object):
 
     def _post_async_relative_retry400_initial(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -842,6 +855,7 @@ class LROSADsOperations(object):
     @distributed_trace
     def begin_post_async_relative_retry400(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -882,6 +896,7 @@ class LROSADsOperations(object):
 
     def _put_error201_no_provisioning_state_payload_initial(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -930,6 +945,7 @@ class LROSADsOperations(object):
     @distributed_trace
     def begin_put_error201_no_provisioning_state_payload(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -973,6 +989,7 @@ class LROSADsOperations(object):
 
     def _put_async_relative_retry_no_status_initial(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -1020,6 +1037,7 @@ class LROSADsOperations(object):
     @distributed_trace
     def begin_put_async_relative_retry_no_status(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -1068,6 +1086,7 @@ class LROSADsOperations(object):
 
     def _put_async_relative_retry_no_status_payload_initial(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -1115,6 +1134,7 @@ class LROSADsOperations(object):
     @distributed_trace
     def begin_put_async_relative_retry_no_status_payload(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -1306,6 +1326,7 @@ class LROSADsOperations(object):
 
     def _post202_no_location_initial(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1349,6 +1370,7 @@ class LROSADsOperations(object):
     @distributed_trace
     def begin_post202_no_location(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1389,6 +1411,7 @@ class LROSADsOperations(object):
 
     def _post_async_relative_retry_no_payload_initial(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1433,6 +1456,7 @@ class LROSADsOperations(object):
     @distributed_trace
     def begin_post_async_relative_retry_no_payload(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1473,6 +1497,7 @@ class LROSADsOperations(object):
 
     def _put200_invalid_json_initial(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -1518,6 +1543,7 @@ class LROSADsOperations(object):
     @distributed_trace
     def begin_put200_invalid_json(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -1561,6 +1587,7 @@ class LROSADsOperations(object):
 
     def _put_async_relative_retry_invalid_header_initial(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -1608,6 +1635,7 @@ class LROSADsOperations(object):
     @distributed_trace
     def begin_put_async_relative_retry_invalid_header(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -1656,6 +1684,7 @@ class LROSADsOperations(object):
 
     def _put_async_relative_retry_invalid_json_polling_initial(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -1703,6 +1732,7 @@ class LROSADsOperations(object):
     @distributed_trace
     def begin_put_async_relative_retry_invalid_json_polling(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -1972,6 +2002,7 @@ class LROSADsOperations(object):
 
     def _post202_retry_invalid_header_initial(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -2015,6 +2046,7 @@ class LROSADsOperations(object):
     @distributed_trace
     def begin_post202_retry_invalid_header(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -2055,6 +2087,7 @@ class LROSADsOperations(object):
 
     def _post_async_relative_retry_invalid_header_initial(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -2099,6 +2132,7 @@ class LROSADsOperations(object):
     @distributed_trace
     def begin_post_async_relative_retry_invalid_header(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -2139,6 +2173,7 @@ class LROSADsOperations(object):
 
     def _post_async_relative_retry_invalid_json_polling_initial(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -2183,6 +2218,7 @@ class LROSADsOperations(object):
     @distributed_trace
     def begin_post_async_relative_retry_invalid_json_polling(
         self,
+        product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

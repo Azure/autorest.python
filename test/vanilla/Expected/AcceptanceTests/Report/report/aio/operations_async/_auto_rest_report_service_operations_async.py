@@ -23,6 +23,7 @@ class AutoRestReportServiceOperationsMixin:
     @distributed_trace_async
     async def get_report(
         self,
+        qualifier: Optional[str] = None,
         **kwargs
     ) -> Dict[str, int]:
         """Get test coverage report.
@@ -71,6 +72,7 @@ class AutoRestReportServiceOperationsMixin:
     @distributed_trace_async
     async def get_optional_report(
         self,
+        qualifier: Optional[str] = None,
         **kwargs
     ) -> Dict[str, int]:
         """Get optional test coverage report.

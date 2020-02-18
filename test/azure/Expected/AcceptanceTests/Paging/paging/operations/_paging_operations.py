@@ -220,6 +220,8 @@ class PagingOperations(object):
     @distributed_trace
     def get_multiple_pages(
         self,
+        client_request_id=None,  # type: Optional[str]
+        paging_get_multiple_pages_options=None,  # type: Optional["models.PagingGetMultiplePagesOptions"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.ProductResult"
@@ -294,6 +296,8 @@ class PagingOperations(object):
     @distributed_trace
     def get_odata_multiple_pages(
         self,
+        client_request_id=None,  # type: Optional[str]
+        paging_get_odata_multiple_pages_options=None,  # type: Optional["models.PagingGetOdataMultiplePagesOptions"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.OdataProductResult"
@@ -368,6 +372,8 @@ class PagingOperations(object):
     @distributed_trace
     def get_multiple_pages_with_offset(
         self,
+        paging_get_multiple_pages_with_offset_options,  # type: "models.PagingGetMultiplePagesWithOffsetOptions"
+        client_request_id=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.ProductResult"
@@ -738,6 +744,8 @@ class PagingOperations(object):
     @distributed_trace
     def get_multiple_pages_fragment_next_link(
         self,
+        api_version,  # type: str
+        tenant,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.OdataProductResult"
@@ -810,6 +818,7 @@ class PagingOperations(object):
     @distributed_trace
     def get_multiple_pages_fragment_with_grouping_next_link(
         self,
+        custom_parameter_group,  # type: "models.CustomParameterGroup"
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.OdataProductResult"
@@ -885,6 +894,8 @@ class PagingOperations(object):
 
     def _get_multiple_pages_lro_initial(
         self,
+        client_request_id=None,  # type: Optional[str]
+        paging_get_multiple_pages_lro_options=None,  # type: Optional["models.PagingGetMultiplePagesLroOptions"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.ProductResult"
@@ -933,6 +944,8 @@ class PagingOperations(object):
     @distributed_trace
     def begin_get_multiple_pages_lro(
         self,
+        client_request_id=None,  # type: Optional[str]
+        paging_get_multiple_pages_lro_options=None,  # type: Optional["models.PagingGetMultiplePagesLroOptions"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.ProductResult"

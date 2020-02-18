@@ -86,6 +86,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_int(
         self,
+        complex_body,  # type: "models.IntWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -174,6 +175,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_long(
         self,
+        complex_body,  # type: "models.LongWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -262,6 +264,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_float(
         self,
+        complex_body,  # type: "models.FloatWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -350,6 +353,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_double(
         self,
+        complex_body,  # type: "models.DoubleWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -439,6 +443,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_bool(
         self,
+        complex_body,  # type: "models.BooleanWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -527,6 +532,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_string(
         self,
+        complex_body,  # type: "models.StringWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -615,6 +621,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_date(
         self,
+        complex_body,  # type: "models.DateWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -703,6 +710,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_date_time(
         self,
+        complex_body,  # type: "models.DatetimeWrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -791,6 +799,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_date_time_rfc1123(
         self,
+        complex_body,  # type: "models.Datetimerfc1123Wrapper"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -880,6 +889,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_duration(
         self,
+        field=None,  # type: Optional[datetime.timedelta]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -970,6 +980,7 @@ class PrimitiveOperations(object):
     @distributed_trace
     def put_byte(
         self,
+        field=None,  # type: Optional[bytearray]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

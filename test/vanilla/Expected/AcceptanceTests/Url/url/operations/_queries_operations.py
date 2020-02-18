@@ -125,6 +125,7 @@ class QueriesOperations(object):
     @distributed_trace
     def get_boolean_null(
         self,
+        bool_query=None,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -250,6 +251,7 @@ class QueriesOperations(object):
     @distributed_trace
     def get_int_null(
         self,
+        int_query=None,  # type: Optional[int]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -375,6 +377,7 @@ class QueriesOperations(object):
     @distributed_trace
     def get_long_null(
         self,
+        long_query=None,  # type: Optional[int]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -500,6 +503,7 @@ class QueriesOperations(object):
     @distributed_trace
     def float_null(
         self,
+        float_query=None,  # type: Optional[float]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -625,6 +629,7 @@ class QueriesOperations(object):
     @distributed_trace
     def double_null(
         self,
+        double_query=None,  # type: Optional[float]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -791,6 +796,7 @@ class QueriesOperations(object):
     @distributed_trace
     def string_null(
         self,
+        string_query=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -834,6 +840,7 @@ class QueriesOperations(object):
     @distributed_trace
     def enum_valid(
         self,
+        enum_query=None,  # type: Optional[Union[str, "models.UriColor"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -877,6 +884,7 @@ class QueriesOperations(object):
     @distributed_trace
     def enum_null(
         self,
+        enum_query=None,  # type: Optional[Union[str, "models.UriColor"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -920,6 +928,7 @@ class QueriesOperations(object):
     @distributed_trace
     def byte_multi_byte(
         self,
+        byte_query=None,  # type: Optional[bytearray]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1004,6 +1013,7 @@ class QueriesOperations(object):
     @distributed_trace
     def byte_null(
         self,
+        byte_query=None,  # type: Optional[bytearray]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1088,6 +1098,7 @@ class QueriesOperations(object):
     @distributed_trace
     def date_null(
         self,
+        date_query=None,  # type: Optional[datetime.date]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1172,6 +1183,7 @@ class QueriesOperations(object):
     @distributed_trace
     def date_time_null(
         self,
+        date_time_query=None,  # type: Optional[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1215,6 +1227,7 @@ class QueriesOperations(object):
     @distributed_trace
     def array_string_csv_valid(
         self,
+        array_query=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1259,6 +1272,7 @@ class QueriesOperations(object):
     @distributed_trace
     def array_string_csv_null(
         self,
+        array_query=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1303,6 +1317,7 @@ class QueriesOperations(object):
     @distributed_trace
     def array_string_csv_empty(
         self,
+        array_query=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1347,6 +1362,7 @@ class QueriesOperations(object):
     @distributed_trace
     def array_string_ssv_valid(
         self,
+        array_query=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1391,6 +1407,7 @@ class QueriesOperations(object):
     @distributed_trace
     def array_string_tsv_valid(
         self,
+        array_query=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1435,6 +1452,7 @@ class QueriesOperations(object):
     @distributed_trace
     def array_string_pipes_valid(
         self,
+        array_query=None,  # type: Optional[List[str]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

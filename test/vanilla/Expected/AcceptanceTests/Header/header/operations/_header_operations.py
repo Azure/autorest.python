@@ -43,6 +43,7 @@ class HeaderOperations(object):
     @distributed_trace
     def param_existing_key(
         self,
+        user_agent,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -127,6 +128,7 @@ class HeaderOperations(object):
     @distributed_trace
     def param_protected_key(
         self,
+        content_type,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -211,6 +213,8 @@ class HeaderOperations(object):
     @distributed_trace
     def param_integer(
         self,
+        scenario,  # type: str
+        value,  # type: int
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -256,6 +260,7 @@ class HeaderOperations(object):
     @distributed_trace
     def response_integer(
         self,
+        scenario,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -301,6 +306,8 @@ class HeaderOperations(object):
     @distributed_trace
     def param_long(
         self,
+        scenario,  # type: str
+        value,  # type: int
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -346,6 +353,7 @@ class HeaderOperations(object):
     @distributed_trace
     def response_long(
         self,
+        scenario,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -391,6 +399,8 @@ class HeaderOperations(object):
     @distributed_trace
     def param_float(
         self,
+        scenario,  # type: str
+        value,  # type: float
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -436,6 +446,7 @@ class HeaderOperations(object):
     @distributed_trace
     def response_float(
         self,
+        scenario,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -481,6 +492,8 @@ class HeaderOperations(object):
     @distributed_trace
     def param_double(
         self,
+        scenario,  # type: str
+        value,  # type: float
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -526,6 +539,7 @@ class HeaderOperations(object):
     @distributed_trace
     def response_double(
         self,
+        scenario,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -571,6 +585,8 @@ class HeaderOperations(object):
     @distributed_trace
     def param_bool(
         self,
+        scenario,  # type: str
+        value,  # type: bool
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -616,6 +632,7 @@ class HeaderOperations(object):
     @distributed_trace
     def response_bool(
         self,
+        scenario,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -661,6 +678,8 @@ class HeaderOperations(object):
     @distributed_trace
     def param_string(
         self,
+        scenario,  # type: str
+        value=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -708,6 +727,7 @@ class HeaderOperations(object):
     @distributed_trace
     def response_string(
         self,
+        scenario,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -753,6 +773,8 @@ class HeaderOperations(object):
     @distributed_trace
     def param_date(
         self,
+        scenario,  # type: str
+        value,  # type: datetime.date
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -798,6 +820,7 @@ class HeaderOperations(object):
     @distributed_trace
     def response_date(
         self,
+        scenario,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -843,6 +866,8 @@ class HeaderOperations(object):
     @distributed_trace
     def param_datetime(
         self,
+        scenario,  # type: str
+        value,  # type: datetime.datetime
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -889,6 +914,7 @@ class HeaderOperations(object):
     @distributed_trace
     def response_datetime(
         self,
+        scenario,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -934,6 +960,8 @@ class HeaderOperations(object):
     @distributed_trace
     def param_datetime_rfc1123(
         self,
+        scenario,  # type: str
+        value=None,  # type: Optional[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -981,6 +1009,7 @@ class HeaderOperations(object):
     @distributed_trace
     def response_datetime_rfc1123(
         self,
+        scenario,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1026,6 +1055,8 @@ class HeaderOperations(object):
     @distributed_trace
     def param_duration(
         self,
+        scenario,  # type: str
+        value,  # type: datetime.timedelta
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1071,6 +1102,7 @@ class HeaderOperations(object):
     @distributed_trace
     def response_duration(
         self,
+        scenario,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1116,6 +1148,8 @@ class HeaderOperations(object):
     @distributed_trace
     def param_byte(
         self,
+        scenario,  # type: str
+        value,  # type: bytearray
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1161,6 +1195,7 @@ class HeaderOperations(object):
     @distributed_trace
     def response_byte(
         self,
+        scenario,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1206,6 +1241,8 @@ class HeaderOperations(object):
     @distributed_trace
     def param_enum(
         self,
+        scenario,  # type: str
+        value=None,  # type: Optional[Union[str, "models.GreyscaleColors"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1252,6 +1289,7 @@ class HeaderOperations(object):
     @distributed_trace
     def response_enum(
         self,
+        scenario,  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None

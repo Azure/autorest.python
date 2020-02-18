@@ -42,6 +42,10 @@ class PathItemsOperations(object):
     @distributed_trace
     def get_all_with_values(
         self,
+        path_item_string_path,  # type: str
+        local_string_path,  # type: str
+        path_item_string_query=None,  # type: Optional[str]
+        local_string_query=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -102,6 +106,10 @@ class PathItemsOperations(object):
     @distributed_trace
     def get_global_query_null(
         self,
+        path_item_string_path,  # type: str
+        local_string_path,  # type: str
+        path_item_string_query=None,  # type: Optional[str]
+        local_string_query=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -162,6 +170,10 @@ class PathItemsOperations(object):
     @distributed_trace
     def get_global_and_local_query_null(
         self,
+        path_item_string_path,  # type: str
+        local_string_path,  # type: str
+        path_item_string_query=None,  # type: Optional[str]
+        local_string_query=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -222,6 +234,10 @@ class PathItemsOperations(object):
     @distributed_trace
     def get_local_path_item_query_null(
         self,
+        path_item_string_path,  # type: str
+        local_string_path,  # type: str
+        path_item_string_query=None,  # type: Optional[str]
+        local_string_query=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

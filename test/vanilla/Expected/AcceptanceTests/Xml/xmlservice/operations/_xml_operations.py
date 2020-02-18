@@ -85,6 +85,7 @@ class XmlOperations(object):
     @distributed_trace
     def put_complex_type_ref_no_meta(
         self,
+        model,  # type: "models.RootWithRefAndNoMeta"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -173,6 +174,7 @@ class XmlOperations(object):
     @distributed_trace
     def put_complex_type_ref_with_meta(
         self,
+        model,  # type: "models.RootWithRefAndMeta"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -261,6 +263,7 @@ class XmlOperations(object):
     @distributed_trace
     def put_simple(
         self,
+        slideshow,  # type: "models.Slideshow"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -349,6 +352,7 @@ class XmlOperations(object):
     @distributed_trace
     def put_wrapped_lists(
         self,
+        wrapped_lists,  # type: "models.AppleBarrel"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -479,6 +483,7 @@ class XmlOperations(object):
     @distributed_trace
     def put_empty_list(
         self,
+        slideshow,  # type: "models.Slideshow"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -567,6 +572,7 @@ class XmlOperations(object):
     @distributed_trace
     def put_empty_wrapped_lists(
         self,
+        apple_barrel,  # type: "models.AppleBarrel"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -655,6 +661,7 @@ class XmlOperations(object):
     @distributed_trace
     def put_root_list(
         self,
+        bananas,  # type: List["Banana"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -744,6 +751,7 @@ class XmlOperations(object):
     @distributed_trace
     def put_root_list_single_item(
         self,
+        bananas,  # type: List["Banana"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -833,6 +841,7 @@ class XmlOperations(object):
     @distributed_trace
     def put_empty_root_list(
         self,
+        bananas,  # type: List["Banana"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -922,6 +931,7 @@ class XmlOperations(object):
     @distributed_trace
     def put_empty_child_element(
         self,
+        banana,  # type: "models.Banana"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1059,6 +1069,7 @@ class XmlOperations(object):
     @distributed_trace
     def put_service_properties(
         self,
+        properties,  # type: "models.StorageServiceProperties"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1155,6 +1166,7 @@ class XmlOperations(object):
     @distributed_trace
     def put_acls(
         self,
+        properties,  # type: List["SignedIdentifier"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1252,6 +1264,7 @@ class XmlOperations(object):
     @distributed_trace
     def json_input(
         self,
+        id=None,  # type: Optional[int]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

@@ -42,6 +42,9 @@ class AvailabilitySetsOperations(object):
     @distributed_trace
     def update(
         self,
+        resource_group_name,  # type: str
+        avset,  # type: str
+        tags,  # type: Dict[str, str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

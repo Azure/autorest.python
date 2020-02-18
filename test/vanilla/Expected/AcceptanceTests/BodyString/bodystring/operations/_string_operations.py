@@ -522,6 +522,7 @@ class StringOperations(object):
     @distributed_trace
     def put_base64_url_encoded(
         self,
+        string_body,  # type: bytes
         **kwargs  # type: Any
     ):
         # type: (...) -> None

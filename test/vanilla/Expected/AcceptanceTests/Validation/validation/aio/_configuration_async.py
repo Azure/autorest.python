@@ -25,6 +25,7 @@ class AutoRestValidationTestConfiguration(Configuration):
 
     def __init__(
         self,
+        subscription_id: str,
         **kwargs: Any
     ) -> None:
         if subscription_id is None:

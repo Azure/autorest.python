@@ -129,6 +129,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def put_empty(
         self,
+        array_body,  # type: Dict[str, str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -389,6 +390,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def put_boolean_tfft(
         self,
+        array_body,  # type: Dict[str, bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -563,6 +565,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def put_integer_valid(
         self,
+        array_body,  # type: Dict[str, int]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -737,6 +740,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def put_long_valid(
         self,
+        array_body,  # type: Dict[str, int]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -911,6 +915,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def put_float_valid(
         self,
+        array_body,  # type: Dict[str, float]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1085,6 +1090,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def put_double_valid(
         self,
+        array_body,  # type: Dict[str, float]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1259,6 +1265,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def put_string_valid(
         self,
+        array_body,  # type: Dict[str, str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1433,6 +1440,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def put_date_valid(
         self,
+        array_body,  # type: Dict[str, datetime.date]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1607,6 +1615,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def put_date_time_valid(
         self,
+        array_body,  # type: Dict[str, datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1781,6 +1790,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def put_date_time_rfc1123_valid(
         self,
+        array_body,  # type: Dict[str, datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1869,6 +1879,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def put_duration_valid(
         self,
+        array_body,  # type: Dict[str, datetime.timedelta]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -1957,6 +1968,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def put_byte_valid(
         self,
+        array_body,  # type: Dict[str, bytearray]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -2303,6 +2315,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def put_complex_valid(
         self,
+        array_body,  # type: Dict[str, "Widget"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -2563,6 +2576,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def put_array_valid(
         self,
+        array_body,  # type: Dict[str, List[str]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -2823,6 +2837,7 @@ class DictionaryOperations(object):
     @distributed_trace
     def put_dictionary_valid(
         self,
+        array_body,  # type: Dict[str, object]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

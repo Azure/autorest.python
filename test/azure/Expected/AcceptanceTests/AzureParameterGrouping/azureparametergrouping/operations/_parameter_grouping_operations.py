@@ -42,6 +42,7 @@ class ParameterGroupingOperations(object):
     @distributed_trace
     def post_required(
         self,
+        parameter_grouping_post_required_parameters,  # type: "models.ParameterGroupingPostRequiredParameters"
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -105,6 +106,7 @@ class ParameterGroupingOperations(object):
     @distributed_trace
     def post_optional(
         self,
+        parameter_grouping_post_optional_parameters=None,  # type: Optional["models.ParameterGroupingPostOptionalParameters"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -156,6 +158,8 @@ class ParameterGroupingOperations(object):
     @distributed_trace
     def post_multi_param_groups(
         self,
+        first_parameter_group=None,  # type: Optional["models.FirstParameterGroup"]
+        parameter_grouping_post_multi_param_groups_second_param_group=None,  # type: Optional["models.ParameterGroupingPostMultiParamGroupsSecondParamGroup"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -218,6 +222,7 @@ class ParameterGroupingOperations(object):
     @distributed_trace
     def post_shared_parameter_group_object(
         self,
+        first_parameter_group=None,  # type: Optional["models.FirstParameterGroup"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

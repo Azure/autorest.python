@@ -42,6 +42,9 @@ class OdataOperations(object):
     @distributed_trace
     def get_with_filter(
         self,
+        filter=None,  # type: Optional[str]
+        top=None,  # type: Optional[int]
+        orderby=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

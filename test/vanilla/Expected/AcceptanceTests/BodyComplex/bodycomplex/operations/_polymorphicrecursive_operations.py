@@ -85,6 +85,7 @@ class PolymorphicrecursiveOperations(object):
     @distributed_trace
     def put_valid(
         self,
+        complex_body,  # type: "models.Fish"
         **kwargs  # type: Any
     ):
         # type: (...) -> None

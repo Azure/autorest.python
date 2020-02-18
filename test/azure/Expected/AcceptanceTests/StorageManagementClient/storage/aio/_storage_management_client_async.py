@@ -33,6 +33,8 @@ class StorageManagementClient(object):
 
     def __init__(
         self,
+        credential: "TokenCredential",
+        subscription_id: str,
         base_url: Optional[str] = None,
         **kwargs: Any
     ) -> None:
