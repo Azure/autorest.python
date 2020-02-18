@@ -19,8 +19,8 @@ from .. import models
 class AutoRestDateTestService(object):
     """Test Infrastructure for AutoRest
 
-    :ivar date_model: DateOperations operations
-    :vartype date_model: bodydate.aio.operations_async.DateOperations
+    :ivar date: DateOperations operations
+    :vartype date: bodydate.aio.operations_async.DateOperations
     :param str base_url: Service URL
     """
 
@@ -38,7 +38,7 @@ class AutoRestDateTestService(object):
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
 
-        self.date_model = DateOperations(
+        self.date = DateOperations(
             self._client, self._config, self._serialize, self._deserialize)
 
     async def close(self) -> None:

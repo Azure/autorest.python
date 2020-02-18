@@ -19,8 +19,8 @@ from .. import models
 class AutoRestBoolTestService(object):
     """Test Infrastructure for AutoRest
 
-    :ivar bool_model: BoolOperations operations
-    :vartype bool_model: bodyboolean.aio.operations_async.BoolOperations
+    :ivar bool: BoolOperations operations
+    :vartype bool: bodyboolean.aio.operations_async.BoolOperations
     :param str base_url: Service URL
     """
 
@@ -38,7 +38,7 @@ class AutoRestBoolTestService(object):
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
 
-        self.bool_model = BoolOperations(
+        self.bool = BoolOperations(
             self._client, self._config, self._serialize, self._deserialize)
 
     async def close(self) -> None:

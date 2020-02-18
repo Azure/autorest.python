@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._datetime_model_operations_async import DatetimeOperations
+from ._datetime_operations_async import DatetimeOperations
 
 __all__ = [
     'DatetimeOperations',

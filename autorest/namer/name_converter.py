@@ -162,13 +162,24 @@ class NameConverter:
         return re.sub("[A-Z]+", replace_upper_characters, name)
 
     @staticmethod
-    def _get_escaped_reserved_name(name, append_value):
+    def _get_escaped_reserved_name(name, pad_string):
         if name is None:
             raise ValueError("The value for name can not be None")
-        if append_value is None:
-            raise ValueError("The value for append_value can not be None")
-        if name.lower() in reserved_words:
-            name += append_value
+        if pad_string is None:
+            raise ValueError("The value for pad_string can not be None")
+
+        # check to see if name is reserved for the type of name we are converting
+        if name.lower() in reserved_words["always_reserved"]:
+            name += pad_string
+        elif pad_string in ["Method", "Paremter"]:
+            if name.lower() in reserved_words["reserved_for_operations"]:
+                name += pad_string
+        elif pad_string in ["Model", "Property"]:
+            if name.lower() in reserved_words["reserved_for_models"]:
+                name += pad_string
+        elif pad_string == "Enum":
+            if name.lower() in reserved_words["reserved_for_enums"]:
+                name += pad_string
         return name
 
     @staticmethod
