@@ -46,27 +46,11 @@ class MetadataSerializer:
             mixin_operations = mixin_operation_group.operations
         chosen_version, total_api_version_list = self._choose_api_version()
 
-        metadata_obj = {
-            "chosen_version": chosen_version,
-            "total_api_version_list": total_api_version_list,
-            "client": {
-                "name": self.code_model.class_name,
-                "filename": f"_{self.code_model.module_name}.py",
-                "description": self.code_model.description,
-                "has_subscription_id": any(
-                    [
-                        gp for gp in self.code_model.global_parameters.method
-                        if gp.serialized_name == "subscription_id"
-                    ]
-                )
-            },
-            "operation_groups": {
-                operation_group.name: operation_group.class_name
-                for operation_group in self.code_model.operation_groups
-                if not operation_group.is_empty_operation_group
-            },
-            "mixin_operations": mixin_operations
-        }
-
         template = self.env.get_template("metadata.json.jinja2")
-        return template.render(**metadata_obj, str=str)
+        return template.render(
+            chosen_version=chosen_version,
+            total_api_version_list=total_api_version_list,
+            code_model=self.code_model,
+            mixin_operations=mixin_operations,
+            any=any
+        )

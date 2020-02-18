@@ -12,12 +12,18 @@
     "chosen_version": {{ chosen_version | tojson }},
     "total_api_version_list": {{ total_api_version_list | tojson }},
     "client": {
-        "name": {{ client["name"] | tojson }},
-        "filename": {{ client["filename"] | tojson }},
-    "description": {{ client["description"] | tojson }},
-        "has_subscription_id": {{ client["has_subscription_id"] | tojson }}
+        "name": {{ code_model.class_name | tojson }},
+        "filename": {{ ("_" + code_model.module_name + ".py") | tojson }},
+        "description": {{ code_model.description | tojson }},
+        "has_subscription_id": {{ ("subscription_id" in code_model.global_parameters.method | map(attribute="subscription_id") | list) | tojson }}
     },
-    "operation_groups": {{ operation_groups | tojson }},
+    "operation_groups": {
+        {% for operation_group in code_model.operation_groups %}
+            {% if not operation_group.is_empty_operation_group %}
+        {{ operation_group.name | tojson }}: {{ operation_group.class_name | tojson }}{{ "," if not loop.last else "" }}
+            {% endif %}
+        {% endfor %}
+    },
     "operation_mixins": {
         {% for operation in mixin_operations %}
         {{ operation.name | tojson }} : {
