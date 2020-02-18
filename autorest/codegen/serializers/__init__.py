@@ -94,7 +94,7 @@ class JinjaSerializer:
                 code_model=code_model, env=env, operation_group=operation_group, async_mode=False
             )
             self._autorestapi.write_file(
-                namespace_path / Path(f"operations") / Path(operation_group_serializer.filename()),
+                namespace_path / Path(f"operations") / Path(f"{operation_group.get_filename(async_mode=False)}.py"),
                 operation_group_serializer.serialize(),
             )
 
@@ -108,7 +108,7 @@ class JinjaSerializer:
                         namespace_path
                         / Path("aio")
                         / Path(f"operations_async")
-                        / Path(operation_group_async_serializer.filename())
+                        / Path(f"{operation_group.get_filename(async_mode=True)}.py")
                     ),
                     operation_group_async_serializer.serialize(),
                 )
