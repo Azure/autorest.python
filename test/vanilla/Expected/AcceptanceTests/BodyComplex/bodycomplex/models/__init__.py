@@ -23,7 +23,7 @@ try:
     from ._models_py3 import DotSalmon
     from ._models_py3 import DoubleWrapper
     from ._models_py3 import DurationWrapper
-    from ._models_py3 import Error, ErrorException
+    from ._models_py3 import Error
     from ._models_py3 import Fish
     from ._models_py3 import FloatWrapper
     from ._models_py3 import Goblinshark
@@ -57,7 +57,7 @@ except (SyntaxError, ImportError):
     from ._models import DotSalmon  # type: ignore
     from ._models import DoubleWrapper  # type: ignore
     from ._models import DurationWrapper  # type: ignore
-    from ._models import Error, ErrorException  # type: ignore
+    from ._models import Error  # type: ignore
     from ._models import Fish  # type: ignore
     from ._models import FloatWrapper  # type: ignore
     from ._models import Goblinshark  # type: ignore
@@ -96,7 +96,7 @@ __all__ = [
     'DotSalmon',
     'DoubleWrapper',
     'DurationWrapper',
-    'Error', 'ErrorException',
+    'Error',
     'Fish',
     'FloatWrapper',
     'Goblinshark',

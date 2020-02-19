@@ -8,14 +8,13 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 import warnings
 
-from azure.core.exceptions import ResourceNotFoundError, map_error
+from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
-from azure.core.polling import AsyncNoPolling, async_poller
+from azure.core.polling import AsyncNoPolling, AsyncPollingMethod, async_poller
 from azure.core.tracing.decorator_async import distributed_trace_async
-from azure.mgmt.core.exceptions import ARMError
+from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
-from msrest.serialization import Model
 
 from ... import models
 
@@ -46,10 +45,9 @@ class LROSADsOperations:
     async def _put_non_retry400_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -76,7 +74,7 @@ class LROSADsOperations:
 
         if response.status_code not in [200, 201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         deserialized = None
         if response.status_code == 200:
@@ -95,23 +93,23 @@ class LROSADsOperations:
     async def put_non_retry400(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running put request, service returns a 400 to the initial request.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._put_non_retry400_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -138,10 +136,9 @@ class LROSADsOperations:
     async def _put_non_retry201_creating400_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -168,7 +165,7 @@ class LROSADsOperations:
 
         if response.status_code not in [200, 201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         deserialized = None
         if response.status_code == 200:
@@ -187,23 +184,23 @@ class LROSADsOperations:
     async def put_non_retry201_creating400(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201 response code.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._put_non_retry201_creating400_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -230,10 +227,9 @@ class LROSADsOperations:
     async def _put_non_retry201_creating400_invalid_json_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -260,7 +256,7 @@ class LROSADsOperations:
 
         if response.status_code not in [200, 201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         deserialized = None
         if response.status_code == 200:
@@ -279,23 +275,23 @@ class LROSADsOperations:
     async def put_non_retry201_creating400_invalid_json(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201 response code.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._put_non_retry201_creating400_invalid_json_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -322,10 +318,9 @@ class LROSADsOperations:
     async def _put_async_relative_retry400_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -352,7 +347,7 @@ class LROSADsOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
@@ -370,23 +365,23 @@ class LROSADsOperations:
     async def put_async_relative_retry400(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._put_async_relative_retry400_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -417,9 +412,9 @@ class LROSADsOperations:
 
     async def _delete_non_retry400_initial(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -438,7 +433,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
@@ -452,20 +447,21 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete_non_retry400(
         self,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Long running delete request, service returns a 400 with an error body.
 
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._delete_non_retry400_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -487,9 +483,9 @@ class LROSADsOperations:
 
     async def _delete202_non_retry400_initial(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -508,7 +504,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
@@ -522,20 +518,21 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete202_non_retry400(
         self,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Long running delete request, service returns a 202 with a location header.
 
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._delete202_non_retry400_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -557,9 +554,9 @@ class LROSADsOperations:
 
     async def _delete_async_relative_retry400_initial(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -578,7 +575,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
@@ -593,20 +590,21 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete_async_relative_retry400(
         self,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._delete_async_relative_retry400_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -629,10 +627,9 @@ class LROSADsOperations:
     async def _post_non_retry400_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -658,7 +655,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
@@ -673,23 +670,23 @@ class LROSADsOperations:
     async def post_non_retry400(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Long running post request, service returns a 400 with no error body.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._post_non_retry400_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -713,10 +710,9 @@ class LROSADsOperations:
     async def _post202_non_retry400_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -742,7 +738,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
@@ -757,23 +753,23 @@ class LROSADsOperations:
     async def post202_non_retry400(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Long running post request, service returns a 202 with a location header.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._post202_non_retry400_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -797,10 +793,9 @@ class LROSADsOperations:
     async def _post_async_relative_retry400_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -826,7 +821,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
@@ -842,23 +837,23 @@ class LROSADsOperations:
     async def post_async_relative_retry400(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Long running post request, service returns a 202 to the initial request Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._post_async_relative_retry400_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -882,10 +877,9 @@ class LROSADsOperations:
     async def _put_error201_no_provisioning_state_payload_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -912,7 +906,7 @@ class LROSADsOperations:
 
         if response.status_code not in [200, 201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         deserialized = None
         if response.status_code == 200:
@@ -931,23 +925,23 @@ class LROSADsOperations:
     async def put_error201_no_provisioning_state_payload(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running put request, service returns a 201 to the initial request with no payload.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._put_error201_no_provisioning_state_payload_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -974,10 +968,9 @@ class LROSADsOperations:
     async def _put_async_relative_retry_no_status_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -1004,7 +997,7 @@ class LROSADsOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
@@ -1022,23 +1015,23 @@ class LROSADsOperations:
     async def put_async_relative_retry_no_status(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._put_async_relative_retry_no_status_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -1070,10 +1063,9 @@ class LROSADsOperations:
     async def _put_async_relative_retry_no_status_payload_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -1100,7 +1092,7 @@ class LROSADsOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
@@ -1118,23 +1110,23 @@ class LROSADsOperations:
     async def put_async_relative_retry_no_status_payload(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._put_async_relative_retry_no_status_payload_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -1165,9 +1157,9 @@ class LROSADsOperations:
 
     async def _delete204_succeeded_initial(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -1186,7 +1178,7 @@ class LROSADsOperations:
 
         if response.status_code not in [204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -1196,20 +1188,21 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete204_succeeded(
         self,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Long running delete request, service returns a 204 to the initial request, indicating success.
 
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._delete204_succeeded_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -1231,9 +1224,9 @@ class LROSADsOperations:
 
     async def _delete_async_relative_retry_no_status_initial(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -1252,7 +1245,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
@@ -1267,20 +1260,21 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete_async_relative_retry_no_status(
         self,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._delete_async_relative_retry_no_status_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -1303,10 +1297,9 @@ class LROSADsOperations:
     async def _post202_no_location_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -1332,7 +1325,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
@@ -1347,23 +1340,23 @@ class LROSADsOperations:
     async def post202_no_location(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Long running post request, service returns a 202 to the initial request, without a location header.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._post202_no_location_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -1387,10 +1380,9 @@ class LROSADsOperations:
     async def _post_async_relative_retry_no_payload_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -1416,7 +1408,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
@@ -1432,23 +1424,23 @@ class LROSADsOperations:
     async def post_async_relative_retry_no_payload(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._post_async_relative_retry_no_payload_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -1472,10 +1464,9 @@ class LROSADsOperations:
     async def _put200_invalid_json_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -1502,7 +1493,7 @@ class LROSADsOperations:
 
         if response.status_code not in [200, 204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         deserialized = None
         if response.status_code == 200:
@@ -1518,23 +1509,23 @@ class LROSADsOperations:
     async def put200_invalid_json(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running put request, service returns a 200 to the initial request, with an entity that is not a valid json.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._put200_invalid_json_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -1561,10 +1552,9 @@ class LROSADsOperations:
     async def _put_async_relative_retry_invalid_header_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -1591,7 +1581,7 @@ class LROSADsOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
@@ -1609,23 +1599,23 @@ class LROSADsOperations:
     async def put_async_relative_retry_invalid_header(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header is invalid.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._put_async_relative_retry_invalid_header_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -1657,10 +1647,9 @@ class LROSADsOperations:
     async def _put_async_relative_retry_invalid_json_polling_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -1687,7 +1676,7 @@ class LROSADsOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
@@ -1705,23 +1694,23 @@ class LROSADsOperations:
     async def put_async_relative_retry_invalid_json_polling(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> "models.Product":
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         raw_result = await self._put_async_relative_retry_invalid_json_polling_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -1752,9 +1741,9 @@ class LROSADsOperations:
 
     async def _delete202_retry_invalid_header_initial(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -1773,7 +1762,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
@@ -1787,20 +1776,21 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete202_retry_invalid_header(
         self,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Long running delete request, service returns a 202 to the initial request receing a reponse with an invalid 'Location' and 'Retry-After' headers.
 
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._delete202_retry_invalid_header_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -1822,9 +1812,9 @@ class LROSADsOperations:
 
     async def _delete_async_relative_retry_invalid_header_initial(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -1843,7 +1833,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
@@ -1858,20 +1848,21 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete_async_relative_retry_invalid_header(
         self,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Long running delete request, service returns a 202 to the initial request. The endpoint indicated in the Azure-AsyncOperation header is invalid.
 
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._delete_async_relative_retry_invalid_header_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -1893,9 +1884,9 @@ class LROSADsOperations:
 
     async def _delete_async_relative_retry_invalid_json_polling_initial(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -1914,7 +1905,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
@@ -1929,20 +1920,21 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete_async_relative_retry_invalid_json_polling(
         self,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._delete_async_relative_retry_invalid_json_polling_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -1965,10 +1957,9 @@ class LROSADsOperations:
     async def _post202_retry_invalid_header_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -1994,7 +1985,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
@@ -2009,23 +2000,23 @@ class LROSADsOperations:
     async def post202_retry_invalid_header(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Long running post request, service returns a 202 to the initial request, with invalid 'Location' and 'Retry-After' headers.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._post202_retry_invalid_header_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -2049,10 +2040,9 @@ class LROSADsOperations:
     async def _post_async_relative_retry_invalid_header_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -2078,7 +2068,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
@@ -2094,23 +2084,23 @@ class LROSADsOperations:
     async def post_async_relative_retry_invalid_header(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header is invalid.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._post_async_relative_retry_invalid_header_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -2134,10 +2124,9 @@ class LROSADsOperations:
     async def _post_async_relative_retry_invalid_json_polling_initial(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -2163,7 +2152,7 @@ class LROSADsOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
@@ -2179,23 +2168,23 @@ class LROSADsOperations:
     async def post_async_relative_retry_invalid_json_polling(
         self,
         product: Optional["models.Product"] = None,
-        *,
-        cls: ClsType[None] = None,
-        polling: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        cls: ClsType[None] = kwargs.pop('cls', None )
         raw_result = await self._post_async_relative_retry_invalid_json_polling_initial(
             product=product,
             cls=lambda x,y,z: x,

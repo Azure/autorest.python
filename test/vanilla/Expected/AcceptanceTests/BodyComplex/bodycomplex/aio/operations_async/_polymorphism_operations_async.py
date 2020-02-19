@@ -8,11 +8,10 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import ResourceNotFoundError, map_error
+from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
-from msrest.serialization import Model
 
 from ... import models
 
@@ -43,16 +42,16 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        cls: ClsType["models.Fish"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Fish":
         """Get complex types that are polymorphic.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Fish or the result of cls(response)
         :rtype: ~bodycomplex.models.Fish
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.Fish"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -72,7 +71,8 @@ class PolymorphismOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('Fish', pipeline_response)
 
@@ -86,9 +86,7 @@ class PolymorphismOperations:
     async def put_valid(
         self,
         complex_body: "models.Fish",
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put complex types that are polymorphic.
 
@@ -126,11 +124,12 @@ class PolymorphismOperations:
                  ]
                };.
         :type complex_body: ~bodycomplex.models.Fish
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -153,7 +152,8 @@ class PolymorphismOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -163,16 +163,16 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def get_dot_syntax(
         self,
-        cls: ClsType["models.DotFish"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.DotFish":
         """Get complex types that are polymorphic, JSON key contains a dot.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DotFish or the result of cls(response)
         :rtype: ~bodycomplex.models.DotFish
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.DotFish"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -192,7 +192,8 @@ class PolymorphismOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('DotFish', pipeline_response)
 
@@ -205,16 +206,16 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def get_composed_with_discriminator(
         self,
-        cls: ClsType["models.DotFishMarket"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.DotFishMarket":
         """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, with discriminator specified. Deserialization must NOT fail and use the discriminator type specified on the wire.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DotFishMarket or the result of cls(response)
         :rtype: ~bodycomplex.models.DotFishMarket
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.DotFishMarket"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -234,7 +235,8 @@ class PolymorphismOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('DotFishMarket', pipeline_response)
 
@@ -247,16 +249,16 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def get_composed_without_discriminator(
         self,
-        cls: ClsType["models.DotFishMarket"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.DotFishMarket":
         """Get complex object composing a polymorphic scalar property and array property with polymorphic element type, without discriminator specified on wire. Deserialization must NOT fail and use the explicit type of the property.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DotFishMarket or the result of cls(response)
         :rtype: ~bodycomplex.models.DotFishMarket
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.DotFishMarket"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -276,7 +278,8 @@ class PolymorphismOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('DotFishMarket', pipeline_response)
 
@@ -289,16 +292,16 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def get_complicated(
         self,
-        cls: ClsType["models.Salmon"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Salmon":
         """Get complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Salmon or the result of cls(response)
         :rtype: ~bodycomplex.models.Salmon
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.Salmon"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -318,7 +321,8 @@ class PolymorphismOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('Salmon', pipeline_response)
 
@@ -332,19 +336,18 @@ class PolymorphismOperations:
     async def put_complicated(
         self,
         complex_body: "models.Salmon",
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties.
 
         :param complex_body:
         :type complex_body: ~bodycomplex.models.Salmon
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -367,7 +370,8 @@ class PolymorphismOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -378,19 +382,18 @@ class PolymorphismOperations:
     async def put_missing_discriminator(
         self,
         complex_body: "models.Salmon",
-        *,
-        cls: ClsType["models.Salmon"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Salmon":
         """Put complex types that are polymorphic, omitting the discriminator.
 
         :param complex_body:
         :type complex_body: ~bodycomplex.models.Salmon
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Salmon or the result of cls(response)
         :rtype: ~bodycomplex.models.Salmon
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.Salmon"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -414,7 +417,8 @@ class PolymorphismOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('Salmon', pipeline_response)
 
@@ -428,9 +432,7 @@ class PolymorphismOperations:
     async def put_valid_missing_required(
         self,
         complex_body: "models.Fish",
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the request should not be allowed from the client.
 
@@ -468,11 +470,12 @@ class PolymorphismOperations:
                  ]
                };.
         :type complex_body: ~bodycomplex.models.Fish
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -495,7 +498,8 @@ class PolymorphismOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})

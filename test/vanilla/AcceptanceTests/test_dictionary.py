@@ -35,14 +35,14 @@ from os.path import dirname, pardir, join, realpath
 from azure.core.exceptions import DecodeError
 from msrest.exceptions import DeserializationError
 
-from bodydictionary import AutoRestSwaggerBATdictionaryService
-from bodydictionary.models import Widget, ErrorException
+from bodydictionary import AutoRestSwaggerBATDictionaryService
+from bodydictionary.models import Widget
 
 import pytest
 
 @pytest.fixture
 def client():
-    with AutoRestSwaggerBATdictionaryService(base_url="http://localhost:3000") as client:
+    with AutoRestSwaggerBATDictionaryService(base_url="http://localhost:3000") as client:
         yield client
 
 @pytest.fixture

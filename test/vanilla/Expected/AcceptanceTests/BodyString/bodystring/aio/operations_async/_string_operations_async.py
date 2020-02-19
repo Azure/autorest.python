@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import ResourceNotFoundError, map_error
+from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
@@ -42,16 +42,16 @@ class StringOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        cls: ClsType[str] = None,
-        **kwargs: Any
+        **kwargs
     ) -> str:
         """Get null string value value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
-        :raises: ~bodystring.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[str] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -71,7 +71,8 @@ class StringOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('str', pipeline_response)
 
@@ -84,16 +85,16 @@ class StringOperations:
     @distributed_trace_async
     async def put_null(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Set string value null.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodystring.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         string_body = None
 
@@ -120,7 +121,8 @@ class StringOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -130,16 +132,16 @@ class StringOperations:
     @distributed_trace_async
     async def get_empty(
         self,
-        cls: ClsType[str] = None,
-        **kwargs: Any
+        **kwargs
     ) -> str:
         """Get empty string value value ''.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
-        :raises: ~bodystring.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[str] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -159,7 +161,8 @@ class StringOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('str', pipeline_response)
 
@@ -172,16 +175,16 @@ class StringOperations:
     @distributed_trace_async
     async def put_empty(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Set string value empty ''.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodystring.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         string_body = ""
 
@@ -205,7 +208,8 @@ class StringOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -215,16 +219,16 @@ class StringOperations:
     @distributed_trace_async
     async def get_mbcs(
         self,
-        cls: ClsType[str] = None,
-        **kwargs: Any
+        **kwargs
     ) -> str:
         """Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
-        :raises: ~bodystring.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[str] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -244,7 +248,8 @@ class StringOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('str', pipeline_response)
 
@@ -257,16 +262,16 @@ class StringOperations:
     @distributed_trace_async
     async def put_mbcs(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodystring.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         string_body = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
 
@@ -290,7 +295,8 @@ class StringOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -300,16 +306,16 @@ class StringOperations:
     @distributed_trace_async
     async def get_whitespace(
         self,
-        cls: ClsType[str] = None,
-        **kwargs: Any
+        **kwargs
     ) -> str:
         """Get string value with leading and trailing whitespace ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
-        :raises: ~bodystring.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[str] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -329,7 +335,8 @@ class StringOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('str', pipeline_response)
 
@@ -342,16 +349,16 @@ class StringOperations:
     @distributed_trace_async
     async def put_whitespace(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Set String value with leading and trailing whitespace ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodystring.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         string_body = "    Now is the time for all good men to come to the aid of their country    "
 
@@ -375,7 +382,8 @@ class StringOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -385,16 +393,16 @@ class StringOperations:
     @distributed_trace_async
     async def get_not_provided(
         self,
-        cls: ClsType[str] = None,
-        **kwargs: Any
+        **kwargs
     ) -> str:
         """Get String value when no string value is sent in response payload.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
-        :raises: ~bodystring.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[str] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -414,7 +422,8 @@ class StringOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('str', pipeline_response)
 
@@ -427,16 +436,16 @@ class StringOperations:
     @distributed_trace_async
     async def get_base64_encoded(
         self,
-        cls: ClsType[bytes] = None,
-        **kwargs: Any
+        **kwargs
     ) -> bytes:
         """Get value that is base64 encoded.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytes or the result of cls(response)
         :rtype: bytes
-        :raises: ~bodystring.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[bytes] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -456,7 +465,8 @@ class StringOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('base64', pipeline_response)
 
@@ -469,16 +479,16 @@ class StringOperations:
     @distributed_trace_async
     async def get_base64_url_encoded(
         self,
-        cls: ClsType[bytes] = None,
-        **kwargs: Any
+        **kwargs
     ) -> bytes:
         """Get value that is base64url encoded.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytes or the result of cls(response)
         :rtype: bytes
-        :raises: ~bodystring.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[bytes] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -498,7 +508,8 @@ class StringOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('base64', pipeline_response)
 
@@ -512,19 +523,18 @@ class StringOperations:
     async def put_base64_url_encoded(
         self,
         string_body: bytes,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put value that is base64url encoded.
 
         :param string_body:
         :type string_body: bytes
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodystring.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -547,7 +557,8 @@ class StringOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -557,16 +568,16 @@ class StringOperations:
     @distributed_trace_async
     async def get_null_base64_url_encoded(
         self,
-        cls: ClsType[bytes] = None,
-        **kwargs: Any
+        **kwargs
     ) -> bytes:
         """Get null value that is expected to be base64url encoded.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytes or the result of cls(response)
         :rtype: bytes
-        :raises: ~bodystring.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[bytes] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -586,7 +597,8 @@ class StringOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('base64', pipeline_response)
 

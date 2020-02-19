@@ -8,11 +8,10 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import ResourceNotFoundError, map_error
+from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
-from msrest.serialization import Model
 
 from ... import models
 
@@ -44,19 +43,18 @@ class PetsOperations:
     async def create_ap_true(
         self,
         create_parameters: "models.PetAPTrue",
-        *,
-        cls: ClsType["models.PetAPTrue"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.PetAPTrue":
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPTrue
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPTrue or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPTrue
-        :raises: ~additionalproperties.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.PetAPTrue"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -80,7 +78,8 @@ class PetsOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('PetAPTrue', pipeline_response)
 
@@ -94,19 +93,18 @@ class PetsOperations:
     async def create_cat_ap_true(
         self,
         create_parameters: "models.CatAPTrue",
-        *,
-        cls: ClsType["models.CatAPTrue"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.CatAPTrue":
         """Create a CatAPTrue which contains more properties than what is defined.
 
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.CatAPTrue
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CatAPTrue or the result of cls(response)
         :rtype: ~additionalproperties.models.CatAPTrue
-        :raises: ~additionalproperties.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.CatAPTrue"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -130,7 +128,8 @@ class PetsOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('CatAPTrue', pipeline_response)
 
@@ -144,19 +143,18 @@ class PetsOperations:
     async def create_ap_object(
         self,
         create_parameters: "models.PetAPObject",
-        *,
-        cls: ClsType["models.PetAPObject"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.PetAPObject":
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPObject
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPObject or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPObject
-        :raises: ~additionalproperties.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.PetAPObject"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -180,7 +178,8 @@ class PetsOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('PetAPObject', pipeline_response)
 
@@ -194,19 +193,18 @@ class PetsOperations:
     async def create_ap_string(
         self,
         create_parameters: "models.PetAPString",
-        *,
-        cls: ClsType["models.PetAPString"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.PetAPString":
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPString
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPString or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPString
-        :raises: ~additionalproperties.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.PetAPString"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -230,7 +228,8 @@ class PetsOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('PetAPString', pipeline_response)
 
@@ -244,19 +243,18 @@ class PetsOperations:
     async def create_ap_in_properties(
         self,
         create_parameters: "models.PetAPInProperties",
-        *,
-        cls: ClsType["models.PetAPInProperties"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.PetAPInProperties":
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPInProperties
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInProperties or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInProperties
-        :raises: ~additionalproperties.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.PetAPInProperties"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -280,7 +278,8 @@ class PetsOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('PetAPInProperties', pipeline_response)
 
@@ -294,19 +293,18 @@ class PetsOperations:
     async def create_ap_in_properties_with_ap_string(
         self,
         create_parameters: "models.PetAPInPropertiesWithAPString",
-        *,
-        cls: ClsType["models.PetAPInPropertiesWithAPString"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.PetAPInPropertiesWithAPString":
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
         :type create_parameters: ~additionalproperties.models.PetAPInPropertiesWithAPString
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInPropertiesWithAPString or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInPropertiesWithAPString
-        :raises: ~additionalproperties.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.PetAPInPropertiesWithAPString"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -330,7 +328,8 @@ class PetsOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('PetAPInPropertiesWithAPString', pipeline_response)
 

@@ -37,7 +37,6 @@ from os.path import dirname, pardir, join, realpath
 from msrest.exceptions import DeserializationError
 
 from bodyfile import AutoRestSwaggerBATFileService
-from bodyfile.models import ErrorException
 
 import pytest
 

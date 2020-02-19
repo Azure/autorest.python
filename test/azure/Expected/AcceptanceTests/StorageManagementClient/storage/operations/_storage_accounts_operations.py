@@ -8,15 +8,14 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 import warnings
 
-from azure.core.exceptions import ResourceNotFoundError, map_error
+from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_error
 from azure.core.paging import ItemPaged
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
-from azure.core.polling import LROPoller, NoPolling
+from azure.core.polling import LROPoller, NoPolling, PollingMethod
 from azure.core.tracing.decorator import distributed_trace
-from azure.mgmt.core.exceptions import ARMError
+from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
-from msrest.serialization import Model
 
 from .. import models
 
@@ -48,7 +47,6 @@ class StorageAccountsOperations(object):
     def check_name_availability(
         self,
         account_name,  # type: "models.StorageAccountCheckNameAvailabilityParameters"
-        cls=None,  # type: ClsType["models.CheckNameAvailabilityResult"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.CheckNameAvailabilityResult"
@@ -58,11 +56,12 @@ class StorageAccountsOperations(object):
          Storage account names must be between 3 and 24 characters in length and use numbers and lower-
          case letters only.
         :type account_name: ~storage.models.StorageAccountCheckNameAvailabilityParameters
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CheckNameAvailabilityResult or the result of cls(response)
         :rtype: ~storage.models.CheckNameAvailabilityResult
-        :raises: ~azure.mgmt.core.ARMError
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.CheckNameAvailabilityResult"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -90,7 +89,7 @@ class StorageAccountsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize('CheckNameAvailabilityResult', pipeline_response)
 
@@ -105,10 +104,10 @@ class StorageAccountsOperations(object):
         resource_group_name,  # type: str
         account_name,  # type: str
         parameters,  # type: "models.StorageAccountCreateParameters"
-        cls=None,  # type: ClsType["models.StorageAccount"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.StorageAccount"
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.StorageAccount"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -138,7 +137,7 @@ class StorageAccountsOperations(object):
 
         if response.status_code not in [200, 202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         deserialized = None
         if response.status_code == 200:
@@ -156,8 +155,6 @@ class StorageAccountsOperations(object):
         resource_group_name,  # type: str
         account_name,  # type: str
         parameters,  # type: "models.StorageAccountCreateParameters"
-        cls=None,  # type: ClsType["models.StorageAccount"]
-        polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.StorageAccount"
@@ -171,14 +168,17 @@ class StorageAccountsOperations(object):
         :type account_name: str
         :param parameters: The parameters to provide for the created account.
         :type parameters: ~storage.models.StorageAccountCreateParameters
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :return: An instance of LROPoller that returns StorageAccount
         :rtype: ~azure.core.polling.LROPoller[~storage.models.StorageAccount]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.StorageAccount"]
         raw_result = self._create_initial(
             resource_group_name=resource_group_name,
             account_name=account_name,
@@ -209,7 +209,6 @@ class StorageAccountsOperations(object):
         self,
         resource_group_name,  # type: str
         account_name,  # type: str
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -221,11 +220,12 @@ class StorageAccountsOperations(object):
          Storage account names must be between 3 and 24 characters in length and use numbers and lower-
          case letters only.
         :type account_name: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.mgmt.core.ARMError
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -250,7 +250,7 @@ class StorageAccountsOperations(object):
 
         if response.status_code not in [200, 204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -262,7 +262,6 @@ class StorageAccountsOperations(object):
         self,
         resource_group_name,  # type: str
         account_name,  # type: str
-        cls=None,  # type: ClsType["models.StorageAccount"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.StorageAccount"
@@ -274,11 +273,12 @@ class StorageAccountsOperations(object):
          Storage account names must be between 3 and 24 characters in length and use numbers and lower-
          case letters only.
         :type account_name: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
-        :raises: ~azure.mgmt.core.ARMError
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.StorageAccount"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -304,7 +304,7 @@ class StorageAccountsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize('StorageAccount', pipeline_response)
 
@@ -320,7 +320,6 @@ class StorageAccountsOperations(object):
         resource_group_name,  # type: str
         account_name,  # type: str
         parameters,  # type: "models.StorageAccountUpdateParameters"
-        cls=None,  # type: ClsType["models.StorageAccount"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.StorageAccount"
@@ -335,11 +334,12 @@ class StorageAccountsOperations(object):
         :param parameters: The parameters to update on the account. Note that only one property can be
          changed at a time using this API.
         :type parameters: ~storage.models.StorageAccountUpdateParameters
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
-        :raises: ~azure.mgmt.core.ARMError
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.StorageAccount"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -369,7 +369,7 @@ class StorageAccountsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize('StorageAccount', pipeline_response)
 
@@ -384,7 +384,6 @@ class StorageAccountsOperations(object):
         self,
         resource_group_name,  # type: str
         account_name,  # type: str
-        cls=None,  # type: ClsType["models.StorageAccountKeys"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.StorageAccountKeys"
@@ -396,11 +395,12 @@ class StorageAccountsOperations(object):
          Storage account names must be between 3 and 24 characters in length and use numbers and lower-
          case letters only.
         :type account_name: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountKeys or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys
-        :raises: ~azure.mgmt.core.ARMError
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.StorageAccountKeys"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -426,7 +426,7 @@ class StorageAccountsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize('StorageAccountKeys', pipeline_response)
 
@@ -439,17 +439,17 @@ class StorageAccountsOperations(object):
     @distributed_trace
     def list(
         self,
-        cls=None,  # type: ClsType["models.StorageAccountListResult"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.StorageAccountListResult"
         """Lists all the storage accounts available under the subscription. Note that storage keys are not returned; use the ListKeys operation for this.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountListResult or the result of cls(response)
         :rtype: ~storage.models.StorageAccountListResult
-        :raises: ~azure.mgmt.core.ARMError
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.StorageAccountListResult"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         def prepare_request(next_link=None):
@@ -489,7 +489,7 @@ class StorageAccountsOperations(object):
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise ARMError(response=response)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
 
@@ -502,7 +502,6 @@ class StorageAccountsOperations(object):
     def list_by_resource_group(
         self,
         resource_group_name,  # type: str
-        cls=None,  # type: ClsType["models.StorageAccountListResult"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.StorageAccountListResult"
@@ -510,11 +509,12 @@ class StorageAccountsOperations(object):
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountListResult or the result of cls(response)
         :rtype: ~storage.models.StorageAccountListResult
-        :raises: ~azure.mgmt.core.ARMError
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.StorageAccountListResult"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         def prepare_request(next_link=None):
@@ -555,7 +555,7 @@ class StorageAccountsOperations(object):
 
             if response.status_code not in [200]:
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise ARMError(response=response)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
             return pipeline_response
 
@@ -570,7 +570,6 @@ class StorageAccountsOperations(object):
         resource_group_name,  # type: str
         account_name,  # type: str
         key_name=None,  # type: Optional[Union[str, "models.KeyName"]]
-        cls=None,  # type: ClsType["models.StorageAccountKeys"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.StorageAccountKeys"
@@ -584,14 +583,15 @@ class StorageAccountsOperations(object):
         :type account_name: str
         :param key_name:
         :type key_name: str or ~storage.models.KeyName
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountKeys or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys
-        :raises: ~azure.mgmt.core.ARMError
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.StorageAccountKeys"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
-        regenerate_key = models.StorageAccountRegenerateKeyParameters(key_name=key_name)
+        _regenerate_key = models.StorageAccountRegenerateKeyParameters(key_name=key_name)
 
         # Construct URL
         url = self.regenerate_key.metadata['url']
@@ -611,7 +611,7 @@ class StorageAccountsOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(regenerate_key, 'StorageAccountRegenerateKeyParameters')
+        body_content = self._serialize.body(_regenerate_key, 'StorageAccountRegenerateKeyParameters')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters, body_content)
@@ -620,7 +620,7 @@ class StorageAccountsOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize('StorageAccountKeys', pipeline_response)
 

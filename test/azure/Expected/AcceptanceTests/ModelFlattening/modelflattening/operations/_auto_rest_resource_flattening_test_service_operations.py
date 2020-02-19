@@ -8,11 +8,14 @@
 from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
 import warnings
 
+<<<<<<< HEAD
 from azure.core.exceptions import ResourceNotFoundError, map_error
+=======
+from azure.core.exceptions import HttpResponseError, map_error
+>>>>>>> e7a8d33cf8a96aa25fae7d99c5331f0a317439df
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
-from msrest.serialization import Model
 
 from .. import models
 
@@ -25,7 +28,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def put_array(
         self,
         resource_array=None,  # type: Optional[List["Resource"]]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -33,12 +35,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         :param resource_array: External Resource as an Array to put.
         :type resource_array: list[~modelflattening.models.Resource]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~modelflattening.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+<<<<<<< HEAD
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+=======
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        error_map = kwargs.pop('error_map', {})
+>>>>>>> e7a8d33cf8a96aa25fae7d99c5331f0a317439df
 
         # Construct URL
         url = self.put_array.metadata['url']
@@ -63,7 +70,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -73,18 +81,22 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def get_array(
         self,
-        cls=None,  # type: ClsType[List["FlattenedProduct"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List["FlattenedProduct"]
         """Get External Resource as an Array.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~modelflattening.models.FlattenedProduct]
-        :raises: ~modelflattening.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+<<<<<<< HEAD
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+=======
+        cls = kwargs.pop('cls', None )  # type: ClsType[List["FlattenedProduct"]]
+        error_map = kwargs.pop('error_map', {})
+>>>>>>> e7a8d33cf8a96aa25fae7d99c5331f0a317439df
 
         # Construct URL
         url = self.get_array.metadata['url']
@@ -103,7 +115,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('[FlattenedProduct]', pipeline_response)
 
@@ -117,7 +130,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def put_wrapped_array(
         self,
         resource_array=None,  # type: Optional[List["WrappedProduct"]]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -125,12 +137,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         :param resource_array: External Resource as an Array to put.
         :type resource_array: list[~modelflattening.models.WrappedProduct]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~modelflattening.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+<<<<<<< HEAD
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+=======
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        error_map = kwargs.pop('error_map', {})
+>>>>>>> e7a8d33cf8a96aa25fae7d99c5331f0a317439df
 
         # Construct URL
         url = self.put_wrapped_array.metadata['url']
@@ -155,7 +172,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -165,18 +183,22 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def get_wrapped_array(
         self,
-        cls=None,  # type: ClsType[List["ProductWrapper"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> List["ProductWrapper"]
         """No need to have a route in Express server for this operation. Used to verify the type flattened is not removed if it's referenced in an array.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~modelflattening.models.ProductWrapper]
-        :raises: ~modelflattening.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+<<<<<<< HEAD
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+=======
+        cls = kwargs.pop('cls', None )  # type: ClsType[List["ProductWrapper"]]
+        error_map = kwargs.pop('error_map', {})
+>>>>>>> e7a8d33cf8a96aa25fae7d99c5331f0a317439df
 
         # Construct URL
         url = self.get_wrapped_array.metadata['url']
@@ -195,7 +217,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('[ProductWrapper]', pipeline_response)
 
@@ -209,7 +232,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def put_dictionary(
         self,
         resource_dictionary=None,  # type: Optional[Dict[str, "FlattenedProduct"]]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -217,12 +239,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         :param resource_dictionary: External Resource as a Dictionary to put.
         :type resource_dictionary: dict[str, ~modelflattening.models.FlattenedProduct]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~modelflattening.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+<<<<<<< HEAD
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+=======
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        error_map = kwargs.pop('error_map', {})
+>>>>>>> e7a8d33cf8a96aa25fae7d99c5331f0a317439df
 
         # Construct URL
         url = self.put_dictionary.metadata['url']
@@ -247,7 +274,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -257,18 +285,22 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def get_dictionary(
         self,
-        cls=None,  # type: ClsType[Dict[str, "FlattenedProduct"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> Dict[str, "FlattenedProduct"]
         """Get External Resource as a Dictionary.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~modelflattening.models.FlattenedProduct]
-        :raises: ~modelflattening.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+<<<<<<< HEAD
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+=======
+        cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, "FlattenedProduct"]]
+        error_map = kwargs.pop('error_map', {})
+>>>>>>> e7a8d33cf8a96aa25fae7d99c5331f0a317439df
 
         # Construct URL
         url = self.get_dictionary.metadata['url']
@@ -287,7 +319,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('{FlattenedProduct}', pipeline_response)
 
@@ -301,7 +334,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def put_resource_collection(
         self,
         resource_complex_object=None,  # type: Optional["models.ResourceCollection"]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -309,12 +341,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         :param resource_complex_object: External Resource as a ResourceCollection to put.
         :type resource_complex_object: ~modelflattening.models.ResourceCollection
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~modelflattening.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+<<<<<<< HEAD
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+=======
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        error_map = kwargs.pop('error_map', {})
+>>>>>>> e7a8d33cf8a96aa25fae7d99c5331f0a317439df
 
         # Construct URL
         url = self.put_resource_collection.metadata['url']
@@ -339,7 +376,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -349,18 +387,22 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     @distributed_trace
     def get_resource_collection(
         self,
-        cls=None,  # type: ClsType["models.ResourceCollection"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.ResourceCollection"
         """Get External Resource as a ResourceCollection.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ResourceCollection or the result of cls(response)
         :rtype: ~modelflattening.models.ResourceCollection
-        :raises: ~modelflattening.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+<<<<<<< HEAD
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+=======
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.ResourceCollection"]
+        error_map = kwargs.pop('error_map', {})
+>>>>>>> e7a8d33cf8a96aa25fae7d99c5331f0a317439df
 
         # Construct URL
         url = self.get_resource_collection.metadata['url']
@@ -379,7 +421,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('ResourceCollection', pipeline_response)
 
@@ -393,7 +436,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def put_simple_product(
         self,
         simple_body_product=None,  # type: Optional["models.SimpleProduct"]
-        cls=None,  # type: ClsType["models.SimpleProduct"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.SimpleProduct"
@@ -401,12 +443,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         :param simple_body_product: Simple body product to put.
         :type simple_body_product: ~modelflattening.models.SimpleProduct
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
-        :raises: ~modelflattening.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+<<<<<<< HEAD
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+=======
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.SimpleProduct"]
+        error_map = kwargs.pop('error_map', {})
+>>>>>>> e7a8d33cf8a96aa25fae7d99c5331f0a317439df
 
         # Construct URL
         url = self.put_simple_product.metadata['url']
@@ -432,7 +479,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('SimpleProduct', pipeline_response)
 
@@ -449,8 +497,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         description=None,  # type: Optional[str]
         max_product_display_name=None,  # type: Optional[str]
         generic_value=None,  # type: Optional[str]
-        odatavalue=None,  # type: Optional[str]
-        cls=None,  # type: ClsType["models.SimpleProduct"]
+        odata_value=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.SimpleProduct"
@@ -466,16 +513,21 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :type max_product_display_name: str
         :param generic_value: Generic URL value.
         :type generic_value: str
-        :param odatavalue: URL value.
-        :type odatavalue: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :param odata_value: URL value.
+        :type odata_value: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
-        :raises: ~modelflattening.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+<<<<<<< HEAD
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+=======
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.SimpleProduct"]
+        error_map = kwargs.pop('error_map', {})
+>>>>>>> e7a8d33cf8a96aa25fae7d99c5331f0a317439df
 
-        simple_body_product = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odatavalue=odatavalue)
+        _simple_body_product = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odata_value=odata_value)
 
         # Construct URL
         url = self.post_flattened_simple_product.metadata['url']
@@ -489,8 +541,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if simple_body_product is not None:
-            body_content = self._serialize.body(simple_body_product, 'SimpleProduct')
+        if _simple_body_product is not None:
+            body_content = self._serialize.body(_simple_body_product, 'SimpleProduct')
         else:
             body_content = None
 
@@ -501,7 +553,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('SimpleProduct', pipeline_response)
 
@@ -515,7 +568,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
     def put_simple_product_with_grouping(
         self,
         flatten_parameter_group,  # type: "models.FlattenParameterGroup"
-        cls=None,  # type: ClsType["models.SimpleProduct"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.SimpleProduct"
@@ -523,37 +575,40 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         :param flatten_parameter_group: Parameter group.
         :type flatten_parameter_group: ~modelflattening.models.FlattenParameterGroup
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
-        :raises: ~modelflattening.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+<<<<<<< HEAD
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+=======
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.SimpleProduct"]
+        error_map = kwargs.pop('error_map', {})
+>>>>>>> e7a8d33cf8a96aa25fae7d99c5331f0a317439df
         
-        name = None
-        simple_body_product = None
-        product_id = None
-        description = None
-        max_product_display_name = None
-        capacity = None
-        generic_value = None
-        odatavalue = None
+        _name = None
+        _simple_body_product = None
+        _product_id = None
+        _description = None
+        _max_product_display_name = None
+        _generic_value = None
+        _odata_value = None
         if flatten_parameter_group is not None:
-            name = flatten_parameter_group.name
-            simple_body_product = flatten_parameter_group.simple_body_product
-            product_id = flatten_parameter_group.product_id
-            description = flatten_parameter_group.description
-            max_product_display_name = flatten_parameter_group.max_product_display_name
-            capacity = flatten_parameter_group.capacity
-            generic_value = flatten_parameter_group.generic_value
-            odatavalue = flatten_parameter_group.odatavalue
+            _name = flatten_parameter_group.name
+            _simple_body_product = flatten_parameter_group.simple_body_product
+            _product_id = flatten_parameter_group.product_id
+            _description = flatten_parameter_group.description
+            _max_product_display_name = flatten_parameter_group.max_product_display_name
+            _generic_value = flatten_parameter_group.generic_value
+            _odata_value = flatten_parameter_group.odata_value
 
-        simple_body_product = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odatavalue=odatavalue, flatten_parameter_group=flatten_parameter_group)
+        _simple_body_product = models.SimpleProduct(product_id=_product_id, description=_description, max_product_display_name=_max_product_display_name, generic_value=_generic_value, odata_value=_odata_value)
 
         # Construct URL
         url = self.put_simple_product_with_grouping.metadata['url']
         path_format_arguments = {
-            'name': self._serialize.url("name", name, 'str'),
+            'name': self._serialize.url("name", _name, 'str'),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -566,8 +621,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        if simple_body_product is not None:
-            body_content = self._serialize.body(simple_body_product, 'SimpleProduct')
+        if _simple_body_product is not None:
+            body_content = self._serialize.body(_simple_body_product, 'SimpleProduct')
         else:
             body_content = None
 
@@ -578,7 +633,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('SimpleProduct', pipeline_response)
 

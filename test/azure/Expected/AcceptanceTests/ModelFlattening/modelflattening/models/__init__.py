@@ -8,7 +8,7 @@
 
 try:
     from ._models_py3 import BaseProduct
-    from ._models_py3 import Error, ErrorException
+    from ._models_py3 import Error
     from ._models_py3 import FlattenParameterGroup
     from ._models_py3 import FlattenedProduct
     from ._models_py3 import FlattenedProductProperties
@@ -22,7 +22,7 @@ try:
     from ._models_py3 import WrappedProduct
 except (SyntaxError, ImportError):
     from ._models import BaseProduct  # type: ignore
-    from ._models import Error, ErrorException  # type: ignore
+    from ._models import Error  # type: ignore
     from ._models import FlattenParameterGroup  # type: ignore
     from ._models import FlattenedProduct  # type: ignore
     from ._models import FlattenedProductProperties  # type: ignore
@@ -40,7 +40,7 @@ from ._auto_rest_resource_flattening_test_service_enums import (
 
 __all__ = [
     'BaseProduct',
-    'Error', 'ErrorException',
+    'Error',
     'FlattenParameterGroup',
     'FlattenedProduct',
     'FlattenedProductProperties',

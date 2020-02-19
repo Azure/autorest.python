@@ -36,7 +36,7 @@ import os
 from os.path import dirname, pardir, join, realpath
 
 from subscriptionidapiversion.aio import MicrosoftAzureTestUrl
-from subscriptionidapiversion.models import ErrorException, SampleResourceGroup
+from subscriptionidapiversion.models import SampleResourceGroup
 
 import pytest
 

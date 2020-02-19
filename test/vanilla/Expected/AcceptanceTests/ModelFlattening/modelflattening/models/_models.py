@@ -7,10 +7,10 @@
 # --------------------------------------------------------------------------
 
 from azure.core.exceptions import HttpResponseError
-from msrest.serialization import Model
+import msrest.serialization
 
 
-class BaseProduct(Model):
+class BaseProduct(msrest.serialization.Model):
     """The product documentation.
 
     All required parameters must be populated in order to send to Azure.
@@ -41,32 +41,7 @@ class BaseProduct(Model):
         self.description = kwargs.get('description', None)
 
 
-class ErrorException(HttpResponseError):
-    """Server responded with exception of type: 'Error'.
-
-    :param response: Server response to be deserialized.
-    :param error_model: A deserialized model of the response body as model.
-    """
-
-    def __init__(self, response, error_model):
-        self.error = error_model
-        super(ErrorException, self).__init__(response=response, error_model=error_model)
-
-    @classmethod
-    def from_response(cls, response, deserialize):
-        """Deserialize this response as this exception, or a subclass of this exception.
-
-        :param response: Server response to be deserialized.
-        :param deserialize: A deserializer
-        """
-        model_name = 'Error'
-        error = deserialize(model_name, response)
-        if error is None:
-            error = deserialize.dependencies[model_name]()
-        return error._EXCEPTION_TYPE(response, error)
-
-
-class Error(Model):
+class Error(msrest.serialization.Model):
     """Error.
 
     :param status:
@@ -76,7 +51,6 @@ class Error(Model):
     :param parent_error:
     :type parent_error: ~modelflattening.models.Error
     """
-    _EXCEPTION_TYPE = ErrorException
 
     _attribute_map = {
         'status': {'key': 'status', 'type': 'int'},
@@ -94,7 +68,7 @@ class Error(Model):
         self.parent_error = kwargs.get('parent_error', None)
 
 
-class Resource(Model):
+class Resource(msrest.serialization.Model):
     """Resource.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -103,8 +77,7 @@ class Resource(Model):
     :vartype id: str
     :ivar type: Resource Type.
     :vartype type: str
-    :param tags: A set of tags. Dictionary of
-     <components·schemas·resource·properties·tags·additionalproperties>.
+    :param tags: A set of tags. Dictionary of :code:`<string>`.
     :type tags: dict[str, str]
     :param location: Resource Location.
     :type location: str
@@ -147,8 +120,7 @@ class FlattenedProduct(Resource):
     :vartype id: str
     :ivar type: Resource Type.
     :vartype type: str
-    :param tags: A set of tags. Dictionary of
-     <components·schemas·resource·properties·tags·additionalproperties>.
+    :param tags: A set of tags. Dictionary of :code:`<string>`.
     :type tags: dict[str, str]
     :param location: Resource Location.
     :type location: str
@@ -196,7 +168,7 @@ class FlattenedProduct(Resource):
         self.provisioning_state = kwargs.get('provisioning_state', None)
 
 
-class FlattenedProductProperties(Model):
+class FlattenedProductProperties(msrest.serialization.Model):
     """FlattenedProductProperties.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -235,10 +207,8 @@ class FlattenedProductProperties(Model):
         self.provisioning_state = kwargs.get('provisioning_state', None)
 
 
-class FlattenParameterGroup(Model):
+class FlattenParameterGroup(msrest.serialization.Model):
     """Parameter group.
-
-    Variables are only populated by the server, and will be ignored when sending a request.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -254,18 +224,15 @@ class FlattenParameterGroup(Model):
     :type description: str
     :param max_product_display_name: Display name of product.
     :type max_product_display_name: str
-    :ivar capacity: Capacity of product. For example, 4 people. Default value: "Large".
-    :vartype capacity: str
     :param generic_value: Generic URL value.
     :type generic_value: str
-    :param odatavalue: URL value.
-    :type odatavalue: str
+    :param odata_value: URL value.
+    :type odata_value: str
     """
 
     _validation = {
         'name': {'required': True},
         'product_id': {'required': True},
-        'capacity': {'constant': True},
     }
 
     _attribute_map = {
@@ -274,12 +241,9 @@ class FlattenParameterGroup(Model):
         'product_id': {'key': 'productId', 'type': 'str'},
         'description': {'key': 'description', 'type': 'str'},
         'max_product_display_name': {'key': 'max_product_display_name', 'type': 'str'},
-        'capacity': {'key': 'capacity', 'type': 'str'},
         'generic_value': {'key': 'generic_value', 'type': 'str'},
-        'odatavalue': {'key': '@odata\\.value', 'type': 'str'},
+        'odata_value': {'key': '@odata\\.value', 'type': 'str'},
     }
-
-    capacity = "Large"
 
     def __init__(
         self,
@@ -292,10 +256,10 @@ class FlattenParameterGroup(Model):
         self.description = kwargs.get('description', None)
         self.max_product_display_name = kwargs.get('max_product_display_name', None)
         self.generic_value = kwargs.get('generic_value', None)
-        self.odatavalue = kwargs.get('odatavalue', None)
+        self.odata_value = kwargs.get('odata_value', None)
 
 
-class GenericUrl(Model):
+class GenericUrl(msrest.serialization.Model):
     """The Generic URL.
 
     :param generic_value: Generic URL value.
@@ -336,7 +300,7 @@ class ProductUrl(GenericUrl):
         self.odata_value = kwargs.get('odata_value', None)
 
 
-class ProductWrapper(Model):
+class ProductWrapper(msrest.serialization.Model):
     """The wrapped produc.
 
     :param value: the product value.
@@ -355,7 +319,7 @@ class ProductWrapper(Model):
         self.value = kwargs.get('value', None)
 
 
-class ResourceCollection(Model):
+class ResourceCollection(msrest.serialization.Model):
     """ResourceCollection.
 
     :param productresource: Flattened product.
@@ -431,7 +395,7 @@ class SimpleProduct(BaseProduct):
         self.odata_value = kwargs.get('odata_value', None)
 
 
-class SimpleProductProperties(Model):
+class SimpleProductProperties(msrest.serialization.Model):
     """The product documentation.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -472,7 +436,7 @@ class SimpleProductProperties(Model):
         self.odata_value = kwargs.get('odata_value', None)
 
 
-class WrappedProduct(Model):
+class WrappedProduct(msrest.serialization.Model):
     """The wrapped produc.
 
     :param value: the product value.

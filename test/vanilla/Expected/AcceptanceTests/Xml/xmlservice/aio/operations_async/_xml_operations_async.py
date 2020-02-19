@@ -12,7 +12,6 @@ from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
-from msrest.serialization import Model
 
 from ... import models
 
@@ -43,16 +42,16 @@ class XmlOperations:
     @distributed_trace_async
     async def get_complex_type_ref_no_meta(
         self,
-        cls: ClsType["models.RootWithRefAndNoMeta"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.RootWithRefAndNoMeta":
         """Get a complex type that has a ref to a complex type with no XML node.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: RootWithRefAndNoMeta or the result of cls(response)
         :rtype: ~xmlservice.models.RootWithRefAndNoMeta
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.RootWithRefAndNoMeta"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -86,19 +85,18 @@ class XmlOperations:
     async def put_complex_type_ref_no_meta(
         self,
         model: "models.RootWithRefAndNoMeta",
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Puts a complex type that has a ref to a complex type with no XML node.
 
         :param model:
         :type model: ~xmlservice.models.RootWithRefAndNoMeta
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -131,16 +129,16 @@ class XmlOperations:
     @distributed_trace_async
     async def get_complex_type_ref_with_meta(
         self,
-        cls: ClsType["models.RootWithRefAndMeta"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.RootWithRefAndMeta":
         """Get a complex type that has a ref to a complex type with XML node.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: RootWithRefAndMeta or the result of cls(response)
         :rtype: ~xmlservice.models.RootWithRefAndMeta
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.RootWithRefAndMeta"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -174,19 +172,18 @@ class XmlOperations:
     async def put_complex_type_ref_with_meta(
         self,
         model: "models.RootWithRefAndMeta",
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Puts a complex type that has a ref to a complex type with XML node.
 
         :param model:
         :type model: ~xmlservice.models.RootWithRefAndMeta
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -219,16 +216,16 @@ class XmlOperations:
     @distributed_trace_async
     async def get_simple(
         self,
-        cls: ClsType["models.Slideshow"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Slideshow":
         """Get a simple XML document.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Slideshow or the result of cls(response)
         :rtype: ~xmlservice.models.Slideshow
-        :raises: ~xmlservice.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.Slideshow"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -248,7 +245,8 @@ class XmlOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('Slideshow', pipeline_response)
 
@@ -262,19 +260,18 @@ class XmlOperations:
     async def put_simple(
         self,
         slideshow: "models.Slideshow",
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put a simple XML document.
 
         :param slideshow:
         :type slideshow: ~xmlservice.models.Slideshow
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~xmlservice.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -297,7 +294,8 @@ class XmlOperations:
 
         if response.status_code not in [201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -307,16 +305,16 @@ class XmlOperations:
     @distributed_trace_async
     async def get_wrapped_lists(
         self,
-        cls: ClsType["models.AppleBarrel"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.AppleBarrel":
         """Get an XML document with multiple wrapped lists.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: AppleBarrel or the result of cls(response)
         :rtype: ~xmlservice.models.AppleBarrel
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.AppleBarrel"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -350,19 +348,18 @@ class XmlOperations:
     async def put_wrapped_lists(
         self,
         wrapped_lists: "models.AppleBarrel",
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put an XML document with multiple wrapped lists.
 
         :param wrapped_lists:
         :type wrapped_lists: ~xmlservice.models.AppleBarrel
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~xmlservice.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -385,7 +382,8 @@ class XmlOperations:
 
         if response.status_code not in [201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -395,16 +393,16 @@ class XmlOperations:
     @distributed_trace_async
     async def get_headers(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Get strongly-typed response headers.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -436,16 +434,16 @@ class XmlOperations:
     @distributed_trace_async
     async def get_empty_list(
         self,
-        cls: ClsType["models.Slideshow"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Slideshow":
         """Get an empty list.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Slideshow or the result of cls(response)
         :rtype: ~xmlservice.models.Slideshow
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.Slideshow"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -479,19 +477,18 @@ class XmlOperations:
     async def put_empty_list(
         self,
         slideshow: "models.Slideshow",
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Puts an empty list.
 
         :param slideshow:
         :type slideshow: ~xmlservice.models.Slideshow
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -524,16 +521,16 @@ class XmlOperations:
     @distributed_trace_async
     async def get_empty_wrapped_lists(
         self,
-        cls: ClsType["models.AppleBarrel"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.AppleBarrel":
         """Gets some empty wrapped lists.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: AppleBarrel or the result of cls(response)
         :rtype: ~xmlservice.models.AppleBarrel
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.AppleBarrel"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -567,19 +564,18 @@ class XmlOperations:
     async def put_empty_wrapped_lists(
         self,
         apple_barrel: "models.AppleBarrel",
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Puts some empty wrapped lists.
 
         :param apple_barrel:
         :type apple_barrel: ~xmlservice.models.AppleBarrel
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -612,16 +608,16 @@ class XmlOperations:
     @distributed_trace_async
     async def get_root_list(
         self,
-        cls: ClsType[List["Banana"]] = None,
-        **kwargs: Any
+        **kwargs
     ) -> List["Banana"]:
         """Gets a list as the root element.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[List["Banana"]] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -655,19 +651,18 @@ class XmlOperations:
     async def put_root_list(
         self,
         bananas: List["Banana"],
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Puts a list as the root element.
 
         :param bananas:
         :type bananas: list[~xmlservice.models.Banana]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -701,16 +696,16 @@ class XmlOperations:
     @distributed_trace_async
     async def get_root_list_single_item(
         self,
-        cls: ClsType[List["Banana"]] = None,
-        **kwargs: Any
+        **kwargs
     ) -> List["Banana"]:
         """Gets a list with a single item.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[List["Banana"]] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -744,19 +739,18 @@ class XmlOperations:
     async def put_root_list_single_item(
         self,
         bananas: List["Banana"],
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Puts a list with a single item.
 
         :param bananas:
         :type bananas: list[~xmlservice.models.Banana]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -790,16 +784,16 @@ class XmlOperations:
     @distributed_trace_async
     async def get_empty_root_list(
         self,
-        cls: ClsType[List["Banana"]] = None,
-        **kwargs: Any
+        **kwargs
     ) -> List["Banana"]:
         """Gets an empty list as the root element.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[List["Banana"]] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -833,19 +827,18 @@ class XmlOperations:
     async def put_empty_root_list(
         self,
         bananas: List["Banana"],
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Puts an empty list as the root element.
 
         :param bananas:
         :type bananas: list[~xmlservice.models.Banana]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -879,16 +872,16 @@ class XmlOperations:
     @distributed_trace_async
     async def get_empty_child_element(
         self,
-        cls: ClsType["models.Banana"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Banana":
         """Gets an XML document with an empty child element.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Banana or the result of cls(response)
         :rtype: ~xmlservice.models.Banana
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.Banana"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -922,19 +915,18 @@ class XmlOperations:
     async def put_empty_child_element(
         self,
         banana: "models.Banana",
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Puts a value with an empty child element.
 
         :param banana:
         :type banana: ~xmlservice.models.Banana
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -967,16 +959,16 @@ class XmlOperations:
     @distributed_trace_async
     async def list_containers(
         self,
-        cls: ClsType["models.ListContainersResponse"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.ListContainersResponse":
         """Lists containers in a storage account.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ListContainersResponse or the result of cls(response)
         :rtype: ~xmlservice.models.ListContainersResponse
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.ListContainersResponse"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         comp = "list"
 
@@ -1011,16 +1003,16 @@ class XmlOperations:
     @distributed_trace_async
     async def get_service_properties(
         self,
-        cls: ClsType["models.StorageServiceProperties"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.StorageServiceProperties":
         """Gets storage service properties.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageServiceProperties or the result of cls(response)
         :rtype: ~xmlservice.models.StorageServiceProperties
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.StorageServiceProperties"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         comp = "properties"
         restype = "service"
@@ -1058,19 +1050,18 @@ class XmlOperations:
     async def put_service_properties(
         self,
         properties: "models.StorageServiceProperties",
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Puts storage service properties.
 
         :param properties:
         :type properties: ~xmlservice.models.StorageServiceProperties
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         comp = "properties"
         restype = "service"
@@ -1107,16 +1098,16 @@ class XmlOperations:
     @distributed_trace_async
     async def get_acls(
         self,
-        cls: ClsType[List["SignedIdentifier"]] = None,
-        **kwargs: Any
+        **kwargs
     ) -> List["SignedIdentifier"]:
         """Gets storage ACLs for a container.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~xmlservice.models.SignedIdentifier]
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[List["SignedIdentifier"]] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         comp = "acl"
         restype = "container"
@@ -1154,19 +1145,18 @@ class XmlOperations:
     async def put_acls(
         self,
         properties: List["SignedIdentifier"],
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Puts storage ACLs for a container.
 
         :param properties:
         :type properties: list[~xmlservice.models.SignedIdentifier]
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         comp = "acl"
         restype = "container"
@@ -1204,16 +1194,16 @@ class XmlOperations:
     @distributed_trace_async
     async def list_blobs(
         self,
-        cls: ClsType["models.ListBlobsResponse"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.ListBlobsResponse":
         """Lists blobs in a storage container.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ListBlobsResponse or the result of cls(response)
         :rtype: ~xmlservice.models.ListBlobsResponse
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.ListBlobsResponse"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         comp = "list"
         restype = "container"
@@ -1251,22 +1241,21 @@ class XmlOperations:
     async def json_input(
         self,
         id: Optional[int] = None,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID number 42.
 
         :param id:
         :type id: int
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
-        properties = models.JSONInput(id=id)
+        _properties = models.JSONInput(id=id)
 
         # Construct URL
         url = self.json_input.metadata['url']
@@ -1279,7 +1268,7 @@ class XmlOperations:
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(properties, 'JSONInput')
+        body_content = self._serialize.body(_properties, 'JSONInput')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)
@@ -1298,16 +1287,16 @@ class XmlOperations:
     @distributed_trace_async
     async def json_output(
         self,
-        cls: ClsType["models.JSONOutput"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.JSONOutput":
         """A Swagger with XML that has one operation that returns JSON. ID number 42.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: JSONOutput or the result of cls(response)
         :rtype: ~xmlservice.models.JSONOutput
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.JSONOutput"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL

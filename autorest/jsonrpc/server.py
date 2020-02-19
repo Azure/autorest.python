@@ -17,7 +17,7 @@ _LOGGER = logging.getLogger(__name__)
 
 @dispatcher.add_method
 def GetPluginNames():
-    return ["codegen", "m2r", "namer"]
+    return ["codegen", "m2r", "namer", "multiapiscript"]
 
 
 @dispatcher.add_method
@@ -36,6 +36,8 @@ def Process(plugin_name: str, session_id):
             from ..namer import Namer as PluginToLoad  # type: ignore
         elif plugin_name == "codegen":
             from ..codegen import CodeGenerator as PluginToLoad  # type: ignore
+        elif plugin_name == "multiapiscript":
+            from ..multiapi import MultiApiScriptPlugin as PluginToLoad  # type: ignore
         else:
             _LOGGER.fatal("Unknown plugin name %s", plugin_name)
             raise RuntimeError(f"Unknown plugin name {plugin_name}")
@@ -57,7 +59,6 @@ def main():
             raise SystemExit("Please pip install ptvsd in order to use VSCode debugging")
 
         # 5678 is the default attach port in the VS Code debug configurations
-        print("Waiting for debugger attach")
         ptvsd.enable_attach(address=("localhost", 5678), redirect_output=True)
         ptvsd.wait_for_attach()
         breakpoint()  # pylint: disable=undefined-variable

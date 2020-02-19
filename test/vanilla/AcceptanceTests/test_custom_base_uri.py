@@ -40,7 +40,7 @@ from msrest.exceptions import (
 from azure.core.exceptions import ServiceRequestError
 
 from custombaseurl import AutoRestParameterizedHostTestClient
-from custombaseurl.models import Error, ErrorException
+from custombaseurl.models import Error
 from custombaseurlmoreoptions import AutoRestParameterizedCustomHostTestClient
 
 import pytest
@@ -69,7 +69,6 @@ class TestCustomBaseUri(object):
             with pytest.raises(ServiceRequestError):
                 client.paths.get_empty("local")
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.testserver/issues/97")
-    def test_more_optiopns(self):
+    def test_more_options(self):
         with AutoRestParameterizedCustomHostTestClient("test12", "host:3000") as client:
             client.paths.get_empty("http://lo", "cal", "key1")

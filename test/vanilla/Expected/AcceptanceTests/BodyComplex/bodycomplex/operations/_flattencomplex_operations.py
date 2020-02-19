@@ -12,7 +12,6 @@ from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
-from msrest.serialization import Model
 
 from .. import models
 
@@ -43,17 +42,17 @@ class FlattencomplexOperations(object):
     @distributed_trace
     def get_valid(
         self,
-        cls=None,  # type: ClsType["models.MyBaseType"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.MyBaseType"
         """get_valid.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyBaseType or the result of cls(response)
         :rtype: ~bodycomplex.models.MyBaseType
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.MyBaseType"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL

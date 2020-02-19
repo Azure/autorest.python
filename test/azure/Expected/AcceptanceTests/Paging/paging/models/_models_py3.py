@@ -8,10 +8,10 @@
 
 from typing import List, Optional, Union
 
-from msrest.serialization import Model
+import msrest.serialization
 
 
-class CustomParameterGroup(Model):
+class CustomParameterGroup(msrest.serialization.Model):
     """Parameter group.
 
     All required parameters must be populated in order to send to Azure.
@@ -44,7 +44,7 @@ class CustomParameterGroup(Model):
         self.tenant = tenant
 
 
-class OdataProductResult(Model):
+class OdataProductResult(msrest.serialization.Model):
     """OdataProductResult.
 
     :param values:
@@ -70,7 +70,7 @@ class OdataProductResult(Model):
         self.odata_next_link = odata_next_link
 
 
-class OperationResult(Model):
+class OperationResult(msrest.serialization.Model):
     """OperationResult.
 
     :param status: The status of the request. Possible values include: 'Succeeded', 'Failed',
@@ -93,7 +93,7 @@ class OperationResult(Model):
         self.status = status
 
 
-class PagingGetMultiplePagesLroOptions(Model):
+class PagingGetMultiplePagesLroOptions(msrest.serialization.Model):
     """Parameter group.
 
     :param maxresults: Sets the maximum number of items to return in the response.
@@ -120,7 +120,7 @@ class PagingGetMultiplePagesLroOptions(Model):
         self.timeout = timeout
 
 
-class PagingGetMultiplePagesOptions(Model):
+class PagingGetMultiplePagesOptions(msrest.serialization.Model):
     """Parameter group.
 
     :param maxresults: Sets the maximum number of items to return in the response.
@@ -147,7 +147,7 @@ class PagingGetMultiplePagesOptions(Model):
         self.timeout = timeout
 
 
-class PagingGetMultiplePagesWithOffsetOptions(Model):
+class PagingGetMultiplePagesWithOffsetOptions(msrest.serialization.Model):
     """Parameter group.
 
     All required parameters must be populated in order to send to Azure.
@@ -185,7 +185,7 @@ class PagingGetMultiplePagesWithOffsetOptions(Model):
         self.timeout = timeout
 
 
-class PagingGetOdataMultiplePagesOptions(Model):
+class PagingGetOdataMultiplePagesOptions(msrest.serialization.Model):
     """Parameter group.
 
     :param maxresults: Sets the maximum number of items to return in the response.
@@ -212,7 +212,7 @@ class PagingGetOdataMultiplePagesOptions(Model):
         self.timeout = timeout
 
 
-class Product(Model):
+class Product(msrest.serialization.Model):
     """Product.
 
     :param properties:
@@ -233,7 +233,7 @@ class Product(Model):
         self.properties = properties
 
 
-class ProductProperties(Model):
+class ProductProperties(msrest.serialization.Model):
     """ProductProperties.
 
     :param id:
@@ -259,7 +259,7 @@ class ProductProperties(Model):
         self.name = name
 
 
-class ProductResult(Model):
+class ProductResult(msrest.serialization.Model):
     """ProductResult.
 
     :param values:
@@ -285,7 +285,7 @@ class ProductResult(Model):
         self.next_link = next_link
 
 
-class ProductResultValue(Model):
+class ProductResultValue(msrest.serialization.Model):
     """ProductResultValue.
 
     :param value:

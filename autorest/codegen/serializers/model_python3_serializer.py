@@ -32,7 +32,6 @@ class ModelPython3Serializer(ModelBaseSerializer):
     def init_args(model: ObjectSchema) -> List[str]:
         init_args = []
         if model.base_model:
-            properties_to_initialize = []
             properties_to_pass = []
             for prop in model.properties:
                 if (
@@ -42,18 +41,16 @@ class ModelPython3Serializer(ModelBaseSerializer):
                     and not prop.readonly
                 ):
                     properties_to_pass.append(f"{prop.name}={prop.name}")
-                elif prop not in model.base_model.properties or prop.is_discriminator or prop.constant:
-                    properties_to_initialize.append(prop)
             properties_to_pass.append("**kwargs")
             init_args.append("super({}, self).__init__({})".format(model.name, ", ".join(properties_to_pass)))
         else:
             init_args.append(f"super({model.name}, self).__init__(**kwargs)")
-            properties_to_initialize = model.properties
-        for prop in properties_to_initialize:
+        for prop in ModelPython3Serializer.get_properties_to_initialize(model):
             if prop.readonly:
                 init_args.append(f"self.{prop.name} = None")
             elif prop.is_discriminator:
-                init_args.append(f"self.{prop.name} = '{model.discriminator_value}'")
+                discriminator_value = f"'{model.discriminator_value}'" if model.discriminator_value else None
+                init_args.append(f"self.{prop.name} = {discriminator_value}")
             elif not prop.constant:
                 init_args.append(f"self.{prop.name} = {prop.name}")
 

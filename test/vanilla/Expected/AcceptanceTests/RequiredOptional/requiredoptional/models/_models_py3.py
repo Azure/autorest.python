@@ -9,10 +9,10 @@
 from typing import List, Optional
 
 from azure.core.exceptions import HttpResponseError
-from msrest.serialization import Model
+import msrest.serialization
 
 
-class ArrayOptionalWrapper(Model):
+class ArrayOptionalWrapper(msrest.serialization.Model):
     """ArrayOptionalWrapper.
 
     :param value:
@@ -33,7 +33,7 @@ class ArrayOptionalWrapper(Model):
         self.value = value
 
 
-class ArrayWrapper(Model):
+class ArrayWrapper(msrest.serialization.Model):
     """ArrayWrapper.
 
     All required parameters must be populated in order to send to Azure.
@@ -60,7 +60,7 @@ class ArrayWrapper(Model):
         self.value = value
 
 
-class ClassOptionalWrapper(Model):
+class ClassOptionalWrapper(msrest.serialization.Model):
     """ClassOptionalWrapper.
 
     :param value:
@@ -81,7 +81,7 @@ class ClassOptionalWrapper(Model):
         self.value = value
 
 
-class ClassWrapper(Model):
+class ClassWrapper(msrest.serialization.Model):
     """ClassWrapper.
 
     All required parameters must be populated in order to send to Azure.
@@ -108,32 +108,7 @@ class ClassWrapper(Model):
         self.value = value
 
 
-class ErrorException(HttpResponseError):
-    """Server responded with exception of type: 'Error'.
-
-    :param response: Server response to be deserialized.
-    :param error_model: A deserialized model of the response body as model.
-    """
-
-    def __init__(self, response, error_model):
-        self.error = error_model
-        super(ErrorException, self).__init__(response=response, error_model=error_model)
-
-    @classmethod
-    def from_response(cls, response, deserialize):
-        """Deserialize this response as this exception, or a subclass of this exception.
-
-        :param response: Server response to be deserialized.
-        :param deserialize: A deserializer
-        """
-        model_name = 'Error'
-        error = deserialize(model_name, response)
-        if error is None:
-            error = deserialize.dependencies[model_name]()
-        return error._EXCEPTION_TYPE(response, error)
-
-
-class Error(Model):
+class Error(msrest.serialization.Model):
     """Error.
 
     :param status:
@@ -141,7 +116,6 @@ class Error(Model):
     :param message:
     :type message: str
     """
-    _EXCEPTION_TYPE = ErrorException
 
     _attribute_map = {
         'status': {'key': 'status', 'type': 'int'},
@@ -160,7 +134,7 @@ class Error(Model):
         self.message = message
 
 
-class IntOptionalWrapper(Model):
+class IntOptionalWrapper(msrest.serialization.Model):
     """IntOptionalWrapper.
 
     :param value:
@@ -181,7 +155,7 @@ class IntOptionalWrapper(Model):
         self.value = value
 
 
-class IntWrapper(Model):
+class IntWrapper(msrest.serialization.Model):
     """IntWrapper.
 
     All required parameters must be populated in order to send to Azure.
@@ -208,7 +182,7 @@ class IntWrapper(Model):
         self.value = value
 
 
-class Product(Model):
+class Product(msrest.serialization.Model):
     """Product.
 
     All required parameters must be populated in order to send to Azure.
@@ -240,7 +214,7 @@ class Product(Model):
         self.name = name
 
 
-class StringOptionalWrapper(Model):
+class StringOptionalWrapper(msrest.serialization.Model):
     """StringOptionalWrapper.
 
     :param value:
@@ -261,7 +235,7 @@ class StringOptionalWrapper(Model):
         self.value = value
 
 
-class StringWrapper(Model):
+class StringWrapper(msrest.serialization.Model):
     """StringWrapper.
 
     All required parameters must be populated in order to send to Azure.

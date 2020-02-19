@@ -12,7 +12,6 @@ from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
-from msrest.serialization import Model
 
 from .. import models
 
@@ -44,7 +43,6 @@ class PetOperations(object):
     def get_pet_by_id(
         self,
         pet_id,  # type: str
-        cls=None,  # type: ClsType["models.Pet"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Pet"
@@ -52,15 +50,16 @@ class PetOperations(object):
 
         :param pet_id: pet id.
         :type pet_id: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Pet or  or the result of cls(response)
         :rtype: ~xmserrorresponse.models.Pet or None
         :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.Pet"]
         error_map = {
-            400: HttpResponseError,
-            404: lambda response: models.NotFoundErrorBaseException.from_response(response, self._deserialize),
-            501: HttpResponseError,
+            400: lambda response: HttpResponseError(response=response),
+            404: lambda response: HttpResponseError(response=response, model=self._deserialize(models.NotFoundErrorBase, response)),
+            501: lambda response: HttpResponseError(response=response),
         }
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -101,7 +100,6 @@ class PetOperations(object):
     def do_something(
         self,
         what_action,  # type: str
-        cls=None,  # type: ClsType["models.PetAction"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.PetAction"
@@ -109,14 +107,15 @@ class PetOperations(object):
 
         :param what_action: what action the pet should do.
         :type what_action: str
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAction or the result of cls(response)
         :rtype: ~xmserrorresponse.models.PetAction
-        :raises: ~xmserrorresponse.models.PetActionErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.PetAction"]
         error_map = {
             404: ResourceNotFoundError,
-            500: lambda response: models.PetActionErrorException.from_response(response, self._deserialize),
+            500: lambda response: HttpResponseError(response=response, model=self._deserialize(models.PetActionError, response)),
         }
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -141,7 +140,8 @@ class PetOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.PetActionErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.PetActionError, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('PetAction', pipeline_response)
 

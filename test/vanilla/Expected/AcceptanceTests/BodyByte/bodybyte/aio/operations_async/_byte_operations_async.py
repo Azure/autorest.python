@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import ResourceNotFoundError, map_error
+from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
@@ -42,16 +42,16 @@ class ByteOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        cls: ClsType[bytearray] = None,
-        **kwargs: Any
+        **kwargs
     ) -> bytearray:
         """Get null byte value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytearray or the result of cls(response)
         :rtype: bytearray
-        :raises: ~bodybyte.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[bytearray] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -71,7 +71,8 @@ class ByteOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('bytearray', pipeline_response)
 
@@ -84,16 +85,16 @@ class ByteOperations:
     @distributed_trace_async
     async def get_empty(
         self,
-        cls: ClsType[bytearray] = None,
-        **kwargs: Any
+        **kwargs
     ) -> bytearray:
         """Get empty byte value ''.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytearray or the result of cls(response)
         :rtype: bytearray
-        :raises: ~bodybyte.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[bytearray] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -113,7 +114,8 @@ class ByteOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('bytearray', pipeline_response)
 
@@ -126,16 +128,16 @@ class ByteOperations:
     @distributed_trace_async
     async def get_non_ascii(
         self,
-        cls: ClsType[bytearray] = None,
-        **kwargs: Any
+        **kwargs
     ) -> bytearray:
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytearray or the result of cls(response)
         :rtype: bytearray
-        :raises: ~bodybyte.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[bytearray] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -155,7 +157,8 @@ class ByteOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('bytearray', pipeline_response)
 
@@ -169,19 +172,18 @@ class ByteOperations:
     async def put_non_ascii(
         self,
         byte_body: bytearray,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         :param byte_body: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
         :type byte_body: bytearray
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodybyte.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -204,7 +206,8 @@ class ByteOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -214,16 +217,16 @@ class ByteOperations:
     @distributed_trace_async
     async def get_invalid(
         self,
-        cls: ClsType[bytearray] = None,
-        **kwargs: Any
+        **kwargs
     ) -> bytearray:
         """Get invalid byte value ':::SWAGGER::::'.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytearray or the result of cls(response)
         :rtype: bytearray
-        :raises: ~bodybyte.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[bytearray] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -243,7 +246,8 @@ class ByteOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('bytearray', pipeline_response)
 

@@ -37,7 +37,6 @@ from os.path import dirname, pardir, join, realpath
 from azure.core.exceptions import DecodeError
 
 from bodyboolean.aio import AutoRestBoolTestService
-from bodyboolean.models import ErrorException
 
 import pytest
 

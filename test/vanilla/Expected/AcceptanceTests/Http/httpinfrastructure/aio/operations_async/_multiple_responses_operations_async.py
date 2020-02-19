@@ -12,7 +12,6 @@ from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
-from msrest.serialization import Model
 
 from ... import models
 
@@ -43,16 +42,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model204_no_model_default_error200_valid(
         self,
-        cls: ClsType["models.MyException"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.MyException":
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or  or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -72,7 +71,8 @@ class MultipleResponsesOperations:
 
         if response.status_code not in [200, 204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = None
         if response.status_code == 200:
@@ -87,16 +87,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model204_no_model_default_error204_valid(
         self,
-        cls: ClsType["models.MyException"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.MyException":
         """Send a 204 response with no payload.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or  or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -116,7 +116,8 @@ class MultipleResponsesOperations:
 
         if response.status_code not in [200, 204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = None
         if response.status_code == 200:
@@ -131,16 +132,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model204_no_model_default_error201_invalid(
         self,
-        cls: ClsType["models.MyException"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.MyException":
         """Send a 201 response with valid payload: {'statusCode': '201'}.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or  or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -160,7 +161,8 @@ class MultipleResponsesOperations:
 
         if response.status_code not in [200, 204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = None
         if response.status_code == 200:
@@ -175,16 +177,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model204_no_model_default_error202_none(
         self,
-        cls: ClsType["models.MyException"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.MyException":
         """Send a 202 response with no payload:.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or  or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -204,7 +206,8 @@ class MultipleResponsesOperations:
 
         if response.status_code not in [200, 204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = None
         if response.status_code == 200:
@@ -219,16 +222,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model204_no_model_default_error400_valid(
         self,
-        cls: ClsType["models.MyException"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.MyException":
         """Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'}.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or  or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -248,7 +251,8 @@ class MultipleResponsesOperations:
 
         if response.status_code not in [200, 204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = None
         if response.status_code == 200:
@@ -263,16 +267,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model201_model_default_error200_valid(
         self,
-        cls: ClsType[Union["models.MyException", "models.B"]] = None,
-        **kwargs: Any
+        **kwargs
     ) -> Union["models.MyException", "models.B"]:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or B or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[Union["models.MyException", "models.B"]] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -292,7 +296,8 @@ class MultipleResponsesOperations:
 
         if response.status_code not in [200, 201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = None
         if response.status_code == 200:
@@ -310,16 +315,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model201_model_default_error201_valid(
         self,
-        cls: ClsType[Union["models.MyException", "models.B"]] = None,
-        **kwargs: Any
+        **kwargs
     ) -> Union["models.MyException", "models.B"]:
         """Send a 201 response with valid payload: {'statusCode': '201', 'textStatusCode': 'Created'}.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or B or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[Union["models.MyException", "models.B"]] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -339,7 +344,8 @@ class MultipleResponsesOperations:
 
         if response.status_code not in [200, 201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = None
         if response.status_code == 200:
@@ -357,16 +363,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model201_model_default_error400_valid(
         self,
-        cls: ClsType[Union["models.MyException", "models.B"]] = None,
-        **kwargs: Any
+        **kwargs
     ) -> Union["models.MyException", "models.B"]:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or B or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[Union["models.MyException", "models.B"]] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -386,7 +392,8 @@ class MultipleResponsesOperations:
 
         if response.status_code not in [200, 201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = None
         if response.status_code == 200:
@@ -402,22 +409,22 @@ class MultipleResponsesOperations:
     get200_model201_model_default_error400_valid.metadata = {'url': '/http/payloads/200/A/201/B/default/Error/response/400/valid'}
 
     @distributed_trace_async
-    async def get200_model_a201_model_c404_model_ddefault_error200_valid(
+    async def get200_model_a201_model_c404_model_d_default_error200_valid(
         self,
-        cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = None,
-        **kwargs: Any
+        **kwargs
     ) -> Union["models.MyException", "models.C", "models.D"]:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or C or D or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
-        url = self.get200_model_a201_model_c404_model_ddefault_error200_valid.metadata['url']
+        url = self.get200_model_a201_model_c404_model_d_default_error200_valid.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
@@ -433,7 +440,8 @@ class MultipleResponsesOperations:
 
         if response.status_code not in [200, 201, 404]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = None
         if response.status_code == 200:
@@ -449,25 +457,25 @@ class MultipleResponsesOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200_model_a201_model_c404_model_ddefault_error200_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid'}
+    get200_model_a201_model_c404_model_d_default_error200_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid'}
 
     @distributed_trace_async
-    async def get200_model_a201_model_c404_model_ddefault_error201_valid(
+    async def get200_model_a201_model_c404_model_d_default_error201_valid(
         self,
-        cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = None,
-        **kwargs: Any
+        **kwargs
     ) -> Union["models.MyException", "models.C", "models.D"]:
         """Send a 200 response with valid payload: {'httpCode': '201'}.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or C or D or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
-        url = self.get200_model_a201_model_c404_model_ddefault_error201_valid.metadata['url']
+        url = self.get200_model_a201_model_c404_model_d_default_error201_valid.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
@@ -483,7 +491,8 @@ class MultipleResponsesOperations:
 
         if response.status_code not in [200, 201, 404]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = None
         if response.status_code == 200:
@@ -499,25 +508,25 @@ class MultipleResponsesOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200_model_a201_model_c404_model_ddefault_error201_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid'}
+    get200_model_a201_model_c404_model_d_default_error201_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid'}
 
     @distributed_trace_async
-    async def get200_model_a201_model_c404_model_ddefault_error404_valid(
+    async def get200_model_a201_model_c404_model_d_default_error404_valid(
         self,
-        cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = None,
-        **kwargs: Any
+        **kwargs
     ) -> Union["models.MyException", "models.C", "models.D"]:
         """Send a 200 response with valid payload: {'httpStatusCode': '404'}.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or C or D or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
-        url = self.get200_model_a201_model_c404_model_ddefault_error404_valid.metadata['url']
+        url = self.get200_model_a201_model_c404_model_d_default_error404_valid.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
@@ -533,7 +542,8 @@ class MultipleResponsesOperations:
 
         if response.status_code not in [200, 201, 404]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = None
         if response.status_code == 200:
@@ -549,25 +559,25 @@ class MultipleResponsesOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200_model_a201_model_c404_model_ddefault_error404_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid'}
+    get200_model_a201_model_c404_model_d_default_error404_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid'}
 
     @distributed_trace_async
-    async def get200_model_a201_model_c404_model_ddefault_error400_valid(
+    async def get200_model_a201_model_c404_model_d_default_error400_valid(
         self,
-        cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = None,
-        **kwargs: Any
+        **kwargs
     ) -> Union["models.MyException", "models.C", "models.D"]:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or C or D or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
-        url = self.get200_model_a201_model_c404_model_ddefault_error400_valid.metadata['url']
+        url = self.get200_model_a201_model_c404_model_d_default_error400_valid.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
@@ -583,7 +593,8 @@ class MultipleResponsesOperations:
 
         if response.status_code not in [200, 201, 404]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = None
         if response.status_code == 200:
@@ -599,21 +610,21 @@ class MultipleResponsesOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200_model_a201_model_c404_model_ddefault_error400_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid'}
+    get200_model_a201_model_c404_model_d_default_error400_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid'}
 
     @distributed_trace_async
     async def get202_none204_none_default_error202_none(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Send a 202 response with no payload.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -632,7 +643,8 @@ class MultipleResponsesOperations:
 
         if response.status_code not in [202, 204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -642,16 +654,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get202_none204_none_default_error204_none(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Send a 204 response with no payload.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -670,7 +682,8 @@ class MultipleResponsesOperations:
 
         if response.status_code not in [202, 204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -680,16 +693,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get202_none204_none_default_error400_valid(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~httpinfrastructure.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -708,7 +721,8 @@ class MultipleResponsesOperations:
 
         if response.status_code not in [202, 204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -718,16 +732,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get202_none204_none_default_none202_invalid(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Send a 202 response with an unexpected payload {'property': 'value'}.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -756,16 +770,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get202_none204_none_default_none204_none(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Send a 204 response with no payload.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -794,16 +808,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get202_none204_none_default_none400_none(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Send a 400 response with no payload.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -832,16 +846,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get202_none204_none_default_none400_invalid(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Send a 400 response with an unexpected payload {'property': 'value'}.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -870,16 +884,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get_default_model_a200_valid(
         self,
-        cls: ClsType["models.MyException"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.MyException":
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -912,16 +926,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get_default_model_a200_none(
         self,
-        cls: ClsType["models.MyException"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.MyException":
         """Send a 200 response with no payload.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -954,16 +968,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get_default_model_a400_valid(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Send a 400 response with valid payload: {'statusCode': '400'}.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~httpinfrastructure.models.MyExceptionException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -982,7 +996,8 @@ class MultipleResponsesOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.MyExceptionException.from_response(response, self._deserialize)
+            error = self._deserialize(models.MyException, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -992,16 +1007,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get_default_model_a400_none(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Send a 400 response with no payload.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~httpinfrastructure.models.MyExceptionException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -1020,7 +1035,8 @@ class MultipleResponsesOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.MyExceptionException.from_response(response, self._deserialize)
+            error = self._deserialize(models.MyException, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -1030,16 +1046,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get_default_none200_invalid(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Send a 200 response with invalid payload: {'statusCode': '200'}.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -1068,16 +1084,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get_default_none200_none(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Send a 200 response with no payload.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -1106,16 +1122,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get_default_none400_invalid(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Send a 400 response with valid payload: {'statusCode': '400'}.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -1144,16 +1160,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get_default_none400_none(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Send a 400 response with no payload.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -1182,16 +1198,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model_a200_none(
         self,
-        cls: ClsType["models.MyException"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.MyException":
         """Send a 200 response with no payload, when a payload is expected - client should return a null object of thde type for model A.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -1224,16 +1240,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model_a200_valid(
         self,
-        cls: ClsType["models.MyException"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.MyException":
         """Send a 200 response with payload {'statusCode': '200'}.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -1266,16 +1282,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model_a200_invalid(
         self,
-        cls: ClsType["models.MyException"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.MyException":
         """Send a 200 response with invalid payload {'statusCodeInvalid': '200'}.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -1308,16 +1324,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model_a400_none(
         self,
-        cls: ClsType["models.MyException"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.MyException":
         """Send a 400 response with no payload client should treat as an http error with no error model.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -1350,16 +1366,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model_a400_valid(
         self,
-        cls: ClsType["models.MyException"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.MyException":
         """Send a 200 response with payload {'statusCode': '400'}.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -1392,16 +1408,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model_a400_invalid(
         self,
-        cls: ClsType["models.MyException"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.MyException":
         """Send a 200 response with invalid payload {'statusCodeInvalid': '400'}.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -1434,16 +1450,16 @@ class MultipleResponsesOperations:
     @distributed_trace_async
     async def get200_model_a202_valid(
         self,
-        cls: ClsType["models.MyException"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.MyException":
         """Send a 202 response with payload {'statusCode': '202'}.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL

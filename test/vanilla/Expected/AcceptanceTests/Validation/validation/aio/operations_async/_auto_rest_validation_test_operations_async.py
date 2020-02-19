@@ -12,7 +12,6 @@ from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
-from msrest.serialization import Model
 
 from ... import models
 
@@ -26,9 +25,7 @@ class AutoRestValidationTestOperationsMixin:
         self,
         resource_group_name: str,
         id: int,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
         """Validates input parameters on the method. See swagger for details.
 
@@ -36,11 +33,12 @@ class AutoRestValidationTestOperationsMixin:
         :type resource_group_name: str
         :param id: Required int multiple of 10 from 100 to 1000.
         :type id: int
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
-        :raises: ~validation.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         api_version = "1.0.0"
 
@@ -48,7 +46,7 @@ class AutoRestValidationTestOperationsMixin:
         url = self.validation_of_method_parameters.metadata['url']
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
-            'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern='[a-zA-Z0-9]+'),
+            'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern=r'[a-zA-Z0-9]+'),
             'id': self._serialize.url("id", id, 'int', maximum=1000, minimum=100, multiple=10),
         }
         url = self._client.format_url(url, **path_format_arguments)
@@ -68,7 +66,8 @@ class AutoRestValidationTestOperationsMixin:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('Product', pipeline_response)
 
@@ -84,9 +83,7 @@ class AutoRestValidationTestOperationsMixin:
         resource_group_name: str,
         id: int,
         body: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
         """Validates body parameters on the method. See swagger for details.
 
@@ -96,11 +93,12 @@ class AutoRestValidationTestOperationsMixin:
         :type id: int
         :param body:
         :type body: ~validation.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
-        :raises: ~validation.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         api_version = "1.0.0"
 
@@ -108,7 +106,7 @@ class AutoRestValidationTestOperationsMixin:
         url = self.validation_of_body.metadata['url']
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
-            'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern='[a-zA-Z0-9]+'),
+            'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern=r'[a-zA-Z0-9]+'),
             'id': self._serialize.url("id", id, 'int', maximum=1000, minimum=100, multiple=10),
         }
         url = self._client.format_url(url, **path_format_arguments)
@@ -135,7 +133,8 @@ class AutoRestValidationTestOperationsMixin:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('Product', pipeline_response)
 
@@ -148,16 +147,16 @@ class AutoRestValidationTestOperationsMixin:
     @distributed_trace_async
     async def get_with_constant_in_path(
         self,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """get_with_constant_in_path.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         constant_param = "constant"
 
@@ -192,19 +191,18 @@ class AutoRestValidationTestOperationsMixin:
     async def post_with_constant_in_body(
         self,
         body: Optional["models.Product"] = None,
-        *,
-        cls: ClsType["models.Product"] = None,
-        **kwargs: Any
+        **kwargs
     ) -> "models.Product":
         """post_with_constant_in_body.
 
         :param body:
         :type body: ~validation.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
         :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
         constant_param = "constant"
 

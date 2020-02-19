@@ -7,41 +7,15 @@
 # --------------------------------------------------------------------------
 
 from azure.core.exceptions import HttpResponseError
-from msrest.serialization import Model
+import msrest.serialization
 
 
-class MyExceptionException(HttpResponseError):
-    """Server responded with exception of type: 'MyException'.
-
-    :param response: Server response to be deserialized.
-    :param error_model: A deserialized model of the response body as model.
-    """
-
-    def __init__(self, response, error_model):
-        self.error = error_model
-        super(MyExceptionException, self).__init__(response=response, error_model=error_model)
-
-    @classmethod
-    def from_response(cls, response, deserialize):
-        """Deserialize this response as this exception, or a subclass of this exception.
-
-        :param response: Server response to be deserialized.
-        :param deserialize: A deserializer
-        """
-        model_name = 'MyException'
-        error = deserialize(model_name, response)
-        if error is None:
-            error = deserialize.dependencies[model_name]()
-        return error._EXCEPTION_TYPE(response, error)
-
-
-class MyException(Model):
+class MyException(msrest.serialization.Model):
     """MyException.
 
     :param status_code:
     :type status_code: str
     """
-    _EXCEPTION_TYPE = MyExceptionException
 
     _attribute_map = {
         'status_code': {'key': 'statusCode', 'type': 'str'},
@@ -55,31 +29,6 @@ class MyException(Model):
         self.status_code = kwargs.get('status_code', None)
 
 
-class BException(MyExceptionException):
-    """Server responded with exception of type: 'B'.
-
-    :param response: Server response to be deserialized.
-    :param error_model: A deserialized model of the response body as model.
-    """
-
-    def __init__(self, response, error_model):
-        self.error = error_model
-        super(BException, self).__init__(response=response, error_model=error_model)
-
-    @classmethod
-    def from_response(cls, response, deserialize):
-        """Deserialize this response as this exception, or a subclass of this exception.
-
-        :param response: Server response to be deserialized.
-        :param deserialize: A deserializer
-        """
-        model_name = 'B'
-        error = deserialize(model_name, response)
-        if error is None:
-            error = deserialize.dependencies[model_name]()
-        return error._EXCEPTION_TYPE(response, error)
-
-
 class B(MyException):
     """B.
 
@@ -88,7 +37,6 @@ class B(MyException):
     :param text_status_code:
     :type text_status_code: str
     """
-    _EXCEPTION_TYPE = BException
 
     _attribute_map = {
         'status_code': {'key': 'statusCode', 'type': 'str'},
@@ -103,7 +51,7 @@ class B(MyException):
         self.text_status_code = kwargs.get('text_status_code', None)
 
 
-class C(Model):
+class C(msrest.serialization.Model):
     """C.
 
     :param http_code:
@@ -122,7 +70,7 @@ class C(Model):
         self.http_code = kwargs.get('http_code', None)
 
 
-class D(Model):
+class D(msrest.serialization.Model):
     """D.
 
     :param http_status_code:
@@ -141,32 +89,7 @@ class D(Model):
         self.http_status_code = kwargs.get('http_status_code', None)
 
 
-class ErrorException(HttpResponseError):
-    """Server responded with exception of type: 'Error'.
-
-    :param response: Server response to be deserialized.
-    :param error_model: A deserialized model of the response body as model.
-    """
-
-    def __init__(self, response, error_model):
-        self.error = error_model
-        super(ErrorException, self).__init__(response=response, error_model=error_model)
-
-    @classmethod
-    def from_response(cls, response, deserialize):
-        """Deserialize this response as this exception, or a subclass of this exception.
-
-        :param response: Server response to be deserialized.
-        :param deserialize: A deserializer
-        """
-        model_name = 'Error'
-        error = deserialize(model_name, response)
-        if error is None:
-            error = deserialize.dependencies[model_name]()
-        return error._EXCEPTION_TYPE(response, error)
-
-
-class Error(Model):
+class Error(msrest.serialization.Model):
     """Error.
 
     :param status:
@@ -174,7 +97,6 @@ class Error(Model):
     :param message:
     :type message: str
     """
-    _EXCEPTION_TYPE = ErrorException
 
     _attribute_map = {
         'status': {'key': 'status', 'type': 'int'},

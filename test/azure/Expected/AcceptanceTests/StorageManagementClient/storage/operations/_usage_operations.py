@@ -8,12 +8,11 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import ResourceNotFoundError, map_error
+from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
-from azure.mgmt.core.exceptions import ARMError
-from msrest.serialization import Model
+from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models
 
@@ -44,17 +43,17 @@ class UsageOperations(object):
     @distributed_trace
     def list(
         self,
-        cls=None,  # type: ClsType["models.UsageListResult"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.UsageListResult"
         """Gets the current usage count and the limit for the resources under the subscription.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: UsageListResult or the result of cls(response)
         :rtype: ~storage.models.UsageListResult
-        :raises: ~azure.mgmt.core.ARMError
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.UsageListResult"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -78,7 +77,7 @@ class UsageOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize('UsageListResult', pipeline_response)
 

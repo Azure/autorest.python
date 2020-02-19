@@ -8,14 +8,13 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 import warnings
 
-from azure.core.exceptions import ResourceNotFoundError, map_error
+from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
-from azure.core.polling import LROPoller, NoPolling
+from azure.core.polling import LROPoller, NoPolling, PollingMethod
 from azure.core.tracing.decorator import distributed_trace
-from azure.mgmt.core.exceptions import ARMError
+from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
-from msrest.serialization import Model
 
 from .. import models
 
@@ -46,10 +45,10 @@ class LROsCustomHeaderOperations(object):
     def _put_async_retry_succeeded_initial(
         self,
         product=None,  # type: Optional["models.Product"]
-        cls=None,  # type: ClsType["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -76,7 +75,7 @@ class LROsCustomHeaderOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
@@ -94,8 +93,6 @@ class LROsCustomHeaderOperations(object):
     def begin_put_async_retry_succeeded(
         self,
         product=None,  # type: Optional["models.Product"]
-        cls=None,  # type: ClsType["models.Product"]
-        polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -103,14 +100,17 @@ class LROsCustomHeaderOperations(object):
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.Product"]
         raw_result = self._put_async_retry_succeeded_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -142,10 +142,10 @@ class LROsCustomHeaderOperations(object):
     def _put201_creating_succeeded200_initial(
         self,
         product=None,  # type: Optional["models.Product"]
-        cls=None,  # type: ClsType["models.Product"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -172,7 +172,7 @@ class LROsCustomHeaderOperations(object):
 
         if response.status_code not in [200, 201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         deserialized = None
         if response.status_code == 200:
@@ -191,8 +191,6 @@ class LROsCustomHeaderOperations(object):
     def begin_put201_creating_succeeded200(
         self,
         product=None,  # type: Optional["models.Product"]
-        cls=None,  # type: ClsType["models.Product"]
-        polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
@@ -200,14 +198,17 @@ class LROsCustomHeaderOperations(object):
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
+        cls = kwargs.pop('cls', None )  # type: ClsType["models.Product"]
         raw_result = self._put201_creating_succeeded200_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -234,10 +235,10 @@ class LROsCustomHeaderOperations(object):
     def _post202_retry200_initial(
         self,
         product=None,  # type: Optional["models.Product"]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -263,7 +264,7 @@ class LROsCustomHeaderOperations(object):
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
@@ -278,8 +279,6 @@ class LROsCustomHeaderOperations(object):
     def begin_post202_retry200(
         self,
         product=None,  # type: Optional["models.Product"]
-        cls=None,  # type: ClsType[None]
-        polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -287,14 +286,17 @@ class LROsCustomHeaderOperations(object):
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         raw_result = self._post202_retry200_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -318,10 +320,10 @@ class LROsCustomHeaderOperations(object):
     def _post_async_retry_succeeded_initial(
         self,
         product=None,  # type: Optional["models.Product"]
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -347,7 +349,7 @@ class LROsCustomHeaderOperations(object):
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
@@ -363,8 +365,6 @@ class LROsCustomHeaderOperations(object):
     def begin_post_async_retry_succeeded(
         self,
         product=None,  # type: Optional["models.Product"]
-        cls=None,  # type: ClsType[None]
-        polling=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -372,14 +372,17 @@ class LROsCustomHeaderOperations(object):
 
         :param product: Product to put.
         :type product: ~lro.models.Product
-        :param callable cls: A custom type or function that will be passed the direct response
-        :param polling: True for ARMPolling, False for no polling, or a
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
+        :paramtype polling: bool or ~azure.core.polling.PollingMethod
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.HttpResponseError:
         """
+        polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         raw_result = self._post_async_retry_succeeded_initial(
             product=product,
             cls=lambda x,y,z: x,

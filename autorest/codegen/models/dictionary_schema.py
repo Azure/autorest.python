@@ -21,13 +21,10 @@ class DictionarySchema(BaseSchema):
         self,
         namespace: str,
         yaml_data: Dict[str, Any],
-        element_type: "BaseSchema",
-        *,
-        additional_properties: bool = False,
+        element_type: "BaseSchema"
     ):
         super(DictionarySchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.element_type = element_type
-        self.additional_properties = additional_properties
 
     @property
     def serialization_type(self) -> str:
@@ -72,21 +69,18 @@ class DictionarySchema(BaseSchema):
         :return: A created DictionarySchema
         :rtype: ~autorest.models.DictionarySchema
         """
-        for_additional_properties = kwargs.pop("for_additional_properties", False)
-
         element_schema = yaml_data["elementType"]
 
         from . import build_schema  # pylint: disable=import-outside-toplevel
 
         element_type = build_schema(
-            yaml_data=element_schema, for_additional_properties=for_additional_properties, **kwargs
+            yaml_data=element_schema, **kwargs
         )
 
         return cls(
             namespace=namespace,
             yaml_data=yaml_data,
             element_type=element_type,
-            additional_properties=for_additional_properties,
         )
 
     def imports(self) -> FileImport:

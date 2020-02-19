@@ -1,3 +1,55 @@
+{% import 'keywords.jinja2' as keywords with context %}
+{% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
+{% macro return_docstring(operation) %}
+{% if operation.responses | selectattr('has_body') | first %}
+:return: {{ operation.responses|map(attribute='schema')|map(attribute='docstring_text')|join(' or ') }} or the result of cls(response)
+:rtype: {% for response in operation.responses %}{{response.schema.docstring_type if response.has_body else "None"}}{% if not loop.last %} or {% endif %}{% endfor %}
+{% else %}
+:return: None or the result of cls(response)
+:rtype: None
+{%- endif -%}
+{% endmacro %}
+{# operation docstring. Used only for metadata and operation templates #}
+{% macro operation_docstring(operation) %}
+    """{{operation.description }}
+{% if operation.summary %}
+
+{{ operation.summary | wordwrap(width=95, break_long_words=False, wrapstring='\n') }}
+{% endif %}
+
+{% if operation.deprecated -%}
+.. warning::
+    This method is deprecated
+
+{% endif -%}
+{% for parameter in operation.parameters.method %}
+{%- for doc_string in param_documentation_string(parameter).replace('\n', '\n ').split('\n') %}
+{{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n ')}}
+{% endfor %}
+:type {{ parameter.serialized_name }}: {{ parameter.schema.docstring_type }}
+{% endfor %}
+:keyword callable cls: A custom type or function that will be passed the direct response
+{{ return_docstring(operation) }}
+:raises: ~azure.core.HttpResponseError
+"""{% endmacro %}
+{# get method signature #}
+{% macro method_signature(operation, operation_name, async_mode, coroutine) %}
+{{ "async " if coroutine else "" }}def {{ operation_name }}(
+{% if async_mode %}
+    self,
+    {% for param_signature in operation.parameters.async_method_signature %}
+    {{ param_signature }},
+    {% endfor %}
+    **kwargs
+){{ keywords.async_return_type_annotation(operation) }}:
+{% else %}
+    self,
+    {% for param_signature in operation.parameters.sync_method_signature %}
+    {{ param_signature }}
+    {% endfor %}
+    **kwargs  # type: Any
+):
+{% endif %}{% endmacro %}
 {# handle response headers/deserialization #}
 {% macro response_handling(response) %}
   {% if response.headers %}
@@ -21,7 +73,7 @@ deserialized = self._deserialize('{{ response.schema.serialization_type }}', pip
     {% for grouper_name, grouped_parameters in operation.parameters.grouped|groupby("grouped_by.serialized_name") %}
 if {{ grouper_name }} is not None:
         {% for grouped_parameter in grouped_parameters %}
-    {{ grouped_parameter.serialized_name }} = {{ grouper_name }}.{{ grouped_parameter.serialized_name }}
+    {{ grouped_parameter.serialized_name }} = {{ grouper_name }}.{{ grouped_parameter.serialized_name.lstrip('_') }}
         {% endfor %}
     {% endfor %}
 {% endif %}

@@ -6,10 +6,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from msrest.serialization import Model
+import msrest.serialization
 
 
-class Error(Model):
+class Error(msrest.serialization.Model):
     """Error.
 
     :param status:
@@ -32,7 +32,7 @@ class Error(Model):
         self.message = kwargs.get('message', None)
 
 
-class Product(Model):
+class Product(msrest.serialization.Model):
     """Product.
 
     :param properties:
@@ -51,7 +51,7 @@ class Product(Model):
         self.properties = kwargs.get('properties', None)
 
 
-class ProductProperties(Model):
+class ProductProperties(msrest.serialization.Model):
     """ProductProperties.
 
     :param id:
@@ -74,7 +74,7 @@ class ProductProperties(Model):
         self.name = kwargs.get('name', None)
 
 
-class ProductResult(Model):
+class ProductResult(msrest.serialization.Model):
     """ProductResult.
 
     :param values:

@@ -9,10 +9,10 @@
 from typing import Dict, Optional
 
 from azure.core.exceptions import HttpResponseError
-from msrest.serialization import Model
+import msrest.serialization
 
 
-class PetAPTrue(Model):
+class PetAPTrue(msrest.serialization.Model):
     """PetAPTrue.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -103,32 +103,7 @@ class CatAPTrue(PetAPTrue):
         self.friendly = friendly
 
 
-class ErrorException(HttpResponseError):
-    """Server responded with exception of type: 'Error'.
-
-    :param response: Server response to be deserialized.
-    :param error_model: A deserialized model of the response body as model.
-    """
-
-    def __init__(self, response, error_model):
-        self.error = error_model
-        super(ErrorException, self).__init__(response=response, error_model=error_model)
-
-    @classmethod
-    def from_response(cls, response, deserialize):
-        """Deserialize this response as this exception, or a subclass of this exception.
-
-        :param response: Server response to be deserialized.
-        :param deserialize: A deserializer
-        """
-        model_name = 'Error'
-        error = deserialize(model_name, response)
-        if error is None:
-            error = deserialize.dependencies[model_name]()
-        return error._EXCEPTION_TYPE(response, error)
-
-
-class Error(Model):
+class Error(msrest.serialization.Model):
     """Error.
 
     :param status:
@@ -136,7 +111,6 @@ class Error(Model):
     :param message:
     :type message: str
     """
-    _EXCEPTION_TYPE = ErrorException
 
     _attribute_map = {
         'status': {'key': 'status', 'type': 'int'},
@@ -155,7 +129,7 @@ class Error(Model):
         self.message = message
 
 
-class PetAPInProperties(Model):
+class PetAPInProperties(msrest.serialization.Model):
     """PetAPInProperties.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -168,8 +142,7 @@ class PetAPInProperties(Model):
     :type name: str
     :ivar status:
     :vartype status: bool
-    :param additional_properties: Dictionary of
-     <components·schemas·petapinproperties·properties·additionalproperties·additionalproperties>.
+    :param additional_properties: Dictionary of :code:`<number>`.
     :type additional_properties: dict[str, float]
     """
 
@@ -200,7 +173,7 @@ class PetAPInProperties(Model):
         self.additional_properties = additional_properties
 
 
-class PetAPInPropertiesWithAPString(Model):
+class PetAPInPropertiesWithAPString(msrest.serialization.Model):
     """PetAPInPropertiesWithAPString.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -218,8 +191,7 @@ class PetAPInPropertiesWithAPString(Model):
     :vartype status: bool
     :param odata_location: Required.
     :type odata_location: str
-    :param additional_properties1: Dictionary of
-     <components·schemas·petapinproperties·properties·additionalproperties·additionalproperties>.
+    :param additional_properties1: Dictionary of :code:`<number>`.
     :type additional_properties1: dict[str, float]
     """
 
@@ -257,7 +229,7 @@ class PetAPInPropertiesWithAPString(Model):
         self.additional_properties1 = additional_properties1
 
 
-class PetAPObject(Model):
+class PetAPObject(msrest.serialization.Model):
     """PetAPObject.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -302,7 +274,7 @@ class PetAPObject(Model):
         self.status = None
 
 
-class PetAPString(Model):
+class PetAPString(msrest.serialization.Model):
     """PetAPString.
 
     Variables are only populated by the server, and will be ignored when sending a request.

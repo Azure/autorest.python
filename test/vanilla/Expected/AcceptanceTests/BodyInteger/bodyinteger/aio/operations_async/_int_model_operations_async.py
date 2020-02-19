@@ -9,7 +9,7 @@ import datetime
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import ResourceNotFoundError, map_error
+from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
@@ -43,16 +43,16 @@ class IntOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        cls: ClsType[int] = None,
-        **kwargs: Any
+        **kwargs
     ) -> int:
         """Get null Int value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: int or the result of cls(response)
         :rtype: int
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[int] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -72,7 +72,8 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('int', pipeline_response)
 
@@ -85,16 +86,16 @@ class IntOperations:
     @distributed_trace_async
     async def get_invalid(
         self,
-        cls: ClsType[int] = None,
-        **kwargs: Any
+        **kwargs
     ) -> int:
         """Get invalid Int value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: int or the result of cls(response)
         :rtype: int
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[int] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -114,7 +115,8 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('int', pipeline_response)
 
@@ -127,16 +129,16 @@ class IntOperations:
     @distributed_trace_async
     async def get_overflow_int32(
         self,
-        cls: ClsType[int] = None,
-        **kwargs: Any
+        **kwargs
     ) -> int:
         """Get overflow Int32 value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: int or the result of cls(response)
         :rtype: int
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[int] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -156,7 +158,8 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('int', pipeline_response)
 
@@ -169,16 +172,16 @@ class IntOperations:
     @distributed_trace_async
     async def get_underflow_int32(
         self,
-        cls: ClsType[int] = None,
-        **kwargs: Any
+        **kwargs
     ) -> int:
         """Get underflow Int32 value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: int or the result of cls(response)
         :rtype: int
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[int] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -198,7 +201,8 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('int', pipeline_response)
 
@@ -211,16 +215,16 @@ class IntOperations:
     @distributed_trace_async
     async def get_overflow_int64(
         self,
-        cls: ClsType[int] = None,
-        **kwargs: Any
+        **kwargs
     ) -> int:
         """Get overflow Int64 value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: long or the result of cls(response)
         :rtype: long
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[int] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -240,7 +244,8 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('long', pipeline_response)
 
@@ -253,16 +258,16 @@ class IntOperations:
     @distributed_trace_async
     async def get_underflow_int64(
         self,
-        cls: ClsType[int] = None,
-        **kwargs: Any
+        **kwargs
     ) -> int:
         """Get underflow Int64 value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: long or the result of cls(response)
         :rtype: long
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[int] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -282,7 +287,8 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('long', pipeline_response)
 
@@ -296,19 +302,18 @@ class IntOperations:
     async def put_max32(
         self,
         int_body: int,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put max int32 value.
 
         :param int_body:
         :type int_body: int
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -331,7 +336,8 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -342,19 +348,18 @@ class IntOperations:
     async def put_max64(
         self,
         int_body: int,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put max int64 value.
 
         :param int_body:
         :type int_body: long
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -377,7 +382,8 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -388,19 +394,18 @@ class IntOperations:
     async def put_min32(
         self,
         int_body: int,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put min int32 value.
 
         :param int_body:
         :type int_body: int
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -423,7 +428,8 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -434,19 +440,18 @@ class IntOperations:
     async def put_min64(
         self,
         int_body: int,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put min int64 value.
 
         :param int_body:
         :type int_body: long
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -469,7 +474,8 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -479,16 +485,16 @@ class IntOperations:
     @distributed_trace_async
     async def get_unix_time(
         self,
-        cls: ClsType[datetime.datetime] = None,
-        **kwargs: Any
+        **kwargs
     ) -> datetime.datetime:
         """Get datetime encoded as Unix time value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[datetime.datetime] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -508,7 +514,8 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('unix-time', pipeline_response)
 
@@ -522,19 +529,18 @@ class IntOperations:
     async def put_unix_time_date(
         self,
         int_body: datetime.datetime,
-        *,
-        cls: ClsType[None] = None,
-        **kwargs: Any
+        **kwargs
     ) -> None:
         """Put datetime encoded as Unix time.
 
         :param int_body:
         :type int_body: ~datetime.datetime
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -557,7 +563,8 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -567,16 +574,16 @@ class IntOperations:
     @distributed_trace_async
     async def get_invalid_unix_time(
         self,
-        cls: ClsType[datetime.datetime] = None,
-        **kwargs: Any
+        **kwargs
     ) -> datetime.datetime:
         """Get invalid Unix time value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[datetime.datetime] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -596,7 +603,8 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('unix-time', pipeline_response)
 
@@ -609,16 +617,16 @@ class IntOperations:
     @distributed_trace_async
     async def get_null_unix_time(
         self,
-        cls: ClsType[datetime.datetime] = None,
-        **kwargs: Any
+        **kwargs
     ) -> datetime.datetime:
         """Get null Unix time value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls: ClsType[datetime.datetime] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -638,7 +646,8 @@ class IntOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('unix-time', pipeline_response)
 

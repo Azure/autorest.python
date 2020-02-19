@@ -9,7 +9,7 @@ import datetime
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import ResourceNotFoundError, map_error
+from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -43,17 +43,17 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_null(
         self,
-        cls=None,  # type: ClsType[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.datetime
         """Get null datetime value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -73,7 +73,8 @@ class DatetimeOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
@@ -86,17 +87,17 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_invalid(
         self,
-        cls=None,  # type: ClsType[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.datetime
         """Get invalid datetime value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -116,7 +117,8 @@ class DatetimeOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
@@ -129,17 +131,17 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_overflow(
         self,
-        cls=None,  # type: ClsType[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.datetime
         """Get overflow datetime value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -159,7 +161,8 @@ class DatetimeOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
@@ -172,17 +175,17 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_underflow(
         self,
-        cls=None,  # type: ClsType[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.datetime
         """Get underflow datetime value.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -202,7 +205,8 @@ class DatetimeOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
@@ -216,7 +220,6 @@ class DatetimeOperations(object):
     def put_utc_max_date_time(
         self,
         datetime_body,  # type: datetime.datetime
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -224,11 +227,12 @@ class DatetimeOperations(object):
 
         :param datetime_body:
         :type datetime_body: ~datetime.datetime
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -251,7 +255,8 @@ class DatetimeOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -262,7 +267,6 @@ class DatetimeOperations(object):
     def put_utc_max_date_time7_digits(
         self,
         datetime_body,  # type: datetime.datetime
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -273,11 +277,12 @@ class DatetimeOperations(object):
 
         :param datetime_body:
         :type datetime_body: ~datetime.datetime
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -300,7 +305,8 @@ class DatetimeOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -310,17 +316,17 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_utc_lowercase_max_date_time(
         self,
-        cls=None,  # type: ClsType[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.datetime
         """Get max datetime value 9999-12-31t23:59:59.999z.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -340,7 +346,8 @@ class DatetimeOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
@@ -353,17 +360,17 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_utc_uppercase_max_date_time(
         self,
-        cls=None,  # type: ClsType[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.datetime
         """Get max datetime value 9999-12-31T23:59:59.999Z.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -383,7 +390,8 @@ class DatetimeOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
@@ -396,7 +404,6 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_utc_uppercase_max_date_time7_digits(
         self,
-        cls=None,  # type: ClsType[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.datetime
@@ -405,11 +412,12 @@ class DatetimeOperations(object):
         This is against the recommendation that asks for 3 digits, but allow to test what happens in
         that scenario.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -429,7 +437,8 @@ class DatetimeOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
@@ -443,7 +452,6 @@ class DatetimeOperations(object):
     def put_local_positive_offset_max_date_time(
         self,
         datetime_body,  # type: datetime.datetime
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -451,11 +459,12 @@ class DatetimeOperations(object):
 
         :param datetime_body:
         :type datetime_body: ~datetime.datetime
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -478,7 +487,8 @@ class DatetimeOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -488,17 +498,17 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_local_positive_offset_lowercase_max_date_time(
         self,
-        cls=None,  # type: ClsType[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.datetime
         """Get max datetime value with positive num offset 9999-12-31t23:59:59.999+14:00.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -518,7 +528,8 @@ class DatetimeOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
@@ -531,17 +542,17 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_local_positive_offset_uppercase_max_date_time(
         self,
-        cls=None,  # type: ClsType[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.datetime
         """Get max datetime value with positive num offset 9999-12-31T23:59:59.999+14:00.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -561,7 +572,8 @@ class DatetimeOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
@@ -575,7 +587,6 @@ class DatetimeOperations(object):
     def put_local_negative_offset_max_date_time(
         self,
         datetime_body,  # type: datetime.datetime
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -583,11 +594,12 @@ class DatetimeOperations(object):
 
         :param datetime_body:
         :type datetime_body: ~datetime.datetime
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -610,7 +622,8 @@ class DatetimeOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -620,17 +633,17 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_local_negative_offset_uppercase_max_date_time(
         self,
-        cls=None,  # type: ClsType[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.datetime
         """Get max datetime value with positive num offset 9999-12-31T23:59:59.999-14:00.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -650,7 +663,8 @@ class DatetimeOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
@@ -663,17 +677,17 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_local_negative_offset_lowercase_max_date_time(
         self,
-        cls=None,  # type: ClsType[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.datetime
         """Get max datetime value with positive num offset 9999-12-31t23:59:59.999-14:00.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -693,7 +707,8 @@ class DatetimeOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
@@ -707,7 +722,6 @@ class DatetimeOperations(object):
     def put_utc_min_date_time(
         self,
         datetime_body,  # type: datetime.datetime
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -715,11 +729,12 @@ class DatetimeOperations(object):
 
         :param datetime_body:
         :type datetime_body: ~datetime.datetime
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -742,7 +757,8 @@ class DatetimeOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -752,17 +768,17 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_utc_min_date_time(
         self,
-        cls=None,  # type: ClsType[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.datetime
         """Get min datetime value 0001-01-01T00:00:00Z.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -782,7 +798,8 @@ class DatetimeOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
@@ -796,7 +813,6 @@ class DatetimeOperations(object):
     def put_local_positive_offset_min_date_time(
         self,
         datetime_body,  # type: datetime.datetime
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -804,11 +820,12 @@ class DatetimeOperations(object):
 
         :param datetime_body:
         :type datetime_body: ~datetime.datetime
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -831,7 +848,8 @@ class DatetimeOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -841,17 +859,17 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_local_positive_offset_min_date_time(
         self,
-        cls=None,  # type: ClsType[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.datetime
         """Get min datetime value 0001-01-01T00:00:00+14:00.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -871,7 +889,8 @@ class DatetimeOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
@@ -885,7 +904,6 @@ class DatetimeOperations(object):
     def put_local_negative_offset_min_date_time(
         self,
         datetime_body,  # type: datetime.datetime
-        cls=None,  # type: ClsType[None]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -893,11 +911,12 @@ class DatetimeOperations(object):
 
         :param datetime_body:
         :type datetime_body: ~datetime.datetime
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -920,7 +939,8 @@ class DatetimeOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -930,17 +950,17 @@ class DatetimeOperations(object):
     @distributed_trace
     def get_local_negative_offset_min_date_time(
         self,
-        cls=None,  # type: ClsType[datetime.datetime]
         **kwargs  # type: Any
     ):
         # type: (...) -> datetime.datetime
         """Get min datetime value 0001-01-01T00:00:00-14:00.
 
-        :param callable cls: A custom type or function that will be passed the direct response
+        :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
+        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
 
         # Construct URL
@@ -960,7 +980,8 @@ class DatetimeOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 

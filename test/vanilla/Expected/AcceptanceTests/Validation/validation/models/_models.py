@@ -7,10 +7,10 @@
 # --------------------------------------------------------------------------
 
 from azure.core.exceptions import HttpResponseError
-from msrest.serialization import Model
+import msrest.serialization
 
 
-class ChildProduct(Model):
+class ChildProduct(msrest.serialization.Model):
     """The product documentation.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -42,7 +42,7 @@ class ChildProduct(Model):
         self.count = kwargs.get('count', None)
 
 
-class ConstantProduct(Model):
+class ConstantProduct(msrest.serialization.Model):
     """The product documentation.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -75,32 +75,7 @@ class ConstantProduct(Model):
         super(ConstantProduct, self).__init__(**kwargs)
 
 
-class ErrorException(HttpResponseError):
-    """Server responded with exception of type: 'Error'.
-
-    :param response: Server response to be deserialized.
-    :param error_model: A deserialized model of the response body as model.
-    """
-
-    def __init__(self, response, error_model):
-        self.error = error_model
-        super(ErrorException, self).__init__(response=response, error_model=error_model)
-
-    @classmethod
-    def from_response(cls, response, deserialize):
-        """Deserialize this response as this exception, or a subclass of this exception.
-
-        :param response: Server response to be deserialized.
-        :param deserialize: A deserializer
-        """
-        model_name = 'Error'
-        error = deserialize(model_name, response)
-        if error is None:
-            error = deserialize.dependencies[model_name]()
-        return error._EXCEPTION_TYPE(response, error)
-
-
-class Error(Model):
+class Error(msrest.serialization.Model):
     """Error.
 
     :param code:
@@ -110,7 +85,6 @@ class Error(Model):
     :param fields:
     :type fields: str
     """
-    _EXCEPTION_TYPE = ErrorException
 
     _attribute_map = {
         'code': {'key': 'code', 'type': 'int'},
@@ -128,7 +102,7 @@ class Error(Model):
         self.fields = kwargs.get('fields', None)
 
 
-class Product(Model):
+class Product(msrest.serialization.Model):
     """The product documentation.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -156,7 +130,7 @@ class Product(Model):
     _validation = {
         'display_names': {'max_items': 6, 'min_items': 0, 'unique': True},
         'capacity': {'maximum_ex': 100, 'minimum_ex': 0},
-        'image': {'pattern': 'http://\\w+'},
+        'image': {'pattern': r'http://\w+'},
         'child': {'required': True},
         'const_child': {'required': True},
         'const_int': {'required': True, 'constant': True},
