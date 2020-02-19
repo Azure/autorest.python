@@ -113,13 +113,8 @@ class TestString(object):
     async def test_enum_not_expandable(self, client):
         assert Colors.red_color ==  (await client.enum.get_not_expandable())
         await client.enum.put_not_expandable('red color')
-<<<<<<< HEAD
-        await client.enum.put_not_expandable(Colors.redcolor)
-        with pytest.raises(HttpResponseError):
-=======
         await client.enum.put_not_expandable(Colors.red_color)
-        with pytest.raises(ErrorException):
->>>>>>> aa990ad77f6dee34ee63b4f51a9a98a76ffe8d88
+        with pytest.raises(HttpResponseError):
             await client.enum.put_not_expandable('not a colour')
 
     @pytest.mark.asyncio
