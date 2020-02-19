@@ -184,6 +184,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             description="",
             url=operation.url,
             method=operation.method,
+            api_versions=operation.api_versions,
             parameters=operation.parameters.parameters,
             responses=operation.responses,
             exceptions=operation.exceptions,

@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import cast, Dict, List, Any, Optional, Union
+from typing import cast, Dict, List, Any, Optional, Union, Set
 
 from .base_model import BaseModel
 from .imports import FileImport, ImportType
@@ -28,6 +28,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         description: str,
         url: str,
         method: str,
+        api_versions: Set[str],
         summary: Optional[str] = None,
         parameters: Optional[List[Parameter]] = None,
         responses: Optional[List[SchemaResponse]] = None,
@@ -41,6 +42,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         self.description = description
         self.url = url
         self.method = method
+        self.api_versions = api_versions
         self.summary = summary
         self.parameters = ParameterList(parameters)
         self.responses = responses or []
@@ -232,6 +234,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
             description=yaml_data["language"]["python"]["description"],
             url=yaml_data["request"]["protocol"]["http"]["path"],
             method=yaml_data["request"]["protocol"]["http"]["method"],
+            api_versions=set(value_dict["version"] for value_dict in yaml_data["apiVersions"]),
             summary=yaml_data["language"]["python"].get("summary"),
             parameters=parameters,
             responses=[SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("responses", [])],
