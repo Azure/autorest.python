@@ -56,7 +56,7 @@ class {{ client_name }}Configuration(Configuration):
         self.{{ gp }} = {{ gp }}
 {% endfor %}
 {% if global_parameters["constant"] %}
-    {% for serialized_name, constant_value in global_parameters["constant"] %}
+    {% for serialized_name, constant_value in global_parameters["constant"].items() %}
         self.{{ serialized_name }} = {{ constant_value }}
     {% endfor %}
 {% endif %}
