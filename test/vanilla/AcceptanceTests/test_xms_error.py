@@ -26,7 +26,7 @@
 import json
 import pytest
 
-from azure.core.exceptions import HttpResponseError
+from azure.core.exceptions import HttpResponseError, ResourceNotFoundError
 
 from xmserrorresponse import XMSErrorResponseExtensions
 from xmserrorresponse.models import NotFoundErrorBase, AnimalNotFound, LinkNotFound, PetActionError, PetSadError, PetHungryOrThirstyError
@@ -88,7 +88,6 @@ class TestXmsErrorResponse(object):
         assert isinstance(excinfo.value.model, PetSadError)
         assert excinfo.value.model.reason == "need more treats"
 
-        with pytest.raises(HttpResponseError) as excinfo:
+        with pytest.raises(ResourceNotFoundError) as excinfo:
             client.pet.do_something("fetch")
-        assert isinstance(excinfo.value.model, PetHungryOrThirstyError)
-        assert excinfo.value.model.hungry_or_thirsty == "hungry and thirsty"
+            

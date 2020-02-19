@@ -57,7 +57,7 @@ class PetOperations:
         cls: ClsType["models.Pet"] = kwargs.pop('cls', None )
         error_map = {
             400: lambda response: HttpResponseError(response=response),
-            404: lambda response: HttpResponseError(response=response, model=self._deserialize(models.NotFoundErrorBase, response)),
+            404: lambda response: ResourceNotFoundError(response=response, model=self._deserialize(models.NotFoundErrorBase, response)),
             501: lambda response: HttpResponseError(response=response),
         }
         error_map.update(kwargs.pop('error_map', {}))
