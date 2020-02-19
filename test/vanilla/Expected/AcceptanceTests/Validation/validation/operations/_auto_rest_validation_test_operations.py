@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_error
+from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -40,7 +40,7 @@ class AutoRestValidationTestOperationsMixin(object):
         :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType["models.Product"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         api_version = "1.0.0"
 
         # Construct URL
@@ -101,7 +101,7 @@ class AutoRestValidationTestOperationsMixin(object):
         :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType["models.Product"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         api_version = "1.0.0"
 
         # Construct URL
@@ -160,7 +160,7 @@ class AutoRestValidationTestOperationsMixin(object):
         :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         constant_param = "constant"
 
         # Construct URL
@@ -207,7 +207,7 @@ class AutoRestValidationTestOperationsMixin(object):
         :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType["models.Product"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         constant_param = "constant"
 
         # Construct URL

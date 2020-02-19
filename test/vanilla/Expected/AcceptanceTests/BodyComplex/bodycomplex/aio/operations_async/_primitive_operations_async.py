@@ -9,7 +9,7 @@ import datetime
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_error
+from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
@@ -53,7 +53,7 @@ class PrimitiveOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.IntWrapper"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_int.metadata['url']
@@ -99,7 +99,7 @@ class PrimitiveOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.put_int.metadata['url']
@@ -142,7 +142,7 @@ class PrimitiveOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.LongWrapper"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_long.metadata['url']
@@ -188,7 +188,7 @@ class PrimitiveOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.put_long.metadata['url']
@@ -231,7 +231,7 @@ class PrimitiveOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.FloatWrapper"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_float.metadata['url']
@@ -277,7 +277,7 @@ class PrimitiveOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.put_float.metadata['url']
@@ -320,7 +320,7 @@ class PrimitiveOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.DoubleWrapper"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_double.metadata['url']
@@ -367,7 +367,7 @@ class PrimitiveOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.put_double.metadata['url']
@@ -410,7 +410,7 @@ class PrimitiveOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.BooleanWrapper"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_bool.metadata['url']
@@ -456,7 +456,7 @@ class PrimitiveOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.put_bool.metadata['url']
@@ -499,7 +499,7 @@ class PrimitiveOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.StringWrapper"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_string.metadata['url']
@@ -545,7 +545,7 @@ class PrimitiveOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.put_string.metadata['url']
@@ -588,7 +588,7 @@ class PrimitiveOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.DateWrapper"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_date.metadata['url']
@@ -634,7 +634,7 @@ class PrimitiveOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.put_date.metadata['url']
@@ -677,7 +677,7 @@ class PrimitiveOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.DatetimeWrapper"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_date_time.metadata['url']
@@ -723,7 +723,7 @@ class PrimitiveOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.put_date_time.metadata['url']
@@ -766,7 +766,7 @@ class PrimitiveOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.Datetimerfc1123Wrapper"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_date_time_rfc1123.metadata['url']
@@ -813,7 +813,7 @@ class PrimitiveOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.put_date_time_rfc1123.metadata['url']
@@ -856,7 +856,7 @@ class PrimitiveOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.DurationWrapper"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_duration.metadata['url']
@@ -902,7 +902,7 @@ class PrimitiveOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         _complex_body = models.DurationWrapper(field=field)
 
@@ -947,7 +947,7 @@ class PrimitiveOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.ByteWrapper"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_byte.metadata['url']
@@ -993,7 +993,7 @@ class PrimitiveOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         _complex_body = models.ByteWrapper(field=field)
 

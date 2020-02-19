@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_error
+from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -53,7 +53,7 @@ class HttpRedirectsOperations(object):
         :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.head300.metadata['url']
@@ -97,7 +97,7 @@ class HttpRedirectsOperations(object):
         :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[str]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get300.metadata['url']
@@ -145,7 +145,7 @@ class HttpRedirectsOperations(object):
         :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.head301.metadata['url']
@@ -189,7 +189,7 @@ class HttpRedirectsOperations(object):
         :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get301.metadata['url']
@@ -233,7 +233,7 @@ class HttpRedirectsOperations(object):
         :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         boolean_value = True
 
         # Construct URL
@@ -284,7 +284,7 @@ class HttpRedirectsOperations(object):
         :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.head302.metadata['url']
@@ -328,7 +328,7 @@ class HttpRedirectsOperations(object):
         :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get302.metadata['url']
@@ -372,7 +372,7 @@ class HttpRedirectsOperations(object):
         :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         boolean_value = True
 
         # Construct URL
@@ -423,7 +423,7 @@ class HttpRedirectsOperations(object):
         :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         boolean_value = True
 
         # Construct URL
@@ -475,7 +475,7 @@ class HttpRedirectsOperations(object):
         :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.head307.metadata['url']
@@ -519,7 +519,7 @@ class HttpRedirectsOperations(object):
         :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get307.metadata['url']
@@ -563,7 +563,7 @@ class HttpRedirectsOperations(object):
         :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.options307.metadata['url']
@@ -607,7 +607,7 @@ class HttpRedirectsOperations(object):
         :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         boolean_value = True
 
         # Construct URL
@@ -659,7 +659,7 @@ class HttpRedirectsOperations(object):
         :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         boolean_value = True
 
         # Construct URL
@@ -711,7 +711,7 @@ class HttpRedirectsOperations(object):
         :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         boolean_value = True
 
         # Construct URL
@@ -763,7 +763,7 @@ class HttpRedirectsOperations(object):
         :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         boolean_value = True
 
         # Construct URL

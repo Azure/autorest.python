@@ -9,7 +9,7 @@ import datetime
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_error
+from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
@@ -53,7 +53,7 @@ class Datetimerfc1123Operations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[datetime.datetime] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_null.metadata['url']
@@ -96,7 +96,7 @@ class Datetimerfc1123Operations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[datetime.datetime] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_invalid.metadata['url']
@@ -139,7 +139,7 @@ class Datetimerfc1123Operations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[datetime.datetime] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_overflow.metadata['url']
@@ -182,7 +182,7 @@ class Datetimerfc1123Operations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[datetime.datetime] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_underflow.metadata['url']
@@ -228,7 +228,7 @@ class Datetimerfc1123Operations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.put_utc_max_date_time.metadata['url']
@@ -271,7 +271,7 @@ class Datetimerfc1123Operations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[datetime.datetime] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_utc_lowercase_max_date_time.metadata['url']
@@ -314,7 +314,7 @@ class Datetimerfc1123Operations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[datetime.datetime] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_utc_uppercase_max_date_time.metadata['url']
@@ -360,7 +360,7 @@ class Datetimerfc1123Operations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.put_utc_min_date_time.metadata['url']
@@ -403,7 +403,7 @@ class Datetimerfc1123Operations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[datetime.datetime] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_utc_min_date_time.metadata['url']

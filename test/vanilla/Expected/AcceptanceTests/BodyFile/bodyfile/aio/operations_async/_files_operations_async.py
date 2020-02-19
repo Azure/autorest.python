@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, IO, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_error
+from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
@@ -52,7 +52,7 @@ class FilesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[IO] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_file.metadata['url']
@@ -95,7 +95,7 @@ class FilesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[IO] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_file_large.metadata['url']
@@ -138,7 +138,7 @@ class FilesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[IO] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_empty_file.metadata['url']

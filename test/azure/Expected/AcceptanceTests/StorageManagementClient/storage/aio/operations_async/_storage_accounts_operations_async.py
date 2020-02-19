@@ -9,7 +9,7 @@ from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 import warnings
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
-from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_error
+from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.polling import AsyncNoPolling, AsyncPollingMethod, async_poller
@@ -62,7 +62,7 @@ class StorageAccountsOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.CheckNameAvailabilityResult"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.check_name_availability.metadata['url']
@@ -107,7 +107,7 @@ class StorageAccountsOperations:
         **kwargs
     ) -> "models.StorageAccount":
         cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self._create_initial.metadata['url']
@@ -223,7 +223,7 @@ class StorageAccountsOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.delete.metadata['url']
@@ -275,7 +275,7 @@ class StorageAccountsOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_properties.metadata['url']
@@ -335,7 +335,7 @@ class StorageAccountsOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.update.metadata['url']
@@ -395,7 +395,7 @@ class StorageAccountsOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.StorageAccountKeys"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.list_keys.metadata['url']
@@ -443,7 +443,7 @@ class StorageAccountsOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.StorageAccountListResult"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -507,7 +507,7 @@ class StorageAccountsOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.StorageAccountListResult"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -580,7 +580,7 @@ class StorageAccountsOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.StorageAccountKeys"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         _regenerate_key = models.StorageAccountRegenerateKeyParameters(key_name=key_name)
 

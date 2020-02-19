@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 import warnings
 
-from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_error
+from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.polling import AsyncNoPolling, AsyncPollingMethod, async_poller
@@ -48,7 +48,7 @@ class LRORetrysOperations:
         **kwargs
     ) -> "models.Product":
         cls: ClsType["models.Product"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self._put201_creating_succeeded200_initial.metadata['url']
@@ -139,7 +139,7 @@ class LRORetrysOperations:
         **kwargs
     ) -> "models.Product":
         cls: ClsType["models.Product"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self._put_async_relative_retry_succeeded_initial.metadata['url']
@@ -233,7 +233,7 @@ class LRORetrysOperations:
         **kwargs
     ) -> "models.Product":
         cls: ClsType["models.Product"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self._delete_provisioning202_accepted200_succeeded_initial.metadata['url']
@@ -319,7 +319,7 @@ class LRORetrysOperations:
         **kwargs
     ) -> None:
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self._delete202_retry200_initial.metadata['url']
@@ -390,7 +390,7 @@ class LRORetrysOperations:
         **kwargs
     ) -> None:
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self._delete_async_relative_retry_succeeded_initial.metadata['url']
@@ -463,7 +463,7 @@ class LRORetrysOperations:
         **kwargs
     ) -> None:
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self._post202_retry200_initial.metadata['url']
@@ -546,7 +546,7 @@ class LRORetrysOperations:
         **kwargs
     ) -> None:
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self._post_async_relative_retry_succeeded_initial.metadata['url']

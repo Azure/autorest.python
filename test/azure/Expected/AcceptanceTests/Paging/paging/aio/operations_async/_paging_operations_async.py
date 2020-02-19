@@ -9,7 +9,7 @@ from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 import warnings
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
-from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_error
+from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.polling import AsyncNoPolling, AsyncPollingMethod, async_poller
@@ -57,7 +57,7 @@ class PagingOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.ProductResultValue"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -114,7 +114,7 @@ class PagingOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -171,7 +171,7 @@ class PagingOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -234,7 +234,7 @@ class PagingOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         
         _maxresults = None
         _timeout = None
@@ -309,7 +309,7 @@ class PagingOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.OdataProductResult"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         
         _maxresults = None
         _timeout = None
@@ -384,7 +384,7 @@ class PagingOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         
         _maxresults = None
         _offset = None
@@ -459,7 +459,7 @@ class PagingOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -516,7 +516,7 @@ class PagingOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -573,7 +573,7 @@ class PagingOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -630,7 +630,7 @@ class PagingOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -687,7 +687,7 @@ class PagingOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -750,7 +750,7 @@ class PagingOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.OdataProductResult"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -820,7 +820,7 @@ class PagingOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.OdataProductResult"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         
         _api_version = None
         _tenant = None
@@ -887,7 +887,7 @@ class PagingOperations:
         **kwargs
     ) -> "models.ProductResult":
         cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         
         _maxresults = None
         _timeout = None

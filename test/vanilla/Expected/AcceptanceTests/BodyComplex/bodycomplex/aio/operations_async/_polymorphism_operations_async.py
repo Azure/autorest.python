@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_error
+from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
@@ -52,7 +52,7 @@ class PolymorphismOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.Fish"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_valid.metadata['url']
@@ -130,7 +130,7 @@ class PolymorphismOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.put_valid.metadata['url']
@@ -173,7 +173,7 @@ class PolymorphismOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.DotFish"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_dot_syntax.metadata['url']
@@ -216,7 +216,7 @@ class PolymorphismOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.DotFishMarket"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_composed_with_discriminator.metadata['url']
@@ -259,7 +259,7 @@ class PolymorphismOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.DotFishMarket"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_composed_without_discriminator.metadata['url']
@@ -302,7 +302,7 @@ class PolymorphismOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.Salmon"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_complicated.metadata['url']
@@ -348,7 +348,7 @@ class PolymorphismOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.put_complicated.metadata['url']
@@ -394,7 +394,7 @@ class PolymorphismOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.Salmon"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.put_missing_discriminator.metadata['url']
@@ -476,7 +476,7 @@ class PolymorphismOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.put_valid_missing_required.metadata['url']

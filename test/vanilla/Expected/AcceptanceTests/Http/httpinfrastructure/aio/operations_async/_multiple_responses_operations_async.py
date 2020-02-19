@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 import warnings
 
-from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_error
+from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
@@ -52,7 +52,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get200_model204_no_model_default_error200_valid.metadata['url']
@@ -97,7 +97,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get200_model204_no_model_default_error204_valid.metadata['url']
@@ -142,7 +142,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get200_model204_no_model_default_error201_invalid.metadata['url']
@@ -187,7 +187,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get200_model204_no_model_default_error202_none.metadata['url']
@@ -232,7 +232,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get200_model204_no_model_default_error400_valid.metadata['url']
@@ -277,7 +277,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[Union["models.MyException", "models.B"]] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get200_model201_model_default_error200_valid.metadata['url']
@@ -325,7 +325,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[Union["models.MyException", "models.B"]] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get200_model201_model_default_error201_valid.metadata['url']
@@ -373,7 +373,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[Union["models.MyException", "models.B"]] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get200_model201_model_default_error400_valid.metadata['url']
@@ -421,7 +421,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get200_model_a201_model_c404_model_d_default_error200_valid.metadata['url']
@@ -472,7 +472,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get200_model_a201_model_c404_model_d_default_error201_valid.metadata['url']
@@ -523,7 +523,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get200_model_a201_model_c404_model_d_default_error404_valid.metadata['url']
@@ -574,7 +574,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get200_model_a201_model_c404_model_d_default_error400_valid.metadata['url']
@@ -625,7 +625,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get202_none204_none_default_error202_none.metadata['url']
@@ -664,7 +664,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get202_none204_none_default_error204_none.metadata['url']
@@ -703,7 +703,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get202_none204_none_default_error400_valid.metadata['url']
@@ -742,7 +742,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get202_none204_none_default_none202_invalid.metadata['url']
@@ -780,7 +780,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get202_none204_none_default_none204_none.metadata['url']
@@ -818,7 +818,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get202_none204_none_default_none400_none.metadata['url']
@@ -856,7 +856,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get202_none204_none_default_none400_invalid.metadata['url']
@@ -894,7 +894,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_default_model_a200_valid.metadata['url']
@@ -936,7 +936,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_default_model_a200_none.metadata['url']
@@ -978,7 +978,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_default_model_a400_valid.metadata['url']
@@ -1017,7 +1017,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_default_model_a400_none.metadata['url']
@@ -1056,7 +1056,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_default_none200_invalid.metadata['url']
@@ -1094,7 +1094,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_default_none200_none.metadata['url']
@@ -1132,7 +1132,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_default_none400_invalid.metadata['url']
@@ -1170,7 +1170,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_default_none400_none.metadata['url']
@@ -1208,7 +1208,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get200_model_a200_none.metadata['url']
@@ -1250,7 +1250,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get200_model_a200_valid.metadata['url']
@@ -1292,7 +1292,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get200_model_a200_invalid.metadata['url']
@@ -1334,7 +1334,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get200_model_a400_none.metadata['url']
@@ -1376,7 +1376,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get200_model_a400_valid.metadata['url']
@@ -1418,7 +1418,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get200_model_a400_invalid.metadata['url']
@@ -1460,7 +1460,7 @@ class MultipleResponsesOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get200_model_a202_valid.metadata['url']

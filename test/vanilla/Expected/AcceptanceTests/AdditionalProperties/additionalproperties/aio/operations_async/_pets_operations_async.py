@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import HttpResponseError, ResourceNotFoundError, map_error
+from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
@@ -55,7 +55,7 @@ class PetsOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.PetAPTrue"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.create_ap_true.metadata['url']
@@ -105,7 +105,7 @@ class PetsOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.CatAPTrue"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.create_cat_ap_true.metadata['url']
@@ -155,7 +155,7 @@ class PetsOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.PetAPObject"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.create_ap_object.metadata['url']
@@ -205,7 +205,7 @@ class PetsOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.PetAPString"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.create_ap_string.metadata['url']
@@ -255,7 +255,7 @@ class PetsOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.PetAPInProperties"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.create_ap_in_properties.metadata['url']
@@ -305,7 +305,7 @@ class PetsOperations:
         :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.PetAPInPropertiesWithAPString"] = kwargs.pop('cls', None )
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.create_ap_in_properties_with_ap_string.metadata['url']
