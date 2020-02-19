@@ -28,6 +28,13 @@ class MultiAPISerializer:
         with (self.path_to_package / self.service_client_name).open("w") as fd:
             fd.write(result)
 
+    def serialize_multiapi_config(self):
+        template = self.env.get_template("multiapi_config.py.jinja2")
+        result = template.render(client_name=self.conf["client_name"], **self.conf["config"])
+
+        with (self.path_to_package / "_configuration.py").open("w") as fd:
+            fd.write(result)
+
     def serialize_multiapi_operation_mixins(self):
         template = self.env.get_template("multiapi_operations_mixin.py.jinja2")
         result = template.render(**self.conf)

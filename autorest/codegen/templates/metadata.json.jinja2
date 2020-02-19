@@ -1,13 +1,4 @@
 {% import 'operation_tools.jinja2' as op_tools %}
-{% macro operation_call(operation) %}
-{{ "async " if coroutine else "" }}def {{ operation_name }}(
-{% if async_mode %}
-    {% for param_signature in operation.parameters.sync_method_signature %}
-    {{ param_signature }}
-    {% endfor %}
-    **kwargs  # type: Any
-):
-{% endif %}{% endmacro %}
 {
     "chosen_version": {{ chosen_version | tojson }},
     "total_api_version_list": {{ total_api_version_list | tojson }},
@@ -16,6 +7,28 @@
         "filename": {{ ("_" + code_model.module_name + ".py") | tojson }},
         "description": {{ code_model.description | tojson }},
         "has_subscription_id": {{ ("subscription_id" in code_model.global_parameters.method | map(attribute="subscription_id") | list) | tojson }}
+    },
+    "config": {
+        "credential": {{ code_model.options['credential'] | tojson }},
+        "credential_scopes": {{ code_model.options['credential_scopes'] | tojson }},
+        "package_version": {{ "true" if code_model.options['package_version'] else "false"}},
+        "global_parameters": {
+            "method": {
+                {% for gp in code_model.global_parameters.method %}
+                {{ gp.serialized_name | tojson }}: {
+                    "method_signature": {{ gp.sync_method_signature | tojson }},
+                    "description": {{ gp.description | tojson }},
+                    "docstring_type": {{ gp.schema.docstring_type | tojson }},
+                    "required": {{ gp.required | tojson }}
+                }{{ "," if not loop.last else "" }}
+                {% endfor %}
+            },
+            "constant": {
+                {% for gp in code_model.global_parameters.constant %}
+                {{ gp.serialized_name | tojson }}: {{ gp.schema.constant_value | tojson }}{{ "," if not loop.last else "" }}
+                {% endfor %}
+            }
+        }
     },
     "operation_groups": {
         {% for operation_group in code_model.operation_groups %}
