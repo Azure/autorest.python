@@ -41,11 +41,7 @@
 {% endfor %}
     :keyword callable cls: A custom type or function that will be passed the direct response
     {{ return_docstring() }}
-    {% if code_model.options['azure_arm'] %}
-    :raises: ~azure.mgmt.core.ARMError
-    {% else %}
     :raises: ~azure.core.HttpResponseError
-    {% endif %}
     """
 {% endif %}
 {% if operation.deprecated %}

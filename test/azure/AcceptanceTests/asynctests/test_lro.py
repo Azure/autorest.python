@@ -119,7 +119,7 @@ class TestLro:
             # message in the JSON body.
             # We should have more testserver on valid ARM errors....
             print("MSG: "+msg)
-            assert msg in err.message or msg in (err.odata_json or {}).get("message", "")
+            assert msg.lower() in err.message.lower()
             if internal_msg:
                 print("INTERNALMSG: "+internal_msg)
                 assert internal_msg in str(err.inner_exception)
