@@ -73,8 +73,7 @@ class TestCustomBaseUri(object):
             with pytest.raises(ServiceRequestError):
                 await client.paths.get_empty("local")
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.testserver/issues/97")
     @pytest.mark.asyncio
-    async def test_more_optiopns(self):
-        with AutoRestParameterizedCustomHostTestClient("test12", "host:3000") as client:
+    async def test_more_options(self):
+        async with AutoRestParameterizedCustomHostTestClient("test12", "host:3000") as client:
             await client.paths.get_empty("http://lo", "cal", "key1")

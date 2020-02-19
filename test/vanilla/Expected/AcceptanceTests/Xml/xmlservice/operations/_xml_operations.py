@@ -1283,7 +1283,7 @@ class XmlOperations(object):
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
-        properties = models.JSONInput(id=id)
+        _properties = models.JSONInput(id=id)
 
         # Construct URL
         url = self.json_input.metadata['url']
@@ -1296,7 +1296,7 @@ class XmlOperations(object):
         header_parameters['Content-Type'] = 'application/json'
 
         # Construct body
-        body_content = self._serialize.body(properties, 'JSONInput')
+        body_content = self._serialize.body(_properties, 'JSONInput')
 
         # Construct and send request
         request = self._client.put(url, query_parameters, header_parameters, body_content)

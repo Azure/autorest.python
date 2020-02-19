@@ -4,16 +4,6 @@
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
 {% set send_xml = "xml" in operation.request_content_type %}
 {% set request_as_xml = ", is_xml=True" if send_xml else "" %}
-{% macro return_docstring() %}
-{% if operation.responses | selectattr('has_body') | first %}
-:return: {{ operation.responses|map(attribute='schema')|map(attribute='docstring_text')|join(' or ') }} or the result of cls(response)
-:rtype: {% for response in operation.responses %}{{response.schema.docstring_type if response.has_body else "None"}}{% if not loop.last %} or {% endif %}{% endfor %}
-{% else %}
-:return: None or the result of cls(response)
-:rtype: None
-{%- endif -%}
-{% endmacro %}
-{% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 {# actual template starts here #}
 {%- if code_model.options['tracing'] and operation.want_tracing -%}
 {{ trace_decorator }}
@@ -23,27 +13,7 @@
     {{ keywords.sync_return_type_annotation(operation) }}
 {% endif %}
 {% if operation.want_description_docstring %}
-    """{{operation.description }}
-    {% if operation.summary %}
-
-    {{ operation.summary | wordwrap(width=95, break_long_words=False, wrapstring='\n    ') }}
-    {% endif %}
-
-{% if operation.deprecated -%}
-    .. warning::
-       This method is deprecated
-
-{% endif -%}
-{% for parameter in operation.parameters.method %}
-    {%- for doc_string in param_documentation_string(parameter).replace('\n', '\n ').split('\n') %}
-    {{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n     ')}}
-    {% endfor %}
-    :type {{ parameter.serialized_name }}: {{ parameter.schema.docstring_type }}
-{% endfor %}
-    :keyword callable cls: A custom type or function that will be passed the direct response
-    {{ return_docstring()|indent }}
-    :raises: ~azure.core.HttpResponseError
-    """
+{{ op_tools.operation_docstring(operation)|indent }}
 {% endif %}
     {% if async_mode %}
     cls: ClsType[{{ keywords.return_type_annotation(operation) }}] = kwargs.pop('cls', None )

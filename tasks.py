@@ -17,9 +17,11 @@ service_to_readme_path = {
     'azure-ai-formrecognizer': 'test/services/azure-ai-formrecognizer/README.md',
     'azure-storage-blob': '../azure-sdk-for-python/sdk/storage/azure-storage-blob/swagger/README.md',
     'azure-mgmt-storage': 'test/services/azure-mgmt-storage/README.md',
+    'azure-mgmt-network': 'test/services/azure-mgmt-network/README.md',
+    'azure-mgmt-resources#features': 'test/services/azure-mgmt-resources#features/README.md',
     'azure-graphrbac': 'test/services/azure-graphrbac/README.md',
     'azure-search': 'test/services/azure-search/README.md',
-    'azure-keyvault': 'test/services/azure-keyvault/README.md'
+    'azure-keyvault': 'test/services/azure-keyvault/README.md',
 }
 
 default_mappings = {
@@ -58,7 +60,6 @@ default_azure_mappings = {
   'AcceptanceTests/AzureBodyDuration': ['body-duration.json', 'bodyduration'],
   'AcceptanceTests/AzureReport': 'azure-report.json',
   'AcceptanceTests/AzureParameterGrouping': 'azure-parameter-grouping.json',
-  'AcceptanceTests/ModelFlattening': 'model-flattening.json',
   'AcceptanceTests/CustomBaseUri': ['custom-baseUrl.json', 'custombaseurl'],
 }
 

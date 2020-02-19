@@ -6,18 +6,20 @@
 def __init__(
     self,
     {% if async_mode %}
-    {% for param_signature in code_model.global_parameters.async_method_signature %}
+        {% for param_signature in code_model.global_parameters.async_method_signature %}
     {{ param_signature }},
-    {% endfor %}
-    {% if code_model.base_url %}
+        {% endfor %}
+        {% if code_model.base_url %}
     base_url: Optional[str] = None,
-    {% endif %}
+        {% endif %}
     **kwargs: Any
     {% else %}
-    {% for param_signature in code_model.global_parameters.sync_method_signature %}
+        {% for param_signature in code_model.global_parameters.sync_method_signature %}
     {{ param_signature }}
-    {% endfor %}
+        {% endfor %}
+        {% if code_model.base_url %}
     base_url=None,  # type: Optional[str]
+        {% endif %}
     **kwargs  # type: Any
     {% endif %}
 ){{" -> None" if async_mode else "" }}:{% endmacro %}

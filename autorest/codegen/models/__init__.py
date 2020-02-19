@@ -9,7 +9,7 @@ from .code_model import CodeModel, CredentialSchema
 from .object_schema import ObjectSchema
 from .dictionary_schema import DictionarySchema
 from .list_schema import ListSchema
-from .primitive_schemas import get_primitive_schema, PrimitiveSchema
+from .primitive_schemas import get_primitive_schema, AnySchema, PrimitiveSchema
 from .enum_schema import EnumSchema
 from .base_schema import BaseSchema
 from .constant_schema import ConstantSchema
@@ -43,6 +43,15 @@ __all__ = [
     "Property",
 ]
 
+def _generate_as_object_schema(yaml_data: Dict[str, Any]) -> bool:
+    if (
+        yaml_data.get('properties') or
+        yaml_data.get('discriminator') or
+        yaml_data.get('parents') and yaml_data['parents'].get('immediate')
+    ):
+        return True
+    return False
+
 
 def build_schema(yaml_data: Dict[str, Any], **kwargs) -> BaseSchema:
     code_model = kwargs.get("code_model", None)
@@ -74,11 +83,15 @@ def build_schema(yaml_data: Dict[str, Any], **kwargs) -> BaseSchema:
         code_model.primitives[yaml_id] = schema
 
     elif schema_type in ["object", "and", "group"]:
-        # To avoid infinite loop, create the right instance in memory,
-        # put it in the index, and then parse the object.
-        schema = ObjectSchema(namespace, yaml_data, "_", "")
-        code_model.schemas[yaml_id] = schema
-        schema.fill_instance_from_yaml(namespace=namespace, yaml_data=yaml_data, **kwargs)
+        if _generate_as_object_schema(yaml_data):
+            # To avoid infinite loop, create the right instance in memory,
+            # put it in the index, and then parse the object.
+            schema = ObjectSchema(namespace, yaml_data, "_", "")
+            code_model.schemas[yaml_id] = schema
+            schema.fill_instance_from_yaml(namespace=namespace, yaml_data=yaml_data, **kwargs)
+        else:
+            schema = AnySchema.from_yaml(namespace=namespace, yaml_data=yaml_data)
+            code_model.primitives[yaml_id] = schema
 
     else:
         schema = get_primitive_schema(namespace=namespace, yaml_data=yaml_data)

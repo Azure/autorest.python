@@ -841,9 +841,9 @@ class Metrics(msrest.serialization.Model):
     :type version: str
     :param enabled: Required. Indicates whether metrics are enabled for the Blob service.
     :type enabled: bool
-    :param include_apis: Indicates whether metrics should generate summary statistics for called
+    :param include_ap_is: Indicates whether metrics should generate summary statistics for called
      API operations.
-    :type include_apis: bool
+    :type include_ap_is: bool
     :param retention_policy: the retention policy.
     :type retention_policy: ~xmlservice.models.RetentionPolicy
     """
@@ -855,7 +855,7 @@ class Metrics(msrest.serialization.Model):
     _attribute_map = {
         'version': {'key': 'Version', 'type': 'str'},
         'enabled': {'key': 'Enabled', 'type': 'bool'},
-        'include_apis': {'key': 'IncludeAPIs', 'type': 'bool'},
+        'include_ap_is': {'key': 'IncludeAPIs', 'type': 'bool'},
         'retention_policy': {'key': 'RetentionPolicy', 'type': 'RetentionPolicy'},
     }
 
@@ -864,14 +864,14 @@ class Metrics(msrest.serialization.Model):
         *,
         enabled: bool,
         version: Optional[str] = None,
-        include_apis: Optional[bool] = None,
+        include_ap_is: Optional[bool] = None,
         retention_policy: Optional["RetentionPolicy"] = None,
         **kwargs
     ):
         super(Metrics, self).__init__(**kwargs)
         self.version = version
         self.enabled = enabled
-        self.include_apis = include_apis
+        self.include_ap_is = include_ap_is
         self.retention_policy = retention_policy
 
 

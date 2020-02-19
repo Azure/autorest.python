@@ -104,9 +104,9 @@ class HeaderOperations:
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
         
-        foo_client_request_id = None
+        _foo_client_request_id = None
         if header_custom_named_request_id_param_grouping_parameters is not None:
-            foo_client_request_id = header_custom_named_request_id_param_grouping_parameters.foo_client_request_id
+            _foo_client_request_id = header_custom_named_request_id_param_grouping_parameters.foo_client_request_id
 
         # Construct URL
         url = self.custom_named_request_id_param_grouping.metadata['url']
@@ -116,7 +116,7 @@ class HeaderOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", foo_client_request_id, 'str')
+        header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", _foo_client_request_id, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)

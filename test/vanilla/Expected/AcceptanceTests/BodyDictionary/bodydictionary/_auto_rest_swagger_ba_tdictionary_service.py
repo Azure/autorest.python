@@ -11,12 +11,12 @@ from typing import Any, Optional
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
-from ._configuration import AutoRestSwaggerBATdictionaryServiceConfiguration
+from ._configuration import AutoRestSwaggerBATDictionaryServiceConfiguration
 from .operations import DictionaryOperations
 from . import models
 
 
-class AutoRestSwaggerBATdictionaryService(object):
+class AutoRestSwaggerBATDictionaryService(object):
     """Test Infrastructure for AutoRest Swagger BAT
 
     :ivar dictionary: DictionaryOperations operations
@@ -32,7 +32,7 @@ class AutoRestSwaggerBATdictionaryService(object):
         # type: (...) -> None
         if not base_url:
             base_url = 'http://localhost:3000'
-        self._config = AutoRestSwaggerBATdictionaryServiceConfiguration(**kwargs)
+        self._config = AutoRestSwaggerBATDictionaryServiceConfiguration(**kwargs)
         self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
@@ -47,7 +47,7 @@ class AutoRestSwaggerBATdictionaryService(object):
         self._client.close()
 
     def __enter__(self):
-        # type: () -> AutoRestSwaggerBATdictionaryService
+        # type: () -> AutoRestSwaggerBATDictionaryService
         self._client.__enter__()
         return self
 

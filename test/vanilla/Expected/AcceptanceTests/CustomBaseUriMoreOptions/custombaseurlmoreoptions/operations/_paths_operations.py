@@ -45,7 +45,7 @@ class PathsOperations(object):
         vault,  # type: str
         secret,  # type: str
         key_name,  # type: str
-        key_version=None,  # type: Optional[str]
+        key_version="v1",  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None

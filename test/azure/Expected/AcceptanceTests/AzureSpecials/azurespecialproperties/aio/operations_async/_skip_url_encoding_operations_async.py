@@ -87,7 +87,7 @@ class SkipUrlEncodingOperations:
     get_method_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}'}
 
     @distributed_trace_async
-    async def get_path_path_valid(
+    async def get_path_valid(
         self,
         unencoded_path_param: str,
         **kwargs
@@ -105,7 +105,7 @@ class SkipUrlEncodingOperations:
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
-        url = self.get_path_path_valid.metadata['url']
+        url = self.get_path_valid.metadata['url']
         path_format_arguments = {
             'unencodedPathParam': self._serialize.url("unencoded_path_param", unencoded_path_param, 'str', skip_quote=True),
         }
@@ -130,7 +130,7 @@ class SkipUrlEncodingOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_path_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}'}
+    get_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}'}
 
     @distributed_trace_async
     async def get_swagger_path_valid(
