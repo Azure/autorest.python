@@ -3,7 +3,7 @@ pytest
 pytest-cov
 pytest-asyncio;python_full_version>="3.5.2"
 msrest>=0.6.11
-azure-core>=1.2.0
+git+https://github.com/Azure/azure-sdk-for-python#subdirectory=sdk/core/azure-core&egg=azure-core
 aiohttp;python_full_version>="3.5.2"
 -e ./Expected/AcceptanceTests/AdditionalProperties
 -e ./Expected/AcceptanceTests/BodyArray
