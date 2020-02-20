@@ -52,7 +52,7 @@ class PetOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Pet or the result of cls(response)
         :rtype: ~extensibleenumsswagger.models.Pet
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.Pet"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -101,7 +101,7 @@ class PetOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Pet or the result of cls(response)
         :rtype: ~extensibleenumsswagger.models.Pet
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.Pet"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})

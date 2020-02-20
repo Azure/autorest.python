@@ -52,7 +52,7 @@ response_headers = {
         {% if code_model.options['azure_arm'] %}
     :raises ~azure.mgmt.core.ARMError:
         {% else %}
-    :raises ~azure.core.HttpResponseError:
+    :raises ~azure.core.exceptions.HttpResponseError:
         {% endif %}
     {% else %}
     :raises ~{{ code_model.namespace }}.models.{{ exception_name() }}:
