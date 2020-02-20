@@ -49,7 +49,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or  or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -93,7 +93,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or  or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -137,7 +137,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or  or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -181,7 +181,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or  or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -225,7 +225,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or  or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -269,7 +269,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or B or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[Union["models.MyException", "models.B"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -316,7 +316,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or B or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[Union["models.MyException", "models.B"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -363,7 +363,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or B or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[Union["models.MyException", "models.B"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -410,7 +410,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or C or D or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -460,7 +460,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or C or D or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -510,7 +510,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or C or D or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -560,7 +560,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or C or D or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -610,7 +610,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -648,7 +648,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -686,7 +686,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -724,7 +724,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -762,7 +762,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -800,7 +800,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -838,7 +838,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -876,7 +876,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -918,7 +918,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -960,7 +960,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -998,7 +998,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -1036,7 +1036,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -1074,7 +1074,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -1112,7 +1112,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -1150,7 +1150,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -1188,7 +1188,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -1230,7 +1230,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -1272,7 +1272,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -1314,7 +1314,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -1356,7 +1356,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -1398,7 +1398,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -1440,7 +1440,7 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})

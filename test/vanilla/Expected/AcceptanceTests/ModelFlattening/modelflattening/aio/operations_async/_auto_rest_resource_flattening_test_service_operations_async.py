@@ -33,7 +33,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -78,7 +78,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~modelflattening.models.FlattenedProduct]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[List["FlattenedProduct"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -123,7 +123,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -168,7 +168,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~modelflattening.models.ProductWrapper]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[List["ProductWrapper"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -213,7 +213,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -258,7 +258,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~modelflattening.models.FlattenedProduct]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[Dict[str, "FlattenedProduct"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -303,7 +303,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -348,7 +348,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ResourceCollection or the result of cls(response)
         :rtype: ~modelflattening.models.ResourceCollection
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.ResourceCollection"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -393,7 +393,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.SimpleProduct"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -459,7 +459,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.SimpleProduct"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -513,7 +513,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.SimpleProduct"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})

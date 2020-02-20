@@ -52,7 +52,7 @@ class PetOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Pet or  or the result of cls(response)
         :rtype: ~xmserrorresponse.models.Pet or None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.Pet"] = kwargs.pop('cls', None)
         error_map = {
@@ -108,7 +108,7 @@ class PetOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAction or the result of cls(response)
         :rtype: ~xmserrorresponse.models.PetAction
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.PetAction"] = kwargs.pop('cls', None)
         error_map = {

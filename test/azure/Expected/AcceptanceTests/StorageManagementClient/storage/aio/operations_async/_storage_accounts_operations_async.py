@@ -59,7 +59,7 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CheckNameAvailabilityResult or the result of cls(response)
         :rtype: ~storage.models.CheckNameAvailabilityResult
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.CheckNameAvailabilityResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -220,7 +220,7 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -272,7 +272,7 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -332,7 +332,7 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -392,7 +392,7 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountKeys or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.StorageAccountKeys"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
@@ -577,7 +577,7 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountKeys or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.StorageAccountKeys"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
