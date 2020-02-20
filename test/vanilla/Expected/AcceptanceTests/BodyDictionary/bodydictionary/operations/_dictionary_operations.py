@@ -51,7 +51,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, int]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, int]]
         error_map = kwargs.pop('error_map', {})
@@ -94,7 +94,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, int]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, int]]
         error_map = kwargs.pop('error_map', {})
@@ -140,7 +140,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -183,7 +183,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, str]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, str]]
         error_map = kwargs.pop('error_map', {})
@@ -226,7 +226,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, str]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, str]]
         error_map = kwargs.pop('error_map', {})
@@ -269,7 +269,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, str]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, str]]
         error_map = kwargs.pop('error_map', {})
@@ -312,7 +312,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, str]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, str]]
         error_map = kwargs.pop('error_map', {})
@@ -355,7 +355,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, bool]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, bool]]
         error_map = kwargs.pop('error_map', {})
@@ -401,7 +401,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -444,7 +444,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, bool]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, bool]]
         error_map = kwargs.pop('error_map', {})
@@ -487,7 +487,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, bool]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, bool]]
         error_map = kwargs.pop('error_map', {})
@@ -530,7 +530,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, int]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, int]]
         error_map = kwargs.pop('error_map', {})
@@ -576,7 +576,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -619,7 +619,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, int]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, int]]
         error_map = kwargs.pop('error_map', {})
@@ -662,7 +662,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, int]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, int]]
         error_map = kwargs.pop('error_map', {})
@@ -705,7 +705,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, long]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, int]]
         error_map = kwargs.pop('error_map', {})
@@ -751,7 +751,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -794,7 +794,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, long]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, int]]
         error_map = kwargs.pop('error_map', {})
@@ -837,7 +837,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, long]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, int]]
         error_map = kwargs.pop('error_map', {})
@@ -880,7 +880,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, float]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, float]]
         error_map = kwargs.pop('error_map', {})
@@ -926,7 +926,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -969,7 +969,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, float]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, float]]
         error_map = kwargs.pop('error_map', {})
@@ -1012,7 +1012,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, float]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, float]]
         error_map = kwargs.pop('error_map', {})
@@ -1055,7 +1055,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, float]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, float]]
         error_map = kwargs.pop('error_map', {})
@@ -1101,7 +1101,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -1144,7 +1144,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, float]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, float]]
         error_map = kwargs.pop('error_map', {})
@@ -1187,7 +1187,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, float]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, float]]
         error_map = kwargs.pop('error_map', {})
@@ -1230,7 +1230,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, str]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, str]]
         error_map = kwargs.pop('error_map', {})
@@ -1276,7 +1276,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -1319,7 +1319,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, str]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, str]]
         error_map = kwargs.pop('error_map', {})
@@ -1362,7 +1362,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, str]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, str]]
         error_map = kwargs.pop('error_map', {})
@@ -1405,7 +1405,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~datetime.date]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, datetime.date]]
         error_map = kwargs.pop('error_map', {})
@@ -1451,7 +1451,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -1494,7 +1494,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~datetime.date]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, datetime.date]]
         error_map = kwargs.pop('error_map', {})
@@ -1537,7 +1537,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~datetime.date]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, datetime.date]]
         error_map = kwargs.pop('error_map', {})
@@ -1580,7 +1580,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~datetime.datetime]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, datetime.datetime]]
         error_map = kwargs.pop('error_map', {})
@@ -1626,7 +1626,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -1669,7 +1669,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~datetime.datetime]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, datetime.datetime]]
         error_map = kwargs.pop('error_map', {})
@@ -1712,7 +1712,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~datetime.datetime]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, datetime.datetime]]
         error_map = kwargs.pop('error_map', {})
@@ -1755,7 +1755,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~datetime.datetime]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, datetime.datetime]]
         error_map = kwargs.pop('error_map', {})
@@ -1801,7 +1801,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -1844,7 +1844,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~datetime.timedelta]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, datetime.timedelta]]
         error_map = kwargs.pop('error_map', {})
@@ -1890,7 +1890,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -1933,7 +1933,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, bytearray]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, bytearray]]
         error_map = kwargs.pop('error_map', {})
@@ -1979,7 +1979,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -2022,7 +2022,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, bytearray]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, bytearray]]
         error_map = kwargs.pop('error_map', {})
@@ -2065,7 +2065,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, bytes]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, bytes]]
         error_map = kwargs.pop('error_map', {})
@@ -2108,7 +2108,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, "Widget"]]
         error_map = kwargs.pop('error_map', {})
@@ -2151,7 +2151,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, "Widget"]]
         error_map = kwargs.pop('error_map', {})
@@ -2194,7 +2194,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, "Widget"]]
         error_map = kwargs.pop('error_map', {})
@@ -2237,7 +2237,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, "Widget"]]
         error_map = kwargs.pop('error_map', {})
@@ -2280,7 +2280,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, "Widget"]]
         error_map = kwargs.pop('error_map', {})
@@ -2326,7 +2326,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -2369,7 +2369,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, list[str]]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, List[str]]]
         error_map = kwargs.pop('error_map', {})
@@ -2412,7 +2412,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, list[str]]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, List[str]]]
         error_map = kwargs.pop('error_map', {})
@@ -2455,7 +2455,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, list[str]]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, List[str]]]
         error_map = kwargs.pop('error_map', {})
@@ -2498,7 +2498,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, list[str]]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, List[str]]]
         error_map = kwargs.pop('error_map', {})
@@ -2541,7 +2541,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, list[str]]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, List[str]]]
         error_map = kwargs.pop('error_map', {})
@@ -2587,7 +2587,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -2630,7 +2630,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, object]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, object]]
         error_map = kwargs.pop('error_map', {})
@@ -2673,7 +2673,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, object]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, object]]
         error_map = kwargs.pop('error_map', {})
@@ -2716,7 +2716,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, object]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, object]]
         error_map = kwargs.pop('error_map', {})
@@ -2759,7 +2759,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, object]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, object]]
         error_map = kwargs.pop('error_map', {})
@@ -2802,7 +2802,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, object]
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, object]]
         error_map = kwargs.pop('error_map', {})
@@ -2848,7 +2848,7 @@ class DictionaryOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydictionary.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})

@@ -49,7 +49,7 @@ class FilesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: IO or the result of cls(response)
         :rtype: IO
-        :raises: ~bodyfile.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[IO] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -91,7 +91,7 @@ class FilesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: IO or the result of cls(response)
         :rtype: IO
-        :raises: ~bodyfile.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[IO] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -133,7 +133,7 @@ class FilesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: IO or the result of cls(response)
         :rtype: IO
-        :raises: ~bodyfile.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[IO] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})

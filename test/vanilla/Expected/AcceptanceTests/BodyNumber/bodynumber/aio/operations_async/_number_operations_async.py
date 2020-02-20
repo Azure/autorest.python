@@ -49,7 +49,7 @@ class NumberOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[float] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -91,7 +91,7 @@ class NumberOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[float] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -133,7 +133,7 @@ class NumberOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[float] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -175,7 +175,7 @@ class NumberOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[float] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -220,7 +220,7 @@ class NumberOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -262,7 +262,7 @@ class NumberOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[float] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -307,7 +307,7 @@ class NumberOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -349,7 +349,7 @@ class NumberOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[float] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -391,7 +391,7 @@ class NumberOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -434,7 +434,7 @@ class NumberOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[float] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -476,7 +476,7 @@ class NumberOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -519,7 +519,7 @@ class NumberOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[float] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -564,7 +564,7 @@ class NumberOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -606,7 +606,7 @@ class NumberOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[float] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -648,7 +648,7 @@ class NumberOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -691,7 +691,7 @@ class NumberOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[float] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -733,7 +733,7 @@ class NumberOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -776,7 +776,7 @@ class NumberOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[float] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -821,7 +821,7 @@ class NumberOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -863,7 +863,7 @@ class NumberOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[float] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -908,7 +908,7 @@ class NumberOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -950,7 +950,7 @@ class NumberOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[float] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -995,7 +995,7 @@ class NumberOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -1037,7 +1037,7 @@ class NumberOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: float or the result of cls(response)
         :rtype: float
-        :raises: ~bodynumber.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[float] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})

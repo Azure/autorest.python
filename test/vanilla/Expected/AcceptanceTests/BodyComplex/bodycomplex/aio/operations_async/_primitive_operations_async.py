@@ -50,7 +50,7 @@ class PrimitiveOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: IntWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.IntWrapper
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.IntWrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -95,7 +95,7 @@ class PrimitiveOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -137,7 +137,7 @@ class PrimitiveOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: LongWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.LongWrapper
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.LongWrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -182,7 +182,7 @@ class PrimitiveOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -224,7 +224,7 @@ class PrimitiveOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: FloatWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.FloatWrapper
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.FloatWrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -269,7 +269,7 @@ class PrimitiveOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -311,7 +311,7 @@ class PrimitiveOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DoubleWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DoubleWrapper
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.DoubleWrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -352,12 +352,12 @@ class PrimitiveOperations:
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
-         -0.000000000000000000000000000000000000000000000000000000005.
+             -0.000000000000000000000000000000000000000000000000000000005.
         :type complex_body: ~bodycomplex.models.DoubleWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -399,7 +399,7 @@ class PrimitiveOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: BooleanWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.BooleanWrapper
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.BooleanWrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -444,7 +444,7 @@ class PrimitiveOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -486,7 +486,7 @@ class PrimitiveOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StringWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.StringWrapper
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.StringWrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -531,7 +531,7 @@ class PrimitiveOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -573,7 +573,7 @@ class PrimitiveOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DateWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DateWrapper
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.DateWrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -618,7 +618,7 @@ class PrimitiveOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -660,7 +660,7 @@ class PrimitiveOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DatetimeWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DatetimeWrapper
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.DatetimeWrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -705,7 +705,7 @@ class PrimitiveOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -747,7 +747,7 @@ class PrimitiveOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Datetimerfc1123Wrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.Datetimerfc1123Wrapper
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.Datetimerfc1123Wrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -788,12 +788,12 @@ class PrimitiveOperations:
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
-         GMT'.
+             GMT'.
         :type complex_body: ~bodycomplex.models.Datetimerfc1123Wrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -835,7 +835,7 @@ class PrimitiveOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DurationWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.DurationWrapper
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.DurationWrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -880,7 +880,7 @@ class PrimitiveOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -924,7 +924,7 @@ class PrimitiveOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ByteWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ByteWrapper
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.ByteWrapper"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -969,7 +969,7 @@ class PrimitiveOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})

@@ -53,7 +53,7 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPTrue or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPTrue
-        :raises: ~additionalproperties.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType["models.PetAPTrue"]
         error_map = kwargs.pop('error_map', {})
@@ -103,7 +103,7 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CatAPTrue or the result of cls(response)
         :rtype: ~additionalproperties.models.CatAPTrue
-        :raises: ~additionalproperties.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType["models.CatAPTrue"]
         error_map = kwargs.pop('error_map', {})
@@ -153,7 +153,7 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPObject or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPObject
-        :raises: ~additionalproperties.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType["models.PetAPObject"]
         error_map = kwargs.pop('error_map', {})
@@ -203,7 +203,7 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPString or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPString
-        :raises: ~additionalproperties.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType["models.PetAPString"]
         error_map = kwargs.pop('error_map', {})
@@ -253,7 +253,7 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInProperties or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInProperties
-        :raises: ~additionalproperties.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType["models.PetAPInProperties"]
         error_map = kwargs.pop('error_map', {})
@@ -303,7 +303,7 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInPropertiesWithAPString or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInPropertiesWithAPString
-        :raises: ~additionalproperties.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType["models.PetAPInPropertiesWithAPString"]
         error_map = kwargs.pop('error_map', {})

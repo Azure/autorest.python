@@ -36,7 +36,7 @@ class AutoRestValidationTestOperationsMixin:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
-        :raises: ~validation.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -95,7 +95,7 @@ class AutoRestValidationTestOperationsMixin:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Product or the result of cls(response)
         :rtype: ~validation.models.Product
-        :raises: ~validation.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType["models.Product"] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})

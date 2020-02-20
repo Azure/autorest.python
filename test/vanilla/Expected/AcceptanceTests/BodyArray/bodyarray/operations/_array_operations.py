@@ -51,7 +51,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[int]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[int]]
         error_map = kwargs.pop('error_map', {})
@@ -94,7 +94,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[int]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[int]]
         error_map = kwargs.pop('error_map', {})
@@ -137,7 +137,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[int]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[int]]
         error_map = kwargs.pop('error_map', {})
@@ -183,7 +183,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -226,7 +226,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[bool]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[bool]]
         error_map = kwargs.pop('error_map', {})
@@ -272,7 +272,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -315,7 +315,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[bool]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[bool]]
         error_map = kwargs.pop('error_map', {})
@@ -358,7 +358,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[bool]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[bool]]
         error_map = kwargs.pop('error_map', {})
@@ -401,7 +401,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[int]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[int]]
         error_map = kwargs.pop('error_map', {})
@@ -447,7 +447,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -490,7 +490,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[int]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[int]]
         error_map = kwargs.pop('error_map', {})
@@ -533,7 +533,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[int]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[int]]
         error_map = kwargs.pop('error_map', {})
@@ -576,7 +576,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[long]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[int]]
         error_map = kwargs.pop('error_map', {})
@@ -622,7 +622,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -665,7 +665,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[long]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[int]]
         error_map = kwargs.pop('error_map', {})
@@ -708,7 +708,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[long]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[int]]
         error_map = kwargs.pop('error_map', {})
@@ -751,7 +751,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[float]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[float]]
         error_map = kwargs.pop('error_map', {})
@@ -797,7 +797,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -840,7 +840,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[float]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[float]]
         error_map = kwargs.pop('error_map', {})
@@ -883,7 +883,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[float]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[float]]
         error_map = kwargs.pop('error_map', {})
@@ -926,7 +926,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[float]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[float]]
         error_map = kwargs.pop('error_map', {})
@@ -972,7 +972,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -1015,7 +1015,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[float]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[float]]
         error_map = kwargs.pop('error_map', {})
@@ -1058,7 +1058,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[float]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[float]]
         error_map = kwargs.pop('error_map', {})
@@ -1101,7 +1101,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[str]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[str]]
         error_map = kwargs.pop('error_map', {})
@@ -1147,7 +1147,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -1190,7 +1190,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[str or ~bodyarray.models.FooEnum]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[Union[str, "FooEnum"]]]
         error_map = kwargs.pop('error_map', {})
@@ -1236,7 +1236,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -1279,7 +1279,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[str or ~bodyarray.models.Enum0]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[Union[str, "Enum0"]]]
         error_map = kwargs.pop('error_map', {})
@@ -1325,7 +1325,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -1368,7 +1368,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[str]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[str]]
         error_map = kwargs.pop('error_map', {})
@@ -1411,7 +1411,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[str]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[str]]
         error_map = kwargs.pop('error_map', {})
@@ -1454,7 +1454,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[str]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[str]]
         error_map = kwargs.pop('error_map', {})
@@ -1500,7 +1500,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -1543,7 +1543,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[str]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[str]]
         error_map = kwargs.pop('error_map', {})
@@ -1586,7 +1586,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~datetime.date]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[datetime.date]]
         error_map = kwargs.pop('error_map', {})
@@ -1632,7 +1632,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -1675,7 +1675,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~datetime.date]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[datetime.date]]
         error_map = kwargs.pop('error_map', {})
@@ -1718,7 +1718,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~datetime.date]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[datetime.date]]
         error_map = kwargs.pop('error_map', {})
@@ -1761,7 +1761,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~datetime.datetime]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[datetime.datetime]]
         error_map = kwargs.pop('error_map', {})
@@ -1807,7 +1807,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -1850,7 +1850,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~datetime.datetime]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[datetime.datetime]]
         error_map = kwargs.pop('error_map', {})
@@ -1893,7 +1893,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~datetime.datetime]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[datetime.datetime]]
         error_map = kwargs.pop('error_map', {})
@@ -1936,7 +1936,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~datetime.datetime]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[datetime.datetime]]
         error_map = kwargs.pop('error_map', {})
@@ -1982,7 +1982,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -2025,7 +2025,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~datetime.timedelta]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[datetime.timedelta]]
         error_map = kwargs.pop('error_map', {})
@@ -2071,7 +2071,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -2114,7 +2114,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[bytearray]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[bytearray]]
         error_map = kwargs.pop('error_map', {})
@@ -2160,7 +2160,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -2203,7 +2203,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[bytearray]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[bytearray]]
         error_map = kwargs.pop('error_map', {})
@@ -2246,7 +2246,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[bytes]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[bytes]]
         error_map = kwargs.pop('error_map', {})
@@ -2289,7 +2289,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List["Product"]]
         error_map = kwargs.pop('error_map', {})
@@ -2332,7 +2332,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List["Product"]]
         error_map = kwargs.pop('error_map', {})
@@ -2375,7 +2375,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List["Product"]]
         error_map = kwargs.pop('error_map', {})
@@ -2418,7 +2418,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List["Product"]]
         error_map = kwargs.pop('error_map', {})
@@ -2461,7 +2461,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List["Product"]]
         error_map = kwargs.pop('error_map', {})
@@ -2507,7 +2507,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -2550,7 +2550,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[list[str]]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[List[str]]]
         error_map = kwargs.pop('error_map', {})
@@ -2593,7 +2593,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[list[str]]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[List[str]]]
         error_map = kwargs.pop('error_map', {})
@@ -2636,7 +2636,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[list[str]]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[List[str]]]
         error_map = kwargs.pop('error_map', {})
@@ -2679,7 +2679,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[list[str]]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[List[str]]]
         error_map = kwargs.pop('error_map', {})
@@ -2722,7 +2722,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[list[str]]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[List[str]]]
         error_map = kwargs.pop('error_map', {})
@@ -2768,7 +2768,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -2811,7 +2811,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[dict[str, str]]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[Dict[str, str]]]
         error_map = kwargs.pop('error_map', {})
@@ -2854,7 +2854,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[dict[str, str]]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[Dict[str, str]]]
         error_map = kwargs.pop('error_map', {})
@@ -2897,7 +2897,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[dict[str, str]]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[Dict[str, str]]]
         error_map = kwargs.pop('error_map', {})
@@ -2940,7 +2940,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[dict[str, str]]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[Dict[str, str]]]
         error_map = kwargs.pop('error_map', {})
@@ -2983,7 +2983,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[dict[str, str]]
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[List[Dict[str, str]]]
         error_map = kwargs.pop('error_map', {})
@@ -3029,7 +3029,7 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyarray.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})

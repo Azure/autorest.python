@@ -52,7 +52,7 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~urlmulticollectionformat.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -95,7 +95,7 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~urlmulticollectionformat.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -138,7 +138,7 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~urlmulticollectionformat.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})

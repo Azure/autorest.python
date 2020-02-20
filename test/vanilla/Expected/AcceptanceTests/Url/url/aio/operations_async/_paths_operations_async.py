@@ -50,7 +50,7 @@ class PathsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -93,7 +93,7 @@ class PathsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -136,7 +136,7 @@ class PathsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -179,7 +179,7 @@ class PathsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -222,7 +222,7 @@ class PathsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -265,7 +265,7 @@ class PathsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -308,7 +308,7 @@ class PathsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -351,7 +351,7 @@ class PathsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -394,7 +394,7 @@ class PathsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -437,7 +437,7 @@ class PathsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -480,7 +480,7 @@ class PathsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -523,7 +523,7 @@ class PathsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -568,7 +568,7 @@ class PathsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -611,7 +611,7 @@ class PathsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -657,7 +657,7 @@ class PathsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -702,7 +702,7 @@ class PathsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -747,7 +747,7 @@ class PathsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -792,7 +792,7 @@ class PathsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -834,7 +834,7 @@ class PathsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -880,7 +880,7 @@ class PathsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -922,7 +922,7 @@ class PathsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -968,7 +968,7 @@ class PathsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -1010,7 +1010,7 @@ class PathsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -1056,7 +1056,7 @@ class PathsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -1101,7 +1101,7 @@ class PathsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -1142,12 +1142,12 @@ class PathsOperations:
         """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
 
         :param array_path: an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
-         using the csv-array format.
+             using the csv-array format.
         :type array_path: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -1192,7 +1192,7 @@ class PathsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})

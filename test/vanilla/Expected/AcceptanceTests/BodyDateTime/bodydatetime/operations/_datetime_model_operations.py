@@ -51,7 +51,7 @@ class DatetimeOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
@@ -94,7 +94,7 @@ class DatetimeOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
@@ -137,7 +137,7 @@ class DatetimeOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
@@ -180,7 +180,7 @@ class DatetimeOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
@@ -226,7 +226,7 @@ class DatetimeOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -268,14 +268,14 @@ class DatetimeOperations(object):
         """Put max datetime value 9999-12-31T23:59:59.9999999Z.
 
         This is against the recommendation that asks for 3 digits, but allow to test what happens in
-        that scenario.
+            that scenario.
 
         :param datetime_body:
         :type datetime_body: ~datetime.datetime
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -318,7 +318,7 @@ class DatetimeOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
@@ -361,7 +361,7 @@ class DatetimeOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
@@ -402,12 +402,12 @@ class DatetimeOperations(object):
         """Get max datetime value 9999-12-31T23:59:59.9999999Z.
 
         This is against the recommendation that asks for 3 digits, but allow to test what happens in
-        that scenario.
+            that scenario.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
@@ -453,7 +453,7 @@ class DatetimeOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -496,7 +496,7 @@ class DatetimeOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
@@ -539,7 +539,7 @@ class DatetimeOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
@@ -585,7 +585,7 @@ class DatetimeOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -628,7 +628,7 @@ class DatetimeOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
@@ -671,7 +671,7 @@ class DatetimeOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
@@ -717,7 +717,7 @@ class DatetimeOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -760,7 +760,7 @@ class DatetimeOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
@@ -806,7 +806,7 @@ class DatetimeOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -849,7 +849,7 @@ class DatetimeOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
@@ -895,7 +895,7 @@ class DatetimeOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -938,7 +938,7 @@ class DatetimeOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodydatetime.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})

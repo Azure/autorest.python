@@ -53,7 +53,7 @@ class GroupOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SampleResourceGroup or the result of cls(response)
         :rtype: ~subscriptionidapiversion.models.SampleResourceGroup
-        :raises: ~subscriptionidapiversion.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType["models.SampleResourceGroup"]
         error_map = kwargs.pop('error_map', {})

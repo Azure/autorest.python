@@ -50,7 +50,7 @@ class DurationOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: timedelta or the result of cls(response)
         :rtype: ~datetime.timedelta
-        :raises: ~bodyduration.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[datetime.timedelta] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -95,7 +95,7 @@ class DurationOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyduration.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -137,7 +137,7 @@ class DurationOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: timedelta or the result of cls(response)
         :rtype: ~datetime.timedelta
-        :raises: ~bodyduration.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[datetime.timedelta] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -179,7 +179,7 @@ class DurationOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: timedelta or the result of cls(response)
         :rtype: ~datetime.timedelta
-        :raises: ~bodyduration.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[datetime.timedelta] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})

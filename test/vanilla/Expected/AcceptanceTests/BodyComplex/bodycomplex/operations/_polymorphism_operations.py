@@ -50,7 +50,7 @@ class PolymorphismOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Fish or the result of cls(response)
         :rtype: ~bodycomplex.models.Fish
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType["models.Fish"]
         error_map = kwargs.pop('error_map', {})
@@ -128,7 +128,7 @@ class PolymorphismOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -171,7 +171,7 @@ class PolymorphismOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DotFish or the result of cls(response)
         :rtype: ~bodycomplex.models.DotFish
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType["models.DotFish"]
         error_map = kwargs.pop('error_map', {})
@@ -214,7 +214,7 @@ class PolymorphismOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DotFishMarket or the result of cls(response)
         :rtype: ~bodycomplex.models.DotFishMarket
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType["models.DotFishMarket"]
         error_map = kwargs.pop('error_map', {})
@@ -257,7 +257,7 @@ class PolymorphismOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: DotFishMarket or the result of cls(response)
         :rtype: ~bodycomplex.models.DotFishMarket
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType["models.DotFishMarket"]
         error_map = kwargs.pop('error_map', {})
@@ -300,7 +300,7 @@ class PolymorphismOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Salmon or the result of cls(response)
         :rtype: ~bodycomplex.models.Salmon
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType["models.Salmon"]
         error_map = kwargs.pop('error_map', {})
@@ -346,7 +346,7 @@ class PolymorphismOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
@@ -392,7 +392,7 @@ class PolymorphismOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Salmon or the result of cls(response)
         :rtype: ~bodycomplex.models.Salmon
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType["models.Salmon"]
         error_map = kwargs.pop('error_map', {})
@@ -474,7 +474,7 @@ class PolymorphismOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})

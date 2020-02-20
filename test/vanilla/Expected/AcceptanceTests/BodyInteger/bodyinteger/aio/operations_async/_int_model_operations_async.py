@@ -50,7 +50,7 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: int or the result of cls(response)
         :rtype: int
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[int] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -92,7 +92,7 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: int or the result of cls(response)
         :rtype: int
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[int] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -134,7 +134,7 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: int or the result of cls(response)
         :rtype: int
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[int] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -176,7 +176,7 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: int or the result of cls(response)
         :rtype: int
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[int] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -218,7 +218,7 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: long or the result of cls(response)
         :rtype: long
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[int] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -260,7 +260,7 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: long or the result of cls(response)
         :rtype: long
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[int] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -305,7 +305,7 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -350,7 +350,7 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -395,7 +395,7 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -440,7 +440,7 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -482,7 +482,7 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[datetime.datetime] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -527,7 +527,7 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -569,7 +569,7 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[datetime.datetime] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -611,7 +611,7 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[datetime.datetime] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})

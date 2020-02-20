@@ -55,14 +55,14 @@ class PathItemsOperations:
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
         :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-         parameter.
+             parameter.
         :type path_item_string_query: str
         :param local_string_query: should contain value 'localStringQuery'.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -118,14 +118,14 @@ class PathItemsOperations:
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
         :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-         parameter.
+             parameter.
         :type path_item_string_query: str
         :param local_string_query: should contain value 'localStringQuery'.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -181,14 +181,14 @@ class PathItemsOperations:
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
         :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-         parameter.
+             parameter.
         :type path_item_string_query: str
         :param local_string_query: should contain value 'localStringQuery'.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -244,14 +244,14 @@ class PathItemsOperations:
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
         :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-         parameter.
+             parameter.
         :type path_item_string_query: str
         :param local_string_query: should contain value 'localStringQuery'.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~url.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})

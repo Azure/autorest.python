@@ -50,7 +50,7 @@ class PolymorphicrecursiveOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Fish or the result of cls(response)
         :rtype: ~bodycomplex.models.Fish
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType["models.Fish"]
         error_map = kwargs.pop('error_map', {})
@@ -128,7 +128,7 @@ class PolymorphicrecursiveOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls = kwargs.pop('cls', None )  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})

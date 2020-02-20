@@ -48,12 +48,12 @@ class SubscriptionInMethodOperations:
         """POST method with subscriptionId modeled in the method.  pass in subscription id = '1234-5678-9012-3456' to succeed.
 
         :param subscription_id: This should appear as a method parameter, use value
-         '1234-5678-9012-3456'.
+             '1234-5678-9012-3456'.
         :type subscription_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azurespecialproperties.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -94,12 +94,12 @@ class SubscriptionInMethodOperations:
         """POST method with subscriptionId modeled in the method.  pass in subscription id = null, client-side validation should prevent you from making this call.
 
         :param subscription_id: This should appear as a method parameter, use value
-         '1234-5678-9012-3456'.
+             '1234-5678-9012-3456'.
         :type subscription_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azurespecialproperties.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -140,12 +140,12 @@ class SubscriptionInMethodOperations:
         """POST method with subscriptionId modeled in the method.  pass in subscription id = '1234-5678-9012-3456' to succeed.
 
         :param subscription_id: This should appear as a method parameter, use value
-         '1234-5678-9012-3456'.
+             '1234-5678-9012-3456'.
         :type subscription_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azurespecialproperties.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
@@ -186,12 +186,12 @@ class SubscriptionInMethodOperations:
         """POST method with subscriptionId modeled in the method.  pass in subscription id = '1234-5678-9012-3456' to succeed.
 
         :param subscription_id: This should appear as a method parameter, use value
-         '1234-5678-9012-3456'.
+             '1234-5678-9012-3456'.
         :type subscription_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azurespecialproperties.models.ErrorException:
+        :raises: ~azure.core.HttpResponseError
         """
         cls: ClsType[None] = kwargs.pop('cls', None )
         error_map = kwargs.pop('error_map', {})
