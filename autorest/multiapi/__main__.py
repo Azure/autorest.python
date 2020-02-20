@@ -6,7 +6,8 @@
 import argparse
 import logging
 import sys
-from . import MultiAPI
+from . import MultiApiScriptPlugin
+from ..jsonrpc.localapi import LocalAutorestAPI
 
 
 parser = argparse.ArgumentParser(
@@ -38,10 +39,14 @@ input_package_name: str = args.package_name
 python_sdks_folder: str = args.python_sdks_folder
 default_api: str = args.default_api
 
-generator = MultiAPI(
-    input_package_name,
-    python_sdks_folder,
-    default_api
-)
+autorest_api = LocalAutorestAPI(output_folder=python_sdks_folder)
+autorest_api.values = {
+    "python-sdks-folder": python_sdks_folder,
+    "package-name": input_package_name,
+    "default-api": default_api
+}
+
+
+generator = MultiApiScriptPlugin(autorest_api)
 if not generator.process():
     sys.exit(1)

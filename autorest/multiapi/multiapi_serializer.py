@@ -8,10 +8,8 @@ from jinja2 import Environment, PackageLoader
 
 
 class MultiAPISerializer:
-    def __init__(self, conf, path_to_package, service_client_name):
+    def __init__(self, conf):
         self.conf = conf
-        self.path_to_package = path_to_package
-        self.service_client_name = service_client_name
         self.env = Environment(
             loader=PackageLoader("autorest.multiapi", "templates"),
             keep_trailing_newline=True,
@@ -21,23 +19,14 @@ class MultiAPISerializer:
             lstrip_blocks=True,
         )
 
-    def serialize_multiapi_client(self):
+    def serialize_multiapi_client(self) -> str:
         template = self.env.get_template("multiapi_service_client.py.jinja2")
-        result = template.render(**self.conf)
+        return template.render(**self.conf)
 
-        with (self.path_to_package / self.service_client_name).open("w") as fd:
-            fd.write(result)
-
-    def serialize_multiapi_config(self):
+    def serialize_multiapi_config(self) -> str:
         template = self.env.get_template("multiapi_config.py.jinja2")
-        result = template.render(client_name=self.conf["client_name"], **self.conf["config"])
+        return template.render(client_name=self.conf["client_name"], **self.conf["config"])
 
-        with (self.path_to_package / "_configuration.py").open("w") as fd:
-            fd.write(result)
-
-    def serialize_multiapi_operation_mixins(self):
+    def serialize_multiapi_operation_mixins(self) -> str:
         template = self.env.get_template("multiapi_operations_mixin.py.jinja2")
-        result = template.render(**self.conf)
-
-        with (self.path_to_package / "_operations_mixin.py").open("w") as fd:
-            fd.write(result)
+        return template.render(**self.conf)

@@ -79,5 +79,15 @@ output-artifact: python-files
 pipeline:
   python/multiapiscript:
     scope: multiapiscript
+    output-artifact: python-files
 
+  python/multiapiscript/emitter:
+    input: multiapiscript
+    scope: scope-multiapiscript/emitter
+
+scope-multiapiscript/emitter:
+    input-artifact: python-files
+    output-uri-expr: $key
+
+output-artifact: python-files
 ```

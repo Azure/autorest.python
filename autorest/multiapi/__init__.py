@@ -13,6 +13,7 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Dict, List, Tuple, Union, Optional, cast
 from .multiapi_serializer import MultiAPISerializer
+from ..jsonrpc.localapi import LocalAutorestAPI
 
 from .. import Plugin
 
@@ -27,6 +28,7 @@ class MultiApiScriptPlugin(Plugin):
         generator = MultiAPI(
             input_package_name,
             python_sdks_folder,
+            self._autorestapi,
             default_api
         )
         return generator.process()
@@ -218,9 +220,16 @@ def _build_last_rt_list(
     return last_rt_list
 
 class MultiAPI:
-    def __init__(self, input_package_name: str, python_sdks_folder: str, default_api: Optional[str] = None):
+    def __init__(
+        self,
+        input_package_name: str,
+        python_sdks_folder: str,
+        autorestapi: LocalAutorestAPI,
+        default_api: Optional[str] = None
+    ):
         self.input_package_name = input_package_name
         self.python_sdks_folder = Path(python_sdks_folder).resolve()
+        self._autorestapi = autorestapi
         self.default_api = default_api
 
     def _resolve_package_directory(self, package_name: str) -> str:
@@ -357,13 +366,22 @@ class MultiAPI:
             ),
             "config": metadata_json["config"]
         }
-        multiapi_serializer = MultiAPISerializer(
-            conf=conf, path_to_package=path_to_package, service_client_name=metadata_json["client"]["filename"]
+        multiapi_serializer = MultiAPISerializer(conf=conf)
+
+        self._autorestapi.write_file(
+            Path(metadata_json["client"]["filename"]),
+            multiapi_serializer.serialize_multiapi_client()
         )
-        multiapi_serializer.serialize_multiapi_client()
-        multiapi_serializer.serialize_multiapi_config()
+
+        self._autorestapi.write_file(
+            Path("_configuration.py"),
+            multiapi_serializer.serialize_multiapi_config()
+        )
         if mixin_operations:
-            multiapi_serializer.serialize_multiapi_operation_mixins()
+            self._autorestapi.write_file(
+                Path("_operations_mixin.py"),
+                multiapi_serializer.serialize_multiapi_operation_mixins()
+            )
 
         _LOGGER.info("Done!")
         return True
