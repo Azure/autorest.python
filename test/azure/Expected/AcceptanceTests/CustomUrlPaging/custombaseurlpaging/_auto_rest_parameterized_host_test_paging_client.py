@@ -30,7 +30,7 @@ class AutoRestParameterizedHostTestPagingClient(object):
     def __init__(
         self,
         credential,  # type: "TokenCredential"
-        host,  # type: str
+        host="host",  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None

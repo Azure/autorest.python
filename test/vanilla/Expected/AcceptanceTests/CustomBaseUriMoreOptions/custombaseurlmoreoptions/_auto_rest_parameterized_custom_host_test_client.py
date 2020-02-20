@@ -30,7 +30,7 @@ class AutoRestParameterizedCustomHostTestClient(object):
     def __init__(
         self,
         subscription_id,  # type: str
-        dns_suffix,  # type: str
+        dns_suffix="host",  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None
