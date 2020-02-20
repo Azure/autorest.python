@@ -52,7 +52,7 @@ class BoolOperations(object):
         :rtype: bool
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[bool]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -95,7 +95,7 @@ class BoolOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         bool_body = True
 
@@ -139,7 +139,7 @@ class BoolOperations(object):
         :rtype: bool
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[bool]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -182,7 +182,7 @@ class BoolOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         bool_body = False
 
@@ -226,7 +226,7 @@ class BoolOperations(object):
         :rtype: bool
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[bool]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -269,7 +269,7 @@ class BoolOperations(object):
         :rtype: bool
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[bool]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

@@ -52,7 +52,7 @@ class DurationOperations:
         :rtype: ~datetime.timedelta
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[datetime.timedelta] = kwargs.pop('cls', None )
+        cls: ClsType[datetime.timedelta] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -97,7 +97,7 @@ class DurationOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -139,7 +139,7 @@ class DurationOperations:
         :rtype: ~datetime.timedelta
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[datetime.timedelta] = kwargs.pop('cls', None )
+        cls: ClsType[datetime.timedelta] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -181,7 +181,7 @@ class DurationOperations:
         :rtype: ~datetime.timedelta
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[datetime.timedelta] = kwargs.pop('cls', None )
+        cls: ClsType[datetime.timedelta] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

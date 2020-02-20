@@ -54,7 +54,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -97,7 +97,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -140,7 +140,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

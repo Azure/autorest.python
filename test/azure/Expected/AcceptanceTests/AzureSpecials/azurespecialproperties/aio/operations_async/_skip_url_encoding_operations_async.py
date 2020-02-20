@@ -54,7 +54,7 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -99,7 +99,7 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -141,7 +141,7 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         unencoded_path_param = "path1/path2/path3"
 
@@ -187,7 +187,7 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -229,7 +229,7 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -272,7 +272,7 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -311,7 +311,7 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         q1 = "value1&q2=value2&q3=value3"
 

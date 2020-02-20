@@ -55,7 +55,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -101,7 +101,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -150,7 +150,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         _body_parameter = models.IntWrapper(value=value)
@@ -198,7 +198,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         _body_parameter = models.IntOptionalWrapper(value=value)
@@ -249,7 +249,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -292,7 +292,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -336,7 +336,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -382,7 +382,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -431,7 +431,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         _body_parameter = models.StringWrapper(value=value)
@@ -479,7 +479,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         _body_parameter = models.StringOptionalWrapper(value=value)
@@ -530,7 +530,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -573,7 +573,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -617,7 +617,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -663,7 +663,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -712,7 +712,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         _body_parameter = models.ClassWrapper(value=value)
@@ -760,7 +760,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         _body_parameter = models.ClassOptionalWrapper(value=value)
@@ -811,7 +811,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -857,7 +857,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -906,7 +906,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         _body_parameter = models.ArrayWrapper(value=value)
@@ -954,7 +954,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         _body_parameter = models.ArrayOptionalWrapper(value=value)
@@ -1005,7 +1005,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1048,7 +1048,7 @@ class ExplicitOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

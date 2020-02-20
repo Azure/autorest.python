@@ -57,7 +57,7 @@ class PagingOperations:
         :rtype: ~custombaseurlpaging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -127,7 +127,7 @@ class PagingOperations:
         :rtype: ~custombaseurlpaging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):

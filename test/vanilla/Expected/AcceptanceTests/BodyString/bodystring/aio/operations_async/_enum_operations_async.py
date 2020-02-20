@@ -51,7 +51,7 @@ class EnumOperations:
         :rtype: str or ~bodystring.models.Colors
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[Union[str, "models.Colors"]] = kwargs.pop('cls', None )
+        cls: ClsType[Union[str, "models.Colors"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -96,7 +96,7 @@ class EnumOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -138,7 +138,7 @@ class EnumOperations:
         :rtype: str or ~bodystring.models.Colors
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[Union[str, "models.Colors"]] = kwargs.pop('cls', None )
+        cls: ClsType[Union[str, "models.Colors"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -183,7 +183,7 @@ class EnumOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -225,7 +225,7 @@ class EnumOperations:
         :rtype: ~bodystring.models.RefColorConstant
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.RefColorConstant"] = kwargs.pop('cls', None )
+        cls: ClsType["models.RefColorConstant"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -270,7 +270,7 @@ class EnumOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         _enum_string_body = models.RefColorConstant(field1=field1)

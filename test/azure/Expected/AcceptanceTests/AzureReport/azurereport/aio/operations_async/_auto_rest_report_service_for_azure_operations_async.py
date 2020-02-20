@@ -37,7 +37,7 @@ class AutoRestReportServiceForAzureOperationsMixin:
         :rtype: dict[str, int]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[Dict[str, int]] = kwargs.pop('cls', None )
+        cls: ClsType[Dict[str, int]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

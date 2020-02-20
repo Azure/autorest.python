@@ -51,7 +51,7 @@ class ReadonlypropertyOperations:
         :rtype: ~bodycomplex.models.ReadonlyObj
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.ReadonlyObj"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ReadonlyObj"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -96,7 +96,7 @@ class ReadonlypropertyOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         _complex_body = models.ReadonlyObj(size=size)

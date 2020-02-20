@@ -55,7 +55,7 @@ class GroupOperations(object):
         :rtype: ~subscriptionidapiversion.models.SampleResourceGroup
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.SampleResourceGroup"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.SampleResourceGroup"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

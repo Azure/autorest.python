@@ -52,7 +52,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -97,7 +97,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -142,7 +142,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -187,7 +187,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -232,7 +232,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -277,7 +277,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[Union["models.MyException", "models.B"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.B"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -325,7 +325,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[Union["models.MyException", "models.B"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.B"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -373,7 +373,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[Union["models.MyException", "models.B"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.B"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -421,7 +421,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[Union["models.MyException", "models.C", "models.D"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.C", "models.D"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -472,7 +472,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[Union["models.MyException", "models.C", "models.D"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.C", "models.D"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -523,7 +523,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[Union["models.MyException", "models.C", "models.D"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.C", "models.D"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -574,7 +574,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[Union["models.MyException", "models.C", "models.D"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.C", "models.D"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -625,7 +625,7 @@ class MultipleResponsesOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -664,7 +664,7 @@ class MultipleResponsesOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -703,7 +703,7 @@ class MultipleResponsesOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -742,7 +742,7 @@ class MultipleResponsesOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -781,7 +781,7 @@ class MultipleResponsesOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -820,7 +820,7 @@ class MultipleResponsesOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -859,7 +859,7 @@ class MultipleResponsesOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -898,7 +898,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -941,7 +941,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -984,7 +984,7 @@ class MultipleResponsesOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1023,7 +1023,7 @@ class MultipleResponsesOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1062,7 +1062,7 @@ class MultipleResponsesOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1101,7 +1101,7 @@ class MultipleResponsesOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1140,7 +1140,7 @@ class MultipleResponsesOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1179,7 +1179,7 @@ class MultipleResponsesOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1218,7 +1218,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1261,7 +1261,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1304,7 +1304,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1347,7 +1347,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1390,7 +1390,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1433,7 +1433,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1476,7 +1476,7 @@ class MultipleResponsesOperations(object):
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.MyException"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

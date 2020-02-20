@@ -51,7 +51,7 @@ class BasicOperations:
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.Basic"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Basic"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -96,7 +96,7 @@ class BasicOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         api_version = "2016-02-29"
 
@@ -140,7 +140,7 @@ class BasicOperations:
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.Basic"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Basic"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -182,7 +182,7 @@ class BasicOperations:
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.Basic"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Basic"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -224,7 +224,7 @@ class BasicOperations:
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.Basic"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Basic"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -266,7 +266,7 @@ class BasicOperations:
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.Basic"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Basic"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

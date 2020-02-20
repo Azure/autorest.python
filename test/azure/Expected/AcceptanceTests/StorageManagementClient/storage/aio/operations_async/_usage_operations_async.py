@@ -52,7 +52,7 @@ class UsageOperations:
         :rtype: ~storage.models.UsageListResult
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.UsageListResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.UsageListResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

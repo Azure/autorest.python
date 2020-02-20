@@ -56,7 +56,7 @@ class PagingOperations:
         :rtype: ~paging.models.ProductResultValue
         :raises: ~azure.mgmt.core.ARMError
         """
-        cls: ClsType["models.ProductResultValue"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ProductResultValue"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -113,7 +113,7 @@ class PagingOperations:
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -170,7 +170,7 @@ class PagingOperations:
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -233,7 +233,7 @@ class PagingOperations:
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         
         _maxresults = None
@@ -308,7 +308,7 @@ class PagingOperations:
         :rtype: ~paging.models.OdataProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        cls: ClsType["models.OdataProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.OdataProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         
         _maxresults = None
@@ -383,7 +383,7 @@ class PagingOperations:
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         
         _maxresults = None
@@ -458,7 +458,7 @@ class PagingOperations:
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -515,7 +515,7 @@ class PagingOperations:
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -572,7 +572,7 @@ class PagingOperations:
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -629,7 +629,7 @@ class PagingOperations:
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -686,7 +686,7 @@ class PagingOperations:
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -749,7 +749,7 @@ class PagingOperations:
         :rtype: ~paging.models.OdataProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        cls: ClsType["models.OdataProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.OdataProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -819,7 +819,7 @@ class PagingOperations:
         :rtype: ~paging.models.OdataProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        cls: ClsType["models.OdataProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.OdataProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         
         _api_version = None
@@ -886,7 +886,7 @@ class PagingOperations:
         paging_get_multiple_pages_lro_options: Optional["models.PagingGetMultiplePagesLroOptions"] = None,
         **kwargs
     ) -> "models.ProductResult":
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         
         _maxresults = None
@@ -951,7 +951,7 @@ class PagingOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
         raw_result = await self._get_multiple_pages_lro_initial(
             client_request_id=client_request_id,
             paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,

@@ -52,7 +52,7 @@ class StringOperations(object):
         :rtype: str
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[str]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -95,7 +95,7 @@ class StringOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         string_body = None
 
@@ -142,7 +142,7 @@ class StringOperations(object):
         :rtype: str
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[str]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -185,7 +185,7 @@ class StringOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         string_body = ""
 
@@ -229,7 +229,7 @@ class StringOperations(object):
         :rtype: str
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[str]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -272,7 +272,7 @@ class StringOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         string_body = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
 
@@ -316,7 +316,7 @@ class StringOperations(object):
         :rtype: str
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[str]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -359,7 +359,7 @@ class StringOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         string_body = "    Now is the time for all good men to come to the aid of their country    "
 
@@ -403,7 +403,7 @@ class StringOperations(object):
         :rtype: str
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[str]
+        cls = kwargs.pop('cls', None)  # type: ClsType[str]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -446,7 +446,7 @@ class StringOperations(object):
         :rtype: bytes
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[bytes]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bytes]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -489,7 +489,7 @@ class StringOperations(object):
         :rtype: bytes
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[bytes]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bytes]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -535,7 +535,7 @@ class StringOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -578,7 +578,7 @@ class StringOperations(object):
         :rtype: bytes
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[bytes]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bytes]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

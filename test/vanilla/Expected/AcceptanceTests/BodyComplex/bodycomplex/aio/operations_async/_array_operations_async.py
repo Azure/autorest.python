@@ -51,7 +51,7 @@ class ArrayOperations:
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.ArrayWrapper"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ArrayWrapper"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -96,7 +96,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         _complex_body = models.ArrayWrapper(array=array)
@@ -140,7 +140,7 @@ class ArrayOperations:
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.ArrayWrapper"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ArrayWrapper"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -185,7 +185,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         _complex_body = models.ArrayWrapper(array=array)
@@ -229,7 +229,7 @@ class ArrayOperations:
         :rtype: ~bodycomplex.models.ArrayWrapper
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.ArrayWrapper"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ArrayWrapper"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

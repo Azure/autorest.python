@@ -52,7 +52,7 @@ class PrimitiveOperations:
         :rtype: ~bodycomplex.models.IntWrapper
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.IntWrapper"] = kwargs.pop('cls', None )
+        cls: ClsType["models.IntWrapper"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -97,7 +97,7 @@ class PrimitiveOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -139,7 +139,7 @@ class PrimitiveOperations:
         :rtype: ~bodycomplex.models.LongWrapper
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.LongWrapper"] = kwargs.pop('cls', None )
+        cls: ClsType["models.LongWrapper"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -184,7 +184,7 @@ class PrimitiveOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -226,7 +226,7 @@ class PrimitiveOperations:
         :rtype: ~bodycomplex.models.FloatWrapper
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.FloatWrapper"] = kwargs.pop('cls', None )
+        cls: ClsType["models.FloatWrapper"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -271,7 +271,7 @@ class PrimitiveOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -313,7 +313,7 @@ class PrimitiveOperations:
         :rtype: ~bodycomplex.models.DoubleWrapper
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.DoubleWrapper"] = kwargs.pop('cls', None )
+        cls: ClsType["models.DoubleWrapper"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -359,7 +359,7 @@ class PrimitiveOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -401,7 +401,7 @@ class PrimitiveOperations:
         :rtype: ~bodycomplex.models.BooleanWrapper
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.BooleanWrapper"] = kwargs.pop('cls', None )
+        cls: ClsType["models.BooleanWrapper"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -446,7 +446,7 @@ class PrimitiveOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -488,7 +488,7 @@ class PrimitiveOperations:
         :rtype: ~bodycomplex.models.StringWrapper
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.StringWrapper"] = kwargs.pop('cls', None )
+        cls: ClsType["models.StringWrapper"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -533,7 +533,7 @@ class PrimitiveOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -575,7 +575,7 @@ class PrimitiveOperations:
         :rtype: ~bodycomplex.models.DateWrapper
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.DateWrapper"] = kwargs.pop('cls', None )
+        cls: ClsType["models.DateWrapper"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -620,7 +620,7 @@ class PrimitiveOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -662,7 +662,7 @@ class PrimitiveOperations:
         :rtype: ~bodycomplex.models.DatetimeWrapper
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.DatetimeWrapper"] = kwargs.pop('cls', None )
+        cls: ClsType["models.DatetimeWrapper"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -707,7 +707,7 @@ class PrimitiveOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -749,7 +749,7 @@ class PrimitiveOperations:
         :rtype: ~bodycomplex.models.Datetimerfc1123Wrapper
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.Datetimerfc1123Wrapper"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Datetimerfc1123Wrapper"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -795,7 +795,7 @@ class PrimitiveOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -837,7 +837,7 @@ class PrimitiveOperations:
         :rtype: ~bodycomplex.models.DurationWrapper
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.DurationWrapper"] = kwargs.pop('cls', None )
+        cls: ClsType["models.DurationWrapper"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -882,7 +882,7 @@ class PrimitiveOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         _complex_body = models.DurationWrapper(field=field)
@@ -926,7 +926,7 @@ class PrimitiveOperations:
         :rtype: ~bodycomplex.models.ByteWrapper
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.ByteWrapper"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ByteWrapper"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -971,7 +971,7 @@ class PrimitiveOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         _complex_body = models.ByteWrapper(field=field)
