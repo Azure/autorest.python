@@ -15,7 +15,8 @@ from .._version import VERSION
 
 
 class AutoRestRequiredOptionalTestServiceConfiguration(Configuration):
-    """Configuration for AutoRestRequiredOptionalTestService
+    """Configuration for AutoRestRequiredOptionalTestService.
+
     Note that all parameters used to create this instance are saved as instance
     attributes.
 

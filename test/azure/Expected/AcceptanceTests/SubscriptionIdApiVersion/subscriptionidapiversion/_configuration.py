@@ -15,7 +15,8 @@ from ._version import VERSION
 
 
 class MicrosoftAzureTestUrlConfiguration(Configuration):
-    """Configuration for MicrosoftAzureTestUrl
+    """Configuration for MicrosoftAzureTestUrl.
+
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
