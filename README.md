@@ -49,10 +49,14 @@ modelerfour:
 
 pipeline:
 
-# --- extension remodeler ---
-
-  python/m2r:
+  python:
+    # just passes content thru, 
+    # makes it so that the python: config section loads.
+    pass-thru: true 
     input: modelerfour/identity
+    
+  python/m2r:
+    input: python
 
   python/namer:
     input: python/m2r
