@@ -17,7 +17,7 @@ from .. import models
 
 
 class AutoRestResourceFlatteningTestService(AutoRestResourceFlatteningTestServiceOperationsMixin):
-    """Resource Flattening for AutoRest
+    """Resource Flattening for AutoRest.
 
     :param str base_url: Service URL
     """

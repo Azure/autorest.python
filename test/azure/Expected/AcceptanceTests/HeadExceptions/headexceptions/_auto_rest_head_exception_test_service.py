@@ -16,7 +16,7 @@ from .operations import HeadExceptionOperations
 
 
 class AutoRestHeadExceptionTestService(object):
-    """Test Infrastructure for AutoRest
+    """Test Infrastructure for AutoRest.
 
     :ivar head_exception: HeadExceptionOperations operations
     :vartype head_exception: headexceptions.operations.HeadExceptionOperations

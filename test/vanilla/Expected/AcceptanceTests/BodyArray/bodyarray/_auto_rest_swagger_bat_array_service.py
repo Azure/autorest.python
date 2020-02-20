@@ -17,7 +17,7 @@ from . import models
 
 
 class AutoRestSwaggerBATArrayService(object):
-    """Test Infrastructure for AutoRest Swagger BAT
+    """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar array: ArrayOperations operations
     :vartype array: bodyarray.operations.ArrayOperations

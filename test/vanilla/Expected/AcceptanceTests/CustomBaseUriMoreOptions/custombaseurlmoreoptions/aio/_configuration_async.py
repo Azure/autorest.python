@@ -15,7 +15,8 @@ from .._version import VERSION
 
 
 class AutoRestParameterizedCustomHostTestClientConfiguration(Configuration):
-    """Configuration for AutoRestParameterizedCustomHostTestClient
+    """Configuration for AutoRestParameterizedCustomHostTestClient.
+
     Note that all parameters used to create this instance are saved as instance
     attributes.
 

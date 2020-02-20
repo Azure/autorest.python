@@ -22,7 +22,8 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dic
 class PrimitiveOperations(object):
     """PrimitiveOperations operations.
 
-    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
+    You should not instantiate this class directly. Instead, you should create a Client instance that
+    instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
     :type models: ~bodycomplex.models
@@ -360,7 +361,7 @@ class PrimitiveOperations(object):
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
-             -0.000000000000000000000000000000000000000000000000000000005.
+         -0.000000000000000000000000000000000000000000000000000000005.
         :type complex_body: ~bodycomplex.models.DoubleWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -806,7 +807,7 @@ class PrimitiveOperations(object):
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
-             GMT'.
+         GMT'.
         :type complex_body: ~bodycomplex.models.Datetimerfc1123Wrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)

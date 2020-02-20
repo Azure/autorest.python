@@ -20,7 +20,7 @@ from .. import models
 
 
 class AutoRestLongRunningOperationTestService(object):
-    """Long-running Operation for AutoRest
+    """Long-running Operation for AutoRest.
 
     :ivar lros: LROsOperations operations
     :vartype lros: lro.aio.operations_async.LROsOperations

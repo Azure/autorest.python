@@ -15,7 +15,8 @@ from .._version import VERSION
 
 
 class AutoRestParameterizedHostTestPagingClientConfiguration(Configuration):
-    """Configuration for AutoRestParameterizedHostTestPagingClient
+    """Configuration for AutoRestParameterizedHostTestPagingClient.
+
     Note that all parameters used to create this instance are saved as instance
     attributes.
 

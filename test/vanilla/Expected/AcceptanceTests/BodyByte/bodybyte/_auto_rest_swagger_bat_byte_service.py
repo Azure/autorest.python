@@ -17,7 +17,7 @@ from . import models
 
 
 class AutoRestSwaggerBATByteService(object):
-    """Test Infrastructure for AutoRest Swagger BAT
+    """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar byte: ByteOperations operations
     :vartype byte: bodybyte.operations.ByteOperations

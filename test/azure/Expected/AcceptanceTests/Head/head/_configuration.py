@@ -15,7 +15,8 @@ from ._version import VERSION
 
 
 class AutoRestHeadTestServiceConfiguration(Configuration):
-    """Configuration for AutoRestHeadTestService
+    """Configuration for AutoRestHeadTestService.
+
     Note that all parameters used to create this instance are saved as instance
     attributes.
 

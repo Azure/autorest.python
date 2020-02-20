@@ -22,7 +22,8 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class DatetimeOperations:
     """DatetimeOperations async operations.
 
-    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
+    You should not instantiate this class directly. Instead, you should create a Client instance that
+    instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
     :type models: ~bodydatetime.models
@@ -262,7 +263,7 @@ class DatetimeOperations:
         """Put max datetime value 9999-12-31T23:59:59.9999999Z.
 
         This is against the recommendation that asks for 3 digits, but allow to test what happens in
-            that scenario.
+        that scenario.
 
         :param datetime_body:
         :type datetime_body: ~datetime.datetime
@@ -393,7 +394,7 @@ class DatetimeOperations:
         """Get max datetime value 9999-12-31T23:59:59.9999999Z.
 
         This is against the recommendation that asks for 3 digits, but allow to test what happens in
-            that scenario.
+        that scenario.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)

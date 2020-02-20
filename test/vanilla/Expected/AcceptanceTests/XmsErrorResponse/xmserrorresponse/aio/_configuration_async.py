@@ -15,7 +15,8 @@ from .._version import VERSION
 
 
 class XMSErrorResponseExtensionsConfiguration(Configuration):
-    """Configuration for XMSErrorResponseExtensions
+    """Configuration for XMSErrorResponseExtensions.
+
     Note that all parameters used to create this instance are saved as instance
     attributes.
     """

@@ -15,7 +15,8 @@ from ._version import VERSION
 
 
 class AutoRestHttpInfrastructureTestServiceConfiguration(Configuration):
-    """Configuration for AutoRestHttpInfrastructureTestService
+    """Configuration for AutoRestHttpInfrastructureTestService.
+
     Note that all parameters used to create this instance are saved as instance
     attributes.
     """

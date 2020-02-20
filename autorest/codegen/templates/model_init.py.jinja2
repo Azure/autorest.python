@@ -18,6 +18,7 @@ except (SyntaxError, ImportError):
     {% endif %}
     {% endfor %}
 {% if enums %}
+
 from ._{{ code_model.module_name }}_enums import (
     {% for enum in enums %}
     {{ enum }},

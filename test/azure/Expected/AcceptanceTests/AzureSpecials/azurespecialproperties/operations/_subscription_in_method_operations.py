@@ -21,7 +21,8 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dic
 class SubscriptionInMethodOperations(object):
     """SubscriptionInMethodOperations operations.
 
-    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
+    You should not instantiate this class directly. Instead, you should create a Client instance that
+    instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
     :type models: ~azurespecialproperties.models
@@ -49,7 +50,7 @@ class SubscriptionInMethodOperations(object):
         """POST method with subscriptionId modeled in the method.  pass in subscription id = '1234-5678-9012-3456' to succeed.
 
         :param subscription_id: This should appear as a method parameter, use value
-             '1234-5678-9012-3456'.
+         '1234-5678-9012-3456'.
         :type subscription_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -96,7 +97,7 @@ class SubscriptionInMethodOperations(object):
         """POST method with subscriptionId modeled in the method.  pass in subscription id = null, client-side validation should prevent you from making this call.
 
         :param subscription_id: This should appear as a method parameter, use value
-             '1234-5678-9012-3456'.
+         '1234-5678-9012-3456'.
         :type subscription_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -143,7 +144,7 @@ class SubscriptionInMethodOperations(object):
         """POST method with subscriptionId modeled in the method.  pass in subscription id = '1234-5678-9012-3456' to succeed.
 
         :param subscription_id: This should appear as a method parameter, use value
-             '1234-5678-9012-3456'.
+         '1234-5678-9012-3456'.
         :type subscription_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -190,7 +191,7 @@ class SubscriptionInMethodOperations(object):
         """POST method with subscriptionId modeled in the method.  pass in subscription id = '1234-5678-9012-3456' to succeed.
 
         :param subscription_id: This should appear as a method parameter, use value
-             '1234-5678-9012-3456'.
+         '1234-5678-9012-3456'.
         :type subscription_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
