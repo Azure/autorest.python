@@ -25,7 +25,7 @@ class AutoRestParameterizedHostTestClientConfiguration(Configuration):
 
     def __init__(
         self,
-        host: str,
+        host: str = "host",
         **kwargs: Any
     ) -> None:
         if host is None:

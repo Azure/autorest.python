@@ -56,6 +56,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         flattened: bool = False,
         grouped_by: Optional["Parameter"] = None,
         original_parameter: Optional["Parameter"] = None,
+        client_default_value: Optional[Any] = None,
     ):
         super().__init__(yaml_data)
         self.schema = schema
@@ -72,6 +73,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.flattened = flattened
         self.grouped_by = grouped_by
         self.original_parameter = original_parameter
+        self.client_default_value = client_default_value
 
     @property
     def implementation(self) -> str:
@@ -81,6 +83,13 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         return self._implementation
 
     def _default_value(self):
+        type_annot = self.schema.operation_type_annotation
+        if not self.required:
+            type_annot = f"Optional[{type_annot}]"
+
+        if self.client_default_value is not None:
+            return self.client_default_value, self.schema.get_declaration(self.client_default_value), type_annot
+
         default_value = self.schema.default_value
         default_value_declaration = self.schema.default_value_declaration
         if default_value is not None and self.required:
@@ -88,22 +97,21 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
                 "Parameter '%s' is required and has a default value, this combination is not recommended",
                 self.rest_api_name
             )
-        return default_value, default_value_declaration
+
+        return default_value, default_value_declaration, type_annot
 
     @property
     def sync_method_signature(self) -> str:
-        default_value, default_value_declaration = self._default_value()
-        type_annot = self.schema.operation_type_annotation
+        default_value, default_value_declaration, type_annot = self._default_value()
         if default_value is not None or not self.required:
-            return f"{self.serialized_name}={default_value_declaration},  # type: Optional[{type_annot}]"
+            return f"{self.serialized_name}={default_value_declaration},  # type: {type_annot}"
         return f"{self.serialized_name},  # type: {type_annot}"
 
     @property
     def async_method_signature(self) -> str:
-        default_value, default_value_declaration = self._default_value()
-        type_annot = self.schema.operation_type_annotation
+        default_value, default_value_declaration, type_annot = self._default_value()
         if default_value is not None or not self.required:
-            return f"{self.serialized_name}: Optional[{type_annot}] = {default_value_declaration}"
+            return f"{self.serialized_name}: {type_annot} = {default_value_declaration}"
         return f"{self.serialized_name}: {type_annot}"
 
     @property
@@ -135,6 +143,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
             grouped_by=yaml_data.get("groupedBy", None),
             original_parameter=yaml_data.get("originalParameter", None),
             flattened=yaml_data.get("flattened", False),
+            client_default_value=yaml_data.get("clientDefaultValue"),
         )
 
     def imports(self) -> FileImport:
