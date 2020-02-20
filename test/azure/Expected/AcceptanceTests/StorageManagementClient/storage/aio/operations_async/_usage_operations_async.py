@@ -50,7 +50,7 @@ class UsageOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: UsageListResult or the result of cls(response)
         :rtype: ~storage.models.UsageListResult
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls: ClsType["models.UsageListResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})

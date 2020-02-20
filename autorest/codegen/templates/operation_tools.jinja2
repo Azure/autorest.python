@@ -30,7 +30,7 @@
 {% endfor %}
 :keyword callable cls: A custom type or function that will be passed the direct response
 {{ return_docstring(operation) }}
-:raises: ~azure.core.HttpResponseError
+:raises: ~azure.core.exceptions.HttpResponseError
 """{% endmacro %}
 {# get method signature #}
 {% macro method_signature(operation, operation_name, async_mode, coroutine) %}
