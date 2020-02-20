@@ -91,7 +91,7 @@ class HttpRedirectsOperations(object):
         """Return 300 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return:  or list or the result of cls(response)
+        :return: list or the result of cls(response)
         :rtype: None or list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
