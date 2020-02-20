@@ -55,7 +55,7 @@ class PathItemsOperations:
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
         :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-             parameter.
+         parameter.
         :type path_item_string_query: str
         :param local_string_query: should contain value 'localStringQuery'.
         :type local_string_query: str
@@ -118,7 +118,7 @@ class PathItemsOperations:
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
         :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-             parameter.
+         parameter.
         :type path_item_string_query: str
         :param local_string_query: should contain value 'localStringQuery'.
         :type local_string_query: str
@@ -181,7 +181,7 @@ class PathItemsOperations:
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
         :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-             parameter.
+         parameter.
         :type path_item_string_query: str
         :param local_string_query: should contain value 'localStringQuery'.
         :type local_string_query: str
@@ -244,7 +244,7 @@ class PathItemsOperations:
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
         :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-             parameter.
+         parameter.
         :type path_item_string_query: str
         :param local_string_query: should contain value 'localStringQuery'.
         :type local_string_query: str

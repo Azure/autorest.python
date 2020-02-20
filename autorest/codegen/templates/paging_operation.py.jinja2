@@ -27,7 +27,7 @@
     """{{operation.description }}
     {% if operation.summary %}
 
-    {{ operation.summary | wordwrap(width=95, break_long_words=False, wrapstring='\n    ') }}
+    {{ operation.summary | wordwrap(width=95, break_long_words=False, wrapstring='\n') }}
     {% endif %}
 
 {% if operation.deprecated -%}
@@ -37,7 +37,7 @@
 {% endif -%}
 {% for parameter in operation.parameters.method %}
     {%- for doc_string in param_documentation_string(parameter).replace('\n', '\n ').split('\n') %}
-    {{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n     ')}}
+    {{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n ')}}
     {% endfor %}
     :type {{ parameter.serialized_name }}: {{ parameter.schema.docstring_type }}
 {% endfor %}

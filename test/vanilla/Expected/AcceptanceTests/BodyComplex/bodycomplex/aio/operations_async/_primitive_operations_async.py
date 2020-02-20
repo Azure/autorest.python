@@ -352,7 +352,7 @@ class PrimitiveOperations:
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
-             -0.000000000000000000000000000000000000000000000000000000005.
+         -0.000000000000000000000000000000000000000000000000000000005.
         :type complex_body: ~bodycomplex.models.DoubleWrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -788,7 +788,7 @@ class PrimitiveOperations:
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
-             GMT'.
+         GMT'.
         :type complex_body: ~bodycomplex.models.Datetimerfc1123Wrapper
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
