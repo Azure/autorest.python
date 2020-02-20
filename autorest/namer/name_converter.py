@@ -15,6 +15,11 @@ class NameConverter:
             yaml_data["info"]["title"].replace(" ", ""), convert_name=True
         )
         yaml_data['info']['pascal_case_title'] = yaml_data["language"]["default"]["name"]
+        if yaml_data['info'].get("description"):
+            if yaml_data["info"]["description"][-1] != ".":
+                yaml_data["info"]["description"] += "."
+        else:
+            yaml_data["info"]["description"] = yaml_data['info']['pascal_case_title'] + "."
         NameConverter._convert_schemas(yaml_data['schemas'])
         NameConverter._convert_operation_groups(yaml_data['operationGroups'], yaml_data['info']['pascal_case_title'])
         if yaml_data.get('globalParameters'):

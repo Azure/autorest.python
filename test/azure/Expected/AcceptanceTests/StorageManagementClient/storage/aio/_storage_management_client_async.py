@@ -18,7 +18,7 @@ from .. import models
 
 
 class StorageManagementClient(object):
-    """StorageManagementClient
+    """StorageManagementClient.
 
     :ivar storage_accounts: StorageAccountsOperations operations
     :vartype storage_accounts: storage.aio.operations_async.StorageAccountsOperations

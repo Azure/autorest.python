@@ -17,7 +17,7 @@ from .. import models
 
 
 class AutoRestParameterFlattening(object):
-    """Resource Flattening for AutoRest
+    """Resource Flattening for AutoRest.
 
     :ivar availability_sets: AvailabilitySetsOperations operations
     :vartype availability_sets: parameterflattening.aio.operations_async.AvailabilitySetsOperations

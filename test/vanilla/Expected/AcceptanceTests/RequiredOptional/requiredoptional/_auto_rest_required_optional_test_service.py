@@ -18,7 +18,7 @@ from . import models
 
 
 class AutoRestRequiredOptionalTestService(object):
-    """Test Infrastructure for AutoRest
+    """Test Infrastructure for AutoRest.
 
     :ivar implicit: ImplicitOperations operations
     :vartype implicit: requiredoptional.operations.ImplicitOperations

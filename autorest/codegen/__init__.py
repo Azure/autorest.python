@@ -60,7 +60,7 @@ class CodeGenerator(Plugin):
         code_model.module_name = yaml_data["info"]["python_title"]
         code_model.class_name = yaml_data["info"]["pascal_case_title"]
         code_model.description = (
-            yaml_data["info"]["description"] if yaml_data["info"].get("description") else code_model.class_name
+            yaml_data["info"]["description"] if yaml_data["info"].get("description") else ""
         )
 
         # Global parameters

@@ -18,7 +18,7 @@ from .. import models
 
 
 class AutoRestSwaggerBATService(object):
-    """Test Infrastructure for AutoRest Swagger BAT
+    """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar string: StringOperations operations
     :vartype string: bodystring.aio.operations_async.StringOperations

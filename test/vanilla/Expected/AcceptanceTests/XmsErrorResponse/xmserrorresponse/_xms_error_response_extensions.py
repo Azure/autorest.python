@@ -17,7 +17,7 @@ from . import models
 
 
 class XMSErrorResponseExtensions(object):
-    """XMSErrorResponseExtensions
+    """XMSErrorResponseExtensions.
 
     :ivar pet: PetOperations operations
     :vartype pet: xmserrorresponse.operations.PetOperations

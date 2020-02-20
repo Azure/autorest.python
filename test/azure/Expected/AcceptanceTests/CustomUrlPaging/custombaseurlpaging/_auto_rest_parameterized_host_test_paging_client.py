@@ -17,7 +17,7 @@ from . import models
 
 
 class AutoRestParameterizedHostTestPagingClient(object):
-    """Test Infrastructure for AutoRest
+    """Test Infrastructure for AutoRest.
 
     :ivar paging: PagingOperations operations
     :vartype paging: custombaseurlpaging.operations.PagingOperations

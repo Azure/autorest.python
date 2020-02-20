@@ -26,6 +26,7 @@ except (SyntaxError, ImportError):
     from ._models import SubProduct  # type: ignore
     from ._models import SubProductProperties  # type: ignore
     from ._models import SubResource  # type: ignore
+
 from ._auto_rest_long_running_operation_test_service_enums import (
     OperationResultStatus,
     ProductPropertiesProvisioningStateValues,

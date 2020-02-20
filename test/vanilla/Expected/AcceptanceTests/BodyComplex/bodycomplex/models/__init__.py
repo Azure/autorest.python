@@ -74,6 +74,7 @@ except (SyntaxError, ImportError):
     from ._models import Siamese  # type: ignore
     from ._models import SmartSalmon  # type: ignore
     from ._models import StringWrapper  # type: ignore
+
 from ._auto_rest_complex_test_service_enums import (
     CMYKColors,
     GoblinSharkColor,

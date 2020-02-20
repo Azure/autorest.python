@@ -32,6 +32,6 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     long_description="""\
-    Long-running Operation for AutoRest
+    Long-running Operation for AutoRest.
     """
 )
