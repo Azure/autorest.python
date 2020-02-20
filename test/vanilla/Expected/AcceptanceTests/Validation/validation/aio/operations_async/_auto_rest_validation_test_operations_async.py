@@ -38,7 +38,7 @@ class AutoRestValidationTestOperationsMixin:
         :rtype: ~validation.models.Product
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         api_version = "1.0.0"
 
@@ -97,7 +97,7 @@ class AutoRestValidationTestOperationsMixin:
         :rtype: ~validation.models.Product
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         api_version = "1.0.0"
 
@@ -154,7 +154,7 @@ class AutoRestValidationTestOperationsMixin:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         constant_param = "constant"
 
@@ -200,7 +200,7 @@ class AutoRestValidationTestOperationsMixin:
         :rtype: ~validation.models.Product
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         constant_param = "constant"
 

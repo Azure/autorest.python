@@ -51,7 +51,7 @@ class InheritanceOperations:
         :rtype: ~bodycomplex.models.Siamese
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.Siamese"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Siamese"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -98,7 +98,7 @@ class InheritanceOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

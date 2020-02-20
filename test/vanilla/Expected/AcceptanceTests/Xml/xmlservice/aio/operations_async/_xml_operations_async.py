@@ -51,7 +51,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.RootWithRefAndNoMeta
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.RootWithRefAndNoMeta"] = kwargs.pop('cls', None )
+        cls: ClsType["models.RootWithRefAndNoMeta"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -96,7 +96,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -138,7 +138,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.RootWithRefAndMeta
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.RootWithRefAndMeta"] = kwargs.pop('cls', None )
+        cls: ClsType["models.RootWithRefAndMeta"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -183,7 +183,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -225,7 +225,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.Slideshow
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.Slideshow"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Slideshow"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -270,7 +270,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -312,7 +312,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.AppleBarrel
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.AppleBarrel"] = kwargs.pop('cls', None )
+        cls: ClsType["models.AppleBarrel"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -357,7 +357,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -399,7 +399,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -440,7 +440,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.Slideshow
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.Slideshow"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Slideshow"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -485,7 +485,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -527,7 +527,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.AppleBarrel
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.AppleBarrel"] = kwargs.pop('cls', None )
+        cls: ClsType["models.AppleBarrel"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -572,7 +572,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -614,7 +614,7 @@ class XmlOperations:
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List["Banana"]] = kwargs.pop('cls', None )
+        cls: ClsType[List["Banana"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -659,7 +659,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -702,7 +702,7 @@ class XmlOperations:
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List["Banana"]] = kwargs.pop('cls', None )
+        cls: ClsType[List["Banana"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -747,7 +747,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -790,7 +790,7 @@ class XmlOperations:
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List["Banana"]] = kwargs.pop('cls', None )
+        cls: ClsType[List["Banana"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -835,7 +835,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -878,7 +878,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.Banana
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.Banana"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Banana"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -923,7 +923,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -965,7 +965,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.ListContainersResponse
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.ListContainersResponse"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ListContainersResponse"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         comp = "list"
 
@@ -1009,7 +1009,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.StorageServiceProperties
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.StorageServiceProperties"] = kwargs.pop('cls', None )
+        cls: ClsType["models.StorageServiceProperties"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         comp = "properties"
         restype = "service"
@@ -1058,7 +1058,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         comp = "properties"
         restype = "service"
@@ -1104,7 +1104,7 @@ class XmlOperations:
         :rtype: list[~xmlservice.models.SignedIdentifier]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List["SignedIdentifier"]] = kwargs.pop('cls', None )
+        cls: ClsType[List["SignedIdentifier"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         comp = "acl"
         restype = "container"
@@ -1153,7 +1153,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         comp = "acl"
         restype = "container"
@@ -1200,7 +1200,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.ListBlobsResponse
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.ListBlobsResponse"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ListBlobsResponse"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         comp = "list"
         restype = "container"
@@ -1249,7 +1249,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         _properties = models.JSONInput(id=id)
@@ -1293,7 +1293,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.JSONOutput
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.JSONOutput"] = kwargs.pop('cls', None )
+        cls: ClsType["models.JSONOutput"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

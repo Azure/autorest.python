@@ -61,7 +61,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.CheckNameAvailabilityResult
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.CheckNameAvailabilityResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.CheckNameAvailabilityResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -106,7 +106,7 @@ class StorageAccountsOperations:
         parameters: "models.StorageAccountCreateParameters",
         **kwargs
     ) -> "models.StorageAccount":
-        cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None )
+        cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -176,7 +176,7 @@ class StorageAccountsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None )
+        cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None)
         raw_result = await self._create_initial(
             resource_group_name=resource_group_name,
             account_name=account_name,
@@ -222,7 +222,7 @@ class StorageAccountsOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -274,7 +274,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.StorageAccount
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None )
+        cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -334,7 +334,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.StorageAccount
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None )
+        cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -394,7 +394,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.StorageAccountKeys
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.StorageAccountKeys"] = kwargs.pop('cls', None )
+        cls: ClsType["models.StorageAccountKeys"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -442,7 +442,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.StorageAccountListResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        cls: ClsType["models.StorageAccountListResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.StorageAccountListResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -506,7 +506,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.StorageAccountListResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        cls: ClsType["models.StorageAccountListResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.StorageAccountListResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -579,7 +579,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.StorageAccountKeys
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.StorageAccountKeys"] = kwargs.pop('cls', None )
+        cls: ClsType["models.StorageAccountKeys"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         _regenerate_key = models.StorageAccountRegenerateKeyParameters(key_name=key_name)

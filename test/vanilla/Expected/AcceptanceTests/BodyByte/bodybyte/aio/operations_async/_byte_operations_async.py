@@ -51,7 +51,7 @@ class ByteOperations:
         :rtype: bytearray
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[bytearray] = kwargs.pop('cls', None )
+        cls: ClsType[bytearray] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -93,7 +93,7 @@ class ByteOperations:
         :rtype: bytearray
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[bytearray] = kwargs.pop('cls', None )
+        cls: ClsType[bytearray] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -135,7 +135,7 @@ class ByteOperations:
         :rtype: bytearray
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[bytearray] = kwargs.pop('cls', None )
+        cls: ClsType[bytearray] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -180,7 +180,7 @@ class ByteOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -222,7 +222,7 @@ class ByteOperations:
         :rtype: bytearray
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[bytearray] = kwargs.pop('cls', None )
+        cls: ClsType[bytearray] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

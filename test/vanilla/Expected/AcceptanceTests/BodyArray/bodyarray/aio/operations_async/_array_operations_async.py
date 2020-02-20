@@ -52,7 +52,7 @@ class ArrayOperations:
         :rtype: list[int]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[int]] = kwargs.pop('cls', None )
+        cls: ClsType[List[int]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -94,7 +94,7 @@ class ArrayOperations:
         :rtype: list[int]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[int]] = kwargs.pop('cls', None )
+        cls: ClsType[List[int]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -136,7 +136,7 @@ class ArrayOperations:
         :rtype: list[int]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[int]] = kwargs.pop('cls', None )
+        cls: ClsType[List[int]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -181,7 +181,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -223,7 +223,7 @@ class ArrayOperations:
         :rtype: list[bool]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[bool]] = kwargs.pop('cls', None )
+        cls: ClsType[List[bool]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -268,7 +268,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -310,7 +310,7 @@ class ArrayOperations:
         :rtype: list[bool]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[bool]] = kwargs.pop('cls', None )
+        cls: ClsType[List[bool]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -352,7 +352,7 @@ class ArrayOperations:
         :rtype: list[bool]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[bool]] = kwargs.pop('cls', None )
+        cls: ClsType[List[bool]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -394,7 +394,7 @@ class ArrayOperations:
         :rtype: list[int]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[int]] = kwargs.pop('cls', None )
+        cls: ClsType[List[int]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -439,7 +439,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -481,7 +481,7 @@ class ArrayOperations:
         :rtype: list[int]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[int]] = kwargs.pop('cls', None )
+        cls: ClsType[List[int]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -523,7 +523,7 @@ class ArrayOperations:
         :rtype: list[int]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[int]] = kwargs.pop('cls', None )
+        cls: ClsType[List[int]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -565,7 +565,7 @@ class ArrayOperations:
         :rtype: list[long]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[int]] = kwargs.pop('cls', None )
+        cls: ClsType[List[int]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -610,7 +610,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -652,7 +652,7 @@ class ArrayOperations:
         :rtype: list[long]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[int]] = kwargs.pop('cls', None )
+        cls: ClsType[List[int]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -694,7 +694,7 @@ class ArrayOperations:
         :rtype: list[long]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[int]] = kwargs.pop('cls', None )
+        cls: ClsType[List[int]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -736,7 +736,7 @@ class ArrayOperations:
         :rtype: list[float]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[float]] = kwargs.pop('cls', None )
+        cls: ClsType[List[float]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -781,7 +781,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -823,7 +823,7 @@ class ArrayOperations:
         :rtype: list[float]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[float]] = kwargs.pop('cls', None )
+        cls: ClsType[List[float]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -865,7 +865,7 @@ class ArrayOperations:
         :rtype: list[float]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[float]] = kwargs.pop('cls', None )
+        cls: ClsType[List[float]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -907,7 +907,7 @@ class ArrayOperations:
         :rtype: list[float]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[float]] = kwargs.pop('cls', None )
+        cls: ClsType[List[float]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -952,7 +952,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -994,7 +994,7 @@ class ArrayOperations:
         :rtype: list[float]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[float]] = kwargs.pop('cls', None )
+        cls: ClsType[List[float]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1036,7 +1036,7 @@ class ArrayOperations:
         :rtype: list[float]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[float]] = kwargs.pop('cls', None )
+        cls: ClsType[List[float]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1078,7 +1078,7 @@ class ArrayOperations:
         :rtype: list[str]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[str]] = kwargs.pop('cls', None )
+        cls: ClsType[List[str]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1123,7 +1123,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1165,7 +1165,7 @@ class ArrayOperations:
         :rtype: list[str or ~bodyarray.models.FooEnum]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[Union[str, "FooEnum"]]] = kwargs.pop('cls', None )
+        cls: ClsType[List[Union[str, "FooEnum"]]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1210,7 +1210,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1252,7 +1252,7 @@ class ArrayOperations:
         :rtype: list[str or ~bodyarray.models.Enum0]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[Union[str, "Enum0"]]] = kwargs.pop('cls', None )
+        cls: ClsType[List[Union[str, "Enum0"]]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1297,7 +1297,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1339,7 +1339,7 @@ class ArrayOperations:
         :rtype: list[str]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[str]] = kwargs.pop('cls', None )
+        cls: ClsType[List[str]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1381,7 +1381,7 @@ class ArrayOperations:
         :rtype: list[str]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[str]] = kwargs.pop('cls', None )
+        cls: ClsType[List[str]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1423,7 +1423,7 @@ class ArrayOperations:
         :rtype: list[str]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[str]] = kwargs.pop('cls', None )
+        cls: ClsType[List[str]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1468,7 +1468,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1510,7 +1510,7 @@ class ArrayOperations:
         :rtype: list[str]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[str]] = kwargs.pop('cls', None )
+        cls: ClsType[List[str]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1552,7 +1552,7 @@ class ArrayOperations:
         :rtype: list[~datetime.date]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[datetime.date]] = kwargs.pop('cls', None )
+        cls: ClsType[List[datetime.date]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1597,7 +1597,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1639,7 +1639,7 @@ class ArrayOperations:
         :rtype: list[~datetime.date]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[datetime.date]] = kwargs.pop('cls', None )
+        cls: ClsType[List[datetime.date]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1681,7 +1681,7 @@ class ArrayOperations:
         :rtype: list[~datetime.date]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[datetime.date]] = kwargs.pop('cls', None )
+        cls: ClsType[List[datetime.date]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1723,7 +1723,7 @@ class ArrayOperations:
         :rtype: list[~datetime.datetime]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[datetime.datetime]] = kwargs.pop('cls', None )
+        cls: ClsType[List[datetime.datetime]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1768,7 +1768,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1810,7 +1810,7 @@ class ArrayOperations:
         :rtype: list[~datetime.datetime]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[datetime.datetime]] = kwargs.pop('cls', None )
+        cls: ClsType[List[datetime.datetime]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1852,7 +1852,7 @@ class ArrayOperations:
         :rtype: list[~datetime.datetime]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[datetime.datetime]] = kwargs.pop('cls', None )
+        cls: ClsType[List[datetime.datetime]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1894,7 +1894,7 @@ class ArrayOperations:
         :rtype: list[~datetime.datetime]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[datetime.datetime]] = kwargs.pop('cls', None )
+        cls: ClsType[List[datetime.datetime]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1939,7 +1939,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1981,7 +1981,7 @@ class ArrayOperations:
         :rtype: list[~datetime.timedelta]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[datetime.timedelta]] = kwargs.pop('cls', None )
+        cls: ClsType[List[datetime.timedelta]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2026,7 +2026,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2068,7 +2068,7 @@ class ArrayOperations:
         :rtype: list[bytearray]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[bytearray]] = kwargs.pop('cls', None )
+        cls: ClsType[List[bytearray]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2113,7 +2113,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2155,7 +2155,7 @@ class ArrayOperations:
         :rtype: list[bytearray]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[bytearray]] = kwargs.pop('cls', None )
+        cls: ClsType[List[bytearray]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2197,7 +2197,7 @@ class ArrayOperations:
         :rtype: list[bytes]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[bytes]] = kwargs.pop('cls', None )
+        cls: ClsType[List[bytes]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2239,7 +2239,7 @@ class ArrayOperations:
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List["Product"]] = kwargs.pop('cls', None )
+        cls: ClsType[List["Product"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2281,7 +2281,7 @@ class ArrayOperations:
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List["Product"]] = kwargs.pop('cls', None )
+        cls: ClsType[List["Product"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2323,7 +2323,7 @@ class ArrayOperations:
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List["Product"]] = kwargs.pop('cls', None )
+        cls: ClsType[List["Product"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2365,7 +2365,7 @@ class ArrayOperations:
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List["Product"]] = kwargs.pop('cls', None )
+        cls: ClsType[List["Product"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2407,7 +2407,7 @@ class ArrayOperations:
         :rtype: list[~bodyarray.models.Product]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List["Product"]] = kwargs.pop('cls', None )
+        cls: ClsType[List["Product"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2452,7 +2452,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2494,7 +2494,7 @@ class ArrayOperations:
         :rtype: list[list[str]]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[List[str]]] = kwargs.pop('cls', None )
+        cls: ClsType[List[List[str]]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2536,7 +2536,7 @@ class ArrayOperations:
         :rtype: list[list[str]]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[List[str]]] = kwargs.pop('cls', None )
+        cls: ClsType[List[List[str]]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2578,7 +2578,7 @@ class ArrayOperations:
         :rtype: list[list[str]]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[List[str]]] = kwargs.pop('cls', None )
+        cls: ClsType[List[List[str]]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2620,7 +2620,7 @@ class ArrayOperations:
         :rtype: list[list[str]]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[List[str]]] = kwargs.pop('cls', None )
+        cls: ClsType[List[List[str]]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2662,7 +2662,7 @@ class ArrayOperations:
         :rtype: list[list[str]]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[List[str]]] = kwargs.pop('cls', None )
+        cls: ClsType[List[List[str]]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2707,7 +2707,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2749,7 +2749,7 @@ class ArrayOperations:
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[Dict[str, str]]] = kwargs.pop('cls', None )
+        cls: ClsType[List[Dict[str, str]]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2791,7 +2791,7 @@ class ArrayOperations:
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[Dict[str, str]]] = kwargs.pop('cls', None )
+        cls: ClsType[List[Dict[str, str]]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2833,7 +2833,7 @@ class ArrayOperations:
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[Dict[str, str]]] = kwargs.pop('cls', None )
+        cls: ClsType[List[Dict[str, str]]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2875,7 +2875,7 @@ class ArrayOperations:
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[Dict[str, str]]] = kwargs.pop('cls', None )
+        cls: ClsType[List[Dict[str, str]]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2917,7 +2917,7 @@ class ArrayOperations:
         :rtype: list[dict[str, str]]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List[Dict[str, str]]] = kwargs.pop('cls', None )
+        cls: ClsType[List[Dict[str, str]]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2962,7 +2962,7 @@ class ArrayOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

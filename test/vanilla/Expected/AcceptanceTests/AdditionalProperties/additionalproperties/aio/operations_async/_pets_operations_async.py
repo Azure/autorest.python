@@ -54,7 +54,7 @@ class PetsOperations:
         :rtype: ~additionalproperties.models.PetAPTrue
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.PetAPTrue"] = kwargs.pop('cls', None )
+        cls: ClsType["models.PetAPTrue"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -103,7 +103,7 @@ class PetsOperations:
         :rtype: ~additionalproperties.models.CatAPTrue
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.CatAPTrue"] = kwargs.pop('cls', None )
+        cls: ClsType["models.CatAPTrue"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -152,7 +152,7 @@ class PetsOperations:
         :rtype: ~additionalproperties.models.PetAPObject
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.PetAPObject"] = kwargs.pop('cls', None )
+        cls: ClsType["models.PetAPObject"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -201,7 +201,7 @@ class PetsOperations:
         :rtype: ~additionalproperties.models.PetAPString
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.PetAPString"] = kwargs.pop('cls', None )
+        cls: ClsType["models.PetAPString"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -250,7 +250,7 @@ class PetsOperations:
         :rtype: ~additionalproperties.models.PetAPInProperties
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.PetAPInProperties"] = kwargs.pop('cls', None )
+        cls: ClsType["models.PetAPInProperties"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -299,7 +299,7 @@ class PetsOperations:
         :rtype: ~additionalproperties.models.PetAPInPropertiesWithAPString
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.PetAPInPropertiesWithAPString"] = kwargs.pop('cls', None )
+        cls: ClsType["models.PetAPInPropertiesWithAPString"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

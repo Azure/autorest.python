@@ -52,7 +52,7 @@ class BasicOperations(object):
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.Basic"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Basic"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -98,7 +98,7 @@ class BasicOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         api_version = "2016-02-29"
 
@@ -143,7 +143,7 @@ class BasicOperations(object):
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.Basic"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Basic"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -186,7 +186,7 @@ class BasicOperations(object):
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.Basic"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Basic"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -229,7 +229,7 @@ class BasicOperations(object):
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.Basic"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Basic"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -272,7 +272,7 @@ class BasicOperations(object):
         :rtype: ~bodycomplex.models.Basic
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.Basic"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Basic"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

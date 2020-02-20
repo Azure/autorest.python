@@ -54,7 +54,7 @@ class PetOperations:
         :rtype: ~xmserrorresponse.models.Pet or None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.Pet"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Pet"] = kwargs.pop('cls', None)
         error_map = {
             400: HttpResponseError,
             404: lambda response: models.NotFoundErrorBaseException.from_response(response, self._deserialize),
@@ -110,7 +110,7 @@ class PetOperations:
         :rtype: ~xmserrorresponse.models.PetAction
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.PetAction"] = kwargs.pop('cls', None )
+        cls: ClsType["models.PetAction"] = kwargs.pop('cls', None)
         error_map = {
             500: lambda response: models.PetActionErrorException.from_response(response, self._deserialize),
         }

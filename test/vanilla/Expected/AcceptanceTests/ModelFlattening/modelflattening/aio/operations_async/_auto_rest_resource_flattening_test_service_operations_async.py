@@ -35,7 +35,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -80,7 +80,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :rtype: list[~modelflattening.models.FlattenedProduct]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List["FlattenedProduct"]] = kwargs.pop('cls', None )
+        cls: ClsType[List["FlattenedProduct"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -125,7 +125,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -170,7 +170,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :rtype: list[~modelflattening.models.ProductWrapper]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[List["ProductWrapper"]] = kwargs.pop('cls', None )
+        cls: ClsType[List["ProductWrapper"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -215,7 +215,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -260,7 +260,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :rtype: dict[str, ~modelflattening.models.FlattenedProduct]
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[Dict[str, "FlattenedProduct"]] = kwargs.pop('cls', None )
+        cls: ClsType[Dict[str, "FlattenedProduct"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -305,7 +305,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -350,7 +350,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :rtype: ~modelflattening.models.ResourceCollection
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.ResourceCollection"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ResourceCollection"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -395,7 +395,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :rtype: ~modelflattening.models.SimpleProduct
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.SimpleProduct"] = kwargs.pop('cls', None )
+        cls: ClsType["models.SimpleProduct"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -461,7 +461,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :rtype: ~modelflattening.models.SimpleProduct
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.SimpleProduct"] = kwargs.pop('cls', None )
+        cls: ClsType["models.SimpleProduct"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         _simple_body_product = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odata_value=odata_value)
@@ -515,7 +515,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :rtype: ~modelflattening.models.SimpleProduct
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType["models.SimpleProduct"] = kwargs.pop('cls', None )
+        cls: ClsType["models.SimpleProduct"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         
         _name = None

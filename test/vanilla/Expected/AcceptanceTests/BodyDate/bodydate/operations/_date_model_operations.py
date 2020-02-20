@@ -53,7 +53,7 @@ class DateOperations(object):
         :rtype: ~datetime.date
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.date]
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -96,7 +96,7 @@ class DateOperations(object):
         :rtype: ~datetime.date
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.date]
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -139,7 +139,7 @@ class DateOperations(object):
         :rtype: ~datetime.date
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.date]
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -182,7 +182,7 @@ class DateOperations(object):
         :rtype: ~datetime.date
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.date]
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -228,7 +228,7 @@ class DateOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -271,7 +271,7 @@ class DateOperations(object):
         :rtype: ~datetime.date
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.date]
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -317,7 +317,7 @@ class DateOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -360,7 +360,7 @@ class DateOperations(object):
         :rtype: ~datetime.date
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[datetime.date]
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

@@ -52,7 +52,7 @@ class FilesOperations(object):
         :rtype: IO
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[IO]
+        cls = kwargs.pop('cls', None)  # type: ClsType[IO]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -95,7 +95,7 @@ class FilesOperations(object):
         :rtype: IO
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[IO]
+        cls = kwargs.pop('cls', None)  # type: ClsType[IO]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -138,7 +138,7 @@ class FilesOperations(object):
         :rtype: IO
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[IO]
+        cls = kwargs.pop('cls', None)  # type: ClsType[IO]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

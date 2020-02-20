@@ -51,7 +51,7 @@ class StringOperations:
         :rtype: str
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[str] = kwargs.pop('cls', None )
+        cls: ClsType[str] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -93,7 +93,7 @@ class StringOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         string_body = None
 
@@ -139,7 +139,7 @@ class StringOperations:
         :rtype: str
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[str] = kwargs.pop('cls', None )
+        cls: ClsType[str] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -181,7 +181,7 @@ class StringOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         string_body = ""
 
@@ -224,7 +224,7 @@ class StringOperations:
         :rtype: str
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[str] = kwargs.pop('cls', None )
+        cls: ClsType[str] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -266,7 +266,7 @@ class StringOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         string_body = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
 
@@ -309,7 +309,7 @@ class StringOperations:
         :rtype: str
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[str] = kwargs.pop('cls', None )
+        cls: ClsType[str] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -351,7 +351,7 @@ class StringOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         string_body = "    Now is the time for all good men to come to the aid of their country    "
 
@@ -394,7 +394,7 @@ class StringOperations:
         :rtype: str
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[str] = kwargs.pop('cls', None )
+        cls: ClsType[str] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -436,7 +436,7 @@ class StringOperations:
         :rtype: bytes
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[bytes] = kwargs.pop('cls', None )
+        cls: ClsType[bytes] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -478,7 +478,7 @@ class StringOperations:
         :rtype: bytes
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[bytes] = kwargs.pop('cls', None )
+        cls: ClsType[bytes] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -523,7 +523,7 @@ class StringOperations:
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -565,7 +565,7 @@ class StringOperations:
         :rtype: bytes
         :raises: ~azure.core.HttpResponseError
         """
-        cls: ClsType[bytes] = kwargs.pop('cls', None )
+        cls: ClsType[bytes] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

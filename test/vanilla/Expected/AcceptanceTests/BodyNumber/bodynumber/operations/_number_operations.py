@@ -52,7 +52,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -95,7 +95,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -138,7 +138,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -181,7 +181,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -227,7 +227,7 @@ class NumberOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -270,7 +270,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -316,7 +316,7 @@ class NumberOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -359,7 +359,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -402,7 +402,7 @@ class NumberOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         number_body = 99999999.99
 
@@ -446,7 +446,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -489,7 +489,7 @@ class NumberOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         number_body = -99999999.99
 
@@ -533,7 +533,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -579,7 +579,7 @@ class NumberOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -622,7 +622,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -665,7 +665,7 @@ class NumberOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         number_body = 99999999.99
 
@@ -709,7 +709,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -752,7 +752,7 @@ class NumberOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         number_body = -99999999.99
 
@@ -796,7 +796,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -842,7 +842,7 @@ class NumberOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -885,7 +885,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -931,7 +931,7 @@ class NumberOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -974,7 +974,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1020,7 +1020,7 @@ class NumberOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1063,7 +1063,7 @@ class NumberOperations(object):
         :rtype: float
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[float]
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

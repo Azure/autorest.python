@@ -48,7 +48,7 @@ class LROsCustomHeaderOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -110,7 +110,7 @@ class LROsCustomHeaderOperations(object):
         :raises ~azure.mgmt.core.ARMError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = self._put_async_retry_succeeded_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -145,7 +145,7 @@ class LROsCustomHeaderOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -208,7 +208,7 @@ class LROsCustomHeaderOperations(object):
         :raises ~azure.mgmt.core.ARMError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = self._put201_creating_succeeded200_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -238,7 +238,7 @@ class LROsCustomHeaderOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -296,7 +296,7 @@ class LROsCustomHeaderOperations(object):
         :raises ~azure.mgmt.core.ARMError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = self._post202_retry200_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -323,7 +323,7 @@ class LROsCustomHeaderOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -382,7 +382,7 @@ class LROsCustomHeaderOperations(object):
         :raises ~azure.mgmt.core.ARMError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = self._post_async_retry_succeeded_initial(
             product=product,
             cls=lambda x,y,z: x,

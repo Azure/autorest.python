@@ -55,7 +55,7 @@ class PetOperations(object):
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.Pet"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Pet"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -105,7 +105,7 @@ class PetOperations(object):
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.Pet"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Pet"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

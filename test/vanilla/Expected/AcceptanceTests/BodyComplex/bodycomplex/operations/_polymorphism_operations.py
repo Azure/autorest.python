@@ -52,7 +52,7 @@ class PolymorphismOperations(object):
         :rtype: ~bodycomplex.models.Fish
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.Fish"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Fish"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -130,7 +130,7 @@ class PolymorphismOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -173,7 +173,7 @@ class PolymorphismOperations(object):
         :rtype: ~bodycomplex.models.DotFish
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.DotFish"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.DotFish"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -216,7 +216,7 @@ class PolymorphismOperations(object):
         :rtype: ~bodycomplex.models.DotFishMarket
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.DotFishMarket"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.DotFishMarket"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -259,7 +259,7 @@ class PolymorphismOperations(object):
         :rtype: ~bodycomplex.models.DotFishMarket
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.DotFishMarket"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.DotFishMarket"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -302,7 +302,7 @@ class PolymorphismOperations(object):
         :rtype: ~bodycomplex.models.Salmon
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.Salmon"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Salmon"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -348,7 +348,7 @@ class PolymorphismOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -394,7 +394,7 @@ class PolymorphismOperations(object):
         :rtype: ~bodycomplex.models.Salmon
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.Salmon"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Salmon"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -476,7 +476,7 @@ class PolymorphismOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

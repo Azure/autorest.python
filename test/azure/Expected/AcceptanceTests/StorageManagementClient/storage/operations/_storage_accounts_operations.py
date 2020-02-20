@@ -61,7 +61,7 @@ class StorageAccountsOperations(object):
         :rtype: ~storage.models.CheckNameAvailabilityResult
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.CheckNameAvailabilityResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.CheckNameAvailabilityResult"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -107,7 +107,7 @@ class StorageAccountsOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.StorageAccount"
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.StorageAccount"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -178,7 +178,7 @@ class StorageAccountsOperations(object):
         :raises ~azure.mgmt.core.ARMError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.StorageAccount"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount"]
         raw_result = self._create_initial(
             resource_group_name=resource_group_name,
             account_name=account_name,
@@ -225,7 +225,7 @@ class StorageAccountsOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -278,7 +278,7 @@ class StorageAccountsOperations(object):
         :rtype: ~storage.models.StorageAccount
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.StorageAccount"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -339,7 +339,7 @@ class StorageAccountsOperations(object):
         :rtype: ~storage.models.StorageAccount
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.StorageAccount"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -400,7 +400,7 @@ class StorageAccountsOperations(object):
         :rtype: ~storage.models.StorageAccountKeys
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.StorageAccountKeys"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccountKeys"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -449,7 +449,7 @@ class StorageAccountsOperations(object):
         :rtype: ~storage.models.StorageAccountListResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.StorageAccountListResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccountListResult"]
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -514,7 +514,7 @@ class StorageAccountsOperations(object):
         :rtype: ~storage.models.StorageAccountListResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.StorageAccountListResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccountListResult"]
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -588,7 +588,7 @@ class StorageAccountsOperations(object):
         :rtype: ~storage.models.StorageAccountKeys
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.StorageAccountKeys"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccountKeys"]
         error_map = kwargs.pop('error_map', {})
 
         _regenerate_key = models.StorageAccountRegenerateKeyParameters(key_name=key_name)

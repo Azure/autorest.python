@@ -52,7 +52,7 @@ class EnumOperations(object):
         :rtype: str or ~bodystring.models.Colors
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[Union[str, "models.Colors"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union[str, "models.Colors"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -98,7 +98,7 @@ class EnumOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -141,7 +141,7 @@ class EnumOperations(object):
         :rtype: str or ~bodystring.models.Colors
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[Union[str, "models.Colors"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union[str, "models.Colors"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -187,7 +187,7 @@ class EnumOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -230,7 +230,7 @@ class EnumOperations(object):
         :rtype: ~bodystring.models.RefColorConstant
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.RefColorConstant"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.RefColorConstant"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -276,7 +276,7 @@ class EnumOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         _enum_string_body = models.RefColorConstant(field1=field1)

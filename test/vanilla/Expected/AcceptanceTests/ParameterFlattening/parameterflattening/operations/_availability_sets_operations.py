@@ -61,7 +61,7 @@ class AvailabilitySetsOperations(object):
         :rtype: None
         :raises: ~azure.core.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         _tags = models.AvailabilitySetUpdateParameters(tags=tags)
