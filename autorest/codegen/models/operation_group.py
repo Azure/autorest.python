@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Set
 
 from .base_model import BaseModel
 from .operation import Operation
@@ -20,15 +20,21 @@ class OperationGroup(BaseModel):
     """Represent an operation group.
 
     """
-
     def __init__(
-        self, code_model, yaml_data: Dict[str, Any], name: str, class_name: str, operations: List[Operation],
+        self,
+        code_model,
+        yaml_data: Dict[str, Any],
+        name: str,
+        class_name: str,
+        operations: List[Operation],
+        api_versions: Set[str]
     ) -> None:
         super().__init__(yaml_data)
         self.code_model = code_model
         self.name = name
         self.class_name = class_name
         self.operations = operations
+        self.api_versions = api_versions
 
     def imports(self, async_mode: bool) -> FileImport:
         file_import = FileImport()
@@ -67,6 +73,7 @@ class OperationGroup(BaseModel):
         _LOGGER.debug("Parsing %s operation group", name)
 
         operations = []
+        api_versions: Set[str] = set()
         for operation_yaml in yaml_data["operations"]:
             if operation_yaml.get("extensions", {}).get("x-ms-long-running-operation"):
                 operation = LROOperation.from_yaml(operation_yaml)
@@ -75,6 +82,7 @@ class OperationGroup(BaseModel):
             else:
                 operation = Operation.from_yaml(operation_yaml)
             operations.append(operation)
+            api_versions.update(operation.api_versions)
 
         return cls(
             code_model=code_model,
@@ -82,4 +90,5 @@ class OperationGroup(BaseModel):
             name=name,
             class_name=yaml_data["language"]["python"]["className"],
             operations=operations,
+            api_versions=api_versions
         )

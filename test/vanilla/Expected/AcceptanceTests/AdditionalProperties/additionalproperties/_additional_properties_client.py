@@ -17,7 +17,7 @@ from . import models
 
 
 class AdditionalPropertiesClient(object):
-    """Test Infrastructure for AutoRest
+    """Test Infrastructure for AutoRest.
 
     :ivar pets: PetsOperations operations
     :vartype pets: additionalproperties.operations.PetsOperations

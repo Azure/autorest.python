@@ -21,7 +21,8 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dic
 class PetsOperations(object):
     """PetsOperations operations.
 
-    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
+    You should not instantiate this class directly. Instead, you should create a Client instance that
+    instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
     :type models: ~additionalproperties.models
@@ -53,9 +54,9 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPTrue or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPTrue
-        :raises: ~additionalproperties.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.PetAPTrue"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPTrue"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -103,9 +104,9 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CatAPTrue or the result of cls(response)
         :rtype: ~additionalproperties.models.CatAPTrue
-        :raises: ~additionalproperties.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.CatAPTrue"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.CatAPTrue"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -153,9 +154,9 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPObject or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPObject
-        :raises: ~additionalproperties.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.PetAPObject"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPObject"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -203,9 +204,9 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPString or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPString
-        :raises: ~additionalproperties.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.PetAPString"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPString"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -253,9 +254,9 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInProperties or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInProperties
-        :raises: ~additionalproperties.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.PetAPInProperties"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPInProperties"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -303,9 +304,9 @@ class PetsOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAPInPropertiesWithAPString or the result of cls(response)
         :rtype: ~additionalproperties.models.PetAPInPropertiesWithAPString
-        :raises: ~additionalproperties.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.PetAPInPropertiesWithAPString"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPInPropertiesWithAPString"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

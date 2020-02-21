@@ -25,7 +25,7 @@ from .. import models
 
 
 class AutoRestComplexTestService(object):
-    """Test Infrastructure for AutoRest
+    """Test Infrastructure for AutoRest.
 
     :ivar basic: BasicOperations operations
     :vartype basic: bodycomplex.aio.operations_async.BasicOperations

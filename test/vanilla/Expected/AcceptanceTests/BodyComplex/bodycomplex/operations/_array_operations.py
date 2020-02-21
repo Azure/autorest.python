@@ -21,7 +21,8 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dic
 class ArrayOperations(object):
     """ArrayOperations operations.
 
-    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
+    You should not instantiate this class directly. Instead, you should create a Client instance that
+    instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
     :type models: ~bodycomplex.models
@@ -50,9 +51,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ArrayWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.ArrayWrapper"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ArrayWrapper"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -96,9 +97,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         _complex_body = models.ArrayWrapper(array=array)
@@ -141,9 +142,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ArrayWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.ArrayWrapper"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ArrayWrapper"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -187,9 +188,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         _complex_body = models.ArrayWrapper(array=array)
@@ -232,9 +233,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ArrayWrapper or the result of cls(response)
         :rtype: ~bodycomplex.models.ArrayWrapper
-        :raises: ~bodycomplex.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.ArrayWrapper"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ArrayWrapper"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

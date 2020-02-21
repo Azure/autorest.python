@@ -17,7 +17,7 @@ from . import models
 
 
 class AutoRestDateTestService(object):
-    """Test Infrastructure for AutoRest
+    """Test Infrastructure for AutoRest.
 
     :ivar date: DateOperations operations
     :vartype date: bodydate.operations.DateOperations

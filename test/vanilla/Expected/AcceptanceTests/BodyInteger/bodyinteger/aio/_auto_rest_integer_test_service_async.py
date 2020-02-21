@@ -17,7 +17,7 @@ from .. import models
 
 
 class AutoRestIntegerTestService(object):
-    """Test Infrastructure for AutoRest
+    """Test Infrastructure for AutoRest.
 
     :ivar int: IntOperations operations
     :vartype int: bodyinteger.aio.operations_async.IntOperations

@@ -21,7 +21,8 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class PetOperations:
     """PetOperations async operations.
 
-    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
+    You should not instantiate this class directly. Instead, you should create a Client instance that
+    instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
     :type models: ~xmserrorresponse.models
@@ -50,11 +51,11 @@ class PetOperations:
         :param pet_id: pet id.
         :type pet_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: Pet or  or the result of cls(response)
+        :return: Pet or the result of cls(response)
         :rtype: ~xmserrorresponse.models.Pet or None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.Pet"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Pet"] = kwargs.pop('cls', None)
         error_map = {
             400: HttpResponseError,
             404: lambda response: models.NotFoundErrorBaseException.from_response(response, self._deserialize),
@@ -108,9 +109,9 @@ class PetOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PetAction or the result of cls(response)
         :rtype: ~xmserrorresponse.models.PetAction
-        :raises: ~xmserrorresponse.models.PetActionErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.PetAction"] = kwargs.pop('cls', None )
+        cls: ClsType["models.PetAction"] = kwargs.pop('cls', None)
         error_map = {
             500: lambda response: models.PetActionErrorException.from_response(response, self._deserialize),
         }

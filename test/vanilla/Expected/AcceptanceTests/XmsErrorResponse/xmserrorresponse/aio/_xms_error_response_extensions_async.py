@@ -17,7 +17,7 @@ from .. import models
 
 
 class XMSErrorResponseExtensions(object):
-    """
+    """XMSErrorResponseExtensions.
 
     :ivar pet: PetOperations operations
     :vartype pet: xmserrorresponse.aio.operations_async.PetOperations

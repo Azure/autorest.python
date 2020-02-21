@@ -17,7 +17,7 @@ from . import models
 
 
 class AutoRestNumberTestService(object):
-    """Test Infrastructure for AutoRest
+    """Test Infrastructure for AutoRest.
 
     :ivar number: NumberOperations operations
     :vartype number: bodynumber.operations.NumberOperations

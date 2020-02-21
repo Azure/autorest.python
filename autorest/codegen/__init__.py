@@ -75,8 +75,8 @@ class CodeGenerator(Plugin):
             # We don't want to support multi-api customurl YET (will see if that goes well....)
             # So far now, let's get the first one in the first operation
             # UGLY as hell.....
-            first_operation_of_first_group = yaml_data["operationGroups"][0]["operations"][0]
-            code_model.custom_base_url = first_operation_of_first_group["request"]["protocol"]["http"]["uri"]
+            first_req_of_first_op_of_first_grp = yaml_data["operationGroups"][0]["operations"][0]["requests"][0]
+            code_model.custom_base_url = first_req_of_first_op_of_first_grp["protocol"]["http"]["uri"]
         else:
             dollar_host_parameter = dollar_host[0]
             code_model.global_parameters.remove(dollar_host_parameter)
@@ -148,6 +148,7 @@ class CodeGenerator(Plugin):
             "package_version": self._autorestapi.get_value("package-version"),
             "client_side_validation": self._autorestapi.get_boolean_value("client-side-validation", True),
             "tracing": self._autorestapi.get_boolean_value("trace", False),
+            "multiapi": self._autorestapi.get_boolean_value("multiapi", False)
         }
 
         if options["basic_setup_py"] and not options["package_version"]:

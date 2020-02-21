@@ -15,7 +15,8 @@ from .._version import VERSION
 
 
 class AdditionalPropertiesClientConfiguration(Configuration):
-    """Configuration for AdditionalPropertiesClient
+    """Configuration for AdditionalPropertiesClient.
+
     Note that all parameters used to create this instance are saved as instance
     attributes.
     """

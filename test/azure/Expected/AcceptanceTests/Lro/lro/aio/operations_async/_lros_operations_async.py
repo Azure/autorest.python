@@ -24,7 +24,8 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class LROsOperations:
     """LROsOperations async operations.
 
-    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
+    You should not instantiate this class directly. Instead, you should create a Client instance that
+    instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
     :type models: ~lro.models
@@ -47,7 +48,7 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -106,7 +107,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         raw_result = await self._put200_succeeded_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -135,7 +136,7 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -192,7 +193,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         raw_result = await self._put200_succeeded_no_state_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -221,7 +222,7 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -278,7 +279,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         raw_result = await self._put202_retry200_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -307,7 +308,7 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -369,7 +370,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         raw_result = await self._put201_creating_succeeded200_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -398,7 +399,7 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -455,7 +456,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         raw_result = await self._put200_updating_succeeded204_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -484,7 +485,7 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -546,7 +547,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         raw_result = await self._put201_creating_failed200_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -575,7 +576,7 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -632,7 +633,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         raw_result = await self._put200_acceptedcanceled200_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -661,7 +662,7 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -720,7 +721,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         raw_result = await self._put_no_header_in_retry_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -752,7 +753,7 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -813,7 +814,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         raw_result = await self._put_async_retry_succeeded_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -847,7 +848,7 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -907,7 +908,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         raw_result = await self._put_async_no_retry_succeeded_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -940,7 +941,7 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1001,7 +1002,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         raw_result = await self._put_async_retry_failed_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -1035,7 +1036,7 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1095,7 +1096,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         raw_result = await self._put_async_no_retrycanceled_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -1128,7 +1129,7 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1187,7 +1188,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         raw_result = await self._put_async_no_header_in_retry_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -1219,7 +1220,7 @@ class LROsOperations:
         sku: Optional["models.Sku"] = None,
         **kwargs
     ) -> "models.Sku":
-        cls: ClsType["models.Sku"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Sku"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1276,7 +1277,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Sku"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Sku"] = kwargs.pop('cls', None)
         raw_result = await self._put_non_resource_initial(
             sku=sku,
             cls=lambda x,y,z: x,
@@ -1305,7 +1306,7 @@ class LROsOperations:
         sku: Optional["models.Sku"] = None,
         **kwargs
     ) -> "models.Sku":
-        cls: ClsType["models.Sku"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Sku"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1362,7 +1363,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Sku"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Sku"] = kwargs.pop('cls', None)
         raw_result = await self._put_async_non_resource_initial(
             sku=sku,
             cls=lambda x,y,z: x,
@@ -1391,7 +1392,7 @@ class LROsOperations:
         provisioning_state: Optional[str] = None,
         **kwargs
     ) -> "models.SubProduct":
-        cls: ClsType["models.SubProduct"] = kwargs.pop('cls', None )
+        cls: ClsType["models.SubProduct"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         _product = models.SubProduct(provisioning_state=provisioning_state)
@@ -1450,7 +1451,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.SubProduct"] = kwargs.pop('cls', None )
+        cls: ClsType["models.SubProduct"] = kwargs.pop('cls', None)
         raw_result = await self._put_sub_resource_initial(
             provisioning_state=provisioning_state,
             cls=lambda x,y,z: x,
@@ -1479,7 +1480,7 @@ class LROsOperations:
         provisioning_state: Optional[str] = None,
         **kwargs
     ) -> "models.SubProduct":
-        cls: ClsType["models.SubProduct"] = kwargs.pop('cls', None )
+        cls: ClsType["models.SubProduct"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         _product = models.SubProduct(provisioning_state=provisioning_state)
@@ -1538,7 +1539,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.SubProduct"] = kwargs.pop('cls', None )
+        cls: ClsType["models.SubProduct"] = kwargs.pop('cls', None)
         raw_result = await self._put_async_sub_resource_initial(
             provisioning_state=provisioning_state,
             cls=lambda x,y,z: x,
@@ -1566,7 +1567,7 @@ class LROsOperations:
         self,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1621,7 +1622,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         raw_result = await self._delete_provisioning202_accepted200_succeeded_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -1652,7 +1653,7 @@ class LROsOperations:
         self,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1707,7 +1708,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         raw_result = await self._delete_provisioning202_deleting_failed200_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -1738,7 +1739,7 @@ class LROsOperations:
         self,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1793,7 +1794,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         raw_result = await self._delete_provisioning202_deletingcanceled200_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -1824,7 +1825,7 @@ class LROsOperations:
         self,
         **kwargs
     ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1867,7 +1868,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         raw_result = await self._delete204_succeeded_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -1891,7 +1892,7 @@ class LROsOperations:
         self,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1945,7 +1946,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         raw_result = await self._delete202_retry200_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -1972,7 +1973,7 @@ class LROsOperations:
         self,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2026,7 +2027,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         raw_result = await self._delete202_no_retry204_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2053,7 +2054,7 @@ class LROsOperations:
         self,
         **kwargs
     ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2100,7 +2101,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         raw_result = await self._delete_no_header_in_retry_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2124,7 +2125,7 @@ class LROsOperations:
         self,
         **kwargs
     ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2171,7 +2172,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         raw_result = await self._delete_async_no_header_in_retry_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2195,7 +2196,7 @@ class LROsOperations:
         self,
         **kwargs
     ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2243,7 +2244,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         raw_result = await self._delete_async_retry_succeeded_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2267,7 +2268,7 @@ class LROsOperations:
         self,
         **kwargs
     ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2315,7 +2316,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         raw_result = await self._delete_async_no_retry_succeeded_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2339,7 +2340,7 @@ class LROsOperations:
         self,
         **kwargs
     ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2387,7 +2388,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         raw_result = await self._delete_async_retry_failed_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2411,7 +2412,7 @@ class LROsOperations:
         self,
         **kwargs
     ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2459,7 +2460,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         raw_result = await self._delete_async_retrycanceled_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2483,7 +2484,7 @@ class LROsOperations:
         self,
         **kwargs
     ) -> "models.Sku":
-        cls: ClsType["models.Sku"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Sku"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2535,7 +2536,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Sku"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Sku"] = kwargs.pop('cls', None)
         raw_result = await self._post200_with_payload_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2563,7 +2564,7 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2620,7 +2621,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         raw_result = await self._post202_retry200_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -2646,7 +2647,7 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2706,7 +2707,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         raw_result = await self._post202_no_retry204_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -2738,7 +2739,7 @@ class LROsOperations:
         self,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2785,7 +2786,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         raw_result = await self._post_double_headers_final_location_get_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2812,7 +2813,7 @@ class LROsOperations:
         self,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2859,7 +2860,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         raw_result = await self._post_double_headers_final_azure_header_get_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2886,7 +2887,7 @@ class LROsOperations:
         self,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2933,7 +2934,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         raw_result = await self._post_double_headers_final_azure_header_get_default_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2961,7 +2962,7 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -3026,7 +3027,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         raw_result = await self._post_async_retry_succeeded_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -3055,7 +3056,7 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -3120,7 +3121,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         raw_result = await self._post_async_no_retry_succeeded_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -3149,7 +3150,7 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -3207,7 +3208,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         raw_result = await self._post_async_retry_failed_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -3233,7 +3234,7 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -3291,7 +3292,7 @@ class LROsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         raw_result = await self._post_async_retrycanceled_initial(
             product=product,
             cls=lambda x,y,z: x,

@@ -23,7 +23,7 @@ from . import models
 
 
 class AutoRestHttpInfrastructureTestService(object):
-    """Test Infrastructure for AutoRest
+    """Test Infrastructure for AutoRest.
 
     :ivar http_failure: HttpFailureOperations operations
     :vartype http_failure: httpinfrastructure.operations.HttpFailureOperations

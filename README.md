@@ -21,10 +21,10 @@ AutoRest needs the below config to pick this up as a plug-in - see https://githu
 
 #### Python code gen
 
-``` yaml
-version: 3.0.6220
+``` yaml !$(multiapiscript)
+version: 3.0.6225
 use-extension:
-  "@autorest/modelerfour": "4.6.199"
+  "@autorest/modelerfour": "4.7.207"
 
 modelerfour:
   group-parameters: true
@@ -70,4 +70,14 @@ scope-codegen/emitter:
     output-uri-expr: $key
 
 output-artifact: python-files
+```
+
+# Multiapi script pipeline
+
+``` yaml $(multiapiscript)
+
+pipeline:
+  python/multiapiscript:
+    scope: multiapiscript
+
 ```

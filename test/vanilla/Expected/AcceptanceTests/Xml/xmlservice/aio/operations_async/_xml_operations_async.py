@@ -21,7 +21,8 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class XmlOperations:
     """XmlOperations async operations.
 
-    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
+    You should not instantiate this class directly. Instead, you should create a Client instance that
+    instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
     :type models: ~xmlservice.models
@@ -49,9 +50,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: RootWithRefAndNoMeta or the result of cls(response)
         :rtype: ~xmlservice.models.RootWithRefAndNoMeta
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.RootWithRefAndNoMeta"] = kwargs.pop('cls', None )
+        cls: ClsType["models.RootWithRefAndNoMeta"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -94,9 +95,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -136,9 +137,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: RootWithRefAndMeta or the result of cls(response)
         :rtype: ~xmlservice.models.RootWithRefAndMeta
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.RootWithRefAndMeta"] = kwargs.pop('cls', None )
+        cls: ClsType["models.RootWithRefAndMeta"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -181,9 +182,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -223,9 +224,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Slideshow or the result of cls(response)
         :rtype: ~xmlservice.models.Slideshow
-        :raises: ~xmlservice.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.Slideshow"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Slideshow"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -268,9 +269,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~xmlservice.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -310,9 +311,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: AppleBarrel or the result of cls(response)
         :rtype: ~xmlservice.models.AppleBarrel
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.AppleBarrel"] = kwargs.pop('cls', None )
+        cls: ClsType["models.AppleBarrel"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -355,9 +356,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~xmlservice.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -397,9 +398,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -438,9 +439,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Slideshow or the result of cls(response)
         :rtype: ~xmlservice.models.Slideshow
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.Slideshow"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Slideshow"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -483,9 +484,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -525,9 +526,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: AppleBarrel or the result of cls(response)
         :rtype: ~xmlservice.models.AppleBarrel
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.AppleBarrel"] = kwargs.pop('cls', None )
+        cls: ClsType["models.AppleBarrel"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -570,9 +571,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -612,9 +613,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[List["Banana"]] = kwargs.pop('cls', None )
+        cls: ClsType[List["Banana"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -657,9 +658,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -700,9 +701,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[List["Banana"]] = kwargs.pop('cls', None )
+        cls: ClsType[List["Banana"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -745,9 +746,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -788,9 +789,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~xmlservice.models.Banana]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[List["Banana"]] = kwargs.pop('cls', None )
+        cls: ClsType[List["Banana"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -833,9 +834,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -876,9 +877,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Banana or the result of cls(response)
         :rtype: ~xmlservice.models.Banana
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.Banana"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Banana"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -921,9 +922,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -963,9 +964,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ListContainersResponse or the result of cls(response)
         :rtype: ~xmlservice.models.ListContainersResponse
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ListContainersResponse"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ListContainersResponse"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         comp = "list"
 
@@ -1007,9 +1008,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageServiceProperties or the result of cls(response)
         :rtype: ~xmlservice.models.StorageServiceProperties
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.StorageServiceProperties"] = kwargs.pop('cls', None )
+        cls: ClsType["models.StorageServiceProperties"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         comp = "properties"
         restype = "service"
@@ -1056,9 +1057,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         comp = "properties"
         restype = "service"
@@ -1102,9 +1103,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~xmlservice.models.SignedIdentifier]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[List["SignedIdentifier"]] = kwargs.pop('cls', None )
+        cls: ClsType[List["SignedIdentifier"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         comp = "acl"
         restype = "container"
@@ -1151,9 +1152,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         comp = "acl"
         restype = "container"
@@ -1198,9 +1199,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ListBlobsResponse or the result of cls(response)
         :rtype: ~xmlservice.models.ListBlobsResponse
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ListBlobsResponse"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ListBlobsResponse"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         comp = "list"
         restype = "container"
@@ -1247,9 +1248,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         _properties = models.JSONInput(id=id)
@@ -1291,9 +1292,9 @@ class XmlOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: JSONOutput or the result of cls(response)
         :rtype: ~xmlservice.models.JSONOutput
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.JSONOutput"] = kwargs.pop('cls', None )
+        cls: ClsType["models.JSONOutput"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

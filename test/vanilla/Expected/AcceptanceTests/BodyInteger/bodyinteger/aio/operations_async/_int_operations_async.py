@@ -22,7 +22,8 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class IntOperations:
     """IntOperations async operations.
 
-    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
+    You should not instantiate this class directly. Instead, you should create a Client instance that
+    instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
     :type models: ~bodyinteger.models
@@ -50,9 +51,9 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: int or the result of cls(response)
         :rtype: int
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[int] = kwargs.pop('cls', None )
+        cls: ClsType[int] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -92,9 +93,9 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: int or the result of cls(response)
         :rtype: int
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[int] = kwargs.pop('cls', None )
+        cls: ClsType[int] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -134,9 +135,9 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: int or the result of cls(response)
         :rtype: int
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[int] = kwargs.pop('cls', None )
+        cls: ClsType[int] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -176,9 +177,9 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: int or the result of cls(response)
         :rtype: int
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[int] = kwargs.pop('cls', None )
+        cls: ClsType[int] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -218,9 +219,9 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: long or the result of cls(response)
         :rtype: long
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[int] = kwargs.pop('cls', None )
+        cls: ClsType[int] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -260,9 +261,9 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: long or the result of cls(response)
         :rtype: long
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[int] = kwargs.pop('cls', None )
+        cls: ClsType[int] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -305,9 +306,9 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -350,9 +351,9 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -395,9 +396,9 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -440,9 +441,9 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -482,9 +483,9 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.datetime] = kwargs.pop('cls', None )
+        cls: ClsType[datetime.datetime] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -527,9 +528,9 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -569,9 +570,9 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.datetime] = kwargs.pop('cls', None )
+        cls: ClsType[datetime.datetime] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -611,9 +612,9 @@ class IntOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: datetime or the result of cls(response)
         :rtype: ~datetime.datetime
-        :raises: ~bodyinteger.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.datetime] = kwargs.pop('cls', None )
+        cls: ClsType[datetime.datetime] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

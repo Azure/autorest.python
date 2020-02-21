@@ -22,6 +22,7 @@ class BaseSchema(BaseModel, ABC):
         self.namespace = namespace
         self.default_value = yaml_data.get("defaultValue", None)
         self.xml_metadata = yaml_data.get("serialization", {}).get("xml", {})
+        self.api_versions = set(value_dict["version"] for value_dict in yaml_data.get("apiVersions", []))
 
     @classmethod
     def from_yaml(

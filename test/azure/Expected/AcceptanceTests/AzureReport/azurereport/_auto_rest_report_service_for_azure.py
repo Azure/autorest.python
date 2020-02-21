@@ -17,7 +17,7 @@ from . import models
 
 
 class AutoRestReportServiceForAzure(AutoRestReportServiceForAzureOperationsMixin):
-    """Test Infrastructure for AutoRest
+    """Test Infrastructure for AutoRest.
 
     :param str base_url: Service URL
     """

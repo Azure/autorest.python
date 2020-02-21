@@ -21,7 +21,8 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dic
 class BoolOperations(object):
     """BoolOperations operations.
 
-    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
+    You should not instantiate this class directly. Instead, you should create a Client instance that
+    instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
     :type models: ~bodyboolean.models
@@ -50,9 +51,9 @@ class BoolOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
         :rtype: bool
-        :raises: ~bodyboolean.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[bool]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -93,9 +94,9 @@ class BoolOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyboolean.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         bool_body = True
 
@@ -137,9 +138,9 @@ class BoolOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
         :rtype: bool
-        :raises: ~bodyboolean.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[bool]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -180,9 +181,9 @@ class BoolOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodyboolean.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         bool_body = False
 
@@ -224,9 +225,9 @@ class BoolOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
         :rtype: bool
-        :raises: ~bodyboolean.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[bool]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -267,9 +268,9 @@ class BoolOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bool or the result of cls(response)
         :rtype: bool
-        :raises: ~bodyboolean.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[bool]
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

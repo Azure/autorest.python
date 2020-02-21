@@ -17,7 +17,7 @@ from .. import models
 
 
 class AutoRestDurationTestService(object):
-    """Test Infrastructure for AutoRest
+    """Test Infrastructure for AutoRest.
 
     :ivar duration: DurationOperations operations
     :vartype duration: bodyduration.aio.operations_async.DurationOperations

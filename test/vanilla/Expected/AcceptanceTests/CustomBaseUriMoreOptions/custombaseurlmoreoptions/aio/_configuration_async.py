@@ -15,7 +15,8 @@ from .._version import VERSION
 
 
 class AutoRestParameterizedCustomHostTestClientConfiguration(Configuration):
-    """Configuration for AutoRestParameterizedCustomHostTestClient
+    """Configuration for AutoRestParameterizedCustomHostTestClient.
+
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
@@ -28,7 +29,7 @@ class AutoRestParameterizedCustomHostTestClientConfiguration(Configuration):
     def __init__(
         self,
         subscription_id: str,
-        dns_suffix: str,
+        dns_suffix: str = "host",
         **kwargs: Any
     ) -> None:
         if subscription_id is None:

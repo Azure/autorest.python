@@ -22,7 +22,8 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dic
 class UsageOperations(object):
     """UsageOperations operations.
 
-    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
+    You should not instantiate this class directly. Instead, you should create a Client instance that
+    instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
     :type models: ~storage.models
@@ -51,9 +52,9 @@ class UsageOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: UsageListResult or the result of cls(response)
         :rtype: ~storage.models.UsageListResult
-        :raises: ~azure.mgmt.core.ARMError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.UsageListResult"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.UsageListResult"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

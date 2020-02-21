@@ -21,7 +21,8 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class EnumOperations:
     """EnumOperations async operations.
 
-    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
+    You should not instantiate this class directly. Instead, you should create a Client instance that
+    instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
     :type models: ~bodystring.models
@@ -49,9 +50,9 @@ class EnumOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Colors or the result of cls(response)
         :rtype: str or ~bodystring.models.Colors
-        :raises: ~bodystring.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[Union[str, "models.Colors"]] = kwargs.pop('cls', None )
+        cls: ClsType[Union[str, "models.Colors"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -94,9 +95,9 @@ class EnumOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodystring.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -136,9 +137,9 @@ class EnumOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: Colors or the result of cls(response)
         :rtype: str or ~bodystring.models.Colors
-        :raises: ~bodystring.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[Union[str, "models.Colors"]] = kwargs.pop('cls', None )
+        cls: ClsType[Union[str, "models.Colors"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -181,9 +182,9 @@ class EnumOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodystring.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -223,9 +224,9 @@ class EnumOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: RefColorConstant or the result of cls(response)
         :rtype: ~bodystring.models.RefColorConstant
-        :raises: ~bodystring.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.RefColorConstant"] = kwargs.pop('cls', None )
+        cls: ClsType["models.RefColorConstant"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -268,9 +269,9 @@ class EnumOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~bodystring.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         _enum_string_body = models.RefColorConstant(field1=field1)

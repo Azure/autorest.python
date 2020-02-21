@@ -36,9 +36,9 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, int]
-        :raises: ~azurereport.models.ErrorException:
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
