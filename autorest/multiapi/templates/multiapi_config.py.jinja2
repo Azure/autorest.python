@@ -46,9 +46,11 @@ class {{ client_name }}Configuration(Configuration):
 
     {{ method_signature()|indent }}
         # type: (...) -> None
-{% for gp in global_parameters["method"] | selectattr('required') %}
-        if {{ gp }} is None:
-            raise ValueError("Parameter '{{ gp }}' must not be None.")
+{% for serialized_name, gp_dict in global_parameters["method"].items() %}
+    {% if gp_dict["required"] %}
+        if {{ serialized_name }} is None:
+            raise ValueError("Parameter '{{ serialized_name }}' must not be None.")
+    {% endif %}
 {% endfor %}
         super({{ client_name }}Configuration, self).__init__(**kwargs)
 

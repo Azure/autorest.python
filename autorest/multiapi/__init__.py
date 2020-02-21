@@ -23,33 +23,16 @@ _LOGGER = logging.getLogger(__name__)
 class MultiApiScriptPlugin(Plugin):
     def process(self) -> bool:
         input_package_name: str = self._autorestapi.get_value("package-name")
-        python_sdks_folder: str = self._autorestapi.get_value("python-sdks-folder")
+        output_folder: str = self._autorestapi.get_value("output-folder")
         default_api: str = self._autorestapi.get_value("default-api")
         generator = MultiAPI(
             input_package_name,
-            python_sdks_folder,
+            output_folder,
             self._autorestapi,
             default_api
         )
         return generator.process()
 
-
-def _patch_import(file_path: Union[str, Path]) -> None:
-    """If multi-client package, we need to patch import to be
-    from ..version
-    and not
-    from .version
-    That should probably means those files should become a template, but since right now
-    it's literally one dot, let's do it the raw way.
-    """
-    # That's a dirty hack, maybe it's worth making configuration a template?
-    with open(file_path, "rb") as read_fd:
-        conf_bytes = read_fd.read()
-    conf_bytes = conf_bytes.replace(
-        b" .version", b" ..version"
-    )  # Just a dot right? Worth its own template for that? :)
-    with open(file_path, "wb") as write_fd:
-        write_fd.write(conf_bytes)
 
 def _parse_input(input_parameter: str):
     """From a syntax like package_name#submodule, build a package name
@@ -61,15 +44,6 @@ def _parse_input(input_parameter: str):
     if len(split_package_name) >= 2:
         module_name = ".".join([module_name, split_package_name[1]])
     return package_name, module_name
-
-def _get_paths_to_versions(path_to_package: Path) -> List[Path]:
-
-    paths_to_versions = []
-    for child in [x for x in path_to_package.iterdir() if x.is_dir()]:
-        child_dir = (path_to_package / child).resolve()
-        if Path(child_dir / '_metadata.json') in child_dir.iterdir():
-            paths_to_versions.append(child_dir)
-    return paths_to_versions
 
 def _get_floating_latest(api_versions_list: List[str], preview_mode: bool):
     """Get the floating latest, from a random list of API versions.
@@ -90,69 +64,6 @@ def _get_floating_latest(api_versions_list: List[str], preview_mode: bool):
 
     # If not preview mode, and there is preview, take the latest known stable
     return sorted(trimmed_preview)[-1]
-
-def _build_operation_meta(paths_to_versions: List[Path]):
-    """Introspect the client:
-
-    version_dict => {
-        'application_gateways': [
-            ('v2018_05_01', 'ApplicationGatewaysOperations')
-        ]
-    }
-    mod_to_api_version => {'v2018_05_01': '2018-05-01'}
-    """
-    mod_to_api_version: Dict[str, str] = defaultdict(str)
-    versioned_operations_dict: Dict[str, List[Tuple[str, str]]] = defaultdict(list)
-    for version_path in paths_to_versions:
-        with open(version_path / "_metadata.json") as f:
-            metadata_json = json.load(f)
-        operation_groups = metadata_json['operation_groups']
-        version = metadata_json['chosen_version']
-        total_api_version_list = metadata_json['total_api_version_list']
-        if not version:
-            if total_api_version_list:
-                sys.exit(
-                    f"Unable to match {total_api_version_list} to label {version_path.stem}"
-                )
-            else:
-                sys.exit(
-                    f"Unable to extract api version of {version_path.stem}"
-                )
-        mod_to_api_version[version_path.name] = version
-        for operation_group, operation_group_class_name in operation_groups.items():
-            versioned_operations_dict[operation_group].append((version_path.name, operation_group_class_name))
-    return versioned_operations_dict, mod_to_api_version
-
-def _build_operation_mixin_meta(paths_to_versions: List[Path]) -> Dict[str, Dict[str, List[str]]]:
-    """Introspect the client:
-
-    version_dict => {
-        'check_dns_name_availability': {
-            'doc': 'docstring',
-            'signature': '(self, p1, p2, **operation_config),
-            'call': 'p1, p2',
-            'available_apis': [
-                'v2018_05_01'
-            ]
-        }
-    }
-    """
-    mixin_operations: Dict[str, Dict[str, List[str]]] = {}
-    for version_path in paths_to_versions:
-        with open(version_path / "_metadata.json") as f:
-            metadata_json = json.load(f)
-        if not metadata_json.get('operation_mixins'):
-            continue
-        for func_name, func in metadata_json['operation_mixins'].items():
-            if func_name.startswith("_"):
-                continue
-            mixin_operations.setdefault(func_name, {}).setdefault(
-                "available_apis", []
-            ).append(version_path.name)
-            mixin_operations[func_name]['doc'] = func['doc']
-            mixin_operations[func_name]['signature'] = func['signature']
-            mixin_operations[func_name]['call'] = func['call']
-    return mixin_operations
 
 def _build_last_rt_list(
     versioned_operations_dict: Dict[str, Tuple[str, str]],
@@ -223,38 +134,100 @@ class MultiAPI:
     def __init__(
         self,
         input_package_name: str,
-        python_sdks_folder: str,
+        output_folder: str,
         autorestapi: LocalAutorestAPI,
         default_api: Optional[str] = None
     ):
         self.input_package_name = input_package_name
-        self.python_sdks_folder = Path(python_sdks_folder).resolve()
+        self.output_folder = Path(output_folder).resolve()
         self._autorestapi = autorestapi
         self.default_api = default_api
 
-    def _resolve_package_directory(self, package_name: str) -> str:
-        """Returns the appropriate relative diff between the python sdks root and the actual package_directory
+    def _patch_import(self, filename: str) -> None:
+        """If multi-client package, we need to patch import to be
+        from ..version
+        and not
+        from .version
+        That should probably means those files should become a template, but since right now
+        it's literally one dot, let's do it the raw way.
         """
-        packages = [
-            p.parent
-            for p in (
-                list(self.python_sdks_folder.glob(f"*/{package_name}/setup.py")) +
-                list(self.python_sdks_folder.glob(f"sdk/*/{package_name}/setup.py"))
-            )
-        ]
+        file_path = self.output_folder / filename
+        # That's a dirty hack, maybe it's worth making configuration a template?
+        conf_bytes = self._autorestapi.read_file(file_path)
+        conf_bytes = conf_bytes.replace(
+            b" .version", b" ..version"
+        )  # Just a dot right? Worth its own template for that? :)
+        self._autorestapi.write_file(file_path, conf_bytes)
 
-        if len(packages) > 1:
-            print(
-                "There should only be a single package matched in either repository structure." +
-                f" The following were found: {packages}"
-            )
-            sys.exit(1)
-        if not packages:
-            print(
-                f"Was unable to find {self.input_package_name} anything in {self.python_sdks_folder}"
-            )
-            sys.exit(1)
-        return str(packages[0].relative_to(self.python_sdks_folder))
+    def _get_paths_to_versions(self) -> List[Path]:
+
+        paths_to_versions = []
+        for child in [x for x in self.output_folder.iterdir() if x.is_dir()]:
+            child_dir = (self.output_folder / child).resolve()
+            if Path(child_dir / '_metadata.json') in child_dir.iterdir():
+                paths_to_versions.append(Path(child.stem))
+        return paths_to_versions
+
+    def _build_operation_mixin_meta(self, paths_to_versions: List[Path]) -> Dict[str, Dict[str, List[str]]]:
+        """Introspect the client:
+
+        version_dict => {
+            'check_dns_name_availability': {
+                'doc': 'docstring',
+                'signature': '(self, p1, p2, **operation_config),
+                'call': 'p1, p2',
+                'available_apis': [
+                    'v2018_05_01'
+                ]
+            }
+        }
+        """
+        mixin_operations: Dict[str, Dict[str, List[str]]] = {}
+        for version_path in paths_to_versions:
+            metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
+            if not metadata_json.get('operation_mixins'):
+                continue
+            for func_name, func in metadata_json['operation_mixins'].items():
+                if func_name.startswith("_"):
+                    continue
+                mixin_operations.setdefault(func_name, {}).setdefault(
+                    "available_apis", []
+                ).append(version_path.name)
+                mixin_operations[func_name]['doc'] = func['doc']
+                mixin_operations[func_name]['signature'] = func['signature']
+                mixin_operations[func_name]['call'] = func['call']
+        return mixin_operations
+
+    def _build_operation_meta(self, paths_to_versions: List[Path]):
+        """Introspect the client:
+
+        version_dict => {
+            'application_gateways': [
+                ('v2018_05_01', 'ApplicationGatewaysOperations')
+            ]
+        }
+        mod_to_api_version => {'v2018_05_01': '2018-05-01'}
+        """
+        mod_to_api_version: Dict[str, str] = defaultdict(str)
+        versioned_operations_dict: Dict[str, List[Tuple[str, str]]] = defaultdict(list)
+        for version_path in paths_to_versions:
+            metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
+            operation_groups = metadata_json['operation_groups']
+            version = metadata_json['chosen_version']
+            total_api_version_list = metadata_json['total_api_version_list']
+            if not version:
+                if total_api_version_list:
+                    sys.exit(
+                        f"Unable to match {total_api_version_list} to label {version_path.stem}"
+                    )
+                else:
+                    sys.exit(
+                        f"Unable to extract api version of {version_path.stem}"
+                    )
+            mod_to_api_version[version_path.name] = version
+            for operation_group, operation_group_class_name in operation_groups.items():
+                versioned_operations_dict[operation_group].append((version_path.name, operation_group_class_name))
+        return versioned_operations_dict, mod_to_api_version
 
     def process(self) -> bool:
         _LOGGER.info("Generating multiapi client")
@@ -266,12 +239,8 @@ class MultiAPI:
         is_multi_client_package = "#" in self.input_package_name
 
         package_name, module_name = _parse_input(self.input_package_name)
-        path_to_package = (
-            self.python_sdks_folder / self._resolve_package_directory(package_name) /
-            Path(module_name.replace(".", os.sep))
-        ).resolve()
-        paths_to_versions = _get_paths_to_versions(path_to_package)
-        versioned_operations_dict, mod_to_api_version = _build_operation_meta(
+        paths_to_versions = self._get_paths_to_versions()
+        versioned_operations_dict, mod_to_api_version = self._build_operation_meta(
             paths_to_versions
         )
 
@@ -298,25 +267,25 @@ class MultiAPI:
             _LOGGER.info("Default API version will be: %s", last_api_version)
 
         # In case we are transitioning from a single api generation, clean old folders
-        shutil.rmtree(str(path_to_package / "operations"), ignore_errors=True)
-        shutil.rmtree(str(path_to_package / "models"), ignore_errors=True)
+        shutil.rmtree(str(self.output_folder / "operations"), ignore_errors=True)
+        shutil.rmtree(str(self.output_folder / "models"), ignore_errors=True)
 
         shutil.copy(
-            str(path_to_package / last_api_version / "_configuration.py"),
-            str(path_to_package / "_configuration.py"),
+            str(self.output_folder / last_api_version / "_configuration.py"),
+            str(self.output_folder / "_configuration.py"),
         )
         shutil.copy(
-            str(path_to_package / last_api_version / "__init__.py"),
-            str(path_to_package / "__init__.py"),
+            str(self.output_folder / last_api_version / "__init__.py"),
+            str(self.output_folder / "__init__.py"),
         )
         if is_multi_client_package:
             _LOGGER.warning("Patching multi-api client basic files")
-            _patch_import(path_to_package / "_configuration.py")
-            _patch_import(path_to_package / "__init__.py")
+            self._patch_import("_configuration.py")
+            self._patch_import("__init__.py")
 
         # Detect if this client is using an operation mixin (Network)
         # Operation mixins are available since Autorest.Python 4.x
-        mixin_operations = _build_operation_mixin_meta(paths_to_versions)
+        mixin_operations = self._build_operation_mixin_meta(paths_to_versions)
 
         # get client name from default api version
         path_to_default_version = Path()
@@ -324,8 +293,7 @@ class MultiAPI:
             if last_api_version.replace("-", "_") == path_to_version.stem:
                 path_to_default_version = path_to_version
                 break
-        with open(path_to_default_version / "_metadata.json") as f:
-            metadata_json = json.load(f)
+        metadata_json = json.loads(self._autorestapi.read_file(path_to_default_version / "_metadata.json"))
 
         # versioned_operations_dict => {
         #     'application_gateways': [

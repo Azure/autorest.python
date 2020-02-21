@@ -33,7 +33,7 @@ class LocalAutorestAPI(AutorestAPI):
 
     def read_file(self, filename: Union[str, Path]) -> str:
         _LOGGER.debug("Reading file: %s", filename)
-        with Path(filename).open("r") as fd:
+        with (self._output_folder / Path(filename)).open("r") as fd:
             return fd.read()
 
     def list_inputs(self) -> List[str]:
