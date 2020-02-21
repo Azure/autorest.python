@@ -42,7 +42,9 @@ class NameConverter:
     @staticmethod
     def _convert_operation_groups(operation_groups, code_model_title):
         for operation_group in operation_groups:
-            NameConverter._convert_language_default_python_case(operation_group, pad_string=PadType.Model, convert_name=True)
+            NameConverter._convert_language_default_python_case(
+                operation_group, pad_string=PadType.Model, convert_name=True
+            )
             if not operation_group['language']['default']['name']:
                 operation_group['language']['python']['className'] = code_model_title + "OperationsMixin"
             else:
