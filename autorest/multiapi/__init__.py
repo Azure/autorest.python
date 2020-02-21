@@ -218,9 +218,6 @@ class MultiAPI:
         # If not, if it exists a stable API version for a global or RT, will always be used
         preview_mode = cast(bool, self.default_api and "preview" in self.default_api)
 
-        # The only known multi-client package right now is azure-mgmt-resource
-        is_multi_client_package = "#" in self.input_package_name
-
         module_name = _parse_input(self.input_package_name)
         paths_to_versions = self._get_paths_to_versions()
         versioned_operations_dict, mod_to_api_version = self._build_operation_meta(
