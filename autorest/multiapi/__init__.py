@@ -7,11 +7,10 @@ import sys
 import logging
 import json
 import shutil
-import os
 
 from collections import defaultdict
 from pathlib import Path
-from typing import Dict, List, Tuple, Union, Optional, cast
+from typing import Dict, List, Tuple, Optional, cast
 from .multiapi_serializer import MultiAPISerializer
 from ..jsonrpc.localapi import LocalAutorestAPI
 
@@ -43,7 +42,7 @@ def _parse_input(input_parameter: str):
     module_name = package_name.replace("-", ".")
     if len(split_package_name) >= 2:
         module_name = ".".join([module_name, split_package_name[1]])
-    return package_name, module_name
+    return module_name
 
 def _get_floating_latest(api_versions_list: List[str], preview_mode: bool):
     """Get the floating latest, from a random list of API versions.
@@ -238,7 +237,7 @@ class MultiAPI:
         # The only known multi-client package right now is azure-mgmt-resource
         is_multi_client_package = "#" in self.input_package_name
 
-        package_name, module_name = _parse_input(self.input_package_name)
+        module_name = _parse_input(self.input_package_name)
         paths_to_versions = self._get_paths_to_versions()
         versioned_operations_dict, mod_to_api_version = self._build_operation_meta(
             paths_to_versions
