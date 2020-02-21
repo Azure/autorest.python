@@ -78,9 +78,6 @@ class NameConverter:
     @staticmethod
     def _convert_enum_schema(schema):
         NameConverter._convert_language_default_pascal_case(schema)
-        if "choiceType" in schema:
-            NameConverter._convert_language_default_python_case(schema["choiceType"])
-
         for choice in schema["choices"]:
             NameConverter._convert_language_default_python_case(choice, pad_string="Enum")
 
