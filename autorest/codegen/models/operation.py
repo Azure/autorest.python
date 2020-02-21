@@ -215,7 +215,12 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         name = yaml_data["language"]["python"]["name"]
         _LOGGER.debug("Parsing %s operation", name)
 
-        parameters = [Parameter.from_yaml(yaml) for yaml in yaml_data["request"].get("parameters", [])]
+        # FIXME handle multiple requests
+        first_request = yaml_data["requests"][0]
+        parameters = [
+            Parameter.from_yaml(yaml)
+            for yaml in yaml_data.get("parameters", []) + first_request.get("parameters", [])
+        ]
         parameters_index = {id(parameter.yaml_data): parameter for parameter in parameters}
 
         # Need to connect the groupBy and originalParameter
@@ -232,13 +237,13 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
             yaml_data=yaml_data,
             name=name,
             description=yaml_data["language"]["python"]["description"],
-            url=yaml_data["request"]["protocol"]["http"]["path"],
-            method=yaml_data["request"]["protocol"]["http"]["method"],
+            url=first_request["protocol"]["http"]["path"],
+            method=first_request["protocol"]["http"]["method"],
             api_versions=set(value_dict["version"] for value_dict in yaml_data["apiVersions"]),
             summary=yaml_data["language"]["python"].get("summary"),
             parameters=parameters,
             responses=[SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("responses", [])],
             # Exception with no schema means default exception, we don't store them
             exceptions=[SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("exceptions", []) if "schema" in yaml],
-            media_types=yaml_data["request"]["protocol"]["http"].get("mediaTypes", []),
+            media_types=first_request["protocol"]["http"].get("mediaTypes", []),
         )
