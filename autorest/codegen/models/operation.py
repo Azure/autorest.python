@@ -217,7 +217,10 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
 
         # FIXME handle multiple requests
         first_request = yaml_data["requests"][0]
-        parameters = [Parameter.from_yaml(yaml) for yaml in yaml_data.get("parameters", []) + first_request.get("parameters", [])]
+        parameters = [
+            Parameter.from_yaml(yaml)
+            for yaml in yaml_data.get("parameters", []) + first_request.get("parameters", [])
+        ]
         parameters_index = {id(parameter.yaml_data): parameter for parameter in parameters}
 
         # Need to connect the groupBy and originalParameter
