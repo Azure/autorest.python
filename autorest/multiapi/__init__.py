@@ -12,7 +12,7 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Dict, List, Tuple, Optional, cast
 from .multiapi_serializer import MultiAPISerializer
-from ..jsonrpc.localapi import LocalAutorestAPI
+from ..jsonrpc import AutorestAPI
 
 from .. import Plugin
 
@@ -134,29 +134,13 @@ class MultiAPI:
         self,
         input_package_name: str,
         output_folder: str,
-        autorestapi: LocalAutorestAPI,
+        autorestapi: AutorestAPI,
         default_api: Optional[str] = None
     ):
         self.input_package_name = input_package_name
         self.output_folder = Path(output_folder).resolve()
         self._autorestapi = autorestapi
         self.default_api = default_api
-
-    def _patch_import(self, filename: str) -> None:
-        """If multi-client package, we need to patch import to be
-        from ..version
-        and not
-        from .version
-        That should probably means those files should become a template, but since right now
-        it's literally one dot, let's do it the raw way.
-        """
-        file_path = self.output_folder / filename
-        # That's a dirty hack, maybe it's worth making configuration a template?
-        conf_bytes = self._autorestapi.read_file(file_path)
-        conf_bytes = conf_bytes.replace(
-            b" .version", b" ..version"
-        )  # Just a dot right? Worth its own template for that? :)
-        self._autorestapi.write_file(file_path, conf_bytes)
 
     def _get_paths_to_versions(self) -> List[Path]:
 
@@ -277,10 +261,6 @@ class MultiAPI:
             str(self.output_folder / last_api_version / "__init__.py"),
             str(self.output_folder / "__init__.py"),
         )
-        if is_multi_client_package:
-            _LOGGER.warning("Patching multi-api client basic files")
-            self._patch_import("_configuration.py")
-            self._patch_import("__init__.py")
 
         # Detect if this client is using an operation mixin (Network)
         # Operation mixins are available since Autorest.Python 4.x
