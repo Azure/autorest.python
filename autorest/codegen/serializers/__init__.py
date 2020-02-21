@@ -153,6 +153,9 @@ class JinjaSerializer:
                 general_serializer.serialize_version_file()
             )
 
+        # write the empty py.typed file
+        self._autorestapi.write_file(namespace_path / Path("py.typed"), code_model.options['license_header'])
+
         # Write the config file
         self._autorestapi.write_file(
             namespace_path / Path("_configuration.py"), general_serializer.serialize_config_file()
