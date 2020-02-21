@@ -30,6 +30,7 @@ except (SyntaxError, ImportError):
     from ._models import ProductProperties  # type: ignore
     from ._models import ProductResult  # type: ignore
     from ._models import ProductResultValue  # type: ignore
+
 from ._auto_rest_paging_test_service_enums import (
     OperationResultStatus,
 )

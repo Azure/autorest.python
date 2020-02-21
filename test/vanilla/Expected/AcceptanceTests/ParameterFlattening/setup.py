@@ -32,6 +32,6 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     long_description="""\
-    Resource Flattening for AutoRest
+    Resource Flattening for AutoRest.
     """
 )

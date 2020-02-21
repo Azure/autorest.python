@@ -32,7 +32,8 @@ VERSION = "unknown"
 {% endif %}
 
 class {{ client_name }}Configuration(Configuration):
-    """Configuration for {{ client_name }}
+    """Configuration for {{ client_name }}.
+
     Note that all parameters used to create this instance are saved as instance
     attributes.
 {% if global_parameters["method"] %}

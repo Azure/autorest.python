@@ -36,9 +36,9 @@ class AutoRestReportServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, int]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -87,9 +87,9 @@ class AutoRestReportServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, int]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL

@@ -17,7 +17,7 @@ from .. import models
 
 
 class PetStoreInc(object):
-    """PetStore
+    """PetStore.
 
     :ivar pet: PetOperations operations
     :vartype pet: extensibleenumsswagger.aio.operations_async.PetOperations

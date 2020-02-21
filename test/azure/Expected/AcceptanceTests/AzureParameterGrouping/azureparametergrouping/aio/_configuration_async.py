@@ -15,7 +15,8 @@ from .._version import VERSION
 
 
 class AutoRestParameterGroupingTestServiceConfiguration(Configuration):
-    """Configuration for AutoRestParameterGroupingTestService
+    """Configuration for AutoRestParameterGroupingTestService.
+
     Note that all parameters used to create this instance are saved as instance
     attributes.
     """

@@ -34,6 +34,7 @@ except (SyntaxError, ImportError):
     from ._models import SimpleProduct  # type: ignore
     from ._models import SimpleProductProperties  # type: ignore
     from ._models import WrappedProduct  # type: ignore
+
 from ._auto_rest_resource_flattening_test_service_enums import (
     FlattenedProductPropertiesProvisioningStateValues,
 )

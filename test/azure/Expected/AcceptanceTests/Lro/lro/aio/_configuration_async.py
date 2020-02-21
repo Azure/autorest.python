@@ -15,7 +15,8 @@ from .._version import VERSION
 
 
 class AutoRestLongRunningOperationTestServiceConfiguration(Configuration):
-    """Configuration for AutoRestLongRunningOperationTestService
+    """Configuration for AutoRestLongRunningOperationTestService.
+
     Note that all parameters used to create this instance are saved as instance
     attributes.
 

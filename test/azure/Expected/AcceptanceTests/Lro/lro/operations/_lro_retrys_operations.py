@@ -24,7 +24,8 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dic
 class LRORetrysOperations(object):
     """LRORetrysOperations operations.
 
-    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
+    You should not instantiate this class directly. Instead, you should create a Client instance that
+    instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
     :type models: ~lro.models
@@ -48,7 +49,7 @@ class LRORetrysOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -108,10 +109,10 @@ class LRORetrysOperations(object):
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
-        :raises ~azure.core.HttpResponseError:
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = self._put201_creating_succeeded200_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -141,7 +142,7 @@ class LRORetrysOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -200,10 +201,10 @@ class LRORetrysOperations(object):
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
-        :raises ~azure.core.HttpResponseError:
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = self._put_async_relative_retry_succeeded_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -237,7 +238,7 @@ class LRORetrysOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.Product"
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -290,10 +291,10 @@ class LRORetrysOperations(object):
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
-        :raises ~azure.core.HttpResponseError:
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.Product"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = self._delete_provisioning202_accepted200_succeeded_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -325,7 +326,7 @@ class LRORetrysOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -370,10 +371,10 @@ class LRORetrysOperations(object):
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.core.HttpResponseError:
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = self._delete202_retry200_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -398,7 +399,7 @@ class LRORetrysOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -444,10 +445,10 @@ class LRORetrysOperations(object):
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.core.HttpResponseError:
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = self._delete_async_relative_retry_succeeded_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -473,7 +474,7 @@ class LRORetrysOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -528,10 +529,10 @@ class LRORetrysOperations(object):
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.core.HttpResponseError:
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = self._post202_retry200_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -558,7 +559,7 @@ class LRORetrysOperations(object):
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -614,10 +615,10 @@ class LRORetrysOperations(object):
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.core.HttpResponseError:
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = self._post_async_relative_retry_succeeded_initial(
             product=product,
             cls=lambda x,y,z: x,

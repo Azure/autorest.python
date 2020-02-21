@@ -17,7 +17,7 @@ from . import models
 
 
 class AutoRestSwaggerBATFileService(object):
-    """Test Infrastructure for AutoRest Swagger BAT
+    """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar files: FilesOperations operations
     :vartype files: bodyfile.operations.FilesOperations

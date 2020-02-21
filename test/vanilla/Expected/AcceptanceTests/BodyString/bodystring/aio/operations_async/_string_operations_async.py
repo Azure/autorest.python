@@ -21,7 +21,8 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class StringOperations:
     """StringOperations async operations.
 
-    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
+    You should not instantiate this class directly. Instead, you should create a Client instance that
+    instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
     :type models: ~bodystring.models
@@ -49,9 +50,9 @@ class StringOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[str] = kwargs.pop('cls', None )
+        cls: ClsType[str] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -92,9 +93,9 @@ class StringOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         string_body = None
 
@@ -139,9 +140,9 @@ class StringOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[str] = kwargs.pop('cls', None )
+        cls: ClsType[str] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -182,9 +183,9 @@ class StringOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         string_body = ""
 
@@ -226,9 +227,9 @@ class StringOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[str] = kwargs.pop('cls', None )
+        cls: ClsType[str] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -269,9 +270,9 @@ class StringOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         string_body = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
 
@@ -313,9 +314,9 @@ class StringOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[str] = kwargs.pop('cls', None )
+        cls: ClsType[str] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -356,9 +357,9 @@ class StringOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         string_body = "    Now is the time for all good men to come to the aid of their country    "
 
@@ -400,9 +401,9 @@ class StringOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[str] = kwargs.pop('cls', None )
+        cls: ClsType[str] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -443,9 +444,9 @@ class StringOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytes or the result of cls(response)
         :rtype: bytes
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bytes] = kwargs.pop('cls', None )
+        cls: ClsType[bytes] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -486,9 +487,9 @@ class StringOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytes or the result of cls(response)
         :rtype: bytes
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bytes] = kwargs.pop('cls', None )
+        cls: ClsType[bytes] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -532,9 +533,9 @@ class StringOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -575,9 +576,9 @@ class StringOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytes or the result of cls(response)
         :rtype: bytes
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bytes] = kwargs.pop('cls', None )
+        cls: ClsType[bytes] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL

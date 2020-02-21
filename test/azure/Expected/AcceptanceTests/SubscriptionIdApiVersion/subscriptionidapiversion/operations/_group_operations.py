@@ -22,7 +22,8 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dic
 class GroupOperations(object):
     """GroupOperations operations.
 
-    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
+    You should not instantiate this class directly. Instead, you should create a Client instance that
+    instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
     :type models: ~subscriptionidapiversion.models
@@ -54,9 +55,9 @@ class GroupOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SampleResourceGroup or the result of cls(response)
         :rtype: ~subscriptionidapiversion.models.SampleResourceGroup
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.SampleResourceGroup"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.SampleResourceGroup"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL

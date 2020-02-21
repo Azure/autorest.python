@@ -21,7 +21,8 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class MultipleResponsesOperations:
     """MultipleResponsesOperations async operations.
 
-    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
+    You should not instantiate this class directly. Instead, you should create a Client instance that
+    instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
     :type models: ~httpinfrastructure.models
@@ -47,11 +48,11 @@ class MultipleResponsesOperations:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or  or the result of cls(response)
+        :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -92,11 +93,11 @@ class MultipleResponsesOperations:
         """Send a 204 response with no payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or  or the result of cls(response)
+        :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -137,11 +138,11 @@ class MultipleResponsesOperations:
         """Send a 201 response with valid payload: {'statusCode': '201'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or  or the result of cls(response)
+        :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -182,11 +183,11 @@ class MultipleResponsesOperations:
         """Send a 202 response with no payload:.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or  or the result of cls(response)
+        :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -227,11 +228,11 @@ class MultipleResponsesOperations:
         """Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'}.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: MyException or  or the result of cls(response)
+        :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -274,9 +275,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or B or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[Union["models.MyException", "models.B"]] = kwargs.pop('cls', None )
+        cls: ClsType[Union["models.MyException", "models.B"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -322,9 +323,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or B or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[Union["models.MyException", "models.B"]] = kwargs.pop('cls', None )
+        cls: ClsType[Union["models.MyException", "models.B"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -370,9 +371,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or B or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[Union["models.MyException", "models.B"]] = kwargs.pop('cls', None )
+        cls: ClsType[Union["models.MyException", "models.B"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -418,9 +419,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or C or D or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = kwargs.pop('cls', None )
+        cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -469,9 +470,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or C or D or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = kwargs.pop('cls', None )
+        cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -520,9 +521,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or C or D or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = kwargs.pop('cls', None )
+        cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -571,9 +572,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or C or D or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = kwargs.pop('cls', None )
+        cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -622,9 +623,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -661,9 +662,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -700,9 +701,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -739,9 +740,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -777,9 +778,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -815,9 +816,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -853,9 +854,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -891,9 +892,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -933,9 +934,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -975,9 +976,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -1014,9 +1015,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -1053,9 +1054,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -1091,9 +1092,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -1129,9 +1130,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -1167,9 +1168,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -1205,9 +1206,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -1247,9 +1248,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -1289,9 +1290,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -1331,9 +1332,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -1373,9 +1374,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -1415,9 +1416,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -1457,9 +1458,9 @@ class MultipleResponsesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None )
+        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL

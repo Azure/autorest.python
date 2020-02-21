@@ -24,7 +24,7 @@ from . import models
 
 
 class AutoRestAzureSpecialParametersTestClient(object):
-    """Test Infrastructure for AutoRest
+    """Test Infrastructure for AutoRest.
 
     :ivar xms_client_request_id: XMsClientRequestIdOperations operations
     :vartype xms_client_request_id: azurespecialproperties.operations.XMsClientRequestIdOperations

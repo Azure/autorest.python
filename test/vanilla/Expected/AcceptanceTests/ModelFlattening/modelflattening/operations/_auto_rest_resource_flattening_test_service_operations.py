@@ -34,9 +34,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -81,9 +81,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~modelflattening.models.FlattenedProduct]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List["FlattenedProduct"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["FlattenedProduct"]]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -128,9 +128,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -175,9 +175,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~modelflattening.models.ProductWrapper]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List["ProductWrapper"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["ProductWrapper"]]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -222,9 +222,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -269,9 +269,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, ~modelflattening.models.FlattenedProduct]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[Dict[str, "FlattenedProduct"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, "FlattenedProduct"]]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -316,9 +316,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -363,9 +363,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ResourceCollection or the result of cls(response)
         :rtype: ~modelflattening.models.ResourceCollection
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.ResourceCollection"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ResourceCollection"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -410,9 +410,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.SimpleProduct"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.SimpleProduct"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
@@ -478,9 +478,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.SimpleProduct"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.SimpleProduct"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         _simple_body_product = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odata_value=odata_value)
@@ -534,9 +534,9 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: SimpleProduct or the result of cls(response)
         :rtype: ~modelflattening.models.SimpleProduct
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.SimpleProduct"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.SimpleProduct"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         
         _name = None

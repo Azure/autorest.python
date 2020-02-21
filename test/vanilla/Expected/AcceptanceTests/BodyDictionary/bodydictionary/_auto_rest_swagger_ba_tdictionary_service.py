@@ -17,7 +17,7 @@ from . import models
 
 
 class AutoRestSwaggerBATDictionaryService(object):
-    """Test Infrastructure for AutoRest Swagger BAT
+    """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar dictionary: DictionaryOperations operations
     :vartype dictionary: bodydictionary.operations.DictionaryOperations

@@ -17,7 +17,7 @@ from .. import models
 
 
 class AutoRestParameterizedHostTestClient(object):
-    """Test Infrastructure for AutoRest
+    """Test Infrastructure for AutoRest.
 
     :ivar paths: PathsOperations operations
     :vartype paths: custombaseurl.aio.operations_async.PathsOperations
@@ -27,7 +27,7 @@ class AutoRestParameterizedHostTestClient(object):
 
     def __init__(
         self,
-        host: str,
+        host: str = "host",
         **kwargs: Any
     ) -> None:
         base_url = 'http://{accountName}{host}'

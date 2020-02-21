@@ -27,7 +27,8 @@ VERSION = "unknown"
 {% endif %}
 
 class {{ code_model.class_name }}Configuration(Configuration):
-    """Configuration for {{ code_model.class_name }}
+    """Configuration for {{ code_model.class_name }}.
+
     Note that all parameters used to create this instance are saved as instance
     attributes.
 {% if code_model.global_parameters | first %}
