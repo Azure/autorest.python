@@ -75,8 +75,8 @@ class CodeGenerator(Plugin):
             # We don't want to support multi-api customurl YET (will see if that goes well....)
             # So far now, let's get the first one in the first operation
             # UGLY as hell.....
-            first_operation_of_first_group = yaml_data["operationGroups"][0]["operations"][0]
-            code_model.custom_base_url = first_operation_of_first_group["request"]["protocol"]["http"]["uri"]
+            first_request_of_first_operation_of_first_group = yaml_data["operationGroups"][0]["operations"][0]["requests"][0]
+            code_model.custom_base_url = first_request_of_first_operation_of_first_group["protocol"]["http"]["uri"]
         else:
             dollar_host_parameter = dollar_host[0]
             code_model.global_parameters.remove(dollar_host_parameter)

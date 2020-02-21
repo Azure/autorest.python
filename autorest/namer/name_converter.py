@@ -44,11 +44,14 @@ class NameConverter:
                     operation_group['language']['python']['className'] = operation_group_name + "Operations"
             for operation in operation_group['operations']:
                 NameConverter._convert_language_default_python_case(operation, pad_string='Method')
-                for exception in operation_group.get('exceptions', []):
+                for exception in operation.get('exceptions', []):
                     NameConverter._convert_language_default_python_case(exception)
-                NameConverter._convert_language_default_python_case(operation["request"])
-                for parameter in operation["request"].get("parameters", []):
+                for parameter in operation.get("parameters", []):
                     NameConverter._convert_language_default_python_case(parameter, pad_string="Parameter")
+                for request in operation.get("requests", []):
+                    NameConverter._convert_language_default_python_case(request)
+                    for parameter in request.get("parameters", []):
+                        NameConverter._convert_language_default_python_case(parameter, pad_string="Parameter")
                 for response in operation.get("responses", []):
                     NameConverter._convert_language_default_python_case(response)
 
@@ -75,7 +78,8 @@ class NameConverter:
     @staticmethod
     def _convert_enum_schema(schema):
         NameConverter._convert_language_default_pascal_case(schema)
-        NameConverter._convert_language_default_python_case(schema["choiceType"])
+        if "choiceType" in schema:
+            NameConverter._convert_language_default_python_case(schema["choiceType"])
 
         for choice in schema["choices"]:
             NameConverter._convert_language_default_python_case(choice, pad_string="Enum")

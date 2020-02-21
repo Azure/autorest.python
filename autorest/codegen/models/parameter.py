@@ -35,6 +35,7 @@ class ParameterStyle(Enum):
     tabDelimited = "tabDelimited"
     json = "json"
     binary = "binary"
+    xml = "xml"
 
 
 class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
