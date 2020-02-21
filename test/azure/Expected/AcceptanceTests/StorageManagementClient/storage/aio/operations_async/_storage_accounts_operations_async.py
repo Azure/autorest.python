@@ -26,7 +26,8 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class StorageAccountsOperations:
     """StorageAccountsOperations async operations.
 
-    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
+    You should not instantiate this class directly. Instead, you should create a Client instance that
+    instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
     :type models: ~storage.models
@@ -59,9 +60,9 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: CheckNameAvailabilityResult or the result of cls(response)
         :rtype: ~storage.models.CheckNameAvailabilityResult
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.CheckNameAvailabilityResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.CheckNameAvailabilityResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -106,7 +107,7 @@ class StorageAccountsOperations:
         parameters: "models.StorageAccountCreateParameters",
         **kwargs
     ) -> "models.StorageAccount":
-        cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None )
+        cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -161,8 +162,8 @@ class StorageAccountsOperations:
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
         :param account_name: The name of the storage account within the specified resource group.
-         Storage account names must be between 3 and 24 characters in length and use numbers and lower-
-         case letters only.
+     Storage account names must be between 3 and 24 characters in length and use numbers and lower-
+     case letters only.
         :type account_name: str
         :param parameters: The parameters to provide for the created account.
         :type parameters: ~storage.models.StorageAccountCreateParameters
@@ -173,10 +174,10 @@ class StorageAccountsOperations:
         :return: An instance of LROPoller that returns StorageAccount
         :rtype: ~azure.core.polling.LROPoller[~storage.models.StorageAccount]
 
-        :raises ~azure.core.HttpResponseError:
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None )
+        cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None)
         raw_result = await self._create_initial(
             resource_group_name=resource_group_name,
             account_name=account_name,
@@ -220,9 +221,9 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -272,9 +273,9 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None )
+        cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -332,9 +333,9 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccount or the result of cls(response)
         :rtype: ~storage.models.StorageAccount
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None )
+        cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -392,9 +393,9 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountKeys or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.StorageAccountKeys"] = kwargs.pop('cls', None )
+        cls: ClsType["models.StorageAccountKeys"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -440,9 +441,9 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountListResult or the result of cls(response)
         :rtype: ~storage.models.StorageAccountListResult
-        :raises: ~azure.mgmt.core.ARMError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.StorageAccountListResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.StorageAccountListResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -504,9 +505,9 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountListResult or the result of cls(response)
         :rtype: ~storage.models.StorageAccountListResult
-        :raises: ~azure.mgmt.core.ARMError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.StorageAccountListResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.StorageAccountListResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -577,9 +578,9 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountKeys or the result of cls(response)
         :rtype: ~storage.models.StorageAccountKeys
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.StorageAccountKeys"] = kwargs.pop('cls', None )
+        cls: ClsType["models.StorageAccountKeys"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         _regenerate_key = models.StorageAccountRegenerateKeyParameters(key_name=key_name)

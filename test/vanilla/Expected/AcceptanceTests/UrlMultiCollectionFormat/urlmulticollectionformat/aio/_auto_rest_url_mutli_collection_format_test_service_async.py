@@ -17,7 +17,7 @@ from .. import models
 
 
 class AutoRestUrlMutliCollectionFormatTestService(object):
-    """Test Infrastructure for AutoRest
+    """Test Infrastructure for AutoRest.
 
     :ivar queries: QueriesOperations operations
     :vartype queries: urlmulticollectionformat.aio.operations_async.QueriesOperations

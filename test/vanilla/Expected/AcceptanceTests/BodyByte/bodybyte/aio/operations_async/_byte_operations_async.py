@@ -21,7 +21,8 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class ByteOperations:
     """ByteOperations async operations.
 
-    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
+    You should not instantiate this class directly. Instead, you should create a Client instance that
+    instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
     :type models: ~bodybyte.models
@@ -49,9 +50,9 @@ class ByteOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytearray or the result of cls(response)
         :rtype: bytearray
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bytearray] = kwargs.pop('cls', None )
+        cls: ClsType[bytearray] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -92,9 +93,9 @@ class ByteOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytearray or the result of cls(response)
         :rtype: bytearray
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bytearray] = kwargs.pop('cls', None )
+        cls: ClsType[bytearray] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -135,9 +136,9 @@ class ByteOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytearray or the result of cls(response)
         :rtype: bytearray
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bytearray] = kwargs.pop('cls', None )
+        cls: ClsType[bytearray] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -181,9 +182,9 @@ class ByteOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -224,9 +225,9 @@ class ByteOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: bytearray or the result of cls(response)
         :rtype: bytearray
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bytearray] = kwargs.pop('cls', None )
+        cls: ClsType[bytearray] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

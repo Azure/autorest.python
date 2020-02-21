@@ -16,7 +16,7 @@ from .operations import HttpSuccessOperations
 
 
 class AutoRestHeadTestService(object):
-    """Test Infrastructure for AutoRest
+    """Test Infrastructure for AutoRest.
 
     :ivar http_success: HttpSuccessOperations operations
     :vartype http_success: head.operations.HttpSuccessOperations

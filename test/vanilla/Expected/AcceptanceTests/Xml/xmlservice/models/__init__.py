@@ -60,6 +60,7 @@ except (SyntaxError, ImportError):
     from ._models import Slide  # type: ignore
     from ._models import Slideshow  # type: ignore
     from ._models import StorageServiceProperties  # type: ignore
+
 from ._auto_rest_swagger_batxml_service_enums import (
     AccessTier,
     ArchiveStatus,

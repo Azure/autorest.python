@@ -26,7 +26,8 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class PagingOperations:
     """PagingOperations async operations.
 
-    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
+    You should not instantiate this class directly. Instead, you should create a Client instance that
+    instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
     :type models: ~paging.models
@@ -54,9 +55,9 @@ class PagingOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ProductResultValue or the result of cls(response)
         :rtype: ~paging.models.ProductResultValue
-        :raises: ~azure.mgmt.core.ARMError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ProductResultValue"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ProductResultValue"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -111,9 +112,9 @@ class PagingOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
         :rtype: ~paging.models.ProductResult
-        :raises: ~azure.mgmt.core.ARMError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -168,9 +169,9 @@ class PagingOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
         :rtype: ~paging.models.ProductResult
-        :raises: ~azure.mgmt.core.ARMError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -231,9 +232,9 @@ class PagingOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
         :rtype: ~paging.models.ProductResult
-        :raises: ~azure.mgmt.core.ARMError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         
         _maxresults = None
@@ -306,9 +307,9 @@ class PagingOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: OdataProductResult or the result of cls(response)
         :rtype: ~paging.models.OdataProductResult
-        :raises: ~azure.mgmt.core.ARMError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.OdataProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.OdataProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         
         _maxresults = None
@@ -381,9 +382,9 @@ class PagingOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
         :rtype: ~paging.models.ProductResult
-        :raises: ~azure.mgmt.core.ARMError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         
         _maxresults = None
@@ -456,9 +457,9 @@ class PagingOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
         :rtype: ~paging.models.ProductResult
-        :raises: ~azure.mgmt.core.ARMError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -513,9 +514,9 @@ class PagingOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
         :rtype: ~paging.models.ProductResult
-        :raises: ~azure.mgmt.core.ARMError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -570,9 +571,9 @@ class PagingOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
         :rtype: ~paging.models.ProductResult
-        :raises: ~azure.mgmt.core.ARMError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -627,9 +628,9 @@ class PagingOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
         :rtype: ~paging.models.ProductResult
-        :raises: ~azure.mgmt.core.ARMError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -684,9 +685,9 @@ class PagingOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ProductResult or the result of cls(response)
         :rtype: ~paging.models.ProductResult
-        :raises: ~azure.mgmt.core.ARMError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -747,9 +748,9 @@ class PagingOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: OdataProductResult or the result of cls(response)
         :rtype: ~paging.models.OdataProductResult
-        :raises: ~azure.mgmt.core.ARMError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.OdataProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.OdataProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -817,9 +818,9 @@ class PagingOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: OdataProductResult or the result of cls(response)
         :rtype: ~paging.models.OdataProductResult
-        :raises: ~azure.mgmt.core.ARMError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.OdataProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.OdataProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         
         _api_version = None
@@ -886,7 +887,7 @@ class PagingOperations:
         paging_get_multiple_pages_lro_options: Optional["models.PagingGetMultiplePagesLroOptions"] = None,
         **kwargs
     ) -> "models.ProductResult":
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         
         _maxresults = None
@@ -948,10 +949,10 @@ class PagingOperations:
         :return: An instance of LROPoller that returns ProductResult
         :rtype: ~azure.core.polling.LROPoller[~paging.models.ProductResult]
 
-        :raises ~azure.core.HttpResponseError:
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None )
+        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
         raw_result = await self._get_multiple_pages_lro_initial(
             client_request_id=client_request_id,
             paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,

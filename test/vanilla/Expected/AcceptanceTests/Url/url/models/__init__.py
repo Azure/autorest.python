@@ -10,6 +10,7 @@ try:
     from ._models_py3 import Error
 except (SyntaxError, ImportError):
     from ._models import Error  # type: ignore
+
 from ._auto_rest_url_test_service_enums import (
     UriColor,
 )

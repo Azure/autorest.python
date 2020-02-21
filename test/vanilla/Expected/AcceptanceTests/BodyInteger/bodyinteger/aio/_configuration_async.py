@@ -15,7 +15,8 @@ from .._version import VERSION
 
 
 class AutoRestIntegerTestServiceConfiguration(Configuration):
-    """Configuration for AutoRestIntegerTestService
+    """Configuration for AutoRestIntegerTestService.
+
     Note that all parameters used to create this instance are saved as instance
     attributes.
     """

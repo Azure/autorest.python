@@ -24,7 +24,8 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class LROsCustomHeaderOperations:
     """LROsCustomHeaderOperations async operations.
 
-    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
+    You should not instantiate this class directly. Instead, you should create a Client instance that
+    instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
     :type models: ~lro.models
@@ -47,7 +48,7 @@ class LROsCustomHeaderOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -105,10 +106,10 @@ class LROsCustomHeaderOperations:
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
-        :raises ~azure.core.HttpResponseError:
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         raw_result = await self._put_async_retry_succeeded_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -142,7 +143,7 @@ class LROsCustomHeaderOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -201,10 +202,10 @@ class LROsCustomHeaderOperations:
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
-        :raises ~azure.core.HttpResponseError:
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None )
+        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
         raw_result = await self._put201_creating_succeeded200_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -233,7 +234,7 @@ class LROsCustomHeaderOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -287,10 +288,10 @@ class LROsCustomHeaderOperations:
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.core.HttpResponseError:
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         raw_result = await self._post202_retry200_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -316,7 +317,7 @@ class LROsCustomHeaderOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -371,10 +372,10 @@ class LROsCustomHeaderOperations:
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.core.HttpResponseError:
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         raw_result = await self._post_async_retry_succeeded_initial(
             product=product,
             cls=lambda x,y,z: x,

@@ -17,7 +17,7 @@ from .. import models
 
 
 class AutoRestSwaggerBATHeaderService(object):
-    """Test Infrastructure for AutoRest
+    """Test Infrastructure for AutoRest.
 
     :ivar header: HeaderOperations operations
     :vartype header: header.aio.operations_async.HeaderOperations

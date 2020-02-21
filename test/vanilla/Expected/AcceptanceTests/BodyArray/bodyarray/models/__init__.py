@@ -12,6 +12,7 @@ try:
 except (SyntaxError, ImportError):
     from ._models import Error  # type: ignore
     from ._models import Product  # type: ignore
+
 from ._auto_rest_swagger_bat_array_service_enums import (
     Enum0,
     FooEnum,

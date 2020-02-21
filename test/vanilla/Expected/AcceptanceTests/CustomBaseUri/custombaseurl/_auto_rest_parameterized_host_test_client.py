@@ -17,7 +17,7 @@ from . import models
 
 
 class AutoRestParameterizedHostTestClient(object):
-    """Test Infrastructure for AutoRest
+    """Test Infrastructure for AutoRest.
 
     :ivar paths: PathsOperations operations
     :vartype paths: custombaseurl.operations.PathsOperations
@@ -27,7 +27,7 @@ class AutoRestParameterizedHostTestClient(object):
 
     def __init__(
         self,
-        host,  # type: str
+        host="host",  # type: str
         **kwargs  # type: Any
     ):
         # type: (...) -> None

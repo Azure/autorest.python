@@ -4,7 +4,7 @@
 {% set request_as_xml = ", is_xml=False" if "xml" in operation.request_content_type else "" %}
 {% macro return_docstring() %}
 {% if operation.responses | selectattr('has_body') | first %}
-:return: {{ operation.responses|map(attribute='schema')|map(attribute='docstring_text')|join(' or ') }} or the result of cls(response)
+:return: {{ operation.responses|selectattr('has_body')|map(attribute='schema')|map(attribute='docstring_text')|unique|join(' or ') }} or the result of cls(response)
     :rtype: {% for response in operation.responses %}{{response.schema.docstring_type if response.has_body else "None"}}{% if not loop.last %} or {% endif %}{% endfor %}
 {% else %}
 :return: None
@@ -25,7 +25,7 @@
     """{{operation.description }}
     {% if operation.summary %}
 
-    {{ operation.summary | wordwrap(width=95, break_long_words=False, wrapstring='\n    ') }}
+    {{ operation.summary | wordwrap(width=95, break_long_words=False, wrapstring='\n') }}
     {% endif %}
 
 {% if operation.deprecated -%}
@@ -35,22 +35,22 @@
 {% endif -%}
 {% for parameter in operation.parameters.method %}
     {%- for doc_string in param_documentation_string(parameter).replace('\n', '\n ').split('\n') %}
-    {{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n     ')}}
+    {{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n ')}}
     {% endfor %}
     :type {{ parameter.serialized_name }}: {{ parameter.schema.docstring_type }}
 {% endfor %}
     :keyword callable cls: A custom type or function that will be passed the direct response
     {{ return_docstring() }}
-    :raises: ~azure.core.HttpResponseError
+    :raises: ~azure.core.exceptions.HttpResponseError
     """
 {% endif %}
 {% if operation.deprecated %}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
     {% if async_mode %}
-    cls: ClsType[{{ keywords.return_type_annotation(operation) }}] = kwargs.pop('cls', None )
+    cls: ClsType[{{ keywords.return_type_annotation(operation) }}] = kwargs.pop('cls', None)
     {% else %}
-    cls = kwargs.pop('cls', None )  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
+    cls = kwargs.pop('cls', None)  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
     {% endif %}
 {%if operation.status_code_exceptions %}
     error_map = {

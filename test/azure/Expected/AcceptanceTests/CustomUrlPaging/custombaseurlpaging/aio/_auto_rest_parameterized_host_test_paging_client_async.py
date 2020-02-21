@@ -17,7 +17,7 @@ from .. import models
 
 
 class AutoRestParameterizedHostTestPagingClient(object):
-    """Test Infrastructure for AutoRest
+    """Test Infrastructure for AutoRest.
 
     :ivar paging: PagingOperations operations
     :vartype paging: custombaseurlpaging.aio.operations_async.PagingOperations
@@ -30,7 +30,7 @@ class AutoRestParameterizedHostTestPagingClient(object):
     def __init__(
         self,
         credential: "TokenCredential",
-        host: str,
+        host: str = "host",
         **kwargs: Any
     ) -> None:
         base_url = 'http://{accountName}{host}'

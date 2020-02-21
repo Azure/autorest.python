@@ -17,7 +17,7 @@ from .. import models
 
 
 class AutoRestParameterGroupingTestService(object):
-    """Test Infrastructure for AutoRest
+    """Test Infrastructure for AutoRest.
 
     :ivar parameter_grouping: ParameterGroupingOperations operations
     :vartype parameter_grouping: azureparametergrouping.aio.operations_async.ParameterGroupingOperations

@@ -21,7 +21,8 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dic
 class FlattencomplexOperations(object):
     """FlattencomplexOperations operations.
 
-    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
+    You should not instantiate this class directly. Instead, you should create a Client instance that
+    instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
     :type models: ~bodycomplex.models
@@ -50,9 +51,9 @@ class FlattencomplexOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: MyBaseType or the result of cls(response)
         :rtype: ~bodycomplex.models.MyBaseType
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType["models.MyBaseType"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyBaseType"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
