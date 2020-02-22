@@ -77,13 +77,13 @@ class NameConverter:
 
     @staticmethod
     def _convert_enum_schema(schema):
-        NameConverter._convert_language_default_pascal_case(schema)
+        NameConverter._convert_language_default_pascal_case(schema, is_object=False)
         for choice in schema["choices"]:
             NameConverter._convert_language_default_python_case(choice, pad_string="Enum")
 
     @staticmethod
     def _convert_object_schema(schema):
-        NameConverter._convert_language_default_pascal_case(schema)
+        NameConverter._convert_language_default_pascal_case(schema, is_object=True)
         for prop in schema.get("properties", []):
             NameConverter._convert_language_default_python_case(schema=prop, pad_string="Property")
 
@@ -113,18 +113,19 @@ class NameConverter:
             schema["language"]["python"]["summary"] = schema_summary
 
     @staticmethod
-    def _convert_language_default_pascal_case(schema):
+    def _convert_language_default_pascal_case(schema, is_object):
         if schema["language"].get("python"):
             return
         schema['language']['python'] = dict(schema['language']['default'])
 
         schema_description = schema["language"]["default"]["description"].strip()
-        if not schema_description:
-            # what is being used for empty ObjectSchema descriptions
-            schema_description = schema["language"]["python"]["name"]
-        if schema_description and schema_description[-1] != ".":
-            schema_description += "."
-        schema["language"]["python"]["description"] = schema_description
+        if is_object:
+            if not schema_description:
+                # what is being used for empty ObjectSchema descriptions
+                schema_description = schema["language"]["python"]["name"]
+            if schema_description and schema_description[-1] != ".":
+                schema_description += "."
+            schema["language"]["python"]["description"] = schema_description
 
     @staticmethod
     def _to_pascal_case(name):
