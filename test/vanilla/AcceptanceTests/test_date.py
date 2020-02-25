@@ -49,25 +49,25 @@ class TestDate(object):
 
     def test_model_get_and_put_max_date(self, client):
         max_date = isodate.parse_date("9999-12-31T23:59:59.999999Z")
-        client.date_model.put_max_date(max_date)
-        assert max_date ==  client.date_model.get_max_date()
+        client.date.put_max_date(max_date)
+        assert max_date ==  client.date.get_max_date()
 
     def test_model_get_and_put_min_date(self, client):
         min_date = isodate.parse_date("0001-01-01T00:00:00Z")
-        client.date_model.put_min_date(min_date)
-        assert min_date ==  client.date_model.get_min_date()
+        client.date.put_min_date(min_date)
+        assert min_date ==  client.date.get_min_date()
 
     def test_model_get_null(self, client):
-        assert client.date_model.get_null() is None
+        assert client.date.get_null() is None
 
     def test_model_get_invalid_date(self, client):
         with pytest.raises(DeserializationError):
-            client.date_model.get_invalid_date()
+            client.date.get_invalid_date()
 
     def test_model_get_overflow_date(self, client):
         with pytest.raises(DeserializationError):
-            client.date_model.get_overflow_date()
+            client.date.get_overflow_date()
 
     def test_model_get_underflow_date(self, client):
         with pytest.raises(DeserializationError):
-            client.date_model.get_underflow_date()
+            client.date.get_underflow_date()
