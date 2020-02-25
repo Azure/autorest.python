@@ -247,6 +247,16 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
                 for yaml in first_request.get("parameters", [])
             ]
 
+        if multiple_media_type_parameters:
+            body_parameters_name_set = set(
+                [p.serialized_name for p in multiple_media_type_parameters]
+            )
+            if len(body_parameters_name_set) > 1:
+                raise ValueError(
+                f"The body parameter with multiple media types has different names: {body_parameters_name_set}"
+            )
+
+
         parameters_index = {id(parameter.yaml_data): parameter for parameter in parameters}
 
         # Need to connect the groupBy and originalParameter
