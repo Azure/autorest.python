@@ -223,16 +223,10 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         # FIXME handle multiple requests
         first_request = yaml_data["requests"][0]
 
-        parameters = [
-            Parameter.from_yaml(yaml)
-            for yaml in yaml_data.get("parameters", [])
-        ]
         multiple_requests = len(yaml_data["requests"]) > 1
 
-        parameters: List[Parameter] = []
         multiple_media_type_parameters: List[Parameter] = []
-
-        parameters += [Parameter.from_yaml(yaml) for yaml in yaml_data.get("parameters", [])]
+        parameters = [Parameter.from_yaml(yaml) for yaml in yaml_data.get("parameters", [])]
 
         if multiple_requests:
             for request in yaml_data["requests"]:
