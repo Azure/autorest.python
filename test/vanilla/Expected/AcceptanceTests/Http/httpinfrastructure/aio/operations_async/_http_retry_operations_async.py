@@ -66,7 +66,6 @@ class HttpRetryOperations:
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -107,15 +106,13 @@ class HttpRetryOperations:
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, 'bool')
-        else:
-            body_content = None
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            if boolean_value is not None:
+                body_content = self._serialize.body(boolean_value, 'bool')
+            else:
+                body_content = None
             __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -159,15 +156,13 @@ class HttpRetryOperations:
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, 'bool')
-        else:
-            body_content = None
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            if boolean_value is not None:
+                body_content = self._serialize.body(boolean_value, 'bool')
+            else:
+                body_content = None
             __body_content_kwargs['content'] = body_content
         request = self._client.patch(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -209,7 +204,6 @@ class HttpRetryOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -249,7 +243,6 @@ class HttpRetryOperations:
 
         # Construct and send request
         request = self._client.options(url, query_parameters, header_parameters)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -293,15 +286,13 @@ class HttpRetryOperations:
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, 'bool')
-        else:
-            body_content = None
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            if boolean_value is not None:
+                body_content = self._serialize.body(boolean_value, 'bool')
+            else:
+                body_content = None
             __body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -345,15 +336,13 @@ class HttpRetryOperations:
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, 'bool')
-        else:
-            body_content = None
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            if boolean_value is not None:
+                body_content = self._serialize.body(boolean_value, 'bool')
+            else:
+                body_content = None
             __body_content_kwargs['content'] = body_content
         request = self._client.delete(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -397,15 +386,13 @@ class HttpRetryOperations:
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, 'bool')
-        else:
-            body_content = None
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            if boolean_value is not None:
+                body_content = self._serialize.body(boolean_value, 'bool')
+            else:
+                body_content = None
             __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -449,15 +436,13 @@ class HttpRetryOperations:
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        if boolean_value is not None:
-            body_content = self._serialize.body(boolean_value, 'bool')
-        else:
-            body_content = None
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            if boolean_value is not None:
+                body_content = self._serialize.body(boolean_value, 'bool')
+            else:
+                body_content = None
             __body_content_kwargs['content'] = body_content
         request = self._client.patch(url, query_parameters, header_parameters, **__body_content_kwargs)
 

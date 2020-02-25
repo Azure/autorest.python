@@ -71,12 +71,10 @@ class PetsOperations:
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        body_content = self._serialize.body(create_parameters, 'PetAPTrue')
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            body_content = self._serialize.body(create_parameters, 'PetAPTrue')
             __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -126,12 +124,10 @@ class PetsOperations:
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        body_content = self._serialize.body(create_parameters, 'CatAPTrue')
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            body_content = self._serialize.body(create_parameters, 'CatAPTrue')
             __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -181,12 +177,10 @@ class PetsOperations:
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        body_content = self._serialize.body(create_parameters, 'PetAPObject')
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            body_content = self._serialize.body(create_parameters, 'PetAPObject')
             __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -236,12 +230,10 @@ class PetsOperations:
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        body_content = self._serialize.body(create_parameters, 'PetAPString')
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            body_content = self._serialize.body(create_parameters, 'PetAPString')
             __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -291,12 +283,10 @@ class PetsOperations:
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        body_content = self._serialize.body(create_parameters, 'PetAPInProperties')
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            body_content = self._serialize.body(create_parameters, 'PetAPInProperties')
             __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -346,12 +336,10 @@ class PetsOperations:
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        body_content = self._serialize.body(create_parameters, 'PetAPInPropertiesWithAPString')
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            body_content = self._serialize.body(create_parameters, 'PetAPInPropertiesWithAPString')
             __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 

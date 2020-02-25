@@ -68,7 +68,6 @@ class FilesOperations(object):
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-
         pipeline_response = self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response
 
@@ -112,7 +111,6 @@ class FilesOperations(object):
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-
         pipeline_response = self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response
 
@@ -156,7 +154,6 @@ class FilesOperations(object):
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-
         pipeline_response = self._client._pipeline.run(request, stream=True, **kwargs)
         response = pipeline_response.http_response
 

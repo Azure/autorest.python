@@ -50,15 +50,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        if resource_array is not None:
-            body_content = self._serialize.body(resource_array, '[Resource]')
-        else:
-            body_content = None
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            if resource_array is not None:
+                body_content = self._serialize.body(resource_array, '[Resource]')
+            else:
+                body_content = None
             __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -101,7 +99,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -147,15 +144,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        if resource_array is not None:
-            body_content = self._serialize.body(resource_array, '[WrappedProduct]')
-        else:
-            body_content = None
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            if resource_array is not None:
+                body_content = self._serialize.body(resource_array, '[WrappedProduct]')
+            else:
+                body_content = None
             __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -198,7 +193,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -244,15 +238,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        if resource_dictionary is not None:
-            body_content = self._serialize.body(resource_dictionary, '{FlattenedProduct}')
-        else:
-            body_content = None
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            if resource_dictionary is not None:
+                body_content = self._serialize.body(resource_dictionary, '{FlattenedProduct}')
+            else:
+                body_content = None
             __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -295,7 +287,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -341,15 +332,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        if resource_complex_object is not None:
-            body_content = self._serialize.body(resource_complex_object, 'ResourceCollection')
-        else:
-            body_content = None
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            if resource_complex_object is not None:
+                body_content = self._serialize.body(resource_complex_object, 'ResourceCollection')
+            else:
+                body_content = None
             __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -392,7 +381,6 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -439,15 +427,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        if simple_body_product is not None:
-            body_content = self._serialize.body(simple_body_product, 'SimpleProduct')
-        else:
-            body_content = None
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            if simple_body_product is not None:
+                body_content = self._serialize.body(simple_body_product, 'SimpleProduct')
+            else:
+                body_content = None
             __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -513,15 +499,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        if _simple_body_product is not None:
-            body_content = self._serialize.body(_simple_body_product, 'SimpleProduct')
-        else:
-            body_content = None
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            if _simple_body_product is not None:
+                body_content = self._serialize.body(_simple_body_product, 'SimpleProduct')
+            else:
+                body_content = None
             __body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -593,15 +577,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        if _simple_body_product is not None:
-            body_content = self._serialize.body(_simple_body_product, 'SimpleProduct')
-        else:
-            body_content = None
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            if _simple_body_product is not None:
+                body_content = self._serialize.body(_simple_body_product, 'SimpleProduct')
+            else:
+                body_content = None
             __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 

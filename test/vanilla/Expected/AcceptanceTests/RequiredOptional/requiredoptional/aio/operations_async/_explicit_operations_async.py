@@ -70,12 +70,10 @@ class ExplicitOperations:
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        body_content = self._serialize.body(body_parameter, 'int')
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            body_content = self._serialize.body(body_parameter, 'int')
             __body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -121,15 +119,13 @@ class ExplicitOperations:
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        if body_parameter is not None:
-            body_content = self._serialize.body(body_parameter, 'int')
-        else:
-            body_content = None
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            if body_parameter is not None:
+                body_content = self._serialize.body(body_parameter, 'int')
+            else:
+                body_content = None
             __body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -177,12 +173,10 @@ class ExplicitOperations:
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        body_content = self._serialize.body(_body_parameter, 'IntWrapper')
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            body_content = self._serialize.body(_body_parameter, 'IntWrapper')
             __body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -230,15 +224,13 @@ class ExplicitOperations:
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        if _body_parameter is not None:
-            body_content = self._serialize.body(_body_parameter, 'IntOptionalWrapper')
-        else:
-            body_content = None
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            if _body_parameter is not None:
+                body_content = self._serialize.body(_body_parameter, 'IntOptionalWrapper')
+            else:
+                body_content = None
             __body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -284,7 +276,6 @@ class ExplicitOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -328,7 +319,6 @@ class ExplicitOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -371,12 +361,10 @@ class ExplicitOperations:
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        body_content = self._serialize.body(body_parameter, 'str')
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            body_content = self._serialize.body(body_parameter, 'str')
             __body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -422,15 +410,13 @@ class ExplicitOperations:
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        if body_parameter is not None:
-            body_content = self._serialize.body(body_parameter, 'str')
-        else:
-            body_content = None
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            if body_parameter is not None:
+                body_content = self._serialize.body(body_parameter, 'str')
+            else:
+                body_content = None
             __body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -478,12 +464,10 @@ class ExplicitOperations:
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        body_content = self._serialize.body(_body_parameter, 'StringWrapper')
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            body_content = self._serialize.body(_body_parameter, 'StringWrapper')
             __body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -531,15 +515,13 @@ class ExplicitOperations:
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        if _body_parameter is not None:
-            body_content = self._serialize.body(_body_parameter, 'StringOptionalWrapper')
-        else:
-            body_content = None
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            if _body_parameter is not None:
+                body_content = self._serialize.body(_body_parameter, 'StringOptionalWrapper')
+            else:
+                body_content = None
             __body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -585,7 +567,6 @@ class ExplicitOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -629,7 +610,6 @@ class ExplicitOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -672,12 +652,10 @@ class ExplicitOperations:
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        body_content = self._serialize.body(body_parameter, 'Product')
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            body_content = self._serialize.body(body_parameter, 'Product')
             __body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -723,15 +701,13 @@ class ExplicitOperations:
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        if body_parameter is not None:
-            body_content = self._serialize.body(body_parameter, 'Product')
-        else:
-            body_content = None
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            if body_parameter is not None:
+                body_content = self._serialize.body(body_parameter, 'Product')
+            else:
+                body_content = None
             __body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -779,12 +755,10 @@ class ExplicitOperations:
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        body_content = self._serialize.body(_body_parameter, 'ClassWrapper')
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            body_content = self._serialize.body(_body_parameter, 'ClassWrapper')
             __body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -832,15 +806,13 @@ class ExplicitOperations:
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        if _body_parameter is not None:
-            body_content = self._serialize.body(_body_parameter, 'ClassOptionalWrapper')
-        else:
-            body_content = None
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            if _body_parameter is not None:
+                body_content = self._serialize.body(_body_parameter, 'ClassOptionalWrapper')
+            else:
+                body_content = None
             __body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -886,12 +858,10 @@ class ExplicitOperations:
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        body_content = self._serialize.body(body_parameter, '[str]')
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            body_content = self._serialize.body(body_parameter, '[str]')
             __body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -937,15 +907,13 @@ class ExplicitOperations:
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        if body_parameter is not None:
-            body_content = self._serialize.body(body_parameter, '[str]')
-        else:
-            body_content = None
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            if body_parameter is not None:
+                body_content = self._serialize.body(body_parameter, '[str]')
+            else:
+                body_content = None
             __body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -993,12 +961,10 @@ class ExplicitOperations:
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        body_content = self._serialize.body(_body_parameter, 'ArrayWrapper')
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            body_content = self._serialize.body(_body_parameter, 'ArrayWrapper')
             __body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -1046,15 +1012,13 @@ class ExplicitOperations:
         header_parameters: Dict[str, Any] = {}
         header_parameters['Content-Type'] = content_type or 'application/json'
 
-        # Construct body
-        if _body_parameter is not None:
-            body_content = self._serialize.body(_body_parameter, 'ArrayOptionalWrapper')
-        else:
-            body_content = None
-
         # Construct and send request
         __body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/json']:
+            if _body_parameter is not None:
+                body_content = self._serialize.body(_body_parameter, 'ArrayOptionalWrapper')
+            else:
+                body_content = None
             __body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
@@ -1100,7 +1064,6 @@ class ExplicitOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1144,7 +1107,6 @@ class ExplicitOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
-
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

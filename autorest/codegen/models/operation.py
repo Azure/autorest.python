@@ -33,6 +33,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         requests: List[SchemaRequest],
         summary: Optional[str] = None,
         parameters: Optional[List[Parameter]] = None,
+        multiple_media_type_parameters: Optional[List[Parameter]] = None,
         responses: Optional[List[SchemaResponse]] = None,
         exceptions: Optional[List[SchemaResponse]] = None,
         want_description_docstring: Optional[bool] = True,
@@ -47,6 +48,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         self.requests = requests
         self.summary = summary
         self.parameters = ParameterList(parameters)
+        self.multiple_media_type_parameters = multiple_media_type_parameters
         self.responses = responses or []
         self.exceptions = exceptions or []
         self.want_description_docstring = want_description_docstring
@@ -225,14 +227,31 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
             Parameter.from_yaml(yaml)
             for yaml in yaml_data.get("parameters", [])
         ]
-        for request in yaml_data["requests"]:
-            for yaml in request.get("parameters", []):
-                if yaml_data["language"]["python"]["name"] == "content_type":
+        multiple_requests = len(yaml_data["requests"]) > 1
+
+        parameters: List[Parameter] = []
+        multiple_media_type_parameters: List[Parameter] = []
+
+        parameters += [Parameter.from_yaml(yaml) for yaml in yaml_data.get("parameters", [])]
+
+        if multiple_requests:
+            for request in yaml_data["requests"]:
+                for yaml in request.get("parameters", []):
                     parameter = Parameter.from_yaml(yaml)
-                    parameter.is_kwarg = True
-                    parameters.append(parameter)
-                else:
-                    parameters.append(Parameter.from_yaml(yaml))
+                    if yaml["language"]["python"]["name"] == "content_type":
+                        parameter.is_kwarg = True
+                        parameters.append(parameter)
+                    else:
+                        multiple_media_type_parameters.append(parameter)
+            chosen_parameter = multiple_media_type_parameters[0]
+            chosen_parameter.has_multiple_media_types = True
+            parameters.append(chosen_parameter)
+
+        else:
+            parameters += [
+                Parameter.from_yaml(yaml)
+                for yaml in first_request.get("parameters", [])
+            ]
 
         parameters_index = {id(parameter.yaml_data): parameter for parameter in parameters}
 
@@ -256,6 +275,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
             requests=[SchemaRequest.from_yaml(yaml) for yaml in yaml_data["requests"]],
             summary=yaml_data["language"]["python"].get("summary"),
             parameters=parameters,
+            multiple_media_type_parameters=multiple_media_type_parameters,
             responses=[SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("responses", [])],
             # Exception with no schema means default exception, we don't store them
             exceptions=[SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("exceptions", []) if "schema" in yaml],

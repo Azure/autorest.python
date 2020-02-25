@@ -46,6 +46,8 @@ class LRORetrysOperations:
     async def _put201_creating_succeeded200_initial(
         self,
         product: Optional["models.Product"] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.Product":
         cls: ClsType["models.Product"] = kwargs.pop('cls', None)
@@ -60,16 +62,18 @@ class LRORetrysOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
-
-        # Construct body
-        if product is not None:
-            body_content = self._serialize.body(product, 'Product')
-        else:
-            body_content = None
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            if product is not None:
+                body_content = self._serialize.body(product, 'Product')
+            else:
+                body_content = None
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -94,6 +98,8 @@ class LRORetrysOperations:
     async def put201_creating_succeeded200(
         self,
         product: Optional["models.Product"] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.Product":
         """Long running put request, service returns a 500, then a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
@@ -137,6 +143,8 @@ class LRORetrysOperations:
     async def _put_async_relative_retry_succeeded_initial(
         self,
         product: Optional["models.Product"] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.Product":
         cls: ClsType["models.Product"] = kwargs.pop('cls', None)
@@ -151,16 +159,18 @@ class LRORetrysOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
-
-        # Construct body
-        if product is not None:
-            body_content = self._serialize.body(product, 'Product')
-        else:
-            body_content = None
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            if product is not None:
+                body_content = self._serialize.body(product, 'Product')
+            else:
+                body_content = None
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -184,6 +194,8 @@ class LRORetrysOperations:
     async def put_async_relative_retry_succeeded(
         self,
         product: Optional["models.Product"] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.Product":
         """Long running put request, service returns a 500, then a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
@@ -461,6 +473,8 @@ class LRORetrysOperations:
     async def _post202_retry200_initial(
         self,
         product: Optional["models.Product"] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         cls: ClsType[None] = kwargs.pop('cls', None)
@@ -474,16 +488,18 @@ class LRORetrysOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
-
-        # Construct body
-        if product is not None:
-            body_content = self._serialize.body(product, 'Product')
-        else:
-            body_content = None
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            if product is not None:
+                body_content = self._serialize.body(product, 'Product')
+            else:
+                body_content = None
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -504,6 +520,8 @@ class LRORetrysOperations:
     async def post202_retry200(
         self,
         product: Optional["models.Product"] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Long running post request, service returns a 500, then a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
@@ -544,6 +562,8 @@ class LRORetrysOperations:
     async def _post_async_relative_retry_succeeded_initial(
         self,
         product: Optional["models.Product"] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         cls: ClsType[None] = kwargs.pop('cls', None)
@@ -557,16 +577,18 @@ class LRORetrysOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
-
-        # Construct body
-        if product is not None:
-            body_content = self._serialize.body(product, 'Product')
-        else:
-            body_content = None
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            if product is not None:
+                body_content = self._serialize.body(product, 'Product')
+            else:
+                body_content = None
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -588,6 +610,8 @@ class LRORetrysOperations:
     async def post_async_relative_retry_succeeded(
         self,
         product: Optional["models.Product"] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Long running post request, service returns a 500, then a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.

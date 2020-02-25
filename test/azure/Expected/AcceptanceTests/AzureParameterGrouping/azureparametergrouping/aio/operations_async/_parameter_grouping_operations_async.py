@@ -44,6 +44,8 @@ class ParameterGroupingOperations:
     async def post_required(
         self,
         parameter_grouping_post_required_parameters: "models.ParameterGroupingPostRequiredParameters",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Post a bunch of required parameters grouped.
@@ -84,13 +86,15 @@ class ParameterGroupingOperations:
         header_parameters: Dict[str, Any] = {}
         if _custom_header is not None:
             header_parameters['customHeader'] = self._serialize.header("custom_header", _custom_header, 'str')
-        header_parameters['Content-Type'] = 'application/json'
-
-        # Construct body
-        body_content = self._serialize.body(_body, 'int')
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            body_content = self._serialize.body(_body, 'int')
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

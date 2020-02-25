@@ -58,7 +58,6 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         grouped_by: Optional["Parameter"] = None,
         original_parameter: Optional["Parameter"] = None,
         client_default_value: Optional[Any] = None,
-        is_kwarg: Optional[bool] = False
     ):
         super().__init__(yaml_data)
         self.schema = schema
@@ -76,7 +75,10 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.grouped_by = grouped_by
         self.original_parameter = original_parameter
         self.client_default_value = client_default_value
-        self.is_kwarg = is_kwarg
+        self.is_kwarg: bool = False
+        self.has_multiple_media_types: bool = False
+        self.multiple_media_types_type_annot = None
+        self.multiple_media_types_docstring_type = None
 
     @property
     def implementation(self) -> str:
@@ -86,15 +88,20 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         return self._implementation
 
     def _default_value(self):
-        type_annot = self.schema.operation_type_annotation
+        type_annot = self.multiple_media_types_type_annot or self.schema.operation_type_annotation
         if not self.required:
             type_annot = f"Optional[{type_annot}]"
 
         if self.client_default_value is not None:
             return self.client_default_value, self.schema.get_declaration(self.client_default_value), type_annot
 
-        default_value = self.schema.default_value
-        default_value_declaration = self.schema.default_value_declaration
+        if self.multiple_media_types_type_annot:
+            # means this parameter has multiple media types. We force default value to be None.
+            default_value = None
+            default_value_declaration = "None"
+        else:
+            default_value = self.schema.default_value
+            default_value_declaration = self.schema.default_value_declaration
         if default_value is not None and self.required:
             _LOGGER.warning(
                 "Parameter '%s' is required and has a default value, this combination is not recommended",
@@ -102,6 +109,10 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
             )
 
         return default_value, default_value_declaration, type_annot
+
+    @property
+    def docstring_type(self) -> str:
+        return self.multiple_media_types_docstring_type or self.schema.docstring_type
 
     @property
     def sync_method_signature(self) -> str:
@@ -153,4 +164,6 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         file_import = self.schema.imports()
         if not self.required:
             file_import.add_from_import("typing", "Optional", ImportType.STDLIB)
+        if self.has_multiple_media_types:
+            file_import.add_from_import("typing", "Union", ImportType.STDLIB)
         return file_import

@@ -26,7 +26,7 @@
 {%- for doc_string in param_documentation_string(parameter).replace('\n', '\n ').split('\n') %}
 {{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n ')}}
 {% endfor %}
-:type {{ parameter.serialized_name }}: {{ parameter.schema.docstring_type }}
+:type {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
 {% endfor %}
 :keyword callable cls: A custom type or function that will be passed the direct response
 {{ return_docstring(operation) }}
@@ -95,8 +95,7 @@ if {{ query_parameter.full_serialized_name }} is not None:
     query_parameters['{{ query_parameter.rest_api_name }}'] = {{ operation.build_serialize_data_call(query_parameter, "query") }}
         {% endif %}
     {% endfor %}
-{% endif %}
-{% endmacro %}
+{% endif %}{% endmacro %}
 {# write request headers #}
 {% macro header_parameters(code_model, operation, async_mode) %}
 # Construct headers
@@ -120,22 +119,35 @@ header_parameters['Content-Type'] = content_type or '{{ operation.request_conten
 {% else %}
 header_parameters['Content-Type'] = kwargs.pop('content_type', '{{ operation.request_content_type }}')
 {% endif %}
-{% endif %}
-{% endmacro %}
+{% endif %}{% endmacro %}
 {% macro body_parameters(operation) %}
+# Construct and send request
+{% set send_xml = "xml" if operation.parameters.has_body and "xml" in operation.request_content_type %}
+{% set request_as_xml = ", is_xml=True" if send_xml else "" %}
 {% if operation.parameters.has_body %}
 __body_content_kwargs = {}
 {% for request in operation.requests %}
 {{ "el" if not loop.first }}if header_parameters['Content-Type'] in {{ request.media_types }}:
-{% if request.body_parameter_has_schema %}
-    __body_content_kwargs['content'] = body_content
-{% elif request.is_stream_request %}
+{% if request.is_stream_request %}
     __body_content_kwargs['stream_content'] = {{ operation.parameters.body.serialized_name }}
+{% elif request.body_parameter_has_schema %}
+    {% set ser_ctxt = request.parameters.body.schema.xml_serialization_ctxt() if send_xml else None %}
+    {% if ser_ctxt %}
+    serialization_ctxt = {'xml': {{ "{" }}{{ ser_ctxt }}{{ "}}" }}
+    {% endif %}
+    {% if request.parameters.body.required %}
+    body_content = self._serialize.body({{ request.parameters.body.serialized_name }}, '{{ request.parameters.body.schema.serialization_type }}'{{ request_as_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
+    {% else %}
+    if {{ request.parameters.body.serialized_name }} is not None:
+        body_content = self._serialize.body({{ request.parameters.body.serialized_name }}, '{{ request.parameters.body.schema.serialization_type }}'{{ request_as_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
+    else:
+        body_content = None
+    {% endif %}
+    __body_content_kwargs['content'] = body_content
 {% else %}
     raise ValueError("The request {{ request }}")
 {% endif %}
 {% endfor %}
 request = self._client.{{ operation.method }}(url, query_parameters, header_parameters, **__body_content_kwargs)
 {% else %}
-request = self._client.{{ operation.method }}(url, query_parameters, header_parameters)
-{% endif %}{% endmacro %}
+request = self._client.{{ operation.method }}(url, query_parameters, header_parameters){% endif %}{% endmacro %}

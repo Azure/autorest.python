@@ -49,6 +49,8 @@ class StorageAccountsOperations:
     async def check_name_availability(
         self,
         account_name: "models.StorageAccountCheckNameAvailabilityParameters",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.CheckNameAvailabilityResult":
         """Checks that account name is valid and is not in use.
@@ -78,13 +80,15 @@ class StorageAccountsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
-
-        # Construct body
-        body_content = self._serialize.body(account_name, 'StorageAccountCheckNameAvailabilityParameters')
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json', 'text/json']:
+            body_content = self._serialize.body(account_name, 'StorageAccountCheckNameAvailabilityParameters')
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -105,6 +109,8 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         parameters: "models.StorageAccountCreateParameters",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.StorageAccount":
         cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None)
@@ -125,13 +131,15 @@ class StorageAccountsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
-
-        # Construct body
-        body_content = self._serialize.body(parameters, 'StorageAccountCreateParameters')
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json', 'text/json']:
+            body_content = self._serialize.body(parameters, 'StorageAccountCreateParameters')
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -155,6 +163,8 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         parameters: "models.StorageAccountCreateParameters",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.StorageAccount":
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts cannot be updated with this API and should instead use the Update Storage Account API. If an account is already created and subsequent PUT request is issued with exact same set of properties, then HTTP 200 would be returned.
@@ -317,6 +327,8 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         parameters: "models.StorageAccountUpdateParameters",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.StorageAccount":
         """Updates the account type or tags for a storage account. It can also be used to add a custom domain (note that custom domains cannot be added via the Create operation). Only one custom domain is supported per storage account. This API can only be used to update one of tags, accountType, or customDomain per call. To update multiple of these properties, call the API multiple times with one change per call. This call does not change the storage keys for the account. If you want to change storage account keys, use the RegenerateKey operation. The location and name of the storage account cannot be changed after creation.
@@ -353,13 +365,15 @@ class StorageAccountsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
-
-        # Construct body
-        body_content = self._serialize.body(parameters, 'StorageAccountUpdateParameters')
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        request = self._client.patch(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json', 'text/json']:
+            body_content = self._serialize.body(parameters, 'StorageAccountUpdateParameters')
+            __body_content_kwargs['content'] = body_content
+        request = self._client.patch(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -465,7 +479,7 @@ class StorageAccountsOperations:
             header_parameters['Accept'] = 'application/json'
 
             # Construct and send request
-            request = self._client.get(url, query_parameters, header_parameters)
+        request = self._client.get(url, query_parameters, header_parameters)
             return request
 
         async def extract_data(pipeline_response):
@@ -530,7 +544,7 @@ class StorageAccountsOperations:
             header_parameters['Accept'] = 'application/json'
 
             # Construct and send request
-            request = self._client.get(url, query_parameters, header_parameters)
+        request = self._client.get(url, query_parameters, header_parameters)
             return request
 
         async def extract_data(pipeline_response):
@@ -563,6 +577,8 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         key_name: Optional[Union[str, "models.KeyName"]] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.StorageAccountKeys":
         """Regenerates the access keys for the specified storage account.
@@ -600,13 +616,15 @@ class StorageAccountsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
-
-        # Construct body
-        body_content = self._serialize.body(_regenerate_key, 'StorageAccountRegenerateKeyParameters')
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json', 'text/json']:
+            body_content = self._serialize.body(_regenerate_key, 'StorageAccountRegenerateKeyParameters')
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
