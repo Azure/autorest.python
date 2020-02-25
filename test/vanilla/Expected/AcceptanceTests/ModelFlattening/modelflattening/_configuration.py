@@ -28,8 +28,8 @@ class AutoRestResourceFlatteningTestServiceConfiguration(Configuration):
         # type: (...) -> None
         super(AutoRestResourceFlatteningTestServiceConfiguration, self).__init__(**kwargs)
 
+        kwargs.setdefault('sdk_moniker', 'autorestresourceflatteningtestservice/{}'.format(VERSION))
         self._configure(**kwargs)
-        self.user_agent_policy.add_user_agent('azsdk-python-autorestresourceflatteningtestservice/{}'.format(VERSION))
 
     def _configure(
         self,

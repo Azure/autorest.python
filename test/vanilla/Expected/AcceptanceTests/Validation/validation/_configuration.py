@@ -36,8 +36,8 @@ class AutoRestValidationTestConfiguration(Configuration):
 
         self.subscription_id = subscription_id
         self.api_version = "1.0.0"
+        kwargs.setdefault('sdk_moniker', 'autorestvalidationtest/{}'.format(VERSION))
         self._configure(**kwargs)
-        self.user_agent_policy.add_user_agent('azsdk-python-autorestvalidationtest/{}'.format(VERSION))
 
     def _configure(
         self,

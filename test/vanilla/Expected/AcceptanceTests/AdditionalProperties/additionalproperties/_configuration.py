@@ -28,8 +28,8 @@ class AdditionalPropertiesClientConfiguration(Configuration):
         # type: (...) -> None
         super(AdditionalPropertiesClientConfiguration, self).__init__(**kwargs)
 
+        kwargs.setdefault('sdk_moniker', 'additionalpropertiesclient/{}'.format(VERSION))
         self._configure(**kwargs)
-        self.user_agent_policy.add_user_agent('azsdk-python-additionalpropertiesclient/{}'.format(VERSION))
 
     def _configure(
         self,

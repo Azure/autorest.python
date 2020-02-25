@@ -61,8 +61,8 @@ class {{ code_model.class_name }}Configuration(Configuration):
 {% if code_model.options['credential_scopes'] %}
         self.credential_scopes = {{ code_model.options['credential_scopes'] }}
 {% endif %}
+        kwargs.setdefault('sdk_moniker', '{{ code_model.class_name|lower }}/{}'.format(VERSION))
         self._configure(**kwargs)
-        self.user_agent_policy.add_user_agent('azsdk-python-{{ code_model.class_name|lower }}/{}'.format(VERSION))
 
     def _configure(
         self,

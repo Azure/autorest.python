@@ -27,8 +27,8 @@ class AutoRestRFC1123DateTimeTestServiceConfiguration(Configuration):
     ) -> None:
         super(AutoRestRFC1123DateTimeTestServiceConfiguration, self).__init__(**kwargs)
 
+        kwargs.setdefault('sdk_moniker', 'autorestrfc1123datetimetestservice/{}'.format(VERSION))
         self._configure(**kwargs)
-        self.user_agent_policy.add_user_agent('azsdk-python-autorestrfc1123datetimetestservice/{}'.format(VERSION))
 
     def _configure(
         self,
