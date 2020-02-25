@@ -31,9 +31,9 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         method: str,
         api_versions: Set[str],
         requests: List[SchemaRequest],
-        multiple_media_type_parameters: List[Parameter],
         summary: Optional[str] = None,
         parameters: Optional[List[Parameter]] = None,
+        multiple_media_type_parameters: Optional[List[Parameter]] = None,
         responses: Optional[List[SchemaResponse]] = None,
         exceptions: Optional[List[SchemaResponse]] = None,
         want_description_docstring: Optional[bool] = True,
@@ -228,6 +228,8 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
             for yaml in yaml_data.get("parameters", [])
         ]
         multiple_requests = len(yaml_data["requests"]) > 1
+
+        parameters: List[Parameter] = []
         multiple_media_type_parameters: List[Parameter] = []
 
         parameters += [Parameter.from_yaml(yaml) for yaml in yaml_data.get("parameters", [])]

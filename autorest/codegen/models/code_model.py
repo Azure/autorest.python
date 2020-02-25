@@ -186,7 +186,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             method=operation.method,
             api_versions=operation.api_versions,
             parameters=operation.parameters.parameters,
-            multiple_media_type_parameters=operation.multiple_media_type_parameters,
             requests=operation.requests,
             responses=operation.responses,
             exceptions=operation.exceptions,
@@ -342,9 +341,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                     docstring_type = ", ".join([
                         param.schema.docstring_type for param in operation.multiple_media_type_parameters
                     ])
-                    chosen_parameter = next(
-                        iter(filter(lambda x: x.has_multiple_media_types, operation.parameters)), None
-                    )
+                    chosen_parameter = next(iter(filter(lambda x: x.has_multiple_media_types, operation.parameters)), None)
                     if not chosen_parameter:
                         raise ValueError("You are missing a parameter that has multiple media types")
                     chosen_parameter.multiple_media_types_type_annot = f"Union[{type_annot}]"
