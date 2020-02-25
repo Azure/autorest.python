@@ -9,6 +9,8 @@
 from enum import Enum
 
 class ContentType(str, Enum):
+    """Content type for upload
+    """
 
     application_pdf = "application/pdf"  #: Content Type 'application/pdf'.
     image_jpeg = "image/jpeg"  #: Content Type 'image/jpeg'.

@@ -128,7 +128,7 @@
 
         {{ op_tools.query_parameters(operation, async_mode)|indent(8) }}
         {{ op_tools.header_parameters(code_model, operation, async_mode)|indent(8) }}
-        {{ op_tools.body_parameters(operation)|indent }}
+        {{ op_tools.body_parameters(operation)|indent(8) }}
         return request
 
     {{ keywords.def }} extract_data(pipeline_response):

@@ -86,7 +86,7 @@ class PagingOperations(object):
             header_parameters['Accept'] = 'application/json'
 
             # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
+            request = self._client.get(url, query_parameters, header_parameters)
             return request
 
         def extract_data(pipeline_response):
@@ -158,7 +158,7 @@ class PagingOperations(object):
             header_parameters['Accept'] = 'application/json'
 
             # Construct and send request
-        request = self._client.get(url, query_parameters, header_parameters)
+            request = self._client.get(url, query_parameters, header_parameters)
             return request
 
         def extract_data(pipeline_response):
