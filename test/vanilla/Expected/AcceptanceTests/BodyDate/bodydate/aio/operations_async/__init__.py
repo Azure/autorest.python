@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._date_model_operations_async import DateOperations
+from ._date_operations_async import DateOperations
 
 __all__ = [
     'DateOperations',
