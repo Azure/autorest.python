@@ -26,9 +26,9 @@ class PagingOperation(Operation):
         method: str,
         api_versions: Set[str],
         requests: List[SchemaRequest],
+        multiple_media_type_parameters: List[Parameter],
         summary: Optional[str] = None,
         parameters: Optional[List[Parameter]] = None,
-        multiple_media_type_parameters: Optional[List[Parameter]] = None,
         responses: Optional[List[SchemaResponse]] = None,
         exceptions: Optional[List[SchemaResponse]] = None,
     ) -> None:
@@ -40,9 +40,9 @@ class PagingOperation(Operation):
             method,
             api_versions,
             requests,
+            multiple_media_type_parameters,
             summary,
             parameters,
-            multiple_media_type_parameters,
             responses,
             exceptions
         )
