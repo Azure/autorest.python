@@ -87,6 +87,10 @@ class StorageAccountsOperations:
         if header_parameters['Content-Type'] in ['application/json', 'text/json']:
             body_content = self._serialize.body(account_name, 'StorageAccountCheckNameAvailabilityParameters')
             __body_content_kwargs['content'] = body_content
+        else:
+            raise ValueError(
+                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+            )
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -138,6 +142,10 @@ class StorageAccountsOperations:
         if header_parameters['Content-Type'] in ['application/json', 'text/json']:
             body_content = self._serialize.body(parameters, 'StorageAccountCreateParameters')
             __body_content_kwargs['content'] = body_content
+        else:
+            raise ValueError(
+                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+            )
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -372,6 +380,10 @@ class StorageAccountsOperations:
         if header_parameters['Content-Type'] in ['application/json', 'text/json']:
             body_content = self._serialize.body(parameters, 'StorageAccountUpdateParameters')
             __body_content_kwargs['content'] = body_content
+        else:
+            raise ValueError(
+                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+            )
         request = self._client.patch(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -623,6 +635,10 @@ class StorageAccountsOperations:
         if header_parameters['Content-Type'] in ['application/json', 'text/json']:
             body_content = self._serialize.body(_regenerate_key, 'StorageAccountRegenerateKeyParameters')
             __body_content_kwargs['content'] = body_content
+        else:
+            raise ValueError(
+                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+            )
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

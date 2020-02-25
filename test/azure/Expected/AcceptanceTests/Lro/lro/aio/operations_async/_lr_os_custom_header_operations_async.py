@@ -72,6 +72,10 @@ class LROsCustomHeaderOperations:
             else:
                 body_content = None
             __body_content_kwargs['content'] = body_content
+        else:
+            raise ValueError(
+                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+            )
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -173,6 +177,10 @@ class LROsCustomHeaderOperations:
             else:
                 body_content = None
             __body_content_kwargs['content'] = body_content
+        else:
+            raise ValueError(
+                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+            )
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -269,6 +277,10 @@ class LROsCustomHeaderOperations:
             else:
                 body_content = None
             __body_content_kwargs['content'] = body_content
+        else:
+            raise ValueError(
+                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+            )
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -358,6 +370,10 @@ class LROsCustomHeaderOperations:
             else:
                 body_content = None
             __body_content_kwargs['content'] = body_content
+        else:
+            raise ValueError(
+                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+            )
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

@@ -160,6 +160,10 @@ class DictionaryOperations:
         if header_parameters['Content-Type'] in ['application/json']:
             body_content = self._serialize.body(array_body, '{str}')
             __body_content_kwargs['content'] = body_content
+        else:
+            raise ValueError(
+                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+            )
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -419,6 +423,10 @@ class DictionaryOperations:
         if header_parameters['Content-Type'] in ['application/json']:
             body_content = self._serialize.body(array_body, '{bool}')
             __body_content_kwargs['content'] = body_content
+        else:
+            raise ValueError(
+                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+            )
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -594,6 +602,10 @@ class DictionaryOperations:
         if header_parameters['Content-Type'] in ['application/json']:
             body_content = self._serialize.body(array_body, '{int}')
             __body_content_kwargs['content'] = body_content
+        else:
+            raise ValueError(
+                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+            )
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -769,6 +781,10 @@ class DictionaryOperations:
         if header_parameters['Content-Type'] in ['application/json']:
             body_content = self._serialize.body(array_body, '{long}')
             __body_content_kwargs['content'] = body_content
+        else:
+            raise ValueError(
+                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+            )
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -944,6 +960,10 @@ class DictionaryOperations:
         if header_parameters['Content-Type'] in ['application/json']:
             body_content = self._serialize.body(array_body, '{float}')
             __body_content_kwargs['content'] = body_content
+        else:
+            raise ValueError(
+                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+            )
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1119,6 +1139,10 @@ class DictionaryOperations:
         if header_parameters['Content-Type'] in ['application/json']:
             body_content = self._serialize.body(array_body, '{float}')
             __body_content_kwargs['content'] = body_content
+        else:
+            raise ValueError(
+                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+            )
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1294,6 +1318,10 @@ class DictionaryOperations:
         if header_parameters['Content-Type'] in ['application/json']:
             body_content = self._serialize.body(array_body, '{str}')
             __body_content_kwargs['content'] = body_content
+        else:
+            raise ValueError(
+                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+            )
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1469,6 +1497,10 @@ class DictionaryOperations:
         if header_parameters['Content-Type'] in ['application/json']:
             body_content = self._serialize.body(array_body, '{date}')
             __body_content_kwargs['content'] = body_content
+        else:
+            raise ValueError(
+                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+            )
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1644,6 +1676,10 @@ class DictionaryOperations:
         if header_parameters['Content-Type'] in ['application/json']:
             body_content = self._serialize.body(array_body, '{iso-8601}')
             __body_content_kwargs['content'] = body_content
+        else:
+            raise ValueError(
+                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+            )
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1819,6 +1855,10 @@ class DictionaryOperations:
         if header_parameters['Content-Type'] in ['application/json']:
             body_content = self._serialize.body(array_body, '{rfc-1123}')
             __body_content_kwargs['content'] = body_content
+        else:
+            raise ValueError(
+                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+            )
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1910,6 +1950,10 @@ class DictionaryOperations:
         if header_parameters['Content-Type'] in ['application/json']:
             body_content = self._serialize.body(array_body, '{duration}')
             __body_content_kwargs['content'] = body_content
+        else:
+            raise ValueError(
+                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+            )
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2001,6 +2045,10 @@ class DictionaryOperations:
         if header_parameters['Content-Type'] in ['application/json']:
             body_content = self._serialize.body(array_body, '{bytearray}')
             __body_content_kwargs['content'] = body_content
+        else:
+            raise ValueError(
+                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+            )
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2344,6 +2392,10 @@ class DictionaryOperations:
         if header_parameters['Content-Type'] in ['application/json']:
             body_content = self._serialize.body(array_body, '{Widget}')
             __body_content_kwargs['content'] = body_content
+        else:
+            raise ValueError(
+                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+            )
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2603,6 +2655,10 @@ class DictionaryOperations:
         if header_parameters['Content-Type'] in ['application/json']:
             body_content = self._serialize.body(array_body, '{[str]}')
             __body_content_kwargs['content'] = body_content
+        else:
+            raise ValueError(
+                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+            )
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2862,6 +2918,10 @@ class DictionaryOperations:
         if header_parameters['Content-Type'] in ['application/json']:
             body_content = self._serialize.body(array_body, '{object}')
             __body_content_kwargs['content'] = body_content
+        else:
+            raise ValueError(
+                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+            )
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)

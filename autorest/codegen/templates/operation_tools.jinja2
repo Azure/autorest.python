@@ -144,10 +144,12 @@ __body_content_kwargs = {}
         body_content = None
     {% endif %}
     __body_content_kwargs['content'] = body_content
-{% else %}
-    raise ValueError("The request {{ request }}")
 {% endif %}
 {% endfor %}
+else:
+    raise ValueError(
+        "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
+    )
 request = self._client.{{ operation.method }}(url, query_parameters, header_parameters, **__body_content_kwargs)
 {% else %}
 request = self._client.{{ operation.method }}(url, query_parameters, header_parameters){% endif %}{% endmacro %}
