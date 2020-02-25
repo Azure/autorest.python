@@ -17,7 +17,7 @@ from . import models
 
 
 class AutoRestParameterizedHostTestClient(object):
-    """Test Infrastructure for AutoRest
+    """Test Infrastructure for AutoRest.
 
     :ivar paths: PathsOperations operations
     :vartype paths: custombaseurl.operations.PathsOperations

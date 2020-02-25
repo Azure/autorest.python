@@ -17,7 +17,7 @@ from . import models
 
 
 class AutoRestPagingTestService(object):
-    """Long-running Operation for AutoRest
+    """Long-running Operation for AutoRest.
 
     :ivar paging: PagingOperations operations
     :vartype paging: paging.operations.PagingOperations

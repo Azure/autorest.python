@@ -17,7 +17,7 @@ from .. import models
 
 
 class AutoRestSwaggerBATXMLService(object):
-    """Test Infrastructure for AutoRest Swagger BAT
+    """Test Infrastructure for AutoRest Swagger BAT.
 
     :ivar xml: XmlOperations operations
     :vartype xml: xmlservice.aio.operations_async.XmlOperations

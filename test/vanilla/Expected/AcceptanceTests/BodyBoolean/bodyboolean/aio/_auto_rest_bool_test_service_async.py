@@ -17,7 +17,7 @@ from .. import models
 
 
 class AutoRestBoolTestService(object):
-    """Test Infrastructure for AutoRest
+    """Test Infrastructure for AutoRest.
 
     :ivar bool_model: BoolOperations operations
     :vartype bool_model: bodyboolean.aio.operations_async.BoolOperations

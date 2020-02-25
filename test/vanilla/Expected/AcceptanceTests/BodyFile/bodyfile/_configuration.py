@@ -15,7 +15,8 @@ from ._version import VERSION
 
 
 class AutoRestSwaggerBATFileServiceConfiguration(Configuration):
-    """Configuration for AutoRestSwaggerBATFileService
+    """Configuration for AutoRestSwaggerBATFileService.
+
     Note that all parameters used to create this instance are saved as instance
     attributes.
     """

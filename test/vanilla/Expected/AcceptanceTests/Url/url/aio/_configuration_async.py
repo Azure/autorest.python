@@ -15,7 +15,8 @@ from .._version import VERSION
 
 
 class AutoRestUrlTestServiceConfiguration(Configuration):
-    """Configuration for AutoRestUrlTestService
+    """Configuration for AutoRestUrlTestService.
+
     Note that all parameters used to create this instance are saved as instance
     attributes.
 

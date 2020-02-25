@@ -17,7 +17,7 @@ from . import models
 
 
 class AutoRestRFC1123DateTimeTestService(object):
-    """Test Infrastructure for AutoRest
+    """Test Infrastructure for AutoRest.
 
     :ivar datetimerfc1123: Datetimerfc1123Operations operations
     :vartype datetimerfc1123: bodydatetimerfc1123.operations.Datetimerfc1123Operations

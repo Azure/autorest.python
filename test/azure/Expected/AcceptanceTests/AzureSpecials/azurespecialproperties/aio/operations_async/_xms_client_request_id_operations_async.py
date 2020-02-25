@@ -22,7 +22,8 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class XMsClientRequestIdOperations:
     """XMsClientRequestIdOperations async operations.
 
-    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
+    You should not instantiate this class directly. Instead, you should create a Client instance that
+    instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
     :type models: ~azurespecialproperties.models
@@ -50,9 +51,9 @@ class XMsClientRequestIdOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -87,14 +88,14 @@ class XMsClientRequestIdOperations:
         """Get method that overwrites x-ms-client-request header with value 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
         :param x_ms_client_request_id: This should appear as a method parameter, use value
-             '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'.
+         '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'.
         :type x_ms_client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

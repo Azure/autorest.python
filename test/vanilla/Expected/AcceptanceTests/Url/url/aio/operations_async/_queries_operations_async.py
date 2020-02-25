@@ -22,7 +22,8 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class QueriesOperations:
     """QueriesOperations async operations.
 
-    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
+    You should not instantiate this class directly. Instead, you should create a Client instance that
+    instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
     :type models: ~url.models
@@ -50,9 +51,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         bool_query = True
 
@@ -90,9 +91,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         bool_query = False
 
@@ -133,9 +134,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -173,9 +174,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         int_query = 1000000
 
@@ -213,9 +214,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         int_query = -1000000
 
@@ -256,9 +257,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -296,9 +297,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         long_query = 10000000000
 
@@ -336,9 +337,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         long_query = -10000000000
 
@@ -379,9 +380,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -419,9 +420,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         float_query = 103400000000000000000
 
@@ -459,9 +460,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         float_query = -1.034e-20
 
@@ -502,9 +503,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -542,9 +543,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         double_query = 9999999.999
 
@@ -582,9 +583,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         double_query = -9999999.999
 
@@ -625,9 +626,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -665,9 +666,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         string_query = "啊齄丂狛狜隣郎隣兀﨩"
 
@@ -705,9 +706,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         string_query = "begin!*'();:@ &=+$,/?#[]end"
 
@@ -745,9 +746,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         string_query = ""
 
@@ -788,9 +789,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -831,9 +832,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -874,9 +875,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -917,9 +918,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -957,9 +958,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         byte_query = bytearray("", encoding="utf-8")
 
@@ -1000,9 +1001,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1040,9 +1041,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         date_query = "2012-01-01"
 
@@ -1083,9 +1084,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1123,9 +1124,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
         date_time_query = "2012-01-01T01:01:01Z"
 
@@ -1166,9 +1167,9 @@ class QueriesOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1205,14 +1206,14 @@ class QueriesOperations:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-             ''] using the csv-array format.
+         ''] using the csv-array format.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1249,14 +1250,14 @@ class QueriesOperations:
         """Get a null array of string using the csv-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-             ''] using the csv-array format.
+         ''] using the csv-array format.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1293,14 +1294,14 @@ class QueriesOperations:
         """Get an empty array [] of string using the csv-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-             ''] using the csv-array format.
+         ''] using the csv-array format.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1337,14 +1338,14 @@ class QueriesOperations:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-             ''] using the ssv-array format.
+         ''] using the ssv-array format.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1381,14 +1382,14 @@ class QueriesOperations:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-             ''] using the tsv-array format.
+         ''] using the tsv-array format.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1425,14 +1426,14 @@ class QueriesOperations:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-             ''] using the pipes-array format.
+         ''] using the pipes-array format.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

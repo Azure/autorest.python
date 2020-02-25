@@ -15,7 +15,8 @@ from ._version import VERSION
 
 
 class AutoRestRFC1123DateTimeTestServiceConfiguration(Configuration):
-    """Configuration for AutoRestRFC1123DateTimeTestService
+    """Configuration for AutoRestRFC1123DateTimeTestService.
+
     Note that all parameters used to create this instance are saved as instance
     attributes.
     """

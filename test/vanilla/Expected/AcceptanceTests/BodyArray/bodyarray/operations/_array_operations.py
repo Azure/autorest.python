@@ -22,7 +22,8 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dic
 class ArrayOperations(object):
     """ArrayOperations operations.
 
-    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
+    You should not instantiate this class directly. Instead, you should create a Client instance that
+    instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
     :type models: ~bodyarray.models
@@ -51,9 +52,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[int]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -94,9 +95,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[int]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -137,9 +138,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[int]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -183,9 +184,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -226,9 +227,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[bool]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[bool]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[bool]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -272,9 +273,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -315,9 +316,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[bool]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[bool]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[bool]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -358,9 +359,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[bool]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[bool]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[bool]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -401,9 +402,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[int]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -447,9 +448,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -490,9 +491,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[int]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -533,9 +534,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[int]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -576,9 +577,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[long]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -622,9 +623,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -665,9 +666,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[long]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -708,9 +709,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[long]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[int]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[int]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -751,9 +752,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[float]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[float]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -797,9 +798,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -840,9 +841,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[float]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[float]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -883,9 +884,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[float]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[float]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -926,9 +927,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[float]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[float]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -972,9 +973,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1015,9 +1016,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[float]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[float]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1058,9 +1059,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[float]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[float]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[float]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1101,9 +1102,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[str]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[str]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1147,9 +1148,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1190,9 +1191,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[str or ~bodyarray.models.FooEnum]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[Union[str, "FooEnum"]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Union[str, "FooEnum"]]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1236,9 +1237,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1279,9 +1280,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[str or ~bodyarray.models.Enum0]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[Union[str, "Enum0"]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Union[str, "Enum0"]]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1325,9 +1326,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1368,9 +1369,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[str]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[str]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1411,9 +1412,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[str]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[str]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1454,9 +1455,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[str]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[str]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1500,9 +1501,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1543,9 +1544,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[str]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[str]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1586,9 +1587,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~datetime.date]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[datetime.date]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.date]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1632,9 +1633,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1675,9 +1676,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~datetime.date]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[datetime.date]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.date]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1718,9 +1719,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~datetime.date]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[datetime.date]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.date]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1761,9 +1762,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~datetime.datetime]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[datetime.datetime]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.datetime]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1807,9 +1808,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1850,9 +1851,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~datetime.datetime]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[datetime.datetime]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.datetime]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1893,9 +1894,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~datetime.datetime]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[datetime.datetime]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.datetime]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1936,9 +1937,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~datetime.datetime]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[datetime.datetime]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.datetime]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1982,9 +1983,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2025,9 +2026,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~datetime.timedelta]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[datetime.timedelta]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[datetime.timedelta]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2071,9 +2072,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2114,9 +2115,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[bytearray]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[bytearray]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[bytearray]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2160,9 +2161,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2203,9 +2204,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[bytearray]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[bytearray]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[bytearray]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2246,9 +2247,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[bytes]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[bytes]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[bytes]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2289,9 +2290,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List["Product"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["Product"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2332,9 +2333,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List["Product"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["Product"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2375,9 +2376,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List["Product"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["Product"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2418,9 +2419,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List["Product"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["Product"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2461,9 +2462,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List["Product"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["Product"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2507,9 +2508,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2550,9 +2551,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[list[str]]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[List[str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2593,9 +2594,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[list[str]]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[List[str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2636,9 +2637,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[list[str]]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[List[str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2679,9 +2680,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[list[str]]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[List[str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2722,9 +2723,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[list[str]]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[List[str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[List[str]]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2768,9 +2769,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2811,9 +2812,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[dict[str, str]]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[Dict[str, str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2854,9 +2855,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[dict[str, str]]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[Dict[str, str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2897,9 +2898,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[dict[str, str]]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[Dict[str, str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2940,9 +2941,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[dict[str, str]]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[Dict[str, str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2983,9 +2984,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
         :rtype: list[dict[str, str]]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[List[Dict[str, str]]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[Dict[str, str]]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -3029,9 +3030,9 @@ class ArrayOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None )  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

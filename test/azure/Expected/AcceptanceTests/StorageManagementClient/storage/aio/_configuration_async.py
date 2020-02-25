@@ -15,7 +15,8 @@ from .._version import VERSION
 
 
 class StorageManagementClientConfiguration(Configuration):
-    """Configuration for StorageManagementClient
+    """Configuration for StorageManagementClient.
+
     Note that all parameters used to create this instance are saved as instance
     attributes.
 

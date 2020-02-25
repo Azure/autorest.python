@@ -21,7 +21,8 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class PathItemsOperations:
     """PathItemsOperations async operations.
 
-    You should not instantiate directly this class, but create a Client instance that will create it for you and attach it as attribute.
+    You should not instantiate this class directly. Instead, you should create a Client instance that
+    instantiates it for you and attaches it as an attribute.
 
     :ivar models: Alias to model classes used in this operation group.
     :type models: ~url.models
@@ -55,16 +56,16 @@ class PathItemsOperations:
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
         :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-             parameter.
+         parameter.
         :type path_item_string_query: str
         :param local_string_query: should contain value 'localStringQuery'.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -118,16 +119,16 @@ class PathItemsOperations:
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
         :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-             parameter.
+         parameter.
         :type path_item_string_query: str
         :param local_string_query: should contain value 'localStringQuery'.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -181,16 +182,16 @@ class PathItemsOperations:
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
         :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-             parameter.
+         parameter.
         :type path_item_string_query: str
         :param local_string_query: should contain value 'localStringQuery'.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -244,16 +245,16 @@ class PathItemsOperations:
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
         :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-             parameter.
+         parameter.
         :type path_item_string_query: str
         :param local_string_query: should contain value 'localStringQuery'.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None )
+        cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

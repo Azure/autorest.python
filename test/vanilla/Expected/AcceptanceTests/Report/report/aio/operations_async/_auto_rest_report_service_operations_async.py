@@ -29,15 +29,15 @@ class AutoRestReportServiceOperationsMixin:
         """Get test coverage report.
 
         :param qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in
-             for Python). The only effect is, that generators that run all tests several times, can
-             distinguish the generated reports.
+         for Python). The only effect is, that generators that run all tests several times, can
+         distinguish the generated reports.
         :type qualifier: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, int]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[Dict[str, int]] = kwargs.pop('cls', None )
+        cls: ClsType[Dict[str, int]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -78,15 +78,15 @@ class AutoRestReportServiceOperationsMixin:
         """Get optional test coverage report.
 
         :param qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in
-             for Python). The only effect is, that generators that run all tests several times, can
-             distinguish the generated reports.
+         for Python). The only effect is, that generators that run all tests several times, can
+         distinguish the generated reports.
         :type qualifier: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: dict or the result of cls(response)
         :rtype: dict[str, int]
-        :raises: ~azure.core.HttpResponseError
+        :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[Dict[str, int]] = kwargs.pop('cls', None )
+        cls: ClsType[Dict[str, int]] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

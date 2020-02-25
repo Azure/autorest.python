@@ -29,7 +29,7 @@ response_headers = {
     """{{operation.description }}
     {% if operation.summary %}
 
-    {{ operation.summary | wordwrap(width=95, break_long_words=False, wrapstring='\n    ') }}
+    {{ operation.summary | wordwrap(width=95, break_long_words=False, wrapstring='\n') }}
     {% endif %}
 
 {% if operation.deprecated -%}
@@ -39,7 +39,7 @@ response_headers = {
 {% endif -%}
 {% for parameter in operation.parameters.method %}
     {%- for doc_string in param_documentation_string(parameter).replace('\n', '\n ').split('\n') %}
-    {{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n     ')}}
+    {{ doc_string | wordwrap(width=95, break_long_words=False, wrapstring='\n ')}}
     {% endfor %}
     :type {{ parameter.serialized_name }}: {{ parameter.schema.docstring_type }}
 {% endfor %}
@@ -52,7 +52,7 @@ response_headers = {
         {% if code_model.options['azure_arm'] %}
     :raises ~azure.mgmt.core.ARMError:
         {% else %}
-    :raises ~azure.core.HttpResponseError:
+    :raises ~azure.core.exceptions.HttpResponseError:
         {% endif %}
     {% else %}
     :raises ~{{ code_model.namespace }}.models.{{ exception_name() }}:
@@ -60,10 +60,10 @@ response_headers = {
     """
     {% if async_mode %}
     polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})
-    cls: ClsType[{{ keywords.return_type_annotation(operation) }}] = kwargs.pop('cls', None )
+    cls: ClsType[{{ keywords.return_type_annotation(operation) }}] = kwargs.pop('cls', None)
     {% else %}
     polling = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})  # type: Union[bool, PollingMethod]
-    cls = kwargs.pop('cls', None )  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
+    cls = kwargs.pop('cls', None)  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
     {% endif %}
     raw_result = {{ keywords.await }}self._{{ operation.name }}_initial(
         {% for parameter in operation.parameters.method %}
