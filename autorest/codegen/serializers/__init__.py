@@ -154,7 +154,7 @@ class JinjaSerializer:
             )
 
         # write the empty py.typed file
-        self._autorestapi.write_file(namespace_path / Path("py.typed"), code_model.options['license_header'] + "\n")
+        self._autorestapi.write_file(namespace_path / Path("py.typed"), "# Marker file for PEP 561.")
 
         # Write the config file
         self._autorestapi.write_file(
