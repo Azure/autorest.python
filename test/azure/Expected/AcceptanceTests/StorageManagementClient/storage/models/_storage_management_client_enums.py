@@ -9,12 +9,16 @@
 from enum import Enum
 
 class ProvisioningState(str, Enum):
+    """Gets the status of the storage account at the time the operation was called.
+    """
 
     creating = "Creating"
     resolving_dns = "ResolvingDNS"
     succeeded = "Succeeded"
 
 class AccountType(str, Enum):
+    """Gets or sets the account type.
+    """
 
     standard_lrs = "Standard_LRS"
     standard_zrs = "Standard_ZRS"
@@ -23,11 +27,16 @@ class AccountType(str, Enum):
     premium_lrs = "Premium_LRS"
 
 class AccountStatus(str, Enum):
+    """Gets the status indicating whether the primary location of the storage account is available or
+    unavailable.
+    """
 
     available = "Available"
     unavailable = "Unavailable"
 
 class UsageUnit(str, Enum):
+    """Gets the unit of measurement.
+    """
 
     count = "Count"
     bytes = "Bytes"
@@ -37,6 +46,9 @@ class UsageUnit(str, Enum):
     bytes_per_second = "BytesPerSecond"
 
 class Reason(str, Enum):
+    """Gets the reason that a storage account name could not be used. The Reason element is only
+    returned if NameAvailable is false.
+    """
 
     account_name_invalid = "AccountNameInvalid"
     already_exists = "AlreadyExists"

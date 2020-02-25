@@ -9,6 +9,8 @@
 from enum import Enum
 
 class OperationResultStatus(str, Enum):
+    """The status of the request
+    """
 
     succeeded = "Succeeded"
     failed = "Failed"

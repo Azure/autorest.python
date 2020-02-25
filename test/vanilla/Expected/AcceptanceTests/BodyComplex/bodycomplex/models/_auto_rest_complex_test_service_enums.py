@@ -16,6 +16,8 @@ class CMYKColors(str, Enum):
     blac_k = "blacK"
 
 class GoblinSharkColor(str, Enum):
+    """Colors possible
+    """
 
     pink = "pink"
     gray = "gray"

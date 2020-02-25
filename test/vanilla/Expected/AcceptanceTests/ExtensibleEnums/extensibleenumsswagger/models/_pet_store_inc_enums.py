@@ -9,6 +9,8 @@
 from enum import Enum
 
 class DaysOfWeekExtensibleEnum(str, Enum):
+    """Type of Pet
+    """
 
     monday = "Monday"
     tuesday = "Tuesday"

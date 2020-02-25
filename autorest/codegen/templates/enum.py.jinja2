@@ -1,5 +1,9 @@
 
 class {{ enum.enum_type }}(str, Enum):
+    {% if enum.description %}
+    """{{ enum.description | wordwrap(width=95, break_long_words=False, wrapstring='\n    ') }}
+    """
+    {% endif %}
 
     {% for value in enum.values %}
     {% if value.description %}
