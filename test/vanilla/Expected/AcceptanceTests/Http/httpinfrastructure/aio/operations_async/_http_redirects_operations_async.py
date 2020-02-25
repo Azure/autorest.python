@@ -66,6 +66,7 @@ class HttpRedirectsOperations:
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -109,6 +110,7 @@ class HttpRedirectsOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -154,6 +156,7 @@ class HttpRedirectsOperations:
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -196,6 +199,7 @@ class HttpRedirectsOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -215,6 +219,8 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def put301(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put true Boolean value in request returns 301.  This request should not be automatically redirected, but should return the received 301 to the caller for evaluation.
@@ -236,7 +242,7 @@ class HttpRedirectsOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if boolean_value is not None:
@@ -245,7 +251,11 @@ class HttpRedirectsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -287,6 +297,7 @@ class HttpRedirectsOperations:
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -329,6 +340,7 @@ class HttpRedirectsOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -348,6 +360,8 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def patch302(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Patch true Boolean value in request returns 302.  This request should not be automatically redirected, but should return the received 302 to the caller for evaluation.
@@ -369,7 +383,7 @@ class HttpRedirectsOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if boolean_value is not None:
@@ -378,7 +392,11 @@ class HttpRedirectsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.patch(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.patch(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -397,6 +415,8 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def post303(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Post true Boolean value in request returns 303.  This request should be automatically redirected usign a get, ultimately returning a 200 status code.
@@ -418,7 +438,7 @@ class HttpRedirectsOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if boolean_value is not None:
@@ -427,7 +447,11 @@ class HttpRedirectsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -470,6 +494,7 @@ class HttpRedirectsOperations:
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -512,6 +537,7 @@ class HttpRedirectsOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -554,6 +580,7 @@ class HttpRedirectsOperations:
 
         # Construct and send request
         request = self._client.options(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -573,6 +600,8 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def put307(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put redirected with 307, resulting in a 200 after redirect.
@@ -594,7 +623,7 @@ class HttpRedirectsOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if boolean_value is not None:
@@ -603,7 +632,11 @@ class HttpRedirectsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -623,6 +656,8 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def patch307(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Patch redirected with 307, resulting in a 200 after redirect.
@@ -644,7 +679,7 @@ class HttpRedirectsOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if boolean_value is not None:
@@ -653,7 +688,11 @@ class HttpRedirectsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.patch(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.patch(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -673,6 +712,8 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def post307(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Post redirected with 307, resulting in a 200 after redirect.
@@ -694,7 +735,7 @@ class HttpRedirectsOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if boolean_value is not None:
@@ -703,7 +744,11 @@ class HttpRedirectsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -723,6 +768,8 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def delete307(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Delete redirected with 307, resulting in a 200 after redirect.
@@ -744,7 +791,7 @@ class HttpRedirectsOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if boolean_value is not None:
@@ -753,7 +800,11 @@ class HttpRedirectsOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.delete(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

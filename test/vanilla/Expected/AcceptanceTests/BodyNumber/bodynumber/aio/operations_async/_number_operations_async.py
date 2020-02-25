@@ -67,6 +67,7 @@ class NumberOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -109,6 +110,7 @@ class NumberOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -151,6 +153,7 @@ class NumberOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -193,6 +196,7 @@ class NumberOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -212,6 +216,8 @@ class NumberOperations:
     async def put_big_float(
         self,
         number_body: float,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put big float value 3.402823e+20.
@@ -234,13 +240,17 @@ class NumberOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -280,6 +290,7 @@ class NumberOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -299,6 +310,8 @@ class NumberOperations:
     async def put_big_double(
         self,
         number_body: float,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put big double value 2.5976931e+101.
@@ -321,13 +334,17 @@ class NumberOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -367,6 +384,7 @@ class NumberOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -385,6 +403,8 @@ class NumberOperations:
     @distributed_trace_async
     async def put_big_double_positive_decimal(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put big double value 99999999.99.
@@ -406,13 +426,17 @@ class NumberOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -452,6 +476,7 @@ class NumberOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -470,6 +495,8 @@ class NumberOperations:
     @distributed_trace_async
     async def put_big_double_negative_decimal(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put big double value -99999999.99.
@@ -491,13 +518,17 @@ class NumberOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -537,6 +568,7 @@ class NumberOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -556,6 +588,8 @@ class NumberOperations:
     async def put_big_decimal(
         self,
         number_body: float,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put big decimal value 2.5976931e+101.
@@ -578,13 +612,17 @@ class NumberOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -624,6 +662,7 @@ class NumberOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -642,6 +681,8 @@ class NumberOperations:
     @distributed_trace_async
     async def put_big_decimal_positive_decimal(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put big decimal value 99999999.99.
@@ -663,13 +704,17 @@ class NumberOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -709,6 +754,7 @@ class NumberOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -727,6 +773,8 @@ class NumberOperations:
     @distributed_trace_async
     async def put_big_decimal_negative_decimal(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put big decimal value -99999999.99.
@@ -748,13 +796,17 @@ class NumberOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -794,6 +846,7 @@ class NumberOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -813,6 +866,8 @@ class NumberOperations:
     async def put_small_float(
         self,
         number_body: float,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put small float value 3.402823e-20.
@@ -835,13 +890,17 @@ class NumberOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -881,6 +940,7 @@ class NumberOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -900,6 +960,8 @@ class NumberOperations:
     async def put_small_double(
         self,
         number_body: float,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put small double value 2.5976931e-101.
@@ -922,13 +984,17 @@ class NumberOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -968,6 +1034,7 @@ class NumberOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -987,6 +1054,8 @@ class NumberOperations:
     async def put_small_decimal(
         self,
         number_body: float,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put small decimal value 2.5976931e-101.
@@ -1009,13 +1078,17 @@ class NumberOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(number_body, 'float')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1055,6 +1128,7 @@ class NumberOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

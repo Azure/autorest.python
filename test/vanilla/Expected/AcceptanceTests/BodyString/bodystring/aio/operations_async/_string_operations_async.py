@@ -67,6 +67,7 @@ class StringOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -85,6 +86,8 @@ class StringOperations:
     @distributed_trace_async
     async def put_null(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Set string value null.
@@ -106,7 +109,7 @@ class StringOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if string_body is not None:
@@ -115,7 +118,11 @@ class StringOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -155,6 +162,7 @@ class StringOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -173,6 +181,8 @@ class StringOperations:
     @distributed_trace_async
     async def put_empty(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Set string value empty ''.
@@ -194,13 +204,17 @@ class StringOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(string_body, 'str')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -240,6 +254,7 @@ class StringOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -258,6 +273,8 @@ class StringOperations:
     @distributed_trace_async
     async def put_mbcs(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
@@ -279,13 +296,17 @@ class StringOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(string_body, 'str')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -325,6 +346,7 @@ class StringOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -343,6 +365,8 @@ class StringOperations:
     @distributed_trace_async
     async def put_whitespace(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Set String value with leading and trailing whitespace ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
@@ -364,13 +388,17 @@ class StringOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(string_body, 'str')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -410,6 +438,7 @@ class StringOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -452,6 +481,7 @@ class StringOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -494,6 +524,7 @@ class StringOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -513,6 +544,8 @@ class StringOperations:
     async def put_base64_url_encoded(
         self,
         string_body: bytes,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put value that is base64url encoded.
@@ -535,13 +568,17 @@ class StringOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(string_body, 'base64')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -581,6 +618,7 @@ class StringOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

@@ -68,6 +68,7 @@ class PrimitiveOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -87,6 +88,8 @@ class PrimitiveOperations:
     async def put_int(
         self,
         complex_body: "models.IntWrapper",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types with integer properties.
@@ -109,13 +112,17 @@ class PrimitiveOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'IntWrapper')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -155,6 +162,7 @@ class PrimitiveOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -174,6 +182,8 @@ class PrimitiveOperations:
     async def put_long(
         self,
         complex_body: "models.LongWrapper",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types with long properties.
@@ -196,13 +206,17 @@ class PrimitiveOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'LongWrapper')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -242,6 +256,7 @@ class PrimitiveOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -261,6 +276,8 @@ class PrimitiveOperations:
     async def put_float(
         self,
         complex_body: "models.FloatWrapper",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types with float properties.
@@ -283,13 +300,17 @@ class PrimitiveOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'FloatWrapper')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -329,6 +350,7 @@ class PrimitiveOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -348,6 +370,8 @@ class PrimitiveOperations:
     async def put_double(
         self,
         complex_body: "models.DoubleWrapper",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types with double properties.
@@ -371,13 +395,17 @@ class PrimitiveOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'DoubleWrapper')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -417,6 +445,7 @@ class PrimitiveOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -436,6 +465,8 @@ class PrimitiveOperations:
     async def put_bool(
         self,
         complex_body: "models.BooleanWrapper",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types with bool properties.
@@ -458,13 +489,17 @@ class PrimitiveOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'BooleanWrapper')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -504,6 +539,7 @@ class PrimitiveOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -523,6 +559,8 @@ class PrimitiveOperations:
     async def put_string(
         self,
         complex_body: "models.StringWrapper",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types with string properties.
@@ -545,13 +583,17 @@ class PrimitiveOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'StringWrapper')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -591,6 +633,7 @@ class PrimitiveOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -610,6 +653,8 @@ class PrimitiveOperations:
     async def put_date(
         self,
         complex_body: "models.DateWrapper",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types with date properties.
@@ -632,13 +677,17 @@ class PrimitiveOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'DateWrapper')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -678,6 +727,7 @@ class PrimitiveOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -697,6 +747,8 @@ class PrimitiveOperations:
     async def put_date_time(
         self,
         complex_body: "models.DatetimeWrapper",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types with datetime properties.
@@ -719,13 +771,17 @@ class PrimitiveOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'DatetimeWrapper')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -765,6 +821,7 @@ class PrimitiveOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -784,6 +841,8 @@ class PrimitiveOperations:
     async def put_date_time_rfc1123(
         self,
         complex_body: "models.Datetimerfc1123Wrapper",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types with datetimeRfc1123 properties.
@@ -807,13 +866,17 @@ class PrimitiveOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'Datetimerfc1123Wrapper')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -853,6 +916,7 @@ class PrimitiveOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -872,6 +936,8 @@ class PrimitiveOperations:
     async def put_duration(
         self,
         field: Optional[datetime.timedelta] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types with duration properties.
@@ -896,13 +962,17 @@ class PrimitiveOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(_complex_body, 'DurationWrapper')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -942,6 +1012,7 @@ class PrimitiveOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -961,6 +1032,8 @@ class PrimitiveOperations:
     async def put_byte(
         self,
         field: Optional[bytearray] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types with byte properties.
@@ -985,13 +1058,17 @@ class PrimitiveOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(_complex_body, 'ByteWrapper')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

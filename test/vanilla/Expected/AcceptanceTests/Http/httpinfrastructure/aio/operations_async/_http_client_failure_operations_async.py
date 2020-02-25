@@ -66,6 +66,7 @@ class HttpClientFailureOperations:
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -104,6 +105,7 @@ class HttpClientFailureOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -142,6 +144,7 @@ class HttpClientFailureOperations:
 
         # Construct and send request
         request = self._client.options(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -157,6 +160,8 @@ class HttpClientFailureOperations:
     @distributed_trace_async
     async def put400(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
@@ -178,7 +183,7 @@ class HttpClientFailureOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if boolean_value is not None:
@@ -187,7 +192,11 @@ class HttpClientFailureOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -203,6 +212,8 @@ class HttpClientFailureOperations:
     @distributed_trace_async
     async def patch400(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
@@ -224,7 +235,7 @@ class HttpClientFailureOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if boolean_value is not None:
@@ -233,7 +244,11 @@ class HttpClientFailureOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.patch(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.patch(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -249,6 +264,8 @@ class HttpClientFailureOperations:
     @distributed_trace_async
     async def post400(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
@@ -270,7 +287,7 @@ class HttpClientFailureOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if boolean_value is not None:
@@ -279,7 +296,11 @@ class HttpClientFailureOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -295,6 +316,8 @@ class HttpClientFailureOperations:
     @distributed_trace_async
     async def delete400(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
@@ -316,7 +339,7 @@ class HttpClientFailureOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if boolean_value is not None:
@@ -325,7 +348,11 @@ class HttpClientFailureOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.delete(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -364,6 +391,7 @@ class HttpClientFailureOperations:
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -402,6 +430,7 @@ class HttpClientFailureOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -440,6 +469,7 @@ class HttpClientFailureOperations:
 
         # Construct and send request
         request = self._client.options(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -478,6 +508,7 @@ class HttpClientFailureOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -493,6 +524,8 @@ class HttpClientFailureOperations:
     @distributed_trace_async
     async def put404(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Return 404 status code - should be represented in the client as an error.
@@ -514,7 +547,7 @@ class HttpClientFailureOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if boolean_value is not None:
@@ -523,7 +556,11 @@ class HttpClientFailureOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -539,6 +576,8 @@ class HttpClientFailureOperations:
     @distributed_trace_async
     async def patch405(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Return 405 status code - should be represented in the client as an error.
@@ -560,7 +599,7 @@ class HttpClientFailureOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if boolean_value is not None:
@@ -569,7 +608,11 @@ class HttpClientFailureOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.patch(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.patch(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -585,6 +628,8 @@ class HttpClientFailureOperations:
     @distributed_trace_async
     async def post406(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Return 406 status code - should be represented in the client as an error.
@@ -606,7 +651,7 @@ class HttpClientFailureOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if boolean_value is not None:
@@ -615,7 +660,11 @@ class HttpClientFailureOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -631,6 +680,8 @@ class HttpClientFailureOperations:
     @distributed_trace_async
     async def delete407(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Return 407 status code - should be represented in the client as an error.
@@ -652,7 +703,7 @@ class HttpClientFailureOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if boolean_value is not None:
@@ -661,7 +712,11 @@ class HttpClientFailureOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.delete(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -677,6 +732,8 @@ class HttpClientFailureOperations:
     @distributed_trace_async
     async def put409(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Return 409 status code - should be represented in the client as an error.
@@ -698,7 +755,7 @@ class HttpClientFailureOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if boolean_value is not None:
@@ -707,7 +764,11 @@ class HttpClientFailureOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -746,6 +807,7 @@ class HttpClientFailureOperations:
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -784,6 +846,7 @@ class HttpClientFailureOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -822,6 +885,7 @@ class HttpClientFailureOperations:
 
         # Construct and send request
         request = self._client.options(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -860,6 +924,7 @@ class HttpClientFailureOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -875,6 +940,8 @@ class HttpClientFailureOperations:
     @distributed_trace_async
     async def put413(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Return 413 status code - should be represented in the client as an error.
@@ -896,7 +963,7 @@ class HttpClientFailureOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if boolean_value is not None:
@@ -905,7 +972,11 @@ class HttpClientFailureOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -921,6 +992,8 @@ class HttpClientFailureOperations:
     @distributed_trace_async
     async def patch414(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Return 414 status code - should be represented in the client as an error.
@@ -942,7 +1015,7 @@ class HttpClientFailureOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if boolean_value is not None:
@@ -951,7 +1024,11 @@ class HttpClientFailureOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.patch(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.patch(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -967,6 +1044,8 @@ class HttpClientFailureOperations:
     @distributed_trace_async
     async def post415(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Return 415 status code - should be represented in the client as an error.
@@ -988,7 +1067,7 @@ class HttpClientFailureOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if boolean_value is not None:
@@ -997,7 +1076,11 @@ class HttpClientFailureOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1036,6 +1119,7 @@ class HttpClientFailureOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1051,6 +1135,8 @@ class HttpClientFailureOperations:
     @distributed_trace_async
     async def delete417(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Return 417 status code - should be represented in the client as an error.
@@ -1072,7 +1158,7 @@ class HttpClientFailureOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if boolean_value is not None:
@@ -1081,7 +1167,11 @@ class HttpClientFailureOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.delete(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1120,6 +1210,7 @@ class HttpClientFailureOperations:
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

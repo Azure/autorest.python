@@ -9,6 +9,7 @@ from .imports import FileImport
 from .operation import Operation
 from .parameter import Parameter
 from .schema_response import SchemaResponse
+from .schema_request import SchemaRequest
 from .imports import ImportType
 
 _LOGGER = logging.getLogger(__name__)
@@ -23,11 +24,11 @@ class LROOperation(Operation):
         url: str,
         method: str,
         api_versions: Set[str],
+        requests: List[SchemaRequest],
         summary: Optional[str] = None,
         parameters: List[Parameter] = None,
         responses: List[SchemaResponse] = None,
         exceptions: List[SchemaResponse] = None,
-        media_types: List[str] = None,
         want_description_docstring: Optional[bool] = True,
         want_tracing: Optional[bool] = True,
     ) -> None:
@@ -38,11 +39,11 @@ class LROOperation(Operation):
             url,
             method,
             api_versions,
+            requests,
             summary,
             parameters,
             responses,
             exceptions,
-            media_types,
             want_description_docstring,
             want_tracing,
         )

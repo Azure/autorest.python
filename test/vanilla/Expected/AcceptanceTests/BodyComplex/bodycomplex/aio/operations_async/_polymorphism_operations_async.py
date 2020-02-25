@@ -67,6 +67,7 @@ class PolymorphismOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -86,6 +87,8 @@ class PolymorphismOperations:
     async def put_valid(
         self,
         complex_body: "models.Fish",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types that are polymorphic.
@@ -140,13 +143,17 @@ class PolymorphismOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'Fish')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -186,6 +193,7 @@ class PolymorphismOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -228,6 +236,7 @@ class PolymorphismOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -270,6 +279,7 @@ class PolymorphismOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -312,6 +322,7 @@ class PolymorphismOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -331,6 +342,8 @@ class PolymorphismOperations:
     async def put_complicated(
         self,
         complex_body: "models.Salmon",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties.
@@ -353,13 +366,17 @@ class PolymorphismOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'Salmon')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -376,6 +393,8 @@ class PolymorphismOperations:
     async def put_missing_discriminator(
         self,
         complex_body: "models.Salmon",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.Salmon":
         """Put complex types that are polymorphic, omitting the discriminator.
@@ -399,13 +418,17 @@ class PolymorphismOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'Salmon')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -425,6 +448,8 @@ class PolymorphismOperations:
     async def put_valid_missing_required(
         self,
         complex_body: "models.Fish",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the request should not be allowed from the client.
@@ -479,13 +504,17 @@ class PolymorphismOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'Fish')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

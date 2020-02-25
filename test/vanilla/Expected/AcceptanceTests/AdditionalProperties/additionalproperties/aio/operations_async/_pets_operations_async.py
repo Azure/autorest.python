@@ -44,6 +44,8 @@ class PetsOperations:
     async def create_ap_true(
         self,
         create_parameters: "models.PetAPTrue",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.PetAPTrue":
         """Create a Pet which contains more properties than what is defined.
@@ -67,13 +69,17 @@ class PetsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(create_parameters, 'PetAPTrue')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -93,6 +99,8 @@ class PetsOperations:
     async def create_cat_ap_true(
         self,
         create_parameters: "models.CatAPTrue",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.CatAPTrue":
         """Create a CatAPTrue which contains more properties than what is defined.
@@ -116,13 +124,17 @@ class PetsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(create_parameters, 'CatAPTrue')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -142,6 +154,8 @@ class PetsOperations:
     async def create_ap_object(
         self,
         create_parameters: "models.PetAPObject",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.PetAPObject":
         """Create a Pet which contains more properties than what is defined.
@@ -165,13 +179,17 @@ class PetsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(create_parameters, 'PetAPObject')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -191,6 +209,8 @@ class PetsOperations:
     async def create_ap_string(
         self,
         create_parameters: "models.PetAPString",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.PetAPString":
         """Create a Pet which contains more properties than what is defined.
@@ -214,13 +234,17 @@ class PetsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(create_parameters, 'PetAPString')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -240,6 +264,8 @@ class PetsOperations:
     async def create_ap_in_properties(
         self,
         create_parameters: "models.PetAPInProperties",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.PetAPInProperties":
         """Create a Pet which contains more properties than what is defined.
@@ -263,13 +289,17 @@ class PetsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(create_parameters, 'PetAPInProperties')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -289,6 +319,8 @@ class PetsOperations:
     async def create_ap_in_properties_with_ap_string(
         self,
         create_parameters: "models.PetAPInPropertiesWithAPString",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.PetAPInPropertiesWithAPString":
         """Create a Pet which contains more properties than what is defined.
@@ -312,13 +344,17 @@ class PetsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(create_parameters, 'PetAPInPropertiesWithAPString')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

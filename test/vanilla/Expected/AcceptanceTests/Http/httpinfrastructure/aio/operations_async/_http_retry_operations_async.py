@@ -66,6 +66,7 @@ class HttpRetryOperations:
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -81,6 +82,8 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def put500(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Return 500 status code, then 200 after retry.
@@ -102,7 +105,7 @@ class HttpRetryOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if boolean_value is not None:
@@ -111,7 +114,11 @@ class HttpRetryOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -127,6 +134,8 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def patch500(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Return 500 status code, then 200 after retry.
@@ -148,7 +157,7 @@ class HttpRetryOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if boolean_value is not None:
@@ -157,7 +166,11 @@ class HttpRetryOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.patch(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.patch(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -196,6 +209,7 @@ class HttpRetryOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -235,6 +249,7 @@ class HttpRetryOperations:
 
         # Construct and send request
         request = self._client.options(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -253,6 +268,8 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def post503(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Return 503 status code, then 200 after retry.
@@ -274,7 +291,7 @@ class HttpRetryOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if boolean_value is not None:
@@ -283,7 +300,11 @@ class HttpRetryOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -299,6 +320,8 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def delete503(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Return 503 status code, then 200 after retry.
@@ -320,7 +343,7 @@ class HttpRetryOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if boolean_value is not None:
@@ -329,7 +352,11 @@ class HttpRetryOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.delete(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -345,6 +372,8 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def put504(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Return 504 status code, then 200 after retry.
@@ -366,7 +395,7 @@ class HttpRetryOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if boolean_value is not None:
@@ -375,7 +404,11 @@ class HttpRetryOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -391,6 +424,8 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def patch504(
         self,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Return 504 status code, then 200 after retry.
@@ -412,7 +447,7 @@ class HttpRetryOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if boolean_value is not None:
@@ -421,7 +456,11 @@ class HttpRetryOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.patch(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.patch(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

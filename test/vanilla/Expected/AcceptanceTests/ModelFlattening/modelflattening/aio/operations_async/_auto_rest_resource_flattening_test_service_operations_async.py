@@ -24,6 +24,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     async def put_array(
         self,
         resource_array: Optional[List["Resource"]] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put External Resource as an Array.
@@ -46,7 +48,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if resource_array is not None:
@@ -55,7 +57,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -95,6 +101,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -114,6 +121,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     async def put_wrapped_array(
         self,
         resource_array: Optional[List["WrappedProduct"]] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened is not removed if it's referenced in an array.
@@ -136,7 +145,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if resource_array is not None:
@@ -145,7 +154,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -185,6 +198,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -204,6 +218,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     async def put_dictionary(
         self,
         resource_dictionary: Optional[Dict[str, "FlattenedProduct"]] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put External Resource as a Dictionary.
@@ -226,7 +242,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if resource_dictionary is not None:
@@ -235,7 +251,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -275,6 +295,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -294,6 +315,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     async def put_resource_collection(
         self,
         resource_complex_object: Optional["models.ResourceCollection"] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put External Resource as a ResourceCollection.
@@ -316,7 +339,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if resource_complex_object is not None:
@@ -325,7 +348,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -365,6 +392,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -384,6 +412,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     async def put_simple_product(
         self,
         simple_body_product: Optional["models.SimpleProduct"] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.SimpleProduct":
         """Put Simple Product with client flattening true on the model.
@@ -407,7 +437,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if simple_body_product is not None:
@@ -416,7 +446,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -440,6 +474,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         max_product_display_name: Optional[str] = None,
         generic_value: Optional[str] = None,
         odata_value: Optional[str] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.SimpleProduct":
         """Put Flattened Simple Product with client flattening true on the parameter.
@@ -475,7 +511,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if _simple_body_product is not None:
@@ -484,7 +520,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -504,6 +544,8 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
     async def put_simple_product_with_grouping(
         self,
         flatten_parameter_group: "models.FlattenParameterGroup",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.SimpleProduct":
         """Put Simple Product with client flattening true on the model.
@@ -549,7 +591,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if _simple_body_product is not None:
@@ -558,7 +600,11 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

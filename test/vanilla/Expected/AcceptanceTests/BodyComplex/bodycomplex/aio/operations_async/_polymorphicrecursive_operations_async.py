@@ -67,6 +67,7 @@ class PolymorphicrecursiveOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -86,6 +87,8 @@ class PolymorphicrecursiveOperations:
     async def put_valid(
         self,
         complex_body: "models.Fish",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types that are polymorphic and have recursive references.
@@ -140,13 +143,17 @@ class PolymorphicrecursiveOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(complex_body, 'Fish')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

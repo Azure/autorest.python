@@ -24,7 +24,7 @@ AutoRest needs the below config to pick this up as a plug-in - see https://githu
 ``` yaml !$(multiapiscript)
 version: 3.0.6225
 use-extension:
-  "@autorest/modelerfour": "4.7.207"
+  "@autorest/modelerfour": "4.7.211"
 
 modelerfour:
   group-parameters: true
@@ -50,11 +50,11 @@ modelerfour:
 pipeline:
 
   python:
-    # just passes content thru, 
+    # just passes content thru,
     # makes it so that the python: config section loads.
-    pass-thru: true 
+    pass-thru: true
     input: modelerfour/identity
-    
+
   python/m2r:
     input: python
 

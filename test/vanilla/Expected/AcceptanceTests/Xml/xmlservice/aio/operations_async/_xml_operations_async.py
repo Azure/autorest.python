@@ -67,6 +67,7 @@ class XmlOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -86,6 +87,8 @@ class XmlOperations:
     async def put_complex_type_ref_no_meta(
         self,
         model: "models.RootWithRefAndNoMeta",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Puts a complex type that has a ref to a complex type with no XML node.
@@ -108,13 +111,17 @@ class XmlOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/xml'
+        header_parameters['Content-Type'] = content_type or 'application/xml'
 
         # Construct body
         body_content = self._serialize.body(model, 'RootWithRefAndNoMeta', is_xml=True)
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/xml']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -154,6 +161,7 @@ class XmlOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -173,6 +181,8 @@ class XmlOperations:
     async def put_complex_type_ref_with_meta(
         self,
         model: "models.RootWithRefAndMeta",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Puts a complex type that has a ref to a complex type with XML node.
@@ -195,13 +205,17 @@ class XmlOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/xml'
+        header_parameters['Content-Type'] = content_type or 'application/xml'
 
         # Construct body
         body_content = self._serialize.body(model, 'RootWithRefAndMeta', is_xml=True)
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/xml']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -241,6 +255,7 @@ class XmlOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -260,6 +275,8 @@ class XmlOperations:
     async def put_simple(
         self,
         slideshow: "models.Slideshow",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put a simple XML document.
@@ -282,13 +299,17 @@ class XmlOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/xml'
+        header_parameters['Content-Type'] = content_type or 'application/xml'
 
         # Construct body
         body_content = self._serialize.body(slideshow, 'Slideshow', is_xml=True)
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/xml']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -328,6 +349,7 @@ class XmlOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -347,6 +369,8 @@ class XmlOperations:
     async def put_wrapped_lists(
         self,
         wrapped_lists: "models.AppleBarrel",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put an XML document with multiple wrapped lists.
@@ -369,13 +393,17 @@ class XmlOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/xml'
+        header_parameters['Content-Type'] = content_type or 'application/xml'
 
         # Construct body
         body_content = self._serialize.body(wrapped_lists, 'AppleBarrel', is_xml=True)
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/xml']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -414,6 +442,7 @@ class XmlOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -456,6 +485,7 @@ class XmlOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -475,6 +505,8 @@ class XmlOperations:
     async def put_empty_list(
         self,
         slideshow: "models.Slideshow",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Puts an empty list.
@@ -497,13 +529,17 @@ class XmlOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/xml'
+        header_parameters['Content-Type'] = content_type or 'application/xml'
 
         # Construct body
         body_content = self._serialize.body(slideshow, 'Slideshow', is_xml=True)
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/xml']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -543,6 +579,7 @@ class XmlOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -562,6 +599,8 @@ class XmlOperations:
     async def put_empty_wrapped_lists(
         self,
         apple_barrel: "models.AppleBarrel",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Puts some empty wrapped lists.
@@ -584,13 +623,17 @@ class XmlOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/xml'
+        header_parameters['Content-Type'] = content_type or 'application/xml'
 
         # Construct body
         body_content = self._serialize.body(apple_barrel, 'AppleBarrel', is_xml=True)
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/xml']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -630,6 +673,7 @@ class XmlOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -649,6 +693,8 @@ class XmlOperations:
     async def put_root_list(
         self,
         bananas: List["Banana"],
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Puts a list as the root element.
@@ -671,14 +717,18 @@ class XmlOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/xml'
+        header_parameters['Content-Type'] = content_type or 'application/xml'
 
         # Construct body
         serialization_ctxt = {'xml': {'name': 'bananas', 'wrapped': True, 'itemsName': 'banana'}}
         body_content = self._serialize.body(bananas, '[Banana]', is_xml=True, serialization_ctxt=serialization_ctxt)
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/xml']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -718,6 +768,7 @@ class XmlOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -737,6 +788,8 @@ class XmlOperations:
     async def put_root_list_single_item(
         self,
         bananas: List["Banana"],
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Puts a list with a single item.
@@ -759,14 +812,18 @@ class XmlOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/xml'
+        header_parameters['Content-Type'] = content_type or 'application/xml'
 
         # Construct body
         serialization_ctxt = {'xml': {'name': 'bananas', 'wrapped': True, 'itemsName': 'banana'}}
         body_content = self._serialize.body(bananas, '[Banana]', is_xml=True, serialization_ctxt=serialization_ctxt)
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/xml']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -806,6 +863,7 @@ class XmlOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -825,6 +883,8 @@ class XmlOperations:
     async def put_empty_root_list(
         self,
         bananas: List["Banana"],
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Puts an empty list as the root element.
@@ -847,14 +907,18 @@ class XmlOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/xml'
+        header_parameters['Content-Type'] = content_type or 'application/xml'
 
         # Construct body
         serialization_ctxt = {'xml': {'name': 'bananas', 'wrapped': True, 'itemsName': 'banana'}}
         body_content = self._serialize.body(bananas, '[Banana]', is_xml=True, serialization_ctxt=serialization_ctxt)
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/xml']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -894,6 +958,7 @@ class XmlOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -913,6 +978,8 @@ class XmlOperations:
     async def put_empty_child_element(
         self,
         banana: "models.Banana",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Puts a value with an empty child element.
@@ -935,13 +1002,17 @@ class XmlOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/xml'
+        header_parameters['Content-Type'] = content_type or 'application/xml'
 
         # Construct body
         body_content = self._serialize.body(banana, 'Banana', is_xml=True)
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/xml']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -983,6 +1054,7 @@ class XmlOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1029,6 +1101,7 @@ class XmlOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1048,6 +1121,8 @@ class XmlOperations:
     async def put_service_properties(
         self,
         properties: "models.StorageServiceProperties",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Puts storage service properties.
@@ -1074,13 +1149,17 @@ class XmlOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/xml'
+        header_parameters['Content-Type'] = content_type or 'application/xml'
 
         # Construct body
         body_content = self._serialize.body(properties, 'StorageServiceProperties', is_xml=True)
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/xml']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1124,6 +1203,7 @@ class XmlOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1143,6 +1223,8 @@ class XmlOperations:
     async def put_acls(
         self,
         properties: List["SignedIdentifier"],
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Puts storage ACLs for a container.
@@ -1169,14 +1251,18 @@ class XmlOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/xml'
+        header_parameters['Content-Type'] = content_type or 'application/xml'
 
         # Construct body
         serialization_ctxt = {'xml': {'name': 'SignedIdentifiers', 'wrapped': True, 'itemsName': 'SignedIdentifier'}}
         body_content = self._serialize.body(properties, '[SignedIdentifier]', is_xml=True, serialization_ctxt=serialization_ctxt)
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/xml']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1220,6 +1306,7 @@ class XmlOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1239,6 +1326,8 @@ class XmlOperations:
     async def json_input(
         self,
         id: Optional[int] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID number 42.
@@ -1263,13 +1352,17 @@ class XmlOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(_properties, 'JSONInput')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1309,6 +1402,7 @@ class XmlOperations:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

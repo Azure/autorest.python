@@ -58,6 +58,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         grouped_by: Optional["Parameter"] = None,
         original_parameter: Optional["Parameter"] = None,
         client_default_value: Optional[Any] = None,
+        is_kwarg: Optional[bool] = False
     ):
         super().__init__(yaml_data)
         self.schema = schema
@@ -75,6 +76,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.grouped_by = grouped_by
         self.original_parameter = original_parameter
         self.client_default_value = client_default_value
+        self.is_kwarg = is_kwarg
 
     @property
     def implementation(self) -> str:

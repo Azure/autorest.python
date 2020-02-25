@@ -44,6 +44,8 @@ class ExplicitOperations:
     async def post_required_integer_parameter(
         self,
         body_parameter: int,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Test explicitly required integer. Please put null and the client library should throw before the request is sent.
@@ -66,13 +68,17 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'int')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -89,6 +95,8 @@ class ExplicitOperations:
     async def post_optional_integer_parameter(
         self,
         body_parameter: Optional[int] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Test explicitly optional integer. Please put null.
@@ -111,7 +119,7 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if body_parameter is not None:
@@ -120,7 +128,11 @@ class ExplicitOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -137,6 +149,8 @@ class ExplicitOperations:
     async def post_required_integer_property(
         self,
         value: int,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the client library should throw before the request is sent.
@@ -161,13 +175,17 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(_body_parameter, 'IntWrapper')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -184,6 +202,8 @@ class ExplicitOperations:
     async def post_optional_integer_property(
         self,
         value: Optional[int] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
@@ -208,7 +228,7 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if _body_parameter is not None:
@@ -217,7 +237,11 @@ class ExplicitOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -260,6 +284,7 @@ class ExplicitOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -303,6 +328,7 @@ class ExplicitOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -319,6 +345,8 @@ class ExplicitOperations:
     async def post_required_string_parameter(
         self,
         body_parameter: str,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Test explicitly required string. Please put null and the client library should throw before the request is sent.
@@ -341,13 +369,17 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'str')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -364,6 +396,8 @@ class ExplicitOperations:
     async def post_optional_string_parameter(
         self,
         body_parameter: Optional[str] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Test explicitly optional string. Please put null.
@@ -386,7 +420,7 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if body_parameter is not None:
@@ -395,7 +429,11 @@ class ExplicitOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -412,6 +450,8 @@ class ExplicitOperations:
     async def post_required_string_property(
         self,
         value: str,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the client library should throw before the request is sent.
@@ -436,13 +476,17 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(_body_parameter, 'StringWrapper')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -459,6 +503,8 @@ class ExplicitOperations:
     async def post_optional_string_property(
         self,
         value: Optional[str] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
@@ -483,7 +529,7 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if _body_parameter is not None:
@@ -492,7 +538,11 @@ class ExplicitOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -535,6 +585,7 @@ class ExplicitOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -578,6 +629,7 @@ class ExplicitOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -594,6 +646,8 @@ class ExplicitOperations:
     async def post_required_class_parameter(
         self,
         body_parameter: "models.Product",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Test explicitly required complex object. Please put null and the client library should throw before the request is sent.
@@ -616,13 +670,17 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(body_parameter, 'Product')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -639,6 +697,8 @@ class ExplicitOperations:
     async def post_optional_class_parameter(
         self,
         body_parameter: Optional["models.Product"] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Test explicitly optional complex object. Please put null.
@@ -661,7 +721,7 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if body_parameter is not None:
@@ -670,7 +730,11 @@ class ExplicitOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -687,6 +751,8 @@ class ExplicitOperations:
     async def post_required_class_property(
         self,
         value: "models.Product",
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null and the client library should throw before the request is sent.
@@ -711,13 +777,17 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(_body_parameter, 'ClassWrapper')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -734,6 +804,8 @@ class ExplicitOperations:
     async def post_optional_class_property(
         self,
         value: Optional["models.Product"] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
@@ -758,7 +830,7 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if _body_parameter is not None:
@@ -767,7 +839,11 @@ class ExplicitOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -784,6 +860,8 @@ class ExplicitOperations:
     async def post_required_array_parameter(
         self,
         body_parameter: List[str],
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Test explicitly required array. Please put null and the client library should throw before the request is sent.
@@ -806,13 +884,17 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(body_parameter, '[str]')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -829,6 +911,8 @@ class ExplicitOperations:
     async def post_optional_array_parameter(
         self,
         body_parameter: Optional[List[str]] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Test explicitly optional array. Please put null.
@@ -851,7 +935,7 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if body_parameter is not None:
@@ -860,7 +944,11 @@ class ExplicitOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -877,6 +965,8 @@ class ExplicitOperations:
     async def post_required_array_property(
         self,
         value: List[str],
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the client library should throw before the request is sent.
@@ -901,13 +991,17 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         body_content = self._serialize.body(_body_parameter, 'ArrayWrapper')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -924,6 +1018,8 @@ class ExplicitOperations:
     async def post_optional_array_property(
         self,
         value: Optional[List[str]] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
@@ -948,7 +1044,7 @@ class ExplicitOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if _body_parameter is not None:
@@ -957,7 +1053,11 @@ class ExplicitOperations:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1000,6 +1100,7 @@ class ExplicitOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1043,6 +1144,7 @@ class ExplicitOperations:
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

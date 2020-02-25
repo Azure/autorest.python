@@ -2,7 +2,7 @@
 {% import 'operation_tools.jinja2' as op_tools %}
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
-{% set send_xml = "xml" in operation.request_content_type %}
+{% set send_xml = "xml" if operation.parameters.has_body and "xml" in operation.request_content_type %}
 {% set request_as_xml = ", is_xml=True" if send_xml else "" %}
 {% macro exception_name() %}{{ operation.default_exception.schema.name }}Exception{% endmacro %}
 {% set core_excep_name = 'ARMError' if code_model.options['azure_arm'] else 'HttpResponseError' %}
@@ -69,20 +69,21 @@
     {{ op_tools.header_parameters(code_model, operation, async_mode)|indent }}
 {% if operation.parameters.has_body %}
     # Construct body
-    {% if not operation.parameters.body.is_stream %}
-        {% set ser_ctxt = operation.parameters.body.schema.xml_serialization_ctxt() if send_xml else None %}
+    {% for request in operation.requests %}
+    {% if not request.is_stream_request %}
+        {% set ser_ctxt = request.parameters.body.schema.xml_serialization_ctxt() if send_xml else None %}
         {% if ser_ctxt %}
     serialization_ctxt = {'xml': {{ "{" }}{{ ser_ctxt }}{{ "}}" }}
         {% endif %}
-        {% if operation.parameters.body.required %}
-    body_content = self._serialize.body({{ operation.parameters.body.serialized_name }}, '{{ operation.parameters.body.schema.serialization_type }}'{{ request_as_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
+        {% if request.parameters.body.required %}
+    body_content = self._serialize.body({{ request.parameters.body.serialized_name }}, '{{ request.parameters.body.schema.serialization_type }}'{{ request_as_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
         {% else %}
-    if {{ operation.parameters.body.serialized_name }} is not None:
-        body_content = self._serialize.body({{ operation.parameters.body.serialized_name }}, '{{ operation.parameters.body.schema.serialization_type }}'{{ request_as_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
+    if {{ request.parameters.body.serialized_name }} is not None:
+        body_content = self._serialize.body({{ request.parameters.body.serialized_name }}, '{{ request.parameters.body.schema.serialization_type }}'{{ request_as_xml }}{{ ", serialization_ctxt=serialization_ctxt" if ser_ctxt else "" }})
     else:
         body_content = None
         {% endif %}
-    {% elif operation.parameters.body.is_form_data %}
+    {% elif request.parameters.body.is_form_data %}
     # Construct form data
     form_data_content = {
     ###foreach (var parameter in Model.LocalParameters)
@@ -93,18 +94,11 @@
     ###}
     }
     {% endif %}
+    {% endfor %}
 
 {% endif %}
     # Construct and send request
-{% if operation.is_form_data %}
-    request = self._client.{{ operation.method }}(url, query_parameters, header_parameters, form_content=form_data_content)
-{% elif operation.is_stream_request %}
-    request = self._client.{{ operation.method }}(url, query_parameters, header_parameters, stream_content={{ parameter.serialized_name }})
-{% elif operation.parameters.has_body %}
-    request = self._client.{{ operation.method }}(url, query_parameters, header_parameters, body_content)
-{% else %}
-    request = self._client.{{ operation.method }}(url, query_parameters, header_parameters)
-{% endif %}
+    {{ op_tools.body_parameters(operation)|indent }}
     pipeline_response = {{ keywords.await }}self._client._pipeline.run(request, {{ stream_request_parameter }}, **kwargs)
     response = pipeline_response.http_response
 

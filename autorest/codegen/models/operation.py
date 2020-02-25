@@ -12,6 +12,7 @@ from .schema_response import SchemaResponse
 from .parameter import Parameter, ParameterStyle
 from .parameter_list import ParameterList
 from .base_schema import BaseSchema
+from .schema_request import SchemaRequest
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -29,11 +30,11 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         url: str,
         method: str,
         api_versions: Set[str],
+        requests: List[SchemaRequest],
         summary: Optional[str] = None,
         parameters: Optional[List[Parameter]] = None,
         responses: Optional[List[SchemaResponse]] = None,
         exceptions: Optional[List[SchemaResponse]] = None,
-        media_types: Optional[List[str]] = None,
         want_description_docstring: Optional[bool] = True,
         want_tracing: Optional[bool] = True,
     ) -> None:
@@ -43,11 +44,11 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         self.url = url
         self.method = method
         self.api_versions = api_versions
+        self.requests = requests
         self.summary = summary
         self.parameters = ParameterList(parameters)
         self.responses = responses or []
         self.exceptions = exceptions or []
-        self.media_types = media_types or []
         self.want_description_docstring = want_description_docstring
         self.want_tracing = want_tracing
 
@@ -56,7 +57,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         return self.name
 
     @staticmethod
-    def _suggest_content_type(media_types: List[str]) -> str:
+    def _suggest_content_type(media_types: List[str], list_all_if_not_found: bool) -> str:
         """Return the prefered media-type.
 
         Assumes "media_types" attributes as a list exist.
@@ -71,22 +72,24 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
             if "json" in media_type:
                 return media_type
         # If no JSON, and still several content type, chain them
-        return ",".join(media_types)
+        if list_all_if_not_found:
+            return ",".join(media_types)
+        return media_types[0]
 
     @property
     def accept_content_type(self) -> str:
         media_types = set(media_type for response in self.responses for media_type in response.media_types)
-        return self._suggest_content_type(list(media_types))
+        return self._suggest_content_type(list(media_types), list_all_if_not_found=True)
 
     @property
     def request_content_type(self) -> str:
-        return self._suggest_content_type(self.media_types)
+        media_types = set(media_type for request in self.requests for media_type in request.media_types)
+        return self._suggest_content_type(list(media_types), list_all_if_not_found=False)
 
     @property
     def is_stream_request(self) -> bool:
         """Is the request is a stream, like an upload."""
-        # FIXME look for input
-        return False
+        return any(request.is_stream_request for request in self.requests)
 
     @property
     def is_stream_response(self) -> bool:
@@ -217,10 +220,20 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
 
         # FIXME handle multiple requests
         first_request = yaml_data["requests"][0]
+
         parameters = [
             Parameter.from_yaml(yaml)
-            for yaml in yaml_data.get("parameters", []) + first_request.get("parameters", [])
+            for yaml in yaml_data.get("parameters", [])
         ]
+        for request in yaml_data["requests"]:
+            for yaml in request.get("parameters", []):
+                if yaml_data["language"]["python"]["name"] == "content_type":
+                    parameter = Parameter.from_yaml(yaml)
+                    parameter.is_kwarg = True
+                    parameters.append(parameter)
+                else:
+                    parameters.append(Parameter.from_yaml(yaml))
+
         parameters_index = {id(parameter.yaml_data): parameter for parameter in parameters}
 
         # Need to connect the groupBy and originalParameter
@@ -240,10 +253,10 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
             url=first_request["protocol"]["http"]["path"],
             method=first_request["protocol"]["http"]["method"],
             api_versions=set(value_dict["version"] for value_dict in yaml_data["apiVersions"]),
+            requests=[SchemaRequest.from_yaml(yaml) for yaml in yaml_data["requests"]],
             summary=yaml_data["language"]["python"].get("summary"),
             parameters=parameters,
             responses=[SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("responses", [])],
             # Exception with no schema means default exception, we don't store them
             exceptions=[SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("exceptions", []) if "schema" in yaml],
-            media_types=first_request["protocol"]["http"].get("mediaTypes", []),
         )

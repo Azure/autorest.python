@@ -186,9 +186,9 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             method=operation.method,
             api_versions=operation.api_versions,
             parameters=operation.parameters.parameters,
+            requests=operation.requests,
             responses=operation.responses,
             exceptions=operation.exceptions,
-            media_types=operation.media_types,
             want_description_docstring=False,
             want_tracing=False,
         )
@@ -320,6 +320,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                     operation.responses,
                     operation.exceptions,
                     chain.from_iterable(response.headers for response in operation.responses),
+                    chain.from_iterable(request.parameters for request in operation.requests)
                 ):
                     self._populate_schema(obj)
 

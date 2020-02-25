@@ -61,6 +61,7 @@ class AutoRestValidationTestOperationsMixin:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -82,6 +83,8 @@ class AutoRestValidationTestOperationsMixin:
         resource_group_name: str,
         id: int,
         body: Optional["models.Product"] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.Product":
         """Validates body parameters on the method. See swagger for details.
@@ -117,7 +120,7 @@ class AutoRestValidationTestOperationsMixin:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if body is not None:
@@ -126,7 +129,11 @@ class AutoRestValidationTestOperationsMixin:
             body_content = None
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -173,6 +180,7 @@ class AutoRestValidationTestOperationsMixin:
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -189,6 +197,8 @@ class AutoRestValidationTestOperationsMixin:
     async def post_with_constant_in_body(
         self,
         body: Optional["models.Product"] = None,
+        *,
+        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.Product":
         """post_with_constant_in_body.
@@ -217,7 +227,7 @@ class AutoRestValidationTestOperationsMixin:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct body
         if body is not None:
@@ -226,7 +236,11 @@ class AutoRestValidationTestOperationsMixin:
             body_content = None
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        __body_content_kwargs = {}
+        if header_parameters['Content-Type'] in ['application/json']:
+            __body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
