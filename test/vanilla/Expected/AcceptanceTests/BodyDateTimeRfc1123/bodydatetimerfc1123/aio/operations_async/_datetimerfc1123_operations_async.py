@@ -213,8 +213,6 @@ class Datetimerfc1123Operations:
     async def put_utc_max_date_time(
         self,
         datetime_body: datetime.datetime,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put max datetime value Fri, 31 Dec 9999 23:59:59 GMT.
@@ -345,8 +343,6 @@ class Datetimerfc1123Operations:
     async def put_utc_min_date_time(
         self,
         datetime_body: datetime.datetime,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put min datetime value Mon, 1 Jan 0001 00:00:00 GMT.

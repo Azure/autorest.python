@@ -86,8 +86,6 @@ class BasicOperations:
     async def put_valid(
         self,
         complex_body: "models.Basic",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.

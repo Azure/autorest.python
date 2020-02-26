@@ -44,8 +44,6 @@ class PetsOperations:
     async def create_ap_true(
         self,
         create_parameters: "models.PetAPTrue",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.PetAPTrue":
         """Create a Pet which contains more properties than what is defined.
@@ -96,8 +94,6 @@ class PetsOperations:
     async def create_cat_ap_true(
         self,
         create_parameters: "models.CatAPTrue",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.CatAPTrue":
         """Create a CatAPTrue which contains more properties than what is defined.
@@ -148,8 +144,6 @@ class PetsOperations:
     async def create_ap_object(
         self,
         create_parameters: "models.PetAPObject",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.PetAPObject":
         """Create a Pet which contains more properties than what is defined.
@@ -200,8 +194,6 @@ class PetsOperations:
     async def create_ap_string(
         self,
         create_parameters: "models.PetAPString",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.PetAPString":
         """Create a Pet which contains more properties than what is defined.
@@ -252,8 +244,6 @@ class PetsOperations:
     async def create_ap_in_properties(
         self,
         create_parameters: "models.PetAPInProperties",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.PetAPInProperties":
         """Create a Pet which contains more properties than what is defined.
@@ -304,8 +294,6 @@ class PetsOperations:
     async def create_ap_in_properties_with_ap_string(
         self,
         create_parameters: "models.PetAPInPropertiesWithAPString",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.PetAPInPropertiesWithAPString":
         """Create a Pet which contains more properties than what is defined.

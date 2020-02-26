@@ -212,8 +212,6 @@ class NumberOperations:
     async def put_big_float(
         self,
         number_body: float,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put big float value 3.402823e+20.
@@ -302,8 +300,6 @@ class NumberOperations:
     async def put_big_double(
         self,
         number_body: float,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put big double value 2.5976931e+101.
@@ -391,8 +387,6 @@ class NumberOperations:
     @distributed_trace_async
     async def put_big_double_positive_decimal(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put big double value 99999999.99.
@@ -479,8 +473,6 @@ class NumberOperations:
     @distributed_trace_async
     async def put_big_double_negative_decimal(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put big double value -99999999.99.
@@ -568,8 +560,6 @@ class NumberOperations:
     async def put_big_decimal(
         self,
         number_body: float,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put big decimal value 2.5976931e+101.
@@ -657,8 +647,6 @@ class NumberOperations:
     @distributed_trace_async
     async def put_big_decimal_positive_decimal(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put big decimal value 99999999.99.
@@ -745,8 +733,6 @@ class NumberOperations:
     @distributed_trace_async
     async def put_big_decimal_negative_decimal(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put big decimal value -99999999.99.
@@ -834,8 +820,6 @@ class NumberOperations:
     async def put_small_float(
         self,
         number_body: float,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put small float value 3.402823e-20.
@@ -924,8 +908,6 @@ class NumberOperations:
     async def put_small_double(
         self,
         number_body: float,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put small double value 2.5976931e-101.
@@ -1014,8 +996,6 @@ class NumberOperations:
     async def put_small_decimal(
         self,
         number_body: float,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put small decimal value 2.5976931e-101.

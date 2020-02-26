@@ -215,8 +215,6 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def put301(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put true Boolean value in request returns 301.  This request should not be automatically redirected, but should return the received 301 to the caller for evaluation.
@@ -351,8 +349,6 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def patch302(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Patch true Boolean value in request returns 302.  This request should not be automatically redirected, but should return the received 302 to the caller for evaluation.
@@ -403,8 +399,6 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def post303(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Post true Boolean value in request returns 303.  This request should be automatically redirected usign a get, ultimately returning a 200 status code.
@@ -582,8 +576,6 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def put307(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put redirected with 307, resulting in a 200 after redirect.
@@ -635,8 +627,6 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def patch307(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Patch redirected with 307, resulting in a 200 after redirect.
@@ -688,8 +678,6 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def post307(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Post redirected with 307, resulting in a 200 after redirect.
@@ -741,8 +729,6 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def delete307(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Delete redirected with 307, resulting in a 200 after redirect.

@@ -170,8 +170,6 @@ class ByteOperations:
     async def put_non_ascii(
         self,
         byte_body: bytearray,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).

@@ -213,8 +213,6 @@ class DateOperations:
     async def put_max_date(
         self,
         date_body: datetime.date,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put max date value 9999-12-31.
@@ -303,8 +301,6 @@ class DateOperations:
     async def put_min_date(
         self,
         date_body: datetime.date,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put min date value 0000-01-01.

@@ -297,8 +297,6 @@ class IntOperations:
     async def put_max32(
         self,
         int_body: int,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put max int32 value.
@@ -345,8 +343,6 @@ class IntOperations:
     async def put_max64(
         self,
         int_body: int,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put max int64 value.
@@ -393,8 +389,6 @@ class IntOperations:
     async def put_min32(
         self,
         int_body: int,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put min int32 value.
@@ -441,8 +435,6 @@ class IntOperations:
     async def put_min64(
         self,
         int_body: int,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put min int64 value.
@@ -531,8 +523,6 @@ class IntOperations:
     async def put_unix_time_date(
         self,
         int_body: datetime.datetime,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put datetime encoded as Unix time.

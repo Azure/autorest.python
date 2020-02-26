@@ -119,8 +119,6 @@ class HttpServerFailureOperations:
     @distributed_trace_async
     async def post505(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Return 505 status code - should be represented in the client as an error.
@@ -168,8 +166,6 @@ class HttpServerFailureOperations:
     @distributed_trace_async
     async def delete505(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Return 505 status code - should be represented in the client as an error.

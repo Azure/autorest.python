@@ -24,14 +24,13 @@ class MediaTypesClientOperationsMixin:
     async def analyze_body(
         self,
         input: Optional[Union[str, "models.SourcePath"]] = None,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> str:
         """Analyze body, that could be different media types.
 
         :param input: Input parameter.
         :type input: str, ~mediatypes.models.SourcePath
+        :keyword str content_type: Media type of the body sent to the API.
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
         :rtype: str

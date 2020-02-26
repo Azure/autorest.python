@@ -86,8 +86,6 @@ class DictionaryOperations:
     async def put_valid(
         self,
         default_program: Optional[Dict[str, str]] = None,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types with dictionary property.
@@ -178,8 +176,6 @@ class DictionaryOperations:
     async def put_empty(
         self,
         default_program: Optional[Dict[str, str]] = None,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types with dictionary property which is empty.

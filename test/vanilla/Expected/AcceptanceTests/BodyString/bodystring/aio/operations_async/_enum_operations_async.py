@@ -86,8 +86,6 @@ class EnumOperations:
     async def put_not_expandable(
         self,
         string_body: Union[str, "models.Colors"],
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
@@ -176,8 +174,6 @@ class EnumOperations:
     async def put_referenced(
         self,
         enum_string_body: Union[str, "models.Colors"],
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
@@ -266,8 +262,6 @@ class EnumOperations:
     async def put_referenced_constant(
         self,
         field1: Optional[str] = None,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Sends value 'green-color' from a constant.

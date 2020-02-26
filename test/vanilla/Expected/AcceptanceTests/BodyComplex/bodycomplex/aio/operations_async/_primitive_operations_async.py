@@ -87,8 +87,6 @@ class PrimitiveOperations:
     async def put_int(
         self,
         complex_body: "models.IntWrapper",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types with integer properties.
@@ -177,8 +175,6 @@ class PrimitiveOperations:
     async def put_long(
         self,
         complex_body: "models.LongWrapper",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types with long properties.
@@ -267,8 +263,6 @@ class PrimitiveOperations:
     async def put_float(
         self,
         complex_body: "models.FloatWrapper",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types with float properties.
@@ -357,8 +351,6 @@ class PrimitiveOperations:
     async def put_double(
         self,
         complex_body: "models.DoubleWrapper",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types with double properties.
@@ -448,8 +440,6 @@ class PrimitiveOperations:
     async def put_bool(
         self,
         complex_body: "models.BooleanWrapper",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types with bool properties.
@@ -538,8 +528,6 @@ class PrimitiveOperations:
     async def put_string(
         self,
         complex_body: "models.StringWrapper",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types with string properties.
@@ -628,8 +616,6 @@ class PrimitiveOperations:
     async def put_date(
         self,
         complex_body: "models.DateWrapper",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types with date properties.
@@ -718,8 +704,6 @@ class PrimitiveOperations:
     async def put_date_time(
         self,
         complex_body: "models.DatetimeWrapper",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types with datetime properties.
@@ -808,8 +792,6 @@ class PrimitiveOperations:
     async def put_date_time_rfc1123(
         self,
         complex_body: "models.Datetimerfc1123Wrapper",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types with datetimeRfc1123 properties.
@@ -899,8 +881,6 @@ class PrimitiveOperations:
     async def put_duration(
         self,
         field: Optional[datetime.timedelta] = None,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types with duration properties.
@@ -991,8 +971,6 @@ class PrimitiveOperations:
     async def put_byte(
         self,
         field: Optional[bytearray] = None,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types with byte properties.

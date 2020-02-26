@@ -175,8 +175,6 @@ class ImplicitOperations:
     async def put_optional_body(
         self,
         body_parameter: Optional[str] = None,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Test implicitly optional body parameter.

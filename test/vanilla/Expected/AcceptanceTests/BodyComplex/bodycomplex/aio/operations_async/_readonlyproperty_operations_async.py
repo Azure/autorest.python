@@ -86,8 +86,6 @@ class ReadonlypropertyOperations:
     async def put_valid(
         self,
         size: Optional[int] = None,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types that have readonly properties.

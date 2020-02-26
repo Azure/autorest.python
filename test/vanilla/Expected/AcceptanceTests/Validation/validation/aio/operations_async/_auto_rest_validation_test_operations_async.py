@@ -82,8 +82,6 @@ class AutoRestValidationTestOperationsMixin:
         resource_group_name: str,
         id: int,
         body: Optional["models.Product"] = None,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.Product":
         """Validates body parameters on the method. See swagger for details.
@@ -192,8 +190,6 @@ class AutoRestValidationTestOperationsMixin:
     async def post_with_constant_in_body(
         self,
         body: Optional["models.Product"] = None,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.Product":
         """post_with_constant_in_body.

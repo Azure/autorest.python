@@ -28,6 +28,9 @@
 {% endfor %}
 :type {{ parameter.serialized_name }}: {{ parameter.docstring_type }}
 {% endfor %}
+{% if (operation.requests | length) > 1 %}
+:keyword str content_type: Media type of the body sent to the API.
+{% endif %}
 :keyword callable cls: A custom type or function that will be passed the direct response
 {{ return_docstring(operation) }}
 :raises: ~azure.core.exceptions.HttpResponseError
@@ -40,10 +43,6 @@
     {% for param_signature in operation.parameters.async_method_signature %}
     {{ param_signature }},
     {% endfor %}
-    {% if operation.parameters.has_body %}
-    *,
-    content_type: Optional[str] = None,
-    {% endif %}
     **kwargs
 ){{ keywords.async_return_type_annotation(operation) }}:
 {% else %}

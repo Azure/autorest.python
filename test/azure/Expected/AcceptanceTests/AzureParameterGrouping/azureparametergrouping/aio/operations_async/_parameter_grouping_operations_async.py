@@ -44,8 +44,6 @@ class ParameterGroupingOperations:
     async def post_required(
         self,
         parameter_grouping_post_required_parameters: "models.ParameterGroupingPostRequiredParameters",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Post a bunch of required parameters grouped.

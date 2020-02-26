@@ -85,8 +85,6 @@ class BoolOperations:
     @distributed_trace_async
     async def put_true(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Set Boolean value true.
@@ -173,8 +171,6 @@ class BoolOperations:
     @distributed_trace_async
     async def put_false(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Set Boolean value false.

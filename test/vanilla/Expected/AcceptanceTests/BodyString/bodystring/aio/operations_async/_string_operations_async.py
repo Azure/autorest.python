@@ -85,8 +85,6 @@ class StringOperations:
     @distributed_trace_async
     async def put_null(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Set string value null.
@@ -176,8 +174,6 @@ class StringOperations:
     @distributed_trace_async
     async def put_empty(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Set string value empty ''.
@@ -264,8 +260,6 @@ class StringOperations:
     @distributed_trace_async
     async def put_mbcs(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
@@ -352,8 +346,6 @@ class StringOperations:
     @distributed_trace_async
     async def put_whitespace(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Set String value with leading and trailing whitespace ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
@@ -525,8 +517,6 @@ class StringOperations:
     async def put_base64_url_encoded(
         self,
         string_body: bytes,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put value that is base64url encoded.

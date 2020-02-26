@@ -93,8 +93,6 @@ class PetOperations:
     async def add_pet(
         self,
         pet_param: Optional["models.Pet"] = None,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.Pet":
         """add_pet.

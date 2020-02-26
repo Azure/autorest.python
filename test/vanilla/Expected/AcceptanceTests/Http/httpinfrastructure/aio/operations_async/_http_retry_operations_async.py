@@ -81,8 +81,6 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def put500(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Return 500 status code, then 200 after retry.
@@ -130,8 +128,6 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def patch500(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Return 500 status code, then 200 after retry.
@@ -259,8 +255,6 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def post503(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Return 503 status code, then 200 after retry.
@@ -308,8 +302,6 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def delete503(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Return 503 status code, then 200 after retry.
@@ -357,8 +349,6 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def put504(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Return 504 status code, then 200 after retry.
@@ -406,8 +396,6 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def patch504(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Return 504 status code, then 200 after retry.

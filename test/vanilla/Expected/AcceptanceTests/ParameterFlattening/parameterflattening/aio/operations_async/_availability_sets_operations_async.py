@@ -46,8 +46,6 @@ class AvailabilitySetsOperations:
         resource_group_name: str,
         avset: str,
         tags: Dict[str, str],
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Updates the tags for an availability set.

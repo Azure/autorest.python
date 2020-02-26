@@ -165,8 +165,6 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def put200(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put boolean value true returning 200 success.
@@ -214,8 +212,6 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def patch200(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Patch true Boolean value in request returning 200.
@@ -263,8 +259,6 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def post200(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Post bollean value true in request that returns a 200.
@@ -312,8 +306,6 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def delete200(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Delete simple boolean value true returns 200.
@@ -361,8 +353,6 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def put201(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put true Boolean value in request returns 201.
@@ -410,8 +400,6 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def post201(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Post true Boolean value in request returns 201 (Created).
@@ -459,8 +447,6 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def put202(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put true Boolean value in request returns 202 (Accepted).
@@ -508,8 +494,6 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def patch202(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Patch true Boolean value in request returns 202.
@@ -557,8 +541,6 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def post202(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Post true Boolean value in request returns 202 (Accepted).
@@ -606,8 +588,6 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def delete202(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Delete true Boolean value in request returns 202 (accepted).
@@ -693,8 +673,6 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def put204(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put true Boolean value in request returns 204 (no content).
@@ -742,8 +720,6 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def patch204(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Patch true Boolean value in request returns 204 (no content).
@@ -791,8 +767,6 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def post204(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Post true Boolean value in request returns 204 (no content).
@@ -840,8 +814,6 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def delete204(
         self,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Delete true Boolean value in request returns 204 (no content).

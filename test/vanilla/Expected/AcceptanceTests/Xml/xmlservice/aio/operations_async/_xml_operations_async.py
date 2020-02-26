@@ -86,8 +86,6 @@ class XmlOperations:
     async def put_complex_type_ref_no_meta(
         self,
         model: "models.RootWithRefAndNoMeta",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Puts a complex type that has a ref to a complex type with no XML node.
@@ -176,8 +174,6 @@ class XmlOperations:
     async def put_complex_type_ref_with_meta(
         self,
         model: "models.RootWithRefAndMeta",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Puts a complex type that has a ref to a complex type with XML node.
@@ -266,8 +262,6 @@ class XmlOperations:
     async def put_simple(
         self,
         slideshow: "models.Slideshow",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put a simple XML document.
@@ -356,8 +350,6 @@ class XmlOperations:
     async def put_wrapped_lists(
         self,
         wrapped_lists: "models.AppleBarrel",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put an XML document with multiple wrapped lists.
@@ -487,8 +479,6 @@ class XmlOperations:
     async def put_empty_list(
         self,
         slideshow: "models.Slideshow",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Puts an empty list.
@@ -577,8 +567,6 @@ class XmlOperations:
     async def put_empty_wrapped_lists(
         self,
         apple_barrel: "models.AppleBarrel",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Puts some empty wrapped lists.
@@ -667,8 +655,6 @@ class XmlOperations:
     async def put_root_list(
         self,
         bananas: List["Banana"],
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Puts a list as the root element.
@@ -758,8 +744,6 @@ class XmlOperations:
     async def put_root_list_single_item(
         self,
         bananas: List["Banana"],
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Puts a list with a single item.
@@ -849,8 +833,6 @@ class XmlOperations:
     async def put_empty_root_list(
         self,
         bananas: List["Banana"],
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Puts an empty list as the root element.
@@ -940,8 +922,6 @@ class XmlOperations:
     async def put_empty_child_element(
         self,
         banana: "models.Banana",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Puts a value with an empty child element.
@@ -1078,8 +1058,6 @@ class XmlOperations:
     async def put_service_properties(
         self,
         properties: "models.StorageServiceProperties",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Puts storage service properties.
@@ -1176,8 +1154,6 @@ class XmlOperations:
     async def put_acls(
         self,
         properties: List["SignedIdentifier"],
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Puts storage ACLs for a container.
@@ -1275,8 +1251,6 @@ class XmlOperations:
     async def json_input(
         self,
         id: Optional[int] = None,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID number 42.

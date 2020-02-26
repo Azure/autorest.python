@@ -86,8 +86,6 @@ class PolymorphicrecursiveOperations:
     async def put_valid(
         self,
         complex_body: "models.Fish",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types that are polymorphic and have recursive references.

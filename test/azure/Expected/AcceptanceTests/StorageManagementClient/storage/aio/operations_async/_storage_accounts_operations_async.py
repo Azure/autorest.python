@@ -49,8 +49,6 @@ class StorageAccountsOperations:
     async def check_name_availability(
         self,
         account_name: "models.StorageAccountCheckNameAvailabilityParameters",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.CheckNameAvailabilityResult":
         """Checks that account name is valid and is not in use.
@@ -108,8 +106,6 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         parameters: "models.StorageAccountCreateParameters",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.StorageAccount":
         cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None)
@@ -161,8 +157,6 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         parameters: "models.StorageAccountCreateParameters",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.StorageAccount":
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts cannot be updated with this API and should instead use the Update Storage Account API. If an account is already created and subsequent PUT request is issued with exact same set of properties, then HTTP 200 would be returned.
@@ -325,8 +319,6 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         parameters: "models.StorageAccountUpdateParameters",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.StorageAccount":
         """Updates the account type or tags for a storage account. It can also be used to add a custom domain (note that custom domains cannot be added via the Create operation). Only one custom domain is supported per storage account. This API can only be used to update one of tags, accountType, or customDomain per call. To update multiple of these properties, call the API multiple times with one change per call. This call does not change the storage keys for the account. If you want to change storage account keys, use the RegenerateKey operation. The location and name of the storage account cannot be changed after creation.
@@ -574,8 +566,6 @@ class StorageAccountsOperations:
         resource_group_name: str,
         account_name: str,
         key_name: Optional[Union[str, "models.KeyName"]] = None,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> "models.StorageAccountKeys":
         """Regenerates the access keys for the specified storage account.

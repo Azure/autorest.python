@@ -86,8 +86,6 @@ class InheritanceOperations:
     async def put_valid(
         self,
         complex_body: "models.Siamese",
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put complex types that extend others.

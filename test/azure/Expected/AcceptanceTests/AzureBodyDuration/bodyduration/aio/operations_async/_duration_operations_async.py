@@ -87,8 +87,6 @@ class DurationOperations:
     async def put_positive_duration(
         self,
         duration_body: datetime.timedelta,
-        *,
-        content_type: Optional[str] = None,
         **kwargs
     ) -> None:
         """Put a positive duration value.
