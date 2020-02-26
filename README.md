@@ -48,23 +48,20 @@ modelerfour:
 
 
 pipeline:
+  pipeline:
   python:
     # doesn't process anything, just makes it so that the 'python:' config section loads early.
-    null: true
+    pass-thru: true
+    input: openapi-document/multi-api/identity
 
   modelerfour:
     # in order that the modelerfour/flattener/grouper/etc picks up
     # configuration nested under python: in the user's config, 
     # we have to make modeler four pull from the 'python' task.
-    input:
-      - python
+    input: python
 
   python/m2r:
-    # make this set of tasks take python settings too. 
-    # anything that pulls this input will inherit the settings too. 
-    input: 
-      - modelerfour/identity 
-      - python
+    input: modelerfour/identity 
 
   python/namer:
     input: python/m2r
