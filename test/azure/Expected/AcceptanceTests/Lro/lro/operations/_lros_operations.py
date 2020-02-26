@@ -65,16 +65,11 @@ class LROsOperations(object):
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            if product is not None:
-                body_content = self._serialize.body(product, 'Product')
-            else:
-                body_content = None
-            __body_content_kwargs['content'] = body_content
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
         else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+            body_content = None
+        __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -161,16 +156,11 @@ class LROsOperations(object):
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            if product is not None:
-                body_content = self._serialize.body(product, 'Product')
-            else:
-                body_content = None
-            __body_content_kwargs['content'] = body_content
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
         else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+            body_content = None
+        __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -255,16 +245,11 @@ class LROsOperations(object):
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            if product is not None:
-                body_content = self._serialize.body(product, 'Product')
-            else:
-                body_content = None
-            __body_content_kwargs['content'] = body_content
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
         else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+            body_content = None
+        __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -349,16 +334,11 @@ class LROsOperations(object):
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            if product is not None:
-                body_content = self._serialize.body(product, 'Product')
-            else:
-                body_content = None
-            __body_content_kwargs['content'] = body_content
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
         else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+            body_content = None
+        __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -448,16 +428,11 @@ class LROsOperations(object):
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            if product is not None:
-                body_content = self._serialize.body(product, 'Product')
-            else:
-                body_content = None
-            __body_content_kwargs['content'] = body_content
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
         else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+            body_content = None
+        __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -542,16 +517,11 @@ class LROsOperations(object):
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            if product is not None:
-                body_content = self._serialize.body(product, 'Product')
-            else:
-                body_content = None
-            __body_content_kwargs['content'] = body_content
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
         else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+            body_content = None
+        __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -641,16 +611,11 @@ class LROsOperations(object):
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            if product is not None:
-                body_content = self._serialize.body(product, 'Product')
-            else:
-                body_content = None
-            __body_content_kwargs['content'] = body_content
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
         else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+            body_content = None
+        __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -735,16 +700,11 @@ class LROsOperations(object):
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            if product is not None:
-                body_content = self._serialize.body(product, 'Product')
-            else:
-                body_content = None
-            __body_content_kwargs['content'] = body_content
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
         else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+            body_content = None
+        __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -834,16 +794,11 @@ class LROsOperations(object):
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            if product is not None:
-                body_content = self._serialize.body(product, 'Product')
-            else:
-                body_content = None
-            __body_content_kwargs['content'] = body_content
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
         else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+            body_content = None
+        __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -937,16 +892,11 @@ class LROsOperations(object):
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            if product is not None:
-                body_content = self._serialize.body(product, 'Product')
-            else:
-                body_content = None
-            __body_content_kwargs['content'] = body_content
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
         else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+            body_content = None
+        __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1038,16 +988,11 @@ class LROsOperations(object):
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            if product is not None:
-                body_content = self._serialize.body(product, 'Product')
-            else:
-                body_content = None
-            __body_content_kwargs['content'] = body_content
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
         else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+            body_content = None
+        __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1141,16 +1086,11 @@ class LROsOperations(object):
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            if product is not None:
-                body_content = self._serialize.body(product, 'Product')
-            else:
-                body_content = None
-            __body_content_kwargs['content'] = body_content
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
         else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+            body_content = None
+        __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1242,16 +1182,11 @@ class LROsOperations(object):
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            if product is not None:
-                body_content = self._serialize.body(product, 'Product')
-            else:
-                body_content = None
-            __body_content_kwargs['content'] = body_content
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
         else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+            body_content = None
+        __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1341,16 +1276,11 @@ class LROsOperations(object):
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            if sku is not None:
-                body_content = self._serialize.body(sku, 'Sku')
-            else:
-                body_content = None
-            __body_content_kwargs['content'] = body_content
+        if sku is not None:
+            body_content = self._serialize.body(sku, 'Sku')
         else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+            body_content = None
+        __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1435,16 +1365,11 @@ class LROsOperations(object):
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            if sku is not None:
-                body_content = self._serialize.body(sku, 'Sku')
-            else:
-                body_content = None
-            __body_content_kwargs['content'] = body_content
+        if sku is not None:
+            body_content = self._serialize.body(sku, 'Sku')
         else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+            body_content = None
+        __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1531,16 +1456,11 @@ class LROsOperations(object):
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            if _product is not None:
-                body_content = self._serialize.body(_product, 'SubProduct')
-            else:
-                body_content = None
-            __body_content_kwargs['content'] = body_content
+        if _product is not None:
+            body_content = self._serialize.body(_product, 'SubProduct')
         else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+            body_content = None
+        __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1627,16 +1547,11 @@ class LROsOperations(object):
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            if _product is not None:
-                body_content = self._serialize.body(_product, 'SubProduct')
-            else:
-                body_content = None
-            __body_content_kwargs['content'] = body_content
+        if _product is not None:
+            body_content = self._serialize.body(_product, 'SubProduct')
         else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+            body_content = None
+        __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2742,16 +2657,11 @@ class LROsOperations(object):
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            if product is not None:
-                body_content = self._serialize.body(product, 'Product')
-            else:
-                body_content = None
-            __body_content_kwargs['content'] = body_content
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
         else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+            body_content = None
+        __body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -2834,16 +2744,11 @@ class LROsOperations(object):
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            if product is not None:
-                body_content = self._serialize.body(product, 'Product')
-            else:
-                body_content = None
-            __body_content_kwargs['content'] = body_content
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
         else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+            body_content = None
+        __body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3163,16 +3068,11 @@ class LROsOperations(object):
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            if product is not None:
-                body_content = self._serialize.body(product, 'Product')
-            else:
-                body_content = None
-            __body_content_kwargs['content'] = body_content
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
         else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+            body_content = None
+        __body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3265,16 +3165,11 @@ class LROsOperations(object):
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            if product is not None:
-                body_content = self._serialize.body(product, 'Product')
-            else:
-                body_content = None
-            __body_content_kwargs['content'] = body_content
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
         else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+            body_content = None
+        __body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3366,16 +3261,11 @@ class LROsOperations(object):
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            if product is not None:
-                body_content = self._serialize.body(product, 'Product')
-            else:
-                body_content = None
-            __body_content_kwargs['content'] = body_content
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
         else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+            body_content = None
+        __body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
@@ -3458,16 +3348,11 @@ class LROsOperations(object):
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            if product is not None:
-                body_content = self._serialize.body(product, 'Product')
-            else:
-                body_content = None
-            __body_content_kwargs['content'] = body_content
+        if product is not None:
+            body_content = self._serialize.body(product, 'Product')
         else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+            body_content = None
+        __body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)

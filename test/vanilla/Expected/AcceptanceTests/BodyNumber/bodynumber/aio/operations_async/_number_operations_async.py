@@ -240,13 +240,8 @@ class NumberOperations:
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            body_content = self._serialize.body(number_body, 'float')
-            __body_content_kwargs['content'] = body_content
-        else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+        body_content = self._serialize.body(number_body, 'float')
+        __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -335,13 +330,8 @@ class NumberOperations:
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            body_content = self._serialize.body(number_body, 'float')
-            __body_content_kwargs['content'] = body_content
-        else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+        body_content = self._serialize.body(number_body, 'float')
+        __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -428,13 +418,8 @@ class NumberOperations:
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            body_content = self._serialize.body(number_body, 'float')
-            __body_content_kwargs['content'] = body_content
-        else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+        body_content = self._serialize.body(number_body, 'float')
+        __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -521,13 +506,8 @@ class NumberOperations:
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            body_content = self._serialize.body(number_body, 'float')
-            __body_content_kwargs['content'] = body_content
-        else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+        body_content = self._serialize.body(number_body, 'float')
+        __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -616,13 +596,8 @@ class NumberOperations:
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            body_content = self._serialize.body(number_body, 'float')
-            __body_content_kwargs['content'] = body_content
-        else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+        body_content = self._serialize.body(number_body, 'float')
+        __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -709,13 +684,8 @@ class NumberOperations:
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            body_content = self._serialize.body(number_body, 'float')
-            __body_content_kwargs['content'] = body_content
-        else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+        body_content = self._serialize.body(number_body, 'float')
+        __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -802,13 +772,8 @@ class NumberOperations:
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            body_content = self._serialize.body(number_body, 'float')
-            __body_content_kwargs['content'] = body_content
-        else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+        body_content = self._serialize.body(number_body, 'float')
+        __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -897,13 +862,8 @@ class NumberOperations:
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            body_content = self._serialize.body(number_body, 'float')
-            __body_content_kwargs['content'] = body_content
-        else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+        body_content = self._serialize.body(number_body, 'float')
+        __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -992,13 +952,8 @@ class NumberOperations:
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            body_content = self._serialize.body(number_body, 'float')
-            __body_content_kwargs['content'] = body_content
-        else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+        body_content = self._serialize.body(number_body, 'float')
+        __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
@@ -1087,13 +1042,8 @@ class NumberOperations:
 
         # Construct and send request
         __body_content_kwargs = {}
-        if header_parameters['Content-Type'] in ['application/json']:
-            body_content = self._serialize.body(number_body, 'float')
-            __body_content_kwargs['content'] = body_content
-        else:
-            raise ValueError(
-                "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
-            )
+        body_content = self._serialize.body(number_body, 'float')
+        __body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
