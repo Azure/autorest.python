@@ -48,7 +48,6 @@ modelerfour:
 
 
 pipeline:
-  pipeline:
   python:
     # doesn't process anything, just makes it so that the 'python:' config section loads early.
     pass-thru: true
