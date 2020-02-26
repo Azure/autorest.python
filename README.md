@@ -22,7 +22,9 @@ AutoRest needs the below config to pick this up as a plug-in - see https://githu
 #### Python code gen
 
 ``` yaml !$(multiapiscript)
-version: 3.0.6233
+pass-thru:
+  - model-deduplicator
+  - subset-reducer
 use-extension:
   "@autorest/modelerfour": "4.7.207"
 
