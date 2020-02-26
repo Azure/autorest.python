@@ -52,4 +52,4 @@ class TestMediaTypes(object):
         json_input=json.loads('{"wrong":true}')
         with pytest.raises(HttpResponseError) as excinfo:
             result = await client.analyze_body(input=json_input)
-        assert "Did not received what I was expecting" in str(excinfo.value)
+        assert "Did not received what I was expecting" in str(excinfo)
