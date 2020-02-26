@@ -249,7 +249,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
 
         if multiple_media_type_parameters:
             body_parameters_name_set = set(
-                [p.serialized_name for p in multiple_media_type_parameters]
+                p.serialized_name for p in multiple_media_type_parameters
             )
             if len(body_parameters_name_set) > 1:
                 raise ValueError(
