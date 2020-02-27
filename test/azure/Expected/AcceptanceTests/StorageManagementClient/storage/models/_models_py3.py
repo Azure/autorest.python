@@ -409,7 +409,7 @@ class StorageAccountKeys(msrest.serialization.Model):
 
     :param key1: Gets the value of key 1.
     :type key1: str
-    :param key2: Gets the value of key 1.
+    :param key2: Gets the value of key 2.
     :type key2: str
     """
 

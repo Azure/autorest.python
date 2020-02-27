@@ -1351,7 +1351,7 @@ class LROsOperations:
     ) -> "models.Sku":
         """Long running put request with non resource.
 
-        :param sku: sku to put.
+        :param sku: Sku to put.
         :type sku: ~lro.models.Sku
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword polling: True for ARMPolling, False for no polling, or a

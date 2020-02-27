@@ -1286,13 +1286,13 @@ class ArrayOperations:
     @distributed_trace_async
     async def put_string_enum_valid(
         self,
-        array_body: List[Union[str, "Enum0"]],
+        array_body: List[Union[str, "Enum1"]],
         **kwargs
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         :param array_body:
-        :type array_body: list[str or ~bodyarray.models.Enum0]
+        :type array_body: list[str or ~bodyarray.models.Enum1]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None

@@ -61,7 +61,7 @@ class {{ code_model.class_name }}Configuration(Configuration):
 {% if code_model.options['credential_scopes'] %}
         self.credential_scopes = {{ code_model.options['credential_scopes'] }}
 {% endif %}
-        kwargs.setdefault('sdk_moniker', '{{ code_model.class_name|lower }}/{}'.format(VERSION))
+        kwargs.setdefault('sdk_moniker', '{{ code_model.options['package_name'] if code_model.options['package_name'] else code_model.class_name|lower }}/{}'.format(VERSION))
         self._configure(**kwargs)
 
     def _configure(
