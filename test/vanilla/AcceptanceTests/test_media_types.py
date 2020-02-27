@@ -41,13 +41,7 @@ class TestMediaTypes(object):
         result = client.analyze_body(input=b"PDF", content_type="application/pdf")
         assert result == "Nice job with PDF"
 
-    def test_json_pass(self, client):
+    def test_json(self, client):
         json_input = json.loads('{"source":"foo"}')
         result = client.analyze_body(input=json_input)
         assert result == "Nice job with JSON"
-
-    def test_json_fail(self, client):
-        json_input=json.loads('{"wrong":true}')
-        with pytest.raises(HttpResponseError) as excinfo:
-            result = client.analyze_body(input=json_input)
-        assert "Did not received what I was expecting" in str(excinfo)

@@ -200,13 +200,13 @@ class ImplicitOperations:
         header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         if body_parameter is not None:
             body_content = self._serialize.body(body_parameter, 'str')
         else:
             body_content = None
-        __body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

@@ -42,14 +42,7 @@ class TestMediaTypes(object):
         assert result == "Nice job with PDF"
 
     @pytest.mark.asyncio
-    async def test_json_pass(self, client):
+    async def test_json(self, client):
         json_input = json.loads('{"source":"foo"}')
         result = await client.analyze_body(input=json_input)
         assert result == "Nice job with JSON"
-
-    @pytest.mark.asyncio
-    async def test_json_fail(self, client):
-        json_input=json.loads('{"wrong":true}')
-        with pytest.raises(HttpResponseError) as excinfo:
-            result = await client.analyze_body(input=json_input)
-        assert "Did not received what I was expecting" in str(excinfo)

@@ -51,20 +51,20 @@ class MediaTypesClientOperationsMixin:
         header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         if header_parameters['Content-Type'] in ['application/pdf', 'image/jpeg', 'image/png', 'image/tiff']:
-            __body_content_kwargs['stream_content'] = input
+            body_content_kwargs['stream_content'] = input
         elif header_parameters['Content-Type'] in ['application/json']:
             if input is not None:
                 body_content = self._serialize.body(input, 'SourcePath')
             else:
                 body_content = None
-            __body_content_kwargs['content'] = body_content
+            body_content_kwargs['content'] = body_content
         else:
             raise ValueError(
                 "Content type {} is not valid for this operation".format(header_parameters['Content-Type'])
             )
-        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

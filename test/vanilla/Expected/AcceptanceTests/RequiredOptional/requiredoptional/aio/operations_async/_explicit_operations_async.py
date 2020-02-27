@@ -69,10 +69,10 @@ class ExplicitOperations:
         header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         body_content = self._serialize.body(body_parameter, 'int')
-        __body_content_kwargs['content'] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -115,13 +115,13 @@ class ExplicitOperations:
         header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         if body_parameter is not None:
             body_content = self._serialize.body(body_parameter, 'int')
         else:
             body_content = None
-        __body_content_kwargs['content'] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -166,10 +166,10 @@ class ExplicitOperations:
         header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         body_content = self._serialize.body(_body_parameter, 'IntWrapper')
-        __body_content_kwargs['content'] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -214,13 +214,13 @@ class ExplicitOperations:
         header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         if _body_parameter is not None:
             body_content = self._serialize.body(_body_parameter, 'IntOptionalWrapper')
         else:
             body_content = None
-        __body_content_kwargs['content'] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -348,10 +348,10 @@ class ExplicitOperations:
         header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         body_content = self._serialize.body(body_parameter, 'str')
-        __body_content_kwargs['content'] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -394,13 +394,13 @@ class ExplicitOperations:
         header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         if body_parameter is not None:
             body_content = self._serialize.body(body_parameter, 'str')
         else:
             body_content = None
-        __body_content_kwargs['content'] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -445,10 +445,10 @@ class ExplicitOperations:
         header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         body_content = self._serialize.body(_body_parameter, 'StringWrapper')
-        __body_content_kwargs['content'] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -493,13 +493,13 @@ class ExplicitOperations:
         header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         if _body_parameter is not None:
             body_content = self._serialize.body(_body_parameter, 'StringOptionalWrapper')
         else:
             body_content = None
-        __body_content_kwargs['content'] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -627,10 +627,10 @@ class ExplicitOperations:
         header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         body_content = self._serialize.body(body_parameter, 'Product')
-        __body_content_kwargs['content'] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -673,13 +673,13 @@ class ExplicitOperations:
         header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         if body_parameter is not None:
             body_content = self._serialize.body(body_parameter, 'Product')
         else:
             body_content = None
-        __body_content_kwargs['content'] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -724,10 +724,10 @@ class ExplicitOperations:
         header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         body_content = self._serialize.body(_body_parameter, 'ClassWrapper')
-        __body_content_kwargs['content'] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -772,13 +772,13 @@ class ExplicitOperations:
         header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         if _body_parameter is not None:
             body_content = self._serialize.body(_body_parameter, 'ClassOptionalWrapper')
         else:
             body_content = None
-        __body_content_kwargs['content'] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -821,10 +821,10 @@ class ExplicitOperations:
         header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         body_content = self._serialize.body(body_parameter, '[str]')
-        __body_content_kwargs['content'] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -867,13 +867,13 @@ class ExplicitOperations:
         header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         if body_parameter is not None:
             body_content = self._serialize.body(body_parameter, '[str]')
         else:
             body_content = None
-        __body_content_kwargs['content'] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -918,10 +918,10 @@ class ExplicitOperations:
         header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         body_content = self._serialize.body(_body_parameter, 'ArrayWrapper')
-        __body_content_kwargs['content'] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -966,13 +966,13 @@ class ExplicitOperations:
         header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         if _body_parameter is not None:
             body_content = self._serialize.body(_body_parameter, 'ArrayOptionalWrapper')
         else:
             body_content = None
-        __body_content_kwargs['content'] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

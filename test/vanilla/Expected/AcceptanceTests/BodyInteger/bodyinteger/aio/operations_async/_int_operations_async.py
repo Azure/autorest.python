@@ -322,10 +322,10 @@ class IntOperations:
         header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         body_content = self._serialize.body(int_body, 'int')
-        __body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -368,10 +368,10 @@ class IntOperations:
         header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         body_content = self._serialize.body(int_body, 'long')
-        __body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -414,10 +414,10 @@ class IntOperations:
         header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         body_content = self._serialize.body(int_body, 'int')
-        __body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -460,10 +460,10 @@ class IntOperations:
         header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         body_content = self._serialize.body(int_body, 'long')
-        __body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -548,10 +548,10 @@ class IntOperations:
         header_parameters['Content-Type'] = content_type or 'application/json'
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         body_content = self._serialize.body(int_body, 'unix-time')
-        __body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

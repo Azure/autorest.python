@@ -220,7 +220,6 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         name = yaml_data["language"]["python"]["name"]
         _LOGGER.debug("Parsing %s operation", name)
 
-        # FIXME handle multiple requests
         first_request = yaml_data["requests"][0]
 
         multiple_requests = len(yaml_data["requests"]) > 1
@@ -228,15 +227,16 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         multiple_media_type_parameters: List[Parameter] = []
         parameters = [Parameter.from_yaml(yaml) for yaml in yaml_data.get("parameters", [])]
 
+        for request in yaml_data["requests"]:
+            for yaml in request.get("parameters", []):
+                parameter = Parameter.from_yaml(yaml)
+                if yaml["language"]["python"]["name"] == "content_type":
+                    parameter.is_kwarg = True
+                    parameters.append(parameter)
+                elif multiple_requests:
+                    multiple_media_type_parameters.append(parameter)
+
         if multiple_requests:
-            for request in yaml_data["requests"]:
-                for yaml in request.get("parameters", []):
-                    parameter = Parameter.from_yaml(yaml)
-                    if yaml["language"]["python"]["name"] == "content_type":
-                        parameter.is_kwarg = True
-                        parameters.append(parameter)
-                    else:
-                        multiple_media_type_parameters.append(parameter)
             chosen_parameter = multiple_media_type_parameters[0]
             chosen_parameter.has_multiple_media_types = True
             parameters.append(chosen_parameter)

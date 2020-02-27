@@ -113,10 +113,10 @@ class XmlOperations(object):
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/xml')
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         body_content = self._serialize.body(model, 'RootWithRefAndNoMeta', is_xml=True)
-        __body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -203,10 +203,10 @@ class XmlOperations(object):
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/xml')
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         body_content = self._serialize.body(model, 'RootWithRefAndMeta', is_xml=True)
-        __body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -293,10 +293,10 @@ class XmlOperations(object):
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/xml')
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         body_content = self._serialize.body(slideshow, 'Slideshow', is_xml=True)
-        __body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -383,10 +383,10 @@ class XmlOperations(object):
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/xml')
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         body_content = self._serialize.body(wrapped_lists, 'AppleBarrel', is_xml=True)
-        __body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -515,10 +515,10 @@ class XmlOperations(object):
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/xml')
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         body_content = self._serialize.body(slideshow, 'Slideshow', is_xml=True)
-        __body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -605,10 +605,10 @@ class XmlOperations(object):
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/xml')
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         body_content = self._serialize.body(apple_barrel, 'AppleBarrel', is_xml=True)
-        __body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -695,11 +695,11 @@ class XmlOperations(object):
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/xml')
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         serialization_ctxt = {'xml': {'name': 'bananas', 'wrapped': True, 'itemsName': 'banana'}}
         body_content = self._serialize.body(bananas, '[Banana]', is_xml=True, serialization_ctxt=serialization_ctxt)
-        __body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -786,11 +786,11 @@ class XmlOperations(object):
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/xml')
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         serialization_ctxt = {'xml': {'name': 'bananas', 'wrapped': True, 'itemsName': 'banana'}}
         body_content = self._serialize.body(bananas, '[Banana]', is_xml=True, serialization_ctxt=serialization_ctxt)
-        __body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -877,11 +877,11 @@ class XmlOperations(object):
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/xml')
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         serialization_ctxt = {'xml': {'name': 'bananas', 'wrapped': True, 'itemsName': 'banana'}}
         body_content = self._serialize.body(bananas, '[Banana]', is_xml=True, serialization_ctxt=serialization_ctxt)
-        __body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -968,10 +968,10 @@ class XmlOperations(object):
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/xml')
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         body_content = self._serialize.body(banana, 'Banana', is_xml=True)
-        __body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1111,10 +1111,10 @@ class XmlOperations(object):
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/xml')
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         body_content = self._serialize.body(properties, 'StorageServiceProperties', is_xml=True)
-        __body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1209,11 +1209,11 @@ class XmlOperations(object):
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/xml')
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         serialization_ctxt = {'xml': {'name': 'SignedIdentifiers', 'wrapped': True, 'itemsName': 'SignedIdentifier'}}
         body_content = self._serialize.body(properties, '[SignedIdentifier]', is_xml=True, serialization_ctxt=serialization_ctxt)
-        __body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -1306,10 +1306,10 @@ class XmlOperations(object):
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         body_content = self._serialize.body(_properties, 'JSONInput')
-        __body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response

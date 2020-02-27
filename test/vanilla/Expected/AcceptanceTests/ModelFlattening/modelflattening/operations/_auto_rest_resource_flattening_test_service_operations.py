@@ -50,13 +50,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         if resource_array is not None:
             body_content = self._serialize.body(resource_array, '[Resource]')
         else:
             body_content = None
-        __body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -143,13 +143,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         if resource_array is not None:
             body_content = self._serialize.body(resource_array, '[WrappedProduct]')
         else:
             body_content = None
-        __body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -236,13 +236,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         if resource_dictionary is not None:
             body_content = self._serialize.body(resource_dictionary, '{FlattenedProduct}')
         else:
             body_content = None
-        __body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -329,13 +329,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         if resource_complex_object is not None:
             body_content = self._serialize.body(resource_complex_object, 'ResourceCollection')
         else:
             body_content = None
-        __body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -423,13 +423,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         if simple_body_product is not None:
             body_content = self._serialize.body(simple_body_product, 'SimpleProduct')
         else:
             body_content = None
-        __body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -493,13 +493,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         if _simple_body_product is not None:
             body_content = self._serialize.body(_simple_body_product, 'SimpleProduct')
         else:
             body_content = None
-        __body_content_kwargs['content'] = body_content
-        request = self._client.post(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
@@ -569,13 +569,13 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(object):
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        __body_content_kwargs = {}
+        body_content_kwargs = {}
         if _simple_body_product is not None:
             body_content = self._serialize.body(_simple_body_product, 'SimpleProduct')
         else:
             body_content = None
-        __body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **__body_content_kwargs)
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
