@@ -140,7 +140,7 @@ class HttpServerFailureOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = content_type or 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}
@@ -187,7 +187,7 @@ class HttpServerFailureOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = content_type or 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}
