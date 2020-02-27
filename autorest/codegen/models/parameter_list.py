@@ -111,6 +111,8 @@ class ParameterList(MutableSequence):
                 or parameter.grouped_by
                 # If I'm body and it's flattened, I'm not either
                 or (parameter.location == ParameterLocation.Body and self.is_flattened)
+                # If I'm a kwarg, don't include in the signature
+                or parameter.is_kwarg
             )
 
         signature_parameters_required = []

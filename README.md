@@ -26,7 +26,7 @@ pass-thru:
   - model-deduplicator
   - subset-reducer
 use-extension:
-  "@autorest/modelerfour": "4.7.207"
+  "@autorest/modelerfour": "4.8.221"
 
 modelerfour:
   group-parameters: true
@@ -57,12 +57,12 @@ pipeline:
 
   modelerfour:
     # in order that the modelerfour/flattener/grouper/etc picks up
-    # configuration nested under python: in the user's config, 
+    # configuration nested under python: in the user's config,
     # we have to make modeler four pull from the 'python' task.
     input: python
 
   python/m2r:
-    input: modelerfour/identity 
+    input: modelerfour/identity
 
   python/namer:
     input: python/m2r

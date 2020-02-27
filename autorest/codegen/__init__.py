@@ -106,6 +106,7 @@ class CodeGenerator(Plugin):
             code_model.sort_schemas()
             code_model.add_schema_link_to_operation()
             code_model.add_schema_link_to_global_parameters()
+            code_model.generate_single_parameter_from_multiple_media_types()
 
         # LRO operation
         code_model.format_lro_operations()

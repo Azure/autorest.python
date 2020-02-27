@@ -54,6 +54,7 @@ default_mappings = {
   'AcceptanceTests/Xml': ['xml-service.json', 'xmlservice'],
   'AcceptanceTests/UrlMultiCollectionFormat' : 'url-multi-collectionFormat.json',
   'AcceptanceTests/XmsErrorResponse': 'xms-error-responses.json',
+  'AcceptanceTests/MediaTypes': ['media_types.json', 0]
 }
 
 default_azure_mappings = {
@@ -123,13 +124,16 @@ def regen_expected(c, opts, debug):
             args.append("--azure-arm=true")
 
         if opts.get('flattening_threshold'):
-            args.append(f"--payload-flattening-threshold={opts['flattening_threshold']}")
+            if isinstance(opts_mappings_value, list) and len(opts_mappings_value) > 1 and isinstance(opts_mappings_value[1], int):
+                args.append(f"--payload-flattening-threshold={opts_mappings_value[1]}")
+            else:
+                args.append(f"--payload-flattening-threshold={opts['flattening_threshold']}")
 
         if opts.get('keep_version') and opts['keep_version']:
             args.append("--keep-version-file=true")
 
         if opts.get('ns_prefix'):
-            if isinstance(opts_mappings_value, list) and len(opts_mappings_value) > 1:
+            if isinstance(opts_mappings_value, list) and len(opts_mappings_value) > 1 and isinstance(opts_mappings_value[1], str):
                 args.append(f"--namespace={opts_mappings_value[1]}")
             else:
                 namespace = key.split('/')[-1].lower()

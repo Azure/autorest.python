@@ -9,6 +9,7 @@ from typing import Dict, List, Any, Optional, Set
 from .operation import Operation
 from .parameter import Parameter
 from .schema_response import SchemaResponse
+from .schema_request import SchemaRequest
 from .imports import ImportType, FileImport
 from .object_schema import ObjectSchema
 
@@ -24,11 +25,12 @@ class PagingOperation(Operation):
         url: str,
         method: str,
         api_versions: Set[str],
+        requests: List[SchemaRequest],
         summary: Optional[str] = None,
         parameters: Optional[List[Parameter]] = None,
+        multiple_media_type_parameters: Optional[List[Parameter]] = None,
         responses: Optional[List[SchemaResponse]] = None,
         exceptions: Optional[List[SchemaResponse]] = None,
-        media_types: Optional[List[str]] = None,
     ) -> None:
         super(PagingOperation, self).__init__(
             yaml_data,
@@ -37,11 +39,12 @@ class PagingOperation(Operation):
             url,
             method,
             api_versions,
+            requests,
             summary,
             parameters,
+            multiple_media_type_parameters,
             responses,
-            exceptions,
-            media_types
+            exceptions
         )
         self._item_name: str = yaml_data["extensions"]["x-ms-pageable"].get("itemName")
         self._next_link_name: str = yaml_data["extensions"]["x-ms-pageable"].get("nextLinkName")

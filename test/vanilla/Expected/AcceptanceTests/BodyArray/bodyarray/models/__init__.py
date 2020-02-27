@@ -15,6 +15,7 @@ except (SyntaxError, ImportError):
 
 from ._auto_rest_swagger_bat_array_service_enums import (
     Enum0,
+    Enum1,
     FooEnum,
 )
 
@@ -22,5 +23,6 @@ __all__ = [
     'Error', 'ErrorException',
     'Product',
     'Enum0',
+    'Enum1',
     'FooEnum',
 ]

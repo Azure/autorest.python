@@ -186,9 +186,9 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             method=operation.method,
             api_versions=operation.api_versions,
             parameters=operation.parameters.parameters,
+            requests=operation.requests,
             responses=operation.responses,
             exceptions=operation.exceptions,
-            media_types=operation.media_types,
             want_description_docstring=False,
             want_tracing=False,
         )
@@ -292,6 +292,8 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
 
     def _populate_schema(self, obj: Any) -> None:
         schema_obj = obj.schema
+        if schema_obj and not isinstance(schema_obj, dict):
+            return
 
         if schema_obj:
             schema_obj_id = id(obj.schema)
@@ -317,12 +319,32 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             for operation in operation_group.operations:
                 for obj in chain(
                     operation.parameters,
+                    operation.multiple_media_type_parameters or [],
                     operation.responses,
                     operation.exceptions,
                     chain.from_iterable(response.headers for response in operation.responses),
+                    chain.from_iterable(request.parameters for request in operation.requests)
                 ):
                     self._populate_schema(obj)
 
     def add_schema_link_to_global_parameters(self) -> None:
         for parameter in self.global_parameters:
             self._populate_schema(parameter)
+
+    def generate_single_parameter_from_multiple_media_types(self) -> None:
+        for operation_group in self.operation_groups:
+            for operation in operation_group.operations:
+                if operation.multiple_media_type_parameters:
+                    type_annot = ", ".join([
+                        param.schema.operation_type_annotation for param in operation.multiple_media_type_parameters
+                    ])
+                    docstring_type = ", ".join([
+                        param.schema.docstring_type for param in operation.multiple_media_type_parameters
+                    ])
+                    chosen_parameter = next(
+                        iter(filter(lambda x: x.has_multiple_media_types, operation.parameters)), None
+                    )
+                    if not chosen_parameter:
+                        raise ValueError("You are missing a parameter that has multiple media types")
+                    chosen_parameter.multiple_media_types_type_annot = f"Union[{type_annot}]"
+                    chosen_parameter.multiple_media_types_docstring_type = docstring_type

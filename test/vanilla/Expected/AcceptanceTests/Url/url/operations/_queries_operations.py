@@ -891,7 +891,7 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get null (no query parameter in url).
 
-        :param enum_query: 'green color' enum value.
+        :param enum_query: null string value.
         :type enum_query: str or ~url.models.UriColor
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1020,7 +1020,7 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get null as byte array (no query parameters in uri).
 
-        :param byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
+        :param byte_query: null as byte array (no query parameters in uri).
         :type byte_query: bytearray
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1279,8 +1279,7 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get a null array of string using the csv-array format.
 
-        :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-         ''] using the csv-array format.
+        :param array_query: a null array of string using the csv-array format.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -1324,8 +1323,7 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get an empty array [] of string using the csv-array format.
 
-        :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
-         ''] using the csv-array format.
+        :param array_query: an empty array [] of string using the csv-array format.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
