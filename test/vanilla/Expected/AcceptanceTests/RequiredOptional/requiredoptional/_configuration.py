@@ -45,8 +45,8 @@ class AutoRestRequiredOptionalTestServiceConfiguration(Configuration):
         self.required_global_path = required_global_path
         self.required_global_query = required_global_query
         self.optional_global_query = optional_global_query
+        kwargs.setdefault('sdk_moniker', 'autorestrequiredoptionaltestservice/{}'.format(VERSION))
         self._configure(**kwargs)
-        self.user_agent_policy.add_user_agent('azsdk-python-autorestrequiredoptionaltestservice/{}'.format(VERSION))
 
     def _configure(
         self,

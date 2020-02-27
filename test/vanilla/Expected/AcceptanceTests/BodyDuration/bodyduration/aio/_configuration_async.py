@@ -27,8 +27,8 @@ class AutoRestDurationTestServiceConfiguration(Configuration):
     ) -> None:
         super(AutoRestDurationTestServiceConfiguration, self).__init__(**kwargs)
 
+        kwargs.setdefault('sdk_moniker', 'autorestdurationtestservice/{}'.format(VERSION))
         self._configure(**kwargs)
-        self.user_agent_policy.add_user_agent('azsdk-python-autorestdurationtestservice/{}'.format(VERSION))
 
     def _configure(
         self,

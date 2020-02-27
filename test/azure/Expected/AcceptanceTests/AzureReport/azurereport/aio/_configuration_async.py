@@ -27,8 +27,8 @@ class AutoRestReportServiceForAzureConfiguration(Configuration):
     ) -> None:
         super(AutoRestReportServiceForAzureConfiguration, self).__init__(**kwargs)
 
+        kwargs.setdefault('sdk_moniker', 'autorestreportserviceforazure/{}'.format(VERSION))
         self._configure(**kwargs)
-        self.user_agent_policy.add_user_agent('azsdk-python-autorestreportserviceforazure/{}'.format(VERSION))
 
     def _configure(
         self,

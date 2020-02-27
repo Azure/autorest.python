@@ -35,8 +35,8 @@ class AutoRestPagingTestServiceConfiguration(Configuration):
 
         self.credential = credential
         self.credential_scopes = ['https://management.azure.com/.default']
+        kwargs.setdefault('sdk_moniker', 'autorestpagingtestservice/{}'.format(VERSION))
         self._configure(**kwargs)
-        self.user_agent_policy.add_user_agent('azsdk-python-autorestpagingtestservice/{}'.format(VERSION))
 
     def _configure(
         self,

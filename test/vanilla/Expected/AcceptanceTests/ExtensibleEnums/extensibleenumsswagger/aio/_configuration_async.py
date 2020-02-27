@@ -27,8 +27,8 @@ class PetStoreIncConfiguration(Configuration):
     ) -> None:
         super(PetStoreIncConfiguration, self).__init__(**kwargs)
 
+        kwargs.setdefault('sdk_moniker', 'petstoreinc/{}'.format(VERSION))
         self._configure(**kwargs)
-        self.user_agent_policy.add_user_agent('azsdk-python-petstoreinc/{}'.format(VERSION))
 
     def _configure(
         self,

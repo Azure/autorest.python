@@ -41,8 +41,8 @@ class AutoRestParameterizedHostTestPagingClientConfiguration(Configuration):
         self.credential = credential
         self.host = host
         self.credential_scopes = ['https://management.azure.com/.default']
+        kwargs.setdefault('sdk_moniker', 'autorestparameterizedhosttestpagingclient/{}'.format(VERSION))
         self._configure(**kwargs)
-        self.user_agent_policy.add_user_agent('azsdk-python-autorestparameterizedhosttestpagingclient/{}'.format(VERSION))
 
     def _configure(
         self,

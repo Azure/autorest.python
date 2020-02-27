@@ -27,8 +27,8 @@ class AutoRestNumberTestServiceConfiguration(Configuration):
     ) -> None:
         super(AutoRestNumberTestServiceConfiguration, self).__init__(**kwargs)
 
+        kwargs.setdefault('sdk_moniker', 'autorestnumbertestservice/{}'.format(VERSION))
         self._configure(**kwargs)
-        self.user_agent_policy.add_user_agent('azsdk-python-autorestnumbertestservice/{}'.format(VERSION))
 
     def _configure(
         self,

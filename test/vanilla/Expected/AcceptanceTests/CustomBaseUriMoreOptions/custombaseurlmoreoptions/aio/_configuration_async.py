@@ -40,8 +40,8 @@ class AutoRestParameterizedCustomHostTestClientConfiguration(Configuration):
 
         self.subscription_id = subscription_id
         self.dns_suffix = dns_suffix
+        kwargs.setdefault('sdk_moniker', 'autorestparameterizedcustomhosttestclient/{}'.format(VERSION))
         self._configure(**kwargs)
-        self.user_agent_policy.add_user_agent('azsdk-python-autorestparameterizedcustomhosttestclient/{}'.format(VERSION))
 
     def _configure(
         self,

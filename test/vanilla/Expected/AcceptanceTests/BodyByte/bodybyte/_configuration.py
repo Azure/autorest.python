@@ -28,8 +28,8 @@ class AutoRestSwaggerBATByteServiceConfiguration(Configuration):
         # type: (...) -> None
         super(AutoRestSwaggerBATByteServiceConfiguration, self).__init__(**kwargs)
 
+        kwargs.setdefault('sdk_moniker', 'autorestswaggerbatbyteservice/{}'.format(VERSION))
         self._configure(**kwargs)
-        self.user_agent_policy.add_user_agent('azsdk-python-autorestswaggerbatbyteservice/{}'.format(VERSION))
 
     def _configure(
         self,

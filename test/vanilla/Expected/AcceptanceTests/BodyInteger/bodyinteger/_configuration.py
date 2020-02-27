@@ -28,8 +28,8 @@ class AutoRestIntegerTestServiceConfiguration(Configuration):
         # type: (...) -> None
         super(AutoRestIntegerTestServiceConfiguration, self).__init__(**kwargs)
 
+        kwargs.setdefault('sdk_moniker', 'autorestintegertestservice/{}'.format(VERSION))
         self._configure(**kwargs)
-        self.user_agent_policy.add_user_agent('azsdk-python-autorestintegertestservice/{}'.format(VERSION))
 
     def _configure(
         self,
