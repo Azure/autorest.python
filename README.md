@@ -22,7 +22,9 @@ AutoRest needs the below config to pick this up as a plug-in - see https://githu
 #### Python code gen
 
 ``` yaml !$(multiapiscript)
-version: 3.0.6233
+pass-thru:
+  - model-deduplicator
+  - subset-reducer
 use-extension:
   "@autorest/modelerfour": "4.7.211"
 
@@ -48,15 +50,19 @@ modelerfour:
 
 
 pipeline:
-
   python:
-    # just passes content thru,
-    # makes it so that the python: config section loads.
+    # doesn't process anything, just makes it so that the 'python:' config section loads early.
     pass-thru: true
-    input: modelerfour/identity
+    input: openapi-document/multi-api/identity
+
+  modelerfour:
+    # in order that the modelerfour/flattener/grouper/etc picks up
+    # configuration nested under python: in the user's config, 
+    # we have to make modeler four pull from the 'python' task.
+    input: python
 
   python/m2r:
-    input: python
+    input: modelerfour/identity 
 
   python/namer:
     input: python/m2r

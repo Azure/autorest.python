@@ -10,7 +10,7 @@ from colorama import init, Fore
 from invoke import task, run
 
 init()
-_AUTOREST_CMD_LINE = "autorest-beta"
+_AUTOREST_CMD_LINE = "autorest"
 
 service_to_readme_path = {
     'azure-ai-textanalytics': 'test/services/azure-ai-textanalytics/README.md',

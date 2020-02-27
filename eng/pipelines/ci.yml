@@ -9,7 +9,7 @@ pr:
     - autorestv3
 
 variables:
-  NodeVersion: '10.x'
+  NodeVersion: '12.x'
   PythonVersion: '3.6'
   TestFolder: '$(Build.SourcesDirectory)/test/'
 
@@ -50,7 +50,7 @@ jobs:
       - script: |
           cd $(Build.SourcesDirectory)
           pip install -r dev_requirements.txt
-          npm install -g "@autorest/autorest"
+          npm install -g autorest
           npm install
         displayName: 'Prepare Environment for Generation'
       - script: |
