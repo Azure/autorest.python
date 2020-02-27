@@ -12,8 +12,7 @@ import msrest.serialization
 class Bar(msrest.serialization.Model):
     """The URIs that are used to perform a retrieval of a public blob, queue or table object.
 
-    :param recursive_point: The URIs that are used to perform a retrieval of a public blob, queue
-     or table object.
+    :param recursive_point: Recursive Endpoints.
     :type recursive_point: ~storage.models.Endpoints
     """
 
@@ -93,11 +92,9 @@ class Endpoints(msrest.serialization.Model):
     :type queue: str
     :param table: Gets the table endpoint.
     :type table: str
-    :param dummy_end_point: The URIs that are used to perform a retrieval of a public blob, queue
-     or table object.
+    :param dummy_end_point: Dummy EndPoint.
     :type dummy_end_point: ~storage.models.Endpoints
-    :param foo_point: The URIs that are used to perform a retrieval of a public blob, queue or
-     table object.
+    :param foo_point: Foo point.
     :type foo_point: ~storage.models.Foo
     """
 
@@ -124,8 +121,7 @@ class Endpoints(msrest.serialization.Model):
 class Foo(msrest.serialization.Model):
     """The URIs that are used to perform a retrieval of a public blob, queue or table object.
 
-    :param bar_point: The URIs that are used to perform a retrieval of a public blob, queue or
-     table object.
+    :param bar_point: Bar point.
     :type bar_point: ~storage.models.Bar
     """
 
@@ -207,11 +203,12 @@ class StorageAccount(Resource):
     :param provisioning_state: Gets the status of the storage account at the time the operation was
      called. Possible values include: 'Creating', 'ResolvingDNS', 'Succeeded'.
     :type provisioning_state: str or ~storage.models.ProvisioningState
-    :param account_type: Gets or sets the account type. Possible values include: 'Standard_LRS',
-     'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
+    :param account_type: Gets the type of the storage account. Possible values include:
+     'Standard_LRS', 'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
     :type account_type: str or ~storage.models.AccountType
-    :param primary_endpoints: The URIs that are used to perform a retrieval of a public blob, queue
-     or table object.
+    :param primary_endpoints: Gets the URLs that are used to perform a retrieval of a public blob,
+     queue or table object.Note that StandardZRS and PremiumLRS accounts only return the blob
+     endpoint.
     :type primary_endpoints: ~storage.models.Endpoints
     :param primary_location: Gets the location of the primary for the storage account.
     :type primary_location: str
@@ -227,17 +224,17 @@ class StorageAccount(Resource):
     :param secondary_location: Gets the location of the geo replicated secondary for the storage
      account. Only available if the accountType is StandardGRS or StandardRAGRS.
     :type secondary_location: str
-    :param status_of_secondary: Gets the status indicating whether the primary location of the
-     storage account is available or unavailable. Possible values include: 'Available',
-     'Unavailable'.
+    :param status_of_secondary: Gets the status indicating whether the secondary location of the
+     storage account is available or unavailable. Only available if the accountType is StandardGRS
+     or StandardRAGRS. Possible values include: 'Available', 'Unavailable'.
     :type status_of_secondary: str or ~storage.models.AccountStatus
     :param creation_time: Gets the creation date and time of the storage account in UTC.
     :type creation_time: ~datetime.datetime
-    :param custom_domain: The custom domain assigned to this storage account. This can be set via
-     Update.
+    :param custom_domain: Gets the user assigned custom domain assigned to this storage account.
     :type custom_domain: ~storage.models.CustomDomain
-    :param secondary_endpoints: The URIs that are used to perform a retrieval of a public blob,
-     queue or table object.
+    :param secondary_endpoints: Gets the URLs that are used to perform a retrieval of a public
+     blob, queue or table object from the secondary location of the storage account. Only available
+     if the accountType is StandardRAGRS.
     :type secondary_endpoints: ~storage.models.Endpoints
     """
 
@@ -365,7 +362,7 @@ class StorageAccountKeys(msrest.serialization.Model):
 
     :param key1: Gets the value of key 1.
     :type key1: str
-    :param key2: Gets the value of key 1.
+    :param key2: Gets the value of key 2.
     :type key2: str
     """
 
@@ -413,11 +410,12 @@ class StorageAccountProperties(msrest.serialization.Model):
     :param provisioning_state: Gets the status of the storage account at the time the operation was
      called. Possible values include: 'Creating', 'ResolvingDNS', 'Succeeded'.
     :type provisioning_state: str or ~storage.models.ProvisioningState
-    :param account_type: Gets or sets the account type. Possible values include: 'Standard_LRS',
-     'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
+    :param account_type: Gets the type of the storage account. Possible values include:
+     'Standard_LRS', 'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
     :type account_type: str or ~storage.models.AccountType
-    :param primary_endpoints: The URIs that are used to perform a retrieval of a public blob, queue
-     or table object.
+    :param primary_endpoints: Gets the URLs that are used to perform a retrieval of a public blob,
+     queue or table object.Note that StandardZRS and PremiumLRS accounts only return the blob
+     endpoint.
     :type primary_endpoints: ~storage.models.Endpoints
     :param primary_location: Gets the location of the primary for the storage account.
     :type primary_location: str
@@ -433,17 +431,17 @@ class StorageAccountProperties(msrest.serialization.Model):
     :param secondary_location: Gets the location of the geo replicated secondary for the storage
      account. Only available if the accountType is StandardGRS or StandardRAGRS.
     :type secondary_location: str
-    :param status_of_secondary: Gets the status indicating whether the primary location of the
-     storage account is available or unavailable. Possible values include: 'Available',
-     'Unavailable'.
+    :param status_of_secondary: Gets the status indicating whether the secondary location of the
+     storage account is available or unavailable. Only available if the accountType is StandardGRS
+     or StandardRAGRS. Possible values include: 'Available', 'Unavailable'.
     :type status_of_secondary: str or ~storage.models.AccountStatus
     :param creation_time: Gets the creation date and time of the storage account in UTC.
     :type creation_time: ~datetime.datetime
-    :param custom_domain: The custom domain assigned to this storage account. This can be set via
-     Update.
+    :param custom_domain: Gets the user assigned custom domain assigned to this storage account.
     :type custom_domain: ~storage.models.CustomDomain
-    :param secondary_endpoints: The URIs that are used to perform a retrieval of a public blob,
-     queue or table object.
+    :param secondary_endpoints: Gets the URLs that are used to perform a retrieval of a public
+     blob, queue or table object from the secondary location of the storage account. Only available
+     if the accountType is StandardRAGRS.
     :type secondary_endpoints: ~storage.models.Endpoints
     """
 
@@ -502,11 +500,14 @@ class StorageAccountPropertiesCreateParameters(msrest.serialization.Model):
 class StorageAccountPropertiesUpdateParameters(msrest.serialization.Model):
     """StorageAccountPropertiesUpdateParameters.
 
-    :param account_type: Gets or sets the account type. Possible values include: 'Standard_LRS',
-     'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
+    :param account_type: Gets or sets the account type. Note that StandardZRS and PremiumLRS
+     accounts cannot be changed to other account types, and other account types cannot be changed to
+     StandardZRS or PremiumLRS. Possible values include: 'Standard_LRS', 'Standard_ZRS',
+     'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
     :type account_type: str or ~storage.models.AccountType
-    :param custom_domain: The custom domain assigned to this storage account. This can be set via
-     Update.
+    :param custom_domain: User domain assigned to the storage account. Name is the CNAME source.
+     Only one custom domain is supported per storage account at this time. To clear the existing
+     custom domain, use an empty string for the custom domain name property.
     :type custom_domain: ~storage.models.CustomDomain
     """
 
@@ -560,11 +561,14 @@ class StorageAccountUpdateParameters(Resource):
     :type location: str
     :param tags: A set of tags. Resource tags.
     :type tags: dict[str, str]
-    :param account_type: Gets or sets the account type. Possible values include: 'Standard_LRS',
-     'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
+    :param account_type: Gets or sets the account type. Note that StandardZRS and PremiumLRS
+     accounts cannot be changed to other account types, and other account types cannot be changed to
+     StandardZRS or PremiumLRS. Possible values include: 'Standard_LRS', 'Standard_ZRS',
+     'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
     :type account_type: str or ~storage.models.AccountType
-    :param custom_domain: The custom domain assigned to this storage account. This can be set via
-     Update.
+    :param custom_domain: User domain assigned to the storage account. Name is the CNAME source.
+     Only one custom domain is supported per storage account at this time. To clear the existing
+     custom domain, use an empty string for the custom domain name property.
     :type custom_domain: ~storage.models.CustomDomain
     """
 
@@ -624,7 +628,7 @@ class Usage(msrest.serialization.Model):
     :param limit: Gets the maximum count of the resources that can be allocated in the
      subscription.
     :type limit: int
-    :param name: The Usage Names.
+    :param name: Gets the name of the type of usage.
     :type name: ~storage.models.UsageName
     """
 

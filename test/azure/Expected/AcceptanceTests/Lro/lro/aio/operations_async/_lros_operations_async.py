@@ -60,7 +60,7 @@ class LROsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = content_type or 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}
@@ -149,7 +149,7 @@ class LROsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = content_type or 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}
@@ -236,7 +236,7 @@ class LROsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = content_type or 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}
@@ -323,7 +323,7 @@ class LROsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = content_type or 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}
@@ -415,7 +415,7 @@ class LROsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = content_type or 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}
@@ -502,7 +502,7 @@ class LROsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = content_type or 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}
@@ -594,7 +594,7 @@ class LROsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = content_type or 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}
@@ -681,7 +681,7 @@ class LROsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = content_type or 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}
@@ -773,7 +773,7 @@ class LROsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = content_type or 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}
@@ -869,7 +869,7 @@ class LROsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = content_type or 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}
@@ -963,7 +963,7 @@ class LROsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = content_type or 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}
@@ -1059,7 +1059,7 @@ class LROsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = content_type or 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}
@@ -1153,7 +1153,7 @@ class LROsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = content_type or 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}
@@ -1245,7 +1245,7 @@ class LROsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = content_type or 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}
@@ -1332,7 +1332,7 @@ class LROsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = content_type or 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}
@@ -1366,7 +1366,7 @@ class LROsOperations:
     ) -> "models.Sku":
         """Long running put request with non resource.
 
-        :param sku: sku to put.
+        :param sku: Sku to put.
         :type sku: ~lro.models.Sku
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword polling: True for ARMPolling, False for no polling, or a
@@ -1421,7 +1421,7 @@ class LROsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = content_type or 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}
@@ -1510,7 +1510,7 @@ class LROsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = content_type or 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}
@@ -2592,7 +2592,7 @@ class LROsOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = content_type or 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}
@@ -2677,7 +2677,7 @@ class LROsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = content_type or 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}
@@ -2993,7 +2993,7 @@ class LROsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = content_type or 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}
@@ -3088,7 +3088,7 @@ class LROsOperations:
         # Construct headers
         header_parameters: Dict[str, Any] = {}
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = content_type or 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}
@@ -3182,7 +3182,7 @@ class LROsOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = content_type or 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}
@@ -3267,7 +3267,7 @@ class LROsOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = content_type or 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}

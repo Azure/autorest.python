@@ -1323,14 +1323,14 @@ class ArrayOperations(object):
     @distributed_trace
     def put_string_enum_valid(
         self,
-        array_body,  # type: List[Union[str, "Enum0"]]
+        array_body,  # type: List[Union[str, "Enum1"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         :param array_body:
-        :type array_body: list[str or ~bodyarray.models.Enum0]
+        :type array_body: list[str or ~bodyarray.models.Enum1]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None

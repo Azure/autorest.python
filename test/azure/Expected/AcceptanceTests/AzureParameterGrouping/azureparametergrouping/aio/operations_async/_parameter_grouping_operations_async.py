@@ -84,7 +84,7 @@ class ParameterGroupingOperations:
         header_parameters: Dict[str, Any] = {}
         if _custom_header is not None:
             header_parameters['customHeader'] = self._serialize.header("custom_header", _custom_header, 'str')
-        header_parameters['Content-Type'] = content_type or 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}
