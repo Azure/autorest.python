@@ -321,6 +321,13 @@ class MultiAPI:
             Path("_configuration.py"),
             multiapi_serializer.serialize_multiapi_config()
         )
+
+        _LOGGER.debug(conf["default_models"])
+        self._autorestapi.write_file(
+            Path("models.py"),
+            multiapi_serializer.serialize_multiapi_models()
+        )
+
         if mixin_operations:
             self._autorestapi.write_file(
                 Path("_operations_mixin.py"),
