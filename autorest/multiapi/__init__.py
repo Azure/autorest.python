@@ -334,5 +334,11 @@ class MultiAPI:
                 multiapi_serializer.serialize_multiapi_operation_mixins()
             )
 
+        if not self._autorestapi.read_file("_version.py"):
+            self._autorestapi.write_file(
+                Path("_version.py"),
+                multiapi_serializer.serialize_multiapi_version()
+            )
+
         _LOGGER.info("Done!")
         return True
