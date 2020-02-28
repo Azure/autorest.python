@@ -297,6 +297,7 @@ class MultiAPI:
 
         conf = {
             "client_name": metadata_json["client"]["name"],
+            "package_name": self.input_package_name,
             "has_subscription_id": metadata_json["client"]["has_subscription_id"],
             "module_name": module_name,
             "operations": versioned_operations_dict,
