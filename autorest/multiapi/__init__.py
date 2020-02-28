@@ -137,8 +137,14 @@ class MultiAPI:
         autorestapi: AutorestAPI,
         default_api: Optional[str] = None
     ):
+        if input_package_name is None:
+            raise ValueError("package-name is required, either provide it as args or check your readme configuration")
         self.input_package_name = input_package_name
+        _LOGGER.debug("Received package name %s", input_package_name)
+
         self.output_folder = Path(output_folder).resolve()
+        _LOGGER.debug("Received output-folder %s", output_folder)
+
         self._autorestapi = autorestapi
         self.default_api = default_api
 
