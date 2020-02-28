@@ -256,8 +256,8 @@ class MultiAPI:
         shutil.rmtree(str(self.output_folder / "operations"), ignore_errors=True)
         shutil.rmtree(str(self.output_folder / "models"), ignore_errors=True)
 
-        conf = self._autorestapi.read_file(Path(last_api_version) / "__init__.py")
-        self._autorestapi.write_file("__init__.py", conf)
+        init_content = self._autorestapi.read_file(Path(last_api_version) / "__init__.py")
+        self._autorestapi.write_file("__init__.py", init_content)
 
         # Detect if this client is using an operation mixin (Network)
         # Operation mixins are available since Autorest.Python 4.x
@@ -323,7 +323,6 @@ class MultiAPI:
             multiapi_serializer.serialize_multiapi_config()
         )
 
-        _LOGGER.debug(conf["default_models"])
         self._autorestapi.write_file(
             Path("models.py"),
             multiapi_serializer.serialize_multiapi_models()
