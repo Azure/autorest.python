@@ -24,12 +24,13 @@ def __init__(
 # Changes may cause incorrect behavior and will be lost if the code is
 # regenerated.
 # --------------------------------------------------------------------------
+from typing import Any
 
-{{ imports }}
+from azure.core.configuration import Configuration
+from azure.core.pipeline import policies
 
-{% if not package_version %}
-VERSION = "unknown"
-{% endif %}
+from ._version import VERSION
+
 
 class {{ client_name }}Configuration(Configuration):
     """Configuration for {{ client_name }}.
@@ -66,8 +67,8 @@ class {{ client_name }}Configuration(Configuration):
 {% if credential_scopes %}
         self.credential_scopes = {{ credential_scopes }}
 {% endif %}
+        kwargs.setdefault('sdk_moniker', '{{ package_name|lower }}/{}'.format(VERSION))
         self._configure(**kwargs)
-        self.user_agent_policy.add_user_agent('azsdk-python-{{ client_name|lower }}/{}'.format(VERSION))
 
     def _configure(
         self,

@@ -25,7 +25,19 @@ class MultiAPISerializer:
 
     def serialize_multiapi_config(self) -> str:
         template = self.env.get_template("multiapi_config.py.jinja2")
-        return template.render(client_name=self.conf["client_name"], **self.conf["config"])
+        return template.render(
+            client_name=self.conf["client_name"],
+            package_name=self.conf["package_name"],
+            **self.conf["config"]
+        )
+
+    def serialize_multiapi_models(self) -> str:
+        template = self.env.get_template("multiapi_models.py.jinja2")
+        return template.render(**self.conf)
+
+    def serialize_multiapi_version(self) -> str:
+        template = self.env.get_template("multiapi_version.py.jinja2")
+        return template.render()
 
     def serialize_multiapi_operation_mixins(self) -> str:
         template = self.env.get_template("multiapi_operations_mixin.py.jinja2")

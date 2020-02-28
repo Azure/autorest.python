@@ -256,14 +256,8 @@ class MultiAPI:
         shutil.rmtree(str(self.output_folder / "operations"), ignore_errors=True)
         shutil.rmtree(str(self.output_folder / "models"), ignore_errors=True)
 
-        shutil.copy(
-            str(self.output_folder / last_api_version / "_configuration.py"),
-            str(self.output_folder / "_configuration.py"),
-        )
-        shutil.copy(
-            str(self.output_folder / last_api_version / "__init__.py"),
-            str(self.output_folder / "__init__.py"),
-        )
+        init_content = self._autorestapi.read_file(Path(last_api_version) / "__init__.py")
+        self._autorestapi.write_file("__init__.py", init_content)
 
         # Detect if this client is using an operation mixin (Network)
         # Operation mixins are available since Autorest.Python 4.x
@@ -303,6 +297,7 @@ class MultiAPI:
 
         conf = {
             "client_name": metadata_json["client"]["name"],
+            "package_name": self.input_package_name,
             "has_subscription_id": metadata_json["client"]["has_subscription_id"],
             "module_name": module_name,
             "operations": versioned_operations_dict,
@@ -327,10 +322,22 @@ class MultiAPI:
             Path("_configuration.py"),
             multiapi_serializer.serialize_multiapi_config()
         )
+
+        self._autorestapi.write_file(
+            Path("models.py"),
+            multiapi_serializer.serialize_multiapi_models()
+        )
+
         if mixin_operations:
             self._autorestapi.write_file(
                 Path("_operations_mixin.py"),
                 multiapi_serializer.serialize_multiapi_operation_mixins()
+            )
+
+        if not self._autorestapi.read_file("_version.py"):
+            self._autorestapi.write_file(
+                Path("_version.py"),
+                multiapi_serializer.serialize_multiapi_version()
             )
 
         _LOGGER.info("Done!")
