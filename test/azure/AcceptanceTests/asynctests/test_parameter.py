@@ -163,7 +163,6 @@ class TestParameter(object):
         with pytest.raises(ValidationError):
             await azure_client.subscription_in_method.post_method_local_null(None)
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/94")
     @pytest.mark.asyncio
     async def test_api_version_default(self, azure_client):
         await azure_client.api_version_default.get_method_global_not_provided_valid()

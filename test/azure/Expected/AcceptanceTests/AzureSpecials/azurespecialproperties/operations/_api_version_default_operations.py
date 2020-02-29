@@ -55,12 +55,14 @@ class ApiVersionDefaultOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
+        api_version = "2015-07-01-preview"
 
         # Construct URL
         url = self.get_method_global_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
         header_parameters = {}
@@ -94,12 +96,14 @@ class ApiVersionDefaultOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
+        api_version = "2015-07-01-preview"
 
         # Construct URL
         url = self.get_method_global_not_provided_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
         header_parameters = {}
@@ -133,12 +137,14 @@ class ApiVersionDefaultOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
+        api_version = "2015-07-01-preview"
 
         # Construct URL
         url = self.get_path_global_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
         header_parameters = {}
@@ -172,12 +178,14 @@ class ApiVersionDefaultOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
+        api_version = "2015-07-01-preview"
 
         # Construct URL
         url = self.get_swagger_global_valid.metadata['url']
 
         # Construct parameters
         query_parameters = {}
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
         header_parameters = {}
