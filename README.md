@@ -26,7 +26,7 @@ pass-thru:
   - model-deduplicator
   - subset-reducer
 use-extension:
-  "@autorest/modelerfour": "4.8.221"
+  "@autorest/modelerfour": "4.9.234"
 
 modelerfour:
   group-parameters: true
