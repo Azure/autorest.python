@@ -138,6 +138,7 @@ class SubscriptionInCredentialsOperations:
         """
         cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
+        api_version = "2015-07-01-preview"
 
         # Construct URL
         url = self.post_method_global_not_provided_valid.metadata['url']
@@ -148,6 +149,7 @@ class SubscriptionInCredentialsOperations:
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}

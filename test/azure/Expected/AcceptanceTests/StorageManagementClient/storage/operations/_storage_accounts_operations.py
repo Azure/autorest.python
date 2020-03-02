@@ -64,6 +64,7 @@ class StorageAccountsOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.CheckNameAvailabilityResult"]
         error_map = kwargs.pop('error_map', {})
+        api_version = "2015-05-01-preview"
 
         # Construct URL
         url = self.check_name_availability.metadata['url']
@@ -74,6 +75,7 @@ class StorageAccountsOperations(object):
 
         # Construct parameters
         query_parameters = {}
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
         header_parameters = {}
@@ -111,6 +113,7 @@ class StorageAccountsOperations(object):
         # type: (...) -> "models.StorageAccount"
         cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount"]
         error_map = kwargs.pop('error_map', {})
+        api_version = "2015-05-01-preview"
 
         # Construct URL
         url = self._create_initial.metadata['url']
@@ -123,6 +126,7 @@ class StorageAccountsOperations(object):
 
         # Construct parameters
         query_parameters = {}
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
         header_parameters = {}
@@ -230,6 +234,7 @@ class StorageAccountsOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
+        api_version = "2015-05-01-preview"
 
         # Construct URL
         url = self.delete.metadata['url']
@@ -242,6 +247,7 @@ class StorageAccountsOperations(object):
 
         # Construct parameters
         query_parameters = {}
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
         header_parameters = {}
@@ -283,6 +289,7 @@ class StorageAccountsOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount"]
         error_map = kwargs.pop('error_map', {})
+        api_version = "2015-05-01-preview"
 
         # Construct URL
         url = self.get_properties.metadata['url']
@@ -295,6 +302,7 @@ class StorageAccountsOperations(object):
 
         # Construct parameters
         query_parameters = {}
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
         header_parameters = {}
@@ -344,6 +352,7 @@ class StorageAccountsOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount"]
         error_map = kwargs.pop('error_map', {})
+        api_version = "2015-05-01-preview"
 
         # Construct URL
         url = self.update.metadata['url']
@@ -356,6 +365,7 @@ class StorageAccountsOperations(object):
 
         # Construct parameters
         query_parameters = {}
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
         header_parameters = {}
@@ -404,6 +414,7 @@ class StorageAccountsOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccountKeys"]
         error_map = kwargs.pop('error_map', {})
+        api_version = "2015-05-01-preview"
 
         # Construct URL
         url = self.list_keys.metadata['url']
@@ -416,6 +427,7 @@ class StorageAccountsOperations(object):
 
         # Construct parameters
         query_parameters = {}
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
         header_parameters = {}
@@ -453,6 +465,7 @@ class StorageAccountsOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccountListResult"]
         error_map = kwargs.pop('error_map', {})
+        api_version = "2015-05-01-preview"
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -467,6 +480,7 @@ class StorageAccountsOperations(object):
 
             # Construct parameters
             query_parameters = {}
+            query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
             # Construct headers
             header_parameters = {}
@@ -518,6 +532,7 @@ class StorageAccountsOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccountListResult"]
         error_map = kwargs.pop('error_map', {})
+        api_version = "2015-05-01-preview"
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -533,6 +548,7 @@ class StorageAccountsOperations(object):
 
             # Construct parameters
             query_parameters = {}
+            query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
             # Construct headers
             header_parameters = {}
@@ -594,6 +610,7 @@ class StorageAccountsOperations(object):
         error_map = kwargs.pop('error_map', {})
 
         _regenerate_key = models.StorageAccountRegenerateKeyParameters(key_name=key_name)
+        api_version = "2015-05-01-preview"
 
         # Construct URL
         url = self.regenerate_key.metadata['url']
@@ -606,6 +623,7 @@ class StorageAccountsOperations(object):
 
         # Construct parameters
         query_parameters = {}
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
         header_parameters = {}

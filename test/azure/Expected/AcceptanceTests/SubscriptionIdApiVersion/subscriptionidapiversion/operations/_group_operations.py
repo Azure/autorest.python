@@ -58,6 +58,7 @@ class GroupOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.SampleResourceGroup"]
         error_map = kwargs.pop('error_map', {})
+        api_version = "2014-04-01-preview"
 
         # Construct URL
         url = self.get_sample_resource_group.metadata['url']
@@ -69,6 +70,7 @@ class GroupOperations(object):
 
         # Construct parameters
         query_parameters = {}
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
         header_parameters = {}
