@@ -31,9 +31,15 @@ class MultiAPISerializer:
     def serialize(self) -> str:
         if self.async_mode:
             aio_path = Path("aio")
+
             self._autorestapi.write_file(
                 aio_path / self.service_client_filename,
                 self.serialize_multiapi_client()
+            )
+
+            self._autorestapi.write_file(
+                aio_path / "_configuration_async.py",
+                self.serialize_multiapi_config()
             )
         else:
             self._autorestapi.write_file(
