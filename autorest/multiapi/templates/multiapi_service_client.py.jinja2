@@ -1,3 +1,10 @@
+{% set config_import = "._configuration_async" if async_mode else "._configuration" %}
+{% set operations_mixin_import = ".operations_mixin_async" if async_mode else ".operations_mixin" %}
+{% set pipeline_client = "AsyncARMPipelineClient" if async_mode else "ARMPipelineClient" %}
+{% set relative_path = ".." if async_mode else "." %}
+{% set def = "async def" if async_mode else "def" %}
+{% set async_prefix = "a" if async_mode else "" %}
+{% set await = "await " if async_mode else "" %}
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -9,13 +16,13 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from azure.mgmt.core import ARMPipelineClient
+from azure.mgmt.core import {{ pipeline_client }}
 from msrest import Serializer, Deserializer
 
 from azure.profiles import KnownProfiles, ProfileDefinition
 from azure.profiles.multiapiclient import MultiApiClientMixin
-from ._configuration import {{ client_name }}Configuration
-{% if mixin_operations %}from ._operations_mixin import {{ client_name }}OperationsMixin{% endif %}
+from {{ config_import }} import {{ client_name }}Configuration
+{% if mixin_operations %}from {{ operations_mixin_import }} import {{ client_name }}OperationsMixin{% endif %}
 
 class _SDKClient(object):
     def __init__(self, *args, **kwargs):
@@ -66,7 +73,7 @@ class {{ client_name }}({% if mixin_operations %}{{ client_name }}OperationsMixi
         if not base_url:
             base_url = 'https://management.azure.com'
         self._config = {{ client_name }}Configuration(credential{% if has_subscription_id %}, subscription_id{% endif %}, **kwargs)
-        self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
+        self._client = {{ pipeline_client }}(base_url=base_url, config=self._config, **kwargs)
         super({{ client_name }}, self).__init__(
             credential,
             self._config,
@@ -89,7 +96,7 @@ class {{ client_name }}({% if mixin_operations %}{{ client_name }}OperationsMixi
         {% for mod_api_version, api_version in mod_to_api_version|dictsort %}
         {% set if_statement = "if" if loop.first else "elif" %}
         {{if_statement }} api_version == '{{ api_version }}':
-            from .{{ mod_api_version }} import models
+            from {{ relative_path }}{{ mod_api_version }} import models
             return models
         {% endfor %}
         raise NotImplementedError("APIVersion {} is not available".format(api_version))
@@ -107,17 +114,17 @@ class {{ client_name }}({% if mixin_operations %}{{ client_name }}OperationsMixi
         {% for api in available_apis %}
         {% set if_statement = "if" if loop.first else "elif" %}
         {{ if_statement }} api_version == '{{ mod_to_api_version[api[0]] }}':
-            from .{{ api[0] }}.operations import {{ api[1] }} as OperationClass
+            from {{ relative_path }}{{ api[0] }}.{{ "aio." if async_mode else "" }}operations{{ "_async" if async_mode else "" }} import {{ api[1] }} as OperationClass
         {% endfor %}
         else:
             raise NotImplementedError("APIVersion {} is not available".format(api_version))
         return OperationClass(self._client, self._config, Serializer(self._models_dict(api_version)), Deserializer(self._models_dict(api_version)))
     {% endfor %}
 
-    def close(self):
+    {{ def }} close(self):
         self._client.close()
-    def __enter__(self):
+    {{ def }} __{{ async_prefix }}enter__(self):
         self._client.__enter__()
         return self
-    def __exit__(self, *exc_details):
+    {{ def }} __{{ async_prefix }}exit__(self, *exc_details):
         self._client.__exit__(*exc_details)

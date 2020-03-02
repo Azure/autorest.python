@@ -311,34 +311,23 @@ class MultiAPI:
             ),
             "config": metadata_json["config"]
         }
-        multiapi_serializer = MultiAPISerializer(conf=conf)
 
-        self._autorestapi.write_file(
-            Path(metadata_json["client"]["filename"]),
-            multiapi_serializer.serialize_multiapi_client()
+        multiapi_serializer = MultiAPISerializer(
+            conf=conf,
+            async_mode=False,
+            autorestapi=self._autorestapi,
+            service_client_filename=metadata_json["client"]["filename"]
         )
+        multiapi_serializer.serialize()
 
-        self._autorestapi.write_file(
-            Path("_configuration.py"),
-            multiapi_serializer.serialize_multiapi_config()
+        async_multiapi_serializer = MultiAPISerializer(
+            conf=conf,
+            async_mode=True,
+            autorestapi=self._autorestapi,
+            service_client_filename=metadata_json["client"]["filename"]
         )
+        async_multiapi_serializer.serialize()
 
-        self._autorestapi.write_file(
-            Path("models.py"),
-            multiapi_serializer.serialize_multiapi_models()
-        )
-
-        if mixin_operations:
-            self._autorestapi.write_file(
-                Path("_operations_mixin.py"),
-                multiapi_serializer.serialize_multiapi_operation_mixins()
-            )
-
-        if not self._autorestapi.read_file("_version.py"):
-            self._autorestapi.write_file(
-                Path("_version.py"),
-                multiapi_serializer.serialize_multiapi_version()
-            )
 
         _LOGGER.info("Done!")
         return True

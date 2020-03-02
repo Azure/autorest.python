@@ -4,7 +4,7 @@
     "total_api_version_list": {{ total_api_version_list | tojson }},
     "client": {
         "name": {{ code_model.class_name | tojson }},
-        "filename": {{ ("_" + code_model.module_name + ".py") | tojson }},
+        "filename": {{ ("_" + code_model.module_name) | tojson }},
         "description": {{ code_model.description | tojson }},
         "has_subscription_id": {{ "true" if "subscription_id" in code_model.global_parameters | map(attribute="serialized_name") | list else "false" }}
     },
