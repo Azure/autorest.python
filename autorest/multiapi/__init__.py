@@ -328,6 +328,9 @@ class MultiAPI:
             multiapi_serializer.serialize_multiapi_models()
         )
 
+        # write the empty py.typed file
+        self._autorestapi.write_file("py.typed", "# Marker file for PEP 561.")
+
         if mixin_operations:
             self._autorestapi.write_file(
                 Path("_operations_mixin.py"),

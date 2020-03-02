@@ -54,14 +54,12 @@ class ApiVersionLocalOperations:
         """
         cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
-        api_version = "2015-07-01-preview"
 
         # Construct URL
         url = self.get_method_local_valid.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
@@ -94,14 +92,12 @@ class ApiVersionLocalOperations:
         """
         cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
-        api_version = "2015-07-01-preview"
 
         # Construct URL
         url = self.get_method_local_null.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
@@ -134,14 +130,12 @@ class ApiVersionLocalOperations:
         """
         cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
-        api_version = "2015-07-01-preview"
 
         # Construct URL
         url = self.get_path_local_valid.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
@@ -174,14 +168,12 @@ class ApiVersionLocalOperations:
         """
         cls: ClsType[None] = kwargs.pop('cls', None)
         error_map = kwargs.pop('error_map', {})
-        api_version = "2015-07-01-preview"
 
         # Construct URL
         url = self.get_swagger_local_valid.metadata['url']
 
         # Construct parameters
         query_parameters: Dict[str, Any] = {}
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
