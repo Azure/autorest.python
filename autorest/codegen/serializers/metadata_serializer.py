@@ -78,6 +78,5 @@ class MetadataSerializer:
             mixin_operations=mixin_operations,
             any=any,
             is_lro=_is_lro,
-            is_paging=_is_paging,
-            str=str,
+            is_paging=_is_paging
         )
