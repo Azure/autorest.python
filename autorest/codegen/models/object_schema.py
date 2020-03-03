@@ -22,8 +22,8 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         super(ObjectSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.name = name
         self.description = description
-        self.max_properties = kwargs.pop("max_properties", None)
-        self.min_properties = kwargs.pop("min_properties", None)
+        self.max_properties: Optional[int] = kwargs.pop("max_properties", None)
+        self.min_properties: Optional[int] = kwargs.pop("min_properties", None)
         self.properties = kwargs.pop("properties", None)
         self.is_exception = kwargs.pop("is_exception", False)
         self.base_model = kwargs.pop("base_model", None)

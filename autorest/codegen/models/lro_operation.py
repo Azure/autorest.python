@@ -28,8 +28,8 @@ class LROOperation(Operation):
         summary: Optional[str] = None,
         parameters: Optional[List[Parameter]] = None,
         multiple_media_type_parameters: Optional[List[Parameter]] = None,
-        responses: List[SchemaResponse] = None,
-        exceptions: List[SchemaResponse] = None,
+        responses: Optional[List[SchemaResponse]] = None,
+        exceptions: Optional[List[SchemaResponse]] = None,
         want_description_docstring: Optional[bool] = True,
         want_tracing: Optional[bool] = True,
     ) -> None:

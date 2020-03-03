@@ -67,7 +67,7 @@ class IOSchema(BaseSchema):
     def docstring_text(self) -> str:
         return "IO"
 
-    def imports(self):
+    def imports(self) -> FileImport:
         file_import = FileImport()
         file_import.add_from_import("typing", "IO", ImportType.STDLIB)
         return file_import
