@@ -34,12 +34,11 @@ from datetime import date, datetime, timedelta
 import os
 from os.path import dirname, pardir, join, realpath
 
-from azure.core.exceptions import DecodeError
+from azure.core.exceptions import DecodeError, HttpResponseError
 from azure.core.polling import LROPoller
 from azure.core.pipeline.policies import ContentDecodePolicy, RetryPolicy, HeadersPolicy, RequestIdPolicy
 
-from azure.mgmt.core.polling.arm_polling import ARMPolling
-from azure.mgmt.core.exceptions import ARMError
+from azure.core.polling.arm.arm_polling import ARMPolling
 
 from lro import AutoRestLongRunningOperationTestService
 from lro.models import *  # pylint: disable=W0614
@@ -71,7 +70,7 @@ class AutorestTestARMPolling(ARMPolling):
         request = self._client.get(status_link, headers=self._polling_cookie(self._pipeline_response.http_response))
         # ARM requires to re-inject 'x-ms-client-request-id' while polling
         if 'request_id' not in self._operation_config:
-            self._operation_config['request_id'] = self._operation.initial_response.http_response.request.headers['x-ms-client-request-id']
+            self._operation_config['request_id'] = self._get_request_id()
         return self._client._pipeline.run(request, stream=False, **self._operation_config)
 
 @pytest.fixture()
@@ -104,7 +103,7 @@ class TestLro:
             self.lro_result(func, *args, **kwargs)
             pytest.fail("HttpResponseError wasn't raised as expected")
 
-        except ARMError as err:
+        except HttpResponseError as err:
             assert err.response is not None
             print("BODY: "+err.response.text())
 
@@ -119,7 +118,8 @@ class TestLro:
             # So, we hack a little the system and check if we have the expected
             # message in the JSON body.
             # We should have more testserver on valid ARM errors....
-            assert msg in err.message or msg in (err.odata_json or {}).get("message", "")
+            msg = msg.lower()
+            assert msg in err.message.lower() or msg in (err.odata_json or {}).get("message", "").lower()
             if internal_msg:
                 assert internal_msg in str(err.inner_exception)
 
@@ -385,8 +385,11 @@ class TestLro:
             client.lrosads.begin_post_async_relative_retry_no_payload)
 
     def test_sads_post202_no_location(self, client):
-        self.assert_raises_with_message("Unable to find status link for polling.",
-            client.lrosads.begin_post202_no_location)
+        # Testserver wants us to fail (coverage name is LROErrorPostNoLocation)
+        # Actually, Python will NOT, and consider any kind of success 2xx on the initial call
+        # is an actual success
+        process = self.lro_result(client.lrosads.begin_post202_no_location)
+        assert process is None
 
     def test_sads_post_async_relative_with_exception(self, client):
         with pytest.raises(Exception):
