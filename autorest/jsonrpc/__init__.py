@@ -7,6 +7,7 @@ from abc import ABC, abstractmethod
 from enum import Enum
 from typing import Any, List, Optional, Union
 import logging
+import logging.config # need to include this extra import so mypy doesn't throw logging module has no config
 from pathlib import Path
 
 
@@ -40,7 +41,7 @@ _LEVEL_MAPPING = {
 
 
 class AutorestHandler(logging.Handler):
-    def __init__(self, autorest_api):
+    def __init__(self, autorest_api: "AutorestAPI") -> None:
         # Initialize this handler with the max loglevel, since
         # autorest is deciding what to show, not us
         # so we want to log everything and let autorest filters.
@@ -67,17 +68,17 @@ class AutorestAPI(ABC):
     """Defines the base interface of communication to Autorest from the plugin.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         if Path("logging.conf").exists():
             logging.config.fileConfig(Path("logging.conf"))
         else:
-            self._handler = AutorestHandler(self)
+            self._handler: Optional["AutorestHandler"] = AutorestHandler(self)
             fmt = logging.Formatter("[%(name)s.%(funcName)s:%(lineno)d] %(message)s")
             self._handler.setFormatter(fmt)
             logging.getLogger().addHandler(self._handler)
             logging.getLogger().setLevel(logging.DEBUG)
 
-    def close(self):
+    def close(self) -> None:
         if self._handler:
             logging.getLogger().removeHandler(self._handler)
             self._handler = None

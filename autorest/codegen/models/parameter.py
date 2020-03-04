@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from enum import Enum
 import logging
-from typing import Dict, Optional, List, Any, Union
+from typing import Dict, Optional, List, Any, Union, Tuple
 
 from .imports import FileImport, ImportType
 from .base_model import BaseModel
@@ -58,7 +58,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         grouped_by: Optional["Parameter"] = None,
         original_parameter: Optional["Parameter"] = None,
         client_default_value: Optional[Any] = None,
-    ):
+    ) -> None:
         super().__init__(yaml_data)
         self.schema = schema
         self.rest_api_name = rest_api_name
@@ -75,10 +75,10 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.grouped_by = grouped_by
         self.original_parameter = original_parameter
         self.client_default_value = client_default_value
-        self.is_kwarg: bool = False
-        self.has_multiple_media_types: bool = False
-        self.multiple_media_types_type_annot = None
-        self.multiple_media_types_docstring_type = None
+        self.is_kwarg: Optional[bool] = False
+        self.has_multiple_media_types: Optional[bool] = False
+        self.multiple_media_types_type_annot: Optional[str] = None
+        self.multiple_media_types_docstring_type: Optional[str] = None
 
     @property
     def implementation(self) -> str:
@@ -87,7 +87,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
             return "Method"
         return self._implementation
 
-    def _default_value(self):
+    def _default_value(self) -> Tuple[Optional[Any], str, str]:
         type_annot = self.multiple_media_types_type_annot or self.schema.operation_type_annotation
         if not self.required:
             type_annot = f"Optional[{type_annot}]"

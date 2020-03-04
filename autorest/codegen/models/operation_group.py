@@ -51,7 +51,7 @@ class OperationGroup(BaseModel):
                 )
         return file_import
 
-    def get_filename(self, async_mode) -> str:
+    def get_filename(self, async_mode: bool) -> str:
         basename = self.name
         if self.is_empty_operation_group:
             basename = self.code_model.module_name

@@ -8,10 +8,10 @@ from ..models.imports import ImportType, FileImport
 
 
 class FileImportSerializer:
-    def __init__(self, file_import: FileImport):
+    def __init__(self, file_import: FileImport) -> None:
         self._file_import = file_import
 
-    def __str__(self):
+    def __str__(self) -> str:
         import_clause = []
         for import_type in ImportType:
             if import_type in self._file_import.imports:

@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional, Union
 from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
 from .property import Property
@@ -18,18 +18,20 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
     :type properties: dict(str, str)
     """
 
-    def __init__(self, namespace: str, yaml_data: Dict[str, Any], name: str, description: str = "", **kwargs):
+    def __init__(
+        self, namespace: str, yaml_data: Dict[str, Any], name: str, description: str = "", **kwargs
+    ) -> None:
         super(ObjectSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.name = name
         self.description = description
         self.max_properties: Optional[int] = kwargs.pop("max_properties", None)
         self.min_properties: Optional[int] = kwargs.pop("min_properties", None)
-        self.properties = kwargs.pop("properties", None)
-        self.is_exception = kwargs.pop("is_exception", False)
-        self.base_model = kwargs.pop("base_model", None)
-        self.subtype_map = kwargs.pop("subtype_map", None)
-        self.discriminator_name = kwargs.pop("discriminator_name", None)
-        self.discriminator_value = kwargs.pop("discriminator_value", None)
+        self.properties: List[Property] = kwargs.pop("properties", [])
+        self.is_exception: bool = kwargs.pop("is_exception", False)
+        self.base_model: Optional[Union[int, "ObjectSchema"]] = kwargs.pop("base_model", None)
+        self.subtype_map: Optional[Dict[str, str]] = kwargs.pop("subtype_map", None)
+        self.discriminator_name: Optional[str] = kwargs.pop("discriminator_name", None)
+        self.discriminator_value: Optional[str] = kwargs.pop("discriminator_value", None)
 
     @property
     def serialization_type(self) -> str:
@@ -44,7 +46,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         return f'"models.{self.name}"'
 
     @property
-    def docstring_type(self):
+    def docstring_type(self) -> str:
         return f"~{self.namespace}.models.{self.name}"
 
     @property
@@ -54,18 +56,18 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
     def get_declaration(self, value: Any) -> str:
         return f"{self.name}()"
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"<{self.__class__.__name__} {self.name}>"
 
     @property
-    def has_xml_serialization_ctxt(self):
+    def has_xml_serialization_ctxt(self) -> bool:
         return False
 
     def xml_serialization_ctxt(self) -> Optional[str]:
         # object schema contains _xml_map, they don't need serialization context
         return ""
 
-    def xml_map_content(self):
+    def xml_map_content(self) -> Optional[str]:
         if not self.xml_metadata:
             raise ValueError("This object does not contain XML metadata")
         # This is NOT an error on the super call, we use the serialization context for "xml_map",
@@ -132,7 +134,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         name = yaml_data["language"]["python"]["name"]
 
         description = yaml_data["language"]["python"]["description"]
-        is_exception = None
+        is_exception = False
         exceptions_set = kwargs.pop("exceptions_set", None)
         if exceptions_set:
             if yaml_data["language"]["python"]["name"] in exceptions_set:

@@ -10,7 +10,7 @@ from .base_schema import BaseSchema
 
 
 class HeaderResponse:
-    def __init__(self, name: str, schema):
+    def __init__(self, name: str, schema) -> None:
         self.name = name
         self.schema = schema
 
@@ -24,7 +24,7 @@ class SchemaResponse(BaseModel):
         status_codes: List[Union[str, int]],
         headers: List[HeaderResponse],
         binary: bool,
-    ):
+    ) -> None:
         super().__init__(yaml_data)
         self.schema = schema
         self.media_types = media_types
@@ -66,5 +66,5 @@ class SchemaResponse(BaseModel):
             binary=yaml_data.get("binary", False),
         )
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"<{self.__class__.__name__} {self.status_codes}>"

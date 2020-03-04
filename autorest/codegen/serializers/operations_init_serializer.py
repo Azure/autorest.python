@@ -8,7 +8,7 @@ from ..models import CodeModel
 
 
 class OperationsInitSerializer:
-    def __init__(self, code_model: CodeModel, env: Environment, async_mode: bool):
+    def __init__(self, code_model: CodeModel, env: Environment, async_mode: bool) -> None:
         self.code_model = code_model
         self.env = env
         self.async_mode = async_mode

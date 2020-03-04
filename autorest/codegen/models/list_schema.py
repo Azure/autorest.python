@@ -18,7 +18,7 @@ class ListSchema(BaseSchema):
         max_items: Optional[int] = None,
         min_items: Optional[int] = None,
         unique_items: Optional[int] = None,
-    ):
+    ) -> None:
         super(ListSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.element_type = element_type
         self.max_items = max_items

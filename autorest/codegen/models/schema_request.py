@@ -15,7 +15,7 @@ class SchemaRequest(BaseModel):
         yaml_data: Dict[str, Any],
         media_types: List[str],
         parameters: List[Parameter]
-    ):
+    ) -> None:
         super().__init__(yaml_data)
         self.media_types = media_types
         self.parameters = ParameterList(parameters)
@@ -46,5 +46,5 @@ class SchemaRequest(BaseModel):
             parameters=parameters
         )
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"<{self.__class__.__name__} {self.media_types}>"

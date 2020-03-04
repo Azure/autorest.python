@@ -9,7 +9,7 @@ from ..models import FileImport, ImportType, CodeModel
 
 
 class GeneralSerializer:
-    def __init__(self, code_model: CodeModel, env: Environment, async_mode: bool):
+    def __init__(self, code_model: CodeModel, env: Environment, async_mode: bool) -> None:
         self.code_model = code_model
         self.env = env
         self.async_mode = async_mode
@@ -31,7 +31,7 @@ class GeneralSerializer:
         )
 
     def serialize_config_file(self) -> str:
-        def _config_imports(async_mode):
+        def _config_imports(async_mode: bool) -> FileImport:
             file_import = FileImport()
             file_import.add_from_import("azure.core.configuration", "Configuration", ImportType.AZURECORE)
             file_import.add_from_import("azure.core.pipeline", "policies", ImportType.AZURECORE)
