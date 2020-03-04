@@ -156,7 +156,7 @@ class NameConverter:
         if not name:
             return NameConverter._to_python_case(pad_string.value if pad_string else "")
         escaped_name = NameConverter._get_escaped_reserved_name(
-            NameConverter._to_valid_name(name.replace("-", "_"), ["_"]), pad_string.value if pad_string else ""
+            NameConverter._to_valid_name(name.replace("-", "_"), ["_"]), pad_string
         )
         if convert_name or name != escaped_name:
             return NameConverter._to_python_case(escaped_name)
@@ -189,22 +189,22 @@ class NameConverter:
     def _get_escaped_reserved_name(name: str, pad_string: PadType) -> str:
         if name is None:
             raise ValueError("The value for name can not be None")
-        if pad_string is None:
-            raise ValueError("The value for pad_string can not be None")
-
-        # check to see if name is reserved for the type of name we are converting
-        if name.lower() in reserved_words["always_reserved"]:
-            name += pad_string.value
-        elif pad_string in [PadType.Method, PadType.Parameter]:
-            if name.lower() in reserved_words["reserved_for_operations"]:
+        try:
+            # check to see if name is reserved for the type of name we are converting
+            if name.lower() in reserved_words["always_reserved"]:
                 name += pad_string.value
-        elif pad_string in [PadType.Model, PadType.Property]:
-            if name.lower() in reserved_words["reserved_for_models"]:
-                name += pad_string.value
-        elif pad_string == PadType.Enum:
-            if name.lower() in reserved_words["reserved_for_enums"]:
-                name += pad_string.value
-        return name
+            elif pad_string in [PadType.Method, PadType.Parameter]:
+                if name.lower() in reserved_words["reserved_for_operations"]:
+                    name += pad_string.value
+            elif pad_string in [PadType.Model, PadType.Property]:
+                if name.lower() in reserved_words["reserved_for_models"]:
+                    name += pad_string.value
+            elif pad_string == PadType.Enum:
+                if name.lower() in reserved_words["reserved_for_enums"]:
+                    name += pad_string.value
+            return name
+        except AttributeError:
+            raise ValueError(f"The name {name} is a reserved word and you have not specified a pad string for it.")
 
     @staticmethod
     def _remove_invalid_characters(name: str, allowed_characters: List[str]) -> str:
