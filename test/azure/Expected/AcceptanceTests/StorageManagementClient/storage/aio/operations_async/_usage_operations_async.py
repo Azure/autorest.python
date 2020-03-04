@@ -70,7 +70,7 @@ class UsageOperations:
 
         # Construct headers
         header_parameters: Dict[str, Any] = {}
-        header_parameters['Accept'] = 'application/json'
+        header_parameters['Accept'] = 'application/json,text/json'
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
