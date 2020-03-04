@@ -75,8 +75,8 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.grouped_by = grouped_by
         self.original_parameter = original_parameter
         self.client_default_value = client_default_value
-        self.is_kwarg: Optional[bool] = False
-        self.has_multiple_media_types: Optional[bool] = False
+        self.is_kwarg: bool = False
+        self.has_multiple_media_types: bool = False
         self.multiple_media_types_type_annot: Optional[str] = None
         self.multiple_media_types_docstring_type: Optional[str] = None
 
