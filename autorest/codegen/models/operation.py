@@ -22,7 +22,7 @@ def _non_binary_schema_media_types(media_types: List[str]) -> List[str]:
     response_media_types = []
     json_media_types = [media_type for media_type in media_types if "json" in media_type]
     xml_media_types = [media_type for media_type in media_types if "xml" in media_type]
-    if not json_media_types + xml_media_types == media_types:
+    if not sorted(json_media_types + xml_media_types) == sorted(media_types):
         raise ValueError("The non-binary responses with schemas of {self.name} have incorrect json or xml mime types")
     if json_media_types:
         if "application/json" in json_media_types:
@@ -31,7 +31,7 @@ def _non_binary_schema_media_types(media_types: List[str]) -> List[str]:
             response_media_types.append(json_media_types[0])
     if xml_media_types:
         if "application/xml" in xml_media_types:
-            response_media_types.append("application/json")
+            response_media_types.append("application/xml")
         else:
             response_media_types.append(xml_media_types[0])
     return response_media_types
@@ -94,7 +94,10 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
                 if not "json" in media_type and not "xml" in media_type
             ]
         elif all([response.schema for response in self.responses]):
-            response_media_types = _non_binary_schema_media_types(media_types)
+            response_media_types = _non_binary_schema_media_types([
+                media_type for media_type in media_types
+                if "json" in media_type or "xml" in media_type
+            ])
         return ",".join(response_media_types)
 
     @property
