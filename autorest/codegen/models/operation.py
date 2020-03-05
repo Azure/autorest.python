@@ -85,19 +85,32 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
             raise TypeError(
                 f"Operation {self.name} has tried to get its accept_content_type even though it has no media types"
             )
-        response_media_types = media_types
+        if not self.has_response_body:
+            raise TypeError(
+                "There is an error in the code model we're being supplied. We're getting response media types " +
+                f"even though no response of {self.name} has a body"
+            )
         if len(media_types) == 1:
             return media_types[0]
+        binary_media_types = [
+            media_type for media_type in media_types
+            if not "json" in media_type and not "xml" in media_type
+        ]
+        non_binary_schema_media_types = [
+            media_type for media_type in media_types
+            if "json" in media_type or "xml" in media_type
+        ]
         if all([response.binary for response in self.responses]):
-            response_media_types = [
-                media_type for media_type in media_types
-                if not "json" in media_type and not "xml" in media_type
-            ]
+            response_media_types = binary_media_types
         elif all([response.schema for response in self.responses]):
-            response_media_types = _non_binary_schema_media_types([
-                media_type for media_type in media_types
-                if "json" in media_type or "xml" in media_type
-            ])
+            response_media_types = _non_binary_schema_media_types(
+                non_binary_schema_media_types
+            )
+        else:
+            non_binary_schema_media_types = _non_binary_schema_media_types(
+                non_binary_schema_media_types
+            )
+            response_media_types = binary_media_types + non_binary_schema_media_types
         return ",".join(response_media_types)
 
     @property
