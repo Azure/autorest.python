@@ -151,7 +151,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             ancestors.append(schema)
             while current.base_model:
                 parent = current.base_model
-                if parent.name in seen_schema_names:
+                if parent.id in seen_schema_yaml_ids:
                     break
                 ancestors.insert(0, parent)
                 seen_schema_names.add(current.name)
