@@ -77,7 +77,7 @@ def test_no_media_types_schema_error(operation):
 
 def test_no_response_body_error(operation):
     # There shouldn't be a case where we have media_types and no headers, but
-    # adding this in case of m4 bug and making sure we raise it
+    # adding this in case of bug in code model and making sure we raise it
     operation.responses = [
         SchemaResponse(
             yaml_data={}, media_types=["application/pdf"], headers=[], binary=False, schema=None, status_codes=[204]
