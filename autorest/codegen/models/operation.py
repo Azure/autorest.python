@@ -87,8 +87,8 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
             )
         if not self.has_response_body:
             raise TypeError(
-                "M4 has returned an error, we're getting response media types even though " +
-                f"no response of {self.name} has a body"
+                "There is an error in the code model we're being supplied. We're getting response media types " +
+                f"even though no response of {self.name} has a body"
             )
         if len(media_types) == 1:
             return media_types[0]
