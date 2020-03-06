@@ -142,7 +142,7 @@ class TestFormData(object):
                 print("Progress... {}%".format(int(progress*100/length)))
                 if not block:
                     break
-                await yield_(block)
+                return block
 
         result = io.BytesIO()
         with io.BytesIO(test_bytes) as stream_data:
