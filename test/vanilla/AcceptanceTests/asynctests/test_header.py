@@ -49,7 +49,6 @@ async def client():
         await yield_(client)
 
 @pytest.fixture
-@async_generator
 def value_header():
     def _value_header(response, _, headers):
         return headers.get("value")
