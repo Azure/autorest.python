@@ -134,6 +134,7 @@ class TestFormData(object):
         test_string = "Upload file test case"
         test_bytes = bytearray(test_string, encoding='utf-8')
 
+        @async_generator
         async def stream_upload(data, length, block_size):
             progress = 0
             while True:
@@ -142,7 +143,7 @@ class TestFormData(object):
                 print("Progress... {}%".format(int(progress*100/length)))
                 if not block:
                     break
-                yield block
+                await yield_(block)
 
         result = io.BytesIO()
         with io.BytesIO(test_bytes) as stream_data:

@@ -64,10 +64,10 @@ class HeaderOperations(object):
         url = self.param_existing_key.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['User-Agent'] = self._serialize.header("user_agent", user_agent, 'str')
 
         # Construct and send request
@@ -104,10 +104,10 @@ class HeaderOperations(object):
         url = self.response_existing_key.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -149,10 +149,10 @@ class HeaderOperations(object):
         url = self.param_protected_key.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
@@ -189,10 +189,10 @@ class HeaderOperations(object):
         url = self.response_protected_key.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -237,10 +237,10 @@ class HeaderOperations(object):
         url = self.param_integer.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'int')
 
@@ -281,10 +281,10 @@ class HeaderOperations(object):
         url = self.response_integer.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
@@ -330,10 +330,10 @@ class HeaderOperations(object):
         url = self.param_long.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'long')
 
@@ -374,10 +374,10 @@ class HeaderOperations(object):
         url = self.response_long.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
@@ -423,10 +423,10 @@ class HeaderOperations(object):
         url = self.param_float.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'float')
 
@@ -467,10 +467,10 @@ class HeaderOperations(object):
         url = self.response_float.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
@@ -516,10 +516,10 @@ class HeaderOperations(object):
         url = self.param_double.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'float')
 
@@ -560,10 +560,10 @@ class HeaderOperations(object):
         url = self.response_double.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
@@ -609,10 +609,10 @@ class HeaderOperations(object):
         url = self.param_bool.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'bool')
 
@@ -653,10 +653,10 @@ class HeaderOperations(object):
         url = self.response_bool.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
@@ -704,10 +704,10 @@ class HeaderOperations(object):
         url = self.param_string.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         if value is not None:
             header_parameters['value'] = self._serialize.header("value", value, 'str')
@@ -750,10 +750,10 @@ class HeaderOperations(object):
         url = self.response_string.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
@@ -799,10 +799,10 @@ class HeaderOperations(object):
         url = self.param_date.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'date')
 
@@ -843,10 +843,10 @@ class HeaderOperations(object):
         url = self.response_date.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
@@ -893,10 +893,10 @@ class HeaderOperations(object):
         url = self.param_datetime.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'iso-8601')
 
@@ -937,10 +937,10 @@ class HeaderOperations(object):
         url = self.response_datetime.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
@@ -987,10 +987,10 @@ class HeaderOperations(object):
         url = self.param_datetime_rfc1123.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         if value is not None:
             header_parameters['value'] = self._serialize.header("value", value, 'rfc-1123')
@@ -1032,10 +1032,10 @@ class HeaderOperations(object):
         url = self.response_datetime_rfc1123.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
@@ -1081,10 +1081,10 @@ class HeaderOperations(object):
         url = self.param_duration.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'duration')
 
@@ -1125,10 +1125,10 @@ class HeaderOperations(object):
         url = self.response_duration.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
@@ -1174,10 +1174,10 @@ class HeaderOperations(object):
         url = self.param_byte.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'bytearray')
 
@@ -1218,10 +1218,10 @@ class HeaderOperations(object):
         url = self.response_byte.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
@@ -1268,10 +1268,10 @@ class HeaderOperations(object):
         url = self.param_enum.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         if value is not None:
             header_parameters['value'] = self._serialize.header("value", value, 'str')
@@ -1314,10 +1314,10 @@ class HeaderOperations(object):
         url = self.response_enum.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
@@ -1357,10 +1357,10 @@ class HeaderOperations(object):
         url = self.custom_request_id.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)

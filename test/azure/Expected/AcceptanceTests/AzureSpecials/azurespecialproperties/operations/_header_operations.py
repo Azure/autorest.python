@@ -63,10 +63,10 @@ class HeaderOperations(object):
         url = self.custom_named_request_id.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", foo_client_request_id, 'str')
 
         # Construct and send request
@@ -113,10 +113,10 @@ class HeaderOperations(object):
         url = self.custom_named_request_id_param_grouping.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", _foo_client_request_id, 'str')
 
         # Construct and send request
@@ -159,10 +159,10 @@ class HeaderOperations(object):
         url = self.custom_named_request_id_head.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['foo-client-request-id'] = self._serialize.header("foo_client_request_id", foo_client_request_id, 'str')
 
         # Construct and send request

@@ -52,17 +52,17 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get200_model204_no_model_default_error200_valid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -96,17 +96,17 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get200_model204_no_model_default_error204_valid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -140,17 +140,17 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get200_model204_no_model_default_error201_invalid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -184,17 +184,17 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get200_model204_no_model_default_error202_none.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -228,17 +228,17 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get200_model204_no_model_default_error400_valid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -272,17 +272,17 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[Union["models.MyException", "models.B"]] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.B"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get200_model201_model_default_error200_valid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -319,17 +319,17 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[Union["models.MyException", "models.B"]] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.B"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get200_model201_model_default_error201_valid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -366,17 +366,17 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[Union["models.MyException", "models.B"]] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.B"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get200_model201_model_default_error400_valid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -413,17 +413,17 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.C", "models.D"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get200_model_a201_model_c404_model_d_default_error200_valid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -463,17 +463,17 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.C", "models.D"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get200_model_a201_model_c404_model_d_default_error201_valid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -513,17 +513,17 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.C", "models.D"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get200_model_a201_model_c404_model_d_default_error404_valid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -563,17 +563,17 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.C or ~httpinfrastructure.models.D
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[Union["models.MyException", "models.C", "models.D"]] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[Union["models.MyException", "models.C", "models.D"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get200_model_a201_model_c404_model_d_default_error400_valid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -613,17 +613,17 @@ class MultipleResponsesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get202_none204_none_default_error202_none.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -651,17 +651,17 @@ class MultipleResponsesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get202_none204_none_default_error204_none.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -689,17 +689,17 @@ class MultipleResponsesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get202_none204_none_default_error400_valid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -727,17 +727,17 @@ class MultipleResponsesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get202_none204_none_default_none202_invalid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -765,17 +765,17 @@ class MultipleResponsesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get202_none204_none_default_none204_none.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -803,17 +803,17 @@ class MultipleResponsesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get202_none204_none_default_none400_none.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -841,17 +841,17 @@ class MultipleResponsesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get202_none204_none_default_none400_invalid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -879,17 +879,17 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_default_model_a200_valid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -921,17 +921,17 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_default_model_a200_none.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -963,17 +963,17 @@ class MultipleResponsesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_default_model_a400_valid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1001,17 +1001,17 @@ class MultipleResponsesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_default_model_a400_none.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1039,17 +1039,17 @@ class MultipleResponsesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_default_none200_invalid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1077,17 +1077,17 @@ class MultipleResponsesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_default_none200_none.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1115,17 +1115,17 @@ class MultipleResponsesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_default_none400_invalid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1153,17 +1153,17 @@ class MultipleResponsesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_default_none400_none.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -1191,17 +1191,17 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get200_model_a200_none.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -1233,17 +1233,17 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get200_model_a200_valid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -1275,17 +1275,17 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get200_model_a200_invalid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -1317,17 +1317,17 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get200_model_a400_none.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -1359,17 +1359,17 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get200_model_a400_valid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -1401,17 +1401,17 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get200_model_a400_invalid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -1443,17 +1443,17 @@ class MultipleResponsesOperations:
         :rtype: ~httpinfrastructure.models.MyException
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyException"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyException"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get200_model_a202_valid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request

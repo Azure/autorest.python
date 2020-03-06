@@ -62,7 +62,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.CheckNameAvailabilityResult
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.CheckNameAvailabilityResult"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.CheckNameAvailabilityResult"]
         error_map = kwargs.pop('error_map', {})
         api_version = "2015-05-01-preview"
 
@@ -74,16 +74,16 @@ class StorageAccountsOperations:
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
         query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        body_content_kwargs = {}
+        body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(account_name, 'StorageAccountCheckNameAvailabilityParameters')
         body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
@@ -110,7 +110,7 @@ class StorageAccountsOperations:
         parameters: "models.StorageAccountCreateParameters",
         **kwargs
     ) -> "models.StorageAccount":
-        cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount"]
         error_map = kwargs.pop('error_map', {})
         api_version = "2015-05-01-preview"
 
@@ -124,16 +124,16 @@ class StorageAccountsOperations:
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
         query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        body_content_kwargs = {}
+        body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(parameters, 'StorageAccountCreateParameters')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
@@ -182,8 +182,8 @@ class StorageAccountsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount"]
         raw_result = await self._create_initial(
             resource_group_name=resource_group_name,
             account_name=account_name,
@@ -229,7 +229,7 @@ class StorageAccountsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         api_version = "2015-05-01-preview"
 
@@ -243,11 +243,11 @@ class StorageAccountsOperations:
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
         query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -283,7 +283,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.StorageAccount
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount"]
         error_map = kwargs.pop('error_map', {})
         api_version = "2015-05-01-preview"
 
@@ -297,11 +297,11 @@ class StorageAccountsOperations:
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
         query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -345,7 +345,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.StorageAccount
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.StorageAccount"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount"]
         error_map = kwargs.pop('error_map', {})
         api_version = "2015-05-01-preview"
 
@@ -359,16 +359,16 @@ class StorageAccountsOperations:
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
         query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        body_content_kwargs = {}
+        body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(parameters, 'StorageAccountUpdateParameters')
         body_content_kwargs['content'] = body_content
         request = self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
@@ -406,7 +406,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.StorageAccountKeys
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.StorageAccountKeys"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccountKeys"]
         error_map = kwargs.pop('error_map', {})
         api_version = "2015-05-01-preview"
 
@@ -420,11 +420,11 @@ class StorageAccountsOperations:
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
         query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -456,7 +456,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.StorageAccountListResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        cls: ClsType["models.StorageAccountListResult"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccountListResult"]
         error_map = kwargs.pop('error_map', {})
         api_version = "2015-05-01-preview"
 
@@ -472,11 +472,11 @@ class StorageAccountsOperations:
                 url = next_link
 
             # Construct parameters
-            query_parameters: Dict[str, Any] = {}
+            query_parameters = {}  # type: Dict[str, Any]
             query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
             # Construct headers
-            header_parameters: Dict[str, Any] = {}
+            header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
 
             # Construct and send request
@@ -522,7 +522,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.StorageAccountListResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        cls: ClsType["models.StorageAccountListResult"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccountListResult"]
         error_map = kwargs.pop('error_map', {})
         api_version = "2015-05-01-preview"
 
@@ -539,11 +539,11 @@ class StorageAccountsOperations:
                 url = next_link
 
             # Construct parameters
-            query_parameters: Dict[str, Any] = {}
+            query_parameters = {}  # type: Dict[str, Any]
             query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
             # Construct headers
-            header_parameters: Dict[str, Any] = {}
+            header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
 
             # Construct and send request
@@ -597,7 +597,7 @@ class StorageAccountsOperations:
         :rtype: ~storage.models.StorageAccountKeys
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.StorageAccountKeys"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccountKeys"]
         error_map = kwargs.pop('error_map', {})
 
         _regenerate_key = models.StorageAccountRegenerateKeyParameters(key_name=key_name)
@@ -613,16 +613,16 @@ class StorageAccountsOperations:
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
         query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        body_content_kwargs = {}
+        body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_regenerate_key, 'StorageAccountRegenerateKeyParameters')
         body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
