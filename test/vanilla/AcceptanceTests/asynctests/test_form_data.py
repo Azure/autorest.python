@@ -40,12 +40,11 @@ from bodyformdata.aio import AutoRestSwaggerBATFormDataService
 import pytest
 
 @pytest.fixture
-@async_generator
 def dummy_file():
     with tempfile.NamedTemporaryFile(mode='w', delete=False) as dummy:
         dummy.write("Test file")
     # Get outside of the "with", so file can be re-opened on Windows
-    await yield_(dummy.name)
+    yield dummy.name
     os.remove(dummy.name)
 
 @pytest.fixture
