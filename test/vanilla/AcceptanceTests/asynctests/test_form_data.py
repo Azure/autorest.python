@@ -130,6 +130,7 @@ class TestFormData(object):
             assert result.getvalue().decode() ==  "Test file"
 
     @pytest.mark.asyncio
+    @async_generator
     async def test_file_body_upload_generator(self, client, dummy_file):
         test_string = "Upload file test case"
         test_bytes = bytearray(test_string, encoding='utf-8')
@@ -142,7 +143,7 @@ class TestFormData(object):
                 print("Progress... {}%".format(int(progress*100/length)))
                 if not block:
                     break
-                yield block
+                await yield_(block)
 
         result = io.BytesIO()
         with io.BytesIO(test_bytes) as stream_data:
