@@ -130,7 +130,6 @@ class TestFormData(object):
             assert result.getvalue().decode() ==  "Test file"
 
     @pytest.mark.asyncio
-    @async_generator
     async def test_file_body_upload_generator(self, client, dummy_file):
         test_string = "Upload file test case"
         test_bytes = bytearray(test_string, encoding='utf-8')
