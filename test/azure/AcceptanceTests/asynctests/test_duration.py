@@ -24,27 +24,19 @@
 #
 # --------------------------------------------------------------------------
 
-import unittest
-import subprocess
-import sys
-import isodate
-import tempfile
-import json
-from uuid import uuid4
-from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
+from async_generator import yield_, async_generator
+import pytest
 
 from msrest.exceptions import DeserializationError
 
 from bodyduration.aio import AutoRestDurationTestService
 
-import pytest
 
 @pytest.fixture
+@async_generator
 async def client():
     async with AutoRestDurationTestService(base_url="http://localhost:3000") as client:
-        yield client
+        await yield_(client)
 
 class TestDuration(object):
 

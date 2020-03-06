@@ -24,6 +24,7 @@
 #
 # --------------------------------------------------------------------------
 
+from async_generator import yield_, async_generator
 import subprocess
 import sys
 import io
@@ -39,14 +40,16 @@ from bodyformdata.aio import AutoRestSwaggerBATFormDataService
 import pytest
 
 @pytest.fixture
+@async_generator
 def dummy_file():
     with tempfile.NamedTemporaryFile(mode='w', delete=False) as dummy:
         dummy.write("Test file")
     # Get outside of the "with", so file can be re-opened on Windows
-    yield dummy.name
+    await yield_(dummy.name)
     os.remove(dummy.name)
 
 @pytest.fixture
+@async_generator
 async def client():
     async with AutoRestSwaggerBATFormDataService(
         base_url="http://localhost:3000",
@@ -54,7 +57,7 @@ async def client():
         retry_total = 50,  # Be agressive on this test, sometimes testserver DDOS :-p
         retry_backoff_factor = 1.6
     ) as client:
-        yield client
+        await yield_(client)
 
 
 class TestFormData(object):

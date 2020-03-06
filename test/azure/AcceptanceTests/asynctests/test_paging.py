@@ -24,6 +24,7 @@
 #
 # --------------------------------------------------------------------------
 
+from async_generator import yield_, async_generator
 import unittest
 import subprocess
 import sys
@@ -44,6 +45,7 @@ from azure.core.pipeline.policies import ContentDecodePolicy, AsyncRetryPolicy, 
 import pytest
 
 @pytest.fixture
+@async_generator
 async def client(cookie_policy, credential):
     policies = [
         RequestIdPolicy(),
@@ -53,12 +55,13 @@ async def client(cookie_policy, credential):
         cookie_policy
     ]
     async with AutoRestPagingTestService(credential, base_url="http://localhost:3000", policies=policies) as client:
-        yield client
+        await yield_(client)
 
 @pytest.fixture
+@async_generator
 async def custom_url_client(credential, authentication_policy):
     async with AutoRestParameterizedHostTestPagingClient(credential, host="host:3000", authentication_policy=authentication_policy) as client:
-        yield client
+        await yield_(client)
 
 @pytest.mark.asyncio
 async def test_get_single_pages_with_cb(client):
