@@ -29,10 +29,11 @@ class AutoRestParameterizedCustomHostTestClient(object):
 
     def __init__(
         self,
-        subscription_id: str,
-        dns_suffix: str = "host",
-        **kwargs: Any
-    ) -> None:
+        subscription_id,  # type: str
+        dns_suffix="host",  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         base_url = '{vault}{secret}{dnsSuffix}'
         self._config = AutoRestParameterizedCustomHostTestClientConfiguration(subscription_id, dns_suffix, **kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
@@ -44,12 +45,15 @@ class AutoRestParameterizedCustomHostTestClient(object):
         self.paths = PathsOperations(
             self._client, self._config, self._serialize, self._deserialize)
 
-    async def close(self) -> None:
+    async def close(self):
+        # type: () -> None
         await self._client.close()
 
-    async def __aenter__(self) -> "AutoRestParameterizedCustomHostTestClient":
+    async def __aenter__(self):
+        # type: () -> AutoRestParameterizedCustomHostTestClient
         await self._client.__aenter__()
         return self
 
-    async def __aexit__(self, *exc_details) -> None:
+    async def __aexit__(self, *exc_details):
+        # type: (Any) -> None
         await self._client.__aexit__(*exc_details)

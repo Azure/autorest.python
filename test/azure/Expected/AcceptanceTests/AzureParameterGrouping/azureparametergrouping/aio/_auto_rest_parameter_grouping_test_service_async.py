@@ -26,9 +26,10 @@ class AutoRestParameterGroupingTestService(object):
 
     def __init__(
         self,
-        base_url: Optional[str] = None,
-        **kwargs: Any
-    ) -> None:
+        base_url=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestParameterGroupingTestServiceConfiguration(**kwargs)
@@ -41,12 +42,15 @@ class AutoRestParameterGroupingTestService(object):
         self.parameter_grouping = ParameterGroupingOperations(
             self._client, self._config, self._serialize, self._deserialize)
 
-    async def close(self) -> None:
+    async def close(self):
+        # type: () -> None
         await self._client.close()
 
-    async def __aenter__(self) -> "AutoRestParameterGroupingTestService":
+    async def __aenter__(self):
+        # type: () -> AutoRestParameterGroupingTestService
         await self._client.__aenter__()
         return self
 
-    async def __aexit__(self, *exc_details) -> None:
+    async def __aexit__(self, *exc_details):
+        # type: (Any) -> None
         await self._client.__aexit__(*exc_details)

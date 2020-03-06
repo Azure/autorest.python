@@ -34,7 +34,7 @@ class SkipUrlEncodingOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,9 +43,10 @@ class SkipUrlEncodingOperations:
     @distributed_trace_async
     async def get_method_path_valid(
         self,
-        unencoded_path_param: str,
-        **kwargs
-    ) -> None:
+        unencoded_path_param,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
         :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'.
@@ -55,7 +56,7 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -88,9 +89,10 @@ class SkipUrlEncodingOperations:
     @distributed_trace_async
     async def get_path_valid(
         self,
-        unencoded_path_param: str,
-        **kwargs
-    ) -> None:
+        unencoded_path_param,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
         :param unencoded_path_param: Unencoded path parameter with value 'path1/path2/path3'.
@@ -100,7 +102,7 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -133,8 +135,9 @@ class SkipUrlEncodingOperations:
     @distributed_trace_async
     async def get_swagger_path_valid(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get method with unencoded path parameter with value 'path1/path2/path3'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -142,7 +145,7 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         unencoded_path_param = "path1/path2/path3"
 
@@ -176,9 +179,10 @@ class SkipUrlEncodingOperations:
     @distributed_trace_async
     async def get_method_query_valid(
         self,
-        q1: str,
-        **kwargs
-    ) -> None:
+        q1,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
         :param q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
@@ -188,7 +192,7 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -218,9 +222,10 @@ class SkipUrlEncodingOperations:
     @distributed_trace_async
     async def get_method_query_null(
         self,
-        q1: Optional[str] = None,
-        **kwargs
-    ) -> None:
+        q1=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get method with unencoded query parameter with value null.
 
         :param q1: Unencoded query parameter with value null.
@@ -230,7 +235,7 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -261,9 +266,10 @@ class SkipUrlEncodingOperations:
     @distributed_trace_async
     async def get_path_query_valid(
         self,
-        q1: str,
-        **kwargs
-    ) -> None:
+        q1,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
         :param q1: Unencoded query parameter with value 'value1&q2=value2&q3=value3'.
@@ -273,7 +279,7 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -303,8 +309,9 @@ class SkipUrlEncodingOperations:
     @distributed_trace_async
     async def get_swagger_query_valid(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get method with unencoded query parameter with value 'value1&q2=value2&q3=value3'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -312,7 +319,7 @@ class SkipUrlEncodingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         q1 = "value1&q2=value2&q3=value3"
 

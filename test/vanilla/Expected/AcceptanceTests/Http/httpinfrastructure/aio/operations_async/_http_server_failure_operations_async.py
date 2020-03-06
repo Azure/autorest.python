@@ -34,7 +34,7 @@ class HttpServerFailureOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,8 +43,9 @@ class HttpServerFailureOperations:
     @distributed_trace_async
     async def head501(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Return 501 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -52,7 +53,7 @@ class HttpServerFailureOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -81,8 +82,9 @@ class HttpServerFailureOperations:
     @distributed_trace_async
     async def get501(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Return 501 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -90,7 +92,7 @@ class HttpServerFailureOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -119,8 +121,9 @@ class HttpServerFailureOperations:
     @distributed_trace_async
     async def post505(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Return 505 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -128,7 +131,7 @@ class HttpServerFailureOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
@@ -166,8 +169,9 @@ class HttpServerFailureOperations:
     @distributed_trace_async
     async def delete505(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Return 505 status code - should be represented in the client as an error.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -175,7 +179,7 @@ class HttpServerFailureOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 

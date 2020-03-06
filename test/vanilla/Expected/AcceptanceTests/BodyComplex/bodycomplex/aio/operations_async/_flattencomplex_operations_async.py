@@ -34,7 +34,7 @@ class FlattencomplexOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,8 +43,9 @@ class FlattencomplexOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        **kwargs
-    ) -> "models.MyBaseType":
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.MyBaseType"
         """get_valid.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -52,7 +53,7 @@ class FlattencomplexOperations:
         :rtype: ~bodycomplex.models.MyBaseType
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyBaseType"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyBaseType"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

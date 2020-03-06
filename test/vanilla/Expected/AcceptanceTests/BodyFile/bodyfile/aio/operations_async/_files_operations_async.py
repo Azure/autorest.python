@@ -34,7 +34,7 @@ class FilesOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,8 +43,9 @@ class FilesOperations:
     @distributed_trace_async
     async def get_file(
         self,
-        **kwargs
-    ) -> IO:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> IO
         """Get file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -52,7 +53,7 @@ class FilesOperations:
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[IO] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[IO]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -85,8 +86,9 @@ class FilesOperations:
     @distributed_trace_async
     async def get_file_large(
         self,
-        **kwargs
-    ) -> IO:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> IO
         """Get a large file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -94,7 +96,7 @@ class FilesOperations:
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[IO] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[IO]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -127,8 +129,9 @@ class FilesOperations:
     @distributed_trace_async
     async def get_empty_file(
         self,
-        **kwargs
-    ) -> IO:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> IO
         """Get empty file.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -136,7 +139,7 @@ class FilesOperations:
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[IO] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[IO]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

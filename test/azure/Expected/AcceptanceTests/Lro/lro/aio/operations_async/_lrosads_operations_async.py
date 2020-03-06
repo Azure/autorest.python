@@ -37,7 +37,7 @@ class LROSADsOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -45,10 +45,11 @@ class LROSADsOperations:
 
     async def _put_non_retry400_initial(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -94,9 +95,10 @@ class LROSADsOperations:
     @distributed_trace_async
     async def put_non_retry400(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         """Long running put request, service returns a 400 to the initial request.
 
         :param product: Product to put.
@@ -111,7 +113,7 @@ class LROSADsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put_non_retry400_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -137,10 +139,11 @@ class LROSADsOperations:
 
     async def _put_non_retry201_creating400_initial(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -186,9 +189,10 @@ class LROSADsOperations:
     @distributed_trace_async
     async def put_non_retry201_creating400(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201 response code.
 
         :param product: Product to put.
@@ -203,7 +207,7 @@ class LROSADsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put_non_retry201_creating400_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -229,10 +233,11 @@ class LROSADsOperations:
 
     async def _put_non_retry201_creating400_invalid_json_initial(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -278,9 +283,10 @@ class LROSADsOperations:
     @distributed_trace_async
     async def put_non_retry201_creating400_invalid_json(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201 response code.
 
         :param product: Product to put.
@@ -295,7 +301,7 @@ class LROSADsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put_non_retry201_creating400_invalid_json_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -321,10 +327,11 @@ class LROSADsOperations:
 
     async def _put_async_relative_retry400_initial(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -369,9 +376,10 @@ class LROSADsOperations:
     @distributed_trace_async
     async def put_async_relative_retry400(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         """Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
@@ -386,7 +394,7 @@ class LROSADsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put_async_relative_retry400_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -417,9 +425,10 @@ class LROSADsOperations:
 
     async def _delete_non_retry400_initial(
         self,
-        **kwargs
-    ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -452,8 +461,9 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete_non_retry400(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running delete request, service returns a 400 with an error body.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -466,7 +476,7 @@ class LROSADsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._delete_non_retry400_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -488,9 +498,10 @@ class LROSADsOperations:
 
     async def _delete202_non_retry400_initial(
         self,
-        **kwargs
-    ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -523,8 +534,9 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete202_non_retry400(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running delete request, service returns a 202 with a location header.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -537,7 +549,7 @@ class LROSADsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._delete202_non_retry400_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -559,9 +571,10 @@ class LROSADsOperations:
 
     async def _delete_async_relative_retry400_initial(
         self,
-        **kwargs
-    ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -595,8 +608,9 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete_async_relative_retry400(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -609,7 +623,7 @@ class LROSADsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._delete_async_relative_retry400_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -631,10 +645,11 @@ class LROSADsOperations:
 
     async def _post_non_retry400_initial(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -675,9 +690,10 @@ class LROSADsOperations:
     @distributed_trace_async
     async def post_non_retry400(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> None:
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running post request, service returns a 400 with no error body.
 
         :param product: Product to put.
@@ -692,7 +708,7 @@ class LROSADsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._post_non_retry400_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -715,10 +731,11 @@ class LROSADsOperations:
 
     async def _post202_non_retry400_initial(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -759,9 +776,10 @@ class LROSADsOperations:
     @distributed_trace_async
     async def post202_non_retry400(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> None:
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running post request, service returns a 202 with a location header.
 
         :param product: Product to put.
@@ -776,7 +794,7 @@ class LROSADsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._post202_non_retry400_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -799,10 +817,11 @@ class LROSADsOperations:
 
     async def _post_async_relative_retry400_initial(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -844,9 +863,10 @@ class LROSADsOperations:
     @distributed_trace_async
     async def post_async_relative_retry400(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> None:
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running post request, service returns a 202 to the initial request Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
@@ -861,7 +881,7 @@ class LROSADsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._post_async_relative_retry400_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -884,10 +904,11 @@ class LROSADsOperations:
 
     async def _put_error201_no_provisioning_state_payload_initial(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -933,9 +954,10 @@ class LROSADsOperations:
     @distributed_trace_async
     async def put_error201_no_provisioning_state_payload(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         """Long running put request, service returns a 201 to the initial request with no payload.
 
         :param product: Product to put.
@@ -950,7 +972,7 @@ class LROSADsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put_error201_no_provisioning_state_payload_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -976,10 +998,11 @@ class LROSADsOperations:
 
     async def _put_async_relative_retry_no_status_initial(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1024,9 +1047,10 @@ class LROSADsOperations:
     @distributed_trace_async
     async def put_async_relative_retry_no_status(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
@@ -1041,7 +1065,7 @@ class LROSADsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put_async_relative_retry_no_status_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -1072,10 +1096,11 @@ class LROSADsOperations:
 
     async def _put_async_relative_retry_no_status_payload_initial(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1120,9 +1145,10 @@ class LROSADsOperations:
     @distributed_trace_async
     async def put_async_relative_retry_no_status_payload(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
@@ -1137,7 +1163,7 @@ class LROSADsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put_async_relative_retry_no_status_payload_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -1168,9 +1194,10 @@ class LROSADsOperations:
 
     async def _delete204_succeeded_initial(
         self,
-        **kwargs
-    ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1199,8 +1226,9 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete204_succeeded(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running delete request, service returns a 204 to the initial request, indicating success.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1213,7 +1241,7 @@ class LROSADsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._delete204_succeeded_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -1235,9 +1263,10 @@ class LROSADsOperations:
 
     async def _delete_async_relative_retry_no_status_initial(
         self,
-        **kwargs
-    ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1271,8 +1300,9 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete_async_relative_retry_no_status(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1285,7 +1315,7 @@ class LROSADsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._delete_async_relative_retry_no_status_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -1307,10 +1337,11 @@ class LROSADsOperations:
 
     async def _post202_no_location_initial(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1351,9 +1382,10 @@ class LROSADsOperations:
     @distributed_trace_async
     async def post202_no_location(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> None:
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running post request, service returns a 202 to the initial request, without a location header.
 
         :param product: Product to put.
@@ -1368,7 +1400,7 @@ class LROSADsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._post202_no_location_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -1391,10 +1423,11 @@ class LROSADsOperations:
 
     async def _post_async_relative_retry_no_payload_initial(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1436,9 +1469,10 @@ class LROSADsOperations:
     @distributed_trace_async
     async def post_async_relative_retry_no_payload(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> None:
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
@@ -1453,7 +1487,7 @@ class LROSADsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._post_async_relative_retry_no_payload_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -1476,10 +1510,11 @@ class LROSADsOperations:
 
     async def _put200_invalid_json_initial(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1522,9 +1557,10 @@ class LROSADsOperations:
     @distributed_trace_async
     async def put200_invalid_json(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         """Long running put request, service returns a 200 to the initial request, with an entity that is not a valid json.
 
         :param product: Product to put.
@@ -1539,7 +1575,7 @@ class LROSADsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put200_invalid_json_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -1565,10 +1601,11 @@ class LROSADsOperations:
 
     async def _put_async_relative_retry_invalid_header_initial(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1613,9 +1650,10 @@ class LROSADsOperations:
     @distributed_trace_async
     async def put_async_relative_retry_invalid_header(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header is invalid.
 
         :param product: Product to put.
@@ -1630,7 +1668,7 @@ class LROSADsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put_async_relative_retry_invalid_header_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -1661,10 +1699,11 @@ class LROSADsOperations:
 
     async def _put_async_relative_retry_invalid_json_polling_initial(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1709,9 +1748,10 @@ class LROSADsOperations:
     @distributed_trace_async
     async def put_async_relative_retry_invalid_json_polling(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
@@ -1726,7 +1766,7 @@ class LROSADsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put_async_relative_retry_invalid_json_polling_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -1757,9 +1797,10 @@ class LROSADsOperations:
 
     async def _delete202_retry_invalid_header_initial(
         self,
-        **kwargs
-    ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1792,8 +1833,9 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete202_retry_invalid_header(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running delete request, service returns a 202 to the initial request receing a reponse with an invalid 'Location' and 'Retry-After' headers.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1806,7 +1848,7 @@ class LROSADsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._delete202_retry_invalid_header_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -1828,9 +1870,10 @@ class LROSADsOperations:
 
     async def _delete_async_relative_retry_invalid_header_initial(
         self,
-        **kwargs
-    ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1864,8 +1907,9 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete_async_relative_retry_invalid_header(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running delete request, service returns a 202 to the initial request. The endpoint indicated in the Azure-AsyncOperation header is invalid.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1878,7 +1922,7 @@ class LROSADsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._delete_async_relative_retry_invalid_header_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -1900,9 +1944,10 @@ class LROSADsOperations:
 
     async def _delete_async_relative_retry_invalid_json_polling_initial(
         self,
-        **kwargs
-    ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1936,8 +1981,9 @@ class LROSADsOperations:
     @distributed_trace_async
     async def delete_async_relative_retry_invalid_json_polling(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1950,7 +1996,7 @@ class LROSADsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._delete_async_relative_retry_invalid_json_polling_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -1972,10 +2018,11 @@ class LROSADsOperations:
 
     async def _post202_retry_invalid_header_initial(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2016,9 +2063,10 @@ class LROSADsOperations:
     @distributed_trace_async
     async def post202_retry_invalid_header(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> None:
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running post request, service returns a 202 to the initial request, with invalid 'Location' and 'Retry-After' headers.
 
         :param product: Product to put.
@@ -2033,7 +2081,7 @@ class LROSADsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._post202_retry_invalid_header_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -2056,10 +2104,11 @@ class LROSADsOperations:
 
     async def _post_async_relative_retry_invalid_header_initial(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2101,9 +2150,10 @@ class LROSADsOperations:
     @distributed_trace_async
     async def post_async_relative_retry_invalid_header(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> None:
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header is invalid.
 
         :param product: Product to put.
@@ -2118,7 +2168,7 @@ class LROSADsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._post_async_relative_retry_invalid_header_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -2141,10 +2191,11 @@ class LROSADsOperations:
 
     async def _post_async_relative_retry_invalid_json_polling_initial(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -2186,9 +2237,10 @@ class LROSADsOperations:
     @distributed_trace_async
     async def post_async_relative_retry_invalid_json_polling(
         self,
-        product: Optional["models.Product"] = None,
-        **kwargs
-    ) -> None:
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
@@ -2203,7 +2255,7 @@ class LROSADsOperations:
         :raises ~azure.mgmt.core.ARMError:
         """
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._post_async_relative_retry_invalid_json_polling_initial(
             product=product,
             cls=lambda x,y,z: x,

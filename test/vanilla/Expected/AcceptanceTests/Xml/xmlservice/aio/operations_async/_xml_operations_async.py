@@ -34,7 +34,7 @@ class XmlOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,8 +43,9 @@ class XmlOperations:
     @distributed_trace_async
     async def get_complex_type_ref_no_meta(
         self,
-        **kwargs
-    ) -> "models.RootWithRefAndNoMeta":
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.RootWithRefAndNoMeta"
         """Get a complex type that has a ref to a complex type with no XML node.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -52,7 +53,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.RootWithRefAndNoMeta
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.RootWithRefAndNoMeta"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.RootWithRefAndNoMeta"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -85,9 +86,10 @@ class XmlOperations:
     @distributed_trace_async
     async def put_complex_type_ref_no_meta(
         self,
-        model: "models.RootWithRefAndNoMeta",
-        **kwargs
-    ) -> None:
+        model,  # type: "models.RootWithRefAndNoMeta"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Puts a complex type that has a ref to a complex type with no XML node.
 
         :param model:
@@ -97,7 +99,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -131,8 +133,9 @@ class XmlOperations:
     @distributed_trace_async
     async def get_complex_type_ref_with_meta(
         self,
-        **kwargs
-    ) -> "models.RootWithRefAndMeta":
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.RootWithRefAndMeta"
         """Get a complex type that has a ref to a complex type with XML node.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -140,7 +143,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.RootWithRefAndMeta
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.RootWithRefAndMeta"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.RootWithRefAndMeta"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -173,9 +176,10 @@ class XmlOperations:
     @distributed_trace_async
     async def put_complex_type_ref_with_meta(
         self,
-        model: "models.RootWithRefAndMeta",
-        **kwargs
-    ) -> None:
+        model,  # type: "models.RootWithRefAndMeta"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Puts a complex type that has a ref to a complex type with XML node.
 
         :param model:
@@ -185,7 +189,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -219,8 +223,9 @@ class XmlOperations:
     @distributed_trace_async
     async def get_simple(
         self,
-        **kwargs
-    ) -> "models.Slideshow":
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Slideshow"
         """Get a simple XML document.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -228,7 +233,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.Slideshow
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.Slideshow"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Slideshow"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -261,9 +266,10 @@ class XmlOperations:
     @distributed_trace_async
     async def put_simple(
         self,
-        slideshow: "models.Slideshow",
-        **kwargs
-    ) -> None:
+        slideshow,  # type: "models.Slideshow"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put a simple XML document.
 
         :param slideshow:
@@ -273,7 +279,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -307,8 +313,9 @@ class XmlOperations:
     @distributed_trace_async
     async def get_wrapped_lists(
         self,
-        **kwargs
-    ) -> "models.AppleBarrel":
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.AppleBarrel"
         """Get an XML document with multiple wrapped lists.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -316,7 +323,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.AppleBarrel
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.AppleBarrel"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.AppleBarrel"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -349,9 +356,10 @@ class XmlOperations:
     @distributed_trace_async
     async def put_wrapped_lists(
         self,
-        wrapped_lists: "models.AppleBarrel",
-        **kwargs
-    ) -> None:
+        wrapped_lists,  # type: "models.AppleBarrel"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put an XML document with multiple wrapped lists.
 
         :param wrapped_lists:
@@ -361,7 +369,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -395,8 +403,9 @@ class XmlOperations:
     @distributed_trace_async
     async def get_headers(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get strongly-typed response headers.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -404,7 +413,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -436,8 +445,9 @@ class XmlOperations:
     @distributed_trace_async
     async def get_empty_list(
         self,
-        **kwargs
-    ) -> "models.Slideshow":
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Slideshow"
         """Get an empty list.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -445,7 +455,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.Slideshow
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.Slideshow"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Slideshow"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -478,9 +488,10 @@ class XmlOperations:
     @distributed_trace_async
     async def put_empty_list(
         self,
-        slideshow: "models.Slideshow",
-        **kwargs
-    ) -> None:
+        slideshow,  # type: "models.Slideshow"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Puts an empty list.
 
         :param slideshow:
@@ -490,7 +501,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -524,8 +535,9 @@ class XmlOperations:
     @distributed_trace_async
     async def get_empty_wrapped_lists(
         self,
-        **kwargs
-    ) -> "models.AppleBarrel":
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.AppleBarrel"
         """Gets some empty wrapped lists.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -533,7 +545,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.AppleBarrel
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.AppleBarrel"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.AppleBarrel"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -566,9 +578,10 @@ class XmlOperations:
     @distributed_trace_async
     async def put_empty_wrapped_lists(
         self,
-        apple_barrel: "models.AppleBarrel",
-        **kwargs
-    ) -> None:
+        apple_barrel,  # type: "models.AppleBarrel"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Puts some empty wrapped lists.
 
         :param apple_barrel:
@@ -578,7 +591,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -612,8 +625,9 @@ class XmlOperations:
     @distributed_trace_async
     async def get_root_list(
         self,
-        **kwargs
-    ) -> List["Banana"]:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> List["Banana"]
         """Gets a list as the root element.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -621,7 +635,7 @@ class XmlOperations:
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[List["Banana"]] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["Banana"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -654,9 +668,10 @@ class XmlOperations:
     @distributed_trace_async
     async def put_root_list(
         self,
-        bananas: List["Banana"],
-        **kwargs
-    ) -> None:
+        bananas,  # type: List["Banana"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Puts a list as the root element.
 
         :param bananas:
@@ -666,7 +681,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -701,8 +716,9 @@ class XmlOperations:
     @distributed_trace_async
     async def get_root_list_single_item(
         self,
-        **kwargs
-    ) -> List["Banana"]:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> List["Banana"]
         """Gets a list with a single item.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -710,7 +726,7 @@ class XmlOperations:
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[List["Banana"]] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["Banana"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -743,9 +759,10 @@ class XmlOperations:
     @distributed_trace_async
     async def put_root_list_single_item(
         self,
-        bananas: List["Banana"],
-        **kwargs
-    ) -> None:
+        bananas,  # type: List["Banana"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Puts a list with a single item.
 
         :param bananas:
@@ -755,7 +772,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -790,8 +807,9 @@ class XmlOperations:
     @distributed_trace_async
     async def get_empty_root_list(
         self,
-        **kwargs
-    ) -> List["Banana"]:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> List["Banana"]
         """Gets an empty list as the root element.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -799,7 +817,7 @@ class XmlOperations:
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[List["Banana"]] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["Banana"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -832,9 +850,10 @@ class XmlOperations:
     @distributed_trace_async
     async def put_empty_root_list(
         self,
-        bananas: List["Banana"],
-        **kwargs
-    ) -> None:
+        bananas,  # type: List["Banana"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Puts an empty list as the root element.
 
         :param bananas:
@@ -844,7 +863,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -879,8 +898,9 @@ class XmlOperations:
     @distributed_trace_async
     async def get_empty_child_element(
         self,
-        **kwargs
-    ) -> "models.Banana":
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Banana"
         """Gets an XML document with an empty child element.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -888,7 +908,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.Banana
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.Banana"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Banana"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -921,9 +941,10 @@ class XmlOperations:
     @distributed_trace_async
     async def put_empty_child_element(
         self,
-        banana: "models.Banana",
-        **kwargs
-    ) -> None:
+        banana,  # type: "models.Banana"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Puts a value with an empty child element.
 
         :param banana:
@@ -933,7 +954,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -967,8 +988,9 @@ class XmlOperations:
     @distributed_trace_async
     async def list_containers(
         self,
-        **kwargs
-    ) -> "models.ListContainersResponse":
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.ListContainersResponse"
         """Lists containers in a storage account.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -976,7 +998,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.ListContainersResponse
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ListContainersResponse"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ListContainersResponse"]
         error_map = kwargs.pop('error_map', {})
         comp = "list"
 
@@ -1011,8 +1033,9 @@ class XmlOperations:
     @distributed_trace_async
     async def get_service_properties(
         self,
-        **kwargs
-    ) -> "models.StorageServiceProperties":
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.StorageServiceProperties"
         """Gets storage service properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1020,7 +1043,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.StorageServiceProperties
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.StorageServiceProperties"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageServiceProperties"]
         error_map = kwargs.pop('error_map', {})
         comp = "properties"
         restype = "service"
@@ -1057,9 +1080,10 @@ class XmlOperations:
     @distributed_trace_async
     async def put_service_properties(
         self,
-        properties: "models.StorageServiceProperties",
-        **kwargs
-    ) -> None:
+        properties,  # type: "models.StorageServiceProperties"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Puts storage service properties.
 
         :param properties:
@@ -1069,7 +1093,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         comp = "properties"
         restype = "service"
@@ -1107,8 +1131,9 @@ class XmlOperations:
     @distributed_trace_async
     async def get_acls(
         self,
-        **kwargs
-    ) -> List["SignedIdentifier"]:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> List["SignedIdentifier"]
         """Gets storage ACLs for a container.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1116,7 +1141,7 @@ class XmlOperations:
         :rtype: list[~xmlservice.models.SignedIdentifier]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[List["SignedIdentifier"]] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["SignedIdentifier"]]
         error_map = kwargs.pop('error_map', {})
         comp = "acl"
         restype = "container"
@@ -1153,9 +1178,10 @@ class XmlOperations:
     @distributed_trace_async
     async def put_acls(
         self,
-        properties: List["SignedIdentifier"],
-        **kwargs
-    ) -> None:
+        properties,  # type: List["SignedIdentifier"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Puts storage ACLs for a container.
 
         :param properties:
@@ -1165,7 +1191,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         comp = "acl"
         restype = "container"
@@ -1204,8 +1230,9 @@ class XmlOperations:
     @distributed_trace_async
     async def list_blobs(
         self,
-        **kwargs
-    ) -> "models.ListBlobsResponse":
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.ListBlobsResponse"
         """Lists blobs in a storage container.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1213,7 +1240,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.ListBlobsResponse
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ListBlobsResponse"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ListBlobsResponse"]
         error_map = kwargs.pop('error_map', {})
         comp = "list"
         restype = "container"
@@ -1250,9 +1277,10 @@ class XmlOperations:
     @distributed_trace_async
     async def json_input(
         self,
-        id: Optional[int] = None,
-        **kwargs
-    ) -> None:
+        id=None,  # type: Optional[int]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID number 42.
 
         :param id:
@@ -1262,7 +1290,7 @@ class XmlOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         _properties = models.JSONInput(id=id)
@@ -1298,8 +1326,9 @@ class XmlOperations:
     @distributed_trace_async
     async def json_output(
         self,
-        **kwargs
-    ) -> "models.JSONOutput":
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.JSONOutput"
         """A Swagger with XML that has one operation that returns JSON. ID number 42.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1307,7 +1336,7 @@ class XmlOperations:
         :rtype: ~xmlservice.models.JSONOutput
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.JSONOutput"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.JSONOutput"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

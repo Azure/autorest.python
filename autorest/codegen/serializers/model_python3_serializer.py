@@ -5,8 +5,15 @@
 # --------------------------------------------------------------------------
 from typing import List
 from .model_base_serializer import ModelBaseSerializer
-from ..models import ObjectSchema
+from ..models import ObjectSchema, Property
 from ..models.imports import FileImport
+
+
+def _get_param_type_annotation(param: Property) -> str:
+    if param.required:
+        return f"{param.name},  # type: {param.type_annotation}"
+    default_value = param.schema.default_value_declaration
+    return f"{param.name}={default_value},  # type: {param.type_annotation}"
 
 
 class ModelPython3Serializer(ModelBaseSerializer):
@@ -18,13 +25,9 @@ class ModelPython3Serializer(ModelBaseSerializer):
         ]
         init_line_parameters.sort(key=lambda x: x.required, reverse=True)
         if init_line_parameters:
-            init_properties_declaration.append("*")
+            init_properties_declaration.append("*,")
         for param in init_line_parameters:
-            if param.required:
-                init_properties_declaration.append(f"{param.name}: {param.type_annotation}")
-            else:
-                default_value = param.schema.default_value_declaration
-                init_properties_declaration.append(f"{param.name}: {param.type_annotation} = {default_value}")
+            init_properties_declaration.append(_get_param_type_annotation(param))
 
         return init_properties_declaration
 

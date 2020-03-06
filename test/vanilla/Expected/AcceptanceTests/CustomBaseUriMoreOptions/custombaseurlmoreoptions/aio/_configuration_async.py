@@ -28,10 +28,11 @@ class AutoRestParameterizedCustomHostTestClientConfiguration(Configuration):
 
     def __init__(
         self,
-        subscription_id: str,
-        dns_suffix: str = "host",
-        **kwargs: Any
-    ) -> None:
+        subscription_id,  # type: str
+        dns_suffix="host",  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         if subscription_id is None:
             raise ValueError("Parameter 'subscription_id' must not be None.")
         if dns_suffix is None:
@@ -45,8 +46,9 @@ class AutoRestParameterizedCustomHostTestClientConfiguration(Configuration):
 
     def _configure(
         self,
-        **kwargs: Any
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)
         self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)
         self.proxy_policy = kwargs.get('proxy_policy') or policies.ProxyPolicy(**kwargs)

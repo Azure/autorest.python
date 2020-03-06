@@ -28,8 +28,8 @@ class Error(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        status: Optional[int] = None,
-        message: Optional[str] = None,
+        status=None,  # type: Optional[int]
+        message=None,  # type: Optional[str]
         **kwargs
     ):
         super(Error, self).__init__(**kwargs)
@@ -51,7 +51,7 @@ class Product(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        properties: Optional["ProductProperties"] = None,
+        properties=None,  # type: Optional["ProductProperties"]
         **kwargs
     ):
         super(Product, self).__init__(**kwargs)
@@ -75,8 +75,8 @@ class ProductProperties(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        id: Optional[int] = None,
-        name: Optional[str] = None,
+        id=None,  # type: Optional[int]
+        name=None,  # type: Optional[str]
         **kwargs
     ):
         super(ProductProperties, self).__init__(**kwargs)
@@ -101,8 +101,8 @@ class ProductResult(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        values: Optional[List["Product"]] = None,
-        next_link: Optional[str] = None,
+        values=None,  # type: Optional[List["Product"]]
+        next_link=None,  # type: Optional[str]
         **kwargs
     ):
         super(ProductResult, self).__init__(**kwargs)

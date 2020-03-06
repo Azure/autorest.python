@@ -30,8 +30,8 @@ class OperationResult(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        status: Optional[Union[str, "OperationResultStatus"]] = None,
-        error: Optional["OperationResultError"] = None,
+        status=None,  # type: Optional[Union[str, "OperationResultStatus"]]
+        error=None,  # type: Optional["OperationResultError"]
         **kwargs
     ):
         super(OperationResult, self).__init__(**kwargs)
@@ -56,8 +56,8 @@ class OperationResultError(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        code: Optional[int] = None,
-        message: Optional[str] = None,
+        code=None,  # type: Optional[int]
+        message=None,  # type: Optional[str]
         **kwargs
     ):
         super(OperationResultError, self).__init__(**kwargs)
@@ -99,8 +99,8 @@ class Resource(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        tags: Optional[Dict[str, str]] = None,
-        location: Optional[str] = None,
+        tags=None,  # type: Optional[Dict[str, str]]
+        location=None,  # type: Optional[str]
         **kwargs
     ):
         super(Resource, self).__init__(**kwargs)
@@ -153,9 +153,9 @@ class Product(Resource):
     def __init__(
         self,
         *,
-        tags: Optional[Dict[str, str]] = None,
-        location: Optional[str] = None,
-        provisioning_state: Optional[str] = None,
+        tags=None,  # type: Optional[Dict[str, str]]
+        location=None,  # type: Optional[str]
+        provisioning_state=None,  # type: Optional[str]
         **kwargs
     ):
         super(Product, self).__init__(tags=tags, location=location, **kwargs)
@@ -187,7 +187,7 @@ class ProductProperties(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        provisioning_state: Optional[str] = None,
+        provisioning_state=None,  # type: Optional[str]
         **kwargs
     ):
         super(ProductProperties, self).__init__(**kwargs)
@@ -212,8 +212,8 @@ class Sku(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        name: Optional[str] = None,
-        id: Optional[str] = None,
+        name=None,  # type: Optional[str]
+        id=None,  # type: Optional[str]
         **kwargs
     ):
         super(Sku, self).__init__(**kwargs)
@@ -275,7 +275,7 @@ class SubProduct(SubResource):
     def __init__(
         self,
         *,
-        provisioning_state: Optional[str] = None,
+        provisioning_state=None,  # type: Optional[str]
         **kwargs
     ):
         super(SubProduct, self).__init__(**kwargs)
@@ -308,7 +308,7 @@ class SubProductProperties(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        provisioning_state: Optional[str] = None,
+        provisioning_state=None,  # type: Optional[str]
         **kwargs
     ):
         super(SubProductProperties, self).__init__(**kwargs)

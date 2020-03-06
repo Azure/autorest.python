@@ -34,7 +34,7 @@ class PolymorphicrecursiveOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,8 +43,9 @@ class PolymorphicrecursiveOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        **kwargs
-    ) -> "models.Fish":
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Fish"
         """Get complex types that are polymorphic and have recursive references.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -52,7 +53,7 @@ class PolymorphicrecursiveOperations:
         :rtype: ~bodycomplex.models.Fish
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.Fish"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Fish"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -85,9 +86,10 @@ class PolymorphicrecursiveOperations:
     @distributed_trace_async
     async def put_valid(
         self,
-        complex_body: "models.Fish",
-        **kwargs
-    ) -> None:
+        complex_body,  # type: "models.Fish"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put complex types that are polymorphic and have recursive references.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -149,7 +151,7 @@ class PolymorphicrecursiveOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

@@ -37,8 +37,8 @@ class BaseProduct(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        product_id: str,
-        description: Optional[str] = None,
+        product_id,  # type: str
+        description=None,  # type: Optional[str]
         **kwargs
     ):
         super(BaseProduct, self).__init__(**kwargs)
@@ -92,9 +92,9 @@ class Error(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        status: Optional[int] = None,
-        message: Optional[str] = None,
-        parent_error: Optional["Error"] = None,
+        status=None,  # type: Optional[int]
+        message=None,  # type: Optional[str]
+        parent_error=None,  # type: Optional["Error"]
         **kwargs
     ):
         super(Error, self).__init__(**kwargs)
@@ -137,8 +137,8 @@ class Resource(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        tags: Optional[Dict[str, str]] = None,
-        location: Optional[str] = None,
+        tags=None,  # type: Optional[Dict[str, str]]
+        location=None,  # type: Optional[str]
         **kwargs
     ):
         super(Resource, self).__init__(**kwargs)
@@ -198,11 +198,11 @@ class FlattenedProduct(Resource):
     def __init__(
         self,
         *,
-        tags: Optional[Dict[str, str]] = None,
-        location: Optional[str] = None,
-        p_name: Optional[str] = None,
-        type_properties_type: Optional[str] = None,
-        provisioning_state: Optional[str] = None,
+        tags=None,  # type: Optional[Dict[str, str]]
+        location=None,  # type: Optional[str]
+        p_name=None,  # type: Optional[str]
+        type_properties_type=None,  # type: Optional[str]
+        provisioning_state=None,  # type: Optional[str]
         **kwargs
     ):
         super(FlattenedProduct, self).__init__(tags=tags, location=location, **kwargs)
@@ -243,9 +243,9 @@ class FlattenedProductProperties(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        p_name: Optional[str] = None,
-        type: Optional[str] = None,
-        provisioning_state: Optional[str] = None,
+        p_name=None,  # type: Optional[str]
+        type=None,  # type: Optional[str]
+        provisioning_state=None,  # type: Optional[str]
         **kwargs
     ):
         super(FlattenedProductProperties, self).__init__(**kwargs)
@@ -296,13 +296,13 @@ class FlattenParameterGroup(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        name: str,
-        product_id: str,
-        simple_body_product: Optional["SimpleProduct"] = None,
-        description: Optional[str] = None,
-        max_product_display_name: Optional[str] = None,
-        generic_value: Optional[str] = None,
-        odata_value: Optional[str] = None,
+        name,  # type: str
+        product_id,  # type: str
+        simple_body_product=None,  # type: Optional["SimpleProduct"]
+        description=None,  # type: Optional[str]
+        max_product_display_name=None,  # type: Optional[str]
+        generic_value=None,  # type: Optional[str]
+        odata_value=None,  # type: Optional[str]
         **kwargs
     ):
         super(FlattenParameterGroup, self).__init__(**kwargs)
@@ -329,7 +329,7 @@ class GenericUrl(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        generic_value: Optional[str] = None,
+        generic_value=None,  # type: Optional[str]
         **kwargs
     ):
         super(GenericUrl, self).__init__(**kwargs)
@@ -353,8 +353,8 @@ class ProductUrl(GenericUrl):
     def __init__(
         self,
         *,
-        generic_value: Optional[str] = None,
-        odata_value: Optional[str] = None,
+        generic_value=None,  # type: Optional[str]
+        odata_value=None,  # type: Optional[str]
         **kwargs
     ):
         super(ProductUrl, self).__init__(generic_value=generic_value, **kwargs)
@@ -375,7 +375,7 @@ class ProductWrapper(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        value: Optional[str] = None,
+        value=None,  # type: Optional[str]
         **kwargs
     ):
         super(ProductWrapper, self).__init__(**kwargs)
@@ -402,9 +402,9 @@ class ResourceCollection(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        productresource: Optional["FlattenedProduct"] = None,
-        arrayofresources: Optional[List["FlattenedProduct"]] = None,
-        dictionaryofresources: Optional[Dict[str, "FlattenedProduct"]] = None,
+        productresource=None,  # type: Optional["FlattenedProduct"]
+        arrayofresources=None,  # type: Optional[List["FlattenedProduct"]]
+        dictionaryofresources=None,  # type: Optional[Dict[str, "FlattenedProduct"]]
         **kwargs
     ):
         super(ResourceCollection, self).__init__(**kwargs)
@@ -455,11 +455,11 @@ class SimpleProduct(BaseProduct):
     def __init__(
         self,
         *,
-        product_id: str,
-        description: Optional[str] = None,
-        max_product_display_name: Optional[str] = None,
-        generic_value: Optional[str] = None,
-        odata_value: Optional[str] = None,
+        product_id,  # type: str
+        description=None,  # type: Optional[str]
+        max_product_display_name=None,  # type: Optional[str]
+        generic_value=None,  # type: Optional[str]
+        odata_value=None,  # type: Optional[str]
         **kwargs
     ):
         super(SimpleProduct, self).__init__(product_id=product_id, description=description, **kwargs)
@@ -502,9 +502,9 @@ class SimpleProductProperties(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        max_product_display_name: str,
-        generic_value: Optional[str] = None,
-        odata_value: Optional[str] = None,
+        max_product_display_name,  # type: str
+        generic_value=None,  # type: Optional[str]
+        odata_value=None,  # type: Optional[str]
         **kwargs
     ):
         super(SimpleProductProperties, self).__init__(**kwargs)
@@ -527,7 +527,7 @@ class WrappedProduct(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        value: Optional[str] = None,
+        value=None,  # type: Optional[str]
         **kwargs
     ):
         super(WrappedProduct, self).__init__(**kwargs)

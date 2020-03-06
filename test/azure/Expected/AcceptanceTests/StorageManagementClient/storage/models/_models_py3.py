@@ -26,7 +26,7 @@ class Bar(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        recursive_point: Optional["Endpoints"] = None,
+        recursive_point=None,  # type: Optional["Endpoints"]
         **kwargs
     ):
         super(Bar, self).__init__(**kwargs)
@@ -57,9 +57,9 @@ class CheckNameAvailabilityResult(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        name_available: Optional[bool] = None,
-        reason: Optional[Union[str, "Reason"]] = None,
-        message: Optional[str] = None,
+        name_available=None,  # type: Optional[bool]
+        reason=None,  # type: Optional[Union[str, "Reason"]]
+        message=None,  # type: Optional[str]
         **kwargs
     ):
         super(CheckNameAvailabilityResult, self).__init__(**kwargs)
@@ -86,8 +86,8 @@ class CustomDomain(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        name: Optional[str] = None,
-        use_sub_domain: Optional[bool] = None,
+        name=None,  # type: Optional[str]
+        use_sub_domain=None,  # type: Optional[bool]
         **kwargs
     ):
         super(CustomDomain, self).__init__(**kwargs)
@@ -121,11 +121,11 @@ class Endpoints(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        blob: Optional[str] = None,
-        queue: Optional[str] = None,
-        table: Optional[str] = None,
-        dummy_end_point: Optional["Endpoints"] = None,
-        foo_point: Optional["Foo"] = None,
+        blob=None,  # type: Optional[str]
+        queue=None,  # type: Optional[str]
+        table=None,  # type: Optional[str]
+        dummy_end_point=None,  # type: Optional["Endpoints"]
+        foo_point=None,  # type: Optional["Foo"]
         **kwargs
     ):
         super(Endpoints, self).__init__(**kwargs)
@@ -150,7 +150,7 @@ class Foo(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        bar_point: Optional["Bar"] = None,
+        bar_point=None,  # type: Optional["Bar"]
         **kwargs
     ):
         super(Foo, self).__init__(**kwargs)
@@ -194,8 +194,8 @@ class Resource(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        location: str,
-        tags: Optional[Dict[str, str]] = None,
+        location,  # type: str
+        tags=None,  # type: Optional[Dict[str, str]]
         **kwargs
     ):
         super(Resource, self).__init__(**kwargs)
@@ -290,19 +290,19 @@ class StorageAccount(Resource):
     def __init__(
         self,
         *,
-        location: str,
-        tags: Optional[Dict[str, str]] = None,
-        provisioning_state: Optional[Union[str, "ProvisioningState"]] = None,
-        account_type: Optional[Union[str, "AccountType"]] = None,
-        primary_endpoints: Optional["Endpoints"] = None,
-        primary_location: Optional[str] = None,
-        status_of_primary: Optional[Union[str, "AccountStatus"]] = None,
-        last_geo_failover_time: Optional[datetime.datetime] = None,
-        secondary_location: Optional[str] = None,
-        status_of_secondary: Optional[Union[str, "AccountStatus"]] = None,
-        creation_time: Optional[datetime.datetime] = None,
-        custom_domain: Optional["CustomDomain"] = None,
-        secondary_endpoints: Optional["Endpoints"] = None,
+        location,  # type: str
+        tags=None,  # type: Optional[Dict[str, str]]
+        provisioning_state=None,  # type: Optional[Union[str, "ProvisioningState"]]
+        account_type=None,  # type: Optional[Union[str, "AccountType"]]
+        primary_endpoints=None,  # type: Optional["Endpoints"]
+        primary_location=None,  # type: Optional[str]
+        status_of_primary=None,  # type: Optional[Union[str, "AccountStatus"]]
+        last_geo_failover_time=None,  # type: Optional[datetime.datetime]
+        secondary_location=None,  # type: Optional[str]
+        status_of_secondary=None,  # type: Optional[Union[str, "AccountStatus"]]
+        creation_time=None,  # type: Optional[datetime.datetime]
+        custom_domain=None,  # type: Optional["CustomDomain"]
+        secondary_endpoints=None,  # type: Optional["Endpoints"]
         **kwargs
     ):
         super(StorageAccount, self).__init__(location=location, tags=tags, **kwargs)
@@ -342,8 +342,8 @@ class StorageAccountCheckNameAvailabilityParameters(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        name: str,
-        type: Optional[str] = "Microsoft.Storage/storageAccounts",
+        name,  # type: str
+        type="Microsoft.Storage/storageAccounts",  # type: Optional[str]
         **kwargs
     ):
         super(StorageAccountCheckNameAvailabilityParameters, self).__init__(**kwargs)
@@ -392,9 +392,9 @@ class StorageAccountCreateParameters(Resource):
     def __init__(
         self,
         *,
-        location: str,
-        tags: Optional[Dict[str, str]] = None,
-        account_type: Optional[Union[str, "AccountType"]] = None,
+        location,  # type: str
+        tags=None,  # type: Optional[Dict[str, str]]
+        account_type=None,  # type: Optional[Union[str, "AccountType"]]
         **kwargs
     ):
         super(StorageAccountCreateParameters, self).__init__(location=location, tags=tags, **kwargs)
@@ -418,8 +418,8 @@ class StorageAccountKeys(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        key1: Optional[str] = None,
-        key2: Optional[str] = None,
+        key1=None,  # type: Optional[str]
+        key2=None,  # type: Optional[str]
         **kwargs
     ):
         super(StorageAccountKeys, self).__init__(**kwargs)
@@ -445,8 +445,8 @@ class StorageAccountListResult(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        value: Optional[List["StorageAccount"]] = None,
-        next_link: Optional[str] = None,
+        value=None,  # type: Optional[List["StorageAccount"]]
+        next_link=None,  # type: Optional[str]
         **kwargs
     ):
         super(StorageAccountListResult, self).__init__(**kwargs)
@@ -512,17 +512,17 @@ class StorageAccountProperties(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        provisioning_state: Optional[Union[str, "ProvisioningState"]] = None,
-        account_type: Optional[Union[str, "AccountType"]] = None,
-        primary_endpoints: Optional["Endpoints"] = None,
-        primary_location: Optional[str] = None,
-        status_of_primary: Optional[Union[str, "AccountStatus"]] = None,
-        last_geo_failover_time: Optional[datetime.datetime] = None,
-        secondary_location: Optional[str] = None,
-        status_of_secondary: Optional[Union[str, "AccountStatus"]] = None,
-        creation_time: Optional[datetime.datetime] = None,
-        custom_domain: Optional["CustomDomain"] = None,
-        secondary_endpoints: Optional["Endpoints"] = None,
+        provisioning_state=None,  # type: Optional[Union[str, "ProvisioningState"]]
+        account_type=None,  # type: Optional[Union[str, "AccountType"]]
+        primary_endpoints=None,  # type: Optional["Endpoints"]
+        primary_location=None,  # type: Optional[str]
+        status_of_primary=None,  # type: Optional[Union[str, "AccountStatus"]]
+        last_geo_failover_time=None,  # type: Optional[datetime.datetime]
+        secondary_location=None,  # type: Optional[str]
+        status_of_secondary=None,  # type: Optional[Union[str, "AccountStatus"]]
+        creation_time=None,  # type: Optional[datetime.datetime]
+        custom_domain=None,  # type: Optional["CustomDomain"]
+        secondary_endpoints=None,  # type: Optional["Endpoints"]
         **kwargs
     ):
         super(StorageAccountProperties, self).__init__(**kwargs)
@@ -554,7 +554,7 @@ class StorageAccountPropertiesCreateParameters(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        account_type: Optional[Union[str, "AccountType"]] = None,
+        account_type=None,  # type: Optional[Union[str, "AccountType"]]
         **kwargs
     ):
         super(StorageAccountPropertiesCreateParameters, self).__init__(**kwargs)
@@ -583,8 +583,8 @@ class StorageAccountPropertiesUpdateParameters(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        account_type: Optional[Union[str, "AccountType"]] = None,
-        custom_domain: Optional["CustomDomain"] = None,
+        account_type=None,  # type: Optional[Union[str, "AccountType"]]
+        custom_domain=None,  # type: Optional["CustomDomain"]
         **kwargs
     ):
         super(StorageAccountPropertiesUpdateParameters, self).__init__(**kwargs)
@@ -606,7 +606,7 @@ class StorageAccountRegenerateKeyParameters(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        key_name: Optional[Union[str, "KeyName"]] = None,
+        key_name=None,  # type: Optional[Union[str, "KeyName"]]
         **kwargs
     ):
         super(StorageAccountRegenerateKeyParameters, self).__init__(**kwargs)
@@ -661,10 +661,10 @@ class StorageAccountUpdateParameters(Resource):
     def __init__(
         self,
         *,
-        location: str,
-        tags: Optional[Dict[str, str]] = None,
-        account_type: Optional[Union[str, "AccountType"]] = None,
-        custom_domain: Optional["CustomDomain"] = None,
+        location,  # type: str
+        tags=None,  # type: Optional[Dict[str, str]]
+        account_type=None,  # type: Optional[Union[str, "AccountType"]]
+        custom_domain=None,  # type: Optional["CustomDomain"]
         **kwargs
     ):
         super(StorageAccountUpdateParameters, self).__init__(location=location, tags=tags, **kwargs)
@@ -686,7 +686,7 @@ class SubResource(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        id: Optional[str] = None,
+        id=None,  # type: Optional[str]
         **kwargs
     ):
         super(SubResource, self).__init__(**kwargs)
@@ -718,10 +718,10 @@ class Usage(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        unit: Optional[Union[str, "UsageUnit"]] = None,
-        current_value: Optional[int] = None,
-        limit: Optional[int] = None,
-        name: Optional["UsageName"] = None,
+        unit=None,  # type: Optional[Union[str, "UsageUnit"]]
+        current_value=None,  # type: Optional[int]
+        limit=None,  # type: Optional[int]
+        name=None,  # type: Optional["UsageName"]
         **kwargs
     ):
         super(Usage, self).__init__(**kwargs)
@@ -745,7 +745,7 @@ class UsageListResult(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        value: Optional[List["Usage"]] = None,
+        value=None,  # type: Optional[List["Usage"]]
         **kwargs
     ):
         super(UsageListResult, self).__init__(**kwargs)
@@ -769,8 +769,8 @@ class UsageName(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        value: Optional[str] = None,
-        localized_value: Optional[str] = None,
+        value=None,  # type: Optional[str]
+        localized_value=None,  # type: Optional[str]
         **kwargs
     ):
         super(UsageName, self).__init__(**kwargs)

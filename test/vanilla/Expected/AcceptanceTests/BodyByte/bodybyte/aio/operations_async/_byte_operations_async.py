@@ -34,7 +34,7 @@ class ByteOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,8 +43,9 @@ class ByteOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        **kwargs
-    ) -> bytearray:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> bytearray
         """Get null byte value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -52,7 +53,7 @@ class ByteOperations:
         :rtype: bytearray
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bytearray] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[bytearray]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -85,8 +86,9 @@ class ByteOperations:
     @distributed_trace_async
     async def get_empty(
         self,
-        **kwargs
-    ) -> bytearray:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> bytearray
         """Get empty byte value ''.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -94,7 +96,7 @@ class ByteOperations:
         :rtype: bytearray
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bytearray] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[bytearray]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -127,8 +129,9 @@ class ByteOperations:
     @distributed_trace_async
     async def get_non_ascii(
         self,
-        **kwargs
-    ) -> bytearray:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> bytearray
         """Get non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -136,7 +139,7 @@ class ByteOperations:
         :rtype: bytearray
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bytearray] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[bytearray]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -169,9 +172,10 @@ class ByteOperations:
     @distributed_trace_async
     async def put_non_ascii(
         self,
-        byte_body: bytearray,
-        **kwargs
-    ) -> None:
+        byte_body,  # type: bytearray
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
 
         :param byte_body: Base64-encoded non-ascii byte string hex(FF FE FD FC FB FA F9 F8 F7 F6).
@@ -181,7 +185,7 @@ class ByteOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -215,8 +219,9 @@ class ByteOperations:
     @distributed_trace_async
     async def get_invalid(
         self,
-        **kwargs
-    ) -> bytearray:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> bytearray
         """Get invalid byte value ':::SWAGGER::::'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -224,7 +229,7 @@ class ByteOperations:
         :rtype: bytearray
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bytearray] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[bytearray]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

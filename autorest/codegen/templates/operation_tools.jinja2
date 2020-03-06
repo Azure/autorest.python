@@ -41,10 +41,10 @@
 {% if async_mode %}
     self,
     {% for param_signature in operation.parameters.async_method_signature %}
-    {{ param_signature }},
+    {{ param_signature }}
     {% endfor %}
-    **kwargs
-){{ keywords.async_return_type_annotation(operation) }}:
+    **kwargs  # type: Any
+):
 {% else %}
     self,
     {% for param_signature in operation.parameters.sync_method_signature %}

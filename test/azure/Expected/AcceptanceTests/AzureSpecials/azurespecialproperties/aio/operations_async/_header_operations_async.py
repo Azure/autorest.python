@@ -34,7 +34,7 @@ class HeaderOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,9 +43,10 @@ class HeaderOperations:
     @distributed_trace_async
     async def custom_named_request_id(
         self,
-        foo_client_request_id: str,
-        **kwargs
-    ) -> None:
+        foo_client_request_id,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
         :param foo_client_request_id: The fooRequestId.
@@ -55,7 +56,7 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -88,9 +89,10 @@ class HeaderOperations:
     @distributed_trace_async
     async def custom_named_request_id_param_grouping(
         self,
-        header_custom_named_request_id_param_grouping_parameters: "models.HeaderCustomNamedRequestIdParamGroupingParameters",
-        **kwargs
-    ) -> None:
+        header_custom_named_request_id_param_grouping_parameters,  # type: "models.HeaderCustomNamedRequestIdParamGroupingParameters"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request, via a parameter group.
 
         :param header_custom_named_request_id_param_grouping_parameters: Parameter group.
@@ -100,7 +102,7 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         
         _foo_client_request_id = None
@@ -137,9 +139,10 @@ class HeaderOperations:
     @distributed_trace_async
     async def custom_named_request_id_head(
         self,
-        foo_client_request_id: str,
-        **kwargs
-    ) -> None:
+        foo_client_request_id,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request.
 
         :param foo_client_request_id: The fooRequestId.
@@ -149,7 +152,7 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

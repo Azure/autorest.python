@@ -34,7 +34,7 @@ class SubscriptionInMethodOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,9 +43,10 @@ class SubscriptionInMethodOperations:
     @distributed_trace_async
     async def post_method_local_valid(
         self,
-        subscription_id: str,
-        **kwargs
-    ) -> None:
+        subscription_id,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """POST method with subscriptionId modeled in the method.  pass in subscription id = '1234-5678-9012-3456' to succeed.
 
         :param subscription_id: This should appear as a method parameter, use value
@@ -56,7 +57,7 @@ class SubscriptionInMethodOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -89,9 +90,10 @@ class SubscriptionInMethodOperations:
     @distributed_trace_async
     async def post_method_local_null(
         self,
-        subscription_id: str,
-        **kwargs
-    ) -> None:
+        subscription_id,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """POST method with subscriptionId modeled in the method.  pass in subscription id = null, client-side validation should prevent you from making this call.
 
         :param subscription_id: This should appear as a method parameter, use value null, client-side
@@ -102,7 +104,7 @@ class SubscriptionInMethodOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -135,9 +137,10 @@ class SubscriptionInMethodOperations:
     @distributed_trace_async
     async def post_path_local_valid(
         self,
-        subscription_id: str,
-        **kwargs
-    ) -> None:
+        subscription_id,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """POST method with subscriptionId modeled in the method.  pass in subscription id = '1234-5678-9012-3456' to succeed.
 
         :param subscription_id: Should appear as a method parameter -use value '1234-5678-9012-3456'.
@@ -147,7 +150,7 @@ class SubscriptionInMethodOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -180,9 +183,10 @@ class SubscriptionInMethodOperations:
     @distributed_trace_async
     async def post_swagger_local_valid(
         self,
-        subscription_id: str,
-        **kwargs
-    ) -> None:
+        subscription_id,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """POST method with subscriptionId modeled in the method.  pass in subscription id = '1234-5678-9012-3456' to succeed.
 
         :param subscription_id: The subscriptionId, which appears in the path, the value is always
@@ -193,7 +197,7 @@ class SubscriptionInMethodOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

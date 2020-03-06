@@ -34,7 +34,7 @@ class HttpRetryOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,8 +43,9 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def head408(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Return 408 status code, then 200 after retry.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -52,7 +53,7 @@ class HttpRetryOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -81,8 +82,9 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def put500(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Return 500 status code, then 200 after retry.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -90,7 +92,7 @@ class HttpRetryOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
@@ -128,8 +130,9 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def patch500(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Return 500 status code, then 200 after retry.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -137,7 +140,7 @@ class HttpRetryOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
@@ -175,8 +178,9 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def get502(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Return 502 status code, then 200 after retry.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -184,7 +188,7 @@ class HttpRetryOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -213,8 +217,9 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def options502(
         self,
-        **kwargs
-    ) -> bool:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> bool
         """Return 502 status code, then 200 after retry.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -222,7 +227,7 @@ class HttpRetryOperations:
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bool] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -255,8 +260,9 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def post503(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Return 503 status code, then 200 after retry.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -264,7 +270,7 @@ class HttpRetryOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
@@ -302,8 +308,9 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def delete503(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Return 503 status code, then 200 after retry.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -311,7 +318,7 @@ class HttpRetryOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
@@ -349,8 +356,9 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def put504(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Return 504 status code, then 200 after retry.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -358,7 +366,7 @@ class HttpRetryOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
@@ -396,8 +404,9 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def patch504(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Return 504 status code, then 200 after retry.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -405,7 +414,7 @@ class HttpRetryOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 

@@ -26,7 +26,7 @@ class ArrayOptionalWrapper(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        value: Optional[List[str]] = None,
+        value=None,  # type: Optional[List[str]]
         **kwargs
     ):
         super(ArrayOptionalWrapper, self).__init__(**kwargs)
@@ -53,7 +53,7 @@ class ArrayWrapper(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        value: List[str],
+        value,  # type: List[str]
         **kwargs
     ):
         super(ArrayWrapper, self).__init__(**kwargs)
@@ -74,7 +74,7 @@ class ClassOptionalWrapper(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        value: Optional["Product"] = None,
+        value=None,  # type: Optional["Product"]
         **kwargs
     ):
         super(ClassOptionalWrapper, self).__init__(**kwargs)
@@ -101,7 +101,7 @@ class ClassWrapper(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        value: "Product",
+        value,  # type: "Product"
         **kwargs
     ):
         super(ClassWrapper, self).__init__(**kwargs)
@@ -151,8 +151,8 @@ class Error(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        status: Optional[int] = None,
-        message: Optional[str] = None,
+        status=None,  # type: Optional[int]
+        message=None,  # type: Optional[str]
         **kwargs
     ):
         super(Error, self).__init__(**kwargs)
@@ -174,7 +174,7 @@ class IntOptionalWrapper(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        value: Optional[int] = None,
+        value=None,  # type: Optional[int]
         **kwargs
     ):
         super(IntOptionalWrapper, self).__init__(**kwargs)
@@ -201,7 +201,7 @@ class IntWrapper(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        value: int,
+        value,  # type: int
         **kwargs
     ):
         super(IntWrapper, self).__init__(**kwargs)
@@ -231,8 +231,8 @@ class Product(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        id: int,
-        name: Optional[str] = None,
+        id,  # type: int
+        name=None,  # type: Optional[str]
         **kwargs
     ):
         super(Product, self).__init__(**kwargs)
@@ -254,7 +254,7 @@ class StringOptionalWrapper(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        value: Optional[str] = None,
+        value=None,  # type: Optional[str]
         **kwargs
     ):
         super(StringOptionalWrapper, self).__init__(**kwargs)
@@ -281,7 +281,7 @@ class StringWrapper(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        value: str,
+        value,  # type: str
         **kwargs
     ):
         super(StringWrapper, self).__init__(**kwargs)

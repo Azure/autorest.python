@@ -24,9 +24,10 @@ class AutoRestReportService(AutoRestReportServiceOperationsMixin):
 
     def __init__(
         self,
-        base_url: Optional[str] = None,
-        **kwargs: Any
-    ) -> None:
+        base_url=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         if not base_url:
             base_url = 'http://localhost:3000'
         self._config = AutoRestReportServiceConfiguration(**kwargs)
@@ -37,12 +38,15 @@ class AutoRestReportService(AutoRestReportServiceOperationsMixin):
         self._deserialize = Deserializer(client_models)
 
 
-    async def close(self) -> None:
+    async def close(self):
+        # type: () -> None
         await self._client.close()
 
-    async def __aenter__(self) -> "AutoRestReportService":
+    async def __aenter__(self):
+        # type: () -> AutoRestReportService
         await self._client.__aenter__()
         return self
 
-    async def __aexit__(self, *exc_details) -> None:
+    async def __aexit__(self, *exc_details):
+        # type: (Any) -> None
         await self._client.__aexit__(*exc_details)

@@ -34,7 +34,7 @@ class DictionaryOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,8 +43,9 @@ class DictionaryOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        **kwargs
-    ) -> "models.DictionaryWrapper":
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.DictionaryWrapper"
         """Get complex types with dictionary property.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -52,7 +53,7 @@ class DictionaryOperations:
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.DictionaryWrapper"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.DictionaryWrapper"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -85,9 +86,10 @@ class DictionaryOperations:
     @distributed_trace_async
     async def put_valid(
         self,
-        default_program: Optional[Dict[str, str]] = None,
-        **kwargs
-    ) -> None:
+        default_program=None,  # type: Optional[Dict[str, str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put complex types with dictionary property.
 
         :param default_program: Dictionary of :code:`<string>`.
@@ -97,7 +99,7 @@ class DictionaryOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         _complex_body = models.DictionaryWrapper(default_program=default_program)
@@ -133,8 +135,9 @@ class DictionaryOperations:
     @distributed_trace_async
     async def get_empty(
         self,
-        **kwargs
-    ) -> "models.DictionaryWrapper":
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.DictionaryWrapper"
         """Get complex types with dictionary property which is empty.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -142,7 +145,7 @@ class DictionaryOperations:
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.DictionaryWrapper"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.DictionaryWrapper"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -175,9 +178,10 @@ class DictionaryOperations:
     @distributed_trace_async
     async def put_empty(
         self,
-        default_program: Optional[Dict[str, str]] = None,
-        **kwargs
-    ) -> None:
+        default_program=None,  # type: Optional[Dict[str, str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put complex types with dictionary property which is empty.
 
         :param default_program: Dictionary of :code:`<string>`.
@@ -187,7 +191,7 @@ class DictionaryOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         _complex_body = models.DictionaryWrapper(default_program=default_program)
@@ -223,8 +227,9 @@ class DictionaryOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        **kwargs
-    ) -> "models.DictionaryWrapper":
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.DictionaryWrapper"
         """Get complex types with dictionary property which is null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -232,7 +237,7 @@ class DictionaryOperations:
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.DictionaryWrapper"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.DictionaryWrapper"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -265,8 +270,9 @@ class DictionaryOperations:
     @distributed_trace_async
     async def get_not_provided(
         self,
-        **kwargs
-    ) -> "models.DictionaryWrapper":
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.DictionaryWrapper"
         """Get complex types with dictionary property while server doesn't provide a response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -274,7 +280,7 @@ class DictionaryOperations:
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.DictionaryWrapper"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.DictionaryWrapper"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

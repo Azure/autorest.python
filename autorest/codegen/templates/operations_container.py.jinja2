@@ -1,6 +1,5 @@
 {% set object_base_class = "" if async_mode else "(object)" %}
 {% set operations_description = "async operations" if async_mode else "operations" %}
-{% set return_none_type_annotation = " -> None" if async_mode else "" %}
 # coding=utf-8
 {{ code_model.options['license_header'] }}
 {{ imports }}
@@ -28,7 +27,7 @@ class {{ operation_group.class_name }}{{ object_base_class }}:
     models = models
 
 {% endif %}
-    def __init__(self, client, config, serializer, deserializer){{ return_none_type_annotation }}:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer

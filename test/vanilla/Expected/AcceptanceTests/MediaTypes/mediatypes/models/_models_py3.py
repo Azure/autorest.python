@@ -29,7 +29,7 @@ class SourcePath(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        source: Optional[str] = None,
+        source=None,  # type: Optional[str]
         **kwargs
     ):
         super(SourcePath, self).__init__(**kwargs)

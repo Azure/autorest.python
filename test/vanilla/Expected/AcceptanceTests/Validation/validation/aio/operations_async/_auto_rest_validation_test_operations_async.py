@@ -23,10 +23,11 @@ class AutoRestValidationTestOperationsMixin:
     @distributed_trace_async
     async def validation_of_method_parameters(
         self,
-        resource_group_name: str,
-        id: int,
-        **kwargs
-    ) -> "models.Product":
+        resource_group_name,  # type: str
+        id,  # type: int
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         """Validates input parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -38,7 +39,7 @@ class AutoRestValidationTestOperationsMixin:
         :rtype: ~validation.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
         api_version = "1.0.0"
 
@@ -79,11 +80,12 @@ class AutoRestValidationTestOperationsMixin:
     @distributed_trace_async
     async def validation_of_body(
         self,
-        resource_group_name: str,
-        id: int,
-        body: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
+        resource_group_name,  # type: str
+        id,  # type: int
+        body=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         """Validates body parameters on the method. See swagger for details.
 
         :param resource_group_name: Required string between 3 and 10 chars with pattern [a-zA-Z0-9]+.
@@ -97,7 +99,7 @@ class AutoRestValidationTestOperationsMixin:
         :rtype: ~validation.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
         api_version = "1.0.0"
 
@@ -146,8 +148,9 @@ class AutoRestValidationTestOperationsMixin:
     @distributed_trace_async
     async def get_with_constant_in_path(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """get_with_constant_in_path.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -155,7 +158,7 @@ class AutoRestValidationTestOperationsMixin:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         constant_param = "constant"
 
@@ -189,9 +192,10 @@ class AutoRestValidationTestOperationsMixin:
     @distributed_trace_async
     async def post_with_constant_in_body(
         self,
-        body: Optional["models.Product"] = None,
-        **kwargs
-    ) -> "models.Product":
+        body=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
         """post_with_constant_in_body.
 
         :param body:
@@ -201,7 +205,7 @@ class AutoRestValidationTestOperationsMixin:
         :rtype: ~validation.models.Product
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
         constant_param = "constant"
 

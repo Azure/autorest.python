@@ -55,8 +55,8 @@ class Error(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        status: Optional[int] = None,
-        message: Optional[str] = None,
+        status=None,  # type: Optional[int]
+        message=None,  # type: Optional[str]
         **kwargs
     ):
         super(Error, self).__init__(**kwargs)
@@ -81,8 +81,8 @@ class FirstParameterGroup(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        header_one: Optional[str] = None,
-        query_one: Optional[int] = 30,
+        header_one=None,  # type: Optional[str]
+        query_one=30,  # type: Optional[int]
         **kwargs
     ):
         super(FirstParameterGroup, self).__init__(**kwargs)
@@ -107,8 +107,8 @@ class ParameterGroupingPostMultiParamGroupsSecondParamGroup(msrest.serialization
     def __init__(
         self,
         *,
-        header_two: Optional[str] = None,
-        query_two: Optional[int] = 30,
+        header_two=None,  # type: Optional[str]
+        query_two=30,  # type: Optional[int]
         **kwargs
     ):
         super(ParameterGroupingPostMultiParamGroupsSecondParamGroup, self).__init__(**kwargs)
@@ -133,8 +133,8 @@ class ParameterGroupingPostOptionalParameters(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        custom_header: Optional[str] = None,
-        query: Optional[int] = 30,
+        custom_header=None,  # type: Optional[str]
+        query=30,  # type: Optional[int]
         **kwargs
     ):
         super(ParameterGroupingPostOptionalParameters, self).__init__(**kwargs)
@@ -172,10 +172,10 @@ class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        path: str,
-        body: int,
-        custom_header: Optional[str] = None,
-        query: Optional[int] = 30,
+        path,  # type: str
+        body,  # type: int
+        custom_header=None,  # type: Optional[str]
+        query=30,  # type: Optional[int]
         **kwargs
     ):
         super(ParameterGroupingPostRequiredParameters, self).__init__(**kwargs)

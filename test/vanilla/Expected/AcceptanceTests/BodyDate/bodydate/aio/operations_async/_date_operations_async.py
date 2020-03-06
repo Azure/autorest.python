@@ -35,7 +35,7 @@ class DateOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -44,8 +44,9 @@ class DateOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        **kwargs
-    ) -> datetime.date:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.date
         """Get null date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -53,7 +54,7 @@ class DateOperations:
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.date] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -86,8 +87,9 @@ class DateOperations:
     @distributed_trace_async
     async def get_invalid_date(
         self,
-        **kwargs
-    ) -> datetime.date:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.date
         """Get invalid date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -95,7 +97,7 @@ class DateOperations:
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.date] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -128,8 +130,9 @@ class DateOperations:
     @distributed_trace_async
     async def get_overflow_date(
         self,
-        **kwargs
-    ) -> datetime.date:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.date
         """Get overflow date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -137,7 +140,7 @@ class DateOperations:
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.date] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -170,8 +173,9 @@ class DateOperations:
     @distributed_trace_async
     async def get_underflow_date(
         self,
-        **kwargs
-    ) -> datetime.date:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.date
         """Get underflow date value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -179,7 +183,7 @@ class DateOperations:
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.date] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -212,9 +216,10 @@ class DateOperations:
     @distributed_trace_async
     async def put_max_date(
         self,
-        date_body: datetime.date,
-        **kwargs
-    ) -> None:
+        date_body,  # type: datetime.date
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put max date value 9999-12-31.
 
         :param date_body:
@@ -224,7 +229,7 @@ class DateOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -258,8 +263,9 @@ class DateOperations:
     @distributed_trace_async
     async def get_max_date(
         self,
-        **kwargs
-    ) -> datetime.date:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.date
         """Get max date value 9999-12-31.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -267,7 +273,7 @@ class DateOperations:
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.date] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -300,9 +306,10 @@ class DateOperations:
     @distributed_trace_async
     async def put_min_date(
         self,
-        date_body: datetime.date,
-        **kwargs
-    ) -> None:
+        date_body,  # type: datetime.date
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put min date value 0000-01-01.
 
         :param date_body:
@@ -312,7 +319,7 @@ class DateOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -346,8 +353,9 @@ class DateOperations:
     @distributed_trace_async
     async def get_min_date(
         self,
-        **kwargs
-    ) -> datetime.date:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.date
         """Get min date value 0000-01-01.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -355,7 +363,7 @@ class DateOperations:
         :rtype: ~datetime.date
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.date] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.date]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

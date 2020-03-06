@@ -39,7 +39,7 @@ class ChildProduct(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        count: Optional[int] = None,
+        count=None,  # type: Optional[int]
         **kwargs
     ):
         super(ChildProduct, self).__init__(**kwargs)
@@ -125,9 +125,9 @@ class Error(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        code: Optional[int] = None,
-        message: Optional[str] = None,
-        fields: Optional[str] = None,
+        code=None,  # type: Optional[int]
+        message=None,  # type: Optional[str]
+        fields=None,  # type: Optional[str]
         **kwargs
     ):
         super(Error, self).__init__(**kwargs)
@@ -190,11 +190,11 @@ class Product(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        child: "ChildProduct",
-        const_child: "ConstantProduct",
-        display_names: Optional[List[str]] = None,
-        capacity: Optional[int] = None,
-        image: Optional[str] = None,
+        child,  # type: "ChildProduct"
+        const_child,  # type: "ConstantProduct"
+        display_names=None,  # type: Optional[List[str]]
+        capacity=None,  # type: Optional[int]
+        image=None,  # type: Optional[str]
         **kwargs
     ):
         super(Product, self).__init__(**kwargs)

@@ -35,7 +35,7 @@ class UsageOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -44,8 +44,9 @@ class UsageOperations:
     @distributed_trace_async
     async def list(
         self,
-        **kwargs
-    ) -> "models.UsageListResult":
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.UsageListResult"
         """Gets the current usage count and the limit for the resources under the subscription.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -53,7 +54,7 @@ class UsageOperations:
         :rtype: ~storage.models.UsageListResult
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.UsageListResult"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.UsageListResult"]
         error_map = kwargs.pop('error_map', {})
         api_version = "2015-05-01-preview"
 

@@ -35,8 +35,8 @@ class CustomParameterGroup(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        api_version: str,
-        tenant: str,
+        api_version,  # type: str
+        tenant,  # type: str
         **kwargs
     ):
         super(CustomParameterGroup, self).__init__(**kwargs)
@@ -61,8 +61,8 @@ class OdataProductResult(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        values: Optional[List["Product"]] = None,
-        odata_next_link: Optional[str] = None,
+        values=None,  # type: Optional[List["Product"]]
+        odata_next_link=None,  # type: Optional[str]
         **kwargs
     ):
         super(OdataProductResult, self).__init__(**kwargs)
@@ -86,7 +86,7 @@ class OperationResult(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        status: Optional[Union[str, "OperationResultStatus"]] = None,
+        status=None,  # type: Optional[Union[str, "OperationResultStatus"]]
         **kwargs
     ):
         super(OperationResult, self).__init__(**kwargs)
@@ -111,8 +111,8 @@ class PagingGetMultiplePagesLroOptions(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        maxresults=None,  # type: Optional[int]
+        timeout=30,  # type: Optional[int]
         **kwargs
     ):
         super(PagingGetMultiplePagesLroOptions, self).__init__(**kwargs)
@@ -138,8 +138,8 @@ class PagingGetMultiplePagesOptions(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        maxresults=None,  # type: Optional[int]
+        timeout=30,  # type: Optional[int]
         **kwargs
     ):
         super(PagingGetMultiplePagesOptions, self).__init__(**kwargs)
@@ -174,9 +174,9 @@ class PagingGetMultiplePagesWithOffsetOptions(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        offset: int,
-        maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        offset,  # type: int
+        maxresults=None,  # type: Optional[int]
+        timeout=30,  # type: Optional[int]
         **kwargs
     ):
         super(PagingGetMultiplePagesWithOffsetOptions, self).__init__(**kwargs)
@@ -203,8 +203,8 @@ class PagingGetOdataMultiplePagesOptions(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        maxresults: Optional[int] = None,
-        timeout: Optional[int] = 30,
+        maxresults=None,  # type: Optional[int]
+        timeout=30,  # type: Optional[int]
         **kwargs
     ):
         super(PagingGetOdataMultiplePagesOptions, self).__init__(**kwargs)
@@ -226,7 +226,7 @@ class Product(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        properties: Optional["ProductProperties"] = None,
+        properties=None,  # type: Optional["ProductProperties"]
         **kwargs
     ):
         super(Product, self).__init__(**kwargs)
@@ -250,8 +250,8 @@ class ProductProperties(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        id: Optional[int] = None,
-        name: Optional[str] = None,
+        id=None,  # type: Optional[int]
+        name=None,  # type: Optional[str]
         **kwargs
     ):
         super(ProductProperties, self).__init__(**kwargs)
@@ -276,8 +276,8 @@ class ProductResult(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        values: Optional[List["Product"]] = None,
-        next_link: Optional[str] = None,
+        values=None,  # type: Optional[List["Product"]]
+        next_link=None,  # type: Optional[str]
         **kwargs
     ):
         super(ProductResult, self).__init__(**kwargs)
@@ -302,8 +302,8 @@ class ProductResultValue(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        value: Optional[List["Product"]] = None,
-        next_link: Optional[str] = None,
+        value=None,  # type: Optional[List["Product"]]
+        next_link=None,  # type: Optional[str]
         **kwargs
     ):
         super(ProductResultValue, self).__init__(**kwargs)

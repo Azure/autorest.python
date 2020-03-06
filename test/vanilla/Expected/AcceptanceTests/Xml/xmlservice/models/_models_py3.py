@@ -41,9 +41,9 @@ class AccessPolicy(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        start: datetime.datetime,
-        expiry: datetime.datetime,
-        permission: str,
+        start,  # type: datetime.datetime
+        expiry,  # type: datetime.datetime
+        permission,  # type: str
         **kwargs
     ):
         super(AccessPolicy, self).__init__(**kwargs)
@@ -69,8 +69,8 @@ class AppleBarrel(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        good_apples: Optional[List[str]] = None,
-        bad_apples: Optional[List[str]] = None,
+        good_apples=None,  # type: Optional[List[str]]
+        bad_apples=None,  # type: Optional[List[str]]
         **kwargs
     ):
         super(AppleBarrel, self).__init__(**kwargs)
@@ -101,9 +101,9 @@ class Banana(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        name: Optional[str] = None,
-        flavor: Optional[str] = None,
-        expiration: Optional[datetime.datetime] = None,
+        name=None,  # type: Optional[str]
+        flavor=None,  # type: Optional[str]
+        expiration=None,  # type: Optional[datetime.datetime]
         **kwargs
     ):
         super(Banana, self).__init__(**kwargs)
@@ -150,11 +150,11 @@ class Blob(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        name: str,
-        deleted: bool,
-        snapshot: str,
-        properties: "BlobProperties",
-        metadata: Optional[Dict[str, str]] = None,
+        name,  # type: str
+        deleted,  # type: bool
+        snapshot,  # type: str
+        properties,  # type: "BlobProperties"
+        metadata=None,  # type: Optional[Dict[str, str]]
         **kwargs
     ):
         super(Blob, self).__init__(**kwargs)
@@ -185,7 +185,7 @@ class BlobPrefix(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        name: str,
+        name,  # type: str
         **kwargs
     ):
         super(BlobPrefix, self).__init__(**kwargs)
@@ -297,34 +297,34 @@ class BlobProperties(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        last_modified: datetime.datetime,
-        etag: str,
-        content_length: Optional[int] = None,
-        content_type: Optional[str] = None,
-        content_encoding: Optional[str] = None,
-        content_language: Optional[str] = None,
-        content_md5: Optional[str] = None,
-        content_disposition: Optional[str] = None,
-        cache_control: Optional[str] = None,
-        blob_sequence_number: Optional[int] = None,
-        blob_type: Optional[Union[str, "BlobType"]] = None,
-        lease_status: Optional[Union[str, "LeaseStatusType"]] = None,
-        lease_state: Optional[Union[str, "LeaseStateType"]] = None,
-        lease_duration: Optional[Union[str, "LeaseDurationType"]] = None,
-        copy_id: Optional[str] = None,
-        copy_status: Optional[Union[str, "CopyStatusType"]] = None,
-        copy_source: Optional[str] = None,
-        copy_progress: Optional[str] = None,
-        copy_completion_time: Optional[datetime.datetime] = None,
-        copy_status_description: Optional[str] = None,
-        server_encrypted: Optional[bool] = None,
-        incremental_copy: Optional[bool] = None,
-        destination_snapshot: Optional[str] = None,
-        deleted_time: Optional[datetime.datetime] = None,
-        remaining_retention_days: Optional[int] = None,
-        access_tier: Optional[Union[str, "AccessTier"]] = None,
-        access_tier_inferred: Optional[bool] = None,
-        archive_status: Optional[Union[str, "ArchiveStatus"]] = None,
+        last_modified,  # type: datetime.datetime
+        etag,  # type: str
+        content_length=None,  # type: Optional[int]
+        content_type=None,  # type: Optional[str]
+        content_encoding=None,  # type: Optional[str]
+        content_language=None,  # type: Optional[str]
+        content_md5=None,  # type: Optional[str]
+        content_disposition=None,  # type: Optional[str]
+        cache_control=None,  # type: Optional[str]
+        blob_sequence_number=None,  # type: Optional[int]
+        blob_type=None,  # type: Optional[Union[str, "BlobType"]]
+        lease_status=None,  # type: Optional[Union[str, "LeaseStatusType"]]
+        lease_state=None,  # type: Optional[Union[str, "LeaseStateType"]]
+        lease_duration=None,  # type: Optional[Union[str, "LeaseDurationType"]]
+        copy_id=None,  # type: Optional[str]
+        copy_status=None,  # type: Optional[Union[str, "CopyStatusType"]]
+        copy_source=None,  # type: Optional[str]
+        copy_progress=None,  # type: Optional[str]
+        copy_completion_time=None,  # type: Optional[datetime.datetime]
+        copy_status_description=None,  # type: Optional[str]
+        server_encrypted=None,  # type: Optional[bool]
+        incremental_copy=None,  # type: Optional[bool]
+        destination_snapshot=None,  # type: Optional[str]
+        deleted_time=None,  # type: Optional[datetime.datetime]
+        remaining_retention_days=None,  # type: Optional[int]
+        access_tier=None,  # type: Optional[Union[str, "AccessTier"]]
+        access_tier_inferred=None,  # type: Optional[bool]
+        archive_status=None,  # type: Optional[Union[str, "ArchiveStatus"]]
         **kwargs
     ):
         super(BlobProperties, self).__init__(**kwargs)
@@ -375,8 +375,8 @@ class Blobs(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        blob_prefix: Optional[List["BlobPrefix"]] = None,
-        blob: Optional[List["Blob"]] = None,
+        blob_prefix=None,  # type: Optional[List["BlobPrefix"]]
+        blob=None,  # type: Optional[List["Blob"]]
         **kwargs
     ):
         super(Blobs, self).__init__(**kwargs)
@@ -398,7 +398,7 @@ class ComplexTypeNoMeta(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        id: Optional[str] = None,
+        id=None,  # type: Optional[str]
         **kwargs
     ):
         super(ComplexTypeNoMeta, self).__init__(**kwargs)
@@ -422,7 +422,7 @@ class ComplexTypeWithMeta(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        id: Optional[str] = None,
+        id=None,  # type: Optional[str]
         **kwargs
     ):
         super(ComplexTypeWithMeta, self).__init__(**kwargs)
@@ -456,9 +456,9 @@ class Container(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        name: str,
-        properties: "ContainerProperties",
-        metadata: Optional[Dict[str, str]] = None,
+        name,  # type: str
+        properties,  # type: "ContainerProperties"
+        metadata=None,  # type: Optional[Dict[str, str]]
         **kwargs
     ):
         super(Container, self).__init__(**kwargs)
@@ -504,12 +504,12 @@ class ContainerProperties(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        last_modified: datetime.datetime,
-        etag: str,
-        lease_status: Optional[Union[str, "LeaseStatusType"]] = None,
-        lease_state: Optional[Union[str, "LeaseStateType"]] = None,
-        lease_duration: Optional[Union[str, "LeaseDurationType"]] = None,
-        public_access: Optional[Union[str, "PublicAccessType"]] = None,
+        last_modified,  # type: datetime.datetime
+        etag,  # type: str
+        lease_status=None,  # type: Optional[Union[str, "LeaseStatusType"]]
+        lease_state=None,  # type: Optional[Union[str, "LeaseStateType"]]
+        lease_duration=None,  # type: Optional[Union[str, "LeaseDurationType"]]
+        public_access=None,  # type: Optional[Union[str, "PublicAccessType"]]
         **kwargs
     ):
         super(ContainerProperties, self).__init__(**kwargs)
@@ -568,11 +568,11 @@ class CorsRule(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        allowed_origins: str,
-        allowed_methods: str,
-        allowed_headers: str,
-        exposed_headers: str,
-        max_age_in_seconds: int,
+        allowed_origins,  # type: str
+        allowed_methods,  # type: str
+        allowed_headers,  # type: str
+        exposed_headers,  # type: str
+        max_age_in_seconds,  # type: int
         **kwargs
     ):
         super(CorsRule, self).__init__(**kwargs)
@@ -626,8 +626,8 @@ class Error(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        status: Optional[int] = None,
-        message: Optional[str] = None,
+        status=None,  # type: Optional[int]
+        message=None,  # type: Optional[str]
         **kwargs
     ):
         super(Error, self).__init__(**kwargs)
@@ -649,7 +649,7 @@ class JSONInput(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        id: Optional[int] = None,
+        id=None,  # type: Optional[int]
         **kwargs
     ):
         super(JSONInput, self).__init__(**kwargs)
@@ -670,7 +670,7 @@ class JSONOutput(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        id: Optional[int] = None,
+        id=None,  # type: Optional[int]
         **kwargs
     ):
         super(JSONOutput, self).__init__(**kwargs)
@@ -728,14 +728,14 @@ class ListBlobsResponse(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        service_endpoint: str,
-        container_name: str,
-        prefix: str,
-        marker: str,
-        max_results: int,
-        delimiter: str,
-        blobs: "Blobs",
-        next_marker: str,
+        service_endpoint,  # type: str
+        container_name,  # type: str
+        prefix,  # type: str
+        marker,  # type: str
+        max_results,  # type: int
+        delimiter,  # type: str
+        blobs,  # type: "Blobs"
+        next_marker,  # type: str
         **kwargs
     ):
         super(ListBlobsResponse, self).__init__(**kwargs)
@@ -790,12 +790,12 @@ class ListContainersResponse(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        service_endpoint: str,
-        prefix: str,
-        max_results: int,
-        next_marker: str,
-        marker: Optional[str] = None,
-        containers: Optional[List["Container"]] = None,
+        service_endpoint,  # type: str
+        prefix,  # type: str
+        max_results,  # type: int
+        next_marker,  # type: str
+        marker=None,  # type: Optional[str]
+        containers=None,  # type: Optional[List["Container"]]
         **kwargs
     ):
         super(ListContainersResponse, self).__init__(**kwargs)
@@ -843,11 +843,11 @@ class Logging(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        version: str,
-        delete: bool,
-        read: bool,
-        write: bool,
-        retention_policy: "RetentionPolicy",
+        version,  # type: str
+        delete,  # type: bool
+        read,  # type: bool
+        write,  # type: bool
+        retention_policy,  # type: "RetentionPolicy"
         **kwargs
     ):
         super(Logging, self).__init__(**kwargs)
@@ -888,10 +888,10 @@ class Metrics(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        enabled: bool,
-        version: Optional[str] = None,
-        include_ap_is: Optional[bool] = None,
-        retention_policy: Optional["RetentionPolicy"] = None,
+        enabled,  # type: bool
+        version=None,  # type: Optional[str]
+        include_ap_is=None,  # type: Optional[bool]
+        retention_policy=None,  # type: Optional["RetentionPolicy"]
         **kwargs
     ):
         super(Metrics, self).__init__(**kwargs)
@@ -927,8 +927,8 @@ class RetentionPolicy(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        enabled: bool,
-        days: Optional[int] = None,
+        enabled,  # type: bool
+        days=None,  # type: Optional[int]
         **kwargs
     ):
         super(RetentionPolicy, self).__init__(**kwargs)
@@ -953,8 +953,8 @@ class RootWithRefAndMeta(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        ref_to_model: Optional["ComplexTypeWithMeta"] = None,
-        something: Optional[str] = None,
+        ref_to_model=None,  # type: Optional["ComplexTypeWithMeta"]
+        something=None,  # type: Optional[str]
         **kwargs
     ):
         super(RootWithRefAndMeta, self).__init__(**kwargs)
@@ -979,8 +979,8 @@ class RootWithRefAndNoMeta(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        ref_to_model: Optional["ComplexTypeNoMeta"] = None,
-        something: Optional[str] = None,
+        ref_to_model=None,  # type: Optional["ComplexTypeNoMeta"]
+        something=None,  # type: Optional[str]
         **kwargs
     ):
         super(RootWithRefAndNoMeta, self).__init__(**kwargs)
@@ -1015,8 +1015,8 @@ class SignedIdentifier(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        id: str,
-        access_policy: "AccessPolicy",
+        id,  # type: str
+        access_policy,  # type: "AccessPolicy"
         **kwargs
     ):
         super(SignedIdentifier, self).__init__(**kwargs)
@@ -1047,9 +1047,9 @@ class Slide(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        type: Optional[str] = None,
-        title: Optional[str] = None,
-        items: Optional[List[str]] = None,
+        type=None,  # type: Optional[str]
+        title=None,  # type: Optional[str]
+        items=None,  # type: Optional[List[str]]
         **kwargs
     ):
         super(Slide, self).__init__(**kwargs)
@@ -1084,10 +1084,10 @@ class Slideshow(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        title: Optional[str] = None,
-        date: Optional[str] = None,
-        author: Optional[str] = None,
-        slides: Optional[List["Slide"]] = None,
+        title=None,  # type: Optional[str]
+        date=None,  # type: Optional[str]
+        author=None,  # type: Optional[str]
+        slides=None,  # type: Optional[List["Slide"]]
         **kwargs
     ):
         super(Slideshow, self).__init__(**kwargs)
@@ -1130,12 +1130,12 @@ class StorageServiceProperties(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        logging: Optional["Logging"] = None,
-        hour_metrics: Optional["Metrics"] = None,
-        minute_metrics: Optional["Metrics"] = None,
-        cors: Optional[List["CorsRule"]] = None,
-        default_service_version: Optional[str] = None,
-        delete_retention_policy: Optional["RetentionPolicy"] = None,
+        logging=None,  # type: Optional["Logging"]
+        hour_metrics=None,  # type: Optional["Metrics"]
+        minute_metrics=None,  # type: Optional["Metrics"]
+        cors=None,  # type: Optional[List["CorsRule"]]
+        default_service_version=None,  # type: Optional[str]
+        delete_retention_policy=None,  # type: Optional["RetentionPolicy"]
         **kwargs
     ):
         super(StorageServiceProperties, self).__init__(**kwargs)

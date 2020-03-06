@@ -125,8 +125,8 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
     def async_method_signature(self) -> str:
         default_value, default_value_declaration, type_annot = self._default_value()
         if default_value is not None or not self.required:
-            return f"{self.serialized_name}: {type_annot} = {default_value_declaration}"
-        return f"{self.serialized_name}: {type_annot}"
+            return f"{self.serialized_name}={default_value_declaration},  # type: {type_annot}"
+        return f"{self.serialized_name},  # type: {type_annot}"
 
     @property
     def full_serialized_name(self) -> str:

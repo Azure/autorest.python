@@ -34,7 +34,7 @@ class InheritanceOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,8 +43,9 @@ class InheritanceOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        **kwargs
-    ) -> "models.Siamese":
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Siamese"
         """Get complex types that extend others.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -52,7 +53,7 @@ class InheritanceOperations:
         :rtype: ~bodycomplex.models.Siamese
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.Siamese"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Siamese"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -85,9 +86,10 @@ class InheritanceOperations:
     @distributed_trace_async
     async def put_valid(
         self,
-        complex_body: "models.Siamese",
-        **kwargs
-    ) -> None:
+        complex_body,  # type: "models.Siamese"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put complex types that extend others.
 
         :param complex_body: Please put a siamese with id=2, name="Siameee", color=green,
@@ -99,7 +101,7 @@ class InheritanceOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

@@ -34,7 +34,7 @@ class ParameterGroupingOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,9 +43,10 @@ class ParameterGroupingOperations:
     @distributed_trace_async
     async def post_required(
         self,
-        parameter_grouping_post_required_parameters: "models.ParameterGroupingPostRequiredParameters",
-        **kwargs
-    ) -> None:
+        parameter_grouping_post_required_parameters,  # type: "models.ParameterGroupingPostRequiredParameters"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Post a bunch of required parameters grouped.
 
         :param parameter_grouping_post_required_parameters: Parameter group.
@@ -55,7 +56,7 @@ class ParameterGroupingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         
         _custom_header = None
@@ -107,9 +108,10 @@ class ParameterGroupingOperations:
     @distributed_trace_async
     async def post_optional(
         self,
-        parameter_grouping_post_optional_parameters: Optional["models.ParameterGroupingPostOptionalParameters"] = None,
-        **kwargs
-    ) -> None:
+        parameter_grouping_post_optional_parameters=None,  # type: Optional["models.ParameterGroupingPostOptionalParameters"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Post a bunch of optional parameters grouped.
 
         :param parameter_grouping_post_optional_parameters: Parameter group.
@@ -119,7 +121,7 @@ class ParameterGroupingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         
         _custom_header = None
@@ -158,10 +160,11 @@ class ParameterGroupingOperations:
     @distributed_trace_async
     async def post_multi_param_groups(
         self,
-        first_parameter_group: Optional["models.FirstParameterGroup"] = None,
-        parameter_grouping_post_multi_param_groups_second_param_group: Optional["models.ParameterGroupingPostMultiParamGroupsSecondParamGroup"] = None,
-        **kwargs
-    ) -> None:
+        first_parameter_group=None,  # type: Optional["models.FirstParameterGroup"]
+        parameter_grouping_post_multi_param_groups_second_param_group=None,  # type: Optional["models.ParameterGroupingPostMultiParamGroupsSecondParamGroup"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Post parameters from multiple different parameter groups.
 
         :param first_parameter_group: Parameter group.
@@ -173,7 +176,7 @@ class ParameterGroupingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         
         _header_one = None
@@ -221,9 +224,10 @@ class ParameterGroupingOperations:
     @distributed_trace_async
     async def post_shared_parameter_group_object(
         self,
-        first_parameter_group: Optional["models.FirstParameterGroup"] = None,
-        **kwargs
-    ) -> None:
+        first_parameter_group=None,  # type: Optional["models.FirstParameterGroup"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Post parameters with a shared parameter group object.
 
         :param first_parameter_group: Parameter group.
@@ -233,7 +237,7 @@ class ParameterGroupingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         
         _header_one = None

@@ -52,7 +52,7 @@ class MyException(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        status_code: Optional[str] = None,
+        status_code=None,  # type: Optional[str]
         **kwargs
     ):
         super(MyException, self).__init__(**kwargs)
@@ -102,8 +102,8 @@ class B(MyException):
     def __init__(
         self,
         *,
-        status_code: Optional[str] = None,
-        text_status_code: Optional[str] = None,
+        status_code=None,  # type: Optional[str]
+        text_status_code=None,  # type: Optional[str]
         **kwargs
     ):
         super(B, self).__init__(status_code=status_code, **kwargs)
@@ -124,7 +124,7 @@ class C(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        http_code: Optional[str] = None,
+        http_code=None,  # type: Optional[str]
         **kwargs
     ):
         super(C, self).__init__(**kwargs)
@@ -145,7 +145,7 @@ class D(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        http_status_code: Optional[str] = None,
+        http_status_code=None,  # type: Optional[str]
         **kwargs
     ):
         super(D, self).__init__(**kwargs)
@@ -195,8 +195,8 @@ class Error(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        status: Optional[int] = None,
-        message: Optional[str] = None,
+        status=None,  # type: Optional[int]
+        message=None,  # type: Optional[str]
         **kwargs
     ):
         super(Error, self).__init__(**kwargs)

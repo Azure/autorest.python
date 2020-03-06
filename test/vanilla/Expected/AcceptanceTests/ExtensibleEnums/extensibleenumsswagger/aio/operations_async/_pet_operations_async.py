@@ -34,7 +34,7 @@ class PetOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,9 +43,10 @@ class PetOperations:
     @distributed_trace_async
     async def get_by_pet_id(
         self,
-        pet_id: str,
-        **kwargs
-    ) -> "models.Pet":
+        pet_id,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Pet"
         """get_by_pet_id.
 
         :param pet_id: Pet id.
@@ -55,7 +56,7 @@ class PetOperations:
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.Pet"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Pet"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -92,9 +93,10 @@ class PetOperations:
     @distributed_trace_async
     async def add_pet(
         self,
-        pet_param: Optional["models.Pet"] = None,
-        **kwargs
-    ) -> "models.Pet":
+        pet_param=None,  # type: Optional["models.Pet"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Pet"
         """add_pet.
 
         :param pet_param:
@@ -104,7 +106,7 @@ class PetOperations:
         :rtype: ~extensibleenumsswagger.models.Pet
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.Pet"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Pet"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

@@ -34,7 +34,7 @@ class StringOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,8 +43,9 @@ class StringOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        **kwargs
-    ) -> str:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> str
         """Get null string value value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -52,7 +53,7 @@ class StringOperations:
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[str] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[str]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -85,8 +86,9 @@ class StringOperations:
     @distributed_trace_async
     async def put_null(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Set string value null.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -94,7 +96,7 @@ class StringOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         string_body = None
 
@@ -132,8 +134,9 @@ class StringOperations:
     @distributed_trace_async
     async def get_empty(
         self,
-        **kwargs
-    ) -> str:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> str
         """Get empty string value value ''.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -141,7 +144,7 @@ class StringOperations:
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[str] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[str]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -174,8 +177,9 @@ class StringOperations:
     @distributed_trace_async
     async def put_empty(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Set string value empty ''.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -183,7 +187,7 @@ class StringOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         string_body = ""
 
@@ -218,8 +222,9 @@ class StringOperations:
     @distributed_trace_async
     async def get_mbcs(
         self,
-        **kwargs
-    ) -> str:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> str
         """Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -227,7 +232,7 @@ class StringOperations:
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[str] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[str]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -260,8 +265,9 @@ class StringOperations:
     @distributed_trace_async
     async def put_mbcs(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -269,7 +275,7 @@ class StringOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         string_body = "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
 
@@ -304,8 +310,9 @@ class StringOperations:
     @distributed_trace_async
     async def get_whitespace(
         self,
-        **kwargs
-    ) -> str:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> str
         """Get string value with leading and trailing whitespace ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -313,7 +320,7 @@ class StringOperations:
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[str] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[str]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -346,8 +353,9 @@ class StringOperations:
     @distributed_trace_async
     async def put_whitespace(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Set String value with leading and trailing whitespace ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -355,7 +363,7 @@ class StringOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         string_body = "    Now is the time for all good men to come to the aid of their country    "
 
@@ -390,8 +398,9 @@ class StringOperations:
     @distributed_trace_async
     async def get_not_provided(
         self,
-        **kwargs
-    ) -> str:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> str
         """Get String value when no string value is sent in response payload.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -399,7 +408,7 @@ class StringOperations:
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[str] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[str]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -432,8 +441,9 @@ class StringOperations:
     @distributed_trace_async
     async def get_base64_encoded(
         self,
-        **kwargs
-    ) -> bytes:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> bytes
         """Get value that is base64 encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -441,7 +451,7 @@ class StringOperations:
         :rtype: bytes
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bytes] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[bytes]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -474,8 +484,9 @@ class StringOperations:
     @distributed_trace_async
     async def get_base64_url_encoded(
         self,
-        **kwargs
-    ) -> bytes:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> bytes
         """Get value that is base64url encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -483,7 +494,7 @@ class StringOperations:
         :rtype: bytes
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bytes] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[bytes]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -516,9 +527,10 @@ class StringOperations:
     @distributed_trace_async
     async def put_base64_url_encoded(
         self,
-        string_body: bytes,
-        **kwargs
-    ) -> None:
+        string_body,  # type: bytes
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put value that is base64url encoded.
 
         :param string_body:
@@ -528,7 +540,7 @@ class StringOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -562,8 +574,9 @@ class StringOperations:
     @distributed_trace_async
     async def get_null_base64_url_encoded(
         self,
-        **kwargs
-    ) -> bytes:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> bytes
         """Get null value that is expected to be base64url encoded.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -571,7 +584,7 @@ class StringOperations:
         :rtype: bytes
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bytes] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[bytes]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

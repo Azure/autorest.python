@@ -38,9 +38,9 @@ class Pet(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        int_enum: Union[str, "IntEnum"],
-        name: Optional[str] = None,
-        days_of_week: Optional[Union[str, "DaysOfWeekExtensibleEnum"]] = "Friday",
+        int_enum,  # type: Union[str, "IntEnum"]
+        name=None,  # type: Optional[str]
+        days_of_week="Friday",  # type: Optional[Union[str, "DaysOfWeekExtensibleEnum"]]
         **kwargs
     ):
         super(Pet, self).__init__(**kwargs)

@@ -34,7 +34,7 @@ class GroupOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,9 +43,10 @@ class GroupOperations:
     @distributed_trace_async
     async def get_sample_resource_group(
         self,
-        resource_group_name: str,
-        **kwargs
-    ) -> "models.SampleResourceGroup":
+        resource_group_name,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.SampleResourceGroup"
         """Provides a resouce group with name 'testgroup101' and location 'West US'.
 
         :param resource_group_name: Resource Group name 'testgroup101'.
@@ -55,7 +56,7 @@ class GroupOperations:
         :rtype: ~subscriptionidapiversion.models.SampleResourceGroup
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.SampleResourceGroup"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.SampleResourceGroup"]
         error_map = kwargs.pop('error_map', {})
         api_version = "2014-04-01-preview"
 

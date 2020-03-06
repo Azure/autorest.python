@@ -23,8 +23,9 @@ class AutoRestNumberTestServiceConfiguration(Configuration):
 
     def __init__(
         self,
-        **kwargs: Any
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         super(AutoRestNumberTestServiceConfiguration, self).__init__(**kwargs)
 
         kwargs.setdefault('sdk_moniker', 'autorestnumbertestservice/{}'.format(VERSION))
@@ -32,8 +33,9 @@ class AutoRestNumberTestServiceConfiguration(Configuration):
 
     def _configure(
         self,
-        **kwargs: Any
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)
         self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)
         self.proxy_policy = kwargs.get('proxy_policy') or policies.ProxyPolicy(**kwargs)

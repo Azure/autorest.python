@@ -34,7 +34,7 @@ class ImplicitOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,9 +43,10 @@ class ImplicitOperations:
     @distributed_trace_async
     async def get_required_path(
         self,
-        path_parameter: str,
-        **kwargs
-    ) -> None:
+        path_parameter,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test implicitly required path parameter.
 
         :param path_parameter:
@@ -55,7 +56,7 @@ class ImplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -88,9 +89,10 @@ class ImplicitOperations:
     @distributed_trace_async
     async def put_optional_query(
         self,
-        query_parameter: Optional[str] = None,
-        **kwargs
-    ) -> None:
+        query_parameter=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test implicitly optional query parameter.
 
         :param query_parameter:
@@ -100,7 +102,7 @@ class ImplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -131,9 +133,10 @@ class ImplicitOperations:
     @distributed_trace_async
     async def put_optional_header(
         self,
-        query_parameter: Optional[str] = None,
-        **kwargs
-    ) -> None:
+        query_parameter=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test implicitly optional header parameter.
 
         :param query_parameter:
@@ -143,7 +146,7 @@ class ImplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -174,9 +177,10 @@ class ImplicitOperations:
     @distributed_trace_async
     async def put_optional_body(
         self,
-        body_parameter: Optional[str] = None,
-        **kwargs
-    ) -> None:
+        body_parameter=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test implicitly optional body parameter.
 
         :param body_parameter:
@@ -186,7 +190,7 @@ class ImplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -223,8 +227,9 @@ class ImplicitOperations:
     @distributed_trace_async
     async def get_required_global_path(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test implicitly required path parameter.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -232,7 +237,7 @@ class ImplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -265,8 +270,9 @@ class ImplicitOperations:
     @distributed_trace_async
     async def get_required_global_query(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test implicitly required query parameter.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -274,7 +280,7 @@ class ImplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -304,8 +310,9 @@ class ImplicitOperations:
     @distributed_trace_async
     async def get_optional_global_query(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test implicitly optional query parameter.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -313,7 +320,7 @@ class ImplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

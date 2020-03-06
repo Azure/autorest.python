@@ -34,7 +34,7 @@ class BoolOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,8 +43,9 @@ class BoolOperations:
     @distributed_trace_async
     async def get_true(
         self,
-        **kwargs
-    ) -> bool:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> bool
         """Get true Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -52,7 +53,7 @@ class BoolOperations:
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bool] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -85,8 +86,9 @@ class BoolOperations:
     @distributed_trace_async
     async def put_true(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Set Boolean value true.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -94,7 +96,7 @@ class BoolOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         bool_body = True
 
@@ -129,8 +131,9 @@ class BoolOperations:
     @distributed_trace_async
     async def get_false(
         self,
-        **kwargs
-    ) -> bool:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> bool
         """Get false Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -138,7 +141,7 @@ class BoolOperations:
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bool] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -171,8 +174,9 @@ class BoolOperations:
     @distributed_trace_async
     async def put_false(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Set Boolean value false.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -180,7 +184,7 @@ class BoolOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         bool_body = False
 
@@ -215,8 +219,9 @@ class BoolOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        **kwargs
-    ) -> bool:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> bool
         """Get null Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -224,7 +229,7 @@ class BoolOperations:
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bool] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -257,8 +262,9 @@ class BoolOperations:
     @distributed_trace_async
     async def get_invalid(
         self,
-        **kwargs
-    ) -> bool:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> bool
         """Get invalid Boolean value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -266,7 +272,7 @@ class BoolOperations:
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bool] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

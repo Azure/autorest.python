@@ -21,8 +21,8 @@
 @distributed_trace
 {% endif %}
 {{ op_tools.method_signature(operation, operation.python_name, async_mode=async_mode, coroutine=False) }}
-{%- if not async_mode %}
-    {{ keywords.sync_return_type_annotation(operation) }}
+{%- if True %}
+    {{ keywords.commented_return_type_annotation(operation) }}
 {% endif %}
 {% if operation.want_description_docstring %}
     """{{operation.description }}
@@ -59,7 +59,7 @@
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
     {% if async_mode %}
-    cls: ClsType[{{ keywords.return_type_annotation(operation) }}] = kwargs.pop('cls', None)
+    cls = kwargs.pop('cls', None)  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
     {% else %}
     cls = kwargs.pop('cls', None)  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
     {% endif %}

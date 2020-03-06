@@ -45,9 +45,9 @@ class PetAPTrue(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        id: int,
-        additional_properties: Optional[Dict[str, object]] = None,
-        name: Optional[str] = None,
+        id,  # type: int
+        additional_properties=None,  # type: Optional[Dict[str, object]]
+        name=None,  # type: Optional[str]
         **kwargs
     ):
         super(PetAPTrue, self).__init__(**kwargs)
@@ -93,10 +93,10 @@ class CatAPTrue(PetAPTrue):
     def __init__(
         self,
         *,
-        id: int,
-        additional_properties: Optional[Dict[str, object]] = None,
-        name: Optional[str] = None,
-        friendly: Optional[bool] = None,
+        id,  # type: int
+        additional_properties=None,  # type: Optional[Dict[str, object]]
+        name=None,  # type: Optional[str]
+        friendly=None,  # type: Optional[bool]
         **kwargs
     ):
         super(CatAPTrue, self).__init__(additional_properties=additional_properties, id=id, name=name, **kwargs)
@@ -146,8 +146,8 @@ class Error(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        status: Optional[int] = None,
-        message: Optional[str] = None,
+        status=None,  # type: Optional[int]
+        message=None,  # type: Optional[str]
         **kwargs
     ):
         super(Error, self).__init__(**kwargs)
@@ -187,9 +187,9 @@ class PetAPInProperties(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        id: int,
-        name: Optional[str] = None,
-        additional_properties: Optional[Dict[str, float]] = None,
+        id,  # type: int
+        name=None,  # type: Optional[str]
+        additional_properties=None,  # type: Optional[Dict[str, float]]
         **kwargs
     ):
         super(PetAPInProperties, self).__init__(**kwargs)
@@ -239,11 +239,11 @@ class PetAPInPropertiesWithAPString(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        id: int,
-        odata_location: str,
-        additional_properties: Optional[Dict[str, str]] = None,
-        name: Optional[str] = None,
-        additional_properties1: Optional[Dict[str, float]] = None,
+        id,  # type: int
+        odata_location,  # type: str
+        additional_properties=None,  # type: Optional[Dict[str, str]]
+        name=None,  # type: Optional[str]
+        additional_properties1=None,  # type: Optional[Dict[str, float]]
         **kwargs
     ):
         super(PetAPInPropertiesWithAPString, self).__init__(**kwargs)
@@ -288,9 +288,9 @@ class PetAPObject(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        id: int,
-        additional_properties: Optional[Dict[str, object]] = None,
-        name: Optional[str] = None,
+        id,  # type: int
+        additional_properties=None,  # type: Optional[Dict[str, object]]
+        name=None,  # type: Optional[str]
         **kwargs
     ):
         super(PetAPObject, self).__init__(**kwargs)
@@ -333,9 +333,9 @@ class PetAPString(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        id: int,
-        additional_properties: Optional[Dict[str, str]] = None,
-        name: Optional[str] = None,
+        id,  # type: int
+        additional_properties=None,  # type: Optional[Dict[str, str]]
+        name=None,  # type: Optional[str]
         **kwargs
     ):
         super(PetAPString, self).__init__(**kwargs)

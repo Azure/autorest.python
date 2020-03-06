@@ -35,7 +35,7 @@ class QueriesOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -44,8 +44,9 @@ class QueriesOperations:
     @distributed_trace_async
     async def get_boolean_true(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get true Boolean value on path.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -53,7 +54,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         bool_query = True
 
@@ -84,8 +85,9 @@ class QueriesOperations:
     @distributed_trace_async
     async def get_boolean_false(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get false Boolean value on path.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -93,7 +95,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         bool_query = False
 
@@ -124,9 +126,10 @@ class QueriesOperations:
     @distributed_trace_async
     async def get_boolean_null(
         self,
-        bool_query: Optional[bool] = None,
-        **kwargs
-    ) -> None:
+        bool_query=None,  # type: Optional[bool]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get null Boolean value on query (query string should be absent).
 
         :param bool_query: null boolean value.
@@ -136,7 +139,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -167,8 +170,9 @@ class QueriesOperations:
     @distributed_trace_async
     async def get_int_one_million(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get '1000000' integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -176,7 +180,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         int_query = 1000000
 
@@ -207,8 +211,9 @@ class QueriesOperations:
     @distributed_trace_async
     async def get_int_negative_one_million(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get '-1000000' integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -216,7 +221,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         int_query = -1000000
 
@@ -247,9 +252,10 @@ class QueriesOperations:
     @distributed_trace_async
     async def get_int_null(
         self,
-        int_query: Optional[int] = None,
-        **kwargs
-    ) -> None:
+        int_query=None,  # type: Optional[int]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get null integer value (no query parameter).
 
         :param int_query: null integer value.
@@ -259,7 +265,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -290,8 +296,9 @@ class QueriesOperations:
     @distributed_trace_async
     async def get_ten_billion(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get '10000000000' 64 bit integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -299,7 +306,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         long_query = 10000000000
 
@@ -330,8 +337,9 @@ class QueriesOperations:
     @distributed_trace_async
     async def get_negative_ten_billion(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get '-10000000000' 64 bit integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -339,7 +347,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         long_query = -10000000000
 
@@ -370,9 +378,10 @@ class QueriesOperations:
     @distributed_trace_async
     async def get_long_null(
         self,
-        long_query: Optional[int] = None,
-        **kwargs
-    ) -> None:
+        long_query=None,  # type: Optional[int]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get 'null 64 bit integer value (no query param in uri).
 
         :param long_query: null 64 bit integer value.
@@ -382,7 +391,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -413,8 +422,9 @@ class QueriesOperations:
     @distributed_trace_async
     async def float_scientific_positive(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get '1.034E+20' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -422,7 +432,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         float_query = 103400000000000000000
 
@@ -453,8 +463,9 @@ class QueriesOperations:
     @distributed_trace_async
     async def float_scientific_negative(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get '-1.034E-20' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -462,7 +473,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         float_query = -1.034e-20
 
@@ -493,9 +504,10 @@ class QueriesOperations:
     @distributed_trace_async
     async def float_null(
         self,
-        float_query: Optional[float] = None,
-        **kwargs
-    ) -> None:
+        float_query=None,  # type: Optional[float]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get null numeric value (no query parameter).
 
         :param float_query: null numeric value.
@@ -505,7 +517,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -536,8 +548,9 @@ class QueriesOperations:
     @distributed_trace_async
     async def double_decimal_positive(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get '9999999.999' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -545,7 +558,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         double_query = 9999999.999
 
@@ -576,8 +589,9 @@ class QueriesOperations:
     @distributed_trace_async
     async def double_decimal_negative(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get '-9999999.999' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -585,7 +599,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         double_query = -9999999.999
 
@@ -616,9 +630,10 @@ class QueriesOperations:
     @distributed_trace_async
     async def double_null(
         self,
-        double_query: Optional[float] = None,
-        **kwargs
-    ) -> None:
+        double_query=None,  # type: Optional[float]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get null numeric value (no query parameter).
 
         :param double_query: null numeric value.
@@ -628,7 +643,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -659,8 +674,9 @@ class QueriesOperations:
     @distributed_trace_async
     async def string_unicode(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -668,7 +684,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         string_query = "啊齄丂狛狜隣郎隣兀﨩"
 
@@ -699,8 +715,9 @@ class QueriesOperations:
     @distributed_trace_async
     async def string_url_encoded(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -708,7 +725,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         string_query = "begin!*'();:@ &=+$,/?#[]end"
 
@@ -739,8 +756,9 @@ class QueriesOperations:
     @distributed_trace_async
     async def string_empty(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get ''.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -748,7 +766,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         string_query = ""
 
@@ -779,9 +797,10 @@ class QueriesOperations:
     @distributed_trace_async
     async def string_null(
         self,
-        string_query: Optional[str] = None,
-        **kwargs
-    ) -> None:
+        string_query=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get null (no query parameter in url).
 
         :param string_query: null string value.
@@ -791,7 +810,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -822,9 +841,10 @@ class QueriesOperations:
     @distributed_trace_async
     async def enum_valid(
         self,
-        enum_query: Optional[Union[str, "models.UriColor"]] = None,
-        **kwargs
-    ) -> None:
+        enum_query=None,  # type: Optional[Union[str, "models.UriColor"]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get using uri with query parameter 'green color'.
 
         :param enum_query: 'green color' enum value.
@@ -834,7 +854,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -865,9 +885,10 @@ class QueriesOperations:
     @distributed_trace_async
     async def enum_null(
         self,
-        enum_query: Optional[Union[str, "models.UriColor"]] = None,
-        **kwargs
-    ) -> None:
+        enum_query=None,  # type: Optional[Union[str, "models.UriColor"]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get null (no query parameter in url).
 
         :param enum_query: null string value.
@@ -877,7 +898,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -908,9 +929,10 @@ class QueriesOperations:
     @distributed_trace_async
     async def byte_multi_byte(
         self,
-        byte_query: Optional[bytearray] = None,
-        **kwargs
-    ) -> None:
+        byte_query=None,  # type: Optional[bytearray]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
         :param byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
@@ -920,7 +942,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -951,8 +973,9 @@ class QueriesOperations:
     @distributed_trace_async
     async def byte_empty(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get '' as byte array.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -960,7 +983,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         byte_query = bytearray("", encoding="utf-8")
 
@@ -991,9 +1014,10 @@ class QueriesOperations:
     @distributed_trace_async
     async def byte_null(
         self,
-        byte_query: Optional[bytearray] = None,
-        **kwargs
-    ) -> None:
+        byte_query=None,  # type: Optional[bytearray]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get null as byte array (no query parameters in uri).
 
         :param byte_query: null as byte array (no query parameters in uri).
@@ -1003,7 +1027,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1034,8 +1058,9 @@ class QueriesOperations:
     @distributed_trace_async
     async def date_valid(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get '2012-01-01' as date.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1043,7 +1068,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         date_query = "2012-01-01"
 
@@ -1074,9 +1099,10 @@ class QueriesOperations:
     @distributed_trace_async
     async def date_null(
         self,
-        date_query: Optional[datetime.date] = None,
-        **kwargs
-    ) -> None:
+        date_query=None,  # type: Optional[datetime.date]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get null as date - this should result in no query parameters in uri.
 
         :param date_query: null as date (no query parameters in uri).
@@ -1086,7 +1112,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1117,8 +1143,9 @@ class QueriesOperations:
     @distributed_trace_async
     async def date_time_valid(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get '2012-01-01T01:01:01Z' as date-time.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1126,7 +1153,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         date_time_query = "2012-01-01T01:01:01Z"
 
@@ -1157,9 +1184,10 @@ class QueriesOperations:
     @distributed_trace_async
     async def date_time_null(
         self,
-        date_time_query: Optional[datetime.datetime] = None,
-        **kwargs
-    ) -> None:
+        date_time_query=None,  # type: Optional[datetime.datetime]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get null as date-time, should result in no query parameters in uri.
 
         :param date_time_query: null as date-time (no query parameters).
@@ -1169,7 +1197,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1200,9 +1228,10 @@ class QueriesOperations:
     @distributed_trace_async
     async def array_string_csv_valid(
         self,
-        array_query: Optional[List[str]] = None,
-        **kwargs
-    ) -> None:
+        array_query=None,  # type: Optional[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
@@ -1213,7 +1242,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1244,9 +1273,10 @@ class QueriesOperations:
     @distributed_trace_async
     async def array_string_csv_null(
         self,
-        array_query: Optional[List[str]] = None,
-        **kwargs
-    ) -> None:
+        array_query=None,  # type: Optional[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get a null array of string using the csv-array format.
 
         :param array_query: a null array of string using the csv-array format.
@@ -1256,7 +1286,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1287,9 +1317,10 @@ class QueriesOperations:
     @distributed_trace_async
     async def array_string_csv_empty(
         self,
-        array_query: Optional[List[str]] = None,
-        **kwargs
-    ) -> None:
+        array_query=None,  # type: Optional[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get an empty array [] of string using the csv-array format.
 
         :param array_query: an empty array [] of string using the csv-array format.
@@ -1299,7 +1330,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1330,9 +1361,10 @@ class QueriesOperations:
     @distributed_trace_async
     async def array_string_ssv_valid(
         self,
-        array_query: Optional[List[str]] = None,
-        **kwargs
-    ) -> None:
+        array_query=None,  # type: Optional[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
@@ -1343,7 +1375,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1374,9 +1406,10 @@ class QueriesOperations:
     @distributed_trace_async
     async def array_string_tsv_valid(
         self,
-        array_query: Optional[List[str]] = None,
-        **kwargs
-    ) -> None:
+        array_query=None,  # type: Optional[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
@@ -1387,7 +1420,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1418,9 +1451,10 @@ class QueriesOperations:
     @distributed_trace_async
     async def array_string_pipes_valid(
         self,
-        array_query: Optional[List[str]] = None,
-        **kwargs
-    ) -> None:
+        array_query=None,  # type: Optional[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
@@ -1431,7 +1465,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

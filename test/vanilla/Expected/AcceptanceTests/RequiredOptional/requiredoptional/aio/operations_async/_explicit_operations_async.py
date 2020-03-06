@@ -34,7 +34,7 @@ class ExplicitOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,9 +43,10 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_required_integer_parameter(
         self,
-        body_parameter: int,
-        **kwargs
-    ) -> None:
+        body_parameter,  # type: int
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test explicitly required integer. Please put null and the client library should throw before the request is sent.
 
         :param body_parameter:
@@ -55,7 +56,7 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -89,9 +90,10 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_optional_integer_parameter(
         self,
-        body_parameter: Optional[int] = None,
-        **kwargs
-    ) -> None:
+        body_parameter=None,  # type: Optional[int]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test explicitly optional integer. Please put null.
 
         :param body_parameter:
@@ -101,7 +103,7 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -138,9 +140,10 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_required_integer_property(
         self,
-        value: int,
-        **kwargs
-    ) -> None:
+        value,  # type: int
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the client library should throw before the request is sent.
 
         :param value:
@@ -150,7 +153,7 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         _body_parameter = models.IntWrapper(value=value)
@@ -186,9 +189,10 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_optional_integer_property(
         self,
-        value: Optional[int] = None,
-        **kwargs
-    ) -> None:
+        value=None,  # type: Optional[int]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
 
         :param value:
@@ -198,7 +202,7 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         _body_parameter = models.IntOptionalWrapper(value=value)
@@ -237,9 +241,10 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_required_integer_header(
         self,
-        header_parameter: int,
-        **kwargs
-    ) -> None:
+        header_parameter,  # type: int
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test explicitly required integer. Please put a header 'headerParameter' => null and the client library should throw before the request is sent.
 
         :param header_parameter:
@@ -249,7 +254,7 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -279,9 +284,10 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_optional_integer_header(
         self,
-        header_parameter: Optional[int] = None,
-        **kwargs
-    ) -> None:
+        header_parameter=None,  # type: Optional[int]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
         :param header_parameter:
@@ -291,7 +297,7 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -322,9 +328,10 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_required_string_parameter(
         self,
-        body_parameter: str,
-        **kwargs
-    ) -> None:
+        body_parameter,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test explicitly required string. Please put null and the client library should throw before the request is sent.
 
         :param body_parameter:
@@ -334,7 +341,7 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -368,9 +375,10 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_optional_string_parameter(
         self,
-        body_parameter: Optional[str] = None,
-        **kwargs
-    ) -> None:
+        body_parameter=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test explicitly optional string. Please put null.
 
         :param body_parameter:
@@ -380,7 +388,7 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -417,9 +425,10 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_required_string_property(
         self,
-        value: str,
-        **kwargs
-    ) -> None:
+        value,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the client library should throw before the request is sent.
 
         :param value:
@@ -429,7 +438,7 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         _body_parameter = models.StringWrapper(value=value)
@@ -465,9 +474,10 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_optional_string_property(
         self,
-        value: Optional[str] = None,
-        **kwargs
-    ) -> None:
+        value=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
 
         :param value:
@@ -477,7 +487,7 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         _body_parameter = models.StringOptionalWrapper(value=value)
@@ -516,9 +526,10 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_required_string_header(
         self,
-        header_parameter: str,
-        **kwargs
-    ) -> None:
+        header_parameter,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test explicitly required string. Please put a header 'headerParameter' => null and the client library should throw before the request is sent.
 
         :param header_parameter:
@@ -528,7 +539,7 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -558,9 +569,10 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_optional_string_header(
         self,
-        body_parameter: Optional[str] = None,
-        **kwargs
-    ) -> None:
+        body_parameter=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test explicitly optional string. Please put a header 'headerParameter' => null.
 
         :param body_parameter:
@@ -570,7 +582,7 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -601,9 +613,10 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_required_class_parameter(
         self,
-        body_parameter: "models.Product",
-        **kwargs
-    ) -> None:
+        body_parameter,  # type: "models.Product"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test explicitly required complex object. Please put null and the client library should throw before the request is sent.
 
         :param body_parameter:
@@ -613,7 +626,7 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -647,9 +660,10 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_optional_class_parameter(
         self,
-        body_parameter: Optional["models.Product"] = None,
-        **kwargs
-    ) -> None:
+        body_parameter=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test explicitly optional complex object. Please put null.
 
         :param body_parameter:
@@ -659,7 +673,7 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -696,9 +710,10 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_required_class_property(
         self,
-        value: "models.Product",
-        **kwargs
-    ) -> None:
+        value,  # type: "models.Product"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null and the client library should throw before the request is sent.
 
         :param value:
@@ -708,7 +723,7 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         _body_parameter = models.ClassWrapper(value=value)
@@ -744,9 +759,10 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_optional_class_property(
         self,
-        value: Optional["models.Product"] = None,
-        **kwargs
-    ) -> None:
+        value=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
 
         :param value:
@@ -756,7 +772,7 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         _body_parameter = models.ClassOptionalWrapper(value=value)
@@ -795,9 +811,10 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_required_array_parameter(
         self,
-        body_parameter: List[str],
-        **kwargs
-    ) -> None:
+        body_parameter,  # type: List[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test explicitly required array. Please put null and the client library should throw before the request is sent.
 
         :param body_parameter:
@@ -807,7 +824,7 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -841,9 +858,10 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_optional_array_parameter(
         self,
-        body_parameter: Optional[List[str]] = None,
-        **kwargs
-    ) -> None:
+        body_parameter=None,  # type: Optional[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test explicitly optional array. Please put null.
 
         :param body_parameter:
@@ -853,7 +871,7 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -890,9 +908,10 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_required_array_property(
         self,
-        value: List[str],
-        **kwargs
-    ) -> None:
+        value,  # type: List[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the client library should throw before the request is sent.
 
         :param value:
@@ -902,7 +921,7 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         _body_parameter = models.ArrayWrapper(value=value)
@@ -938,9 +957,10 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_optional_array_property(
         self,
-        value: Optional[List[str]] = None,
-        **kwargs
-    ) -> None:
+        value=None,  # type: Optional[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
         :param value:
@@ -950,7 +970,7 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         _body_parameter = models.ArrayOptionalWrapper(value=value)
@@ -989,9 +1009,10 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_required_array_header(
         self,
-        header_parameter: List[str],
-        **kwargs
-    ) -> None:
+        header_parameter,  # type: List[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test explicitly required array. Please put a header 'headerParameter' => null and the client library should throw before the request is sent.
 
         :param header_parameter:
@@ -1001,7 +1022,7 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1031,9 +1052,10 @@ class ExplicitOperations:
     @distributed_trace_async
     async def post_optional_array_header(
         self,
-        header_parameter: Optional[List[str]] = None,
-        **kwargs
-    ) -> None:
+        header_parameter=None,  # type: Optional[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
         :param header_parameter:
@@ -1043,7 +1065,7 @@ class ExplicitOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

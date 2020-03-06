@@ -34,7 +34,7 @@ class PathItemsOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,12 +43,13 @@ class PathItemsOperations:
     @distributed_trace_async
     async def get_all_with_values(
         self,
-        path_item_string_path: str,
-        local_string_path: str,
-        path_item_string_query: Optional[str] = None,
-        local_string_query: Optional[str] = None,
-        **kwargs
-    ) -> None:
+        path_item_string_path,  # type: str
+        local_string_path,  # type: str
+        path_item_string_query=None,  # type: Optional[str]
+        local_string_query=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
@@ -65,7 +66,7 @@ class PathItemsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -106,12 +107,13 @@ class PathItemsOperations:
     @distributed_trace_async
     async def get_global_query_null(
         self,
-        path_item_string_path: str,
-        local_string_path: str,
-        path_item_string_query: Optional[str] = None,
-        local_string_query: Optional[str] = None,
-        **kwargs
-    ) -> None:
+        path_item_string_path,  # type: str
+        local_string_path,  # type: str
+        path_item_string_query=None,  # type: Optional[str]
+        local_string_query=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
@@ -128,7 +130,7 @@ class PathItemsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -169,12 +171,13 @@ class PathItemsOperations:
     @distributed_trace_async
     async def get_global_and_local_query_null(
         self,
-        path_item_string_path: str,
-        local_string_path: str,
-        path_item_string_query: Optional[str] = None,
-        local_string_query: Optional[str] = None,
-        **kwargs
-    ) -> None:
+        path_item_string_path,  # type: str
+        local_string_path,  # type: str
+        path_item_string_query=None,  # type: Optional[str]
+        local_string_query=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
@@ -191,7 +194,7 @@ class PathItemsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -232,12 +235,13 @@ class PathItemsOperations:
     @distributed_trace_async
     async def get_local_path_item_query_null(
         self,
-        path_item_string_path: str,
-        local_string_path: str,
-        path_item_string_query: Optional[str] = None,
-        local_string_query: Optional[str] = None,
-        **kwargs
-    ) -> None:
+        path_item_string_path,  # type: str
+        local_string_path,  # type: str
+        path_item_string_query=None,  # type: Optional[str]
+        local_string_query=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery=null, localStringQuery=null.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
@@ -253,7 +257,7 @@ class PathItemsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

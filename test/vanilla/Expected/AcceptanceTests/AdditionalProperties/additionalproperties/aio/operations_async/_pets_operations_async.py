@@ -34,7 +34,7 @@ class PetsOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,9 +43,10 @@ class PetsOperations:
     @distributed_trace_async
     async def create_ap_true(
         self,
-        create_parameters: "models.PetAPTrue",
-        **kwargs
-    ) -> "models.PetAPTrue":
+        create_parameters,  # type: "models.PetAPTrue"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.PetAPTrue"
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -55,7 +56,7 @@ class PetsOperations:
         :rtype: ~additionalproperties.models.PetAPTrue
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.PetAPTrue"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPTrue"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -93,9 +94,10 @@ class PetsOperations:
     @distributed_trace_async
     async def create_cat_ap_true(
         self,
-        create_parameters: "models.CatAPTrue",
-        **kwargs
-    ) -> "models.CatAPTrue":
+        create_parameters,  # type: "models.CatAPTrue"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.CatAPTrue"
         """Create a CatAPTrue which contains more properties than what is defined.
 
         :param create_parameters:
@@ -105,7 +107,7 @@ class PetsOperations:
         :rtype: ~additionalproperties.models.CatAPTrue
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.CatAPTrue"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.CatAPTrue"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -143,9 +145,10 @@ class PetsOperations:
     @distributed_trace_async
     async def create_ap_object(
         self,
-        create_parameters: "models.PetAPObject",
-        **kwargs
-    ) -> "models.PetAPObject":
+        create_parameters,  # type: "models.PetAPObject"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.PetAPObject"
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -155,7 +158,7 @@ class PetsOperations:
         :rtype: ~additionalproperties.models.PetAPObject
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.PetAPObject"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPObject"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -193,9 +196,10 @@ class PetsOperations:
     @distributed_trace_async
     async def create_ap_string(
         self,
-        create_parameters: "models.PetAPString",
-        **kwargs
-    ) -> "models.PetAPString":
+        create_parameters,  # type: "models.PetAPString"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.PetAPString"
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -205,7 +209,7 @@ class PetsOperations:
         :rtype: ~additionalproperties.models.PetAPString
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.PetAPString"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPString"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -243,9 +247,10 @@ class PetsOperations:
     @distributed_trace_async
     async def create_ap_in_properties(
         self,
-        create_parameters: "models.PetAPInProperties",
-        **kwargs
-    ) -> "models.PetAPInProperties":
+        create_parameters,  # type: "models.PetAPInProperties"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.PetAPInProperties"
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -255,7 +260,7 @@ class PetsOperations:
         :rtype: ~additionalproperties.models.PetAPInProperties
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.PetAPInProperties"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPInProperties"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -293,9 +298,10 @@ class PetsOperations:
     @distributed_trace_async
     async def create_ap_in_properties_with_ap_string(
         self,
-        create_parameters: "models.PetAPInPropertiesWithAPString",
-        **kwargs
-    ) -> "models.PetAPInPropertiesWithAPString":
+        create_parameters,  # type: "models.PetAPInPropertiesWithAPString"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.PetAPInPropertiesWithAPString"
         """Create a Pet which contains more properties than what is defined.
 
         :param create_parameters:
@@ -305,7 +311,7 @@ class PetsOperations:
         :rtype: ~additionalproperties.models.PetAPInPropertiesWithAPString
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.PetAPInPropertiesWithAPString"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPInPropertiesWithAPString"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

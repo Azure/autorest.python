@@ -23,9 +23,10 @@ class AutoRestReportServiceOperationsMixin:
     @distributed_trace_async
     async def get_report(
         self,
-        qualifier: Optional[str] = None,
-        **kwargs
-    ) -> Dict[str, int]:
+        qualifier=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> Dict[str, int]
         """Get test coverage report.
 
         :param qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in
@@ -37,7 +38,7 @@ class AutoRestReportServiceOperationsMixin:
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[Dict[str, int]] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -72,9 +73,10 @@ class AutoRestReportServiceOperationsMixin:
     @distributed_trace_async
     async def get_optional_report(
         self,
-        qualifier: Optional[str] = None,
-        **kwargs
-    ) -> Dict[str, int]:
+        qualifier=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> Dict[str, int]
         """Get optional test coverage report.
 
         :param qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in
@@ -86,7 +88,7 @@ class AutoRestReportServiceOperationsMixin:
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[Dict[str, int]] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

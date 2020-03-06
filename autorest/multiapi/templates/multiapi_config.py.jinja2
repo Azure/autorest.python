@@ -12,7 +12,7 @@ def __init__(
         {% endif %}
     {% endfor %}
     **kwargs  # type: Any
-){{" -> None" if async_mode else "" }}:{% endmacro %}
+):{% endmacro %}
 {# actual template starts here #}
 # coding=utf-8
 # --------------------------------------------------------------------------
@@ -73,7 +73,7 @@ class {{ client_name }}Configuration(Configuration):
     def _configure(
         self,
         **kwargs{{": Any" if async_mode else "  # type: Any"}}
-    ){{ " -> None" if async_mode else "" }}:
+    ):
         {% if not async_mode %}
         # type: (...) -> None
         {% endif %}

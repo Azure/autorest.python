@@ -34,7 +34,7 @@ class ApiVersionDefaultOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,8 +43,9 @@ class ApiVersionDefaultOperations:
     @distributed_trace_async
     async def get_method_global_valid(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """GET method with api-version modeled in global settings.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -52,7 +53,7 @@ class ApiVersionDefaultOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         api_version = "2015-07-01-preview"
 
@@ -83,8 +84,9 @@ class ApiVersionDefaultOperations:
     @distributed_trace_async
     async def get_method_global_not_provided_valid(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """GET method with api-version modeled in global settings.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -92,7 +94,7 @@ class ApiVersionDefaultOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         api_version = "2015-07-01-preview"
 
@@ -123,8 +125,9 @@ class ApiVersionDefaultOperations:
     @distributed_trace_async
     async def get_path_global_valid(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """GET method with api-version modeled in global settings.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -132,7 +135,7 @@ class ApiVersionDefaultOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         api_version = "2015-07-01-preview"
 
@@ -163,8 +166,9 @@ class ApiVersionDefaultOperations:
     @distributed_trace_async
     async def get_swagger_global_valid(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """GET method with api-version modeled in global settings.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -172,7 +176,7 @@ class ApiVersionDefaultOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         api_version = "2015-07-01-preview"
 

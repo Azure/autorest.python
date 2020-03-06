@@ -34,7 +34,7 @@ class OdataOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,11 +43,12 @@ class OdataOperations:
     @distributed_trace_async
     async def get_with_filter(
         self,
-        filter: Optional[str] = None,
-        top: Optional[int] = None,
-        orderby: Optional[str] = None,
-        **kwargs
-    ) -> None:
+        filter=None,  # type: Optional[str]
+        top=None,  # type: Optional[int]
+        orderby=None,  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'.
 
         :param filter: The filter parameter with value '$filter=id gt 5 and name eq 'foo''.
@@ -61,7 +62,7 @@ class OdataOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

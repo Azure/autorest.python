@@ -10,5 +10,5 @@ if operation.responses | selectattr('has_body') | first
 else "None" }}{% endmacro %}
 {% macro async_return_type_annotation(operation) %}
 {{ " -> " + return_type_annotation(operation) }}{% endmacro %}
-{% macro sync_return_type_annotation(operation) %}
+{%- macro commented_return_type_annotation(operation) -%}
 {{ "# type: (...) -> " + return_type_annotation(operation) }}{% endmacro %}

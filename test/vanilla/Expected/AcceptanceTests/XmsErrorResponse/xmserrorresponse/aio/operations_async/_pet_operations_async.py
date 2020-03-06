@@ -34,7 +34,7 @@ class PetOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,9 +43,10 @@ class PetOperations:
     @distributed_trace_async
     async def get_pet_by_id(
         self,
-        pet_id: str,
-        **kwargs
-    ) -> "models.Pet":
+        pet_id,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Pet"
         """Gets pets by id.
 
         :param pet_id: pet id.
@@ -55,7 +56,7 @@ class PetOperations:
         :rtype: ~xmserrorresponse.models.Pet or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.Pet"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Pet"]
         error_map = {
             400: HttpResponseError,
             404: lambda response: models.NotFoundErrorBaseException.from_response(response, self._deserialize),
@@ -99,9 +100,10 @@ class PetOperations:
     @distributed_trace_async
     async def do_something(
         self,
-        what_action: str,
-        **kwargs
-    ) -> "models.PetAction":
+        what_action,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.PetAction"
         """Asks pet to do something.
 
         :param what_action: what action the pet should do.
@@ -111,7 +113,7 @@ class PetOperations:
         :rtype: ~xmserrorresponse.models.PetAction
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.PetAction"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAction"]
         error_map = {
             500: lambda response: models.PetActionErrorException.from_response(response, self._deserialize),
         }

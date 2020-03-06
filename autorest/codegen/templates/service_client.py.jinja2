@@ -7,12 +7,12 @@ def __init__(
     self,
     {% if async_mode %}
         {% for param_signature in code_model.global_parameters.async_method_signature %}
-    {{ param_signature }},
+    {{ param_signature }}
         {% endfor %}
         {% if code_model.base_url %}
-    base_url: Optional[str] = None,
+    base_url=None,  # type: Optional[str]
         {% endif %}
-    **kwargs: Any
+    **kwargs  # type: Any
     {% else %}
         {% for param_signature in code_model.global_parameters.sync_method_signature %}
     {{ param_signature }}
@@ -22,7 +22,7 @@ def __init__(
         {% endif %}
     **kwargs  # type: Any
     {% endif %}
-){{" -> None" if async_mode else "" }}:{% endmacro %}
+):{% endmacro %}
 {% set config_signature = code_model.global_parameters.method|join(', ', attribute='serialized_name') ~ (", " if code_model.global_parameters.method else "") %}
 {% set has_mixin_operation_group = code_model.operation_groups|selectattr("is_empty_operation_group")|first %}
 {% macro mixin_operation_group_name() %}{{ code_model.class_name }}OperationsMixin{% endmacro %}
@@ -63,9 +63,7 @@ class {{ code_model.class_name }}({{ base_class }}):
     """
 
     {{ method_signature()|indent }}
-        {% if not async_mode %}
         # type: (...) -> None
-        {% endif %}
         {% if not code_model.base_url %}
         base_url = {{ keywords.escape_str(code_model.custom_base_url) }}
         {% else %}
@@ -91,21 +89,15 @@ class {{ code_model.class_name }}({{ base_class }}):
             self._client, self._config, self._serialize, self._deserialize)
         {% endfor %}
 
-    {{ keywords.def }} close(self){{ " -> None" if async_mode else "" }}:
-        {% if not async_mode %}
+    {{ keywords.def }} close(self):
         # type: () -> None
-        {% endif %}
         {{ keywords.await }}self._client.close()
 
-    {{ keywords.def }} __{{ keywords.async_prefix }}enter__(self){{ (" -> \"" + code_model.class_name + "\"") if async_mode else "" }}:
-        {% if not async_mode %}
+    {{ keywords.def }} __{{ keywords.async_prefix }}enter__(self):
         # type: () -> {{ code_model.class_name }}
-        {% endif %}
         {{ keywords.await }}self._client.__{{ keywords.async_prefix }}enter__()
         return self
 
-    {{ keywords.def }} __{{ keywords.async_prefix }}exit__(self, *exc_details){{ " -> None" if async_mode else "" }}:
-        {% if not async_mode %}
+    {{ keywords.def }} __{{ keywords.async_prefix }}exit__(self, *exc_details):
         # type: (Any) -> None
-        {% endif %}
         {{ keywords.await }}self._client.__{{ keywords.async_prefix }}exit__(*exc_details)

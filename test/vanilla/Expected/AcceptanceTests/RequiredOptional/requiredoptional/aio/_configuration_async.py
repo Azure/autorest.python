@@ -30,11 +30,12 @@ class AutoRestRequiredOptionalTestServiceConfiguration(Configuration):
 
     def __init__(
         self,
-        required_global_path: str,
-        required_global_query: str,
-        optional_global_query: Optional[int] = None,
-        **kwargs: Any
-    ) -> None:
+        required_global_path,  # type: str
+        required_global_query,  # type: str
+        optional_global_query=None,  # type: Optional[int]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         if required_global_path is None:
             raise ValueError("Parameter 'required_global_path' must not be None.")
         if required_global_query is None:
@@ -49,8 +50,9 @@ class AutoRestRequiredOptionalTestServiceConfiguration(Configuration):
 
     def _configure(
         self,
-        **kwargs: Any
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)
         self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)
         self.proxy_policy = kwargs.get('proxy_policy') or policies.ProxyPolicy(**kwargs)

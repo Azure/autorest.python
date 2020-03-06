@@ -68,8 +68,8 @@ class Error(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        status: Optional[int] = None,
-        message: Optional[str] = None,
+        status=None,  # type: Optional[int]
+        message=None,  # type: Optional[str]
         **kwargs
     ):
         super(Error, self).__init__(**kwargs)
@@ -97,7 +97,7 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Mod
     def __init__(
         self,
         *,
-        foo_client_request_id: str,
+        foo_client_request_id,  # type: str
         **kwargs
     ):
         super(HeaderCustomNamedRequestIdParamGroupingParameters, self).__init__(**kwargs)
@@ -121,8 +121,8 @@ class OdataFilter(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        id: Optional[int] = None,
-        name: Optional[str] = None,
+        id=None,  # type: Optional[int]
+        name=None,  # type: Optional[str]
         **kwargs
     ):
         super(OdataFilter, self).__init__(**kwargs)

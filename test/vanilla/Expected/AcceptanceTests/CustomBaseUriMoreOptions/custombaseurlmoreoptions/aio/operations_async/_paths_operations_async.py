@@ -34,7 +34,7 @@ class PathsOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,12 +43,13 @@ class PathsOperations:
     @distributed_trace_async
     async def get_empty(
         self,
-        vault: str,
-        secret: str,
-        key_name: str,
-        key_version: Optional[str] = "v1",
-        **kwargs
-    ) -> None:
+        vault,  # type: str
+        secret,  # type: str
+        key_name,  # type: str
+        key_version="v1",  # type: Optional[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get a 200 to test a valid base uri.
 
         :param vault: The vault name, e.g. https://myvault.
@@ -64,7 +65,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

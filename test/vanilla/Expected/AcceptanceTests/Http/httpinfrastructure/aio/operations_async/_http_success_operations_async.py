@@ -34,7 +34,7 @@ class HttpSuccessOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,8 +43,9 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def head200(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Return 200 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -52,7 +53,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -81,8 +82,9 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def get200(
         self,
-        **kwargs
-    ) -> bool:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> bool
         """Get 200 success.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -90,7 +92,7 @@ class HttpSuccessOperations:
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bool] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -123,8 +125,9 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def options200(
         self,
-        **kwargs
-    ) -> bool:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> bool
         """Options 200 success.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -132,7 +135,7 @@ class HttpSuccessOperations:
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bool] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -165,8 +168,9 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def put200(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put boolean value true returning 200 success.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -174,7 +178,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
@@ -212,8 +216,9 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def patch200(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Patch true Boolean value in request returning 200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -221,7 +226,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
@@ -259,8 +264,9 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def post200(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Post bollean value true in request that returns a 200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -268,7 +274,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
@@ -306,8 +312,9 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def delete200(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Delete simple boolean value true returns 200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -315,7 +322,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
@@ -353,8 +360,9 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def put201(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put true Boolean value in request returns 201.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -362,7 +370,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
@@ -400,8 +408,9 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def post201(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Post true Boolean value in request returns 201 (Created).
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -409,7 +418,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
@@ -447,8 +456,9 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def put202(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put true Boolean value in request returns 202 (Accepted).
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -456,7 +466,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
@@ -494,8 +504,9 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def patch202(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Patch true Boolean value in request returns 202.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -503,7 +514,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
@@ -541,8 +552,9 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def post202(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Post true Boolean value in request returns 202 (Accepted).
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -550,7 +562,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
@@ -588,8 +600,9 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def delete202(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Delete true Boolean value in request returns 202 (accepted).
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -597,7 +610,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
@@ -635,8 +648,9 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def head204(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Return 204 status code if successful.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -644,7 +658,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -673,8 +687,9 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def put204(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put true Boolean value in request returns 204 (no content).
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -682,7 +697,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
@@ -720,8 +735,9 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def patch204(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Patch true Boolean value in request returns 204 (no content).
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -729,7 +745,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
@@ -767,8 +783,9 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def post204(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Post true Boolean value in request returns 204 (no content).
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -776,7 +793,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
@@ -814,8 +831,9 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def delete204(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Delete true Boolean value in request returns 204 (no content).
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -823,7 +841,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
@@ -861,8 +879,9 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def head404(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Return 404 status code.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -870,7 +889,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

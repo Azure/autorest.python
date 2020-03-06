@@ -31,7 +31,7 @@ class AvailabilitySetUpdateParameters(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        tags: Dict[str, str],
+        tags,  # type: Dict[str, str]
         **kwargs
     ):
         super(AvailabilitySetUpdateParameters, self).__init__(**kwargs)

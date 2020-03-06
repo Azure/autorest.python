@@ -26,9 +26,10 @@ class AutoRestParameterizedHostTestClientConfiguration(Configuration):
 
     def __init__(
         self,
-        host: str = "host",
-        **kwargs: Any
-    ) -> None:
+        host="host",  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         if host is None:
             raise ValueError("Parameter 'host' must not be None.")
         super(AutoRestParameterizedHostTestClientConfiguration, self).__init__(**kwargs)
@@ -39,8 +40,9 @@ class AutoRestParameterizedHostTestClientConfiguration(Configuration):
 
     def _configure(
         self,
-        **kwargs: Any
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)
         self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)
         self.proxy_policy = kwargs.get('proxy_policy') or policies.ProxyPolicy(**kwargs)

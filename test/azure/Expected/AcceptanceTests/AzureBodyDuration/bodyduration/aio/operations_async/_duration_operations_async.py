@@ -35,7 +35,7 @@ class DurationOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -44,8 +44,9 @@ class DurationOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        **kwargs
-    ) -> datetime.timedelta:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.timedelta
         """Get null duration value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -53,7 +54,7 @@ class DurationOperations:
         :rtype: ~datetime.timedelta
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.timedelta] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.timedelta]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -86,9 +87,10 @@ class DurationOperations:
     @distributed_trace_async
     async def put_positive_duration(
         self,
-        duration_body: datetime.timedelta,
-        **kwargs
-    ) -> None:
+        duration_body,  # type: datetime.timedelta
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put a positive duration value.
 
         :param duration_body:
@@ -98,7 +100,7 @@ class DurationOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -132,8 +134,9 @@ class DurationOperations:
     @distributed_trace_async
     async def get_positive_duration(
         self,
-        **kwargs
-    ) -> datetime.timedelta:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.timedelta
         """Get a positive duration value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -141,7 +144,7 @@ class DurationOperations:
         :rtype: ~datetime.timedelta
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.timedelta] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.timedelta]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -174,8 +177,9 @@ class DurationOperations:
     @distributed_trace_async
     async def get_invalid(
         self,
-        **kwargs
-    ) -> datetime.timedelta:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.timedelta
         """Get an invalid duration value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -183,7 +187,7 @@ class DurationOperations:
         :rtype: ~datetime.timedelta
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.timedelta] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.timedelta]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

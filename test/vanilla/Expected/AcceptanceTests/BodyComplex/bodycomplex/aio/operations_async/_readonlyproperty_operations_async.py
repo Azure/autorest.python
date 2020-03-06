@@ -34,7 +34,7 @@ class ReadonlypropertyOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,8 +43,9 @@ class ReadonlypropertyOperations:
     @distributed_trace_async
     async def get_valid(
         self,
-        **kwargs
-    ) -> "models.ReadonlyObj":
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.ReadonlyObj"
         """Get complex types that have readonly properties.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -52,7 +53,7 @@ class ReadonlypropertyOperations:
         :rtype: ~bodycomplex.models.ReadonlyObj
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ReadonlyObj"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ReadonlyObj"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -85,9 +86,10 @@ class ReadonlypropertyOperations:
     @distributed_trace_async
     async def put_valid(
         self,
-        size: Optional[int] = None,
-        **kwargs
-    ) -> None:
+        size=None,  # type: Optional[int]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put complex types that have readonly properties.
 
         :param size:
@@ -97,7 +99,7 @@ class ReadonlypropertyOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         _complex_body = models.ReadonlyObj(size=size)

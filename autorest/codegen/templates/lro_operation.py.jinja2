@@ -23,8 +23,8 @@ response_headers = {
 {{ trace_decorator }}
 {% endif %}
 {{ op_tools.method_signature(operation, operation_name, async_mode=async_mode, coroutine=async_mode) }}
-{%- if not async_mode %}
-    {{ keywords.sync_return_type_annotation(operation) }}
+{%- if True %}
+    {{ keywords.commented_return_type_annotation(operation) }}
 {% endif %}
     """{{operation.description }}
     {% if operation.summary %}
@@ -60,7 +60,7 @@ response_headers = {
     """
     {% if async_mode %}
     polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})
-    cls: ClsType[{{ keywords.return_type_annotation(operation) }}] = kwargs.pop('cls', None)
+    cls = kwargs.pop('cls', None)  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
     {% else %}
     polling = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})  # type: Union[bool, PollingMethod]
     cls = kwargs.pop('cls', None)  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]

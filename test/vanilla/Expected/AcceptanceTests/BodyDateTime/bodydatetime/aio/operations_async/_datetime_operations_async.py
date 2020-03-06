@@ -35,7 +35,7 @@ class DatetimeOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -44,8 +44,9 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        **kwargs
-    ) -> datetime.datetime:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.datetime
         """Get null datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -53,7 +54,7 @@ class DatetimeOperations:
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.datetime] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -86,8 +87,9 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_invalid(
         self,
-        **kwargs
-    ) -> datetime.datetime:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.datetime
         """Get invalid datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -95,7 +97,7 @@ class DatetimeOperations:
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.datetime] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -128,8 +130,9 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_overflow(
         self,
-        **kwargs
-    ) -> datetime.datetime:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.datetime
         """Get overflow datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -137,7 +140,7 @@ class DatetimeOperations:
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.datetime] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -170,8 +173,9 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_underflow(
         self,
-        **kwargs
-    ) -> datetime.datetime:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.datetime
         """Get underflow datetime value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -179,7 +183,7 @@ class DatetimeOperations:
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.datetime] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -212,9 +216,10 @@ class DatetimeOperations:
     @distributed_trace_async
     async def put_utc_max_date_time(
         self,
-        datetime_body: datetime.datetime,
-        **kwargs
-    ) -> None:
+        datetime_body,  # type: datetime.datetime
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put max datetime value 9999-12-31T23:59:59.999Z.
 
         :param datetime_body:
@@ -224,7 +229,7 @@ class DatetimeOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -258,9 +263,10 @@ class DatetimeOperations:
     @distributed_trace_async
     async def put_utc_max_date_time7_digits(
         self,
-        datetime_body: datetime.datetime,
-        **kwargs
-    ) -> None:
+        datetime_body,  # type: datetime.datetime
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put max datetime value 9999-12-31T23:59:59.9999999Z.
 
         This is against the recommendation that asks for 3 digits, but allow to test what happens in
@@ -273,7 +279,7 @@ class DatetimeOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -307,8 +313,9 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_utc_lowercase_max_date_time(
         self,
-        **kwargs
-    ) -> datetime.datetime:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.datetime
         """Get max datetime value 9999-12-31t23:59:59.999z.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -316,7 +323,7 @@ class DatetimeOperations:
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.datetime] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -349,8 +356,9 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_utc_uppercase_max_date_time(
         self,
-        **kwargs
-    ) -> datetime.datetime:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.datetime
         """Get max datetime value 9999-12-31T23:59:59.999Z.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -358,7 +366,7 @@ class DatetimeOperations:
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.datetime] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -391,8 +399,9 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_utc_uppercase_max_date_time7_digits(
         self,
-        **kwargs
-    ) -> datetime.datetime:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.datetime
         """Get max datetime value 9999-12-31T23:59:59.9999999Z.
 
         This is against the recommendation that asks for 3 digits, but allow to test what happens in
@@ -403,7 +412,7 @@ class DatetimeOperations:
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.datetime] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -436,9 +445,10 @@ class DatetimeOperations:
     @distributed_trace_async
     async def put_local_positive_offset_max_date_time(
         self,
-        datetime_body: datetime.datetime,
-        **kwargs
-    ) -> None:
+        datetime_body,  # type: datetime.datetime
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999+14:00.
 
         :param datetime_body:
@@ -448,7 +458,7 @@ class DatetimeOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -482,8 +492,9 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_local_positive_offset_lowercase_max_date_time(
         self,
-        **kwargs
-    ) -> datetime.datetime:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.datetime
         """Get max datetime value with positive num offset 9999-12-31t23:59:59.999+14:00.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -491,7 +502,7 @@ class DatetimeOperations:
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.datetime] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -524,8 +535,9 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_local_positive_offset_uppercase_max_date_time(
         self,
-        **kwargs
-    ) -> datetime.datetime:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.datetime
         """Get max datetime value with positive num offset 9999-12-31T23:59:59.999+14:00.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -533,7 +545,7 @@ class DatetimeOperations:
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.datetime] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -566,9 +578,10 @@ class DatetimeOperations:
     @distributed_trace_async
     async def put_local_negative_offset_max_date_time(
         self,
-        datetime_body: datetime.datetime,
-        **kwargs
-    ) -> None:
+        datetime_body,  # type: datetime.datetime
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999-14:00.
 
         :param datetime_body:
@@ -578,7 +591,7 @@ class DatetimeOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -612,8 +625,9 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_local_negative_offset_uppercase_max_date_time(
         self,
-        **kwargs
-    ) -> datetime.datetime:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.datetime
         """Get max datetime value with positive num offset 9999-12-31T23:59:59.999-14:00.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -621,7 +635,7 @@ class DatetimeOperations:
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.datetime] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -654,8 +668,9 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_local_negative_offset_lowercase_max_date_time(
         self,
-        **kwargs
-    ) -> datetime.datetime:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.datetime
         """Get max datetime value with positive num offset 9999-12-31t23:59:59.999-14:00.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -663,7 +678,7 @@ class DatetimeOperations:
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.datetime] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -696,9 +711,10 @@ class DatetimeOperations:
     @distributed_trace_async
     async def put_utc_min_date_time(
         self,
-        datetime_body: datetime.datetime,
-        **kwargs
-    ) -> None:
+        datetime_body,  # type: datetime.datetime
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put min datetime value 0001-01-01T00:00:00Z.
 
         :param datetime_body:
@@ -708,7 +724,7 @@ class DatetimeOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -742,8 +758,9 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_utc_min_date_time(
         self,
-        **kwargs
-    ) -> datetime.datetime:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.datetime
         """Get min datetime value 0001-01-01T00:00:00Z.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -751,7 +768,7 @@ class DatetimeOperations:
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.datetime] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -784,9 +801,10 @@ class DatetimeOperations:
     @distributed_trace_async
     async def put_local_positive_offset_min_date_time(
         self,
-        datetime_body: datetime.datetime,
-        **kwargs
-    ) -> None:
+        datetime_body,  # type: datetime.datetime
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put min datetime value 0001-01-01T00:00:00+14:00.
 
         :param datetime_body:
@@ -796,7 +814,7 @@ class DatetimeOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -830,8 +848,9 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_local_positive_offset_min_date_time(
         self,
-        **kwargs
-    ) -> datetime.datetime:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.datetime
         """Get min datetime value 0001-01-01T00:00:00+14:00.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -839,7 +858,7 @@ class DatetimeOperations:
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.datetime] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -872,9 +891,10 @@ class DatetimeOperations:
     @distributed_trace_async
     async def put_local_negative_offset_min_date_time(
         self,
-        datetime_body: datetime.datetime,
-        **kwargs
-    ) -> None:
+        datetime_body,  # type: datetime.datetime
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put min datetime value 0001-01-01T00:00:00-14:00.
 
         :param datetime_body:
@@ -884,7 +904,7 @@ class DatetimeOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -918,8 +938,9 @@ class DatetimeOperations:
     @distributed_trace_async
     async def get_local_negative_offset_min_date_time(
         self,
-        **kwargs
-    ) -> datetime.datetime:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.datetime
         """Get min datetime value 0001-01-01T00:00:00-14:00.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -927,7 +948,7 @@ class DatetimeOperations:
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.datetime] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

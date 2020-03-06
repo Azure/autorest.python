@@ -34,7 +34,7 @@ class NumberOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,8 +43,9 @@ class NumberOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        **kwargs
-    ) -> float:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> float
         """Get null Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -52,7 +53,7 @@ class NumberOperations:
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[float] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -85,8 +86,9 @@ class NumberOperations:
     @distributed_trace_async
     async def get_invalid_float(
         self,
-        **kwargs
-    ) -> float:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> float
         """Get invalid float Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -94,7 +96,7 @@ class NumberOperations:
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[float] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -127,8 +129,9 @@ class NumberOperations:
     @distributed_trace_async
     async def get_invalid_double(
         self,
-        **kwargs
-    ) -> float:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> float
         """Get invalid double Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -136,7 +139,7 @@ class NumberOperations:
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[float] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -169,8 +172,9 @@ class NumberOperations:
     @distributed_trace_async
     async def get_invalid_decimal(
         self,
-        **kwargs
-    ) -> float:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> float
         """Get invalid decimal Number value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -178,7 +182,7 @@ class NumberOperations:
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[float] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -211,9 +215,10 @@ class NumberOperations:
     @distributed_trace_async
     async def put_big_float(
         self,
-        number_body: float,
-        **kwargs
-    ) -> None:
+        number_body,  # type: float
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put big float value 3.402823e+20.
 
         :param number_body:
@@ -223,7 +228,7 @@ class NumberOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -257,8 +262,9 @@ class NumberOperations:
     @distributed_trace_async
     async def get_big_float(
         self,
-        **kwargs
-    ) -> float:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> float
         """Get big float value 3.402823e+20.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -266,7 +272,7 @@ class NumberOperations:
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[float] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -299,9 +305,10 @@ class NumberOperations:
     @distributed_trace_async
     async def put_big_double(
         self,
-        number_body: float,
-        **kwargs
-    ) -> None:
+        number_body,  # type: float
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put big double value 2.5976931e+101.
 
         :param number_body:
@@ -311,7 +318,7 @@ class NumberOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -345,8 +352,9 @@ class NumberOperations:
     @distributed_trace_async
     async def get_big_double(
         self,
-        **kwargs
-    ) -> float:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> float
         """Get big double value 2.5976931e+101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -354,7 +362,7 @@ class NumberOperations:
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[float] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -387,8 +395,9 @@ class NumberOperations:
     @distributed_trace_async
     async def put_big_double_positive_decimal(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put big double value 99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -396,7 +405,7 @@ class NumberOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         number_body = 99999999.99
 
@@ -431,8 +440,9 @@ class NumberOperations:
     @distributed_trace_async
     async def get_big_double_positive_decimal(
         self,
-        **kwargs
-    ) -> float:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> float
         """Get big double value 99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -440,7 +450,7 @@ class NumberOperations:
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[float] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -473,8 +483,9 @@ class NumberOperations:
     @distributed_trace_async
     async def put_big_double_negative_decimal(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put big double value -99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -482,7 +493,7 @@ class NumberOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         number_body = -99999999.99
 
@@ -517,8 +528,9 @@ class NumberOperations:
     @distributed_trace_async
     async def get_big_double_negative_decimal(
         self,
-        **kwargs
-    ) -> float:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> float
         """Get big double value -99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -526,7 +538,7 @@ class NumberOperations:
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[float] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -559,9 +571,10 @@ class NumberOperations:
     @distributed_trace_async
     async def put_big_decimal(
         self,
-        number_body: float,
-        **kwargs
-    ) -> None:
+        number_body,  # type: float
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put big decimal value 2.5976931e+101.
 
         :param number_body:
@@ -571,7 +584,7 @@ class NumberOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -605,8 +618,9 @@ class NumberOperations:
     @distributed_trace_async
     async def get_big_decimal(
         self,
-        **kwargs
-    ) -> float:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> float
         """Get big decimal value 2.5976931e+101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -614,7 +628,7 @@ class NumberOperations:
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[float] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -647,8 +661,9 @@ class NumberOperations:
     @distributed_trace_async
     async def put_big_decimal_positive_decimal(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put big decimal value 99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -656,7 +671,7 @@ class NumberOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         number_body = 99999999.99
 
@@ -691,8 +706,9 @@ class NumberOperations:
     @distributed_trace_async
     async def get_big_decimal_positive_decimal(
         self,
-        **kwargs
-    ) -> float:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> float
         """Get big decimal value 99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -700,7 +716,7 @@ class NumberOperations:
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[float] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -733,8 +749,9 @@ class NumberOperations:
     @distributed_trace_async
     async def put_big_decimal_negative_decimal(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put big decimal value -99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -742,7 +759,7 @@ class NumberOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         number_body = -99999999.99
 
@@ -777,8 +794,9 @@ class NumberOperations:
     @distributed_trace_async
     async def get_big_decimal_negative_decimal(
         self,
-        **kwargs
-    ) -> float:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> float
         """Get big decimal value -99999999.99.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -786,7 +804,7 @@ class NumberOperations:
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[float] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -819,9 +837,10 @@ class NumberOperations:
     @distributed_trace_async
     async def put_small_float(
         self,
-        number_body: float,
-        **kwargs
-    ) -> None:
+        number_body,  # type: float
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put small float value 3.402823e-20.
 
         :param number_body:
@@ -831,7 +850,7 @@ class NumberOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -865,8 +884,9 @@ class NumberOperations:
     @distributed_trace_async
     async def get_small_float(
         self,
-        **kwargs
-    ) -> float:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> float
         """Get big double value 3.402823e-20.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -874,7 +894,7 @@ class NumberOperations:
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[float] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -907,9 +927,10 @@ class NumberOperations:
     @distributed_trace_async
     async def put_small_double(
         self,
-        number_body: float,
-        **kwargs
-    ) -> None:
+        number_body,  # type: float
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put small double value 2.5976931e-101.
 
         :param number_body:
@@ -919,7 +940,7 @@ class NumberOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -953,8 +974,9 @@ class NumberOperations:
     @distributed_trace_async
     async def get_small_double(
         self,
-        **kwargs
-    ) -> float:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> float
         """Get big double value 2.5976931e-101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -962,7 +984,7 @@ class NumberOperations:
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[float] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -995,9 +1017,10 @@ class NumberOperations:
     @distributed_trace_async
     async def put_small_decimal(
         self,
-        number_body: float,
-        **kwargs
-    ) -> None:
+        number_body,  # type: float
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put small decimal value 2.5976931e-101.
 
         :param number_body:
@@ -1007,7 +1030,7 @@ class NumberOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1041,8 +1064,9 @@ class NumberOperations:
     @distributed_trace_async
     async def get_small_decimal(
         self,
-        **kwargs
-    ) -> float:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> float
         """Get small decimal value 2.5976931e-101.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1050,7 +1074,7 @@ class NumberOperations:
         :rtype: float
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[float] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[float]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

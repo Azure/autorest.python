@@ -34,7 +34,7 @@ class HttpFailureOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,8 +43,9 @@ class HttpFailureOperations:
     @distributed_trace_async
     async def get_empty_error(
         self,
-        **kwargs
-    ) -> bool:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> bool
         """Get empty error form server.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -52,7 +53,7 @@ class HttpFailureOperations:
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bool] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -85,8 +86,9 @@ class HttpFailureOperations:
     @distributed_trace_async
     async def get_no_model_error(
         self,
-        **kwargs
-    ) -> bool:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> bool
         """Get empty error form server.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -94,7 +96,7 @@ class HttpFailureOperations:
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bool] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -127,8 +129,9 @@ class HttpFailureOperations:
     @distributed_trace_async
     async def get_no_model_empty(
         self,
-        **kwargs
-    ) -> bool:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> bool
         """Get empty response from server.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -136,7 +139,7 @@ class HttpFailureOperations:
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bool] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

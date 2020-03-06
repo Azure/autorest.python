@@ -37,7 +37,7 @@ class PagingOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -46,9 +46,10 @@ class PagingOperations:
     @distributed_trace
     def get_pages_partial_url(
         self,
-        account_name: str,
-        **kwargs
-    ) -> "models.ProductResult":
+        account_name,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.ProductResult"
         """A paging operation that combines custom url, paging and partial URL and expect to concat after host.
 
         :param account_name: Account Name.
@@ -58,7 +59,7 @@ class PagingOperations:
         :rtype: ~custombaseurlpaging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -116,9 +117,10 @@ class PagingOperations:
     @distributed_trace
     def get_pages_partial_url_operation(
         self,
-        account_name: str,
-        **kwargs
-    ) -> "models.ProductResult":
+        account_name,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.ProductResult"
         """A paging operation that combines custom url, paging and partial URL with next operation.
 
         :param account_name: Account Name.
@@ -128,7 +130,7 @@ class PagingOperations:
         :rtype: ~custombaseurlpaging.models.ProductResult
         :raises: ~azure.mgmt.core.ARMError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):

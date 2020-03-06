@@ -28,10 +28,11 @@ class AutoRestAzureSpecialParametersTestClientConfiguration(Configuration):
 
     def __init__(
         self,
-        credential: "TokenCredential",
-        subscription_id: str,
-        **kwargs: Any
-    ) -> None:
+        credential,  # type: "TokenCredential"
+        subscription_id,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
         if subscription_id is None:
@@ -47,8 +48,9 @@ class AutoRestAzureSpecialParametersTestClientConfiguration(Configuration):
 
     def _configure(
         self,
-        **kwargs: Any
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         self.user_agent_policy = kwargs.get('user_agent_policy') or policies.UserAgentPolicy(**kwargs)
         self.headers_policy = kwargs.get('headers_policy') or policies.HeadersPolicy(**kwargs)
         self.proxy_policy = kwargs.get('proxy_policy') or policies.ProxyPolicy(**kwargs)

@@ -34,7 +34,7 @@ class PathsOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,9 +43,10 @@ class PathsOperations:
     @distributed_trace_async
     async def get_empty(
         self,
-        account_name: str,
-        **kwargs
-    ) -> None:
+        account_name,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get a 200 to test a valid base uri.
 
         :param account_name: Account Name.
@@ -55,7 +56,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

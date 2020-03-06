@@ -29,10 +29,11 @@ class AutoRestParameterizedHostTestPagingClient(object):
 
     def __init__(
         self,
-        credential: "TokenCredential",
-        host: str = "host",
-        **kwargs: Any
-    ) -> None:
+        credential,  # type: "TokenCredential"
+        host="host",  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         base_url = 'http://{accountName}{host}'
         self._config = AutoRestParameterizedHostTestPagingClientConfiguration(credential, host, **kwargs)
         self._client = AsyncARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
@@ -44,12 +45,15 @@ class AutoRestParameterizedHostTestPagingClient(object):
         self.paging = PagingOperations(
             self._client, self._config, self._serialize, self._deserialize)
 
-    async def close(self) -> None:
+    async def close(self):
+        # type: () -> None
         await self._client.close()
 
-    async def __aenter__(self) -> "AutoRestParameterizedHostTestPagingClient":
+    async def __aenter__(self):
+        # type: () -> AutoRestParameterizedHostTestPagingClient
         await self._client.__aenter__()
         return self
 
-    async def __aexit__(self, *exc_details) -> None:
+    async def __aexit__(self, *exc_details):
+        # type: (Any) -> None
         await self._client.__aexit__(*exc_details)

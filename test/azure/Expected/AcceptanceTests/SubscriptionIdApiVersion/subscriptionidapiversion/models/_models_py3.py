@@ -55,8 +55,8 @@ class Error(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        code: Optional[int] = None,
-        message: Optional[str] = None,
+        code=None,  # type: Optional[int]
+        message=None,  # type: Optional[str]
         **kwargs
     ):
         super(Error, self).__init__(**kwargs)
@@ -81,8 +81,8 @@ class SampleResourceGroup(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        name: Optional[str] = None,
-        location: Optional[str] = None,
+        name=None,  # type: Optional[str]
+        location=None,  # type: Optional[str]
         **kwargs
     ):
         super(SampleResourceGroup, self).__init__(**kwargs)

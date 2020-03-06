@@ -35,7 +35,7 @@ class IntOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -44,8 +44,9 @@ class IntOperations:
     @distributed_trace_async
     async def get_null(
         self,
-        **kwargs
-    ) -> int:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> int
         """Get null Int value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -53,7 +54,7 @@ class IntOperations:
         :rtype: int
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[int] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[int]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -86,8 +87,9 @@ class IntOperations:
     @distributed_trace_async
     async def get_invalid(
         self,
-        **kwargs
-    ) -> int:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> int
         """Get invalid Int value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -95,7 +97,7 @@ class IntOperations:
         :rtype: int
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[int] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[int]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -128,8 +130,9 @@ class IntOperations:
     @distributed_trace_async
     async def get_overflow_int32(
         self,
-        **kwargs
-    ) -> int:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> int
         """Get overflow Int32 value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -137,7 +140,7 @@ class IntOperations:
         :rtype: int
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[int] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[int]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -170,8 +173,9 @@ class IntOperations:
     @distributed_trace_async
     async def get_underflow_int32(
         self,
-        **kwargs
-    ) -> int:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> int
         """Get underflow Int32 value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -179,7 +183,7 @@ class IntOperations:
         :rtype: int
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[int] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[int]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -212,8 +216,9 @@ class IntOperations:
     @distributed_trace_async
     async def get_overflow_int64(
         self,
-        **kwargs
-    ) -> int:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> int
         """Get overflow Int64 value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -221,7 +226,7 @@ class IntOperations:
         :rtype: long
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[int] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[int]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -254,8 +259,9 @@ class IntOperations:
     @distributed_trace_async
     async def get_underflow_int64(
         self,
-        **kwargs
-    ) -> int:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> int
         """Get underflow Int64 value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -263,7 +269,7 @@ class IntOperations:
         :rtype: long
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[int] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[int]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -296,9 +302,10 @@ class IntOperations:
     @distributed_trace_async
     async def put_max32(
         self,
-        int_body: int,
-        **kwargs
-    ) -> None:
+        int_body,  # type: int
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put max int32 value.
 
         :param int_body:
@@ -308,7 +315,7 @@ class IntOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -342,9 +349,10 @@ class IntOperations:
     @distributed_trace_async
     async def put_max64(
         self,
-        int_body: int,
-        **kwargs
-    ) -> None:
+        int_body,  # type: int
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put max int64 value.
 
         :param int_body:
@@ -354,7 +362,7 @@ class IntOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -388,9 +396,10 @@ class IntOperations:
     @distributed_trace_async
     async def put_min32(
         self,
-        int_body: int,
-        **kwargs
-    ) -> None:
+        int_body,  # type: int
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put min int32 value.
 
         :param int_body:
@@ -400,7 +409,7 @@ class IntOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -434,9 +443,10 @@ class IntOperations:
     @distributed_trace_async
     async def put_min64(
         self,
-        int_body: int,
-        **kwargs
-    ) -> None:
+        int_body,  # type: int
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put min int64 value.
 
         :param int_body:
@@ -446,7 +456,7 @@ class IntOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -480,8 +490,9 @@ class IntOperations:
     @distributed_trace_async
     async def get_unix_time(
         self,
-        **kwargs
-    ) -> datetime.datetime:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.datetime
         """Get datetime encoded as Unix time value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -489,7 +500,7 @@ class IntOperations:
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.datetime] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -522,9 +533,10 @@ class IntOperations:
     @distributed_trace_async
     async def put_unix_time_date(
         self,
-        int_body: datetime.datetime,
-        **kwargs
-    ) -> None:
+        int_body,  # type: datetime.datetime
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put datetime encoded as Unix time.
 
         :param int_body:
@@ -534,7 +546,7 @@ class IntOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -568,8 +580,9 @@ class IntOperations:
     @distributed_trace_async
     async def get_invalid_unix_time(
         self,
-        **kwargs
-    ) -> datetime.datetime:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.datetime
         """Get invalid Unix time value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -577,7 +590,7 @@ class IntOperations:
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.datetime] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -610,8 +623,9 @@ class IntOperations:
     @distributed_trace_async
     async def get_null_unix_time(
         self,
-        **kwargs
-    ) -> datetime.datetime:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> datetime.datetime
         """Get null Unix time value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -619,7 +633,7 @@ class IntOperations:
         :rtype: ~datetime.datetime
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[datetime.datetime] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

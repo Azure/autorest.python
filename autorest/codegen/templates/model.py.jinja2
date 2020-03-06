@@ -105,7 +105,7 @@ class {{ model.name }}(msrest.serialization.Model):
     def __init__(
         self,
         {% for param_signature in init_line(model) %}
-        {{ param_signature }},
+        {{ param_signature }}
         {% endfor %}
         **kwargs
     ):

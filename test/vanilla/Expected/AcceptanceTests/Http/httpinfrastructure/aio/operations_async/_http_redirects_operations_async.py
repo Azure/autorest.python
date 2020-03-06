@@ -34,7 +34,7 @@ class HttpRedirectsOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,8 +43,9 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def head300(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Return 300 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -52,7 +53,7 @@ class HttpRedirectsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -85,8 +86,9 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def get300(
         self,
-        **kwargs
-    ) -> List[str]:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> List[str]
         """Return 300 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -94,7 +96,7 @@ class HttpRedirectsOperations:
         :rtype: None or list[str]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[List[str]] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -131,8 +133,9 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def head301(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Return 301 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -140,7 +143,7 @@ class HttpRedirectsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -173,8 +176,9 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def get301(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Return 301 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -182,7 +186,7 @@ class HttpRedirectsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -215,8 +219,9 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def put301(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put true Boolean value in request returns 301.  This request should not be automatically redirected, but should return the received 301 to the caller for evaluation.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -224,7 +229,7 @@ class HttpRedirectsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
@@ -265,8 +270,9 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def head302(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Return 302 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -274,7 +280,7 @@ class HttpRedirectsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -307,8 +313,9 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def get302(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Return 302 status code and redirect to /http/success/200.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -316,7 +323,7 @@ class HttpRedirectsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -349,8 +356,9 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def patch302(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Patch true Boolean value in request returns 302.  This request should not be automatically redirected, but should return the received 302 to the caller for evaluation.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -358,7 +366,7 @@ class HttpRedirectsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
@@ -399,8 +407,9 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def post303(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Post true Boolean value in request returns 303.  This request should be automatically redirected usign a get, ultimately returning a 200 status code.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -408,7 +417,7 @@ class HttpRedirectsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
@@ -450,8 +459,9 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def head307(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Redirect with 307, resulting in a 200 success.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -459,7 +469,7 @@ class HttpRedirectsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -492,8 +502,9 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def get307(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Redirect get with 307, resulting in a 200 success.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -501,7 +512,7 @@ class HttpRedirectsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -534,8 +545,9 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def options307(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """options redirected with 307, resulting in a 200 after redirect.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -543,7 +555,7 @@ class HttpRedirectsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -576,8 +588,9 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def put307(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Put redirected with 307, resulting in a 200 after redirect.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -585,7 +598,7 @@ class HttpRedirectsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
@@ -627,8 +640,9 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def patch307(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Patch redirected with 307, resulting in a 200 after redirect.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -636,7 +650,7 @@ class HttpRedirectsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
@@ -678,8 +692,9 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def post307(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Post redirected with 307, resulting in a 200 after redirect.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -687,7 +702,7 @@ class HttpRedirectsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 
@@ -729,8 +744,9 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def delete307(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Delete redirected with 307, resulting in a 200 after redirect.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -738,7 +754,7 @@ class HttpRedirectsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         boolean_value = True
 

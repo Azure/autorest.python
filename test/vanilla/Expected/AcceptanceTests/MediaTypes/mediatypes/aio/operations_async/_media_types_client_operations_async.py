@@ -23,9 +23,10 @@ class MediaTypesClientOperationsMixin:
     @distributed_trace_async
     async def analyze_body(
         self,
-        input: Optional[Union[str, "models.SourcePath"]] = None,
-        **kwargs
-    ) -> str:
+        input=None,  # type: Optional[Union[str, "models.SourcePath"]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> str
         """Analyze body, that could be different media types.
 
         :param input: Input parameter.
@@ -36,7 +37,7 @@ class MediaTypesClientOperationsMixin:
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[str] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[str]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

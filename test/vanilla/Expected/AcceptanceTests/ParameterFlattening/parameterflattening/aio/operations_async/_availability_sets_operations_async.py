@@ -34,7 +34,7 @@ class AvailabilitySetsOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,11 +43,12 @@ class AvailabilitySetsOperations:
     @distributed_trace_async
     async def update(
         self,
-        resource_group_name: str,
-        avset: str,
-        tags: Dict[str, str],
-        **kwargs
-    ) -> None:
+        resource_group_name,  # type: str
+        avset,  # type: str
+        tags,  # type: Dict[str, str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Updates the tags for an availability set.
 
         :param resource_group_name: The name of the resource group.
@@ -61,7 +62,7 @@ class AvailabilitySetsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         _tags = models.AvailabilitySetUpdateParameters(tags=tags)

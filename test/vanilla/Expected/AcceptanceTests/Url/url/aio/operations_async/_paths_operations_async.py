@@ -35,7 +35,7 @@ class PathsOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -44,8 +44,9 @@ class PathsOperations:
     @distributed_trace_async
     async def get_boolean_true(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get true Boolean value on path.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -53,7 +54,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         bool_path = True
 
@@ -87,8 +88,9 @@ class PathsOperations:
     @distributed_trace_async
     async def get_boolean_false(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get false Boolean value on path.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -96,7 +98,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         bool_path = False
 
@@ -130,8 +132,9 @@ class PathsOperations:
     @distributed_trace_async
     async def get_int_one_million(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get '1000000' integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -139,7 +142,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         int_path = 1000000
 
@@ -173,8 +176,9 @@ class PathsOperations:
     @distributed_trace_async
     async def get_int_negative_one_million(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get '-1000000' integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -182,7 +186,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         int_path = -1000000
 
@@ -216,8 +220,9 @@ class PathsOperations:
     @distributed_trace_async
     async def get_ten_billion(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get '10000000000' 64 bit integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -225,7 +230,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         long_path = 10000000000
 
@@ -259,8 +264,9 @@ class PathsOperations:
     @distributed_trace_async
     async def get_negative_ten_billion(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get '-10000000000' 64 bit integer value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -268,7 +274,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         long_path = -10000000000
 
@@ -302,8 +308,9 @@ class PathsOperations:
     @distributed_trace_async
     async def float_scientific_positive(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get '1.034E+20' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -311,7 +318,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         float_path = 103400000000000000000
 
@@ -345,8 +352,9 @@ class PathsOperations:
     @distributed_trace_async
     async def float_scientific_negative(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get '-1.034E-20' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -354,7 +362,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         float_path = -1.034e-20
 
@@ -388,8 +396,9 @@ class PathsOperations:
     @distributed_trace_async
     async def double_decimal_positive(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get '9999999.999' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -397,7 +406,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         double_path = 9999999.999
 
@@ -431,8 +440,9 @@ class PathsOperations:
     @distributed_trace_async
     async def double_decimal_negative(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get '-9999999.999' numeric value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -440,7 +450,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         double_path = -9999999.999
 
@@ -474,8 +484,9 @@ class PathsOperations:
     @distributed_trace_async
     async def string_unicode(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -483,7 +494,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         string_path = "啊齄丂狛狜隣郎隣兀﨩"
 
@@ -517,8 +528,9 @@ class PathsOperations:
     @distributed_trace_async
     async def string_url_encoded(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -526,7 +538,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         string_path = "begin!*'();:@ &=+$,/?#[]end"
 
@@ -560,8 +572,9 @@ class PathsOperations:
     @distributed_trace_async
     async def string_url_non_encoded(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get 'begin!*'();:@&=+$,end.
 
         https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded.
@@ -571,7 +584,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         string_path = "begin!*'();:@&=+$,end"
 
@@ -605,8 +618,9 @@ class PathsOperations:
     @distributed_trace_async
     async def string_empty(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get ''.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -614,7 +628,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         string_path = ""
 
@@ -648,9 +662,10 @@ class PathsOperations:
     @distributed_trace_async
     async def string_null(
         self,
-        string_path: str,
-        **kwargs
-    ) -> None:
+        string_path,  # type: str
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get null (should throw).
 
         :param string_path: null string value.
@@ -660,7 +675,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -693,9 +708,10 @@ class PathsOperations:
     @distributed_trace_async
     async def enum_valid(
         self,
-        enum_path: Union[str, "models.UriColor"],
-        **kwargs
-    ) -> None:
+        enum_path,  # type: Union[str, "models.UriColor"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get using uri with 'green color' in path parameter.
 
         :param enum_path: send the value green.
@@ -705,7 +721,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -738,9 +754,10 @@ class PathsOperations:
     @distributed_trace_async
     async def enum_null(
         self,
-        enum_path: Union[str, "models.UriColor"],
-        **kwargs
-    ) -> None:
+        enum_path,  # type: Union[str, "models.UriColor"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get null (should throw on the client before the request is sent on wire).
 
         :param enum_path: send null should throw.
@@ -750,7 +767,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -783,9 +800,10 @@ class PathsOperations:
     @distributed_trace_async
     async def byte_multi_byte(
         self,
-        byte_path: bytearray,
-        **kwargs
-    ) -> None:
+        byte_path,  # type: bytearray
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
         :param byte_path: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
@@ -795,7 +813,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -828,8 +846,9 @@ class PathsOperations:
     @distributed_trace_async
     async def byte_empty(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get '' as byte array.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -837,7 +856,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         byte_path = bytearray("", encoding="utf-8")
 
@@ -871,9 +890,10 @@ class PathsOperations:
     @distributed_trace_async
     async def byte_null(
         self,
-        byte_path: bytearray,
-        **kwargs
-    ) -> None:
+        byte_path,  # type: bytearray
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get null as byte array (should throw).
 
         :param byte_path: null as byte array (should throw).
@@ -883,7 +903,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -916,8 +936,9 @@ class PathsOperations:
     @distributed_trace_async
     async def date_valid(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get '2012-01-01' as date.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -925,7 +946,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         date_path = "2012-01-01"
 
@@ -959,9 +980,10 @@ class PathsOperations:
     @distributed_trace_async
     async def date_null(
         self,
-        date_path: datetime.date,
-        **kwargs
-    ) -> None:
+        date_path,  # type: datetime.date
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get null as date - this should throw or be unusable on the client side, depending on date representation.
 
         :param date_path: null as date (should throw).
@@ -971,7 +993,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1004,8 +1026,9 @@ class PathsOperations:
     @distributed_trace_async
     async def date_time_valid(
         self,
-        **kwargs
-    ) -> None:
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get '2012-01-01T01:01:01Z' as date-time.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1013,7 +1036,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         date_time_path = "2012-01-01T01:01:01Z"
 
@@ -1047,9 +1070,10 @@ class PathsOperations:
     @distributed_trace_async
     async def date_time_null(
         self,
-        date_time_path: datetime.datetime,
-        **kwargs
-    ) -> None:
+        date_time_path,  # type: datetime.datetime
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get null as date-time, should be disallowed or throw depending on representation of date-time.
 
         :param date_time_path: null as date-time.
@@ -1059,7 +1083,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1092,9 +1116,10 @@ class PathsOperations:
     @distributed_trace_async
     async def base64_url(
         self,
-        base64_url_path: bytes,
-        **kwargs
-    ) -> None:
+        base64_url_path,  # type: bytes
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get 'lorem' encoded value as 'bG9yZW0' (base64url).
 
         :param base64_url_path: base64url encoded value.
@@ -1104,7 +1129,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1137,9 +1162,10 @@ class PathsOperations:
     @distributed_trace_async
     async def array_csv_in_path(
         self,
-        array_path: List[str],
-        **kwargs
-    ) -> None:
+        array_path,  # type: List[str]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format.
 
         :param array_path: an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
@@ -1150,7 +1176,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -1183,9 +1209,10 @@ class PathsOperations:
     @distributed_trace_async
     async def unix_time_url(
         self,
-        unix_time_url_path: datetime.datetime,
-        **kwargs
-    ) -> None:
+        unix_time_url_path,  # type: datetime.datetime
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get the date 2016-04-13 encoded value as '1460505600' (Unix time).
 
         :param unix_time_url_path: Unix time encoded value.
@@ -1195,7 +1222,7 @@ class PathsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL

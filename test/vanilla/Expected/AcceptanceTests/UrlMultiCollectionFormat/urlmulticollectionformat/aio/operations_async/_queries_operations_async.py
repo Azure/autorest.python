@@ -34,7 +34,7 @@ class QueriesOperations:
 
     models = models
 
-    def __init__(self, client, config, serializer, deserializer) -> None:
+    def __init__(self, client, config, serializer, deserializer):
         self._client = client
         self._serialize = serializer
         self._deserialize = deserializer
@@ -43,9 +43,10 @@ class QueriesOperations:
     @distributed_trace_async
     async def array_string_multi_null(
         self,
-        array_query: Optional[List[str]] = None,
-        **kwargs
-    ) -> None:
+        array_query=None,  # type: Optional[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get a null array of string using the multi-array format.
 
         :param array_query: a null array of string using the multi-array format.
@@ -55,7 +56,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -86,9 +87,10 @@ class QueriesOperations:
     @distributed_trace_async
     async def array_string_multi_empty(
         self,
-        array_query: Optional[List[str]] = None,
-        **kwargs
-    ) -> None:
+        array_query=None,  # type: Optional[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get an empty array [] of string using the multi-array format.
 
         :param array_query: an empty array [] of string using the multi-array format.
@@ -98,7 +100,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -129,9 +131,10 @@ class QueriesOperations:
     @distributed_trace_async
     async def array_string_multi_valid(
         self,
-        array_query: Optional[List[str]] = None,
-        **kwargs
-    ) -> None:
+        array_query=None,  # type: Optional[List[str]]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the mult-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
@@ -142,7 +145,7 @@ class QueriesOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
