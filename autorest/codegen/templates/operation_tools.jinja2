@@ -84,7 +84,7 @@ if {{ grouper_name }} is not None:
 {# write queryparameters #}
 {% macro query_parameters(operation, async_mode) %}
 # Construct parameters
-query_parameters{{": Dict[str, Any]" if async_mode else "" }} = {}
+query_parameters = {}  # type: Dict[str, Any]
 {% if operation.parameters.query %}
     {% for query_parameter in operation.parameters.query %}
         {%if query_parameter.required %}
@@ -98,7 +98,7 @@ if {{ query_parameter.full_serialized_name }} is not None:
 {# write request headers #}
 {% macro header_parameters(code_model, operation, async_mode) %}
 # Construct headers
-header_parameters{{": Dict[str, Any]" if async_mode else "" }} = {}
+header_parameters = {}  # type: Dict[str, Any]
 {% if operation.parameters.headers %}
     {% for header_parameter in operation.parameters.headers %}
         {%if header_parameter.required %}

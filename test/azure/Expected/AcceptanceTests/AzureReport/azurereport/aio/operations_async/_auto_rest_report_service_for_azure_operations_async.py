@@ -45,12 +45,12 @@ class AutoRestReportServiceForAzureOperationsMixin:
         url = self.get_report.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
         if qualifier is not None:
             query_parameters['qualifier'] = self._serialize.query("qualifier", qualifier, 'str')
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
