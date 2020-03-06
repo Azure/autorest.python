@@ -24,6 +24,7 @@
 #
 # --------------------------------------------------------------------------
 
+from async_generator import yield_, async_generator
 import subprocess
 import sys
 import isodate
@@ -73,7 +74,8 @@ class AutorestTestARMPolling(AsyncARMPolling):
             self._operation_config['request_id'] = self._operation.initial_response.http_response.request.headers['x-ms-client-request-id']
         return (await self._client._pipeline.run(request, stream=False, **self._operation_config))
 
-@pytest.fixture()
+@pytest.fixture
+@async_generator
 async def client(cookie_policy, credential):
     """Create a AutoRestLongRunningOperationTestService client with test server credentials."""
     policies = [
@@ -84,7 +86,7 @@ async def client(cookie_policy, credential):
         cookie_policy
     ]
     async with AutoRestLongRunningOperationTestService(credential, base_url="http://localhost:3000", policies=policies, polling_interval=0) as client:
-        yield client
+        await yield_(client)
 
 
 @pytest.fixture()
