@@ -55,7 +55,7 @@ class GroupOperations:
         :rtype: ~subscriptionidapiversion.models.SampleResourceGroup
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.SampleResourceGroup"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.SampleResourceGroup"]
         error_map = kwargs.pop('error_map', {})
         api_version = "2014-04-01-preview"
 
@@ -68,11 +68,11 @@ class GroupOperations:
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
         query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request

@@ -61,11 +61,11 @@ class ApiVersionDefaultOperations(object):
         url = self.get_method_global_valid.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
         query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -102,11 +102,11 @@ class ApiVersionDefaultOperations(object):
         url = self.get_method_global_not_provided_valid.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
         query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -143,11 +143,11 @@ class ApiVersionDefaultOperations(object):
         url = self.get_path_global_valid.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
         query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -184,11 +184,11 @@ class ApiVersionDefaultOperations(object):
         url = self.get_swagger_global_valid.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
         query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

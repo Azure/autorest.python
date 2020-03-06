@@ -61,7 +61,7 @@ class AvailabilitySetsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         _tags = models.AvailabilitySetUpdateParameters(tags=tags)
@@ -75,14 +75,14 @@ class AvailabilitySetsOperations:
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        body_content_kwargs = {}
+        body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_tags, 'AvailabilitySetUpdateParameters')
         body_content_kwargs['content'] = body_content
         request = self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
