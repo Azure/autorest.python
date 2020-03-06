@@ -112,7 +112,7 @@ class LRORetrysOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put201_creating_succeeded200_initial(
             product=product,
@@ -205,7 +205,7 @@ class LRORetrysOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put_async_relative_retry_succeeded_initial(
             product=product,
@@ -295,7 +295,7 @@ class LRORetrysOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._delete_provisioning202_accepted200_succeeded_initial(
             cls=lambda x,y,z: x,
@@ -375,7 +375,7 @@ class LRORetrysOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._delete202_retry200_initial(
             cls=lambda x,y,z: x,
@@ -449,7 +449,7 @@ class LRORetrysOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._delete_async_relative_retry_succeeded_initial(
             cls=lambda x,y,z: x,
@@ -534,7 +534,7 @@ class LRORetrysOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._post202_retry200_initial(
             product=product,
@@ -621,7 +621,7 @@ class LRORetrysOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._post_async_relative_retry_succeeded_initial(
             product=product,

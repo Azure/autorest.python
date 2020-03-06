@@ -112,7 +112,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put_non_retry400_initial(
             product=product,
@@ -206,7 +206,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put_non_retry201_creating400_initial(
             product=product,
@@ -300,7 +300,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put_non_retry201_creating400_invalid_json_initial(
             product=product,
@@ -393,7 +393,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put_async_relative_retry400_initial(
             product=product,
@@ -475,7 +475,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._delete_non_retry400_initial(
             cls=lambda x,y,z: x,
@@ -548,7 +548,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._delete202_non_retry400_initial(
             cls=lambda x,y,z: x,
@@ -622,7 +622,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._delete_async_relative_retry400_initial(
             cls=lambda x,y,z: x,
@@ -707,7 +707,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._post_non_retry400_initial(
             product=product,
@@ -793,7 +793,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._post202_non_retry400_initial(
             product=product,
@@ -880,7 +880,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._post_async_relative_retry400_initial(
             product=product,
@@ -971,7 +971,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put_error201_no_provisioning_state_payload_initial(
             product=product,
@@ -1064,7 +1064,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put_async_relative_retry_no_status_initial(
             product=product,
@@ -1162,7 +1162,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put_async_relative_retry_no_status_payload_initial(
             product=product,
@@ -1240,7 +1240,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._delete204_succeeded_initial(
             cls=lambda x,y,z: x,
@@ -1314,7 +1314,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._delete_async_relative_retry_no_status_initial(
             cls=lambda x,y,z: x,
@@ -1399,7 +1399,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._post202_no_location_initial(
             product=product,
@@ -1486,7 +1486,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._post_async_relative_retry_no_payload_initial(
             product=product,
@@ -1574,7 +1574,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put200_invalid_json_initial(
             product=product,
@@ -1667,7 +1667,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put_async_relative_retry_invalid_header_initial(
             product=product,
@@ -1765,7 +1765,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put_async_relative_retry_invalid_json_polling_initial(
             product=product,
@@ -1847,7 +1847,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._delete202_retry_invalid_header_initial(
             cls=lambda x,y,z: x,
@@ -1921,7 +1921,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._delete_async_relative_retry_invalid_header_initial(
             cls=lambda x,y,z: x,
@@ -1995,7 +1995,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._delete_async_relative_retry_invalid_json_polling_initial(
             cls=lambda x,y,z: x,
@@ -2080,7 +2080,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._post202_retry_invalid_header_initial(
             product=product,
@@ -2167,7 +2167,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._post_async_relative_retry_invalid_header_initial(
             product=product,
@@ -2254,7 +2254,7 @@ class LROSADsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._post_async_relative_retry_invalid_json_polling_initial(
             product=product,

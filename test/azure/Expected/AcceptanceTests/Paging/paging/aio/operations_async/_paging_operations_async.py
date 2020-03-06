@@ -966,7 +966,7 @@ class PagingOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
         raw_result = await self._get_multiple_pages_lro_initial(
             client_request_id=client_request_id,

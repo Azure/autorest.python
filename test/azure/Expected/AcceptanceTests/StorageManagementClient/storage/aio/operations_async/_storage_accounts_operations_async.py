@@ -185,7 +185,7 @@ class StorageAccountsOperations:
 
         :raises ~azure.mgmt.core.ARMError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount"]
         raw_result = await self._create_initial(
             resource_group_name=resource_group_name,
