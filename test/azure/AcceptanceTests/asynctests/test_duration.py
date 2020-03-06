@@ -25,6 +25,7 @@
 # --------------------------------------------------------------------------
 
 from async_generator import yield_, async_generator
+from datetime import timedelta
 import pytest
 
 from msrest.exceptions import DeserializationError
