@@ -134,7 +134,7 @@ class ParameterList(MutableSequence):
 
     @property
     def async_method_signature(self) -> List[str]:
-         return [parameter.async_method_signature for parameter in self.method]
+        return [parameter.async_method_signature for parameter in self.method]
 
     @property
     def is_flattened(self) -> bool:
