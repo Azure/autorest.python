@@ -23,6 +23,8 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+
+from async_generator import yield_, async_generator
 from datetime import date, datetime, timedelta
 import os
 from os.path import dirname, pardir, join, realpath
@@ -39,9 +41,10 @@ from extensibleenumsswagger.models import (
 import pytest
 
 @pytest.fixture
+@async_generator
 async def client():
     async with PetStoreInc(base_url="http://localhost:3000") as client:
-        yield client
+        await yield_(client)
 
 class TestExtensibleEnums(object):
 

@@ -55,7 +55,7 @@ class ParameterGroupingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         
         _custom_header = None
@@ -76,18 +76,18 @@ class ParameterGroupingOperations:
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
         if _query is not None:
             query_parameters['query'] = self._serialize.query("query", _query, 'int')
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         if _custom_header is not None:
             header_parameters['customHeader'] = self._serialize.header("custom_header", _custom_header, 'str')
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        body_content_kwargs = {}
+        body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_body, 'int')
         body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
@@ -119,7 +119,7 @@ class ParameterGroupingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         
         _custom_header = None
@@ -132,12 +132,12 @@ class ParameterGroupingOperations:
         url = self.post_optional.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
         if _query is not None:
             query_parameters['query'] = self._serialize.query("query", _query, 'int')
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         if _custom_header is not None:
             header_parameters['customHeader'] = self._serialize.header("custom_header", _custom_header, 'str')
 
@@ -173,7 +173,7 @@ class ParameterGroupingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         
         _header_one = None
@@ -191,14 +191,14 @@ class ParameterGroupingOperations:
         url = self.post_multi_param_groups.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
         if _query_one is not None:
             query_parameters['query-one'] = self._serialize.query("query_one", _query_one, 'int')
         if _query_two is not None:
             query_parameters['query-two'] = self._serialize.query("query_two", _query_two, 'int')
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         if _header_one is not None:
             header_parameters['header-one'] = self._serialize.header("header_one", _header_one, 'str')
         if _header_two is not None:
@@ -233,7 +233,7 @@ class ParameterGroupingOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         
         _header_one = None
@@ -246,12 +246,12 @@ class ParameterGroupingOperations:
         url = self.post_shared_parameter_group_object.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
         if _query_one is not None:
             query_parameters['query-one'] = self._serialize.query("query_one", _query_one, 'int')
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         if _header_one is not None:
             header_parameters['header-one'] = self._serialize.header("header_one", _header_one, 'str')
 

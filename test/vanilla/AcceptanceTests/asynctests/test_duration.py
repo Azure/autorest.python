@@ -22,8 +22,9 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 #
-# --------------------------------------------------------------------------
+# ------------------------------------------
 
+from async_generator import yield_, async_generator
 import unittest
 import subprocess
 import sys
@@ -41,9 +42,10 @@ from bodyduration.aio import AutoRestDurationTestService
 import pytest
 
 @pytest.fixture
+@async_generator
 async def client():
     async with AutoRestDurationTestService(base_url="http://localhost:3000") as client:
-        yield client
+        await yield_(client)
 
 class TestDuration(object):
 

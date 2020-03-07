@@ -63,12 +63,12 @@ class QueriesOperations(object):
         url = self.array_string_multi_null.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
         if array_query is not None:
             query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -107,12 +107,12 @@ class QueriesOperations(object):
         url = self.array_string_multi_empty.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
         if array_query is not None:
             query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -152,12 +152,12 @@ class QueriesOperations(object):
         url = self.array_string_multi_valid.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
         if array_query is not None:
             query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

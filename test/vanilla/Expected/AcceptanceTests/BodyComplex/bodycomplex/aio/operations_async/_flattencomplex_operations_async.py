@@ -52,17 +52,17 @@ class FlattencomplexOperations:
         :rtype: ~bodycomplex.models.MyBaseType
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.MyBaseType"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.MyBaseType"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_valid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request

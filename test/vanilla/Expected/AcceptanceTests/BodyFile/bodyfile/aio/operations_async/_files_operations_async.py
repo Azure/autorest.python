@@ -52,18 +52,18 @@ class FilesOperations:
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[IO] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[IO]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_file.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
-        header_parameters['Accept'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'image/png'
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -94,18 +94,18 @@ class FilesOperations:
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[IO] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[IO]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_file_large.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
-        header_parameters['Accept'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'image/png'
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -136,18 +136,18 @@ class FilesOperations:
         :rtype: IO
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[IO] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[IO]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_empty_file.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
-        header_parameters['Accept'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'image/png'
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
