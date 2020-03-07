@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import re
-from typing import Any, Dict, List, Match, Optional
+from typing import cast, Any, Dict, List, Match, Optional
 from enum import Enum
 from .python_mappings import basic_latin_chars, reserved_words
 
@@ -186,11 +186,12 @@ class NameConverter:
         return re.sub("[A-Z]+", replace_upper_characters, name)
 
     @staticmethod
-    def _get_escaped_reserved_name(name: str, pad_string: PadType) -> str:
+    def _get_escaped_reserved_name(name: str, pad_string: Optional[PadType] = None) -> str:
         if name is None:
             raise ValueError("The value for name can not be None")
         try:
             # check to see if name is reserved for the type of name we are converting
+            pad_string = cast(PadType, pad_string)
             if name.lower() in reserved_words["always_reserved"]:
                 name += pad_string.value
             elif pad_string in [PadType.Method, PadType.Parameter]:
