@@ -115,16 +115,17 @@ class ParameterList(MutableSequence):
                 or parameter.is_kwarg
             )
 
-        signature_parameters_required = []
-        signature_parameters_optional = []
+
+        signature_parameters_no_default_value = []
+        signature_parameters_default_value = []
         for parameter in self.parameters:
             if is_parameter_in_signature(parameter):
-                if parameter.required:
-                    signature_parameters_required.append(parameter)
+                if not parameter.client_default_value and parameter.required:
+                    signature_parameters_no_default_value.append(parameter)
                 else:
-                    signature_parameters_optional.append(parameter)
+                    signature_parameters_default_value.append(parameter)
 
-        signature_parameters = signature_parameters_required + signature_parameters_optional
+        signature_parameters = signature_parameters_no_default_value + signature_parameters_default_value
         return signature_parameters
 
     @property
