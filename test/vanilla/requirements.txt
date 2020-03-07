@@ -2,6 +2,7 @@ requests>=2.14.0
 pytest
 pytest-cov
 pytest-asyncio;python_full_version>="3.5.2"
+async_generator;python_full_version>="3.5.2"
 msrest>=0.6.11
 git+https://github.com/Azure/azure-sdk-for-python#subdirectory=sdk/core/azure-core&egg=azure-core
 aiohttp;python_full_version>="3.5.2"
@@ -25,6 +26,7 @@ aiohttp;python_full_version>="3.5.2"
 -e ./Expected/AcceptanceTests/ExtensibleEnums
 -e ./Expected/AcceptanceTests/Header
 -e ./Expected/AcceptanceTests/Http
+-e ./Expected/AcceptanceTests/MediaTypes
 -e ./Expected/AcceptanceTests/ModelFlattening
 -e ./Expected/AcceptanceTests/ParameterFlattening
 -e ./Expected/AcceptanceTests/Report

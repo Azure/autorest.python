@@ -56,21 +56,22 @@ class LROsCustomHeaderOperations(object):
         url = self._put_async_retry_succeeded_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -153,21 +154,22 @@ class LROsCustomHeaderOperations(object):
         url = self._put201_creating_succeeded200_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -246,20 +248,21 @@ class LROsCustomHeaderOperations(object):
         url = self._post202_retry200_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -331,20 +334,21 @@ class LROsCustomHeaderOperations(object):
         url = self._post_async_retry_succeeded_initial.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

@@ -24,6 +24,7 @@
 #
 # --------------------------------------------------------------------------
 
+from async_generator import yield_, async_generator
 import subprocess
 import sys
 import io
@@ -47,6 +48,7 @@ def dummy_file():
     os.remove(dummy.name)
 
 @pytest.fixture
+@async_generator
 async def client():
     async with AutoRestSwaggerBATFormDataService(
         base_url="http://localhost:3000",
@@ -54,7 +56,7 @@ async def client():
         retry_total = 50,  # Be agressive on this test, sometimes testserver DDOS :-p
         retry_backoff_factor = 1.6
     ) as client:
-        yield client
+        await yield_(client)
 
 
 class TestFormData(object):
@@ -132,6 +134,7 @@ class TestFormData(object):
         test_string = "Upload file test case"
         test_bytes = bytearray(test_string, encoding='utf-8')
 
+        @async_generator
         async def stream_upload(data, length, block_size):
             progress = 0
             while True:
@@ -140,7 +143,7 @@ class TestFormData(object):
                 print("Progress... {}%".format(int(progress*100/length)))
                 if not block:
                     break
-                yield block
+                await yield_(block)
 
         result = io.BytesIO()
         with io.BytesIO(test_bytes) as stream_data:

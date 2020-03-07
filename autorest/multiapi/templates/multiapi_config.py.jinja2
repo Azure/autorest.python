@@ -24,12 +24,13 @@ def __init__(
 # Changes may cause incorrect behavior and will be lost if the code is
 # regenerated.
 # --------------------------------------------------------------------------
+from typing import Any
 
-{{ imports }}
+from azure.core.configuration import Configuration
+from azure.core.pipeline import policies
 
-{% if not package_version %}
-VERSION = "unknown"
-{% endif %}
+from ._version import VERSION
+
 
 class {{ client_name }}Configuration(Configuration):
     """Configuration for {{ client_name }}.
@@ -47,9 +48,11 @@ class {{ client_name }}Configuration(Configuration):
 
     {{ method_signature()|indent }}
         # type: (...) -> None
-{% for gp in global_parameters["method"] | selectattr('required') %}
-        if {{ gp }} is None:
-            raise ValueError("Parameter '{{ gp }}' must not be None.")
+{% for serialized_name, gp_dict in global_parameters["method"].items() %}
+    {% if gp_dict["required"] %}
+        if {{ serialized_name }} is None:
+            raise ValueError("Parameter '{{ serialized_name }}' must not be None.")
+    {% endif %}
 {% endfor %}
         super({{ client_name }}Configuration, self).__init__(**kwargs)
 
@@ -64,8 +67,8 @@ class {{ client_name }}Configuration(Configuration):
 {% if credential_scopes %}
         self.credential_scopes = {{ credential_scopes }}
 {% endif %}
+        kwargs.setdefault('sdk_moniker', '{{ package_name|lower }}/{}'.format(VERSION))
         self._configure(**kwargs)
-        self.user_agent_policy.add_user_agent('azsdk-python-{{ client_name|lower }}/{}'.format(VERSION))
 
     def _configure(
         self,

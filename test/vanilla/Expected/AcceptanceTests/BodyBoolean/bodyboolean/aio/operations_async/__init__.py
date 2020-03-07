@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._bool_model_operations_async import BoolOperations
+from ._bool_operations_async import BoolOperations
 
 __all__ = [
     'BoolOperations',

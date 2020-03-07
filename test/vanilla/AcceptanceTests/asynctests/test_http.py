@@ -24,6 +24,7 @@
 #
 # --------------------------------------------------------------------------
 
+from async_generator import yield_, async_generator
 import unittest
 import subprocess
 import sys
@@ -46,7 +47,8 @@ from httpinfrastructure.models import B, C, D, MyException
 import pytest
 
 
-@pytest.fixture()
+@pytest.fixture
+@async_generator
 async def client(cookie_policy):
     """Create a AutoRestHttpInfrastructureTestService client with test server credentials."""
     policies = [
@@ -57,7 +59,7 @@ async def client(cookie_policy):
         cookie_policy
     ]
     async with AutoRestHttpInfrastructureTestService(base_url="http://localhost:3000", policies=policies) as client:
-        yield client
+        await yield_(client)
 
 
 class TestHttp(object):

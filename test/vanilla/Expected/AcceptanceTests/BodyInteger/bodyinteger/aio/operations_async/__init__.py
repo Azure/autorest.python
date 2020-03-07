@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._int_model_operations_async import IntOperations
+from ._int_operations_async import IntOperations
 
 __all__ = [
     'IntOperations',

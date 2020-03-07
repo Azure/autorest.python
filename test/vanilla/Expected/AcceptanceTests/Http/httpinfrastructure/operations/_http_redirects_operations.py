@@ -60,10 +60,10 @@ class HttpRedirectsOperations(object):
         url = self.head300.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -104,10 +104,10 @@ class HttpRedirectsOperations(object):
         url = self.get300.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -152,10 +152,10 @@ class HttpRedirectsOperations(object):
         url = self.head301.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -196,10 +196,10 @@ class HttpRedirectsOperations(object):
         url = self.get301.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -241,20 +241,21 @@ class HttpRedirectsOperations(object):
         url = self.put301.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if boolean_value is not None:
             body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -291,10 +292,10 @@ class HttpRedirectsOperations(object):
         url = self.head302.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -335,10 +336,10 @@ class HttpRedirectsOperations(object):
         url = self.get302.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -380,20 +381,21 @@ class HttpRedirectsOperations(object):
         url = self.patch302.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if boolean_value is not None:
             body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.patch(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -431,20 +433,21 @@ class HttpRedirectsOperations(object):
         url = self.post303.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if boolean_value is not None:
             body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -482,10 +485,10 @@ class HttpRedirectsOperations(object):
         url = self.head307.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -526,10 +529,10 @@ class HttpRedirectsOperations(object):
         url = self.get307.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -570,10 +573,10 @@ class HttpRedirectsOperations(object):
         url = self.options307.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.options(url, query_parameters, header_parameters)
@@ -615,20 +618,21 @@ class HttpRedirectsOperations(object):
         url = self.put307.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if boolean_value is not None:
             body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -667,20 +671,21 @@ class HttpRedirectsOperations(object):
         url = self.patch307.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if boolean_value is not None:
             body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.patch(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -719,20 +724,21 @@ class HttpRedirectsOperations(object):
         url = self.post307.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if boolean_value is not None:
             body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -771,20 +777,21 @@ class HttpRedirectsOperations(object):
         url = self.delete307.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if boolean_value is not None:
             body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

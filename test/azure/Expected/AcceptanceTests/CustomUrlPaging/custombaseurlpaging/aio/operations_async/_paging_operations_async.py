@@ -58,7 +58,7 @@ class PagingOperations:
         :rtype: ~custombaseurlpaging.models.ProductResult
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         def prepare_request(next_link=None):
@@ -79,10 +79,10 @@ class PagingOperations:
                 url = self._client.format_url(url, **path_format_arguments)
 
             # Construct parameters
-            query_parameters: Dict[str, Any] = {}
+            query_parameters = {}  # type: Dict[str, Any]
 
             # Construct headers
-            header_parameters: Dict[str, Any] = {}
+            header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
 
             # Construct and send request
@@ -128,7 +128,7 @@ class PagingOperations:
         :rtype: ~custombaseurlpaging.models.ProductResult
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         def prepare_request(next_link=None):
@@ -150,10 +150,10 @@ class PagingOperations:
                 url = self._client.format_url(url, **path_format_arguments)
 
             # Construct parameters
-            query_parameters: Dict[str, Any] = {}
+            query_parameters = {}  # type: Dict[str, Any]
 
             # Construct headers
-            header_parameters: Dict[str, Any] = {}
+            header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
 
             # Construct and send request

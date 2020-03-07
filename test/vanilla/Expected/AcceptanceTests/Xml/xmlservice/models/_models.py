@@ -801,7 +801,7 @@ class RetentionPolicy(msrest.serialization.Model):
 class RootWithRefAndMeta(msrest.serialization.Model):
     """I am root, and I ref a model WITH meta.
 
-    :param ref_to_model: I am a complex type with XML node.
+    :param ref_to_model: XML will use XMLComplexTypeWithMeta.
     :type ref_to_model: ~xmlservice.models.ComplexTypeWithMeta
     :param something: Something else (just to avoid flattening).
     :type something: str
@@ -824,7 +824,7 @@ class RootWithRefAndMeta(msrest.serialization.Model):
 class RootWithRefAndNoMeta(msrest.serialization.Model):
     """I am root, and I ref a model with no meta.
 
-    :param ref_to_model: I am a complex type with no XML node.
+    :param ref_to_model: XML will use RefToModel.
     :type ref_to_model: ~xmlservice.models.ComplexTypeNoMeta
     :param something: Something else (just to avoid flattening).
     :type something: str
@@ -851,7 +851,7 @@ class SignedIdentifier(msrest.serialization.Model):
 
     :param id: Required. a unique id.
     :type id: str
-    :param access_policy: Required. An Access policy.
+    :param access_policy: Required. The access policy.
     :type access_policy: ~xmlservice.models.AccessPolicy
     """
 
@@ -912,8 +912,8 @@ class Slideshow(msrest.serialization.Model):
 
     :param title:
     :type title: str
-    :param date_property:
-    :type date_property: str
+    :param date:
+    :type date: str
     :param author:
     :type author: str
     :param slides:
@@ -922,7 +922,7 @@ class Slideshow(msrest.serialization.Model):
 
     _attribute_map = {
         'title': {'key': 'title', 'type': 'str', 'xml': {'attr': True}},
-        'date_property': {'key': 'date', 'type': 'str', 'xml': {'attr': True}},
+        'date': {'key': 'date', 'type': 'str', 'xml': {'attr': True}},
         'author': {'key': 'author', 'type': 'str', 'xml': {'attr': True}},
         'slides': {'key': 'slides', 'type': '[Slide]'},
     }
@@ -936,7 +936,7 @@ class Slideshow(msrest.serialization.Model):
     ):
         super(Slideshow, self).__init__(**kwargs)
         self.title = kwargs.get('title', None)
-        self.date_property = kwargs.get('date_property', None)
+        self.date = kwargs.get('date', None)
         self.author = kwargs.get('author', None)
         self.slides = kwargs.get('slides', None)
 
@@ -946,9 +946,11 @@ class StorageServiceProperties(msrest.serialization.Model):
 
     :param logging: Azure Analytics Logging settings.
     :type logging: ~xmlservice.models.Logging
-    :param hour_metrics:
+    :param hour_metrics: A summary of request statistics grouped by API in hourly aggregates for
+     blobs.
     :type hour_metrics: ~xmlservice.models.Metrics
-    :param minute_metrics:
+    :param minute_metrics: a summary of request statistics grouped by API in minute aggregates for
+     blobs.
     :type minute_metrics: ~xmlservice.models.Metrics
     :param cors: The set of CORS rules.
     :type cors: list[~xmlservice.models.CorsRule]
@@ -956,7 +958,7 @@ class StorageServiceProperties(msrest.serialization.Model):
      an incoming request's version is not specified. Possible values include version 2008-10-27 and
      all more recent versions.
     :type default_service_version: str
-    :param delete_retention_policy: the retention policy.
+    :param delete_retention_policy: The Delete Retention Policy for the service.
     :type delete_retention_policy: ~xmlservice.models.RetentionPolicy
     """
 

@@ -19,8 +19,8 @@ from . import models
 class AutoRestIntegerTestService(object):
     """Test Infrastructure for AutoRest.
 
-    :ivar int_model: IntOperations operations
-    :vartype int_model: bodyinteger.operations.IntOperations
+    :ivar int: IntOperations operations
+    :vartype int: bodyinteger.operations.IntOperations
     :param str base_url: Service URL
     """
 
@@ -39,7 +39,7 @@ class AutoRestIntegerTestService(object):
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
 
-        self.int_model = IntOperations(
+        self.int = IntOperations(
             self._client, self._config, self._serialize, self._deserialize)
 
     def close(self):

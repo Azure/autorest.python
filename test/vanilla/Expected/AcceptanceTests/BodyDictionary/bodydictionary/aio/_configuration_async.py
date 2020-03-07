@@ -27,8 +27,8 @@ class AutoRestSwaggerBATDictionaryServiceConfiguration(Configuration):
     ) -> None:
         super(AutoRestSwaggerBATDictionaryServiceConfiguration, self).__init__(**kwargs)
 
+        kwargs.setdefault('sdk_moniker', 'autorestswaggerbatdictionaryservice/{}'.format(VERSION))
         self._configure(**kwargs)
-        self.user_agent_policy.add_user_agent('azsdk-python-autorestswaggerbatdictionaryservice/{}'.format(VERSION))
 
     def _configure(
         self,

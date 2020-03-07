@@ -49,13 +49,8 @@ response_headers = {
     {{ return_docstring() }}
     :raises ~azure.core.exceptions.HttpResponseError:
     """
-    {% if async_mode %}
-    polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})
-    cls: ClsType[{{ keywords.return_type_annotation(operation) }}] = kwargs.pop('cls', None)
-    {% else %}
-    polling = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})  # type: Union[bool, PollingMethod]
+    polling = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})  # type: Union[bool, {{ "Async" if async_mode else "" }}PollingMethod]
     cls = kwargs.pop('cls', None)  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
-    {% endif %}
     raw_result = {{ keywords.await }}self._{{ operation.name }}_initial(
         {% for parameter in operation.parameters.method %}
         {{ parameter.serialized_name }}={{ parameter.serialized_name }},

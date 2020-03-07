@@ -28,8 +28,8 @@ class AutoRestParameterFlatteningConfiguration(Configuration):
         # type: (...) -> None
         super(AutoRestParameterFlatteningConfiguration, self).__init__(**kwargs)
 
+        kwargs.setdefault('sdk_moniker', 'autorestparameterflattening/{}'.format(VERSION))
         self._configure(**kwargs)
-        self.user_agent_policy.add_user_agent('azsdk-python-autorestparameterflattening/{}'.format(VERSION))
 
     def _configure(
         self,

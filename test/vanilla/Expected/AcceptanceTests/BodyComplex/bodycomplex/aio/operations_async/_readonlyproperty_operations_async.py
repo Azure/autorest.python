@@ -52,17 +52,17 @@ class ReadonlypropertyOperations:
         :rtype: ~bodycomplex.models.ReadonlyObj
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ReadonlyObj"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ReadonlyObj"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_valid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -98,7 +98,7 @@ class ReadonlypropertyOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         _complex_body = models.ReadonlyObj(size=size)
@@ -107,17 +107,18 @@ class ReadonlypropertyOperations:
         url = self.put_valid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
-
-        # Construct body
-        body_content = self._serialize.body(_complex_body, 'ReadonlyObj')
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(_complex_body, 'ReadonlyObj')
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

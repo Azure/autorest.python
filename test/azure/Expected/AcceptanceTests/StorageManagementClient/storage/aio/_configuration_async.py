@@ -40,9 +40,10 @@ class StorageManagementClientConfiguration(Configuration):
 
         self.credential = credential
         self.subscription_id = subscription_id
+        self.api_version = "2015-05-01-preview"
         self.credential_scopes = ['https://management.azure.com/.default']
+        kwargs.setdefault('sdk_moniker', 'storagemanagementclient/{}'.format(VERSION))
         self._configure(**kwargs)
-        self.user_agent_policy.add_user_agent('azsdk-python-storagemanagementclient/{}'.format(VERSION))
 
     def _configure(
         self,

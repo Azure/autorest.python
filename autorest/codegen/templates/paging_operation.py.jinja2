@@ -1,7 +1,8 @@
 {% import 'keywords.jinja2' as keywords with context %}
 {% import 'operation_tools.jinja2' as op_tools %}
+{% set send_xml = "xml" if operation.parameters.has_body and "xml" in operation.request_content_type %}
+{% set request_as_xml = ", is_xml=True" if send_xml else "" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
-{% set request_as_xml = ", is_xml=False" if "xml" in operation.request_content_type else "" %}
 {% macro return_docstring() %}
 {% if operation.responses | selectattr('has_body') | first %}
 :return: {{ operation.responses|selectattr('has_body')|map(attribute='schema')|map(attribute='docstring_text')|unique|join(' or ') }} or the result of cls(response)
@@ -47,11 +48,7 @@
 {% if operation.deprecated %}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
-    {% if async_mode %}
-    cls: ClsType[{{ keywords.return_type_annotation(operation) }}] = kwargs.pop('cls', None)
-    {% else %}
     cls = kwargs.pop('cls', None)  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
-    {% endif %}
 {%if operation.status_code_exceptions %}
     error_map = {
         {% if not [404] in operation.status_code_exceptions | map(attribute='status_codes') %}
@@ -127,40 +124,7 @@
 
         {{ op_tools.query_parameters(operation, async_mode)|indent(8) }}
         {{ op_tools.header_parameters(code_model, operation, async_mode)|indent(8) }}
-    {% if operation.parameters.has_body %}
-        # Construct body
-        {% if not operation.parameters.body.is_stream %}
-            {% if operation.parameters.body.required %}
-        body_content = self._serialize.body({{ operation.parameters.body.serialized_name }}, '{{ operation.parameters.body.schema.serialization_type }}'{{ request_as_xml }}{{ operation.serialization_context }})
-            {% else %}
-        if {{ operation.parameters.body.serialized_name }} is not None:
-            body_content = self._serialize.body({{ operation.parameters.body.serialized_name }}, '{{ operation.parameters.body.schema.serialization_type }}'{{ request_as_xml }}{{ operation.serialization_context }})
-        else:
-            body_content = None
-            {% endif %}
-        {% elif operation.parameters.body.is_form_data %}
-        # Construct form data
-        form_data_content = {
-        ###foreach (var parameter in Model.LocalParameters)
-        ###    if (parameter.Location == ParameterLocation.FormData)
-        ###    {
-        ###            @:'@parameter.SerializedName': @parameter.Name,
-        ###    }
-        ###}
-        }
-        {% endif %}
-
-    {% endif %}
-        # Construct and send request
-    {% if operation.is_form_data %}
-        request = self._client.{{ operation.method }}(url, query_parameters, header_parameters, form_content=form_data_content)
-    {% elif operation.is_stream_request %}
-        request = self._client.{{ operation.method }}(url, query_parameters, header_parameters, stream_content={{ parameter.serialized_name }})
-    {% elif operation.parameters.has_body %}
-        request = self._client.{{ operation.method }}(url, query_parameters, header_parameters, body_content)
-    {% else %}
-        request = self._client.{{ operation.method }}(url, query_parameters, header_parameters)
-    {% endif %}
+        {{ op_tools.body_parameters(operation)|indent(8) }}
         return request
 
     {{ keywords.def }} extract_data(pipeline_response):

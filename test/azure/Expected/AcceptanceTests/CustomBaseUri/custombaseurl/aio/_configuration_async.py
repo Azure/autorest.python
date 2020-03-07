@@ -34,8 +34,8 @@ class AutoRestParameterizedHostTestClientConfiguration(Configuration):
         super(AutoRestParameterizedHostTestClientConfiguration, self).__init__(**kwargs)
 
         self.host = host
+        kwargs.setdefault('sdk_moniker', 'autorestparameterizedhosttestclient/{}'.format(VERSION))
         self._configure(**kwargs)
-        self.user_agent_policy.add_user_agent('azsdk-python-autorestparameterizedhosttestclient/{}'.format(VERSION))
 
     def _configure(
         self,

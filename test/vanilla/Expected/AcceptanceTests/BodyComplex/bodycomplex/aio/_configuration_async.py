@@ -29,8 +29,8 @@ class AutoRestComplexTestServiceConfiguration(Configuration):
         super(AutoRestComplexTestServiceConfiguration, self).__init__(**kwargs)
 
         self.api_version = "2016-02-29"
+        kwargs.setdefault('sdk_moniker', 'autorestcomplextestservice/{}'.format(VERSION))
         self._configure(**kwargs)
-        self.user_agent_policy.add_user_agent('azsdk-python-autorestcomplextestservice/{}'.format(VERSION))
 
     def _configure(
         self,

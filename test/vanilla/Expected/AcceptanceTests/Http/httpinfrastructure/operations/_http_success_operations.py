@@ -60,10 +60,10 @@ class HttpSuccessOperations(object):
         url = self.head200.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -100,10 +100,10 @@ class HttpSuccessOperations(object):
         url = self.get200.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -144,10 +144,10 @@ class HttpSuccessOperations(object):
         url = self.options200.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -189,20 +189,21 @@ class HttpSuccessOperations(object):
         url = self.put200.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if boolean_value is not None:
             body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -237,20 +238,21 @@ class HttpSuccessOperations(object):
         url = self.patch200.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if boolean_value is not None:
             body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.patch(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -285,20 +287,21 @@ class HttpSuccessOperations(object):
         url = self.post200.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if boolean_value is not None:
             body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -333,20 +336,21 @@ class HttpSuccessOperations(object):
         url = self.delete200.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if boolean_value is not None:
             body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -381,20 +385,21 @@ class HttpSuccessOperations(object):
         url = self.put201.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if boolean_value is not None:
             body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -429,20 +434,21 @@ class HttpSuccessOperations(object):
         url = self.post201.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if boolean_value is not None:
             body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -477,20 +483,21 @@ class HttpSuccessOperations(object):
         url = self.put202.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if boolean_value is not None:
             body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -525,20 +532,21 @@ class HttpSuccessOperations(object):
         url = self.patch202.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if boolean_value is not None:
             body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.patch(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -573,20 +581,21 @@ class HttpSuccessOperations(object):
         url = self.post202.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if boolean_value is not None:
             body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -621,20 +630,21 @@ class HttpSuccessOperations(object):
         url = self.delete202.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if boolean_value is not None:
             body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -668,10 +678,10 @@ class HttpSuccessOperations(object):
         url = self.head204.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)
@@ -709,20 +719,21 @@ class HttpSuccessOperations(object):
         url = self.put204.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if boolean_value is not None:
             body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -757,20 +768,21 @@ class HttpSuccessOperations(object):
         url = self.patch204.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if boolean_value is not None:
             body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.patch(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -805,20 +817,21 @@ class HttpSuccessOperations(object):
         url = self.post204.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if boolean_value is not None:
             body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -853,20 +866,21 @@ class HttpSuccessOperations(object):
         url = self.delete204.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if boolean_value is not None:
             body_content = self._serialize.body(boolean_value, 'bool')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.delete(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.delete(url, query_parameters, header_parameters, body_content)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -900,10 +914,10 @@ class HttpSuccessOperations(object):
         url = self.head404.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.head(url, query_parameters, header_parameters)

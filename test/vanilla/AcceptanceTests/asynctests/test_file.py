@@ -24,6 +24,7 @@
 #
 # --------------------------------------------------------------------------
 
+from async_generator import yield_, async_generator
 import unittest
 import subprocess
 import sys
@@ -44,11 +45,12 @@ cwd = dirname(realpath(__file__))
 
 
 @pytest.fixture
+@async_generator
 async def client(connection_data_block_size=None):
     async with AutoRestSwaggerBATFileService(
         base_url="http://localhost:3000", connection_data_block_size=connection_data_block_size
     ) as client:
-        yield client
+        await yield_(client)
 
 @pytest.fixture
 def callback():

@@ -37,19 +37,19 @@ class AutoRestReportServiceForAzureOperationsMixin:
         :rtype: dict[str, int]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[Dict[str, int]] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, int]]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_report.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
         if qualifier is not None:
             query_parameters['qualifier'] = self._serialize.query("qualifier", qualifier, 'str')
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request

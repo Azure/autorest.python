@@ -24,25 +24,15 @@
 #
 # --------------------------------------------------------------------------
 
-import unittest
-import subprocess
-import sys
-import isodate
-import tempfile
-import json
 from uuid import uuid4
-from datetime import date, datetime, timedelta
-import os
-from os.path import dirname, pardir, join, realpath
+import pytest
 
 from subscriptionidapiversion.aio import MicrosoftAzureTestUrl
 from subscriptionidapiversion.models import SampleResourceGroup
 
-import pytest
 
 class TestAzureUrl(object):
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/91")
     @pytest.mark.asyncio
     async def test_azure_url(self, credential, authentication_policy):
 

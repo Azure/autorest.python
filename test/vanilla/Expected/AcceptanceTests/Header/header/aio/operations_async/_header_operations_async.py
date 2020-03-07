@@ -56,17 +56,17 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.param_existing_key.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['User-Agent'] = self._serialize.header("user_agent", user_agent, 'str')
 
         # Construct and send request
@@ -96,17 +96,17 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.response_existing_key.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -141,17 +141,17 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.param_protected_key.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
@@ -181,17 +181,17 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.response_protected_key.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -229,17 +229,17 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.param_integer.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'int')
 
@@ -273,17 +273,17 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.response_integer.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
@@ -322,17 +322,17 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.param_long.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'long')
 
@@ -366,17 +366,17 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.response_long.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
@@ -415,17 +415,17 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.param_float.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'float')
 
@@ -459,17 +459,17 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.response_float.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
@@ -508,17 +508,17 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.param_double.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'float')
 
@@ -552,17 +552,17 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.response_double.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
@@ -592,7 +592,7 @@ class HeaderOperations:
     ) -> None:
         """Send a post request with header values "scenario": "true", "value": true or "scenario": "false", "value": false.
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :param scenario: Send a post request with header values "scenario": "true" or "false".
         :type scenario: str
         :param value: Send a post request with header values true or false.
         :type value: bool
@@ -601,17 +601,17 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.param_bool.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'bool')
 
@@ -638,24 +638,24 @@ class HeaderOperations:
     ) -> None:
         """Get a response with header value "value": true or false.
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :param scenario: Send a post request with header values "scenario": "true" or "false".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.response_bool.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
@@ -685,7 +685,8 @@ class HeaderOperations:
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "".
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :param scenario: Send a post request with header values "scenario": "valid" or "null" or
+         "empty".
         :type scenario: str
         :param value: Send a post request with header values "The quick brown fox jumps over the lazy
          dog" or null or "".
@@ -695,17 +696,17 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.param_string.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         if value is not None:
             header_parameters['value'] = self._serialize.header("value", value, 'str')
@@ -733,24 +734,25 @@ class HeaderOperations:
     ) -> None:
         """Get a response with header values "The quick brown fox jumps over the lazy dog" or null or "".
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :param scenario: Send a post request with header values "scenario": "valid" or "null" or
+         "empty".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.response_string.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
@@ -780,7 +782,7 @@ class HeaderOperations:
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01" or "scenario": "min", "value": "0001-01-01".
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :param scenario: Send a post request with header values "scenario": "valid" or "min".
         :type scenario: str
         :param value: Send a post request with header values "2010-01-01" or "0001-01-01".
         :type value: ~datetime.date
@@ -789,17 +791,17 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.param_date.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'date')
 
@@ -826,24 +828,24 @@ class HeaderOperations:
     ) -> None:
         """Get a response with header values "2010-01-01" or "0001-01-01".
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :param scenario: Send a post request with header values "scenario": "valid" or "min".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.response_date.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
@@ -873,7 +875,7 @@ class HeaderOperations:
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or "scenario": "min", "value": "0001-01-01T00:00:00Z".
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :param scenario: Send a post request with header values "scenario": "valid" or "min".
         :type scenario: str
         :param value: Send a post request with header values "2010-01-01T12:34:56Z" or
          "0001-01-01T00:00:00Z".
@@ -883,17 +885,17 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.param_datetime.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'iso-8601')
 
@@ -920,24 +922,24 @@ class HeaderOperations:
     ) -> None:
         """Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z".
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :param scenario: Send a post request with header values "scenario": "valid" or "min".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.response_datetime.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
@@ -967,7 +969,7 @@ class HeaderOperations:
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56 GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT".
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :param scenario: Send a post request with header values "scenario": "valid" or "min".
         :type scenario: str
         :param value: Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon,
          01 Jan 0001 00:00:00 GMT".
@@ -977,17 +979,17 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.param_datetime_rfc1123.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         if value is not None:
             header_parameters['value'] = self._serialize.header("value", value, 'rfc-1123')
@@ -1015,24 +1017,24 @@ class HeaderOperations:
     ) -> None:
         """Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT".
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :param scenario: Send a post request with header values "scenario": "valid" or "min".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.response_datetime_rfc1123.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
@@ -1062,7 +1064,7 @@ class HeaderOperations:
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S".
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :param scenario: Send a post request with header values "scenario": "valid".
         :type scenario: str
         :param value: Send a post request with header values "P123DT22H14M12.011S".
         :type value: ~datetime.timedelta
@@ -1071,17 +1073,17 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.param_duration.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'duration')
 
@@ -1108,24 +1110,24 @@ class HeaderOperations:
     ) -> None:
         """Get a response with header values "P123DT22H14M12.011S".
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :param scenario: Send a post request with header values "scenario": "valid".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.response_duration.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
@@ -1155,7 +1157,7 @@ class HeaderOperations:
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩".
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :param scenario: Send a post request with header values "scenario": "valid".
         :type scenario: str
         :param value: Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩".
         :type value: bytearray
@@ -1164,17 +1166,17 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.param_byte.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         header_parameters['value'] = self._serialize.header("value", value, 'bytearray')
 
@@ -1201,24 +1203,24 @@ class HeaderOperations:
     ) -> None:
         """Get a response with header values "啊齄丂狛狜隣郎隣兀﨩".
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :param scenario: Send a post request with header values "scenario": "valid".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.response_byte.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
@@ -1248,7 +1250,8 @@ class HeaderOperations:
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario": "null", "value": null.
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :param scenario: Send a post request with header values "scenario": "valid" or "null" or
+         "empty".
         :type scenario: str
         :param value: Send a post request with header values 'GREY'.
         :type value: str or ~header.models.GreyscaleColors
@@ -1257,17 +1260,17 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.param_enum.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
         if value is not None:
             header_parameters['value'] = self._serialize.header("value", value, 'str')
@@ -1295,24 +1298,25 @@ class HeaderOperations:
     ) -> None:
         """Get a response with header values "GREY" or null.
 
-        :param scenario: Send a post request with header values "scenario": "positive" or "negative".
+        :param scenario: Send a post request with header values "scenario": "valid" or "null" or
+         "empty".
         :type scenario: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.response_enum.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['scenario'] = self._serialize.header("scenario", scenario, 'str')
 
         # Construct and send request
@@ -1345,17 +1349,17 @@ class HeaderOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.custom_request_id.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)

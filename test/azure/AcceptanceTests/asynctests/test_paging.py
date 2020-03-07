@@ -24,6 +24,7 @@
 #
 # --------------------------------------------------------------------------
 
+from async_generator import yield_, async_generator
 import unittest
 import subprocess
 import sys
@@ -44,6 +45,7 @@ from azure.core.pipeline.policies import ContentDecodePolicy, AsyncRetryPolicy, 
 import pytest
 
 @pytest.fixture
+@async_generator
 async def client(cookie_policy, credential):
     policies = [
         RequestIdPolicy(),
@@ -53,12 +55,13 @@ async def client(cookie_policy, credential):
         cookie_policy
     ]
     async with AutoRestPagingTestService(credential, base_url="http://localhost:3000", policies=policies) as client:
-        yield client
+        await yield_(client)
 
 @pytest.fixture
+@async_generator
 async def custom_url_client(credential, authentication_policy):
     async with AutoRestParameterizedHostTestPagingClient(credential, host="host:3000", authentication_policy=authentication_policy) as client:
-        yield client
+        await yield_(client)
 
 @pytest.mark.asyncio
 async def test_get_single_pages_with_cb(client):
@@ -72,7 +75,9 @@ async def test_get_single_pages_with_cb(client):
 @pytest.mark.asyncio
 async def test_get_single_pages(client):
     pages = client.paging.get_single_pages()
-    items = [i async for i in pages]
+    items = []
+    async for item in pages:
+        items.append(item)
     assert len(items) == 1
     assert items[0].properties.id == 1
     assert items[0].properties.name == "Product"
@@ -80,25 +85,33 @@ async def test_get_single_pages(client):
 @pytest.mark.asyncio
 async def test_get_multiple_pages(client):
     pages = client.paging.get_multiple_pages()
-    items = [i async for i in pages]
+    items = []
+    async for item in pages:
+        items.append(item)
     assert len(items) == 10
 
 @pytest.mark.asyncio
 async def test_get_odata_multiple_pages(client):
     pages = client.paging.get_odata_multiple_pages()
-    items = [i async for i in pages]
+    items = []
+    async for item in pages:
+        items.append(item)
     assert len(items) == 10
 
 @pytest.mark.asyncio
 async def test_get_multiple_pages_retry_first(client):
     pages = client.paging.get_multiple_pages_retry_first()
-    items = [i async for i in pages]
+    items = []
+    async for item in pages:
+        items.append(item)
     assert len(items) == 10
 
 @pytest.mark.asyncio
 async def test_get_multiple_pages_retry_second(client):
     pages = client.paging.get_multiple_pages_retry_second()
-    items = [i async for i in pages]
+    items = []
+    async for item in pages:
+        items.append(item)
     assert len(items) == 10
 
 @pytest.mark.asyncio
@@ -106,7 +119,9 @@ async def test_get_multiple_pages_with_offset(client):
     from paging.models import PagingGetMultiplePagesWithOffsetOptions
     options = PagingGetMultiplePagesWithOffsetOptions(offset=100)
     pages = client.paging.get_multiple_pages_with_offset(paging_get_multiple_pages_with_offset_options=options)
-    items = [i async for i in pages]
+    items = []
+    async for item in pages:
+        items.append(item)
     assert len(items) == 10
     assert items[-1].properties.id == 110
 
@@ -114,25 +129,30 @@ async def test_get_multiple_pages_with_offset(client):
 async def test_get_single_pages_failure(client):
     pages = client.paging.get_single_pages_failure()
     with pytest.raises(HttpResponseError):
-        [i async for i in pages]
+        async for i in pages:
+            ...
 
 @pytest.mark.asyncio
 async def test_get_multiple_pages_failure(client):
     pages = client.paging.get_multiple_pages_failure()
     with pytest.raises(HttpResponseError):
-        [i async for i in pages]
+        async for i in pages:
+            ...
 
 @pytest.mark.asyncio
 async def test_get_multiple_pages_failure_uri(client):
     pages = client.paging.get_multiple_pages_failure_uri()
     with pytest.raises(HttpResponseError):
-        [i async for i in pages]
+        async for i in pages:
+            ...
 
 @pytest.mark.asyncio
 async def test_paging_fragment_path(client):
 
     pages = client.paging.get_multiple_pages_fragment_next_link("1.6", "test_user")
-    items = [i async for i in pages]
+    items = []
+    async for item in pages:
+        items.append(item)
     assert len(items) == 10
 
     with pytest.raises(AttributeError):
@@ -142,17 +162,21 @@ async def test_paging_fragment_path(client):
 @pytest.mark.asyncio
 async def test_custom_url_get_pages_partial_url(custom_url_client):
     pages = custom_url_client.paging.get_pages_partial_url("local")
-    paged = [i async for i in pages]
+    items = []
+    async for item in pages:
+        items.append(item)
 
-    assert len(paged) == 2
-    assert paged[0].properties.id == 1
-    assert paged[1].properties.id == 2
+    assert len(items) == 2
+    assert items[0].properties.id == 1
+    assert items[1].properties.id == 2
 
 @pytest.mark.asyncio
 async def test_custom_url_get_pages_partial_url_operation(custom_url_client):
     pages = custom_url_client.paging.get_pages_partial_url_operation("local")
-    paged = [i async for i in pages]
+    items = []
+    async for item in pages:
+        items.append(item)
 
-    assert len(paged) == 2
-    assert paged[0].properties.id == 1
-    assert paged[1].properties.id == 2
+    assert len(items) == 2
+    assert items[0].properties.id == 1
+    assert items[1].properties.id == 2

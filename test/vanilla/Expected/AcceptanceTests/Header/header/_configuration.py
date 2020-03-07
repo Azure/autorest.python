@@ -28,8 +28,8 @@ class AutoRestSwaggerBATHeaderServiceConfiguration(Configuration):
         # type: (...) -> None
         super(AutoRestSwaggerBATHeaderServiceConfiguration, self).__init__(**kwargs)
 
+        kwargs.setdefault('sdk_moniker', 'autorestswaggerbatheaderservice/{}'.format(VERSION))
         self._configure(**kwargs)
-        self.user_agent_policy.add_user_agent('azsdk-python-autorestswaggerbatheaderservice/{}'.format(VERSION))
 
     def _configure(
         self,

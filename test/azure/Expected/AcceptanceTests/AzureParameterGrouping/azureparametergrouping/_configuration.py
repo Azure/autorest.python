@@ -28,8 +28,8 @@ class AutoRestParameterGroupingTestServiceConfiguration(Configuration):
         # type: (...) -> None
         super(AutoRestParameterGroupingTestServiceConfiguration, self).__init__(**kwargs)
 
+        kwargs.setdefault('sdk_moniker', 'autorestparametergroupingtestservice/{}'.format(VERSION))
         self._configure(**kwargs)
-        self.user_agent_policy.add_user_agent('azsdk-python-autorestparametergroupingtestservice/{}'.format(VERSION))
 
     def _configure(
         self,

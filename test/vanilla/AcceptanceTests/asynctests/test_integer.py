@@ -24,6 +24,7 @@
 #
 # --------------------------------------------------------------------------
 
+from async_generator import yield_, async_generator
 import unittest
 import subprocess
 import sys
@@ -41,48 +42,49 @@ from bodyinteger.aio import AutoRestIntegerTestService
 import pytest
 
 @pytest.fixture
+@async_generator
 async def client():
     async with AutoRestIntegerTestService(base_url="http://localhost:3000") as client:
-        yield client
+        await yield_(client)
 
 class TestInteger(object):
     @pytest.mark.asyncio
     async def test_max_min_32_bit(self, client):
-        await client.int_model.put_max32(2147483647) # sys.maxint
-        await client.int_model.put_min32(-2147483648)
+        await client.int.put_max32(2147483647) # sys.maxint
+        await client.int.put_min32(-2147483648)
 
     @pytest.mark.asyncio
     async def test_max_min_64_bit(self, client):
-        await client.int_model.put_max64(9223372036854776000)  # sys.maxsize
-        await client.int_model.put_min64(-9223372036854776000)
+        await client.int.put_max64(9223372036854776000)  # sys.maxsize
+        await client.int.put_min64(-9223372036854776000)
 
     @pytest.mark.asyncio
     async def test_get_null_and_invalid(self, client):
-        await client.int_model.get_null()
+        await client.int.get_null()
 
         with pytest.raises(DecodeError):
-            await client.int_model.get_invalid()
+            await client.int.get_invalid()
 
     @pytest.mark.asyncio
     async def test_get_overflow(self, client):
         # Testserver excepts these to fail, but they won't in Python and it's ok.
-        await client.int_model.get_overflow_int32()
-        await client.int_model.get_overflow_int64()
+        await client.int.get_overflow_int32()
+        await client.int.get_overflow_int64()
 
     @pytest.mark.asyncio
     async def test_get_underflow(self, client):
-        await client.int_model.get_underflow_int32()
-        await client.int_model.get_underflow_int64()
+        await client.int.get_underflow_int32()
+        await client.int.get_underflow_int64()
 
     @pytest.mark.asyncio
     async def test_unix_time_date(self, client):
         unix_date = datetime(year=2016, month=4, day=13)
-        await client.int_model.put_unix_time_date(unix_date)
-        assert unix_date.utctimetuple() ==  (await client.int_model.get_unix_time()).utctimetuple()
+        await client.int.put_unix_time_date(unix_date)
+        assert unix_date.utctimetuple() ==  (await client.int.get_unix_time()).utctimetuple()
 
     @pytest.mark.asyncio
     async def test_get_null_and_invalid_unix_time(self, client):
-        assert await client.int_model.get_null_unix_time() is None
+        assert await client.int.get_null_unix_time() is None
 
         with pytest.raises(DecodeError):
-            await client.int_model.get_invalid_unix_time()
+            await client.int.get_invalid_unix_time()
