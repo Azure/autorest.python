@@ -35,27 +35,28 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_array.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if resource_array is not None:
             body_content = self._serialize.body(resource_array, '[Resource]')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -81,17 +82,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :rtype: list[~modelflattening.models.FlattenedProduct]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[List["FlattenedProduct"]] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["FlattenedProduct"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_array.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -127,27 +128,28 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_wrapped_array.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if resource_array is not None:
             body_content = self._serialize.body(resource_array, '[WrappedProduct]')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -173,17 +175,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :rtype: list[~modelflattening.models.ProductWrapper]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[List["ProductWrapper"]] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["ProductWrapper"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_wrapped_array.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -219,27 +221,28 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_dictionary.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if resource_dictionary is not None:
             body_content = self._serialize.body(resource_dictionary, '{FlattenedProduct}')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -265,17 +268,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :rtype: dict[str, ~modelflattening.models.FlattenedProduct]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[Dict[str, "FlattenedProduct"]] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[Dict[str, "FlattenedProduct"]]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_dictionary.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -311,27 +314,28 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_resource_collection.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if resource_complex_object is not None:
             body_content = self._serialize.body(resource_complex_object, 'ResourceCollection')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -357,17 +361,17 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :rtype: ~modelflattening.models.ResourceCollection
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ResourceCollection"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ResourceCollection"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_resource_collection.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -403,28 +407,29 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :rtype: ~modelflattening.models.SimpleProduct
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.SimpleProduct"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.SimpleProduct"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.put_simple_product.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if simple_body_product is not None:
             body_content = self._serialize.body(simple_body_product, 'SimpleProduct')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -470,7 +475,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :rtype: ~modelflattening.models.SimpleProduct
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.SimpleProduct"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.SimpleProduct"]
         error_map = kwargs.pop('error_map', {})
 
         _simple_body_product = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odata_value=odata_value)
@@ -479,21 +484,22 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         url = self.post_flattened_simple_product.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if _simple_body_product is not None:
             body_content = self._serialize.body(_simple_body_product, 'SimpleProduct')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -525,7 +531,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         :rtype: ~modelflattening.models.SimpleProduct
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.SimpleProduct"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.SimpleProduct"]
         error_map = kwargs.pop('error_map', {})
         
         _name = None
@@ -554,21 +560,22 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if _simple_body_product is not None:
             body_content = self._serialize.body(_simple_body_product, 'SimpleProduct')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

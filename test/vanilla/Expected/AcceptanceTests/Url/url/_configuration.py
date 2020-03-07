@@ -39,8 +39,8 @@ class AutoRestUrlTestServiceConfiguration(Configuration):
 
         self.global_string_path = global_string_path
         self.global_string_query = global_string_query
+        kwargs.setdefault('sdk_moniker', 'autoresturltestservice/{}'.format(VERSION))
         self._configure(**kwargs)
-        self.user_agent_policy.add_user_agent('azsdk-python-autoresturltestservice/{}'.format(VERSION))
 
     def _configure(
         self,

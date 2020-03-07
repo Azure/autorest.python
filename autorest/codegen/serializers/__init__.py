@@ -153,6 +153,9 @@ class JinjaSerializer:
                 general_serializer.serialize_version_file()
             )
 
+        # write the empty py.typed file
+        self._autorestapi.write_file(namespace_path / Path("py.typed"), "# Marker file for PEP 561.")
+
         # Write the config file
         self._autorestapi.write_file(
             namespace_path / Path("_configuration.py"), general_serializer.serialize_config_file()

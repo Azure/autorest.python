@@ -24,33 +24,24 @@
 #
 # --------------------------------------------------------------------------
 
-import unittest
-import subprocess
-import sys
-import isodate
-import tempfile
-import json
-from uuid import uuid4
-import os
-from os.path import dirname, pardir, join, realpath
+from async_generator import yield_, async_generator
+import pytest
 
 from msrest.exceptions import (
-    DeserializationError,
-    SerializationError,
     ValidationError
 )
 from azure.core.exceptions import ServiceRequestError
 
 from custombaseurl.aio import AutoRestParameterizedHostTestClient
-from custombaseurl.models import Error
 
-import pytest
 
 @pytest.fixture
+@async_generator
 async def client():
     async with AutoRestParameterizedHostTestClient(host="host:3000") as client:
         client._config.retry_policy.retries = 0
-        yield client
+        await yield_(client)
+
 
 class TestCustomBaseUri(object):
 

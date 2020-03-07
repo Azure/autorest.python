@@ -63,12 +63,12 @@ class QueriesOperations(object):
         url = self.array_string_multi_null.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
         if array_query is not None:
             query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -108,12 +108,12 @@ class QueriesOperations(object):
         url = self.array_string_multi_empty.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
         if array_query is not None:
             query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -139,7 +139,8 @@ class QueriesOperations(object):
         # type: (...) -> None
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the mult-array format.
 
-        :param array_query: an empty array [] of string using the multi-array format.
+        :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
+         ''] using the mult-array format.
         :type array_query: list[str]
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -153,12 +154,12 @@ class QueriesOperations(object):
         url = self.array_string_multi_valid.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
         if array_query is not None:
             query_parameters['arrayQuery'] = self._serialize.query("array_query", array_query, '[str]', div=',')
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

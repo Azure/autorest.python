@@ -62,14 +62,14 @@ class OdataOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_with_filter.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
         if filter is not None:
             query_parameters['$filter'] = self._serialize.query("filter", filter, 'str')
         if top is not None:
@@ -78,7 +78,7 @@ class OdataOperations:
             query_parameters['$orderby'] = self._serialize.query("orderby", orderby, 'str')
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

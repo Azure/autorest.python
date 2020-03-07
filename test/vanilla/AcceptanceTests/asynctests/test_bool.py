@@ -24,6 +24,7 @@
 #
 # --------------------------------------------------------------------------
 
+from async_generator import yield_, async_generator
 import unittest
 import subprocess
 import sys
@@ -41,33 +42,34 @@ from bodyboolean.aio import AutoRestBoolTestService
 import pytest
 
 @pytest.fixture
+@async_generator
 async def client():
     async with AutoRestBoolTestService(base_url="http://localhost:3000") as client:
-        yield client
+        await yield_(client)
 
 class TestBool(object):
 
     @pytest.mark.asyncio
     async def test_model_get_true(self, client):
-        assert (await client.bool_model.get_true())
+        assert (await client.bool.get_true())
 
     @pytest.mark.asyncio
     async def test_model_get_false(self, client):
-        assert not (await client.bool_model.get_false())
+        assert not (await client.bool.get_false())
 
     @pytest.mark.asyncio
     async def test_model_get_null(self, client):
-        await client.bool_model.get_null()
+        await client.bool.get_null()
 
     @pytest.mark.asyncio
     async def test_model_put_false(self, client):
-        await client.bool_model.put_false()
+        await client.bool.put_false()
 
     @pytest.mark.asyncio
     async def test_model_put_true(self, client):
-        await client.bool_model.put_true()
+        await client.bool.put_true()
 
     @pytest.mark.asyncio
     async def test_model_get_invalid(self, client):
         with pytest.raises(DecodeError):
-            await client.bool_model.get_invalid()
+            await client.bool.get_invalid()

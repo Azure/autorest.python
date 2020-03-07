@@ -27,8 +27,8 @@ class AutoRestSwaggerBATXMLServiceConfiguration(Configuration):
     ) -> None:
         super(AutoRestSwaggerBATXMLServiceConfiguration, self).__init__(**kwargs)
 
+        kwargs.setdefault('sdk_moniker', 'autorestswaggerbatxmlservice/{}'.format(VERSION))
         self._configure(**kwargs)
-        self.user_agent_policy.add_user_agent('azsdk-python-autorestswaggerbatxmlservice/{}'.format(VERSION))
 
     def _configure(
         self,

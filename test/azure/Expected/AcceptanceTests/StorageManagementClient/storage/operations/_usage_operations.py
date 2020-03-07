@@ -56,6 +56,7 @@ class UsageOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.UsageListResult"]
         error_map = kwargs.pop('error_map', {})
+        api_version = "2015-05-01-preview"
 
         # Construct URL
         url = self.list.metadata['url']
@@ -65,10 +66,11 @@ class UsageOperations(object):
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request

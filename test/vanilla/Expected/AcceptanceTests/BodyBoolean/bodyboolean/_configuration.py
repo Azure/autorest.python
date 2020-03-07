@@ -28,8 +28,8 @@ class AutoRestBoolTestServiceConfiguration(Configuration):
         # type: (...) -> None
         super(AutoRestBoolTestServiceConfiguration, self).__init__(**kwargs)
 
+        kwargs.setdefault('sdk_moniker', 'autorestbooltestservice/{}'.format(VERSION))
         self._configure(**kwargs)
-        self.user_agent_policy.add_user_agent('azsdk-python-autorestbooltestservice/{}'.format(VERSION))
 
     def _configure(
         self,

@@ -57,7 +57,7 @@ class PagingOperations:
         :rtype: ~paging.models.ProductResultValue
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ProductResultValue"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResultValue"]
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -68,10 +68,10 @@ class PagingOperations:
                 url = next_link
 
             # Construct parameters
-            query_parameters: Dict[str, Any] = {}
+            query_parameters = {}  # type: Dict[str, Any]
 
             # Construct headers
-            header_parameters: Dict[str, Any] = {}
+            header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
 
             # Construct and send request
@@ -114,7 +114,7 @@ class PagingOperations:
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -125,10 +125,10 @@ class PagingOperations:
                 url = next_link
 
             # Construct parameters
-            query_parameters: Dict[str, Any] = {}
+            query_parameters = {}  # type: Dict[str, Any]
 
             # Construct headers
-            header_parameters: Dict[str, Any] = {}
+            header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
 
             # Construct and send request
@@ -171,7 +171,7 @@ class PagingOperations:
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -182,10 +182,10 @@ class PagingOperations:
                 url = next_link
 
             # Construct parameters
-            query_parameters: Dict[str, Any] = {}
+            query_parameters = {}  # type: Dict[str, Any]
 
             # Construct headers
-            header_parameters: Dict[str, Any] = {}
+            header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
 
             # Construct and send request
@@ -234,7 +234,7 @@ class PagingOperations:
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
         error_map = kwargs.pop('error_map', {})
         
         _maxresults = None
@@ -251,10 +251,10 @@ class PagingOperations:
                 url = next_link
 
             # Construct parameters
-            query_parameters: Dict[str, Any] = {}
+            query_parameters = {}  # type: Dict[str, Any]
 
             # Construct headers
-            header_parameters: Dict[str, Any] = {}
+            header_parameters = {}  # type: Dict[str, Any]
             if client_request_id is not None:
                 header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
             if _maxresults is not None:
@@ -309,7 +309,7 @@ class PagingOperations:
         :rtype: ~paging.models.OdataProductResult
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.OdataProductResult"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult"]
         error_map = kwargs.pop('error_map', {})
         
         _maxresults = None
@@ -326,10 +326,10 @@ class PagingOperations:
                 url = next_link
 
             # Construct parameters
-            query_parameters: Dict[str, Any] = {}
+            query_parameters = {}  # type: Dict[str, Any]
 
             # Construct headers
-            header_parameters: Dict[str, Any] = {}
+            header_parameters = {}  # type: Dict[str, Any]
             if client_request_id is not None:
                 header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
             if _maxresults is not None:
@@ -384,7 +384,7 @@ class PagingOperations:
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
         error_map = kwargs.pop('error_map', {})
         
         _maxresults = None
@@ -407,10 +407,10 @@ class PagingOperations:
                 url = next_link
 
             # Construct parameters
-            query_parameters: Dict[str, Any] = {}
+            query_parameters = {}  # type: Dict[str, Any]
 
             # Construct headers
-            header_parameters: Dict[str, Any] = {}
+            header_parameters = {}  # type: Dict[str, Any]
             if client_request_id is not None:
                 header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
             if _maxresults is not None:
@@ -459,7 +459,7 @@ class PagingOperations:
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -470,10 +470,10 @@ class PagingOperations:
                 url = next_link
 
             # Construct parameters
-            query_parameters: Dict[str, Any] = {}
+            query_parameters = {}  # type: Dict[str, Any]
 
             # Construct headers
-            header_parameters: Dict[str, Any] = {}
+            header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
 
             # Construct and send request
@@ -516,7 +516,7 @@ class PagingOperations:
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -527,10 +527,10 @@ class PagingOperations:
                 url = next_link
 
             # Construct parameters
-            query_parameters: Dict[str, Any] = {}
+            query_parameters = {}  # type: Dict[str, Any]
 
             # Construct headers
-            header_parameters: Dict[str, Any] = {}
+            header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
 
             # Construct and send request
@@ -573,7 +573,7 @@ class PagingOperations:
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -584,10 +584,10 @@ class PagingOperations:
                 url = next_link
 
             # Construct parameters
-            query_parameters: Dict[str, Any] = {}
+            query_parameters = {}  # type: Dict[str, Any]
 
             # Construct headers
-            header_parameters: Dict[str, Any] = {}
+            header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
 
             # Construct and send request
@@ -630,7 +630,7 @@ class PagingOperations:
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -641,10 +641,10 @@ class PagingOperations:
                 url = next_link
 
             # Construct parameters
-            query_parameters: Dict[str, Any] = {}
+            query_parameters = {}  # type: Dict[str, Any]
 
             # Construct headers
-            header_parameters: Dict[str, Any] = {}
+            header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
 
             # Construct and send request
@@ -687,7 +687,7 @@ class PagingOperations:
         :rtype: ~paging.models.ProductResult
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -698,10 +698,10 @@ class PagingOperations:
                 url = next_link
 
             # Construct parameters
-            query_parameters: Dict[str, Any] = {}
+            query_parameters = {}  # type: Dict[str, Any]
 
             # Construct headers
-            header_parameters: Dict[str, Any] = {}
+            header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
 
             # Construct and send request
@@ -750,7 +750,7 @@ class PagingOperations:
         :rtype: ~paging.models.OdataProductResult
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.OdataProductResult"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult"]
         error_map = kwargs.pop('error_map', {})
 
         def prepare_request(next_link=None):
@@ -770,11 +770,11 @@ class PagingOperations:
                 url = self._client.format_url(url, **path_format_arguments)
 
             # Construct parameters
-            query_parameters: Dict[str, Any] = {}
+            query_parameters = {}  # type: Dict[str, Any]
             query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
 
             # Construct headers
-            header_parameters: Dict[str, Any] = {}
+            header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
 
             # Construct and send request
@@ -820,7 +820,7 @@ class PagingOperations:
         :rtype: ~paging.models.OdataProductResult
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.OdataProductResult"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult"]
         error_map = kwargs.pop('error_map', {})
         
         _api_version = None
@@ -846,11 +846,11 @@ class PagingOperations:
                 url = self._client.format_url(url, **path_format_arguments)
 
             # Construct parameters
-            query_parameters: Dict[str, Any] = {}
+            query_parameters = {}  # type: Dict[str, Any]
             query_parameters['api_version'] = self._serialize.query("api_version", _api_version, 'str')
 
             # Construct headers
-            header_parameters: Dict[str, Any] = {}
+            header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
 
             # Construct and send request
@@ -887,7 +887,7 @@ class PagingOperations:
         paging_get_multiple_pages_lro_options: Optional["models.PagingGetMultiplePagesLroOptions"] = None,
         **kwargs
     ) -> "models.ProductResult":
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
         error_map = kwargs.pop('error_map', {})
         
         _maxresults = None
@@ -900,10 +900,10 @@ class PagingOperations:
         url = self._get_multiple_pages_lro_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         if client_request_id is not None:
             header_parameters['client-request-id'] = self._serialize.header("client_request_id", client_request_id, 'str')
         if _maxresults is not None:
@@ -951,8 +951,8 @@ class PagingOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.ProductResult"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
         raw_result = await self._get_multiple_pages_lro_initial(
             client_request_id=client_request_id,
             paging_get_multiple_pages_lro_options=paging_get_multiple_pages_lro_options,

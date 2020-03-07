@@ -48,28 +48,29 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put200_succeeded_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -106,8 +107,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put200_succeeded_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -136,28 +137,29 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put200_succeeded_no_state_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -192,8 +194,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put200_succeeded_no_state_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -222,28 +224,29 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put202_retry200_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -278,8 +281,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put202_retry200_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -308,28 +311,29 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put201_creating_succeeded200_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -369,8 +373,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put201_creating_succeeded200_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -399,28 +403,29 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put200_updating_succeeded204_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -455,8 +460,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put200_updating_succeeded204_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -485,28 +490,29 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put201_creating_failed200_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -546,8 +552,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put201_creating_failed200_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -576,28 +582,29 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put200_acceptedcanceled200_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -632,8 +639,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put200_acceptedcanceled200_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -662,28 +669,29 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_no_header_in_retry_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -720,8 +728,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put_no_header_in_retry_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -753,28 +761,29 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_async_retry_succeeded_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -813,8 +822,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put_async_retry_succeeded_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -848,28 +857,29 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_async_no_retry_succeeded_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -907,8 +917,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put_async_no_retry_succeeded_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -941,28 +951,29 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_async_retry_failed_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1001,8 +1012,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put_async_retry_failed_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -1036,28 +1047,29 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_async_no_retrycanceled_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1095,8 +1107,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put_async_no_retrycanceled_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -1129,28 +1141,29 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_async_no_header_in_retry_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1187,8 +1200,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._put_async_no_header_in_retry_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -1220,28 +1233,29 @@ class LROsOperations:
         sku: Optional["models.Sku"] = None,
         **kwargs
     ) -> "models.Sku":
-        cls: ClsType["models.Sku"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Sku"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_non_resource_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if sku is not None:
             body_content = self._serialize.body(sku, 'Sku')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1276,8 +1290,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Sku"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Sku"]
         raw_result = await self._put_non_resource_initial(
             sku=sku,
             cls=lambda x,y,z: x,
@@ -1306,28 +1320,29 @@ class LROsOperations:
         sku: Optional["models.Sku"] = None,
         **kwargs
     ) -> "models.Sku":
-        cls: ClsType["models.Sku"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Sku"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._put_async_non_resource_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if sku is not None:
             body_content = self._serialize.body(sku, 'Sku')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1351,7 +1366,7 @@ class LROsOperations:
     ) -> "models.Sku":
         """Long running put request with non resource.
 
-        :param sku: sku to put.
+        :param sku: Sku to put.
         :type sku: ~lro.models.Sku
         :keyword callable cls: A custom type or function that will be passed the direct response
         :keyword polling: True for ARMPolling, False for no polling, or a
@@ -1362,8 +1377,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Sku"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Sku"]
         raw_result = await self._put_async_non_resource_initial(
             sku=sku,
             cls=lambda x,y,z: x,
@@ -1392,7 +1407,7 @@ class LROsOperations:
         provisioning_state: Optional[str] = None,
         **kwargs
     ) -> "models.SubProduct":
-        cls: ClsType["models.SubProduct"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.SubProduct"]
         error_map = kwargs.pop('error_map', {})
 
         _product = models.SubProduct(provisioning_state=provisioning_state)
@@ -1401,21 +1416,22 @@ class LROsOperations:
         url = self._put_sub_resource_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if _product is not None:
             body_content = self._serialize.body(_product, 'SubProduct')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1450,8 +1466,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.SubProduct"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.SubProduct"]
         raw_result = await self._put_sub_resource_initial(
             provisioning_state=provisioning_state,
             cls=lambda x,y,z: x,
@@ -1480,7 +1496,7 @@ class LROsOperations:
         provisioning_state: Optional[str] = None,
         **kwargs
     ) -> "models.SubProduct":
-        cls: ClsType["models.SubProduct"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.SubProduct"]
         error_map = kwargs.pop('error_map', {})
 
         _product = models.SubProduct(provisioning_state=provisioning_state)
@@ -1489,21 +1505,22 @@ class LROsOperations:
         url = self._put_async_sub_resource_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if _product is not None:
             body_content = self._serialize.body(_product, 'SubProduct')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -1538,8 +1555,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.SubProduct"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.SubProduct"]
         raw_result = await self._put_async_sub_resource_initial(
             provisioning_state=provisioning_state,
             cls=lambda x,y,z: x,
@@ -1567,17 +1584,17 @@ class LROsOperations:
         self,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete_provisioning202_accepted200_succeeded_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -1621,8 +1638,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._delete_provisioning202_accepted200_succeeded_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -1653,17 +1670,17 @@ class LROsOperations:
         self,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete_provisioning202_deleting_failed200_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -1707,8 +1724,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._delete_provisioning202_deleting_failed200_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -1739,17 +1756,17 @@ class LROsOperations:
         self,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete_provisioning202_deletingcanceled200_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -1793,8 +1810,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._delete_provisioning202_deletingcanceled200_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -1825,17 +1842,17 @@ class LROsOperations:
         self,
         **kwargs
     ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete204_succeeded_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -1867,8 +1884,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._delete204_succeeded_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -1892,17 +1909,17 @@ class LROsOperations:
         self,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete202_retry200_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -1945,8 +1962,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._delete202_retry200_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -1973,17 +1990,17 @@ class LROsOperations:
         self,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete202_no_retry204_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -2026,8 +2043,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._delete202_no_retry204_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2054,17 +2071,17 @@ class LROsOperations:
         self,
         **kwargs
     ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete_no_header_in_retry_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -2100,8 +2117,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._delete_no_header_in_retry_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2125,17 +2142,17 @@ class LROsOperations:
         self,
         **kwargs
     ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete_async_no_header_in_retry_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -2171,8 +2188,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._delete_async_no_header_in_retry_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2196,17 +2213,17 @@ class LROsOperations:
         self,
         **kwargs
     ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete_async_retry_succeeded_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -2243,8 +2260,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._delete_async_retry_succeeded_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2268,17 +2285,17 @@ class LROsOperations:
         self,
         **kwargs
     ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete_async_no_retry_succeeded_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -2315,8 +2332,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._delete_async_no_retry_succeeded_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2340,17 +2357,17 @@ class LROsOperations:
         self,
         **kwargs
     ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete_async_retry_failed_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -2387,8 +2404,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._delete_async_retry_failed_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2412,17 +2429,17 @@ class LROsOperations:
         self,
         **kwargs
     ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._delete_async_retrycanceled_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -2459,8 +2476,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._delete_async_retrycanceled_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2484,17 +2501,17 @@ class LROsOperations:
         self,
         **kwargs
     ) -> "models.Sku":
-        cls: ClsType["models.Sku"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Sku"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post200_with_payload_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -2535,8 +2552,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Sku"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Sku"]
         raw_result = await self._post200_with_payload_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2564,27 +2581,28 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post202_retry200_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -2620,8 +2638,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._post202_retry200_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -2647,28 +2665,29 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post202_no_retry204_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -2706,8 +2725,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._post202_no_retry204_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -2739,17 +2758,17 @@ class LROsOperations:
         self,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post_double_headers_final_location_get_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -2785,8 +2804,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._post_double_headers_final_location_get_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2813,17 +2832,17 @@ class LROsOperations:
         self,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post_double_headers_final_azure_header_get_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -2859,8 +2878,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._post_double_headers_final_azure_header_get_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2887,17 +2906,17 @@ class LROsOperations:
         self,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post_double_headers_final_azure_header_get_default_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -2933,8 +2952,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._post_double_headers_final_azure_header_get_default_initial(
             cls=lambda x,y,z: x,
             **kwargs
@@ -2962,28 +2981,29 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post_async_retry_succeeded_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -3026,8 +3046,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._post_async_retry_succeeded_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -3056,28 +3076,29 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> "models.Product":
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post_async_no_retry_succeeded_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -3120,8 +3141,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType["models.Product"] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         raw_result = await self._post_async_no_retry_succeeded_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -3150,27 +3171,28 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post_async_retry_failed_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -3207,8 +3229,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._post_async_retry_failed_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -3234,27 +3256,28 @@ class LROsOperations:
         product: Optional["models.Product"] = None,
         **kwargs
     ) -> None:
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self._post_async_retrycanceled_initial.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
-        header_parameters['Content-Type'] = 'application/json'
+        header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
-        # Construct body
+        # Construct and send request
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if product is not None:
             body_content = self._serialize.body(product, 'Product')
         else:
             body_content = None
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
 
-        # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -3291,8 +3314,8 @@ class LROsOperations:
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        polling: Union[bool, AsyncPollingMethod] = kwargs.pop('polling', True)
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         raw_result = await self._post_async_retrycanceled_initial(
             product=product,
             cls=lambda x,y,z: x,

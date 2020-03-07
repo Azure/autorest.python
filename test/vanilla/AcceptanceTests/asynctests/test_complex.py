@@ -24,6 +24,7 @@
 #
 # --------------------------------------------------------------------------
 
+from async_generator import yield_, async_generator
 import unittest
 import subprocess
 import sys
@@ -52,10 +53,11 @@ class UTC(tzinfo):
 import pytest
 
 
-@pytest.fixture()
+@pytest.fixture
+@async_generator
 async def client():
     async with AutoRestComplexTestService(base_url="http://localhost:3000") as client:
-        yield client
+        await yield_(client)
 
 @pytest.fixture
 def min_date():

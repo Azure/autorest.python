@@ -12,10 +12,29 @@ from .schema_response import SchemaResponse
 from .parameter import Parameter, ParameterStyle
 from .parameter_list import ParameterList
 from .base_schema import BaseSchema
+from .schema_request import SchemaRequest
 
 
 _LOGGER = logging.getLogger(__name__)
 
+
+def _non_binary_schema_media_types(media_types: List[str]) -> List[str]:
+    response_media_types = []
+    json_media_types = [media_type for media_type in media_types if "json" in media_type]
+    xml_media_types = [media_type for media_type in media_types if "xml" in media_type]
+    if not sorted(json_media_types + xml_media_types) == sorted(media_types):
+        raise ValueError("The non-binary responses with schemas of {self.name} have incorrect json or xml mime types")
+    if json_media_types:
+        if "application/json" in json_media_types:
+            response_media_types.append("application/json")
+        else:
+            response_media_types.append(json_media_types[0])
+    if xml_media_types:
+        if "application/xml" in xml_media_types:
+            response_media_types.append("application/xml")
+        else:
+            response_media_types.append(xml_media_types[0])
+    return response_media_types
 
 class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many-instance-attributes
     """Represent an operation.
@@ -29,11 +48,12 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         url: str,
         method: str,
         api_versions: Set[str],
+        requests: List[SchemaRequest],
         summary: Optional[str] = None,
         parameters: Optional[List[Parameter]] = None,
+        multiple_media_type_parameters: Optional[List[Parameter]] = None,
         responses: Optional[List[SchemaResponse]] = None,
         exceptions: Optional[List[SchemaResponse]] = None,
-        media_types: Optional[List[str]] = None,
         want_description_docstring: Optional[bool] = True,
         want_tracing: Optional[bool] = True,
     ) -> None:
@@ -43,11 +63,12 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         self.url = url
         self.method = method
         self.api_versions = api_versions
+        self.requests = requests
         self.summary = summary
         self.parameters = ParameterList(parameters)
+        self.multiple_media_type_parameters = multiple_media_type_parameters
         self.responses = responses or []
         self.exceptions = exceptions or []
-        self.media_types = media_types or []
         self.want_description_docstring = want_description_docstring
         self.want_tracing = want_tracing
 
@@ -55,12 +76,52 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
     def python_name(self) -> str:
         return self.name
 
-    @staticmethod
-    def _suggest_content_type(media_types: List[str]) -> str:
-        """Return the prefered media-type.
+    @property
+    def accept_content_type(self) -> str:
+        media_types = list(set(
+            media_type for response in self.responses for media_type in response.media_types
+        ))
+        if not media_types:
+            raise TypeError(
+                f"Operation {self.name} has tried to get its accept_content_type even though it has no media types"
+            )
+        if not self.has_response_body:
+            raise TypeError(
+                "There is an error in the code model we're being supplied. We're getting response media types " +
+                f"even though no response of {self.name} has a body"
+            )
+        if len(media_types) == 1:
+            return media_types[0]
+        binary_media_types = [
+            media_type for media_type in media_types
+            if not "json" in media_type and not "xml" in media_type
+        ]
+        non_binary_schema_media_types = [
+            media_type for media_type in media_types
+            if "json" in media_type or "xml" in media_type
+        ]
+        if all([response.binary for response in self.responses]):
+            response_media_types = binary_media_types
+        elif all([response.schema for response in self.responses]):
+            response_media_types = _non_binary_schema_media_types(
+                non_binary_schema_media_types
+            )
+        else:
+            non_binary_schema_media_types = _non_binary_schema_media_types(
+                non_binary_schema_media_types
+            )
+            response_media_types = binary_media_types + non_binary_schema_media_types
+        return ",".join(response_media_types)
 
-        Assumes "media_types" attributes as a list exist.
-        """
+    @property
+    def request_content_type(self) -> str:
+        media_types = list(set(
+            media_type for request in self.requests for media_type in request.media_types
+        ))
+        if not media_types:
+            raise TypeError(
+                f"Operation {self.name} has tried to get its request_content_type even though it has no media types"
+            )
         if len(media_types) == 1:
             return media_types[0]
 
@@ -70,23 +131,13 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         for media_type in media_types:
             if "json" in media_type:
                 return media_type
-        # If no JSON, and still several content type, chain them
-        return ",".join(media_types)
-
-    @property
-    def accept_content_type(self) -> str:
-        media_types = set(media_type for response in self.responses for media_type in response.media_types)
-        return self._suggest_content_type(list(media_types))
-
-    @property
-    def request_content_type(self) -> str:
-        return self._suggest_content_type(self.media_types)
+        # If no JSON, and still several content type, just return first
+        return media_types[0]
 
     @property
     def is_stream_request(self) -> bool:
         """Is the request is a stream, like an upload."""
-        # FIXME look for input
-        return False
+        return any(request.is_stream_request for request in self.requests)
 
     @property
     def is_stream_response(self) -> bool:
@@ -213,12 +264,43 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         name = yaml_data["language"]["python"]["name"]
         _LOGGER.debug("Parsing %s operation", name)
 
-        # FIXME handle multiple requests
         first_request = yaml_data["requests"][0]
-        parameters = [
-            Parameter.from_yaml(yaml)
-            for yaml in yaml_data.get("parameters", []) + first_request.get("parameters", [])
-        ]
+
+        multiple_requests = len(yaml_data["requests"]) > 1
+
+        multiple_media_type_parameters: List[Parameter] = []
+        parameters = [Parameter.from_yaml(yaml) for yaml in yaml_data.get("parameters", [])]
+
+        for request in yaml_data["requests"]:
+            for yaml in request.get("parameters", []):
+                parameter = Parameter.from_yaml(yaml)
+                if yaml["language"]["python"]["name"] == "content_type":
+                    parameter.is_kwarg = True
+                    parameters.append(parameter)
+                elif multiple_requests:
+                    multiple_media_type_parameters.append(parameter)
+
+        if multiple_requests:
+            chosen_parameter = multiple_media_type_parameters[0]
+            chosen_parameter.has_multiple_media_types = True
+            parameters.append(chosen_parameter)
+
+        else:
+            parameters += [
+                Parameter.from_yaml(yaml)
+                for yaml in first_request.get("parameters", [])
+            ]
+
+        if multiple_media_type_parameters:
+            body_parameters_name_set = set(
+                p.serialized_name for p in multiple_media_type_parameters
+            )
+            if len(body_parameters_name_set) > 1:
+                raise ValueError(
+                f"The body parameter with multiple media types has different names: {body_parameters_name_set}"
+            )
+
+
         parameters_index = {id(parameter.yaml_data): parameter for parameter in parameters}
 
         # Need to connect the groupBy and originalParameter
@@ -238,10 +320,11 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
             url=first_request["protocol"]["http"]["path"],
             method=first_request["protocol"]["http"]["method"],
             api_versions=set(value_dict["version"] for value_dict in yaml_data["apiVersions"]),
+            requests=[SchemaRequest.from_yaml(yaml) for yaml in yaml_data["requests"]],
             summary=yaml_data["language"]["python"].get("summary"),
             parameters=parameters,
+            multiple_media_type_parameters=multiple_media_type_parameters,
             responses=[SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("responses", [])],
             # Exception with no schema means default exception, we don't store them
             exceptions=[SchemaResponse.from_yaml(yaml) for yaml in yaml_data.get("exceptions", []) if "schema" in yaml],
-            media_types=first_request["protocol"]["http"].get("mediaTypes", []),
         )

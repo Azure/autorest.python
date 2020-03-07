@@ -24,6 +24,7 @@
 #
 # --------------------------------------------------------------------------
 
+from async_generator import yield_, async_generator
 import unittest
 import subprocess
 import sys
@@ -40,6 +41,7 @@ from requiredoptional.models import StringWrapper, ArrayWrapper, ClassWrapper
 import pytest
 
 @pytest.fixture
+@async_generator
 async def client_required():
     async with AutoRestRequiredOptionalTestService(
             "required_path",
@@ -47,9 +49,10 @@ async def client_required():
             base_url="http://localhost:3000") as client:
         client._config.required_global_path = "required_path"
         client._config.required_global_query = "required_query"
-        yield client
+        await yield_(client)
 
 @pytest.fixture
+@async_generator
 async def client():
     async with AutoRestRequiredOptionalTestService(
             "required_path",
@@ -57,7 +60,7 @@ async def client():
             base_url="http://localhost:3000") as client:
         client._config.required_global_path = None
         client._config.required_global_query = None
-        yield client
+        await yield_(client)
 
 class TestRequiredOptional(object):
     # These clients have a required global path and query

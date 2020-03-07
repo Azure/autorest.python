@@ -106,6 +106,7 @@ class CodeGenerator(Plugin):
             code_model.sort_schemas()
             code_model.add_schema_link_to_operation()
             code_model.add_schema_link_to_global_parameters()
+            code_model.generate_single_parameter_from_multiple_media_types()
 
         # LRO operation
         code_model.format_lro_operations()
@@ -145,6 +146,7 @@ class CodeGenerator(Plugin):
             "no_async": self._autorestapi.get_boolean_value("no-async", False),
             "no_namespace_folders": self._autorestapi.get_boolean_value("no-namespace-folders", False),
             "basic_setup_py": self._autorestapi.get_boolean_value("basic-setup-py", False),
+            "package_name": self._autorestapi.get_value("package-name"),
             "package_version": self._autorestapi.get_value("package-version"),
             "client_side_validation": self._autorestapi.get_boolean_value("client-side-validation", True),
             "tracing": self._autorestapi.get_boolean_value("trace", False),

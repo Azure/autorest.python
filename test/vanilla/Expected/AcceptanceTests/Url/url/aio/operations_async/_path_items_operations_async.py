@@ -65,7 +65,7 @@ class PathItemsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -78,7 +78,7 @@ class PathItemsOperations:
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
         if path_item_string_query is not None:
             query_parameters['pathItemStringQuery'] = self._serialize.query("path_item_string_query", path_item_string_query, 'str')
         if self._config.global_string_query is not None:
@@ -87,7 +87,7 @@ class PathItemsOperations:
             query_parameters['localStringQuery'] = self._serialize.query("local_string_query", local_string_query, 'str')
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -129,7 +129,7 @@ class PathItemsOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -142,7 +142,7 @@ class PathItemsOperations:
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
         if path_item_string_query is not None:
             query_parameters['pathItemStringQuery'] = self._serialize.query("path_item_string_query", path_item_string_query, 'str')
         if self._config.global_string_query is not None:
@@ -151,7 +151,7 @@ class PathItemsOperations:
             query_parameters['localStringQuery'] = self._serialize.query("local_string_query", local_string_query, 'str')
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -186,14 +186,14 @@ class PathItemsOperations:
         :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
          parameter.
         :type path_item_string_query: str
-        :param local_string_query: should contain value 'localStringQuery'.
+        :param local_string_query: should contain null value.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -206,7 +206,7 @@ class PathItemsOperations:
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
         if path_item_string_query is not None:
             query_parameters['pathItemStringQuery'] = self._serialize.query("path_item_string_query", path_item_string_query, 'str')
         if self._config.global_string_query is not None:
@@ -215,7 +215,7 @@ class PathItemsOperations:
             query_parameters['localStringQuery'] = self._serialize.query("local_string_query", local_string_query, 'str')
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -247,17 +247,16 @@ class PathItemsOperations:
         :type path_item_string_path: str
         :param local_string_path: should contain value 'localStringPath'.
         :type local_string_path: str
-        :param path_item_string_query: A string value 'pathItemStringQuery' that appears as a query
-         parameter.
+        :param path_item_string_query: should contain value null.
         :type path_item_string_query: str
-        :param local_string_query: should contain value 'localStringQuery'.
+        :param local_string_query: should contain value null.
         :type local_string_query: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
@@ -270,7 +269,7 @@ class PathItemsOperations:
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
         if path_item_string_query is not None:
             query_parameters['pathItemStringQuery'] = self._serialize.query("path_item_string_query", path_item_string_query, 'str')
         if self._config.global_string_query is not None:
@@ -279,7 +278,7 @@ class PathItemsOperations:
             query_parameters['localStringQuery'] = self._serialize.query("local_string_query", local_string_query, 'str')
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)

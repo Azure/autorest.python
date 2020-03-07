@@ -64,6 +64,7 @@ class StorageAccountsOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.CheckNameAvailabilityResult"]
         error_map = kwargs.pop('error_map', {})
+        api_version = "2015-05-01-preview"
 
         # Construct URL
         url = self.check_name_availability.metadata['url']
@@ -73,18 +74,20 @@ class StorageAccountsOperations(object):
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
-
-        # Construct body
-        body_content = self._serialize.body(account_name, 'StorageAccountCheckNameAvailabilityParameters')
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(account_name, 'StorageAccountCheckNameAvailabilityParameters')
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -110,6 +113,7 @@ class StorageAccountsOperations(object):
         # type: (...) -> "models.StorageAccount"
         cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount"]
         error_map = kwargs.pop('error_map', {})
+        api_version = "2015-05-01-preview"
 
         # Construct URL
         url = self._create_initial.metadata['url']
@@ -121,18 +125,20 @@ class StorageAccountsOperations(object):
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
-
-        # Construct body
-        body_content = self._serialize.body(parameters, 'StorageAccountCreateParameters')
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(parameters, 'StorageAccountCreateParameters')
+        body_content_kwargs['content'] = body_content
+        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -228,6 +234,7 @@ class StorageAccountsOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
+        api_version = "2015-05-01-preview"
 
         # Construct URL
         url = self.delete.metadata['url']
@@ -239,10 +246,11 @@ class StorageAccountsOperations(object):
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -281,6 +289,7 @@ class StorageAccountsOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount"]
         error_map = kwargs.pop('error_map', {})
+        api_version = "2015-05-01-preview"
 
         # Construct URL
         url = self.get_properties.metadata['url']
@@ -292,10 +301,11 @@ class StorageAccountsOperations(object):
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -342,6 +352,7 @@ class StorageAccountsOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount"]
         error_map = kwargs.pop('error_map', {})
+        api_version = "2015-05-01-preview"
 
         # Construct URL
         url = self.update.metadata['url']
@@ -353,18 +364,20 @@ class StorageAccountsOperations(object):
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
-
-        # Construct body
-        body_content = self._serialize.body(parameters, 'StorageAccountUpdateParameters')
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        request = self._client.patch(url, query_parameters, header_parameters, body_content)
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(parameters, 'StorageAccountUpdateParameters')
+        body_content_kwargs['content'] = body_content
+        request = self._client.patch(url, query_parameters, header_parameters, **body_content_kwargs)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
@@ -392,9 +405,7 @@ class StorageAccountsOperations(object):
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
         :type resource_group_name: str
-        :param account_name: The name of the storage account within the specified resource group.
-         Storage account names must be between 3 and 24 characters in length and use numbers and lower-
-         case letters only.
+        :param account_name: The name of the storage account.
         :type account_name: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: StorageAccountKeys or the result of cls(response)
@@ -403,6 +414,7 @@ class StorageAccountsOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccountKeys"]
         error_map = kwargs.pop('error_map', {})
+        api_version = "2015-05-01-preview"
 
         # Construct URL
         url = self.list_keys.metadata['url']
@@ -414,10 +426,11 @@ class StorageAccountsOperations(object):
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -452,6 +465,7 @@ class StorageAccountsOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccountListResult"]
         error_map = kwargs.pop('error_map', {})
+        api_version = "2015-05-01-preview"
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -465,10 +479,11 @@ class StorageAccountsOperations(object):
                 url = next_link
 
             # Construct parameters
-            query_parameters = {}
+            query_parameters = {}  # type: Dict[str, Any]
+            query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
             # Construct headers
-            header_parameters = {}
+            header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
 
             # Construct and send request
@@ -517,6 +532,7 @@ class StorageAccountsOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccountListResult"]
         error_map = kwargs.pop('error_map', {})
+        api_version = "2015-05-01-preview"
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -531,10 +547,11 @@ class StorageAccountsOperations(object):
                 url = next_link
 
             # Construct parameters
-            query_parameters = {}
+            query_parameters = {}  # type: Dict[str, Any]
+            query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
             # Construct headers
-            header_parameters = {}
+            header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
 
             # Construct and send request
@@ -593,6 +610,7 @@ class StorageAccountsOperations(object):
         error_map = kwargs.pop('error_map', {})
 
         _regenerate_key = models.StorageAccountRegenerateKeyParameters(key_name=key_name)
+        api_version = "2015-05-01-preview"
 
         # Construct URL
         url = self.regenerate_key.metadata['url']
@@ -604,18 +622,20 @@ class StorageAccountsOperations(object):
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json'
-
-        # Construct body
-        body_content = self._serialize.body(_regenerate_key, 'StorageAccountRegenerateKeyParameters')
+        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        request = self._client.post(url, query_parameters, header_parameters, body_content)
+        body_content_kwargs = {}  # type: Dict[str, Any]
+        body_content = self._serialize.body(_regenerate_key, 'StorageAccountRegenerateKeyParameters')
+        body_content_kwargs['content'] = body_content
+        request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
+
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

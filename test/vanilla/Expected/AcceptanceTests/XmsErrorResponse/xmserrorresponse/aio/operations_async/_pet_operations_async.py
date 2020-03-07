@@ -55,7 +55,7 @@ class PetOperations:
         :rtype: ~xmserrorresponse.models.Pet or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.Pet"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Pet"]
         error_map = {
             400: lambda response: HttpResponseError(response=response),
             404: lambda response: HttpResponseError(response=response, model=self._deserialize(models.NotFoundErrorBase, response)),
@@ -71,10 +71,10 @@ class PetOperations:
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -111,7 +111,7 @@ class PetOperations:
         :rtype: ~xmserrorresponse.models.PetAction
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.PetAction"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAction"]
         error_map = {
             500: lambda response: HttpResponseError(response=response, model=self._deserialize(models.PetActionError, response)),
         }
@@ -125,10 +125,10 @@ class PetOperations:
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
