@@ -15,7 +15,7 @@ class BaseModel:
 
     def __init__(
         self, yaml_data: Dict[str, Any],
-    ):
+    ) -> None:
         self.yaml_data = yaml_data
 
     @property

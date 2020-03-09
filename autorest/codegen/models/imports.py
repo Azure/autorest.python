@@ -15,7 +15,7 @@ class ImportType(Enum):
 
 
 class FileImport:
-    def __init__(self):
+    def __init__(self) -> None:
         # Basic implementation
         # First level dict: ImportType
         # Second level dict: the package name.

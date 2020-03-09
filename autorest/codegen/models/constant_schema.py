@@ -24,7 +24,7 @@ class ConstantSchema(BaseSchema):
 
     def __init__(
         self, namespace: str, yaml_data: Dict[str, Any], schema: PrimitiveSchema, value: Optional[str],
-    ):
+    ) -> None:
         super(ConstantSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.value = value
         self.schema = schema

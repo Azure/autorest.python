@@ -3,12 +3,12 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-
+from typing import Any, Dict
 from jinja2 import Environment, PackageLoader
 
 
 class MultiAPISerializer:
-    def __init__(self, conf):
+    def __init__(self, conf: Dict[str, Any]) -> None:
         self.conf = conf
         self.env = Environment(
             loader=PackageLoader("autorest.multiapi", "templates"),

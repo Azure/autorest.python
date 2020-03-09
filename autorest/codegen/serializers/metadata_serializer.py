@@ -10,7 +10,7 @@ from ..models import CodeModel, Operation, OperationGroup
 
 
 class MetadataSerializer:
-    def __init__(self, code_model: CodeModel, env: Environment):
+    def __init__(self, code_model: CodeModel, env: Environment) -> None:
         self.code_model = code_model
         self.env = env
 

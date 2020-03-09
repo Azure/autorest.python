@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, List, Any, Optional, Set
+from typing import cast, Dict, List, Any, Optional, Set
 
 from .operation import Operation
 from .parameter import Parameter
@@ -51,7 +51,7 @@ class PagingOperation(Operation):
         self.operation_name: str = yaml_data["extensions"]["x-ms-pageable"].get("operationName")
         self.next_operation: Optional[Operation] = None
 
-    def _get_response(self):
+    def _get_response(self) -> SchemaResponse:
         response = self.responses[0]
         if not isinstance(response.schema, ObjectSchema):
             raise ValueError(
@@ -61,12 +61,14 @@ class PagingOperation(Operation):
 
     def _find_python_name(self, rest_api_name: str, log_name: str) -> str:
         response = self._get_response()
-        for prop in response.schema.properties:
-            if prop.original_swagger_name == rest_api_name:
-                return prop.name
+        response_schema = cast(ObjectSchema, response.schema)
+        if response_schema:
+            for prop in response_schema.properties:
+                if prop.original_swagger_name == rest_api_name:
+                    return prop.name
         raise ValueError(
             f"While scanning x-ms-pageable, was unable to find "
-            + f"{log_name}:{rest_api_name} in model {response.schema.name}"
+            + f"{log_name}:{rest_api_name} in model {response_schema.name}"
         )
 
     @property

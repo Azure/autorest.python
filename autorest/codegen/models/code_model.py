@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from itertools import chain
 import logging
-from typing import List, Dict, Optional, Any, Set
+from typing import cast, List, Dict, Optional, Any, Set
 
 from .base_schema import BaseSchema
 from .enum_schema import EnumSchema
@@ -27,7 +27,7 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class CredentialSchema(BaseSchema):
-    def __init__(self):  # pylint: disable=super-init-not-called
+    def __init__(self) -> None:  # pylint: disable=super-init-not-called
         self.type = "azure.core.credentials.TokenCredential"
         self.default_value = None
 
@@ -49,7 +49,7 @@ class CredentialSchema(BaseSchema):
 
 
 class IOSchema(BaseSchema):
-    def __init__(self):  # pylint: disable=super-init-not-called
+    def __init__(self) -> None:  # pylint: disable=super-init-not-called
         self.type = "IO"
 
     @property
@@ -68,7 +68,7 @@ class IOSchema(BaseSchema):
     def docstring_text(self) -> str:
         return "IO"
 
-    def imports(self):
+    def imports(self) -> FileImport:
         file_import = FileImport()
         file_import.add_from_import("typing", "IO", ImportType.STDLIB)
         return file_import
@@ -100,7 +100,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
     :param str base_url: Optional. The default base_url. Will include the host from yaml
     """
 
-    def __init__(self, options: Dict[str, Any]):
+    def __init__(self, options: Dict[str, Any]) -> None:
         self.options = options
         self.module_name: str = ""
         self.class_name: str = ""
@@ -151,7 +151,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             current = schema
             ancestors.append(schema)
             while current.base_model:
-                parent = current.base_model
+                parent = cast(ObjectSchema, current.base_model)
                 if parent.id in seen_schema_yaml_ids:
                     break
                 ancestors.insert(0, parent)
@@ -250,8 +250,9 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         :rtype: None
         """
         for schema in self.schemas.values():
-            if schema.base_model:
-                parent = schema.base_model
+            base_model = cast(ObjectSchema, schema.base_model)
+            if base_model:
+                parent = base_model
                 while parent:
                     schema.properties = parent.properties + schema.properties
                     seen_properties: Set[Property] = set()
@@ -260,7 +261,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                         for p in schema.properties
                         if p.name not in seen_properties and not seen_properties.add(p.name)  # type: ignore
                     ]
-                    parent = parent.base_model
+                    parent = cast(ObjectSchema, parent.base_model)
 
     def _add_exceptions_from_inheritance(self) -> None:
         """Sets a class as an exception if it's parent is an exception.
@@ -269,13 +270,14 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         :rtype: None
         """
         for schema in self.schemas.values():
-            if schema.base_model:
-                parent = schema.base_model
+            base_model = cast(ObjectSchema, schema.base_model)
+            if base_model:
+                parent = base_model
                 while parent:
                     if parent.is_exception:
                         schema.is_exception = True
                         break
-                    parent = parent.base_model
+                    parent = cast(ObjectSchema, parent.base_model)
 
     def add_inheritance_to_models(self) -> None:
         """Adds base classes and properties from base classes to schemas with parents.

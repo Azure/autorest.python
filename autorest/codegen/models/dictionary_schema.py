@@ -22,7 +22,7 @@ class DictionarySchema(BaseSchema):
         namespace: str,
         yaml_data: Dict[str, Any],
         element_type: "BaseSchema"
-    ):
+    ) -> None:
         super(DictionarySchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.element_type = element_type
 

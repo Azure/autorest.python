@@ -12,7 +12,7 @@ from .import_serializer import FileImportSerializer
 
 
 class ModelBaseSerializer:
-    def __init__(self, code_model: CodeModel, env: Environment):
+    def __init__(self, code_model: CodeModel, env: Environment) -> None:
         self.code_model = code_model
         self.env = env
 
@@ -40,10 +40,11 @@ class ModelBaseSerializer:
 
     @staticmethod
     def get_properties_to_initialize(model: ObjectSchema) -> List[Property]:
-        if model.base_model:
+        base_model = cast(ObjectSchema, model.base_model)
+        if base_model:
             properties_to_initialize = []
             for prop in model.properties:
-                if prop not in model.base_model.properties or prop.is_discriminator or prop.constant:
+                if prop not in base_model.properties or prop.is_discriminator or prop.constant:
                     properties_to_initialize.append(prop)
         else:
             properties_to_initialize = model.properties

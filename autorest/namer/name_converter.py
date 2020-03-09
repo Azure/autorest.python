@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import re
+from typing import cast, Any, Dict, List, Match, Optional
 from enum import Enum
 from .python_mappings import basic_latin_chars, reserved_words
 
@@ -18,7 +19,7 @@ class PadType(Enum):
 
 class NameConverter:
     @staticmethod
-    def convert_yaml_names(yaml_data):
+    def convert_yaml_names(yaml_data: Dict[str, Any]) -> None:
         NameConverter._convert_language_default_python_case(yaml_data)
         yaml_data["info"]["python_title"] = NameConverter._to_valid_python_name(
             name=yaml_data["info"]["title"].replace(" ", ""), convert_name=True
@@ -35,12 +36,12 @@ class NameConverter:
             NameConverter._convert_global_parameters(yaml_data['globalParameters'])
 
     @staticmethod
-    def _convert_global_parameters(global_parameters):
+    def _convert_global_parameters(global_parameters: List[Dict[str, Any]]) -> None:
         for global_parameter in global_parameters:
             NameConverter._convert_language_default_python_case(global_parameter)
 
     @staticmethod
-    def _convert_operation_groups(operation_groups, code_model_title):
+    def _convert_operation_groups(operation_groups: List[Dict[str, Any]], code_model_title: str) -> None:
         for operation_group in operation_groups:
             NameConverter._convert_language_default_python_case(
                 operation_group, pad_string=PadType.Model, convert_name=True
@@ -67,7 +68,7 @@ class NameConverter:
                     NameConverter._convert_language_default_python_case(response)
 
     @staticmethod
-    def _convert_schemas(schemas):
+    def _convert_schemas(schemas: Dict[str, Any]) -> None:
         for enum in schemas.get("sealedChoices", []) + schemas.get("choices", []):
             NameConverter._convert_enum_schema(enum)
         for obj in schemas.get("objects", []) + schemas.get("groups", []):
@@ -87,13 +88,13 @@ class NameConverter:
                     NameConverter._convert_language_default_python_case(schema)
 
     @staticmethod
-    def _convert_enum_schema(schema):
+    def _convert_enum_schema(schema: Dict[str, Any]) -> None:
         NameConverter._convert_language_default_pascal_case(schema)
         for choice in schema["choices"]:
             NameConverter._convert_language_default_python_case(choice, pad_string=PadType.Enum)
 
     @staticmethod
-    def _convert_object_schema(schema):
+    def _convert_object_schema(schema: Dict[str, Any]) -> None:
         NameConverter._convert_language_default_pascal_case(schema)
         schema_description = schema["language"]["python"]["description"]
         if not schema_description:
@@ -106,18 +107,22 @@ class NameConverter:
             NameConverter._convert_language_default_python_case(schema=prop, pad_string=PadType.Property)
 
     @staticmethod
-    def _convert_language_default_python_case(schema, **kwargs):
+    def _convert_language_default_python_case(
+        schema: Dict[str, Any], *, pad_string: Optional[PadType] = None, convert_name: bool = False
+    ) -> None:
         if not schema.get("language") or schema["language"].get("python"):
             return
         schema['language']['python'] = dict(schema['language']['default'])
         schema_name = schema['language']['default']['name']
         schema_python_name = schema['language']['python']['name']
 
-        schema_python_name = NameConverter._to_valid_python_name(name=schema_name, **kwargs)
+        schema_python_name = NameConverter._to_valid_python_name(
+            name=schema_name, pad_string=pad_string, convert_name=convert_name
+        )
         schema['language']['python']['name'] = schema_python_name.lower()
 
         schema_description = schema["language"]["default"]["description"].strip()
-        if kwargs.get("pad_string") == PadType.Method and not schema_description:
+        if pad_string == PadType.Method and not schema_description:
             schema_description = schema["language"]["python"]["name"]
         if schema_description and schema_description[-1] != ".":
             schema_description += "."
@@ -131,7 +136,7 @@ class NameConverter:
             schema["language"]["python"]["summary"] = schema_summary
 
     @staticmethod
-    def _convert_language_default_pascal_case(schema):
+    def _convert_language_default_pascal_case(schema: Dict[str, Any]) -> None:
         if schema["language"].get("python"):
             return
         schema['language']['python'] = dict(schema['language']['default'])
@@ -141,25 +146,25 @@ class NameConverter:
         schema["language"]["python"]["description"] = schema_description
 
     @staticmethod
-    def _to_pascal_case(name):
+    def _to_pascal_case(name: str) -> str:
         name_list = re.split("[^a-zA-Z\\d]", name)
         name_list = [s[0].upper() + s[1:] if len(s) > 1 else s.upper() for s in name_list]
         return "".join(name_list)
 
     @staticmethod
-    def _to_valid_python_name(name, *, pad_string="", convert_name=False):
+    def _to_valid_python_name(name: str, *, pad_string: Optional[PadType] = None, convert_name: bool = False) -> str:
         if not name:
-            return NameConverter._to_python_case(pad_string.value if isinstance(pad_string, PadType) else pad_string)
+            return NameConverter._to_python_case(pad_string.value if pad_string else "")
         escaped_name = NameConverter._get_escaped_reserved_name(
-            NameConverter._to_valid_name(name.replace("-", "_"), "_"), pad_string
+            NameConverter._to_valid_name(name.replace("-", "_"), ["_"]), pad_string
         )
         if convert_name or name != escaped_name:
             return NameConverter._to_python_case(escaped_name)
         return escaped_name
 
     @staticmethod
-    def _to_python_case(name):
-        def replace_upper_characters(m):
+    def _to_python_case(name: str) -> str:
+        def replace_upper_characters(m: Match[str]) -> str:
             match_str = m.group().lower()
             if m.start() > 0 and name[m.start() - 1] == "_":
                 # we are good if a '_' already exists
@@ -181,34 +186,35 @@ class NameConverter:
         return re.sub("[A-Z]+", replace_upper_characters, name)
 
     @staticmethod
-    def _get_escaped_reserved_name(name, pad_string):
+    def _get_escaped_reserved_name(name: str, pad_string: Optional[PadType] = None) -> str:
         if name is None:
             raise ValueError("The value for name can not be None")
-        if pad_string is None:
-            raise ValueError("The value for pad_string can not be None")
-
-        # check to see if name is reserved for the type of name we are converting
-        if name.lower() in reserved_words["always_reserved"]:
-            name += pad_string.value
-        elif pad_string in [PadType.Method, PadType.Parameter]:
-            if name.lower() in reserved_words["reserved_for_operations"]:
+        try:
+            # check to see if name is reserved for the type of name we are converting
+            pad_string = cast(PadType, pad_string)
+            if name.lower() in reserved_words["always_reserved"]:
                 name += pad_string.value
-        elif pad_string in [PadType.Model, PadType.Property]:
-            if name.lower() in reserved_words["reserved_for_models"]:
-                name += pad_string.value
-        elif pad_string == PadType.Enum:
-            if name.lower() in reserved_words["reserved_for_enums"]:
-                name += pad_string.value
-        return name
+            elif pad_string in [PadType.Method, PadType.Parameter]:
+                if name.lower() in reserved_words["reserved_for_operations"]:
+                    name += pad_string.value
+            elif pad_string in [PadType.Model, PadType.Property]:
+                if name.lower() in reserved_words["reserved_for_models"]:
+                    name += pad_string.value
+            elif pad_string == PadType.Enum:
+                if name.lower() in reserved_words["reserved_for_enums"]:
+                    name += pad_string.value
+            return name
+        except AttributeError:
+            raise ValueError(f"The name {name} is a reserved word and you have not specified a pad string for it.")
 
     @staticmethod
-    def _remove_invalid_characters(name, allowed_characters):
+    def _remove_invalid_characters(name: str, allowed_characters: List[str]) -> str:
         name = name.replace("[]", "Sequence")
         valid_string = "".join([n for n in name if n.isalpha() or n.isdigit() or n in allowed_characters])
         return valid_string
 
     @staticmethod
-    def _to_valid_name(name, allowed_characters):
+    def _to_valid_name(name: str, allowed_characters: List[str]) -> str:
         correct_name = NameConverter._remove_invalid_characters(name, allowed_characters)
 
         # here we have an empty string or a string that consists only of invalid characters
