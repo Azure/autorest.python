@@ -171,7 +171,9 @@ class MultiAPI:
                     "available_apis", []
                 ).append(version_path.name)
                 mixin_operations[func_name]['doc'] = func['doc']
-                mixin_operations[func_name]['signature'] = func['signature']
+                mixin_operations[func_name]['sync_signature'] = func['sync_signature']
+                mixin_operations[func_name]['async_signature'] = func['async_signature']
+                mixin_operations[func_name]['coroutine'] = func['coroutine']
                 mixin_operations[func_name]['call'] = func['call']
         return mixin_operations
 
@@ -314,7 +316,8 @@ class MultiAPI:
                 {last_api_version} | {versions for _, versions in last_rt_list.items()}
             ),
             "config": metadata_json["config"],
-            "global_parameters": metadata_json["global_parameters"]
+            "global_parameters": metadata_json["global_parameters"],
+            "imports": metadata_json["imports"]
         }
 
         multiapi_serializer = MultiAPISerializer(

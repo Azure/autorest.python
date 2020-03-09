@@ -317,7 +317,8 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             try:
                 if schema_obj.get("type") == "any":
                     obj.schema = AnySchema.from_yaml(namespace=self.namespace, yaml_data=schema_obj)
-                obj.schema = self.lookup_schema(schema_obj_id)
+                else:
+                    obj.schema = self.lookup_schema(schema_obj_id)
             except KeyError:
                 _LOGGER.critical("Unable to ref the object")
                 raise

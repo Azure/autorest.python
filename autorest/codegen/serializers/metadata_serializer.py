@@ -7,6 +7,8 @@ from typing import List, Optional, Set, Tuple
 from jinja2 import Environment
 from ..models import CodeModel, Operation, OperationGroup, LROOperation, PagingOperation, CredentialSchema
 from ..models.imports import FileImport
+from .import_serializer import FileImportSerializer
+
 
 
 class MetadataSerializer:
@@ -67,9 +69,12 @@ class MetadataSerializer:
                 for parameter in operation.parameters:
                     parameter_imports.merge(parameter.imports())
 
+<<<<<<< HEAD
         if self.code_model.options['credential']:
             self._correct_credential_parameter()
 
+=======
+>>>>>>> implemented service client, config, and operation mixins async
         template = self.env.get_template("metadata.json.jinja2")
         return template.render(
             chosen_version=chosen_version,
@@ -78,5 +83,7 @@ class MetadataSerializer:
             mixin_operations=mixin_operations,
             any=any,
             is_lro=_is_lro,
-            is_paging=_is_paging
+            is_paging=_is_paging,
+            str=str,
+            parameter_imports=FileImportSerializer(parameter_imports),
         )
