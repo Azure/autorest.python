@@ -257,7 +257,7 @@ class TestLro:
         assert sku.id ==  '1'
 
     def test_happy_post_async_retry_failed_canceled(self, client, product):
-        self.assert_raises_with_message("Operation returned an invalid status 'OK'",
+        self.assert_raises_with_message("Internal Server Error",
             client.lros.begin_post_async_retry_failed)
 
         self.assert_raises_with_message(
@@ -309,7 +309,7 @@ class TestLro:
         self.assert_raises_with_message("Bad Request",
             client.lrosads.begin_put_non_retry400, product)
 
-        self.assert_raises_with_message("Operation returned an invalid status 'Bad Request'",
+        self.assert_raises_with_message("Error from the server",
             client.lrosads.begin_put_non_retry201_creating400, product)
 
     def test_sads_put_async_relative(self, client, product):
