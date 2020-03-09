@@ -1,5 +1,5 @@
 {% set config_import = "._configuration_async" if async_mode else "._configuration" %}
-{% set operations_mixin_import = ".operations_mixin_async" if async_mode else ".operations_mixin" %}
+{% set operations_mixin_import = "._operations_mixin_async" if async_mode else "._operations_mixin" %}
 {% set pipeline_client = "AsyncARMPipelineClient" if async_mode else "ARMPipelineClient" %}
 {% set relative_path = ".." if async_mode else "." %}
 {% set def = "async def" if async_mode else "def" %}
@@ -106,12 +106,12 @@ class {{ client_name }}({% if mixin_operations %}{{ client_name }}OperationsMixi
     def {{ operation_name }}(self):
         """Instance depends on the API version:
 
-        {% for api in available_apis %}
-           * {{ mod_to_api_version[api[0]] }}: :class:`{{ api[1] }}<{{ module_name }}.{{ api[0] }}.operations.{{ api[1] }}>`
+        {% for api in available_apis | sort %}
+           * {{ mod_to_api_version[api[0]] }}: :class:`{{ api[1] }}<{{ module_name }}.{{ api[0] }}{{ ".aio" if async_mode else "" }}.operations{{ "_async" if async_mode else "" }}.{{ api[1] }}>`
         {% endfor %}
         """
         api_version = self._get_api_version('{{ operation_name }}')
-        {% for api in available_apis %}
+        {% for api in available_apis | sort %}
         {% set if_statement = "if" if loop.first else "elif" %}
         {{ if_statement }} api_version == '{{ mod_to_api_version[api[0]] }}':
             from {{ relative_path }}{{ api[0] }}.{{ "aio." if async_mode else "" }}operations{{ "_async" if async_mode else "" }} import {{ api[1] }} as OperationClass

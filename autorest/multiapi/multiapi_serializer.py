@@ -28,57 +28,48 @@ class MultiAPISerializer:
             lstrip_blocks=True,
         )
 
-    def serialize(self) -> str:
-        service_client_filename_with_py_extension = Path(self.service_client_filename + ".py")
+    def _get_file_path(self, filename: str) -> Path:
         if self.async_mode:
-            aio_path = Path("aio")
+            return Path("aio") / filename
+        return Path(filename)
 
+    def serialize(self) -> str:
+        self._autorestapi.write_file(self._get_file_path("__init__.py"), self.serialize_multiapi_init())
+
+        service_client_filename_with_py_extension = Path(self.service_client_filename + ".py")
+        self._autorestapi.write_file(
+            self._get_file_path(service_client_filename_with_py_extension),
+            self.serialize_multiapi_client()
+        )
+
+        configuration_filename = "_configuration_async.py" if self.async_mode else "_configuration.py"
+        self._autorestapi.write_file(
+            self._get_file_path(configuration_filename),
+            self.serialize_multiapi_config()
+        )
+
+        operation_mixins_filename = "_operations_mixin_async.py" if self.async_mode else "_operations_mixin.py"
+        if self.conf["mixin_operations"]:
             self._autorestapi.write_file(
-                aio_path / "__init__.py",
-                self.serialize_multiapi_init()
+                self._get_file_path(operation_mixins_filename),
+                self.serialize_multiapi_operation_mixins()
             )
 
+        if not self._autorestapi.read_file("_version.py"):
             self._autorestapi.write_file(
-                aio_path / service_client_filename_with_py_extension,
-                self.serialize_multiapi_client()
+                Path("_version.py"),
+                self.serialize_multiapi_version()
             )
 
-            self._autorestapi.write_file(
-                aio_path / "_configuration_async.py",
-                self.serialize_multiapi_config()
-            )
-        else:
-            self._autorestapi.write_file(
-                "__init__.py",
-                self.serialize_multiapi_init()
-            )
-
-            self._autorestapi.write_file(
-                service_client_filename_with_py_extension,
-                self.serialize_multiapi_client()
-            )
-
-            self._autorestapi.write_file(
-                Path("_configuration.py"),
-                self.serialize_multiapi_config()
-            )
-
+        if not self._autorestapi.read_file("models.py"):
             self._autorestapi.write_file(
                 Path("models.py"),
                 self.serialize_multiapi_models()
             )
 
-            if self.conf["mixin_operations"]:
-                self._autorestapi.write_file(
-                    Path("_operations_mixin.py"),
-                    self.serialize_multiapi_operation_mixins()
-                )
+        if not self._autorestapi.read_file("py.typed"):
+            self._autorestapi.write_file(Path("py.typed"), "# Marker file for PEP 561.")
 
-            if not self._autorestapi.read_file("_version.py"):
-                self._autorestapi.write_file(
-                    Path("_version.py"),
-                    self.serialize_multiapi_version()
-                )
 
     def serialize_multiapi_init(self) -> str:
         template = self.env.get_template("multiapi_init.py.jinja2")
@@ -97,7 +88,8 @@ class MultiAPISerializer:
         return template.render(
             client_name=self.conf["client_name"],
             package_name=self.conf["package_name"],
-            **self.conf["config"]
+            **self.conf["config"],
+            async_mode=self.async_mode
         )
 
     def serialize_multiapi_models(self) -> str:
@@ -110,4 +102,4 @@ class MultiAPISerializer:
 
     def serialize_multiapi_operation_mixins(self) -> str:
         template = self.env.get_template("multiapi_operations_mixin.py.jinja2")
-        return template.render(**self.conf)
+        return template.render(**self.conf, async_mode=self.async_mode)
