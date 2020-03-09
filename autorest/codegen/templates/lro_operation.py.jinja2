@@ -9,7 +9,6 @@
     :rtype: ~azure.core.polling.LROPoller[{{ operation.responses[0].schema.docstring_type if operation.responses[0].has_body else "None" }}]
 {% endmacro %}
 {% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
-{% macro exception_name() %}{{ operation.exceptions[0].schema.name }}Exception{% endmacro %}
 {% macro response_headers(response) %}
 response_headers = {
     {% for response_header in response.headers %}
@@ -48,15 +47,7 @@ response_headers = {
      polling object for personal polling strategy
     :paramtype polling: bool or ~azure.core.polling.{{ "Async" if async_mode else "" }}PollingMethod
     {{ return_docstring() }}
-    {% if not operation.exceptions %}
-        {% if code_model.options['azure_arm'] %}
-    :raises ~azure.mgmt.core.ARMError:
-        {% else %}
     :raises ~azure.core.exceptions.HttpResponseError:
-        {% endif %}
-    {% else %}
-    :raises ~{{ code_model.namespace }}.models.{{ exception_name() }}:
-    {% endif %}
     """
     polling = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})  # type: Union[bool, {{ "Async" if async_mode else "" }}PollingMethod]
     cls = kwargs.pop('cls', None)  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]

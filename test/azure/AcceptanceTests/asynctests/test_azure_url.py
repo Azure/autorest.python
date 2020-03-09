@@ -28,7 +28,7 @@ from uuid import uuid4
 import pytest
 
 from subscriptionidapiversion.aio import MicrosoftAzureTestUrl
-from subscriptionidapiversion.models import ErrorException, SampleResourceGroup
+from subscriptionidapiversion.models import SampleResourceGroup
 
 
 class TestAzureUrl(object):

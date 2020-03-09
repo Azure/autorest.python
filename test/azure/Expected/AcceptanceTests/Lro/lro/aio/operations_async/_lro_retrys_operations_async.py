@@ -8,12 +8,12 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
 import warnings
 
-from azure.core.exceptions import map_error
+from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.polling import AsyncNoPolling, AsyncPollingMethod, async_poller
 from azure.core.tracing.decorator_async import distributed_trace_async
-from azure.mgmt.core.exceptions import ARMError
+from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
 from ... import models
@@ -49,7 +49,7 @@ class LRORetrysOperations:
         **kwargs
     ) -> "models.Product":
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self._put201_creating_succeeded200_initial.metadata['url']
@@ -76,7 +76,7 @@ class LRORetrysOperations:
 
         if response.status_code not in [200, 201]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         deserialized = None
         if response.status_code == 200:
@@ -108,7 +108,7 @@ class LRORetrysOperations:
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
@@ -141,7 +141,7 @@ class LRORetrysOperations:
         **kwargs
     ) -> "models.Product":
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self._put_async_relative_retry_succeeded_initial.metadata['url']
@@ -168,7 +168,7 @@ class LRORetrysOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
@@ -199,7 +199,7 @@ class LRORetrysOperations:
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
@@ -236,7 +236,7 @@ class LRORetrysOperations:
         **kwargs
     ) -> "models.Product":
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self._delete_provisioning202_accepted200_succeeded_initial.metadata['url']
@@ -255,7 +255,7 @@ class LRORetrysOperations:
 
         if response.status_code not in [200, 202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         deserialized = None
@@ -287,7 +287,7 @@ class LRORetrysOperations:
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
@@ -322,7 +322,7 @@ class LRORetrysOperations:
         **kwargs
     ) -> None:
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self._delete202_retry200_initial.metadata['url']
@@ -340,7 +340,7 @@ class LRORetrysOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
@@ -365,7 +365,7 @@ class LRORetrysOperations:
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
@@ -393,7 +393,7 @@ class LRORetrysOperations:
         **kwargs
     ) -> None:
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self._delete_async_relative_retry_succeeded_initial.metadata['url']
@@ -411,7 +411,7 @@ class LRORetrysOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
@@ -437,7 +437,7 @@ class LRORetrysOperations:
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
@@ -466,7 +466,7 @@ class LRORetrysOperations:
         **kwargs
     ) -> None:
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self._post202_retry200_initial.metadata['url']
@@ -492,7 +492,7 @@ class LRORetrysOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
@@ -520,7 +520,7 @@ class LRORetrysOperations:
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
@@ -550,7 +550,7 @@ class LRORetrysOperations:
         **kwargs
     ) -> None:
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self._post_async_relative_retry_succeeded_initial.metadata['url']
@@ -576,7 +576,7 @@ class LRORetrysOperations:
 
         if response.status_code not in [202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise ARMError(response=response)
+            raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         response_headers = {}
         response_headers['Azure-AsyncOperation']=self._deserialize('str', response.headers.get('Azure-AsyncOperation'))
@@ -605,7 +605,7 @@ class LRORetrysOperations:
         :return: An instance of LROPoller that returns None
         :rtype: ~azure.core.polling.LROPoller[None]
 
-        :raises ~azure.mgmt.core.ARMError:
+        :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType[None]

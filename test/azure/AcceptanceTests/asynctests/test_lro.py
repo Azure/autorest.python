@@ -39,6 +39,7 @@ from azure.core.exceptions import DecodeError, HttpResponseError
 from azure.core.polling import async_poller
 from azure.core.pipeline.policies import ContentDecodePolicy, AsyncRetryPolicy, HeadersPolicy, RequestIdPolicy
 
+from azure.mgmt.core.exceptions import HttpResponseError
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
 from lro.aio import AutoRestLongRunningOperationTestService
@@ -119,7 +120,7 @@ class TestLro:
             # So, we hack a little the system and check if we have the expected
             # message in the JSON body.
             # We should have more testserver on valid ARM errors....
-            assert msg in err.message or (err.error and msg in err.error.message)
+            assert msg.lower() in err.message.lower()
             if internal_msg:
                 assert internal_msg in str(err.inner_exception)
 
@@ -277,7 +278,7 @@ class TestLro:
 
     @pytest.mark.asyncio
     async def test_happy_post_async_retry_failed_canceled(self, client, product):
-        await self.assert_raises_with_message("Operation returned an invalid status 'OK'",
+        await self.assert_raises_with_message("Internal Server Error",
             client.lros.post_async_retry_failed)
 
         await self.assert_raises_with_message(
@@ -338,7 +339,7 @@ class TestLro:
         await self.assert_raises_with_message("Bad Request",
             client.lrosads.put_non_retry400, product)
 
-        await self.assert_raises_with_message("Operation returned an invalid status 'Bad Request'",
+        await self.assert_raises_with_message("Error from the server",
             client.lrosads.put_non_retry201_creating400, product)
 
     @pytest.mark.asyncio
