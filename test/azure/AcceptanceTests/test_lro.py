@@ -39,7 +39,6 @@ from azure.core.polling import LROPoller
 from azure.core.pipeline.policies import ContentDecodePolicy, RetryPolicy, HeadersPolicy, RequestIdPolicy
 
 from azure.mgmt.core.polling.arm_polling import ARMPolling
-from azure.mgmt.core.exceptions import HttpResponseError
 
 from lro import AutoRestLongRunningOperationTestService
 from lro.models import *  # pylint: disable=W0614
