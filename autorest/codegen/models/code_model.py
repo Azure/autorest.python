@@ -20,6 +20,7 @@ from .property import Property
 from .parameter_list import ParameterList
 from .imports import FileImport, ImportType
 from .schema_response import SchemaResponse
+from .primitive_schemas import AnySchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -136,22 +137,29 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         :return: None
         :rtype: None
         """
-        seen_schemas: Set[str] = set()
+        seen_schema_names: Set[str] = set()
+        seen_schema_yaml_ids: Set[int] = set()
         sorted_schemas: List[ObjectSchema] = []
         for schema in sorted(self.schemas.values(), key=lambda x: x.name.lower()):
-            if schema.name in seen_schemas:
+            if schema.id in seen_schema_yaml_ids:
                 continue
+            if schema.name in seen_schema_names:
+                raise ValueError(
+                    f"We have already generated a schema with name {schema.name}"
+                )
             ancestors = []
             current = schema
             ancestors.append(schema)
             while current.base_model:
                 parent = current.base_model
-                if parent.name in seen_schemas:
+                if parent.id in seen_schema_yaml_ids:
                     break
                 ancestors.insert(0, parent)
-                seen_schemas.add(current.name)
+                seen_schema_names.add(current.name)
+                seen_schema_yaml_ids.add(current.id)
                 current = parent
-            seen_schemas.add(current.name)
+            seen_schema_names.add(current.name)
+            seen_schema_yaml_ids.add(current.id)
             sorted_schemas += ancestors
         self.sorted_schemas = sorted_schemas
 
@@ -299,6 +307,8 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             schema_obj_id = id(obj.schema)
             _LOGGER.debug("Looking for id %s for member %s", schema_obj_id, obj)
             try:
+                if schema_obj.get("type") == "any":
+                    obj.schema = AnySchema.from_yaml(namespace=self.namespace, yaml_data=schema_obj)
                 obj.schema = self.lookup_schema(schema_obj_id)
             except KeyError:
                 _LOGGER.critical("Unable to ref the object")

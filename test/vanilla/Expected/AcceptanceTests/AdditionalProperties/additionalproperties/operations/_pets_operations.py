@@ -63,15 +63,15 @@ class PetsOperations(object):
         url = self.create_ap_true.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        body_content_kwargs = {}
+        body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(create_parameters, 'PetAPTrue')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
@@ -114,15 +114,15 @@ class PetsOperations(object):
         url = self.create_cat_ap_true.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        body_content_kwargs = {}
+        body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(create_parameters, 'CatAPTrue')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
@@ -165,15 +165,15 @@ class PetsOperations(object):
         url = self.create_ap_object.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        body_content_kwargs = {}
+        body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(create_parameters, 'PetAPObject')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
@@ -216,15 +216,15 @@ class PetsOperations(object):
         url = self.create_ap_string.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        body_content_kwargs = {}
+        body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(create_parameters, 'PetAPString')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
@@ -267,15 +267,15 @@ class PetsOperations(object):
         url = self.create_ap_in_properties.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        body_content_kwargs = {}
+        body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(create_parameters, 'PetAPInProperties')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
@@ -318,15 +318,15 @@ class PetsOperations(object):
         url = self.create_ap_in_properties_with_ap_string.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        body_content_kwargs = {}
+        body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(create_parameters, 'PetAPInPropertiesWithAPString')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)

@@ -34,12 +34,11 @@ from datetime import date, datetime, timedelta
 import os
 from os.path import dirname, pardir, join, realpath
 
-from azure.core.exceptions import DecodeError
+from azure.core.exceptions import DecodeError, HttpResponseError
 from azure.core.polling import LROPoller
 from azure.core.pipeline.policies import ContentDecodePolicy, RetryPolicy, HeadersPolicy, RequestIdPolicy
 
 from azure.mgmt.core.polling.arm_polling import ARMPolling
-from azure.mgmt.core.exceptions import ARMError
 
 from lro import AutoRestLongRunningOperationTestService
 from lro.models import *  # pylint: disable=W0614
@@ -104,7 +103,7 @@ class TestLro:
             self.lro_result(func, *args, **kwargs)
             pytest.fail("HttpResponseError wasn't raised as expected")
 
-        except ARMError as err:
+        except HttpResponseError as err:
             assert err.response is not None
             print("BODY: "+err.response.text())
 
@@ -119,7 +118,7 @@ class TestLro:
             # So, we hack a little the system and check if we have the expected
             # message in the JSON body.
             # We should have more testserver on valid ARM errors....
-            assert msg in err.message or msg in (err.odata_json or {}).get("message", "")
+            assert msg in err.message or (err.error and msg in err.error.message)
             if internal_msg:
                 assert internal_msg in str(err.inner_exception)
 
@@ -257,7 +256,7 @@ class TestLro:
         assert sku.id ==  '1'
 
     def test_happy_post_async_retry_failed_canceled(self, client, product):
-        self.assert_raises_with_message("Internal Server Error",
+        self.assert_raises_with_message("Operation returned an invalid status 'OK'",
             client.lros.begin_post_async_retry_failed)
 
         self.assert_raises_with_message(
@@ -309,7 +308,7 @@ class TestLro:
         self.assert_raises_with_message("Bad Request",
             client.lrosads.begin_put_non_retry400, product)
 
-        self.assert_raises_with_message("Error from the server",
+        self.assert_raises_with_message("Operation returned an invalid status 'Bad Request'",
             client.lrosads.begin_put_non_retry201_creating400, product)
 
     def test_sads_put_async_relative(self, client, product):

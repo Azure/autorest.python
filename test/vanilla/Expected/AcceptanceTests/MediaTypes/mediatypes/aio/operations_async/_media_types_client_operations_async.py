@@ -36,22 +36,22 @@ class MediaTypesClientOperationsMixin:
         :rtype: str
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[str] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[str]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.analyze_body.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        body_content_kwargs = {}
+        body_content_kwargs = {}  # type: Dict[str, Any]
         if header_parameters['Content-Type'] in ['application/pdf', 'image/jpeg', 'image/png', 'image/tiff']:
             body_content_kwargs['stream_content'] = input
         elif header_parameters['Content-Type'] in ['application/json']:

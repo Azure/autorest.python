@@ -20,6 +20,7 @@ from .parameter import Parameter
 from .operation import Operation
 from .property import Property
 from .operation_group import OperationGroup
+from .schema_response import SchemaResponse
 
 
 __all__ = [
@@ -41,6 +42,7 @@ __all__ = [
     "Parameter",
     "OperationGroup",
     "Property",
+    "SchemaResponse"
 ]
 
 def _generate_as_object_schema(yaml_data: Dict[str, Any]) -> bool:

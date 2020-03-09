@@ -24,6 +24,7 @@
 #
 # --------------------------------------------------------------------------
 
+from async_generator import yield_, async_generator
 import unittest
 import subprocess
 import sys
@@ -45,12 +46,13 @@ from validation.models import (
 import pytest
 
 @pytest.fixture
+@async_generator
 async def client():
     async with AutoRestValidationTest(
             "abc123",
             base_url="http://localhost:3000") as client:
         client.api_version = "12-34-5678"
-        yield client
+        await yield_(client)
 
 @pytest.fixture
 def constant_body():

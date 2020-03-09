@@ -52,17 +52,17 @@ class BoolOperations:
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bool] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_true.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -94,7 +94,7 @@ class BoolOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         bool_body = True
 
@@ -102,14 +102,14 @@ class BoolOperations:
         url = self.put_true.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        body_content_kwargs = {}
+        body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(bool_body, 'bool')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
@@ -138,17 +138,17 @@ class BoolOperations:
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bool] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_false.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -180,7 +180,7 @@ class BoolOperations:
         :rtype: None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[None] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {})
         bool_body = False
 
@@ -188,14 +188,14 @@ class BoolOperations:
         url = self.put_false.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        body_content_kwargs = {}
+        body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(bool_body, 'bool')
         body_content_kwargs['content'] = body_content
         request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
@@ -224,17 +224,17 @@ class BoolOperations:
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bool] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_null.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -266,17 +266,17 @@ class BoolOperations:
         :rtype: bool
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType[bool] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType[bool]
         error_map = kwargs.pop('error_map', {})
 
         # Construct URL
         url = self.get_invalid.metadata['url']
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request

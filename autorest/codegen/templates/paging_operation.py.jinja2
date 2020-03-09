@@ -58,11 +58,7 @@
 {% if operation.deprecated %}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
-    {% if async_mode %}
-    cls: ClsType[{{ keywords.return_type_annotation(operation) }}] = kwargs.pop('cls', None)
-    {% else %}
     cls = kwargs.pop('cls', None)  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
-    {% endif %}
 {%if operation.status_code_exceptions %}
     error_map = {
     {% for excep in operation.status_code_exceptions %}

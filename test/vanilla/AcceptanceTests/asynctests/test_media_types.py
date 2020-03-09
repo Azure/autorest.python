@@ -23,6 +23,9 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+
+from async_generator import yield_, async_generator
+
 from mediatypes.aio import MediaTypesClient
 from azure.core.exceptions import HttpResponseError
 
@@ -30,9 +33,10 @@ import pytest
 import json
 
 @pytest.fixture
+@async_generator
 async def client():
     async with MediaTypesClient() as client:
-        yield client
+        await yield_(client)
 
 
 class TestMediaTypes(object):

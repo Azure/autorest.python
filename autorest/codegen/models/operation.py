@@ -18,6 +18,24 @@ from .schema_request import SchemaRequest
 _LOGGER = logging.getLogger(__name__)
 
 
+def _non_binary_schema_media_types(media_types: List[str]) -> List[str]:
+    response_media_types = []
+    json_media_types = [media_type for media_type in media_types if "json" in media_type]
+    xml_media_types = [media_type for media_type in media_types if "xml" in media_type]
+    if not sorted(json_media_types + xml_media_types) == sorted(media_types):
+        raise ValueError("The non-binary responses with schemas of {self.name} have incorrect json or xml mime types")
+    if json_media_types:
+        if "application/json" in json_media_types:
+            response_media_types.append("application/json")
+        else:
+            response_media_types.append(json_media_types[0])
+    if xml_media_types:
+        if "application/xml" in xml_media_types:
+            response_media_types.append("application/xml")
+        else:
+            response_media_types.append(xml_media_types[0])
+    return response_media_types
+
 class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many-instance-attributes
     """Represent an operation.
     """
@@ -58,12 +76,52 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
     def python_name(self) -> str:
         return self.name
 
-    @staticmethod
-    def _suggest_content_type(media_types: List[str], list_all_if_not_found: bool) -> str:
-        """Return the prefered media-type.
+    @property
+    def accept_content_type(self) -> str:
+        media_types = list(set(
+            media_type for response in self.responses for media_type in response.media_types
+        ))
+        if not media_types:
+            raise TypeError(
+                f"Operation {self.name} has tried to get its accept_content_type even though it has no media types"
+            )
+        if not self.has_response_body:
+            raise TypeError(
+                "There is an error in the code model we're being supplied. We're getting response media types " +
+                f"even though no response of {self.name} has a body"
+            )
+        if len(media_types) == 1:
+            return media_types[0]
+        binary_media_types = [
+            media_type for media_type in media_types
+            if not "json" in media_type and not "xml" in media_type
+        ]
+        non_binary_schema_media_types = [
+            media_type for media_type in media_types
+            if "json" in media_type or "xml" in media_type
+        ]
+        if all([response.binary for response in self.responses]):
+            response_media_types = binary_media_types
+        elif all([response.schema for response in self.responses]):
+            response_media_types = _non_binary_schema_media_types(
+                non_binary_schema_media_types
+            )
+        else:
+            non_binary_schema_media_types = _non_binary_schema_media_types(
+                non_binary_schema_media_types
+            )
+            response_media_types = binary_media_types + non_binary_schema_media_types
+        return ",".join(response_media_types)
 
-        Assumes "media_types" attributes as a list exist.
-        """
+    @property
+    def request_content_type(self) -> str:
+        media_types = list(set(
+            media_type for request in self.requests for media_type in request.media_types
+        ))
+        if not media_types:
+            raise TypeError(
+                f"Operation {self.name} has tried to get its request_content_type even though it has no media types"
+            )
         if len(media_types) == 1:
             return media_types[0]
 
@@ -73,20 +131,8 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         for media_type in media_types:
             if "json" in media_type:
                 return media_type
-        # If no JSON, and still several content type, chain them
-        if list_all_if_not_found:
-            return ",".join(media_types)
+        # If no JSON, and still several content type, just return first
         return media_types[0]
-
-    @property
-    def accept_content_type(self) -> str:
-        media_types = set(media_type for response in self.responses for media_type in response.media_types)
-        return self._suggest_content_type(list(media_types), list_all_if_not_found=True)
-
-    @property
-    def request_content_type(self) -> str:
-        media_types = set(media_type for request in self.requests for media_type in request.media_types)
-        return self._suggest_content_type(list(media_types), list_all_if_not_found=False)
 
     @property
     def is_stream_request(self) -> bool:
