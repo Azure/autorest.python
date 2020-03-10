@@ -71,8 +71,7 @@ class MultiAPISerializer:
         template = self.env.get_template("multiapi_init.py.jinja2")
         return template.render(
             service_client_filename=self.service_client_filename,
-            client_name=self.conf["client_name"],
-            async_mode=self.async_mode
+            client_name=self.conf["client_name"]
         )
 
     def serialize_multiapi_client(self) -> str:
