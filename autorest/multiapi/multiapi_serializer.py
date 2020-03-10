@@ -4,9 +4,8 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import Any, Dict
-from jinja2 import Environment, PackageLoader
 from pathlib import Path
-from typing import Any, Dict
+from jinja2 import Environment, PackageLoader
 
 from ..jsonrpc import AutorestAPI
 
@@ -33,10 +32,10 @@ class MultiAPISerializer:
             return Path("aio") / filename
         return Path(filename)
 
-    def serialize(self) -> str:
+    def serialize(self):
         self._autorestapi.write_file(self._get_file_path("__init__.py"), self.serialize_multiapi_init())
 
-        service_client_filename_with_py_extension = Path(self.service_client_filename + ".py")
+        service_client_filename_with_py_extension = self.service_client_filename + ".py"
         self._autorestapi.write_file(
             self._get_file_path(service_client_filename_with_py_extension),
             self.serialize_multiapi_client()
