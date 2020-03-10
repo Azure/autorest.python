@@ -54,20 +54,17 @@ class MultiAPISerializer:
                 self.serialize_multiapi_operation_mixins()
             )
 
-        if not self._autorestapi.read_file("_version.py"):
-            self._autorestapi.write_file(
-                Path("_version.py"),
-                self.serialize_multiapi_version()
-            )
+        self._autorestapi.write_file(
+            Path("_version.py"),
+            self.serialize_multiapi_version()
+        )
 
-        if not self._autorestapi.read_file("models.py"):
-            self._autorestapi.write_file(
-                Path("models.py"),
-                self.serialize_multiapi_models()
-            )
+        self._autorestapi.write_file(
+            Path("models.py"),
+            self.serialize_multiapi_models()
+        )
 
-        if not self._autorestapi.read_file("py.typed"):
-            self._autorestapi.write_file(Path("py.typed"), "# Marker file for PEP 561.")
+        self._autorestapi.write_file(Path("py.typed"), "# Marker file for PEP 561.")
 
 
     def serialize_multiapi_init(self) -> str:
