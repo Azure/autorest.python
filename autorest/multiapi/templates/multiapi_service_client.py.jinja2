@@ -43,7 +43,7 @@ class {{ client_name }}({% if mixin_operations %}{{ client_name }}OperationsMixi
     group is not described in the profile.
 
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: azure.core.credentials.TokenCredential
+    :type credential: azure.core.credentials{{"_async" if async_mode else "" }}.{{"Async" if async_mode else ""}}TokenCredential
 {% if has_subscription_id %}
     :param subscription_id: Subscription credential which uniquely identify
      Microsoft Azure subscription. The subscription ID forms part of the URI
