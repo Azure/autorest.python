@@ -259,9 +259,6 @@ class MultiAPI:
         shutil.rmtree(str(self.output_folder / "operations"), ignore_errors=True)
         shutil.rmtree(str(self.output_folder / "models"), ignore_errors=True)
 
-        init_content = self._autorestapi.read_file(Path(last_api_version) / "__init__.py")
-        self._autorestapi.write_file("__init__.py", init_content)
-
         # Detect if this client is using an operation mixin (Network)
         # Operation mixins are available since Autorest.Python 4.x
         mixin_operations = self._build_operation_mixin_meta(paths_to_versions)
