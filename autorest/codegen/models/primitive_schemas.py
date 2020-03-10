@@ -15,7 +15,7 @@ from .imports import FileImport, ImportType
 _LOGGER = logging.getLogger(__name__)
 
 class RawString(object):
-    def __init__(self, string: str):
+    def __init__(self, string: str) -> None:
         self.string = string
 
     def __repr__(self) -> str:
@@ -58,7 +58,7 @@ class AnySchema(PrimitiveSchema):
 
 
 class NumberSchema(PrimitiveSchema):
-    def __init__(self, namespace: str, yaml_data: Dict[str, Any]):
+    def __init__(self, namespace: str, yaml_data: Dict[str, Any]) -> None:
         super(NumberSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.precision = cast(int, yaml_data["precision"])
         self.multiple = cast(int, yaml_data.get("multipleOf"))
@@ -121,7 +121,7 @@ class NumberSchema(PrimitiveSchema):
 
 class StringSchema(PrimitiveSchema):
 
-    def __init__(self, namespace: str, yaml_data: Dict[str, Any]):
+    def __init__(self, namespace: str, yaml_data: Dict[str, Any]) -> None:
         super(StringSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.max_length = cast(int, yaml_data.get("maxLength"))
         self.min_length = cast(
@@ -155,7 +155,7 @@ class StringSchema(PrimitiveSchema):
 
 
 class DatetimeSchema(PrimitiveSchema):
-    def __init__(self, namespace: str, yaml_data: Dict[str, Any]):
+    def __init__(self, namespace: str, yaml_data: Dict[str, Any]) -> None:
         super(DatetimeSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.format = self.Formats(yaml_data["format"])
 
@@ -280,7 +280,7 @@ class DurationSchema(PrimitiveSchema):
 
 
 class ByteArraySchema(PrimitiveSchema):
-    def __init__(self, namespace: str, yaml_data: Dict[str, Any]):
+    def __init__(self, namespace: str, yaml_data: Dict[str, Any]) -> None:
         super(ByteArraySchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.format = self.Formats(yaml_data["format"])
 

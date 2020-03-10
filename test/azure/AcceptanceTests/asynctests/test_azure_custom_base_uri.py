@@ -64,4 +64,3 @@ class TestCustomBaseUri(object):
         client._config.host = "badhost:3000"
         with pytest.raises(ServiceRequestError):
             await client.paths.get_empty("local")
-

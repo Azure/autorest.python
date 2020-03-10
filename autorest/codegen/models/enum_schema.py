@@ -16,7 +16,7 @@ class EnumValue:
     :param str description: Optional. The description for this enum value
     """
 
-    def __init__(self, name: str, value: str, description: Optional[str] = None):
+    def __init__(self, name: str, value: str, description: Optional[str] = None) -> None:
         self.name = name
         self.value = value
         self.description = description
@@ -52,7 +52,7 @@ class EnumSchema(BaseSchema):
 
     def __init__(
         self, namespace: str, yaml_data: Dict[str, Any], description: str, enum_type: str, values: List["EnumValue"]
-    ):
+    ) -> None:
         super(EnumSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.description = description
         self.enum_type = enum_type
@@ -85,7 +85,7 @@ class EnumSchema(BaseSchema):
         """
         return f'Union[str, "models.{self.enum_type}"]'
 
-    def get_declaration(self, value) -> str:
+    def get_declaration(self, value: Any) -> str:
         return f'"{value}"'
 
     @property

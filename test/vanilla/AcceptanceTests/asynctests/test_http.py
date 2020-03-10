@@ -42,8 +42,7 @@ from azure.core.pipeline.policies import ContentDecodePolicy, AsyncRetryPolicy, 
 from msrest.exceptions import DeserializationError
 
 from httpinfrastructure.aio import AutoRestHttpInfrastructureTestService
-from httpinfrastructure.models import (
-    MyException, B, C, D, ErrorException)
+from httpinfrastructure.models import B, C, D, MyException
 
 import pytest
 
@@ -85,7 +84,8 @@ class TestHttp(object):
             pytest.fail()
 
         except HttpResponseError as err:
-            assert isinstance(err.error, model)
+            if err.model:
+                assert isinstance(err.model, model)
             assert err.response.status_code == code
 
     async def assert_raises_with_status(self, code, func, *args, **kwargs):
@@ -102,7 +102,9 @@ class TestHttp(object):
             pytest.fail()
 
         except HttpResponseError as err:
-            assert err.message == msg
+            assert err.model.message == msg
+            assert msg in err.message
+            assert msg in str(err)
             assert err.response.status_code == code
 
     async def assert_raises_with_status_and_response_contains(self, code, msg, func, *args, **kwargs):

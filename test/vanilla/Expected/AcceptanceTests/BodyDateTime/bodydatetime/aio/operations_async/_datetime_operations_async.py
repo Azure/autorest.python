@@ -9,7 +9,7 @@ import datetime
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import map_error
+from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
@@ -54,7 +54,7 @@ class DatetimeOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_null.metadata['url']
@@ -73,7 +73,8 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
@@ -96,7 +97,7 @@ class DatetimeOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_invalid.metadata['url']
@@ -115,7 +116,8 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
@@ -138,7 +140,7 @@ class DatetimeOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_overflow.metadata['url']
@@ -157,7 +159,8 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
@@ -180,7 +183,7 @@ class DatetimeOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_underflow.metadata['url']
@@ -199,7 +202,8 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
@@ -225,7 +229,7 @@ class DatetimeOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.put_utc_max_date_time.metadata['url']
@@ -248,7 +252,8 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -274,7 +279,7 @@ class DatetimeOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.put_utc_max_date_time7_digits.metadata['url']
@@ -297,7 +302,8 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -317,7 +323,7 @@ class DatetimeOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_utc_lowercase_max_date_time.metadata['url']
@@ -336,7 +342,8 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
@@ -359,7 +366,7 @@ class DatetimeOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_utc_uppercase_max_date_time.metadata['url']
@@ -378,7 +385,8 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
@@ -404,7 +412,7 @@ class DatetimeOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_utc_uppercase_max_date_time7_digits.metadata['url']
@@ -423,7 +431,8 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
@@ -449,7 +458,7 @@ class DatetimeOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.put_local_positive_offset_max_date_time.metadata['url']
@@ -472,7 +481,8 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -492,7 +502,7 @@ class DatetimeOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_local_positive_offset_lowercase_max_date_time.metadata['url']
@@ -511,7 +521,8 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
@@ -534,7 +545,7 @@ class DatetimeOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_local_positive_offset_uppercase_max_date_time.metadata['url']
@@ -553,7 +564,8 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
@@ -579,7 +591,7 @@ class DatetimeOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.put_local_negative_offset_max_date_time.metadata['url']
@@ -602,7 +614,8 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -622,7 +635,7 @@ class DatetimeOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_local_negative_offset_uppercase_max_date_time.metadata['url']
@@ -641,7 +654,8 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
@@ -664,7 +678,7 @@ class DatetimeOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_local_negative_offset_lowercase_max_date_time.metadata['url']
@@ -683,7 +697,8 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
@@ -709,7 +724,7 @@ class DatetimeOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.put_utc_min_date_time.metadata['url']
@@ -732,7 +747,8 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -752,7 +768,7 @@ class DatetimeOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_utc_min_date_time.metadata['url']
@@ -771,7 +787,8 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
@@ -797,7 +814,7 @@ class DatetimeOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.put_local_positive_offset_min_date_time.metadata['url']
@@ -820,7 +837,8 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -840,7 +858,7 @@ class DatetimeOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_local_positive_offset_min_date_time.metadata['url']
@@ -859,7 +877,8 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 
@@ -885,7 +904,7 @@ class DatetimeOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.put_local_negative_offset_min_date_time.metadata['url']
@@ -908,7 +927,8 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -928,7 +948,7 @@ class DatetimeOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get_local_negative_offset_min_date_time.metadata['url']
@@ -947,7 +967,8 @@ class DatetimeOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('iso-8601', pipeline_response)
 

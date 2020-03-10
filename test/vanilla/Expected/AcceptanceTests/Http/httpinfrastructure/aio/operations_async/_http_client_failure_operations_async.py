@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import map_error
+from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
@@ -53,7 +53,7 @@ class HttpClientFailureOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.head400.metadata['url']
@@ -71,7 +71,8 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -91,7 +92,7 @@ class HttpClientFailureOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get400.metadata['url']
@@ -109,7 +110,8 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -129,7 +131,7 @@ class HttpClientFailureOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.options400.metadata['url']
@@ -147,7 +149,8 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -167,7 +170,7 @@ class HttpClientFailureOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         boolean_value = True
 
         # Construct URL
@@ -194,7 +197,8 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -214,7 +218,7 @@ class HttpClientFailureOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         boolean_value = True
 
         # Construct URL
@@ -241,7 +245,8 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -261,7 +266,7 @@ class HttpClientFailureOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         boolean_value = True
 
         # Construct URL
@@ -288,7 +293,8 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -308,7 +314,7 @@ class HttpClientFailureOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         boolean_value = True
 
         # Construct URL
@@ -335,7 +341,8 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -355,7 +362,7 @@ class HttpClientFailureOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.head401.metadata['url']
@@ -373,7 +380,8 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -393,7 +401,7 @@ class HttpClientFailureOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get402.metadata['url']
@@ -411,7 +419,8 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -431,7 +440,7 @@ class HttpClientFailureOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.options403.metadata['url']
@@ -449,7 +458,8 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -469,7 +479,7 @@ class HttpClientFailureOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get403.metadata['url']
@@ -487,7 +497,8 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -507,7 +518,7 @@ class HttpClientFailureOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         boolean_value = True
 
         # Construct URL
@@ -534,7 +545,8 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -554,7 +566,7 @@ class HttpClientFailureOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         boolean_value = True
 
         # Construct URL
@@ -581,7 +593,8 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -601,7 +614,7 @@ class HttpClientFailureOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         boolean_value = True
 
         # Construct URL
@@ -628,7 +641,8 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -648,7 +662,7 @@ class HttpClientFailureOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         boolean_value = True
 
         # Construct URL
@@ -675,7 +689,8 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -695,7 +710,7 @@ class HttpClientFailureOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         boolean_value = True
 
         # Construct URL
@@ -722,7 +737,8 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -742,7 +758,7 @@ class HttpClientFailureOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.head410.metadata['url']
@@ -760,7 +776,8 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -780,7 +797,7 @@ class HttpClientFailureOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get411.metadata['url']
@@ -798,7 +815,8 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -818,7 +836,7 @@ class HttpClientFailureOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.options412.metadata['url']
@@ -836,7 +854,8 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -856,7 +875,7 @@ class HttpClientFailureOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get412.metadata['url']
@@ -874,7 +893,8 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -894,7 +914,7 @@ class HttpClientFailureOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         boolean_value = True
 
         # Construct URL
@@ -921,7 +941,8 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -941,7 +962,7 @@ class HttpClientFailureOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         boolean_value = True
 
         # Construct URL
@@ -968,7 +989,8 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -988,7 +1010,7 @@ class HttpClientFailureOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         boolean_value = True
 
         # Construct URL
@@ -1015,7 +1037,8 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -1035,7 +1058,7 @@ class HttpClientFailureOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get416.metadata['url']
@@ -1053,7 +1076,8 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -1073,7 +1097,7 @@ class HttpClientFailureOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         boolean_value = True
 
         # Construct URL
@@ -1100,7 +1124,8 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -1120,7 +1145,7 @@ class HttpClientFailureOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.head429.metadata['url']
@@ -1138,7 +1163,8 @@ class HttpClientFailureOperations:
 
         if response.status_code not in []:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})

@@ -17,7 +17,7 @@ class BaseSchema(BaseModel, ABC):
     :type yaml_data: dict[str, Any]
     """
 
-    def __init__(self, namespace: str, yaml_data: Dict[str, Any]):
+    def __init__(self, namespace: str, yaml_data: Dict[str, Any]) -> None:
         super().__init__(yaml_data)
         self.namespace = namespace
         self.default_value = yaml_data.get("defaultValue", None)
@@ -31,7 +31,7 @@ class BaseSchema(BaseModel, ABC):
         return cls(namespace=namespace, yaml_data=yaml_data)
 
     @property
-    def has_xml_serialization_ctxt(self):
+    def has_xml_serialization_ctxt(self) -> bool:
         return bool(self.xml_metadata)
 
     def xml_serialization_ctxt(self) -> Optional[str]:

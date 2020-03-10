@@ -25,69 +25,75 @@
 # --------------------------------------------------------------------------
 import json
 import pytest
+from async_generator import yield_, async_generator
 
 from azure.core.exceptions import HttpResponseError, ResourceNotFoundError
 
-from xmserrorresponse import XMSErrorResponseExtensions
+from xmserrorresponse.aio import XMSErrorResponseExtensions
 from xmserrorresponse.models import NotFoundErrorBase, AnimalNotFound, LinkNotFound, PetActionError, PetSadError, PetHungryOrThirstyError
 
 @pytest.fixture
-def client():
-    with XMSErrorResponseExtensions(base_url="http://localhost:3000") as client:
-        yield client
+@async_generator
+async def client():
+    async with XMSErrorResponseExtensions(base_url="http://localhost:3000") as client:
+        await yield_(client)
 
 
 class TestXmsErrorResponse(object):
 
-    def test_get_by_pet_id_success(self, client):
+    @pytest.mark.asyncio
+    async def test_get_by_pet_id_success(self, client):
 
-        pet = client.pet.get_pet_by_id("tommy")
+        pet = await client.pet.get_pet_by_id("tommy")
         assert pet.name == "Tommy Tomson"
 
-        client.pet.get_pet_by_id('django')  # no fail, 202
+        await client.pet.get_pet_by_id('django')  # no fail, 202
 
 
-    def test_get_by_pet_id_discriminator(self, client):
+    @pytest.mark.asyncio
+    async def test_get_by_pet_id_discriminator(self, client):
 
         assert issubclass(AnimalNotFound, NotFoundErrorBase)
         assert issubclass(LinkNotFound, NotFoundErrorBase)
 
         with pytest.raises(HttpResponseError) as excinfo:
-            client.pet.get_pet_by_id("coyoteUgly")
+            await client.pet.get_pet_by_id("coyoteUgly")
         assert isinstance(excinfo.value.model, AnimalNotFound)
         assert excinfo.value.model.reason == "the type of animal requested is not available"
 
         with pytest.raises(HttpResponseError) as excinfo:
-            client.pet.get_pet_by_id("weirdAlYankovic")
+            await client.pet.get_pet_by_id("weirdAlYankovic")
         assert isinstance(excinfo.value.model, LinkNotFound)
         assert excinfo.value.model.reason == "link to pet not found"
 
-    def test_get_by_pet_id_basic_types(self, client):
+    @pytest.mark.asyncio
+    async def test_get_by_pet_id_basic_types(self, client):
 
         with pytest.raises(Exception) as excinfo:
-            client.pet.get_pet_by_id("ringo")
+            await client.pet.get_pet_by_id("ringo")
         assert excinfo.value.model is None  # no model attached
         assert json.loads(excinfo.value.response.text()) == "ringo is missing"
 
         with pytest.raises(Exception) as excinfo:
-            client.pet.get_pet_by_id("alien123")
+            await client.pet.get_pet_by_id("alien123")
         assert excinfo.value.model is None  # no model attached
         assert json.loads(excinfo.value.response.text()) == 123
 
-    def test_do_something_success(self, client):
-        result = client.pet.do_something("stay")
+    @pytest.mark.asyncio
+    async def test_do_something_success(self, client):
+        result = await client.pet.do_something("stay")
         assert result.action_response is None
 
-    def test_do_something_error(self, client):
+    @pytest.mark.asyncio
+    async def test_do_something_error(self, client):
 
         assert issubclass(PetSadError, PetActionError)
         assert issubclass(PetHungryOrThirstyError, PetActionError)
 
         with pytest.raises(HttpResponseError) as excinfo:
-            client.pet.do_something("jump")
+            await client.pet.do_something("jump")
         assert isinstance(excinfo.value.model, PetSadError)
         assert excinfo.value.model.reason == "need more treats"
 
         with pytest.raises(ResourceNotFoundError) as excinfo:
-            client.pet.do_something("fetch")
-            
+            await client.pet.do_something("fetch")

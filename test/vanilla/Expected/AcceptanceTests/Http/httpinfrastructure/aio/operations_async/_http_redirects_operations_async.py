@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, List, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import map_error
+from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
@@ -53,7 +53,7 @@ class HttpRedirectsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.head300.metadata['url']
@@ -71,7 +71,8 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 300]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         if response.status_code == 300:
@@ -95,7 +96,7 @@ class HttpRedirectsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get300.metadata['url']
@@ -114,7 +115,8 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 300]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         deserialized = None
@@ -141,7 +143,7 @@ class HttpRedirectsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.head301.metadata['url']
@@ -159,7 +161,8 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 301]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         if response.status_code == 301:
@@ -183,7 +186,7 @@ class HttpRedirectsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get301.metadata['url']
@@ -201,7 +204,8 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 301]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         if response.status_code == 301:
@@ -225,7 +229,7 @@ class HttpRedirectsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         boolean_value = True
 
         # Construct URL
@@ -252,7 +256,8 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [301]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
@@ -275,7 +280,7 @@ class HttpRedirectsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.head302.metadata['url']
@@ -293,7 +298,8 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 302]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         if response.status_code == 302:
@@ -317,7 +323,7 @@ class HttpRedirectsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get302.metadata['url']
@@ -335,7 +341,8 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 302]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         if response.status_code == 302:
@@ -359,7 +366,7 @@ class HttpRedirectsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         boolean_value = True
 
         # Construct URL
@@ -386,7 +393,8 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [302]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         response_headers['Location']=self._deserialize('str', response.headers.get('Location'))
@@ -409,7 +417,7 @@ class HttpRedirectsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         boolean_value = True
 
         # Construct URL
@@ -436,7 +444,8 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 303]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         if response.status_code == 303:
@@ -460,7 +469,7 @@ class HttpRedirectsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.head307.metadata['url']
@@ -478,7 +487,8 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         if response.status_code == 307:
@@ -502,7 +512,7 @@ class HttpRedirectsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.get307.metadata['url']
@@ -520,7 +530,8 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         if response.status_code == 307:
@@ -544,7 +555,7 @@ class HttpRedirectsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
         url = self.options307.metadata['url']
@@ -562,7 +573,8 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         if response.status_code == 307:
@@ -586,7 +598,7 @@ class HttpRedirectsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         boolean_value = True
 
         # Construct URL
@@ -613,7 +625,8 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         if response.status_code == 307:
@@ -637,7 +650,7 @@ class HttpRedirectsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         boolean_value = True
 
         # Construct URL
@@ -664,7 +677,8 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         if response.status_code == 307:
@@ -688,7 +702,7 @@ class HttpRedirectsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         boolean_value = True
 
         # Construct URL
@@ -715,7 +729,8 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         if response.status_code == 307:
@@ -739,7 +754,7 @@ class HttpRedirectsOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         boolean_value = True
 
         # Construct URL
@@ -766,7 +781,8 @@ class HttpRedirectsOperations:
 
         if response.status_code not in [200, 307]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         response_headers = {}
         if response.status_code == 307:

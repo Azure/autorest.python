@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableSequence
 import logging
-from typing import cast, List, Callable
+from typing import cast, List, Callable, Optional
 
 from .parameter import Parameter, ParameterLocation
 from .constant_schema import ConstantSchema
@@ -16,7 +16,9 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class ParameterList(MutableSequence):
-    def __init__(self, parameters: List[Parameter] = None, implementation: str = "Method"):
+    def __init__(
+        self, parameters: Optional[List[Parameter]] = None, implementation: str = "Method"
+    ) -> None:
         self.parameters = parameters or []
         self.implementation = implementation
 
@@ -27,7 +29,7 @@ class ParameterList(MutableSequence):
             raise TypeError(f"{index} is invalid type")
         return self.parameters[index]
 
-    def __len__(self):
+    def __len__(self) -> int:
         return len(self.parameters)
 
     def __setitem__(self, index, parameter):
@@ -36,7 +38,7 @@ class ParameterList(MutableSequence):
     def __delitem__(self, index):
         del self.parameters[index]
 
-    def insert(self, index, value):
+    def insert(self, index: int, value: Parameter) -> None:
         self.parameters.insert(index, value)
 
     # Parameter helpers
@@ -99,7 +101,7 @@ class ParameterList(MutableSequence):
         """The list of parameter used in method signature.
         """
 
-        def is_parameter_in_signature(parameter):
+        def is_parameter_in_signature(parameter: Parameter) -> bool:
             """A predicate to tell if this parameter deserves to be in the signature.
             """
             return not (

@@ -118,7 +118,7 @@ class TestLro:
             # So, we hack a little the system and check if we have the expected
             # message in the JSON body.
             # We should have more testserver on valid ARM errors....
-            assert msg in err.message or (err.error and msg in err.error.message)
+            assert msg.lower() in err.message.lower()
             if internal_msg:
                 assert internal_msg in str(err.inner_exception)
 
@@ -256,7 +256,7 @@ class TestLro:
         assert sku.id ==  '1'
 
     def test_happy_post_async_retry_failed_canceled(self, client, product):
-        self.assert_raises_with_message("Operation returned an invalid status 'OK'",
+        self.assert_raises_with_message("Internal Server Error",
             client.lros.begin_post_async_retry_failed)
 
         self.assert_raises_with_message(
@@ -308,7 +308,7 @@ class TestLro:
         self.assert_raises_with_message("Bad Request",
             client.lrosads.begin_put_non_retry400, product)
 
-        self.assert_raises_with_message("Operation returned an invalid status 'Bad Request'",
+        self.assert_raises_with_message("Error from the server",
             client.lrosads.begin_put_non_retry201_creating400, product)
 
     def test_sads_put_async_relative(self, client, product):

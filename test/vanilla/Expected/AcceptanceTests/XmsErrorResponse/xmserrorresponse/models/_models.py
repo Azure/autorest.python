@@ -48,31 +48,6 @@ class BaseError(msrest.serialization.Model):
         self.some_base_prop = kwargs.get('some_base_prop', None)
 
 
-class NotFoundErrorBaseException(HttpResponseError):
-    """Server responded with exception of type: 'NotFoundErrorBase'.
-
-    :param response: Server response to be deserialized.
-    :param error_model: A deserialized model of the response body as model.
-    """
-
-    def __init__(self, response, error_model):
-        self.error = error_model
-        super(NotFoundErrorBaseException, self).__init__(response=response, error_model=error_model)
-
-    @classmethod
-    def from_response(cls, response, deserialize):
-        """Deserialize this response as this exception, or a subclass of this exception.
-
-        :param response: Server response to be deserialized.
-        :param deserialize: A deserializer
-        """
-        model_name = 'NotFoundErrorBase'
-        error = deserialize(model_name, response)
-        if error is None:
-            error = deserialize.dependencies[model_name]()
-        return error._EXCEPTION_TYPE(response, error)
-
-
 class NotFoundErrorBase(BaseError):
     """NotFoundErrorBase.
 
@@ -88,7 +63,6 @@ class NotFoundErrorBase(BaseError):
     :param what_not_found: Required. Constant filled by server.
     :type what_not_found: str
     """
-    _EXCEPTION_TYPE = NotFoundErrorBaseException
 
     _validation = {
         'what_not_found': {'required': True},
@@ -113,31 +87,6 @@ class NotFoundErrorBase(BaseError):
         self.what_not_found = 'NotFoundErrorBase'
 
 
-class AnimalNotFoundException(NotFoundErrorBaseException):
-    """Server responded with exception of type: 'AnimalNotFound'.
-
-    :param response: Server response to be deserialized.
-    :param error_model: A deserialized model of the response body as model.
-    """
-
-    def __init__(self, response, error_model):
-        self.error = error_model
-        super(AnimalNotFoundException, self).__init__(response=response, error_model=error_model)
-
-    @classmethod
-    def from_response(cls, response, deserialize):
-        """Deserialize this response as this exception, or a subclass of this exception.
-
-        :param response: Server response to be deserialized.
-        :param deserialize: A deserializer
-        """
-        model_name = 'AnimalNotFound'
-        error = deserialize(model_name, response)
-        if error is None:
-            error = deserialize.dependencies[model_name]()
-        return error._EXCEPTION_TYPE(response, error)
-
-
 class AnimalNotFound(NotFoundErrorBase):
     """AnimalNotFound.
 
@@ -152,7 +101,6 @@ class AnimalNotFound(NotFoundErrorBase):
     :param name:
     :type name: str
     """
-    _EXCEPTION_TYPE = AnimalNotFoundException
 
     _validation = {
         'what_not_found': {'required': True},
@@ -174,31 +122,6 @@ class AnimalNotFound(NotFoundErrorBase):
         self.name = kwargs.get('name', None)
 
 
-class LinkNotFoundException(NotFoundErrorBaseException):
-    """Server responded with exception of type: 'LinkNotFound'.
-
-    :param response: Server response to be deserialized.
-    :param error_model: A deserialized model of the response body as model.
-    """
-
-    def __init__(self, response, error_model):
-        self.error = error_model
-        super(LinkNotFoundException, self).__init__(response=response, error_model=error_model)
-
-    @classmethod
-    def from_response(cls, response, deserialize):
-        """Deserialize this response as this exception, or a subclass of this exception.
-
-        :param response: Server response to be deserialized.
-        :param deserialize: A deserializer
-        """
-        model_name = 'LinkNotFound'
-        error = deserialize(model_name, response)
-        if error is None:
-            error = deserialize.dependencies[model_name]()
-        return error._EXCEPTION_TYPE(response, error)
-
-
 class LinkNotFound(NotFoundErrorBase):
     """LinkNotFound.
 
@@ -213,7 +136,6 @@ class LinkNotFound(NotFoundErrorBase):
     :param what_sub_address:
     :type what_sub_address: str
     """
-    _EXCEPTION_TYPE = LinkNotFoundException
 
     _validation = {
         'what_not_found': {'required': True},
@@ -282,31 +204,6 @@ class PetAction(msrest.serialization.Model):
         self.action_response = kwargs.get('action_response', None)
 
 
-class PetActionErrorException(HttpResponseError):
-    """Server responded with exception of type: 'PetActionError'.
-
-    :param response: Server response to be deserialized.
-    :param error_model: A deserialized model of the response body as model.
-    """
-
-    def __init__(self, response, error_model):
-        self.error = error_model
-        super(PetActionErrorException, self).__init__(response=response, error_model=error_model)
-
-    @classmethod
-    def from_response(cls, response, deserialize):
-        """Deserialize this response as this exception, or a subclass of this exception.
-
-        :param response: Server response to be deserialized.
-        :param deserialize: A deserializer
-        """
-        model_name = 'PetActionError'
-        error = deserialize(model_name, response)
-        if error is None:
-            error = deserialize.dependencies[model_name]()
-        return error._EXCEPTION_TYPE(response, error)
-
-
 class PetActionError(msrest.serialization.Model):
     """PetActionError.
 
@@ -320,7 +217,6 @@ class PetActionError(msrest.serialization.Model):
     :param error_message: the error message.
     :type error_message: str
     """
-    _EXCEPTION_TYPE = PetActionErrorException
 
     _validation = {
         'error_type': {'required': True},
@@ -344,31 +240,6 @@ class PetActionError(msrest.serialization.Model):
         self.error_message = kwargs.get('error_message', None)
 
 
-class PetSadErrorException(PetActionErrorException):
-    """Server responded with exception of type: 'PetSadError'.
-
-    :param response: Server response to be deserialized.
-    :param error_model: A deserialized model of the response body as model.
-    """
-
-    def __init__(self, response, error_model):
-        self.error = error_model
-        super(PetSadErrorException, self).__init__(response=response, error_model=error_model)
-
-    @classmethod
-    def from_response(cls, response, deserialize):
-        """Deserialize this response as this exception, or a subclass of this exception.
-
-        :param response: Server response to be deserialized.
-        :param deserialize: A deserializer
-        """
-        model_name = 'PetSadError'
-        error = deserialize(model_name, response)
-        if error is None:
-            error = deserialize.dependencies[model_name]()
-        return error._EXCEPTION_TYPE(response, error)
-
-
 class PetSadError(PetActionError):
     """PetSadError.
 
@@ -384,7 +255,6 @@ class PetSadError(PetActionError):
     :param reason: why is the pet sad.
     :type reason: str
     """
-    _EXCEPTION_TYPE = PetSadErrorException
 
     _validation = {
         'error_type': {'required': True},
@@ -409,31 +279,6 @@ class PetSadError(PetActionError):
         self.reason = kwargs.get('reason', None)
 
 
-class PetHungryOrThirstyErrorException(PetSadErrorException):
-    """Server responded with exception of type: 'PetHungryOrThirstyError'.
-
-    :param response: Server response to be deserialized.
-    :param error_model: A deserialized model of the response body as model.
-    """
-
-    def __init__(self, response, error_model):
-        self.error = error_model
-        super(PetHungryOrThirstyErrorException, self).__init__(response=response, error_model=error_model)
-
-    @classmethod
-    def from_response(cls, response, deserialize):
-        """Deserialize this response as this exception, or a subclass of this exception.
-
-        :param response: Server response to be deserialized.
-        :param deserialize: A deserializer
-        """
-        model_name = 'PetHungryOrThirstyError'
-        error = deserialize(model_name, response)
-        if error is None:
-            error = deserialize.dependencies[model_name]()
-        return error._EXCEPTION_TYPE(response, error)
-
-
 class PetHungryOrThirstyError(PetSadError):
     """PetHungryOrThirstyError.
 
@@ -448,7 +293,6 @@ class PetHungryOrThirstyError(PetSadError):
     :param hungry_or_thirsty: is the pet hungry or thirsty or both.
     :type hungry_or_thirsty: str
     """
-    _EXCEPTION_TYPE = PetHungryOrThirstyErrorException
 
     _validation = {
         'error_type': {'required': True},

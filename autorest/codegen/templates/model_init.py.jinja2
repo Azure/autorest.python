@@ -3,19 +3,11 @@
 
 try:
     {% for schema in schemas %}
-    {% if schema.is_exception %}
-    from ._models_py3 import {{ schema.name }}, {{ schema.name + "Exception" }}
-    {% else %}
     from ._models_py3 import {{ schema.name }}
-    {% endif %}
     {% endfor %}
 except (SyntaxError, ImportError):
     {% for schema in schemas %}
-    {% if schema.is_exception %}
-    from ._models import {{ schema.name }}, {{ schema.name + "Exception" }}  # type: ignore
-    {% else %}
     from ._models import {{ schema.name }}  # type: ignore
-    {% endif %}
     {% endfor %}
 {% if enums %}
 
@@ -28,11 +20,7 @@ from ._{{ code_model.module_name }}_enums import (
 
 __all__ = [
     {% for schema in schemas %}
-    {% if schema.is_exception %}
-    '{{ schema.name }}', '{{ schema.name + "Exception" }}',
-    {% else %}
     '{{ schema.name }}',
-    {% endif %}
     {% endfor %}
     {% if enums %}
     {% for enum in enums %}

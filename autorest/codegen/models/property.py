@@ -20,8 +20,8 @@ class Property(BaseModel):
         original_swagger_name: str,
         *,
         flattened_names: Optional[List[str]] = None,
-        description: str = None,
-    ):
+        description: Optional[str] = None,
+    ) -> None:
         super().__init__(yaml_data)
         self.name = name
         self.schema = schema

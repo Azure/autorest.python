@@ -54,8 +54,8 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         multiple_media_type_parameters: Optional[List[Parameter]] = None,
         responses: Optional[List[SchemaResponse]] = None,
         exceptions: Optional[List[SchemaResponse]] = None,
-        want_description_docstring: Optional[bool] = True,
-        want_tracing: Optional[bool] = True,
+        want_description_docstring: bool = True,
+        want_tracing: bool = True,
     ) -> None:
         super().__init__(yaml_data)
         self.name = name
@@ -220,11 +220,9 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
 
         # Exceptions
         file_import.add_from_import("azure.core.exceptions", "map_error", ImportType.AZURECORE)
-        if not self.default_exception:
-            if code_model.options["azure_arm"]:
-                file_import.add_from_import("azure.mgmt.core.exceptions", "ARMError", ImportType.AZURECORE)
-            else:
-                file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
+        if code_model.options["azure_arm"]:
+            file_import.add_from_import("azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.AZURECORE)
+        file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
         for parameter in self.parameters:
             file_import.merge(parameter.imports())
 
