@@ -39,6 +39,5 @@ class {{ client_name }}OperationsMixin(object):
         mixin_instance._config = self._config
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        mixin_instance.api_version = api_version
         return {{ "await " if async_mode and metadata['coroutine'] else "" }}mixin_instance.{{ operation_name }}({{ metadata['call'] }}{{ ", **kwargs" if metadata['call'] else "**kwargs" }})
 {% endfor %}
