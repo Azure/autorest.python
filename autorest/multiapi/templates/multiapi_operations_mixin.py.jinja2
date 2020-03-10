@@ -10,6 +10,9 @@
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
 {% if imports %}
+{% if async_mode %}
+{{ imports }}
+{% else %}
 try:
     from typing import TYPE_CHECKING
 except ImportError:
@@ -18,6 +21,7 @@ except ImportError:
 if TYPE_CHECKING:
     # pylint:disable=unused-import
     {{ imports | indent }}
+{% endif %}
 {% endif %}
 
 
