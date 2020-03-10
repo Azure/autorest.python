@@ -1,0 +1,59 @@
+trigger: none
+pr: none
+
+variables:
+  NodeVersion: '12.x'
+  PythonVersion: '3.6'
+  TestFolder: '$(Build.SourcesDirectory)/test/'
+
+pool:
+  vmImage: 'ubuntu-16.04'
+
+steps:
+  - task: NodeTool@0
+    displayName: 'Install Node.js $(NodeVersion)'
+    inputs:
+      versionSpec: '$(NodeVersion)'
+
+  - task: UsePythonVersion@0
+    displayName: 'Use Python 3.6'
+    inputs:
+      versionSpec: 3.6
+
+  - script: |
+      cd $(Build.SourcesDirectory)
+      pip install -r dev_requirements.txt
+      npm install -g autorest
+      npm install
+    displayName: 'Prepare Environment for Generation'
+  - script: |
+      pylint autorest
+    displayName: 'Pylint'
+
+  - script: |
+      mypy autorest
+    displayName: 'Mypy'
+
+  - script: |
+      pytest test/unittests
+    displayName: 'Unit tests'
+
+  - script: |
+      inv regenerate
+    displayName: 'Regenerate Code'
+
+  - script: |
+      pip install tox coverage==4.5.4
+    displayName: 'Install Env Specific Reqs in Target PyVersion $(PythonVersion)'
+
+  - script: |
+      cd $(TestFolder)/azure
+      tox -e ci
+    displayName: 'Execute "azure" Tests - Python $(PythonVersion)'
+
+  - script : |
+      export DEV_VERSION=$(node -p -e "require('./package.json').version")-dev.$BUILD_BUILDNUMBER
+      npm version --no-git-tag-version $DEV_VERSION
+      npm pack
+      npx publish-release --token $(azuresdk-github-pat) --repo autorest.python --owner azure --name "Autorest for Python v$DEV_VERSION" --tag v$DEV_VERSION --notes='Preview version of autorest for python v5' --prerelease --editRelease false --assets autorest-python-$DEV_VERSION.tgz --target_commitish $(Build.SourceBranchName)
+    displayName: 'Publish development release'
