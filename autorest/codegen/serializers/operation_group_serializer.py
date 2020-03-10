@@ -36,4 +36,10 @@ class OperationGroupSerializer:
             async_mode=self.async_mode,
             is_lro=_is_lro,
             is_paging=_is_paging,
+            import_models=any(
+                [
+                    operation for operation in self.operation_group.operations
+                    if operation.parameters.has_body or operation.has_response_body or operation.exceptions
+                ]
+            )
         )
