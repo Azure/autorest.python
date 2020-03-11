@@ -349,6 +349,5 @@ class MultiAPI:
                 multiapi_serializer.serialize_multiapi_version()
             )
 
-
         _LOGGER.info("Done!")
         return True
