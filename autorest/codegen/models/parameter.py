@@ -83,8 +83,9 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
 
     @property
     def constant(self) -> bool:
-        """Returns whether a parameter is a constant that can't be set to None in a method.
-        If a parameter is a constant, it will not appear in a method signature
+        """Returns whether a parameter is a constant or not.
+        Checking to see if it's required, because if not, we don't consider it
+        a constant because it can have a value of None.
         """
         if not isinstance(self.schema, ConstantSchema):
             return False
