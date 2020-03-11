@@ -8,7 +8,6 @@ import logging
 from typing import cast, List, Callable, Optional
 
 from .parameter import Parameter, ParameterLocation
-from .constant_schema import ConstantSchema
 from .object_schema import ObjectSchema
 
 
