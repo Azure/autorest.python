@@ -105,8 +105,10 @@ class ParameterList(MutableSequence):
             """A predicate to tell if this parameter deserves to be in the signature.
             """
             return not (
-                # Constant are never on signature
-                isinstance(parameter.schema, ConstantSchema)
+                # Required constants are not in the signature bc they can only be that constant value.
+                (parameter.required and parameter in self.constant)
+                # Optional constants not in function don't appear in signature
+                or (not parameter.required and parameter in self.constant and parameter.location == ParameterLocation.Other)
                 # Client level should not be on Method, etc.
                 or parameter.implementation != self.implementation
                 # If I'm grouped, my grouper will be on signature, not me

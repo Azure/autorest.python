@@ -86,10 +86,13 @@ class StringOperations:
     @distributed_trace_async
     async def put_null(
         self,
+        string_body: Optional[str] = None,
         **kwargs
     ) -> None:
         """Set string value null.
 
+        :param string_body:
+        :type string_body: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None

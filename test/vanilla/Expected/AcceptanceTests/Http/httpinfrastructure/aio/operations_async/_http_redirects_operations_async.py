@@ -219,10 +219,13 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def put301(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Put true Boolean value in request returns 301.  This request should not be automatically redirected, but should return the received 301 to the caller for evaluation.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -356,10 +359,13 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def patch302(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Patch true Boolean value in request returns 302.  This request should not be automatically redirected, but should return the received 302 to the caller for evaluation.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -407,10 +413,13 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def post303(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Post true Boolean value in request returns 303.  This request should be automatically redirected usign a get, ultimately returning a 200 status code.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -588,10 +597,13 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def put307(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Put redirected with 307, resulting in a 200 after redirect.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -640,10 +652,13 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def patch307(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Patch redirected with 307, resulting in a 200 after redirect.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -692,10 +707,13 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def post307(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Post redirected with 307, resulting in a 200 after redirect.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -744,10 +762,13 @@ class HttpRedirectsOperations:
     @distributed_trace_async
     async def delete307(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Delete redirected with 307, resulting in a 200 after redirect.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None

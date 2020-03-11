@@ -10,6 +10,7 @@ from typing import Dict, Optional, List, Any, Union, Tuple
 from .imports import FileImport, ImportType
 from .base_model import BaseModel
 from .base_schema import BaseSchema
+from .constant_schema import ConstantSchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -100,8 +101,12 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
             default_value = None
             default_value_declaration = "None"
         else:
-            default_value = self.schema.default_value
-            default_value_declaration = self.schema.default_value_declaration
+            if isinstance(self.schema, ConstantSchema):
+                default_value = self.schema.constant_value
+                default_value_declaration = default_value
+            else:
+                default_value = self.schema.default_value
+                default_value_declaration = self.schema.default_value_declaration
         if default_value is not None and self.required:
             _LOGGER.warning(
                 "Parameter '%s' is required and has a default value, this combination is not recommended",

@@ -82,10 +82,13 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def put500(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Return 500 status code, then 200 after retry.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -130,10 +133,13 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def patch500(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Return 500 status code, then 200 after retry.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -260,10 +266,13 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def post503(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Return 503 status code, then 200 after retry.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -308,10 +317,13 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def delete503(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Return 503 status code, then 200 after retry.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -356,10 +368,13 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def put504(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Return 504 status code, then 200 after retry.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -404,10 +419,13 @@ class HttpRetryOperations:
     @distributed_trace_async
     async def patch504(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Return 504 status code, then 200 after retry.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None

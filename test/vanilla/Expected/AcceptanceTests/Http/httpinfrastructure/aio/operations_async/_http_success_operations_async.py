@@ -168,10 +168,13 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def put200(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Put boolean value true returning 200 success.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -216,10 +219,13 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def patch200(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Patch true Boolean value in request returning 200.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -264,10 +270,13 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def post200(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Post bollean value true in request that returns a 200.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -312,10 +321,13 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def delete200(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Delete simple boolean value true returns 200.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -360,10 +372,13 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def put201(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Put true Boolean value in request returns 201.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -408,10 +423,13 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def post201(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Post true Boolean value in request returns 201 (Created).
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -456,10 +474,13 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def put202(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Put true Boolean value in request returns 202 (Accepted).
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -504,10 +525,13 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def patch202(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Patch true Boolean value in request returns 202.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -552,10 +576,13 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def post202(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Post true Boolean value in request returns 202 (Accepted).
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -600,10 +627,13 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def delete202(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Delete true Boolean value in request returns 202 (accepted).
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -687,10 +717,13 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def put204(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Put true Boolean value in request returns 204 (no content).
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -735,10 +768,13 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def patch204(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Patch true Boolean value in request returns 204 (no content).
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -783,10 +819,13 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def post204(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Post true Boolean value in request returns 204 (no content).
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -831,10 +870,13 @@ class HttpSuccessOperations:
     @distributed_trace_async
     async def delete204(
         self,
+        boolean_value: Optional[bool] = True,
         **kwargs
     ) -> None:
         """Delete true Boolean value in request returns 204 (no content).
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None

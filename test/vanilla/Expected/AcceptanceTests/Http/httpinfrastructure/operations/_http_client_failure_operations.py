@@ -163,11 +163,14 @@ class HttpClientFailureOperations(object):
     @distributed_trace
     def put400(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -212,11 +215,14 @@ class HttpClientFailureOperations(object):
     @distributed_trace
     def patch400(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -261,11 +267,14 @@ class HttpClientFailureOperations(object):
     @distributed_trace
     def post400(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -310,11 +319,14 @@ class HttpClientFailureOperations(object):
     @distributed_trace
     def delete400(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -519,11 +531,14 @@ class HttpClientFailureOperations(object):
     @distributed_trace
     def put404(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 404 status code - should be represented in the client as an error.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -568,11 +583,14 @@ class HttpClientFailureOperations(object):
     @distributed_trace
     def patch405(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 405 status code - should be represented in the client as an error.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -617,11 +635,14 @@ class HttpClientFailureOperations(object):
     @distributed_trace
     def post406(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 406 status code - should be represented in the client as an error.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -666,11 +687,14 @@ class HttpClientFailureOperations(object):
     @distributed_trace
     def delete407(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 407 status code - should be represented in the client as an error.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -715,11 +739,14 @@ class HttpClientFailureOperations(object):
     @distributed_trace
     def put409(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 409 status code - should be represented in the client as an error.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -924,11 +951,14 @@ class HttpClientFailureOperations(object):
     @distributed_trace
     def put413(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 413 status code - should be represented in the client as an error.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -973,11 +1003,14 @@ class HttpClientFailureOperations(object):
     @distributed_trace
     def patch414(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 414 status code - should be represented in the client as an error.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -1022,11 +1055,14 @@ class HttpClientFailureOperations(object):
     @distributed_trace
     def post415(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 415 status code - should be represented in the client as an error.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -1111,11 +1147,14 @@ class HttpClientFailureOperations(object):
     @distributed_trace
     def delete417(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 417 status code - should be represented in the client as an error.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
