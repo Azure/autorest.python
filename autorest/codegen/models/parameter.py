@@ -88,9 +88,26 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         """
         if not isinstance(self.schema, ConstantSchema):
             return False
-        if self.required:
-            return True
-        return self.location == ParameterLocation.Other
+        return self.required
+
+    @property
+    def in_method_signature(self) -> bool:
+        return not(
+            # If I only have one value, I can't be set, so no point being in signature
+            self.constant
+            # If i'm not in the method code, no point in being in signature
+            or not self.in_method_code
+            # If I'm grouped, my grouper will be on signature, not me
+            or self.grouped_by
+            # If I'm body and it's flattened, I'm not either
+            or (self.location == ParameterLocation.Body and self.flattened)
+            # If I'm a kwarg, don't include in the signature
+            or self.is_kwarg
+        )
+
+    @property
+    def in_method_code(self) -> bool:
+        return not (isinstance(self.schema, ConstantSchema) and self.location == ParameterLocation.Other)
 
     @property
     def implementation(self) -> str:
