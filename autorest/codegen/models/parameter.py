@@ -82,6 +82,17 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.multiple_media_types_docstring_type: Optional[str] = None
 
     @property
+    def constant(self) -> bool:
+        """Returns whether a parameter is a constant that can't be set to None in a method.
+        If a parameter is a constant, it will not appear in a method signature
+        """
+        if not isinstance(self.schema, ConstantSchema):
+            return False
+        if self.required:
+            return True
+        return self.location == ParameterLocation.Other
+
+    @property
     def implementation(self) -> str:
         # https://github.com/Azure/autorest.modelerfour/issues/81
         if self.serialized_name == "api_version":

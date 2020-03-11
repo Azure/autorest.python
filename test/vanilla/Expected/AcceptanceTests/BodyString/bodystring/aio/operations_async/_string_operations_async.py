@@ -100,7 +100,6 @@ class StringOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        string_body = None
 
         # Construct URL
         url = self.put_null.metadata['url']

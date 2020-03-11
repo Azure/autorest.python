@@ -178,7 +178,6 @@ class HttpClientFailureOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.put400.metadata['url']
@@ -230,7 +229,6 @@ class HttpClientFailureOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.patch400.metadata['url']
@@ -282,7 +280,6 @@ class HttpClientFailureOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.post400.metadata['url']
@@ -334,7 +331,6 @@ class HttpClientFailureOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.delete400.metadata['url']
@@ -546,7 +542,6 @@ class HttpClientFailureOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.put404.metadata['url']
@@ -598,7 +593,6 @@ class HttpClientFailureOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.patch405.metadata['url']
@@ -650,7 +644,6 @@ class HttpClientFailureOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.post406.metadata['url']
@@ -702,7 +695,6 @@ class HttpClientFailureOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.delete407.metadata['url']
@@ -754,7 +746,6 @@ class HttpClientFailureOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.put409.metadata['url']
@@ -966,7 +957,6 @@ class HttpClientFailureOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.put413.metadata['url']
@@ -1018,7 +1008,6 @@ class HttpClientFailureOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.patch414.metadata['url']
@@ -1070,7 +1059,6 @@ class HttpClientFailureOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.post415.metadata['url']
@@ -1162,7 +1150,6 @@ class HttpClientFailureOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.delete417.metadata['url']

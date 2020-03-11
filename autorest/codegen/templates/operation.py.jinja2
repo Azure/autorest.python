@@ -25,8 +25,8 @@
 
     {{ operation.parameters.build_flattened_object() }}
 {% endif %}
-{% if operation.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None) %}
-    {% for constant_parameter in operation.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None) %}
+{% if operation.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("constant") %}
+    {% for constant_parameter in operation.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("constant") %}
     {{ constant_parameter.serialized_name }} = {{ constant_parameter.schema.constant_value }}
     {% endfor %}
 {% endif %}
