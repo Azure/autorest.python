@@ -99,3 +99,8 @@ jobs:
           testResultsFiles: 'test-junit-vanilla-ci.xml'
           testRunTitle: '$(OSName) Python $(PythonVersion) - vanilla'
           searchFolder: '$(TestFolder)/vanilla'
+          
+      - script: |
+          npm run show-results -- $(Build.Repository.Name) $(Build.SourceBranch) $(github-token) $(storage-coverage-user) $(storage-coverage-pass)
+        workingDirectory: node_modules/@microsoft.azure/autorest.testserver
+        displayName: 'Publish coverage report to stroage account'
