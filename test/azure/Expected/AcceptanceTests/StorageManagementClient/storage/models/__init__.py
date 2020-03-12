@@ -18,9 +18,6 @@ try:
     from ._models_py3 import StorageAccountCreateParameters
     from ._models_py3 import StorageAccountKeys
     from ._models_py3 import StorageAccountListResult
-    from ._models_py3 import StorageAccountProperties
-    from ._models_py3 import StorageAccountPropertiesCreateParameters
-    from ._models_py3 import StorageAccountPropertiesUpdateParameters
     from ._models_py3 import StorageAccountRegenerateKeyParameters
     from ._models_py3 import StorageAccountUpdateParameters
     from ._models_py3 import SubResource
@@ -39,9 +36,6 @@ except (SyntaxError, ImportError):
     from ._models import StorageAccountCreateParameters  # type: ignore
     from ._models import StorageAccountKeys  # type: ignore
     from ._models import StorageAccountListResult  # type: ignore
-    from ._models import StorageAccountProperties  # type: ignore
-    from ._models import StorageAccountPropertiesCreateParameters  # type: ignore
-    from ._models import StorageAccountPropertiesUpdateParameters  # type: ignore
     from ._models import StorageAccountRegenerateKeyParameters  # type: ignore
     from ._models import StorageAccountUpdateParameters  # type: ignore
     from ._models import SubResource  # type: ignore
@@ -70,9 +64,6 @@ __all__ = [
     'StorageAccountCreateParameters',
     'StorageAccountKeys',
     'StorageAccountListResult',
-    'StorageAccountProperties',
-    'StorageAccountPropertiesCreateParameters',
-    'StorageAccountPropertiesUpdateParameters',
     'StorageAccountRegenerateKeyParameters',
     'StorageAccountUpdateParameters',
     'SubResource',
