@@ -109,9 +109,9 @@
         if cls:
             list_of_elem = cls(list_of_elem)
         {% if async_mode %}
-        return {{ next_link_str }}, AsyncList(list_of_elem)
+        return {{ next_link_str }}{{ "" if next_link_str == "None" else " or None" }}, AsyncList(list_of_elem)
         {% else %}
-        return {{ next_link_str }}, iter(list_of_elem)
+        return {{ next_link_str }}{{ "" if next_link_str == "None" else " or None" }}, iter(list_of_elem)
         {% endif %}
 
     {{ keywords.def }} get_next(next_link=None):
