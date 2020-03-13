@@ -64,6 +64,26 @@ async def custom_url_client(credential, authentication_policy):
         await yield_(client)
 
 @pytest.mark.asyncio
+async def test_get_no_item_name_pages(client):
+    pages = client.paging.get_no_item_name_pages()
+    items = []
+    async for item in pages:
+        items.append(item)
+    assert len(items) == 1
+    assert items[0].properties.id == 1
+    assert items[0].properties.name == "Product"
+
+@pytest.mark.asyncio
+async def test_get_null_next_link_name_pages(client):
+    pages = client.paging.get_null_next_link_name_pages()
+    items = []
+    async for item in pages:
+        items.append(item)
+    assert len(items) == 1
+    assert items[0].properties.id == 1
+    assert items[0].properties.name == "Product"
+
+@pytest.mark.asyncio
 async def test_get_single_pages_with_cb(client):
     def cb(list_of_obj):
         for obj in list_of_obj:
