@@ -13,7 +13,7 @@
 {% endif %}
 {% endmacro %}
 {% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
-{% set next_link_str = "deserialized." + operation.next_link_name if operation.next_link_name else "None" %}
+{% set next_link_str = "deserialized." + operation.next_link_name + " or None" if operation.next_link_name else "None" %}
 {# actual template starts here #}
 {% if code_model.options['tracing'] and operation.want_tracing %}
 @distributed_trace
@@ -109,9 +109,9 @@
         if cls:
             list_of_elem = cls(list_of_elem)
         {% if async_mode %}
-        return {{ next_link_str }}{{ "" if next_link_str == "None" else " or None" }}, AsyncList(list_of_elem)
+        return {{ next_link_str }}, AsyncList(list_of_elem)
         {% else %}
-        return {{ next_link_str }}{{ "" if next_link_str == "None" else " or None" }}, iter(list_of_elem)
+        return {{ next_link_str }}, iter(list_of_elem)
         {% endif %}
 
     {{ keywords.def }} get_next(next_link=None):
