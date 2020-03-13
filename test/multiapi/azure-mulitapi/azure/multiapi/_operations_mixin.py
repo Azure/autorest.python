@@ -19,21 +19,23 @@ class MultiapiTestOperationsMixin(object):
         message=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        """TestOne should be in an FirstVersionOperationsMixin.
+        """TestOne should be in an SecondVersionOperationsMixin. Returns ModelOne.
 
         :param id:
         :type id: int
         :param message:
         :type message: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
+        :return: ModelOne or the result of cls(response)
+        :rtype: ~autorest.multiapi.v2.models.ModelOne
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 
         api_version = self._get_api_version('test_one')
         if api_version == '1.0.0':
             from .v1.operations import MultiapiTestOperationsMixin as OperationClass
+        elif api_version == '2.0.0':
+            from .v2.operations import MultiapiTestOperationsMixin as OperationClass
         else:
             raise NotImplementedError("APIVersion {} is not available".format(api_version))
         mixin_instance = OperationClass()
