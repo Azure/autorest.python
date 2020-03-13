@@ -1,0 +1,37 @@
+{
+    "chosen_version": "1.0.0",
+    "total_api_version_list": ["1.0.0"],
+    "client": {
+        "name": "MultiapiTest",
+        "filename": "_multiapi_test",
+        "description": "First API version for multiapi client testing.",
+        "has_subscription_id": false
+    },
+    "config": {
+        "credential": true,
+        "credential_scopes": null,
+        "package_version": false,
+        "global_parameters": {
+            "method": {
+                "credential": {
+                    "method_signature": "credential,  # type: \"TokenCredential\"",
+                    "description": "Credential needed for the client to connect to Azure.",
+                    "docstring_type": "azure.core.credentials.TokenCredential",
+                    "required": true
+                }
+            },
+            "constant": {
+            }
+        }
+    },
+    "operation_groups": {
+        "operation_group_one": "OperationGroupOneOperations"
+    },
+    "operation_mixins": {
+        "test_one" : {
+            "doc": "    \"\"\"TestOne should be in an FirstVersionOperationsMixin.\n\n:param id:\n:type id: int\n:param message:\n:type message: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: None or the result of cls(response)\n:rtype: None\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\"",
+            "signature": "def test_one(\n    self,\n    id,  # type: int\n    message=None,  # type: Optional[str]\n    **kwargs  # type: Any\n):\n",
+            "call": "id, message"
+        }
+    }
+}
