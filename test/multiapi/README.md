@@ -10,6 +10,12 @@ namespace: autorest.multiapi.v1
 output-folder: $(python-sdks-folder)/multiapi/azure-mulitapi/azure/multiapi/v1
 ```
 
+``` yaml $(tag) == 'v2'
+input-file: swaggers/swagger2.json
+namespace: autorest.multiapi.v2
+output-folder: $(python-sdks-folder)/multiapi/azure-mulitapi/azure/multiapi/v2
+```
+
 ### Settings
 ``` yaml
 package-name: autorest-multiapi
@@ -25,6 +31,7 @@ payload-flattening-threshold: 2
 clear-output-folder: true
 batch:
     - tag: v1
+    - tag: v2
     - multiapiscript: true
 ```
 

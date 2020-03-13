@@ -1,0 +1,244 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "Multiapi Test",
+      "description": "Second API version for multiapi client testing",
+      "version": "2.0.0"
+    },
+    "host": "localhost:3000",
+    "produces": [
+        "application/json"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "paths": {
+        "/multiapi/testOneEndpoint": {
+            "put": {
+                "operationId": "testOne",
+                "description": "TestOne should be in an SecondVersionOperationsMixin. Returns ModelOne",
+                "parameters": [
+                    {
+                        "name": "parameterOne",
+                        "in": "body",
+                        "description": "A ModelOne parameter",
+                        "schema": {
+                            "$ref": "#/definitions/ModelOne"
+                        }
+                    },
+                    {
+                        "$ref": "#/parameters/ApiVersionParameter"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns ModelOne",
+                        "schema": {
+                            "$ref": "#/definitions/ModelOne"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/multiapi/one/testTwoEndpoint": {
+            "get": {
+                "operationId": "OperationGroupOne_testTwo",
+                "description": "TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo",
+                "parameters": [
+                    {
+                        "name": "parameterOne",
+                        "in": "body",
+                        "description": "A ModelTwo parameter",
+                        "schema": {
+                            "$ref": "#/definitions/ModelTwo"
+                        }
+                    },
+                    {
+                        "$ref": "#/parameters/ApiVersionParameter"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns ModelTwo",
+                        "schema": {
+                            "$ref": "#/definitions/ModelTwo"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/multiapi/one/testThreeEndpoint": {
+            "put": {
+                "operationId": "OperationGroupOne_testThree",
+                "description": "TestThree should be in OperationGroupOneOperations. Takes in ModelThree",
+                "parameters": [
+                    {
+                        "name": "parameterOne",
+                        "in": "body",
+                        "description": "A ModelThree parameter",
+                        "schema": {
+                            "$ref": "#/definitions/ModelThree"
+                        },
+                        "required": true
+                    },
+                    {
+                        "$ref": "#/parameters/ApiVersionParameter"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Empty response"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/multiapi/two/testFourEndpoint": {
+            "put": {
+                "operationId": "OperationGroupTwo_testFour",
+                "description": "TestFour should be in OperationGroupTwoOperations. Takes in ModelFour",
+                "x-ms-request-id": "request-id",
+                "parameters": [
+                    {
+                        "name": "parameterOne",
+                        "in": "body",
+                        "description": "A ModelFour parameter",
+                        "schema": {
+                            "$ref": "#/definitions/ModelFour"
+                        },
+                        "required": true
+                    },
+                    {
+                        "$ref": "#/parameters/ApiVersionParameter"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Empty response"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/multiapi/two/testFiveEndpoint": {
+            "put": {
+                "operationId": "OperationGroupTwo_testFive",
+                "description": "TestFive should be in OperationGroupTwoOperations.",
+                "parameters": [
+                    {
+                        "name": "parameterOne",
+                        "in": "path",
+                        "description": "A boolean parameter",
+                        "type": "boolean",
+                        "required": true
+                    },
+                    {
+                        "$ref": "#/parameters/ApiVersionParameter"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Empty response"
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Error": {
+            "type":  "object",
+            "properties": {
+                "status": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "ModelOne": {
+            "type": "object",
+            "description": "Used for testOne in OperationGroupOne",
+            "required": ["id"],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "ModelTwo": {
+            "type": "object",
+            "description": "Used for testTwo in OperationGroupOne",
+            "properties": {
+                "optionalProperty": {
+                    "type": "string"
+                }
+            }
+        },
+        "ModelThree": {
+            "type": "object",
+            "description": "Used for testThree in OperationGroupOne",
+            "required": ["length"],
+            "properties": {
+                "length": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "ModelFour": {
+            "type": "object",
+            "description": "Used for testFour in OperationsGroupTwo",
+            "required": ["length"],
+            "properties": {
+                "length": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        }
+    },
+    "parameters": {
+        "ApiVersionParameter": {
+            "name": "api-version",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "The API version to use for this operation.",
+            "minLength": 1
+        }
+    }
+}
