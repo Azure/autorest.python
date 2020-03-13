@@ -56,6 +56,20 @@ async def client(credential, authentication_policy):
         await yield_(client)
 
 
+@pytest.fixture
+@async_generator
+async def client_no_request_id(credential, authentication_policy):
+    valid_subscription = "1234-5678-9012-3456"
+    async with AutoRestAzureSpecialParametersTestClient(
+        credential,
+        valid_subscription,
+        base_url="http://localhost:3000",
+        auto_request_id=False,
+        authentication_policy=authentication_policy,
+    ) as client:
+        await yield_(client)
+
+
 class TestXmsRequestClientId(object):
     @pytest.mark.asyncio
     async def test_client_request_id_in_exception(self, client):
@@ -73,8 +87,11 @@ class TestXmsRequestClientId(object):
         await client.xms_client_request_id.get(request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
 
     @pytest.mark.asyncio
-    async def test_xms_request_client_overwrite_via_parameter(self, client):
-        await client.xms_client_request_id.param_get(x_ms_client_request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
+    @pytest.mark.xfail(reason="https://github.com/Azure/azure-sdk-for-python/issues/10301")
+    async def test_xms_request_client_overwrite_via_parameter(self, client_no_request_id):
+        # We DON'T support a Swagger parameter for request_id, the request_id policy will overwrite it.
+        # We disable the request_id policy for this test
+        await client_no_request_id.xms_client_request_id.param_get(x_ms_client_request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
 
     @pytest.mark.asyncio
     async def test_xms_custom_named_request_id(self, client):
