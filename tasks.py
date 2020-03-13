@@ -273,3 +273,14 @@ def regenerate_services(c, swagger_name=None, debug=False):
 
     if not success:
         raise SystemExit("Autorest generation fails")
+
+@task
+def regenerate_multiapi(c, debug=False):
+    cwd = os.getcwd()
+    cmd_line = (
+        f'{_AUTOREST_CMD_LINE} test/multiapi/README.md --use=. --multiapi --output-artifact=code-model-v4-no-tags ' +
+        f'--python-sdks-folder={cwd}/test/'
+    )
+    success = run_autorest(cmd_line, debug=debug)
+    if not success:
+        raise SystemExit("Autorest generation fails")
