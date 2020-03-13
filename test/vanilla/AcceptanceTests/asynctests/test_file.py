@@ -103,7 +103,6 @@ class TestFile(object):
     @pytest.mark.asyncio
     @pytest.mark.parametrize('client', [4096], indirect=True)
     async def test_files_long_running(self, client):
-        pytest.skip("slow")
         file_length = 0
         stream = await client.files.get_file_large()
         async for data in stream:
