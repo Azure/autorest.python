@@ -56,13 +56,24 @@ def client(credential, authentication_policy):
 
 class TestXmsRequestClientId(object):
     def test_client_request_id_in_exception(self, client):
-        try:
+        with pytest.raises(HttpResponseError):
             client.xms_client_request_id.get()
-            pytest.fail("HttpResponseError wasn't raised as expected")
 
-        except HttpResponseError as err:
-            pass
-
-    def test_xms_request_client_id_in_client(self, client):
+    def test_xms_request_client_id_in_client_none(self, client):
         # expectedRequestId = '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
         client.xms_client_request_id.get(request_id=None)
+
+    def test_xms_request_client_id_in_client(self, client):
+        client.xms_client_request_id.get(request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
+
+    def test_xms_request_client_overwrite_via_parameter(self, client):
+        client.xms_client_request_id.param_get(x_ms_client_request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
+
+    def test_xms_custom_named_request_id(self, client):
+        client.header.custom_named_request_id(foo_client_request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
+
+    def test_xms_custom_named_request_id_parameter_group(self, client):
+        param_group = models.HeaderCustomNamedRequestIdParamGroupingParameters(
+            foo_client_request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"
+        )
+        client.header.custom_named_request_id_param_grouping(header_custom_named_request_id_param_grouping_parameters=param_group)
