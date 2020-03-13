@@ -45,7 +45,7 @@ class ConstantSchema(BaseSchema):
         """Returns the serialization value for msrest.
 
         :return: The serialization value for msrest
-        :rtype: srt
+        :rtype: str
         """
         return self.schema.serialization_type
 
