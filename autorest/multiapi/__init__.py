@@ -318,7 +318,7 @@ class MultiAPI:
         multiapi_serializer = MultiAPISerializer(conf=conf)
 
         self._autorestapi.write_file(
-            Path(metadata_json["client"]["filename"]),
+            Path(metadata_json["client"]["filename"] + ".py"),
             multiapi_serializer.serialize_multiapi_client()
         )
 
