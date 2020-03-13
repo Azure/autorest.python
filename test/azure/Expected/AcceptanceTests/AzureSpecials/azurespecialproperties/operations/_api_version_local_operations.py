@@ -56,7 +56,7 @@ class ApiVersionLocalOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        api_version = "2015-07-01-preview"
+        api_version = "2.0"
 
         # Construct URL
         url = self.get_method_local_valid.metadata['url']
@@ -86,11 +86,15 @@ class ApiVersionLocalOperations(object):
     @distributed_trace
     def get_method_local_null(
         self,
+        api_version=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Get method with api-version modeled in the method.  pass in api-version = null to succeed.
 
+        :param api_version: This should appear as a method parameter, use value null, this should
+         result in no serialized parameter.
+        :type api_version: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -98,14 +102,14 @@ class ApiVersionLocalOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        api_version = "2015-07-01-preview"
 
         # Construct URL
         url = self.get_method_local_null.metadata['url']
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
+        if api_version is not None:
+            query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -140,7 +144,7 @@ class ApiVersionLocalOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        api_version = "2015-07-01-preview"
+        api_version = "2.0"
 
         # Construct URL
         url = self.get_path_local_valid.metadata['url']
@@ -182,7 +186,7 @@ class ApiVersionLocalOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        api_version = "2015-07-01-preview"
+        api_version = "2.0"
 
         # Construct URL
         url = self.get_swagger_local_valid.metadata['url']
