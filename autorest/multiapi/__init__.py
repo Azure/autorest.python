@@ -259,7 +259,7 @@ class MultiAPI:
 
         init_content = self._autorestapi.read_file(Path(last_api_version) / "__init__.py")
         self._autorestapi.write_file("__init__.py", init_content)
-        
+
         # Detect if this client is using an operation mixin (Network)
         # Operation mixins are available since Autorest.Python 4.x
         mixin_operations = self._build_operation_mixin_meta(paths_to_versions)
@@ -315,7 +315,7 @@ class MultiAPI:
         multiapi_serializer = MultiAPISerializer(conf=conf)
 
         self._autorestapi.write_file(
-            Path(metadata_json["client"]["filename"]),
+            Path(metadata_json["client"]["filename"] + ".py"),
             multiapi_serializer.serialize_multiapi_client()
         )
 
