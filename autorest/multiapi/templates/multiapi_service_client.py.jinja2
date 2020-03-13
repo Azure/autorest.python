@@ -99,12 +99,12 @@ class {{ client_name }}({% if mixin_operations %}{{ client_name }}OperationsMixi
     def {{ operation_name }}(self):
         """Instance depends on the API version:
 
-        {% for api in available_apis %}
+        {% for api in available_apis | sort %}
            * {{ mod_to_api_version[api[0]] }}: :class:`{{ api[1] }}<{{ module_name }}.{{ api[0] }}.operations.{{ api[1] }}>`
         {% endfor %}
         """
         api_version = self._get_api_version('{{ operation_name }}')
-        {% for api in available_apis %}
+        {% for api in available_apis | sort %}
         {% set if_statement = "if" if loop.first else "elif" %}
         {{ if_statement }} api_version == '{{ mod_to_api_version[api[0]] }}':
             from .{{ api[0] }}.operations import {{ api[1] }} as OperationClass
