@@ -24,7 +24,7 @@ class _SDKClient(object):
         pass
 
 class MultiapiTest(MultiapiTestOperationsMixin, MultiApiClientMixin, _SDKClient):
-    """Second API version for multiapi client testing.
+    """Third API version for multiapi client testing.
 
     This ready contains multiple API versions, to help you deal with all of the Azure clouds
     (Azure Stack, Azure Government, Azure China, etc.).
@@ -43,11 +43,12 @@ class MultiapiTest(MultiapiTestOperationsMixin, MultiApiClientMixin, _SDKClient)
     :type profile: azure.profiles.KnownProfiles
     """
 
-    DEFAULT_API_VERSION = '2.0.0'
+    DEFAULT_API_VERSION = '3.0.0'
     _PROFILE_TAG = "autorest.multiapi.MultiapiTest"
     LATEST_PROFILE = ProfileDefinition({
         _PROFILE_TAG: {
             None: DEFAULT_API_VERSION,
+            'test_one': '2.0.0',
         }},
         _PROFILE_TAG + " latest"
     )
@@ -74,12 +75,16 @@ class MultiapiTest(MultiapiTestOperationsMixin, MultiApiClientMixin, _SDKClient)
 
            * 1.0.0: :mod:`v1.models<autorest.multiapi.v1.models>`
            * 2.0.0: :mod:`v2.models<autorest.multiapi.v2.models>`
+           * 3.0.0: :mod:`v3.models<autorest.multiapi.v3.models>`
         """
         if api_version == '1.0.0':
             from .v1 import models
             return models
         elif api_version == '2.0.0':
             from .v2 import models
+            return models
+        elif api_version == '3.0.0':
+            from .v3 import models
             return models
         raise NotImplementedError("APIVersion {} is not available".format(api_version))
 
@@ -89,12 +94,15 @@ class MultiapiTest(MultiapiTestOperationsMixin, MultiApiClientMixin, _SDKClient)
 
            * 1.0.0: :class:`OperationGroupOneOperations<autorest.multiapi.v1.operations.OperationGroupOneOperations>`
            * 2.0.0: :class:`OperationGroupOneOperations<autorest.multiapi.v2.operations.OperationGroupOneOperations>`
+           * 3.0.0: :class:`OperationGroupOneOperations<autorest.multiapi.v3.operations.OperationGroupOneOperations>`
         """
         api_version = self._get_api_version('operation_group_one')
         if api_version == '1.0.0':
             from .v1.operations import OperationGroupOneOperations as OperationClass
         elif api_version == '2.0.0':
             from .v2.operations import OperationGroupOneOperations as OperationClass
+        elif api_version == '3.0.0':
+            from .v3.operations import OperationGroupOneOperations as OperationClass
         else:
             raise NotImplementedError("APIVersion {} is not available".format(api_version))
         return OperationClass(self._client, self._config, Serializer(self._models_dict(api_version)), Deserializer(self._models_dict(api_version)))
@@ -104,10 +112,13 @@ class MultiapiTest(MultiapiTestOperationsMixin, MultiApiClientMixin, _SDKClient)
         """Instance depends on the API version:
 
            * 2.0.0: :class:`OperationGroupTwoOperations<autorest.multiapi.v2.operations.OperationGroupTwoOperations>`
+           * 3.0.0: :class:`OperationGroupTwoOperations<autorest.multiapi.v3.operations.OperationGroupTwoOperations>`
         """
         api_version = self._get_api_version('operation_group_two')
         if api_version == '2.0.0':
             from .v2.operations import OperationGroupTwoOperations as OperationClass
+        elif api_version == '3.0.0':
+            from .v3.operations import OperationGroupTwoOperations as OperationClass
         else:
             raise NotImplementedError("APIVersion {} is not available".format(api_version))
         return OperationClass(self._client, self._config, Serializer(self._models_dict(api_version)), Deserializer(self._models_dict(api_version)))
