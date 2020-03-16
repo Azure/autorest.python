@@ -13,11 +13,21 @@ class ModelInitSerializer:
         self.env = env
 
     def serialize(self) -> str:
-        schemas = sorted(self.code_model.sorted_schemas, key=lambda x: x.name)
+        schemas = [s.name for s in self.code_model.sorted_schemas]
+        schemas.sort()
         enums = [e.enum_type for e in self.code_model.enums.values()] if self.code_model.enums else None
 
         if enums:
             enums.sort()
+
+            # check to see if we have any duplicate names between enum and object schemas
+            model_enum_name_intersection = set(schemas).intersection(set(enums))
+            if model_enum_name_intersection:
+                raise ValueError(
+                    "We have models and enums sharing the following names: {}".format(
+                        ", ".join(model_enum_name_intersection)
+                    )
+                )
 
         template = self.env.get_template("model_init.py.jinja2")
         return template.render(code_model=self.code_model, schemas=schemas, enums=enums)

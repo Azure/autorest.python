@@ -134,13 +134,17 @@ class TestLro:
         product = client.lros.begin_post_double_headers_final_azure_header_get().result()
         assert product.id == "100"
 
+        # This test will work as long as the default is Azure-AsyncOperation
+        product = client.lros.begin_post_double_headers_final_azure_header_get_default().result()
+        assert product.id == "100"
+
     def test_happy_put201_creating_succeeded200(self, client, product):
         process = self.lro_result(client.lros.begin_put201_creating_succeeded200, product)
-        assert "Succeeded" ==  process.provisioning_state
+        assert "Succeeded" == process.provisioning_state
 
         # Testing nopolling
         process = self.lro_result(client.lros.begin_put201_creating_succeeded200, product, polling=False)
-        assert "Creating" ==  process.provisioning_state
+        assert "Creating" == process.provisioning_state
 
     def test_happy_put201_creating_failed200(self, client, product):
         self.assert_raises_with_message(
@@ -148,14 +152,14 @@ class TestLro:
             client.lros.begin_put201_creating_failed200, product)
 
         process = self.lro_result(client.lros.begin_put201_creating_failed200, product, polling=False)
-        assert "Created" ==  process.provisioning_state
+        assert "Created" == process.provisioning_state
 
     def test_happy_put200_updating_succeeded204(self, client, product):
         process = self.lro_result(client.lros.begin_put200_updating_succeeded204, product)
-        assert "Succeeded" ==  process.provisioning_state
+        assert "Succeeded" == process.provisioning_state
 
         process = self.lro_result(client.lros.begin_put200_updating_succeeded204, product, polling=False)
-        assert "Updating" ==  process.provisioning_state
+        assert "Updating" == process.provisioning_state
 
     def test_happy_put200_acceptedcanceled200(self, client, product):
         self.assert_raises_with_message(
@@ -163,46 +167,46 @@ class TestLro:
             client.lros.begin_put200_acceptedcanceled200, product)
 
         process = self.lro_result(client.lros.begin_put200_acceptedcanceled200, product, polling=False)
-        assert "Accepted" ==  process.provisioning_state
+        assert "Accepted" == process.provisioning_state
 
     def test_happy_put_no_header_in_retry(self, client, product):
         process = self.lro_result(client.lros.begin_put_no_header_in_retry, product)
-        assert "Succeeded" ==  process.provisioning_state
+        assert "Succeeded" == process.provisioning_state
 
         process = self.lro_result(client.lros.begin_put_async_no_header_in_retry, product)
-        assert "Succeeded" ==  process.provisioning_state
+        assert "Succeeded" == process.provisioning_state
 
     def test_happy_put_sub_resource(self, client):
         process = self.lro_result(client.lros.begin_put_sub_resource, SubProduct())
-        assert "Succeeded" ==  process.provisioning_state
+        assert "Succeeded" == process.provisioning_state
 
         process = self.lro_result(client.lros.begin_put_async_sub_resource, SubProduct())
-        assert "Succeeded" ==  process.provisioning_state
+        assert "Succeeded" == process.provisioning_state
 
     def test_happy_put_non_resource(self, client):
         process = self.lro_result(client.lros.begin_put_non_resource, Sku())
-        assert "100" ==  process.id
+        assert "100" == process.id
 
         process = self.lro_result(client.lros.begin_put_async_non_resource, Sku())
-        assert "100" ==  process.id
+        assert "100" == process.id
 
     def test_happy_put200_succeeded(self, client, product):
         process = self.lro_result(client.lros.begin_put200_succeeded, product)
-        assert "Succeeded" ==  process.provisioning_state
+        assert "Succeeded" == process.provisioning_state
 
         process = self.lro_result(client.lros.begin_put200_succeeded_no_state, product)
-        assert "100" ==  process.id
+        assert "100" == process.id
 
     def test_happy_put202_retry200(self, client, product):
         process = self.lro_result(client.lros.begin_put202_retry200, product)
-        assert "100" ==  process.id
+        assert "100" == process.id
 
     def test_happy_put_retry_succeeded(self, client, product):
         process = self.lro_result(client.lros.begin_put_async_retry_succeeded, product)
-        assert "Succeeded" ==  process.provisioning_state
+        assert "Succeeded" == process.provisioning_state
 
         process = self.lro_result(client.lros.begin_put_async_no_retry_succeeded, product)
-        assert "Succeeded" ==  process.provisioning_state
+        assert "Succeeded" == process.provisioning_state
 
     def test_happy_put_retry_failed_canceled(self, client, product):
         self.assert_raises_with_message(
@@ -241,19 +245,19 @@ class TestLro:
 
     def test_happy_delete_provisioning(self, client):
         process = self.lro_result(client.lros.begin_delete_provisioning202_accepted200_succeeded)
-        assert "Succeeded" ==  process.provisioning_state
+        assert "Succeeded" == process.provisioning_state
 
         result = self.lro_result(client.lros.begin_delete_provisioning202_deletingcanceled200)
-        assert result.provisioning_state ==  'Canceled'
+        assert result.provisioning_state == 'Canceled'
 
         result = self.lro_result(client.lros.begin_delete_provisioning202_deleting_failed200)
-        assert result.provisioning_state ==  'Failed'
+        assert result.provisioning_state == 'Failed'
 
     def test_happy_post(self, client, product):
         assert self.lro_result(client.lros.begin_post202_no_retry204, product) is None
 
         sku = self.lro_result(client.lros.begin_post200_with_payload)
-        assert sku.id ==  '1'
+        assert sku.id == '1'
 
     def test_happy_post_async_retry_failed_canceled(self, client, product):
         self.assert_raises_with_message("Internal Server Error",
@@ -265,21 +269,21 @@ class TestLro:
 
     def test_happy_post_async_succeeded(self, client, product):
         prod = self.lro_result(client.lros.begin_post_async_retry_succeeded)
-        assert prod.id ==  "100"
+        assert prod.id == "100"
 
         prod = self.lro_result(client.lros.begin_post_async_no_retry_succeeded)
-        assert prod.id ==  "100"
+        assert prod.id == "100"
 
     def test_retrys_put(self, client, product):
         process = self.lro_result(client.lro_retrys.begin_put201_creating_succeeded200, product)
-        assert 'Succeeded' ==  process.provisioning_state
+        assert 'Succeeded' == process.provisioning_state
 
         process = self.lro_result(client.lro_retrys.begin_put_async_relative_retry_succeeded, product)
-        assert 'Succeeded' ==  process.provisioning_state
+        assert 'Succeeded' == process.provisioning_state
 
     def test_retrys_delete(self, client, product):
         process = self.lro_result(client.lro_retrys.begin_delete_provisioning202_accepted200_succeeded)
-        assert 'Succeeded' ==  process.provisioning_state
+        assert 'Succeeded' == process.provisioning_state
 
         assert self.lro_result(client.lro_retrys.begin_delete202_retry200) is None
         assert self.lro_result(client.lro_retrys.begin_delete_async_relative_retry_succeeded) is None

@@ -10,6 +10,7 @@ from typing import Dict, Optional, List, Any, Union, Tuple
 from .imports import FileImport, ImportType
 from .base_model import BaseModel
 from .base_schema import BaseSchema
+from .constant_schema import ConstantSchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -81,6 +82,35 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.multiple_media_types_docstring_type: Optional[str] = None
 
     @property
+    def constant(self) -> bool:
+        """Returns whether a parameter is a constant or not.
+        Checking to see if it's required, because if not, we don't consider it
+        a constant because it can have a value of None.
+        """
+        if not isinstance(self.schema, ConstantSchema):
+            return False
+        return self.required
+
+    @property
+    def in_method_signature(self) -> bool:
+        return not(
+            # If I only have one value, I can't be set, so no point being in signature
+            self.constant
+            # If i'm not in the method code, no point in being in signature
+            or not self.in_method_code
+            # If I'm grouped, my grouper will be on signature, not me
+            or self.grouped_by
+            # If I'm body and it's flattened, I'm not either
+            or (self.location == ParameterLocation.Body and self.flattened)
+            # If I'm a kwarg, don't include in the signature
+            or self.is_kwarg
+        )
+
+    @property
+    def in_method_code(self) -> bool:
+        return not (isinstance(self.schema, ConstantSchema) and self.location == ParameterLocation.Other)
+
+    @property
     def implementation(self) -> str:
         # https://github.com/Azure/autorest.modelerfour/issues/81
         if self.serialized_name == "api_version":
@@ -100,8 +130,12 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
             default_value = None
             default_value_declaration = "None"
         else:
-            default_value = self.schema.default_value
-            default_value_declaration = self.schema.default_value_declaration
+            if isinstance(self.schema, ConstantSchema):
+                default_value = self.schema.constant_value
+                default_value_declaration = default_value
+            else:
+                default_value = self.schema.default_value
+                default_value_declaration = self.schema.default_value_declaration
         if default_value is not None and self.required:
             _LOGGER.warning(
                 "Parameter '%s' is required and has a default value, this combination is not recommended",

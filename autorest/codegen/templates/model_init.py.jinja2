@@ -3,11 +3,11 @@
 
 try:
     {% for schema in schemas %}
-    from ._models_py3 import {{ schema.name }}
+    from ._models_py3 import {{ schema }}
     {% endfor %}
 except (SyntaxError, ImportError):
     {% for schema in schemas %}
-    from ._models import {{ schema.name }}  # type: ignore
+    from ._models import {{ schema }}  # type: ignore
     {% endfor %}
 {% if enums %}
 
@@ -20,7 +20,7 @@ from ._{{ code_model.module_name }}_enums import (
 
 __all__ = [
     {% for schema in schemas %}
-    '{{ schema.name }}',
+    '{{ schema }}',
     {% endfor %}
     {% if enums %}
     {% for enum in enums %}
