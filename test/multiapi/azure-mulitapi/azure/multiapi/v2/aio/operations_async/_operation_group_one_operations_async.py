@@ -57,12 +57,14 @@ class OperationGroupOneOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         _parameter_one = models.ModelTwo(optional_property=optional_property)
+        api_version = "2.0.0"
 
         # Construct URL
         url = self.test_two.metadata['url']
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -112,12 +114,14 @@ class OperationGroupOneOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         _parameter_one = models.ModelThree(length=length)
+        api_version = "2.0.0"
 
         # Construct URL
         url = self.test_three.metadata['url']
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]

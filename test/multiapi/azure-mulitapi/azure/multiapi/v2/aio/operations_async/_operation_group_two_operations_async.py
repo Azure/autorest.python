@@ -57,12 +57,14 @@ class OperationGroupTwoOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         _parameter_one = models.ModelFour(length=length)
+        api_version = "2.0.0"
 
         # Construct URL
         url = self.test_four.metadata['url']
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -89,10 +91,13 @@ class OperationGroupTwoOperations:
 
     async def test_five(
         self,
+        parameter_one: bool,
         **kwargs
     ) -> None:
         """TestFive should be in OperationGroupTwoOperations.
 
+        :param parameter_one: A boolean parameter.
+        :type parameter_one: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -100,12 +105,18 @@ class OperationGroupTwoOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        api_version = "2.0.0"
 
         # Construct URL
         url = self.test_five.metadata['url']
+        path_format_arguments = {
+            'parameterOne': self._serialize.url("parameter_one", parameter_one, 'bool'),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]

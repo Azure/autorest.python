@@ -262,7 +262,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         multiple_requests = len(yaml_data["requests"]) > 1
 
         multiple_media_type_parameters: List[Parameter] = []
-        parameters = [Parameter.from_yaml(yaml) for yaml in yaml_data.get("paramteers", [])]
+        parameters = [Parameter.from_yaml(yaml) for yaml in yaml_data.get("parameters", [])]
 
         for request in yaml_data["requests"]:
             for yaml in request.get("parameters", []):
