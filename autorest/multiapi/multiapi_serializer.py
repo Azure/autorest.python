@@ -54,10 +54,16 @@ class MultiAPISerializer:
                 self.serialize_multiapi_operation_mixins()
             )
 
-        self._autorestapi.write_file(
-            Path("_version.py"),
-            self.serialize_multiapi_version()
-        )
+        if self._autorestapi.read_file("_version.py"):
+            self._autorestapi.write_file(
+                "_version.py",
+                self._autorestapi.read_file("_version.py")
+            )
+        else:
+            self._autorestapi.write_file(
+                Path("_version.py"),
+                self.serialize_multiapi_version()
+            )
 
         self._autorestapi.write_file(
             Path("models.py"),
