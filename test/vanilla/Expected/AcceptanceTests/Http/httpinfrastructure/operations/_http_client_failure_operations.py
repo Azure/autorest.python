@@ -163,11 +163,14 @@ class HttpClientFailureOperations(object):
     @distributed_trace
     def put400(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -175,7 +178,6 @@ class HttpClientFailureOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.put400.metadata['url']
@@ -212,11 +214,14 @@ class HttpClientFailureOperations(object):
     @distributed_trace
     def patch400(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -224,7 +229,6 @@ class HttpClientFailureOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.patch400.metadata['url']
@@ -261,11 +265,14 @@ class HttpClientFailureOperations(object):
     @distributed_trace
     def post400(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -273,7 +280,6 @@ class HttpClientFailureOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.post400.metadata['url']
@@ -310,11 +316,14 @@ class HttpClientFailureOperations(object):
     @distributed_trace
     def delete400(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 400 status code - should be represented in the client as an error.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -322,7 +331,6 @@ class HttpClientFailureOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.delete400.metadata['url']
@@ -519,11 +527,14 @@ class HttpClientFailureOperations(object):
     @distributed_trace
     def put404(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 404 status code - should be represented in the client as an error.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -531,7 +542,6 @@ class HttpClientFailureOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.put404.metadata['url']
@@ -568,11 +578,14 @@ class HttpClientFailureOperations(object):
     @distributed_trace
     def patch405(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 405 status code - should be represented in the client as an error.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -580,7 +593,6 @@ class HttpClientFailureOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.patch405.metadata['url']
@@ -617,11 +629,14 @@ class HttpClientFailureOperations(object):
     @distributed_trace
     def post406(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 406 status code - should be represented in the client as an error.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -629,7 +644,6 @@ class HttpClientFailureOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.post406.metadata['url']
@@ -666,11 +680,14 @@ class HttpClientFailureOperations(object):
     @distributed_trace
     def delete407(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 407 status code - should be represented in the client as an error.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -678,7 +695,6 @@ class HttpClientFailureOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.delete407.metadata['url']
@@ -715,11 +731,14 @@ class HttpClientFailureOperations(object):
     @distributed_trace
     def put409(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 409 status code - should be represented in the client as an error.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -727,7 +746,6 @@ class HttpClientFailureOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.put409.metadata['url']
@@ -924,11 +942,14 @@ class HttpClientFailureOperations(object):
     @distributed_trace
     def put413(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 413 status code - should be represented in the client as an error.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -936,7 +957,6 @@ class HttpClientFailureOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.put413.metadata['url']
@@ -973,11 +993,14 @@ class HttpClientFailureOperations(object):
     @distributed_trace
     def patch414(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 414 status code - should be represented in the client as an error.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -985,7 +1008,6 @@ class HttpClientFailureOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.patch414.metadata['url']
@@ -1022,11 +1044,14 @@ class HttpClientFailureOperations(object):
     @distributed_trace
     def post415(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 415 status code - should be represented in the client as an error.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -1034,7 +1059,6 @@ class HttpClientFailureOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.post415.metadata['url']
@@ -1111,11 +1135,14 @@ class HttpClientFailureOperations(object):
     @distributed_trace
     def delete417(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 417 status code - should be represented in the client as an error.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -1123,7 +1150,6 @@ class HttpClientFailureOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.delete417.metadata['url']

@@ -64,6 +64,26 @@ async def custom_url_client(credential, authentication_policy):
         await yield_(client)
 
 @pytest.mark.asyncio
+async def test_get_no_item_name_pages(client):
+    pages = client.paging.get_no_item_name_pages()
+    items = []
+    async for item in pages:
+        items.append(item)
+    assert len(items) == 1
+    assert items[0].properties.id == 1
+    assert items[0].properties.name == "Product"
+
+@pytest.mark.asyncio
+async def test_get_null_next_link_name_pages(client):
+    pages = client.paging.get_null_next_link_name_pages()
+    items = []
+    async for item in pages:
+        items.append(item)
+    assert len(items) == 1
+    assert items[0].properties.id == 1
+    assert items[0].properties.name == "Product"
+
+@pytest.mark.asyncio
 async def test_get_single_pages_with_cb(client):
     def cb(list_of_obj):
         for obj in list_of_obj:
@@ -180,3 +200,18 @@ async def test_custom_url_get_pages_partial_url_operation(custom_url_client):
     assert len(items) == 2
     assert items[0].properties.id == 1
     assert items[1].properties.id == 2
+
+@pytest.mark.asyncio
+async def test_get_multiple_pages_lro(client):
+    """LRO + Paging at the same time.
+
+    Python decides to poll, but not follow paging. Check that at least you get read the first page.
+    """
+    from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
+    polling = AsyncARMPolling(0, lro_options={'final-state-via': 'location'})
+    # FIXME Location should be the default once 1.0.0b2 is out
+
+    page1 = await client.paging.get_multiple_pages_lro(polling=polling)
+    assert len(page1.values) == 1
+    assert page1.values[0].properties.id == 1
+    assert page1.next_link.endswith("paging/multiple/page/2")

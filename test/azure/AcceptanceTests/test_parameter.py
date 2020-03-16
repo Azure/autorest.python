@@ -159,7 +159,6 @@ class TestParameter(object):
         azure_client.api_version_default.get_path_global_valid()
         azure_client.api_version_default.get_swagger_global_valid()
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/93")
     def test_api_version_local(self, azure_client):
         azure_client.api_version_local.get_method_local_valid()
         azure_client.api_version_local.get_method_local_null()

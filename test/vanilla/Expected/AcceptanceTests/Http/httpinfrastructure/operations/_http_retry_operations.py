@@ -83,11 +83,14 @@ class HttpRetryOperations(object):
     @distributed_trace
     def put500(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 500 status code, then 200 after retry.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -95,7 +98,6 @@ class HttpRetryOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.put500.metadata['url']
@@ -132,11 +134,14 @@ class HttpRetryOperations(object):
     @distributed_trace
     def patch500(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 500 status code, then 200 after retry.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -144,7 +149,6 @@ class HttpRetryOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.patch500.metadata['url']
@@ -265,11 +269,14 @@ class HttpRetryOperations(object):
     @distributed_trace
     def post503(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 503 status code, then 200 after retry.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -277,7 +284,6 @@ class HttpRetryOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.post503.metadata['url']
@@ -314,11 +320,14 @@ class HttpRetryOperations(object):
     @distributed_trace
     def delete503(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 503 status code, then 200 after retry.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -326,7 +335,6 @@ class HttpRetryOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.delete503.metadata['url']
@@ -363,11 +371,14 @@ class HttpRetryOperations(object):
     @distributed_trace
     def put504(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 504 status code, then 200 after retry.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -375,7 +386,6 @@ class HttpRetryOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.put504.metadata['url']
@@ -412,11 +422,14 @@ class HttpRetryOperations(object):
     @distributed_trace
     def patch504(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Return 504 status code, then 200 after retry.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -424,7 +437,6 @@ class HttpRetryOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.patch504.metadata['url']

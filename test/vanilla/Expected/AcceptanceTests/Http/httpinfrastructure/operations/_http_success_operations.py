@@ -171,11 +171,14 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def put200(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put boolean value true returning 200 success.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -183,7 +186,6 @@ class HttpSuccessOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.put200.metadata['url']
@@ -220,11 +222,14 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def patch200(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Patch true Boolean value in request returning 200.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -232,7 +237,6 @@ class HttpSuccessOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.patch200.metadata['url']
@@ -269,11 +273,14 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def post200(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Post bollean value true in request that returns a 200.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -281,7 +288,6 @@ class HttpSuccessOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.post200.metadata['url']
@@ -318,11 +324,14 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def delete200(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Delete simple boolean value true returns 200.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -330,7 +339,6 @@ class HttpSuccessOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.delete200.metadata['url']
@@ -367,11 +375,14 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def put201(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put true Boolean value in request returns 201.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -379,7 +390,6 @@ class HttpSuccessOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.put201.metadata['url']
@@ -416,11 +426,14 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def post201(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Post true Boolean value in request returns 201 (Created).
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -428,7 +441,6 @@ class HttpSuccessOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.post201.metadata['url']
@@ -465,11 +477,14 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def put202(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put true Boolean value in request returns 202 (Accepted).
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -477,7 +492,6 @@ class HttpSuccessOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.put202.metadata['url']
@@ -514,11 +528,14 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def patch202(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Patch true Boolean value in request returns 202.
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -526,7 +543,6 @@ class HttpSuccessOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.patch202.metadata['url']
@@ -563,11 +579,14 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def post202(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Post true Boolean value in request returns 202 (Accepted).
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -575,7 +594,6 @@ class HttpSuccessOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.post202.metadata['url']
@@ -612,11 +630,14 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def delete202(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Delete true Boolean value in request returns 202 (accepted).
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -624,7 +645,6 @@ class HttpSuccessOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.delete202.metadata['url']
@@ -701,11 +721,14 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def put204(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Put true Boolean value in request returns 204 (no content).
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -713,7 +736,6 @@ class HttpSuccessOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.put204.metadata['url']
@@ -750,11 +772,14 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def patch204(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Patch true Boolean value in request returns 204 (no content).
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -762,7 +787,6 @@ class HttpSuccessOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.patch204.metadata['url']
@@ -799,11 +823,14 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def post204(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Post true Boolean value in request returns 204 (no content).
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -811,7 +838,6 @@ class HttpSuccessOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.post204.metadata['url']
@@ -848,11 +874,14 @@ class HttpSuccessOperations(object):
     @distributed_trace
     def delete204(
         self,
+        boolean_value=True,  # type: Optional[bool]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Delete true Boolean value in request returns 204 (no content).
 
+        :param boolean_value: Simple boolean value true.
+        :type boolean_value: bool
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -860,7 +889,6 @@ class HttpSuccessOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        boolean_value = True
 
         # Construct URL
         url = self.delete204.metadata['url']

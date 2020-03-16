@@ -87,11 +87,14 @@ class StringOperations(object):
     @distributed_trace
     def put_null(
         self,
+        string_body=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """Set string value null.
 
+        :param string_body:
+        :type string_body: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -99,7 +102,6 @@ class StringOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        string_body = None
 
         # Construct URL
         url = self.put_null.metadata['url']
