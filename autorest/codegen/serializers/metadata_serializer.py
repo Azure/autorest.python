@@ -7,7 +7,6 @@ from typing import List, Optional, Set, Tuple
 from jinja2 import Environment
 from ..models import CodeModel, Operation, OperationGroup, LROOperation, PagingOperation
 from ..models.imports import FileImport
-from .import_serializer import FileImportSerializer
 
 
 

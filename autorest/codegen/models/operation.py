@@ -257,9 +257,6 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         name = yaml_data["language"]["python"]["name"]
         _LOGGER.debug("Parsing %s operation", name)
 
-        if name == "get_method_local_valid":
-            a = "b"
-
         first_request = yaml_data["requests"][0]
 
         multiple_requests = len(yaml_data["requests"]) > 1
