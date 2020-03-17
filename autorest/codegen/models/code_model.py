@@ -143,10 +143,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         for schema in sorted(self.schemas.values(), key=lambda x: x.name.lower()):
             if schema.id in seen_schema_yaml_ids:
                 continue
-            if schema.name in seen_schema_names:
-                raise ValueError(
-                    f"We have already generated a schema with name {schema.name}"
-                )
             ancestors = []
             current = schema
             ancestors.append(schema)
