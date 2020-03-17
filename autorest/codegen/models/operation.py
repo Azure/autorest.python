@@ -250,13 +250,6 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         if True:  # pylint: disable=using-constant-test
             file_import.add_import("warnings", ImportType.STDLIB)
 
-        # Models
-        if self.parameters.has_body or self.has_response_body or self.exceptions:
-            if async_mode:
-                file_import.add_from_import("...", "models", ImportType.LOCAL)
-            else:
-                file_import.add_from_import("..", "models", ImportType.LOCAL)
-
         return file_import
 
     @classmethod
