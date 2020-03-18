@@ -6,26 +6,26 @@ These settings apply only when `--tag=v1` is specified on the command line.
 
 ``` yaml $(tag) == 'v1'
 input-file: swaggers/swagger1.json
-namespace: autorest.multiapi.v1
-output-folder: $(python-sdks-folder)/multiapi/autorest-mulitapi/autorest/multiapi/v1
+namespace: multiapi.v1
+output-folder: $(python-sdks-folder)/multiapi/Expected/AcceptanceTests/Multiapi/multiapi/v1
 ```
 
 ``` yaml $(tag) == 'v2'
 input-file: swaggers/swagger2.json
-namespace: autorest.multiapi.v2
-output-folder: $(python-sdks-folder)/multiapi/autorest-mulitapi/autorest/multiapi/v2
+namespace: multiapi.v2
+output-folder: $(python-sdks-folder)/multiapi/Expected/AcceptanceTests/Multiapi/multiapi/v2
 ```
 
 ``` yaml $(tag) == 'v3'
 input-file: swaggers/swagger3.json
-namespace: autorest.multiapi.v3
-output-folder: $(python-sdks-folder)/multiapi/autorest-mulitapi/autorest/multiapi/v3
+namespace: multiapi.v3
+output-folder: $(python-sdks-folder)/multiapi/Expected/AcceptanceTests/Multiapi/multiapi/v3
 ```
 
 ### Settings
 ``` yaml
-package-name: autorest-multiapi
-namespace: autorest.multiapi
+package-name: multiapi
+namespace: multiapi
 no-namespace-folders: true
 license-header: MICROSOFT_MIT_NO_VERSION
 azure: true
@@ -45,7 +45,7 @@ batch:
 ### Multi-api script
 
 ``` yaml $(multiapiscript)
-output-folder: $(python-sdks-folder)/multiapi/autorest-mulitapi/autorest/multiapi/
+output-folder: $(python-sdks-folder)/multiapi/Expected/AcceptanceTests/Multiapi/multiapi/
 clear-output-folder: false
 perform-load: false
 ```
