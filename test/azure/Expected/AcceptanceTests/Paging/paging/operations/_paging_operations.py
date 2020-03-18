@@ -83,7 +83,7 @@ class PagingOperations(object):
             list_of_elem = deserialized.value
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.next_link, iter(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -199,7 +199,7 @@ class PagingOperations(object):
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.next_link, iter(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -275,7 +275,7 @@ class PagingOperations(object):
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.next_link, iter(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -351,7 +351,7 @@ class PagingOperations(object):
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.odata_next_link, iter(list_of_elem)
+            return deserialized.odata_next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -433,7 +433,7 @@ class PagingOperations(object):
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.next_link, iter(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -491,7 +491,7 @@ class PagingOperations(object):
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.next_link, iter(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -549,7 +549,7 @@ class PagingOperations(object):
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.next_link, iter(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -607,7 +607,7 @@ class PagingOperations(object):
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.next_link, iter(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -665,7 +665,7 @@ class PagingOperations(object):
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.next_link, iter(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -723,7 +723,7 @@ class PagingOperations(object):
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.next_link, iter(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -797,7 +797,7 @@ class PagingOperations(object):
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.odata_next_link, iter(list_of_elem)
+            return deserialized.odata_next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)
@@ -874,7 +874,7 @@ class PagingOperations(object):
             list_of_elem = deserialized.values
             if cls:
                 list_of_elem = cls(list_of_elem)
-            return deserialized.odata_next_link, iter(list_of_elem)
+            return deserialized.odata_next_link or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             request = prepare_request(next_link)

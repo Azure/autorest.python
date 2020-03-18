@@ -111,3 +111,8 @@ jobs:
           testResultsFiles: 'test-junit-multiapi-ci.xml'
           testRunTitle: '$(OSName) Python $(PythonVersion) - multiapi'
           searchFolder: '$(TestFolder)/multiapi'
+
+      - script: |
+          npm run coverage-push -- $(Build.Repository.Name) $(Build.SourceBranch) $(github-token) $(storage-coverage-user) $(storage-coverage-pass)
+        workingDirectory: node_modules/@microsoft.azure/autorest.testserver
+        displayName: 'Publish coverage report to stroage account'

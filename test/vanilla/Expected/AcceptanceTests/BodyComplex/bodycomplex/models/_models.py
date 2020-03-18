@@ -693,25 +693,6 @@ class LongWrapper(msrest.serialization.Model):
         self.field2 = kwargs.get('field2', None)
 
 
-class MyBaseHelperType(msrest.serialization.Model):
-    """MyBaseHelperType.
-
-    :param prop_bh1:
-    :type prop_bh1: str
-    """
-
-    _attribute_map = {
-        'prop_bh1': {'key': 'propBH1', 'type': 'str'},
-    }
-
-    def __init__(
-        self,
-        **kwargs
-    ):
-        super(MyBaseHelperType, self).__init__(**kwargs)
-        self.prop_bh1 = kwargs.get('prop_bh1', None)
-
-
 class MyBaseType(msrest.serialization.Model):
     """MyBaseType.
 

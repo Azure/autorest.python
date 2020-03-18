@@ -25,13 +25,15 @@ AutoRest needs the below config to pick this up as a plug-in - see https://githu
 pass-thru:
   - model-deduplicator
   - subset-reducer
+# version: 3.0.6258
 use-extension:
-  "@autorest/modelerfour": "4.9.234"
+  "@autorest/modelerfour": "4.10.246"
 
 modelerfour:
   group-parameters: true
   flatten-models: true
   flatten-payloads: true
+  resolve-schema-name-collisons: true
   naming:
     parameter: snakecase
     property: snakecase

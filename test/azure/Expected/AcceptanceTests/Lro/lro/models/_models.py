@@ -148,36 +148,6 @@ class Product(Resource):
         self.provisioning_state_values = None
 
 
-class ProductProperties(msrest.serialization.Model):
-    """ProductProperties.
-
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    :param provisioning_state:
-    :type provisioning_state: str
-    :ivar provisioning_state_values:  Possible values include: 'Succeeded', 'Failed', 'canceled',
-     'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'.
-    :vartype provisioning_state_values: str or ~lro.models.ProductPropertiesProvisioningStateValues
-    """
-
-    _validation = {
-        'provisioning_state_values': {'readonly': True},
-    }
-
-    _attribute_map = {
-        'provisioning_state': {'key': 'provisioningState', 'type': 'str'},
-        'provisioning_state_values': {'key': 'provisioningStateValues', 'type': 'str'},
-    }
-
-    def __init__(
-        self,
-        **kwargs
-    ):
-        super(ProductProperties, self).__init__(**kwargs)
-        self.provisioning_state = kwargs.get('provisioning_state', None)
-        self.provisioning_state_values = None
-
-
 class Sku(msrest.serialization.Model):
     """Sku.
 
@@ -257,36 +227,5 @@ class SubProduct(SubResource):
         **kwargs
     ):
         super(SubProduct, self).__init__(**kwargs)
-        self.provisioning_state = kwargs.get('provisioning_state', None)
-        self.provisioning_state_values = None
-
-
-class SubProductProperties(msrest.serialization.Model):
-    """SubProductProperties.
-
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    :param provisioning_state:
-    :type provisioning_state: str
-    :ivar provisioning_state_values:  Possible values include: 'Succeeded', 'Failed', 'canceled',
-     'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'.
-    :vartype provisioning_state_values: str or
-     ~lro.models.SubProductPropertiesProvisioningStateValues
-    """
-
-    _validation = {
-        'provisioning_state_values': {'readonly': True},
-    }
-
-    _attribute_map = {
-        'provisioning_state': {'key': 'provisioningState', 'type': 'str'},
-        'provisioning_state_values': {'key': 'provisioningStateValues', 'type': 'str'},
-    }
-
-    def __init__(
-        self,
-        **kwargs
-    ):
-        super(SubProductProperties, self).__init__(**kwargs)
         self.provisioning_state = kwargs.get('provisioning_state', None)
         self.provisioning_state_values = None

@@ -29,7 +29,6 @@ try:
     from ._models_py3 import Goblinshark
     from ._models_py3 import IntWrapper
     from ._models_py3 import LongWrapper
-    from ._models_py3 import MyBaseHelperType
     from ._models_py3 import MyBaseType
     from ._models_py3 import MyDerivedType
     from ._models_py3 import Pet
@@ -63,7 +62,6 @@ except (SyntaxError, ImportError):
     from ._models import Goblinshark  # type: ignore
     from ._models import IntWrapper  # type: ignore
     from ._models import LongWrapper  # type: ignore
-    from ._models import MyBaseHelperType  # type: ignore
     from ._models import MyBaseType  # type: ignore
     from ._models import MyDerivedType  # type: ignore
     from ._models import Pet  # type: ignore
@@ -103,7 +101,6 @@ __all__ = [
     'Goblinshark',
     'IntWrapper',
     'LongWrapper',
-    'MyBaseHelperType',
     'MyBaseType',
     'MyDerivedType',
     'Pet',
