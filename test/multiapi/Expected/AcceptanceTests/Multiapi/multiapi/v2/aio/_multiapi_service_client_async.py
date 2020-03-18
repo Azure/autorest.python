@@ -11,17 +11,20 @@ from typing import Any
 from azure.core import AsyncPipelineClient
 from msrest import Deserializer, Serializer
 
-from ._configuration_async import MultiapiTestConfiguration
-from .operations_async import MultiapiTestOperationsMixin
+from ._configuration_async import MultiapiServiceClientConfiguration
+from .operations_async import MultiapiServiceClientOperationsMixin
 from .operations_async import OperationGroupOneOperations
+from .operations_async import OperationGroupTwoOperations
 from .. import models
 
 
-class MultiapiTest(MultiapiTestOperationsMixin):
-    """First API version for multiapi client testing.
+class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
+    """Service client for multiapi client testing.
 
     :ivar operation_group_one: OperationGroupOneOperations operations
-    :vartype operation_group_one: multiapi.v1.aio.operations_async.OperationGroupOneOperations
+    :vartype operation_group_one: multiapi.v2.aio.operations_async.OperationGroupOneOperations
+    :ivar operation_group_two: OperationGroupTwoOperations operations
+    :vartype operation_group_two: multiapi.v2.aio.operations_async.OperationGroupTwoOperations
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: azure.core.credentials.TokenCredential
     :param str base_url: Service URL
@@ -33,7 +36,7 @@ class MultiapiTest(MultiapiTestOperationsMixin):
         **kwargs: Any
     ) -> None:
         base_url = 'None'
-        self._config = MultiapiTestConfiguration(credential, **kwargs)
+        self._config = MultiapiServiceClientConfiguration(credential, **kwargs)
         self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
@@ -42,11 +45,13 @@ class MultiapiTest(MultiapiTestOperationsMixin):
 
         self.operation_group_one = OperationGroupOneOperations(
             self._client, self._config, self._serialize, self._deserialize)
+        self.operation_group_two = OperationGroupTwoOperations(
+            self._client, self._config, self._serialize, self._deserialize)
 
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "MultiapiTest":
+    async def __aenter__(self) -> "MultiapiServiceClient":
         await self._client.__aenter__()
         return self
 

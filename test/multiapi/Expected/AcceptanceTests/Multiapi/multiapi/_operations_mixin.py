@@ -11,7 +11,7 @@
 from msrest import Serializer, Deserializer
 
 
-class MultiapiTestOperationsMixin(object):
+class MultiapiServiceClientOperationsMixin(object):
 
     def test_one(
         self,
@@ -33,9 +33,9 @@ class MultiapiTestOperationsMixin(object):
 
         api_version = self._get_api_version('test_one')
         if api_version == '1.0.0':
-            from .v1.operations import MultiapiTestOperationsMixin as OperationClass
+            from .v1.operations import MultiapiServiceClientOperationsMixin as OperationClass
         elif api_version == '2.0.0':
-            from .v2.operations import MultiapiTestOperationsMixin as OperationClass
+            from .v2.operations import MultiapiServiceClientOperationsMixin as OperationClass
         else:
             raise NotImplementedError("APIVersion {} is not available".format(api_version))
         mixin_instance = OperationClass()

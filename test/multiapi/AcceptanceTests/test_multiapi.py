@@ -28,7 +28,7 @@ import requests
 from azure.core.pipeline.policies import SansIOHTTPPolicy
 from azure.profiles import KnownProfiles
 from multiapi.models import *
-from multiapi import MultiapiTest
+from multiapi import MultiapiServiceClient
 
 @pytest.fixture
 def credential():
@@ -42,7 +42,7 @@ def authentication_policy():
 
 @pytest.fixture
 def default_client(credential, authentication_policy):
-    with MultiapiTest(
+    with MultiapiServiceClient(
 		base_url="http://localhost:3000",
         credential=credential,
         authentication_policy=authentication_policy
@@ -51,7 +51,7 @@ def default_client(credential, authentication_policy):
 
 @pytest.fixture
 def client(credential, authentication_policy, api_version):
-    with MultiapiTest(
+    with MultiapiServiceClient(
 		base_url="http://localhost:3000",
         api_version=api_version,
         credential=credential,
@@ -67,7 +67,7 @@ class TestMultiapiClient(object):
 
     @pytest.mark.parametrize('api_version', ["2.0.0"])
     def test_specify_api_version_multiapi_client(self, client):
-        assert client.profile.label == "multiapi.MultiapiTest 2.0.0"
+        assert client.profile.label == "multiapi.MultiapiServiceClient 2.0.0"
 
     def test_default_models(self, default_client):
         default_models = default_client.models()
