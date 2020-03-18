@@ -99,3 +99,15 @@ jobs:
           testResultsFiles: 'test-junit-vanilla-ci.xml'
           testRunTitle: '$(OSName) Python $(PythonVersion) - vanilla'
           searchFolder: '$(TestFolder)/vanilla'
+
+      - script: |
+          cd $(TestFolder)/multiapi
+          tox -e ci
+        displayName: 'Execute "multiapi" Tests - Python $(PythonVersion)'
+      - task: PublishTestResults@2
+        displayName: 'Publish "multiapi" Test Results'
+        condition: always()
+        inputs:
+          testResultsFiles: 'test-junit-multiapi-ci.xml'
+          testRunTitle: '$(OSName) Python $(PythonVersion) - multiapi'
+          searchFolder: '$(TestFolder)/multiapi'
