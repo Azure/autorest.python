@@ -26,6 +26,7 @@
 import pytest
 import requests
 from azure.core.pipeline.policies import SansIOHTTPPolicy
+from azure.profiles import KnownProfiles
 from multiapi.models import *
 from multiapi import MultiapiTest
 
@@ -60,11 +61,38 @@ def client(credential, authentication_policy, api_version):
 
 class TestMultiapiClient(object):
 
-    def test_default_api_version_of_multiapi_client(self, default_client):
+    def test_default_api_version_multiapi_client(self, default_client):
         assert default_client.DEFAULT_API_VERSION == "3.0.0"
+        assert default_client.profile == KnownProfiles.default
 
-    # operation mixins
+    @pytest.mark.parametrize('api_version', ["2.0.0"])
+    def test_specify_api_version_multiapi_client(self, client):
+        assert client.profile.label == "multiapi.MultiapiTest 2.0.0"
 
+    def test_default_models(self, default_client):
+        default_models = default_client.models()
+        default_models.ModelThree
+
+        # check the models from the other api versions can't be accessed
+        with pytest.raises(AttributeError):
+            default_models.ModelOne
+
+        with pytest.raises(AttributeError):
+            default_models.ModelTwo
+
+    def test_specify_api_version_models(self, default_client):
+        v2_models = default_client.models(api_version="2.0.0")
+        v2_models.ModelTwo(id=2)
+
+        # check the models from the other api versions can't be accessed
+        with pytest.raises(AttributeError):
+            v2_models.ModelOne
+
+        with pytest.raises(AttributeError):
+            v2_models.ModelThree
+
+
+    # OPERATION MIXINS
     def test_default_operation_mixin(self, default_client):
         response = default_client.test_one(id=1)
         assert response == ModelTwo(id=1, message="This was called with api-version 2.0.0")
@@ -78,3 +106,48 @@ class TestMultiapiClient(object):
     def test_specify_api_version_with_no_mixin(self, client):
         with pytest.raises(NotImplementedError):
             client.test_one(id=1)
+
+    # OPERATION GROUP ONE
+    def test_default_operation_group_one(self, default_client):
+        response = default_client.operation_group_one.test_two()
+        assert response == ModelThree(optional_property="This was called with api-version 3.0.0")
+
+        with pytest.raises(AttributeError):
+            response = client.operation_group_one.test_three()
+
+    @pytest.mark.parametrize('api_version', ["1.0.0"])
+    def test_version_one_operation_group_one(self, client):
+        response = client.operation_group_one.test_two()
+        assert response is None
+
+        with pytest.raises(AttributeError):
+            response = client.operation_group_one.test_three()
+
+    @pytest.mark.parametrize('api_version', ["2.0.0"])
+    def test_version_two_operation_group_one(self, client):
+        response = client.operation_group_one.test_two(id=1, message="This should be sent from api version 2.0.0")
+        assert response == ModelTwo(id=1, message="This was called with api-version 2.0.0")
+
+        response = client.operation_group_one.test_three()
+        assert response is None
+
+    # OPERATION GROUP TWO
+    def test_default_operation_group_two(self, default_client):
+        response = default_client.operation_group_two.test_four()
+        assert response is None
+
+        response = default_client.operation_group_two.test_five()
+        assert response is None
+
+    @pytest.mark.parametrize('api_version', ["1.0.0"])
+    def test_version_one_operation_group_two_error(self, client):
+        with pytest.raises(AttributeError):
+            client.operation_group_one.test_four()
+
+    @pytest.mark.parametrize('api_version', ["2.0.0"])
+    def test_version_two_operation_group_two(self, client):
+        response = client.operation_group_two.test_four(parameter_one=True)
+        assert response is None
+
+        with pytest.raises(AttributeError):
+            response = client.operation_group_two.test_five()

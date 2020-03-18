@@ -41,50 +41,10 @@ class OperationGroupTwoOperations:
 
     async def test_four(
         self,
-        **kwargs
-    ) -> None:
-        """TestFour should be in OperationGroupTwoOperations.
-
-        :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
-        :raises: ~azure.core.exceptions.HttpResponseError
-        """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        api_version = "2.0.0"
-
-        # Construct URL
-        url = self.test_four.metadata['url']
-
-        # Construct parameters
-        query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
-
-        # Construct headers
-        header_parameters = {}  # type: Dict[str, Any]
-
-        # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters)
-        pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
-        response = pipeline_response.http_response
-
-        if response.status_code not in [200]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize(models.Error, response)
-            raise HttpResponseError(response=response, model=error)
-
-        if cls:
-          return cls(pipeline_response, None, {})
-
-    test_four.metadata = {'url': '/multiapi/two/testFourEndpoint'}
-
-    async def test_five(
-        self,
         parameter_one: bool,
         **kwargs
     ) -> None:
-        """TestFive should be in OperationGroupTwoOperations.
+        """TestFour should be in OperationGroupTwoOperations.
 
         :param parameter_one: A boolean parameter.
         :type parameter_one: bool
@@ -98,7 +58,7 @@ class OperationGroupTwoOperations:
         api_version = "2.0.0"
 
         # Construct URL
-        url = self.test_five.metadata['url']
+        url = self.test_four.metadata['url']
         path_format_arguments = {
             'parameterOne': self._serialize.url("parameter_one", parameter_one, 'bool'),
         }
@@ -124,4 +84,4 @@ class OperationGroupTwoOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    test_five.metadata = {'url': '/multiapi/two/testFiveEndpoint'}
+    test_four.metadata = {'url': '/multiapi/two/testFourEndpoint'}
