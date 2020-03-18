@@ -43,20 +43,20 @@ class OperationGroupOneOperations:
         self,
         optional_property: Optional[str] = None,
         **kwargs
-    ) -> "models.ModelTwo":
-        """TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo.
+    ) -> "models.ModelThree":
+        """TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree.
 
         :param optional_property:
         :type optional_property: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ModelTwo or the result of cls(response)
-        :rtype: ~multiapi.v3.models.ModelTwo
+        :return: ModelThree or the result of cls(response)
+        :rtype: ~multiapi.v3.models.ModelThree
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ModelTwo"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ModelThree"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
-        _parameter_one = models.ModelTwo(optional_property=optional_property)
+        _parameter_one = models.ModelThree(optional_property=optional_property)
         api_version = "3.0.0"
 
         # Construct URL
@@ -74,7 +74,7 @@ class OperationGroupOneOperations:
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if _parameter_one is not None:
-            body_content = self._serialize.body(_parameter_one, 'ModelTwo')
+            body_content = self._serialize.body(_parameter_one, 'ModelThree')
         else:
             body_content = None
         body_content_kwargs['content'] = body_content
@@ -88,7 +88,7 @@ class OperationGroupOneOperations:
             error = self._deserialize(models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('ModelTwo', pipeline_response)
+        deserialized = self._deserialize('ModelThree', pipeline_response)
 
         if cls:
           return cls(pipeline_response, deserialized, {})

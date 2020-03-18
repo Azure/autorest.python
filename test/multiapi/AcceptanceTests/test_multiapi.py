@@ -60,12 +60,14 @@ def client(credential, authentication_policy, api_version):
 
 class TestMultiapiClient(object):
 
-    def test_api_version_of_multiapi_client(self, default_client):
+    def test_default_api_version_of_multiapi_client(self, default_client):
         assert default_client.DEFAULT_API_VERSION == "3.0.0"
+
+    # operation mixins
 
     def test_default_operation_mixin(self, default_client):
         response = default_client.test_one(id=1)
-        assert response == ModelOne(id=1, message="This was called with api-version 2.0.0")
+        assert response == ModelTwo(id=1, message="This was called with api-version 2.0.0")
 
     @pytest.mark.parametrize('api_version', ["1.0.0"])
     def test_specificy_api_version_operation_mixin(self, client):

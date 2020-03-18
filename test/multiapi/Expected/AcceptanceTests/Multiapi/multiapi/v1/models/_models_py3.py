@@ -39,7 +39,7 @@ class Error(msrest.serialization.Model):
 
 
 class ModelOne(msrest.serialization.Model):
-    """Used for testOne in OperationGroupOne.
+    """Only exists in api version 1.0.0.
 
     All required parameters must be populated in order to send to Azure.
 

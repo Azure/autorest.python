@@ -81,13 +81,10 @@ class OperationGroupTwoOperations:
 
     async def test_five(
         self,
-        length: int,
         **kwargs
     ) -> None:
         """TestFive should be in OperationGroupTwoOperations.
 
-        :param length:
-        :type length: long
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -95,8 +92,6 @@ class OperationGroupTwoOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-
-        _parameter_one = models.ModelFive(length=length)
         api_version = "3.0.0"
 
         # Construct URL
@@ -108,14 +103,9 @@ class OperationGroupTwoOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(_parameter_one, 'ModelFive')
-        body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
+        request = self._client.put(url, query_parameters, header_parameters)
         pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

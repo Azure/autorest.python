@@ -33,33 +33,8 @@ class Error(msrest.serialization.Model):
         self.message = kwargs.get('message', None)
 
 
-class ModelFour(msrest.serialization.Model):
-    """Used for testFour in OperationsGroupTwo.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :param length: Required.
-    :type length: long
-    """
-
-    _validation = {
-        'length': {'required': True},
-    }
-
-    _attribute_map = {
-        'length': {'key': 'length', 'type': 'long'},
-    }
-
-    def __init__(
-        self,
-        **kwargs
-    ):
-        super(ModelFour, self).__init__(**kwargs)
-        self.length = kwargs.get('length', None)
-
-
-class ModelOne(msrest.serialization.Model):
-    """Used for testOne in OperationGroupOne.
+class ModelTwo(msrest.serialization.Model):
+    """Only exists in api version 2.0.0.
 
     All required parameters must be populated in order to send to Azure.
 
@@ -82,50 +57,6 @@ class ModelOne(msrest.serialization.Model):
         self,
         **kwargs
     ):
-        super(ModelOne, self).__init__(**kwargs)
+        super(ModelTwo, self).__init__(**kwargs)
         self.id = kwargs.get('id', None)
         self.message = kwargs.get('message', None)
-
-
-class ModelThree(msrest.serialization.Model):
-    """Used for testThree in OperationGroupOne.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :param length: Required.
-    :type length: long
-    """
-
-    _validation = {
-        'length': {'required': True},
-    }
-
-    _attribute_map = {
-        'length': {'key': 'length', 'type': 'long'},
-    }
-
-    def __init__(
-        self,
-        **kwargs
-    ):
-        super(ModelThree, self).__init__(**kwargs)
-        self.length = kwargs.get('length', None)
-
-
-class ModelTwo(msrest.serialization.Model):
-    """Used for testTwo in OperationGroupOne.
-
-    :param optional_property:
-    :type optional_property: str
-    """
-
-    _attribute_map = {
-        'optional_property': {'key': 'optionalProperty', 'type': 'str'},
-    }
-
-    def __init__(
-        self,
-        **kwargs
-    ):
-        super(ModelTwo, self).__init__(**kwargs)
-        self.optional_property = kwargs.get('optional_property', None)

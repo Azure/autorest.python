@@ -38,35 +38,8 @@ class Error(msrest.serialization.Model):
         self.message = message
 
 
-class ModelFive(msrest.serialization.Model):
-    """Used for testFive in OperationsGroupTwo.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :param length: Required.
-    :type length: long
-    """
-
-    _validation = {
-        'length': {'required': True},
-    }
-
-    _attribute_map = {
-        'length': {'key': 'length', 'type': 'long'},
-    }
-
-    def __init__(
-        self,
-        *,
-        length: int,
-        **kwargs
-    ):
-        super(ModelFive, self).__init__(**kwargs)
-        self.length = length
-
-
-class ModelTwo(msrest.serialization.Model):
-    """Used for testTwo in OperationGroupOne.
+class ModelThree(msrest.serialization.Model):
+    """Only exists in api version 3.0.0.
 
     :param optional_property:
     :type optional_property: str
@@ -82,5 +55,5 @@ class ModelTwo(msrest.serialization.Model):
         optional_property: Optional[str] = None,
         **kwargs
     ):
-        super(ModelTwo, self).__init__(**kwargs)
+        super(ModelThree, self).__init__(**kwargs)
         self.optional_property = optional_property

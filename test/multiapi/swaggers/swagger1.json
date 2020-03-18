@@ -83,7 +83,7 @@
         },
         "ModelOne": {
             "type": "object",
-            "description": "Used for testOne in OperationGroupOne",
+            "description": "Only exists in api version 1.0.0",
             "required": ["id"],
             "properties": {
                 "id": {

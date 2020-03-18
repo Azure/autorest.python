@@ -24,22 +24,22 @@ class MultiapiTestOperationsMixin:
         id: int,
         message: Optional[str] = None,
         **kwargs
-    ) -> "models.ModelOne":
-        """TestOne should be in an SecondVersionOperationsMixin. Returns ModelOne.
+    ) -> "models.ModelTwo":
+        """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
 
         :param id:
         :type id: int
         :param message:
         :type message: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ModelOne or the result of cls(response)
-        :rtype: ~multiapi.v2.models.ModelOne
+        :return: ModelTwo or the result of cls(response)
+        :rtype: ~multiapi.v2.models.ModelTwo
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType["models.ModelOne"]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ModelTwo"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
-        _parameter_one = models.ModelOne(id=id, message=message)
+        _parameter_one = models.ModelTwo(id=id, message=message)
         api_version = "2.0.0"
 
         # Construct URL
@@ -57,7 +57,7 @@ class MultiapiTestOperationsMixin:
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if _parameter_one is not None:
-            body_content = self._serialize.body(_parameter_one, 'ModelOne')
+            body_content = self._serialize.body(_parameter_one, 'ModelTwo')
         else:
             body_content = None
         body_content_kwargs['content'] = body_content
@@ -71,7 +71,7 @@ class MultiapiTestOperationsMixin:
             error = self._deserialize(models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        deserialized = self._deserialize('ModelOne', pipeline_response)
+        deserialized = self._deserialize('ModelTwo', pipeline_response)
 
         if cls:
           return cls(pipeline_response, deserialized, {})

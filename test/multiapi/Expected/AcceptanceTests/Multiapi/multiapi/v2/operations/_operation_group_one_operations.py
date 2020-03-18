@@ -41,14 +41,17 @@ class OperationGroupOneOperations(object):
 
     def test_two(
         self,
-        optional_property=None,  # type: Optional[str]
+        id,  # type: int
+        message=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.ModelTwo"
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo.
 
-        :param optional_property:
-        :type optional_property: str
+        :param id:
+        :type id: int
+        :param message:
+        :type message: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelTwo or the result of cls(response)
         :rtype: ~multiapi.v2.models.ModelTwo
@@ -57,7 +60,7 @@ class OperationGroupOneOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ModelTwo"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
-        _parameter_one = models.ModelTwo(optional_property=optional_property)
+        _parameter_one = models.ModelTwo(id=id, message=message)
         api_version = "2.0.0"
 
         # Construct URL
@@ -99,14 +102,11 @@ class OperationGroupOneOperations(object):
 
     def test_three(
         self,
-        length,  # type: int
         **kwargs  # type: Any
     ):
         # type: (...) -> None
-        """TestThree should be in OperationGroupOneOperations. Takes in ModelThree.
+        """TestThree should be in OperationGroupOneOperations. Takes in ModelTwo.
 
-        :param length:
-        :type length: long
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -114,8 +114,6 @@ class OperationGroupOneOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-
-        _parameter_one = models.ModelThree(length=length)
         api_version = "2.0.0"
 
         # Construct URL
@@ -127,14 +125,9 @@ class OperationGroupOneOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        body_content = self._serialize.body(_parameter_one, 'ModelThree')
-        body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
+        request = self._client.put(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 
