@@ -32,7 +32,7 @@ class OperationGroupSerializer:
         return operation_group_template.render(
             code_model=self.code_model,
             operation_group=self.operation_group,
-            imports=FileImportSerializer(self.operation_group.imports(self.async_mode)),
+            imports=FileImportSerializer(self.operation_group.imports(self.async_mode, bool(self.code_model.schemas))),
             async_mode=self.async_mode,
             is_lro=_is_lro,
             is_paging=_is_paging,
