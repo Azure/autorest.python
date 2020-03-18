@@ -30,21 +30,49 @@ from multiapi.models import *
 from multiapi import MultiapiTest
 
 @pytest.fixture
-def client():
+def credential():
     class FakeCredential:
         pass
+    return FakeCredential()
+
+@pytest.fixture
+def authentication_policy():
+    return SansIOHTTPPolicy()
+
+@pytest.fixture
+def default_client(credential, authentication_policy):
     with MultiapiTest(
 		base_url="http://localhost:3000",
-        credential=FakeCredential(),
-        authentication_policy=SansIOHTTPPolicy()
+        credential=credential,
+        authentication_policy=authentication_policy
+    ) as default_client:
+        yield default_client
+
+@pytest.fixture
+def client(credential, authentication_policy, api_version):
+    with MultiapiTest(
+		base_url="http://localhost:3000",
+        api_version=api_version,
+        credential=credential,
+        authentication_policy=authentication_policy
     ) as client:
         yield client
 
 class TestMultiapiClient(object):
 
-    def test_api_version_of_multiapi_client(self, client):
-        assert client.DEFAULT_API_VERSION == "3.0.0"
+    def test_api_version_of_multiapi_client(self, default_client):
+        assert default_client.DEFAULT_API_VERSION == "3.0.0"
 
-    def test_default_operation_mixin(self, client):
-        response = client.test_one(id=1)
+    def test_default_operation_mixin(self, default_client):
+        response = default_client.test_one(id=1)
         assert response == ModelOne(id=1, message="This was called with api-version 2.0.0")
+
+    @pytest.mark.parametrize('api_version', ["1.0.0"])
+    def test_specificy_api_version_operation_mixin(self, client):
+        response = client.test_one(id=1)
+        assert response is None
+
+    @pytest.mark.parametrize('api_version', ["3.0.0"])
+    def test_specify_api_version_with_no_mixin(self, client):
+        with pytest.raises(NotImplementedError):
+            client.test_one(id=1)
