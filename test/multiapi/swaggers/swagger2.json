@@ -108,28 +108,6 @@
                 "x-ms-request-id": "request-id",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/ApiVersionParameter"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Empty response"
-                    },
-                    "default": {
-                        "description": "Unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    }
-                }
-            }
-        },
-        "/multiapi/two/testFiveEndpoint": {
-            "put": {
-                "operationId": "OperationGroupTwo_testFive",
-                "description": "TestFive should be in OperationGroupTwoOperations.",
-                "parameters": [
-                    {
                         "name": "parameterOne",
                         "in": "path",
                         "description": "A boolean parameter",
