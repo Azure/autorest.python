@@ -2,7 +2,6 @@ msrest>=0.6.11
 azure-core>=1.3.0
 azure-mgmt-core
 pytest
-wiremock
-requests
+flask
 azure-common
--e autorest-mulitapi
+-e ./Expected/AcceptanceTests/Multiapi
