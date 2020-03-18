@@ -8,15 +8,12 @@
 
 try:
     from ._models_py3 import Error
-    from ._models_py3 import ModelFive
-    from ._models_py3 import ModelTwo
+    from ._models_py3 import ModelThree
 except (SyntaxError, ImportError):
     from ._models import Error  # type: ignore
-    from ._models import ModelFive  # type: ignore
-    from ._models import ModelTwo  # type: ignore
+    from ._models import ModelThree  # type: ignore
 
 __all__ = [
     'Error',
-    'ModelFive',
-    'ModelTwo',
+    'ModelThree',
 ]

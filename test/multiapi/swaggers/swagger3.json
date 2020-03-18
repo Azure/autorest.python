@@ -16,14 +16,14 @@
         "/multiapi/one/testTwoEndpoint": {
             "get": {
                 "operationId": "OperationGroupOne_testTwo",
-                "description": "TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo",
+                "description": "TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree",
                 "parameters": [
                     {
                         "name": "parameterOne",
                         "in": "body",
-                        "description": "A ModelTwo parameter",
+                        "description": "A ModelThree parameter",
                         "schema": {
-                            "$ref": "#/definitions/ModelTwo"
+                            "$ref": "#/definitions/ModelThree"
                         }
                     },
                     {
@@ -32,9 +32,9 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Returns ModelTwo",
+                        "description": "Returns ModelThree",
                         "schema": {
-                            "$ref": "#/definitions/ModelTwo"
+                            "$ref": "#/definitions/ModelThree"
                         }
                     },
                     "default": {
@@ -75,15 +75,6 @@
                 "description": "TestFive should be in OperationGroupTwoOperations.",
                 "parameters": [
                     {
-                        "name": "parameterOne",
-                        "in": "body",
-                        "description": "A ModelFive parameter",
-                        "schema": {
-                            "$ref": "#/definitions/ModelFive"
-                        },
-                        "required": true
-                    },
-                    {
                         "$ref": "#/parameters/ApiVersionParameter"
                     }
                 ],
@@ -114,23 +105,12 @@
                 }
             }
         },
-        "ModelTwo": {
+        "ModelThree": {
             "type": "object",
-            "description": "Used for testTwo in OperationGroupOne",
+            "description": "Only exists in api version 3.0.0",
             "properties": {
                 "optionalProperty": {
                     "type": "string"
-                }
-            }
-        },
-        "ModelFive": {
-            "type": "object",
-            "description": "Used for testFive in OperationsGroupTwo",
-            "required": ["length"],
-            "properties": {
-                "length": {
-                    "type": "integer",
-                    "format": "int64"
                 }
             }
         }

@@ -16,14 +16,14 @@
         "/multiapi/testOneEndpoint": {
             "put": {
                 "operationId": "testOne",
-                "description": "TestOne should be in an SecondVersionOperationsMixin. Returns ModelOne",
+                "description": "TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo",
                 "parameters": [
                     {
                         "name": "parameterOne",
                         "in": "body",
-                        "description": "A ModelOne parameter",
+                        "description": "A ModelTwo parameter",
                         "schema": {
-                            "$ref": "#/definitions/ModelOne"
+                            "$ref": "#/definitions/ModelTwo"
                         }
                     },
                     {
@@ -32,9 +32,9 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Returns ModelOne",
+                        "description": "Returns ModelTwo",
                         "schema": {
-                            "$ref": "#/definitions/ModelOne"
+                            "$ref": "#/definitions/ModelTwo"
                         }
                     },
                     "default": {
@@ -82,17 +82,8 @@
         "/multiapi/one/testThreeEndpoint": {
             "put": {
                 "operationId": "OperationGroupOne_testThree",
-                "description": "TestThree should be in OperationGroupOneOperations. Takes in ModelThree",
+                "description": "TestThree should be in OperationGroupOneOperations. Takes in ModelTwo",
                 "parameters": [
-                    {
-                        "name": "parameterOne",
-                        "in": "body",
-                        "description": "A ModelThree parameter",
-                        "schema": {
-                            "$ref": "#/definitions/ModelThree"
-                        },
-                        "required": true
-                    },
                     {
                         "$ref": "#/parameters/ApiVersionParameter"
                     }
@@ -113,18 +104,9 @@
         "/multiapi/two/testFourEndpoint": {
             "put": {
                 "operationId": "OperationGroupTwo_testFour",
-                "description": "TestFour should be in OperationGroupTwoOperations. Takes in ModelFour",
+                "description": "TestFour should be in OperationGroupTwoOperations.",
                 "x-ms-request-id": "request-id",
                 "parameters": [
-                    {
-                        "name": "parameterOne",
-                        "in": "body",
-                        "description": "A ModelFour parameter",
-                        "schema": {
-                            "$ref": "#/definitions/ModelFour"
-                        },
-                        "required": true
-                    },
                     {
                         "$ref": "#/parameters/ApiVersionParameter"
                     }
@@ -185,9 +167,9 @@
                 }
             }
         },
-        "ModelOne": {
+        "ModelTwo": {
             "type": "object",
-            "description": "Used for testOne in OperationGroupOne",
+            "description": "Only exists in api version 2.0.0",
             "required": ["id"],
             "properties": {
                 "id": {
@@ -196,37 +178,6 @@
                 },
                 "message": {
                     "type": "string"
-                }
-            }
-        },
-        "ModelTwo": {
-            "type": "object",
-            "description": "Used for testTwo in OperationGroupOne",
-            "properties": {
-                "optionalProperty": {
-                    "type": "string"
-                }
-            }
-        },
-        "ModelThree": {
-            "type": "object",
-            "description": "Used for testThree in OperationGroupOne",
-            "required": ["length"],
-            "properties": {
-                "length": {
-                    "type": "integer",
-                    "format": "int64"
-                }
-            }
-        },
-        "ModelFour": {
-            "type": "object",
-            "description": "Used for testFour in OperationsGroupTwo",
-            "required": ["length"],
-            "properties": {
-                "length": {
-                    "type": "integer",
-                    "format": "int64"
                 }
             }
         }

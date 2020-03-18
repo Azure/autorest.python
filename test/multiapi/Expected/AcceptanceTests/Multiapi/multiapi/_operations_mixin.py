@@ -19,15 +19,15 @@ class MultiapiTestOperationsMixin(object):
         message=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        """TestOne should be in an SecondVersionOperationsMixin. Returns ModelOne.
+        """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
     
         :param id:
         :type id: int
         :param message:
         :type message: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ModelOne or the result of cls(response)
-        :rtype: ~multiapi.v2.models.ModelOne
+        :return: ModelTwo or the result of cls(response)
+        :rtype: ~multiapi.v2.models.ModelTwo
         :raises: ~azure.core.exceptions.HttpResponseError
         """
 

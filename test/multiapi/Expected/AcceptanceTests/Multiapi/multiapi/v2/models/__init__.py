@@ -8,21 +8,12 @@
 
 try:
     from ._models_py3 import Error
-    from ._models_py3 import ModelFour
-    from ._models_py3 import ModelOne
-    from ._models_py3 import ModelThree
     from ._models_py3 import ModelTwo
 except (SyntaxError, ImportError):
     from ._models import Error  # type: ignore
-    from ._models import ModelFour  # type: ignore
-    from ._models import ModelOne  # type: ignore
-    from ._models import ModelThree  # type: ignore
     from ._models import ModelTwo  # type: ignore
 
 __all__ = [
     'Error',
-    'ModelFour',
-    'ModelOne',
-    'ModelThree',
     'ModelTwo',
 ]
