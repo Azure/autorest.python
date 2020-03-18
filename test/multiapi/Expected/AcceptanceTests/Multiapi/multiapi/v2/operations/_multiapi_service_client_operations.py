@@ -17,7 +17,7 @@ from .. import models
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
-class MultiapiTestOperationsMixin(object):
+class MultiapiServiceClientOperationsMixin(object):
 
     def test_one(
         self,
@@ -25,23 +25,23 @@ class MultiapiTestOperationsMixin(object):
         message=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
-        """TestOne should be in an FirstVersionOperationsMixin.
+        # type: (...) -> "models.ModelTwo"
+        """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
 
         :param id:
         :type id: int
         :param message:
         :type message: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: None or the result of cls(response)
-        :rtype: None
+        :return: ModelTwo or the result of cls(response)
+        :rtype: ~multiapi.v2.models.ModelTwo
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[None]
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ModelTwo"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
-        _parameter_one = models.ModelOne(id=id, message=message)
-        api_version = "1.0.0"
+        _parameter_one = models.ModelTwo(id=id, message=message)
+        api_version = "2.0.0"
 
         # Construct URL
         url = self.test_one.metadata['url']
@@ -52,12 +52,13 @@ class MultiapiTestOperationsMixin(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
         if _parameter_one is not None:
-            body_content = self._serialize.body(_parameter_one, 'ModelOne')
+            body_content = self._serialize.body(_parameter_one, 'ModelTwo')
         else:
             body_content = None
         body_content_kwargs['content'] = body_content
@@ -71,7 +72,10 @@ class MultiapiTestOperationsMixin(object):
             error = self._deserialize(models.Error, response)
             raise HttpResponseError(response=response, model=error)
 
-        if cls:
-          return cls(pipeline_response, None, {})
+        deserialized = self._deserialize('ModelTwo', pipeline_response)
 
+        if cls:
+          return cls(pipeline_response, deserialized, {})
+
+        return deserialized
     test_one.metadata = {'url': '/multiapi/testOneEndpoint'}

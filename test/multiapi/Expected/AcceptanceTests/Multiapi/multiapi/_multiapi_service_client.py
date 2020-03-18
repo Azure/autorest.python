@@ -14,8 +14,8 @@ from msrest import Serializer, Deserializer
 
 from azure.profiles import KnownProfiles, ProfileDefinition
 from azure.profiles.multiapiclient import MultiApiClientMixin
-from ._configuration import MultiapiTestConfiguration
-from ._operations_mixin import MultiapiTestOperationsMixin
+from ._configuration import MultiapiServiceClientConfiguration
+from ._operations_mixin import MultiapiServiceClientOperationsMixin
 class _SDKClient(object):
     def __init__(self, *args, **kwargs):
         """This is a fake class to support current implemetation of MultiApiClientMixin."
@@ -23,8 +23,8 @@ class _SDKClient(object):
         """
         pass
 
-class MultiapiTest(MultiapiTestOperationsMixin, MultiApiClientMixin, _SDKClient):
-    """Third API version for multiapi client testing.
+class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClientMixin, _SDKClient):
+    """Service client for multiapi client testing.
 
     This ready contains multiple API versions, to help you deal with all of the Azure clouds
     (Azure Stack, Azure Government, Azure China, etc.).
@@ -44,7 +44,7 @@ class MultiapiTest(MultiapiTestOperationsMixin, MultiApiClientMixin, _SDKClient)
     """
 
     DEFAULT_API_VERSION = '3.0.0'
-    _PROFILE_TAG = "multiapi.MultiapiTest"
+    _PROFILE_TAG = "multiapi.MultiapiServiceClient"
     LATEST_PROFILE = ProfileDefinition({
         _PROFILE_TAG: {
             None: DEFAULT_API_VERSION,
@@ -56,9 +56,9 @@ class MultiapiTest(MultiapiTestOperationsMixin, MultiApiClientMixin, _SDKClient)
     def __init__(self, credential, api_version=None, base_url=None, profile=KnownProfiles.default, **kwargs):
         if not base_url:
             base_url = 'https://management.azure.com'
-        self._config = MultiapiTestConfiguration(credential, **kwargs)
+        self._config = MultiapiServiceClientConfiguration(credential, **kwargs)
         self._client = ARMPipelineClient(base_url=base_url, config=self._config, **kwargs)
-        super(MultiapiTest, self).__init__(
+        super(MultiapiServiceClient, self).__init__(
             credential,
             self._config,
             api_version=api_version,

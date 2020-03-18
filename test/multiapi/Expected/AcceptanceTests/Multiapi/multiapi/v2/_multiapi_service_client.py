@@ -8,22 +8,23 @@
 
 from typing import Any
 
-from azure.core import AsyncPipelineClient
+from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
-from ._configuration_async import MultiapiTestConfiguration
-from .operations_async import OperationGroupOneOperations
-from .operations_async import OperationGroupTwoOperations
-from .. import models
+from ._configuration import MultiapiServiceClientConfiguration
+from .operations import MultiapiServiceClientOperationsMixin
+from .operations import OperationGroupOneOperations
+from .operations import OperationGroupTwoOperations
+from . import models
 
 
-class MultiapiTest(object):
-    """Third API version for multiapi client testing.
+class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
+    """Service client for multiapi client testing.
 
     :ivar operation_group_one: OperationGroupOneOperations operations
-    :vartype operation_group_one: multiapi.v3.aio.operations_async.OperationGroupOneOperations
+    :vartype operation_group_one: multiapi.v2.operations.OperationGroupOneOperations
     :ivar operation_group_two: OperationGroupTwoOperations operations
-    :vartype operation_group_two: multiapi.v3.aio.operations_async.OperationGroupTwoOperations
+    :vartype operation_group_two: multiapi.v2.operations.OperationGroupTwoOperations
     :param credential: Credential needed for the client to connect to Azure.
     :type credential: azure.core.credentials.TokenCredential
     :param str base_url: Service URL
@@ -31,12 +32,13 @@ class MultiapiTest(object):
 
     def __init__(
         self,
-        credential: "TokenCredential",
-        **kwargs: Any
-    ) -> None:
+        credential,  # type: "TokenCredential"
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
         base_url = 'None'
-        self._config = MultiapiTestConfiguration(credential, **kwargs)
-        self._client = AsyncPipelineClient(base_url=base_url, config=self._config, **kwargs)
+        self._config = MultiapiServiceClientConfiguration(credential, **kwargs)
+        self._client = PipelineClient(base_url=base_url, config=self._config, **kwargs)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
@@ -47,12 +49,15 @@ class MultiapiTest(object):
         self.operation_group_two = OperationGroupTwoOperations(
             self._client, self._config, self._serialize, self._deserialize)
 
-    async def close(self) -> None:
-        await self._client.close()
+    def close(self):
+        # type: () -> None
+        self._client.close()
 
-    async def __aenter__(self) -> "MultiapiTest":
-        await self._client.__aenter__()
+    def __enter__(self):
+        # type: () -> MultiapiServiceClient
+        self._client.__enter__()
         return self
 
-    async def __aexit__(self, *exc_details) -> None:
-        await self._client.__aexit__(*exc_details)
+    def __exit__(self, *exc_details):
+        # type: (Any) -> None
+        self._client.__exit__(*exc_details)

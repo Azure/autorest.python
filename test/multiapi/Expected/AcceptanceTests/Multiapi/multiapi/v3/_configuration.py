@@ -13,8 +13,8 @@ from azure.core.pipeline import policies
 
 VERSION = "unknown"
 
-class MultiapiTestConfiguration(Configuration):
-    """Configuration for MultiapiTest.
+class MultiapiServiceClientConfiguration(Configuration):
+    """Configuration for MultiapiServiceClient.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
@@ -31,7 +31,7 @@ class MultiapiTestConfiguration(Configuration):
         # type: (...) -> None
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
-        super(MultiapiTestConfiguration, self).__init__(**kwargs)
+        super(MultiapiServiceClientConfiguration, self).__init__(**kwargs)
 
         self.credential = credential
         self.api_version = "3.0.0"

@@ -6,12 +6,12 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._multiapi_test_operations_async import MultiapiTestOperationsMixin
+from ._multiapi_service_client_operations_async import MultiapiServiceClientOperationsMixin
 from ._operation_group_one_operations_async import OperationGroupOneOperations
 from ._operation_group_two_operations_async import OperationGroupTwoOperations
 
 __all__ = [
-    'MultiapiTestOperationsMixin',
+    'MultiapiServiceClientOperationsMixin',
     'OperationGroupOneOperations',
     'OperationGroupTwoOperations',
 ]

@@ -1,8 +1,8 @@
 {
     "swagger": "2.0",
     "info": {
-      "title": "Multiapi Test",
-      "description": "Third API version for multiapi client testing",
+      "title": "Multiapi Service Client",
+      "description": "Service client for multiapi client testing",
       "version": "3.0.0"
     },
     "host": "localhost:3000",
