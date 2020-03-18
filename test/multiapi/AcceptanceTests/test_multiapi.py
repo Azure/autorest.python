@@ -86,11 +86,32 @@ class TestMultiapiClient(object):
 
         # check the models from the other api versions can't be accessed
         with pytest.raises(AttributeError):
-            v2_models.ModelOne
+            v2_models.ModelOne()
 
         with pytest.raises(AttributeError):
-            v2_models.ModelThree
+            v2_models.ModelThree()
 
+    def test_default_models_from_operation_group(self, default_client):
+        models = default_client.operation_group_one.models
+        models.ModelThree()
+
+        with pytest.raises(AttributeError):
+            models.ModelOne(id=1)
+
+        with pytest.raises(AttributeError):
+            models.ModelTwo(id=1)
+
+    @pytest.mark.parametrize('api_version', ["1.0.0"])
+    def test_specify_models_from_operation_group(self, client):
+        v1_models = client.operation_group_one.models
+        v1_models.ModelOne(id=2)
+
+        # check the models from the other api versions can't be accessed
+        with pytest.raises(AttributeError):
+            v1_models.ModelTwo(id=2)
+
+        with pytest.raises(AttributeError):
+            v1_models.ModelThree()
 
     # OPERATION MIXINS
     def test_default_operation_mixin(self, default_client):
