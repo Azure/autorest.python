@@ -52,7 +52,7 @@ class HeadExceptionOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.head200.metadata['url']
+        url = self.head200.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -73,7 +73,7 @@ class HeadExceptionOperations(object):
           return cls(pipeline_response, None, {})
 
         return 200 <= response.status_code <= 299
-    head200.metadata = {'url': '/http/success/200'}
+    head200.metadata = {'url': '/http/success/200'}  # type: ignore
 
     @distributed_trace
     def head204(
@@ -92,7 +92,7 @@ class HeadExceptionOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.head204.metadata['url']
+        url = self.head204.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -113,7 +113,7 @@ class HeadExceptionOperations(object):
           return cls(pipeline_response, None, {})
 
         return 200 <= response.status_code <= 299
-    head204.metadata = {'url': '/http/success/204'}
+    head204.metadata = {'url': '/http/success/204'}  # type: ignore
 
     @distributed_trace
     def head404(
@@ -132,7 +132,7 @@ class HeadExceptionOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.head404.metadata['url']
+        url = self.head404.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -153,4 +153,4 @@ class HeadExceptionOperations(object):
           return cls(pipeline_response, None, {})
 
         return 200 <= response.status_code <= 299
-    head404.metadata = {'url': '/http/success/404'}
+    head404.metadata = {'url': '/http/success/404'}  # type: ignore

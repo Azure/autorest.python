@@ -12,6 +12,8 @@ from typing import Dict, List, Optional, Union
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
 
+from _auto_rest_complex_test_service_enums import CMYKColors, GoblinSharkColor
+
 
 class ArrayWrapper(msrest.serialization.Model):
     """ArrayWrapper.
@@ -216,7 +218,7 @@ class Fish(msrest.serialization.Model):
         **kwargs
     ):
         super(Fish, self).__init__(**kwargs)
-        self.fishtype = None
+        self.fishtype = None  # type: ignore
         self.species = species
         self.length = length
         self.siblings = siblings
@@ -274,7 +276,7 @@ class Shark(Fish):
         **kwargs
     ):
         super(Shark, self).__init__(species=species, length=length, siblings=siblings, **kwargs)
-        self.fishtype = 'shark'
+        self.fishtype = 'shark'  # type: ignore
         self.age = age
         self.birthday = birthday
 
@@ -324,7 +326,7 @@ class Cookiecuttershark(Shark):
         **kwargs
     ):
         super(Cookiecuttershark, self).__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
-        self.fishtype = 'cookiecuttershark'
+        self.fishtype = 'cookiecuttershark'  # type: ignore
 
 
 class Datetimerfc1123Wrapper(msrest.serialization.Model):
@@ -489,7 +491,7 @@ class DotFish(msrest.serialization.Model):
         **kwargs
     ):
         super(DotFish, self).__init__(**kwargs)
-        self.fish_type = None
+        self.fish_type = None  # type: ignore
         self.species = species
 
 
@@ -564,7 +566,7 @@ class DotSalmon(DotFish):
         **kwargs
     ):
         super(DotSalmon, self).__init__(species=species, **kwargs)
-        self.fish_type = 'DotSalmon'
+        self.fish_type = 'DotSalmon'  # type: ignore
         self.location = location
         self.iswild = iswild
 
@@ -725,7 +727,7 @@ class Goblinshark(Shark):
         **kwargs
     ):
         super(Goblinshark, self).__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
-        self.fishtype = 'goblin'
+        self.fishtype = 'goblin'  # type: ignore
         self.jawsize = jawsize
         self.color = color
 
@@ -820,7 +822,7 @@ class MyBaseType(msrest.serialization.Model):
         **kwargs
     ):
         super(MyBaseType, self).__init__(**kwargs)
-        self.kind = None
+        self.kind = None  # type: ignore
         self.prop_b1 = prop_b1
         self.prop_bh1 = prop_bh1
 
@@ -860,7 +862,7 @@ class MyDerivedType(MyBaseType):
         **kwargs
     ):
         super(MyDerivedType, self).__init__(prop_b1=prop_b1, prop_bh1=prop_bh1, **kwargs)
-        self.kind = 'Kind1'
+        self.kind = 'Kind1'  # type: ignore
         self.prop_d1 = prop_d1
 
 
@@ -946,7 +948,7 @@ class Salmon(Fish):
         **kwargs
     ):
         super(Salmon, self).__init__(species=species, length=length, siblings=siblings, **kwargs)
-        self.fishtype = 'salmon'
+        self.fishtype = 'salmon'  # type: ignore
         self.location = location
         self.iswild = iswild
 
@@ -1000,7 +1002,7 @@ class Sawshark(Shark):
         **kwargs
     ):
         super(Sawshark, self).__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
-        self.fishtype = 'sawshark'
+        self.fishtype = 'sawshark'  # type: ignore
         self.picture = picture
 
 
@@ -1094,7 +1096,7 @@ class SmartSalmon(Salmon):
         **kwargs
     ):
         super(SmartSalmon, self).__init__(species=species, length=length, siblings=siblings, location=location, iswild=iswild, **kwargs)
-        self.fishtype = 'smart_salmon'
+        self.fishtype = 'smart_salmon'  # type: ignore
         self.additional_properties = additional_properties
         self.college_degree = college_degree
 

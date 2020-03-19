@@ -51,12 +51,19 @@ class EnumSchema(BaseSchema):
     """
 
     def __init__(
-        self, namespace: str, yaml_data: Dict[str, Any], description: str, enum_type: str, values: List["EnumValue"]
+        self,
+        namespace: str,
+        yaml_data: Dict[str, Any],
+        description: str,
+        enum_type: str,
+        values: List["EnumValue"],
+        enum_file_name: str
     ) -> None:
         super(EnumSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.description = description
         self.enum_type = enum_type
         self.values = values
+        self.enum_file_name = enum_file_name
 
     @property
     def serialization_type(self) -> str:
@@ -119,7 +126,7 @@ class EnumSchema(BaseSchema):
         return values
 
     @classmethod
-    def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs) -> "EnumSchema":
+    def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs: Any) -> "EnumSchema":
         """Constructs an EnumSchema from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this schema
@@ -130,6 +137,7 @@ class EnumSchema(BaseSchema):
         """
         enum_type = yaml_data["language"]["python"]["name"]
         values = EnumSchema._get_enum_values(yaml_data["choices"])
+        code_model = kwargs.pop("code_model")
 
         return cls(
             namespace=namespace,
@@ -137,9 +145,15 @@ class EnumSchema(BaseSchema):
             description=yaml_data["language"]["python"]["description"],
             enum_type=enum_type,
             values=values,
+            enum_file_name=f"_{code_model.module_name}_enums"
         )
 
     def imports(self) -> FileImport:
         file_import = FileImport()
         file_import.add_from_import("typing", "Union", ImportType.STDLIB)
         return file_import
+
+    def model_file_imports(self) -> FileImport:
+        imports = self.imports()
+        imports.add_from_import(self.enum_file_name, self.enum_type, ImportType.LOCAL)
+        return imports

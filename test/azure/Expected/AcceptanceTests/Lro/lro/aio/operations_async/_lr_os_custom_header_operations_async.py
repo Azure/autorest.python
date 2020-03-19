@@ -52,7 +52,7 @@ class LROsCustomHeaderOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._put_async_retry_succeeded_initial.metadata['url']
+        url = self._put_async_retry_succeeded_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -88,7 +88,7 @@ class LROsCustomHeaderOperations:
           return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-    _put_async_retry_succeeded_initial.metadata = {'url': '/lro/customheader/putasync/retry/succeeded'}
+    _put_async_retry_succeeded_initial.metadata = {'url': '/lro/customheader/putasync/retry/succeeded'}  # type: ignore
 
     @distributed_trace_async
     async def put_async_retry_succeeded(
@@ -137,7 +137,7 @@ class LROsCustomHeaderOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_retry_succeeded.metadata = {'url': '/lro/customheader/putasync/retry/succeeded'}
+    put_async_retry_succeeded.metadata = {'url': '/lro/customheader/putasync/retry/succeeded'}  # type: ignore
 
     async def _put201_creating_succeeded200_initial(
         self,
@@ -148,7 +148,7 @@ class LROsCustomHeaderOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._put201_creating_succeeded200_initial.metadata['url']
+        url = self._put201_creating_succeeded200_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -185,7 +185,7 @@ class LROsCustomHeaderOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    _put201_creating_succeeded200_initial.metadata = {'url': '/lro/customheader/put/201/creating/succeeded/200'}
+    _put201_creating_succeeded200_initial.metadata = {'url': '/lro/customheader/put/201/creating/succeeded/200'}  # type: ignore
 
     @distributed_trace_async
     async def put201_creating_succeeded200(
@@ -229,7 +229,7 @@ class LROsCustomHeaderOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put201_creating_succeeded200.metadata = {'url': '/lro/customheader/put/201/creating/succeeded/200'}
+    put201_creating_succeeded200.metadata = {'url': '/lro/customheader/put/201/creating/succeeded/200'}  # type: ignore
 
     async def _post202_retry200_initial(
         self,
@@ -240,7 +240,7 @@ class LROsCustomHeaderOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._post202_retry200_initial.metadata['url']
+        url = self._post202_retry200_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -272,7 +272,7 @@ class LROsCustomHeaderOperations:
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _post202_retry200_initial.metadata = {'url': '/lro/customheader/post/202/retry/200'}
+    _post202_retry200_initial.metadata = {'url': '/lro/customheader/post/202/retry/200'}  # type: ignore
 
     @distributed_trace_async
     async def post202_retry200(
@@ -313,7 +313,7 @@ class LROsCustomHeaderOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post202_retry200.metadata = {'url': '/lro/customheader/post/202/retry/200'}
+    post202_retry200.metadata = {'url': '/lro/customheader/post/202/retry/200'}  # type: ignore
 
     async def _post_async_retry_succeeded_initial(
         self,
@@ -324,7 +324,7 @@ class LROsCustomHeaderOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._post_async_retry_succeeded_initial.metadata['url']
+        url = self._post_async_retry_succeeded_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -357,7 +357,7 @@ class LROsCustomHeaderOperations:
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _post_async_retry_succeeded_initial.metadata = {'url': '/lro/customheader/postasync/retry/succeeded'}
+    _post_async_retry_succeeded_initial.metadata = {'url': '/lro/customheader/postasync/retry/succeeded'}  # type: ignore
 
     @distributed_trace_async
     async def post_async_retry_succeeded(
@@ -398,4 +398,4 @@ class LROsCustomHeaderOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post_async_retry_succeeded.metadata = {'url': '/lro/customheader/postasync/retry/succeeded'}
+    post_async_retry_succeeded.metadata = {'url': '/lro/customheader/postasync/retry/succeeded'}  # type: ignore

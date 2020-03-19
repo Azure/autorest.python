@@ -63,7 +63,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_no_item_name_pages.metadata['url']
+                url = self.get_no_item_name_pages.metadata['url']  # type: ignore
             else:
                 url = next_link
 
@@ -100,7 +100,7 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_no_item_name_pages.metadata = {'url': '/paging/noitemname'}
+    get_no_item_name_pages.metadata = {'url': '/paging/noitemname'}  # type: ignore
 
     @distributed_trace
     def get_null_next_link_name_pages(
@@ -121,7 +121,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_null_next_link_name_pages.metadata['url']
+                url = self.get_null_next_link_name_pages.metadata['url']  # type: ignore
             else:
                 url = next_link
 
@@ -158,7 +158,7 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_null_next_link_name_pages.metadata = {'url': '/paging/nullnextlink'}
+    get_null_next_link_name_pages.metadata = {'url': '/paging/nullnextlink'}  # type: ignore
 
     @distributed_trace
     def get_single_pages(
@@ -179,7 +179,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_single_pages.metadata['url']
+                url = self.get_single_pages.metadata['url']  # type: ignore
             else:
                 url = next_link
 
@@ -216,7 +216,7 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_single_pages.metadata = {'url': '/paging/single'}
+    get_single_pages.metadata = {'url': '/paging/single'}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages(
@@ -249,7 +249,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_multiple_pages.metadata['url']
+                url = self.get_multiple_pages.metadata['url']  # type: ignore
             else:
                 url = next_link
 
@@ -292,7 +292,7 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_multiple_pages.metadata = {'url': '/paging/multiple'}
+    get_multiple_pages.metadata = {'url': '/paging/multiple'}  # type: ignore
 
     @distributed_trace
     def get_odata_multiple_pages(
@@ -325,7 +325,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_odata_multiple_pages.metadata['url']
+                url = self.get_odata_multiple_pages.metadata['url']  # type: ignore
             else:
                 url = next_link
 
@@ -368,7 +368,7 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_odata_multiple_pages.metadata = {'url': '/paging/multiple/odata'}
+    get_odata_multiple_pages.metadata = {'url': '/paging/multiple/odata'}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_with_offset(
@@ -403,7 +403,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_multiple_pages_with_offset.metadata['url']
+                url = self.get_multiple_pages_with_offset.metadata['url']  # type: ignore
                 path_format_arguments = {
                     'offset': self._serialize.url("offset", _offset, 'int'),
                 }
@@ -450,7 +450,7 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_multiple_pages_with_offset.metadata = {'url': '/paging/multiple/withpath/{offset}'}
+    get_multiple_pages_with_offset.metadata = {'url': '/paging/multiple/withpath/{offset}'}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_retry_first(
@@ -471,7 +471,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_multiple_pages_retry_first.metadata['url']
+                url = self.get_multiple_pages_retry_first.metadata['url']  # type: ignore
             else:
                 url = next_link
 
@@ -508,7 +508,7 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_multiple_pages_retry_first.metadata = {'url': '/paging/multiple/retryfirst'}
+    get_multiple_pages_retry_first.metadata = {'url': '/paging/multiple/retryfirst'}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_retry_second(
@@ -529,7 +529,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_multiple_pages_retry_second.metadata['url']
+                url = self.get_multiple_pages_retry_second.metadata['url']  # type: ignore
             else:
                 url = next_link
 
@@ -566,7 +566,7 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_multiple_pages_retry_second.metadata = {'url': '/paging/multiple/retrysecond'}
+    get_multiple_pages_retry_second.metadata = {'url': '/paging/multiple/retrysecond'}  # type: ignore
 
     @distributed_trace
     def get_single_pages_failure(
@@ -587,7 +587,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_single_pages_failure.metadata['url']
+                url = self.get_single_pages_failure.metadata['url']  # type: ignore
             else:
                 url = next_link
 
@@ -624,7 +624,7 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_single_pages_failure.metadata = {'url': '/paging/single/failure'}
+    get_single_pages_failure.metadata = {'url': '/paging/single/failure'}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_failure(
@@ -645,7 +645,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_multiple_pages_failure.metadata['url']
+                url = self.get_multiple_pages_failure.metadata['url']  # type: ignore
             else:
                 url = next_link
 
@@ -682,7 +682,7 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_multiple_pages_failure.metadata = {'url': '/paging/multiple/failure'}
+    get_multiple_pages_failure.metadata = {'url': '/paging/multiple/failure'}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_failure_uri(
@@ -703,7 +703,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_multiple_pages_failure_uri.metadata['url']
+                url = self.get_multiple_pages_failure_uri.metadata['url']  # type: ignore
             else:
                 url = next_link
 
@@ -740,7 +740,7 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_multiple_pages_failure_uri.metadata = {'url': '/paging/multiple/failureuri'}
+    get_multiple_pages_failure_uri.metadata = {'url': '/paging/multiple/failureuri'}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_fragment_next_link(
@@ -767,7 +767,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_multiple_pages_fragment_next_link.metadata['url']
+                url = self.get_multiple_pages_fragment_next_link.metadata['url']  # type: ignore
                 path_format_arguments = {
                     'tenant': self._serialize.url("tenant", tenant, 'str'),
                 }
@@ -814,7 +814,7 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_multiple_pages_fragment_next_link.metadata = {'url': '/paging/multiple/fragment/{tenant}'}
+    get_multiple_pages_fragment_next_link.metadata = {'url': '/paging/multiple/fragment/{tenant}'}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_fragment_with_grouping_next_link(
@@ -844,7 +844,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_multiple_pages_fragment_with_grouping_next_link.metadata['url']
+                url = self.get_multiple_pages_fragment_with_grouping_next_link.metadata['url']  # type: ignore
                 path_format_arguments = {
                     'tenant': self._serialize.url("tenant", _tenant, 'str'),
                 }
@@ -891,7 +891,7 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_multiple_pages_fragment_with_grouping_next_link.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}'}
+    get_multiple_pages_fragment_with_grouping_next_link.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}'}  # type: ignore
 
     def _get_multiple_pages_lro_initial(
         self,
@@ -910,7 +910,7 @@ class PagingOperations(object):
             _timeout = paging_get_multiple_pages_lro_options.timeout
 
         # Construct URL
-        url = self._get_multiple_pages_lro_initial.metadata['url']
+        url = self._get_multiple_pages_lro_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -940,7 +940,7 @@ class PagingOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    _get_multiple_pages_lro_initial.metadata = {'url': '/paging/multiple/lro'}
+    _get_multiple_pages_lro_initial.metadata = {'url': '/paging/multiple/lro'}  # type: ignore
 
     @distributed_trace
     def begin_get_multiple_pages_lro(
@@ -989,4 +989,4 @@ class PagingOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_get_multiple_pages_lro.metadata = {'url': '/paging/multiple/lro'}
+    begin_get_multiple_pages_lro.metadata = {'url': '/paging/multiple/lro'}  # type: ignore

@@ -59,7 +59,7 @@ class QueriesOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.array_string_multi_null.metadata['url']
+        url = self.array_string_multi_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -82,7 +82,7 @@ class QueriesOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    array_string_multi_null.metadata = {'url': '/queries/array/multi/string/null'}
+    array_string_multi_null.metadata = {'url': '/queries/array/multi/string/null'}  # type: ignore
 
     @distributed_trace_async
     async def array_string_multi_empty(
@@ -103,7 +103,7 @@ class QueriesOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.array_string_multi_empty.metadata['url']
+        url = self.array_string_multi_empty.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -126,7 +126,7 @@ class QueriesOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    array_string_multi_empty.metadata = {'url': '/queries/array/multi/string/empty'}
+    array_string_multi_empty.metadata = {'url': '/queries/array/multi/string/empty'}  # type: ignore
 
     @distributed_trace_async
     async def array_string_multi_valid(
@@ -148,7 +148,7 @@ class QueriesOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.array_string_multi_valid.metadata['url']
+        url = self.array_string_multi_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -171,4 +171,4 @@ class QueriesOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    array_string_multi_valid.metadata = {'url': '/queries/array/multi/string/valid'}
+    array_string_multi_valid.metadata = {'url': '/queries/array/multi/string/valid'}  # type: ignore

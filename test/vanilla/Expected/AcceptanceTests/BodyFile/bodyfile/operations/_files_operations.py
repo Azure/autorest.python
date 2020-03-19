@@ -57,7 +57,7 @@ class FilesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_file.metadata['url']
+        url = self.get_file.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -82,7 +82,7 @@ class FilesOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_file.metadata = {'url': '/files/stream/nonempty'}
+    get_file.metadata = {'url': '/files/stream/nonempty'}  # type: ignore
 
     @distributed_trace
     def get_file_large(
@@ -101,7 +101,7 @@ class FilesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_file_large.metadata['url']
+        url = self.get_file_large.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -126,7 +126,7 @@ class FilesOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_file_large.metadata = {'url': '/files/stream/verylarge'}
+    get_file_large.metadata = {'url': '/files/stream/verylarge'}  # type: ignore
 
     @distributed_trace
     def get_empty_file(
@@ -145,7 +145,7 @@ class FilesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_empty_file.metadata['url']
+        url = self.get_empty_file.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -170,4 +170,4 @@ class FilesOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_empty_file.metadata = {'url': '/files/stream/empty'}
+    get_empty_file.metadata = {'url': '/files/stream/empty'}  # type: ignore

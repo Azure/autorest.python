@@ -56,7 +56,7 @@ class ByteOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_null.metadata['url']
+        url = self.get_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -81,7 +81,7 @@ class ByteOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_null.metadata = {'url': '/byte/null'}
+    get_null.metadata = {'url': '/byte/null'}  # type: ignore
 
     @distributed_trace_async
     async def get_empty(
@@ -99,7 +99,7 @@ class ByteOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_empty.metadata['url']
+        url = self.get_empty.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -124,7 +124,7 @@ class ByteOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_empty.metadata = {'url': '/byte/empty'}
+    get_empty.metadata = {'url': '/byte/empty'}  # type: ignore
 
     @distributed_trace_async
     async def get_non_ascii(
@@ -142,7 +142,7 @@ class ByteOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_non_ascii.metadata['url']
+        url = self.get_non_ascii.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -167,7 +167,7 @@ class ByteOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_non_ascii.metadata = {'url': '/byte/nonAscii'}
+    get_non_ascii.metadata = {'url': '/byte/nonAscii'}  # type: ignore
 
     @distributed_trace_async
     async def put_non_ascii(
@@ -188,7 +188,7 @@ class ByteOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_non_ascii.metadata['url']
+        url = self.put_non_ascii.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -214,7 +214,7 @@ class ByteOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_non_ascii.metadata = {'url': '/byte/nonAscii'}
+    put_non_ascii.metadata = {'url': '/byte/nonAscii'}  # type: ignore
 
     @distributed_trace_async
     async def get_invalid(
@@ -232,7 +232,7 @@ class ByteOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_invalid.metadata['url']
+        url = self.get_invalid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -257,4 +257,4 @@ class ByteOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_invalid.metadata = {'url': '/byte/invalid'}
+    get_invalid.metadata = {'url': '/byte/invalid'}  # type: ignore

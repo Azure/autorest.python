@@ -57,7 +57,7 @@ class BoolOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_true.metadata['url']
+        url = self.get_true.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -82,7 +82,7 @@ class BoolOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_true.metadata = {'url': '/bool/true'}
+    get_true.metadata = {'url': '/bool/true'}  # type: ignore
 
     @distributed_trace
     def put_true(
@@ -102,7 +102,7 @@ class BoolOperations(object):
         bool_body = True
 
         # Construct URL
-        url = self.put_true.metadata['url']
+        url = self.put_true.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -128,7 +128,7 @@ class BoolOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_true.metadata = {'url': '/bool/true'}
+    put_true.metadata = {'url': '/bool/true'}  # type: ignore
 
     @distributed_trace
     def get_false(
@@ -147,7 +147,7 @@ class BoolOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_false.metadata['url']
+        url = self.get_false.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -172,7 +172,7 @@ class BoolOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_false.metadata = {'url': '/bool/false'}
+    get_false.metadata = {'url': '/bool/false'}  # type: ignore
 
     @distributed_trace
     def put_false(
@@ -192,7 +192,7 @@ class BoolOperations(object):
         bool_body = False
 
         # Construct URL
-        url = self.put_false.metadata['url']
+        url = self.put_false.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -218,7 +218,7 @@ class BoolOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_false.metadata = {'url': '/bool/false'}
+    put_false.metadata = {'url': '/bool/false'}  # type: ignore
 
     @distributed_trace
     def get_null(
@@ -237,7 +237,7 @@ class BoolOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_null.metadata['url']
+        url = self.get_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -262,7 +262,7 @@ class BoolOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_null.metadata = {'url': '/bool/null'}
+    get_null.metadata = {'url': '/bool/null'}  # type: ignore
 
     @distributed_trace
     def get_invalid(
@@ -281,7 +281,7 @@ class BoolOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_invalid.metadata['url']
+        url = self.get_invalid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -306,4 +306,4 @@ class BoolOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_invalid.metadata = {'url': '/bool/invalid'}
+    get_invalid.metadata = {'url': '/bool/invalid'}  # type: ignore

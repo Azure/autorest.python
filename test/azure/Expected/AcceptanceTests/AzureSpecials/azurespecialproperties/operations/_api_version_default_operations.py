@@ -59,7 +59,7 @@ class ApiVersionDefaultOperations(object):
         api_version = "2015-07-01-preview"
 
         # Construct URL
-        url = self.get_method_global_valid.metadata['url']
+        url = self.get_method_global_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -81,7 +81,7 @@ class ApiVersionDefaultOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_method_global_valid.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview'}
+    get_method_global_valid.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/global/2015-07-01-preview'}  # type: ignore
 
     @distributed_trace
     def get_method_global_not_provided_valid(
@@ -101,7 +101,7 @@ class ApiVersionDefaultOperations(object):
         api_version = "2015-07-01-preview"
 
         # Construct URL
-        url = self.get_method_global_not_provided_valid.metadata['url']
+        url = self.get_method_global_not_provided_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -123,7 +123,7 @@ class ApiVersionDefaultOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_method_global_not_provided_valid.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview'}
+    get_method_global_not_provided_valid.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview'}  # type: ignore
 
     @distributed_trace
     def get_path_global_valid(
@@ -143,7 +143,7 @@ class ApiVersionDefaultOperations(object):
         api_version = "2015-07-01-preview"
 
         # Construct URL
-        url = self.get_path_global_valid.metadata['url']
+        url = self.get_path_global_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -165,7 +165,7 @@ class ApiVersionDefaultOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_path_global_valid.metadata = {'url': '/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview'}
+    get_path_global_valid.metadata = {'url': '/azurespecials/apiVersion/path/string/none/query/global/2015-07-01-preview'}  # type: ignore
 
     @distributed_trace
     def get_swagger_global_valid(
@@ -185,7 +185,7 @@ class ApiVersionDefaultOperations(object):
         api_version = "2015-07-01-preview"
 
         # Construct URL
-        url = self.get_swagger_global_valid.metadata['url']
+        url = self.get_swagger_global_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -207,4 +207,4 @@ class ApiVersionDefaultOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_swagger_global_valid.metadata = {'url': '/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview'}
+    get_swagger_global_valid.metadata = {'url': '/azurespecials/apiVersion/swagger/string/none/query/global/2015-07-01-preview'}  # type: ignore

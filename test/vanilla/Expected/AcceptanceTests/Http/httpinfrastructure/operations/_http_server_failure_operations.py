@@ -57,7 +57,7 @@ class HttpServerFailureOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.head501.metadata['url']
+        url = self.head501.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -78,7 +78,7 @@ class HttpServerFailureOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    head501.metadata = {'url': '/http/failure/server/501'}
+    head501.metadata = {'url': '/http/failure/server/501'}  # type: ignore
 
     @distributed_trace
     def get501(
@@ -97,7 +97,7 @@ class HttpServerFailureOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get501.metadata['url']
+        url = self.get501.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -118,7 +118,7 @@ class HttpServerFailureOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get501.metadata = {'url': '/http/failure/server/501'}
+    get501.metadata = {'url': '/http/failure/server/501'}  # type: ignore
 
     @distributed_trace
     def post505(
@@ -140,7 +140,7 @@ class HttpServerFailureOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.post505.metadata['url']
+        url = self.post505.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -169,7 +169,7 @@ class HttpServerFailureOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post505.metadata = {'url': '/http/failure/server/505'}
+    post505.metadata = {'url': '/http/failure/server/505'}  # type: ignore
 
     @distributed_trace
     def delete505(
@@ -191,7 +191,7 @@ class HttpServerFailureOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.delete505.metadata['url']
+        url = self.delete505.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -220,4 +220,4 @@ class HttpServerFailureOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    delete505.metadata = {'url': '/http/failure/server/505'}
+    delete505.metadata = {'url': '/http/failure/server/505'}  # type: ignore

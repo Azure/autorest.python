@@ -53,7 +53,7 @@ class LRORetrysOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._put201_creating_succeeded200_initial.metadata['url']
+        url = self._put201_creating_succeeded200_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -90,7 +90,7 @@ class LRORetrysOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    _put201_creating_succeeded200_initial.metadata = {'url': '/lro/retryerror/put/201/creating/succeeded/200'}
+    _put201_creating_succeeded200_initial.metadata = {'url': '/lro/retryerror/put/201/creating/succeeded/200'}  # type: ignore
 
     @distributed_trace
     def begin_put201_creating_succeeded200(
@@ -135,7 +135,7 @@ class LRORetrysOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_put201_creating_succeeded200.metadata = {'url': '/lro/retryerror/put/201/creating/succeeded/200'}
+    begin_put201_creating_succeeded200.metadata = {'url': '/lro/retryerror/put/201/creating/succeeded/200'}  # type: ignore
 
     def _put_async_relative_retry_succeeded_initial(
         self,
@@ -147,7 +147,7 @@ class LRORetrysOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._put_async_relative_retry_succeeded_initial.metadata['url']
+        url = self._put_async_relative_retry_succeeded_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -183,7 +183,7 @@ class LRORetrysOperations(object):
           return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-    _put_async_relative_retry_succeeded_initial.metadata = {'url': '/lro/retryerror/putasync/retry/succeeded'}
+    _put_async_relative_retry_succeeded_initial.metadata = {'url': '/lro/retryerror/putasync/retry/succeeded'}  # type: ignore
 
     @distributed_trace
     def begin_put_async_relative_retry_succeeded(
@@ -233,7 +233,7 @@ class LRORetrysOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_put_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/putasync/retry/succeeded'}
+    begin_put_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/putasync/retry/succeeded'}  # type: ignore
 
     def _delete_provisioning202_accepted200_succeeded_initial(
         self,
@@ -244,7 +244,7 @@ class LRORetrysOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._delete_provisioning202_accepted200_succeeded_initial.metadata['url']
+        url = self._delete_provisioning202_accepted200_succeeded_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -276,7 +276,7 @@ class LRORetrysOperations(object):
           return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-    _delete_provisioning202_accepted200_succeeded_initial.metadata = {'url': '/lro/retryerror/delete/provisioning/202/accepted/200/succeeded'}
+    _delete_provisioning202_accepted200_succeeded_initial.metadata = {'url': '/lro/retryerror/delete/provisioning/202/accepted/200/succeeded'}  # type: ignore
 
     @distributed_trace
     def begin_delete_provisioning202_accepted200_succeeded(
@@ -321,7 +321,7 @@ class LRORetrysOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_delete_provisioning202_accepted200_succeeded.metadata = {'url': '/lro/retryerror/delete/provisioning/202/accepted/200/succeeded'}
+    begin_delete_provisioning202_accepted200_succeeded.metadata = {'url': '/lro/retryerror/delete/provisioning/202/accepted/200/succeeded'}  # type: ignore
 
     def _delete202_retry200_initial(
         self,
@@ -332,7 +332,7 @@ class LRORetrysOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._delete202_retry200_initial.metadata['url']
+        url = self._delete202_retry200_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -356,7 +356,7 @@ class LRORetrysOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _delete202_retry200_initial.metadata = {'url': '/lro/retryerror/delete/202/retry/200'}
+    _delete202_retry200_initial.metadata = {'url': '/lro/retryerror/delete/202/retry/200'}  # type: ignore
 
     @distributed_trace
     def begin_delete202_retry200(
@@ -394,7 +394,7 @@ class LRORetrysOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_delete202_retry200.metadata = {'url': '/lro/retryerror/delete/202/retry/200'}
+    begin_delete202_retry200.metadata = {'url': '/lro/retryerror/delete/202/retry/200'}  # type: ignore
 
     def _delete_async_relative_retry_succeeded_initial(
         self,
@@ -405,7 +405,7 @@ class LRORetrysOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._delete_async_relative_retry_succeeded_initial.metadata['url']
+        url = self._delete_async_relative_retry_succeeded_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -430,7 +430,7 @@ class LRORetrysOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _delete_async_relative_retry_succeeded_initial.metadata = {'url': '/lro/retryerror/deleteasync/retry/succeeded'}
+    _delete_async_relative_retry_succeeded_initial.metadata = {'url': '/lro/retryerror/deleteasync/retry/succeeded'}  # type: ignore
 
     @distributed_trace
     def begin_delete_async_relative_retry_succeeded(
@@ -468,7 +468,7 @@ class LRORetrysOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_delete_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/deleteasync/retry/succeeded'}
+    begin_delete_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/deleteasync/retry/succeeded'}  # type: ignore
 
     def _post202_retry200_initial(
         self,
@@ -480,7 +480,7 @@ class LRORetrysOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._post202_retry200_initial.metadata['url']
+        url = self._post202_retry200_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -512,7 +512,7 @@ class LRORetrysOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _post202_retry200_initial.metadata = {'url': '/lro/retryerror/post/202/retry/200'}
+    _post202_retry200_initial.metadata = {'url': '/lro/retryerror/post/202/retry/200'}  # type: ignore
 
     @distributed_trace
     def begin_post202_retry200(
@@ -554,7 +554,7 @@ class LRORetrysOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_post202_retry200.metadata = {'url': '/lro/retryerror/post/202/retry/200'}
+    begin_post202_retry200.metadata = {'url': '/lro/retryerror/post/202/retry/200'}  # type: ignore
 
     def _post_async_relative_retry_succeeded_initial(
         self,
@@ -566,7 +566,7 @@ class LRORetrysOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._post_async_relative_retry_succeeded_initial.metadata['url']
+        url = self._post_async_relative_retry_succeeded_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -599,7 +599,7 @@ class LRORetrysOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _post_async_relative_retry_succeeded_initial.metadata = {'url': '/lro/retryerror/postasync/retry/succeeded'}
+    _post_async_relative_retry_succeeded_initial.metadata = {'url': '/lro/retryerror/postasync/retry/succeeded'}  # type: ignore
 
     @distributed_trace
     def begin_post_async_relative_retry_succeeded(
@@ -641,4 +641,4 @@ class LRORetrysOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_post_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/postasync/retry/succeeded'}
+    begin_post_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/postasync/retry/succeeded'}  # type: ignore

@@ -53,7 +53,7 @@ class LROSADsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._put_non_retry400_initial.metadata['url']
+        url = self._put_non_retry400_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -90,7 +90,7 @@ class LROSADsOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    _put_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/put/400'}
+    _put_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/put/400'}  # type: ignore
 
     @distributed_trace
     def begin_put_non_retry400(
@@ -135,7 +135,7 @@ class LROSADsOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_put_non_retry400.metadata = {'url': '/lro/nonretryerror/put/400'}
+    begin_put_non_retry400.metadata = {'url': '/lro/nonretryerror/put/400'}  # type: ignore
 
     def _put_non_retry201_creating400_initial(
         self,
@@ -147,7 +147,7 @@ class LROSADsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._put_non_retry201_creating400_initial.metadata['url']
+        url = self._put_non_retry201_creating400_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -184,7 +184,7 @@ class LROSADsOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    _put_non_retry201_creating400_initial.metadata = {'url': '/lro/nonretryerror/put/201/creating/400'}
+    _put_non_retry201_creating400_initial.metadata = {'url': '/lro/nonretryerror/put/201/creating/400'}  # type: ignore
 
     @distributed_trace
     def begin_put_non_retry201_creating400(
@@ -229,7 +229,7 @@ class LROSADsOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_put_non_retry201_creating400.metadata = {'url': '/lro/nonretryerror/put/201/creating/400'}
+    begin_put_non_retry201_creating400.metadata = {'url': '/lro/nonretryerror/put/201/creating/400'}  # type: ignore
 
     def _put_non_retry201_creating400_invalid_json_initial(
         self,
@@ -241,7 +241,7 @@ class LROSADsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._put_non_retry201_creating400_invalid_json_initial.metadata['url']
+        url = self._put_non_retry201_creating400_invalid_json_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -278,7 +278,7 @@ class LROSADsOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    _put_non_retry201_creating400_invalid_json_initial.metadata = {'url': '/lro/nonretryerror/put/201/creating/400/invalidjson'}
+    _put_non_retry201_creating400_invalid_json_initial.metadata = {'url': '/lro/nonretryerror/put/201/creating/400/invalidjson'}  # type: ignore
 
     @distributed_trace
     def begin_put_non_retry201_creating400_invalid_json(
@@ -323,7 +323,7 @@ class LROSADsOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_put_non_retry201_creating400_invalid_json.metadata = {'url': '/lro/nonretryerror/put/201/creating/400/invalidjson'}
+    begin_put_non_retry201_creating400_invalid_json.metadata = {'url': '/lro/nonretryerror/put/201/creating/400/invalidjson'}  # type: ignore
 
     def _put_async_relative_retry400_initial(
         self,
@@ -335,7 +335,7 @@ class LROSADsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._put_async_relative_retry400_initial.metadata['url']
+        url = self._put_async_relative_retry400_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -371,7 +371,7 @@ class LROSADsOperations(object):
           return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-    _put_async_relative_retry400_initial.metadata = {'url': '/lro/nonretryerror/putasync/retry/400'}
+    _put_async_relative_retry400_initial.metadata = {'url': '/lro/nonretryerror/putasync/retry/400'}  # type: ignore
 
     @distributed_trace
     def begin_put_async_relative_retry400(
@@ -421,7 +421,7 @@ class LROSADsOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_put_async_relative_retry400.metadata = {'url': '/lro/nonretryerror/putasync/retry/400'}
+    begin_put_async_relative_retry400.metadata = {'url': '/lro/nonretryerror/putasync/retry/400'}  # type: ignore
 
     def _delete_non_retry400_initial(
         self,
@@ -432,7 +432,7 @@ class LROSADsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._delete_non_retry400_initial.metadata['url']
+        url = self._delete_non_retry400_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -456,7 +456,7 @@ class LROSADsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _delete_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/delete/400'}
+    _delete_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/delete/400'}  # type: ignore
 
     @distributed_trace
     def begin_delete_non_retry400(
@@ -494,7 +494,7 @@ class LROSADsOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_delete_non_retry400.metadata = {'url': '/lro/nonretryerror/delete/400'}
+    begin_delete_non_retry400.metadata = {'url': '/lro/nonretryerror/delete/400'}  # type: ignore
 
     def _delete202_non_retry400_initial(
         self,
@@ -505,7 +505,7 @@ class LROSADsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._delete202_non_retry400_initial.metadata['url']
+        url = self._delete202_non_retry400_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -529,7 +529,7 @@ class LROSADsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _delete202_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/delete/202/retry/400'}
+    _delete202_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/delete/202/retry/400'}  # type: ignore
 
     @distributed_trace
     def begin_delete202_non_retry400(
@@ -567,7 +567,7 @@ class LROSADsOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_delete202_non_retry400.metadata = {'url': '/lro/nonretryerror/delete/202/retry/400'}
+    begin_delete202_non_retry400.metadata = {'url': '/lro/nonretryerror/delete/202/retry/400'}  # type: ignore
 
     def _delete_async_relative_retry400_initial(
         self,
@@ -578,7 +578,7 @@ class LROSADsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._delete_async_relative_retry400_initial.metadata['url']
+        url = self._delete_async_relative_retry400_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -603,7 +603,7 @@ class LROSADsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _delete_async_relative_retry400_initial.metadata = {'url': '/lro/nonretryerror/deleteasync/retry/400'}
+    _delete_async_relative_retry400_initial.metadata = {'url': '/lro/nonretryerror/deleteasync/retry/400'}  # type: ignore
 
     @distributed_trace
     def begin_delete_async_relative_retry400(
@@ -641,7 +641,7 @@ class LROSADsOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_delete_async_relative_retry400.metadata = {'url': '/lro/nonretryerror/deleteasync/retry/400'}
+    begin_delete_async_relative_retry400.metadata = {'url': '/lro/nonretryerror/deleteasync/retry/400'}  # type: ignore
 
     def _post_non_retry400_initial(
         self,
@@ -653,7 +653,7 @@ class LROSADsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._post_non_retry400_initial.metadata['url']
+        url = self._post_non_retry400_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -685,7 +685,7 @@ class LROSADsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _post_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/post/400'}
+    _post_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/post/400'}  # type: ignore
 
     @distributed_trace
     def begin_post_non_retry400(
@@ -727,7 +727,7 @@ class LROSADsOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_post_non_retry400.metadata = {'url': '/lro/nonretryerror/post/400'}
+    begin_post_non_retry400.metadata = {'url': '/lro/nonretryerror/post/400'}  # type: ignore
 
     def _post202_non_retry400_initial(
         self,
@@ -739,7 +739,7 @@ class LROSADsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._post202_non_retry400_initial.metadata['url']
+        url = self._post202_non_retry400_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -771,7 +771,7 @@ class LROSADsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _post202_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/post/202/retry/400'}
+    _post202_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/post/202/retry/400'}  # type: ignore
 
     @distributed_trace
     def begin_post202_non_retry400(
@@ -813,7 +813,7 @@ class LROSADsOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_post202_non_retry400.metadata = {'url': '/lro/nonretryerror/post/202/retry/400'}
+    begin_post202_non_retry400.metadata = {'url': '/lro/nonretryerror/post/202/retry/400'}  # type: ignore
 
     def _post_async_relative_retry400_initial(
         self,
@@ -825,7 +825,7 @@ class LROSADsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._post_async_relative_retry400_initial.metadata['url']
+        url = self._post_async_relative_retry400_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -858,7 +858,7 @@ class LROSADsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _post_async_relative_retry400_initial.metadata = {'url': '/lro/nonretryerror/postasync/retry/400'}
+    _post_async_relative_retry400_initial.metadata = {'url': '/lro/nonretryerror/postasync/retry/400'}  # type: ignore
 
     @distributed_trace
     def begin_post_async_relative_retry400(
@@ -900,7 +900,7 @@ class LROSADsOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_post_async_relative_retry400.metadata = {'url': '/lro/nonretryerror/postasync/retry/400'}
+    begin_post_async_relative_retry400.metadata = {'url': '/lro/nonretryerror/postasync/retry/400'}  # type: ignore
 
     def _put_error201_no_provisioning_state_payload_initial(
         self,
@@ -912,7 +912,7 @@ class LROSADsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._put_error201_no_provisioning_state_payload_initial.metadata['url']
+        url = self._put_error201_no_provisioning_state_payload_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -949,7 +949,7 @@ class LROSADsOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    _put_error201_no_provisioning_state_payload_initial.metadata = {'url': '/lro/error/put/201/noprovisioningstatepayload'}
+    _put_error201_no_provisioning_state_payload_initial.metadata = {'url': '/lro/error/put/201/noprovisioningstatepayload'}  # type: ignore
 
     @distributed_trace
     def begin_put_error201_no_provisioning_state_payload(
@@ -994,7 +994,7 @@ class LROSADsOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_put_error201_no_provisioning_state_payload.metadata = {'url': '/lro/error/put/201/noprovisioningstatepayload'}
+    begin_put_error201_no_provisioning_state_payload.metadata = {'url': '/lro/error/put/201/noprovisioningstatepayload'}  # type: ignore
 
     def _put_async_relative_retry_no_status_initial(
         self,
@@ -1006,7 +1006,7 @@ class LROSADsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._put_async_relative_retry_no_status_initial.metadata['url']
+        url = self._put_async_relative_retry_no_status_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1042,7 +1042,7 @@ class LROSADsOperations(object):
           return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-    _put_async_relative_retry_no_status_initial.metadata = {'url': '/lro/error/putasync/retry/nostatus'}
+    _put_async_relative_retry_no_status_initial.metadata = {'url': '/lro/error/putasync/retry/nostatus'}  # type: ignore
 
     @distributed_trace
     def begin_put_async_relative_retry_no_status(
@@ -1092,7 +1092,7 @@ class LROSADsOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_put_async_relative_retry_no_status.metadata = {'url': '/lro/error/putasync/retry/nostatus'}
+    begin_put_async_relative_retry_no_status.metadata = {'url': '/lro/error/putasync/retry/nostatus'}  # type: ignore
 
     def _put_async_relative_retry_no_status_payload_initial(
         self,
@@ -1104,7 +1104,7 @@ class LROSADsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._put_async_relative_retry_no_status_payload_initial.metadata['url']
+        url = self._put_async_relative_retry_no_status_payload_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1140,7 +1140,7 @@ class LROSADsOperations(object):
           return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-    _put_async_relative_retry_no_status_payload_initial.metadata = {'url': '/lro/error/putasync/retry/nostatuspayload'}
+    _put_async_relative_retry_no_status_payload_initial.metadata = {'url': '/lro/error/putasync/retry/nostatuspayload'}  # type: ignore
 
     @distributed_trace
     def begin_put_async_relative_retry_no_status_payload(
@@ -1190,7 +1190,7 @@ class LROSADsOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_put_async_relative_retry_no_status_payload.metadata = {'url': '/lro/error/putasync/retry/nostatuspayload'}
+    begin_put_async_relative_retry_no_status_payload.metadata = {'url': '/lro/error/putasync/retry/nostatuspayload'}  # type: ignore
 
     def _delete204_succeeded_initial(
         self,
@@ -1201,7 +1201,7 @@ class LROSADsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._delete204_succeeded_initial.metadata['url']
+        url = self._delete204_succeeded_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1221,7 +1221,7 @@ class LROSADsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    _delete204_succeeded_initial.metadata = {'url': '/lro/error/delete/204/nolocation'}
+    _delete204_succeeded_initial.metadata = {'url': '/lro/error/delete/204/nolocation'}  # type: ignore
 
     @distributed_trace
     def begin_delete204_succeeded(
@@ -1259,7 +1259,7 @@ class LROSADsOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_delete204_succeeded.metadata = {'url': '/lro/error/delete/204/nolocation'}
+    begin_delete204_succeeded.metadata = {'url': '/lro/error/delete/204/nolocation'}  # type: ignore
 
     def _delete_async_relative_retry_no_status_initial(
         self,
@@ -1270,7 +1270,7 @@ class LROSADsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._delete_async_relative_retry_no_status_initial.metadata['url']
+        url = self._delete_async_relative_retry_no_status_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1295,7 +1295,7 @@ class LROSADsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _delete_async_relative_retry_no_status_initial.metadata = {'url': '/lro/error/deleteasync/retry/nostatus'}
+    _delete_async_relative_retry_no_status_initial.metadata = {'url': '/lro/error/deleteasync/retry/nostatus'}  # type: ignore
 
     @distributed_trace
     def begin_delete_async_relative_retry_no_status(
@@ -1333,7 +1333,7 @@ class LROSADsOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_delete_async_relative_retry_no_status.metadata = {'url': '/lro/error/deleteasync/retry/nostatus'}
+    begin_delete_async_relative_retry_no_status.metadata = {'url': '/lro/error/deleteasync/retry/nostatus'}  # type: ignore
 
     def _post202_no_location_initial(
         self,
@@ -1345,7 +1345,7 @@ class LROSADsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._post202_no_location_initial.metadata['url']
+        url = self._post202_no_location_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1377,7 +1377,7 @@ class LROSADsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _post202_no_location_initial.metadata = {'url': '/lro/error/post/202/nolocation'}
+    _post202_no_location_initial.metadata = {'url': '/lro/error/post/202/nolocation'}  # type: ignore
 
     @distributed_trace
     def begin_post202_no_location(
@@ -1419,7 +1419,7 @@ class LROSADsOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_post202_no_location.metadata = {'url': '/lro/error/post/202/nolocation'}
+    begin_post202_no_location.metadata = {'url': '/lro/error/post/202/nolocation'}  # type: ignore
 
     def _post_async_relative_retry_no_payload_initial(
         self,
@@ -1431,7 +1431,7 @@ class LROSADsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._post_async_relative_retry_no_payload_initial.metadata['url']
+        url = self._post_async_relative_retry_no_payload_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1464,7 +1464,7 @@ class LROSADsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _post_async_relative_retry_no_payload_initial.metadata = {'url': '/lro/error/postasync/retry/nopayload'}
+    _post_async_relative_retry_no_payload_initial.metadata = {'url': '/lro/error/postasync/retry/nopayload'}  # type: ignore
 
     @distributed_trace
     def begin_post_async_relative_retry_no_payload(
@@ -1506,7 +1506,7 @@ class LROSADsOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_post_async_relative_retry_no_payload.metadata = {'url': '/lro/error/postasync/retry/nopayload'}
+    begin_post_async_relative_retry_no_payload.metadata = {'url': '/lro/error/postasync/retry/nopayload'}  # type: ignore
 
     def _put200_invalid_json_initial(
         self,
@@ -1518,7 +1518,7 @@ class LROSADsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._put200_invalid_json_initial.metadata['url']
+        url = self._put200_invalid_json_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1552,7 +1552,7 @@ class LROSADsOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    _put200_invalid_json_initial.metadata = {'url': '/lro/error/put/200/invalidjson'}
+    _put200_invalid_json_initial.metadata = {'url': '/lro/error/put/200/invalidjson'}  # type: ignore
 
     @distributed_trace
     def begin_put200_invalid_json(
@@ -1597,7 +1597,7 @@ class LROSADsOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_put200_invalid_json.metadata = {'url': '/lro/error/put/200/invalidjson'}
+    begin_put200_invalid_json.metadata = {'url': '/lro/error/put/200/invalidjson'}  # type: ignore
 
     def _put_async_relative_retry_invalid_header_initial(
         self,
@@ -1609,7 +1609,7 @@ class LROSADsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._put_async_relative_retry_invalid_header_initial.metadata['url']
+        url = self._put_async_relative_retry_invalid_header_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1645,7 +1645,7 @@ class LROSADsOperations(object):
           return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-    _put_async_relative_retry_invalid_header_initial.metadata = {'url': '/lro/error/putasync/retry/invalidheader'}
+    _put_async_relative_retry_invalid_header_initial.metadata = {'url': '/lro/error/putasync/retry/invalidheader'}  # type: ignore
 
     @distributed_trace
     def begin_put_async_relative_retry_invalid_header(
@@ -1695,7 +1695,7 @@ class LROSADsOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_put_async_relative_retry_invalid_header.metadata = {'url': '/lro/error/putasync/retry/invalidheader'}
+    begin_put_async_relative_retry_invalid_header.metadata = {'url': '/lro/error/putasync/retry/invalidheader'}  # type: ignore
 
     def _put_async_relative_retry_invalid_json_polling_initial(
         self,
@@ -1707,7 +1707,7 @@ class LROSADsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._put_async_relative_retry_invalid_json_polling_initial.metadata['url']
+        url = self._put_async_relative_retry_invalid_json_polling_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1743,7 +1743,7 @@ class LROSADsOperations(object):
           return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-    _put_async_relative_retry_invalid_json_polling_initial.metadata = {'url': '/lro/error/putasync/retry/invalidjsonpolling'}
+    _put_async_relative_retry_invalid_json_polling_initial.metadata = {'url': '/lro/error/putasync/retry/invalidjsonpolling'}  # type: ignore
 
     @distributed_trace
     def begin_put_async_relative_retry_invalid_json_polling(
@@ -1793,7 +1793,7 @@ class LROSADsOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_put_async_relative_retry_invalid_json_polling.metadata = {'url': '/lro/error/putasync/retry/invalidjsonpolling'}
+    begin_put_async_relative_retry_invalid_json_polling.metadata = {'url': '/lro/error/putasync/retry/invalidjsonpolling'}  # type: ignore
 
     def _delete202_retry_invalid_header_initial(
         self,
@@ -1804,7 +1804,7 @@ class LROSADsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._delete202_retry_invalid_header_initial.metadata['url']
+        url = self._delete202_retry_invalid_header_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1828,7 +1828,7 @@ class LROSADsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _delete202_retry_invalid_header_initial.metadata = {'url': '/lro/error/delete/202/retry/invalidheader'}
+    _delete202_retry_invalid_header_initial.metadata = {'url': '/lro/error/delete/202/retry/invalidheader'}  # type: ignore
 
     @distributed_trace
     def begin_delete202_retry_invalid_header(
@@ -1866,7 +1866,7 @@ class LROSADsOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_delete202_retry_invalid_header.metadata = {'url': '/lro/error/delete/202/retry/invalidheader'}
+    begin_delete202_retry_invalid_header.metadata = {'url': '/lro/error/delete/202/retry/invalidheader'}  # type: ignore
 
     def _delete_async_relative_retry_invalid_header_initial(
         self,
@@ -1877,7 +1877,7 @@ class LROSADsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._delete_async_relative_retry_invalid_header_initial.metadata['url']
+        url = self._delete_async_relative_retry_invalid_header_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1902,7 +1902,7 @@ class LROSADsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _delete_async_relative_retry_invalid_header_initial.metadata = {'url': '/lro/error/deleteasync/retry/invalidheader'}
+    _delete_async_relative_retry_invalid_header_initial.metadata = {'url': '/lro/error/deleteasync/retry/invalidheader'}  # type: ignore
 
     @distributed_trace
     def begin_delete_async_relative_retry_invalid_header(
@@ -1940,7 +1940,7 @@ class LROSADsOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_delete_async_relative_retry_invalid_header.metadata = {'url': '/lro/error/deleteasync/retry/invalidheader'}
+    begin_delete_async_relative_retry_invalid_header.metadata = {'url': '/lro/error/deleteasync/retry/invalidheader'}  # type: ignore
 
     def _delete_async_relative_retry_invalid_json_polling_initial(
         self,
@@ -1951,7 +1951,7 @@ class LROSADsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._delete_async_relative_retry_invalid_json_polling_initial.metadata['url']
+        url = self._delete_async_relative_retry_invalid_json_polling_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1976,7 +1976,7 @@ class LROSADsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _delete_async_relative_retry_invalid_json_polling_initial.metadata = {'url': '/lro/error/deleteasync/retry/invalidjsonpolling'}
+    _delete_async_relative_retry_invalid_json_polling_initial.metadata = {'url': '/lro/error/deleteasync/retry/invalidjsonpolling'}  # type: ignore
 
     @distributed_trace
     def begin_delete_async_relative_retry_invalid_json_polling(
@@ -2014,7 +2014,7 @@ class LROSADsOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_delete_async_relative_retry_invalid_json_polling.metadata = {'url': '/lro/error/deleteasync/retry/invalidjsonpolling'}
+    begin_delete_async_relative_retry_invalid_json_polling.metadata = {'url': '/lro/error/deleteasync/retry/invalidjsonpolling'}  # type: ignore
 
     def _post202_retry_invalid_header_initial(
         self,
@@ -2026,7 +2026,7 @@ class LROSADsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._post202_retry_invalid_header_initial.metadata['url']
+        url = self._post202_retry_invalid_header_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2058,7 +2058,7 @@ class LROSADsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _post202_retry_invalid_header_initial.metadata = {'url': '/lro/error/post/202/retry/invalidheader'}
+    _post202_retry_invalid_header_initial.metadata = {'url': '/lro/error/post/202/retry/invalidheader'}  # type: ignore
 
     @distributed_trace
     def begin_post202_retry_invalid_header(
@@ -2100,7 +2100,7 @@ class LROSADsOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_post202_retry_invalid_header.metadata = {'url': '/lro/error/post/202/retry/invalidheader'}
+    begin_post202_retry_invalid_header.metadata = {'url': '/lro/error/post/202/retry/invalidheader'}  # type: ignore
 
     def _post_async_relative_retry_invalid_header_initial(
         self,
@@ -2112,7 +2112,7 @@ class LROSADsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._post_async_relative_retry_invalid_header_initial.metadata['url']
+        url = self._post_async_relative_retry_invalid_header_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2145,7 +2145,7 @@ class LROSADsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _post_async_relative_retry_invalid_header_initial.metadata = {'url': '/lro/error/postasync/retry/invalidheader'}
+    _post_async_relative_retry_invalid_header_initial.metadata = {'url': '/lro/error/postasync/retry/invalidheader'}  # type: ignore
 
     @distributed_trace
     def begin_post_async_relative_retry_invalid_header(
@@ -2187,7 +2187,7 @@ class LROSADsOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_post_async_relative_retry_invalid_header.metadata = {'url': '/lro/error/postasync/retry/invalidheader'}
+    begin_post_async_relative_retry_invalid_header.metadata = {'url': '/lro/error/postasync/retry/invalidheader'}  # type: ignore
 
     def _post_async_relative_retry_invalid_json_polling_initial(
         self,
@@ -2199,7 +2199,7 @@ class LROSADsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._post_async_relative_retry_invalid_json_polling_initial.metadata['url']
+        url = self._post_async_relative_retry_invalid_json_polling_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2232,7 +2232,7 @@ class LROSADsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _post_async_relative_retry_invalid_json_polling_initial.metadata = {'url': '/lro/error/postasync/retry/invalidjsonpolling'}
+    _post_async_relative_retry_invalid_json_polling_initial.metadata = {'url': '/lro/error/postasync/retry/invalidjsonpolling'}  # type: ignore
 
     @distributed_trace
     def begin_post_async_relative_retry_invalid_json_polling(
@@ -2274,4 +2274,4 @@ class LROSADsOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_post_async_relative_retry_invalid_json_polling.metadata = {'url': '/lro/error/postasync/retry/invalidjsonpolling'}
+    begin_post_async_relative_retry_invalid_json_polling.metadata = {'url': '/lro/error/postasync/retry/invalidjsonpolling'}  # type: ignore

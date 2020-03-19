@@ -57,7 +57,7 @@ class HttpFailureOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_empty_error.metadata['url']
+        url = self.get_empty_error.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -82,7 +82,7 @@ class HttpFailureOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_empty_error.metadata = {'url': '/http/failure/emptybody/error'}
+    get_empty_error.metadata = {'url': '/http/failure/emptybody/error'}  # type: ignore
 
     @distributed_trace
     def get_no_model_error(
@@ -101,7 +101,7 @@ class HttpFailureOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_no_model_error.metadata['url']
+        url = self.get_no_model_error.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -125,7 +125,7 @@ class HttpFailureOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_no_model_error.metadata = {'url': '/http/failure/nomodel/error'}
+    get_no_model_error.metadata = {'url': '/http/failure/nomodel/error'}  # type: ignore
 
     @distributed_trace
     def get_no_model_empty(
@@ -144,7 +144,7 @@ class HttpFailureOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_no_model_empty.metadata['url']
+        url = self.get_no_model_empty.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -168,4 +168,4 @@ class HttpFailureOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_no_model_empty.metadata = {'url': '/http/failure/nomodel/empty'}
+    get_no_model_empty.metadata = {'url': '/http/failure/nomodel/empty'}  # type: ignore

@@ -57,7 +57,7 @@ class FlattencomplexOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_valid.metadata['url']
+        url = self.get_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -81,4 +81,4 @@ class FlattencomplexOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_valid.metadata = {'url': '/complex/flatten/valid'}
+    get_valid.metadata = {'url': '/complex/flatten/valid'}  # type: ignore

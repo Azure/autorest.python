@@ -34,6 +34,10 @@ class ListSchema(BaseSchema):
         return f"List[{self.element_type.type_annotation}]"
 
     @property
+    def operation_type_annotation(self) -> str:
+        return f"List[{self.element_type.operation_type_annotation}]"
+
+    @property
     def docstring_type(self) -> str:
         return f"list[{self.element_type.docstring_type}]"
 

@@ -40,7 +40,7 @@ class MediaTypesClientOperationsMixin:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.analyze_body.metadata['url']
+        url = self.analyze_body.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -79,4 +79,4 @@ class MediaTypesClientOperationsMixin:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    analyze_body.metadata = {'url': '/mediatypes/analyze'}
+    analyze_body.metadata = {'url': '/mediatypes/analyze'}  # type: ignore

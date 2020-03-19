@@ -58,7 +58,7 @@ class PrimitiveOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_int.metadata['url']
+        url = self.get_int.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -83,7 +83,7 @@ class PrimitiveOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_int.metadata = {'url': '/complex/primitive/integer'}
+    get_int.metadata = {'url': '/complex/primitive/integer'}  # type: ignore
 
     @distributed_trace
     def put_int(
@@ -105,7 +105,7 @@ class PrimitiveOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_int.metadata['url']
+        url = self.put_int.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -131,7 +131,7 @@ class PrimitiveOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_int.metadata = {'url': '/complex/primitive/integer'}
+    put_int.metadata = {'url': '/complex/primitive/integer'}  # type: ignore
 
     @distributed_trace
     def get_long(
@@ -150,7 +150,7 @@ class PrimitiveOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_long.metadata['url']
+        url = self.get_long.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -175,7 +175,7 @@ class PrimitiveOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_long.metadata = {'url': '/complex/primitive/long'}
+    get_long.metadata = {'url': '/complex/primitive/long'}  # type: ignore
 
     @distributed_trace
     def put_long(
@@ -197,7 +197,7 @@ class PrimitiveOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_long.metadata['url']
+        url = self.put_long.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -223,7 +223,7 @@ class PrimitiveOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_long.metadata = {'url': '/complex/primitive/long'}
+    put_long.metadata = {'url': '/complex/primitive/long'}  # type: ignore
 
     @distributed_trace
     def get_float(
@@ -242,7 +242,7 @@ class PrimitiveOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_float.metadata['url']
+        url = self.get_float.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -267,7 +267,7 @@ class PrimitiveOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_float.metadata = {'url': '/complex/primitive/float'}
+    get_float.metadata = {'url': '/complex/primitive/float'}  # type: ignore
 
     @distributed_trace
     def put_float(
@@ -289,7 +289,7 @@ class PrimitiveOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_float.metadata['url']
+        url = self.put_float.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -315,7 +315,7 @@ class PrimitiveOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_float.metadata = {'url': '/complex/primitive/float'}
+    put_float.metadata = {'url': '/complex/primitive/float'}  # type: ignore
 
     @distributed_trace
     def get_double(
@@ -334,7 +334,7 @@ class PrimitiveOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_double.metadata['url']
+        url = self.get_double.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -359,7 +359,7 @@ class PrimitiveOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_double.metadata = {'url': '/complex/primitive/double'}
+    get_double.metadata = {'url': '/complex/primitive/double'}  # type: ignore
 
     @distributed_trace
     def put_double(
@@ -382,7 +382,7 @@ class PrimitiveOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_double.metadata['url']
+        url = self.put_double.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -408,7 +408,7 @@ class PrimitiveOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_double.metadata = {'url': '/complex/primitive/double'}
+    put_double.metadata = {'url': '/complex/primitive/double'}  # type: ignore
 
     @distributed_trace
     def get_bool(
@@ -427,7 +427,7 @@ class PrimitiveOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_bool.metadata['url']
+        url = self.get_bool.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -452,7 +452,7 @@ class PrimitiveOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_bool.metadata = {'url': '/complex/primitive/bool'}
+    get_bool.metadata = {'url': '/complex/primitive/bool'}  # type: ignore
 
     @distributed_trace
     def put_bool(
@@ -474,7 +474,7 @@ class PrimitiveOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_bool.metadata['url']
+        url = self.put_bool.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -500,7 +500,7 @@ class PrimitiveOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_bool.metadata = {'url': '/complex/primitive/bool'}
+    put_bool.metadata = {'url': '/complex/primitive/bool'}  # type: ignore
 
     @distributed_trace
     def get_string(
@@ -519,7 +519,7 @@ class PrimitiveOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_string.metadata['url']
+        url = self.get_string.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -544,7 +544,7 @@ class PrimitiveOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_string.metadata = {'url': '/complex/primitive/string'}
+    get_string.metadata = {'url': '/complex/primitive/string'}  # type: ignore
 
     @distributed_trace
     def put_string(
@@ -566,7 +566,7 @@ class PrimitiveOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_string.metadata['url']
+        url = self.put_string.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -592,7 +592,7 @@ class PrimitiveOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_string.metadata = {'url': '/complex/primitive/string'}
+    put_string.metadata = {'url': '/complex/primitive/string'}  # type: ignore
 
     @distributed_trace
     def get_date(
@@ -611,7 +611,7 @@ class PrimitiveOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_date.metadata['url']
+        url = self.get_date.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -636,7 +636,7 @@ class PrimitiveOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_date.metadata = {'url': '/complex/primitive/date'}
+    get_date.metadata = {'url': '/complex/primitive/date'}  # type: ignore
 
     @distributed_trace
     def put_date(
@@ -658,7 +658,7 @@ class PrimitiveOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_date.metadata['url']
+        url = self.put_date.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -684,7 +684,7 @@ class PrimitiveOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_date.metadata = {'url': '/complex/primitive/date'}
+    put_date.metadata = {'url': '/complex/primitive/date'}  # type: ignore
 
     @distributed_trace
     def get_date_time(
@@ -703,7 +703,7 @@ class PrimitiveOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_date_time.metadata['url']
+        url = self.get_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -728,7 +728,7 @@ class PrimitiveOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_date_time.metadata = {'url': '/complex/primitive/datetime'}
+    get_date_time.metadata = {'url': '/complex/primitive/datetime'}  # type: ignore
 
     @distributed_trace
     def put_date_time(
@@ -750,7 +750,7 @@ class PrimitiveOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_date_time.metadata['url']
+        url = self.put_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -776,7 +776,7 @@ class PrimitiveOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_date_time.metadata = {'url': '/complex/primitive/datetime'}
+    put_date_time.metadata = {'url': '/complex/primitive/datetime'}  # type: ignore
 
     @distributed_trace
     def get_date_time_rfc1123(
@@ -795,7 +795,7 @@ class PrimitiveOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_date_time_rfc1123.metadata['url']
+        url = self.get_date_time_rfc1123.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -820,7 +820,7 @@ class PrimitiveOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_date_time_rfc1123.metadata = {'url': '/complex/primitive/datetimerfc1123'}
+    get_date_time_rfc1123.metadata = {'url': '/complex/primitive/datetimerfc1123'}  # type: ignore
 
     @distributed_trace
     def put_date_time_rfc1123(
@@ -843,7 +843,7 @@ class PrimitiveOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_date_time_rfc1123.metadata['url']
+        url = self.put_date_time_rfc1123.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -869,7 +869,7 @@ class PrimitiveOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_date_time_rfc1123.metadata = {'url': '/complex/primitive/datetimerfc1123'}
+    put_date_time_rfc1123.metadata = {'url': '/complex/primitive/datetimerfc1123'}  # type: ignore
 
     @distributed_trace
     def get_duration(
@@ -888,7 +888,7 @@ class PrimitiveOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_duration.metadata['url']
+        url = self.get_duration.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -913,7 +913,7 @@ class PrimitiveOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_duration.metadata = {'url': '/complex/primitive/duration'}
+    get_duration.metadata = {'url': '/complex/primitive/duration'}  # type: ignore
 
     @distributed_trace
     def put_duration(
@@ -937,7 +937,7 @@ class PrimitiveOperations(object):
         _complex_body = models.DurationWrapper(field=field)
 
         # Construct URL
-        url = self.put_duration.metadata['url']
+        url = self.put_duration.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -963,7 +963,7 @@ class PrimitiveOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_duration.metadata = {'url': '/complex/primitive/duration'}
+    put_duration.metadata = {'url': '/complex/primitive/duration'}  # type: ignore
 
     @distributed_trace
     def get_byte(
@@ -982,7 +982,7 @@ class PrimitiveOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_byte.metadata['url']
+        url = self.get_byte.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1007,7 +1007,7 @@ class PrimitiveOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_byte.metadata = {'url': '/complex/primitive/byte'}
+    get_byte.metadata = {'url': '/complex/primitive/byte'}  # type: ignore
 
     @distributed_trace
     def put_byte(
@@ -1031,7 +1031,7 @@ class PrimitiveOperations(object):
         _complex_body = models.ByteWrapper(field=field)
 
         # Construct URL
-        url = self.put_byte.metadata['url']
+        url = self.put_byte.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1057,4 +1057,4 @@ class PrimitiveOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_byte.metadata = {'url': '/complex/primitive/byte'}
+    put_byte.metadata = {'url': '/complex/primitive/byte'}  # type: ignore

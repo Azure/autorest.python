@@ -58,7 +58,7 @@ class IntOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_null.metadata['url']
+        url = self.get_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -83,7 +83,7 @@ class IntOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_null.metadata = {'url': '/int/null'}
+    get_null.metadata = {'url': '/int/null'}  # type: ignore
 
     @distributed_trace
     def get_invalid(
@@ -102,7 +102,7 @@ class IntOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_invalid.metadata['url']
+        url = self.get_invalid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -127,7 +127,7 @@ class IntOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_invalid.metadata = {'url': '/int/invalid'}
+    get_invalid.metadata = {'url': '/int/invalid'}  # type: ignore
 
     @distributed_trace
     def get_overflow_int32(
@@ -146,7 +146,7 @@ class IntOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_overflow_int32.metadata['url']
+        url = self.get_overflow_int32.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -171,7 +171,7 @@ class IntOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_overflow_int32.metadata = {'url': '/int/overflowint32'}
+    get_overflow_int32.metadata = {'url': '/int/overflowint32'}  # type: ignore
 
     @distributed_trace
     def get_underflow_int32(
@@ -190,7 +190,7 @@ class IntOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_underflow_int32.metadata['url']
+        url = self.get_underflow_int32.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -215,7 +215,7 @@ class IntOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_underflow_int32.metadata = {'url': '/int/underflowint32'}
+    get_underflow_int32.metadata = {'url': '/int/underflowint32'}  # type: ignore
 
     @distributed_trace
     def get_overflow_int64(
@@ -234,7 +234,7 @@ class IntOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_overflow_int64.metadata['url']
+        url = self.get_overflow_int64.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -259,7 +259,7 @@ class IntOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_overflow_int64.metadata = {'url': '/int/overflowint64'}
+    get_overflow_int64.metadata = {'url': '/int/overflowint64'}  # type: ignore
 
     @distributed_trace
     def get_underflow_int64(
@@ -278,7 +278,7 @@ class IntOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_underflow_int64.metadata['url']
+        url = self.get_underflow_int64.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -303,7 +303,7 @@ class IntOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_underflow_int64.metadata = {'url': '/int/underflowint64'}
+    get_underflow_int64.metadata = {'url': '/int/underflowint64'}  # type: ignore
 
     @distributed_trace
     def put_max32(
@@ -325,7 +325,7 @@ class IntOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_max32.metadata['url']
+        url = self.put_max32.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -351,7 +351,7 @@ class IntOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_max32.metadata = {'url': '/int/max/32'}
+    put_max32.metadata = {'url': '/int/max/32'}  # type: ignore
 
     @distributed_trace
     def put_max64(
@@ -373,7 +373,7 @@ class IntOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_max64.metadata['url']
+        url = self.put_max64.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -399,7 +399,7 @@ class IntOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_max64.metadata = {'url': '/int/max/64'}
+    put_max64.metadata = {'url': '/int/max/64'}  # type: ignore
 
     @distributed_trace
     def put_min32(
@@ -421,7 +421,7 @@ class IntOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_min32.metadata['url']
+        url = self.put_min32.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -447,7 +447,7 @@ class IntOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_min32.metadata = {'url': '/int/min/32'}
+    put_min32.metadata = {'url': '/int/min/32'}  # type: ignore
 
     @distributed_trace
     def put_min64(
@@ -469,7 +469,7 @@ class IntOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_min64.metadata['url']
+        url = self.put_min64.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -495,7 +495,7 @@ class IntOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_min64.metadata = {'url': '/int/min/64'}
+    put_min64.metadata = {'url': '/int/min/64'}  # type: ignore
 
     @distributed_trace
     def get_unix_time(
@@ -514,7 +514,7 @@ class IntOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_unix_time.metadata['url']
+        url = self.get_unix_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -539,7 +539,7 @@ class IntOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_unix_time.metadata = {'url': '/int/unixtime'}
+    get_unix_time.metadata = {'url': '/int/unixtime'}  # type: ignore
 
     @distributed_trace
     def put_unix_time_date(
@@ -561,7 +561,7 @@ class IntOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_unix_time_date.metadata['url']
+        url = self.put_unix_time_date.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -587,7 +587,7 @@ class IntOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_unix_time_date.metadata = {'url': '/int/unixtime'}
+    put_unix_time_date.metadata = {'url': '/int/unixtime'}  # type: ignore
 
     @distributed_trace
     def get_invalid_unix_time(
@@ -606,7 +606,7 @@ class IntOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_invalid_unix_time.metadata['url']
+        url = self.get_invalid_unix_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -631,7 +631,7 @@ class IntOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_invalid_unix_time.metadata = {'url': '/int/invalidunixtime'}
+    get_invalid_unix_time.metadata = {'url': '/int/invalidunixtime'}  # type: ignore
 
     @distributed_trace
     def get_null_unix_time(
@@ -650,7 +650,7 @@ class IntOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_null_unix_time.metadata['url']
+        url = self.get_null_unix_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -675,4 +675,4 @@ class IntOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_null_unix_time.metadata = {'url': '/int/nullunixtime'}
+    get_null_unix_time.metadata = {'url': '/int/nullunixtime'}  # type: ignore

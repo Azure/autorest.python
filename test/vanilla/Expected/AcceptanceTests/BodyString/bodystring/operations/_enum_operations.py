@@ -57,7 +57,7 @@ class EnumOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_not_expandable.metadata['url']
+        url = self.get_not_expandable.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -82,7 +82,7 @@ class EnumOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_not_expandable.metadata = {'url': '/string/enum/notExpandable'}
+    get_not_expandable.metadata = {'url': '/string/enum/notExpandable'}  # type: ignore
 
     @distributed_trace
     def put_not_expandable(
@@ -104,7 +104,7 @@ class EnumOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_not_expandable.metadata['url']
+        url = self.put_not_expandable.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -130,7 +130,7 @@ class EnumOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_not_expandable.metadata = {'url': '/string/enum/notExpandable'}
+    put_not_expandable.metadata = {'url': '/string/enum/notExpandable'}  # type: ignore
 
     @distributed_trace
     def get_referenced(
@@ -149,7 +149,7 @@ class EnumOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_referenced.metadata['url']
+        url = self.get_referenced.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -174,7 +174,7 @@ class EnumOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_referenced.metadata = {'url': '/string/enum/Referenced'}
+    get_referenced.metadata = {'url': '/string/enum/Referenced'}  # type: ignore
 
     @distributed_trace
     def put_referenced(
@@ -196,7 +196,7 @@ class EnumOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_referenced.metadata['url']
+        url = self.put_referenced.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -222,7 +222,7 @@ class EnumOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_referenced.metadata = {'url': '/string/enum/Referenced'}
+    put_referenced.metadata = {'url': '/string/enum/Referenced'}  # type: ignore
 
     @distributed_trace
     def get_referenced_constant(
@@ -241,7 +241,7 @@ class EnumOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_referenced_constant.metadata['url']
+        url = self.get_referenced_constant.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -266,7 +266,7 @@ class EnumOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_referenced_constant.metadata = {'url': '/string/enum/ReferencedConstant'}
+    get_referenced_constant.metadata = {'url': '/string/enum/ReferencedConstant'}  # type: ignore
 
     @distributed_trace
     def put_referenced_constant(
@@ -290,7 +290,7 @@ class EnumOperations(object):
         _enum_string_body = models.RefColorConstant(field1=field1)
 
         # Construct URL
-        url = self.put_referenced_constant.metadata['url']
+        url = self.put_referenced_constant.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -316,4 +316,4 @@ class EnumOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_referenced_constant.metadata = {'url': '/string/enum/ReferencedConstant'}
+    put_referenced_constant.metadata = {'url': '/string/enum/ReferencedConstant'}  # type: ignore

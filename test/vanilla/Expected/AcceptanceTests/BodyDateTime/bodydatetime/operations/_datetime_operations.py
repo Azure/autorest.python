@@ -58,7 +58,7 @@ class DatetimeOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_null.metadata['url']
+        url = self.get_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -83,7 +83,7 @@ class DatetimeOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_null.metadata = {'url': '/datetime/null'}
+    get_null.metadata = {'url': '/datetime/null'}  # type: ignore
 
     @distributed_trace
     def get_invalid(
@@ -102,7 +102,7 @@ class DatetimeOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_invalid.metadata['url']
+        url = self.get_invalid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -127,7 +127,7 @@ class DatetimeOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_invalid.metadata = {'url': '/datetime/invalid'}
+    get_invalid.metadata = {'url': '/datetime/invalid'}  # type: ignore
 
     @distributed_trace
     def get_overflow(
@@ -146,7 +146,7 @@ class DatetimeOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_overflow.metadata['url']
+        url = self.get_overflow.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -171,7 +171,7 @@ class DatetimeOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_overflow.metadata = {'url': '/datetime/overflow'}
+    get_overflow.metadata = {'url': '/datetime/overflow'}  # type: ignore
 
     @distributed_trace
     def get_underflow(
@@ -190,7 +190,7 @@ class DatetimeOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_underflow.metadata['url']
+        url = self.get_underflow.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -215,7 +215,7 @@ class DatetimeOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_underflow.metadata = {'url': '/datetime/underflow'}
+    get_underflow.metadata = {'url': '/datetime/underflow'}  # type: ignore
 
     @distributed_trace
     def put_utc_max_date_time(
@@ -237,7 +237,7 @@ class DatetimeOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_utc_max_date_time.metadata['url']
+        url = self.put_utc_max_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -263,7 +263,7 @@ class DatetimeOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_utc_max_date_time.metadata = {'url': '/datetime/max/utc'}
+    put_utc_max_date_time.metadata = {'url': '/datetime/max/utc'}  # type: ignore
 
     @distributed_trace
     def put_utc_max_date_time7_digits(
@@ -288,7 +288,7 @@ class DatetimeOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_utc_max_date_time7_digits.metadata['url']
+        url = self.put_utc_max_date_time7_digits.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -314,7 +314,7 @@ class DatetimeOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_utc_max_date_time7_digits.metadata = {'url': '/datetime/max/utc7ms'}
+    put_utc_max_date_time7_digits.metadata = {'url': '/datetime/max/utc7ms'}  # type: ignore
 
     @distributed_trace
     def get_utc_lowercase_max_date_time(
@@ -333,7 +333,7 @@ class DatetimeOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_utc_lowercase_max_date_time.metadata['url']
+        url = self.get_utc_lowercase_max_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -358,7 +358,7 @@ class DatetimeOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_utc_lowercase_max_date_time.metadata = {'url': '/datetime/max/utc/lowercase'}
+    get_utc_lowercase_max_date_time.metadata = {'url': '/datetime/max/utc/lowercase'}  # type: ignore
 
     @distributed_trace
     def get_utc_uppercase_max_date_time(
@@ -377,7 +377,7 @@ class DatetimeOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_utc_uppercase_max_date_time.metadata['url']
+        url = self.get_utc_uppercase_max_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -402,7 +402,7 @@ class DatetimeOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_utc_uppercase_max_date_time.metadata = {'url': '/datetime/max/utc/uppercase'}
+    get_utc_uppercase_max_date_time.metadata = {'url': '/datetime/max/utc/uppercase'}  # type: ignore
 
     @distributed_trace
     def get_utc_uppercase_max_date_time7_digits(
@@ -424,7 +424,7 @@ class DatetimeOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_utc_uppercase_max_date_time7_digits.metadata['url']
+        url = self.get_utc_uppercase_max_date_time7_digits.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -449,7 +449,7 @@ class DatetimeOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_utc_uppercase_max_date_time7_digits.metadata = {'url': '/datetime/max/utc7ms/uppercase'}
+    get_utc_uppercase_max_date_time7_digits.metadata = {'url': '/datetime/max/utc7ms/uppercase'}  # type: ignore
 
     @distributed_trace
     def put_local_positive_offset_max_date_time(
@@ -471,7 +471,7 @@ class DatetimeOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_local_positive_offset_max_date_time.metadata['url']
+        url = self.put_local_positive_offset_max_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -497,7 +497,7 @@ class DatetimeOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_local_positive_offset_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset'}
+    put_local_positive_offset_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset'}  # type: ignore
 
     @distributed_trace
     def get_local_positive_offset_lowercase_max_date_time(
@@ -516,7 +516,7 @@ class DatetimeOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_local_positive_offset_lowercase_max_date_time.metadata['url']
+        url = self.get_local_positive_offset_lowercase_max_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -541,7 +541,7 @@ class DatetimeOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_local_positive_offset_lowercase_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset/lowercase'}
+    get_local_positive_offset_lowercase_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset/lowercase'}  # type: ignore
 
     @distributed_trace
     def get_local_positive_offset_uppercase_max_date_time(
@@ -560,7 +560,7 @@ class DatetimeOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_local_positive_offset_uppercase_max_date_time.metadata['url']
+        url = self.get_local_positive_offset_uppercase_max_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -585,7 +585,7 @@ class DatetimeOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_local_positive_offset_uppercase_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset/uppercase'}
+    get_local_positive_offset_uppercase_max_date_time.metadata = {'url': '/datetime/max/localpositiveoffset/uppercase'}  # type: ignore
 
     @distributed_trace
     def put_local_negative_offset_max_date_time(
@@ -607,7 +607,7 @@ class DatetimeOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_local_negative_offset_max_date_time.metadata['url']
+        url = self.put_local_negative_offset_max_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -633,7 +633,7 @@ class DatetimeOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_local_negative_offset_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset'}
+    put_local_negative_offset_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset'}  # type: ignore
 
     @distributed_trace
     def get_local_negative_offset_uppercase_max_date_time(
@@ -652,7 +652,7 @@ class DatetimeOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_local_negative_offset_uppercase_max_date_time.metadata['url']
+        url = self.get_local_negative_offset_uppercase_max_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -677,7 +677,7 @@ class DatetimeOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_local_negative_offset_uppercase_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset/uppercase'}
+    get_local_negative_offset_uppercase_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset/uppercase'}  # type: ignore
 
     @distributed_trace
     def get_local_negative_offset_lowercase_max_date_time(
@@ -696,7 +696,7 @@ class DatetimeOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_local_negative_offset_lowercase_max_date_time.metadata['url']
+        url = self.get_local_negative_offset_lowercase_max_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -721,7 +721,7 @@ class DatetimeOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_local_negative_offset_lowercase_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset/lowercase'}
+    get_local_negative_offset_lowercase_max_date_time.metadata = {'url': '/datetime/max/localnegativeoffset/lowercase'}  # type: ignore
 
     @distributed_trace
     def put_utc_min_date_time(
@@ -743,7 +743,7 @@ class DatetimeOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_utc_min_date_time.metadata['url']
+        url = self.put_utc_min_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -769,7 +769,7 @@ class DatetimeOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_utc_min_date_time.metadata = {'url': '/datetime/min/utc'}
+    put_utc_min_date_time.metadata = {'url': '/datetime/min/utc'}  # type: ignore
 
     @distributed_trace
     def get_utc_min_date_time(
@@ -788,7 +788,7 @@ class DatetimeOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_utc_min_date_time.metadata['url']
+        url = self.get_utc_min_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -813,7 +813,7 @@ class DatetimeOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_utc_min_date_time.metadata = {'url': '/datetime/min/utc'}
+    get_utc_min_date_time.metadata = {'url': '/datetime/min/utc'}  # type: ignore
 
     @distributed_trace
     def put_local_positive_offset_min_date_time(
@@ -835,7 +835,7 @@ class DatetimeOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_local_positive_offset_min_date_time.metadata['url']
+        url = self.put_local_positive_offset_min_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -861,7 +861,7 @@ class DatetimeOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_local_positive_offset_min_date_time.metadata = {'url': '/datetime/min/localpositiveoffset'}
+    put_local_positive_offset_min_date_time.metadata = {'url': '/datetime/min/localpositiveoffset'}  # type: ignore
 
     @distributed_trace
     def get_local_positive_offset_min_date_time(
@@ -880,7 +880,7 @@ class DatetimeOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_local_positive_offset_min_date_time.metadata['url']
+        url = self.get_local_positive_offset_min_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -905,7 +905,7 @@ class DatetimeOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_local_positive_offset_min_date_time.metadata = {'url': '/datetime/min/localpositiveoffset'}
+    get_local_positive_offset_min_date_time.metadata = {'url': '/datetime/min/localpositiveoffset'}  # type: ignore
 
     @distributed_trace
     def put_local_negative_offset_min_date_time(
@@ -927,7 +927,7 @@ class DatetimeOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_local_negative_offset_min_date_time.metadata['url']
+        url = self.put_local_negative_offset_min_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -953,7 +953,7 @@ class DatetimeOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_local_negative_offset_min_date_time.metadata = {'url': '/datetime/min/localnegativeoffset'}
+    put_local_negative_offset_min_date_time.metadata = {'url': '/datetime/min/localnegativeoffset'}  # type: ignore
 
     @distributed_trace
     def get_local_negative_offset_min_date_time(
@@ -972,7 +972,7 @@ class DatetimeOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_local_negative_offset_min_date_time.metadata['url']
+        url = self.get_local_negative_offset_min_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -997,4 +997,4 @@ class DatetimeOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_local_negative_offset_min_date_time.metadata = {'url': '/datetime/min/localnegativeoffset'}
+    get_local_negative_offset_min_date_time.metadata = {'url': '/datetime/min/localnegativeoffset'}  # type: ignore

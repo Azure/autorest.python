@@ -56,7 +56,7 @@ class InheritanceOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_valid.metadata['url']
+        url = self.get_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -81,7 +81,7 @@ class InheritanceOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_valid.metadata = {'url': '/complex/inheritance/valid'}
+    get_valid.metadata = {'url': '/complex/inheritance/valid'}  # type: ignore
 
     @distributed_trace_async
     async def put_valid(
@@ -104,7 +104,7 @@ class InheritanceOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_valid.metadata['url']
+        url = self.put_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -130,4 +130,4 @@ class InheritanceOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_valid.metadata = {'url': '/complex/inheritance/valid'}
+    put_valid.metadata = {'url': '/complex/inheritance/valid'}  # type: ignore

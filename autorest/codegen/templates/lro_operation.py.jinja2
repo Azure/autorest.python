@@ -23,7 +23,7 @@ response_headers = {
 {% endif %}
 {{ op_tools.method_signature(operation, operation_name, async_mode=async_mode, coroutine=async_mode) }}
 {%- if not async_mode %}
-    {{ keywords.sync_return_type_annotation(operation) }}
+    {{ op_tools.sync_return_type_annotation(operation) }}
 {% endif %}
     """{{operation.description }}
     {% if operation.summary %}
@@ -50,7 +50,7 @@ response_headers = {
     :raises ~azure.core.exceptions.HttpResponseError:
     """
     polling = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})  # type: Union[bool, {{ "Async" if async_mode else "" }}PollingMethod]
-    cls = kwargs.pop('cls', None)  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
+    cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotation(operation) }}]
     raw_result = {{ keywords.await }}self._{{ operation.name }}_initial(
         {% for parameter in operation.parameters.method %}
         {{ parameter.serialized_name }}={{ parameter.serialized_name }},
@@ -85,4 +85,4 @@ response_headers = {
     elif polling is False: polling_method = {{ async_prefix }}NoPolling()
     else: polling_method = polling
     return {{ keywords.await }}{{ poller }}(self._client, raw_result, get_long_running_output, polling_method)
-{{ operation_name }}.metadata = {'url': '{{ operation.url }}'}
+{{ operation_name }}.metadata = {'url': '{{ operation.url }}'}  # type: ignore

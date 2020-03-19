@@ -57,7 +57,7 @@ class ArrayOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_valid.metadata['url']
+        url = self.get_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -82,7 +82,7 @@ class ArrayOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_valid.metadata = {'url': '/complex/array/valid'}
+    get_valid.metadata = {'url': '/complex/array/valid'}  # type: ignore
 
     @distributed_trace
     def put_valid(
@@ -106,7 +106,7 @@ class ArrayOperations(object):
         _complex_body = models.ArrayWrapper(array=array)
 
         # Construct URL
-        url = self.put_valid.metadata['url']
+        url = self.put_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -132,7 +132,7 @@ class ArrayOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_valid.metadata = {'url': '/complex/array/valid'}
+    put_valid.metadata = {'url': '/complex/array/valid'}  # type: ignore
 
     @distributed_trace
     def get_empty(
@@ -151,7 +151,7 @@ class ArrayOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_empty.metadata['url']
+        url = self.get_empty.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -176,7 +176,7 @@ class ArrayOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_empty.metadata = {'url': '/complex/array/empty'}
+    get_empty.metadata = {'url': '/complex/array/empty'}  # type: ignore
 
     @distributed_trace
     def put_empty(
@@ -200,7 +200,7 @@ class ArrayOperations(object):
         _complex_body = models.ArrayWrapper(array=array)
 
         # Construct URL
-        url = self.put_empty.metadata['url']
+        url = self.put_empty.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -226,7 +226,7 @@ class ArrayOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_empty.metadata = {'url': '/complex/array/empty'}
+    put_empty.metadata = {'url': '/complex/array/empty'}  # type: ignore
 
     @distributed_trace
     def get_not_provided(
@@ -245,7 +245,7 @@ class ArrayOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_not_provided.metadata['url']
+        url = self.get_not_provided.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -270,4 +270,4 @@ class ArrayOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_not_provided.metadata = {'url': '/complex/array/notprovided'}
+    get_not_provided.metadata = {'url': '/complex/array/notprovided'}  # type: ignore

@@ -10,6 +10,8 @@ from typing import Optional, Union
 
 import msrest.serialization
 
+from _pet_store_inc_enums import DaysOfWeekExtensibleEnum, IntEnum
+
 
 class Pet(msrest.serialization.Model):
     """Pet.

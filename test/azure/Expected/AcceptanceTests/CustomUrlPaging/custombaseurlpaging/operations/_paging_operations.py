@@ -64,7 +64,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_pages_partial_url.metadata['url']
+                url = self.get_pages_partial_url.metadata['url']  # type: ignore
                 path_format_arguments = {
                     'accountName': self._serialize.url("account_name", account_name, 'str', skip_quote=True),
                     'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
@@ -111,7 +111,7 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_pages_partial_url.metadata = {'url': '/paging/customurl/partialnextlink'}
+    get_pages_partial_url.metadata = {'url': '/paging/customurl/partialnextlink'}  # type: ignore
 
     @distributed_trace
     def get_pages_partial_url_operation(
@@ -135,7 +135,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_pages_partial_url_operation.metadata['url']
+                url = self.get_pages_partial_url_operation.metadata['url']  # type: ignore
                 path_format_arguments = {
                     'accountName': self._serialize.url("account_name", account_name, 'str', skip_quote=True),
                     'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
@@ -183,4 +183,4 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_pages_partial_url_operation.metadata = {'url': '/paging/customurl/partialnextlinkop'}
+    get_pages_partial_url_operation.metadata = {'url': '/paging/customurl/partialnextlinkop'}  # type: ignore

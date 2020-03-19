@@ -82,8 +82,8 @@ class Property(BaseModel):
             return self.schema.type_annotation
         return f"Optional[{self.schema.type_annotation}]"
 
-    def imports(self) -> FileImport:
-        file_import = self.schema.imports()
+    def model_file_imports(self) -> FileImport:
+        file_import = self.schema.model_file_imports()
         if not self.required:
             file_import.add_from_import("typing", "Optional", ImportType.STDLIB)
         return file_import

@@ -56,7 +56,7 @@ class NumberOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_null.metadata['url']
+        url = self.get_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -81,7 +81,7 @@ class NumberOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_null.metadata = {'url': '/number/null'}
+    get_null.metadata = {'url': '/number/null'}  # type: ignore
 
     @distributed_trace_async
     async def get_invalid_float(
@@ -99,7 +99,7 @@ class NumberOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_invalid_float.metadata['url']
+        url = self.get_invalid_float.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -124,7 +124,7 @@ class NumberOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_invalid_float.metadata = {'url': '/number/invalidfloat'}
+    get_invalid_float.metadata = {'url': '/number/invalidfloat'}  # type: ignore
 
     @distributed_trace_async
     async def get_invalid_double(
@@ -142,7 +142,7 @@ class NumberOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_invalid_double.metadata['url']
+        url = self.get_invalid_double.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -167,7 +167,7 @@ class NumberOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_invalid_double.metadata = {'url': '/number/invaliddouble'}
+    get_invalid_double.metadata = {'url': '/number/invaliddouble'}  # type: ignore
 
     @distributed_trace_async
     async def get_invalid_decimal(
@@ -185,7 +185,7 @@ class NumberOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_invalid_decimal.metadata['url']
+        url = self.get_invalid_decimal.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -210,7 +210,7 @@ class NumberOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_invalid_decimal.metadata = {'url': '/number/invaliddecimal'}
+    get_invalid_decimal.metadata = {'url': '/number/invaliddecimal'}  # type: ignore
 
     @distributed_trace_async
     async def put_big_float(
@@ -231,7 +231,7 @@ class NumberOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_big_float.metadata['url']
+        url = self.put_big_float.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -257,7 +257,7 @@ class NumberOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_big_float.metadata = {'url': '/number/big/float/3.402823e+20'}
+    put_big_float.metadata = {'url': '/number/big/float/3.402823e+20'}  # type: ignore
 
     @distributed_trace_async
     async def get_big_float(
@@ -275,7 +275,7 @@ class NumberOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_big_float.metadata['url']
+        url = self.get_big_float.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -300,7 +300,7 @@ class NumberOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_big_float.metadata = {'url': '/number/big/float/3.402823e+20'}
+    get_big_float.metadata = {'url': '/number/big/float/3.402823e+20'}  # type: ignore
 
     @distributed_trace_async
     async def put_big_double(
@@ -321,7 +321,7 @@ class NumberOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_big_double.metadata['url']
+        url = self.put_big_double.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -347,7 +347,7 @@ class NumberOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_big_double.metadata = {'url': '/number/big/double/2.5976931e+101'}
+    put_big_double.metadata = {'url': '/number/big/double/2.5976931e+101'}  # type: ignore
 
     @distributed_trace_async
     async def get_big_double(
@@ -365,7 +365,7 @@ class NumberOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_big_double.metadata['url']
+        url = self.get_big_double.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -390,7 +390,7 @@ class NumberOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_big_double.metadata = {'url': '/number/big/double/2.5976931e+101'}
+    get_big_double.metadata = {'url': '/number/big/double/2.5976931e+101'}  # type: ignore
 
     @distributed_trace_async
     async def put_big_double_positive_decimal(
@@ -409,7 +409,7 @@ class NumberOperations:
         number_body = 99999999.99
 
         # Construct URL
-        url = self.put_big_double_positive_decimal.metadata['url']
+        url = self.put_big_double_positive_decimal.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -435,7 +435,7 @@ class NumberOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_big_double_positive_decimal.metadata = {'url': '/number/big/double/99999999.99'}
+    put_big_double_positive_decimal.metadata = {'url': '/number/big/double/99999999.99'}  # type: ignore
 
     @distributed_trace_async
     async def get_big_double_positive_decimal(
@@ -453,7 +453,7 @@ class NumberOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_big_double_positive_decimal.metadata['url']
+        url = self.get_big_double_positive_decimal.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -478,7 +478,7 @@ class NumberOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_big_double_positive_decimal.metadata = {'url': '/number/big/double/99999999.99'}
+    get_big_double_positive_decimal.metadata = {'url': '/number/big/double/99999999.99'}  # type: ignore
 
     @distributed_trace_async
     async def put_big_double_negative_decimal(
@@ -497,7 +497,7 @@ class NumberOperations:
         number_body = -99999999.99
 
         # Construct URL
-        url = self.put_big_double_negative_decimal.metadata['url']
+        url = self.put_big_double_negative_decimal.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -523,7 +523,7 @@ class NumberOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_big_double_negative_decimal.metadata = {'url': '/number/big/double/-99999999.99'}
+    put_big_double_negative_decimal.metadata = {'url': '/number/big/double/-99999999.99'}  # type: ignore
 
     @distributed_trace_async
     async def get_big_double_negative_decimal(
@@ -541,7 +541,7 @@ class NumberOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_big_double_negative_decimal.metadata['url']
+        url = self.get_big_double_negative_decimal.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -566,7 +566,7 @@ class NumberOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_big_double_negative_decimal.metadata = {'url': '/number/big/double/-99999999.99'}
+    get_big_double_negative_decimal.metadata = {'url': '/number/big/double/-99999999.99'}  # type: ignore
 
     @distributed_trace_async
     async def put_big_decimal(
@@ -587,7 +587,7 @@ class NumberOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_big_decimal.metadata['url']
+        url = self.put_big_decimal.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -613,7 +613,7 @@ class NumberOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_big_decimal.metadata = {'url': '/number/big/decimal/2.5976931e+101'}
+    put_big_decimal.metadata = {'url': '/number/big/decimal/2.5976931e+101'}  # type: ignore
 
     @distributed_trace_async
     async def get_big_decimal(
@@ -631,7 +631,7 @@ class NumberOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_big_decimal.metadata['url']
+        url = self.get_big_decimal.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -656,7 +656,7 @@ class NumberOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_big_decimal.metadata = {'url': '/number/big/decimal/2.5976931e+101'}
+    get_big_decimal.metadata = {'url': '/number/big/decimal/2.5976931e+101'}  # type: ignore
 
     @distributed_trace_async
     async def put_big_decimal_positive_decimal(
@@ -675,7 +675,7 @@ class NumberOperations:
         number_body = 99999999.99
 
         # Construct URL
-        url = self.put_big_decimal_positive_decimal.metadata['url']
+        url = self.put_big_decimal_positive_decimal.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -701,7 +701,7 @@ class NumberOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_big_decimal_positive_decimal.metadata = {'url': '/number/big/decimal/99999999.99'}
+    put_big_decimal_positive_decimal.metadata = {'url': '/number/big/decimal/99999999.99'}  # type: ignore
 
     @distributed_trace_async
     async def get_big_decimal_positive_decimal(
@@ -719,7 +719,7 @@ class NumberOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_big_decimal_positive_decimal.metadata['url']
+        url = self.get_big_decimal_positive_decimal.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -744,7 +744,7 @@ class NumberOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_big_decimal_positive_decimal.metadata = {'url': '/number/big/decimal/99999999.99'}
+    get_big_decimal_positive_decimal.metadata = {'url': '/number/big/decimal/99999999.99'}  # type: ignore
 
     @distributed_trace_async
     async def put_big_decimal_negative_decimal(
@@ -763,7 +763,7 @@ class NumberOperations:
         number_body = -99999999.99
 
         # Construct URL
-        url = self.put_big_decimal_negative_decimal.metadata['url']
+        url = self.put_big_decimal_negative_decimal.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -789,7 +789,7 @@ class NumberOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_big_decimal_negative_decimal.metadata = {'url': '/number/big/decimal/-99999999.99'}
+    put_big_decimal_negative_decimal.metadata = {'url': '/number/big/decimal/-99999999.99'}  # type: ignore
 
     @distributed_trace_async
     async def get_big_decimal_negative_decimal(
@@ -807,7 +807,7 @@ class NumberOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_big_decimal_negative_decimal.metadata['url']
+        url = self.get_big_decimal_negative_decimal.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -832,7 +832,7 @@ class NumberOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_big_decimal_negative_decimal.metadata = {'url': '/number/big/decimal/-99999999.99'}
+    get_big_decimal_negative_decimal.metadata = {'url': '/number/big/decimal/-99999999.99'}  # type: ignore
 
     @distributed_trace_async
     async def put_small_float(
@@ -853,7 +853,7 @@ class NumberOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_small_float.metadata['url']
+        url = self.put_small_float.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -879,7 +879,7 @@ class NumberOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_small_float.metadata = {'url': '/number/small/float/3.402823e-20'}
+    put_small_float.metadata = {'url': '/number/small/float/3.402823e-20'}  # type: ignore
 
     @distributed_trace_async
     async def get_small_float(
@@ -897,7 +897,7 @@ class NumberOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_small_float.metadata['url']
+        url = self.get_small_float.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -922,7 +922,7 @@ class NumberOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_small_float.metadata = {'url': '/number/small/float/3.402823e-20'}
+    get_small_float.metadata = {'url': '/number/small/float/3.402823e-20'}  # type: ignore
 
     @distributed_trace_async
     async def put_small_double(
@@ -943,7 +943,7 @@ class NumberOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_small_double.metadata['url']
+        url = self.put_small_double.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -969,7 +969,7 @@ class NumberOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_small_double.metadata = {'url': '/number/small/double/2.5976931e-101'}
+    put_small_double.metadata = {'url': '/number/small/double/2.5976931e-101'}  # type: ignore
 
     @distributed_trace_async
     async def get_small_double(
@@ -987,7 +987,7 @@ class NumberOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_small_double.metadata['url']
+        url = self.get_small_double.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1012,7 +1012,7 @@ class NumberOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_small_double.metadata = {'url': '/number/small/double/2.5976931e-101'}
+    get_small_double.metadata = {'url': '/number/small/double/2.5976931e-101'}  # type: ignore
 
     @distributed_trace_async
     async def put_small_decimal(
@@ -1033,7 +1033,7 @@ class NumberOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_small_decimal.metadata['url']
+        url = self.put_small_decimal.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1059,7 +1059,7 @@ class NumberOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_small_decimal.metadata = {'url': '/number/small/decimal/2.5976931e-101'}
+    put_small_decimal.metadata = {'url': '/number/small/decimal/2.5976931e-101'}  # type: ignore
 
     @distributed_trace_async
     async def get_small_decimal(
@@ -1077,7 +1077,7 @@ class NumberOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_small_decimal.metadata['url']
+        url = self.get_small_decimal.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1102,4 +1102,4 @@ class NumberOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_small_decimal.metadata = {'url': '/number/small/decimal/2.5976931e-101'}
+    get_small_decimal.metadata = {'url': '/number/small/decimal/2.5976931e-101'}  # type: ignore

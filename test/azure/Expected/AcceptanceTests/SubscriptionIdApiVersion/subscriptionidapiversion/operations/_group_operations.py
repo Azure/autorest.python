@@ -62,7 +62,7 @@ class GroupOperations(object):
         api_version = "2014-04-01-preview"
 
         # Construct URL
-        url = self.get_sample_resource_group.metadata['url']
+        url = self.get_sample_resource_group.metadata['url']  # type: ignore
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
@@ -93,4 +93,4 @@ class GroupOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_sample_resource_group.metadata = {'url': '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}'}
+    get_sample_resource_group.metadata = {'url': '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}'}  # type: ignore

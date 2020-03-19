@@ -66,7 +66,7 @@ class PetOperations(object):
         error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.get_pet_by_id.metadata['url']
+        url = self.get_pet_by_id.metadata['url']  # type: ignore
         path_format_arguments = {
             'petId': self._serialize.url("pet_id", pet_id, 'str'),
         }
@@ -96,7 +96,7 @@ class PetOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_pet_by_id.metadata = {'url': '/errorStatusCodes/Pets/{petId}/GetPet'}
+    get_pet_by_id.metadata = {'url': '/errorStatusCodes/Pets/{petId}/GetPet'}  # type: ignore
 
     @distributed_trace
     def do_something(
@@ -123,7 +123,7 @@ class PetOperations(object):
         error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
-        url = self.do_something.metadata['url']
+        url = self.do_something.metadata['url']  # type: ignore
         path_format_arguments = {
             'whatAction': self._serialize.url("what_action", what_action, 'str'),
         }
@@ -152,4 +152,4 @@ class PetOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    do_something.metadata = {'url': '/errorStatusCodes/Pets/doSomething/{whatAction}'}
+    do_something.metadata = {'url': '/errorStatusCodes/Pets/doSomething/{whatAction}'}  # type: ignore

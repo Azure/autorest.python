@@ -57,7 +57,7 @@ class DateOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_null.metadata['url']
+        url = self.get_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -82,7 +82,7 @@ class DateOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_null.metadata = {'url': '/date/null'}
+    get_null.metadata = {'url': '/date/null'}  # type: ignore
 
     @distributed_trace_async
     async def get_invalid_date(
@@ -100,7 +100,7 @@ class DateOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_invalid_date.metadata['url']
+        url = self.get_invalid_date.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -125,7 +125,7 @@ class DateOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_invalid_date.metadata = {'url': '/date/invaliddate'}
+    get_invalid_date.metadata = {'url': '/date/invaliddate'}  # type: ignore
 
     @distributed_trace_async
     async def get_overflow_date(
@@ -143,7 +143,7 @@ class DateOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_overflow_date.metadata['url']
+        url = self.get_overflow_date.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -168,7 +168,7 @@ class DateOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_overflow_date.metadata = {'url': '/date/overflowdate'}
+    get_overflow_date.metadata = {'url': '/date/overflowdate'}  # type: ignore
 
     @distributed_trace_async
     async def get_underflow_date(
@@ -186,7 +186,7 @@ class DateOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_underflow_date.metadata['url']
+        url = self.get_underflow_date.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -211,7 +211,7 @@ class DateOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_underflow_date.metadata = {'url': '/date/underflowdate'}
+    get_underflow_date.metadata = {'url': '/date/underflowdate'}  # type: ignore
 
     @distributed_trace_async
     async def put_max_date(
@@ -232,7 +232,7 @@ class DateOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_max_date.metadata['url']
+        url = self.put_max_date.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -258,7 +258,7 @@ class DateOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_max_date.metadata = {'url': '/date/max'}
+    put_max_date.metadata = {'url': '/date/max'}  # type: ignore
 
     @distributed_trace_async
     async def get_max_date(
@@ -276,7 +276,7 @@ class DateOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_max_date.metadata['url']
+        url = self.get_max_date.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -301,7 +301,7 @@ class DateOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_max_date.metadata = {'url': '/date/max'}
+    get_max_date.metadata = {'url': '/date/max'}  # type: ignore
 
     @distributed_trace_async
     async def put_min_date(
@@ -322,7 +322,7 @@ class DateOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_min_date.metadata['url']
+        url = self.put_min_date.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -348,7 +348,7 @@ class DateOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_min_date.metadata = {'url': '/date/min'}
+    put_min_date.metadata = {'url': '/date/min'}  # type: ignore
 
     @distributed_trace_async
     async def get_min_date(
@@ -366,7 +366,7 @@ class DateOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_min_date.metadata['url']
+        url = self.get_min_date.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -391,4 +391,4 @@ class DateOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_min_date.metadata = {'url': '/date/min'}
+    get_min_date.metadata = {'url': '/date/min'}  # type: ignore

@@ -42,7 +42,7 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_report.metadata['url']
+        url = self.get_report.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -69,4 +69,4 @@ class AutoRestReportServiceForAzureOperationsMixin(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_report.metadata = {'url': '/report/azure'}
+    get_report.metadata = {'url': '/report/azure'}  # type: ignore

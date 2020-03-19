@@ -20,7 +20,7 @@
 {% endif %}
 {{ op_tools.method_signature(operation, operation.python_name, async_mode=async_mode, coroutine=False) }}
 {%- if not async_mode %}
-    {{ keywords.sync_return_type_annotation(operation) }}
+    {{ op_tools.sync_return_type_annotation(operation) }}
 {% endif %}
 {% if operation.want_description_docstring %}
     """{{operation.description }}
@@ -48,7 +48,7 @@
 {% if operation.deprecated %}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
-    cls = kwargs.pop('cls', None)  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
+    cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotation(operation) }}]
     {{ op_tools.error_map(operation, code_model)|indent }}
 {% if operation.parameters.grouped %}
     {{ op_tools.grouped_parameters(operation)|indent }}
@@ -65,7 +65,7 @@
     def prepare_request(next_link=None):
         if not next_link:
             # Construct URL
-            url = self.{{ operation.python_name }}.metadata['url']
+            url = self.{{ operation.python_name }}.metadata['url']  # type: ignore
         {% if operation.parameters.path %}
             path_format_arguments = {
         {% for path_parameter in operation.parameters.path %}
@@ -136,4 +136,4 @@
 {% endif %}
         get_next, extract_data
     )
-{{ operation.python_name }}.metadata = {'url': '{{ operation.url|replace("'", "\\'") }}'}
+{{ operation.python_name }}.metadata = {'url': '{{ operation.url|replace("'", "\\'") }}'}  # type: ignore

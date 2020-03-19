@@ -59,7 +59,7 @@ class QueriesOperations(object):
         bool_query = True
 
         # Construct URL
-        url = self.get_boolean_true.metadata['url']
+        url = self.get_boolean_true.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -81,7 +81,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_boolean_true.metadata = {'url': '/queries/bool/true'}
+    get_boolean_true.metadata = {'url': '/queries/bool/true'}  # type: ignore
 
     @distributed_trace
     def get_boolean_false(
@@ -101,7 +101,7 @@ class QueriesOperations(object):
         bool_query = False
 
         # Construct URL
-        url = self.get_boolean_false.metadata['url']
+        url = self.get_boolean_false.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -123,7 +123,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_boolean_false.metadata = {'url': '/queries/bool/false'}
+    get_boolean_false.metadata = {'url': '/queries/bool/false'}  # type: ignore
 
     @distributed_trace
     def get_boolean_null(
@@ -145,7 +145,7 @@ class QueriesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_boolean_null.metadata['url']
+        url = self.get_boolean_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -168,7 +168,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_boolean_null.metadata = {'url': '/queries/bool/null'}
+    get_boolean_null.metadata = {'url': '/queries/bool/null'}  # type: ignore
 
     @distributed_trace
     def get_int_one_million(
@@ -188,7 +188,7 @@ class QueriesOperations(object):
         int_query = 1000000
 
         # Construct URL
-        url = self.get_int_one_million.metadata['url']
+        url = self.get_int_one_million.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -210,7 +210,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_int_one_million.metadata = {'url': '/queries/int/1000000'}
+    get_int_one_million.metadata = {'url': '/queries/int/1000000'}  # type: ignore
 
     @distributed_trace
     def get_int_negative_one_million(
@@ -230,7 +230,7 @@ class QueriesOperations(object):
         int_query = -1000000
 
         # Construct URL
-        url = self.get_int_negative_one_million.metadata['url']
+        url = self.get_int_negative_one_million.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -252,7 +252,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_int_negative_one_million.metadata = {'url': '/queries/int/-1000000'}
+    get_int_negative_one_million.metadata = {'url': '/queries/int/-1000000'}  # type: ignore
 
     @distributed_trace
     def get_int_null(
@@ -274,7 +274,7 @@ class QueriesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_int_null.metadata['url']
+        url = self.get_int_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -297,7 +297,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_int_null.metadata = {'url': '/queries/int/null'}
+    get_int_null.metadata = {'url': '/queries/int/null'}  # type: ignore
 
     @distributed_trace
     def get_ten_billion(
@@ -317,7 +317,7 @@ class QueriesOperations(object):
         long_query = 10000000000
 
         # Construct URL
-        url = self.get_ten_billion.metadata['url']
+        url = self.get_ten_billion.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -339,7 +339,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_ten_billion.metadata = {'url': '/queries/long/10000000000'}
+    get_ten_billion.metadata = {'url': '/queries/long/10000000000'}  # type: ignore
 
     @distributed_trace
     def get_negative_ten_billion(
@@ -359,7 +359,7 @@ class QueriesOperations(object):
         long_query = -10000000000
 
         # Construct URL
-        url = self.get_negative_ten_billion.metadata['url']
+        url = self.get_negative_ten_billion.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -381,7 +381,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_negative_ten_billion.metadata = {'url': '/queries/long/-10000000000'}
+    get_negative_ten_billion.metadata = {'url': '/queries/long/-10000000000'}  # type: ignore
 
     @distributed_trace
     def get_long_null(
@@ -403,7 +403,7 @@ class QueriesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_long_null.metadata['url']
+        url = self.get_long_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -426,7 +426,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_long_null.metadata = {'url': '/queries/long/null'}
+    get_long_null.metadata = {'url': '/queries/long/null'}  # type: ignore
 
     @distributed_trace
     def float_scientific_positive(
@@ -446,7 +446,7 @@ class QueriesOperations(object):
         float_query = 103400000000000000000
 
         # Construct URL
-        url = self.float_scientific_positive.metadata['url']
+        url = self.float_scientific_positive.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -468,7 +468,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    float_scientific_positive.metadata = {'url': '/queries/float/1.034E+20'}
+    float_scientific_positive.metadata = {'url': '/queries/float/1.034E+20'}  # type: ignore
 
     @distributed_trace
     def float_scientific_negative(
@@ -488,7 +488,7 @@ class QueriesOperations(object):
         float_query = -1.034e-20
 
         # Construct URL
-        url = self.float_scientific_negative.metadata['url']
+        url = self.float_scientific_negative.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -510,7 +510,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    float_scientific_negative.metadata = {'url': '/queries/float/-1.034E-20'}
+    float_scientific_negative.metadata = {'url': '/queries/float/-1.034E-20'}  # type: ignore
 
     @distributed_trace
     def float_null(
@@ -532,7 +532,7 @@ class QueriesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.float_null.metadata['url']
+        url = self.float_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -555,7 +555,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    float_null.metadata = {'url': '/queries/float/null'}
+    float_null.metadata = {'url': '/queries/float/null'}  # type: ignore
 
     @distributed_trace
     def double_decimal_positive(
@@ -575,7 +575,7 @@ class QueriesOperations(object):
         double_query = 9999999.999
 
         # Construct URL
-        url = self.double_decimal_positive.metadata['url']
+        url = self.double_decimal_positive.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -597,7 +597,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    double_decimal_positive.metadata = {'url': '/queries/double/9999999.999'}
+    double_decimal_positive.metadata = {'url': '/queries/double/9999999.999'}  # type: ignore
 
     @distributed_trace
     def double_decimal_negative(
@@ -617,7 +617,7 @@ class QueriesOperations(object):
         double_query = -9999999.999
 
         # Construct URL
-        url = self.double_decimal_negative.metadata['url']
+        url = self.double_decimal_negative.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -639,7 +639,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    double_decimal_negative.metadata = {'url': '/queries/double/-9999999.999'}
+    double_decimal_negative.metadata = {'url': '/queries/double/-9999999.999'}  # type: ignore
 
     @distributed_trace
     def double_null(
@@ -661,7 +661,7 @@ class QueriesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.double_null.metadata['url']
+        url = self.double_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -684,7 +684,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    double_null.metadata = {'url': '/queries/double/null'}
+    double_null.metadata = {'url': '/queries/double/null'}  # type: ignore
 
     @distributed_trace
     def string_unicode(
@@ -704,7 +704,7 @@ class QueriesOperations(object):
         string_query = "啊齄丂狛狜隣郎隣兀﨩"
 
         # Construct URL
-        url = self.string_unicode.metadata['url']
+        url = self.string_unicode.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -726,7 +726,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    string_unicode.metadata = {'url': '/queries/string/unicode/'}
+    string_unicode.metadata = {'url': '/queries/string/unicode/'}  # type: ignore
 
     @distributed_trace
     def string_url_encoded(
@@ -746,7 +746,7 @@ class QueriesOperations(object):
         string_query = "begin!*'();:@ &=+$,/?#[]end"
 
         # Construct URL
-        url = self.string_url_encoded.metadata['url']
+        url = self.string_url_encoded.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -768,7 +768,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    string_url_encoded.metadata = {'url': '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend'}
+    string_url_encoded.metadata = {'url': '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend'}  # type: ignore
 
     @distributed_trace
     def string_empty(
@@ -788,7 +788,7 @@ class QueriesOperations(object):
         string_query = ""
 
         # Construct URL
-        url = self.string_empty.metadata['url']
+        url = self.string_empty.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -810,7 +810,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    string_empty.metadata = {'url': '/queries/string/empty'}
+    string_empty.metadata = {'url': '/queries/string/empty'}  # type: ignore
 
     @distributed_trace
     def string_null(
@@ -832,7 +832,7 @@ class QueriesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.string_null.metadata['url']
+        url = self.string_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -855,7 +855,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    string_null.metadata = {'url': '/queries/string/null'}
+    string_null.metadata = {'url': '/queries/string/null'}  # type: ignore
 
     @distributed_trace
     def enum_valid(
@@ -877,7 +877,7 @@ class QueriesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.enum_valid.metadata['url']
+        url = self.enum_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -900,7 +900,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    enum_valid.metadata = {'url': '/queries/enum/green%20color'}
+    enum_valid.metadata = {'url': '/queries/enum/green%20color'}  # type: ignore
 
     @distributed_trace
     def enum_null(
@@ -922,7 +922,7 @@ class QueriesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.enum_null.metadata['url']
+        url = self.enum_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -945,7 +945,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    enum_null.metadata = {'url': '/queries/enum/null'}
+    enum_null.metadata = {'url': '/queries/enum/null'}  # type: ignore
 
     @distributed_trace
     def byte_multi_byte(
@@ -967,7 +967,7 @@ class QueriesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.byte_multi_byte.metadata['url']
+        url = self.byte_multi_byte.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -990,7 +990,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    byte_multi_byte.metadata = {'url': '/queries/byte/multibyte'}
+    byte_multi_byte.metadata = {'url': '/queries/byte/multibyte'}  # type: ignore
 
     @distributed_trace
     def byte_empty(
@@ -1010,7 +1010,7 @@ class QueriesOperations(object):
         byte_query = bytearray("", encoding="utf-8")
 
         # Construct URL
-        url = self.byte_empty.metadata['url']
+        url = self.byte_empty.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1032,7 +1032,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    byte_empty.metadata = {'url': '/queries/byte/empty'}
+    byte_empty.metadata = {'url': '/queries/byte/empty'}  # type: ignore
 
     @distributed_trace
     def byte_null(
@@ -1054,7 +1054,7 @@ class QueriesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.byte_null.metadata['url']
+        url = self.byte_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1077,7 +1077,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    byte_null.metadata = {'url': '/queries/byte/null'}
+    byte_null.metadata = {'url': '/queries/byte/null'}  # type: ignore
 
     @distributed_trace
     def date_valid(
@@ -1097,7 +1097,7 @@ class QueriesOperations(object):
         date_query = "2012-01-01"
 
         # Construct URL
-        url = self.date_valid.metadata['url']
+        url = self.date_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1119,7 +1119,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    date_valid.metadata = {'url': '/queries/date/2012-01-01'}
+    date_valid.metadata = {'url': '/queries/date/2012-01-01'}  # type: ignore
 
     @distributed_trace
     def date_null(
@@ -1141,7 +1141,7 @@ class QueriesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.date_null.metadata['url']
+        url = self.date_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1164,7 +1164,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    date_null.metadata = {'url': '/queries/date/null'}
+    date_null.metadata = {'url': '/queries/date/null'}  # type: ignore
 
     @distributed_trace
     def date_time_valid(
@@ -1184,7 +1184,7 @@ class QueriesOperations(object):
         date_time_query = "2012-01-01T01:01:01Z"
 
         # Construct URL
-        url = self.date_time_valid.metadata['url']
+        url = self.date_time_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1206,7 +1206,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    date_time_valid.metadata = {'url': '/queries/datetime/2012-01-01T01%3A01%3A01Z'}
+    date_time_valid.metadata = {'url': '/queries/datetime/2012-01-01T01%3A01%3A01Z'}  # type: ignore
 
     @distributed_trace
     def date_time_null(
@@ -1228,7 +1228,7 @@ class QueriesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.date_time_null.metadata['url']
+        url = self.date_time_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1251,7 +1251,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    date_time_null.metadata = {'url': '/queries/datetime/null'}
+    date_time_null.metadata = {'url': '/queries/datetime/null'}  # type: ignore
 
     @distributed_trace
     def array_string_csv_valid(
@@ -1274,7 +1274,7 @@ class QueriesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.array_string_csv_valid.metadata['url']
+        url = self.array_string_csv_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1297,7 +1297,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    array_string_csv_valid.metadata = {'url': '/queries/array/csv/string/valid'}
+    array_string_csv_valid.metadata = {'url': '/queries/array/csv/string/valid'}  # type: ignore
 
     @distributed_trace
     def array_string_csv_null(
@@ -1319,7 +1319,7 @@ class QueriesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.array_string_csv_null.metadata['url']
+        url = self.array_string_csv_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1342,7 +1342,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    array_string_csv_null.metadata = {'url': '/queries/array/csv/string/null'}
+    array_string_csv_null.metadata = {'url': '/queries/array/csv/string/null'}  # type: ignore
 
     @distributed_trace
     def array_string_csv_empty(
@@ -1364,7 +1364,7 @@ class QueriesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.array_string_csv_empty.metadata['url']
+        url = self.array_string_csv_empty.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1387,7 +1387,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    array_string_csv_empty.metadata = {'url': '/queries/array/csv/string/empty'}
+    array_string_csv_empty.metadata = {'url': '/queries/array/csv/string/empty'}  # type: ignore
 
     @distributed_trace
     def array_string_ssv_valid(
@@ -1410,7 +1410,7 @@ class QueriesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.array_string_ssv_valid.metadata['url']
+        url = self.array_string_ssv_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1433,7 +1433,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    array_string_ssv_valid.metadata = {'url': '/queries/array/ssv/string/valid'}
+    array_string_ssv_valid.metadata = {'url': '/queries/array/ssv/string/valid'}  # type: ignore
 
     @distributed_trace
     def array_string_tsv_valid(
@@ -1456,7 +1456,7 @@ class QueriesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.array_string_tsv_valid.metadata['url']
+        url = self.array_string_tsv_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1479,7 +1479,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    array_string_tsv_valid.metadata = {'url': '/queries/array/tsv/string/valid'}
+    array_string_tsv_valid.metadata = {'url': '/queries/array/tsv/string/valid'}  # type: ignore
 
     @distributed_trace
     def array_string_pipes_valid(
@@ -1502,7 +1502,7 @@ class QueriesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.array_string_pipes_valid.metadata['url']
+        url = self.array_string_pipes_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1525,4 +1525,4 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    array_string_pipes_valid.metadata = {'url': '/queries/array/pipes/string/valid'}
+    array_string_pipes_valid.metadata = {'url': '/queries/array/pipes/string/valid'}  # type: ignore
