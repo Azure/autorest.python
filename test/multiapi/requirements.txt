@@ -2,4 +2,5 @@ msrest>=0.6.11
 azure-core>=1.3.0
 azure-mgmt-core
 pytest
+azure-common
 -e ./Expected/AcceptanceTests/Multiapi
