@@ -7,6 +7,7 @@ from typing import Any, Dict, List, Optional, Union
 from .base_schema import BaseSchema
 from .dictionary_schema import DictionarySchema
 from .property import Property
+from .imports import FileImport, ImportType
 
 
 class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
@@ -157,3 +158,9 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
     @property
     def has_readonly_or_constant_property(self) -> bool:
         return any(x.readonly or x.constant for x in self.properties)
+
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        if self.is_exception:
+            file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
+        return file_import
