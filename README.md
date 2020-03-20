@@ -42,6 +42,7 @@ modelerfour:
     choice:  pascalcase
     choiceValue:  snakecase
     constant:  snakecase
+    constantParameter:  snakecase
     type:  pascalcase
     local: _ + snakecase
     global: snakecase
