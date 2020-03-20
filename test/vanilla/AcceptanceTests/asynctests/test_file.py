@@ -24,6 +24,7 @@
 #
 # --------------------------------------------------------------------------
 
+from async_generator import yield_, async_generator
 import unittest
 import subprocess
 import sys
@@ -37,7 +38,6 @@ from os.path import dirname, pardir, join, realpath
 from msrest.exceptions import DeserializationError
 
 from bodyfile.aio import AutoRestSwaggerBATFileService
-from bodyfile.models import ErrorException
 
 import pytest
 
@@ -45,11 +45,12 @@ cwd = dirname(realpath(__file__))
 
 
 @pytest.fixture
+@async_generator
 async def client(connection_data_block_size=None):
     async with AutoRestSwaggerBATFileService(
         base_url="http://localhost:3000", connection_data_block_size=connection_data_block_size
     ) as client:
-        yield client
+        await yield_(client)
 
 @pytest.fixture
 def callback():
@@ -102,7 +103,6 @@ class TestFile(object):
     @pytest.mark.asyncio
     @pytest.mark.parametrize('client', [4096], indirect=True)
     async def test_files_long_running(self, client):
-        pytest.skip("slow")
         file_length = 0
         stream = await client.files.get_file_large()
         async for data in stream:

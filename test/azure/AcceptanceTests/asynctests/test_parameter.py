@@ -24,6 +24,7 @@
 #
 # --------------------------------------------------------------------------
 
+from async_generator import yield_, async_generator
 import unittest
 import subprocess
 import sys
@@ -44,20 +45,22 @@ from azurespecialproperties.aio import AutoRestAzureSpecialParametersTestClient
 import pytest
 
 @pytest.fixture
+@async_generator
 async def client():
     async with AutoRestParameterGroupingTestService(base_url="http://localhost:3000") as client:
-        yield client
+        await yield_(client)
 
 @pytest.fixture
 def valid_subscription():
     return '1234-5678-9012-3456'
 
 @pytest.fixture
+@async_generator
 async def azure_client(valid_subscription, credential, authentication_policy):
     async with AutoRestAzureSpecialParametersTestClient(
         credential, valid_subscription, base_url="http://localhost:3000", authentication_policy=authentication_policy
     ) as client:
-        yield client
+        await yield_(client)
 
 @pytest.fixture
 def body_parameter():
@@ -170,7 +173,6 @@ class TestParameter(object):
         await azure_client.api_version_default.get_path_global_valid()
         await azure_client.api_version_default.get_swagger_global_valid()
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/93")
     @pytest.mark.asyncio
     async def test_api_version_local(self, azure_client):
         await azure_client.api_version_local.get_method_local_valid()

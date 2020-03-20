@@ -41,31 +41,6 @@ class BaseProduct(msrest.serialization.Model):
         self.description = kwargs.get('description', None)
 
 
-class ErrorException(HttpResponseError):
-    """Server responded with exception of type: 'Error'.
-
-    :param response: Server response to be deserialized.
-    :param error_model: A deserialized model of the response body as model.
-    """
-
-    def __init__(self, response, error_model):
-        self.error = error_model
-        super(ErrorException, self).__init__(response=response, error_model=error_model)
-
-    @classmethod
-    def from_response(cls, response, deserialize):
-        """Deserialize this response as this exception, or a subclass of this exception.
-
-        :param response: Server response to be deserialized.
-        :param deserialize: A deserializer
-        """
-        model_name = 'Error'
-        error = deserialize(model_name, response)
-        if error is None:
-            error = deserialize.dependencies[model_name]()
-        return error._EXCEPTION_TYPE(response, error)
-
-
 class Error(msrest.serialization.Model):
     """Error.
 
@@ -76,7 +51,6 @@ class Error(msrest.serialization.Model):
     :param parent_error:
     :type parent_error: ~modelflattening.models.Error
     """
-    _EXCEPTION_TYPE = ErrorException
 
     _attribute_map = {
         'status': {'key': 'status', 'type': 'int'},
@@ -190,45 +164,6 @@ class FlattenedProduct(Resource):
         super(FlattenedProduct, self).__init__(**kwargs)
         self.p_name = kwargs.get('p_name', None)
         self.type_properties_type = kwargs.get('type_properties_type', None)
-        self.provisioning_state_values = None
-        self.provisioning_state = kwargs.get('provisioning_state', None)
-
-
-class FlattenedProductProperties(msrest.serialization.Model):
-    """FlattenedProductProperties.
-
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    :param p_name:
-    :type p_name: str
-    :param type:
-    :type type: str
-    :ivar provisioning_state_values:  Possible values include: 'Succeeded', 'Failed', 'canceled',
-     'Accepted', 'Creating', 'Created', 'Updating', 'Updated', 'Deleting', 'Deleted', 'OK'.
-    :vartype provisioning_state_values: str or
-     ~modelflattening.models.FlattenedProductPropertiesProvisioningStateValues
-    :param provisioning_state:
-    :type provisioning_state: str
-    """
-
-    _validation = {
-        'provisioning_state_values': {'readonly': True},
-    }
-
-    _attribute_map = {
-        'p_name': {'key': 'p\\.name', 'type': 'str'},
-        'type': {'key': 'type', 'type': 'str'},
-        'provisioning_state_values': {'key': 'provisioningStateValues', 'type': 'str'},
-        'provisioning_state': {'key': 'provisioningState', 'type': 'str'},
-    }
-
-    def __init__(
-        self,
-        **kwargs
-    ):
-        super(FlattenedProductProperties, self).__init__(**kwargs)
-        self.p_name = kwargs.get('p_name', None)
-        self.type = kwargs.get('type', None)
         self.provisioning_state_values = None
         self.provisioning_state = kwargs.get('provisioning_state', None)
 
@@ -416,47 +351,6 @@ class SimpleProduct(BaseProduct):
         **kwargs
     ):
         super(SimpleProduct, self).__init__(**kwargs)
-        self.max_product_display_name = kwargs.get('max_product_display_name', None)
-        self.generic_value = kwargs.get('generic_value', None)
-        self.odata_value = kwargs.get('odata_value', None)
-
-
-class SimpleProductProperties(msrest.serialization.Model):
-    """The product documentation.
-
-    Variables are only populated by the server, and will be ignored when sending a request.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :param max_product_display_name: Required. Display name of product.
-    :type max_product_display_name: str
-    :ivar capacity: Required. Capacity of product. For example, 4 people. Default value: "Large".
-    :vartype capacity: str
-    :param generic_value: Generic URL value.
-    :type generic_value: str
-    :param odata_value: URL value.
-    :type odata_value: str
-    """
-
-    _validation = {
-        'max_product_display_name': {'required': True},
-        'capacity': {'required': True, 'constant': True},
-    }
-
-    _attribute_map = {
-        'max_product_display_name': {'key': 'max_product_display_name', 'type': 'str'},
-        'capacity': {'key': 'max_product_capacity', 'type': 'str'},
-        'generic_value': {'key': 'max_product_image.generic_value', 'type': 'str'},
-        'odata_value': {'key': 'max_product_image.@odata\\.value', 'type': 'str'},
-    }
-
-    capacity = "Large"
-
-    def __init__(
-        self,
-        **kwargs
-    ):
-        super(SimpleProductProperties, self).__init__(**kwargs)
         self.max_product_display_name = kwargs.get('max_product_display_name', None)
         self.generic_value = kwargs.get('generic_value', None)
         self.odata_value = kwargs.get('odata_value', None)

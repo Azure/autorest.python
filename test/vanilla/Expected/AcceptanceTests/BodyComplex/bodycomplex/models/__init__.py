@@ -23,13 +23,12 @@ try:
     from ._models_py3 import DotSalmon
     from ._models_py3 import DoubleWrapper
     from ._models_py3 import DurationWrapper
-    from ._models_py3 import Error, ErrorException
+    from ._models_py3 import Error
     from ._models_py3 import Fish
     from ._models_py3 import FloatWrapper
     from ._models_py3 import Goblinshark
     from ._models_py3 import IntWrapper
     from ._models_py3 import LongWrapper
-    from ._models_py3 import MyBaseHelperType
     from ._models_py3 import MyBaseType
     from ._models_py3 import MyDerivedType
     from ._models_py3 import Pet
@@ -57,13 +56,12 @@ except (SyntaxError, ImportError):
     from ._models import DotSalmon  # type: ignore
     from ._models import DoubleWrapper  # type: ignore
     from ._models import DurationWrapper  # type: ignore
-    from ._models import Error, ErrorException  # type: ignore
+    from ._models import Error  # type: ignore
     from ._models import Fish  # type: ignore
     from ._models import FloatWrapper  # type: ignore
     from ._models import Goblinshark  # type: ignore
     from ._models import IntWrapper  # type: ignore
     from ._models import LongWrapper  # type: ignore
-    from ._models import MyBaseHelperType  # type: ignore
     from ._models import MyBaseType  # type: ignore
     from ._models import MyDerivedType  # type: ignore
     from ._models import Pet  # type: ignore
@@ -97,13 +95,12 @@ __all__ = [
     'DotSalmon',
     'DoubleWrapper',
     'DurationWrapper',
-    'Error', 'ErrorException',
+    'Error',
     'Fish',
     'FloatWrapper',
     'Goblinshark',
     'IntWrapper',
     'LongWrapper',
-    'MyBaseHelperType',
     'MyBaseType',
     'MyDerivedType',
     'Pet',

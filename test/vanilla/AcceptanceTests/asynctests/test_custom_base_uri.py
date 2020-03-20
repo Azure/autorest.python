@@ -24,6 +24,7 @@
 #
 # --------------------------------------------------------------------------
 
+from async_generator import yield_, async_generator
 import unittest
 import subprocess
 import sys
@@ -40,15 +41,16 @@ from msrest.exceptions import (
 from azure.core.exceptions import ServiceRequestError
 
 from custombaseurl.aio import AutoRestParameterizedHostTestClient
-from custombaseurl.models import Error, ErrorException
+from custombaseurl.models import Error
 from custombaseurlmoreoptions.aio import AutoRestParameterizedCustomHostTestClient
 
 import pytest
 
 @pytest.fixture
+@async_generator
 async def client():
     async with AutoRestParameterizedHostTestClient("host:3000", retry_total = 0) as client:
-        yield client
+        await yield_(client)
 
 class TestCustomBaseUri(object):
 

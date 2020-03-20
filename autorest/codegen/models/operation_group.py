@@ -36,8 +36,10 @@ class OperationGroup(BaseModel):
         self.operations = operations
         self.api_versions = api_versions
 
-    def imports(self, async_mode: bool) -> FileImport:
+    def imports(self, async_mode: bool, has_schemas: bool) -> FileImport:
         file_import = FileImport()
+        file_import.add_from_import("azure.core.exceptions", "ResourceNotFoundError", ImportType.AZURECORE)
+        file_import.add_from_import("azure.core.exceptions", "ResourceExistsError", ImportType.AZURECORE)
         for operation in self.operations:
             file_import.merge(operation.imports(self.code_model, async_mode))
         if self.code_model.options["tracing"]:
@@ -49,9 +51,14 @@ class OperationGroup(BaseModel):
                 file_import.add_from_import(
                     "azure.core.tracing.decorator", "distributed_trace", ImportType.AZURECORE,
                 )
+        if has_schemas:
+            if async_mode:
+                file_import.add_from_import("...", "models", ImportType.LOCAL)
+            else:
+                file_import.add_from_import("..", "models", ImportType.LOCAL)
         return file_import
 
-    def get_filename(self, async_mode) -> str:
+    def get_filename(self, async_mode: bool) -> str:
         basename = self.name
         if self.is_empty_operation_group:
             basename = self.code_model.module_name

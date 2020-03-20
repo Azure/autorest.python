@@ -10,7 +10,9 @@ from ..models import LROOperation, PagingOperation, CodeModel, OperationGroup
 
 
 class OperationGroupSerializer:
-    def __init__(self, code_model: CodeModel, env: Environment, operation_group: OperationGroup, async_mode: bool):
+    def __init__(
+        self, code_model: CodeModel, env: Environment, operation_group: OperationGroup, async_mode: bool
+    ) -> None:
         self.code_model = code_model
         self.env = env
         self.operation_group = operation_group
@@ -30,7 +32,7 @@ class OperationGroupSerializer:
         return operation_group_template.render(
             code_model=self.code_model,
             operation_group=self.operation_group,
-            imports=FileImportSerializer(self.operation_group.imports(self.async_mode)),
+            imports=FileImportSerializer(self.operation_group.imports(self.async_mode, bool(self.code_model.schemas))),
             async_mode=self.async_mode,
             is_lro=_is_lro,
             is_paging=_is_paging,

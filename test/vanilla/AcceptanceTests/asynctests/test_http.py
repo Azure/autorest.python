@@ -24,6 +24,7 @@
 #
 # --------------------------------------------------------------------------
 
+from async_generator import yield_, async_generator
 import unittest
 import subprocess
 import sys
@@ -41,13 +42,13 @@ from azure.core.pipeline.policies import ContentDecodePolicy, AsyncRetryPolicy, 
 from msrest.exceptions import DeserializationError
 
 from httpinfrastructure.aio import AutoRestHttpInfrastructureTestService
-from httpinfrastructure.models import (
-    MyException, B, C, D, ErrorException)
+from httpinfrastructure.models import B, C, D, MyException
 
 import pytest
 
 
-@pytest.fixture()
+@pytest.fixture
+@async_generator
 async def client(cookie_policy):
     """Create a AutoRestHttpInfrastructureTestService client with test server credentials."""
     policies = [
@@ -58,7 +59,7 @@ async def client(cookie_policy):
         cookie_policy
     ]
     async with AutoRestHttpInfrastructureTestService(base_url="http://localhost:3000", policies=policies) as client:
-        yield client
+        await yield_(client)
 
 
 class TestHttp(object):
@@ -83,7 +84,8 @@ class TestHttp(object):
             pytest.fail()
 
         except HttpResponseError as err:
-            assert isinstance(err.error, model)
+            if err.model:
+                assert isinstance(err.model, model)
             assert err.response.status_code == code
 
     async def assert_raises_with_status(self, code, func, *args, **kwargs):
@@ -100,7 +102,9 @@ class TestHttp(object):
             pytest.fail()
 
         except HttpResponseError as err:
-            assert err.message == msg
+            assert err.model.message == msg
+            assert msg in err.message
+            assert msg in str(err)
             assert err.response.status_code == code
 
     async def assert_raises_with_status_and_response_contains(self, code, msg, func, *args, **kwargs):

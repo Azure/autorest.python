@@ -25,6 +25,7 @@
 #
 # --------------------------------------------------------------------------
 
+from async_generator import yield_, async_generator
 import unittest
 import subprocess
 import sys
@@ -36,16 +37,18 @@ import os
 from os.path import dirname, pardir, join, realpath
 
 from msrest.exceptions import DeserializationError, SerializationError
+from azure.core.exceptions import HttpResponseError
 
 from bodystring.aio import AutoRestSwaggerBATService
-from bodystring.models import Colors, ErrorException
+from bodystring.models import Colors
 
 import pytest
 
 @pytest.fixture
+@async_generator
 async def client():
     async with AutoRestSwaggerBATService(base_url="http://localhost:3000") as client:
-        yield client
+        await yield_(client)
 
 class TestString(object):
 
@@ -113,7 +116,7 @@ class TestString(object):
         assert Colors.red_color ==  (await client.enum.get_not_expandable())
         await client.enum.put_not_expandable('red color')
         await client.enum.put_not_expandable(Colors.red_color)
-        with pytest.raises(ErrorException):
+        with pytest.raises(HttpResponseError):
             await client.enum.put_not_expandable('not a colour')
 
     @pytest.mark.asyncio

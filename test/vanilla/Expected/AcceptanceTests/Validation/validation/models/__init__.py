@@ -9,17 +9,17 @@
 try:
     from ._models_py3 import ChildProduct
     from ._models_py3 import ConstantProduct
-    from ._models_py3 import Error, ErrorException
+    from ._models_py3 import Error
     from ._models_py3 import Product
 except (SyntaxError, ImportError):
     from ._models import ChildProduct  # type: ignore
     from ._models import ConstantProduct  # type: ignore
-    from ._models import Error, ErrorException  # type: ignore
+    from ._models import Error  # type: ignore
     from ._models import Product  # type: ignore
 
 __all__ = [
     'ChildProduct',
     'ConstantProduct',
-    'Error', 'ErrorException',
+    'Error',
     'Product',
 ]

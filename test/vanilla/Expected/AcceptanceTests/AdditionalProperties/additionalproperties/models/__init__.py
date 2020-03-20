@@ -8,7 +8,7 @@
 
 try:
     from ._models_py3 import CatAPTrue
-    from ._models_py3 import Error, ErrorException
+    from ._models_py3 import Error
     from ._models_py3 import PetAPInProperties
     from ._models_py3 import PetAPInPropertiesWithAPString
     from ._models_py3 import PetAPObject
@@ -16,7 +16,7 @@ try:
     from ._models_py3 import PetAPTrue
 except (SyntaxError, ImportError):
     from ._models import CatAPTrue  # type: ignore
-    from ._models import Error, ErrorException  # type: ignore
+    from ._models import Error  # type: ignore
     from ._models import PetAPInProperties  # type: ignore
     from ._models import PetAPInPropertiesWithAPString  # type: ignore
     from ._models import PetAPObject  # type: ignore
@@ -25,7 +25,7 @@ except (SyntaxError, ImportError):
 
 __all__ = [
     'CatAPTrue',
-    'Error', 'ErrorException',
+    'Error',
     'PetAPInProperties',
     'PetAPInPropertiesWithAPString',
     'PetAPObject',

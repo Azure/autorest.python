@@ -24,6 +24,7 @@
 #
 # --------------------------------------------------------------------------
 
+from async_generator import yield_, async_generator
 import unittest
 import subprocess
 import sys
@@ -42,9 +43,10 @@ from bodynumber.aio import AutoRestNumberTestService
 import pytest
 
 @pytest.fixture
+@async_generator
 async def client():
     async with AutoRestNumberTestService(base_url="http://localhost:3000") as client:
-        yield client
+        await yield_(client)
 
 class TestNumber(object):
 

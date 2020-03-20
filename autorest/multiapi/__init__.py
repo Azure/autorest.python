@@ -33,18 +33,7 @@ class MultiApiScriptPlugin(Plugin):
         return generator.process()
 
 
-def _parse_input(input_parameter: str):
-    """From a syntax like package_name#submodule, build a package name
-    and complete module name.
-    """
-    split_package_name = input_parameter.split("#")
-    package_name = split_package_name[0]
-    module_name = package_name.replace("-", ".")
-    if len(split_package_name) >= 2:
-        module_name = ".".join([module_name, split_package_name[1]])
-    return module_name
-
-def _get_floating_latest(api_versions_list: List[str], preview_mode: bool):
+def _get_floating_latest(api_versions_list: List[str], preview_mode: bool) -> str:
     """Get the floating latest, from a random list of API versions.
     """
     api_versions_list = list(api_versions_list)
@@ -65,7 +54,7 @@ def _get_floating_latest(api_versions_list: List[str], preview_mode: bool):
     return sorted(trimmed_preview)[-1]
 
 def _build_last_rt_list(
-    versioned_operations_dict: Dict[str, Tuple[str, str]],
+    versioned_operations_dict: Dict[str, List[Tuple[str, str]]],
     mixin_operations: Dict[str, Dict[str, List[str]]],
     last_api_version: str,
     preview_mode: bool
@@ -136,7 +125,7 @@ class MultiAPI:
         output_folder: str,
         autorestapi: AutorestAPI,
         default_api: Optional[str] = None
-    ):
+    ) -> None:
         if input_package_name is None:
             raise ValueError("package-name is required, either provide it as args or check your readme configuration")
         self.input_package_name = input_package_name
@@ -144,12 +133,11 @@ class MultiAPI:
 
         self.output_folder = Path(output_folder).resolve()
         _LOGGER.debug("Received output-folder %s", output_folder)
-
+        self.output_package_name: str = ""
         self._autorestapi = autorestapi
         self.default_api = default_api
 
     def _get_paths_to_versions(self) -> List[Path]:
-
         paths_to_versions = []
         for child in [x for x in self.output_folder.iterdir() if x.is_dir()]:
             child_dir = (self.output_folder / child).resolve()
@@ -187,7 +175,9 @@ class MultiAPI:
                 mixin_operations[func_name]['call'] = func['call']
         return mixin_operations
 
-    def _build_operation_meta(self, paths_to_versions: List[Path]):
+    def _build_operation_meta(
+        self, paths_to_versions: List[Path]
+    ) -> Tuple[Dict[str, List[Tuple[str, str]]], Dict[str, str]]:
         """Introspect the client:
 
         version_dict => {
@@ -218,19 +208,33 @@ class MultiAPI:
                 versioned_operations_dict[operation_group].append((version_path.name, operation_group_class_name))
         return versioned_operations_dict, mod_to_api_version
 
+    def _parse_package_name_input(self) -> str:
+        """From a syntax like package_name#submodule, build a package name
+        and complete module name.
+        """
+        split_package_name = self.input_package_name.split("#")
+        package_name = split_package_name[0]
+        module_name = package_name.replace("-", ".")
+        if len(split_package_name) >= 2:
+            module_name = ".".join([module_name, split_package_name[1]])
+            self.output_package_name = package_name
+        else:
+            self.output_package_name = self.input_package_name
+        return module_name
+
     def process(self) -> bool:
         _LOGGER.info("Generating multiapi client")
         # If True, means the auto-profile will consider preview versions.
         # If not, if it exists a stable API version for a global or RT, will always be used
         preview_mode = cast(bool, self.default_api and "preview" in self.default_api)
 
-        module_name = _parse_input(self.input_package_name)
+        module_name = self._parse_package_name_input()
         paths_to_versions = self._get_paths_to_versions()
         versioned_operations_dict, mod_to_api_version = self._build_operation_meta(
             paths_to_versions
         )
 
-        last_api_version = _get_floating_latest(mod_to_api_version.keys(), preview_mode)
+        last_api_version = _get_floating_latest(list(mod_to_api_version.keys()), preview_mode)
 
         # I need default_api to be v2019_06_07_preview shaped if it exists, let's be smart
         # and change it automatically so I can take both syntax as input
@@ -297,7 +301,7 @@ class MultiAPI:
 
         conf = {
             "client_name": metadata_json["client"]["name"],
-            "package_name": self.input_package_name,
+            "package_name": self.output_package_name,
             "has_subscription_id": metadata_json["client"]["has_subscription_id"],
             "module_name": module_name,
             "operations": versioned_operations_dict,
@@ -328,13 +332,21 @@ class MultiAPI:
             multiapi_serializer.serialize_multiapi_models()
         )
 
+        # write the empty py.typed file
+        self._autorestapi.write_file("py.typed", "# Marker file for PEP 561.")
+
         if mixin_operations:
             self._autorestapi.write_file(
                 Path("_operations_mixin.py"),
                 multiapi_serializer.serialize_multiapi_operation_mixins()
             )
 
-        if not self._autorestapi.read_file("_version.py"):
+        if self._autorestapi.read_file("_version.py"):
+            self._autorestapi.write_file(
+                "_version.py",
+                self._autorestapi.read_file("_version.py")
+            )
+        else:
             self._autorestapi.write_file(
                 Path("_version.py"),
                 multiapi_serializer.serialize_multiapi_version()

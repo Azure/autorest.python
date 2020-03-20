@@ -54,6 +54,20 @@ def custom_url_client(credential, authentication_policy):
         yield client
 
 
+def test_get_no_item_name_pages(client):
+    pages = client.paging.get_no_item_name_pages()
+    items = [i for i in pages]
+    assert len(items) == 1
+    assert items[0].properties.id == 1
+    assert items[0].properties.name == "Product"
+
+def test_get_null_next_link_name_pages(client):
+    pages = client.paging.get_null_next_link_name_pages()
+    items = [i for i in pages]
+    assert len(items) == 1
+    assert items[0].properties.id == 1
+    assert items[0].properties.name == "Product"
+
 def test_get_single_pages_with_cb(client):
     def cb(list_of_obj):
         for obj in list_of_obj:
@@ -136,3 +150,18 @@ def test_custom_url_get_pages_partial_url_operation(custom_url_client):
     assert len(paged) == 2
     assert paged[0].properties.id == 1
     assert paged[1].properties.id == 2
+
+def test_get_multiple_pages_lro(client):
+    """LRO + Paging at the same time.
+
+    Python decides to poll, but not follow paging. Check that at least you get read the first page.
+    """
+    from azure.mgmt.core.polling.arm_polling import ARMPolling
+    polling = ARMPolling(0, lro_options={'final-state-via': 'location'})
+    # FIXME Location should be the default once 1.0.0b2 is out
+
+    poller = client.paging.begin_get_multiple_pages_lro(polling=polling)
+    page1 = poller.result()
+    assert len(page1.values) == 1
+    assert page1.values[0].properties.id == 1
+    assert page1.next_link.endswith("paging/multiple/page/2")

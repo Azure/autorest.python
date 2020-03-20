@@ -15,10 +15,10 @@ class ListSchema(BaseSchema):
         yaml_data: Dict[str, Any],
         element_type: BaseSchema,
         *,
-        max_items: int = None,
-        min_items: int = None,
-        unique_items: int = None,
-    ):
+        max_items: Optional[int] = None,
+        min_items: Optional[int] = None,
+        unique_items: Optional[int] = None,
+    ) -> None:
         super(ListSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.element_type = element_type
         self.max_items = max_items
@@ -54,7 +54,7 @@ class ListSchema(BaseSchema):
         return validation_map or None
 
     @property
-    def has_xml_serialization_ctxt(self):
+    def has_xml_serialization_ctxt(self) -> bool:
         return super().has_xml_serialization_ctxt or self.element_type.has_xml_serialization_ctxt
 
     def xml_serialization_ctxt(self) -> Optional[str]:

@@ -37,7 +37,6 @@ from os.path import dirname, pardir, join, realpath
 from msrest.exceptions import DeserializationError
 
 from bodyfile import AutoRestSwaggerBATFileService
-from bodyfile.models import ErrorException
 
 import pytest
 
@@ -99,7 +98,6 @@ class TestFile(object):
 
     @pytest.mark.parametrize('connection_data_block_size', [4096])
     def test_files_long_running(self, client):
-        pytest.skip("slow")
         file_length = 0
         stream = client.files.get_file_large()
         for data in stream:

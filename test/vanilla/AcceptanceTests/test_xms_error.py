@@ -26,9 +26,10 @@
 import json
 import pytest
 
+from azure.core.exceptions import HttpResponseError, ResourceNotFoundError
 
 from xmserrorresponse import XMSErrorResponseExtensions
-from xmserrorresponse.models import NotFoundErrorBaseException, AnimalNotFoundException, LinkNotFoundException, PetActionErrorException, PetSadErrorException, PetHungryOrThirstyErrorException
+from xmserrorresponse.models import NotFoundErrorBase, AnimalNotFound, LinkNotFound, PetActionError, PetSadError, PetHungryOrThirstyError
 
 @pytest.fixture
 def client():
@@ -48,27 +49,29 @@ class TestXmsErrorResponse(object):
 
     def test_get_by_pet_id_discriminator(self, client):
 
-        assert issubclass(AnimalNotFoundException, NotFoundErrorBaseException)
-        assert issubclass(LinkNotFoundException, NotFoundErrorBaseException)
+        assert issubclass(AnimalNotFound, NotFoundErrorBase)
+        assert issubclass(LinkNotFound, NotFoundErrorBase)
 
-        with pytest.raises(AnimalNotFoundException) as excinfo:
+        with pytest.raises(HttpResponseError) as excinfo:
             client.pet.get_pet_by_id("coyoteUgly")
-        assert excinfo.value.error.reason == "the type of animal requested is not available"
+        assert isinstance(excinfo.value.model, AnimalNotFound)
+        assert excinfo.value.model.reason == "the type of animal requested is not available"
 
-        with pytest.raises(LinkNotFoundException) as excinfo:
+        with pytest.raises(HttpResponseError) as excinfo:
             client.pet.get_pet_by_id("weirdAlYankovic")
-        assert excinfo.value.error.reason == "link to pet not found"
+        assert isinstance(excinfo.value.model, LinkNotFound)
+        assert excinfo.value.model.reason == "link to pet not found"
 
     def test_get_by_pet_id_basic_types(self, client):
 
         with pytest.raises(Exception) as excinfo:
             client.pet.get_pet_by_id("ringo")
-        assert excinfo.value.error is None  # no model attached
+        assert excinfo.value.model is None  # no model attached
         assert json.loads(excinfo.value.response.text()) == "ringo is missing"
 
         with pytest.raises(Exception) as excinfo:
             client.pet.get_pet_by_id("alien123")
-        assert excinfo.value.error is None  # no model attached
+        assert excinfo.value.model is None  # no model attached
         assert json.loads(excinfo.value.response.text()) == 123
 
     def test_do_something_success(self, client):
@@ -77,13 +80,14 @@ class TestXmsErrorResponse(object):
 
     def test_do_something_error(self, client):
 
-        assert issubclass(PetSadErrorException, PetActionErrorException)
-        assert issubclass(PetHungryOrThirstyErrorException, PetActionErrorException)
+        assert issubclass(PetSadError, PetActionError)
+        assert issubclass(PetHungryOrThirstyError, PetActionError)
 
-        with pytest.raises(PetSadErrorException) as excinfo:
+        with pytest.raises(HttpResponseError) as excinfo:
             client.pet.do_something("jump")
-        assert excinfo.value.error.reason == "need more treats"
+        assert isinstance(excinfo.value.model, PetSadError)
+        assert excinfo.value.model.reason == "need more treats"
 
-        with pytest.raises(PetHungryOrThirstyErrorException) as excinfo:
+        with pytest.raises(ResourceNotFoundError) as excinfo:
             client.pet.do_something("fetch")
-        assert excinfo.value.error.hungry_or_thirsty == "hungry and thirsty"
+            

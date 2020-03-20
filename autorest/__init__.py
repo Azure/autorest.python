@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 import logging
 from abc import ABC, abstractmethod
+from typing import Any, Dict
 
 import yaml
 
@@ -22,7 +23,7 @@ class Plugin(ABC):
     :param autorestapi: An autorest API instance
     """
 
-    def __init__(self, autorestapi: AutorestAPI):
+    def __init__(self, autorestapi: AutorestAPI) -> None:
         self._autorestapi = autorestapi
 
     @abstractmethod
@@ -58,7 +59,7 @@ class YamlUpdatePlugin(Plugin):
         return True
 
     @abstractmethod
-    def update_yaml(self, yaml_data):
+    def update_yaml(self, yaml_data: Dict[str, Any]) -> None:
         """The code-model-v4-no-tags yaml model tree.
 
         :rtype: None

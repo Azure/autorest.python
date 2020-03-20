@@ -56,7 +56,7 @@ class StdStreamAutorestAPI(AutorestAPI):
     """The stream API with Autorest
     """
 
-    def __init__(self, session_id: str):
+    def __init__(self, session_id: str) -> None:
         super().__init__()
         self.session_id = session_id
 

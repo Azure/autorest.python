@@ -10,7 +10,7 @@ from ..models import CodeModel, Operation, OperationGroup
 
 
 class MetadataSerializer:
-    def __init__(self, code_model: CodeModel, env: Environment):
+    def __init__(self, code_model: CodeModel, env: Environment) -> None:
         self.code_model = code_model
         self.env = env
 
@@ -21,6 +21,7 @@ class MetadataSerializer:
             total_api_version_set.update(operation_group.api_versions)
 
         total_api_version_list = list(total_api_version_set)
+        total_api_version_list.sort()
 
         # switching ' to " so json can decode the dict we end up writing to file
         total_api_version_list = [str(api_version).replace("'", "\"") for api_version in total_api_version_list]

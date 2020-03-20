@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import HttpResponseError, map_error
+from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
@@ -55,10 +55,11 @@ class PetOperations:
         :rtype: ~xmserrorresponse.models.Pet or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.Pet"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.Pet"]
         error_map = {
+            409: ResourceExistsError,
             400: HttpResponseError,
-            404: lambda response: models.NotFoundErrorBaseException.from_response(response, self._deserialize),
+            404: lambda response: ResourceNotFoundError(response=response, model=self._deserialize(models.NotFoundErrorBase, response)),
             501: HttpResponseError,
         }
         error_map.update(kwargs.pop('error_map', {}))
@@ -71,10 +72,10 @@ class PetOperations:
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -111,9 +112,11 @@ class PetOperations:
         :rtype: ~xmserrorresponse.models.PetAction
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls: ClsType["models.PetAction"] = kwargs.pop('cls', None)
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAction"]
         error_map = {
-            500: lambda response: models.PetActionErrorException.from_response(response, self._deserialize),
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            500: lambda response: HttpResponseError(response=response, model=self._deserialize(models.PetActionError, response)),
         }
         error_map.update(kwargs.pop('error_map', {}))
 
@@ -125,10 +128,10 @@ class PetOperations:
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters: Dict[str, Any] = {}
+        query_parameters = {}  # type: Dict[str, Any]
 
         # Construct headers
-        header_parameters: Dict[str, Any] = {}
+        header_parameters = {}  # type: Dict[str, Any]
         header_parameters['Accept'] = 'application/json'
 
         # Construct and send request
@@ -138,7 +141,8 @@ class PetOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.PetActionErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.PetActionError, response)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize('PetAction', pipeline_response)
 

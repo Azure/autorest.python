@@ -25,7 +25,7 @@ __all__ = [
 
 
 class JinjaSerializer:
-    def __init__(self, autorestapi: AutorestAPI):
+    def __init__(self, autorestapi: AutorestAPI) -> None:
         self._autorestapi = autorestapi
 
     def serialize(self, code_model: CodeModel) -> None:

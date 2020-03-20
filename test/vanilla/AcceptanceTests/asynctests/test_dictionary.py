@@ -24,6 +24,7 @@
 #
 # --------------------------------------------------------------------------
 
+from async_generator import yield_, async_generator
 import unittest
 import subprocess
 import sys
@@ -42,14 +43,15 @@ from azure.core.exceptions import DecodeError
 from msrest.exceptions import DeserializationError
 
 from bodydictionary.aio import AutoRestSwaggerBATDictionaryService
-from bodydictionary.models import Widget, ErrorException
+from bodydictionary.models import Widget
 
 import pytest
 
 @pytest.fixture
+@async_generator
 async def client():
     async with AutoRestSwaggerBATDictionaryService(base_url="http://localhost:3000") as client:
-        yield client
+        await yield_(client)
 
 @pytest.fixture
 def test_dict():

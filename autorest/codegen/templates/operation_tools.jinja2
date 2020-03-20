@@ -54,6 +54,37 @@
 ):
 {% endif %}{% endmacro %}
 {# handle response headers/deserialization #}
+{# error map handling #}
+{% macro error_map(operation, code_model) %}
+{%if operation.status_code_exceptions %}
+error_map = {
+    {% if not [404] in operation.status_code_exceptions | map(attribute='status_codes') %}
+    404: ResourceNotFoundError,
+    {% endif %}
+    {% if not [409] in operation.status_code_exceptions | map(attribute='status_codes') %}
+    409: ResourceExistsError,
+    {% endif %}
+{% for excep in operation.status_code_exceptions %}
+    {% for status_code in excep.status_codes %}
+    {% set error_model = ", model=self._deserialize(models." + excep.schema.serialization_type + ", response)" if excep.schema.is_exception else "" %}
+    {% set error_format = ", error_format=ARMErrorFormat" if code_model.options['azure_arm'] else "" %}
+    {% if status_code == 404 %}
+    404: lambda response: ResourceNotFoundError(response=response{{ error_model }}{{ error_format }}),
+    {% elif status_code == 409 %}
+    409: lambda response: ResourceExistsError(response=response{{ error_model }}{{ error_format }}),
+    {% else %}
+    {% if not error_model and not error_format %}
+    {{ status_code }}: HttpResponseError,
+    {% else %}
+    {{ status_code }}: lambda response: HttpResponseError(response=response{{ error_model }}{{ error_format }}),
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+{% endfor %}
+}
+error_map.update(kwargs.pop('error_map', {}))
+{%- else -%}
+error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError}){%- endif -%}{%- endmacro -%}
 {% macro response_handling(response) %}
   {% if response.headers %}
     {% for response_header in response.headers %}
@@ -84,7 +115,7 @@ if {{ grouper_name }} is not None:
 {# write queryparameters #}
 {% macro query_parameters(operation, async_mode) %}
 # Construct parameters
-query_parameters{{": Dict[str, Any]" if async_mode else "" }} = {}
+query_parameters = {}  # type: Dict[str, Any]
 {% if operation.parameters.query %}
     {% for query_parameter in operation.parameters.query %}
         {%if query_parameter.required %}
@@ -98,7 +129,7 @@ if {{ query_parameter.full_serialized_name }} is not None:
 {# write request headers #}
 {% macro header_parameters(code_model, operation, async_mode) %}
 # Construct headers
-header_parameters{{": Dict[str, Any]" if async_mode else "" }} = {}
+header_parameters = {}  # type: Dict[str, Any]
 {% if operation.parameters.headers %}
     {% for header_parameter in operation.parameters.headers %}
         {%if header_parameter.required %}
@@ -138,7 +169,7 @@ body_content_kwargs['content'] = body_content{% endmacro %}
 {% set request_as_xml = ", is_xml=True" if send_xml else "" %}
 # Construct and send request
 {% if operation.parameters.has_body %}
-body_content_kwargs = {}
+body_content_kwargs = {}  # type: Dict[str, Any]
 {% if (operation.requests | length) == 1 %}
 {% if operation.requests[0].is_stream_request %}
 {{ stream_body_params(operation) }}

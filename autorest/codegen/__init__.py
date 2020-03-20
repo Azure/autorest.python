@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import logging
 import sys
-from typing import Dict, Any
+from typing import Dict, Any, Set, Union, List
 import yaml
 
 from .. import Plugin
@@ -22,7 +22,7 @@ _LOGGER = logging.getLogger(__name__)
 
 class CodeGenerator(Plugin):
     @staticmethod
-    def remove_cloud_errors(yaml_data):
+    def remove_cloud_errors(yaml_data: Dict[str, Any]) -> None:
         for group in yaml_data["operationGroups"]:
             for operation in group["operations"]:
                 if not operation.get("exceptions"):
@@ -42,7 +42,7 @@ class CodeGenerator(Plugin):
                     break
 
     @staticmethod
-    def _build_exceptions_set(yaml_data):
+    def _build_exceptions_set(yaml_data: List[Dict[str, Any]]) -> Set[Dict[str, Any]]:
         exceptions_set = set()
         for group in yaml_data:
             for operation in group["operations"]:
@@ -54,7 +54,7 @@ class CodeGenerator(Plugin):
                     exceptions_set.add(exception["schema"]["language"]["python"]["name"])
         return exceptions_set
 
-    def _create_code_model(self, yaml_data, options):
+    def _create_code_model(self, yaml_data: Dict[str, Any], options: Dict[str, Union[str, bool]]) -> CodeModel:
         # Create a code model
         code_model = CodeModel(options)
         code_model.module_name = yaml_data["info"]["python_title"]
@@ -187,7 +187,7 @@ class CodeGenerator(Plugin):
         return True
 
 
-def main(yaml_model_file):
+def main(yaml_model_file: str) -> None:
     from ..jsonrpc.localapi import LocalAutorestAPI  # pylint: disable=import-outside-toplevel
 
     code_generator = CodeGenerator(autorestapi=LocalAutorestAPI(reachable_files=[yaml_model_file]))

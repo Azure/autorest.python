@@ -8,7 +8,7 @@
 from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 import warnings
 
-from azure.core.exceptions import map_error
+from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -57,7 +57,7 @@ class ParameterGroupingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         
         _custom_header = None
         _query = None
@@ -77,18 +77,18 @@ class ParameterGroupingOperations(object):
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
         if _query is not None:
             query_parameters['query'] = self._serialize.query("query", _query, 'int')
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         if _custom_header is not None:
             header_parameters['customHeader'] = self._serialize.header("custom_header", _custom_header, 'str')
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        body_content_kwargs = {}
+        body_content_kwargs = {}  # type: Dict[str, Any]
         body_content = self._serialize.body(_body, 'int')
         body_content_kwargs['content'] = body_content
         request = self._client.post(url, query_parameters, header_parameters, **body_content_kwargs)
@@ -98,7 +98,8 @@ class ParameterGroupingOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -122,7 +123,7 @@ class ParameterGroupingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         
         _custom_header = None
         _query = None
@@ -134,12 +135,12 @@ class ParameterGroupingOperations(object):
         url = self.post_optional.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
         if _query is not None:
             query_parameters['query'] = self._serialize.query("query", _query, 'int')
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         if _custom_header is not None:
             header_parameters['customHeader'] = self._serialize.header("custom_header", _custom_header, 'str')
 
@@ -150,7 +151,8 @@ class ParameterGroupingOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -177,7 +179,7 @@ class ParameterGroupingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         
         _header_one = None
         _query_one = None
@@ -194,14 +196,14 @@ class ParameterGroupingOperations(object):
         url = self.post_multi_param_groups.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
         if _query_one is not None:
             query_parameters['query-one'] = self._serialize.query("query_one", _query_one, 'int')
         if _query_two is not None:
             query_parameters['query-two'] = self._serialize.query("query_two", _query_two, 'int')
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         if _header_one is not None:
             header_parameters['header-one'] = self._serialize.header("header_one", _header_one, 'str')
         if _header_two is not None:
@@ -214,7 +216,8 @@ class ParameterGroupingOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})
@@ -238,7 +241,7 @@ class ParameterGroupingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {})
+        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         
         _header_one = None
         _query_one = None
@@ -250,12 +253,12 @@ class ParameterGroupingOperations(object):
         url = self.post_shared_parameter_group_object.metadata['url']
 
         # Construct parameters
-        query_parameters = {}
+        query_parameters = {}  # type: Dict[str, Any]
         if _query_one is not None:
             query_parameters['query-one'] = self._serialize.query("query_one", _query_one, 'int')
 
         # Construct headers
-        header_parameters = {}
+        header_parameters = {}  # type: Dict[str, Any]
         if _header_one is not None:
             header_parameters['header-one'] = self._serialize.header("header_one", _header_one, 'str')
 
@@ -266,7 +269,8 @@ class ParameterGroupingOperations(object):
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise models.ErrorException.from_response(response, self._deserialize)
+            error = self._deserialize(models.Error, response)
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
           return cls(pipeline_response, None, {})

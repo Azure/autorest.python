@@ -24,6 +24,7 @@
 #
 # --------------------------------------------------------------------------
 
+from async_generator import yield_, async_generator
 import unittest
 import subprocess
 import sys
@@ -39,16 +40,16 @@ from msrest.exceptions import DeserializationError
 from modelflattening.aio import AutoRestResourceFlatteningTestService
 from modelflattening.models import (
     FlattenedProduct,
-    ErrorException,
     ResourceCollection,
     SimpleProduct)
 
 import pytest
 
-@pytest.fixture()
+@pytest.fixture
+@async_generator
 async def client():
     async with AutoRestResourceFlatteningTestService(base_url="http://localhost:3000") as client:
-        yield client
+        await yield_(client)
 
 class TestModelFlatteningTests(object):
 

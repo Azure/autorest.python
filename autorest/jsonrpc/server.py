@@ -21,7 +21,7 @@ def GetPluginNames():
 
 
 @dispatcher.add_method
-def Process(plugin_name: str, session_id):
+def Process(plugin_name: str, session_id: str) -> bool:
     # pylint: disable=import-outside-toplevel
     """JSON-RPC process call.
     """
@@ -49,9 +49,10 @@ def Process(plugin_name: str, session_id):
             return plugin.process()
         except Exception:  # pylint: disable=broad-except
             _LOGGER.exception("Python generator raised an exception")
+    return False
 
 
-def main():
+def main() -> None:
     if os.environ.get("AUTOREST_PYTHON_ATTACH_VSCODE_DEBUG", False):
         try:
             import ptvsd  # pylint: disable=import-outside-toplevel

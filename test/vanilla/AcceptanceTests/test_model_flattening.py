@@ -39,7 +39,6 @@ from msrest.exceptions import DeserializationError
 from modelflattening import AutoRestResourceFlatteningTestService
 from modelflattening.models import (
     FlattenedProduct,
-    ErrorException,
     ResourceCollection,
     SimpleProduct)
 

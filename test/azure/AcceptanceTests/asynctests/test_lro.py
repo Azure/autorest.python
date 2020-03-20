@@ -24,6 +24,7 @@
 #
 # --------------------------------------------------------------------------
 
+from async_generator import yield_, async_generator
 import subprocess
 import sys
 import isodate
@@ -38,7 +39,7 @@ from azure.core.exceptions import DecodeError, HttpResponseError
 from azure.core.polling import async_poller
 from azure.core.pipeline.policies import ContentDecodePolicy, AsyncRetryPolicy, HeadersPolicy, RequestIdPolicy
 
-from azure.core.polling.arm.async_arm_polling import AsyncARMPolling
+from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
 from lro.aio import AutoRestLongRunningOperationTestService
 from lro.models import *  # pylint: disable=W0614
@@ -73,7 +74,8 @@ class AutorestTestARMPolling(AsyncARMPolling):
             self._operation_config['request_id'] = self._get_request_id()
         return (await self._client._pipeline.run(request, stream=False, **self._operation_config))
 
-@pytest.fixture()
+@pytest.fixture
+@async_generator
 async def client(cookie_policy, credential):
     """Create a AutoRestLongRunningOperationTestService client with test server credentials."""
     policies = [
@@ -84,7 +86,7 @@ async def client(cookie_policy, credential):
         cookie_policy
     ]
     async with AutoRestLongRunningOperationTestService(credential, base_url="http://localhost:3000", policies=policies, polling_interval=0) as client:
-        yield client
+        await yield_(client)
 
 
 @pytest.fixture()
@@ -117,8 +119,7 @@ class TestLro:
             # So, we hack a little the system and check if we have the expected
             # message in the JSON body.
             # We should have more testserver on valid ARM errors....
-            msg = msg.lower()
-            assert msg in err.message.lower() or msg in (err.odata_json or {}).get("message", "").lower()
+            assert msg.lower() in err.message.lower()
             if internal_msg:
                 assert internal_msg in str(err.inner_exception)
 
@@ -135,14 +136,18 @@ class TestLro:
         product = await client.lros.post_double_headers_final_azure_header_get()
         assert product.id == "100"
 
+        # This test will work as long as the default is Azure-AsyncOperation
+        product = await client.lros.post_double_headers_final_azure_header_get_default()
+        assert product.id == "100"
+
     @pytest.mark.asyncio
     async def test_happy_put201_creating_succeeded200(self, client, product):
         process = await self.lro_result(client.lros.put201_creating_succeeded200, product)
-        assert "Succeeded" ==  process.provisioning_state
+        assert "Succeeded" == process.provisioning_state
 
         # Testing nopolling
         process = await self.lro_result(client.lros.put201_creating_succeeded200, product, polling=False)
-        assert "Creating" ==  process.provisioning_state
+        assert "Creating" == process.provisioning_state
 
     @pytest.mark.asyncio
     async def test_happy_put201_creating_failed200(self, client, product):
@@ -151,15 +156,15 @@ class TestLro:
             client.lros.put201_creating_failed200, product)
 
         process = await self.lro_result(client.lros.put201_creating_failed200, product, polling=False)
-        assert "Created" ==  process.provisioning_state
+        assert "Created" == process.provisioning_state
 
     @pytest.mark.asyncio
     async def test_happy_put200_updating_succeeded204(self, client, product):
         process = await self.lro_result(client.lros.put200_updating_succeeded204, product)
-        assert "Succeeded" ==  process.provisioning_state
+        assert "Succeeded" == process.provisioning_state
 
         process = await self.lro_result(client.lros.put200_updating_succeeded204, product, polling=False)
-        assert "Updating" ==  process.provisioning_state
+        assert "Updating" == process.provisioning_state
 
     @pytest.mark.asyncio
     async def test_happy_put200_acceptedcanceled200(self, client, product):
@@ -168,52 +173,52 @@ class TestLro:
             client.lros.put200_acceptedcanceled200, product)
 
         process = await self.lro_result(client.lros.put200_acceptedcanceled200, product, polling=False)
-        assert "Accepted" ==  process.provisioning_state
+        assert "Accepted" == process.provisioning_state
 
     @pytest.mark.asyncio
     async def test_happy_put_no_header_in_retry(self, client, product):
         process = await self.lro_result(client.lros.put_no_header_in_retry, product)
-        assert "Succeeded" ==  process.provisioning_state
+        assert "Succeeded" == process.provisioning_state
 
         process = await self.lro_result(client.lros.put_async_no_header_in_retry, product)
-        assert "Succeeded" ==  process.provisioning_state
+        assert "Succeeded" == process.provisioning_state
 
     @pytest.mark.asyncio
     async def test_happy_put_sub_resource(self, client):
         process = await self.lro_result(client.lros.put_sub_resource, SubProduct())
-        assert "Succeeded" ==  process.provisioning_state
+        assert "Succeeded" == process.provisioning_state
 
         process = await self.lro_result(client.lros.put_async_sub_resource, SubProduct())
-        assert "Succeeded" ==  process.provisioning_state
+        assert "Succeeded" == process.provisioning_state
 
     @pytest.mark.asyncio
     async def test_happy_put_non_resource(self, client):
         process = await self.lro_result(client.lros.put_non_resource, Sku())
-        assert "100" ==  process.id
+        assert "100" == process.id
 
         process = await self.lro_result(client.lros.put_async_non_resource, Sku())
-        assert "100" ==  process.id
+        assert "100" == process.id
 
     @pytest.mark.asyncio
     async def test_happy_put200_succeeded(self, client, product):
         process = await self.lro_result(client.lros.put200_succeeded, product)
-        assert "Succeeded" ==  process.provisioning_state
+        assert "Succeeded" == process.provisioning_state
 
         process = await self.lro_result(client.lros.put200_succeeded_no_state, product)
-        assert "100" ==  process.id
+        assert "100" == process.id
 
     @pytest.mark.asyncio
     async def test_happy_put202_retry200(self, client, product):
         process = await self.lro_result(client.lros.put202_retry200, product)
-        assert "100" ==  process.id
+        assert "100" == process.id
 
     @pytest.mark.asyncio
     async def test_happy_put_retry_succeeded(self, client, product):
         process = await self.lro_result(client.lros.put_async_retry_succeeded, product)
-        assert "Succeeded" ==  process.provisioning_state
+        assert "Succeeded" == process.provisioning_state
 
         process = await self.lro_result(client.lros.put_async_no_retry_succeeded, product)
-        assert "Succeeded" ==  process.provisioning_state
+        assert "Succeeded" == process.provisioning_state
 
     @pytest.mark.asyncio
     async def test_happy_put_retry_failed_canceled(self, client, product):
@@ -259,20 +264,20 @@ class TestLro:
     @pytest.mark.asyncio
     async def test_happy_delete_provisioning(self, client):
         process = await self.lro_result(client.lros.delete_provisioning202_accepted200_succeeded)
-        assert "Succeeded" ==  process.provisioning_state
+        assert "Succeeded" == process.provisioning_state
 
         result = await self.lro_result(client.lros.delete_provisioning202_deletingcanceled200)
-        assert result.provisioning_state ==  'Canceled'
+        assert result.provisioning_state == 'Canceled'
 
         result = await self.lro_result(client.lros.delete_provisioning202_deleting_failed200)
-        assert result.provisioning_state ==  'Failed'
+        assert result.provisioning_state == 'Failed'
 
     @pytest.mark.asyncio
     async def test_happy_post(self, client, product):
         assert await self.lro_result(client.lros.post202_no_retry204, product) is None
 
         sku = await self.lro_result(client.lros.post200_with_payload)
-        assert sku.id ==  '1'
+        assert sku.id == '1'
 
     @pytest.mark.asyncio
     async def test_happy_post_async_retry_failed_canceled(self, client, product):
@@ -286,23 +291,23 @@ class TestLro:
     @pytest.mark.asyncio
     async def test_happy_post_async_succeeded(self, client, product):
         prod = await self.lro_result(client.lros.post_async_retry_succeeded)
-        assert prod.id ==  "100"
+        assert prod.id == "100"
 
         prod = await self.lro_result(client.lros.post_async_no_retry_succeeded)
-        assert prod.id ==  "100"
+        assert prod.id == "100"
 
     @pytest.mark.asyncio
     async def test_retrys_put(self, client, product):
         process = await self.lro_result(client.lro_retrys.put201_creating_succeeded200, product)
-        assert 'Succeeded' ==  process.provisioning_state
+        assert 'Succeeded' == process.provisioning_state
 
         process = await self.lro_result(client.lro_retrys.put_async_relative_retry_succeeded, product)
-        assert 'Succeeded' ==  process.provisioning_state
+        assert 'Succeeded' == process.provisioning_state
 
     @pytest.mark.asyncio
     async def test_retrys_delete(self, client, product):
         process = await self.lro_result(client.lro_retrys.delete_provisioning202_accepted200_succeeded)
-        assert 'Succeeded' ==  process.provisioning_state
+        assert 'Succeeded' == process.provisioning_state
 
         assert await self.lro_result(client.lro_retrys.delete202_retry200) is None
         assert await self.lro_result(client.lro_retrys.delete_async_relative_retry_succeeded) is None

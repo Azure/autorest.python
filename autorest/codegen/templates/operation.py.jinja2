@@ -2,8 +2,6 @@
 {% import 'operation_tools.jinja2' as op_tools %}
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
-{% macro exception_name() %}{{ operation.default_exception.schema.name }}Exception{% endmacro %}
-{% set core_excep_name = 'ARMError' if code_model.options['azure_arm'] else 'HttpResponseError' %}
 {# actual template starts here #}
 {%- if code_model.options['tracing'] and operation.want_tracing -%}
 {{ trace_decorator }}
@@ -15,30 +13,11 @@
 {% if operation.want_description_docstring %}
 {{ op_tools.operation_docstring(operation)|indent }}
 {% endif %}
-    {% if async_mode %}
-    cls: ClsType[{{ keywords.return_type_annotation(operation) }}] = kwargs.pop('cls', None)
-    {% else %}
     cls = kwargs.pop('cls', None)  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
-    {% endif %}
 {% if operation.deprecated %}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
-{%if operation.status_code_exceptions %}
-    error_map = {
-    {% for excep in operation.status_code_exceptions %}
-        {% for status_code in excep.status_codes %}
-            {% if excep.schema.is_exception %}
-        {{ status_code }}: lambda response: models.{{ excep.schema.serialization_type }}Exception.from_response(response, self._deserialize),
-            {% else  %}
-        {{ status_code }}: {{ core_excep_name }},
-            {% endif %}
-        {% endfor %}
-    {% endfor %}
-    }
-    error_map.update(kwargs.pop('error_map', {}))
-{% else %}
-    error_map = kwargs.pop('error_map', {})
-{% endif %}
+    {{ op_tools.error_map(operation, code_model)|indent }}
 {% if operation.parameters.grouped %}
     {{ op_tools.grouped_parameters(operation)|indent }}
 {%- endif -%}
@@ -46,8 +25,8 @@
 
     {{ operation.parameters.build_flattened_object() }}
 {% endif %}
-{% if operation.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None) %}
-    {% for constant_parameter in operation.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None) %}
+{% if operation.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
+    {% for constant_parameter in operation.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
     {{ constant_parameter.serialized_name }} = {{ constant_parameter.schema.constant_value }}
     {% endfor %}
 {% endif %}
@@ -71,11 +50,10 @@
 
     if response.status_code not in {{ operation.success_status_code|string() }}:
         map_error(status_code=response.status_code, response=response, error_map=error_map)
-        {% if not operation.default_exception %}
-        raise {{ core_excep_name }}(response=response)
-        {% else %}
-        raise models.{{ exception_name() }}.from_response(response, self._deserialize)
+        {% if operation.default_exception %}
+        error = self._deserialize(models.{{ operation.default_exception.schema.name }}, response)
         {% endif %}
+        raise HttpResponseError(response=response{{ ", model=error" if operation.default_exception else "" }}{{ ", error_format=ARMErrorFormat" if code_model.options['azure_arm'] else "" }})
 
 {% if operation.any_response_has_headers %}
     response_headers = {}

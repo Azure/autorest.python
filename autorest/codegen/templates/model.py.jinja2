@@ -1,37 +1,5 @@
-{% set exception_name = model.name + 'Exception' %}
 {% set basename = model.base_model.name if model.base_model and model.base_model.name|length else "" %}
 {# actual template starts here #}
-{% if model.is_exception %}
-
-
-{% if model.base_model and model.base_model.is_exception %}
-class {{ exception_name }}({{ basename }}Exception):
-{% else %}
-class {{ exception_name }}(HttpResponseError):
-{% endif %}
-    """Server responded with exception of type: '{{ model.name }}'.
-
-    :param response: Server response to be deserialized.
-    :param error_model: A deserialized model of the response body as model.
-    """
-
-    def __init__(self, response, error_model):
-        self.error = error_model
-        super({{ exception_name }}, self).__init__(response=response, error_model=error_model)
-
-    @classmethod
-    def from_response(cls, response, deserialize):
-        """Deserialize this response as this exception, or a subclass of this exception.
-
-        :param response: Server response to be deserialized.
-        :param deserialize: A deserializer
-        """
-        model_name = '{{ model.name }}'
-        error = deserialize(model_name, response)
-        if error is None:
-            error = deserialize.dependencies[model_name]()
-        return error._EXCEPTION_TYPE(response, error)
-{% endif %}
 
 
 {% if basename %}
@@ -63,9 +31,6 @@ class {{ model.name }}(msrest.serialization.Model):
         {% endfor %}
     {% endif %}
     """
-{% if model.is_exception %}
-    _EXCEPTION_TYPE = {{ exception_name }}
-{% endif %}
     {% if (model.properties | selectattr('validation_map') ) | first %}
 
     _validation = {

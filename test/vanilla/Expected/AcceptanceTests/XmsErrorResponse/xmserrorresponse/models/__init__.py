@@ -8,36 +8,36 @@
 
 try:
     from ._models_py3 import Animal
-    from ._models_py3 import AnimalNotFound, AnimalNotFoundException
+    from ._models_py3 import AnimalNotFound
     from ._models_py3 import BaseError
-    from ._models_py3 import LinkNotFound, LinkNotFoundException
-    from ._models_py3 import NotFoundErrorBase, NotFoundErrorBaseException
+    from ._models_py3 import LinkNotFound
+    from ._models_py3 import NotFoundErrorBase
     from ._models_py3 import Pet
     from ._models_py3 import PetAction
-    from ._models_py3 import PetActionError, PetActionErrorException
-    from ._models_py3 import PetHungryOrThirstyError, PetHungryOrThirstyErrorException
-    from ._models_py3 import PetSadError, PetSadErrorException
+    from ._models_py3 import PetActionError
+    from ._models_py3 import PetHungryOrThirstyError
+    from ._models_py3 import PetSadError
 except (SyntaxError, ImportError):
     from ._models import Animal  # type: ignore
-    from ._models import AnimalNotFound, AnimalNotFoundException  # type: ignore
+    from ._models import AnimalNotFound  # type: ignore
     from ._models import BaseError  # type: ignore
-    from ._models import LinkNotFound, LinkNotFoundException  # type: ignore
-    from ._models import NotFoundErrorBase, NotFoundErrorBaseException  # type: ignore
+    from ._models import LinkNotFound  # type: ignore
+    from ._models import NotFoundErrorBase  # type: ignore
     from ._models import Pet  # type: ignore
     from ._models import PetAction  # type: ignore
-    from ._models import PetActionError, PetActionErrorException  # type: ignore
-    from ._models import PetHungryOrThirstyError, PetHungryOrThirstyErrorException  # type: ignore
-    from ._models import PetSadError, PetSadErrorException  # type: ignore
+    from ._models import PetActionError  # type: ignore
+    from ._models import PetHungryOrThirstyError  # type: ignore
+    from ._models import PetSadError  # type: ignore
 
 __all__ = [
     'Animal',
-    'AnimalNotFound', 'AnimalNotFoundException',
+    'AnimalNotFound',
     'BaseError',
-    'LinkNotFound', 'LinkNotFoundException',
-    'NotFoundErrorBase', 'NotFoundErrorBaseException',
+    'LinkNotFound',
+    'NotFoundErrorBase',
     'Pet',
     'PetAction',
-    'PetActionError', 'PetActionErrorException',
-    'PetHungryOrThirstyError', 'PetHungryOrThirstyErrorException',
-    'PetSadError', 'PetSadErrorException',
+    'PetActionError',
+    'PetHungryOrThirstyError',
+    'PetSadError',
 ]

@@ -5,10 +5,9 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableSequence
 import logging
-from typing import cast, List, Callable
+from typing import cast, List, Callable, Optional
 
 from .parameter import Parameter, ParameterLocation
-from .constant_schema import ConstantSchema
 from .object_schema import ObjectSchema
 
 
@@ -16,7 +15,9 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class ParameterList(MutableSequence):
-    def __init__(self, parameters: List[Parameter] = None, implementation: str = "Method"):
+    def __init__(
+        self, parameters: Optional[List[Parameter]] = None, implementation: str = "Method"
+    ) -> None:
         self.parameters = parameters or []
         self.implementation = implementation
 
@@ -27,7 +28,7 @@ class ParameterList(MutableSequence):
             raise TypeError(f"{index} is invalid type")
         return self.parameters[index]
 
-    def __len__(self):
+    def __len__(self) -> int:
         return len(self.parameters)
 
     def __setitem__(self, index, parameter):
@@ -36,7 +37,7 @@ class ParameterList(MutableSequence):
     def __delitem__(self, index):
         del self.parameters[index]
 
-    def insert(self, index, value):
+    def insert(self, index: int, value: Parameter) -> None:
         self.parameters.insert(index, value)
 
     # Parameter helpers
@@ -91,40 +92,28 @@ class ParameterList(MutableSequence):
         not have impact on any generation at this level
         """
         return self.get_from_predicate(
-            lambda parameter: isinstance(parameter.schema, ConstantSchema) and not parameter.flattened
+            lambda parameter: parameter.constant
         )
 
     @property
     def method(self) -> List[Parameter]:
         """The list of parameter used in method signature.
         """
+        signature_parameters_no_default_value = []
+        signature_parameters_default_value = []
 
-        def is_parameter_in_signature(parameter):
-            """A predicate to tell if this parameter deserves to be in the signature.
-            """
-            return not (
-                # Constant are never on signature
-                isinstance(parameter.schema, ConstantSchema)
-                # Client level should not be on Method, etc.
-                or parameter.implementation != self.implementation
-                # If I'm grouped, my grouper will be on signature, not me
-                or parameter.grouped_by
-                # If I'm body and it's flattened, I'm not either
-                or (parameter.location == ParameterLocation.Body and self.is_flattened)
-                # If I'm a kwarg, don't include in the signature
-                or parameter.is_kwarg
-            )
-
-        signature_parameters_required = []
-        signature_parameters_optional = []
-        for parameter in self.parameters:
-            if is_parameter_in_signature(parameter):
-                if parameter.required:
-                    signature_parameters_required.append(parameter)
+        # Client level should not be on Method, etc.
+        parameters_of_this_implementation = self.get_from_predicate(
+            lambda parameter: parameter.implementation == self.implementation
+        )
+        for parameter in parameters_of_this_implementation:
+            if parameter.in_method_signature:
+                if not parameter.client_default_value and parameter.required:
+                    signature_parameters_no_default_value.append(parameter)
                 else:
-                    signature_parameters_optional.append(parameter)
+                    signature_parameters_default_value.append(parameter)
 
-        signature_parameters = signature_parameters_required + signature_parameters_optional
+        signature_parameters = signature_parameters_no_default_value + signature_parameters_default_value
         return signature_parameters
 
     @property
@@ -144,8 +133,7 @@ class ParameterList(MutableSequence):
             raise ValueError("This method can't be called if the operation doesn't need parameter flattening")
 
         parameters = self.get_from_predicate(
-            lambda parameter: parameter.location == ParameterLocation.Other
-            and not isinstance(parameter.schema, ConstantSchema)
+            lambda parameter: parameter.in_method_code
         )
         parameter_string = ", ".join(
             [f"{param.target_property_name}={param.serialized_name}"

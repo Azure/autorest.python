@@ -36,10 +36,10 @@ import os
 from os.path import dirname, pardir, join, realpath
 
 from msrest.exceptions import DeserializationError, SerializationError
+from azure.core.exceptions import HttpResponseError
 
 from bodystring import AutoRestSwaggerBATService
-from bodystring.models import Colors, ErrorException
-
+from bodystring.models import Colors
 import pytest
 
 @pytest.fixture
@@ -109,7 +109,7 @@ class TestString(object):
         client.enum.put_not_expandable(Colors.red_color)
         # Autorest v3 is switching behavior here. Old Autorest would have thrown a serialization error,
         # but now we allow the user to pass strings as enums, so the raised exception is different.
-        with pytest.raises(ErrorException):
+        with pytest.raises(HttpResponseError):
             client.enum.put_not_expandable('not a colour')
 
     def test_get_base64_encdoded(self, client):
