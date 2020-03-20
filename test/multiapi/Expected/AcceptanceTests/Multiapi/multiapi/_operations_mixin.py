@@ -21,9 +21,9 @@ class MultiapiServiceClientOperationsMixin(object):
     ):
         """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
 
-        :param id:
+        :param id: An int parameter.
         :type id: int
-        :param message:
+        :param message: An optional string parameter.
         :type message: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelTwo or the result of cls(response)

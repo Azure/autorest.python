@@ -24,7 +24,8 @@
 #
 # --------------------------------------------------------------------------
 import pytest
-import requests
+import inspect
+import json
 from azure.core.pipeline.policies import SansIOHTTPPolicy
 from azure.profiles import KnownProfiles
 from multiapi.models import *
@@ -104,7 +105,6 @@ class TestMultiapiClient(object):
     @pytest.mark.parametrize('api_version', ["1.0.0"])
     def test_specify_models_from_operation_group(self, client):
         v1_models = client.operation_group_one.models
-        v1_models.ModelOne(id=2)
 
         # check the models from the other api versions can't be accessed
         with pytest.raises(AttributeError):
@@ -146,17 +146,28 @@ class TestMultiapiClient(object):
 
     @pytest.mark.parametrize('api_version', ["2.0.0"])
     def test_version_two_operation_group_one(self, client):
-        response = client.operation_group_one.test_two(id=1, message="This should be sent from api version 2.0.0")
+        parameter = client.operation_group_one.models.ModelTwo(
+            id=1, message="This should be sent from api version 2.0.0"
+        )
+        response = client.operation_group_one.test_two(parameter)
         assert response == ModelTwo(id=1, message="This was called with api-version 2.0.0")
 
         response = client.operation_group_one.test_three()
         assert response is None
 
     # OPERATION GROUP TWO
-    def test_default_operation_group_two(self, default_client):
-        response = default_client.operation_group_two.test_four()
+    def test_default_operation_group_two_test_four_json(self, default_client):
+        json_input = json.loads('{"source":"foo"}')
+        response = default_client.operation_group_two.test_four(input=json_input)
         assert response is None
 
+    def test_default_operation_group_two_test_four_pdf(self, default_client):
+        response = default_client.operation_group_two.test_four(
+            input=b"PDF", content_type="application/pdf"
+        )
+        assert response is None
+
+    def test_default_operation_group_two_test_five(self, default_client):
         response = default_client.operation_group_two.test_five()
         assert response is None
 

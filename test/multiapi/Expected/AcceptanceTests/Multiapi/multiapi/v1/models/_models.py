@@ -31,32 +31,3 @@ class Error(msrest.serialization.Model):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
-
-
-class ModelOne(msrest.serialization.Model):
-    """Only exists in api version 1.0.0.
-
-    All required parameters must be populated in order to send to Azure.
-
-    :param id: Required.
-    :type id: int
-    :param message:
-    :type message: str
-    """
-
-    _validation = {
-        'id': {'required': True},
-    }
-
-    _attribute_map = {
-        'id': {'key': 'id', 'type': 'int'},
-        'message': {'key': 'message', 'type': 'str'},
-    }
-
-    def __init__(
-        self,
-        **kwargs
-    ):
-        super(ModelOne, self).__init__(**kwargs)
-        self.id = kwargs.get('id', None)
-        self.message = kwargs.get('message', None)

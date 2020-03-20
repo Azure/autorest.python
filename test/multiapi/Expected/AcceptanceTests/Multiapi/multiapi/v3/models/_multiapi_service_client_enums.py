@@ -6,11 +6,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-try:
-    from ._models_py3 import Error
-except (SyntaxError, ImportError):
-    from ._models import Error  # type: ignore
+from enum import Enum
 
-__all__ = [
-    'Error',
-]
+class ContentType(str, Enum):
+    """Content type for upload
+    """
+
+    application_pdf = "application/pdf"  #: Content Type 'application/pdf'.
+    image_jpeg = "image/jpeg"  #: Content Type 'image/jpeg'.
+    image_png = "image/png"  #: Content Type 'image/png'.
+    image_tiff = "image/tiff"  #: Content Type 'image/tiff'.

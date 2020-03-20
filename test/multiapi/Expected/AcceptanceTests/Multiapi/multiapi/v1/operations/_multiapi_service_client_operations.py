@@ -22,16 +22,13 @@ class MultiapiServiceClientOperationsMixin(object):
     def test_one(
         self,
         id,  # type: int
-        message=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
         """TestOne should be in an FirstVersionOperationsMixin.
 
-        :param id:
+        :param id: An int parameter.
         :type id: int
-        :param message:
-        :type message: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -39,12 +36,14 @@ class MultiapiServiceClientOperationsMixin(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-
-        _parameter_one = models.ModelOne(id=id, message=message)
         api_version = "1.0.0"
 
         # Construct URL
         url = self.test_one.metadata['url']
+        path_format_arguments = {
+            'id': self._serialize.url("id", id, 'int'),
+        }
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -52,17 +51,9 @@ class MultiapiServiceClientOperationsMixin(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
-        body_content_kwargs = {}  # type: Dict[str, Any]
-        if _parameter_one is not None:
-            body_content = self._serialize.body(_parameter_one, 'ModelOne')
-        else:
-            body_content = None
-        body_content_kwargs['content'] = body_content
-        request = self._client.put(url, query_parameters, header_parameters, **body_content_kwargs)
-
+        request = self._client.put(url, query_parameters, header_parameters)
         pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
         response = pipeline_response.http_response
 

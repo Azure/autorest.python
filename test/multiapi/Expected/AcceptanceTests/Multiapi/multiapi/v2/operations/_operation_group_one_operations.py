@@ -41,17 +41,14 @@ class OperationGroupOneOperations(object):
 
     def test_two(
         self,
-        id,  # type: int
-        message=None,  # type: Optional[str]
+        parameter_one=None,  # type: Optional["models.ModelTwo"]
         **kwargs  # type: Any
     ):
         # type: (...) -> "models.ModelTwo"
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelTwo and ouputs ModelTwo.
 
-        :param id:
-        :type id: int
-        :param message:
-        :type message: str
+        :param parameter_one: A ModelTwo parameter.
+        :type parameter_one: ~multiapi.v2.models.ModelTwo
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelTwo or the result of cls(response)
         :rtype: ~multiapi.v2.models.ModelTwo
@@ -59,8 +56,6 @@ class OperationGroupOneOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ModelTwo"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-
-        _parameter_one = models.ModelTwo(id=id, message=message)
         api_version = "2.0.0"
 
         # Construct URL
@@ -77,8 +72,8 @@ class OperationGroupOneOperations(object):
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if _parameter_one is not None:
-            body_content = self._serialize.body(_parameter_one, 'ModelTwo')
+        if parameter_one is not None:
+            body_content = self._serialize.body(parameter_one, 'ModelTwo')
         else:
             body_content = None
         body_content_kwargs['content'] = body_content

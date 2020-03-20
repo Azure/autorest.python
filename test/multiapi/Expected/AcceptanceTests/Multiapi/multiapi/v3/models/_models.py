@@ -50,3 +50,26 @@ class ModelThree(msrest.serialization.Model):
     ):
         super(ModelThree, self).__init__(**kwargs)
         self.optional_property = kwargs.get('optional_property', None)
+
+
+class SourcePath(msrest.serialization.Model):
+    """Uri or local path to source data.
+
+    :param source: File source path.
+    :type source: str
+    """
+
+    _validation = {
+        'source': {'max_length': 2048, 'min_length': 0},
+    }
+
+    _attribute_map = {
+        'source': {'key': 'source', 'type': 'str'},
+    }
+
+    def __init__(
+        self,
+        **kwargs
+    ):
+        super(SourcePath, self).__init__(**kwargs)
+        self.source = kwargs.get('source', None)
