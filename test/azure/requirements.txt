@@ -3,8 +3,8 @@ pytest
 pytest-cov
 pytest-asyncio;python_full_version>="3.5.2"
 async_generator;python_full_version>="3.5.2"
-azure-core>=1.3.0
-azure-mgmt-core>=1.0.0b1
+git+https://github.com/Azure/azure-sdk-for-python@azure_core_poller#subdirectory=sdk/core/azure-core&egg=azure-core
+git+https://github.com/Azure/azure-sdk-for-python@azure_core_poller#subdirectory=sdk/core/azure-mgmt-core&egg=azure-mgmt-core
 msrest>=0.6.10
 aiohttp;python_full_version>="3.5.2"
 -e ./Expected/AcceptanceTests/AzureBodyDuration
