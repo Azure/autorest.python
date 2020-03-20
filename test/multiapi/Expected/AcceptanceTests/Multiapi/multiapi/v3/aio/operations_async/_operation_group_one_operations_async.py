@@ -41,13 +41,13 @@ class OperationGroupOneOperations:
 
     async def test_two(
         self,
-        optional_property: Optional[str] = None,
+        parameter_one: Optional["models.ModelThree"] = None,
         **kwargs
     ) -> "models.ModelThree":
         """TestTwo should be in OperationGroupOneOperations. Takes in ModelThree and ouputs ModelThree.
 
-        :param optional_property:
-        :type optional_property: str
+        :param parameter_one: A ModelThree parameter.
+        :type parameter_one: ~multiapi.v3.models.ModelThree
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: ModelThree or the result of cls(response)
         :rtype: ~multiapi.v3.models.ModelThree
@@ -55,8 +55,6 @@ class OperationGroupOneOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ModelThree"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-
-        _parameter_one = models.ModelThree(optional_property=optional_property)
         api_version = "3.0.0"
 
         # Construct URL
@@ -73,8 +71,8 @@ class OperationGroupOneOperations:
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
-        if _parameter_one is not None:
-            body_content = self._serialize.body(_parameter_one, 'ModelThree')
+        if parameter_one is not None:
+            body_content = self._serialize.body(parameter_one, 'ModelThree')
         else:
             body_content = None
         body_content_kwargs['content'] = body_content
