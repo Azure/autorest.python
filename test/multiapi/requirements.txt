@@ -4,3 +4,4 @@ azure-mgmt-core
 pytest
 azure-common
 -e ./Expected/AcceptanceTests/Multiapi
+-e ./Expected/AcceptanceTests/MultiapiSubmodule

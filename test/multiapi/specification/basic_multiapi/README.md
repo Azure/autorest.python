@@ -5,19 +5,19 @@
 These settings apply only when `--tag=v1` is specified on the command line.
 
 ``` yaml $(tag) == 'v1'
-input-file: ../../node_modules/@microsoft.azure/autorest.testserver/swagger/multiapi-v1.json
+input-file: ../../../../node_modules/@microsoft.azure/autorest.testserver/swagger/multiapi-v1.json
 namespace: multiapi.v1
 output-folder: $(python-sdks-folder)/multiapi/Expected/AcceptanceTests/Multiapi/multiapi/v1
 ```
 
 ``` yaml $(tag) == 'v2'
-input-file: ../../node_modules/@microsoft.azure/autorest.testserver/swagger/multiapi-v2.json
+input-file: ../../../../node_modules/@microsoft.azure/autorest.testserver/swagger/multiapi-v2.json
 namespace: multiapi.v2
 output-folder: $(python-sdks-folder)/multiapi/Expected/AcceptanceTests/Multiapi/multiapi/v2
 ```
 
 ``` yaml $(tag) == 'v3'
-input-file: ../../node_modules/@microsoft.azure/autorest.testserver/swagger/multiapi-v3.json
+input-file: ../../../../node_modules/@microsoft.azure/autorest.testserver/swagger/multiapi-v3.json
 namespace: multiapi.v3
 output-folder: $(python-sdks-folder)/multiapi/Expected/AcceptanceTests/Multiapi/multiapi/v3
 ```
