@@ -22,12 +22,15 @@ class MultiapiServiceClientOperationsMixin:
     async def test_one(
         self,
         id: int,
+        message: Optional[str] = None,
         **kwargs
     ) -> None:
         """TestOne should be in an FirstVersionOperationsMixin.
 
         :param id: An int parameter.
         :type id: int
+        :param message: An optional string parameter.
+        :type message: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -39,13 +42,12 @@ class MultiapiServiceClientOperationsMixin:
 
         # Construct URL
         url = self.test_one.metadata['url']
-        path_format_arguments = {
-            'id': self._serialize.url("id", id, 'int'),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['id'] = self._serialize.query("id", id, 'int')
+        if message is not None:
+            query_parameters['message'] = self._serialize.query("message", message, 'str')
         query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers

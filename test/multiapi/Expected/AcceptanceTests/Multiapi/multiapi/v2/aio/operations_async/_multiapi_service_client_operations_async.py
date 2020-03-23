@@ -42,13 +42,10 @@ class MultiapiServiceClientOperationsMixin:
 
         # Construct URL
         url = self.test_one.metadata['url']
-        path_format_arguments = {
-            'id': self._serialize.url("id", id, 'int'),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['id'] = self._serialize.query("id", id, 'int')
         if message is not None:
             query_parameters['message'] = self._serialize.query("message", message, 'str')
         query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')

@@ -60,13 +60,10 @@ class OperationGroupTwoOperations(object):
 
         # Construct URL
         url = self.test_four.metadata['url']
-        path_format_arguments = {
-            'parameterOne': self._serialize.url("parameter_one", parameter_one, 'bool'),
-        }
-        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
+        query_parameters['parameterOne'] = self._serialize.query("parameter_one", parameter_one, 'bool')
         query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
 
         # Construct headers

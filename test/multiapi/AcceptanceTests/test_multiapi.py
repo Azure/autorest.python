@@ -115,18 +115,18 @@ class TestMultiapiClient(object):
 
     # OPERATION MIXINS
     def test_default_operation_mixin(self, default_client):
-        response = default_client.test_one(id=1)
+        response = default_client.test_one(id=1, message=None)
         assert response == ModelTwo(id=1, message="This was called with api-version 2.0.0")
 
     @pytest.mark.parametrize('api_version', ["1.0.0"])
     def test_specificy_api_version_operation_mixin(self, client):
-        response = client.test_one(id=1)
+        response = client.test_one(id=1, message="This is from api version One")
         assert response is None
 
     @pytest.mark.parametrize('api_version', ["3.0.0"])
     def test_specify_api_version_with_no_mixin(self, client):
         with pytest.raises(NotImplementedError):
-            client.test_one(id=1)
+            client.test_one(id=1, message="This should throw")
 
     # OPERATION GROUP ONE
     def test_default_operation_group_one(self, default_client):
