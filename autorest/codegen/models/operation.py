@@ -13,7 +13,7 @@ from .parameter import Parameter, ParameterStyle
 from .parameter_list import ParameterList
 from .base_schema import BaseSchema
 from .schema_request import SchemaRequest
-from .primitive_schemas import AnySchema
+from .object_schema import ObjectSchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -211,9 +211,11 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         if not default_excp:
             return None
         excep_schema = default_excp[0].schema
-        if isinstance(excep_schema, AnySchema):
-            return "\'object\'"
-        return f"models.{excep_schema.name}"
+        if isinstance(excep_schema, ObjectSchema):
+            return f"models.{excep_schema.name}"
+        # in this case, it's just an AnySchema
+        return "\'object\'"
+
 
     @property
     def status_code_exceptions(self) -> List[SchemaResponse]:
