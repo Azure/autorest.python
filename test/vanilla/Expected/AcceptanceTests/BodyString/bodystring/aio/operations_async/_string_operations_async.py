@@ -179,10 +179,13 @@ class StringOperations:
     @distributed_trace_async
     async def put_empty(
         self,
+        string_body: str,
         **kwargs
     ) -> None:
         """Set string value empty ''.
 
+        :param string_body:
+        :type string_body: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -190,7 +193,6 @@ class StringOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        string_body = ""
 
         # Construct URL
         url = self.put_empty.metadata['url']
