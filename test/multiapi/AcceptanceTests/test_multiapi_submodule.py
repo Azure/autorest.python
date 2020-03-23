@@ -27,8 +27,8 @@ import pytest
 import inspect
 import json
 from azure.profiles import KnownProfiles
-from multiapi.models import *
-from multiapi import MultiapiServiceClient
+from multiapiwithsubmodule.submodule.models import *
+from multiapiwithsubmodule.submodule import MultiapiServiceClient
 
 @pytest.fixture
 def default_client(credential, authentication_policy):
@@ -49,7 +49,7 @@ def client(credential, authentication_policy, api_version):
     ) as client:
         yield client
 
-class TestMultiapiClient(object):
+class TestMultiapiSubmodule(object):
 
     def test_default_api_version_multiapi_client(self, default_client):
         assert default_client.DEFAULT_API_VERSION == "3.0.0"

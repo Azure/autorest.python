@@ -8,7 +8,7 @@
 
 from setuptools import setup, find_packages
 
-NAME = "multiapi"
+NAME = "multiapiwithsubmodule"
 VERSION = "0.1.0"
 
 # To install the library, run the following
@@ -23,10 +23,10 @@ REQUIRES = ["msrest>=0.6.0", "azure-core<2.0.0,>=1.2.0"]
 setup(
     name=NAME,
     version=VERSION,
-    description="multiapi",
+    description="multiapi with submodule",
     author_email="",
     url="",
-    keywords=["Swagger", "multiapi"],
+    keywords=["Swagger", "multiapiwithsubmodule"],
     install_requires=REQUIRES,
     packages=find_packages(),
     include_package_data=True,
