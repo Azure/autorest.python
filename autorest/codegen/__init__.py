@@ -42,7 +42,7 @@ class CodeGenerator(Plugin):
                     break
 
     @staticmethod
-    def _build_exceptions_set(yaml_data: List[Dict[str, Any]]) -> Set[Dict[str, Any]]:
+    def _build_exceptions_set(yaml_data: List[Dict[str, Any]]) -> Set[int]:
         exceptions_set = set()
         for group in yaml_data:
             for operation in group["operations"]:
@@ -51,7 +51,7 @@ class CodeGenerator(Plugin):
                 for exception in operation["exceptions"]:
                     if not exception.get("schema"):
                         continue
-                    exceptions_set.add(exception["schema"]["language"]["python"]["name"])
+                    exceptions_set.add(id(exception["schema"]))
         return exceptions_set
 
     def _create_code_model(self, yaml_data: Dict[str, Any], options: Dict[str, Union[str, bool]]) -> CodeModel:

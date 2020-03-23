@@ -212,7 +212,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
             return None
         excep_schema = default_excp[0].schema
         if isinstance(excep_schema, AnySchema):
-            return "object"
+            return "\'object\'"
         return f"models.{excep_schema.name}"
 
     @property
