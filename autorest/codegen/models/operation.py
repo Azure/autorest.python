@@ -13,6 +13,7 @@ from .parameter import Parameter, ParameterStyle
 from .parameter_list import ParameterList
 from .base_schema import BaseSchema
 from .schema_request import SchemaRequest
+from .primitive_schemas import AnySchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -205,11 +206,14 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         return [code for response in self.responses for code in response.status_codes if code != "default"]
 
     @property
-    def default_exception(self) -> Optional[SchemaResponse]:
+    def default_exception(self) -> Optional[str]:
         default_excp = [excp for excp in self.exceptions for code in excp.status_codes if code == "default"]
-        if default_excp:
-            return default_excp[0]
-        return None
+        if not default_excp:
+            return None
+        excep_schema = default_excp[0].schema
+        if isinstance(excep_schema, AnySchema):
+            return "object"
+        return f"models.{excep_schema.name}"
 
     @property
     def status_code_exceptions(self) -> List[SchemaResponse]:
