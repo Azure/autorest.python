@@ -27,11 +27,13 @@ import pytest
 import inspect
 import json
 from azure.profiles import KnownProfiles
-from multiapiwithsubmodule.submodule.models import *
-from multiapiwithsubmodule.submodule import MultiapiServiceClient
+
+from test_multiapi import TestMultiapiClient
+
 
 @pytest.fixture
 def default_client(credential, authentication_policy):
+    from multiapiwithsubmodule.submodule import MultiapiServiceClient
     with MultiapiServiceClient(
 		base_url="http://localhost:3000",
         credential=credential,
@@ -41,6 +43,7 @@ def default_client(credential, authentication_policy):
 
 @pytest.fixture
 def client(credential, authentication_policy, api_version):
+    from multiapiwithsubmodule.submodule import MultiapiServiceClient
     with MultiapiServiceClient(
 		base_url="http://localhost:3000",
         api_version=api_version,
@@ -49,19 +52,25 @@ def client(credential, authentication_policy, api_version):
     ) as client:
         yield client
 
-class TestMultiapiSubmodule(object):
+@pytest.fixture
+def namespace_models():
+    from multiapiwithsubmodule.submodule import models
+    return models
+
+
+@pytest.mark.parametrize('api_version', ["2.0.0"])
+def test_specify_api_version_multiapi_client(client):
+    assert client.profile.label == "multiapiwithsubmodule.MultiapiServiceClient 2.0.0"
+
+def test_configuration_kwargs(default_client):
+    # making sure that the package name is correct in the sdk moniker
+    assert default_client._config.user_agent_policy._user_agent.startswith("azsdk-python-multiapiwithsubmodule/")
+
+class TestMultiapiSubmodule(TestMultiapiClient):
 
     def test_default_api_version_multiapi_client(self, default_client):
         assert default_client.DEFAULT_API_VERSION == "3.0.0"
         assert default_client.profile == KnownProfiles.default
-
-    @pytest.mark.parametrize('api_version', ["2.0.0"])
-    def test_specify_api_version_multiapi_client(self, client):
-        assert client.profile.label == "multiapi.MultiapiServiceClient 2.0.0"
-
-    def test_configuration_kwargs(self, default_client):
-        # making sure that the package name is correct in the sdk moniker
-        assert default_client._config.user_agent_policy._user_agent.startswith("azsdk-python-multiapi/")
 
     def test_default_models(self, default_client):
         default_models = default_client.models()
@@ -107,9 +116,9 @@ class TestMultiapiSubmodule(object):
             v1_models.ModelThree()
 
     # OPERATION MIXINS
-    def test_default_operation_mixin(self, default_client):
+    def test_default_operation_mixin(self, default_client, namespace_models):
         response = default_client.test_one(id=1, message=None)
-        assert response == ModelTwo(id=1, message="This was called with api-version 2.0.0")
+        assert response == namespace_models.ModelTwo(id=1, message="This was called with api-version 2.0.0")
 
     @pytest.mark.parametrize('api_version', ["1.0.0"])
     def test_specificy_api_version_operation_mixin(self, client):
@@ -122,9 +131,9 @@ class TestMultiapiSubmodule(object):
             client.test_one(id=1, message="This should throw")
 
     # OPERATION GROUP ONE
-    def test_default_operation_group_one(self, default_client):
+    def test_default_operation_group_one(self, default_client, namespace_models):
         response = default_client.operation_group_one.test_two()
-        assert response == ModelThree(optional_property="This was called with api-version 3.0.0")
+        assert response == namespace_models.ModelThree(optional_property="This was called with api-version 3.0.0")
 
         with pytest.raises(AttributeError):
             response = client.operation_group_one.test_three()
@@ -138,12 +147,12 @@ class TestMultiapiSubmodule(object):
             response = client.operation_group_one.test_three()
 
     @pytest.mark.parametrize('api_version', ["2.0.0"])
-    def test_version_two_operation_group_one(self, client):
+    def test_version_two_operation_group_one(self, client, namespace_models):
         parameter = client.operation_group_one.models.ModelTwo(
             id=1, message="This should be sent from api version 2.0.0"
         )
         response = client.operation_group_one.test_two(parameter)
-        assert response == ModelTwo(id=1, message="This was called with api-version 2.0.0")
+        assert response == namespace_models.ModelTwo(id=1, message="This was called with api-version 2.0.0")
 
         response = client.operation_group_one.test_three()
         assert response is None
