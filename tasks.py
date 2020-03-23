@@ -287,9 +287,9 @@ def _multiapi_command_line(location):
 def regenerate_multiapi(c, debug=False):
     cmds = []
     # create basic multiapi client (package-name=multapi)
-    cmds.append(_multiapi_command_line("test/multiapi/specification/basic_multiapi/README.md"))
+    cmds.append(_multiapi_command_line("test/multiapi/specification/multiapi/README.md"))
     # create multiapi client with submodule (package-name=multiapi#submodule)
-    cmds.append(_multiapi_command_line("test/multiapi/specification/submodule_multiapi/README.md"))
+    cmds.append(_multiapi_command_line("test/multiapi/specification/multiapiwithsubmodule/README.md"))
     with Pool() as pool:
         result = pool.map(run_autorest, cmds)
     success = all(result)
