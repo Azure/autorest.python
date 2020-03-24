@@ -27,6 +27,7 @@ output-folder: $(python-sdks-folder)/multiapi/Expected/AcceptanceTests/MultiapiW
 license-header: MICROSOFT_MIT_NO_VERSION
 azure: true
 add-credentials: true
+no-namespace-folders: true
 ```
 
 ``` yaml $(multiapi)
@@ -36,6 +37,7 @@ batch:
     - tag: v1
     - tag: v2
     - tag: v3
+    - multiapiscript: true
 ```
 
 ### Multi-api script
