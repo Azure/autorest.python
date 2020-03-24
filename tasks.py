@@ -234,6 +234,8 @@ def regenerate(c, swagger_name=None, debug=False):
     regenerate_python(c, swagger_name, debug)
     regenerate_python_azure(c, swagger_name, debug)
     regenerate_python_arm(c, swagger_name, debug)
+    if not swagger_name:
+        regenerate_multiapi(c, debug)
 
 
 @task
@@ -272,5 +274,25 @@ def regenerate_services(c, swagger_name=None, debug=False):
             result = pool.map(run_autorest, cmds)
         success = all(result)
 
+    if not success:
+        raise SystemExit("Autorest generation fails")
+
+def _multiapi_command_line(location):
+    cwd = os.getcwd()
+    return (
+        f'{_AUTOREST_CMD_LINE} {location} --use=. --multiapi --output-artifact=code-model-v4-no-tags ' +
+        f'--python-sdks-folder={cwd}/test/'
+    )
+
+@task
+def regenerate_multiapi(c, debug=False):
+    cmds = []
+    # create basic multiapi client (package-name=multapi)
+    cmds.append(_multiapi_command_line("test/multiapi/specification/multiapi/README.md"))
+    # create multiapi client with submodule (package-name=multiapi#submodule)
+    cmds.append(_multiapi_command_line("test/multiapi/specification/multiapiwithsubmodule/README.md"))
+    with Pool() as pool:
+        result = pool.map(run_autorest, cmds)
+    success = all(result)
     if not success:
         raise SystemExit("Autorest generation fails")

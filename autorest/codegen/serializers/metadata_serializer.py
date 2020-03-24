@@ -5,7 +5,8 @@
 # --------------------------------------------------------------------------
 from typing import List, Optional, Set, Tuple
 from jinja2 import Environment
-from ..models import CodeModel, Operation, OperationGroup
+from ..models import CodeModel, Operation, OperationGroup, LROOperation, PagingOperation
+from ..models.imports import FileImport
 
 
 
@@ -37,6 +38,12 @@ class MetadataSerializer:
 
 
     def serialize(self) -> str:
+        def _is_lro(operation):
+            return isinstance(operation, LROOperation)
+
+        def _is_paging(operation):
+            return isinstance(operation, PagingOperation)
+
         mixin_operation_group: Optional[OperationGroup] = next(
             (operation_group
             for operation_group in self.code_model.operation_groups if operation_group.is_empty_operation_group),
@@ -47,11 +54,20 @@ class MetadataSerializer:
             mixin_operations = mixin_operation_group.operations
         chosen_version, total_api_version_list = self._choose_api_version()
 
+        parameter_imports = FileImport()
+        for operation_group in self.code_model.operation_groups:
+            for operation in operation_group.operations:
+                for parameter in operation.parameters:
+                    parameter_imports.merge(parameter.imports())
+
         template = self.env.get_template("metadata.json.jinja2")
         return template.render(
             chosen_version=chosen_version,
             total_api_version_list=total_api_version_list,
             code_model=self.code_model,
             mixin_operations=mixin_operations,
-            any=any
+            any=any,
+            is_lro=_is_lro,
+            is_paging=_is_paging,
+            str=str,
         )
