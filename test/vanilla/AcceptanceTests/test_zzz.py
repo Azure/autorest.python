@@ -59,7 +59,9 @@ class TestAcceptance(object):
         for name in optional_report:
             if "Options" in name:
                 missing_features_or_bugs[name] = 1; # https://github.com/Azure/azure-sdk-for-python/pull/9322
-
+            if "Multiapi" in name:
+                # multiapi is in a separate test folder
+                missing_features_or_bugs[name] = 1
         print("Optional coverage:")
         self._print_report(optional_report, not_supported, missing_features_or_bugs)
 
