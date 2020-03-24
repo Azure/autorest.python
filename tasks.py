@@ -54,7 +54,8 @@ default_mappings = {
   'AcceptanceTests/Xml': ['xml-service.json', 'xmlservice'],
   'AcceptanceTests/UrlMultiCollectionFormat' : 'url-multi-collectionFormat.json',
   'AcceptanceTests/XmsErrorResponse': 'xms-error-responses.json',
-  'AcceptanceTests/MediaTypes': ['media_types.json', 0]
+  'AcceptanceTests/MediaTypes': ['media_types.json', 0],
+  'AcceptanceTests/ObjectType': 'object-type.json'
 }
 
 default_azure_mappings = {

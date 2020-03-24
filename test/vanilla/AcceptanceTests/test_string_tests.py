@@ -55,7 +55,8 @@ class TestString(object):
 
     def test_empty(self, client):
         assert "" ==  client.string.get_empty()
-        client.string.put_empty()
+        # changing this behavior because of this pr being merged: https://github.com/Azure/autorest.testserver/pull/145/files
+        client.string.put_empty("")
 
     def test_mbcs(self, client):
         try:

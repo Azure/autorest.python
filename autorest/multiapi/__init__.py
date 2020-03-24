@@ -33,17 +33,6 @@ class MultiApiScriptPlugin(Plugin):
         return generator.process()
 
 
-def _parse_input(input_parameter: str) -> str:
-    """From a syntax like package_name#submodule, build a package name
-    and complete module name.
-    """
-    split_package_name = input_parameter.split("#")
-    package_name = split_package_name[0]
-    module_name = package_name.replace("-", ".")
-    if len(split_package_name) >= 2:
-        module_name = ".".join([module_name, split_package_name[1]])
-    return module_name
-
 def _get_floating_latest(api_versions_list: List[str], preview_mode: bool) -> str:
     """Get the floating latest, from a random list of API versions.
     """
@@ -144,7 +133,7 @@ class MultiAPI:
 
         self.output_folder = Path(output_folder).resolve()
         _LOGGER.debug("Received output-folder %s", output_folder)
-
+        self.output_package_name: str = ""
         self._autorestapi = autorestapi
         self.default_api = default_api
 
@@ -221,13 +210,27 @@ class MultiAPI:
                 versioned_operations_dict[operation_group].append((version_path.name, operation_group_class_name))
         return versioned_operations_dict, mod_to_api_version
 
+    def _parse_package_name_input(self) -> str:
+        """From a syntax like package_name#submodule, build a package name
+        and complete module name.
+        """
+        split_package_name = self.input_package_name.split("#")
+        package_name = split_package_name[0]
+        module_name = package_name.replace("-", ".")
+        if len(split_package_name) >= 2:
+            module_name = ".".join([module_name, split_package_name[1]])
+            self.output_package_name = package_name
+        else:
+            self.output_package_name = self.input_package_name
+        return module_name
+
     def process(self) -> bool:
         _LOGGER.info("Generating multiapi client")
         # If True, means the auto-profile will consider preview versions.
         # If not, if it exists a stable API version for a global or RT, will always be used
         preview_mode = cast(bool, self.default_api and "preview" in self.default_api)
 
-        module_name = _parse_input(self.input_package_name)
+        module_name = self._parse_package_name_input()
         paths_to_versions = self._get_paths_to_versions()
         versioned_operations_dict, mod_to_api_version = self._build_operation_meta(
             paths_to_versions
@@ -297,7 +300,7 @@ class MultiAPI:
 
         conf = {
             "client_name": metadata_json["client"]["name"],
-            "package_name": self.input_package_name,
+            "package_name": self.output_package_name,
             "has_subscription_id": metadata_json["client"]["has_subscription_id"],
             "module_name": module_name,
             "operations": versioned_operations_dict,

@@ -33,6 +33,7 @@ modelerfour:
   group-parameters: true
   flatten-models: true
   flatten-payloads: true
+  resolve-schema-name-collisons: true
   naming:
     parameter: snakecase
     property: snakecase
