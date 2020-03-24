@@ -20,7 +20,7 @@ class MultiapiServiceClientOperationsMixin(object):
         **kwargs  # type: Any
     ):
         """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
-
+    
         :param id: An int parameter.
         :type id: int
         :param message: An optional string parameter.
