@@ -2,6 +2,7 @@ import pytest
 import os
 import subprocess
 import signal
+import sys
 from azure.core.pipeline.policies import SansIOHTTPPolicy
 
 cwd = os.path.dirname(os.path.realpath(__file__))
@@ -27,6 +28,11 @@ def testserver():
     server = start_server_process()
     yield
     terminate_server_process(server)
+
+# Ignore collection of async tests for Python 2
+collect_ignore = []
+if sys.version_info < (3,5):
+    collect_ignore.append("asynctests")
 
 @pytest.fixture
 def credential():
