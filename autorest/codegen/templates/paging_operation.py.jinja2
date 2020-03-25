@@ -1,6 +1,6 @@
 {% import 'keywords.jinja2' as keywords with context %}
 {% import 'operation_tools.jinja2' as op_tools %}
-{% set send_xml = "xml" if operation.parameters.has_body and "xml" in operation.request_content_type %}
+{% set send_xml = "xml" if operation.parameters.has_body and "xml" in operation.parameters.constant | selectattr("serialized_name", "equalto", "content_type") | map(attribute='schema') | map(attribute='constant_value') | first  %}
 {% set request_as_xml = ", is_xml=True" if send_xml else "" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
 {% macro return_docstring() %}

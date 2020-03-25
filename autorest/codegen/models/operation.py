@@ -115,27 +115,6 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         return ",".join(response_media_types)
 
     @property
-    def request_content_type(self) -> str:
-        media_types = list(set(
-            media_type for request in self.requests for media_type in request.media_types
-        ))
-        if not media_types:
-            raise TypeError(
-                f"Operation {self.name} has tried to get its request_content_type even though it has no media types"
-            )
-        if len(media_types) == 1:
-            return media_types[0]
-
-        if "application/json" in media_types:
-            return "application/json"
-        # If more type are supported, if JSON is supported, ask JSON only
-        for media_type in media_types:
-            if "json" in media_type:
-                return media_type
-        # If no JSON, and still several content type, just return first
-        return media_types[0]
-
-    @property
     def is_stream_request(self) -> bool:
         """Is the request is a stream, like an upload."""
         return any(request.is_stream_request for request in self.requests)
