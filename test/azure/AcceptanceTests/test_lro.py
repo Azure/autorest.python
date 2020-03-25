@@ -320,7 +320,7 @@ class TestLro:
         self.assert_raises_with_message("Operation returned an invalid status 'Bad Request'",
             client.lrosads.begin_put_async_relative_retry400, product)
 
-        self.assert_raises_with_message("The response from long running operation does not contain a body.",
+        self.assert_raises_with_message("no status found in body",
             client.lrosads.begin_put_async_relative_retry_no_status, product)
 
         self.assert_raises_with_message("The response from long running operation does not contain a body.",
@@ -357,7 +357,7 @@ class TestLro:
         self.assert_raises_with_message("Bad Request",
             client.lrosads.begin_delete_async_relative_retry400)
 
-        self.assert_raises_with_message("The response from long running operation does not contain a body.",
+        self.assert_raises_with_message("no status found in body",
             client.lrosads.begin_delete_async_relative_retry_no_status)
 
     def test_sads_delete204_succeeded(self, client):

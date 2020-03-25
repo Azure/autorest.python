@@ -352,7 +352,7 @@ class TestLro:
         await self.assert_raises_with_message("Operation returned an invalid status 'Bad Request'",
             client.lrosads.put_async_relative_retry400, product)
 
-        await self.assert_raises_with_message("The response from long running operation does not contain a body.",
+        await self.assert_raises_with_message("no status found in body",
             client.lrosads.put_async_relative_retry_no_status, product)
 
         await self.assert_raises_with_message("The response from long running operation does not contain a body.",
@@ -395,7 +395,7 @@ class TestLro:
         await self.assert_raises_with_message("Bad Request",
             client.lrosads.delete_async_relative_retry400)
 
-        await self.assert_raises_with_message("The response from long running operation does not contain a body.",
+        await self.assert_raises_with_message("no status found in body",
             client.lrosads.delete_async_relative_retry_no_status)
 
     @pytest.mark.asyncio
