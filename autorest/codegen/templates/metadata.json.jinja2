@@ -4,7 +4,7 @@
     "total_api_version_list": {{ total_api_version_list | tojson }},
     "client": {
         "name": {{ code_model.class_name | tojson }},
-        "filename": {{ ("_" + code_model.module_name + ".py") | tojson }},
+        "filename": {{ ("_" + code_model.module_name) | tojson }},
         "description": {{ code_model.description | tojson }},
         "has_subscription_id": {{ "true" if "subscription_id" in code_model.global_parameters | map(attribute="serialized_name") | list else "false" }}
     },
@@ -25,7 +25,9 @@
             },
             "constant": {
                 {% for gp in code_model.global_parameters.constant %}
+                {% if gp.serialized_name != "api_version" %}
                 {{ gp.serialized_name | tojson }}: {{ gp.schema.constant_value | tojson }}{{ "," if not loop.last else "" }}
+                {% endif %}
                 {% endfor %}
             }
         }
@@ -41,9 +43,10 @@
         {% for operation in mixin_operations %}
         {{ operation.name | tojson }} : {
             "doc": {{ op_tools.operation_docstring(operation) | tojson }},
-            "signature": {{ op_tools.method_signature(operation, operation.name, False, False) | tojson }},
-            "call": {{ operation.parameters.method | join(', ') | tojson }}
-        }
+            {% set sync_operation_name = "begin_" + operation.name if is_lro(operation) else operation.name %}
+            "signature": {{ op_tools.method_signature(operation, sync_operation_name, False, False) | tojson }},
+            "call": {{ operation.parameters.method | map(attribute="serialized_name") | join(', ') | tojson }}
+        }{{ "," if not loop.last else "" }}
         {% endfor %}
     }
 }

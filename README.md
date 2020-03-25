@@ -27,7 +27,7 @@ pass-thru:
   - subset-reducer
 # version: 3.0.6258
 use-extension:
-  "@autorest/modelerfour": "4.10.246"
+  "@autorest/modelerfour": "4.10.252"
 
 modelerfour:
   group-parameters: true
@@ -42,6 +42,7 @@ modelerfour:
     choice:  pascalcase
     choiceValue:  snakecase
     constant:  snakecase
+    constantParameter:  snakecase
     type:  pascalcase
     local: _ + snakecase
     global: snakecase
