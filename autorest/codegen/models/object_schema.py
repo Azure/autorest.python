@@ -138,7 +138,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         is_exception = False
         exceptions_set = kwargs.pop("exceptions_set", None)
         if exceptions_set:
-            if yaml_data["language"]["python"]["name"] in exceptions_set:
+            if id(yaml_data) in exceptions_set:
                 is_exception = True
 
         self.yaml_data = yaml_data

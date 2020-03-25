@@ -51,7 +51,7 @@
     if response.status_code not in {{ operation.success_status_code|string() }}:
         map_error(status_code=response.status_code, response=response, error_map=error_map)
         {% if operation.default_exception %}
-        error = self._deserialize(models.{{ operation.default_exception.schema.name }}, response)
+        error = self._deserialize({{ operation.default_exception }}, response)
         {% endif %}
         raise HttpResponseError(response=response{{ ", model=error" if operation.default_exception else "" }}{{ ", error_format=ARMErrorFormat" if code_model.options['azure_arm'] else "" }})
 
