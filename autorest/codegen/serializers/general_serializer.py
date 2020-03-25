@@ -44,11 +44,17 @@ class GeneralSerializer:
             #     file_import.add_from_import("azure.core.credentials", "TokenCredential", ImportType.AZURECORE)
             return file_import
 
+        package_name = self.code_model.options['package_name']
+        if package_name and package_name.startswith("azure-"):
+            package_name = package_name.replace("azure-", "", 1)
+        sdk_moniker = package_name if package_name else self.code_model.class_name.lower()
+
         template = self.env.get_template("config.py.jinja2")
         return template.render(
             code_model=self.code_model,
             async_mode=self.async_mode,
             imports=FileImportSerializer(_config_imports(self.async_mode)),
+            sdk_moniker=sdk_moniker
         )
 
     def serialize_version_file(self) -> str:
