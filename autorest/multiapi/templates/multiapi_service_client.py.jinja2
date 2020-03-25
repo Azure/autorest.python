@@ -140,9 +140,9 @@ class {{ client_name }}({% if mixin_operations %}{{ client_name }}OperationsMixi
     {% endfor %}
 
     {{ def }} close(self):
-        self._client.close()
+        {{ await }}self._client.close()
     {{ def }} __{{ async_prefix }}enter__(self):
-        self._client.__enter__()
+        {{ await }}self._client.__{{ async_prefix }}enter__()
         return self
     {{ def }} __{{ async_prefix }}exit__(self, *exc_details):
-        self._client.__exit__(*exc_details)
+        {{ await }}self._client.__{{ async_prefix }}exit__(*exc_details)

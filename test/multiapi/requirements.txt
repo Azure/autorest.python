@@ -2,6 +2,9 @@ msrest>=0.6.11
 azure-core>=1.3.0
 azure-mgmt-core
 pytest
+pytest-asyncio;python_full_version>="3.5.2"
+async_generator;python_full_version>="3.5.2"
 azure-common
+aiohttp
 -e ./Expected/AcceptanceTests/Multiapi
 -e ./Expected/AcceptanceTests/MultiapiWithSubmodule

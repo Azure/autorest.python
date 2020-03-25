@@ -9,24 +9,17 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
-try:
-    from typing import TYPE_CHECKING
-except ImportError:
-    TYPE_CHECKING = False
-
-if TYPE_CHECKING:
-    # pylint:disable=unused-import
-    from typing import Optional, Union
+from typing import Optional, Union
 
 
 class MultiapiServiceClientOperationsMixin(object):
 
-    def test_one(
+    async def test_one(
         self,
-        id,  # type: int
-        message=None,  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
+        id: int,
+        message: Optional[str] = None,
+        **kwargs
+    ) -> "models.ModelTwo":
         """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
 
         :param id: An int parameter.
@@ -40,9 +33,9 @@ class MultiapiServiceClientOperationsMixin(object):
         """
         api_version = self._get_api_version('test_one')
         if api_version == '1.0.0':
-            from .v1.operations import MultiapiServiceClientOperationsMixin as OperationClass
+            from ..v1.aio.operations_async import MultiapiServiceClientOperationsMixin as OperationClass
         elif api_version == '2.0.0':
-            from .v2.operations import MultiapiServiceClientOperationsMixin as OperationClass
+            from ..v2.aio.operations_async import MultiapiServiceClientOperationsMixin as OperationClass
         else:
             raise NotImplementedError("APIVersion {} is not available".format(api_version))
         mixin_instance = OperationClass()
@@ -50,4 +43,4 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._config = self._config
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        return mixin_instance.test_one(id, message, **kwargs)
+        return await mixin_instance.test_one(id, message, **kwargs)
