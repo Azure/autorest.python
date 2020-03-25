@@ -9,6 +9,14 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
+try:
+    from typing import TYPE_CHECKING
+except ImportError:
+    TYPE_CHECKING = False
+
+if TYPE_CHECKING:
+    # pylint:disable=unused-import
+    from typing import Optional, Union
 
 
 class MultiapiServiceClientOperationsMixin(object):
@@ -20,7 +28,7 @@ class MultiapiServiceClientOperationsMixin(object):
         **kwargs  # type: Any
     ):
         """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
-    
+
         :param id: An int parameter.
         :type id: int
         :param message: An optional string parameter.
@@ -30,7 +38,6 @@ class MultiapiServiceClientOperationsMixin(object):
         :rtype: ~multiapiwithsubmodule.submodule.v2.models.ModelTwo
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
         api_version = self._get_api_version('test_one')
         if api_version == '1.0.0':
             from .v1.operations import MultiapiServiceClientOperationsMixin as OperationClass
@@ -43,5 +50,4 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._config = self._config
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        mixin_instance.api_version = api_version
         return mixin_instance.test_one(id, message, **kwargs)

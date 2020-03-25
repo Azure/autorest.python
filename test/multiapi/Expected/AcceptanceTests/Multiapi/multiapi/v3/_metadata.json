@@ -29,5 +29,6 @@
         "operation_group_two": "OperationGroupTwoOperations"
     },
     "operation_mixins": {
-    }
+    },
+    "imports": "from typing import Optional, Union"
 }
