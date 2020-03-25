@@ -128,7 +128,7 @@ class Product(msrest.serialization.Model):
     :param const_child: Required. The product documentation.
     :type const_child: ~validation.models.ConstantProduct
     :ivar const_int: Required. Constant int. Default value: "0".
-    :vartype const_int: float
+    :vartype const_int: int
     :ivar const_string: Required. Constant string. Default value: "constant".
     :vartype const_string: str
     :ivar const_string_as_enum: Constant string as Enum. Default value: "constant_string_as_enum".
@@ -152,7 +152,7 @@ class Product(msrest.serialization.Model):
         'image': {'key': 'image', 'type': 'str'},
         'child': {'key': 'child', 'type': 'ChildProduct'},
         'const_child': {'key': 'constChild', 'type': 'ConstantProduct'},
-        'const_int': {'key': 'constInt', 'type': 'float'},
+        'const_int': {'key': 'constInt', 'type': 'int'},
         'const_string': {'key': 'constString', 'type': 'str'},
         'const_string_as_enum': {'key': 'constStringAsEnum', 'type': 'str'},
     }

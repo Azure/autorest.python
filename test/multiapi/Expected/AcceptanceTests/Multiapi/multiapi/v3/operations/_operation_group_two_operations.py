@@ -41,7 +41,7 @@ class OperationGroupTwoOperations(object):
 
     def test_four(
         self,
-        input=None,  # type: Optional[Union[str, "models.SourcePath"]]
+        input,  # type: Union[str, "models.SourcePath"]
         **kwargs  # type: Any
     ):
         # type: (...) -> None
@@ -68,6 +68,7 @@ class OperationGroupTwoOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request

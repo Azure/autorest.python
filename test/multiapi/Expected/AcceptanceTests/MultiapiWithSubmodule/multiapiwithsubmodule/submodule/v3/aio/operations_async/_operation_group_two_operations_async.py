@@ -41,7 +41,7 @@ class OperationGroupTwoOperations:
 
     async def test_four(
         self,
-        input: Optional[Union[str, "models.SourcePath"]] = None,
+        input: Union[str, "models.SourcePath"],
         **kwargs
     ) -> None:
         """TestFour should be in OperationGroupTwoOperations.
@@ -67,6 +67,7 @@ class OperationGroupTwoOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request

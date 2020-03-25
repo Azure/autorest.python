@@ -23,7 +23,7 @@ class MediaTypesClientOperationsMixin(object):
     @distributed_trace
     def analyze_body(
         self,
-        input=None,  # type: Optional[Union[str, "models.SourcePath"]]
+        input,  # type: Union[str, "models.SourcePath"]
         **kwargs  # type: Any
     ):
         # type: (...) -> str
@@ -48,6 +48,7 @@ class MediaTypesClientOperationsMixin(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
         header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
