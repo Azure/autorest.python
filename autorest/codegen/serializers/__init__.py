@@ -124,19 +124,19 @@ class JinjaSerializer:
     def _serialize_and_write_version_file(
         self, code_model: CodeModel, namespace_path: Path, general_serializer: GeneralSerializer
     ):
-        def _read_version_file(version_file_name: str) -> str:
-            return self._autorestapi.read_file(namespace_path / version_file_name)
+        def _read_version_file(original_version_file_name: str) -> str:
+            return self._autorestapi.read_file(namespace_path / original_version_file_name)
 
-        def _write_version_file(version_file_name: str) -> None:
+        def _write_version_file(original_version_file_name: str) -> None:
             self._autorestapi.write_file(
                 namespace_path / Path("_version.py"),
-                _read_version_file(version_file_name)
+                _read_version_file(original_version_file_name)
             )
         keep_version_file = code_model.options['keep_version_file']
         if keep_version_file and _read_version_file("_version.py"):
-            _write_version_file("_version.py")
+            _write_version_file(original_version_file_name="_version.py")
         elif keep_version_file and _read_version_file("version.py"):
-            _write_version_file("version.py")
+            _write_version_file(original_version_file_name="version.py")
         elif code_model.options['package_version']:
             self._autorestapi.write_file(
                 namespace_path / Path("_version.py"),
