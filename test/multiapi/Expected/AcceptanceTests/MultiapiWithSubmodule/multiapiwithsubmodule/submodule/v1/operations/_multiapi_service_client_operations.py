@@ -42,7 +42,7 @@ class MultiapiServiceClientOperationsMixin(object):
         api_version = "1.0.0"
 
         # Construct URL
-        url = self.test_one.metadata['url']
+        url = self.test_one.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -67,4 +67,4 @@ class MultiapiServiceClientOperationsMixin(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    test_one.metadata = {'url': '/multiapi/testOneEndpoint'}
+    test_one.metadata = {'url': '/multiapi/testOneEndpoint'}  # type: ignore

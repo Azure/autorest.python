@@ -12,7 +12,7 @@ from typing import Dict, List, Optional, Union
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
 
-from _auto_rest_complex_test_service_enums import CMYKColors, GoblinSharkColor
+from ._auto_rest_complex_test_service_enums import CMYKColors, GoblinSharkColor
 
 
 class ArrayWrapper(msrest.serialization.Model):

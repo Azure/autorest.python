@@ -35,7 +35,7 @@ class ObjectTypeClientOperationsMixin(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get.metadata['url']
+        url = self.get.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -60,7 +60,7 @@ class ObjectTypeClientOperationsMixin(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get.metadata = {'url': '/objectType/get'}
+    get.metadata = {'url': '/objectType/get'}  # type: ignore
 
     @distributed_trace
     def put(
@@ -82,7 +82,7 @@ class ObjectTypeClientOperationsMixin(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put.metadata['url']
+        url = self.put.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -108,4 +108,4 @@ class ObjectTypeClientOperationsMixin(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put.metadata = {'url': '/objectType/put'}
+    put.metadata = {'url': '/objectType/put'}  # type: ignore

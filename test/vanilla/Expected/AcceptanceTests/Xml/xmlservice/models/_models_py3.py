@@ -12,7 +12,7 @@ from typing import Dict, List, Optional, Union
 from azure.core.exceptions import HttpResponseError
 import msrest.serialization
 
-from _auto_rest_swagger_batxml_service_enums import AccessTier, ArchiveStatus, BlobType, CopyStatusType, LeaseDurationType, LeaseStateType, LeaseStatusType, PublicAccessType
+from ._auto_rest_swagger_batxml_service_enums import AccessTier, ArchiveStatus, BlobType, CopyStatusType, LeaseDurationType, LeaseStateType, LeaseStatusType, PublicAccessType
 
 
 class AccessPolicy(msrest.serialization.Model):

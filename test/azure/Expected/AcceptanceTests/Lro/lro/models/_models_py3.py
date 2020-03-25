@@ -10,7 +10,7 @@ from typing import Dict, Optional, Union
 
 import msrest.serialization
 
-from _auto_rest_long_running_operation_test_service_enums import OperationResultStatus
+from ._auto_rest_long_running_operation_test_service_enums import OperationResultStatus
 
 
 class OperationResult(msrest.serialization.Model):

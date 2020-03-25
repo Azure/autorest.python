@@ -155,5 +155,5 @@ class EnumSchema(BaseSchema):
 
     def model_file_imports(self) -> FileImport:
         imports = self.imports()
-        imports.add_from_import(self.enum_file_name, self.enum_type, ImportType.LOCAL)
+        imports.add_from_import("." + self.enum_file_name, self.enum_type, ImportType.LOCAL)
         return imports

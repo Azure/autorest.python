@@ -10,7 +10,7 @@ from typing import List, Optional, Union
 
 import msrest.serialization
 
-from _auto_rest_paging_test_service_enums import OperationResultStatus
+from ._auto_rest_paging_test_service_enums import OperationResultStatus
 
 
 class CustomParameterGroup(msrest.serialization.Model):
