@@ -119,6 +119,30 @@ class JinjaSerializer:
                     operation_group_async_serializer.serialize(),
                 )
 
+
+
+    def _serialize_and_write_version_file(
+        self, code_model: CodeModel, namespace_path: Path, general_serializer: GeneralSerializer
+    ):
+        def _read_version_file(version_file_name: str) -> str:
+            return self._autorestapi.read_file(namespace_path / version_file_name)
+
+        def _write_version_file(version_file_name: str) -> None:
+            self._autorestapi.write_file(
+                namespace_path / Path("_version.py"),
+                _read_version_file(version_file_name)
+            )
+        keep_version_file = code_model.options['keep_version_file']
+        if keep_version_file and _read_version_file("_version.py"):
+            _write_version_file("_version.py")
+        elif keep_version_file and _read_version_file("version.py"):
+            _write_version_file("version.py")
+        elif code_model.options['package_version']:
+            self._autorestapi.write_file(
+                namespace_path / Path("_version.py"),
+                general_serializer.serialize_version_file()
+            )
+
     def _serialize_and_write_top_level_folder(
         self, code_model: CodeModel, env: Environment, namespace_path: Path
     ) -> None:
@@ -138,20 +162,7 @@ class JinjaSerializer:
             namespace_path / Path(f"_{code_model.module_name}.py"), general_serializer.serialize_service_client_file()
         )
 
-        # Write the version if necessary
-        if (
-            code_model.options['keep_version_file'] and
-            self._autorestapi.read_file(namespace_path / Path("_version.py"))
-        ):
-            self._autorestapi.write_file(
-                namespace_path / Path("_version.py"),
-                self._autorestapi.read_file(namespace_path / Path("_version.py"))
-            )
-        elif code_model.options['package_version']:
-            self._autorestapi.write_file(
-                namespace_path / Path("_version.py"),
-                general_serializer.serialize_version_file()
-            )
+        self._serialize_and_write_version_file(code_model, namespace_path, general_serializer)
 
         # write the empty py.typed file
         self._autorestapi.write_file(namespace_path / Path("py.typed"), "# Marker file for PEP 561.")
