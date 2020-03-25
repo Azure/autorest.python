@@ -134,7 +134,9 @@ class TestLro:
         product = client.lros.begin_post_double_headers_final_azure_header_get().result()
         assert product.id == "100"
 
-        # This test will work as long as the default is Azure-AsyncOperation
+    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.python/pull/512")
+    def test_post_double_headers_default(self, client):
+        # This test will work as long as the default is Location
         product = client.lros.begin_post_double_headers_final_azure_header_get_default().result()
         assert product.id == "100"
 

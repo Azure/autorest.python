@@ -1,0 +1,38 @@
+{
+    "chosen_version": "2.0.0",
+    "total_api_version_list": ["2.0.0"],
+    "client": {
+        "name": "MultiapiServiceClient",
+        "filename": "_multiapi_service_client",
+        "description": "Service client for multiapi client testing.",
+        "has_subscription_id": false
+    },
+    "config": {
+        "credential": true,
+        "credential_scopes": null,
+        "package_version": false,
+        "global_parameters": {
+            "method": {
+                "credential": {
+                    "method_signature": "credential,  # type: \"TokenCredential\"",
+                    "description": "Credential needed for the client to connect to Azure.",
+                    "docstring_type": "azure.core.credentials.TokenCredential",
+                    "required": true
+                }
+            },
+            "constant": {
+            }
+        }
+    },
+    "operation_groups": {
+        "operation_group_one": "OperationGroupOneOperations",
+        "operation_group_two": "OperationGroupTwoOperations"
+    },
+    "operation_mixins": {
+        "test_one" : {
+            "doc": "    \"\"\"TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.\n\n:param id: An int parameter.\n:type id: int\n:param message: An optional string parameter.\n:type message: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: ModelTwo or the result of cls(response)\n:rtype: ~multiapi.v2.models.ModelTwo\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\"",
+            "signature": "def test_one(\n    self,\n    id,  # type: int\n    message=None,  # type: Optional[str]\n    **kwargs  # type: Any\n):\n",
+            "call": "id, message"
+        }
+    }
+}
