@@ -278,17 +278,13 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
                     parameters.append(parameter)
                 elif multiple_requests:
                     multiple_media_type_parameters.append(parameter)
+                else:
+                    parameters.append(parameter)
 
         if multiple_requests:
             chosen_parameter = multiple_media_type_parameters[0]
             chosen_parameter.has_multiple_media_types = True
             parameters.append(chosen_parameter)
-
-        else:
-            parameters += [
-                Parameter.from_yaml(yaml)
-                for yaml in first_request.get("parameters", [])
-            ]
 
         if multiple_media_type_parameters:
             body_parameters_name_set = set(

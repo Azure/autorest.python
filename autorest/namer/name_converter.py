@@ -116,9 +116,15 @@ class NameConverter:
         schema_name = schema['language']['default']['name']
         schema_python_name = schema['language']['python']['name']
 
-        schema_python_name = NameConverter._to_valid_python_name(
-            name=schema_name, pad_string=pad_string, convert_name=convert_name
-        )
+        if not(
+            schema_name == 'content_type' and
+            schema['protocol'].get('http') and
+            schema['protocol']['http']['in'] == "header"
+        ):
+            # only escaping name if it's not a content_type header parameter
+            schema_python_name = NameConverter._to_valid_python_name(
+                name=schema_name, pad_string=pad_string, convert_name=convert_name
+            )
         schema['language']['python']['name'] = schema_python_name.lower()
 
         schema_description = schema["language"]["default"]["description"].strip()

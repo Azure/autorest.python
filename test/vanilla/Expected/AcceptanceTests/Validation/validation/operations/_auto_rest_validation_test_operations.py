@@ -103,6 +103,7 @@ class AutoRestValidationTestOperationsMixin(object):
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         api_version = "1.0.0"
+        content_type = "application/json"
 
         # Construct URL
         url = self.validation_of_body.metadata['url']
@@ -119,8 +120,8 @@ class AutoRestValidationTestOperationsMixin(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -210,6 +211,7 @@ class AutoRestValidationTestOperationsMixin(object):
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         constant_param = "constant"
+        content_type = "application/json"
 
         # Construct URL
         url = self.post_with_constant_in_body.metadata['url']
@@ -223,8 +225,8 @@ class AutoRestValidationTestOperationsMixin(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]

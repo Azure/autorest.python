@@ -65,6 +65,7 @@ class StorageAccountsOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType["models.CheckNameAvailabilityResult"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         api_version = "2015-05-01-preview"
+        content_type = "application/json"
 
         # Construct URL
         url = self.check_name_availability.metadata['url']
@@ -79,8 +80,8 @@ class StorageAccountsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -114,6 +115,7 @@ class StorageAccountsOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         api_version = "2015-05-01-preview"
+        content_type = "application/json"
 
         # Construct URL
         url = self._create_initial.metadata['url']
@@ -130,8 +132,8 @@ class StorageAccountsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -353,6 +355,7 @@ class StorageAccountsOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccount"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         api_version = "2015-05-01-preview"
+        content_type = "application/json"
 
         # Construct URL
         url = self.update.metadata['url']
@@ -369,8 +372,8 @@ class StorageAccountsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -611,6 +614,7 @@ class StorageAccountsOperations(object):
 
         _regenerate_key = models.StorageAccountRegenerateKeyParameters(key_name=key_name)
         api_version = "2015-05-01-preview"
+        content_type = "application/json"
 
         # Construct URL
         url = self.regenerate_key.metadata['url']
@@ -627,8 +631,8 @@ class StorageAccountsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
