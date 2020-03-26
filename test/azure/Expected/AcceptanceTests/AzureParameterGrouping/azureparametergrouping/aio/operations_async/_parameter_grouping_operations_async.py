@@ -67,7 +67,7 @@ class ParameterGroupingOperations:
             _query = parameter_grouping_post_required_parameters.query
             _path = parameter_grouping_post_required_parameters.path
             _body = parameter_grouping_post_required_parameters.body
-        content_type = "application/json"
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.post_required.metadata['url']

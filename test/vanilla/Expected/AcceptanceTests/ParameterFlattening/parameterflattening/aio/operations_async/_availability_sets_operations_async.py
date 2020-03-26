@@ -65,7 +65,7 @@ class AvailabilitySetsOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         _tags = models.AvailabilitySetUpdateParameters(tags=tags)
-        content_type = "application/json"
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.update.metadata['url']

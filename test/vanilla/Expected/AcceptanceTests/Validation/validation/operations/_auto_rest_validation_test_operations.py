@@ -103,7 +103,7 @@ class AutoRestValidationTestOperationsMixin(object):
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         api_version = "1.0.0"
-        content_type = "application/json"
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.validation_of_body.metadata['url']
@@ -211,7 +211,7 @@ class AutoRestValidationTestOperationsMixin(object):
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         constant_param = "constant"
-        content_type = "application/json"
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.post_with_constant_in_body.metadata['url']

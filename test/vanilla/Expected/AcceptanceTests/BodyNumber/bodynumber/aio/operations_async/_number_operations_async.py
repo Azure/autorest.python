@@ -229,7 +229,7 @@ class NumberOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        content_type = "application/json"
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put_big_float.metadata['url']
@@ -320,7 +320,7 @@ class NumberOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        content_type = "application/json"
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put_big_double.metadata['url']
@@ -408,7 +408,7 @@ class NumberOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        content_type = "application/json"
+        content_type = kwargs.pop("content_type", "application/json")
         number_body = 99999999.99
 
         # Construct URL
@@ -497,7 +497,7 @@ class NumberOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        content_type = "application/json"
+        content_type = kwargs.pop("content_type", "application/json")
         number_body = -99999999.99
 
         # Construct URL
@@ -589,7 +589,7 @@ class NumberOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        content_type = "application/json"
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put_big_decimal.metadata['url']
@@ -677,7 +677,7 @@ class NumberOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        content_type = "application/json"
+        content_type = kwargs.pop("content_type", "application/json")
         number_body = 99999999.99
 
         # Construct URL
@@ -766,7 +766,7 @@ class NumberOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        content_type = "application/json"
+        content_type = kwargs.pop("content_type", "application/json")
         number_body = -99999999.99
 
         # Construct URL
@@ -858,7 +858,7 @@ class NumberOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        content_type = "application/json"
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put_small_float.metadata['url']
@@ -949,7 +949,7 @@ class NumberOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        content_type = "application/json"
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put_small_double.metadata['url']
@@ -1040,7 +1040,7 @@ class NumberOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        content_type = "application/json"
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put_small_decimal.metadata['url']

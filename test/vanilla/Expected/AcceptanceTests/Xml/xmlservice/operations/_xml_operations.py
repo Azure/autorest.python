@@ -101,7 +101,7 @@ class XmlOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        content_type = "application/xml"
+        content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
         url = self.put_complex_type_ref_no_meta.metadata['url']
@@ -192,7 +192,7 @@ class XmlOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        content_type = "application/xml"
+        content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
         url = self.put_complex_type_ref_with_meta.metadata['url']
@@ -284,7 +284,7 @@ class XmlOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        content_type = "application/xml"
+        content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
         url = self.put_simple.metadata['url']
@@ -376,7 +376,7 @@ class XmlOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        content_type = "application/xml"
+        content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
         url = self.put_wrapped_lists.metadata['url']
@@ -510,7 +510,7 @@ class XmlOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        content_type = "application/xml"
+        content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
         url = self.put_empty_list.metadata['url']
@@ -601,7 +601,7 @@ class XmlOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        content_type = "application/xml"
+        content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
         url = self.put_empty_wrapped_lists.metadata['url']
@@ -692,7 +692,7 @@ class XmlOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        content_type = "application/xml"
+        content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
         url = self.put_root_list.metadata['url']
@@ -784,7 +784,7 @@ class XmlOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        content_type = "application/xml"
+        content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
         url = self.put_root_list_single_item.metadata['url']
@@ -876,7 +876,7 @@ class XmlOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        content_type = "application/xml"
+        content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
         url = self.put_empty_root_list.metadata['url']
@@ -968,7 +968,7 @@ class XmlOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        content_type = "application/xml"
+        content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
         url = self.put_empty_child_element.metadata['url']
@@ -1110,7 +1110,7 @@ class XmlOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         comp = "properties"
         restype = "service"
-        content_type = "application/xml"
+        content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
         url = self.put_service_properties.metadata['url']
@@ -1209,7 +1209,7 @@ class XmlOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         comp = "acl"
         restype = "container"
-        content_type = "application/xml"
+        content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
         url = self.put_acls.metadata['url']
@@ -1309,7 +1309,7 @@ class XmlOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         _properties = models.JSONInput(id=id)
-        content_type = "application/json"
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.json_input.metadata['url']

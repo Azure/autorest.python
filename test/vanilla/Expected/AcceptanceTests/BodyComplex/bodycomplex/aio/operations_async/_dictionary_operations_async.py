@@ -102,7 +102,7 @@ class DictionaryOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         _complex_body = models.DictionaryWrapper(default_program=default_program)
-        content_type = "application/json"
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put_valid.metadata['url']
@@ -195,7 +195,7 @@ class DictionaryOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         _complex_body = models.DictionaryWrapper(default_program=default_program)
-        content_type = "application/json"
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put_empty.metadata['url']

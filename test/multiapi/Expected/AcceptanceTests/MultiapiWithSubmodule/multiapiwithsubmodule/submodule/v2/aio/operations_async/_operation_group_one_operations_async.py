@@ -56,7 +56,7 @@ class OperationGroupOneOperations:
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ModelTwo"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         api_version = "2.0.0"
-        content_type = "application/json"
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.test_two.metadata['url']

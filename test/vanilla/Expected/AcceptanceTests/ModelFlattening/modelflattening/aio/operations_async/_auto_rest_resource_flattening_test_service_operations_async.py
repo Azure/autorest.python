@@ -37,7 +37,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        content_type = "application/json"
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put_array.metadata['url']
@@ -131,7 +131,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        content_type = "application/json"
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put_wrapped_array.metadata['url']
@@ -225,7 +225,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        content_type = "application/json"
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put_dictionary.metadata['url']
@@ -319,7 +319,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        content_type = "application/json"
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put_resource_collection.metadata['url']
@@ -413,7 +413,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.SimpleProduct"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
-        content_type = "application/json"
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put_simple_product.metadata['url']
@@ -484,7 +484,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         _simple_body_product = models.SimpleProduct(product_id=product_id, description=description, max_product_display_name=max_product_display_name, generic_value=generic_value, odata_value=odata_value)
-        content_type = "application/json"
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.post_flattened_simple_product.metadata['url']
@@ -557,7 +557,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin:
             _odata_value = flatten_parameter_group.odata_value
 
         _simple_body_product = models.SimpleProduct(product_id=_product_id, description=_description, max_product_display_name=_max_product_display_name, generic_value=_generic_value, odata_value=_odata_value)
-        content_type = "application/json"
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put_simple_product_with_grouping.metadata['url']
