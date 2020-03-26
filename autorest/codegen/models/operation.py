@@ -78,6 +78,15 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         return self.name
 
     @property
+    def request_content_type(self) -> str:
+        return next(iter(
+            [
+                p.schema.constant_value for p in self.parameters.constant
+                if p.serialized_name == "content_type"
+            ]
+        ))
+
+    @property
     def accept_content_type(self) -> str:
         media_types = list(set(
             media_type for response in self.responses for media_type in response.media_types

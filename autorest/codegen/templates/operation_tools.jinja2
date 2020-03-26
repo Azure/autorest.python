@@ -162,7 +162,7 @@ else:
 body_content_kwargs['content'] = body_content{% endmacro %}
 {# write body parameters #}
 {% macro body_parameters(operation) %}
-{% set send_xml = "xml" if operation.parameters.has_body and "xml" in operation.parameters.constant | selectattr("serialized_name", "equalto", "content_type") | map(attribute='schema') | map(attribute='constant_value') | first %}
+{% set send_xml = "xml" if operation.parameters.has_body and "xml" in operation.request_content_type %}
 {% set request_as_xml = ", is_xml=True" if send_xml else "" %}
 # Construct and send request
 {% if operation.parameters.has_body %}
