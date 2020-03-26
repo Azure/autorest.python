@@ -272,12 +272,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         for request in yaml_data["requests"]:
             for yaml in request.get("parameters", []):
                 parameter = Parameter.from_yaml(yaml)
-
                 if yaml["language"]["python"]["name"] == "content_type":
-                    if yaml["schema"]["type"] == "sealed-choice":
-                        # for requests with multiple media types
-                        # we get one that's a constant, one that's an enum
-                        continue
                     parameter.is_kwarg = True
                     parameters.append(parameter)
                 elif multiple_requests:
@@ -288,6 +283,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         if multiple_requests:
             parameters = _remove_multiple_content_type_parameters(parameters)
             chosen_parameter = multiple_media_type_parameters[0]
+
             # binary body parameters are required, while object
             # ones are not. We default to optional in this case.
             optional_parameters = [p for p in multiple_media_type_parameters if not p.required]
