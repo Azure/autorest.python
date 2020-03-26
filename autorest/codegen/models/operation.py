@@ -276,7 +276,13 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
                     parameters.append(parameter)
 
         if multiple_requests:
-            chosen_parameter = multiple_media_type_parameters[0]
+            # binary body parameters are required, while object
+            # ones are not. We default to optional in this case.
+            optional_parameters = [p for p in multiple_media_type_parameters if not p.required]
+            if optional_parameters:
+                chosen_parameter = optional_parameters[0]
+            else:
+                chosen_parameter = multiple_media_type_parameters[0]
             chosen_parameter.has_multiple_media_types = True
             parameters.append(chosen_parameter)
 

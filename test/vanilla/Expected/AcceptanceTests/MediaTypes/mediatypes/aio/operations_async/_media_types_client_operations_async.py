@@ -23,7 +23,7 @@ class MediaTypesClientOperationsMixin:
     @distributed_trace_async
     async def analyze_body(
         self,
-        input: Union[str, "models.SourcePath"],
+        input: Optional[Union[str, "models.SourcePath"]] = None,
         **kwargs
     ) -> str:
         """Analyze body, that could be different media types.
