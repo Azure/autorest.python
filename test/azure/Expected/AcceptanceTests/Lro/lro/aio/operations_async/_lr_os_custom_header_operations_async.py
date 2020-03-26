@@ -50,6 +50,7 @@ class LROsCustomHeaderOperations:
     ) -> "models.Product":
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._put_async_retry_succeeded_initial.metadata['url']
@@ -59,8 +60,8 @@ class LROsCustomHeaderOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -146,6 +147,7 @@ class LROsCustomHeaderOperations:
     ) -> "models.Product":
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._put201_creating_succeeded200_initial.metadata['url']
@@ -155,8 +157,8 @@ class LROsCustomHeaderOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -238,6 +240,7 @@ class LROsCustomHeaderOperations:
     ) -> None:
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._post202_retry200_initial.metadata['url']
@@ -247,7 +250,7 @@ class LROsCustomHeaderOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -322,6 +325,7 @@ class LROsCustomHeaderOperations:
     ) -> None:
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._post_async_retry_succeeded_initial.metadata['url']
@@ -331,7 +335,7 @@ class LROsCustomHeaderOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]

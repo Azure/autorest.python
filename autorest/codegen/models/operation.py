@@ -14,6 +14,7 @@ from .parameter_list import ParameterList
 from .base_schema import BaseSchema
 from .schema_request import SchemaRequest
 from .object_schema import ObjectSchema
+from .constant_schema import ConstantSchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -78,6 +79,15 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         return self.name
 
     @property
+    def request_content_type(self) -> str:
+        return next(iter(
+            [
+                cast(ConstantSchema, p.schema).constant_value for p in self.parameters.constant
+                if p.serialized_name == "content_type"
+            ]
+        ))
+
+    @property
     def accept_content_type(self) -> str:
         media_types = list(set(
             media_type for response in self.responses for media_type in response.media_types
@@ -113,27 +123,6 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
             )
             response_media_types = binary_media_types + non_binary_schema_media_types
         return ",".join(response_media_types)
-
-    @property
-    def request_content_type(self) -> str:
-        media_types = list(set(
-            media_type for request in self.requests for media_type in request.media_types
-        ))
-        if not media_types:
-            raise TypeError(
-                f"Operation {self.name} has tried to get its request_content_type even though it has no media types"
-            )
-        if len(media_types) == 1:
-            return media_types[0]
-
-        if "application/json" in media_types:
-            return "application/json"
-        # If more type are supported, if JSON is supported, ask JSON only
-        for media_type in media_types:
-            if "json" in media_type:
-                return media_type
-        # If no JSON, and still several content type, just return first
-        return media_types[0]
 
     @property
     def is_stream_request(self) -> bool:
@@ -273,22 +262,29 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         for request in yaml_data["requests"]:
             for yaml in request.get("parameters", []):
                 parameter = Parameter.from_yaml(yaml)
+
                 if yaml["language"]["python"]["name"] == "content_type":
+                    if yaml["schema"]["type"] == "sealed-choice":
+                        # for requests with multiple media types
+                        # we get one that's a constant, one that's an enum
+                        continue
                     parameter.is_kwarg = True
                     parameters.append(parameter)
                 elif multiple_requests:
                     multiple_media_type_parameters.append(parameter)
+                else:
+                    parameters.append(parameter)
 
         if multiple_requests:
-            chosen_parameter = multiple_media_type_parameters[0]
+            # binary body parameters are required, while object
+            # ones are not. We default to optional in this case.
+            optional_parameters = [p for p in multiple_media_type_parameters if not p.required]
+            if optional_parameters:
+                chosen_parameter = optional_parameters[0]
+            else:
+                chosen_parameter = multiple_media_type_parameters[0]
             chosen_parameter.has_multiple_media_types = True
             parameters.append(chosen_parameter)
-
-        else:
-            parameters += [
-                Parameter.from_yaml(yaml)
-                for yaml in first_request.get("parameters", [])
-            ]
 
         if multiple_media_type_parameters:
             body_parameters_name_set = set(
