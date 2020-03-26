@@ -68,6 +68,7 @@ class ParameterGroupingOperations(object):
             _query = parameter_grouping_post_required_parameters.query
             _path = parameter_grouping_post_required_parameters.path
             _body = parameter_grouping_post_required_parameters.body
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.post_required.metadata['url']
@@ -85,7 +86,7 @@ class ParameterGroupingOperations(object):
         header_parameters = {}  # type: Dict[str, Any]
         if _custom_header is not None:
             header_parameters['customHeader'] = self._serialize.header("custom_header", _custom_header, 'str')
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]

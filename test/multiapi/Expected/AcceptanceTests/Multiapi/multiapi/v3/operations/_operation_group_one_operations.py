@@ -57,6 +57,7 @@ class OperationGroupOneOperations(object):
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ModelThree"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         api_version = "3.0.0"
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.test_two.metadata['url']
@@ -67,8 +68,8 @@ class OperationGroupOneOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]

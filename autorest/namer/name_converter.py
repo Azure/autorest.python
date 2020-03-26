@@ -5,16 +5,7 @@
 # --------------------------------------------------------------------------
 import re
 from typing import cast, Any, Dict, List, Match, Optional
-from enum import Enum
-from .python_mappings import basic_latin_chars, reserved_words
-
-
-class PadType(Enum):
-    Model = "Model"
-    Method = "Method"
-    Parameter = "Parameter"
-    Enum = "Enum"
-    Property = "Property"
+from .python_mappings import basic_latin_chars, reserved_words, PadType
 
 
 class NameConverter:
@@ -116,9 +107,15 @@ class NameConverter:
         schema_name = schema['language']['default']['name']
         schema_python_name = schema['language']['python']['name']
 
-        schema_python_name = NameConverter._to_valid_python_name(
-            name=schema_name, pad_string=pad_string, convert_name=convert_name
-        )
+        if not(
+            schema_name == 'content_type' and
+            schema['protocol'].get('http') and
+            schema['protocol']['http']['in'] == "header"
+        ):
+            # only escaping name if it's not a content_type header parameter
+            schema_python_name = NameConverter._to_valid_python_name(
+                name=schema_name, pad_string=pad_string, convert_name=convert_name
+            )
         schema['language']['python']['name'] = schema_python_name.lower()
 
         schema_description = schema["language"]["default"]["description"].strip()
@@ -192,17 +189,8 @@ class NameConverter:
         try:
             # check to see if name is reserved for the type of name we are converting
             pad_string = cast(PadType, pad_string)
-            if name.lower() in reserved_words["always_reserved"]:
+            if pad_string and name.lower() in reserved_words[pad_string]:
                 name += pad_string.value
-            elif pad_string in [PadType.Method, PadType.Parameter]:
-                if name.lower() in reserved_words["reserved_for_operations"]:
-                    name += pad_string.value
-            elif pad_string in [PadType.Model, PadType.Property]:
-                if name.lower() in reserved_words["reserved_for_models"]:
-                    name += pad_string.value
-            elif pad_string == PadType.Enum:
-                if name.lower() in reserved_words["reserved_for_enums"]:
-                    name += pad_string.value
             return name
         except AttributeError:
             raise ValueError(f"The name {name} is a reserved word and you have not specified a pad string for it.")

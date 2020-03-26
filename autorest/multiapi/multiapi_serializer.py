@@ -59,6 +59,11 @@ class MultiAPISerializer:
                 "_version.py",
                 self._autorestapi.read_file("_version.py")
             )
+        elif self._autorestapi.read_file("version.py"):
+            self._autorestapi.write_file(
+                "_version.py",
+                self._autorestapi.read_file("version.py")
+            )
         else:
             self._autorestapi.write_file(
                 Path("_version.py"),
