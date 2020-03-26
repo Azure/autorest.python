@@ -1,15 +1,18 @@
 # Change Log
 
-### 2020-03-26 - 4.0.75
+### 2020-03-26 - 5.0.0-dev.20200326.1
 Modelerfour version: 4.12.276
 
 **Bug Fixes**
 
-- Will no longer permit generated enums and models to have the same name
-- No longer exposing models from operation groups without importing them #482
-- Now correctly deserializes error's that have an empty object (AnySchema) as a model #516
-- Added a list of parameter names to reserved parameter words, so there won't be clashes #520
-- If a property's schema is required, we will show that property as being required (taken from m4 update)
+- Will no longer permit generated enums and models to have the same name  #504
+- No longer exposing models from operation groups without importing them  #486
+- Now correctly deserializes error's that have an empty object (AnySchema) as a model  #516
+- Added a list of parameter names to reserved parameter words, so there won't be clashes  #525
+- If a property's schema is readonly, we will show that property as being readonly (taken from m4 update #234)
+- Remove `"azure-"` prefix from user agent name  #523
+- Correcting issue in generating multiapi with submodule, where generated user agent name included the `#`  #505
+
 
 ### 2020-01-17 - 4.0.74
 
