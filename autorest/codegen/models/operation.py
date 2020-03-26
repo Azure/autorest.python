@@ -14,6 +14,7 @@ from .parameter_list import ParameterList
 from .base_schema import BaseSchema
 from .schema_request import SchemaRequest
 from .object_schema import ObjectSchema
+from .constant_schema import ConstantSchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -91,7 +92,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
     def request_content_type(self) -> str:
         return next(iter(
             [
-                p.schema.constant_value for p in self.parameters.constant
+                cast(ConstantSchema, p.schema).constant_value for p in self.parameters.constant
                 if p.serialized_name == "content_type"
             ]
         ))
@@ -271,7 +272,12 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         for request in yaml_data["requests"]:
             for yaml in request.get("parameters", []):
                 parameter = Parameter.from_yaml(yaml)
+
                 if yaml["language"]["python"]["name"] == "content_type":
+                    if yaml["schema"]["type"] == "sealed-choice":
+                        # for requests with multiple media types
+                        # we get one that's a constant, one that's an enum
+                        continue
                     parameter.is_kwarg = True
                     parameters.append(parameter)
                 elif multiple_requests:
@@ -282,6 +288,13 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         if multiple_requests:
             parameters = _remove_multiple_content_type_parameters(parameters)
             chosen_parameter = multiple_media_type_parameters[0]
+            # binary body parameters are required, while object
+            # ones are not. We default to optional in this case.
+            optional_parameters = [p for p in multiple_media_type_parameters if not p.required]
+            if optional_parameters:
+                chosen_parameter = optional_parameters[0]
+            else:
+                chosen_parameter = multiple_media_type_parameters[0]
             chosen_parameter.has_multiple_media_types = True
             parameters.append(chosen_parameter)
 

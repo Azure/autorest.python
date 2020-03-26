@@ -23,7 +23,7 @@ class MediaTypesClientOperationsMixin(object):
     @distributed_trace
     def analyze_body(
         self,
-        input,  # type: Union[str, "models.SourcePath"]
+        input=None,  # type: Optional[Union[str, "models.SourcePath"]]
         **kwargs  # type: Any
     ):
         # type: (...) -> str
