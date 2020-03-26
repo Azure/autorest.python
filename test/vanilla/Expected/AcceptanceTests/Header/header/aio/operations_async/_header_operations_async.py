@@ -44,13 +44,13 @@ class HeaderOperations:
     @distributed_trace_async
     async def param_existing_key(
         self,
-        user_agent: str,
+        user_agent_parameter: str,
         **kwargs
     ) -> None:
         """Send a post request with header value "User-Agent": "overwrite".
 
-        :param user_agent: Send a post request with header value "User-Agent": "overwrite".
-        :type user_agent: str
+        :param user_agent_parameter: Send a post request with header value "User-Agent": "overwrite".
+        :type user_agent_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
         :rtype: None
@@ -67,7 +67,7 @@ class HeaderOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['User-Agent'] = self._serialize.header("user_agent", user_agent, 'str')
+        header_parameters['User-Agent'] = self._serialize.header("user_agent_parameter", user_agent_parameter, 'str')
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
