@@ -1,5 +1,11 @@
 # Change Log
 
+### Current version
+
+**New Features**
+
+- We now also generate an async multiapi client when running multiapiscript  # 480
+
 ### 2020-03-26 - 5.0.0-dev.20200326.1
 Modelerfour version: 4.12.276
 
