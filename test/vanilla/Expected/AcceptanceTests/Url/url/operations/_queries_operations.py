@@ -192,7 +192,7 @@ class QueriesOperations(object):
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['intQuery'] = self._serialize.query("int_query", int_query, 'float')
+        query_parameters['intQuery'] = self._serialize.query("int_query", int_query, 'int')
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -234,7 +234,7 @@ class QueriesOperations(object):
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['intQuery'] = self._serialize.query("int_query", int_query, 'float')
+        query_parameters['intQuery'] = self._serialize.query("int_query", int_query, 'int')
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -321,7 +321,7 @@ class QueriesOperations(object):
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['longQuery'] = self._serialize.query("long_query", long_query, 'float')
+        query_parameters['longQuery'] = self._serialize.query("long_query", long_query, 'long')
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
@@ -363,7 +363,7 @@ class QueriesOperations(object):
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
-        query_parameters['longQuery'] = self._serialize.query("long_query", long_query, 'float')
+        query_parameters['longQuery'] = self._serialize.query("long_query", long_query, 'long')
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
