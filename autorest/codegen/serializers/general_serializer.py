@@ -46,7 +46,7 @@ class GeneralSerializer:
 
         package_name = self.code_model.options['package_name']
         if package_name and package_name.startswith("azure-"):
-            package_name = package_name.replace("azure-", "", 1)
+            package_name = package_name[len("azure-"):]
         sdk_moniker = package_name if package_name else self.code_model.class_name.lower()
 
         template = self.env.get_template("config.py.jinja2")
