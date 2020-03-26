@@ -37,6 +37,16 @@ def _non_binary_schema_media_types(media_types: List[str]) -> List[str]:
             response_media_types.append(xml_media_types[0])
     return response_media_types
 
+def _remove_multiple_content_type_parameters(parameters: List[Parameter]) -> List[Parameter]:
+    content_type_params = [p for p in parameters if p.serialized_name == "content_type"]
+    remaining_params = [p for p in parameters if p.serialized_name != "content_type"]
+    json_content_type_param = [p for p in content_type_params if p.yaml_data["schema"]["type"] == "constant"]
+    if json_content_type_param:
+        remaining_params.append(json_content_type_param[0])
+    else:
+        remaining_params.append(content_type_params[0])
+    return remaining_params
+
 class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many-instance-attributes
     """Represent an operation.
     """
@@ -261,12 +271,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         for request in yaml_data["requests"]:
             for yaml in request.get("parameters", []):
                 parameter = Parameter.from_yaml(yaml)
-
                 if yaml["language"]["python"]["name"] == "content_type":
-                    if yaml["schema"]["type"] == "sealed-choice":
-                        # for requests with multiple media types
-                        # we get one that's a constant, one that's an enum
-                        continue
                     parameter.is_kwarg = True
                     parameters.append(parameter)
                 elif multiple_requests:
@@ -275,6 +280,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
                     parameters.append(parameter)
 
         if multiple_requests:
+            parameters = _remove_multiple_content_type_parameters(parameters)
             chosen_parameter = multiple_media_type_parameters[0]
             chosen_parameter.has_multiple_media_types = True
             parameters.append(chosen_parameter)
