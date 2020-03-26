@@ -14,6 +14,7 @@ from .parameter_list import ParameterList
 from .base_schema import BaseSchema
 from .schema_request import SchemaRequest
 from .object_schema import ObjectSchema
+from .constant_schema import ConstantSchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -81,7 +82,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
     def request_content_type(self) -> str:
         return next(iter(
             [
-                p.schema.constant_value for p in self.parameters.constant
+                cast(ConstantSchema, p.schema).constant_value for p in self.parameters.constant
                 if p.serialized_name == "content_type"
             ]
         ))
