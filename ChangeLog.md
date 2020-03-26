@@ -1,5 +1,16 @@
 # Change Log
 
+### 2020-03-26 - 4.0.71
+Modelerfour version: 4.12.276
+
+**Bug Fixes**
+- Will no longer permit generated enums and models to have the same name
+- No longer exposing models from operation groups without importing them #482
+- Now correctly deserializes error's that have an empty object (AnySchema) as a model #516
+- Added a list of parameter names to reserved parameter words, so there won't be clashes #520
+- If a property's schema is required, we will show that property as being required (taken from m4 update)
+
+
 ### 2019-06-12 - 4.0.71
 
 - no-async flag to skip async code generation
