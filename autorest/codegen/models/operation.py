@@ -254,7 +254,7 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
                 parameter = Parameter.from_yaml(yaml)
 
                 if yaml["language"]["python"]["name"] == "content_type":
-                    if parameter.schema["type"] == "sealed-choice":
+                    if yaml["schema"]["type"] == "sealed-choice":
                         # for requests with multiple media types
                         # we get one that's a constant, one that's an enum
                         continue
