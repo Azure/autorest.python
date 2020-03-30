@@ -94,6 +94,8 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         properties = []
         base_model = None
 
+        name = yaml_data["language"]["python"]["name"]
+
         # checking to see if there is a parent class and / or additional properties
         if yaml_data.get("parents"):
             immediate_parents = yaml_data["parents"]["immediate"]
@@ -113,7 +115,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
                                 description="Unmatched properties from the message are deserialized to this collection."
                             )
                         )
-                    elif immediate_parent["language"]["default"]["name"] != yaml_data["language"]["default"]["name"]:
+                    elif immediate_parent["language"]["default"]["name"] != name and immediate_parent['type'] == "object":
                         base_model = id(immediate_parent)
 
         # checking to see if this is a polymorphic class
@@ -131,7 +133,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
             ]
         # this is to ensure that the attribute map type and property type are generated correctly
 
-        name = yaml_data["language"]["python"]["name"]
+
 
         description = yaml_data["language"]["python"]["description"]
         is_exception = False
