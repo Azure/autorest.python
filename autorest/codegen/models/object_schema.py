@@ -115,7 +115,10 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
                                 description="Unmatched properties from the message are deserialized to this collection."
                             )
                         )
-                    elif immediate_parent["language"]["default"]["name"] != name and immediate_parent['type'] == "object":
+                    elif (
+                        immediate_parent["language"]["default"]["name"] != name and
+                        immediate_parent['type'] == "object"
+                    ):
                         base_model = id(immediate_parent)
 
         # checking to see if this is a polymorphic class
