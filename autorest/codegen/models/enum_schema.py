@@ -5,6 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict, List, Optional, Set
 from .base_schema import BaseSchema
+from .primitive_schemas import PrimitiveSchema, get_primitive_schema, StringSchema
 from .imports import FileImport, ImportType
 
 
@@ -22,7 +23,7 @@ class EnumValue:
         self.description = description
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any]) -> "EnumValue":
+    def from_yaml(cls, yaml_data: Dict[str, Any], is_string) -> "EnumValue":
         """Constructs an EnumValue from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this object
@@ -31,9 +32,10 @@ class EnumValue:
         :return: A created EnumValue
         :rtype: ~autorest.models.EnumValue
         """
+        value = yaml_data["value"]
         return cls(
             name=yaml_data["language"]["python"]["name"],
-            value=yaml_data["value"],
+            value=f"\"{value}\"" if is_string else value,
             description=yaml_data["language"]["python"].get("description"),
         )
 
@@ -44,19 +46,26 @@ class EnumSchema(BaseSchema):
     :param yaml_data: the yaml data for this schema
     :type yaml_data: dict[str, Any]
     :param str description: The description of this enum
-    :param enum_type: The type of the enum. Currently we're only allowing strings.
+    :param str name: The name of the enum.
     :type element_type: ~autorest.models.PrimitiveSchema
     :param values: List of the values for this enum
     :type values: list[~autorest.models.EnumValue]
     """
 
     def __init__(
-        self, namespace: str, yaml_data: Dict[str, Any], description: str, enum_type: str, values: List["EnumValue"]
+        self,
+        namespace: str,
+        yaml_data: Dict[str, Any],
+        description: str,
+        name: str,
+        values: List["EnumValue"],
+        enum_type: PrimitiveSchema
     ) -> None:
         super(EnumSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.description = description
-        self.enum_type = enum_type
+        self.name = name
         self.values = values
+        self.enum_type = enum_type
 
     @property
     def serialization_type(self) -> str:
@@ -65,7 +74,7 @@ class EnumSchema(BaseSchema):
         :return: The serialization value for msrest
         :rtype: str
         """
-        return "str"
+        return self.enum_type.serialization_type
 
     @property
     def type_annotation(self) -> str:
@@ -74,7 +83,7 @@ class EnumSchema(BaseSchema):
         :return: The type annotation for this schema
         :rtype: str
         """
-        return f'Union[str, "{self.enum_type}"]'
+        return f'Union[{self.enum_type.type_annotation}, "{self.name}"]'
 
     @property
     def operation_type_annotation(self) -> str:
@@ -83,23 +92,23 @@ class EnumSchema(BaseSchema):
         :return: The type annotation for this schema
         :rtype: str
         """
-        return f'Union[str, "models.{self.enum_type}"]'
+        return f'Union[{self.enum_type.type_annotation}, "models.{self.name}"]'
 
     def get_declaration(self, value: Any) -> str:
         return f'"{value}"'
 
     @property
     def docstring_text(self) -> str:
-        return self.enum_type
+        return self.name
 
     @property
     def docstring_type(self) -> str:
         """The python type used for RST syntax input and type annotation.
         """
-        return f"str or ~{self.namespace}.models.{self.enum_type}"
+        return f"str or ~{self.namespace}.models.{self.name}"
 
     @staticmethod
-    def _get_enum_values(yaml_data: List[Dict[str, Any]]) -> List["EnumValue"]:
+    def _get_enum_values(yaml_data: List[Dict[str, Any]], is_string: bool) -> List["EnumValue"]:
         """Creates the list of values for this enum.
 
         :param yaml_data: yaml data about the enum's values
@@ -114,7 +123,7 @@ class EnumSchema(BaseSchema):
             enum_name = enum["language"]["python"]["name"]
             if enum_name in seen_enums:
                 continue
-            values.append(EnumValue.from_yaml(enum))
+            values.append(EnumValue.from_yaml(enum, is_string))
             seen_enums.add(enum_name)
         return values
 
@@ -128,15 +137,22 @@ class EnumSchema(BaseSchema):
         :return: A created EnumSchema
         :rtype: ~autorest.models.EnumSchema
         """
-        enum_type = yaml_data["language"]["python"]["name"]
-        values = EnumSchema._get_enum_values(yaml_data["choices"])
+        name = yaml_data["language"]["python"]["name"]
+
+        # choice type doesn't always exist. if there is no choiceType, we default to string
+        if yaml_data.get("choiceType"):
+            enum_type = get_primitive_schema(namespace, yaml_data["choiceType"])
+        else:
+            enum_type = StringSchema(namespace, {})
+        values = EnumSchema._get_enum_values(yaml_data["choices"], is_string=isinstance(enum_type, StringSchema))
 
         return cls(
             namespace=namespace,
             yaml_data=yaml_data,
             description=yaml_data["language"]["python"]["description"],
-            enum_type=enum_type,
+            name=name,
             values=values,
+            enum_type=enum_type
         )
 
     def imports(self) -> FileImport:

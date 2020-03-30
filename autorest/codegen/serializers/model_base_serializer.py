@@ -73,7 +73,7 @@ class ModelBaseSerializer:
         if prop.is_discriminator:
             description += "Constant filled by server. "
         if isinstance(prop.schema, EnumSchema):
-            values = ["'" + v.value + "'" for v in prop.schema.values]
+            values = [str(v.value) for v in prop.schema.values]
             description += " Possible values include: {}.".format(", ".join(values))
             if prop.schema.default_value:
                 description += f' Default value: "{prop.schema.default_value}".'
