@@ -37,7 +37,7 @@ class BaseProduct(msrest.serialization.Model):
         **kwargs
     ):
         super(BaseProduct, self).__init__(**kwargs)
-        self.product_id = kwargs.get('product_id', None)
+        self.product_id = kwargs['product_id']
         self.description = kwargs.get('description', None)
 
 
@@ -211,9 +211,9 @@ class FlattenParameterGroup(msrest.serialization.Model):
         **kwargs
     ):
         super(FlattenParameterGroup, self).__init__(**kwargs)
-        self.name = kwargs.get('name', None)
+        self.name = kwargs['name']
         self.simple_body_product = kwargs.get('simple_body_product', None)
-        self.product_id = kwargs.get('product_id', None)
+        self.product_id = kwargs['product_id']
         self.description = kwargs.get('description', None)
         self.max_product_display_name = kwargs.get('max_product_display_name', None)
         self.generic_value = kwargs.get('generic_value', None)

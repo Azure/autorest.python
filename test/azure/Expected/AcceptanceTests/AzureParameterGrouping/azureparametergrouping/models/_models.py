@@ -136,5 +136,5 @@ class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
         super(ParameterGroupingPostRequiredParameters, self).__init__(**kwargs)
         self.custom_header = kwargs.get('custom_header', None)
         self.query = kwargs.get('query', 30)
-        self.path = kwargs.get('path', None)
-        self.body = kwargs.get('body', None)
+        self.path = kwargs['path']
+        self.body = kwargs['body']

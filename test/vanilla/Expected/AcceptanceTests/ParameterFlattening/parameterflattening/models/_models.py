@@ -31,4 +31,4 @@ class AvailabilitySetUpdateParameters(msrest.serialization.Model):
         **kwargs
     ):
         super(AvailabilitySetUpdateParameters, self).__init__(**kwargs)
-        self.tags = kwargs.get('tags', None)
+        self.tags = kwargs['tags']
