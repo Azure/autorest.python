@@ -46,7 +46,7 @@ class PetAPTrue(msrest.serialization.Model):
     ):
         super(PetAPTrue, self).__init__(**kwargs)
         self.additional_properties = kwargs.get('additional_properties', None)
-        self.id = kwargs.get('id', None)
+        self.id = kwargs['id']
         self.name = kwargs.get('name', None)
         self.status = None
 
@@ -149,7 +149,7 @@ class PetAPInProperties(msrest.serialization.Model):
         **kwargs
     ):
         super(PetAPInProperties, self).__init__(**kwargs)
-        self.id = kwargs.get('id', None)
+        self.id = kwargs['id']
         self.name = kwargs.get('name', None)
         self.status = None
         self.additional_properties = kwargs.get('additional_properties', None)
@@ -198,10 +198,10 @@ class PetAPInPropertiesWithAPString(msrest.serialization.Model):
     ):
         super(PetAPInPropertiesWithAPString, self).__init__(**kwargs)
         self.additional_properties = kwargs.get('additional_properties', None)
-        self.id = kwargs.get('id', None)
+        self.id = kwargs['id']
         self.name = kwargs.get('name', None)
         self.status = None
-        self.odata_location = kwargs.get('odata_location', None)
+        self.odata_location = kwargs['odata_location']
         self.additional_properties1 = kwargs.get('additional_properties1', None)
 
 
@@ -241,7 +241,7 @@ class PetAPObject(msrest.serialization.Model):
     ):
         super(PetAPObject, self).__init__(**kwargs)
         self.additional_properties = kwargs.get('additional_properties', None)
-        self.id = kwargs.get('id', None)
+        self.id = kwargs['id']
         self.name = kwargs.get('name', None)
         self.status = None
 
@@ -282,6 +282,6 @@ class PetAPString(msrest.serialization.Model):
     ):
         super(PetAPString, self).__init__(**kwargs)
         self.additional_properties = kwargs.get('additional_properties', None)
-        self.id = kwargs.get('id', None)
+        self.id = kwargs['id']
         self.name = kwargs.get('name', None)
         self.status = None

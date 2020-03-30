@@ -40,9 +40,9 @@ class AccessPolicy(msrest.serialization.Model):
         **kwargs
     ):
         super(AccessPolicy, self).__init__(**kwargs)
-        self.start = kwargs.get('start', None)
-        self.expiry = kwargs.get('expiry', None)
-        self.permission = kwargs.get('permission', None)
+        self.start = kwargs['start']
+        self.expiry = kwargs['expiry']
+        self.permission = kwargs['permission']
 
 
 class AppleBarrel(msrest.serialization.Model):
@@ -138,10 +138,10 @@ class Blob(msrest.serialization.Model):
         **kwargs
     ):
         super(Blob, self).__init__(**kwargs)
-        self.name = kwargs.get('name', None)
-        self.deleted = kwargs.get('deleted', None)
-        self.snapshot = kwargs.get('snapshot', None)
-        self.properties = kwargs.get('properties', None)
+        self.name = kwargs['name']
+        self.deleted = kwargs['deleted']
+        self.snapshot = kwargs['snapshot']
+        self.properties = kwargs['properties']
         self.metadata = kwargs.get('metadata', None)
 
 
@@ -167,7 +167,7 @@ class BlobPrefix(msrest.serialization.Model):
         **kwargs
     ):
         super(BlobPrefix, self).__init__(**kwargs)
-        self.name = kwargs.get('name', None)
+        self.name = kwargs['name']
 
 
 class BlobProperties(msrest.serialization.Model):
@@ -277,8 +277,8 @@ class BlobProperties(msrest.serialization.Model):
         **kwargs
     ):
         super(BlobProperties, self).__init__(**kwargs)
-        self.last_modified = kwargs.get('last_modified', None)
-        self.etag = kwargs.get('etag', None)
+        self.last_modified = kwargs['last_modified']
+        self.etag = kwargs['etag']
         self.content_length = kwargs.get('content_length', None)
         self.content_type = kwargs.get('content_type', None)
         self.content_encoding = kwargs.get('content_encoding', None)
@@ -400,8 +400,8 @@ class Container(msrest.serialization.Model):
         **kwargs
     ):
         super(Container, self).__init__(**kwargs)
-        self.name = kwargs.get('name', None)
-        self.properties = kwargs.get('properties', None)
+        self.name = kwargs['name']
+        self.properties = kwargs['properties']
         self.metadata = kwargs.get('metadata', None)
 
 
@@ -444,8 +444,8 @@ class ContainerProperties(msrest.serialization.Model):
         **kwargs
     ):
         super(ContainerProperties, self).__init__(**kwargs)
-        self.last_modified = kwargs.get('last_modified', None)
-        self.etag = kwargs.get('etag', None)
+        self.last_modified = kwargs['last_modified']
+        self.etag = kwargs['etag']
         self.lease_status = kwargs.get('lease_status', None)
         self.lease_state = kwargs.get('lease_state', None)
         self.lease_duration = kwargs.get('lease_duration', None)
@@ -501,11 +501,11 @@ class CorsRule(msrest.serialization.Model):
         **kwargs
     ):
         super(CorsRule, self).__init__(**kwargs)
-        self.allowed_origins = kwargs.get('allowed_origins', None)
-        self.allowed_methods = kwargs.get('allowed_methods', None)
-        self.allowed_headers = kwargs.get('allowed_headers', None)
-        self.exposed_headers = kwargs.get('exposed_headers', None)
-        self.max_age_in_seconds = kwargs.get('max_age_in_seconds', None)
+        self.allowed_origins = kwargs['allowed_origins']
+        self.allowed_methods = kwargs['allowed_methods']
+        self.allowed_headers = kwargs['allowed_headers']
+        self.exposed_headers = kwargs['exposed_headers']
+        self.max_age_in_seconds = kwargs['max_age_in_seconds']
 
 
 class Error(msrest.serialization.Model):
@@ -622,13 +622,13 @@ class ListBlobsResponse(msrest.serialization.Model):
     ):
         super(ListBlobsResponse, self).__init__(**kwargs)
         self.service_endpoint = kwargs.get('service_endpoint', None)
-        self.container_name = kwargs.get('container_name', None)
-        self.prefix = kwargs.get('prefix', None)
-        self.marker = kwargs.get('marker', None)
-        self.max_results = kwargs.get('max_results', None)
-        self.delimiter = kwargs.get('delimiter', None)
-        self.blobs = kwargs.get('blobs', None)
-        self.next_marker = kwargs.get('next_marker', None)
+        self.container_name = kwargs['container_name']
+        self.prefix = kwargs['prefix']
+        self.marker = kwargs['marker']
+        self.max_results = kwargs['max_results']
+        self.delimiter = kwargs['delimiter']
+        self.blobs = kwargs['blobs']
+        self.next_marker = kwargs['next_marker']
 
 
 class ListContainersResponse(msrest.serialization.Model):
@@ -674,12 +674,12 @@ class ListContainersResponse(msrest.serialization.Model):
         **kwargs
     ):
         super(ListContainersResponse, self).__init__(**kwargs)
-        self.service_endpoint = kwargs.get('service_endpoint', None)
-        self.prefix = kwargs.get('prefix', None)
+        self.service_endpoint = kwargs['service_endpoint']
+        self.prefix = kwargs['prefix']
         self.marker = kwargs.get('marker', None)
-        self.max_results = kwargs.get('max_results', None)
+        self.max_results = kwargs['max_results']
         self.containers = kwargs.get('containers', None)
-        self.next_marker = kwargs.get('next_marker', None)
+        self.next_marker = kwargs['next_marker']
 
 
 class Logging(msrest.serialization.Model):
@@ -720,11 +720,11 @@ class Logging(msrest.serialization.Model):
         **kwargs
     ):
         super(Logging, self).__init__(**kwargs)
-        self.version = kwargs.get('version', None)
-        self.delete = kwargs.get('delete', None)
-        self.read = kwargs.get('read', None)
-        self.write = kwargs.get('write', None)
-        self.retention_policy = kwargs.get('retention_policy', None)
+        self.version = kwargs['version']
+        self.delete = kwargs['delete']
+        self.read = kwargs['read']
+        self.write = kwargs['write']
+        self.retention_policy = kwargs['retention_policy']
 
 
 class Metrics(msrest.serialization.Model):
@@ -760,7 +760,7 @@ class Metrics(msrest.serialization.Model):
     ):
         super(Metrics, self).__init__(**kwargs)
         self.version = kwargs.get('version', None)
-        self.enabled = kwargs.get('enabled', None)
+        self.enabled = kwargs['enabled']
         self.include_ap_is = kwargs.get('include_ap_is', None)
         self.retention_policy = kwargs.get('retention_policy', None)
 
@@ -793,7 +793,7 @@ class RetentionPolicy(msrest.serialization.Model):
         **kwargs
     ):
         super(RetentionPolicy, self).__init__(**kwargs)
-        self.enabled = kwargs.get('enabled', None)
+        self.enabled = kwargs['enabled']
         self.days = kwargs.get('days', None)
 
 
@@ -872,8 +872,8 @@ class SignedIdentifier(msrest.serialization.Model):
         **kwargs
     ):
         super(SignedIdentifier, self).__init__(**kwargs)
-        self.id = kwargs.get('id', None)
-        self.access_policy = kwargs.get('access_policy', None)
+        self.id = kwargs['id']
+        self.access_policy = kwargs['access_policy']
 
 
 class Slide(msrest.serialization.Model):

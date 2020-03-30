@@ -40,4 +40,4 @@ class Pet(msrest.serialization.Model):
         super(Pet, self).__init__(**kwargs)
         self.name = kwargs.get('name', None)
         self.days_of_week = kwargs.get('days_of_week', "Friday")
-        self.int_enum = kwargs.get('int_enum', None)
+        self.int_enum = kwargs['int_enum']

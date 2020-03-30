@@ -68,7 +68,7 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Mod
         **kwargs
     ):
         super(HeaderCustomNamedRequestIdParamGroupingParameters, self).__init__(**kwargs)
-        self.foo_client_request_id = kwargs.get('foo_client_request_id', None)
+        self.foo_client_request_id = kwargs['foo_client_request_id']
 
 
 class OdataFilter(msrest.serialization.Model):
