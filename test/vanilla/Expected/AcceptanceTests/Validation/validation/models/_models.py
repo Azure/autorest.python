@@ -161,5 +161,5 @@ class Product(msrest.serialization.Model):
         self.display_names = kwargs.get('display_names', None)
         self.capacity = kwargs.get('capacity', None)
         self.image = kwargs.get('image', None)
-        self.child = kwargs.get('child', None)
-        self.const_child = kwargs.get('const_child', None)
+        self.child = kwargs['child']
+        self.const_child = kwargs['const_child']

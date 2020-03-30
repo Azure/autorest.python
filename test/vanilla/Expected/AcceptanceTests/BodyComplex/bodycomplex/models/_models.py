@@ -192,7 +192,7 @@ class Fish(msrest.serialization.Model):
         super(Fish, self).__init__(**kwargs)
         self.fishtype = None
         self.species = kwargs.get('species', None)
-        self.length = kwargs.get('length', None)
+        self.length = kwargs['length']
         self.siblings = kwargs.get('siblings', None)
 
 
@@ -244,7 +244,7 @@ class Shark(Fish):
         super(Shark, self).__init__(**kwargs)
         self.fishtype = 'shark'
         self.age = kwargs.get('age', None)
-        self.birthday = kwargs.get('birthday', None)
+        self.birthday = kwargs['birthday']
 
 
 class Cookiecuttershark(Shark):
