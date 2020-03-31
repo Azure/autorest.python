@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict, List, Optional, Set
 from .base_schema import BaseSchema
-from .primitive_schemas import PrimitiveSchema, get_primitive_schema, StringSchema
+from .primitive_schemas import PrimitiveSchema, get_primitive_schema, NumberSchema, StringSchema
 from .imports import FileImport, ImportType
 
 
@@ -23,7 +23,7 @@ class EnumValue:
         self.description = description
 
     @classmethod
-    def from_yaml(cls, yaml_data: Dict[str, Any], is_string) -> "EnumValue":
+    def from_yaml(cls, yaml_data: Dict[str, Any], need_quotes) -> "EnumValue":
         """Constructs an EnumValue from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this object
@@ -35,7 +35,7 @@ class EnumValue:
         value = yaml_data["value"]
         return cls(
             name=yaml_data["language"]["python"]["name"],
-            value=f"\"{value}\"" if is_string else value,
+            value=f"\"{value}\"" if need_quotes else value,
             description=yaml_data["language"]["python"].get("description"),
         )
 
@@ -108,7 +108,7 @@ class EnumSchema(BaseSchema):
         return f"str or ~{self.namespace}.models.{self.name}"
 
     @staticmethod
-    def _get_enum_values(yaml_data: List[Dict[str, Any]], is_string: bool) -> List["EnumValue"]:
+    def _get_enum_values(yaml_data: List[Dict[str, Any]], need_quotes: bool) -> List["EnumValue"]:
         """Creates the list of values for this enum.
 
         :param yaml_data: yaml data about the enum's values
@@ -123,7 +123,7 @@ class EnumSchema(BaseSchema):
             enum_name = enum["language"]["python"]["name"]
             if enum_name in seen_enums:
                 continue
-            values.append(EnumValue.from_yaml(enum, is_string))
+            values.append(EnumValue.from_yaml(enum, need_quotes))
             seen_enums.add(enum_name)
         return values
 
@@ -144,7 +144,7 @@ class EnumSchema(BaseSchema):
             enum_type = get_primitive_schema(namespace, yaml_data["choiceType"])
         else:
             enum_type = StringSchema(namespace, {"type": "str"})
-        values = EnumSchema._get_enum_values(yaml_data["choices"], is_string=isinstance(enum_type, StringSchema))
+        values = EnumSchema._get_enum_values(yaml_data["choices"], need_quotes=not isinstance(enum_type, NumberSchema))
 
         return cls(
             namespace=namespace,
@@ -158,4 +158,5 @@ class EnumSchema(BaseSchema):
     def imports(self) -> FileImport:
         file_import = FileImport()
         file_import.add_from_import("typing", "Union", ImportType.STDLIB)
+        file_import.merge(self.enum_type.imports())
         return file_import
