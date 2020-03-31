@@ -36,17 +36,14 @@ class MetadataSerializer:
 
         return chosen_version, total_api_version_list
 
-    def get_global_parameters(self):
-        if not self.code_model.options['credential']:
-            return self.code_model.global_parameters
-        global_parameters = copy.deepcopy(self.code_model.global_parameters)
+    def _correct_credential_parameter(self):
+        # currently this is just copied over from general_serializer.
+        # this code will be changed when i merge my async multiapi client
+        # pr, since I need two copies of global parameters (one sync and one async).
         credential_param = [
-            gp for gp in global_parameters.parameters if isinstance(gp.schema, CredentialSchema)
+            gp for gp in self.code_model.global_parameters.parameters if isinstance(gp.schema, CredentialSchema)
         ][0]
         credential_param.schema = CredentialSchema(async_mode=False)
-        global_parameters[0] = credential_param
-        return global_parameters.method
-
 
     def serialize(self) -> str:
         def _is_lro(operation):
@@ -71,12 +68,14 @@ class MetadataSerializer:
                 for parameter in operation.parameters:
                     parameter_imports.merge(parameter.imports())
 
+        if self.code_model.options['credential']:
+            self._correct_credential_parameter()
+
         template = self.env.get_template("metadata.json.jinja2")
         return template.render(
             chosen_version=chosen_version,
             total_api_version_list=total_api_version_list,
             code_model=self.code_model,
-            global_parameters=self.get_global_parameters(),
             mixin_operations=mixin_operations,
             any=any,
             is_lro=_is_lro,

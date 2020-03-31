@@ -27,9 +27,6 @@ class GeneralSerializer:
             gp for gp in self.code_model.global_parameters.parameters if isinstance(gp.schema, CredentialSchema)
         ][0]
         credential_param.schema = CredentialSchema(async_mode=self.async_mode)
-        # we know that if there's a credential global param, it's always the first because
-        # we insert it there
-        self.code_model.global_parameters[0] = credential_param
 
     def serialize_service_client_file(self) -> str:
         template = self.env.get_template("service_client.py.jinja2")

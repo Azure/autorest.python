@@ -10,7 +10,7 @@
     },
     "global_parameters": {
         "method": {
-            {% for gp in global_parameters %}
+            {% for gp in code_model.global_parameters.method %}
             {{ gp.serialized_name | tojson }}: {
                 "method_signature": {{ gp.sync_method_signature | tojson }},
                 "description": {{ gp.description | tojson }},
@@ -26,7 +26,7 @@
             {% endif %}
             {% endfor %}
         },
-        "call": {{ global_parameters | map(attribute="serialized_name") | join(', ') | tojson }}
+        "call": {{ code_model.global_parameters.method | map(attribute="serialized_name") | join(', ') | tojson }}
     },
     "config": {
         "credential": {{ code_model.options['credential'] | tojson }},
