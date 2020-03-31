@@ -143,7 +143,7 @@ class EnumSchema(BaseSchema):
         if yaml_data.get("choiceType"):
             enum_type = get_primitive_schema(namespace, yaml_data["choiceType"])
         else:
-            enum_type = StringSchema(namespace, {})
+            enum_type = StringSchema(namespace, {"type": "str"})
         values = EnumSchema._get_enum_values(yaml_data["choices"], is_string=isinstance(enum_type, StringSchema))
 
         return cls(

@@ -1,5 +1,5 @@
 
-class {{ enum.name }}(str, Enum):
+class {{ enum.name }}({{ enum.enum_type.serialization_type }}, Enum):
     {% if enum.description %}
     """{{ enum.description | wordwrap(width=95, break_long_words=False, wrapstring='\n    ') }}
     """
