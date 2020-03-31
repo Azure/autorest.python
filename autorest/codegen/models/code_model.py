@@ -40,9 +40,7 @@ class CredentialSchema(BaseSchema):
 
     @property
     def docstring_type(self) -> str:
-        if self.async_mode:
-            return self.async_type
-        return self.sync_type
+        return self.serialization_type
 
     @property
     def type_annotation(self) -> str:
