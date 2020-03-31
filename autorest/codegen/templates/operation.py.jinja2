@@ -27,7 +27,11 @@
 {% endif %}
 {% if operation.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
     {% for constant_parameter in operation.parameters.constant|selectattr("implementation", "equalto", "Method")|selectattr("original_parameter", "equalto", None)|selectattr("in_method_code") %}
+    {% if constant_parameter.serialized_name == "content_type" %}
+    content_type = kwargs.pop("content_type", {{ constant_parameter.schema.constant_value }})
+    {% else %}
     {{ constant_parameter.serialized_name }} = {{ constant_parameter.schema.constant_value }}
+    {% endif %}
     {% endfor %}
 {% endif %}
 

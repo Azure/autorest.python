@@ -61,7 +61,7 @@ class TestString(object):
     async def test_empty(self, client):
         assert "" ==  (await client.string.get_empty())
         # changing this behavior because of this pr being merged: https://github.com/Azure/autorest.testserver/pull/145/files
-        await client.string.put_empty("")
+        await client.string.put_empty()
 
     @pytest.mark.asyncio
     async def test_mbcs(self, client):

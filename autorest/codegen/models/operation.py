@@ -14,6 +14,7 @@ from .parameter_list import ParameterList
 from .base_schema import BaseSchema
 from .schema_request import SchemaRequest
 from .object_schema import ObjectSchema
+from .constant_schema import ConstantSchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -36,6 +37,16 @@ def _non_binary_schema_media_types(media_types: List[str]) -> List[str]:
         else:
             response_media_types.append(xml_media_types[0])
     return response_media_types
+
+def _remove_multiple_content_type_parameters(parameters: List[Parameter]) -> List[Parameter]:
+    content_type_params = [p for p in parameters if p.serialized_name == "content_type"]
+    remaining_params = [p for p in parameters if p.serialized_name != "content_type"]
+    json_content_type_param = [p for p in content_type_params if p.yaml_data["schema"]["type"] == "constant"]
+    if json_content_type_param:
+        remaining_params.append(json_content_type_param[0])
+    else:
+        remaining_params.append(content_type_params[0])
+    return remaining_params
 
 class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many-instance-attributes
     """Represent an operation.
@@ -78,6 +89,15 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
         return self.name
 
     @property
+    def request_content_type(self) -> str:
+        return next(iter(
+            [
+                cast(ConstantSchema, p.schema).constant_value for p in self.parameters.constant
+                if p.serialized_name == "content_type"
+            ]
+        ))
+
+    @property
     def accept_content_type(self) -> str:
         media_types = list(set(
             media_type for response in self.responses for media_type in response.media_types
@@ -113,27 +133,6 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
             )
             response_media_types = binary_media_types + non_binary_schema_media_types
         return ",".join(response_media_types)
-
-    @property
-    def request_content_type(self) -> str:
-        media_types = list(set(
-            media_type for request in self.requests for media_type in request.media_types
-        ))
-        if not media_types:
-            raise TypeError(
-                f"Operation {self.name} has tried to get its request_content_type even though it has no media types"
-            )
-        if len(media_types) == 1:
-            return media_types[0]
-
-        if "application/json" in media_types:
-            return "application/json"
-        # If more type are supported, if JSON is supported, ask JSON only
-        for media_type in media_types:
-            if "json" in media_type:
-                return media_type
-        # If no JSON, and still several content type, just return first
-        return media_types[0]
 
     @property
     def is_stream_request(self) -> bool:
@@ -278,17 +277,22 @@ class Operation(BaseModel):  # pylint: disable=too-many-public-methods, too-many
                     parameters.append(parameter)
                 elif multiple_requests:
                     multiple_media_type_parameters.append(parameter)
+                else:
+                    parameters.append(parameter)
 
         if multiple_requests:
+            parameters = _remove_multiple_content_type_parameters(parameters)
             chosen_parameter = multiple_media_type_parameters[0]
+
+            # binary body parameters are required, while object
+            # ones are not. We default to optional in this case.
+            optional_parameters = [p for p in multiple_media_type_parameters if not p.required]
+            if optional_parameters:
+                chosen_parameter = optional_parameters[0]
+            else:
+                chosen_parameter = multiple_media_type_parameters[0]
             chosen_parameter.has_multiple_media_types = True
             parameters.append(chosen_parameter)
-
-        else:
-            parameters += [
-                Parameter.from_yaml(yaml)
-                for yaml in first_request.get("parameters", [])
-            ]
 
         if multiple_media_type_parameters:
             body_parameters_name_set = set(

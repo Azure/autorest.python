@@ -27,13 +27,14 @@ pass-thru:
   - subset-reducer
 # version: 3.0.6258
 use-extension:
-  "@autorest/modelerfour": "4.10.252"
+  "@autorest/modelerfour": "4.12.276"
 
 modelerfour:
   group-parameters: true
   flatten-models: true
   flatten-payloads: true
   resolve-schema-name-collisons: true
+  always-create-content-type-parameter: true
   naming:
     parameter: snakecase
     property: snakecase
