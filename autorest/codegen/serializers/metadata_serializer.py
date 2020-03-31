@@ -3,11 +3,11 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import copy
 from typing import List, Optional, Set, Tuple
 from jinja2 import Environment
-from ..models import CodeModel, Operation, OperationGroup, LROOperation, PagingOperation
+from ..models import CodeModel, Operation, OperationGroup, LROOperation, PagingOperation, CredentialSchema
 from ..models.imports import FileImport
-
 
 
 class MetadataSerializer:
@@ -35,6 +35,17 @@ class MetadataSerializer:
                     chosen_version = api_version
 
         return chosen_version, total_api_version_list
+
+    def get_global_parameters(self, async_mode):
+        if not self.code_model.options['credential']:
+            return self.code_model.global_parameters
+        global_parameters = copy.deepcopy(self.code_model.global_parameters)
+        credential_param = [
+            gp for gp in global_parameters.parameters if isinstance(gp.schema, CredentialSchema)
+        ][0]
+        credential_param.schema = CredentialSchema(async_mode=async_mode)
+        global_parameters[0] = credential_param
+        return global_parameters.method
 
 
     def serialize(self) -> str:
@@ -65,6 +76,8 @@ class MetadataSerializer:
             chosen_version=chosen_version,
             total_api_version_list=total_api_version_list,
             code_model=self.code_model,
+            sync_global_parameters=self.get_global_parameters(async_mode=False),
+            async_global_parameters=self.get_global_parameters(async_mode=True),
             mixin_operations=mixin_operations,
             any=any,
             is_lro=_is_lro,

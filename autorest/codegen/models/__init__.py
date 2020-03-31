@@ -17,6 +17,7 @@ from .imports import FileImport, ImportType
 from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
 from .parameter import Parameter
+from .parameter_list import ParameterList
 from .operation import Operation
 from .property import Property
 from .operation_group import OperationGroup
@@ -40,6 +41,7 @@ __all__ = [
     "Operation",
     "PagingOperation",
     "Parameter",
+    "ParameterList",
     "OperationGroup",
     "Property",
     "SchemaResponse"

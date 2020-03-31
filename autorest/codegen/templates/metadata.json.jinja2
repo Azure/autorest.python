@@ -8,29 +8,30 @@
         "description": {{ code_model.description | tojson }},
         "has_subscription_id": {{ "true" if "subscription_id" in code_model.global_parameters | map(attribute="serialized_name") | list else "false" }}
     },
+    "global_parameters": {
+        "method": {
+            {% for gp in sync_global_parameters %}
+            {{ gp.serialized_name | tojson }}: {
+                "method_signature": {{ gp.sync_method_signature | tojson }},
+                "description": {{ gp.description | tojson }},
+                "docstring_type": {{ gp.schema.docstring_type | tojson }},
+                "required": {{ gp.required | tojson }}
+            }{{ "," if not loop.last else "" }}
+            {% endfor %}
+        },
+        "constant": {
+            {% for gp in code_model.global_parameters.constant %}
+            {% if gp.serialized_name != "api_version" %}
+            {{ gp.serialized_name | tojson }}: {{ gp.schema.constant_value | tojson }}{{ "," if not loop.last else "" }}
+            {% endif %}
+            {% endfor %}
+        },
+        "call": {{ sync_global_parameters | map(attribute="serialized_name") | join(', ') | tojson }}
+    },
     "config": {
         "credential": {{ code_model.options['credential'] | tojson }},
-        "credential_scopes": {{ code_model.options['credential_scopes'] | tojson }},
-        "package_version": {{ "true" if code_model.options['package_version'] else "false"}},
-        "global_parameters": {
-            "method": {
-                {% for gp in code_model.global_parameters.method %}
-                {{ gp.serialized_name | tojson }}: {
-                    "method_signature": {{ gp.sync_method_signature | tojson }},
-                    "description": {{ gp.description | tojson }},
-                    "docstring_type": {{ gp.schema.docstring_type | tojson }},
-                    "required": {{ gp.required | tojson }}
-                }{{ "," if not loop.last else "" }}
-                {% endfor %}
-            },
-            "constant": {
-                {% for gp in code_model.global_parameters.constant %}
-                {% if gp.serialized_name != "api_version" %}
-                {{ gp.serialized_name | tojson }}: {{ gp.schema.constant_value | tojson }}{{ "," if not loop.last else "" }}
-                {% endif %}
-                {% endfor %}
-            }
-        }
+        "credential_scopes": {{ code_model.options['credential_scopes'] | tojson }}
+
     },
     "operation_groups": {
         {% for operation_group in code_model.operation_groups %}

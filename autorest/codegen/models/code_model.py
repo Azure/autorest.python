@@ -26,20 +26,28 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class CredentialSchema(BaseSchema):
-    def __init__(self) -> None:  # pylint: disable=super-init-not-called
-        self.type = "azure.core.credentials.TokenCredential"
+    def __init__(self, async_mode) -> None:  # pylint: disable=super-init-not-called
+        self.async_mode = async_mode
+        self.async_type = "azure.core.credentials.AsyncTokenCredential"
+        self.sync_type = "azure.core.credentials.TokenCredential"
         self.default_value = None
 
     @property
     def serialization_type(self) -> str:
-        return self.type
+        if self.async_mode:
+            return self.async_type
+        return self.sync_type
 
     @property
     def docstring_type(self) -> str:
-        return self.type
+        if self.async_mode:
+            return self.async_type
+        return self.sync_type
 
     @property
     def type_annotation(self) -> str:
+        if self.async_mode:
+            return '"AsyncTokenCredential"'
         return '"TokenCredential"'
 
     @property
@@ -168,7 +176,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         :return: None
         :rtype: None
         """
-        credential_schema = CredentialSchema()
+        credential_schema = CredentialSchema(async_mode=False)
         credential_parameter = Parameter(
             yaml_data={},
             schema=credential_schema,

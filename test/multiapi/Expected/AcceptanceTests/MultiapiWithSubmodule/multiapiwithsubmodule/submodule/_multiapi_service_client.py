@@ -53,7 +53,14 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         _PROFILE_TAG + " latest"
     )
 
-    def __init__(self, credential, api_version=None, base_url=None, profile=KnownProfiles.default, **kwargs):
+    def __init__(
+        self,
+        credential,  # type: "TokenCredential"
+        api_version=None,
+        base_url=None,
+        profile=KnownProfiles.default,
+        **kwargs  # type: Any
+    ):
         if not base_url:
             base_url = 'https://management.azure.com'
         self._config = MultiapiServiceClientConfiguration(credential, **kwargs)
