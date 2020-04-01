@@ -96,7 +96,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> LROPoller
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Succeeded’.
 
         :param product: Product to put.
@@ -186,7 +186,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> LROPoller
         """Long running put request, service returns a 200 to the initial request, with an entity that does not contain ProvisioningState=’Succeeded’.
 
         :param product: Product to put.
@@ -276,7 +276,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> LROPoller
         """Long running put request, service returns a 202 to the initial request, with a location header that points to a polling URL that returns a 200 and an entity that doesn't contains ProvisioningState.
 
         :param product: Product to put.
@@ -371,7 +371,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> LROPoller
         """Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         :param product: Product to put.
@@ -461,7 +461,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> LROPoller
         """Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         :param product: Product to put.
@@ -556,7 +556,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> LROPoller
         """Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Failed’.
 
         :param product: Product to put.
@@ -646,7 +646,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> LROPoller
         """Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Canceled’.
 
         :param product: Product to put.
@@ -738,7 +738,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> LROPoller
         """Long running put request, service returns a 202 to the initial request with location header. Subsequent calls to operation status do not contain location header.
 
         :param product: Product to put.
@@ -835,7 +835,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> LROPoller
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
@@ -933,7 +933,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> LROPoller
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
@@ -1031,7 +1031,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> LROPoller
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
@@ -1129,7 +1129,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> LROPoller
         """Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
@@ -1225,7 +1225,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> LROPoller
         """Long running put request, service returns a 202 to the initial request with Azure-AsyncOperation header. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
 
         :param product: Product to put.
@@ -1318,7 +1318,7 @@ class LROsOperations(object):
         sku=None,  # type: Optional["models.Sku"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Sku"
+        # type: (...) -> LROPoller
         """Long running put request with non resource.
 
         :param sku: sku to put.
@@ -1408,7 +1408,7 @@ class LROsOperations(object):
         sku=None,  # type: Optional["models.Sku"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Sku"
+        # type: (...) -> LROPoller
         """Long running put request with non resource.
 
         :param sku: Sku to put.
@@ -1500,7 +1500,7 @@ class LROsOperations(object):
         provisioning_state=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.SubProduct"
+        # type: (...) -> LROPoller
         """Long running put request with sub resource.
 
         :param provisioning_state:
@@ -1592,7 +1592,7 @@ class LROsOperations(object):
         provisioning_state=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.SubProduct"
+        # type: (...) -> LROPoller
         """Long running put request with sub resource.
 
         :param provisioning_state:
@@ -1679,7 +1679,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> LROPoller
         """Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1767,7 +1767,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> LROPoller
         """Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Failed’.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1855,7 +1855,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> LROPoller
         """Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Canceled’.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1931,7 +1931,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> LROPoller
         """Long running delete succeeds and returns right away.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2011,7 +2011,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> LROPoller
         """Long running delete request, service returns a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2094,7 +2094,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> LROPoller
         """Long running delete request, service returns a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2170,7 +2170,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> LROPoller
         """Long running delete request, service returns a location header in the initial request. Subsequent calls to operation status do not contain location header.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2243,7 +2243,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> LROPoller
         """Long running delete request, service returns an Azure-AsyncOperation header in the initial request. Subsequent calls to operation status do not contain Azure-AsyncOperation header.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2317,7 +2317,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> LROPoller
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2391,7 +2391,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> LROPoller
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2465,7 +2465,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> LROPoller
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2539,7 +2539,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> LROPoller
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2617,7 +2617,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Sku"
+        # type: (...) -> LROPoller
         """Long running post request, service returns a 202 to the initial request, with 'Location' header. Poll returns a 200 with a response body after success.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2704,7 +2704,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> LROPoller
         """Long running post request, service returns a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
         :param product: Product to put.
@@ -2794,7 +2794,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> LROPoller
         """Long running post request, service returns a 202 to the initial request, with 'Location' header, 204 with noresponse body after success.
 
         :param product: Product to put.
@@ -2877,7 +2877,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> LROPoller
         """Long running post request, service returns a 202 to the initial request with both Location and Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final object.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -2953,7 +2953,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> LROPoller
         """Long running post request, service returns a 202 to the initial request with both Location and Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final object.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -3029,7 +3029,7 @@ class LROsOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> LROPoller
         """Long running post request, service returns a 202 to the initial request with both Location and Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final object if you support initial Autorest behavior.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -3124,7 +3124,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> LROPoller
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
@@ -3222,7 +3222,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> LROPoller
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
@@ -3313,7 +3313,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> LROPoller
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.
@@ -3401,7 +3401,7 @@ class LROsOperations(object):
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> None
+        # type: (...) -> LROPoller
         """Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put.

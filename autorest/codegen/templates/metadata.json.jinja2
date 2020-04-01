@@ -44,7 +44,8 @@
         {{ operation.name | tojson }} : {
             "doc": {{ op_tools.operation_docstring(operation) | tojson }},
             {% set sync_operation_name = "begin_" + operation.name if is_lro(operation) else operation.name %}
-            "signature": {{ op_tools.method_signature(operation, sync_operation_name, False, False) | tojson }},
+            {% set return_type_wrapper = "LROPoller" if is_lro(operation) else ("ItemPaged" if is_paging(operation) else "") %}
+            "signature": {{ op_tools.method_signature(operation, sync_operation_name, False, False, return_type_wrapper) | tojson }},
             "call": {{ operation.parameters.method | map(attribute="serialized_name") | join(', ') | tojson }}
         }{{ "," if not loop.last else "" }}
         {% endfor %}

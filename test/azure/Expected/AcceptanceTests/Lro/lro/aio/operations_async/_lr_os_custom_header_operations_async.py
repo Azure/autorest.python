@@ -105,8 +105,8 @@ class LROsCustomHeaderOperations:
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
-        :return: An instance of LROPoller that returns Product
-        :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
+        :return: Product
+        :rtype: ~lro.models.Product
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -203,8 +203,8 @@ class LROsCustomHeaderOperations:
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
-        :return: An instance of LROPoller that returns Product
-        :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
+        :return: Product
+        :rtype: ~lro.models.Product
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -291,8 +291,8 @@ class LROsCustomHeaderOperations:
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
+        :return: None
+        :rtype: None
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -377,8 +377,8 @@ class LROsCustomHeaderOperations:
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
+        :return: None
+        :rtype: None
 
         :raises ~azure.core.exceptions.HttpResponseError:
         """
