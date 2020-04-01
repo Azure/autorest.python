@@ -3,7 +3,18 @@
 {% set return_none_type_annotation = " -> None" if async_mode else "" %}
 # coding=utf-8
 {{ code_model.options['license_header'] }}
-{{ imports }}
+{{ imports.non_typing() }}
+{% if imports.has_typing %}
+
+try:
+    from typing import TYPE_CHECKING
+except:
+    TYPE_CHECKING = False
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import
+    {{ imports.typing() }}
+{% endif %}
 
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, {{ "Async" if async_mode else "" }}HttpResponse], T, Dict[str, Any]], Any]]

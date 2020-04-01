@@ -11,6 +11,15 @@ from typing import Any
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
+try:
+    from typing import TYPE_CHECKING
+except:
+    TYPE_CHECKING = False
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import
+    from azure.core.credentials import TokenCredential
+
 VERSION = "unknown"
 
 class MultiapiServiceClientConfiguration(Configuration):

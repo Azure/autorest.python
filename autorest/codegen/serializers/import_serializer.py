@@ -10,12 +10,27 @@ from ..models.imports import ImportType, FileImport
 class FileImportSerializer:
     def __init__(self, file_import: FileImport) -> None:
         self._file_import = file_import
+        self._imports_to_serialize: Optional[Dict[ImportType, Dict[str, Set[Optional[str]]]]] = None
+
+    @property
+    def has_typing(self) -> bool:
+        return bool(self._file_import.imports.get(True))
+
+    def non_typing(self) -> "FileImportSerializer":
+        self._imports_to_serialize = self._file_import.imports[False]
+        return self
+
+    def typing(self) -> "FileImportSerializer":
+        self._imports_to_serialize = self._file_import.imports[True]
+        return self
 
     def __str__(self) -> str:
+        if not self._imports_to_serialize:
+            raise TypeError("Must call typing() or non_typing() on imports object in jinja templatte")
         import_clause = []
         for import_type in ImportType:
-            if import_type in self._file_import.imports:
-                import_clause.append(FileImportSerializer._serialize_type(self._file_import.imports[import_type]))
+            if import_type in self._imports_to_serialize:
+                import_clause.append(FileImportSerializer._serialize_type(self._imports_to_serialize[import_type]))
         return "\n\n".join(import_clause)
 
     @staticmethod

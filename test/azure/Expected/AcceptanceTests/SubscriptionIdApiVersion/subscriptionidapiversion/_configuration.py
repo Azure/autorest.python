@@ -13,6 +13,15 @@ from azure.core.pipeline import policies
 
 from ._version import VERSION
 
+try:
+    from typing import TYPE_CHECKING
+except:
+    TYPE_CHECKING = False
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import
+    from azure.core.credentials import TokenCredential
+
 
 class MicrosoftAzureTestUrlConfiguration(Configuration):
     """Configuration for MicrosoftAzureTestUrl.

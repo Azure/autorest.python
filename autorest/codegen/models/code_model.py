@@ -46,6 +46,11 @@ class CredentialSchema(BaseSchema):
     def docstring_text(self) -> str:
         return "credential"
 
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_from_import("azure.core.credentials", "TokenCredential", ImportType.AZURECORE, typing=True)
+        return file_import
+
 
 class IOSchema(BaseSchema):
     def __init__(self) -> None:  # pylint: disable=super-init-not-called
