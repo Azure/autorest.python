@@ -11,7 +11,7 @@ from typing import Dict, List, Optional, Union
 
 import msrest.serialization
 
-from ._storage_management_client_enums import AccountStatus, AccountType, KeyName, ProvisioningState, Reason, UsageUnit
+from ._storage_management_client_enums import *
 
 
 class Bar(msrest.serialization.Model):
