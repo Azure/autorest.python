@@ -31,13 +31,11 @@ class GeneralSerializer:
     def serialize_service_client_file(self) -> str:
         template = self.env.get_template("service_client.py.jinja2")
 
-        global_parameters = self.code_model.global_parameters
         if self.code_model.options['credential']:
             self._correct_credential_parameter()
 
         return template.render(
             code_model=self.code_model,
-            global_parameters=global_parameters,
             async_mode=self.async_mode,
             imports=FileImportSerializer(self.code_model.service_client.imports(self.code_model, self.async_mode)),
         )
