@@ -21,14 +21,14 @@ class MicrosoftAzureTestUrlConfiguration(Configuration):
     attributes.
 
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: azure.core.credentials.TokenCredential
+    :type credential: azure.core.credentials.AsyncTokenCredential
     :param subscription_id: Subscription Id.
     :type subscription_id: str
     """
 
     def __init__(
         self,
-        credential: "TokenCredential",
+        credential: "AsyncTokenCredential",
         subscription_id: str,
         **kwargs: Any
     ) -> None:

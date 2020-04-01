@@ -37,7 +37,7 @@ class CheckNameAvailabilityResult(msrest.serialization.Model):
     :type name_available: bool
     :param reason: Gets the reason that a storage account name could not be used. The Reason
      element is only returned if NameAvailable is false. Possible values include:
-     'AccountNameInvalid', 'AlreadyExists'.
+     "AccountNameInvalid", "AlreadyExists".
     :type reason: str or ~storage.models.Reason
     :param message: Gets an error message explaining the Reason value in more detail.
     :type message: str
@@ -201,10 +201,10 @@ class StorageAccount(Resource):
     :param tags: A set of tags. Resource tags.
     :type tags: dict[str, str]
     :param provisioning_state: Gets the status of the storage account at the time the operation was
-     called. Possible values include: 'Creating', 'ResolvingDNS', 'Succeeded'.
+     called. Possible values include: "Creating", "ResolvingDNS", "Succeeded".
     :type provisioning_state: str or ~storage.models.ProvisioningState
     :param account_type: Gets the type of the storage account. Possible values include:
-     'Standard_LRS', 'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
+     "Standard_LRS", "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
     :type account_type: str or ~storage.models.AccountType
     :param primary_endpoints: Gets the URLs that are used to perform a retrieval of a public blob,
      queue or table object.Note that StandardZRS and PremiumLRS accounts only return the blob
@@ -213,8 +213,8 @@ class StorageAccount(Resource):
     :param primary_location: Gets the location of the primary for the storage account.
     :type primary_location: str
     :param status_of_primary: Gets the status indicating whether the primary location of the
-     storage account is available or unavailable. Possible values include: 'Available',
-     'Unavailable'.
+     storage account is available or unavailable. Possible values include: "Available",
+     "Unavailable".
     :type status_of_primary: str or ~storage.models.AccountStatus
     :param last_geo_failover_time: Gets the timestamp of the most recent instance of a failover to
      the secondary location. Only the most recent timestamp is retained. This element is not
@@ -226,7 +226,7 @@ class StorageAccount(Resource):
     :type secondary_location: str
     :param status_of_secondary: Gets the status indicating whether the secondary location of the
      storage account is available or unavailable. Only available if the accountType is StandardGRS
-     or StandardRAGRS. Possible values include: 'Available', 'Unavailable'.
+     or StandardRAGRS. Possible values include: "Available", "Unavailable".
     :type status_of_secondary: str or ~storage.models.AccountStatus
     :param creation_time: Gets the creation date and time of the storage account in UTC.
     :type creation_time: ~datetime.datetime
@@ -328,8 +328,8 @@ class StorageAccountCreateParameters(Resource):
     :type location: str
     :param tags: A set of tags. Resource tags.
     :type tags: dict[str, str]
-    :param account_type: Gets or sets the account type. Possible values include: 'Standard_LRS',
-     'Standard_ZRS', 'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
+    :param account_type: Gets or sets the account type. Possible values include: "Standard_LRS",
+     "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
     :type account_type: str or ~storage.models.AccountType
     """
 
@@ -407,7 +407,7 @@ class StorageAccountListResult(msrest.serialization.Model):
 class StorageAccountRegenerateKeyParameters(msrest.serialization.Model):
     """StorageAccountRegenerateKeyParameters.
 
-    :param key_name:  Possible values include: 'key1', 'key2'.
+    :param key_name:  Possible values include: "key1", "key2".
     :type key_name: str or ~storage.models.KeyName
     """
 
@@ -442,8 +442,8 @@ class StorageAccountUpdateParameters(Resource):
     :type tags: dict[str, str]
     :param account_type: Gets or sets the account type. Note that StandardZRS and PremiumLRS
      accounts cannot be changed to other account types, and other account types cannot be changed to
-     StandardZRS or PremiumLRS. Possible values include: 'Standard_LRS', 'Standard_ZRS',
-     'Standard_GRS', 'Standard_RAGRS', 'Premium_LRS'.
+     StandardZRS or PremiumLRS. Possible values include: "Standard_LRS", "Standard_ZRS",
+     "Standard_GRS", "Standard_RAGRS", "Premium_LRS".
     :type account_type: str or ~storage.models.AccountType
     :param custom_domain: User domain assigned to the storage account. Name is the CNAME source.
      Only one custom domain is supported per storage account at this time. To clear the existing
@@ -499,8 +499,8 @@ class SubResource(msrest.serialization.Model):
 class Usage(msrest.serialization.Model):
     """Describes Storage Resource Usage.
 
-    :param unit: Gets the unit of measurement. Possible values include: 'Count', 'Bytes',
-     'Seconds', 'Percent', 'CountsPerSecond', 'BytesPerSecond'.
+    :param unit: Gets the unit of measurement. Possible values include: "Count", "Bytes",
+     "Seconds", "Percent", "CountsPerSecond", "BytesPerSecond".
     :type unit: str or ~storage.models.UsageUnit
     :param current_value: Gets the current count of the allocated resources in the subscription.
     :type current_value: int

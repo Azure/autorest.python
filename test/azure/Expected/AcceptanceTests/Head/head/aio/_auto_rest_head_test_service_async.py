@@ -21,13 +21,13 @@ class AutoRestHeadTestService(object):
     :ivar http_success: HttpSuccessOperations operations
     :vartype http_success: head.aio.operations_async.HttpSuccessOperations
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: azure.core.credentials.TokenCredential
+    :type credential: azure.core.credentials.AsyncTokenCredential
     :param str base_url: Service URL
     """
 
     def __init__(
         self,
-        credential: "TokenCredential",
+        credential: "AsyncTokenCredential",
         base_url: Optional[str] = None,
         **kwargs: Any
     ) -> None:
