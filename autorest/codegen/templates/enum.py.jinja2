@@ -6,5 +6,5 @@ class {{ enum.name }}({{ enum.enum_type.type_annotation }}, Enum):
     {% endif %}
 
     {% for value in enum.values %}
-    {{ value.name }} = {{ value.value }}{{ "  #: " + value.description if value.description else "" }}
+    {{ value.name }} = {{ enum.enum_type.get_declaration(value.value) }}{{ "  #: " + value.description if value.description else "" }}
     {% endfor %}
