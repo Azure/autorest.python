@@ -51,7 +51,7 @@ class ArrayWrapper(msrest.serialization.Model):
         **kwargs
     ):
         super(ArrayWrapper, self).__init__(**kwargs)
-        self.value = kwargs.get('value', None)
+        self.value = kwargs['value']
 
 
 class ClassOptionalWrapper(msrest.serialization.Model):
@@ -95,7 +95,7 @@ class ClassWrapper(msrest.serialization.Model):
         **kwargs
     ):
         super(ClassWrapper, self).__init__(**kwargs)
-        self.value = kwargs.get('value', None)
+        self.value = kwargs['value']
 
 
 class Error(msrest.serialization.Model):
@@ -162,7 +162,7 @@ class IntWrapper(msrest.serialization.Model):
         **kwargs
     ):
         super(IntWrapper, self).__init__(**kwargs)
-        self.value = kwargs.get('value', None)
+        self.value = kwargs['value']
 
 
 class Product(msrest.serialization.Model):
@@ -190,7 +190,7 @@ class Product(msrest.serialization.Model):
         **kwargs
     ):
         super(Product, self).__init__(**kwargs)
-        self.id = kwargs.get('id', None)
+        self.id = kwargs['id']
         self.name = kwargs.get('name', None)
 
 
@@ -235,4 +235,4 @@ class StringWrapper(msrest.serialization.Model):
         **kwargs
     ):
         super(StringWrapper, self).__init__(**kwargs)
-        self.value = kwargs.get('value', None)
+        self.value = kwargs['value']
