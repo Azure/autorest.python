@@ -195,18 +195,18 @@ class BlobProperties(msrest.serialization.Model):
     :type cache_control: str
     :param blob_sequence_number:
     :type blob_sequence_number: int
-    :param blob_type:  Possible values include: 'BlockBlob', 'PageBlob', 'AppendBlob'.
+    :param blob_type:  Possible values include: "BlockBlob", "PageBlob", "AppendBlob".
     :type blob_type: str or ~xmlservice.models.BlobType
-    :param lease_status:  Possible values include: 'locked', 'unlocked'.
+    :param lease_status:  Possible values include: "locked", "unlocked".
     :type lease_status: str or ~xmlservice.models.LeaseStatusType
-    :param lease_state:  Possible values include: 'available', 'leased', 'expired', 'breaking',
-     'broken'.
+    :param lease_state:  Possible values include: "available", "leased", "expired", "breaking",
+     "broken".
     :type lease_state: str or ~xmlservice.models.LeaseStateType
-    :param lease_duration:  Possible values include: 'infinite', 'fixed'.
+    :param lease_duration:  Possible values include: "infinite", "fixed".
     :type lease_duration: str or ~xmlservice.models.LeaseDurationType
     :param copy_id:
     :type copy_id: str
-    :param copy_status:  Possible values include: 'pending', 'success', 'aborted', 'failed'.
+    :param copy_status:  Possible values include: "pending", "success", "aborted", "failed".
     :type copy_status: str or ~xmlservice.models.CopyStatusType
     :param copy_source:
     :type copy_source: str
@@ -226,13 +226,13 @@ class BlobProperties(msrest.serialization.Model):
     :type deleted_time: ~datetime.datetime
     :param remaining_retention_days:
     :type remaining_retention_days: int
-    :param access_tier:  Possible values include: 'P4', 'P6', 'P10', 'P20', 'P30', 'P40', 'P50',
-     'Hot', 'Cool', 'Archive'.
+    :param access_tier:  Possible values include: "P4", "P6", "P10", "P20", "P30", "P40", "P50",
+     "Hot", "Cool", "Archive".
     :type access_tier: str or ~xmlservice.models.AccessTier
     :param access_tier_inferred:
     :type access_tier_inferred: bool
-    :param archive_status:  Possible values include: 'rehydrate-pending-to-hot', 'rehydrate-
-     pending-to-cool'.
+    :param archive_status:  Possible values include: "rehydrate-pending-to-hot", "rehydrate-
+     pending-to-cool".
     :type archive_status: str or ~xmlservice.models.ArchiveStatus
     """
 
@@ -414,14 +414,14 @@ class ContainerProperties(msrest.serialization.Model):
     :type last_modified: ~datetime.datetime
     :param etag: Required.
     :type etag: str
-    :param lease_status:  Possible values include: 'locked', 'unlocked'.
+    :param lease_status:  Possible values include: "locked", "unlocked".
     :type lease_status: str or ~xmlservice.models.LeaseStatusType
-    :param lease_state:  Possible values include: 'available', 'leased', 'expired', 'breaking',
-     'broken'.
+    :param lease_state:  Possible values include: "available", "leased", "expired", "breaking",
+     "broken".
     :type lease_state: str or ~xmlservice.models.LeaseStateType
-    :param lease_duration:  Possible values include: 'infinite', 'fixed'.
+    :param lease_duration:  Possible values include: "infinite", "fixed".
     :type lease_duration: str or ~xmlservice.models.LeaseDurationType
-    :param public_access:  Possible values include: 'container', 'blob'.
+    :param public_access:  Possible values include: "container", "blob".
     :type public_access: str or ~xmlservice.models.PublicAccessType
     """
 
