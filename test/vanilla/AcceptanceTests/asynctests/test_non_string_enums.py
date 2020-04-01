@@ -57,4 +57,4 @@ class TestNonStringEnums(object):
     @pytest.mark.asyncio
     async def test_get_float_enum(self, client):
         result = await client.float.get()
-        assert result == FloatEnum.four_hundred_twenty_nine.value
+        assert result == FloatEnum.four_hundred_twenty_nine1.value
