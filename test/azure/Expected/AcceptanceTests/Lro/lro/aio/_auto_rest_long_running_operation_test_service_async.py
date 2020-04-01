@@ -31,13 +31,13 @@ class AutoRestLongRunningOperationTestService(object):
     :ivar lr_os_custom_header: LROsCustomHeaderOperations operations
     :vartype lr_os_custom_header: lro.aio.operations_async.LROsCustomHeaderOperations
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: azure.core.credentials.TokenCredential
+    :type credential: azure.core.credentials.AsyncTokenCredential
     :param str base_url: Service URL
     """
 
     def __init__(
         self,
-        credential: "TokenCredential",
+        credential: "AsyncTokenCredential",
         base_url: Optional[str] = None,
         **kwargs: Any
     ) -> None:

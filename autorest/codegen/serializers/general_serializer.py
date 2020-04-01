@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from jinja2 import Environment
 from .import_serializer import FileImportSerializer
-from ..models import FileImport, ImportType, CodeModel
+from ..models import FileImport, ImportType, CodeModel, CredentialSchema
 
 
 class GeneralSerializer:
@@ -20,10 +20,20 @@ class GeneralSerializer:
 
     def serialize_init_file(self) -> str:
         template = self.env.get_template("init.py.jinja2")
-        return template.render(code_model=self.code_model, async_mode=self.async_mode,)
+        return template.render(code_model=self.code_model, async_mode=self.async_mode)
+
+    def _correct_credential_parameter(self):
+        credential_param = [
+            gp for gp in self.code_model.global_parameters.parameters if isinstance(gp.schema, CredentialSchema)
+        ][0]
+        credential_param.schema = CredentialSchema(async_mode=self.async_mode)
 
     def serialize_service_client_file(self) -> str:
         template = self.env.get_template("service_client.py.jinja2")
+
+        if self.code_model.options['credential']:
+            self._correct_credential_parameter()
+
         return template.render(
             code_model=self.code_model,
             async_mode=self.async_mode,
@@ -46,6 +56,9 @@ class GeneralSerializer:
         if package_name and package_name.startswith("azure-"):
             package_name = package_name[len("azure-"):]
         sdk_moniker = package_name if package_name else self.code_model.class_name.lower()
+
+        if self.code_model.options['credential']:
+            self._correct_credential_parameter()
 
         template = self.env.get_template("config.py.jinja2")
         return template.render(

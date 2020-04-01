@@ -30,14 +30,14 @@ class AutoRestParameterizedHostTestPagingClientConfiguration(Configuration):
     attributes.
 
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: azure.core.credentials.TokenCredential
+    :type credential: azure.core.credentials.AsyncTokenCredential
     :param host: A string value that is used as a global part of the parameterized host.
     :type host: str
     """
 
     def __init__(
         self,
-        credential: "TokenCredential",
+        credential: "AsyncTokenCredential",
         host: str = "host",
         **kwargs: Any
     ) -> None:
