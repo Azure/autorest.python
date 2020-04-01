@@ -1,12 +1,13 @@
+{% set global_parameters_method = global_parameters["method"] %}
 {% macro method_signature() %}
 def __init__(
     self,
-    {% for serialized_name, gp_dict in global_parameters["method"].items() %}
+    {% for serialized_name, gp_dict in global_parameters_method.items() %}
         {% if gp_dict["required"] %}
     {{ gp_dict["method_signature"] }}
         {% endif %}
     {% endfor %}
-    {% for serialized_name, gp_dict in global_parameters["method"].items() %}
+    {% for serialized_name, gp_dict in global_parameters_method.items() %}
         {% if not gp_dict["required"] %}
     {{ gp_dict["method_signature"] }}
         {% endif %}
@@ -37,10 +38,10 @@ class {{ client_name }}Configuration(Configuration):
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
-{% if global_parameters["method"] %}
+{% if global_parameters_method %}
 
 {% endif %}
-{% for serialized_name, gp_dict in global_parameters["method"].items() %}
+{% for serialized_name, gp_dict in global_parameters_method.items() %}
     :param {{ serialized_name }}: {{ gp_dict["description"] }}
     :type {{ serialized_name }}: {{ gp_dict["docstring_type"] }}
 {% endfor %}
@@ -48,7 +49,7 @@ class {{ client_name }}Configuration(Configuration):
 
     {{ method_signature()|indent }}
         # type: (...) -> None
-{% for serialized_name, gp_dict in global_parameters["method"].items() %}
+{% for serialized_name, gp_dict in global_parameters_method.items() %}
     {% if gp_dict["required"] %}
         if {{ serialized_name }} is None:
             raise ValueError("Parameter '{{ serialized_name }}' must not be None.")
@@ -56,7 +57,7 @@ class {{ client_name }}Configuration(Configuration):
 {% endfor %}
         super({{ client_name }}Configuration, self).__init__(**kwargs)
 
-{% for gp in global_parameters["method"] %}
+{% for gp in global_parameters_method %}
         self.{{ gp }} = {{ gp }}
 {% endfor %}
 {% if global_parameters["constant"] %}
@@ -64,8 +65,8 @@ class {{ client_name }}Configuration(Configuration):
         self.{{ serialized_name }} = {{ constant_value }}
     {% endfor %}
 {% endif %}
-{% if credential_scopes %}
-        self.credential_scopes = {{ credential_scopes }}
+{% if config["credential_scopes"] %}
+        self.credential_scopes = {{ config["credential_scopes"] }}
 {% endif %}
         kwargs.setdefault('sdk_moniker', '{{ package_name|lower }}/{}'.format(VERSION))
         self._configure(**kwargs)
@@ -85,7 +86,7 @@ class {{ client_name }}Configuration(Configuration):
         self.custom_hook_policy = kwargs.get('custom_hook_policy') or policies.CustomHookPolicy(**kwargs)
         self.redirect_policy = kwargs.get('redirect_policy') or policies.RedirectPolicy(**kwargs)
         self.authentication_policy = kwargs.get('authentication_policy')
-        {% if credential %}
+        {% if config["credential"] %}
         if self.credential and not self.authentication_policy:
-            self.authentication_policy = policies.BearerTokenCredentialPolicy(self.credential, {{ "*self.credential_scopes, " if credential_scopes else "" }}**kwargs)
+            self.authentication_policy = policies.BearerTokenCredentialPolicy(self.credential, {{ "*self.credential_scopes, " if config["credential_scopes"] else "" }}**kwargs)
         {% endif %}
