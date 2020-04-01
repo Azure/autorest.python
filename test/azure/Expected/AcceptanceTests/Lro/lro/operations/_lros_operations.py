@@ -51,6 +51,7 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._put200_succeeded_initial.metadata['url']  # type: ignore
@@ -60,8 +61,8 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -142,6 +143,7 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._put200_succeeded_no_state_initial.metadata['url']  # type: ignore
@@ -151,8 +153,8 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -231,6 +233,7 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._put202_retry200_initial.metadata['url']  # type: ignore
@@ -240,8 +243,8 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -320,6 +323,7 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._put201_creating_succeeded200_initial.metadata['url']  # type: ignore
@@ -329,8 +333,8 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -414,6 +418,7 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._put200_updating_succeeded204_initial.metadata['url']  # type: ignore
@@ -423,8 +428,8 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -503,6 +508,7 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._put201_creating_failed200_initial.metadata['url']  # type: ignore
@@ -512,8 +518,8 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -597,6 +603,7 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._put200_acceptedcanceled200_initial.metadata['url']  # type: ignore
@@ -606,8 +613,8 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -686,6 +693,7 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._put_no_header_in_retry_initial.metadata['url']  # type: ignore
@@ -695,8 +703,8 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -780,6 +788,7 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._put_async_retry_succeeded_initial.metadata['url']  # type: ignore
@@ -789,8 +798,8 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -878,6 +887,7 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._put_async_no_retry_succeeded_initial.metadata['url']  # type: ignore
@@ -887,8 +897,8 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -974,6 +984,7 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._put_async_retry_failed_initial.metadata['url']  # type: ignore
@@ -983,8 +994,8 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -1072,6 +1083,7 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._put_async_no_retrycanceled_initial.metadata['url']  # type: ignore
@@ -1081,8 +1093,8 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -1168,6 +1180,7 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._put_async_no_header_in_retry_initial.metadata['url']  # type: ignore
@@ -1177,8 +1190,8 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -1262,6 +1275,7 @@ class LROsOperations(object):
         # type: (...) -> "models.Sku"
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Sku"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._put_non_resource_initial.metadata['url']  # type: ignore
@@ -1271,8 +1285,8 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -1351,6 +1365,7 @@ class LROsOperations(object):
         # type: (...) -> "models.Sku"
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Sku"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._put_async_non_resource_initial.metadata['url']  # type: ignore
@@ -1360,8 +1375,8 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -1442,6 +1457,7 @@ class LROsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         _product = models.SubProduct(provisioning_state=provisioning_state)
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._put_sub_resource_initial.metadata['url']  # type: ignore
@@ -1451,8 +1467,8 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -1533,6 +1549,7 @@ class LROsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         _product = models.SubProduct(provisioning_state=provisioning_state)
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._put_async_sub_resource_initial.metadata['url']  # type: ignore
@@ -1542,8 +1559,8 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -2644,6 +2661,7 @@ class LROsOperations(object):
         # type: (...) -> None
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._post202_retry200_initial.metadata['url']  # type: ignore
@@ -2653,7 +2671,7 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -2730,6 +2748,7 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._post202_no_retry204_initial.metadata['url']  # type: ignore
@@ -2739,8 +2758,8 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -3054,6 +3073,7 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._post_async_retry_succeeded_initial.metadata['url']  # type: ignore
@@ -3063,8 +3083,8 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -3151,6 +3171,7 @@ class LROsOperations(object):
         # type: (...) -> "models.Product"
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._post_async_no_retry_succeeded_initial.metadata['url']  # type: ignore
@@ -3160,8 +3181,8 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -3248,6 +3269,7 @@ class LROsOperations(object):
         # type: (...) -> None
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._post_async_retry_failed_initial.metadata['url']  # type: ignore
@@ -3257,7 +3279,7 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -3335,6 +3357,7 @@ class LROsOperations(object):
         # type: (...) -> None
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self._post_async_retrycanceled_initial.metadata['url']  # type: ignore
@@ -3344,7 +3367,7 @@ class LROsOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]

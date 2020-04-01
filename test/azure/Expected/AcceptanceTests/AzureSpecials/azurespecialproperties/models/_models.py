@@ -20,7 +20,7 @@ class Error(msrest.serialization.Model):
     :param status:
     :type status: int
     :ivar constant_id: Required.  Default value: "1".
-    :vartype constant_id: float
+    :vartype constant_id: int
     :param message:
     :type message: str
     """
@@ -31,7 +31,7 @@ class Error(msrest.serialization.Model):
 
     _attribute_map = {
         'status': {'key': 'status', 'type': 'int'},
-        'constant_id': {'key': 'constantId', 'type': 'float'},
+        'constant_id': {'key': 'constantId', 'type': 'int'},
         'message': {'key': 'message', 'type': 'str'},
     }
 
@@ -68,7 +68,7 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Mod
         **kwargs
     ):
         super(HeaderCustomNamedRequestIdParamGroupingParameters, self).__init__(**kwargs)
-        self.foo_client_request_id = kwargs.get('foo_client_request_id', None)
+        self.foo_client_request_id = kwargs['foo_client_request_id']
 
 
 class OdataFilter(msrest.serialization.Model):

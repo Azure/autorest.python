@@ -229,6 +229,7 @@ class NumberOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put_big_float.metadata['url']  # type: ignore
@@ -238,7 +239,7 @@ class NumberOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -319,6 +320,7 @@ class NumberOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put_big_double.metadata['url']  # type: ignore
@@ -328,7 +330,7 @@ class NumberOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -406,6 +408,7 @@ class NumberOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
         number_body = 99999999.99
 
         # Construct URL
@@ -416,7 +419,7 @@ class NumberOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -494,6 +497,7 @@ class NumberOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
         number_body = -99999999.99
 
         # Construct URL
@@ -504,7 +508,7 @@ class NumberOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -585,6 +589,7 @@ class NumberOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put_big_decimal.metadata['url']  # type: ignore
@@ -594,7 +599,7 @@ class NumberOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -672,6 +677,7 @@ class NumberOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
         number_body = 99999999.99
 
         # Construct URL
@@ -682,7 +688,7 @@ class NumberOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -760,6 +766,7 @@ class NumberOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
         number_body = -99999999.99
 
         # Construct URL
@@ -770,7 +777,7 @@ class NumberOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -851,6 +858,7 @@ class NumberOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put_small_float.metadata['url']  # type: ignore
@@ -860,7 +868,7 @@ class NumberOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -941,6 +949,7 @@ class NumberOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put_small_double.metadata['url']  # type: ignore
@@ -950,7 +959,7 @@ class NumberOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -1031,6 +1040,7 @@ class NumberOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put_small_decimal.metadata['url']  # type: ignore
@@ -1040,7 +1050,7 @@ class NumberOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]

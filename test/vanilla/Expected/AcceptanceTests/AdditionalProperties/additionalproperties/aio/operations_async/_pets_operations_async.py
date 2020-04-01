@@ -57,6 +57,7 @@ class PetsOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPTrue"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.create_ap_true.metadata['url']  # type: ignore
@@ -66,8 +67,8 @@ class PetsOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -108,6 +109,7 @@ class PetsOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.CatAPTrue"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.create_cat_ap_true.metadata['url']  # type: ignore
@@ -117,8 +119,8 @@ class PetsOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -159,6 +161,7 @@ class PetsOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPObject"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.create_ap_object.metadata['url']  # type: ignore
@@ -168,8 +171,8 @@ class PetsOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -210,6 +213,7 @@ class PetsOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPString"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.create_ap_string.metadata['url']  # type: ignore
@@ -219,8 +223,8 @@ class PetsOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -261,6 +265,7 @@ class PetsOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPInProperties"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.create_ap_in_properties.metadata['url']  # type: ignore
@@ -270,8 +275,8 @@ class PetsOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -312,6 +317,7 @@ class PetsOperations:
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.PetAPInPropertiesWithAPString"]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.create_ap_in_properties_with_ap_string.metadata['url']  # type: ignore
@@ -321,8 +327,8 @@ class PetsOperations:
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
         header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]

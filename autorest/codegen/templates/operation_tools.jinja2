@@ -153,9 +153,6 @@ if {{ header_parameter.full_serialized_name }} is not None:
 {% endif %}
 {% if operation.has_response_body %}
 header_parameters['Accept'] = '{{ operation.accept_content_type }}'
-{% endif %}
-{% if operation.parameters.has_body %}
-header_parameters['Content-Type'] = kwargs.pop('content_type', '{{ operation.request_content_type }}')
 {% endif %}{% endmacro %}
 {# helper for stream body params #}
 {% macro stream_body_params(operation) %}body_content_kwargs['stream_content'] = {{ operation.parameters.body.serialized_name }}{% endmacro %}

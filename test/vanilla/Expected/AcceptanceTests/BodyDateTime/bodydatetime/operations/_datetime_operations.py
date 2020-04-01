@@ -235,6 +235,7 @@ class DatetimeOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put_utc_max_date_time.metadata['url']  # type: ignore
@@ -244,7 +245,7 @@ class DatetimeOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -286,6 +287,7 @@ class DatetimeOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put_utc_max_date_time7_digits.metadata['url']  # type: ignore
@@ -295,7 +297,7 @@ class DatetimeOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -469,6 +471,7 @@ class DatetimeOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put_local_positive_offset_max_date_time.metadata['url']  # type: ignore
@@ -478,7 +481,7 @@ class DatetimeOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -605,6 +608,7 @@ class DatetimeOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put_local_negative_offset_max_date_time.metadata['url']  # type: ignore
@@ -614,7 +618,7 @@ class DatetimeOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -741,6 +745,7 @@ class DatetimeOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put_utc_min_date_time.metadata['url']  # type: ignore
@@ -750,7 +755,7 @@ class DatetimeOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -833,6 +838,7 @@ class DatetimeOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put_local_positive_offset_min_date_time.metadata['url']  # type: ignore
@@ -842,7 +848,7 @@ class DatetimeOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]
@@ -925,6 +931,7 @@ class DatetimeOperations(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put_local_negative_offset_min_date_time.metadata['url']  # type: ignore
@@ -934,7 +941,7 @@ class DatetimeOperations(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]

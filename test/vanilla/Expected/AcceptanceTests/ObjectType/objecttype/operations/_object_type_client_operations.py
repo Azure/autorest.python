@@ -80,6 +80,7 @@ class ObjectTypeClientOperationsMixin(object):
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
         url = self.put.metadata['url']  # type: ignore
@@ -89,7 +90,7 @@ class ObjectTypeClientOperationsMixin(object):
 
         # Construct headers
         header_parameters = {}  # type: Dict[str, Any]
-        header_parameters['Content-Type'] = kwargs.pop('content_type', 'application/json')
+        header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
 
         # Construct and send request
         body_content_kwargs = {}  # type: Dict[str, Any]

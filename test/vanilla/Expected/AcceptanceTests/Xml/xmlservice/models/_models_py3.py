@@ -658,7 +658,7 @@ class ListBlobsResponse(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to Azure.
 
-    :param service_endpoint: Required.
+    :param service_endpoint:
     :type service_endpoint: str
     :param container_name: Required.
     :type container_name: str
@@ -677,7 +677,6 @@ class ListBlobsResponse(msrest.serialization.Model):
     """
 
     _validation = {
-        'service_endpoint': {'required': True},
         'container_name': {'required': True},
         'prefix': {'required': True},
         'marker': {'required': True},
@@ -704,7 +703,6 @@ class ListBlobsResponse(msrest.serialization.Model):
     def __init__(
         self,
         *,
-        service_endpoint: str,
         container_name: str,
         prefix: str,
         marker: str,
@@ -712,6 +710,7 @@ class ListBlobsResponse(msrest.serialization.Model):
         delimiter: str,
         blobs: "Blobs",
         next_marker: str,
+        service_endpoint: Optional[str] = None,
         **kwargs
     ):
         super(ListBlobsResponse, self).__init__(**kwargs)

@@ -35,8 +35,8 @@ class CustomParameterGroup(msrest.serialization.Model):
         **kwargs
     ):
         super(CustomParameterGroup, self).__init__(**kwargs)
-        self.api_version = kwargs.get('api_version', None)
-        self.tenant = kwargs.get('tenant', None)
+        self.api_version = kwargs['api_version']
+        self.tenant = kwargs['tenant']
 
 
 class OdataProductResult(msrest.serialization.Model):
@@ -161,7 +161,7 @@ class PagingGetMultiplePagesWithOffsetOptions(msrest.serialization.Model):
     ):
         super(PagingGetMultiplePagesWithOffsetOptions, self).__init__(**kwargs)
         self.maxresults = kwargs.get('maxresults', None)
-        self.offset = kwargs.get('offset', None)
+        self.offset = kwargs['offset']
         self.timeout = kwargs.get('timeout', 30)
 
 

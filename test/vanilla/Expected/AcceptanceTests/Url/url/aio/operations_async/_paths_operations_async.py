@@ -148,7 +148,7 @@ class PathsOperations:
         # Construct URL
         url = self.get_int_one_million.metadata['url']  # type: ignore
         path_format_arguments = {
-            'intPath': self._serialize.url("int_path", int_path, 'float'),
+            'intPath': self._serialize.url("int_path", int_path, 'int'),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -192,7 +192,7 @@ class PathsOperations:
         # Construct URL
         url = self.get_int_negative_one_million.metadata['url']  # type: ignore
         path_format_arguments = {
-            'intPath': self._serialize.url("int_path", int_path, 'float'),
+            'intPath': self._serialize.url("int_path", int_path, 'int'),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -236,7 +236,7 @@ class PathsOperations:
         # Construct URL
         url = self.get_ten_billion.metadata['url']  # type: ignore
         path_format_arguments = {
-            'longPath': self._serialize.url("long_path", long_path, 'float'),
+            'longPath': self._serialize.url("long_path", long_path, 'long'),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
@@ -280,7 +280,7 @@ class PathsOperations:
         # Construct URL
         url = self.get_negative_ten_billion.metadata['url']  # type: ignore
         path_format_arguments = {
-            'longPath': self._serialize.url("long_path", long_path, 'float'),
+            'longPath': self._serialize.url("long_path", long_path, 'long'),
         }
         url = self._client.format_url(url, **path_format_arguments)
 

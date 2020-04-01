@@ -58,5 +58,5 @@ class ModelTwo(msrest.serialization.Model):
         **kwargs
     ):
         super(ModelTwo, self).__init__(**kwargs)
-        self.id = kwargs.get('id', None)
+        self.id = kwargs['id']
         self.message = kwargs.get('message', None)

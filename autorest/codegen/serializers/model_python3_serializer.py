@@ -20,11 +20,11 @@ class ModelPython3Serializer(ModelBaseSerializer):
         if init_line_parameters:
             init_properties_declaration.append("*")
         for param in init_line_parameters:
-            if param.required:
+            if param.required and not param.schema.default_value:
                 init_properties_declaration.append(f"{param.name}: {param.type_annotation}")
             else:
-                default_value = param.schema.default_value_declaration
-                init_properties_declaration.append(f"{param.name}: {param.type_annotation} = {default_value}")
+                default = param.schema.default_value_declaration
+                init_properties_declaration.append(f"{param.name}: {param.type_annotation} = {default}")
 
         return init_properties_declaration
 
