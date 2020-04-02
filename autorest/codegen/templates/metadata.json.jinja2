@@ -5,12 +5,21 @@
     "client": {
         "name": {{ code_model.class_name | tojson }},
         "filename": {{ ("_" + code_model.module_name) | tojson }},
-        "description": {{ code_model.description | tojson }},
-        "has_subscription_id": {{ "true" if "subscription_id" in code_model.global_parameters | map(attribute="serialized_name") | list else "false" }}
+        "description": {{ code_model.description | tojson }}
     },
     "global_parameters": {
-        "method": {
-            {% for gp in code_model.global_parameters.method %}
+        "sync_method": {
+            {% for gp in sync_global_parameters.method %}
+            {{ gp.serialized_name | tojson }}: {
+                "method_signature": {{ gp.sync_method_signature | tojson }},
+                "description": {{ gp.description | tojson }},
+                "docstring_type": {{ gp.schema.docstring_type | tojson }},
+                "required": {{ gp.required | tojson }}
+            }{{ "," if not loop.last else "" }}
+            {% endfor %}
+        },
+        "async_method": {
+            {% for gp in async_global_parameters.method %}
             {{ gp.serialized_name | tojson }}: {
                 "method_signature": {{ gp.sync_method_signature | tojson }},
                 "description": {{ gp.description | tojson }},

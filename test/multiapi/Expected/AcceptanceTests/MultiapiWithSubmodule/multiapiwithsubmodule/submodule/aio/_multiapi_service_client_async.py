@@ -35,7 +35,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
     group is not described in the profile.
 
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: azure.core.credentials_async.AsyncTokenCredential
+    :type credential: azure.core.credentials.AsyncTokenCredential
     :param str api_version: API version to use if no profile is provided, or if
      missing in profile.
     :param str base_url: Service URL
@@ -53,7 +53,14 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         _PROFILE_TAG + " latest"
     )
 
-    def __init__(self, credential, api_version=None, base_url=None, profile=KnownProfiles.default, **kwargs):
+    def __init__(
+        self,
+        credential,  # type: "AsyncTokenCredential"
+        api_version=None,
+        base_url=None,
+        profile=KnownProfiles.default,
+        **kwargs  # type: Any
+    ) -> None:
         if not base_url:
             base_url = 'https://management.azure.com'
         self._config = MultiapiServiceClientConfiguration(credential, **kwargs)

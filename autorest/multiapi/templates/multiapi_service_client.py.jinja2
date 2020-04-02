@@ -1,4 +1,4 @@
-{% set global_parameters_method = global_parameters["method"] %}
+{% set global_parameters_method = global_parameters["async_method"] if async_mode else global_parameters["sync_method"] %}
 {% macro method_signature() %}
 def __init__(
     self,
