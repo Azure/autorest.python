@@ -44,7 +44,6 @@ class TestAcceptance(object):
 
         # Please add missing features or failing tests here
         missing_features_or_bugs = {
-            'FileStreamVeryLarge' : 1,
             'ConstantsInBody': 1,  # https://github.com/Azure/autorest.modelerfour/issues/83
         }
 
@@ -54,7 +53,9 @@ class TestAcceptance(object):
         missing_features_or_bugs = {
             "putDateTimeMaxLocalNegativeOffset": 1, # Python doesn't support year 1000
             "putDateTimeMinLocalPositiveOffset": 1, # Python doesn't support BC time
-            'putDateTimeMaxUtc7MS': 1 # Python doesn't support 7 digits ms datetime
+            'putDateTimeMaxUtc7MS': 1, # Python doesn't support 7 digits ms datetime
+            'FormdataStreamUploadFile': 1, # Form data not supported yet
+            'StreamUploadFile': 1, # Form data not supported yet
         }
         for name in optional_report:
             if "Options" in name:
