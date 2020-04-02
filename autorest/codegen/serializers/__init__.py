@@ -42,7 +42,7 @@ class JinjaSerializer:
             Path(".") if code_model.options["no_namespace_folders"] else Path(*(code_model.namespace.split(".")))
         )
 
-        if code_model.schemas:
+        if code_model.schemas or code_model.enums:
             self._serialize_and_write_models_folder(code_model=code_model, env=env, namespace_path=namespace_path)
 
         self._serialize_and_write_operations_folder(code_model=code_model, env=env, namespace_path=namespace_path)
@@ -62,12 +62,13 @@ class JinjaSerializer:
     def _serialize_and_write_models_folder(self, code_model: CodeModel, env: Environment, namespace_path: Path) -> None:
         # Write the models folder
         models_path = namespace_path / Path("models")
-        self._autorestapi.write_file(
-            models_path / Path("_models.py"), ModelGenericSerializer(code_model=code_model, env=env).serialize()
-        )
-        self._autorestapi.write_file(
-            models_path / Path("_models_py3.py"), ModelPython3Serializer(code_model=code_model, env=env).serialize()
-        )
+        if code_model.schemas:
+            self._autorestapi.write_file(
+                models_path / Path("_models.py"), ModelGenericSerializer(code_model=code_model, env=env).serialize()
+            )
+            self._autorestapi.write_file(
+                models_path / Path("_models_py3.py"), ModelPython3Serializer(code_model=code_model, env=env).serialize()
+            )
         if code_model.enums:
             self._autorestapi.write_file(
                 models_path / Path(f"_{code_model.module_name}_enums.py"),

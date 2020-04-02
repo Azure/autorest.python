@@ -44,7 +44,7 @@ class Basic(msrest.serialization.Model):
     :param name: Name property with a very long description that does not fit on a single line and
      a line break.
     :type name: str
-    :param color:  Possible values include: 'cyan', 'Magenta', 'YELLOW', 'blacK'.
+    :param color:  Possible values include: "cyan", "Magenta", "YELLOW", "blacK".
     :type color: str or ~bodycomplex.models.CMYKColors
     """
 
@@ -692,7 +692,7 @@ class Goblinshark(Shark):
     :type birthday: ~datetime.datetime
     :param jawsize:
     :type jawsize: int
-    :param color: Colors possible. Possible values include: 'pink', 'gray', 'brown', 'RED', 'red'.
+    :param color: Colors possible. Possible values include: "pink", "gray", "brown", "RED", "red".
      Default value: "gray".
     :type color: str or ~bodycomplex.models.GoblinSharkColor
     """

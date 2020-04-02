@@ -5,9 +5,8 @@
 # --------------------------------------------------------------------------
 from typing import List, Optional, Set, Tuple
 from jinja2 import Environment
-from ..models import CodeModel, Operation, OperationGroup, LROOperation, PagingOperation
+from ..models import CodeModel, Operation, OperationGroup, LROOperation, PagingOperation, CredentialSchema
 from ..models.imports import FileImport
-
 
 
 class MetadataSerializer:
@@ -36,6 +35,14 @@ class MetadataSerializer:
 
         return chosen_version, total_api_version_list
 
+    def _correct_credential_parameter(self):
+        # currently this is just copied over from general_serializer.
+        # this code will be changed when i merge my async multiapi client
+        # pr, since I need two copies of global parameters (one sync and one async).
+        credential_param = [
+            gp for gp in self.code_model.global_parameters.parameters if isinstance(gp.schema, CredentialSchema)
+        ][0]
+        credential_param.schema = CredentialSchema(async_mode=False)
 
     def serialize(self) -> str:
         def _is_lro(operation):
@@ -59,6 +66,9 @@ class MetadataSerializer:
             for operation in operation_group.operations:
                 for parameter in operation.parameters:
                     parameter_imports.merge(parameter.imports())
+
+        if self.code_model.options['credential']:
+            self._correct_credential_parameter()
 
         template = self.env.get_template("metadata.json.jinja2")
         return template.render(

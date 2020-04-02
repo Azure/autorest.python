@@ -1,5 +1,14 @@
 # Change Log
 
+### 2020-04-01 - 5.0.0-dev.20200401.1
+Modelerfour version: 4.12.276
+
+**Bug Fixes**
+
+- Now the generic models file and python3 models file have the same behavior in regards to required properties and their default values  #532
+- Can now specify non-string enums  #534
+- Fixes `TokenCredential` typing  #535
+
 ### 2020-03-30 - 5.0.0-dev.20200330.1
 Modelerfour version: 4.12.276
 
