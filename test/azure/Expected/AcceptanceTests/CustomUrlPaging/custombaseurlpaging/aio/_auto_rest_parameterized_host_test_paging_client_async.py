@@ -22,7 +22,7 @@ class AutoRestParameterizedHostTestPagingClient(object):
     :ivar paging: PagingOperations operations
     :vartype paging: custombaseurlpaging.aio.operations_async.PagingOperations
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: azure.core.credentials.AsyncTokenCredential
+    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param host: A string value that is used as a global part of the parameterized host.
     :type host: str
     """

@@ -31,7 +31,7 @@ class AutoRestLongRunningOperationTestService(object):
     :ivar lr_os_custom_header: LROsCustomHeaderOperations operations
     :vartype lr_os_custom_header: lro.aio.operations_async.LROsCustomHeaderOperations
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: azure.core.credentials.AsyncTokenCredential
+    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param str base_url: Service URL
     """
 
