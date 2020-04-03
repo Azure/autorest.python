@@ -1,5 +1,11 @@
 # Change Log
 
+### Current
+
+**Bug Fixes**
+
+- Fixes parameter ordering so parameters with default values are all ordered at the end  #545
+
 ### 2020-04-01 - 5.0.0-dev.20200401.1
 Modelerfour version: 4.12.276
 
