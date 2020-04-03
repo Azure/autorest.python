@@ -21,7 +21,7 @@ class AutoRestLongRunningOperationTestServiceConfiguration(Configuration):
     attributes.
 
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: azure.core.credentials.TokenCredential
+    :type credential: ~azure.core.credentials.TokenCredential
     """
 
     def __init__(

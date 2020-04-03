@@ -25,7 +25,7 @@ class StorageManagementClient(object):
     :ivar usage: UsageOperations operations
     :vartype usage: storage.aio.operations_async.UsageOperations
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: azure.core.credentials.AsyncTokenCredential
+    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.
     :type subscription_id: str
     :param str base_url: Service URL
