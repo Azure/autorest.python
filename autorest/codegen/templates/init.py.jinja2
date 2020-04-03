@@ -9,3 +9,11 @@ from ._version import VERSION
 __version__ = VERSION
 {% endif %}
 __all__ = ['{{ code_model.class_name }}']
+{% if not async_mode %}
+
+try:
+    from .patch import patch_sdk
+    patch_sdk()
+except ImportError:
+    pass
+{% endif %}
