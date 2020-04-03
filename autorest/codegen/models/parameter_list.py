@@ -108,7 +108,7 @@ class ParameterList(MutableSequence):
         )
         for parameter in parameters_of_this_implementation:
             if parameter.in_method_signature:
-                if not parameter.client_default_value and parameter.required:
+                if not parameter.default_value and parameter.required:
                     signature_parameters_no_default_value.append(parameter)
                 else:
                     signature_parameters_default_value.append(parameter)
