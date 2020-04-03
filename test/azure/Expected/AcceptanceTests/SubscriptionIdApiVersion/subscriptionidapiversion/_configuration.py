@@ -30,7 +30,7 @@ class MicrosoftAzureTestUrlConfiguration(Configuration):
     attributes.
 
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: azure.core.credentials.TokenCredential
+    :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: Subscription Id.
     :type subscription_id: str
     """

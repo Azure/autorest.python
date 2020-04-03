@@ -23,7 +23,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     :ivar operation_group_one: OperationGroupOneOperations operations
     :vartype operation_group_one: multiapiwithsubmodule.submodule.v1.operations.OperationGroupOneOperations
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: azure.core.credentials.TokenCredential
+    :type credential: ~azure.core.credentials.TokenCredential
     :param str base_url: Service URL
     """
 

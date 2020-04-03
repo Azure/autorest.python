@@ -25,7 +25,7 @@ class MultiapiServiceClient(object):
     :ivar operation_group_two: OperationGroupTwoOperations operations
     :vartype operation_group_two: multiapi.v3.operations.OperationGroupTwoOperations
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: azure.core.credentials.TokenCredential
+    :type credential: ~azure.core.credentials.TokenCredential
     :param str base_url: Service URL
     """
 
