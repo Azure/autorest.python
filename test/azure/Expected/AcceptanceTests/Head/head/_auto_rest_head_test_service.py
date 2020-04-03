@@ -21,7 +21,7 @@ class AutoRestHeadTestService(object):
     :ivar http_success: HttpSuccessOperations operations
     :vartype http_success: head.operations.HttpSuccessOperations
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: azure.core.credentials.TokenCredential
+    :type credential: ~azure.core.credentials.TokenCredential
     :param str base_url: Service URL
     """
 
