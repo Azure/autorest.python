@@ -42,6 +42,13 @@ class JinjaSerializer:
             Path(".") if code_model.options["no_namespace_folders"] else Path(*(code_model.namespace.split(".")))
         )
 
+        # if there was a patch file before, we keep it
+        if self._autorestapi.read_file(namespace_path / "patch.py"):
+            self._autorestapi.write_file(
+                namespace_path / Path("patch.py"),
+                self._autorestapi.read_file(namespace_path / "patch.py")
+            )
+
         if code_model.schemas or code_model.enums:
             self._serialize_and_write_models_folder(code_model=code_model, env=env, namespace_path=namespace_path)
 
@@ -119,7 +126,6 @@ class JinjaSerializer:
                     ),
                     operation_group_async_serializer.serialize(),
                 )
-
 
 
     def _serialize_and_write_version_file(
