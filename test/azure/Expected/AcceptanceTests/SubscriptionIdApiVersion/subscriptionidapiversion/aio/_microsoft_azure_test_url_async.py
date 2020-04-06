@@ -22,7 +22,7 @@ class MicrosoftAzureTestUrl(object):
     :ivar group: GroupOperations operations
     :vartype group: subscriptionidapiversion.aio.operations_async.GroupOperations
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: azure.core.credentials.AsyncTokenCredential
+    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: Subscription Id.
     :type subscription_id: str
     :param str base_url: Service URL

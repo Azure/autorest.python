@@ -21,7 +21,7 @@ class AutoRestHeadExceptionTestService(object):
     :ivar head_exception: HeadExceptionOperations operations
     :vartype head_exception: headexceptions.aio.operations_async.HeadExceptionOperations
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: azure.core.credentials.AsyncTokenCredential
+    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param str base_url: Service URL
     """
 

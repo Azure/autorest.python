@@ -22,7 +22,7 @@ class AutoRestPagingTestService(object):
     :ivar paging: PagingOperations operations
     :vartype paging: paging.aio.operations_async.PagingOperations
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: azure.core.credentials.AsyncTokenCredential
+    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param str base_url: Service URL
     """
 

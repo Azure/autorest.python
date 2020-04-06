@@ -1,5 +1,21 @@
 # Change Log
 
+### 2020-04-06 - 5.0.0-dev.20200406.1
+Modelerfour version: 4.12.294
+
+**New Features**
+
+- Can now directly patch a client by defining a `patch.py` file in the top-level of the module with a `patch_sdk` function  #548
+- Can now handle `time` formats  #551
+
+### 2020-04-03 - 5.0.0-dev.20200403.1
+Modelerfour version: 4.12.276
+
+**Bug Fixes**
+
+- Fixes parameter ordering so parameters with default values are all ordered at the end  #545
+- Fixes `TokenCredential` and `AsyncTokenCredential` sphinx docstring  #546
+
 ### 2020-04-01 - 5.0.0-dev.20200401.1
 Modelerfour version: 4.12.276
 
