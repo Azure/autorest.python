@@ -1,6 +1,7 @@
 # Change Log
 
-### Curent
+### 2020-04-06 - 5.0.0-dev.20200406.1
+Modelerfour version: 4.12.294
 
 **New Features**
 
