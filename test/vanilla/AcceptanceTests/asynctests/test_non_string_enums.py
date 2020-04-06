@@ -51,7 +51,7 @@ class TestNonStringEnums(object):
 
     @pytest.mark.asyncio
     async def test_put_float_enum(self, client):
-        result = await client.float.put(FloatEnum.two_hundred)
+        result = await client.float.put(FloatEnum.two_hundred4)
         assert result == "Nice job posting a float enum"
 
     @pytest.mark.asyncio

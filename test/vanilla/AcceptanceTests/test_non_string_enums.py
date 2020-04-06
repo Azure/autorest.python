@@ -46,7 +46,7 @@ class TestNonStringEnums(object):
         assert result == IntEnum.four_hundred_twenty_nine.value
 
     def test_put_float_enum(self, client):
-        result = client.float.put(FloatEnum.two_hundred)
+        result = client.float.put(FloatEnum.two_hundred4)
         assert result == "Nice job posting a float enum"
 
     def test_get_float_enum(self, client):

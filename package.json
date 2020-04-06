@@ -24,7 +24,7 @@
   "homepage": "https://github.com/Azure/autorest.python/blob/autorestv3/README.md",
   "devDependencies": {
     "@autorest/autorest": "^3.0.0",
-    "@microsoft.azure/autorest.testserver": "^2.10.25"
+    "@microsoft.azure/autorest.testserver": "^2.10.26"
   },
   "files": [
     "autorest/**/*.py",
