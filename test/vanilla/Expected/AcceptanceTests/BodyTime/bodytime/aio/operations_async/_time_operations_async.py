@@ -46,7 +46,7 @@ class TimeOperations:
         self,
         **kwargs
     ) -> datetime.time:
-        """Get time value.
+        """Get time value "11:34:56".
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: time or the result of cls(response)
@@ -90,9 +90,9 @@ class TimeOperations:
         time_body: datetime.time,
         **kwargs
     ) -> str:
-        """Put time value.
+        """Put time value "08:07:56".
 
-        :param time_body:
+        :param time_body: Put time value "08:07:56" in parameter to pass testserver.
         :type time_body: ~datetime.time
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: str or the result of cls(response)
