@@ -29,8 +29,8 @@ _LOGGER = logging.getLogger(__name__)
 class CredentialSchema(BaseSchema):
     def __init__(self, async_mode) -> None:  # pylint: disable=super-init-not-called
         self.async_mode = async_mode
-        self.async_type = "azure.core.credentials.AsyncTokenCredential"
-        self.sync_type = "azure.core.credentials.TokenCredential"
+        self.async_type = "~azure.core.credentials_async.AsyncTokenCredential"
+        self.sync_type = "~azure.core.credentials.TokenCredential"
         self.default_value = None
 
     @property

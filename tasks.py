@@ -41,6 +41,7 @@ default_mappings = {
   'AcceptanceTests/BodyInteger': 'body-integer.json',
   'AcceptanceTests/BodyNumber': 'body-number.json',
   'AcceptanceTests/BodyString': 'body-string.json',
+  'AcceptanceTests/BodyTime': 'body-time.json',
   'AcceptanceTests/ExtensibleEnums': ['extensible-enums-swagger.json', 'extensibleenumsswagger'],
   'AcceptanceTests/Header': 'header.json',
   'AcceptanceTests/Http': ['httpInfrastructure.json', 'httpinfrastructure'],
@@ -151,8 +152,6 @@ def regen_expected(c, opts, debug):
         cmd_line = '{} {}'.format(_AUTOREST_CMD_LINE, " ".join(args))
         print(Fore.YELLOW + f'Queuing up: {cmd_line}')
         cmds.append(cmd_line)
-        # Delete the old code, we can catch when it's not generating
-        shutil.rmtree(output_folder, ignore_errors=True)
 
     if len(cmds) == 1:
         success = run_autorest(cmds[0], debug=debug)
@@ -163,6 +162,8 @@ def regen_expected(c, opts, debug):
         success = all(result)
 
     if not success:
+        # Delete the old code, we can catch when it's not generating
+        shutil.rmtree(output_folder, ignore_errors=True)
         raise SystemExit("Autorest generation fails")
 
 def run_autorest(cmd_line, debug=False):

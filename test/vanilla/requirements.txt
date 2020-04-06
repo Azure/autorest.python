@@ -3,7 +3,7 @@ pytest
 pytest-cov
 pytest-asyncio;python_full_version>="3.5.2"
 async_generator;python_full_version>="3.5.2"
-msrest>=0.6.11
+msrest>=0.6.12
 azure-core>=1.3.0
 aiohttp;python_full_version>="3.5.2"
 -e ./Expected/AcceptanceTests/AdditionalProperties
@@ -17,10 +17,11 @@ aiohttp;python_full_version>="3.5.2"
 -e ./Expected/AcceptanceTests/BodyDictionary
 -e ./Expected/AcceptanceTests/BodyDuration
 -e ./Expected/AcceptanceTests/BodyFile
--e ./Expected/AcceptanceTests/BodyFormData
+#-e ./Expected/AcceptanceTests/BodyFormData
 -e ./Expected/AcceptanceTests/BodyInteger
 -e ./Expected/AcceptanceTests/BodyNumber
 -e ./Expected/AcceptanceTests/BodyString
+-e ./Expected/AcceptanceTests/BodyTime
 -e ./Expected/AcceptanceTests/CustomBaseUri
 -e ./Expected/AcceptanceTests/CustomBaseUriMoreOptions
 -e ./Expected/AcceptanceTests/ExtensibleEnums
