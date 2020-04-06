@@ -1,5 +1,12 @@
 # Change Log
 
+### Curent
+
+**New Features**
+
+- Can now directly patch a client by defining a `patch.py` file in the top-level of the module with a `patch_sdk` function  #548
+- Can now handle `time` formats  #551
+
 ### 2020-04-03 - 5.0.0-dev.20200403.1
 Modelerfour version: 4.12.276
 
