@@ -54,7 +54,7 @@ class MetadataSerializer:
 
         return chosen_version, total_api_version_list
 
-    def _make_async_copy_of_global_parameters(self) -> str:
+    def _make_async_copy_of_global_parameters(self) -> ParameterList:
         global_parameters = copy.deepcopy(self.code_model.global_parameters)
         _correct_credential_parameter(global_parameters, True)
         return global_parameters
