@@ -20,21 +20,16 @@ class MultiapiServiceClientOperationsMixin(object):
         **kwargs  # type: Any
     ):
         """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
-
-    :param id:
-    An int parameter.
-    :type id: int
-    :param message: An optional string parameter.
-    :type
-    message: str
-    :keyword callable cls: A custom type or function that will be passed the
-    direct response
-    :return: ModelTwo or the result of cls(response)
-    :rtype:
-    ~multiapiwithsubmodule.submodule.v2.models.ModelTwo
-    :raises:
-    ~azure.core.exceptions.HttpResponseError
-    """
+    
+        :param id: An int parameter.
+        :type id: int
+        :param message: An optional string parameter.
+        :type message: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: ModelTwo or the result of cls(response)
+        :rtype: ~multiapiwithsubmodule.submodule.v2.models.ModelTwo
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
 
         api_version = self._get_api_version('test_one')
         if api_version == '1.0.0':
