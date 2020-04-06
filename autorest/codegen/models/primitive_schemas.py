@@ -191,6 +191,34 @@ class DatetimeSchema(PrimitiveSchema):
         file_import.add_import("datetime", ImportType.STDLIB)
         return file_import
 
+class TimeSchema(PrimitiveSchema):
+    @property
+    def serialization_type(self) -> str:
+        return "time"
+
+    @property
+    def docstring_type(self) -> str:
+        return "~" + self.type_annotation
+
+    @property
+    def type_annotation(self) -> str:
+        return "datetime.time"
+
+    @property
+    def docstring_text(self) -> str:
+        return "time"
+
+    def get_declaration(self, value: datetime.time) -> str:
+        """Could be discussed, since technically I should return a time object,
+        but msrest will do fine.
+        """
+        return f'"{value}"'
+
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_import("datetime", ImportType.STDLIB)
+        return file_import
+
 
 class UnixTimeSchema(PrimitiveSchema):
     @property
@@ -313,6 +341,7 @@ def get_primitive_schema(namespace: str, yaml_data: Dict[str, Any]) -> "Primitiv
         "string": StringSchema,
         "char": StringSchema,
         "date-time": DatetimeSchema,
+        "time": TimeSchema,
         "unixtime": UnixTimeSchema,
         "date": DateSchema,
         "duration": DurationSchema,

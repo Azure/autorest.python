@@ -41,6 +41,7 @@ default_mappings = {
   'AcceptanceTests/BodyInteger': 'body-integer.json',
   'AcceptanceTests/BodyNumber': 'body-number.json',
   'AcceptanceTests/BodyString': 'body-string.json',
+  'AcceptanceTests/BodyTime': 'body-time.json',
   'AcceptanceTests/ExtensibleEnums': ['extensible-enums-swagger.json', 'extensibleenumsswagger'],
   'AcceptanceTests/Header': 'header.json',
   'AcceptanceTests/Http': ['httpInfrastructure.json', 'httpinfrastructure'],
