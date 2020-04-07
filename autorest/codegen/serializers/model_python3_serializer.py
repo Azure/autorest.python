@@ -7,9 +7,24 @@ from typing import cast, List
 from .model_base_serializer import ModelBaseSerializer
 from ..models import ObjectSchema
 from ..models.imports import FileImport
+from .import_serializer import FileImportSerializer
 
 
 class ModelPython3Serializer(ModelBaseSerializer):
+
+    def serialize(self) -> str:
+        # Generate the models
+        template = self.env.get_template("model_container.py.jinja2")
+        return template.render(
+            code_model=self.code_model,
+            imports=FileImportSerializer(self.imports(), is_python_2_file=False),
+            str=str,
+            init_line=self.init_line,
+            init_args=self.init_args,
+            prop_documentation_string=ModelBaseSerializer.prop_documentation_string,
+            prop_type_documentation_string=ModelBaseSerializer.prop_type_documentation_string,
+        )
+
     @staticmethod
     def init_line(model: ObjectSchema) -> List[str]:
         init_properties_declaration = []

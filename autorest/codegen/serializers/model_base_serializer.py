@@ -16,19 +16,6 @@ class ModelBaseSerializer:
         self.code_model = code_model
         self.env = env
 
-    def serialize(self) -> str:
-        # Generate the models
-        template = self.env.get_template("model_container.py.jinja2")
-        return template.render(
-            code_model=self.code_model,
-            imports=FileImportSerializer(self.imports()),
-            str=str,
-            init_line=self.init_line,
-            init_args=self.init_args,
-            prop_documentation_string=ModelBaseSerializer.prop_documentation_string,
-            prop_type_documentation_string=ModelBaseSerializer.prop_type_documentation_string,
-        )
-
     def imports(self) -> FileImport:
         file_import = FileImport()
         file_import.add_import("msrest.serialization", ImportType.AZURECORE)

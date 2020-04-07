@@ -6,9 +6,24 @@
 from typing import List
 from .model_base_serializer import ModelBaseSerializer
 from ..models import ObjectSchema
+from .import_serializer import FileImportSerializer
 
 
 class ModelGenericSerializer(ModelBaseSerializer):
+
+    def serialize(self) -> str:
+        # Generate the models
+        template = self.env.get_template("model_container.py.jinja2")
+        return template.render(
+            code_model=self.code_model,
+            imports=FileImportSerializer(self.imports(), is_python_2_file=True),
+            str=str,
+            init_line=self.init_line,
+            init_args=self.init_args,
+            prop_documentation_string=ModelBaseSerializer.prop_documentation_string,
+            prop_type_documentation_string=ModelBaseSerializer.prop_type_documentation_string,
+        )
+
     @staticmethod
     def init_line(model: ObjectSchema) -> List[str]:
         return []

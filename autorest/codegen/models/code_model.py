@@ -18,7 +18,7 @@ from .parameter import Parameter, ParameterLocation
 from .client import Client
 from .property import Property
 from .parameter_list import ParameterList
-from .imports import FileImport, ImportType
+from .imports import FileImport, ImportType, IsTypingImport
 from .schema_response import SchemaResponse
 
 
@@ -54,7 +54,11 @@ class CredentialSchema(BaseSchema):
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        file_import.add_from_import("azure.core.credentials", "TokenCredential", ImportType.AZURECORE, typing=True)
+        file_import.add_from_import(
+            "azure.core.credentials", "TokenCredential",
+            ImportType.AZURECORE,
+            is_typing_import=IsTypingImport.ALWAYS
+        )
         return file_import
 
 
@@ -80,7 +84,7 @@ class IOSchema(BaseSchema):
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        file_import.add_from_import("typing", "IO", ImportType.STDLIB)
+        file_import.add_from_import("typing", "IO", ImportType.STDLIB, IsTypingImport.PYTHON2)
         return file_import
 
 
