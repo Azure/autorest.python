@@ -36,33 +36,31 @@ def _get_import_clauses(imports: Dict[ImportType, Dict[str, Set[Optional[str]]]]
 
 
 class FileImportSerializer:
-    def __init__(self, file_import: FileImport, is_python_2_file: bool) -> None:
+    def __init__(self, file_import: FileImport, is_python_3_file: bool) -> None:
         self._file_import = file_import
-        self.is_python_2_file = is_python_2_file
+        self.is_python_3_file = is_python_3_file
 
     def _switch_typing_section_key(self, new_key: TypingSection):
         switched_dictionary = {}
         switched_dictionary[new_key] = self._file_import.imports[TypingSection.CONDITIONAL]
         return switched_dictionary
 
-    def _get_imports_dict(self, baseline_typing_section: TypingSection, add_python_2_typing: bool):
-        # If this is a python 2 file, our typing imports include the CONDITIONAL category
-        # If this is not a python 2 file, our regular imports include the CONDITIONAL category
+    def _get_imports_dict(self, baseline_typing_section: TypingSection, add_conditional_typing: bool):
+        # If this is a python 3 file, our regular imports include the CONDITIONAL category
+        # If this is not a python 3 file, our typing imports include the CONDITIONAL category
         file_import_copy = deepcopy(self._file_import)
-        if add_python_2_typing:
-            python_2_imports = self._file_import.imports.get(TypingSection.CONDITIONAL, {})
-            if python_2_imports:
-                # we switch the TypingSection key for the CONDITIONAL typing imports so we can merge
-                # the imports together
-                switched_imports_dictionary = self._switch_typing_section_key(baseline_typing_section)
-                switched_imports = FileImport(switched_imports_dictionary)
-                file_import_copy.merge(switched_imports)
+        if add_conditional_typing and self._file_import.imports.get(TypingSection.CONDITIONAL):
+            # we switch the TypingSection key for the CONDITIONAL typing imports so we can merge
+            # the imports together
+            switched_imports_dictionary = self._switch_typing_section_key(baseline_typing_section)
+            switched_imports = FileImport(switched_imports_dictionary)
+            file_import_copy.merge(switched_imports)
         return file_import_copy.imports.get(baseline_typing_section, {})
 
     def __str__(self) -> str:
         regular_imports = ""
         regular_imports_dict = self._get_imports_dict(
-            baseline_typing_section=TypingSection.REGULAR, add_python_2_typing=not self.is_python_2_file
+            baseline_typing_section=TypingSection.REGULAR, add_conditional_typing=self.is_python_3_file
         )
 
         if regular_imports_dict:
@@ -72,7 +70,7 @@ class FileImportSerializer:
 
         typing_imports = ""
         typing_imports_dict = self._get_imports_dict(
-            baseline_typing_section=TypingSection.TYPING, add_python_2_typing=self.is_python_2_file
+            baseline_typing_section=TypingSection.TYPING, add_conditional_typing=not self.is_python_3_file
         )
         if typing_imports_dict:
             typing_imports = "\n\ntry:\n    from typing import TYPE_CHECKING\nexcept:\n    TYPE_CHECKING = False"

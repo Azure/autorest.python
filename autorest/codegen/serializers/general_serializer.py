@@ -39,7 +39,7 @@ class GeneralSerializer:
             async_mode=self.async_mode,
             imports=FileImportSerializer(
                 self.code_model.service_client.imports(self.code_model, self.async_mode),
-                is_python_2_file=not self.async_mode
+                is_python_3_file=self.async_mode
             ),
         )
 
@@ -67,7 +67,7 @@ class GeneralSerializer:
         return template.render(
             code_model=self.code_model,
             async_mode=self.async_mode,
-            imports=FileImportSerializer(_config_imports(self.async_mode), is_python_2_file=not self.async_mode),
+            imports=FileImportSerializer(_config_imports(self.async_mode), is_python_3_file=self.async_mode),
             sdk_moniker=sdk_moniker
         )
 

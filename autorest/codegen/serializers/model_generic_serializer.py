@@ -16,7 +16,7 @@ class ModelGenericSerializer(ModelBaseSerializer):
         template = self.env.get_template("model_container.py.jinja2")
         return template.render(
             code_model=self.code_model,
-            imports=FileImportSerializer(self.imports(), is_python_2_file=True),
+            imports=FileImportSerializer(self.imports(), is_python_3_file=False),
             str=str,
             init_line=self.init_line,
             init_args=self.init_args,

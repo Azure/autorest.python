@@ -34,7 +34,7 @@ class OperationGroupSerializer:
             operation_group=self.operation_group,
             imports=FileImportSerializer(
                 self.operation_group.imports(self.async_mode, bool(self.code_model.schemas)),
-                is_python_2_file=not self.async_mode
+                is_python_3_file=self.async_mode
             ),
             async_mode=self.async_mode,
             is_lro=_is_lro,
