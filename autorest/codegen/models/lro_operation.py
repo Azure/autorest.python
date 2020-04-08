@@ -76,7 +76,7 @@ class LROOperation(Operation):
             )
         elif response_types:
             response_type = response_types[0]
-        self.lro_response = response_types.pop() if response_types else None
+        self.lro_response = response_type
 
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = super().imports(code_model, async_mode)
