@@ -6,18 +6,15 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import TYPE_CHECKING
+
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
 from ._version import VERSION
 
-try:
-    from typing import TYPE_CHECKING
-except:
-    TYPE_CHECKING = False
-
 if TYPE_CHECKING:
-    # pylint: disable=unused-import
+    # pylint: disable=unused-import,ungrouped-imports
     from typing import Any
 
 

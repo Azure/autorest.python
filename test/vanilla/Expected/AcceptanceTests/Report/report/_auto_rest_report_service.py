@@ -6,16 +6,13 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from typing import TYPE_CHECKING
+
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
 
-try:
-    from typing import TYPE_CHECKING
-except:
-    TYPE_CHECKING = False
-
 if TYPE_CHECKING:
-    # pylint: disable=unused-import
+    # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Optional
 
 from ._configuration import AutoRestReportServiceConfiguration

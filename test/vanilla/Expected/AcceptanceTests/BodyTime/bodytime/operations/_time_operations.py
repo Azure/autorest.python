@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import datetime
+from typing import TYPE_CHECKING
 import warnings
 
 from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
@@ -15,13 +16,8 @@ from azure.core.tracing.decorator import distributed_trace
 
 from .. import models
 
-try:
-    from typing import TYPE_CHECKING
-except:
-    TYPE_CHECKING = False
-
 if TYPE_CHECKING:
-    # pylint: disable=unused-import
+    # pylint: disable=unused-import,ungrouped-imports
     from typing import Any, Callable, Dict, Generic, Optional, TypeVar
 
     T = TypeVar('T')

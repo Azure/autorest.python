@@ -57,7 +57,15 @@ class FileImportSerializer:
             file_import_copy.merge(switched_imports)
         return file_import_copy.imports.get(baseline_typing_section, {})
 
+    def _add_type_checking_import(self):
+        if (
+            self._file_import.imports.get(TypingSection.TYPING) or
+            (not self.is_python_3_file and self._file_import.imports.get(TypingSection.CONDITIONAL))
+        ):
+            self._file_import.add_from_import("typing", "TYPE_CHECKING", ImportType.STDLIB)
+
     def __str__(self) -> str:
+        self._add_type_checking_import()
         regular_imports = ""
         regular_imports_dict = self._get_imports_dict(
             baseline_typing_section=TypingSection.REGULAR, add_conditional_typing=self.is_python_3_file
@@ -73,8 +81,7 @@ class FileImportSerializer:
             baseline_typing_section=TypingSection.TYPING, add_conditional_typing=not self.is_python_3_file
         )
         if typing_imports_dict:
-            typing_imports = "\n\ntry:\n    from typing import TYPE_CHECKING\nexcept:\n    TYPE_CHECKING = False"
-            typing_imports += "\n\nif TYPE_CHECKING:\n    # pylint: disable=unused-import\n    "
+            typing_imports += "\n\nif TYPE_CHECKING:\n    # pylint: disable=unused-import,ungrouped-imports\n    "
             typing_imports += "\n\n    ".join(_get_import_clauses(typing_imports_dict, "\n    "))
 
         return regular_imports + typing_imports
