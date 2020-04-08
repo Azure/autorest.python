@@ -4,13 +4,14 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, List, Any, Optional, Set
+from typing import Dict, List, Any, Optional, Set, cast
 from .imports import FileImport
 from .operation import Operation
 from .parameter import Parameter
 from .schema_response import SchemaResponse
 from .schema_request import SchemaRequest
 from .imports import ImportType
+from .object_schema import ObjectSchema
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -57,8 +58,24 @@ class LROOperation(Operation):
             return
         responses = {response.schema: response for response in self.responses if response.has_body}
         response_types = list(responses.values())
+        response_type = None
         if len(response_types) > 1:
-            _LOGGER.warning("Multiple schema types in responses: %s", response_types)
+            # choose the response that has a status code of 200
+            response_types_with_200_status_code = [
+                rt for rt in response_types if 200 in rt.status_codes
+            ]
+            if not response_types_with_200_status_code:
+                raise ValueError(
+                    f"Your swagger is invalid because you have multiple response schemas for LRO" +
+                    f" method {self.python_name} and none of them have a 200 status code."
+                )
+            response_type = response_types_with_200_status_code[0]
+            response_type_schema_name = cast(ObjectSchema, response_type.schema).name
+            _LOGGER.warning(
+                "Multiple schema types in responses: %s. Choosing: %s", response_types, response_type_schema_name
+            )
+        elif response_types:
+            response_type = response_types[0]
         self.lro_response = response_types.pop() if response_types else None
 
     def imports(self, code_model, async_mode: bool) -> FileImport:
