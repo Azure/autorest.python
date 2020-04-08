@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from jinja2 import Environment
-from .import_serializer import FileImportSerializer, IsTypingImport
+from .import_serializer import FileImportSerializer, TypingSection
 from ..models import FileImport, ImportType, CodeModel, CredentialSchema
 
 
@@ -48,7 +48,7 @@ class GeneralSerializer:
             file_import = FileImport()
             file_import.add_from_import("azure.core.configuration", "Configuration", ImportType.AZURECORE)
             file_import.add_from_import("azure.core.pipeline", "policies", ImportType.AZURECORE)
-            file_import.add_from_import("typing", "Any", ImportType.STDLIB, IsTypingImport.PYTHON2)
+            file_import.add_from_import("typing", "Any", ImportType.STDLIB, TypingSection.CONDITIONAL)
             if self.code_model.options["package_version"]:
                 file_import.add_from_import(".._version" if async_mode else "._version", "VERSION", ImportType.LOCAL)
             for gp in self.code_model.global_parameters:

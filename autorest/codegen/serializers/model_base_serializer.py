@@ -8,7 +8,6 @@ from typing import cast, List
 from jinja2 import Environment
 from ..models import EnumSchema, ObjectSchema, CodeModel, Property, ConstantSchema
 from ..models.imports import FileImport, ImportType
-from .import_serializer import FileImportSerializer
 
 
 class ModelBaseSerializer:

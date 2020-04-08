@@ -3,9 +3,9 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import copy
+from copy import deepcopy
 from typing import Dict, Set, Optional, List
-from ..models.imports import ImportType, FileImport, IsTypingImport
+from ..models.imports import ImportType, FileImport, TypingSection
 
 def _serialize_package(package_name: str, module_list: Set[Optional[str]], delimiter: str) -> str:
     buffer = []
@@ -40,36 +40,43 @@ class FileImportSerializer:
         self._file_import = file_import
         self.is_python_2_file = is_python_2_file
 
-    def _get_typing_imports_dict(self):
-        typing_imports_dict = {}
-        if self._file_import.imports.get(IsTypingImport.ALWAYS):
-            typing_imports_dict = copy.copy(self._file_import.imports[IsTypingImport.ALWAYS])
-        if self.is_python_2_file and self._file_import.imports.get(IsTypingImport.PYTHON2):
-            typing_imports_dict.update(self._file_import.imports[IsTypingImport.PYTHON2])
-        return typing_imports_dict
+    def _switch_typing_section_key(self, new_key: TypingSection):
+        switched_dictionary = {}
+        switched_dictionary[new_key] = self._file_import.imports[TypingSection.CONDITIONAL]
+        return switched_dictionary
 
-    def _get_non_typing_imports_dict(self):
-        non_typing_imports_dict = {}
-        if self._file_import.imports.get(IsTypingImport.NEVER):
-            non_typing_imports_dict = copy.copy(self._file_import.imports[IsTypingImport.NEVER])
-        if not self.is_python_2_file and self._file_import.imports.get(IsTypingImport.PYTHON2):
-            non_typing_imports_dict.update(self._file_import.imports[IsTypingImport.PYTHON2])
-        return non_typing_imports_dict
+    def _get_imports_dict(self, baseline_typing_section: TypingSection, add_python_2_typing: bool):
+        # If this is a python 2 file, our typing imports include the CONDITIONAL category
+        # If this is not a python 2 file, our regular imports include the CONDITIONAL category
+        file_import_copy = deepcopy(self._file_import)
+        if add_python_2_typing:
+            python_2_imports = self._file_import.imports.get(TypingSection.CONDITIONAL, {})
+            if python_2_imports:
+                # we switch the TypingSection key for the CONDITIONAL typing imports so we can merge
+                # the imports together
+                switched_imports_dictionary = self._switch_typing_section_key(baseline_typing_section)
+                switched_imports = FileImport(switched_imports_dictionary)
+                file_import_copy.merge(switched_imports)
+        return file_import_copy.imports.get(baseline_typing_section, {})
 
     def __str__(self) -> str:
-        non_typing_imports = ""
-        non_typing_imports_dict = self._get_non_typing_imports_dict()
+        regular_imports = ""
+        regular_imports_dict = self._get_imports_dict(
+            baseline_typing_section=TypingSection.REGULAR, add_python_2_typing=not self.is_python_2_file
+        )
 
-        if non_typing_imports_dict:
-            non_typing_imports = "\n\n".join(
-                _get_import_clauses(non_typing_imports_dict, "\n")
+        if regular_imports_dict:
+            regular_imports = "\n\n".join(
+                _get_import_clauses(regular_imports_dict, "\n")
             )
 
         typing_imports = ""
-        typing_imports_dict = self._get_typing_imports_dict()
+        typing_imports_dict = self._get_imports_dict(
+            baseline_typing_section=TypingSection.TYPING, add_python_2_typing=self.is_python_2_file
+        )
         if typing_imports_dict:
             typing_imports = "\n\ntry:\n    from typing import TYPE_CHECKING\nexcept:\n    TYPE_CHECKING = False"
             typing_imports += "\n\nif TYPE_CHECKING:\n    # pylint: disable=unused-import\n    "
             typing_imports += "\n\n    ".join(_get_import_clauses(typing_imports_dict, "\n    "))
 
-        return non_typing_imports + typing_imports
+        return regular_imports + typing_imports

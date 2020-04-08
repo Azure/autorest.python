@@ -6,8 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any
-
 from azure.core.configuration import Configuration
 from azure.core.pipeline import policies
 
@@ -20,6 +18,8 @@ except:
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import
+    from typing import Any
+
     from azure.core.credentials import TokenCredential
 
 

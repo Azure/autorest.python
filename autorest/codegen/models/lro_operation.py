@@ -10,7 +10,7 @@ from .operation import Operation
 from .parameter import Parameter
 from .schema_response import SchemaResponse
 from .schema_request import SchemaRequest
-from .imports import ImportType, IsTypingImport
+from .imports import ImportType, TypingSection
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -63,9 +63,9 @@ class LROOperation(Operation):
 
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = super().imports(code_model, async_mode)
-        file_import.add_from_import("typing", "Union", ImportType.STDLIB, IsTypingImport.PYTHON2)
+        file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
         if async_mode:
-            file_import.add_from_import("typing", "Optional", ImportType.STDLIB, IsTypingImport.PYTHON2)
+            file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
             file_import.add_from_import("azure.core.polling", "async_poller", ImportType.AZURECORE)
             file_import.add_from_import("azure.core.polling", "AsyncNoPolling", ImportType.AZURECORE)
             file_import.add_from_import("azure.core.polling", "AsyncPollingMethod", ImportType.AZURECORE)

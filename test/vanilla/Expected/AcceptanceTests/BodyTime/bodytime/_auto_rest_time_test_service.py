@@ -6,10 +6,17 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, Optional
-
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
+
+try:
+    from typing import TYPE_CHECKING
+except:
+    TYPE_CHECKING = False
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import
+    from typing import Any, Optional
 
 from ._configuration import AutoRestTimeTestServiceConfiguration
 from .operations import TimeOperations
