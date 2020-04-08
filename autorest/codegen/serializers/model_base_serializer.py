@@ -8,12 +8,27 @@ from typing import cast, List
 from jinja2 import Environment
 from ..models import EnumSchema, ObjectSchema, CodeModel, Property, ConstantSchema
 from ..models.imports import FileImport, ImportType
+from .import_serializer import FileImportSerializer
 
 
 class ModelBaseSerializer:
-    def __init__(self, code_model: CodeModel, env: Environment) -> None:
+    def __init__(self, code_model: CodeModel, env: Environment, is_python_3_file: bool) -> None:
         self.code_model = code_model
         self.env = env
+        self.is_python_3_file = is_python_3_file
+
+    def serialize(self) -> str:
+        # Generate the models
+        template = self.env.get_template("model_container.py.jinja2")
+        return template.render(
+            code_model=self.code_model,
+            imports=FileImportSerializer(self.imports(), is_python_3_file=self.is_python_3_file),
+            str=str,
+            init_line=self.init_line,
+            init_args=self.init_args,
+            prop_documentation_string=ModelBaseSerializer.prop_documentation_string,
+            prop_type_documentation_string=ModelBaseSerializer.prop_type_documentation_string,
+        )
 
     def imports(self) -> FileImport:
         file_import = FileImport()

@@ -4,25 +4,17 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import cast, List
+from jinja2 import Environment
 from .model_base_serializer import ModelBaseSerializer
-from ..models import ObjectSchema
+from ..models import ObjectSchema, CodeModel
 from ..models.imports import FileImport
-from .import_serializer import FileImportSerializer
 
 
 class ModelPython3Serializer(ModelBaseSerializer):
 
-    def serialize(self) -> str:
-        # Generate the models
-        template = self.env.get_template("model_container.py.jinja2")
-        return template.render(
-            code_model=self.code_model,
-            imports=FileImportSerializer(self.imports(), is_python_3_file=True),
-            str=str,
-            init_line=self.init_line,
-            init_args=self.init_args,
-            prop_documentation_string=ModelBaseSerializer.prop_documentation_string,
-            prop_type_documentation_string=ModelBaseSerializer.prop_type_documentation_string,
+    def __init__(self, code_model: CodeModel, env: Environment) -> None:
+        super(ModelPython3Serializer, self).__init__(
+            code_model=code_model, env=env, is_python_3_file=True
         )
 
     @staticmethod
