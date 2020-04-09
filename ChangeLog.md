@@ -1,5 +1,42 @@
 # Change Log
 
+### 2020-04-09 - 5.0.0-dev.20200409.1
+Modelerfour version: 4.12.301
+
+**Bug Fixes**
+
+- Separating out typing imports in TYPE_CHECKING block  #538
+- Overriding a property inherited from a parent if they both have the same name  #563
+
+**New Features**
+
+- Client side validation is now disabled by default  #558
+
+### 2020-04-06 - 5.0.0-dev.20200406.1
+Modelerfour version: 4.12.294
+
+**New Features**
+
+- Can now directly patch a client by defining a `patch.py` file in the top-level of the module with a `patch_sdk` function  #548
+- Can now handle `time` formats  #551
+
+### 2020-04-03 - 5.0.0-dev.20200403.1
+Modelerfour version: 4.12.276
+
+**Bug Fixes**
+
+- Fixes parameter ordering so parameters with default values are all ordered at the end  #545
+- Fixes `TokenCredential` and `AsyncTokenCredential` sphinx docstring  #546
+
+### 2020-04-01 - 5.0.0-dev.20200401.1
+Modelerfour version: 4.12.276
+
+**Bug Fixes**
+
+- Now the generic models file and python3 models file have the same behavior in regards to required properties and their default values  #532
+- Can now specify non-string enums  #534
+- Fixes `TokenCredential` typing  #535
+
 ### 2020-03-30 - 5.0.0-dev.20200330.1
 Modelerfour version: 4.12.276
 

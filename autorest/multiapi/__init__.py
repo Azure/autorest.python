@@ -313,7 +313,8 @@ class MultiAPI:
             "default_models": sorted(
                 {last_api_version} | {versions for _, versions in last_rt_list.items()}
             ),
-            "config": metadata_json["config"]
+            "config": metadata_json["config"],
+            "global_parameters": metadata_json["global_parameters"]
         }
         multiapi_serializer = MultiAPISerializer(conf=conf)
 
@@ -355,6 +356,13 @@ class MultiAPI:
             self._autorestapi.write_file(
                 Path("_version.py"),
                 multiapi_serializer.serialize_multiapi_version()
+            )
+
+        # don't erase patch file
+        if self._autorestapi.read_file("patch.py"):
+            self._autorestapi.write_file(
+                "patch.py",
+                self._autorestapi.read_file("patch.py")
             )
 
         _LOGGER.info("Done!")

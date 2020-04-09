@@ -26,13 +26,13 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     :ivar operation_group_two: OperationGroupTwoOperations operations
     :vartype operation_group_two: multiapiwithsubmodule.submodule.v2.aio.operations_async.OperationGroupTwoOperations
     :param credential: Credential needed for the client to connect to Azure.
-    :type credential: azure.core.credentials.TokenCredential
+    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param str base_url: Service URL
     """
 
     def __init__(
         self,
-        credential: "TokenCredential",
+        credential: "AsyncTokenCredential",
         **kwargs: Any
     ) -> None:
         base_url = 'None'

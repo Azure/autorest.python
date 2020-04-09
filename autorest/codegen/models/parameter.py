@@ -7,7 +7,7 @@ from enum import Enum
 import logging
 from typing import Dict, Optional, List, Any, Union, Tuple
 
-from .imports import FileImport, ImportType
+from .imports import FileImport, ImportType, TypingSection
 from .base_model import BaseModel
 from .base_schema import BaseSchema
 from .constant_schema import ConstantSchema
@@ -75,7 +75,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         self.flattened = flattened
         self.grouped_by = grouped_by
         self.original_parameter = original_parameter
-        self.client_default_value = client_default_value
+        self._client_default_value = client_default_value
         self.is_kwarg: bool = False
         self.has_multiple_media_types: bool = False
         self.multiple_media_types_type_annot: Optional[str] = None
@@ -122,8 +122,8 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
         if not self.required:
             type_annot = f"Optional[{type_annot}]"
 
-        if self.client_default_value is not None:
-            return self.client_default_value, self.schema.get_declaration(self.client_default_value), type_annot
+        if self._client_default_value is not None:
+            return self._client_default_value, self.schema.get_declaration(self._client_default_value), type_annot
 
         if self.multiple_media_types_type_annot:
             # means this parameter has multiple media types. We force default value to be None.
@@ -143,6 +143,12 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
             )
 
         return default_value, default_value_declaration, type_annot
+
+    @property
+    def default_value(self) -> Optional[Any]:
+        # exposing default_value because client_default_value doesn't get updated with
+        # default values we bubble up from the schema
+        return self._default_value()[0]
 
     @property
     def docstring_type(self) -> str:
@@ -197,7 +203,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
     def imports(self) -> FileImport:
         file_import = self.schema.imports()
         if not self.required:
-            file_import.add_from_import("typing", "Optional", ImportType.STDLIB)
+            file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
         if self.has_multiple_media_types:
-            file_import.add_from_import("typing", "Union", ImportType.STDLIB)
+            file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
         return file_import

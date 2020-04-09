@@ -132,3 +132,6 @@ class TestString(object):
     def test_enum_referenced_constant(self, client):
         client.enum.put_referenced_constant()
         assert client.enum.get_referenced_constant().color_constant ==  Colors.green_color.value
+
+    def test_patch_file(self):
+        from bodystring.models import PatchAddedModel

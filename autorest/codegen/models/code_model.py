@@ -16,9 +16,8 @@ from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
 from .parameter import Parameter, ParameterLocation
 from .client import Client
-from .property import Property
 from .parameter_list import ParameterList
-from .imports import FileImport, ImportType
+from .imports import FileImport, ImportType, TypingSection
 from .schema_response import SchemaResponse
 
 
@@ -26,25 +25,40 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class CredentialSchema(BaseSchema):
-    def __init__(self) -> None:  # pylint: disable=super-init-not-called
-        self.type = "azure.core.credentials.TokenCredential"
+    def __init__(self, async_mode) -> None:  # pylint: disable=super-init-not-called
+        self.async_mode = async_mode
+        self.async_type = "~azure.core.credentials_async.AsyncTokenCredential"
+        self.sync_type = "~azure.core.credentials.TokenCredential"
         self.default_value = None
 
     @property
     def serialization_type(self) -> str:
-        return self.type
+        if self.async_mode:
+            return self.async_type
+        return self.sync_type
 
     @property
     def docstring_type(self) -> str:
-        return self.type
+        return self.serialization_type
 
     @property
     def type_annotation(self) -> str:
+        if self.async_mode:
+            return '"AsyncTokenCredential"'
         return '"TokenCredential"'
 
     @property
     def docstring_text(self) -> str:
         return "credential"
+
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_from_import(
+            "azure.core.credentials", "TokenCredential",
+            ImportType.AZURECORE,
+            typing_section=TypingSection.TYPING
+        )
+        return file_import
 
 
 class IOSchema(BaseSchema):
@@ -69,7 +83,7 @@ class IOSchema(BaseSchema):
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        file_import.add_from_import("typing", "IO", ImportType.STDLIB)
+        file_import.add_from_import("typing", "IO", ImportType.STDLIB, TypingSection.CONDITIONAL)
         return file_import
 
 
@@ -168,7 +182,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         :return: None
         :rtype: None
         """
-        credential_schema = CredentialSchema()
+        credential_schema = CredentialSchema(async_mode=False)
         credential_parameter = Parameter(
             yaml_data={},
             schema=credential_schema,
@@ -253,13 +267,12 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             if base_model:
                 parent = base_model
                 while parent:
-                    schema.properties = parent.properties + schema.properties
-                    seen_properties: Set[Property] = set()
-                    schema.properties = [
-                        p
-                        for p in schema.properties
-                        if p.name not in seen_properties and not seen_properties.add(p.name)  # type: ignore
+                    schema_property_names = [s.name for s in schema.properties]
+                    chosen_parent_properties = [
+                        p for p in parent.properties
+                        if p.name not in schema_property_names
                     ]
+                    schema.properties = chosen_parent_properties + schema.properties
                     parent = cast(ObjectSchema, parent.base_model)
 
     def _add_exceptions_from_inheritance(self) -> None:

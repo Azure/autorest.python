@@ -148,7 +148,7 @@ class CodeGenerator(Plugin):
             "basic_setup_py": self._autorestapi.get_boolean_value("basic-setup-py", False),
             "package_name": self._autorestapi.get_value("package-name"),
             "package_version": self._autorestapi.get_value("package-version"),
-            "client_side_validation": self._autorestapi.get_boolean_value("client-side-validation", True),
+            "client_side_validation": self._autorestapi.get_boolean_value("client-side-validation", False),
             "tracing": self._autorestapi.get_boolean_value("trace", False),
             "multiapi": self._autorestapi.get_boolean_value("multiapi", False)
         }

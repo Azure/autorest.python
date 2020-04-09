@@ -7,7 +7,7 @@ from typing import cast, Any, Dict, Union, List, Optional
 
 from .base_model import BaseModel
 from .constant_schema import ConstantSchema
-from .imports import FileImport, ImportType
+from .imports import FileImport, ImportType, TypingSection
 from .base_schema import BaseSchema
 
 
@@ -85,5 +85,5 @@ class Property(BaseModel):
     def imports(self) -> FileImport:
         file_import = self.schema.imports()
         if not self.required:
-            file_import.add_from_import("typing", "Optional", ImportType.STDLIB)
+            file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
         return file_import
