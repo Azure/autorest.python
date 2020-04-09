@@ -6,7 +6,6 @@
 
 - We now also generate an async multiapi client when running multiapiscript  # 480
 
-<<<<<<< HEAD
 ### 2020-04-06 - 5.0.0-dev.20200406.1
 Modelerfour version: 4.12.294
 
@@ -32,8 +31,6 @@ Modelerfour version: 4.12.276
 - Can now specify non-string enums  #534
 - Fixes `TokenCredential` typing  #535
 
-=======
->>>>>>> c2de4fe6ddc3e4959b58796a73acd328ad8849c8
 ### 2020-03-30 - 5.0.0-dev.20200330.1
 Modelerfour version: 4.12.276
 
