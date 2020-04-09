@@ -16,7 +16,6 @@ from .lro_operation import LROOperation
 from .paging_operation import PagingOperation
 from .parameter import Parameter, ParameterLocation
 from .client import Client
-from .property import Property
 from .parameter_list import ParameterList
 from .imports import FileImport, ImportType, TypingSection
 from .schema_response import SchemaResponse
@@ -257,6 +256,8 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                 operation for operation in operation_group.operations if operation not in next_operations
             ]
 
+
+
     def _add_properties_from_inheritance(self) -> None:
         """Adds properties from base classes to schemas with parents.
 
@@ -268,13 +269,12 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             if base_model:
                 parent = base_model
                 while parent:
-                    schema.properties = parent.properties + schema.properties
-                    seen_properties: Set[Property] = set()
-                    schema.properties = [
-                        p
-                        for p in schema.properties
-                        if p.name not in seen_properties and not seen_properties.add(p.name)  # type: ignore
+                    schema_property_names = [s.name for s in schema.properties]
+                    chosen_parent_properties = [
+                        p for p in parent.properties
+                        if p.name not in schema_property_names
                     ]
+                    schema.properties = chosen_parent_properties + schema.properties
                     parent = cast(ObjectSchema, parent.base_model)
 
     def _add_exceptions_from_inheritance(self) -> None:
