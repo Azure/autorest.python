@@ -358,5 +358,12 @@ class MultiAPI:
                 multiapi_serializer.serialize_multiapi_version()
             )
 
+        # don't erase patch file
+        if self._autorestapi.read_file("patch.py"):
+            self._autorestapi.write_file(
+                "patch.py",
+                self._autorestapi.read_file("patch.py")
+            )
+
         _LOGGER.info("Done!")
         return True

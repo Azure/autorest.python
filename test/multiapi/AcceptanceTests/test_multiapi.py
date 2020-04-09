@@ -66,6 +66,9 @@ def test_configuration_kwargs(default_client):
     # making sure that the package name is correct in the sdk moniker
     assert default_client._config.user_agent_policy._user_agent.startswith("azsdk-python-multiapi/")
 
+def test_patch_file():
+    from multiapi.models import PatchAddedModel
+
 class TestMultiapiClient(NotTested.TestMultiapiBase):
     pass
 
