@@ -18,7 +18,7 @@ from .parameter import Parameter, ParameterLocation
 from .client import Client
 from .property import Property
 from .parameter_list import ParameterList
-from .imports import FileImport, ImportType
+from .imports import FileImport, ImportType, TypingSection
 from .schema_response import SchemaResponse
 
 
@@ -52,6 +52,15 @@ class CredentialSchema(BaseSchema):
     def docstring_text(self) -> str:
         return "credential"
 
+    def imports(self) -> FileImport:
+        file_import = FileImport()
+        file_import.add_from_import(
+            "azure.core.credentials", "TokenCredential",
+            ImportType.AZURECORE,
+            typing_section=TypingSection.TYPING
+        )
+        return file_import
+
 
 class IOSchema(BaseSchema):
     def __init__(self) -> None:  # pylint: disable=super-init-not-called
@@ -75,7 +84,7 @@ class IOSchema(BaseSchema):
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        file_import.add_from_import("typing", "IO", ImportType.STDLIB)
+        file_import.add_from_import("typing", "IO", ImportType.STDLIB, TypingSection.CONDITIONAL)
         return file_import
 
 

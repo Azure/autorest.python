@@ -6,7 +6,7 @@
 from typing import Any, Dict, List, Optional, Set
 from .base_schema import BaseSchema
 from .primitive_schemas import PrimitiveSchema, get_primitive_schema, StringSchema
-from .imports import FileImport, ImportType
+from .imports import FileImport, ImportType, TypingSection
 
 
 class EnumValue:
@@ -159,6 +159,6 @@ class EnumSchema(BaseSchema):
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        file_import.add_from_import("typing", "Union", ImportType.STDLIB)
+        file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.merge(self.enum_type.imports())
         return file_import

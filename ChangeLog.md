@@ -3,6 +3,10 @@
 ### Unreleased
 Modelerfour version: 4.12.301
 
+**Bug Fixes**
+
+- Separating out typing imports in TYPE_CHECKING block  #538
+
 **New Features**
 
 - Client side validation is now disabled by default  #558

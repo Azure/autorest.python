@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict, Optional, Union
 from .base_schema import BaseSchema
-from .imports import FileImport, ImportType
+from .imports import FileImport, ImportType, TypingSection
 
 
 class ListSchema(BaseSchema):
@@ -98,6 +98,6 @@ class ListSchema(BaseSchema):
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        file_import.add_from_import("typing", "List", ImportType.STDLIB)
+        file_import.add_from_import("typing", "List", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.merge(self.element_type.imports())
         return file_import

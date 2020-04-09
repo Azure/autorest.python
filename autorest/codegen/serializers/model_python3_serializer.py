@@ -4,12 +4,19 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import cast, List
+from jinja2 import Environment
 from .model_base_serializer import ModelBaseSerializer
-from ..models import ObjectSchema
+from ..models import ObjectSchema, CodeModel
 from ..models.imports import FileImport
 
 
 class ModelPython3Serializer(ModelBaseSerializer):
+
+    def __init__(self, code_model: CodeModel, env: Environment) -> None:
+        super(ModelPython3Serializer, self).__init__(
+            code_model=code_model, env=env, is_python_3_file=True
+        )
+
     @staticmethod
     def init_line(model: ObjectSchema) -> List[str]:
         init_properties_declaration = []
