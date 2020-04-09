@@ -6,6 +6,7 @@ Modelerfour version: 4.12.301
 **Bug Fixes**
 
 - Separating out typing imports in TYPE_CHECKING block  #538
+- Overriding a property inherited from a parent if they both have the same name  #563
 
 **New Features**
 
