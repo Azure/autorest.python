@@ -256,8 +256,6 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                 operation for operation in operation_group.operations if operation not in next_operations
             ]
 
-
-
     def _add_properties_from_inheritance(self) -> None:
         """Adds properties from base classes to schemas with parents.
 
