@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
-from typing import Optional, Union
+from typing import Optional, TYPE_CHECKING, Union
 
 
 class MultiapiServiceClientOperationsMixin(object):

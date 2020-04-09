@@ -313,7 +313,8 @@ class MultiAPI:
             ),
             "config": metadata_json["config"],
             "global_parameters": metadata_json["global_parameters"],
-            "imports": metadata_json["imports"]
+            "sync_imports": metadata_json["sync_imports"],
+            "async_imports": metadata_json["async_imports"]
         }
 
         multiapi_serializer = MultiAPISerializer(

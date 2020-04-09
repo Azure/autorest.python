@@ -104,5 +104,6 @@ class MetadataSerializer:
             is_lro=_is_lro,
             is_paging=_is_paging,
             str=str,
-            parameter_imports=FileImportSerializer(parameter_imports),
+            sync_parameter_imports=FileImportSerializer(parameter_imports, is_python_3_file=False),
+            async_parameter_imports=FileImportSerializer(parameter_imports, is_python_3_file=True)
         )

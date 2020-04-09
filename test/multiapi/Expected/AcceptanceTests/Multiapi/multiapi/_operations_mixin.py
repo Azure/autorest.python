@@ -9,13 +9,10 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
-try:
-    from typing import TYPE_CHECKING
-except ImportError:
-    TYPE_CHECKING = False
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    # pylint:disable=unused-import
+    # pylint: disable=unused-import,ungrouped-imports
     from typing import Optional, Union
 
 

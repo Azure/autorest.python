@@ -8,3 +8,11 @@
 
 from .{{ service_client_filename }} import {{ client_name }}
 __all__ = ['{{ client_name }}']
+{% if not async_mode %}
+
+try:
+    from .patch import patch_sdk
+    patch_sdk()
+except ImportError:
+    pass
+{% endif %}

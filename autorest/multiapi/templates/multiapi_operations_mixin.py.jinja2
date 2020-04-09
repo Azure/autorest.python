@@ -9,19 +9,9 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
+{% set imports = async_imports if async_mode else sync_imports %}
 {% if imports %}
-{% if async_mode %}
 {{ imports }}
-{% else %}
-try:
-    from typing import TYPE_CHECKING
-except ImportError:
-    TYPE_CHECKING = False
-
-if TYPE_CHECKING:
-    # pylint:disable=unused-import
-    {{ imports | indent }}
-{% endif %}
 {% endif %}
 
 

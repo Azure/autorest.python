@@ -43,5 +43,6 @@
             "call": "id, message"
         }
     },
-    "imports": "from typing import Optional"
+    "sync_imports": "from typing import TYPE_CHECKING\n\nif TYPE_CHECKING:\n    # pylint: disable=unused-import,ungrouped-imports\n    from typing import Optional",
+    "async_imports": "from typing import Optional, TYPE_CHECKING"
 }

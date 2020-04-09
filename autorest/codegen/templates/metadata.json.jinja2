@@ -61,5 +61,6 @@
         }{{ "," if not loop.last else "" }}
         {% endfor %}
     },
-    "imports": {{ str(parameter_imports) | tojson }}
+    "sync_imports": {{ str(sync_parameter_imports) | tojson }},
+    "async_imports": {{ str(async_parameter_imports) | tojson }}
 }
