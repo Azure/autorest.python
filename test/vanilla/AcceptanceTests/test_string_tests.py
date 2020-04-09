@@ -135,4 +135,3 @@ class TestString(object):
 
     def test_patch_file(self):
         from bodystring.models import PatchAddedModel
-        

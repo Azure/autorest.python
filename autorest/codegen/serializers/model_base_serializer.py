@@ -12,16 +12,17 @@ from .import_serializer import FileImportSerializer
 
 
 class ModelBaseSerializer:
-    def __init__(self, code_model: CodeModel, env: Environment) -> None:
+    def __init__(self, code_model: CodeModel, env: Environment, is_python_3_file: bool) -> None:
         self.code_model = code_model
         self.env = env
+        self.is_python_3_file = is_python_3_file
 
     def serialize(self) -> str:
         # Generate the models
         template = self.env.get_template("model_container.py.jinja2")
         return template.render(
             code_model=self.code_model,
-            imports=FileImportSerializer(self.imports()),
+            imports=FileImportSerializer(self.imports(), is_python_3_file=self.is_python_3_file),
             str=str,
             init_line=self.init_line,
             init_args=self.init_args,

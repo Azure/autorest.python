@@ -333,5 +333,12 @@ class MultiAPI:
         async_multiapi_serializer.serialize()
 
 
+        # don't erase patch file
+        if self._autorestapi.read_file("patch.py"):
+            self._autorestapi.write_file(
+                "patch.py",
+                self._autorestapi.read_file("patch.py")
+            )
+
         _LOGGER.info("Done!")
         return True

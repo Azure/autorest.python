@@ -1,7 +1,12 @@
 # Change Log
 
-### Unreleased
+### 2020-04-09 - 5.0.0-dev.20200409.1
 Modelerfour version: 4.12.301
+
+**Bug Fixes**
+
+- Separating out typing imports in TYPE_CHECKING block  #538
+- Overriding a property inherited from a parent if they both have the same name  #563
 
 **New Features**
 

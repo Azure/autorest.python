@@ -4,11 +4,18 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import List
+from jinja2 import Environment
 from .model_base_serializer import ModelBaseSerializer
-from ..models import ObjectSchema
+from ..models import ObjectSchema, CodeModel
 
 
 class ModelGenericSerializer(ModelBaseSerializer):
+
+    def __init__(self, code_model: CodeModel, env: Environment) -> None:
+        super(ModelGenericSerializer, self).__init__(
+            code_model=code_model, env=env, is_python_3_file=False
+        )
+
     @staticmethod
     def init_line(model: ObjectSchema) -> List[str]:
         return []
