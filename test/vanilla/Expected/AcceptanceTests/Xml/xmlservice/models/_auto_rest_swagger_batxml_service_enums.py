@@ -8,42 +8,6 @@
 
 from enum import Enum
 
-class LeaseStatusType(str, Enum):
-
-    locked = "locked"
-    unlocked = "unlocked"
-
-class LeaseStateType(str, Enum):
-
-    available = "available"
-    leased = "leased"
-    expired = "expired"
-    breaking = "breaking"
-    broken = "broken"
-
-class LeaseDurationType(str, Enum):
-
-    infinite = "infinite"
-    fixed = "fixed"
-
-class PublicAccessType(str, Enum):
-
-    container = "container"
-    blob = "blob"
-
-class BlobType(str, Enum):
-
-    block_blob = "BlockBlob"
-    page_blob = "PageBlob"
-    append_blob = "AppendBlob"
-
-class CopyStatusType(str, Enum):
-
-    pending = "pending"
-    success = "success"
-    aborted = "aborted"
-    failed = "failed"
-
 class AccessTier(str, Enum):
 
     p4 = "P4"
@@ -61,3 +25,39 @@ class ArchiveStatus(str, Enum):
 
     rehydrate_pending_to_hot = "rehydrate-pending-to-hot"
     rehydrate_pending_to_cool = "rehydrate-pending-to-cool"
+
+class BlobType(str, Enum):
+
+    block_blob = "BlockBlob"
+    page_blob = "PageBlob"
+    append_blob = "AppendBlob"
+
+class CopyStatusType(str, Enum):
+
+    pending = "pending"
+    success = "success"
+    aborted = "aborted"
+    failed = "failed"
+
+class LeaseDurationType(str, Enum):
+
+    infinite = "infinite"
+    fixed = "fixed"
+
+class LeaseStateType(str, Enum):
+
+    available = "available"
+    leased = "leased"
+    expired = "expired"
+    breaking = "breaking"
+    broken = "broken"
+
+class LeaseStatusType(str, Enum):
+
+    locked = "locked"
+    unlocked = "unlocked"
+
+class PublicAccessType(str, Enum):
+
+    container = "container"
+    blob = "blob"

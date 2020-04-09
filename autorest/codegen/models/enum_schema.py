@@ -66,6 +66,9 @@ class EnumSchema(BaseSchema):
         self.values = values
         self.enum_type = enum_type
 
+    def __lt__(self, other):
+        return self.name.lower() < other.name.lower()
+
     @property
     def serialization_type(self) -> str:
         """Returns the serialization value for msrest.
