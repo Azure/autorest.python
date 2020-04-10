@@ -28,7 +28,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         self.min_properties: Optional[int] = kwargs.pop("min_properties", None)
         self.properties: List[Property] = kwargs.pop("properties", [])
         self.is_exception: bool = kwargs.pop("is_exception", False)
-        self.base_models: Optional[Union[List[int], List["ObjectSchema"]]] = kwargs.pop("base_models", None)
+        self.base_models: Union[List[int], List["ObjectSchema"]] = kwargs.pop("base_models", [])
         self.subtype_map: Optional[Dict[str, str]] = kwargs.pop("subtype_map", None)
         self.discriminator_name: Optional[str] = kwargs.pop("discriminator_name", None)
         self.discriminator_value: Optional[str] = kwargs.pop("discriminator_value", None)
@@ -92,7 +92,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
 
     def fill_instance_from_yaml(self, namespace: str, yaml_data: Dict[str, Any], **kwargs) -> None:
         properties = []
-        base_models = None
+        base_models = []
 
         name = yaml_data["language"]["python"]["name"]
 
