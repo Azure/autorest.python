@@ -1,11 +1,11 @@
 # Change Log
 
-### Current
-Modelerfour version: 4.12.301
+### Unreleased
 
-**New Features**
+**New features**
 
-- Adding multiple inheritance  #566
+- Support non-ARM polling by default (azure-core 1.4.0)
+- Adding multiple inheritance  #567
 
 ### 2020-04-09 - 5.0.0-dev.20200409.1
 Modelerfour version: 4.12.301

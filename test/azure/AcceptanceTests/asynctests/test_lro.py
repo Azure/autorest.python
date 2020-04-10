@@ -71,7 +71,7 @@ class AutorestTestARMPolling(AsyncARMPolling):
         request = self._client.get(status_link, headers=self._polling_cookie(self._pipeline_response.http_response))
         # ARM requires to re-inject 'x-ms-client-request-id' while polling
         if 'request_id' not in self._operation_config:
-            self._operation_config['request_id'] = self._operation.initial_response.http_response.request.headers['x-ms-client-request-id']
+            self._operation_config['request_id'] = self._get_request_id()
         return (await self._client._pipeline.run(request, stream=False, **self._operation_config))
 
 @pytest.fixture
@@ -136,7 +136,6 @@ class TestLro:
         product = await client.lros.post_double_headers_final_azure_header_get()
         assert product.id == "100"
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.python/pull/512")
     @pytest.mark.asyncio
     async def test_post_double_headers_default(self, client):
         # This test will work as long as the default is Location
@@ -353,7 +352,7 @@ class TestLro:
         await self.assert_raises_with_message("Operation returned an invalid status 'Bad Request'",
             client.lrosads.put_async_relative_retry400, product)
 
-        await self.assert_raises_with_message("The response from long running operation does not contain a body.",
+        await self.assert_raises_with_message("no status found in body",
             client.lrosads.put_async_relative_retry_no_status, product)
 
         await self.assert_raises_with_message("The response from long running operation does not contain a body.",
@@ -396,7 +395,7 @@ class TestLro:
         await self.assert_raises_with_message("Bad Request",
             client.lrosads.delete_async_relative_retry400)
 
-        await self.assert_raises_with_message("The response from long running operation does not contain a body.",
+        await self.assert_raises_with_message("no status found in body",
             client.lrosads.delete_async_relative_retry_no_status)
 
     @pytest.mark.asyncio
@@ -434,8 +433,11 @@ class TestLro:
 
     @pytest.mark.asyncio
     async def test_sads_post202_no_location(self, client):
-        await self.assert_raises_with_message("Unable to find status link for polling.",
-            client.lrosads.post202_no_location)
+        # Testserver wants us to fail (coverage name is LROErrorPostNoLocation)
+        # Actually, Python will NOT, and consider any kind of success 2xx on the initial call
+        # is an actual success
+        process = await self.lro_result(client.lrosads.post202_no_location)
+        assert process is None
 
     @pytest.mark.asyncio
     async def test_sads_post_async_relative_with_exception(self, client):
