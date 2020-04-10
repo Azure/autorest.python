@@ -130,7 +130,6 @@ class TestLro:
     def test_post_double_headers_final_continuation_token(self, client):
         poller = client.lros.begin_post_double_headers_final_location_get()
         continuation_token = poller.continuation_token()
-        print(continuation_token)
 
         poller = client.lros.begin_post_double_headers_final_location_get(continuation_token=continuation_token)
         product = poller.result()
