@@ -87,7 +87,6 @@ class TestXmsRequestClientId(object):
         await client.xms_client_request_id.get(request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
 
     @pytest.mark.asyncio
-    @pytest.mark.xfail(reason="https://github.com/Azure/azure-sdk-for-python/issues/10301")
     async def test_xms_request_client_overwrite_via_parameter(self, client_no_request_id):
         # We DON'T support a Swagger parameter for request_id, the request_id policy will overwrite it.
         # We disable the request_id policy for this test

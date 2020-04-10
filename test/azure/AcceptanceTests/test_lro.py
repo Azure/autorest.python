@@ -70,7 +70,7 @@ class AutorestTestARMPolling(ARMPolling):
         request = self._client.get(status_link, headers=self._polling_cookie(self._pipeline_response.http_response))
         # ARM requires to re-inject 'x-ms-client-request-id' while polling
         if 'request_id' not in self._operation_config:
-            self._operation_config['request_id'] = self._operation.initial_response.http_response.request.headers['x-ms-client-request-id']
+            self._operation_config['request_id'] = self._get_request_id()
         return self._client._pipeline.run(request, stream=False, **self._operation_config)
 
 @pytest.fixture()
@@ -134,7 +134,6 @@ class TestLro:
         product = client.lros.begin_post_double_headers_final_azure_header_get().result()
         assert product.id == "100"
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.python/pull/512")
     def test_post_double_headers_default(self, client):
         # This test will work as long as the default is Location
         product = client.lros.begin_post_double_headers_final_azure_header_get_default().result()
@@ -321,7 +320,7 @@ class TestLro:
         self.assert_raises_with_message("Operation returned an invalid status 'Bad Request'",
             client.lrosads.begin_put_async_relative_retry400, product)
 
-        self.assert_raises_with_message("The response from long running operation does not contain a body.",
+        self.assert_raises_with_message("no status found in body",
             client.lrosads.begin_put_async_relative_retry_no_status, product)
 
         self.assert_raises_with_message("The response from long running operation does not contain a body.",
@@ -358,7 +357,7 @@ class TestLro:
         self.assert_raises_with_message("Bad Request",
             client.lrosads.begin_delete_async_relative_retry400)
 
-        self.assert_raises_with_message("The response from long running operation does not contain a body.",
+        self.assert_raises_with_message("no status found in body",
             client.lrosads.begin_delete_async_relative_retry_no_status)
 
     def test_sads_delete204_succeeded(self, client):
@@ -390,8 +389,11 @@ class TestLro:
             client.lrosads.begin_post_async_relative_retry_no_payload)
 
     def test_sads_post202_no_location(self, client):
-        self.assert_raises_with_message("Unable to find status link for polling.",
-            client.lrosads.begin_post202_no_location)
+        # Testserver wants us to fail (coverage name is LROErrorPostNoLocation)
+        # Actually, Python will NOT, and consider any kind of success 2xx on the initial call
+        # is an actual success
+        process = self.lro_result(client.lrosads.begin_post202_no_location)
+        assert process is None
 
     def test_sads_post_async_relative_with_exception(self, client):
         with pytest.raises(Exception):
