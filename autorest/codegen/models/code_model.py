@@ -86,6 +86,29 @@ class IOSchema(BaseSchema):
         file_import.add_from_import("typing", "IO", ImportType.STDLIB, TypingSection.CONDITIONAL)
         return file_import
 
+def _sort_schemas_helper(current, seen_schema_names, seen_schema_yaml_ids):
+    if current.name in seen_schema_names:
+        raise ValueError(
+            f"We have already generated a schema with name {current.name}"
+        )
+    if not current.base_models or current.id in seen_schema_yaml_ids:
+        seen_schema_names.add(current.name)
+        seen_schema_yaml_ids.add(current.id)
+        return []
+    ancestors = [current]
+    while current.base_models:
+        for base_model in current.base_models:
+            parent = cast(ObjectSchema, base_model)
+            if parent.id in seen_schema_yaml_ids:
+                break
+            ancestors.insert(0, parent)
+            seen_schema_names.add(current.name)
+            seen_schema_yaml_ids.add(current.id)
+            ancestors += _sort_schemas_helper(parent, seen_schema_names, seen_schema_yaml_ids)
+    seen_schema_names.add(parent.name)
+    seen_schema_yaml_ids.add(parent.id)
+    return ancestors
+
 
 class CodeModel:  # pylint: disable=too-many-instance-attributes
     """Holds all of the information we have parsed out of the yaml file. The CodeModel is what gets
@@ -144,6 +167,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
                     return elt_value
         raise KeyError("Didn't find it!!!!!")
 
+
     def sort_schemas(self) -> None:
         """Sorts the final object schemas by inheritance and by alphabetical order.
 
@@ -154,26 +178,8 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         seen_schema_yaml_ids: Set[int] = set()
         sorted_schemas: List[ObjectSchema] = []
         for schema in sorted(self.schemas.values(), key=lambda x: x.name.lower()):
-            if schema.id in seen_schema_yaml_ids:
-                continue
-            if schema.name in seen_schema_names:
-                raise ValueError(
-                    f"We have already generated a schema with name {schema.name}"
-                )
-            ancestors = []
-            current = schema
-            ancestors.append(schema)
-            while current.base_model:
-                parent = cast(ObjectSchema, current.base_model)
-                if parent.id in seen_schema_yaml_ids:
-                    break
-                ancestors.insert(0, parent)
-                seen_schema_names.add(current.name)
-                seen_schema_yaml_ids.add(current.id)
-                current = parent
-            seen_schema_names.add(current.name)
-            seen_schema_yaml_ids.add(current.id)
-            sorted_schemas += ancestors
+
+            sorted_schemas += _sort_schemas_helper(schema, seen_schema_names, seen_schema_yaml_ids)
         self.sorted_schemas = sorted_schemas
 
     def add_credential_global_parameter(self) -> None:
@@ -298,9 +304,9 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         :rtype: None
         """
         for schema in self.schemas.values():
-            if schema.base_model:
+            if schema.base_models:
                 # right now, the base model property just holds the name of the parent class
-                schema.base_model = [b for b in self.schemas.values() if b.id == schema.base_model][0]
+                schema.base_models = [b for b in self.schemas.values() if b.id in schema.base_models]
         self._add_properties_from_inheritance()
         self._add_exceptions_from_inheritance()
 
