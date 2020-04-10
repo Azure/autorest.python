@@ -43,6 +43,7 @@ response_headers = {
     :type {{ parameter.serialized_name }}: {{ parameter.schema.docstring_type }}
 {% endfor %}
     :keyword callable cls: A custom type or function that will be passed the direct response
+    :keyword str continuation_token: A continuation token to restart a poller from a saved state
     :keyword polling: True for ARMPolling, False for no polling, or a
      polling object for personal polling strategy
     :paramtype polling: bool or ~azure.core.polling.{{ "Async" if async_mode else "" }}PollingMethod
@@ -51,13 +52,15 @@ response_headers = {
     """
     polling = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})  # type: Union[bool, {{ "Async" if async_mode else "" }}PollingMethod]
     cls = kwargs.pop('cls', None)  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
-    raw_result = {{ keywords.await }}self._{{ operation.name }}_initial(
-        {% for parameter in operation.parameters.method %}
-        {{ parameter.serialized_name }}={{ parameter.serialized_name }},
-        {% endfor %}
-        cls=lambda x,y,z: x,
-        **kwargs
-    )
+    cont_token = kwargs.pop('continuation_token', None)  # type: Optional[str]
+    if cont_token is None:
+        raw_result = {{ keywords.await }}self._{{ operation.name }}_initial(
+            {% for parameter in operation.parameters.method %}
+            {{ parameter.serialized_name }}={{ parameter.serialized_name }},
+            {% endfor %}
+            cls=lambda x,y,z: x,
+            **kwargs
+        )
 
     def get_long_running_output(pipeline_response):
         {% if operation.lro_response.has_headers %}
@@ -84,5 +87,13 @@ response_headers = {
     {% endif %}
     elif polling is False: polling_method = {{ async_prefix }}NoPolling()
     else: polling_method = polling
-    return {{ keywords.await }}{{ poller }}(self._client, raw_result, get_long_running_output, polling_method)
+    if cont_token:
+        return {{ keywords.await }}{{ poller }}.from_continuation_token(
+            polling_method=polling_method,
+            continuation_token=cont_token,
+            client=self._client,
+            deserialization_callback=get_long_running_output
+        )
+    else:
+        return {{ keywords.await }}{{ poller }}(self._client, raw_result, get_long_running_output, polling_method)
 {{ operation_name }}.metadata = {'url': '{{ operation.url }}'}
