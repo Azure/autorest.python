@@ -83,7 +83,7 @@ class LROOperation(Operation):
         file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
         if async_mode:
             file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
-            file_import.add_from_import("azure.core.polling", "async_poller", ImportType.AZURECORE)
+            file_import.add_from_import("azure.core.polling", "AsyncLROPoller", ImportType.AZURECORE)
             file_import.add_from_import("azure.core.polling", "AsyncNoPolling", ImportType.AZURECORE)
             file_import.add_from_import("azure.core.polling", "AsyncPollingMethod", ImportType.AZURECORE)
             if code_model.options['azure_arm']:

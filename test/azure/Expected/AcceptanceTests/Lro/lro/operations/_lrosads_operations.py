@@ -153,6 +153,18 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_non_retry400.metadata = {'url': '/lro/nonretryerror/put/400'}
 
+    def put_non_retry400(
+        self,
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
+        return self.begin_put_non_retry400(
+            product=product,
+            **kwargs
+        ).result()
+
+
     def _put_non_retry201_creating400_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -259,6 +271,18 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_non_retry201_creating400.metadata = {'url': '/lro/nonretryerror/put/201/creating/400'}
 
+    def put_non_retry201_creating400(
+        self,
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
+        return self.begin_put_non_retry201_creating400(
+            product=product,
+            **kwargs
+        ).result()
+
+
     def _put_non_retry201_creating400_invalid_json_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -364,6 +388,18 @@ class LROSADsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_non_retry201_creating400_invalid_json.metadata = {'url': '/lro/nonretryerror/put/201/creating/400/invalidjson'}
+
+    def put_non_retry201_creating400_invalid_json(
+        self,
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
+        return self.begin_put_non_retry201_creating400_invalid_json(
+            product=product,
+            **kwargs
+        ).result()
+
 
     def _put_async_relative_retry400_initial(
         self,
@@ -475,6 +511,18 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_relative_retry400.metadata = {'url': '/lro/nonretryerror/putasync/retry/400'}
 
+    def put_async_relative_retry400(
+        self,
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
+        return self.begin_put_async_relative_retry400(
+            product=product,
+            **kwargs
+        ).result()
+
+
     def _delete_non_retry400_initial(
         self,
         **kwargs  # type: Any
@@ -558,6 +606,16 @@ class LROSADsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_non_retry400.metadata = {'url': '/lro/nonretryerror/delete/400'}
+
+    def delete_non_retry400(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        return self.begin_delete_non_retry400(
+            **kwargs
+        ).result()
+
 
     def _delete202_non_retry400_initial(
         self,
@@ -643,6 +701,16 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete202_non_retry400.metadata = {'url': '/lro/nonretryerror/delete/202/retry/400'}
 
+    def delete202_non_retry400(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        return self.begin_delete202_non_retry400(
+            **kwargs
+        ).result()
+
+
     def _delete_async_relative_retry400_initial(
         self,
         **kwargs  # type: Any
@@ -727,6 +795,16 @@ class LROSADsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_relative_retry400.metadata = {'url': '/lro/nonretryerror/deleteasync/retry/400'}
+
+    def delete_async_relative_retry400(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        return self.begin_delete_async_relative_retry400(
+            **kwargs
+        ).result()
+
 
     def _post_non_retry400_initial(
         self,
@@ -826,6 +904,18 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_non_retry400.metadata = {'url': '/lro/nonretryerror/post/400'}
 
+    def post_non_retry400(
+        self,
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        return self.begin_post_non_retry400(
+            product=product,
+            **kwargs
+        ).result()
+
+
     def _post202_non_retry400_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -923,6 +1013,18 @@ class LROSADsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post202_non_retry400.metadata = {'url': '/lro/nonretryerror/post/202/retry/400'}
+
+    def post202_non_retry400(
+        self,
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        return self.begin_post202_non_retry400(
+            product=product,
+            **kwargs
+        ).result()
+
 
     def _post_async_relative_retry400_initial(
         self,
@@ -1022,6 +1124,18 @@ class LROSADsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_relative_retry400.metadata = {'url': '/lro/nonretryerror/postasync/retry/400'}
+
+    def post_async_relative_retry400(
+        self,
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        return self.begin_post_async_relative_retry400(
+            product=product,
+            **kwargs
+        ).result()
+
 
     def _put_error201_no_provisioning_state_payload_initial(
         self,
@@ -1128,6 +1242,18 @@ class LROSADsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_error201_no_provisioning_state_payload.metadata = {'url': '/lro/error/put/201/noprovisioningstatepayload'}
+
+    def put_error201_no_provisioning_state_payload(
+        self,
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
+        return self.begin_put_error201_no_provisioning_state_payload(
+            product=product,
+            **kwargs
+        ).result()
+
 
     def _put_async_relative_retry_no_status_initial(
         self,
@@ -1239,6 +1365,18 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_relative_retry_no_status.metadata = {'url': '/lro/error/putasync/retry/nostatus'}
 
+    def put_async_relative_retry_no_status(
+        self,
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
+        return self.begin_put_async_relative_retry_no_status(
+            product=product,
+            **kwargs
+        ).result()
+
+
     def _put_async_relative_retry_no_status_payload_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -1349,6 +1487,18 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_relative_retry_no_status_payload.metadata = {'url': '/lro/error/putasync/retry/nostatuspayload'}
 
+    def put_async_relative_retry_no_status_payload(
+        self,
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
+        return self.begin_put_async_relative_retry_no_status_payload(
+            product=product,
+            **kwargs
+        ).result()
+
+
     def _delete204_succeeded_initial(
         self,
         **kwargs  # type: Any
@@ -1428,6 +1578,16 @@ class LROSADsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete204_succeeded.metadata = {'url': '/lro/error/delete/204/nolocation'}
+
+    def delete204_succeeded(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        return self.begin_delete204_succeeded(
+            **kwargs
+        ).result()
+
 
     def _delete_async_relative_retry_no_status_initial(
         self,
@@ -1513,6 +1673,16 @@ class LROSADsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_relative_retry_no_status.metadata = {'url': '/lro/error/deleteasync/retry/nostatus'}
+
+    def delete_async_relative_retry_no_status(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        return self.begin_delete_async_relative_retry_no_status(
+            **kwargs
+        ).result()
+
 
     def _post202_no_location_initial(
         self,
@@ -1612,6 +1782,18 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post202_no_location.metadata = {'url': '/lro/error/post/202/nolocation'}
 
+    def post202_no_location(
+        self,
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        return self.begin_post202_no_location(
+            product=product,
+            **kwargs
+        ).result()
+
+
     def _post_async_relative_retry_no_payload_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -1710,6 +1892,18 @@ class LROSADsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_relative_retry_no_payload.metadata = {'url': '/lro/error/postasync/retry/nopayload'}
+
+    def post_async_relative_retry_no_payload(
+        self,
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        return self.begin_post_async_relative_retry_no_payload(
+            product=product,
+            **kwargs
+        ).result()
+
 
     def _put200_invalid_json_initial(
         self,
@@ -1813,6 +2007,18 @@ class LROSADsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put200_invalid_json.metadata = {'url': '/lro/error/put/200/invalidjson'}
+
+    def put200_invalid_json(
+        self,
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
+        return self.begin_put200_invalid_json(
+            product=product,
+            **kwargs
+        ).result()
+
 
     def _put_async_relative_retry_invalid_header_initial(
         self,
@@ -1924,6 +2130,18 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_relative_retry_invalid_header.metadata = {'url': '/lro/error/putasync/retry/invalidheader'}
 
+    def put_async_relative_retry_invalid_header(
+        self,
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
+        return self.begin_put_async_relative_retry_invalid_header(
+            product=product,
+            **kwargs
+        ).result()
+
+
     def _put_async_relative_retry_invalid_json_polling_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -2034,6 +2252,18 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_put_async_relative_retry_invalid_json_polling.metadata = {'url': '/lro/error/putasync/retry/invalidjsonpolling'}
 
+    def put_async_relative_retry_invalid_json_polling(
+        self,
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> "models.Product"
+        return self.begin_put_async_relative_retry_invalid_json_polling(
+            product=product,
+            **kwargs
+        ).result()
+
+
     def _delete202_retry_invalid_header_initial(
         self,
         **kwargs  # type: Any
@@ -2117,6 +2347,16 @@ class LROSADsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete202_retry_invalid_header.metadata = {'url': '/lro/error/delete/202/retry/invalidheader'}
+
+    def delete202_retry_invalid_header(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        return self.begin_delete202_retry_invalid_header(
+            **kwargs
+        ).result()
+
 
     def _delete_async_relative_retry_invalid_header_initial(
         self,
@@ -2203,6 +2443,16 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_relative_retry_invalid_header.metadata = {'url': '/lro/error/deleteasync/retry/invalidheader'}
 
+    def delete_async_relative_retry_invalid_header(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        return self.begin_delete_async_relative_retry_invalid_header(
+            **kwargs
+        ).result()
+
+
     def _delete_async_relative_retry_invalid_json_polling_initial(
         self,
         **kwargs  # type: Any
@@ -2287,6 +2537,16 @@ class LROSADsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_delete_async_relative_retry_invalid_json_polling.metadata = {'url': '/lro/error/deleteasync/retry/invalidjsonpolling'}
+
+    def delete_async_relative_retry_invalid_json_polling(
+        self,
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        return self.begin_delete_async_relative_retry_invalid_json_polling(
+            **kwargs
+        ).result()
+
 
     def _post202_retry_invalid_header_initial(
         self,
@@ -2385,6 +2645,18 @@ class LROSADsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post202_retry_invalid_header.metadata = {'url': '/lro/error/post/202/retry/invalidheader'}
+
+    def post202_retry_invalid_header(
+        self,
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        return self.begin_post202_retry_invalid_header(
+            product=product,
+            **kwargs
+        ).result()
+
 
     def _post_async_relative_retry_invalid_header_initial(
         self,
@@ -2485,6 +2757,18 @@ class LROSADsOperations(object):
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_relative_retry_invalid_header.metadata = {'url': '/lro/error/postasync/retry/invalidheader'}
 
+    def post_async_relative_retry_invalid_header(
+        self,
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        return self.begin_post_async_relative_retry_invalid_header(
+            product=product,
+            **kwargs
+        ).result()
+
+
     def _post_async_relative_retry_invalid_json_polling_initial(
         self,
         product=None,  # type: Optional["models.Product"]
@@ -2583,3 +2867,15 @@ class LROSADsOperations(object):
         else:
             return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
     begin_post_async_relative_retry_invalid_json_polling.metadata = {'url': '/lro/error/postasync/retry/invalidjsonpolling'}
+
+    def post_async_relative_retry_invalid_json_polling(
+        self,
+        product=None,  # type: Optional["models.Product"]
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> None
+        return self.begin_post_async_relative_retry_invalid_json_polling(
+            product=product,
+            **kwargs
+        ).result()
+

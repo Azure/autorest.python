@@ -11,7 +11,7 @@ import warnings
 from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
-from azure.core.polling import AsyncNoPolling, AsyncPollingMethod, async_poller
+from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
@@ -93,7 +93,7 @@ class LRORetrysOperations:
     _put201_creating_succeeded200_initial.metadata = {'url': '/lro/retryerror/put/201/creating/succeeded/200'}
 
     @distributed_trace_async
-    async def put201_creating_succeeded200(
+    async def begin_put201_creating_succeeded200(
         self,
         product: Optional["models.Product"] = None,
         **kwargs
@@ -137,15 +137,26 @@ class LRORetrysOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         if cont_token:
-            return await async_poller.from_continuation_token(
+            return AsyncLROPoller.from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output
             )
         else:
-            return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put201_creating_succeeded200.metadata = {'url': '/lro/retryerror/put/201/creating/succeeded/200'}
+            return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_put201_creating_succeeded200.metadata = {'url': '/lro/retryerror/put/201/creating/succeeded/200'}
+
+    async def put201_creating_succeeded200(
+        self,
+        product: Optional["models.Product"] = None,
+        **kwargs
+    ) -> "models.Product":
+        return await (await self.begin_put201_creating_succeeded200(
+            product=product,
+            **kwargs
+        ))
+
 
     async def _put_async_relative_retry_succeeded_initial(
         self,
@@ -196,7 +207,7 @@ class LRORetrysOperations:
     _put_async_relative_retry_succeeded_initial.metadata = {'url': '/lro/retryerror/putasync/retry/succeeded'}
 
     @distributed_trace_async
-    async def put_async_relative_retry_succeeded(
+    async def begin_put_async_relative_retry_succeeded(
         self,
         product: Optional["models.Product"] = None,
         **kwargs
@@ -245,15 +256,26 @@ class LRORetrysOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         if cont_token:
-            return await async_poller.from_continuation_token(
+            return AsyncLROPoller.from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output
             )
         else:
-            return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/putasync/retry/succeeded'}
+            return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_put_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/putasync/retry/succeeded'}
+
+    async def put_async_relative_retry_succeeded(
+        self,
+        product: Optional["models.Product"] = None,
+        **kwargs
+    ) -> "models.Product":
+        return await (await self.begin_put_async_relative_retry_succeeded(
+            product=product,
+            **kwargs
+        ))
+
 
     async def _delete_provisioning202_accepted200_succeeded_initial(
         self,
@@ -298,7 +320,7 @@ class LRORetrysOperations:
     _delete_provisioning202_accepted200_succeeded_initial.metadata = {'url': '/lro/retryerror/delete/provisioning/202/accepted/200/succeeded'}
 
     @distributed_trace_async
-    async def delete_provisioning202_accepted200_succeeded(
+    async def begin_delete_provisioning202_accepted200_succeeded(
         self,
         **kwargs
     ) -> "models.Product":
@@ -342,15 +364,24 @@ class LRORetrysOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         if cont_token:
-            return await async_poller.from_continuation_token(
+            return AsyncLROPoller.from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output
             )
         else:
-            return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_provisioning202_accepted200_succeeded.metadata = {'url': '/lro/retryerror/delete/provisioning/202/accepted/200/succeeded'}
+            return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_delete_provisioning202_accepted200_succeeded.metadata = {'url': '/lro/retryerror/delete/provisioning/202/accepted/200/succeeded'}
+
+    async def delete_provisioning202_accepted200_succeeded(
+        self,
+        **kwargs
+    ) -> "models.Product":
+        return await (await self.begin_delete_provisioning202_accepted200_succeeded(
+            **kwargs
+        ))
+
 
     async def _delete202_retry200_initial(
         self,
@@ -387,7 +418,7 @@ class LRORetrysOperations:
     _delete202_retry200_initial.metadata = {'url': '/lro/retryerror/delete/202/retry/200'}
 
     @distributed_trace_async
-    async def delete202_retry200(
+    async def begin_delete202_retry200(
         self,
         **kwargs
     ) -> None:
@@ -424,15 +455,24 @@ class LRORetrysOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         if cont_token:
-            return await async_poller.from_continuation_token(
+            return AsyncLROPoller.from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output
             )
         else:
-            return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete202_retry200.metadata = {'url': '/lro/retryerror/delete/202/retry/200'}
+            return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_delete202_retry200.metadata = {'url': '/lro/retryerror/delete/202/retry/200'}
+
+    async def delete202_retry200(
+        self,
+        **kwargs
+    ) -> None:
+        return await (await self.begin_delete202_retry200(
+            **kwargs
+        ))
+
 
     async def _delete_async_relative_retry_succeeded_initial(
         self,
@@ -470,7 +510,7 @@ class LRORetrysOperations:
     _delete_async_relative_retry_succeeded_initial.metadata = {'url': '/lro/retryerror/deleteasync/retry/succeeded'}
 
     @distributed_trace_async
-    async def delete_async_relative_retry_succeeded(
+    async def begin_delete_async_relative_retry_succeeded(
         self,
         **kwargs
     ) -> None:
@@ -507,15 +547,24 @@ class LRORetrysOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         if cont_token:
-            return await async_poller.from_continuation_token(
+            return AsyncLROPoller.from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output
             )
         else:
-            return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/deleteasync/retry/succeeded'}
+            return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_delete_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/deleteasync/retry/succeeded'}
+
+    async def delete_async_relative_retry_succeeded(
+        self,
+        **kwargs
+    ) -> None:
+        return await (await self.begin_delete_async_relative_retry_succeeded(
+            **kwargs
+        ))
+
 
     async def _post202_retry200_initial(
         self,
@@ -562,7 +611,7 @@ class LRORetrysOperations:
     _post202_retry200_initial.metadata = {'url': '/lro/retryerror/post/202/retry/200'}
 
     @distributed_trace_async
-    async def post202_retry200(
+    async def begin_post202_retry200(
         self,
         product: Optional["models.Product"] = None,
         **kwargs
@@ -603,15 +652,26 @@ class LRORetrysOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         if cont_token:
-            return await async_poller.from_continuation_token(
+            return AsyncLROPoller.from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output
             )
         else:
-            return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post202_retry200.metadata = {'url': '/lro/retryerror/post/202/retry/200'}
+            return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_post202_retry200.metadata = {'url': '/lro/retryerror/post/202/retry/200'}
+
+    async def post202_retry200(
+        self,
+        product: Optional["models.Product"] = None,
+        **kwargs
+    ) -> None:
+        return await (await self.begin_post202_retry200(
+            product=product,
+            **kwargs
+        ))
+
 
     async def _post_async_relative_retry_succeeded_initial(
         self,
@@ -659,7 +719,7 @@ class LRORetrysOperations:
     _post_async_relative_retry_succeeded_initial.metadata = {'url': '/lro/retryerror/postasync/retry/succeeded'}
 
     @distributed_trace_async
-    async def post_async_relative_retry_succeeded(
+    async def begin_post_async_relative_retry_succeeded(
         self,
         product: Optional["models.Product"] = None,
         **kwargs
@@ -700,12 +760,23 @@ class LRORetrysOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         if cont_token:
-            return await async_poller.from_continuation_token(
+            return AsyncLROPoller.from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output
             )
         else:
-            return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/postasync/retry/succeeded'}
+            return AsyncLROPoller(self._client, raw_result, get_long_running_output, polling_method)
+    begin_post_async_relative_retry_succeeded.metadata = {'url': '/lro/retryerror/postasync/retry/succeeded'}
+
+    async def post_async_relative_retry_succeeded(
+        self,
+        product: Optional["models.Product"] = None,
+        **kwargs
+    ) -> None:
+        return await (await self.begin_post_async_relative_retry_succeeded(
+            product=product,
+            **kwargs
+        ))
+

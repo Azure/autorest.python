@@ -2,8 +2,8 @@
 {% import 'operation_tools.jinja2' as op_tools %}
 {% set trace_decorator = "@distributed_trace_async" if async_mode else "@distributed_trace" %}
 {% set async_prefix = "Async" if async_mode else "" %}
-{% set poller = "async_poller" if async_mode else "LROPoller" %}
-{% set operation_name = operation.python_name if async_mode else "begin_"+operation.python_name %}
+{% set poller = "AsyncLROPoller" if async_mode else "LROPoller" %}
+{% set operation_name = "begin_"+operation.python_name %}
 {% macro return_docstring() %}
 :return: An instance of LROPoller that returns {{ operation.responses[0].schema.name if operation.responses[0].has_body else "None"}}
     :rtype: ~azure.core.polling.LROPoller[{{ operation.responses[0].schema.docstring_type if operation.responses[0].has_body else "None" }}]
@@ -88,12 +88,32 @@ response_headers = {
     elif polling is False: polling_method = {{ async_prefix }}NoPolling()
     else: polling_method = polling
     if cont_token:
-        return {{ keywords.await }}{{ poller }}.from_continuation_token(
+        return {{ poller }}.from_continuation_token(
             polling_method=polling_method,
             continuation_token=cont_token,
             client=self._client,
             deserialization_callback=get_long_running_output
         )
     else:
-        return {{ keywords.await }}{{ poller }}(self._client, raw_result, get_long_running_output, polling_method)
+        return {{ poller }}(self._client, raw_result, get_long_running_output, polling_method)
 {{ operation_name }}.metadata = {'url': '{{ operation.url }}'}
+
+{{ op_tools.method_signature(operation, operation.python_name, async_mode=async_mode, coroutine=async_mode) }}
+{%- if not async_mode %}
+    {{ keywords.sync_return_type_annotation(operation) }}
+{% endif %}
+{% if async_mode %}
+    return await (await self.begin_{{ operation.python_name }}(
+    {% for param_signature in operation.parameters.method %}
+        {{ param_signature.serialized_name }}={{ param_signature.serialized_name }},
+    {% endfor %}
+        **kwargs
+    ))
+{% else %}
+    return self.begin_{{ operation.python_name }}(
+    {% for param_signature in operation.parameters.method %}
+        {{ param_signature.serialized_name }}={{ param_signature.serialized_name }},
+    {% endfor %}
+        **kwargs
+    ).result()
+{% endif %}
