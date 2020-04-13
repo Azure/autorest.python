@@ -130,10 +130,11 @@ class TestLro:
 
     @pytest.mark.asyncio
     async def test_post_double_headers_final(self, client):
-        product = await client.lros.post_double_headers_final_location_get()
-        assert product.id == "100"
+        poller = await client.lros.begin_post_double_headers_final_location_get()
+        continuation_token = poller.continuation_token()
 
-        product = await client.lros.post_double_headers_final_azure_header_get()
+        poller = await client.lros.begin_post_double_headers_final_location_get(continuation_token=continuation_token)
+        product = await poller
         assert product.id == "100"
 
     @pytest.mark.asyncio
