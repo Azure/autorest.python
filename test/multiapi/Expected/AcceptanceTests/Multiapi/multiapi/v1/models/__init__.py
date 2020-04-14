@@ -8,9 +8,12 @@
 
 try:
     from ._models_py3 import Error
+    from ._models_py3 import Product
 except (SyntaxError, ImportError):
     from ._models import Error  # type: ignore
+    from ._models import Product  # type: ignore
 
 __all__ = [
     'Error',
+    'Product',
 ]

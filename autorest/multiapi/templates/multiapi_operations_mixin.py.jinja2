@@ -12,11 +12,11 @@ from msrest import Serializer, Deserializer
 
 
 class {{ client_name }}OperationsMixin(object):
+{% for _, metadata in mixin_operations|dictsort %}
 
-{% for operation_name, metadata in mixin_operations|dictsort %}
     {{ metadata['signature'] | indent }}    {{ metadata['doc'] | indent | wordwrap(width=95, break_long_words=False, wrapstring='\n    ') }}
 
-        api_version = self._get_api_version('{{ operation_name }}')
+        api_version = self._get_api_version('{{ metadata['sync_operation_name'] }}')
         {% for api in metadata['available_apis']|sort %}
         {% set if_statement = "if" if loop.first else "elif" %}
         {{ if_statement }} api_version == '{{ mod_to_api_version[api] }}':
@@ -30,5 +30,5 @@ class {{ client_name }}OperationsMixin(object):
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
         mixin_instance.api_version = api_version
-        return mixin_instance.{{ operation_name }}({{ metadata['call'] }}{{ ", **kwargs" if metadata['call'] else "**kwargs" }})
+        return mixin_instance.{{ metadata['sync_operation_name'] }}({{ metadata['call'] }}{{ ", **kwargs" if metadata['call'] else "**kwargs" }})
 {% endfor %}

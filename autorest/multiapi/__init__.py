@@ -173,6 +173,7 @@ class MultiAPI:
                 mixin_operations[func_name]['doc'] = func['doc']
                 mixin_operations[func_name]['signature'] = func['signature']
                 mixin_operations[func_name]['call'] = func['call']
+                mixin_operations[func_name]['sync_operation_name'] = func['sync_operation_name']
         return mixin_operations
 
     def _build_operation_meta(

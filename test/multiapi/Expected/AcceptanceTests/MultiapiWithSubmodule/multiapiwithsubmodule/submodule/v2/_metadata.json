@@ -32,6 +32,7 @@
     "operation_mixins": {
         "test_one" : {
             "doc": "    \"\"\"TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.\n\n:param id: An int parameter.\n:type id: int\n:param message: An optional string parameter.\n:type message: str\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: ModelTwo or the result of cls(response)\n:rtype: ~multiapiwithsubmodule.submodule.v2.models.ModelTwo\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\"",
+            "sync_operation_name": "test_one",
             "signature": "def test_one(\n    self,\n    id,  # type: int\n    message=None,  # type: Optional[str]\n    **kwargs  # type: Any\n):\n",
             "call": "id, message"
         }

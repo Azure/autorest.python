@@ -12,12 +12,13 @@ from azure.core import AsyncPipelineClient
 from msrest import Deserializer, Serializer
 
 from ._configuration_async import MultiapiServiceClientConfiguration
+from .operations_async import MultiapiServiceClientOperationsMixin
 from .operations_async import OperationGroupOneOperations
 from .operations_async import OperationGroupTwoOperations
 from .. import models
 
 
-class MultiapiServiceClient(object):
+class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     """Service client for multiapi client testing.
 
     :ivar operation_group_one: OperationGroupOneOperations operations

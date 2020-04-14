@@ -45,6 +45,7 @@
         {{ operation.name | tojson }} : {
             "doc": {{ op_tools.operation_docstring(operation) | tojson }},
             {% set sync_operation_name = "begin_" + operation.name if is_lro(operation) else operation.name %}
+            "sync_operation_name": {{ sync_operation_name | tojson }},
             "signature": {{ op_tools.method_signature(operation, sync_operation_name, False, False) | tojson }},
             "call": {{ operation.parameters.method | map(attribute="serialized_name") | join(', ') | tojson }}
         }{{ "," if not loop.last else "" }}
