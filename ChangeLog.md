@@ -5,6 +5,7 @@
 **New features**
 
 - Support non-ARM polling by default (azure-core 1.4.0)
+- Accept polling_interval keyword passed to LRO operations  #571
 
 ### 2020-04-09 - 5.0.0-dev.20200409.1
 Modelerfour version: 4.12.301

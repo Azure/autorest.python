@@ -46,11 +46,16 @@ response_headers = {
     :keyword polling: True for ARMPolling, False for no polling, or a
      polling object for personal polling strategy
     :paramtype polling: bool or ~azure.core.polling.{{ "Async" if async_mode else "" }}PollingMethod
+    :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     {{ return_docstring() }}
     :raises ~azure.core.exceptions.HttpResponseError:
     """
     polling = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})  # type: Union[bool, {{ "Async" if async_mode else "" }}PollingMethod]
     cls = kwargs.pop('cls', None)  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
+    lro_delay = kwargs.pop(
+        'polling_interval',
+        self._config.polling_interval
+    )
     raw_result = {{ keywords.await }}self._{{ operation.name }}_initial(
         {% for parameter in operation.parameters.method %}
         {{ parameter.serialized_name }}={{ parameter.serialized_name }},
@@ -73,10 +78,6 @@ response_headers = {
         return deserialized
         {% endif %}
 
-    lro_delay = kwargs.get(
-        'polling_interval',
-        self._config.polling_interval
-    )
     {% if code_model.options['azure_arm'] %}
     if polling is True: polling_method = {{ async_prefix }}ARMPolling(lro_delay{{ lro_options }},  **kwargs)
     {% else %}
