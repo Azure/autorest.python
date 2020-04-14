@@ -32,6 +32,7 @@ import json
 from uuid import uuid4
 from datetime import date, datetime, timedelta
 import os
+import time
 from os.path import dirname, pardir, join, realpath
 
 from azure.core.exceptions import DecodeError, HttpResponseError
@@ -50,6 +51,8 @@ except ImportError:
     from urllib.parse import urlparse
 
 import pytest
+
+POLLING_INTERVAL = 0
 
 class AutorestTestARMPolling(ARMPolling):
 
@@ -70,7 +73,7 @@ class AutorestTestARMPolling(ARMPolling):
         request = self._client.get(status_link, headers=self._polling_cookie(self._pipeline_response.http_response))
         # ARM requires to re-inject 'x-ms-client-request-id' while polling
         if 'request_id' not in self._operation_config:
-            self._operation_config['request_id'] = self._operation.initial_response.http_response.request.headers['x-ms-client-request-id']
+            self._operation_config['request_id'] = self._get_request_id()
         return self._client._pipeline.run(request, stream=False, **self._operation_config)
 
 @pytest.fixture()
@@ -84,7 +87,7 @@ def client(cookie_policy, credential):
         cookie_policy
     ]
 
-    with AutoRestLongRunningOperationTestService(credential, base_url="http://localhost:3000", policies=policies, polling_interval=0) as client:
+    with AutoRestLongRunningOperationTestService(credential, base_url="http://localhost:3000", policies=policies, polling_interval=POLLING_INTERVAL) as client:
         yield client
 
 @pytest.fixture()
@@ -134,7 +137,6 @@ class TestLro:
         product = client.lros.begin_post_double_headers_final_azure_header_get().result()
         assert product.id == "100"
 
-    @pytest.mark.xfail(reason="https://github.com/Azure/autorest.python/pull/512")
     def test_post_double_headers_default(self, client):
         # This test will work as long as the default is Location
         product = client.lros.begin_post_double_headers_final_azure_header_get_default().result()
@@ -321,7 +323,7 @@ class TestLro:
         self.assert_raises_with_message("Operation returned an invalid status 'Bad Request'",
             client.lrosads.begin_put_async_relative_retry400, product)
 
-        self.assert_raises_with_message("The response from long running operation does not contain a body.",
+        self.assert_raises_with_message("no status found in body",
             client.lrosads.begin_put_async_relative_retry_no_status, product)
 
         self.assert_raises_with_message("The response from long running operation does not contain a body.",
@@ -358,7 +360,7 @@ class TestLro:
         self.assert_raises_with_message("Bad Request",
             client.lrosads.begin_delete_async_relative_retry400)
 
-        self.assert_raises_with_message("The response from long running operation does not contain a body.",
+        self.assert_raises_with_message("no status found in body",
             client.lrosads.begin_delete_async_relative_retry_no_status)
 
     def test_sads_delete204_succeeded(self, client):
@@ -390,8 +392,11 @@ class TestLro:
             client.lrosads.begin_post_async_relative_retry_no_payload)
 
     def test_sads_post202_no_location(self, client):
-        self.assert_raises_with_message("Unable to find status link for polling.",
-            client.lrosads.begin_post202_no_location)
+        # Testserver wants us to fail (coverage name is LROErrorPostNoLocation)
+        # Actually, Python will NOT, and consider any kind of success 2xx on the initial call
+        # is an actual success
+        process = self.lro_result(client.lrosads.begin_post202_no_location)
+        assert process is None
 
     def test_sads_post_async_relative_with_exception(self, client):
         with pytest.raises(Exception):
@@ -403,3 +408,37 @@ class TestLro:
     def test_post202_retry_invalid_header_with_exception(self, client):
         with pytest.raises(Exception):
                 self.lro_result(client.lrosads.begin_post202_retry_invalid_header)
+
+    def test_polling_interval_operation(self, client):
+        default_polling_interval_start_time = time.time()
+        product1 = client.lros.begin_post_double_headers_final_azure_header_get_default().result()
+        default_polling_interval_duration = time.time() - default_polling_interval_start_time
+        assert abs(default_polling_interval_duration - 0) < 0.1
+
+        one_second_polling_interval_start_time = time.time()
+        product2 = client.lros.begin_post_double_headers_final_azure_header_get_default(polling_interval=1).result()
+        one_second_polling_interval_duration = time.time() - one_second_polling_interval_start_time
+        assert abs(one_second_polling_interval_duration - 1) < 0.1
+
+        assert product1 == product2
+
+    def test_polling_interval_config(self, cookie_policy, credential, client):
+        default_polling_interval_start_time = time.time()
+        product1 = client.lros.begin_post_double_headers_final_azure_header_get_default().result()
+        default_polling_interval_duration = time.time() - default_polling_interval_start_time
+        assert abs(default_polling_interval_duration - 0) < 0.1
+
+        # Now we create a new client with a polling_interval of 1
+        policies = [
+            RequestIdPolicy(),
+            HeadersPolicy(),
+            ContentDecodePolicy(),
+            RetryPolicy(),
+            cookie_policy
+        ]
+        client_one_second = AutoRestLongRunningOperationTestService(credential, base_url="http://localhost:3000", policies=policies, polling_interval=1)
+        one_second_polling_interval_start_time = time.time()
+        product2 = client_one_second.lros.begin_post_double_headers_final_azure_header_get_default().result()
+        one_second_polling_interval_duration = time.time() - one_second_polling_interval_start_time
+        assert abs(one_second_polling_interval_duration - 1) < 0.1
+        assert product1 == product2

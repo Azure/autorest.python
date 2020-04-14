@@ -90,10 +90,16 @@ class LROOperation(Operation):
                 file_import.add_from_import(
                     "azure.mgmt.core.polling.async_arm_polling", "AsyncARMPolling", ImportType.AZURECORE
                 )
+            else:
+                file_import.add_from_import(
+                    "azure.core.polling.async_base_polling", "AsyncLROBasePolling", ImportType.AZURECORE
+                )
         else:
             file_import.add_from_import("azure.core.polling", "LROPoller", ImportType.AZURECORE)
             file_import.add_from_import("azure.core.polling", "NoPolling", ImportType.AZURECORE)
             file_import.add_from_import("azure.core.polling", "PollingMethod", ImportType.AZURECORE)
             if code_model.options['azure_arm']:
                 file_import.add_from_import("azure.mgmt.core.polling.arm_polling", "ARMPolling", ImportType.AZURECORE)
+            else:
+                file_import.add_from_import("azure.core.polling.base_polling", "LROBasePolling", ImportType.AZURECORE)
         return file_import
