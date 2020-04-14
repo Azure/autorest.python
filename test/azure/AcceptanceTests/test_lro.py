@@ -32,6 +32,7 @@ import json
 from uuid import uuid4
 from datetime import date, datetime, timedelta
 import os
+import time
 from os.path import dirname, pardir, join, realpath
 
 from azure.core.exceptions import DecodeError, HttpResponseError
@@ -50,6 +51,8 @@ except ImportError:
     from urllib.parse import urlparse
 
 import pytest
+
+POLLING_INTERVAL = 0
 
 class AutorestTestARMPolling(ARMPolling):
 
@@ -84,7 +87,7 @@ def client(cookie_policy, credential):
         cookie_policy
     ]
 
-    with AutoRestLongRunningOperationTestService(credential, base_url="http://localhost:3000", policies=policies, polling_interval=0) as client:
+    with AutoRestLongRunningOperationTestService(credential, base_url="http://localhost:3000", policies=policies, polling_interval=POLLING_INTERVAL) as client:
         yield client
 
 @pytest.fixture()
@@ -405,3 +408,37 @@ class TestLro:
     def test_post202_retry_invalid_header_with_exception(self, client):
         with pytest.raises(Exception):
                 self.lro_result(client.lrosads.begin_post202_retry_invalid_header)
+
+    def test_polling_interval_operation(self, client):
+        default_polling_interval_start_time = time.time()
+        product1 = client.lros.begin_post_double_headers_final_azure_header_get_default().result()
+        default_polling_interval_duration = time.time() - default_polling_interval_start_time
+        assert abs(default_polling_interval_duration - 0) < 0.1
+
+        one_second_polling_interval_start_time = time.time()
+        product2 = client.lros.begin_post_double_headers_final_azure_header_get_default(polling_interval=1).result()
+        one_second_polling_interval_duration = time.time() - one_second_polling_interval_start_time
+        assert abs(one_second_polling_interval_duration - 1) < 0.1
+
+        assert product1 == product2
+
+    def test_polling_interval_config(self, cookie_policy, credential, client):
+        default_polling_interval_start_time = time.time()
+        product1 = client.lros.begin_post_double_headers_final_azure_header_get_default().result()
+        default_polling_interval_duration = time.time() - default_polling_interval_start_time
+        assert abs(default_polling_interval_duration - 0) < 0.1
+
+        # Now we create a new client with a polling_interval of 1
+        policies = [
+            RequestIdPolicy(),
+            HeadersPolicy(),
+            ContentDecodePolicy(),
+            RetryPolicy(),
+            cookie_policy
+        ]
+        client_one_second = AutoRestLongRunningOperationTestService(credential, base_url="http://localhost:3000", policies=policies, polling_interval=1)
+        one_second_polling_interval_start_time = time.time()
+        product2 = client_one_second.lros.begin_post_double_headers_final_azure_header_get_default().result()
+        one_second_polling_interval_duration = time.time() - one_second_polling_interval_start_time
+        assert abs(one_second_polling_interval_duration - 1) < 0.1
+        assert product1 == product2
