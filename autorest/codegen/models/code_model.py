@@ -177,7 +177,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
         seen_schema_yaml_ids: Set[int] = set()
         sorted_schemas: List[ObjectSchema] = []
         for schema in sorted(self.schemas.values(), key=lambda x: x.name.lower()):
-            sorted_schemas += CodeModel._sort_schemas_helper(schema, seen_schema_names, seen_schema_yaml_ids)
+            sorted_schemas.extend(CodeModel._sort_schemas_helper(schema, seen_schema_names, seen_schema_yaml_ids))
         self.sorted_schemas = sorted_schemas
 
     def add_credential_global_parameter(self) -> None:
@@ -322,8 +322,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
 
     def _populate_target_property(self, parameter: Parameter) -> None:
         for obj in self.sorted_schemas:
-            # TODO fix this pylint disable, don't know why it's doing it rn
-            for prop in obj.properties:  # pylint: disable=no-member
+            for prop in obj.properties:
                 if prop.id == parameter.target_property_name:
                     parameter.target_property_name = prop.name
                     return
