@@ -41,7 +41,8 @@ class AutoRestPagingTestServiceConfiguration(Configuration):
         super(AutoRestPagingTestServiceConfiguration, self).__init__(**kwargs)
 
         self.credential = credential
-        self.credential_scopes = ['https://management.azure.com/.default']
+        self.credential_scopes = https://management.azure.com/.default
+        self.credential_scopes.extend(kwargs.pop('credential_scopes', {}))
         kwargs.setdefault('sdk_moniker', 'autorestpagingtestservice/{}'.format(VERSION))
         self._configure(**kwargs)
 
