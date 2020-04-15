@@ -19,7 +19,6 @@ from .client import Client
 from .parameter_list import ParameterList
 from .imports import FileImport, ImportType, TypingSection
 from .schema_response import SchemaResponse
-from .primitive_schemas import AnySchema
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -322,10 +321,7 @@ class CodeModel:  # pylint: disable=too-many-instance-attributes
             schema_obj_id = id(obj.schema)
             _LOGGER.debug("Looking for id %s for member %s", schema_obj_id, obj)
             try:
-                if schema_obj.get("type") == "any":
-                    obj.schema = AnySchema.from_yaml(namespace=self.namespace, yaml_data=schema_obj)
-                else:
-                    obj.schema = self.lookup_schema(schema_obj_id)
+                obj.schema = self.lookup_schema(schema_obj_id)
             except KeyError:
                 _LOGGER.critical("Unable to ref the object")
                 raise
