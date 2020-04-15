@@ -26,6 +26,7 @@ class AutoRestSwaggerBATHeaderService(object):
     :ivar header: HeaderOperations operations
     :vartype header: header.operations.HeaderOperations
     :param str base_url: Service URL
+    :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     """
 
     def __init__(

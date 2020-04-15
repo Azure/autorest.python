@@ -25,6 +25,7 @@ class AutoRestParameterizedHostTestPagingClient(object):
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param host: A string value that is used as a global part of the parameterized host.
     :type host: str
+    :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     """
 
     def __init__(
