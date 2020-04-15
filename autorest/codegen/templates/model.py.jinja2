@@ -1,4 +1,4 @@
-{% set basename = model.base_model.name if model.base_model and model.base_model.name|length else "" %}
+{% set basename = model.base_models | join(', ', attribute='name') if model.base_models else "" %}
 {# actual template starts here #}
 
 
