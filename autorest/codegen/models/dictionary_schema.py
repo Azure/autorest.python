@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from typing import Any, Dict, Optional
 from .base_schema import BaseSchema
-from .imports import FileImport, ImportType
+from .imports import FileImport, ImportType, TypingSection
 
 
 class DictionarySchema(BaseSchema):
@@ -89,6 +89,6 @@ class DictionarySchema(BaseSchema):
 
     def imports(self) -> FileImport:
         file_import = FileImport()
-        file_import.add_from_import("typing", "Dict", ImportType.STDLIB)
+        file_import.add_from_import("typing", "Dict", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.merge(self.element_type.imports())
         return file_import

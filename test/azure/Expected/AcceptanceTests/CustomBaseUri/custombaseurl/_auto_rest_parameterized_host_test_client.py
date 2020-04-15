@@ -6,10 +6,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any
+from typing import TYPE_CHECKING
 
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Any
 
 from ._configuration import AutoRestParameterizedHostTestClientConfiguration
 from .operations import PathsOperations
@@ -23,6 +27,7 @@ class AutoRestParameterizedHostTestClient(object):
     :vartype paths: custombaseurl.operations.PathsOperations
     :param host: A string value that is used as a global part of the parameterized host.
     :type host: str
+    :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     """
 
     def __init__(

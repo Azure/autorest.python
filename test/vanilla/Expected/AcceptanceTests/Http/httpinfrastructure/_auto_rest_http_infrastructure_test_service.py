@@ -6,10 +6,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, Optional
+from typing import TYPE_CHECKING
 
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Any, Optional
 
 from ._configuration import AutoRestHttpInfrastructureTestServiceConfiguration
 from .operations import HttpFailureOperations
@@ -40,6 +44,7 @@ class AutoRestHttpInfrastructureTestService(object):
     :ivar multiple_responses: MultipleResponsesOperations operations
     :vartype multiple_responses: httpinfrastructure.operations.MultipleResponsesOperations
     :param str base_url: Service URL
+    :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     """
 
     def __init__(

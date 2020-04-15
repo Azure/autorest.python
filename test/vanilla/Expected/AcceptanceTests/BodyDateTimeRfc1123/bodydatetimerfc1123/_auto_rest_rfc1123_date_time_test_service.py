@@ -6,10 +6,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, Optional
+from typing import TYPE_CHECKING
 
 from azure.core import PipelineClient
 from msrest import Deserializer, Serializer
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Any, Optional
 
 from ._configuration import AutoRestRFC1123DateTimeTestServiceConfiguration
 from .operations import Datetimerfc1123Operations
@@ -22,6 +26,7 @@ class AutoRestRFC1123DateTimeTestService(object):
     :ivar datetimerfc1123: Datetimerfc1123Operations operations
     :vartype datetimerfc1123: bodydatetimerfc1123.operations.Datetimerfc1123Operations
     :param str base_url: Service URL
+    :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     """
 
     def __init__(

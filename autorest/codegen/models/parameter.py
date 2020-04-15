@@ -7,7 +7,7 @@ from enum import Enum
 import logging
 from typing import Dict, Optional, List, Any, Union, Tuple
 
-from .imports import FileImport, ImportType
+from .imports import FileImport, ImportType, TypingSection
 from .base_model import BaseModel
 from .base_schema import BaseSchema
 from .constant_schema import ConstantSchema
@@ -203,7 +203,7 @@ class Parameter(BaseModel):  # pylint: disable=too-many-instance-attributes
     def imports(self) -> FileImport:
         file_import = self.schema.imports()
         if not self.required:
-            file_import.add_from_import("typing", "Optional", ImportType.STDLIB)
+            file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
         if self.has_multiple_media_types:
-            file_import.add_from_import("typing", "Union", ImportType.STDLIB)
+            file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
         return file_import

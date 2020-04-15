@@ -4,13 +4,14 @@
 # license information.
 # --------------------------------------------------------------------------
 import logging
-from typing import Dict, List, Any, Optional, Set
+from typing import Dict, List, Any, Optional, Set, cast
 from .imports import FileImport
 from .operation import Operation
 from .parameter import Parameter
 from .schema_response import SchemaResponse
 from .schema_request import SchemaRequest
-from .imports import ImportType
+from .imports import ImportType, TypingSection
+from .object_schema import ObjectSchema
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -57,15 +58,31 @@ class LROOperation(Operation):
             return
         responses = {response.schema: response for response in self.responses if response.has_body}
         response_types = list(responses.values())
+        response_type = None
         if len(response_types) > 1:
-            _LOGGER.warning("Multiple schema types in responses: %s", response_types)
-        self.lro_response = response_types.pop() if response_types else None
+            # choose the response that has a status code of 200
+            response_types_with_200_status_code = [
+                rt for rt in response_types if 200 in rt.status_codes
+            ]
+            if not response_types_with_200_status_code:
+                raise ValueError(
+                    f"Your swagger is invalid because you have multiple response schemas for LRO" +
+                    f" method {self.python_name} and none of them have a 200 status code."
+                )
+            response_type = response_types_with_200_status_code[0]
+            response_type_schema_name = cast(ObjectSchema, response_type.schema).name
+            _LOGGER.warning(
+                "Multiple schema types in responses: %s. Choosing: %s", response_types, response_type_schema_name
+            )
+        elif response_types:
+            response_type = response_types[0]
+        self.lro_response = response_type
 
     def imports(self, code_model, async_mode: bool) -> FileImport:
         file_import = super().imports(code_model, async_mode)
-        file_import.add_from_import("typing", "Union", ImportType.STDLIB)
+        file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
         if async_mode:
-            file_import.add_from_import("typing", "Optional", ImportType.STDLIB)
+            file_import.add_from_import("typing", "Optional", ImportType.STDLIB, TypingSection.CONDITIONAL)
             file_import.add_from_import("azure.core.polling", "async_poller", ImportType.AZURECORE)
             file_import.add_from_import("azure.core.polling", "AsyncNoPolling", ImportType.AZURECORE)
             file_import.add_from_import("azure.core.polling", "AsyncPollingMethod", ImportType.AZURECORE)
@@ -73,10 +90,16 @@ class LROOperation(Operation):
                 file_import.add_from_import(
                     "azure.mgmt.core.polling.async_arm_polling", "AsyncARMPolling", ImportType.AZURECORE
                 )
+            else:
+                file_import.add_from_import(
+                    "azure.core.polling.async_base_polling", "AsyncLROBasePolling", ImportType.AZURECORE
+                )
         else:
             file_import.add_from_import("azure.core.polling", "LROPoller", ImportType.AZURECORE)
             file_import.add_from_import("azure.core.polling", "NoPolling", ImportType.AZURECORE)
             file_import.add_from_import("azure.core.polling", "PollingMethod", ImportType.AZURECORE)
             if code_model.options['azure_arm']:
                 file_import.add_from_import("azure.mgmt.core.polling.arm_polling", "ARMPolling", ImportType.AZURECORE)
+            else:
+                file_import.add_from_import("azure.core.polling.base_polling", "LROBasePolling", ImportType.AZURECORE)
         return file_import

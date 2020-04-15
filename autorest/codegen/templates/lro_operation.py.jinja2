@@ -6,8 +6,7 @@
 {% set operation_name = operation.python_name if async_mode else "begin_"+operation.python_name %}
 {% macro return_docstring() %}
 :return: {{ "" if async_mode else "An instance of LROPoller that returns " }}{{ operation.responses[0].schema.name if operation.responses[0].has_body else "None"}}
-:rtype: {{"" if async_mode else "~azure.core.polling.LROPoller["}}{{ operation.responses[0].schema.docstring_type if operation.responses[0].has_body else "None" }}{{ "" if async_mode else "]" }}
-{% endmacro %}
+:rtype: {{"" if async_mode else "~azure.core.polling.LROPoller["}}{{ operation.responses[0].schema.docstring_type if operation.responses[0].has_body else "None" }}{{ "" if async_mode else "]" }}{% endmacro %}
 {% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 {% macro response_headers(response) %}
 response_headers = {
@@ -48,11 +47,16 @@ response_headers = {
     :keyword polling: True for ARMPolling, False for no polling, or a
      polling object for personal polling strategy
     :paramtype polling: bool or ~azure.core.polling.{{ "Async" if async_mode else "" }}PollingMethod
+    :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
     {{ return_docstring()|indent }}
     :raises ~azure.core.exceptions.HttpResponseError:
     """
     polling = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})  # type: Union[bool, {{ "Async" if async_mode else "" }}PollingMethod]
     cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotation(operation) }}]
+    lro_delay = kwargs.pop(
+        'polling_interval',
+        self._config.polling_interval
+    )
     raw_result = {{ keywords.await }}self._{{ operation.name }}_initial(
         {% for parameter in operation.parameters.method %}
         {{ parameter.serialized_name }}={{ parameter.serialized_name }},
@@ -75,14 +79,10 @@ response_headers = {
         return deserialized
         {% endif %}
 
-    lro_delay = kwargs.get(
-        'polling_interval',
-        self._config.polling_interval
-    )
     {% if code_model.options['azure_arm'] %}
     if polling is True: polling_method = {{ async_prefix }}ARMPolling(lro_delay{{ lro_options }},  **kwargs)
     {% else %}
-    if polling is True: raise ValueError("polling being True is not valid because no default polling implemetation has been defined.")
+    if polling is True: polling_method = {{ async_prefix }}LROBasePolling(lro_delay{{ lro_options }},  **kwargs)
     {% endif %}
     elif polling is False: polling_method = {{ async_prefix }}NoPolling()
     else: polling_method = polling

@@ -8,6 +8,22 @@
 
 from enum import Enum
 
+class OperationResultStatus(str, Enum):
+    """The status of the request
+    """
+
+    succeeded = "Succeeded"
+    failed = "Failed"
+    canceled = "canceled"
+    accepted = "Accepted"
+    creating = "Creating"
+    created = "Created"
+    updating = "Updating"
+    updated = "Updated"
+    deleting = "Deleting"
+    deleted = "Deleted"
+    ok = "OK"
+
 class ProductPropertiesProvisioningStateValues(str, Enum):
 
     succeeded = "Succeeded"
@@ -23,22 +39,6 @@ class ProductPropertiesProvisioningStateValues(str, Enum):
     ok = "OK"
 
 class SubProductPropertiesProvisioningStateValues(str, Enum):
-
-    succeeded = "Succeeded"
-    failed = "Failed"
-    canceled = "canceled"
-    accepted = "Accepted"
-    creating = "Creating"
-    created = "Created"
-    updating = "Updating"
-    updated = "Updated"
-    deleting = "Deleting"
-    deleted = "Deleted"
-    ok = "OK"
-
-class OperationResultStatus(str, Enum):
-    """The status of the request
-    """
 
     succeeded = "Succeeded"
     failed = "Failed"

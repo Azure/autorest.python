@@ -1,5 +1,28 @@
 # Change Log
 
+### Unreleased
+
+**Breaking Changes**
+
+- If the user would like to add a patch file, they now must name the file `_patch.py`  #573
+
+**New features**
+
+- Support non-ARM polling by default (azure-core 1.4.0)
+- Accept polling_interval keyword passed to LRO operations  #571
+
+### 2020-04-09 - 5.0.0-dev.20200409.1
+Modelerfour version: 4.12.301
+
+**Bug Fixes**
+
+- Separating out typing imports in TYPE_CHECKING block  #538
+- Overriding a property inherited from a parent if they both have the same name  #563
+
+**New Features**
+
+- Client side validation is now disabled by default  #558
+
 ### 2020-04-06 - 5.0.0-dev.20200406.1
 Modelerfour version: 4.12.294
 

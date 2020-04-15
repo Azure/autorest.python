@@ -8,16 +8,6 @@
 
 from enum import Enum
 
-class IntEnum(int, Enum):
-    """List of integer enums
-    """
-
-    two_hundred = 200
-    four_hundred_three = 403
-    four_hundred_five = 405
-    four_hundred_six = 406
-    four_hundred_twenty_nine = 429
-
 class FloatEnum(float, Enum):
     """List of float enums
     """
@@ -27,3 +17,13 @@ class FloatEnum(float, Enum):
     four_hundred_five3 = 405.3
     four_hundred_six2 = 406.2
     four_hundred_twenty_nine1 = 429.1
+
+class IntEnum(int, Enum):
+    """List of integer enums
+    """
+
+    two_hundred = 200
+    four_hundred_three = 403
+    four_hundred_five = 405
+    four_hundred_six = 406
+    four_hundred_twenty_nine = 429
