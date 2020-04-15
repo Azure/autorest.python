@@ -8,9 +8,3 @@
 
 from ._multiapi_service_client_async import MultiapiServiceClient
 __all__ = ['MultiapiServiceClient']
-
-try:
-    from .patch import patch_sdk
-    patch_sdk()
-except ImportError:
-    pass
