@@ -31,3 +31,22 @@ class Error(msrest.serialization.Model):
         super(Error, self).__init__(**kwargs)
         self.status = kwargs.get('status', None)
         self.message = kwargs.get('message', None)
+
+
+class Product(msrest.serialization.Model):
+    """Product.
+
+    :param id:
+    :type id: int
+    """
+
+    _attribute_map = {
+        'id': {'key': 'id', 'type': 'int'},
+    }
+
+    def __init__(
+        self,
+        **kwargs
+    ):
+        super(Product, self).__init__(**kwargs)
+        self.id = kwargs.get('id', None)
