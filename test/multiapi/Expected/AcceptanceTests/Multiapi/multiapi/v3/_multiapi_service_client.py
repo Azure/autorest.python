@@ -16,12 +16,13 @@ if TYPE_CHECKING:
     from typing import Any
 
 from ._configuration import MultiapiServiceClientConfiguration
+from .operations import MultiapiServiceClientOperationsMixin
 from .operations import OperationGroupOneOperations
 from .operations import OperationGroupTwoOperations
 from . import models
 
 
-class MultiapiServiceClient(object):
+class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     """Service client for multiapi client testing.
 
     :ivar operation_group_one: OperationGroupOneOperations operations

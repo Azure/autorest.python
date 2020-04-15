@@ -52,6 +52,29 @@ class ModelThree(msrest.serialization.Model):
         self.optional_property = kwargs.get('optional_property', None)
 
 
+class PagingResult(msrest.serialization.Model):
+    """PagingResult.
+
+    :param values:
+    :type values: list[~multiapi.v3.models.ModelThree]
+    :param next_link:
+    :type next_link: str
+    """
+
+    _attribute_map = {
+        'values': {'key': 'values', 'type': '[ModelThree]'},
+        'next_link': {'key': 'nextLink', 'type': 'str'},
+    }
+
+    def __init__(
+        self,
+        **kwargs
+    ):
+        super(PagingResult, self).__init__(**kwargs)
+        self.values = kwargs.get('values', None)
+        self.next_link = kwargs.get('next_link', None)
+
+
 class SourcePath(msrest.serialization.Model):
     """Uri or local path to source data.
 
