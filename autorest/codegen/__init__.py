@@ -134,7 +134,7 @@ class CodeGenerator(Plugin):
 
         if not credential_scopes:
             if azure_arm:
-                credential_scopes = "https://management.azure.com/.default"
+                credential_scopes = ["https://management.azure.com/.default"]
             elif credential:
                 # If add-credential is specified, we still want to add a credential_scopes variable.
                 # Will make it an empty list so we can differentiate between this case and None
