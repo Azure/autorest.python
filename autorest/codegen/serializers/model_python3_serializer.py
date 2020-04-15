@@ -38,17 +38,18 @@ class ModelPython3Serializer(ModelBaseSerializer):
     @staticmethod
     def init_args(model: ObjectSchema) -> List[str]:
         init_args = []
-        base_model = cast(ObjectSchema, model.base_model)
-        if base_model:
+        if model.base_models:
             properties_to_pass = []
-            for prop in model.properties:
-                if (
-                    prop in base_model.properties
-                    and not prop.is_discriminator
-                    and not prop.constant
-                    and not prop.readonly
-                ):
-                    properties_to_pass.append(f"{prop.name}={prop.name}")
+            for uncast_base_model in model.base_models:
+                base_model = cast(ObjectSchema, uncast_base_model)
+                for prop in model.properties:
+                    if (
+                        prop in base_model.properties
+                        and not prop.is_discriminator
+                        and not prop.constant
+                        and not prop.readonly
+                    ):
+                        properties_to_pass.append(f"{prop.name}={prop.name}")
             properties_to_pass.append("**kwargs")
             init_args.append("super({}, self).__init__({})".format(model.name, ", ".join(properties_to_pass)))
         else:

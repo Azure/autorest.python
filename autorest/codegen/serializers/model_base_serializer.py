@@ -41,12 +41,13 @@ class ModelBaseSerializer:
 
     @staticmethod
     def get_properties_to_initialize(model: ObjectSchema) -> List[Property]:
-        base_model = cast(ObjectSchema, model.base_model)
-        if base_model:
+        if model.base_models:
             properties_to_initialize = []
-            for prop in model.properties:
-                if prop not in base_model.properties or prop.is_discriminator or prop.constant:
-                    properties_to_initialize.append(prop)
+            for uncast_base_model in model.base_models:
+                base_model = cast(ObjectSchema, uncast_base_model)
+                for prop in model.properties:
+                    if prop not in base_model.properties or prop.is_discriminator or prop.constant:
+                        properties_to_initialize.append(prop)
         else:
             properties_to_initialize = model.properties
         return properties_to_initialize
