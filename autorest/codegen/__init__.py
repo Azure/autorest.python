@@ -138,9 +138,10 @@ class CodeGenerator(Plugin):
             elif credential:
                 # If add-credential is specified, we still want to add a credential_scopes variable.
                 # Will make it an empty list so we can differentiate between this case and None
-                _LOGGER.warning(
-                    "You have used the --add-credential flag but not the --credential-scopes flag. This is not recommend " +
-                    "because it forces the customer to pass credential scopes through kwargs if they want to authenticate."
+                _LOGGER.warning(  # pylint: disable=logging-not-lazy
+                    "You have used the --add-credential flag but not the --credential-scopes flag. " +
+                    "This is not recommend because it forces the customer to pass credential scopes " +
+                    "through kwargs if they want to authenticate."
                 )
                 credential_scopes = []
 
