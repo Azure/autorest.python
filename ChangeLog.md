@@ -2,6 +2,10 @@
 
 ### Unreleased
 
+**Breaking Changes**
+
+- If the user would like to add a patch file, they now must name the file `_patch.py`  #573
+
 **New features**
 
 - Support non-ARM polling by default (azure-core 1.4.0)

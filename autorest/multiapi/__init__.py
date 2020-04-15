@@ -335,10 +335,10 @@ class MultiAPI:
 
 
         # don't erase patch file
-        if self._autorestapi.read_file("patch.py"):
+        if self._autorestapi.read_file("_patch.py"):
             self._autorestapi.write_file(
-                "patch.py",
-                self._autorestapi.read_file("patch.py")
+                "_patch.py",
+                self._autorestapi.read_file("_patch.py")
             )
 
         _LOGGER.info("Done!")
