@@ -7,12 +7,10 @@
 {% macro return_docstring() %}
 {% if operation.responses | selectattr('has_body') | first %}
 :return: An iterator like instance of {{ operation.responses|selectattr('has_body')|map(attribute='schema')|map(attribute='docstring_text')|unique|join(' or ') }} or the result of cls(response)
-:rtype: ~azure.core.{{ "async_" if async_mode else "" }}paging.{{ item_paged }}[{% for response in operation.responses %}{{response.schema.docstring_type if response.has_body else "None"}}{% if not loop.last %} or {% endif %}{% endfor %}]
+:rtype: ~azure.core.{{ "async_" if async_mode else "" }}paging.{{ item_paged }}[{% for response in operation.responses %}{{response.schema.docstring_type if response.has_body else "None"}}{% if not loop.last -%} or {% endif %}{% endfor %}]
 {% else %}
 :return: None
-:rtype: None
-{% endif %}
-{% endmacro %}
+:rtype: None{% endif %}{% endmacro %}
 {% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 {% set next_link_str = "deserialized." + operation.next_link_name + " or None" if operation.next_link_name else "None" %}
 {# actual template starts here #}
@@ -43,8 +41,7 @@
     :type {{ parameter.serialized_name }}: {{ parameter.schema.docstring_type }}
 {% endfor %}
     :keyword callable cls: A custom type or function that will be passed the direct response
-    {{ return_docstring()|indent }}
-    :raises: ~azure.core.exceptions.HttpResponseError
+    {{ return_docstring()|indent }}    :raises: ~azure.core.exceptions.HttpResponseError
     """
 {% endif %}
 {% if operation.deprecated %}

@@ -457,7 +457,6 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of StorageAccountListResult or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~storage.models.StorageAccountListResult]
-
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccountListResult"]
@@ -524,7 +523,6 @@ class StorageAccountsOperations:
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of StorageAccountListResult or the result of cls(response)
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~storage.models.StorageAccountListResult]
-
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.StorageAccountListResult"]

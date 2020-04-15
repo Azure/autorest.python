@@ -59,7 +59,6 @@ class PagingOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of ProductResultValue or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResultValue]
-
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResultValue"]
@@ -118,7 +117,6 @@ class PagingOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of ProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
-
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
@@ -177,7 +175,6 @@ class PagingOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of ProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
-
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
@@ -242,7 +239,6 @@ class PagingOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of ProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
-
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
@@ -319,7 +315,6 @@ class PagingOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of OdataProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.OdataProductResult]
-
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult"]
@@ -396,7 +391,6 @@ class PagingOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of ProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
-
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
@@ -473,7 +467,6 @@ class PagingOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of ProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
-
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
@@ -532,7 +525,6 @@ class PagingOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of ProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
-
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
@@ -591,7 +583,6 @@ class PagingOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of ProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
-
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
@@ -650,7 +641,6 @@ class PagingOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of ProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
-
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
@@ -709,7 +699,6 @@ class PagingOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of ProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
-
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
@@ -774,7 +763,6 @@ class PagingOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of OdataProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.OdataProductResult]
-
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult"]
@@ -846,7 +834,6 @@ class PagingOperations(object):
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of OdataProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.OdataProductResult]
-
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult"]
