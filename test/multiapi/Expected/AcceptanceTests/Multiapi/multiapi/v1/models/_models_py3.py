@@ -36,3 +36,24 @@ class Error(msrest.serialization.Model):
         super(Error, self).__init__(**kwargs)
         self.status = status
         self.message = message
+
+
+class Product(msrest.serialization.Model):
+    """Product.
+
+    :param id:
+    :type id: int
+    """
+
+    _attribute_map = {
+        'id': {'key': 'id', 'type': 'int'},
+    }
+
+    def __init__(
+        self,
+        *,
+        id: Optional[int] = None,
+        **kwargs
+    ):
+        super(Product, self).__init__(**kwargs)
+        self.id = id
