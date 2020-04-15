@@ -19,9 +19,6 @@ from ..models.imports import FileImport
 from .import_serializer import FileImportSerializer
 
 def _correct_credential_parameter(global_parameters: ParameterList, async_mode: bool) -> None:
-    # currently this is just copied over from general_serializer.
-    # this code will be changed when i merge my async multiapi client
-    # pr, since I need two copies of global parameters (one sync and one async).
     credential_param = [
         gp for gp in global_parameters.parameters if isinstance(gp.schema, CredentialSchema)
     ][0]
