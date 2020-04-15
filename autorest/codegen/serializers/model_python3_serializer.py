@@ -61,7 +61,11 @@ class ModelPython3Serializer(ModelBaseSerializer):
                 discriminator_value = f"'{model.discriminator_value}'" if model.discriminator_value else None
                 # adding the type ignore because mypy throws an incompatible type error because
                 # the children have a value for the discriminator, while the parent sets it to None
-                init_args.append(f"self.{prop.name} = {discriminator_value}  # type: ignore")
+                if not discriminator_value:
+                    typing = "Optional[str]"
+                else:
+                    typing = "str"
+                init_args.append(f"self.{prop.name}: {typing} = {discriminator_value}")
             elif not prop.constant:
                 init_args.append(f"self.{prop.name} = {prop.name}")
 

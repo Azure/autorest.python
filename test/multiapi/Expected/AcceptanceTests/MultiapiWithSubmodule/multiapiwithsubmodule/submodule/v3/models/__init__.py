@@ -9,10 +9,12 @@
 try:
     from ._models_py3 import Error
     from ._models_py3 import ModelThree
+    from ._models_py3 import PagingResult
     from ._models_py3 import SourcePath
 except (SyntaxError, ImportError):
     from ._models import Error  # type: ignore
     from ._models import ModelThree  # type: ignore
+    from ._models import PagingResult  # type: ignore
     from ._models import SourcePath  # type: ignore
 
 from ._multiapi_service_client_enums import (
@@ -22,6 +24,7 @@ from ._multiapi_service_client_enums import (
 __all__ = [
     'Error',
     'ModelThree',
+    'PagingResult',
     'SourcePath',
     'ContentType',
 ]

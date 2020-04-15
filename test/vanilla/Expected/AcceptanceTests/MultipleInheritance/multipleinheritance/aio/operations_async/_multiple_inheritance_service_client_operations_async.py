@@ -36,7 +36,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_horse.metadata['url']
+        url = self.get_horse.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -61,7 +61,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_horse.metadata = {'url': '/multipleInheritance/horse'}
+    get_horse.metadata = {'url': '/multipleInheritance/horse'}  # type: ignore
 
     @distributed_trace_async
     async def put_horse(
@@ -83,7 +83,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_horse.metadata['url']
+        url = self.put_horse.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -112,7 +112,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    put_horse.metadata = {'url': '/multipleInheritance/horse'}
+    put_horse.metadata = {'url': '/multipleInheritance/horse'}  # type: ignore
 
     @distributed_trace_async
     async def get_pet(
@@ -130,7 +130,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_pet.metadata['url']
+        url = self.get_pet.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -155,7 +155,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_pet.metadata = {'url': '/multipleInheritance/pet'}
+    get_pet.metadata = {'url': '/multipleInheritance/pet'}  # type: ignore
 
     @distributed_trace_async
     async def put_pet(
@@ -179,7 +179,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_pet.metadata['url']
+        url = self.put_pet.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -208,7 +208,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    put_pet.metadata = {'url': '/multipleInheritance/pet'}
+    put_pet.metadata = {'url': '/multipleInheritance/pet'}  # type: ignore
 
     @distributed_trace_async
     async def get_feline(
@@ -226,7 +226,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_feline.metadata['url']
+        url = self.get_feline.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -251,7 +251,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_feline.metadata = {'url': '/multipleInheritance/feline'}
+    get_feline.metadata = {'url': '/multipleInheritance/feline'}  # type: ignore
 
     @distributed_trace_async
     async def put_feline(
@@ -273,7 +273,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_feline.metadata['url']
+        url = self.put_feline.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -302,7 +302,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    put_feline.metadata = {'url': '/multipleInheritance/feline'}
+    put_feline.metadata = {'url': '/multipleInheritance/feline'}  # type: ignore
 
     @distributed_trace_async
     async def get_cat(
@@ -320,7 +320,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_cat.metadata['url']
+        url = self.get_cat.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -345,7 +345,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_cat.metadata = {'url': '/multipleInheritance/cat'}
+    get_cat.metadata = {'url': '/multipleInheritance/cat'}  # type: ignore
 
     @distributed_trace_async
     async def put_cat(
@@ -367,7 +367,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_cat.metadata['url']
+        url = self.put_cat.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -396,7 +396,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    put_cat.metadata = {'url': '/multipleInheritance/cat'}
+    put_cat.metadata = {'url': '/multipleInheritance/cat'}  # type: ignore
 
     @distributed_trace_async
     async def get_kitten(
@@ -414,7 +414,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_kitten.metadata['url']
+        url = self.get_kitten.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -439,7 +439,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_kitten.metadata = {'url': '/multipleInheritance/kitten'}
+    get_kitten.metadata = {'url': '/multipleInheritance/kitten'}  # type: ignore
 
     @distributed_trace_async
     async def put_kitten(
@@ -462,7 +462,7 @@ class MultipleInheritanceServiceClientOperationsMixin:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_kitten.metadata['url']
+        url = self.put_kitten.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -491,4 +491,4 @@ class MultipleInheritanceServiceClientOperationsMixin:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    put_kitten.metadata = {'url': '/multipleInheritance/kitten'}
+    put_kitten.metadata = {'url': '/multipleInheritance/kitten'}  # type: ignore
