@@ -29,7 +29,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         self.min_properties: Optional[int] = kwargs.pop("min_properties", None)
         self.properties: List[Property] = kwargs.pop("properties", [])
         self.is_exception: bool = kwargs.pop("is_exception", False)
-        self.base_model: Optional[Union[int, "ObjectSchema"]] = kwargs.pop("base_model", None)
+        self.base_models: Union[List[int], List["ObjectSchema"]] = kwargs.pop("base_models", [])
         self.subtype_map: Optional[Dict[str, str]] = kwargs.pop("subtype_map", None)
         self.discriminator_name: Optional[str] = kwargs.pop("discriminator_name", None)
         self.discriminator_value: Optional[str] = kwargs.pop("discriminator_value", None)
@@ -93,7 +93,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
 
     def fill_instance_from_yaml(self, namespace: str, yaml_data: Dict[str, Any], **kwargs) -> None:
         properties = []
-        base_model = None
+        base_models = []
 
         name = yaml_data["language"]["python"]["name"]
 
@@ -120,7 +120,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
                         immediate_parent["language"]["default"]["name"] != name and
                         immediate_parent['type'] == "object"
                     ):
-                        base_model = id(immediate_parent)
+                        base_models.append(id(immediate_parent))
 
         # checking to see if this is a polymorphic class
         subtype_map = None
@@ -150,7 +150,7 @@ class ObjectSchema(BaseSchema):  # pylint: disable=too-many-instance-attributes
         self.name = name
         self.description = description
         self.properties = properties
-        self.base_model = base_model
+        self.base_models = base_models
         self.is_exception = is_exception
         self.subtype_map = subtype_map
         self.discriminator_name = (
