@@ -57,7 +57,8 @@ default_mappings = {
   'AcceptanceTests/XmsErrorResponse': 'xms-error-responses.json',
   'AcceptanceTests/MediaTypes': ['media_types.json', 0],
   'AcceptanceTests/ObjectType': 'object-type.json',
-  'AcceptanceTests/NonStringEnums': 'non-string-enum.json'
+  'AcceptanceTests/NonStringEnums': 'non-string-enum.json',
+  'AcceptanceTests/MultipleInheritance': 'multiple-inheritance.json'
 }
 
 default_azure_mappings = {
