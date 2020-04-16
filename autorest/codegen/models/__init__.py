@@ -75,7 +75,7 @@ def build_schema(yaml_data: Dict[str, Any], **kwargs) -> BaseSchema:
         code_model.primitives[yaml_id] = schema
 
     elif schema_type in ["choice", "sealed-choice"]:
-        schema = EnumSchema.from_yaml(namespace=namespace, yaml_data=yaml_data)
+        schema = EnumSchema.from_yaml(namespace=namespace, yaml_data=yaml_data, **kwargs)
         code_model.enums[yaml_id] = schema
 
     elif schema_type == "array":

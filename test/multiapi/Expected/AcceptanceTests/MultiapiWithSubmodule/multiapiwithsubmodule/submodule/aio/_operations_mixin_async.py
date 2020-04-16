@@ -9,7 +9,13 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
-from typing import Optional, TYPE_CHECKING, Union
+from typing import Any, AsyncIterable, Callable, Dict, Generic, Optional, TypeVar
+import warnings
+
+from azure.core.async_paging import AsyncItemPaged, AsyncList
+from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest
 
 
 class MultiapiServiceClientOperationsMixin(object):
@@ -74,7 +80,7 @@ class MultiapiServiceClientOperationsMixin(object):
     def test_paging(
         self,
         **kwargs
-    ) -> "models.PagingResult":
+    ) -> AsyncItemPaged["models.PagingResult"]:
         """Returns ModelThree with optionalProperty 'paged'.
     
         :keyword callable cls: A custom type or function that will be passed the direct response

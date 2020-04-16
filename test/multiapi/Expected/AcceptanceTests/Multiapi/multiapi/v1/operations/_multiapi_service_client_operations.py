@@ -48,7 +48,7 @@ class MultiapiServiceClientOperationsMixin(object):
         api_version = "1.0.0"
 
         # Construct URL
-        url = self.test_one.metadata['url']
+        url = self.test_one.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -73,7 +73,7 @@ class MultiapiServiceClientOperationsMixin(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    test_one.metadata = {'url': '/multiapi/testOneEndpoint'}
+    test_one.metadata = {'url': '/multiapi/testOneEndpoint'}  # type: ignore
 
     def _test_lro_initial(
         self,
@@ -86,7 +86,7 @@ class MultiapiServiceClientOperationsMixin(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self._test_lro_initial.metadata['url']
+        url = self._test_lro_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -121,14 +121,14 @@ class MultiapiServiceClientOperationsMixin(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    _test_lro_initial.metadata = {'url': '/multiapi/lro'}
+    _test_lro_initial.metadata = {'url': '/multiapi/lro'}  # type: ignore
 
     def begin_test_lro(
         self,
         product=None,  # type: Optional["models.Product"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.Product"
+        # type: (...) -> LROPoller
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
         :param product: Product to put.
@@ -140,7 +140,6 @@ class MultiapiServiceClientOperationsMixin(object):
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~multiapi.v1.models.Product]
-
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', False)  # type: Union[bool, PollingMethod]
@@ -166,4 +165,4 @@ class MultiapiServiceClientOperationsMixin(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_test_lro.metadata = {'url': '/multiapi/lro'}
+    begin_test_lro.metadata = {'url': '/multiapi/lro'}  # type: ignore

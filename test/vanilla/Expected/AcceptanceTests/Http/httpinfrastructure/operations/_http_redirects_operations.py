@@ -61,7 +61,7 @@ class HttpRedirectsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.head300.metadata['url']
+        url = self.head300.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -86,7 +86,7 @@ class HttpRedirectsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    head300.metadata = {'url': '/http/redirect/300'}
+    head300.metadata = {'url': '/http/redirect/300'}  # type: ignore
 
     @distributed_trace
     def get300(
@@ -98,14 +98,14 @@ class HttpRedirectsOperations(object):
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: list or the result of cls(response)
-        :rtype: None or list[str]
+        :rtype: list[str] or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[List[str]]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get300.metadata['url']
+        url = self.get300.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -134,7 +134,7 @@ class HttpRedirectsOperations(object):
           return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-    get300.metadata = {'url': '/http/redirect/300'}
+    get300.metadata = {'url': '/http/redirect/300'}  # type: ignore
 
     @distributed_trace
     def head301(
@@ -153,7 +153,7 @@ class HttpRedirectsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.head301.metadata['url']
+        url = self.head301.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -178,7 +178,7 @@ class HttpRedirectsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    head301.metadata = {'url': '/http/redirect/301'}
+    head301.metadata = {'url': '/http/redirect/301'}  # type: ignore
 
     @distributed_trace
     def get301(
@@ -197,7 +197,7 @@ class HttpRedirectsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get301.metadata['url']
+        url = self.get301.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -222,7 +222,7 @@ class HttpRedirectsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    get301.metadata = {'url': '/http/redirect/301'}
+    get301.metadata = {'url': '/http/redirect/301'}  # type: ignore
 
     @distributed_trace
     def put301(
@@ -245,7 +245,7 @@ class HttpRedirectsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put301.metadata['url']
+        url = self.put301.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -277,7 +277,7 @@ class HttpRedirectsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    put301.metadata = {'url': '/http/redirect/301'}
+    put301.metadata = {'url': '/http/redirect/301'}  # type: ignore
 
     @distributed_trace
     def head302(
@@ -296,7 +296,7 @@ class HttpRedirectsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.head302.metadata['url']
+        url = self.head302.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -321,7 +321,7 @@ class HttpRedirectsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    head302.metadata = {'url': '/http/redirect/302'}
+    head302.metadata = {'url': '/http/redirect/302'}  # type: ignore
 
     @distributed_trace
     def get302(
@@ -340,7 +340,7 @@ class HttpRedirectsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get302.metadata['url']
+        url = self.get302.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -365,7 +365,7 @@ class HttpRedirectsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    get302.metadata = {'url': '/http/redirect/302'}
+    get302.metadata = {'url': '/http/redirect/302'}  # type: ignore
 
     @distributed_trace
     def patch302(
@@ -388,7 +388,7 @@ class HttpRedirectsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.patch302.metadata['url']
+        url = self.patch302.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -420,7 +420,7 @@ class HttpRedirectsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    patch302.metadata = {'url': '/http/redirect/302'}
+    patch302.metadata = {'url': '/http/redirect/302'}  # type: ignore
 
     @distributed_trace
     def post303(
@@ -443,7 +443,7 @@ class HttpRedirectsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post303.metadata['url']
+        url = self.post303.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -476,7 +476,7 @@ class HttpRedirectsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    post303.metadata = {'url': '/http/redirect/303'}
+    post303.metadata = {'url': '/http/redirect/303'}  # type: ignore
 
     @distributed_trace
     def head307(
@@ -495,7 +495,7 @@ class HttpRedirectsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.head307.metadata['url']
+        url = self.head307.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -520,7 +520,7 @@ class HttpRedirectsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    head307.metadata = {'url': '/http/redirect/307'}
+    head307.metadata = {'url': '/http/redirect/307'}  # type: ignore
 
     @distributed_trace
     def get307(
@@ -539,7 +539,7 @@ class HttpRedirectsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get307.metadata['url']
+        url = self.get307.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -564,7 +564,7 @@ class HttpRedirectsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    get307.metadata = {'url': '/http/redirect/307'}
+    get307.metadata = {'url': '/http/redirect/307'}  # type: ignore
 
     @distributed_trace
     def options307(
@@ -583,7 +583,7 @@ class HttpRedirectsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.options307.metadata['url']
+        url = self.options307.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -608,7 +608,7 @@ class HttpRedirectsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    options307.metadata = {'url': '/http/redirect/307'}
+    options307.metadata = {'url': '/http/redirect/307'}  # type: ignore
 
     @distributed_trace
     def put307(
@@ -631,7 +631,7 @@ class HttpRedirectsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put307.metadata['url']
+        url = self.put307.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -664,7 +664,7 @@ class HttpRedirectsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    put307.metadata = {'url': '/http/redirect/307'}
+    put307.metadata = {'url': '/http/redirect/307'}  # type: ignore
 
     @distributed_trace
     def patch307(
@@ -687,7 +687,7 @@ class HttpRedirectsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.patch307.metadata['url']
+        url = self.patch307.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -720,7 +720,7 @@ class HttpRedirectsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    patch307.metadata = {'url': '/http/redirect/307'}
+    patch307.metadata = {'url': '/http/redirect/307'}  # type: ignore
 
     @distributed_trace
     def post307(
@@ -743,7 +743,7 @@ class HttpRedirectsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post307.metadata['url']
+        url = self.post307.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -776,7 +776,7 @@ class HttpRedirectsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    post307.metadata = {'url': '/http/redirect/307'}
+    post307.metadata = {'url': '/http/redirect/307'}  # type: ignore
 
     @distributed_trace
     def delete307(
@@ -799,7 +799,7 @@ class HttpRedirectsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.delete307.metadata['url']
+        url = self.delete307.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -832,4 +832,4 @@ class HttpRedirectsOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    delete307.metadata = {'url': '/http/redirect/307'}
+    delete307.metadata = {'url': '/http/redirect/307'}  # type: ignore

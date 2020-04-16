@@ -63,7 +63,7 @@ class OperationGroupTwoOperations(object):
         api_version = "2.0.0"
 
         # Construct URL
-        url = self.test_four.metadata['url']
+        url = self.test_four.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -86,4 +86,4 @@ class OperationGroupTwoOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    test_four.metadata = {'url': '/multiapi/two/testFourEndpoint'}
+    test_four.metadata = {'url': '/multiapi/two/testFourEndpoint'}  # type: ignore

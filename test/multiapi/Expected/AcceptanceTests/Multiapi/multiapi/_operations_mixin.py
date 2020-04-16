@@ -10,10 +10,16 @@
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
 from typing import TYPE_CHECKING
+import warnings
+
+from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.paging import ItemPaged
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import HttpRequest, HttpResponse
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Optional, Union
+    from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar
 
 
 class MultiapiServiceClientOperationsMixin(object):

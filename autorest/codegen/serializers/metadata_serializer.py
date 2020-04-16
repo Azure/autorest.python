@@ -69,15 +69,13 @@ class MetadataSerializer:
             None
         )
         mixin_operations: List[Operation] = []
+        sync_mixin_imports = None
+        async_mixin_imports = None
         if mixin_operation_group:
             mixin_operations = mixin_operation_group.operations
+            sync_mixin_imports = mixin_operation_group.imports(async_mode=False, has_schemas=False)
+            async_mixin_imports = mixin_operation_group.imports(async_mode=True, has_schemas=False)
         chosen_version, total_api_version_list = self._choose_api_version()
-
-        parameter_imports = FileImport()
-        for operation_group in self.code_model.operation_groups:
-            for operation in operation_group.operations:
-                for parameter in operation.parameters:
-                    parameter_imports.merge(parameter.imports())
 
         # we separate out async and sync for the case of credentials.
         # In this case, we need two copies of the credential global parameter
@@ -101,6 +99,12 @@ class MetadataSerializer:
             is_lro=_is_lro,
             is_paging=_is_paging,
             str=str,
-            sync_parameter_imports=FileImportSerializer(parameter_imports, is_python_3_file=False),
-            async_parameter_imports=FileImportSerializer(parameter_imports, is_python_3_file=True)
+            sync_mixin_imports=(
+                FileImportSerializer(sync_mixin_imports, is_python_3_file=False)
+                if sync_mixin_imports else None
+            ),
+            async_mixin_imports=(
+                FileImportSerializer(async_mixin_imports, is_python_3_file=True)
+                if async_mixin_imports else None
+            )
         )

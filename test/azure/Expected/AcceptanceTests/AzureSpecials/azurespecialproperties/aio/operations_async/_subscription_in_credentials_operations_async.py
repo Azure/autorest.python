@@ -57,7 +57,7 @@ class SubscriptionInCredentialsOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.post_method_global_valid.metadata['url']
+        url = self.post_method_global_valid.metadata['url']  # type: ignore
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
         }
@@ -82,7 +82,7 @@ class SubscriptionInCredentialsOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_method_global_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}
+    post_method_global_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}  # type: ignore
 
     @distributed_trace_async
     async def post_method_global_null(
@@ -100,7 +100,7 @@ class SubscriptionInCredentialsOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.post_method_global_null.metadata['url']
+        url = self.post_method_global_null.metadata['url']  # type: ignore
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
         }
@@ -125,7 +125,7 @@ class SubscriptionInCredentialsOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_method_global_null.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}'}
+    post_method_global_null.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/global/null/{subscriptionId}'}  # type: ignore
 
     @distributed_trace_async
     async def post_method_global_not_provided_valid(
@@ -144,7 +144,7 @@ class SubscriptionInCredentialsOperations:
         api_version = "2015-07-01-preview"
 
         # Construct URL
-        url = self.post_method_global_not_provided_valid.metadata['url']
+        url = self.post_method_global_not_provided_valid.metadata['url']  # type: ignore
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
         }
@@ -170,7 +170,7 @@ class SubscriptionInCredentialsOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_method_global_not_provided_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}'}
+    post_method_global_not_provided_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}'}  # type: ignore
 
     @distributed_trace_async
     async def post_path_global_valid(
@@ -188,7 +188,7 @@ class SubscriptionInCredentialsOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.post_path_global_valid.metadata['url']
+        url = self.post_path_global_valid.metadata['url']  # type: ignore
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
         }
@@ -213,7 +213,7 @@ class SubscriptionInCredentialsOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_path_global_valid.metadata = {'url': '/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}
+    post_path_global_valid.metadata = {'url': '/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}  # type: ignore
 
     @distributed_trace_async
     async def post_swagger_global_valid(
@@ -231,7 +231,7 @@ class SubscriptionInCredentialsOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.post_swagger_global_valid.metadata['url']
+        url = self.post_swagger_global_valid.metadata['url']  # type: ignore
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
         }
@@ -256,4 +256,4 @@ class SubscriptionInCredentialsOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_swagger_global_valid.metadata = {'url': '/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}
+    post_swagger_global_valid.metadata = {'url': '/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}'}  # type: ignore

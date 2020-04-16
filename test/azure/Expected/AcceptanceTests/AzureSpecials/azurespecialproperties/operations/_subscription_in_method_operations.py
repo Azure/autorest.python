@@ -66,7 +66,7 @@ class SubscriptionInMethodOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.post_method_local_valid.metadata['url']
+        url = self.post_method_local_valid.metadata['url']  # type: ignore
         path_format_arguments = {
             'subscriptionId': self._serialize.url("subscription_id", subscription_id, 'str'),
         }
@@ -91,7 +91,7 @@ class SubscriptionInMethodOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_method_local_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}
+    post_method_local_valid.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}  # type: ignore
 
     @distributed_trace
     def post_method_local_null(
@@ -114,7 +114,7 @@ class SubscriptionInMethodOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.post_method_local_null.metadata['url']
+        url = self.post_method_local_null.metadata['url']  # type: ignore
         path_format_arguments = {
             'subscriptionId': self._serialize.url("subscription_id", subscription_id, 'str'),
         }
@@ -139,7 +139,7 @@ class SubscriptionInMethodOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_method_local_null.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}'}
+    post_method_local_null.metadata = {'url': '/azurespecials/subscriptionId/method/string/none/path/local/null/{subscriptionId}'}  # type: ignore
 
     @distributed_trace
     def post_path_local_valid(
@@ -161,7 +161,7 @@ class SubscriptionInMethodOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.post_path_local_valid.metadata['url']
+        url = self.post_path_local_valid.metadata['url']  # type: ignore
         path_format_arguments = {
             'subscriptionId': self._serialize.url("subscription_id", subscription_id, 'str'),
         }
@@ -186,7 +186,7 @@ class SubscriptionInMethodOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_path_local_valid.metadata = {'url': '/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}
+    post_path_local_valid.metadata = {'url': '/azurespecials/subscriptionId/path/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}  # type: ignore
 
     @distributed_trace
     def post_swagger_local_valid(
@@ -209,7 +209,7 @@ class SubscriptionInMethodOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.post_swagger_local_valid.metadata['url']
+        url = self.post_swagger_local_valid.metadata['url']  # type: ignore
         path_format_arguments = {
             'subscriptionId': self._serialize.url("subscription_id", subscription_id, 'str'),
         }
@@ -234,4 +234,4 @@ class SubscriptionInMethodOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_swagger_local_valid.metadata = {'url': '/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}
+    post_swagger_local_valid.metadata = {'url': '/azurespecials/subscriptionId/swagger/string/none/path/local/1234-5678-9012-3456/{subscriptionId}'}  # type: ignore

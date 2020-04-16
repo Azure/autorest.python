@@ -61,7 +61,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get200_model204_no_model_default_error200_valid.metadata['url']
+        url = self.get200_model204_no_model_default_error200_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -88,7 +88,7 @@ class MultipleResponsesOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200_model204_no_model_default_error200_valid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/200/valid'}
+    get200_model204_no_model_default_error200_valid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/200/valid'}  # type: ignore
 
     @distributed_trace
     def get200_model204_no_model_default_error204_valid(
@@ -107,7 +107,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get200_model204_no_model_default_error204_valid.metadata['url']
+        url = self.get200_model204_no_model_default_error204_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -134,7 +134,7 @@ class MultipleResponsesOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200_model204_no_model_default_error204_valid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/204/none'}
+    get200_model204_no_model_default_error204_valid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/204/none'}  # type: ignore
 
     @distributed_trace
     def get200_model204_no_model_default_error201_invalid(
@@ -153,7 +153,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get200_model204_no_model_default_error201_invalid.metadata['url']
+        url = self.get200_model204_no_model_default_error201_invalid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -180,7 +180,7 @@ class MultipleResponsesOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200_model204_no_model_default_error201_invalid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/201/valid'}
+    get200_model204_no_model_default_error201_invalid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/201/valid'}  # type: ignore
 
     @distributed_trace
     def get200_model204_no_model_default_error202_none(
@@ -199,7 +199,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get200_model204_no_model_default_error202_none.metadata['url']
+        url = self.get200_model204_no_model_default_error202_none.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -226,7 +226,7 @@ class MultipleResponsesOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200_model204_no_model_default_error202_none.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/202/none'}
+    get200_model204_no_model_default_error202_none.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/202/none'}  # type: ignore
 
     @distributed_trace
     def get200_model204_no_model_default_error400_valid(
@@ -245,7 +245,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get200_model204_no_model_default_error400_valid.metadata['url']
+        url = self.get200_model204_no_model_default_error400_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -272,7 +272,7 @@ class MultipleResponsesOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200_model204_no_model_default_error400_valid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/400/valid'}
+    get200_model204_no_model_default_error400_valid.metadata = {'url': '/http/payloads/200/A/204/none/default/Error/response/400/valid'}  # type: ignore
 
     @distributed_trace
     def get200_model201_model_default_error200_valid(
@@ -291,7 +291,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get200_model201_model_default_error200_valid.metadata['url']
+        url = self.get200_model201_model_default_error200_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -321,7 +321,7 @@ class MultipleResponsesOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200_model201_model_default_error200_valid.metadata = {'url': '/http/payloads/200/A/201/B/default/Error/response/200/valid'}
+    get200_model201_model_default_error200_valid.metadata = {'url': '/http/payloads/200/A/201/B/default/Error/response/200/valid'}  # type: ignore
 
     @distributed_trace
     def get200_model201_model_default_error201_valid(
@@ -340,7 +340,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get200_model201_model_default_error201_valid.metadata['url']
+        url = self.get200_model201_model_default_error201_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -370,7 +370,7 @@ class MultipleResponsesOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200_model201_model_default_error201_valid.metadata = {'url': '/http/payloads/200/A/201/B/default/Error/response/201/valid'}
+    get200_model201_model_default_error201_valid.metadata = {'url': '/http/payloads/200/A/201/B/default/Error/response/201/valid'}  # type: ignore
 
     @distributed_trace
     def get200_model201_model_default_error400_valid(
@@ -389,7 +389,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get200_model201_model_default_error400_valid.metadata['url']
+        url = self.get200_model201_model_default_error400_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -419,7 +419,7 @@ class MultipleResponsesOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200_model201_model_default_error400_valid.metadata = {'url': '/http/payloads/200/A/201/B/default/Error/response/400/valid'}
+    get200_model201_model_default_error400_valid.metadata = {'url': '/http/payloads/200/A/201/B/default/Error/response/400/valid'}  # type: ignore
 
     @distributed_trace
     def get200_model_a201_model_c404_model_d_default_error200_valid(
@@ -438,7 +438,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get200_model_a201_model_c404_model_d_default_error200_valid.metadata['url']
+        url = self.get200_model_a201_model_c404_model_d_default_error200_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -471,7 +471,7 @@ class MultipleResponsesOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200_model_a201_model_c404_model_d_default_error200_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid'}
+    get200_model_a201_model_c404_model_d_default_error200_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/200/valid'}  # type: ignore
 
     @distributed_trace
     def get200_model_a201_model_c404_model_d_default_error201_valid(
@@ -490,7 +490,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get200_model_a201_model_c404_model_d_default_error201_valid.metadata['url']
+        url = self.get200_model_a201_model_c404_model_d_default_error201_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -523,7 +523,7 @@ class MultipleResponsesOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200_model_a201_model_c404_model_d_default_error201_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid'}
+    get200_model_a201_model_c404_model_d_default_error201_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/201/valid'}  # type: ignore
 
     @distributed_trace
     def get200_model_a201_model_c404_model_d_default_error404_valid(
@@ -542,7 +542,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get200_model_a201_model_c404_model_d_default_error404_valid.metadata['url']
+        url = self.get200_model_a201_model_c404_model_d_default_error404_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -575,7 +575,7 @@ class MultipleResponsesOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200_model_a201_model_c404_model_d_default_error404_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid'}
+    get200_model_a201_model_c404_model_d_default_error404_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/404/valid'}  # type: ignore
 
     @distributed_trace
     def get200_model_a201_model_c404_model_d_default_error400_valid(
@@ -594,7 +594,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get200_model_a201_model_c404_model_d_default_error400_valid.metadata['url']
+        url = self.get200_model_a201_model_c404_model_d_default_error400_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -627,7 +627,7 @@ class MultipleResponsesOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200_model_a201_model_c404_model_d_default_error400_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid'}
+    get200_model_a201_model_c404_model_d_default_error400_valid.metadata = {'url': '/http/payloads/200/A/201/C/404/D/default/Error/response/400/valid'}  # type: ignore
 
     @distributed_trace
     def get202_none204_none_default_error202_none(
@@ -646,7 +646,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get202_none204_none_default_error202_none.metadata['url']
+        url = self.get202_none204_none_default_error202_none.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -667,7 +667,7 @@ class MultipleResponsesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get202_none204_none_default_error202_none.metadata = {'url': '/http/payloads/202/none/204/none/default/Error/response/202/none'}
+    get202_none204_none_default_error202_none.metadata = {'url': '/http/payloads/202/none/204/none/default/Error/response/202/none'}  # type: ignore
 
     @distributed_trace
     def get202_none204_none_default_error204_none(
@@ -686,7 +686,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get202_none204_none_default_error204_none.metadata['url']
+        url = self.get202_none204_none_default_error204_none.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -707,7 +707,7 @@ class MultipleResponsesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get202_none204_none_default_error204_none.metadata = {'url': '/http/payloads/202/none/204/none/default/Error/response/204/none'}
+    get202_none204_none_default_error204_none.metadata = {'url': '/http/payloads/202/none/204/none/default/Error/response/204/none'}  # type: ignore
 
     @distributed_trace
     def get202_none204_none_default_error400_valid(
@@ -726,7 +726,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get202_none204_none_default_error400_valid.metadata['url']
+        url = self.get202_none204_none_default_error400_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -747,7 +747,7 @@ class MultipleResponsesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get202_none204_none_default_error400_valid.metadata = {'url': '/http/payloads/202/none/204/none/default/Error/response/400/valid'}
+    get202_none204_none_default_error400_valid.metadata = {'url': '/http/payloads/202/none/204/none/default/Error/response/400/valid'}  # type: ignore
 
     @distributed_trace
     def get202_none204_none_default_none202_invalid(
@@ -766,7 +766,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get202_none204_none_default_none202_invalid.metadata['url']
+        url = self.get202_none204_none_default_none202_invalid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -786,7 +786,7 @@ class MultipleResponsesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get202_none204_none_default_none202_invalid.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/202/invalid'}
+    get202_none204_none_default_none202_invalid.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/202/invalid'}  # type: ignore
 
     @distributed_trace
     def get202_none204_none_default_none204_none(
@@ -805,7 +805,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get202_none204_none_default_none204_none.metadata['url']
+        url = self.get202_none204_none_default_none204_none.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -825,7 +825,7 @@ class MultipleResponsesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get202_none204_none_default_none204_none.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/204/none'}
+    get202_none204_none_default_none204_none.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/204/none'}  # type: ignore
 
     @distributed_trace
     def get202_none204_none_default_none400_none(
@@ -844,7 +844,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get202_none204_none_default_none400_none.metadata['url']
+        url = self.get202_none204_none_default_none400_none.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -864,7 +864,7 @@ class MultipleResponsesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get202_none204_none_default_none400_none.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/400/none'}
+    get202_none204_none_default_none400_none.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/400/none'}  # type: ignore
 
     @distributed_trace
     def get202_none204_none_default_none400_invalid(
@@ -883,7 +883,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get202_none204_none_default_none400_invalid.metadata['url']
+        url = self.get202_none204_none_default_none400_invalid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -903,7 +903,7 @@ class MultipleResponsesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get202_none204_none_default_none400_invalid.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/400/invalid'}
+    get202_none204_none_default_none400_invalid.metadata = {'url': '/http/payloads/202/none/204/none/default/none/response/400/invalid'}  # type: ignore
 
     @distributed_trace
     def get_default_model_a200_valid(
@@ -922,7 +922,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_default_model_a200_valid.metadata['url']
+        url = self.get_default_model_a200_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -946,7 +946,7 @@ class MultipleResponsesOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_default_model_a200_valid.metadata = {'url': '/http/payloads/default/A/response/200/valid'}
+    get_default_model_a200_valid.metadata = {'url': '/http/payloads/default/A/response/200/valid'}  # type: ignore
 
     @distributed_trace
     def get_default_model_a200_none(
@@ -965,7 +965,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_default_model_a200_none.metadata['url']
+        url = self.get_default_model_a200_none.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -989,7 +989,7 @@ class MultipleResponsesOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_default_model_a200_none.metadata = {'url': '/http/payloads/default/A/response/200/none'}
+    get_default_model_a200_none.metadata = {'url': '/http/payloads/default/A/response/200/none'}  # type: ignore
 
     @distributed_trace
     def get_default_model_a400_valid(
@@ -1008,7 +1008,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_default_model_a400_valid.metadata['url']
+        url = self.get_default_model_a400_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1029,7 +1029,7 @@ class MultipleResponsesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_default_model_a400_valid.metadata = {'url': '/http/payloads/default/A/response/400/valid'}
+    get_default_model_a400_valid.metadata = {'url': '/http/payloads/default/A/response/400/valid'}  # type: ignore
 
     @distributed_trace
     def get_default_model_a400_none(
@@ -1048,7 +1048,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_default_model_a400_none.metadata['url']
+        url = self.get_default_model_a400_none.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1069,7 +1069,7 @@ class MultipleResponsesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_default_model_a400_none.metadata = {'url': '/http/payloads/default/A/response/400/none'}
+    get_default_model_a400_none.metadata = {'url': '/http/payloads/default/A/response/400/none'}  # type: ignore
 
     @distributed_trace
     def get_default_none200_invalid(
@@ -1088,7 +1088,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_default_none200_invalid.metadata['url']
+        url = self.get_default_none200_invalid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1108,7 +1108,7 @@ class MultipleResponsesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_default_none200_invalid.metadata = {'url': '/http/payloads/default/none/response/200/invalid'}
+    get_default_none200_invalid.metadata = {'url': '/http/payloads/default/none/response/200/invalid'}  # type: ignore
 
     @distributed_trace
     def get_default_none200_none(
@@ -1127,7 +1127,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_default_none200_none.metadata['url']
+        url = self.get_default_none200_none.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1147,7 +1147,7 @@ class MultipleResponsesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_default_none200_none.metadata = {'url': '/http/payloads/default/none/response/200/none'}
+    get_default_none200_none.metadata = {'url': '/http/payloads/default/none/response/200/none'}  # type: ignore
 
     @distributed_trace
     def get_default_none400_invalid(
@@ -1166,7 +1166,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_default_none400_invalid.metadata['url']
+        url = self.get_default_none400_invalid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1186,7 +1186,7 @@ class MultipleResponsesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_default_none400_invalid.metadata = {'url': '/http/payloads/default/none/response/400/invalid'}
+    get_default_none400_invalid.metadata = {'url': '/http/payloads/default/none/response/400/invalid'}  # type: ignore
 
     @distributed_trace
     def get_default_none400_none(
@@ -1205,7 +1205,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_default_none400_none.metadata['url']
+        url = self.get_default_none400_none.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1225,7 +1225,7 @@ class MultipleResponsesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_default_none400_none.metadata = {'url': '/http/payloads/default/none/response/400/none'}
+    get_default_none400_none.metadata = {'url': '/http/payloads/default/none/response/400/none'}  # type: ignore
 
     @distributed_trace
     def get200_model_a200_none(
@@ -1244,7 +1244,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get200_model_a200_none.metadata['url']
+        url = self.get200_model_a200_none.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1268,7 +1268,7 @@ class MultipleResponsesOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200_model_a200_none.metadata = {'url': '/http/payloads/200/A/response/200/none'}
+    get200_model_a200_none.metadata = {'url': '/http/payloads/200/A/response/200/none'}  # type: ignore
 
     @distributed_trace
     def get200_model_a200_valid(
@@ -1287,7 +1287,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get200_model_a200_valid.metadata['url']
+        url = self.get200_model_a200_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1311,7 +1311,7 @@ class MultipleResponsesOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200_model_a200_valid.metadata = {'url': '/http/payloads/200/A/response/200/valid'}
+    get200_model_a200_valid.metadata = {'url': '/http/payloads/200/A/response/200/valid'}  # type: ignore
 
     @distributed_trace
     def get200_model_a200_invalid(
@@ -1330,7 +1330,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get200_model_a200_invalid.metadata['url']
+        url = self.get200_model_a200_invalid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1354,7 +1354,7 @@ class MultipleResponsesOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200_model_a200_invalid.metadata = {'url': '/http/payloads/200/A/response/200/invalid'}
+    get200_model_a200_invalid.metadata = {'url': '/http/payloads/200/A/response/200/invalid'}  # type: ignore
 
     @distributed_trace
     def get200_model_a400_none(
@@ -1373,7 +1373,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get200_model_a400_none.metadata['url']
+        url = self.get200_model_a400_none.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1397,7 +1397,7 @@ class MultipleResponsesOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200_model_a400_none.metadata = {'url': '/http/payloads/200/A/response/400/none'}
+    get200_model_a400_none.metadata = {'url': '/http/payloads/200/A/response/400/none'}  # type: ignore
 
     @distributed_trace
     def get200_model_a400_valid(
@@ -1416,7 +1416,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get200_model_a400_valid.metadata['url']
+        url = self.get200_model_a400_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1440,7 +1440,7 @@ class MultipleResponsesOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200_model_a400_valid.metadata = {'url': '/http/payloads/200/A/response/400/valid'}
+    get200_model_a400_valid.metadata = {'url': '/http/payloads/200/A/response/400/valid'}  # type: ignore
 
     @distributed_trace
     def get200_model_a400_invalid(
@@ -1459,7 +1459,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get200_model_a400_invalid.metadata['url']
+        url = self.get200_model_a400_invalid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1483,7 +1483,7 @@ class MultipleResponsesOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200_model_a400_invalid.metadata = {'url': '/http/payloads/200/A/response/400/invalid'}
+    get200_model_a400_invalid.metadata = {'url': '/http/payloads/200/A/response/400/invalid'}  # type: ignore
 
     @distributed_trace
     def get200_model_a202_valid(
@@ -1502,7 +1502,7 @@ class MultipleResponsesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get200_model_a202_valid.metadata['url']
+        url = self.get200_model_a202_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1526,4 +1526,4 @@ class MultipleResponsesOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200_model_a202_valid.metadata = {'url': '/http/payloads/200/A/response/202/valid'}
+    get200_model_a202_valid.metadata = {'url': '/http/payloads/200/A/response/202/valid'}  # type: ignore

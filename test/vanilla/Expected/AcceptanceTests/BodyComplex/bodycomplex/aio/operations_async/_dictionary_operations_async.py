@@ -56,7 +56,7 @@ class DictionaryOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_valid.metadata['url']
+        url = self.get_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -81,7 +81,7 @@ class DictionaryOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_valid.metadata = {'url': '/complex/dictionary/typed/valid'}
+    get_valid.metadata = {'url': '/complex/dictionary/typed/valid'}  # type: ignore
 
     @distributed_trace_async
     async def put_valid(
@@ -105,7 +105,7 @@ class DictionaryOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_valid.metadata['url']
+        url = self.put_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -131,7 +131,7 @@ class DictionaryOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_valid.metadata = {'url': '/complex/dictionary/typed/valid'}
+    put_valid.metadata = {'url': '/complex/dictionary/typed/valid'}  # type: ignore
 
     @distributed_trace_async
     async def get_empty(
@@ -149,7 +149,7 @@ class DictionaryOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_empty.metadata['url']
+        url = self.get_empty.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -174,7 +174,7 @@ class DictionaryOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_empty.metadata = {'url': '/complex/dictionary/typed/empty'}
+    get_empty.metadata = {'url': '/complex/dictionary/typed/empty'}  # type: ignore
 
     @distributed_trace_async
     async def put_empty(
@@ -198,7 +198,7 @@ class DictionaryOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_empty.metadata['url']
+        url = self.put_empty.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -224,7 +224,7 @@ class DictionaryOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_empty.metadata = {'url': '/complex/dictionary/typed/empty'}
+    put_empty.metadata = {'url': '/complex/dictionary/typed/empty'}  # type: ignore
 
     @distributed_trace_async
     async def get_null(
@@ -242,7 +242,7 @@ class DictionaryOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_null.metadata['url']
+        url = self.get_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -267,7 +267,7 @@ class DictionaryOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_null.metadata = {'url': '/complex/dictionary/typed/null'}
+    get_null.metadata = {'url': '/complex/dictionary/typed/null'}  # type: ignore
 
     @distributed_trace_async
     async def get_not_provided(
@@ -285,7 +285,7 @@ class DictionaryOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_not_provided.metadata['url']
+        url = self.get_not_provided.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -310,4 +310,4 @@ class DictionaryOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_not_provided.metadata = {'url': '/complex/dictionary/typed/notprovided'}
+    get_not_provided.metadata = {'url': '/complex/dictionary/typed/notprovided'}  # type: ignore

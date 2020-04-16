@@ -33,8 +33,6 @@ class ModelBaseSerializer:
     def imports(self) -> FileImport:
         file_import = FileImport()
         file_import.add_import("msrest.serialization", ImportType.AZURECORE)
-        if any(os.is_exception for os in self.code_model.sorted_schemas):
-            file_import.add_from_import("azure.core.exceptions", "HttpResponseError", ImportType.AZURECORE)
         for model in self.code_model.sorted_schemas:
             file_import.merge(model.imports())
         return file_import
