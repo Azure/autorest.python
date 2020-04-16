@@ -14,6 +14,32 @@ from typing import Optional, TYPE_CHECKING, Union
 
 class MultiapiServiceClientOperationsMixin(object):
 
+    async def test_lro(
+        self,
+        product: Optional["models.Product"] = None,
+        **kwargs
+    ) -> "models.Product":
+        """Put in whatever shape of Product you want, will return a Product with id equal to 100.
+
+        :param product: Product to put.
+        :type product: ~multiapiwithsubmodule.submodule.v1.models.Product
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: Product or the result of cls(response)
+        :rtype: ~multiapiwithsubmodule.submodule.v1.models.Product or None
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        api_version = self._get_api_version('test_lro')
+        if api_version == '1.0.0':
+            from ..v1.aio.operations_async import MultiapiServiceClientOperationsMixin as OperationClass
+        else:
+            raise NotImplementedError("APIVersion {} is not available".format(api_version))
+        mixin_instance = OperationClass()
+        mixin_instance._client = self._client
+        mixin_instance._config = self._config
+        mixin_instance._serialize = Serializer(self._models_dict(api_version))
+        mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
+        return await mixin_instance.test_lro(product, **kwargs)
+
     async def test_one(
         self,
         id: int,
@@ -44,3 +70,26 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
         return await mixin_instance.test_one(id, message, **kwargs)
+
+    def test_paging(
+        self,
+        **kwargs
+    ) -> "models.PagingResult":
+        """Returns ModelThree with optionalProperty 'paged'.
+
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: PagingResult or the result of cls(response)
+        :rtype: ~multiapiwithsubmodule.submodule.v3.models.PagingResult
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        api_version = self._get_api_version('test_paging')
+        if api_version == '3.0.0':
+            from ..v3.aio.operations_async import MultiapiServiceClientOperationsMixin as OperationClass
+        else:
+            raise NotImplementedError("APIVersion {} is not available".format(api_version))
+        mixin_instance = OperationClass()
+        mixin_instance._client = self._client
+        mixin_instance._config = self._config
+        mixin_instance._serialize = Serializer(self._models_dict(api_version))
+        mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
+        return mixin_instance.test_paging(**kwargs)
