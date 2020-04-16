@@ -12,6 +12,10 @@
 - Adding multiple inheritance  #567
 - Accept polling_interval keyword passed to LRO operations  #571
 
+**Bug Fixes**
+
+- Fixed some generated typing hints (such as LROPoller) #507
+
 ### 2020-04-09 - 5.0.0-dev.20200409.1
 Modelerfour version: 4.12.301
 
