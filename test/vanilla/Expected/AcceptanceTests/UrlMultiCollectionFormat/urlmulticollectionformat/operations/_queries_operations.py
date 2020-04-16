@@ -64,7 +64,7 @@ class QueriesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.array_string_multi_null.metadata['url']
+        url = self.array_string_multi_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -87,7 +87,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    array_string_multi_null.metadata = {'url': '/queries/array/multi/string/null'}
+    array_string_multi_null.metadata = {'url': '/queries/array/multi/string/null'}  # type: ignore
 
     @distributed_trace
     def array_string_multi_empty(
@@ -109,7 +109,7 @@ class QueriesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.array_string_multi_empty.metadata['url']
+        url = self.array_string_multi_empty.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -132,7 +132,7 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    array_string_multi_empty.metadata = {'url': '/queries/array/multi/string/empty'}
+    array_string_multi_empty.metadata = {'url': '/queries/array/multi/string/empty'}  # type: ignore
 
     @distributed_trace
     def array_string_multi_valid(
@@ -155,7 +155,7 @@ class QueriesOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.array_string_multi_valid.metadata['url']
+        url = self.array_string_multi_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -178,4 +178,4 @@ class QueriesOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    array_string_multi_valid.metadata = {'url': '/queries/array/multi/string/valid'}
+    array_string_multi_valid.metadata = {'url': '/queries/array/multi/string/valid'}  # type: ignore

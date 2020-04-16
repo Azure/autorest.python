@@ -65,7 +65,7 @@ class PetsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.create_ap_true.metadata['url']
+        url = self.create_ap_true.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -95,7 +95,7 @@ class PetsOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    create_ap_true.metadata = {'url': '/additionalProperties/true'}
+    create_ap_true.metadata = {'url': '/additionalProperties/true'}  # type: ignore
 
     @distributed_trace
     def create_cat_ap_true(
@@ -118,7 +118,7 @@ class PetsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.create_cat_ap_true.metadata['url']
+        url = self.create_cat_ap_true.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -148,7 +148,7 @@ class PetsOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    create_cat_ap_true.metadata = {'url': '/additionalProperties/true-subclass'}
+    create_cat_ap_true.metadata = {'url': '/additionalProperties/true-subclass'}  # type: ignore
 
     @distributed_trace
     def create_ap_object(
@@ -171,7 +171,7 @@ class PetsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.create_ap_object.metadata['url']
+        url = self.create_ap_object.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -201,7 +201,7 @@ class PetsOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    create_ap_object.metadata = {'url': '/additionalProperties/type/object'}
+    create_ap_object.metadata = {'url': '/additionalProperties/type/object'}  # type: ignore
 
     @distributed_trace
     def create_ap_string(
@@ -224,7 +224,7 @@ class PetsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.create_ap_string.metadata['url']
+        url = self.create_ap_string.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -254,7 +254,7 @@ class PetsOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    create_ap_string.metadata = {'url': '/additionalProperties/type/string'}
+    create_ap_string.metadata = {'url': '/additionalProperties/type/string'}  # type: ignore
 
     @distributed_trace
     def create_ap_in_properties(
@@ -277,7 +277,7 @@ class PetsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.create_ap_in_properties.metadata['url']
+        url = self.create_ap_in_properties.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -307,7 +307,7 @@ class PetsOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    create_ap_in_properties.metadata = {'url': '/additionalProperties/in/properties'}
+    create_ap_in_properties.metadata = {'url': '/additionalProperties/in/properties'}  # type: ignore
 
     @distributed_trace
     def create_ap_in_properties_with_ap_string(
@@ -330,7 +330,7 @@ class PetsOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.create_ap_in_properties_with_ap_string.metadata['url']
+        url = self.create_ap_in_properties_with_ap_string.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -360,4 +360,4 @@ class PetsOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    create_ap_in_properties_with_ap_string.metadata = {'url': '/additionalProperties/in/properties/with/additionalProperties/string'}
+    create_ap_in_properties_with_ap_string.metadata = {'url': '/additionalProperties/in/properties/with/additionalProperties/string'}  # type: ignore

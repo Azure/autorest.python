@@ -62,7 +62,7 @@ class TimeOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get.metadata['url']
+        url = self.get.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -87,7 +87,7 @@ class TimeOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get.metadata = {'url': '/time/get'}
+    get.metadata = {'url': '/time/get'}  # type: ignore
 
     @distributed_trace
     def put(
@@ -110,7 +110,7 @@ class TimeOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put.metadata['url']
+        url = self.put.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -140,4 +140,4 @@ class TimeOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    put.metadata = {'url': '/time/put'}
+    put.metadata = {'url': '/time/put'}  # type: ignore

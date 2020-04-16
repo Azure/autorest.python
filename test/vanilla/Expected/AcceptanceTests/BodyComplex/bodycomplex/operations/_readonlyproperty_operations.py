@@ -61,7 +61,7 @@ class ReadonlypropertyOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_valid.metadata['url']
+        url = self.get_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -86,7 +86,7 @@ class ReadonlypropertyOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_valid.metadata = {'url': '/complex/readonlyproperty/valid'}
+    get_valid.metadata = {'url': '/complex/readonlyproperty/valid'}  # type: ignore
 
     @distributed_trace
     def put_valid(
@@ -111,7 +111,7 @@ class ReadonlypropertyOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_valid.metadata['url']
+        url = self.put_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -137,4 +137,4 @@ class ReadonlypropertyOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_valid.metadata = {'url': '/complex/readonlyproperty/valid'}
+    put_valid.metadata = {'url': '/complex/readonlyproperty/valid'}  # type: ignore

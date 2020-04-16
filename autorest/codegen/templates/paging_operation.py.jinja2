@@ -3,24 +3,24 @@
 {% set send_xml = "xml" if operation.parameters.has_body and "xml" in operation.request_content_type  %}
 {% set request_as_xml = ", is_xml=True" if send_xml else "" %}
 {% set stream_request_parameter = "stream=" ~ ("True" if operation.is_stream_response else "False") %}
+{% set item_paged = "AsyncItemPaged" if async_mode else "ItemPaged" %}
 {% macro return_docstring() %}
 {% if operation.responses | selectattr('has_body') | first %}
-:return: {{ operation.responses|selectattr('has_body')|map(attribute='schema')|map(attribute='docstring_text')|unique|join(' or ') }} or the result of cls(response)
-    :rtype: {% for response in operation.responses %}{{response.schema.docstring_type if response.has_body else "None"}}{% if not loop.last %} or {% endif %}{% endfor %}
+:return: An iterator like instance of {{ operation.responses|selectattr('has_body')|map(attribute='schema')|map(attribute='docstring_text')|unique|join(' or ') }} or the result of cls(response)
+:rtype: ~azure.core.{{ "async_" if async_mode else "" }}paging.{{ item_paged }}[{% for response in operation.responses %}{{response.schema.docstring_type if response.has_body else "None"}}{% if not loop.last -%} or {% endif %}{% endfor %}]
 {% else %}
 :return: None
-:rtype: None
-{% endif %}
-{% endmacro %}
+:rtype: None{% endif %}{% endmacro %}
 {% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 {% set next_link_str = "deserialized." + operation.next_link_name + " or None" if operation.next_link_name else "None" %}
 {# actual template starts here #}
 {% if code_model.options['tracing'] and operation.want_tracing %}
 @distributed_trace
 {% endif %}
-{{ op_tools.method_signature(operation, operation.python_name, async_mode=async_mode, coroutine=False) }}
+{% set return_type_wrapper = "AsyncIterable" if async_mode else "Iterable" %}
+{{ op_tools.method_signature(operation, operation.python_name, async_mode=async_mode, coroutine=False, return_type_wrapper=return_type_wrapper) }}
 {%- if not async_mode %}
-    {{ keywords.sync_return_type_annotation(operation) }}
+    {{ op_tools.sync_return_type_annotation(operation, return_type_wrapper) }}
 {% endif %}
 {% if operation.want_description_docstring %}
     """{{operation.description }}
@@ -41,14 +41,13 @@
     :type {{ parameter.serialized_name }}: {{ parameter.schema.docstring_type }}
 {% endfor %}
     :keyword callable cls: A custom type or function that will be passed the direct response
-    {{ return_docstring() }}
-    :raises: ~azure.core.exceptions.HttpResponseError
+    {{ return_docstring()|indent }}    :raises: ~azure.core.exceptions.HttpResponseError
     """
 {% endif %}
 {% if operation.deprecated %}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
-    cls = kwargs.pop('cls', None)  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
+    cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotation(operation) }}]
     {{ op_tools.error_map(operation, code_model)|indent }}
 {% if operation.parameters.grouped %}
     {{ op_tools.grouped_parameters(operation)|indent }}
@@ -65,7 +64,7 @@
     def prepare_request(next_link=None):
         if not next_link:
             # Construct URL
-            url = self.{{ operation.python_name }}.metadata['url']
+            url = self.{{ operation.python_name }}.metadata['url']  # type: ignore
         {% if operation.parameters.path %}
             path_format_arguments = {
         {% for path_parameter in operation.parameters.path %}
@@ -129,11 +128,7 @@
 
         return pipeline_response
 
-{% if async_mode %}
-    return AsyncItemPaged(
-{% else %}
-    return ItemPaged(
-{% endif %}
+    return {{ item_paged }}(
         get_next, extract_data
     )
-{{ operation.python_name }}.metadata = {'url': '{{ operation.url|replace("'", "\\'") }}'}
+{{ operation.python_name }}.metadata = {'url': '{{ operation.url|replace("'", "\\'") }}'}  # type: ignore

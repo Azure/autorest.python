@@ -56,7 +56,7 @@ class HttpClientFailureOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.head400.metadata['url']
+        url = self.head400.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -77,7 +77,7 @@ class HttpClientFailureOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    head400.metadata = {'url': '/http/failure/client/400'}
+    head400.metadata = {'url': '/http/failure/client/400'}  # type: ignore
 
     @distributed_trace_async
     async def get400(
@@ -95,7 +95,7 @@ class HttpClientFailureOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get400.metadata['url']
+        url = self.get400.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -116,7 +116,7 @@ class HttpClientFailureOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    get400.metadata = {'url': '/http/failure/client/400'}
+    get400.metadata = {'url': '/http/failure/client/400'}  # type: ignore
 
     @distributed_trace_async
     async def options400(
@@ -134,7 +134,7 @@ class HttpClientFailureOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.options400.metadata['url']
+        url = self.options400.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -155,7 +155,7 @@ class HttpClientFailureOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    options400.metadata = {'url': '/http/failure/client/400'}
+    options400.metadata = {'url': '/http/failure/client/400'}  # type: ignore
 
     @distributed_trace_async
     async def put400(
@@ -177,7 +177,7 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put400.metadata['url']
+        url = self.put400.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -206,7 +206,7 @@ class HttpClientFailureOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put400.metadata = {'url': '/http/failure/client/400'}
+    put400.metadata = {'url': '/http/failure/client/400'}  # type: ignore
 
     @distributed_trace_async
     async def patch400(
@@ -228,7 +228,7 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.patch400.metadata['url']
+        url = self.patch400.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -257,7 +257,7 @@ class HttpClientFailureOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    patch400.metadata = {'url': '/http/failure/client/400'}
+    patch400.metadata = {'url': '/http/failure/client/400'}  # type: ignore
 
     @distributed_trace_async
     async def post400(
@@ -279,7 +279,7 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post400.metadata['url']
+        url = self.post400.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -308,7 +308,7 @@ class HttpClientFailureOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    post400.metadata = {'url': '/http/failure/client/400'}
+    post400.metadata = {'url': '/http/failure/client/400'}  # type: ignore
 
     @distributed_trace_async
     async def delete400(
@@ -330,7 +330,7 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.delete400.metadata['url']
+        url = self.delete400.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -359,7 +359,7 @@ class HttpClientFailureOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    delete400.metadata = {'url': '/http/failure/client/400'}
+    delete400.metadata = {'url': '/http/failure/client/400'}  # type: ignore
 
     @distributed_trace_async
     async def head401(
@@ -377,7 +377,7 @@ class HttpClientFailureOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.head401.metadata['url']
+        url = self.head401.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -398,7 +398,7 @@ class HttpClientFailureOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    head401.metadata = {'url': '/http/failure/client/401'}
+    head401.metadata = {'url': '/http/failure/client/401'}  # type: ignore
 
     @distributed_trace_async
     async def get402(
@@ -416,7 +416,7 @@ class HttpClientFailureOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get402.metadata['url']
+        url = self.get402.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -437,7 +437,7 @@ class HttpClientFailureOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    get402.metadata = {'url': '/http/failure/client/402'}
+    get402.metadata = {'url': '/http/failure/client/402'}  # type: ignore
 
     @distributed_trace_async
     async def options403(
@@ -455,7 +455,7 @@ class HttpClientFailureOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.options403.metadata['url']
+        url = self.options403.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -476,7 +476,7 @@ class HttpClientFailureOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    options403.metadata = {'url': '/http/failure/client/403'}
+    options403.metadata = {'url': '/http/failure/client/403'}  # type: ignore
 
     @distributed_trace_async
     async def get403(
@@ -494,7 +494,7 @@ class HttpClientFailureOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get403.metadata['url']
+        url = self.get403.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -515,7 +515,7 @@ class HttpClientFailureOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    get403.metadata = {'url': '/http/failure/client/403'}
+    get403.metadata = {'url': '/http/failure/client/403'}  # type: ignore
 
     @distributed_trace_async
     async def put404(
@@ -537,7 +537,7 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put404.metadata['url']
+        url = self.put404.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -566,7 +566,7 @@ class HttpClientFailureOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put404.metadata = {'url': '/http/failure/client/404'}
+    put404.metadata = {'url': '/http/failure/client/404'}  # type: ignore
 
     @distributed_trace_async
     async def patch405(
@@ -588,7 +588,7 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.patch405.metadata['url']
+        url = self.patch405.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -617,7 +617,7 @@ class HttpClientFailureOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    patch405.metadata = {'url': '/http/failure/client/405'}
+    patch405.metadata = {'url': '/http/failure/client/405'}  # type: ignore
 
     @distributed_trace_async
     async def post406(
@@ -639,7 +639,7 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post406.metadata['url']
+        url = self.post406.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -668,7 +668,7 @@ class HttpClientFailureOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    post406.metadata = {'url': '/http/failure/client/406'}
+    post406.metadata = {'url': '/http/failure/client/406'}  # type: ignore
 
     @distributed_trace_async
     async def delete407(
@@ -690,7 +690,7 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.delete407.metadata['url']
+        url = self.delete407.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -719,7 +719,7 @@ class HttpClientFailureOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    delete407.metadata = {'url': '/http/failure/client/407'}
+    delete407.metadata = {'url': '/http/failure/client/407'}  # type: ignore
 
     @distributed_trace_async
     async def put409(
@@ -741,7 +741,7 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put409.metadata['url']
+        url = self.put409.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -770,7 +770,7 @@ class HttpClientFailureOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put409.metadata = {'url': '/http/failure/client/409'}
+    put409.metadata = {'url': '/http/failure/client/409'}  # type: ignore
 
     @distributed_trace_async
     async def head410(
@@ -788,7 +788,7 @@ class HttpClientFailureOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.head410.metadata['url']
+        url = self.head410.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -809,7 +809,7 @@ class HttpClientFailureOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    head410.metadata = {'url': '/http/failure/client/410'}
+    head410.metadata = {'url': '/http/failure/client/410'}  # type: ignore
 
     @distributed_trace_async
     async def get411(
@@ -827,7 +827,7 @@ class HttpClientFailureOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get411.metadata['url']
+        url = self.get411.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -848,7 +848,7 @@ class HttpClientFailureOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    get411.metadata = {'url': '/http/failure/client/411'}
+    get411.metadata = {'url': '/http/failure/client/411'}  # type: ignore
 
     @distributed_trace_async
     async def options412(
@@ -866,7 +866,7 @@ class HttpClientFailureOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.options412.metadata['url']
+        url = self.options412.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -887,7 +887,7 @@ class HttpClientFailureOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    options412.metadata = {'url': '/http/failure/client/412'}
+    options412.metadata = {'url': '/http/failure/client/412'}  # type: ignore
 
     @distributed_trace_async
     async def get412(
@@ -905,7 +905,7 @@ class HttpClientFailureOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get412.metadata['url']
+        url = self.get412.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -926,7 +926,7 @@ class HttpClientFailureOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    get412.metadata = {'url': '/http/failure/client/412'}
+    get412.metadata = {'url': '/http/failure/client/412'}  # type: ignore
 
     @distributed_trace_async
     async def put413(
@@ -948,7 +948,7 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put413.metadata['url']
+        url = self.put413.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -977,7 +977,7 @@ class HttpClientFailureOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put413.metadata = {'url': '/http/failure/client/413'}
+    put413.metadata = {'url': '/http/failure/client/413'}  # type: ignore
 
     @distributed_trace_async
     async def patch414(
@@ -999,7 +999,7 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.patch414.metadata['url']
+        url = self.patch414.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1028,7 +1028,7 @@ class HttpClientFailureOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    patch414.metadata = {'url': '/http/failure/client/414'}
+    patch414.metadata = {'url': '/http/failure/client/414'}  # type: ignore
 
     @distributed_trace_async
     async def post415(
@@ -1050,7 +1050,7 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post415.metadata['url']
+        url = self.post415.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1079,7 +1079,7 @@ class HttpClientFailureOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    post415.metadata = {'url': '/http/failure/client/415'}
+    post415.metadata = {'url': '/http/failure/client/415'}  # type: ignore
 
     @distributed_trace_async
     async def get416(
@@ -1097,7 +1097,7 @@ class HttpClientFailureOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get416.metadata['url']
+        url = self.get416.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1118,7 +1118,7 @@ class HttpClientFailureOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    get416.metadata = {'url': '/http/failure/client/416'}
+    get416.metadata = {'url': '/http/failure/client/416'}  # type: ignore
 
     @distributed_trace_async
     async def delete417(
@@ -1140,7 +1140,7 @@ class HttpClientFailureOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.delete417.metadata['url']
+        url = self.delete417.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1169,7 +1169,7 @@ class HttpClientFailureOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    delete417.metadata = {'url': '/http/failure/client/417'}
+    delete417.metadata = {'url': '/http/failure/client/417'}  # type: ignore
 
     @distributed_trace_async
     async def head429(
@@ -1187,7 +1187,7 @@ class HttpClientFailureOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.head429.metadata['url']
+        url = self.head429.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1208,4 +1208,4 @@ class HttpClientFailureOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    head429.metadata = {'url': '/http/failure/client/429'}
+    head429.metadata = {'url': '/http/failure/client/429'}  # type: ignore

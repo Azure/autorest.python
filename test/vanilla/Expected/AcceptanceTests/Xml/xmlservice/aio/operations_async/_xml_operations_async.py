@@ -56,7 +56,7 @@ class XmlOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_complex_type_ref_no_meta.metadata['url']
+        url = self.get_complex_type_ref_no_meta.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -80,7 +80,7 @@ class XmlOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_complex_type_ref_no_meta.metadata = {'url': '/xml/complex-type-ref-no-meta'}
+    get_complex_type_ref_no_meta.metadata = {'url': '/xml/complex-type-ref-no-meta'}  # type: ignore
 
     @distributed_trace_async
     async def put_complex_type_ref_no_meta(
@@ -102,7 +102,7 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
-        url = self.put_complex_type_ref_no_meta.metadata['url']
+        url = self.put_complex_type_ref_no_meta.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -127,7 +127,7 @@ class XmlOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_complex_type_ref_no_meta.metadata = {'url': '/xml/complex-type-ref-no-meta'}
+    put_complex_type_ref_no_meta.metadata = {'url': '/xml/complex-type-ref-no-meta'}  # type: ignore
 
     @distributed_trace_async
     async def get_complex_type_ref_with_meta(
@@ -145,7 +145,7 @@ class XmlOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_complex_type_ref_with_meta.metadata['url']
+        url = self.get_complex_type_ref_with_meta.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -169,7 +169,7 @@ class XmlOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_complex_type_ref_with_meta.metadata = {'url': '/xml/complex-type-ref-with-meta'}
+    get_complex_type_ref_with_meta.metadata = {'url': '/xml/complex-type-ref-with-meta'}  # type: ignore
 
     @distributed_trace_async
     async def put_complex_type_ref_with_meta(
@@ -191,7 +191,7 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
-        url = self.put_complex_type_ref_with_meta.metadata['url']
+        url = self.put_complex_type_ref_with_meta.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -216,7 +216,7 @@ class XmlOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_complex_type_ref_with_meta.metadata = {'url': '/xml/complex-type-ref-with-meta'}
+    put_complex_type_ref_with_meta.metadata = {'url': '/xml/complex-type-ref-with-meta'}  # type: ignore
 
     @distributed_trace_async
     async def get_simple(
@@ -234,7 +234,7 @@ class XmlOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_simple.metadata['url']
+        url = self.get_simple.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -259,7 +259,7 @@ class XmlOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_simple.metadata = {'url': '/xml/simple'}
+    get_simple.metadata = {'url': '/xml/simple'}  # type: ignore
 
     @distributed_trace_async
     async def put_simple(
@@ -281,7 +281,7 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
-        url = self.put_simple.metadata['url']
+        url = self.put_simple.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -307,7 +307,7 @@ class XmlOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_simple.metadata = {'url': '/xml/simple'}
+    put_simple.metadata = {'url': '/xml/simple'}  # type: ignore
 
     @distributed_trace_async
     async def get_wrapped_lists(
@@ -325,7 +325,7 @@ class XmlOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_wrapped_lists.metadata['url']
+        url = self.get_wrapped_lists.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -349,7 +349,7 @@ class XmlOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_wrapped_lists.metadata = {'url': '/xml/wrapped-lists'}
+    get_wrapped_lists.metadata = {'url': '/xml/wrapped-lists'}  # type: ignore
 
     @distributed_trace_async
     async def put_wrapped_lists(
@@ -371,7 +371,7 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
-        url = self.put_wrapped_lists.metadata['url']
+        url = self.put_wrapped_lists.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -397,7 +397,7 @@ class XmlOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_wrapped_lists.metadata = {'url': '/xml/wrapped-lists'}
+    put_wrapped_lists.metadata = {'url': '/xml/wrapped-lists'}  # type: ignore
 
     @distributed_trace_async
     async def get_headers(
@@ -415,7 +415,7 @@ class XmlOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_headers.metadata['url']
+        url = self.get_headers.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -438,7 +438,7 @@ class XmlOperations:
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    get_headers.metadata = {'url': '/xml/headers'}
+    get_headers.metadata = {'url': '/xml/headers'}  # type: ignore
 
     @distributed_trace_async
     async def get_empty_list(
@@ -456,7 +456,7 @@ class XmlOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_empty_list.metadata['url']
+        url = self.get_empty_list.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -480,7 +480,7 @@ class XmlOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_empty_list.metadata = {'url': '/xml/empty-list'}
+    get_empty_list.metadata = {'url': '/xml/empty-list'}  # type: ignore
 
     @distributed_trace_async
     async def put_empty_list(
@@ -502,7 +502,7 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
-        url = self.put_empty_list.metadata['url']
+        url = self.put_empty_list.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -527,7 +527,7 @@ class XmlOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_empty_list.metadata = {'url': '/xml/empty-list'}
+    put_empty_list.metadata = {'url': '/xml/empty-list'}  # type: ignore
 
     @distributed_trace_async
     async def get_empty_wrapped_lists(
@@ -545,7 +545,7 @@ class XmlOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_empty_wrapped_lists.metadata['url']
+        url = self.get_empty_wrapped_lists.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -569,7 +569,7 @@ class XmlOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_empty_wrapped_lists.metadata = {'url': '/xml/empty-wrapped-lists'}
+    get_empty_wrapped_lists.metadata = {'url': '/xml/empty-wrapped-lists'}  # type: ignore
 
     @distributed_trace_async
     async def put_empty_wrapped_lists(
@@ -591,7 +591,7 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
-        url = self.put_empty_wrapped_lists.metadata['url']
+        url = self.put_empty_wrapped_lists.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -616,13 +616,13 @@ class XmlOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_empty_wrapped_lists.metadata = {'url': '/xml/empty-wrapped-lists'}
+    put_empty_wrapped_lists.metadata = {'url': '/xml/empty-wrapped-lists'}  # type: ignore
 
     @distributed_trace_async
     async def get_root_list(
         self,
         **kwargs
-    ) -> List["Banana"]:
+    ) -> List["models.Banana"]:
         """Gets a list as the root element.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -630,11 +630,11 @@ class XmlOperations:
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["Banana"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Banana"]]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_root_list.metadata['url']
+        url = self.get_root_list.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -658,12 +658,12 @@ class XmlOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_root_list.metadata = {'url': '/xml/root-list'}
+    get_root_list.metadata = {'url': '/xml/root-list'}  # type: ignore
 
     @distributed_trace_async
     async def put_root_list(
         self,
-        bananas: List["Banana"],
+        bananas: List["models.Banana"],
         **kwargs
     ) -> None:
         """Puts a list as the root element.
@@ -680,7 +680,7 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
-        url = self.put_root_list.metadata['url']
+        url = self.put_root_list.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -706,13 +706,13 @@ class XmlOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_root_list.metadata = {'url': '/xml/root-list'}
+    put_root_list.metadata = {'url': '/xml/root-list'}  # type: ignore
 
     @distributed_trace_async
     async def get_root_list_single_item(
         self,
         **kwargs
-    ) -> List["Banana"]:
+    ) -> List["models.Banana"]:
         """Gets a list with a single item.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -720,11 +720,11 @@ class XmlOperations:
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["Banana"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Banana"]]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_root_list_single_item.metadata['url']
+        url = self.get_root_list_single_item.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -748,12 +748,12 @@ class XmlOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_root_list_single_item.metadata = {'url': '/xml/root-list-single-item'}
+    get_root_list_single_item.metadata = {'url': '/xml/root-list-single-item'}  # type: ignore
 
     @distributed_trace_async
     async def put_root_list_single_item(
         self,
-        bananas: List["Banana"],
+        bananas: List["models.Banana"],
         **kwargs
     ) -> None:
         """Puts a list with a single item.
@@ -770,7 +770,7 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
-        url = self.put_root_list_single_item.metadata['url']
+        url = self.put_root_list_single_item.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -796,13 +796,13 @@ class XmlOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_root_list_single_item.metadata = {'url': '/xml/root-list-single-item'}
+    put_root_list_single_item.metadata = {'url': '/xml/root-list-single-item'}  # type: ignore
 
     @distributed_trace_async
     async def get_empty_root_list(
         self,
         **kwargs
-    ) -> List["Banana"]:
+    ) -> List["models.Banana"]:
         """Gets an empty list as the root element.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -810,11 +810,11 @@ class XmlOperations:
         :rtype: list[~xmlservice.models.Banana]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["Banana"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.Banana"]]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_empty_root_list.metadata['url']
+        url = self.get_empty_root_list.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -838,12 +838,12 @@ class XmlOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_empty_root_list.metadata = {'url': '/xml/empty-root-list'}
+    get_empty_root_list.metadata = {'url': '/xml/empty-root-list'}  # type: ignore
 
     @distributed_trace_async
     async def put_empty_root_list(
         self,
-        bananas: List["Banana"],
+        bananas: List["models.Banana"],
         **kwargs
     ) -> None:
         """Puts an empty list as the root element.
@@ -860,7 +860,7 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
-        url = self.put_empty_root_list.metadata['url']
+        url = self.put_empty_root_list.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -886,7 +886,7 @@ class XmlOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_empty_root_list.metadata = {'url': '/xml/empty-root-list'}
+    put_empty_root_list.metadata = {'url': '/xml/empty-root-list'}  # type: ignore
 
     @distributed_trace_async
     async def get_empty_child_element(
@@ -904,7 +904,7 @@ class XmlOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_empty_child_element.metadata['url']
+        url = self.get_empty_child_element.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -928,7 +928,7 @@ class XmlOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_empty_child_element.metadata = {'url': '/xml/empty-child-element'}
+    get_empty_child_element.metadata = {'url': '/xml/empty-child-element'}  # type: ignore
 
     @distributed_trace_async
     async def put_empty_child_element(
@@ -950,7 +950,7 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
-        url = self.put_empty_child_element.metadata['url']
+        url = self.put_empty_child_element.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -975,7 +975,7 @@ class XmlOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_empty_child_element.metadata = {'url': '/xml/empty-child-element'}
+    put_empty_child_element.metadata = {'url': '/xml/empty-child-element'}  # type: ignore
 
     @distributed_trace_async
     async def list_containers(
@@ -994,7 +994,7 @@ class XmlOperations:
         comp = "list"
 
         # Construct URL
-        url = self.list_containers.metadata['url']
+        url = self.list_containers.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1019,7 +1019,7 @@ class XmlOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    list_containers.metadata = {'url': '/xml/'}
+    list_containers.metadata = {'url': '/xml/'}  # type: ignore
 
     @distributed_trace_async
     async def get_service_properties(
@@ -1039,7 +1039,7 @@ class XmlOperations:
         restype = "service"
 
         # Construct URL
-        url = self.get_service_properties.metadata['url']
+        url = self.get_service_properties.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1065,7 +1065,7 @@ class XmlOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_service_properties.metadata = {'url': '/xml/'}
+    get_service_properties.metadata = {'url': '/xml/'}  # type: ignore
 
     @distributed_trace_async
     async def put_service_properties(
@@ -1089,7 +1089,7 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
-        url = self.put_service_properties.metadata['url']
+        url = self.put_service_properties.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1116,13 +1116,13 @@ class XmlOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_service_properties.metadata = {'url': '/xml/'}
+    put_service_properties.metadata = {'url': '/xml/'}  # type: ignore
 
     @distributed_trace_async
     async def get_acls(
         self,
         **kwargs
-    ) -> List["SignedIdentifier"]:
+    ) -> List["models.SignedIdentifier"]:
         """Gets storage ACLs for a container.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -1130,13 +1130,13 @@ class XmlOperations:
         :rtype: list[~xmlservice.models.SignedIdentifier]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        cls = kwargs.pop('cls', None)  # type: ClsType[List["SignedIdentifier"]]
+        cls = kwargs.pop('cls', None)  # type: ClsType[List["models.SignedIdentifier"]]
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
         comp = "acl"
         restype = "container"
 
         # Construct URL
-        url = self.get_acls.metadata['url']
+        url = self.get_acls.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1162,12 +1162,12 @@ class XmlOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_acls.metadata = {'url': '/xml/mycontainer'}
+    get_acls.metadata = {'url': '/xml/mycontainer'}  # type: ignore
 
     @distributed_trace_async
     async def put_acls(
         self,
-        properties: List["SignedIdentifier"],
+        properties: List["models.SignedIdentifier"],
         **kwargs
     ) -> None:
         """Puts storage ACLs for a container.
@@ -1186,7 +1186,7 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/xml")
 
         # Construct URL
-        url = self.put_acls.metadata['url']
+        url = self.put_acls.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1214,7 +1214,7 @@ class XmlOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_acls.metadata = {'url': '/xml/mycontainer'}
+    put_acls.metadata = {'url': '/xml/mycontainer'}  # type: ignore
 
     @distributed_trace_async
     async def list_blobs(
@@ -1234,7 +1234,7 @@ class XmlOperations:
         restype = "container"
 
         # Construct URL
-        url = self.list_blobs.metadata['url']
+        url = self.list_blobs.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1260,7 +1260,7 @@ class XmlOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    list_blobs.metadata = {'url': '/xml/mycontainer'}
+    list_blobs.metadata = {'url': '/xml/mycontainer'}  # type: ignore
 
     @distributed_trace_async
     async def json_input(
@@ -1284,7 +1284,7 @@ class XmlOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.json_input.metadata['url']
+        url = self.json_input.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1309,7 +1309,7 @@ class XmlOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    json_input.metadata = {'url': '/xml/jsoninput'}
+    json_input.metadata = {'url': '/xml/jsoninput'}  # type: ignore
 
     @distributed_trace_async
     async def json_output(
@@ -1327,7 +1327,7 @@ class XmlOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.json_output.metadata['url']
+        url = self.json_output.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1351,4 +1351,4 @@ class XmlOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    json_output.metadata = {'url': '/xml/jsonoutput'}
+    json_output.metadata = {'url': '/xml/jsonoutput'}  # type: ignore

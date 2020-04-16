@@ -58,12 +58,14 @@ class EnumSchema(BaseSchema):
         description: str,
         name: str,
         values: List["EnumValue"],
-        enum_type: PrimitiveSchema
+        enum_type: PrimitiveSchema,
+        enum_file_name: str
     ) -> None:
         super(EnumSchema, self).__init__(namespace=namespace, yaml_data=yaml_data)
         self.description = description
         self.name = name
         self.values = values
+        self.enum_file_name = enum_file_name
         self.enum_type = enum_type
 
     def __lt__(self, other):
@@ -130,7 +132,7 @@ class EnumSchema(BaseSchema):
         return values
 
     @classmethod
-    def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs) -> "EnumSchema":
+    def from_yaml(cls, namespace: str, yaml_data: Dict[str, Any], **kwargs: Any) -> "EnumSchema":
         """Constructs an EnumSchema from yaml data.
 
         :param yaml_data: the yaml data from which we will construct this schema
@@ -147,6 +149,7 @@ class EnumSchema(BaseSchema):
         else:
             enum_type = StringSchema(namespace, {"type": "str"})
         values = EnumSchema._get_enum_values(yaml_data["choices"])
+        code_model = kwargs.pop("code_model")
 
         return cls(
             namespace=namespace,
@@ -154,7 +157,8 @@ class EnumSchema(BaseSchema):
             description=yaml_data["language"]["python"]["description"],
             name=name,
             values=values,
-            enum_type=enum_type
+            enum_type=enum_type,
+            enum_file_name=f"_{code_model.module_name}_enums"
         )
 
     def imports(self) -> FileImport:
@@ -162,3 +166,10 @@ class EnumSchema(BaseSchema):
         file_import.add_from_import("typing", "Union", ImportType.STDLIB, TypingSection.CONDITIONAL)
         file_import.merge(self.enum_type.imports())
         return file_import
+
+    def model_file_imports(self) -> FileImport:
+        imports = self.imports()
+        # we import every enum since we can get extremely long imports
+        # if we import my name
+        imports.add_from_import("." + self.enum_file_name, "*", ImportType.LOCAL)
+        return imports

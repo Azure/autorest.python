@@ -56,7 +56,7 @@ class PolymorphismOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_valid.metadata['url']
+        url = self.get_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -81,7 +81,7 @@ class PolymorphismOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_valid.metadata = {'url': '/complex/polymorphism/valid'}
+    get_valid.metadata = {'url': '/complex/polymorphism/valid'}  # type: ignore
 
     @distributed_trace_async
     async def put_valid(
@@ -135,7 +135,7 @@ class PolymorphismOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_valid.metadata['url']
+        url = self.put_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -161,7 +161,7 @@ class PolymorphismOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_valid.metadata = {'url': '/complex/polymorphism/valid'}
+    put_valid.metadata = {'url': '/complex/polymorphism/valid'}  # type: ignore
 
     @distributed_trace_async
     async def get_dot_syntax(
@@ -179,7 +179,7 @@ class PolymorphismOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_dot_syntax.metadata['url']
+        url = self.get_dot_syntax.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -204,7 +204,7 @@ class PolymorphismOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_dot_syntax.metadata = {'url': '/complex/polymorphism/dotsyntax'}
+    get_dot_syntax.metadata = {'url': '/complex/polymorphism/dotsyntax'}  # type: ignore
 
     @distributed_trace_async
     async def get_composed_with_discriminator(
@@ -222,7 +222,7 @@ class PolymorphismOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_composed_with_discriminator.metadata['url']
+        url = self.get_composed_with_discriminator.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -247,7 +247,7 @@ class PolymorphismOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_composed_with_discriminator.metadata = {'url': '/complex/polymorphism/composedWithDiscriminator'}
+    get_composed_with_discriminator.metadata = {'url': '/complex/polymorphism/composedWithDiscriminator'}  # type: ignore
 
     @distributed_trace_async
     async def get_composed_without_discriminator(
@@ -265,7 +265,7 @@ class PolymorphismOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_composed_without_discriminator.metadata['url']
+        url = self.get_composed_without_discriminator.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -290,7 +290,7 @@ class PolymorphismOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_composed_without_discriminator.metadata = {'url': '/complex/polymorphism/composedWithoutDiscriminator'}
+    get_composed_without_discriminator.metadata = {'url': '/complex/polymorphism/composedWithoutDiscriminator'}  # type: ignore
 
     @distributed_trace_async
     async def get_complicated(
@@ -308,7 +308,7 @@ class PolymorphismOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_complicated.metadata['url']
+        url = self.get_complicated.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -333,7 +333,7 @@ class PolymorphismOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_complicated.metadata = {'url': '/complex/polymorphism/complicated'}
+    get_complicated.metadata = {'url': '/complex/polymorphism/complicated'}  # type: ignore
 
     @distributed_trace_async
     async def put_complicated(
@@ -355,7 +355,7 @@ class PolymorphismOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_complicated.metadata['url']
+        url = self.put_complicated.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -381,7 +381,7 @@ class PolymorphismOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_complicated.metadata = {'url': '/complex/polymorphism/complicated'}
+    put_complicated.metadata = {'url': '/complex/polymorphism/complicated'}  # type: ignore
 
     @distributed_trace_async
     async def put_missing_discriminator(
@@ -403,7 +403,7 @@ class PolymorphismOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_missing_discriminator.metadata['url']
+        url = self.put_missing_discriminator.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -433,7 +433,7 @@ class PolymorphismOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    put_missing_discriminator.metadata = {'url': '/complex/polymorphism/missingdiscriminator'}
+    put_missing_discriminator.metadata = {'url': '/complex/polymorphism/missingdiscriminator'}  # type: ignore
 
     @distributed_trace_async
     async def put_valid_missing_required(
@@ -481,7 +481,7 @@ class PolymorphismOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_valid_missing_required.metadata['url']
+        url = self.put_valid_missing_required.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -507,4 +507,4 @@ class PolymorphismOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_valid_missing_required.metadata = {'url': '/complex/polymorphism/missingrequired/invalid'}
+    put_valid_missing_required.metadata = {'url': '/complex/polymorphism/missingrequired/invalid'}  # type: ignore

@@ -56,7 +56,7 @@ class HttpSuccessOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.head200.metadata['url']
+        url = self.head200.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -77,7 +77,7 @@ class HttpSuccessOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    head200.metadata = {'url': '/http/success/200'}
+    head200.metadata = {'url': '/http/success/200'}  # type: ignore
 
     @distributed_trace_async
     async def get200(
@@ -95,7 +95,7 @@ class HttpSuccessOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get200.metadata['url']
+        url = self.get200.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -120,7 +120,7 @@ class HttpSuccessOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get200.metadata = {'url': '/http/success/200'}
+    get200.metadata = {'url': '/http/success/200'}  # type: ignore
 
     @distributed_trace_async
     async def options200(
@@ -138,7 +138,7 @@ class HttpSuccessOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.options200.metadata['url']
+        url = self.options200.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -163,7 +163,7 @@ class HttpSuccessOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    options200.metadata = {'url': '/http/success/200'}
+    options200.metadata = {'url': '/http/success/200'}  # type: ignore
 
     @distributed_trace_async
     async def put200(
@@ -185,7 +185,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put200.metadata['url']
+        url = self.put200.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -214,7 +214,7 @@ class HttpSuccessOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put200.metadata = {'url': '/http/success/200'}
+    put200.metadata = {'url': '/http/success/200'}  # type: ignore
 
     @distributed_trace_async
     async def patch200(
@@ -236,7 +236,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.patch200.metadata['url']
+        url = self.patch200.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -265,7 +265,7 @@ class HttpSuccessOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    patch200.metadata = {'url': '/http/success/200'}
+    patch200.metadata = {'url': '/http/success/200'}  # type: ignore
 
     @distributed_trace_async
     async def post200(
@@ -287,7 +287,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post200.metadata['url']
+        url = self.post200.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -316,7 +316,7 @@ class HttpSuccessOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    post200.metadata = {'url': '/http/success/200'}
+    post200.metadata = {'url': '/http/success/200'}  # type: ignore
 
     @distributed_trace_async
     async def delete200(
@@ -338,7 +338,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.delete200.metadata['url']
+        url = self.delete200.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -367,7 +367,7 @@ class HttpSuccessOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    delete200.metadata = {'url': '/http/success/200'}
+    delete200.metadata = {'url': '/http/success/200'}  # type: ignore
 
     @distributed_trace_async
     async def put201(
@@ -389,7 +389,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put201.metadata['url']
+        url = self.put201.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -418,7 +418,7 @@ class HttpSuccessOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put201.metadata = {'url': '/http/success/201'}
+    put201.metadata = {'url': '/http/success/201'}  # type: ignore
 
     @distributed_trace_async
     async def post201(
@@ -440,7 +440,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post201.metadata['url']
+        url = self.post201.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -469,7 +469,7 @@ class HttpSuccessOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    post201.metadata = {'url': '/http/success/201'}
+    post201.metadata = {'url': '/http/success/201'}  # type: ignore
 
     @distributed_trace_async
     async def put202(
@@ -491,7 +491,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put202.metadata['url']
+        url = self.put202.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -520,7 +520,7 @@ class HttpSuccessOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put202.metadata = {'url': '/http/success/202'}
+    put202.metadata = {'url': '/http/success/202'}  # type: ignore
 
     @distributed_trace_async
     async def patch202(
@@ -542,7 +542,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.patch202.metadata['url']
+        url = self.patch202.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -571,7 +571,7 @@ class HttpSuccessOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    patch202.metadata = {'url': '/http/success/202'}
+    patch202.metadata = {'url': '/http/success/202'}  # type: ignore
 
     @distributed_trace_async
     async def post202(
@@ -593,7 +593,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post202.metadata['url']
+        url = self.post202.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -622,7 +622,7 @@ class HttpSuccessOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    post202.metadata = {'url': '/http/success/202'}
+    post202.metadata = {'url': '/http/success/202'}  # type: ignore
 
     @distributed_trace_async
     async def delete202(
@@ -644,7 +644,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.delete202.metadata['url']
+        url = self.delete202.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -673,7 +673,7 @@ class HttpSuccessOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    delete202.metadata = {'url': '/http/success/202'}
+    delete202.metadata = {'url': '/http/success/202'}  # type: ignore
 
     @distributed_trace_async
     async def head204(
@@ -691,7 +691,7 @@ class HttpSuccessOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.head204.metadata['url']
+        url = self.head204.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -712,7 +712,7 @@ class HttpSuccessOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    head204.metadata = {'url': '/http/success/204'}
+    head204.metadata = {'url': '/http/success/204'}  # type: ignore
 
     @distributed_trace_async
     async def put204(
@@ -734,7 +734,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put204.metadata['url']
+        url = self.put204.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -763,7 +763,7 @@ class HttpSuccessOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put204.metadata = {'url': '/http/success/204'}
+    put204.metadata = {'url': '/http/success/204'}  # type: ignore
 
     @distributed_trace_async
     async def patch204(
@@ -785,7 +785,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.patch204.metadata['url']
+        url = self.patch204.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -814,7 +814,7 @@ class HttpSuccessOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    patch204.metadata = {'url': '/http/success/204'}
+    patch204.metadata = {'url': '/http/success/204'}  # type: ignore
 
     @distributed_trace_async
     async def post204(
@@ -836,7 +836,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post204.metadata['url']
+        url = self.post204.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -865,7 +865,7 @@ class HttpSuccessOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    post204.metadata = {'url': '/http/success/204'}
+    post204.metadata = {'url': '/http/success/204'}  # type: ignore
 
     @distributed_trace_async
     async def delete204(
@@ -887,7 +887,7 @@ class HttpSuccessOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.delete204.metadata['url']
+        url = self.delete204.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -916,7 +916,7 @@ class HttpSuccessOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    delete204.metadata = {'url': '/http/success/204'}
+    delete204.metadata = {'url': '/http/success/204'}  # type: ignore
 
     @distributed_trace_async
     async def head404(
@@ -934,7 +934,7 @@ class HttpSuccessOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.head404.metadata['url']
+        url = self.head404.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -955,4 +955,4 @@ class HttpSuccessOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    head404.metadata = {'url': '/http/success/404'}
+    head404.metadata = {'url': '/http/success/404'}  # type: ignore

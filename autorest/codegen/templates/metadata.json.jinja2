@@ -53,7 +53,8 @@
         {{ operation.name | tojson }} : {
             "doc": {{ op_tools.operation_docstring(operation) | tojson }},
             {% set sync_operation_name = "begin_" + operation.name if is_lro(operation) else operation.name %}
-            "sync_signature": {{ op_tools.method_signature(operation, sync_operation_name, False, False) | tojson }},
+            {% set return_type_wrapper = "LROPoller" if is_lro(operation) else ("ItemPaged" if is_paging(operation) else "") %}
+            "sync_signature": {{ op_tools.method_signature(operation, sync_operation_name, False, False, return_type_wrapper) | tojson }},
             {% set coroutine = False if is_paging(operation) else True %}
             "async_signature": {{ op_tools.method_signature(operation, operation.name, True, coroutine) | tojson }},
             "coroutine": {{ coroutine | tojson }},

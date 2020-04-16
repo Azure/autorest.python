@@ -17,7 +17,7 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar
+    from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar
 
     T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -28,12 +28,12 @@ class MultiapiServiceClientOperationsMixin(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.PagingResult"
+        # type: (...) -> Iterable["models.PagingResult"]
         """Returns ModelThree with optionalProperty 'paged'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: PagingResult or the result of cls(response)
-        :rtype: ~multiapiwithsubmodule.submodule.v3.models.PagingResult
+        :return: An iterator like instance of PagingResult or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~multiapiwithsubmodule.submodule.v3.models.PagingResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.PagingResult"]
@@ -42,7 +42,7 @@ class MultiapiServiceClientOperationsMixin(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.test_paging.metadata['url']
+                url = self.test_paging.metadata['url']  # type: ignore
             else:
                 url = next_link
 
@@ -79,4 +79,4 @@ class MultiapiServiceClientOperationsMixin(object):
         return ItemPaged(
             get_next, extract_data
         )
-    test_paging.metadata = {'url': '/multiapi/paging'}
+    test_paging.metadata = {'url': '/multiapi/paging'}  # type: ignore

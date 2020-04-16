@@ -60,7 +60,7 @@ class OperationGroupTwoOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.test_four.metadata['url']
+        url = self.test_four.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -97,7 +97,7 @@ class OperationGroupTwoOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    test_four.metadata = {'url': '/multiapi/two/testFourEndpoint'}
+    test_four.metadata = {'url': '/multiapi/two/testFourEndpoint'}  # type: ignore
 
     async def test_five(
         self,
@@ -115,7 +115,7 @@ class OperationGroupTwoOperations:
         api_version = "3.0.0"
 
         # Construct URL
-        url = self.test_five.metadata['url']
+        url = self.test_five.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -137,4 +137,4 @@ class OperationGroupTwoOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    test_five.metadata = {'url': '/multiapi/two/testFiveEndpoint'}
+    test_five.metadata = {'url': '/multiapi/two/testFiveEndpoint'}  # type: ignore
