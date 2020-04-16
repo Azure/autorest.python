@@ -23,6 +23,7 @@
 # IN THE SOFTWARE.
 #
 # --------------------------------------------------------------------------
+from async_generator import yield_, async_generator
 import pytest
 import inspect
 import json
@@ -31,32 +32,33 @@ from .multiapi_base import NotTested
 
 
 @pytest.fixture
-def default_client(credential, authentication_policy):
-    from multiapi import MultiapiServiceClient
-    with MultiapiServiceClient(
+@async_generator
+async def default_client(credential, authentication_policy):
+    from multiapi.aio import MultiapiServiceClient
+    async with MultiapiServiceClient(
 		base_url="http://localhost:3000",
         credential=credential,
         authentication_policy=authentication_policy
     ) as default_client:
-        yield default_client
+        await yield_(default_client)
 
 @pytest.fixture
-def client(credential, authentication_policy, api_version):
-    from multiapi import MultiapiServiceClient
+@async_generator
+async def client(credential, authentication_policy, api_version):
+    from multiapi.aio import MultiapiServiceClient
 
-    with MultiapiServiceClient(
+    async with MultiapiServiceClient(
 		base_url="http://localhost:3000",
         api_version=api_version,
         credential=credential,
         authentication_policy=authentication_policy
     ) as client:
-        yield client
+        await yield_(client)
 
 @pytest.fixture
 def namespace_models():
     from multiapi import models
     return models
-
 
 @pytest.mark.parametrize('api_version', ["2.0.0"])
 def test_specify_api_version_multiapi_client(client):
@@ -66,9 +68,5 @@ def test_configuration_kwargs(default_client):
     # making sure that the package name is correct in the sdk moniker
     assert default_client._config.user_agent_policy._user_agent.startswith("azsdk-python-multiapi/")
 
-def test_patch_file():
-    from multiapi.models import PatchAddedModel
-
 class TestMultiapiClient(NotTested.TestMultiapiBase):
     pass
-

@@ -21,6 +21,7 @@ from .operation import Operation
 from .property import Property
 from .operation_group import OperationGroup
 from .schema_response import SchemaResponse
+from .parameter_list import ParameterList
 
 
 __all__ = [
@@ -40,6 +41,7 @@ __all__ = [
     "Operation",
     "PagingOperation",
     "Parameter",
+    "ParameterList",
     "OperationGroup",
     "Property",
     "SchemaResponse"
