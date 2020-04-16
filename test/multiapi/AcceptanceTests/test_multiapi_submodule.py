@@ -28,7 +28,7 @@ import inspect
 import json
 from azure.profiles import KnownProfiles
 
-from multiapi_base import NotTested
+from .multiapi_base import NotTested
 
 
 @pytest.fixture

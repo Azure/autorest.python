@@ -5,12 +5,21 @@
     "client": {
         "name": {{ code_model.class_name | tojson }},
         "filename": {{ ("_" + code_model.module_name) | tojson }},
-        "description": {{ code_model.description | tojson }},
-        "has_subscription_id": {{ "true" if "subscription_id" in code_model.global_parameters | map(attribute="serialized_name") | list else "false" }}
+        "description": {{ code_model.description | tojson }}
     },
     "global_parameters": {
-        "method": {
-            {% for gp in code_model.global_parameters.method %}
+        "sync_method": {
+            {% for gp in sync_global_parameters.method %}
+            {{ gp.serialized_name | tojson }}: {
+                "method_signature": {{ gp.sync_method_signature | tojson }},
+                "description": {{ gp.description | tojson }},
+                "docstring_type": {{ gp.schema.docstring_type | tojson }},
+                "required": {{ gp.required | tojson }}
+            }{{ "," if not loop.last else "" }}
+            {% endfor %}
+        },
+        "async_method": {
+            {% for gp in async_global_parameters.method %}
             {{ gp.serialized_name | tojson }}: {
                 "method_signature": {{ gp.sync_method_signature | tojson }},
                 "description": {{ gp.description | tojson }},
@@ -31,7 +40,6 @@
     "config": {
         "credential": {{ code_model.options['credential'] | tojson }},
         "credential_scopes": {{ code_model.options['credential_scopes'] | tojson }}
-
     },
     "operation_groups": {
         {% for operation_group in code_model.operation_groups %}
@@ -46,9 +54,14 @@
             "doc": {{ op_tools.operation_docstring(operation) | tojson }},
             {% set sync_operation_name = "begin_" + operation.name if is_lro(operation) else operation.name %}
             {% set return_type_wrapper = "LROPoller" if is_lro(operation) else ("ItemPaged" if is_paging(operation) else "") %}
-            "signature": {{ op_tools.method_signature(operation, sync_operation_name, False, False, return_type_wrapper) | tojson }},
+            "sync_signature": {{ op_tools.method_signature(operation, sync_operation_name, False, False, return_type_wrapper) | tojson }},
+            {% set coroutine = False if is_paging(operation) else True %}
+            "async_signature": {{ op_tools.method_signature(operation, operation.name, True, coroutine) | tojson }},
+            "coroutine": {{ coroutine | tojson }},
             "call": {{ operation.parameters.method | map(attribute="serialized_name") | join(', ') | tojson }}
         }{{ "," if not loop.last else "" }}
         {% endfor %}
-    }
+    },
+    "sync_imports": {{ str(sync_parameter_imports) | tojson }},
+    "async_imports": {{ str(async_parameter_imports) | tojson }}
 }
