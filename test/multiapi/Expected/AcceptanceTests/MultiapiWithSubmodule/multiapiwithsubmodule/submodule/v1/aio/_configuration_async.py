@@ -39,7 +39,7 @@ class MultiapiServiceClientConfiguration(Configuration):
         self.credential = credential
         self.api_version = "1.0.0"
         self.credential_scopes = []
-        self.credential_scopes.extend(kwargs.pop('credential_scopes', {}))
+        self.credential_scopes.extend(kwargs.pop('credential_scopes', []))
         kwargs.setdefault('sdk_moniker', 'multiapiwithsubmodule/{}'.format(VERSION))
         self._configure(**kwargs)
 

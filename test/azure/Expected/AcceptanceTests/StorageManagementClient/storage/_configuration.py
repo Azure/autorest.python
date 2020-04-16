@@ -49,7 +49,7 @@ class StorageManagementClientConfiguration(Configuration):
         self.subscription_id = subscription_id
         self.api_version = "2015-05-01-preview"
         self.credential_scopes = ['https://management.azure.com/.default']
-        self.credential_scopes.extend(kwargs.pop('credential_scopes', {}))
+        self.credential_scopes.extend(kwargs.pop('credential_scopes', []))
         kwargs.setdefault('sdk_moniker', 'storagemanagementclient/{}'.format(VERSION))
         self._configure(**kwargs)
 

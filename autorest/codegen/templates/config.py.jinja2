@@ -60,7 +60,7 @@ class {{ code_model.class_name }}Configuration(Configuration):
 {% endif %}
 {% if code_model.options['credential_scopes'] is not none %}
         self.credential_scopes = {{ code_model.options['credential_scopes'] }}
-        self.credential_scopes.extend(kwargs.pop('credential_scopes', {}))
+        self.credential_scopes.extend(kwargs.pop('credential_scopes', []))
 {% endif %}
         kwargs.setdefault('sdk_moniker', '{{ sdk_moniker }}/{}'.format(VERSION))
         self._configure(**kwargs)
