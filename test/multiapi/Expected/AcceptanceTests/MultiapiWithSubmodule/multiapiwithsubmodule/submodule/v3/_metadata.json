@@ -4,15 +4,22 @@
     "client": {
         "name": "MultiapiServiceClient",
         "filename": "_multiapi_service_client",
-        "description": "Service client for multiapi client testing.",
-        "has_subscription_id": false
+        "description": "Service client for multiapi client testing."
     },
     "global_parameters": {
-        "method": {
+        "sync_method": {
             "credential": {
                 "method_signature": "credential,  # type: \"TokenCredential\"",
                 "description": "Credential needed for the client to connect to Azure.",
                 "docstring_type": "~azure.core.credentials.TokenCredential",
+                "required": true
+            }
+        },
+        "async_method": {
+            "credential": {
+                "method_signature": "credential,  # type: \"AsyncTokenCredential\"",
+                "description": "Credential needed for the client to connect to Azure.",
+                "docstring_type": "~azure.core.credentials_async.AsyncTokenCredential",
                 "required": true
             }
         },
@@ -23,7 +30,6 @@
     "config": {
         "credential": true,
         "credential_scopes": []
-
     },
     "operation_groups": {
         "operation_group_one": "OperationGroupOneOperations",
@@ -32,8 +38,12 @@
     "operation_mixins": {
         "test_paging" : {
             "doc": "    \"\"\"Returns ModelThree with optionalProperty \u0027paged\u0027.\n\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: PagingResult or the result of cls(response)\n:rtype: ~multiapiwithsubmodule.submodule.v3.models.PagingResult\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\"",
-            "signature": "def test_paging(\n    self,\n    **kwargs  # type: Any\n):\n",
+            "sync_signature": "def test_paging(\n    self,\n    **kwargs  # type: Any\n):\n",
+            "async_signature": "def test_paging(\n    self,\n    **kwargs\n) -\u003e \"models.PagingResult\":\n",
+            "coroutine": false,
             "call": ""
         }
-    }
+    },
+    "sync_imports": "from typing import TYPE_CHECKING\n\nif TYPE_CHECKING:\n    # pylint: disable=unused-import,ungrouped-imports\n    from typing import Optional, Union",
+    "async_imports": "from typing import Optional, TYPE_CHECKING, Union"
 }

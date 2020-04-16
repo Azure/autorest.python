@@ -9,20 +9,16 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Optional, Union
+from typing import Optional, TYPE_CHECKING, Union
 
 
 class MultiapiServiceClientOperationsMixin(object):
 
-    def begin_test_lro(
+    async def test_lro(
         self,
-        product=None,  # type: Optional["models.Product"]
-        **kwargs  # type: Any
-    ):
+        product: Optional["models.Product"] = None,
+        **kwargs
+    ) -> "models.Product":
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
 
         :param product: Product to put.
@@ -34,7 +30,7 @@ class MultiapiServiceClientOperationsMixin(object):
         """
         api_version = self._get_api_version('test_lro')
         if api_version == '1.0.0':
-            from .v1.operations import MultiapiServiceClientOperationsMixin as OperationClass
+            from ..v1.aio.operations_async import MultiapiServiceClientOperationsMixin as OperationClass
         else:
             raise NotImplementedError("APIVersion {} is not available".format(api_version))
         mixin_instance = OperationClass()
@@ -42,14 +38,14 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._config = self._config
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        return mixin_instance.test_lro(product, **kwargs)
+        return await mixin_instance.test_lro(product, **kwargs)
 
-    def test_one(
+    async def test_one(
         self,
-        id,  # type: int
-        message=None,  # type: Optional[str]
-        **kwargs  # type: Any
-    ):
+        id: int,
+        message: Optional[str] = None,
+        **kwargs
+    ) -> "models.ModelTwo":
         """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
 
         :param id: An int parameter.
@@ -63,9 +59,9 @@ class MultiapiServiceClientOperationsMixin(object):
         """
         api_version = self._get_api_version('test_one')
         if api_version == '1.0.0':
-            from .v1.operations import MultiapiServiceClientOperationsMixin as OperationClass
+            from ..v1.aio.operations_async import MultiapiServiceClientOperationsMixin as OperationClass
         elif api_version == '2.0.0':
-            from .v2.operations import MultiapiServiceClientOperationsMixin as OperationClass
+            from ..v2.aio.operations_async import MultiapiServiceClientOperationsMixin as OperationClass
         else:
             raise NotImplementedError("APIVersion {} is not available".format(api_version))
         mixin_instance = OperationClass()
@@ -73,12 +69,12 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._config = self._config
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        return mixin_instance.test_one(id, message, **kwargs)
+        return await mixin_instance.test_one(id, message, **kwargs)
 
     def test_paging(
         self,
-        **kwargs  # type: Any
-    ):
+        **kwargs
+    ) -> "models.PagingResult":
         """Returns ModelThree with optionalProperty 'paged'.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -88,7 +84,7 @@ class MultiapiServiceClientOperationsMixin(object):
         """
         api_version = self._get_api_version('test_paging')
         if api_version == '3.0.0':
-            from .v3.operations import MultiapiServiceClientOperationsMixin as OperationClass
+            from ..v3.aio.operations_async import MultiapiServiceClientOperationsMixin as OperationClass
         else:
             raise NotImplementedError("APIVersion {} is not available".format(api_version))
         mixin_instance = OperationClass()
