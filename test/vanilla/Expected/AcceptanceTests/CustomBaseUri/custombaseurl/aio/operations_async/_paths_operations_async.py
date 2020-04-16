@@ -59,7 +59,7 @@ class PathsOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_empty.metadata['url']
+        url = self.get_empty.metadata['url']  # type: ignore
         path_format_arguments = {
             'accountName': self._serialize.url("account_name", account_name, 'str', skip_quote=True),
             'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
@@ -85,4 +85,4 @@ class PathsOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_empty.metadata = {'url': '/customuri'}
+    get_empty.metadata = {'url': '/customuri'}  # type: ignore

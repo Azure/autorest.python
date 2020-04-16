@@ -64,7 +64,7 @@ class ImplicitOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_required_path.metadata['url']
+        url = self.get_required_path.metadata['url']  # type: ignore
         path_format_arguments = {
             'pathParameter': self._serialize.url("path_parameter", path_parameter, 'str'),
         }
@@ -89,7 +89,7 @@ class ImplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_required_path.metadata = {'url': '/reqopt/implicit/required/path/{pathParameter}'}
+    get_required_path.metadata = {'url': '/reqopt/implicit/required/path/{pathParameter}'}  # type: ignore
 
     @distributed_trace
     def put_optional_query(
@@ -111,7 +111,7 @@ class ImplicitOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_optional_query.metadata['url']
+        url = self.put_optional_query.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -134,7 +134,7 @@ class ImplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_optional_query.metadata = {'url': '/reqopt/implicit/optional/query'}
+    put_optional_query.metadata = {'url': '/reqopt/implicit/optional/query'}  # type: ignore
 
     @distributed_trace
     def put_optional_header(
@@ -156,7 +156,7 @@ class ImplicitOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.put_optional_header.metadata['url']
+        url = self.put_optional_header.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -179,7 +179,7 @@ class ImplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_optional_header.metadata = {'url': '/reqopt/implicit/optional/header'}
+    put_optional_header.metadata = {'url': '/reqopt/implicit/optional/header'}  # type: ignore
 
     @distributed_trace
     def put_optional_body(
@@ -202,7 +202,7 @@ class ImplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_optional_body.metadata['url']
+        url = self.put_optional_body.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -231,7 +231,7 @@ class ImplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_optional_body.metadata = {'url': '/reqopt/implicit/optional/body'}
+    put_optional_body.metadata = {'url': '/reqopt/implicit/optional/body'}  # type: ignore
 
     @distributed_trace
     def get_required_global_path(
@@ -250,7 +250,7 @@ class ImplicitOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_required_global_path.metadata['url']
+        url = self.get_required_global_path.metadata['url']  # type: ignore
         path_format_arguments = {
             'required-global-path': self._serialize.url("self._config.required_global_path", self._config.required_global_path, 'str'),
         }
@@ -275,7 +275,7 @@ class ImplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_required_global_path.metadata = {'url': '/reqopt/global/required/path/{required-global-path}'}
+    get_required_global_path.metadata = {'url': '/reqopt/global/required/path/{required-global-path}'}  # type: ignore
 
     @distributed_trace
     def get_required_global_query(
@@ -294,7 +294,7 @@ class ImplicitOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_required_global_query.metadata['url']
+        url = self.get_required_global_query.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -316,7 +316,7 @@ class ImplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_required_global_query.metadata = {'url': '/reqopt/global/required/query'}
+    get_required_global_query.metadata = {'url': '/reqopt/global/required/query'}  # type: ignore
 
     @distributed_trace
     def get_optional_global_query(
@@ -335,7 +335,7 @@ class ImplicitOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_optional_global_query.metadata['url']
+        url = self.get_optional_global_query.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -358,4 +358,4 @@ class ImplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_optional_global_query.metadata = {'url': '/reqopt/global/optional/query'}
+    get_optional_global_query.metadata = {'url': '/reqopt/global/optional/query'}  # type: ignore

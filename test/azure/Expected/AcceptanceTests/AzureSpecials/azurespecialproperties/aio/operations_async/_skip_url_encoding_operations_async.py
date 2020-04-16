@@ -60,7 +60,7 @@ class SkipUrlEncodingOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_method_path_valid.metadata['url']
+        url = self.get_method_path_valid.metadata['url']  # type: ignore
         path_format_arguments = {
             'unencodedPathParam': self._serialize.url("unencoded_path_param", unencoded_path_param, 'str', skip_quote=True),
         }
@@ -85,7 +85,7 @@ class SkipUrlEncodingOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_method_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}'}
+    get_method_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}'}  # type: ignore
 
     @distributed_trace_async
     async def get_path_valid(
@@ -106,7 +106,7 @@ class SkipUrlEncodingOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_path_valid.metadata['url']
+        url = self.get_path_valid.metadata['url']  # type: ignore
         path_format_arguments = {
             'unencodedPathParam': self._serialize.url("unencoded_path_param", unencoded_path_param, 'str', skip_quote=True),
         }
@@ -131,7 +131,7 @@ class SkipUrlEncodingOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}'}
+    get_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}'}  # type: ignore
 
     @distributed_trace_async
     async def get_swagger_path_valid(
@@ -150,7 +150,7 @@ class SkipUrlEncodingOperations:
         unencoded_path_param = "path1/path2/path3"
 
         # Construct URL
-        url = self.get_swagger_path_valid.metadata['url']
+        url = self.get_swagger_path_valid.metadata['url']  # type: ignore
         path_format_arguments = {
             'unencodedPathParam': self._serialize.url("unencoded_path_param", unencoded_path_param, 'str', skip_quote=True),
         }
@@ -175,7 +175,7 @@ class SkipUrlEncodingOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_swagger_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}'}
+    get_swagger_path_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}'}  # type: ignore
 
     @distributed_trace_async
     async def get_method_query_valid(
@@ -196,7 +196,7 @@ class SkipUrlEncodingOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_method_query_valid.metadata['url']
+        url = self.get_method_query_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -218,7 +218,7 @@ class SkipUrlEncodingOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_method_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/method/query/valid'}
+    get_method_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/method/query/valid'}  # type: ignore
 
     @distributed_trace_async
     async def get_method_query_null(
@@ -239,7 +239,7 @@ class SkipUrlEncodingOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_method_query_null.metadata['url']
+        url = self.get_method_query_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -262,7 +262,7 @@ class SkipUrlEncodingOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_method_query_null.metadata = {'url': '/azurespecials/skipUrlEncoding/method/query/null'}
+    get_method_query_null.metadata = {'url': '/azurespecials/skipUrlEncoding/method/query/null'}  # type: ignore
 
     @distributed_trace_async
     async def get_path_query_valid(
@@ -283,7 +283,7 @@ class SkipUrlEncodingOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_path_query_valid.metadata['url']
+        url = self.get_path_query_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -305,7 +305,7 @@ class SkipUrlEncodingOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_path_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/path/query/valid'}
+    get_path_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/path/query/valid'}  # type: ignore
 
     @distributed_trace_async
     async def get_swagger_query_valid(
@@ -324,7 +324,7 @@ class SkipUrlEncodingOperations:
         q1 = "value1&q2=value2&q3=value3"
 
         # Construct URL
-        url = self.get_swagger_query_valid.metadata['url']
+        url = self.get_swagger_query_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -346,4 +346,4 @@ class SkipUrlEncodingOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_swagger_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/swagger/query/valid'}
+    get_swagger_query_valid.metadata = {'url': '/azurespecials/skipUrlEncoding/swagger/query/valid'}  # type: ignore

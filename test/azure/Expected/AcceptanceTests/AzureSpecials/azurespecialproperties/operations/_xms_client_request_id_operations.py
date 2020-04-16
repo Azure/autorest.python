@@ -62,7 +62,7 @@ class XMsClientRequestIdOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get.metadata['url']
+        url = self.get.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -82,7 +82,7 @@ class XMsClientRequestIdOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/method/'}
+    get.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/method/'}  # type: ignore
 
     @distributed_trace
     def param_get(
@@ -105,7 +105,7 @@ class XMsClientRequestIdOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.param_get.metadata['url']
+        url = self.param_get.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -127,4 +127,4 @@ class XMsClientRequestIdOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    param_get.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/via-param/method/'}
+    param_get.metadata = {'url': '/azurespecials/overwrite/x-ms-client-request-id/via-param/method/'}  # type: ignore

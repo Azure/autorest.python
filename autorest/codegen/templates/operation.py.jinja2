@@ -6,14 +6,14 @@
 {%- if code_model.options['tracing'] and operation.want_tracing -%}
 {{ trace_decorator }}
 {% endif %}
-{{ op_tools.method_signature(operation, operation.python_name, async_mode=async_mode, coroutine=async_mode) }}
+{{ op_tools.method_signature(operation, operation.python_name, async_mode=async_mode, coroutine=async_mode, return_type_wrapper="") }}
 {%- if not async_mode %}
-    {{ keywords.sync_return_type_annotation(operation) }}
+    {{ op_tools.sync_return_type_annotation(operation, "") }}
 {% endif %}
 {% if operation.want_description_docstring %}
 {{ op_tools.operation_docstring(operation)|indent }}
 {% endif %}
-    cls = kwargs.pop('cls', None)  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
+    cls = kwargs.pop('cls', None)  # type: {{ op_tools.return_type_annotation(operation, "ClsType") }}
 {% if operation.deprecated %}
     warnings.warn('Method {{operation.name}} is deprecated', DeprecationWarning)
 {% endif %}
@@ -36,7 +36,7 @@
 {% endif %}
 
     # Construct URL
-    url = self.{{ operation.python_name }}.metadata['url']
+    url = self.{{ operation.python_name }}.metadata['url']  # type: ignore
 {% if operation.parameters.path %}
     path_format_arguments = {
 {% for path_parameter in operation.parameters.path %}
@@ -88,4 +88,4 @@
 {% if operation.method == 'head' and code_model.options['head_as_boolean'] %}
     return 200 <= response.status_code <= 299
 {% endif %}
-{{ operation.python_name }}.metadata = {'url': {{ keywords.escape_str(operation.url) }}}
+{{ operation.python_name }}.metadata = {'url': {{ keywords.escape_str(operation.url) }}}  # type: ignore

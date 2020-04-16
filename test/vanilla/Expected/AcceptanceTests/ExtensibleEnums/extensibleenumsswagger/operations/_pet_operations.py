@@ -64,7 +64,7 @@ class PetOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_by_pet_id.metadata['url']
+        url = self.get_by_pet_id.metadata['url']  # type: ignore
         path_format_arguments = {
             'petId': self._serialize.url("pet_id", pet_id, 'str'),
         }
@@ -92,7 +92,7 @@ class PetOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_by_pet_id.metadata = {'url': '/extensibleenums/pet/{petId}'}
+    get_by_pet_id.metadata = {'url': '/extensibleenums/pet/{petId}'}  # type: ignore
 
     @distributed_trace
     def add_pet(
@@ -115,7 +115,7 @@ class PetOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.add_pet.metadata['url']
+        url = self.add_pet.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -147,4 +147,4 @@ class PetOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    add_pet.metadata = {'url': '/extensibleenums/pet/addPet'}
+    add_pet.metadata = {'url': '/extensibleenums/pet/addPet'}  # type: ignore

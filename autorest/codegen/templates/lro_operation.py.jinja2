@@ -5,9 +5,8 @@
 {% set poller = "async_poller" if async_mode else "LROPoller" %}
 {% set operation_name = operation.python_name if async_mode else "begin_"+operation.python_name %}
 {% macro return_docstring() %}
-:return: An instance of LROPoller that returns {{ operation.responses[0].schema.name if operation.responses[0].has_body else "None"}}
-    :rtype: ~azure.core.polling.LROPoller[{{ operation.responses[0].schema.docstring_type if operation.responses[0].has_body else "None" }}]
-{% endmacro %}
+:return: {{ "" if async_mode else "An instance of LROPoller that returns " }}{{ operation.responses[0].schema.name if operation.responses[0].has_body else "None"}}
+:rtype: {{"" if async_mode else "~azure.core.polling.LROPoller["}}{{ operation.responses[0].schema.docstring_type if operation.responses[0].has_body else "None" }}{{ "" if async_mode else "]" }}{% endmacro %}
 {% macro param_documentation_string(parameter) %}:param {{ parameter.serialized_name }}: {{ parameter.description }}{% endmacro %}
 {% macro response_headers(response) %}
 response_headers = {
@@ -21,9 +20,11 @@ response_headers = {
 {% if code_model.options['tracing'] %}
 {{ trace_decorator }}
 {% endif %}
-{{ op_tools.method_signature(operation, operation_name, async_mode=async_mode, coroutine=async_mode) }}
+{% set return_type_wrapper = "" if async_mode else "LROPoller" %}
+{{ op_tools.method_signature(operation, operation_name, async_mode=async_mode, coroutine=async_mode, return_type_wrapper=return_type_wrapper) }}
 {%- if not async_mode %}
-    {{ keywords.sync_return_type_annotation(operation) }}
+{# overriding sync_return_type_annotation because we know if it's sync, it's return type is just LROPoller #}
+    # type: (...) -> LROPoller
 {% endif %}
     """{{operation.description }}
     {% if operation.summary %}
@@ -47,11 +48,11 @@ response_headers = {
      polling object for personal polling strategy
     :paramtype polling: bool or ~azure.core.polling.{{ "Async" if async_mode else "" }}PollingMethod
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-    {{ return_docstring() }}
+    {{ return_docstring()|indent }}
     :raises ~azure.core.exceptions.HttpResponseError:
     """
     polling = kwargs.pop('polling', {{ "True" if code_model.options['azure_arm'] else "False" }})  # type: Union[bool, {{ "Async" if async_mode else "" }}PollingMethod]
-    cls = kwargs.pop('cls', None)  # type: ClsType[{{ keywords.return_type_annotation(operation) }}]
+    cls = kwargs.pop('cls', None)  # type: ClsType[{{ op_tools.return_type_annotation(operation) }}]
     lro_delay = kwargs.pop(
         'polling_interval',
         self._config.polling_interval
@@ -86,4 +87,4 @@ response_headers = {
     elif polling is False: polling_method = {{ async_prefix }}NoPolling()
     else: polling_method = polling
     return {{ keywords.await }}{{ poller }}(self._client, raw_result, get_long_running_output, polling_method)
-{{ operation_name }}.metadata = {'url': '{{ operation.url }}'}
+{{ operation_name }}.metadata = {'url': '{{ operation.url }}'}  # type: ignore

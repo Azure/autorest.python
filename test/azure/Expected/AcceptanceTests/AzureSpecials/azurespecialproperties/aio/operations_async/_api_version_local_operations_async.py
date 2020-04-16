@@ -58,7 +58,7 @@ class ApiVersionLocalOperations:
         api_version = "2.0"
 
         # Construct URL
-        url = self.get_method_local_valid.metadata['url']
+        url = self.get_method_local_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -80,7 +80,7 @@ class ApiVersionLocalOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_method_local_valid.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/local/2.0'}
+    get_method_local_valid.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/local/2.0'}  # type: ignore
 
     @distributed_trace_async
     async def get_method_local_null(
@@ -102,7 +102,7 @@ class ApiVersionLocalOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_method_local_null.metadata['url']
+        url = self.get_method_local_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -125,7 +125,7 @@ class ApiVersionLocalOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_method_local_null.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/local/null'}
+    get_method_local_null.metadata = {'url': '/azurespecials/apiVersion/method/string/none/query/local/null'}  # type: ignore
 
     @distributed_trace_async
     async def get_path_local_valid(
@@ -144,7 +144,7 @@ class ApiVersionLocalOperations:
         api_version = "2.0"
 
         # Construct URL
-        url = self.get_path_local_valid.metadata['url']
+        url = self.get_path_local_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -166,7 +166,7 @@ class ApiVersionLocalOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_path_local_valid.metadata = {'url': '/azurespecials/apiVersion/path/string/none/query/local/2.0'}
+    get_path_local_valid.metadata = {'url': '/azurespecials/apiVersion/path/string/none/query/local/2.0'}  # type: ignore
 
     @distributed_trace_async
     async def get_swagger_local_valid(
@@ -185,7 +185,7 @@ class ApiVersionLocalOperations:
         api_version = "2.0"
 
         # Construct URL
-        url = self.get_swagger_local_valid.metadata['url']
+        url = self.get_swagger_local_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -207,4 +207,4 @@ class ApiVersionLocalOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_swagger_local_valid.metadata = {'url': '/azurespecials/apiVersion/swagger/string/none/query/local/2.0'}
+    get_swagger_local_valid.metadata = {'url': '/azurespecials/apiVersion/swagger/string/none/query/local/2.0'}  # type: ignore

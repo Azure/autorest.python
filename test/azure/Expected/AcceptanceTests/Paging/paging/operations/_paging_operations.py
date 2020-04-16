@@ -21,7 +21,7 @@ from .. import models
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Any, Callable, Dict, Generic, Optional, TypeVar, Union
+    from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar, Union
 
     T = TypeVar('T')
     ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -53,12 +53,12 @@ class PagingOperations(object):
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.ProductResultValue"
+        # type: (...) -> Iterable["models.ProductResultValue"]
         """A paging operation that must return result of the default 'value' node.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ProductResultValue or the result of cls(response)
-        :rtype: ~paging.models.ProductResultValue
+        :return: An iterator like instance of ProductResultValue or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResultValue]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResultValue"]
@@ -67,7 +67,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_no_item_name_pages.metadata['url']
+                url = self.get_no_item_name_pages.metadata['url']  # type: ignore
             else:
                 url = next_link
 
@@ -104,19 +104,19 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_no_item_name_pages.metadata = {'url': '/paging/noitemname'}
+    get_no_item_name_pages.metadata = {'url': '/paging/noitemname'}  # type: ignore
 
     @distributed_trace
     def get_null_next_link_name_pages(
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.ProductResult"
+        # type: (...) -> Iterable["models.ProductResult"]
         """A paging operation that must ignore any kind of nextLink, and stop after page 1.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ProductResult or the result of cls(response)
-        :rtype: ~paging.models.ProductResult
+        :return: An iterator like instance of ProductResult or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
@@ -125,7 +125,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_null_next_link_name_pages.metadata['url']
+                url = self.get_null_next_link_name_pages.metadata['url']  # type: ignore
             else:
                 url = next_link
 
@@ -162,19 +162,19 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_null_next_link_name_pages.metadata = {'url': '/paging/nullnextlink'}
+    get_null_next_link_name_pages.metadata = {'url': '/paging/nullnextlink'}  # type: ignore
 
     @distributed_trace
     def get_single_pages(
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.ProductResult"
+        # type: (...) -> Iterable["models.ProductResult"]
         """A paging operation that finishes on the first call without a nextlink.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ProductResult or the result of cls(response)
-        :rtype: ~paging.models.ProductResult
+        :return: An iterator like instance of ProductResult or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
@@ -183,7 +183,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_single_pages.metadata['url']
+                url = self.get_single_pages.metadata['url']  # type: ignore
             else:
                 url = next_link
 
@@ -220,7 +220,7 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_single_pages.metadata = {'url': '/paging/single'}
+    get_single_pages.metadata = {'url': '/paging/single'}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages(
@@ -229,7 +229,7 @@ class PagingOperations(object):
         paging_get_multiple_pages_options=None,  # type: Optional["models.PagingGetMultiplePagesOptions"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.ProductResult"
+        # type: (...) -> Iterable["models.ProductResult"]
         """A paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id:
@@ -237,8 +237,8 @@ class PagingOperations(object):
         :param paging_get_multiple_pages_options: Parameter group.
         :type paging_get_multiple_pages_options: ~paging.models.PagingGetMultiplePagesOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ProductResult or the result of cls(response)
-        :rtype: ~paging.models.ProductResult
+        :return: An iterator like instance of ProductResult or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
@@ -253,7 +253,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_multiple_pages.metadata['url']
+                url = self.get_multiple_pages.metadata['url']  # type: ignore
             else:
                 url = next_link
 
@@ -296,7 +296,7 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_multiple_pages.metadata = {'url': '/paging/multiple'}
+    get_multiple_pages.metadata = {'url': '/paging/multiple'}  # type: ignore
 
     @distributed_trace
     def get_odata_multiple_pages(
@@ -305,7 +305,7 @@ class PagingOperations(object):
         paging_get_odata_multiple_pages_options=None,  # type: Optional["models.PagingGetOdataMultiplePagesOptions"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.OdataProductResult"
+        # type: (...) -> Iterable["models.OdataProductResult"]
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
         :param client_request_id:
@@ -313,8 +313,8 @@ class PagingOperations(object):
         :param paging_get_odata_multiple_pages_options: Parameter group.
         :type paging_get_odata_multiple_pages_options: ~paging.models.PagingGetOdataMultiplePagesOptions
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: OdataProductResult or the result of cls(response)
-        :rtype: ~paging.models.OdataProductResult
+        :return: An iterator like instance of OdataProductResult or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.OdataProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult"]
@@ -329,7 +329,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_odata_multiple_pages.metadata['url']
+                url = self.get_odata_multiple_pages.metadata['url']  # type: ignore
             else:
                 url = next_link
 
@@ -372,7 +372,7 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_odata_multiple_pages.metadata = {'url': '/paging/multiple/odata'}
+    get_odata_multiple_pages.metadata = {'url': '/paging/multiple/odata'}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_with_offset(
@@ -381,7 +381,7 @@ class PagingOperations(object):
         client_request_id=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.ProductResult"
+        # type: (...) -> Iterable["models.ProductResult"]
         """A paging operation that includes a nextLink that has 10 pages.
 
         :param paging_get_multiple_pages_with_offset_options: Parameter group.
@@ -389,8 +389,8 @@ class PagingOperations(object):
         :param client_request_id:
         :type client_request_id: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ProductResult or the result of cls(response)
-        :rtype: ~paging.models.ProductResult
+        :return: An iterator like instance of ProductResult or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
@@ -407,7 +407,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_multiple_pages_with_offset.metadata['url']
+                url = self.get_multiple_pages_with_offset.metadata['url']  # type: ignore
                 path_format_arguments = {
                     'offset': self._serialize.url("offset", _offset, 'int'),
                 }
@@ -454,19 +454,19 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_multiple_pages_with_offset.metadata = {'url': '/paging/multiple/withpath/{offset}'}
+    get_multiple_pages_with_offset.metadata = {'url': '/paging/multiple/withpath/{offset}'}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_retry_first(
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.ProductResult"
+        # type: (...) -> Iterable["models.ProductResult"]
         """A paging operation that fails on the first call with 500 and then retries and then get a response including a nextLink that has 10 pages.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ProductResult or the result of cls(response)
-        :rtype: ~paging.models.ProductResult
+        :return: An iterator like instance of ProductResult or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
@@ -475,7 +475,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_multiple_pages_retry_first.metadata['url']
+                url = self.get_multiple_pages_retry_first.metadata['url']  # type: ignore
             else:
                 url = next_link
 
@@ -512,19 +512,19 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_multiple_pages_retry_first.metadata = {'url': '/paging/multiple/retryfirst'}
+    get_multiple_pages_retry_first.metadata = {'url': '/paging/multiple/retryfirst'}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_retry_second(
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.ProductResult"
+        # type: (...) -> Iterable["models.ProductResult"]
         """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first with 500. The client should retry and finish all 10 pages eventually.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ProductResult or the result of cls(response)
-        :rtype: ~paging.models.ProductResult
+        :return: An iterator like instance of ProductResult or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
@@ -533,7 +533,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_multiple_pages_retry_second.metadata['url']
+                url = self.get_multiple_pages_retry_second.metadata['url']  # type: ignore
             else:
                 url = next_link
 
@@ -570,19 +570,19 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_multiple_pages_retry_second.metadata = {'url': '/paging/multiple/retrysecond'}
+    get_multiple_pages_retry_second.metadata = {'url': '/paging/multiple/retrysecond'}  # type: ignore
 
     @distributed_trace
     def get_single_pages_failure(
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.ProductResult"
+        # type: (...) -> Iterable["models.ProductResult"]
         """A paging operation that receives a 400 on the first call.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ProductResult or the result of cls(response)
-        :rtype: ~paging.models.ProductResult
+        :return: An iterator like instance of ProductResult or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
@@ -591,7 +591,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_single_pages_failure.metadata['url']
+                url = self.get_single_pages_failure.metadata['url']  # type: ignore
             else:
                 url = next_link
 
@@ -628,19 +628,19 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_single_pages_failure.metadata = {'url': '/paging/single/failure'}
+    get_single_pages_failure.metadata = {'url': '/paging/single/failure'}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_failure(
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.ProductResult"
+        # type: (...) -> Iterable["models.ProductResult"]
         """A paging operation that receives a 400 on the second call.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ProductResult or the result of cls(response)
-        :rtype: ~paging.models.ProductResult
+        :return: An iterator like instance of ProductResult or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
@@ -649,7 +649,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_multiple_pages_failure.metadata['url']
+                url = self.get_multiple_pages_failure.metadata['url']  # type: ignore
             else:
                 url = next_link
 
@@ -686,19 +686,19 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_multiple_pages_failure.metadata = {'url': '/paging/multiple/failure'}
+    get_multiple_pages_failure.metadata = {'url': '/paging/multiple/failure'}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_failure_uri(
         self,
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.ProductResult"
+        # type: (...) -> Iterable["models.ProductResult"]
         """A paging operation that receives an invalid nextLink.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: ProductResult or the result of cls(response)
-        :rtype: ~paging.models.ProductResult
+        :return: An iterator like instance of ProductResult or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
@@ -707,7 +707,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_multiple_pages_failure_uri.metadata['url']
+                url = self.get_multiple_pages_failure_uri.metadata['url']  # type: ignore
             else:
                 url = next_link
 
@@ -744,7 +744,7 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_multiple_pages_failure_uri.metadata = {'url': '/paging/multiple/failureuri'}
+    get_multiple_pages_failure_uri.metadata = {'url': '/paging/multiple/failureuri'}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_fragment_next_link(
@@ -753,7 +753,7 @@ class PagingOperations(object):
         tenant,  # type: str
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.OdataProductResult"
+        # type: (...) -> Iterable["models.OdataProductResult"]
         """A paging operation that doesn't return a full URL, just a fragment.
 
         :param api_version: Sets the api version to use.
@@ -761,8 +761,8 @@ class PagingOperations(object):
         :param tenant: Sets the tenant to use.
         :type tenant: str
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: OdataProductResult or the result of cls(response)
-        :rtype: ~paging.models.OdataProductResult
+        :return: An iterator like instance of OdataProductResult or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.OdataProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult"]
@@ -771,7 +771,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_multiple_pages_fragment_next_link.metadata['url']
+                url = self.get_multiple_pages_fragment_next_link.metadata['url']  # type: ignore
                 path_format_arguments = {
                     'tenant': self._serialize.url("tenant", tenant, 'str'),
                 }
@@ -818,7 +818,7 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_multiple_pages_fragment_next_link.metadata = {'url': '/paging/multiple/fragment/{tenant}'}
+    get_multiple_pages_fragment_next_link.metadata = {'url': '/paging/multiple/fragment/{tenant}'}  # type: ignore
 
     @distributed_trace
     def get_multiple_pages_fragment_with_grouping_next_link(
@@ -826,14 +826,14 @@ class PagingOperations(object):
         custom_parameter_group,  # type: "models.CustomParameterGroup"
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.OdataProductResult"
+        # type: (...) -> Iterable["models.OdataProductResult"]
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
 
         :param custom_parameter_group: Parameter group.
         :type custom_parameter_group: ~paging.models.CustomParameterGroup
         :keyword callable cls: A custom type or function that will be passed the direct response
-        :return: OdataProductResult or the result of cls(response)
-        :rtype: ~paging.models.OdataProductResult
+        :return: An iterator like instance of OdataProductResult or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.OdataProductResult]
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult"]
@@ -848,7 +848,7 @@ class PagingOperations(object):
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
-                url = self.get_multiple_pages_fragment_with_grouping_next_link.metadata['url']
+                url = self.get_multiple_pages_fragment_with_grouping_next_link.metadata['url']  # type: ignore
                 path_format_arguments = {
                     'tenant': self._serialize.url("tenant", _tenant, 'str'),
                 }
@@ -895,7 +895,7 @@ class PagingOperations(object):
         return ItemPaged(
             get_next, extract_data
         )
-    get_multiple_pages_fragment_with_grouping_next_link.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}'}
+    get_multiple_pages_fragment_with_grouping_next_link.metadata = {'url': '/paging/multiple/fragmentwithgrouping/{tenant}'}  # type: ignore
 
     def _get_multiple_pages_lro_initial(
         self,
@@ -914,7 +914,7 @@ class PagingOperations(object):
             _timeout = paging_get_multiple_pages_lro_options.timeout
 
         # Construct URL
-        url = self._get_multiple_pages_lro_initial.metadata['url']
+        url = self._get_multiple_pages_lro_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -944,7 +944,7 @@ class PagingOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    _get_multiple_pages_lro_initial.metadata = {'url': '/paging/multiple/lro'}
+    _get_multiple_pages_lro_initial.metadata = {'url': '/paging/multiple/lro'}  # type: ignore
 
     @distributed_trace
     def begin_get_multiple_pages_lro(
@@ -953,7 +953,7 @@ class PagingOperations(object):
         paging_get_multiple_pages_lro_options=None,  # type: Optional["models.PagingGetMultiplePagesLroOptions"]
         **kwargs  # type: Any
     ):
-        # type: (...) -> "models.ProductResult"
+        # type: (...) -> LROPoller
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id:
@@ -967,7 +967,6 @@ class PagingOperations(object):
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
         :return: An instance of LROPoller that returns ProductResult
         :rtype: ~azure.core.polling.LROPoller[~paging.models.ProductResult]
-
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, PollingMethod]
@@ -994,4 +993,4 @@ class PagingOperations(object):
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling
         return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    begin_get_multiple_pages_lro.metadata = {'url': '/paging/multiple/lro'}
+    begin_get_multiple_pages_lro.metadata = {'url': '/paging/multiple/lro'}  # type: ignore
