@@ -10,7 +10,7 @@ import shutil
 
 from collections import defaultdict
 from pathlib import Path
-from typing import Dict, List, Tuple, Optional, cast
+from typing import Dict, List, Tuple, Optional, cast, Any
 from .multiapi_serializer import MultiAPISerializer
 from ..jsonrpc import AutorestAPI
 
@@ -55,7 +55,7 @@ def _get_floating_latest(api_versions_list: List[str], preview_mode: bool) -> st
 
 def _build_last_rt_list(
     versioned_operations_dict: Dict[str, List[Tuple[str, str]]],
-    mixin_operations: Dict[str, Dict[str, List[str]]],
+    mixin_operations: Dict[str, Dict[str, Dict[str, Any]]],
     last_api_version: str,
     preview_mode: bool,
     async_mode: bool
@@ -148,7 +148,7 @@ class MultiAPI:
                 paths_to_versions.append(Path(child.stem))
         return paths_to_versions
 
-    def _build_operation_mixin_meta(self, paths_to_versions: List[Path]) -> Dict[str, Dict[str, List[str]]]:
+    def _build_operation_mixin_meta(self, paths_to_versions: List[Path]) -> Dict[str, Dict[str, Dict[str, Any]]]:
         """Introspect the client:
 
         version_dict => {
@@ -162,7 +162,7 @@ class MultiAPI:
             }
         }
         """
-        mixin_operations: Dict[str, Dict[str, List[str]]] = {}
+        mixin_operations: Dict[str, Dict[str, Dict[str, Any]]] = {}
         for version_path in paths_to_versions:
             metadata_json = json.loads(self._autorestapi.read_file(version_path / "_metadata.json"))
             if not metadata_json.get('operation_mixins'):
@@ -171,26 +171,27 @@ class MultiAPI:
                 if func_name.startswith("_"):
                     continue
 
-                mixin_operations.setdefault(func_name, {}).setdefault('sync', {}).setdefault(
-                    "available_apis", []
-                ).append(version_path.name)
-                mixin_operations.setdefault(func_name, {}).setdefault('async', {}).setdefault(
-                    "available_apis", []
-                ).append(version_path.name)
-
-                mixin_operations[func_name]['sync'].update({
+                mixin_operations.setdefault(func_name, {}).setdefault('sync', {})
+                mixin_operations.setdefault(func_name, {}).setdefault('async', {})
+                mixin_operations[func_name]['sync'] = {
                     "signature": func['sync']['signature'],
                     "operation_name": func['sync']['operation_name'],
                     "doc": func['doc'],
                     "call": func['call']
-                })
-                mixin_operations[func_name]['async'].update({
+                }
+                mixin_operations[func_name]['async'] = {
                     "signature": func['async']['signature'],
                     "operation_name": func['async']['operation_name'],
                     "coroutine": func['async']['coroutine'],
                     "doc": func['doc'],
                     "call": func['call']
-                })
+                }
+                mixin_operations[func_name]['sync'].setdefault(
+                    "available_apis", []
+                ).append(version_path.name)
+                mixin_operations[func_name]['async'].setdefault(
+                    "available_apis", []
+                ).append(version_path.name)
 
 
         return mixin_operations
