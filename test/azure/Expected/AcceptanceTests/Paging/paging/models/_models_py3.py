@@ -10,6 +10,8 @@ from typing import List, Optional, Union
 
 import msrest.serialization
 
+from ._auto_rest_paging_test_service_enums import *
+
 
 class CustomParameterGroup(msrest.serialization.Model):
     """Parameter group.

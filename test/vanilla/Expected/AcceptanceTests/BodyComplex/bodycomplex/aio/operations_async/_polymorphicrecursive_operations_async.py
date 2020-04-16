@@ -56,7 +56,7 @@ class PolymorphicrecursiveOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_valid.metadata['url']
+        url = self.get_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -81,7 +81,7 @@ class PolymorphicrecursiveOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}
+    get_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}  # type: ignore
 
     @distributed_trace_async
     async def put_valid(
@@ -155,7 +155,7 @@ class PolymorphicrecursiveOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_valid.metadata['url']
+        url = self.put_valid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -181,4 +181,4 @@ class PolymorphicrecursiveOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}
+    put_valid.metadata = {'url': '/complex/polymorphicrecursive/valid'}  # type: ignore

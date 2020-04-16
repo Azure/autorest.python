@@ -65,7 +65,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_required_integer_parameter.metadata['url']
+        url = self.post_required_integer_parameter.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -91,7 +91,7 @@ class ExplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_required_integer_parameter.metadata = {'url': '/reqopt/requied/integer/parameter'}
+    post_required_integer_parameter.metadata = {'url': '/reqopt/requied/integer/parameter'}  # type: ignore
 
     @distributed_trace
     def post_optional_integer_parameter(
@@ -114,7 +114,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_optional_integer_parameter.metadata['url']
+        url = self.post_optional_integer_parameter.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -143,7 +143,7 @@ class ExplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_optional_integer_parameter.metadata = {'url': '/reqopt/optional/integer/parameter'}
+    post_optional_integer_parameter.metadata = {'url': '/reqopt/optional/integer/parameter'}  # type: ignore
 
     @distributed_trace
     def post_required_integer_property(
@@ -168,7 +168,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_required_integer_property.metadata['url']
+        url = self.post_required_integer_property.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -194,7 +194,7 @@ class ExplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_required_integer_property.metadata = {'url': '/reqopt/requied/integer/property'}
+    post_required_integer_property.metadata = {'url': '/reqopt/requied/integer/property'}  # type: ignore
 
     @distributed_trace
     def post_optional_integer_property(
@@ -219,7 +219,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_optional_integer_property.metadata['url']
+        url = self.post_optional_integer_property.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -248,7 +248,7 @@ class ExplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_optional_integer_property.metadata = {'url': '/reqopt/optional/integer/property'}
+    post_optional_integer_property.metadata = {'url': '/reqopt/optional/integer/property'}  # type: ignore
 
     @distributed_trace
     def post_required_integer_header(
@@ -270,7 +270,7 @@ class ExplicitOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.post_required_integer_header.metadata['url']
+        url = self.post_required_integer_header.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -292,7 +292,7 @@ class ExplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_required_integer_header.metadata = {'url': '/reqopt/requied/integer/header'}
+    post_required_integer_header.metadata = {'url': '/reqopt/requied/integer/header'}  # type: ignore
 
     @distributed_trace
     def post_optional_integer_header(
@@ -314,7 +314,7 @@ class ExplicitOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.post_optional_integer_header.metadata['url']
+        url = self.post_optional_integer_header.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -337,7 +337,7 @@ class ExplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_optional_integer_header.metadata = {'url': '/reqopt/optional/integer/header'}
+    post_optional_integer_header.metadata = {'url': '/reqopt/optional/integer/header'}  # type: ignore
 
     @distributed_trace
     def post_required_string_parameter(
@@ -360,7 +360,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_required_string_parameter.metadata['url']
+        url = self.post_required_string_parameter.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -386,7 +386,7 @@ class ExplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_required_string_parameter.metadata = {'url': '/reqopt/requied/string/parameter'}
+    post_required_string_parameter.metadata = {'url': '/reqopt/requied/string/parameter'}  # type: ignore
 
     @distributed_trace
     def post_optional_string_parameter(
@@ -409,7 +409,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_optional_string_parameter.metadata['url']
+        url = self.post_optional_string_parameter.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -438,7 +438,7 @@ class ExplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_optional_string_parameter.metadata = {'url': '/reqopt/optional/string/parameter'}
+    post_optional_string_parameter.metadata = {'url': '/reqopt/optional/string/parameter'}  # type: ignore
 
     @distributed_trace
     def post_required_string_property(
@@ -463,7 +463,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_required_string_property.metadata['url']
+        url = self.post_required_string_property.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -489,7 +489,7 @@ class ExplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_required_string_property.metadata = {'url': '/reqopt/requied/string/property'}
+    post_required_string_property.metadata = {'url': '/reqopt/requied/string/property'}  # type: ignore
 
     @distributed_trace
     def post_optional_string_property(
@@ -514,7 +514,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_optional_string_property.metadata['url']
+        url = self.post_optional_string_property.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -543,7 +543,7 @@ class ExplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_optional_string_property.metadata = {'url': '/reqopt/optional/string/property'}
+    post_optional_string_property.metadata = {'url': '/reqopt/optional/string/property'}  # type: ignore
 
     @distributed_trace
     def post_required_string_header(
@@ -565,7 +565,7 @@ class ExplicitOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.post_required_string_header.metadata['url']
+        url = self.post_required_string_header.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -587,7 +587,7 @@ class ExplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_required_string_header.metadata = {'url': '/reqopt/requied/string/header'}
+    post_required_string_header.metadata = {'url': '/reqopt/requied/string/header'}  # type: ignore
 
     @distributed_trace
     def post_optional_string_header(
@@ -609,7 +609,7 @@ class ExplicitOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.post_optional_string_header.metadata['url']
+        url = self.post_optional_string_header.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -632,7 +632,7 @@ class ExplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_optional_string_header.metadata = {'url': '/reqopt/optional/string/header'}
+    post_optional_string_header.metadata = {'url': '/reqopt/optional/string/header'}  # type: ignore
 
     @distributed_trace
     def post_required_class_parameter(
@@ -655,7 +655,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_required_class_parameter.metadata['url']
+        url = self.post_required_class_parameter.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -681,7 +681,7 @@ class ExplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_required_class_parameter.metadata = {'url': '/reqopt/requied/class/parameter'}
+    post_required_class_parameter.metadata = {'url': '/reqopt/requied/class/parameter'}  # type: ignore
 
     @distributed_trace
     def post_optional_class_parameter(
@@ -704,7 +704,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_optional_class_parameter.metadata['url']
+        url = self.post_optional_class_parameter.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -733,7 +733,7 @@ class ExplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_optional_class_parameter.metadata = {'url': '/reqopt/optional/class/parameter'}
+    post_optional_class_parameter.metadata = {'url': '/reqopt/optional/class/parameter'}  # type: ignore
 
     @distributed_trace
     def post_required_class_property(
@@ -758,7 +758,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_required_class_property.metadata['url']
+        url = self.post_required_class_property.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -784,7 +784,7 @@ class ExplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_required_class_property.metadata = {'url': '/reqopt/requied/class/property'}
+    post_required_class_property.metadata = {'url': '/reqopt/requied/class/property'}  # type: ignore
 
     @distributed_trace
     def post_optional_class_property(
@@ -809,7 +809,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_optional_class_property.metadata['url']
+        url = self.post_optional_class_property.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -838,7 +838,7 @@ class ExplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_optional_class_property.metadata = {'url': '/reqopt/optional/class/property'}
+    post_optional_class_property.metadata = {'url': '/reqopt/optional/class/property'}  # type: ignore
 
     @distributed_trace
     def post_required_array_parameter(
@@ -861,7 +861,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_required_array_parameter.metadata['url']
+        url = self.post_required_array_parameter.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -887,7 +887,7 @@ class ExplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_required_array_parameter.metadata = {'url': '/reqopt/requied/array/parameter'}
+    post_required_array_parameter.metadata = {'url': '/reqopt/requied/array/parameter'}  # type: ignore
 
     @distributed_trace
     def post_optional_array_parameter(
@@ -910,7 +910,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_optional_array_parameter.metadata['url']
+        url = self.post_optional_array_parameter.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -939,7 +939,7 @@ class ExplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_optional_array_parameter.metadata = {'url': '/reqopt/optional/array/parameter'}
+    post_optional_array_parameter.metadata = {'url': '/reqopt/optional/array/parameter'}  # type: ignore
 
     @distributed_trace
     def post_required_array_property(
@@ -964,7 +964,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_required_array_property.metadata['url']
+        url = self.post_required_array_property.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -990,7 +990,7 @@ class ExplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_required_array_property.metadata = {'url': '/reqopt/requied/array/property'}
+    post_required_array_property.metadata = {'url': '/reqopt/requied/array/property'}  # type: ignore
 
     @distributed_trace
     def post_optional_array_property(
@@ -1015,7 +1015,7 @@ class ExplicitOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_optional_array_property.metadata['url']
+        url = self.post_optional_array_property.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1044,7 +1044,7 @@ class ExplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_optional_array_property.metadata = {'url': '/reqopt/optional/array/property'}
+    post_optional_array_property.metadata = {'url': '/reqopt/optional/array/property'}  # type: ignore
 
     @distributed_trace
     def post_required_array_header(
@@ -1066,7 +1066,7 @@ class ExplicitOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.post_required_array_header.metadata['url']
+        url = self.post_required_array_header.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1088,7 +1088,7 @@ class ExplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_required_array_header.metadata = {'url': '/reqopt/requied/array/header'}
+    post_required_array_header.metadata = {'url': '/reqopt/requied/array/header'}  # type: ignore
 
     @distributed_trace
     def post_optional_array_header(
@@ -1110,7 +1110,7 @@ class ExplicitOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.post_optional_array_header.metadata['url']
+        url = self.post_optional_array_header.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1133,4 +1133,4 @@ class ExplicitOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post_optional_array_header.metadata = {'url': '/reqopt/optional/array/header'}
+    post_optional_array_header.metadata = {'url': '/reqopt/optional/array/header'}  # type: ignore

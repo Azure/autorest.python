@@ -43,7 +43,7 @@ class AutoRestValidationTestOperationsMixin:
         api_version = "1.0.0"
 
         # Construct URL
-        url = self.validation_of_method_parameters.metadata['url']
+        url = self.validation_of_method_parameters.metadata['url']  # type: ignore
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern=r'[a-zA-Z0-9]+'),
@@ -75,7 +75,7 @@ class AutoRestValidationTestOperationsMixin:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    validation_of_method_parameters.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
+    validation_of_method_parameters.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}  # type: ignore
 
     @distributed_trace_async
     async def validation_of_body(
@@ -104,7 +104,7 @@ class AutoRestValidationTestOperationsMixin:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.validation_of_body.metadata['url']
+        url = self.validation_of_body.metadata['url']  # type: ignore
         path_format_arguments = {
             'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
             'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str', max_length=10, min_length=3, pattern=r'[a-zA-Z0-9]+'),
@@ -144,7 +144,7 @@ class AutoRestValidationTestOperationsMixin:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    validation_of_body.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}
+    validation_of_body.metadata = {'url': '/fakepath/{subscriptionId}/{resourceGroupName}/{id}'}  # type: ignore
 
     @distributed_trace_async
     async def get_with_constant_in_path(
@@ -163,7 +163,7 @@ class AutoRestValidationTestOperationsMixin:
         constant_param = "constant"
 
         # Construct URL
-        url = self.get_with_constant_in_path.metadata['url']
+        url = self.get_with_constant_in_path.metadata['url']  # type: ignore
         path_format_arguments = {
             'constantParam': self._serialize.url("constant_param", constant_param, 'str'),
         }
@@ -187,7 +187,7 @@ class AutoRestValidationTestOperationsMixin:
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_with_constant_in_path.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}
+    get_with_constant_in_path.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}  # type: ignore
 
     @distributed_trace_async
     async def post_with_constant_in_body(
@@ -210,7 +210,7 @@ class AutoRestValidationTestOperationsMixin:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post_with_constant_in_body.metadata['url']
+        url = self.post_with_constant_in_body.metadata['url']  # type: ignore
         path_format_arguments = {
             'constantParam': self._serialize.url("constant_param", constant_param, 'str'),
         }
@@ -246,4 +246,4 @@ class AutoRestValidationTestOperationsMixin:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    post_with_constant_in_body.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}
+    post_with_constant_in_body.metadata = {'url': '/validation/constantsInPath/{constantParam}/value'}  # type: ignore

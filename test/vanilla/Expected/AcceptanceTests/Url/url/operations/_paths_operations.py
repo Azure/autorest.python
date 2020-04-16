@@ -63,7 +63,7 @@ class PathsOperations(object):
         bool_path = True
 
         # Construct URL
-        url = self.get_boolean_true.metadata['url']
+        url = self.get_boolean_true.metadata['url']  # type: ignore
         path_format_arguments = {
             'boolPath': self._serialize.url("bool_path", bool_path, 'bool'),
         }
@@ -88,7 +88,7 @@ class PathsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_boolean_true.metadata = {'url': '/paths/bool/true/{boolPath}'}
+    get_boolean_true.metadata = {'url': '/paths/bool/true/{boolPath}'}  # type: ignore
 
     @distributed_trace
     def get_boolean_false(
@@ -108,7 +108,7 @@ class PathsOperations(object):
         bool_path = False
 
         # Construct URL
-        url = self.get_boolean_false.metadata['url']
+        url = self.get_boolean_false.metadata['url']  # type: ignore
         path_format_arguments = {
             'boolPath': self._serialize.url("bool_path", bool_path, 'bool'),
         }
@@ -133,7 +133,7 @@ class PathsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_boolean_false.metadata = {'url': '/paths/bool/false/{boolPath}'}
+    get_boolean_false.metadata = {'url': '/paths/bool/false/{boolPath}'}  # type: ignore
 
     @distributed_trace
     def get_int_one_million(
@@ -153,7 +153,7 @@ class PathsOperations(object):
         int_path = 1000000
 
         # Construct URL
-        url = self.get_int_one_million.metadata['url']
+        url = self.get_int_one_million.metadata['url']  # type: ignore
         path_format_arguments = {
             'intPath': self._serialize.url("int_path", int_path, 'int'),
         }
@@ -178,7 +178,7 @@ class PathsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_int_one_million.metadata = {'url': '/paths/int/1000000/{intPath}'}
+    get_int_one_million.metadata = {'url': '/paths/int/1000000/{intPath}'}  # type: ignore
 
     @distributed_trace
     def get_int_negative_one_million(
@@ -198,7 +198,7 @@ class PathsOperations(object):
         int_path = -1000000
 
         # Construct URL
-        url = self.get_int_negative_one_million.metadata['url']
+        url = self.get_int_negative_one_million.metadata['url']  # type: ignore
         path_format_arguments = {
             'intPath': self._serialize.url("int_path", int_path, 'int'),
         }
@@ -223,7 +223,7 @@ class PathsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_int_negative_one_million.metadata = {'url': '/paths/int/-1000000/{intPath}'}
+    get_int_negative_one_million.metadata = {'url': '/paths/int/-1000000/{intPath}'}  # type: ignore
 
     @distributed_trace
     def get_ten_billion(
@@ -243,7 +243,7 @@ class PathsOperations(object):
         long_path = 10000000000
 
         # Construct URL
-        url = self.get_ten_billion.metadata['url']
+        url = self.get_ten_billion.metadata['url']  # type: ignore
         path_format_arguments = {
             'longPath': self._serialize.url("long_path", long_path, 'long'),
         }
@@ -268,7 +268,7 @@ class PathsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_ten_billion.metadata = {'url': '/paths/long/10000000000/{longPath}'}
+    get_ten_billion.metadata = {'url': '/paths/long/10000000000/{longPath}'}  # type: ignore
 
     @distributed_trace
     def get_negative_ten_billion(
@@ -288,7 +288,7 @@ class PathsOperations(object):
         long_path = -10000000000
 
         # Construct URL
-        url = self.get_negative_ten_billion.metadata['url']
+        url = self.get_negative_ten_billion.metadata['url']  # type: ignore
         path_format_arguments = {
             'longPath': self._serialize.url("long_path", long_path, 'long'),
         }
@@ -313,7 +313,7 @@ class PathsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_negative_ten_billion.metadata = {'url': '/paths/long/-10000000000/{longPath}'}
+    get_negative_ten_billion.metadata = {'url': '/paths/long/-10000000000/{longPath}'}  # type: ignore
 
     @distributed_trace
     def float_scientific_positive(
@@ -333,7 +333,7 @@ class PathsOperations(object):
         float_path = 103400000000000000000
 
         # Construct URL
-        url = self.float_scientific_positive.metadata['url']
+        url = self.float_scientific_positive.metadata['url']  # type: ignore
         path_format_arguments = {
             'floatPath': self._serialize.url("float_path", float_path, 'float'),
         }
@@ -358,7 +358,7 @@ class PathsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    float_scientific_positive.metadata = {'url': '/paths/float/1.034E+20/{floatPath}'}
+    float_scientific_positive.metadata = {'url': '/paths/float/1.034E+20/{floatPath}'}  # type: ignore
 
     @distributed_trace
     def float_scientific_negative(
@@ -378,7 +378,7 @@ class PathsOperations(object):
         float_path = -1.034e-20
 
         # Construct URL
-        url = self.float_scientific_negative.metadata['url']
+        url = self.float_scientific_negative.metadata['url']  # type: ignore
         path_format_arguments = {
             'floatPath': self._serialize.url("float_path", float_path, 'float'),
         }
@@ -403,7 +403,7 @@ class PathsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    float_scientific_negative.metadata = {'url': '/paths/float/-1.034E-20/{floatPath}'}
+    float_scientific_negative.metadata = {'url': '/paths/float/-1.034E-20/{floatPath}'}  # type: ignore
 
     @distributed_trace
     def double_decimal_positive(
@@ -423,7 +423,7 @@ class PathsOperations(object):
         double_path = 9999999.999
 
         # Construct URL
-        url = self.double_decimal_positive.metadata['url']
+        url = self.double_decimal_positive.metadata['url']  # type: ignore
         path_format_arguments = {
             'doublePath': self._serialize.url("double_path", double_path, 'float'),
         }
@@ -448,7 +448,7 @@ class PathsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    double_decimal_positive.metadata = {'url': '/paths/double/9999999.999/{doublePath}'}
+    double_decimal_positive.metadata = {'url': '/paths/double/9999999.999/{doublePath}'}  # type: ignore
 
     @distributed_trace
     def double_decimal_negative(
@@ -468,7 +468,7 @@ class PathsOperations(object):
         double_path = -9999999.999
 
         # Construct URL
-        url = self.double_decimal_negative.metadata['url']
+        url = self.double_decimal_negative.metadata['url']  # type: ignore
         path_format_arguments = {
             'doublePath': self._serialize.url("double_path", double_path, 'float'),
         }
@@ -493,7 +493,7 @@ class PathsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    double_decimal_negative.metadata = {'url': '/paths/double/-9999999.999/{doublePath}'}
+    double_decimal_negative.metadata = {'url': '/paths/double/-9999999.999/{doublePath}'}  # type: ignore
 
     @distributed_trace
     def string_unicode(
@@ -513,7 +513,7 @@ class PathsOperations(object):
         string_path = "啊齄丂狛狜隣郎隣兀﨩"
 
         # Construct URL
-        url = self.string_unicode.metadata['url']
+        url = self.string_unicode.metadata['url']  # type: ignore
         path_format_arguments = {
             'stringPath': self._serialize.url("string_path", string_path, 'str'),
         }
@@ -538,7 +538,7 @@ class PathsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    string_unicode.metadata = {'url': '/paths/string/unicode/{stringPath}'}
+    string_unicode.metadata = {'url': '/paths/string/unicode/{stringPath}'}  # type: ignore
 
     @distributed_trace
     def string_url_encoded(
@@ -558,7 +558,7 @@ class PathsOperations(object):
         string_path = "begin!*'();:@ &=+$,/?#[]end"
 
         # Construct URL
-        url = self.string_url_encoded.metadata['url']
+        url = self.string_url_encoded.metadata['url']  # type: ignore
         path_format_arguments = {
             'stringPath': self._serialize.url("string_path", string_path, 'str'),
         }
@@ -583,7 +583,7 @@ class PathsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    string_url_encoded.metadata = {'url': '/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}'}
+    string_url_encoded.metadata = {'url': '/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}'}  # type: ignore
 
     @distributed_trace
     def string_url_non_encoded(
@@ -605,7 +605,7 @@ class PathsOperations(object):
         string_path = "begin!*'();:@&=+$,end"
 
         # Construct URL
-        url = self.string_url_non_encoded.metadata['url']
+        url = self.string_url_non_encoded.metadata['url']  # type: ignore
         path_format_arguments = {
             'stringPath': self._serialize.url("string_path", string_path, 'str', skip_quote=True),
         }
@@ -630,7 +630,7 @@ class PathsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    string_url_non_encoded.metadata = {'url': '/paths/string/begin!*\'();:@&=+$,end/{stringPath}'}
+    string_url_non_encoded.metadata = {'url': '/paths/string/begin!*\'();:@&=+$,end/{stringPath}'}  # type: ignore
 
     @distributed_trace
     def string_empty(
@@ -650,7 +650,7 @@ class PathsOperations(object):
         string_path = ""
 
         # Construct URL
-        url = self.string_empty.metadata['url']
+        url = self.string_empty.metadata['url']  # type: ignore
         path_format_arguments = {
             'stringPath': self._serialize.url("string_path", string_path, 'str'),
         }
@@ -675,7 +675,7 @@ class PathsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    string_empty.metadata = {'url': '/paths/string/empty/{stringPath}'}
+    string_empty.metadata = {'url': '/paths/string/empty/{stringPath}'}  # type: ignore
 
     @distributed_trace
     def string_null(
@@ -697,7 +697,7 @@ class PathsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.string_null.metadata['url']
+        url = self.string_null.metadata['url']  # type: ignore
         path_format_arguments = {
             'stringPath': self._serialize.url("string_path", string_path, 'str'),
         }
@@ -722,7 +722,7 @@ class PathsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    string_null.metadata = {'url': '/paths/string/null/{stringPath}'}
+    string_null.metadata = {'url': '/paths/string/null/{stringPath}'}  # type: ignore
 
     @distributed_trace
     def enum_valid(
@@ -744,7 +744,7 @@ class PathsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.enum_valid.metadata['url']
+        url = self.enum_valid.metadata['url']  # type: ignore
         path_format_arguments = {
             'enumPath': self._serialize.url("enum_path", enum_path, 'str'),
         }
@@ -769,7 +769,7 @@ class PathsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    enum_valid.metadata = {'url': '/paths/enum/green%20color/{enumPath}'}
+    enum_valid.metadata = {'url': '/paths/enum/green%20color/{enumPath}'}  # type: ignore
 
     @distributed_trace
     def enum_null(
@@ -791,7 +791,7 @@ class PathsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.enum_null.metadata['url']
+        url = self.enum_null.metadata['url']  # type: ignore
         path_format_arguments = {
             'enumPath': self._serialize.url("enum_path", enum_path, 'str'),
         }
@@ -816,7 +816,7 @@ class PathsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    enum_null.metadata = {'url': '/paths/string/null/{enumPath}'}
+    enum_null.metadata = {'url': '/paths/string/null/{enumPath}'}  # type: ignore
 
     @distributed_trace
     def byte_multi_byte(
@@ -838,7 +838,7 @@ class PathsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.byte_multi_byte.metadata['url']
+        url = self.byte_multi_byte.metadata['url']  # type: ignore
         path_format_arguments = {
             'bytePath': self._serialize.url("byte_path", byte_path, 'bytearray'),
         }
@@ -863,7 +863,7 @@ class PathsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    byte_multi_byte.metadata = {'url': '/paths/byte/multibyte/{bytePath}'}
+    byte_multi_byte.metadata = {'url': '/paths/byte/multibyte/{bytePath}'}  # type: ignore
 
     @distributed_trace
     def byte_empty(
@@ -883,7 +883,7 @@ class PathsOperations(object):
         byte_path = bytearray("", encoding="utf-8")
 
         # Construct URL
-        url = self.byte_empty.metadata['url']
+        url = self.byte_empty.metadata['url']  # type: ignore
         path_format_arguments = {
             'bytePath': self._serialize.url("byte_path", byte_path, 'bytearray'),
         }
@@ -908,7 +908,7 @@ class PathsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    byte_empty.metadata = {'url': '/paths/byte/empty/{bytePath}'}
+    byte_empty.metadata = {'url': '/paths/byte/empty/{bytePath}'}  # type: ignore
 
     @distributed_trace
     def byte_null(
@@ -930,7 +930,7 @@ class PathsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.byte_null.metadata['url']
+        url = self.byte_null.metadata['url']  # type: ignore
         path_format_arguments = {
             'bytePath': self._serialize.url("byte_path", byte_path, 'bytearray'),
         }
@@ -955,7 +955,7 @@ class PathsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    byte_null.metadata = {'url': '/paths/byte/null/{bytePath}'}
+    byte_null.metadata = {'url': '/paths/byte/null/{bytePath}'}  # type: ignore
 
     @distributed_trace
     def date_valid(
@@ -975,7 +975,7 @@ class PathsOperations(object):
         date_path = "2012-01-01"
 
         # Construct URL
-        url = self.date_valid.metadata['url']
+        url = self.date_valid.metadata['url']  # type: ignore
         path_format_arguments = {
             'datePath': self._serialize.url("date_path", date_path, 'date'),
         }
@@ -1000,7 +1000,7 @@ class PathsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    date_valid.metadata = {'url': '/paths/date/2012-01-01/{datePath}'}
+    date_valid.metadata = {'url': '/paths/date/2012-01-01/{datePath}'}  # type: ignore
 
     @distributed_trace
     def date_null(
@@ -1022,7 +1022,7 @@ class PathsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.date_null.metadata['url']
+        url = self.date_null.metadata['url']  # type: ignore
         path_format_arguments = {
             'datePath': self._serialize.url("date_path", date_path, 'date'),
         }
@@ -1047,7 +1047,7 @@ class PathsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    date_null.metadata = {'url': '/paths/date/null/{datePath}'}
+    date_null.metadata = {'url': '/paths/date/null/{datePath}'}  # type: ignore
 
     @distributed_trace
     def date_time_valid(
@@ -1067,7 +1067,7 @@ class PathsOperations(object):
         date_time_path = "2012-01-01T01:01:01Z"
 
         # Construct URL
-        url = self.date_time_valid.metadata['url']
+        url = self.date_time_valid.metadata['url']  # type: ignore
         path_format_arguments = {
             'dateTimePath': self._serialize.url("date_time_path", date_time_path, 'iso-8601'),
         }
@@ -1092,7 +1092,7 @@ class PathsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    date_time_valid.metadata = {'url': '/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}'}
+    date_time_valid.metadata = {'url': '/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}'}  # type: ignore
 
     @distributed_trace
     def date_time_null(
@@ -1114,7 +1114,7 @@ class PathsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.date_time_null.metadata['url']
+        url = self.date_time_null.metadata['url']  # type: ignore
         path_format_arguments = {
             'dateTimePath': self._serialize.url("date_time_path", date_time_path, 'iso-8601'),
         }
@@ -1139,7 +1139,7 @@ class PathsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    date_time_null.metadata = {'url': '/paths/datetime/null/{dateTimePath}'}
+    date_time_null.metadata = {'url': '/paths/datetime/null/{dateTimePath}'}  # type: ignore
 
     @distributed_trace
     def base64_url(
@@ -1161,7 +1161,7 @@ class PathsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.base64_url.metadata['url']
+        url = self.base64_url.metadata['url']  # type: ignore
         path_format_arguments = {
             'base64UrlPath': self._serialize.url("base64_url_path", base64_url_path, 'base64'),
         }
@@ -1186,7 +1186,7 @@ class PathsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    base64_url.metadata = {'url': '/paths/string/bG9yZW0/{base64UrlPath}'}
+    base64_url.metadata = {'url': '/paths/string/bG9yZW0/{base64UrlPath}'}  # type: ignore
 
     @distributed_trace
     def array_csv_in_path(
@@ -1209,7 +1209,7 @@ class PathsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.array_csv_in_path.metadata['url']
+        url = self.array_csv_in_path.metadata['url']  # type: ignore
         path_format_arguments = {
             'arrayPath': self._serialize.url("array_path", array_path, '[str]', div=','),
         }
@@ -1234,7 +1234,7 @@ class PathsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    array_csv_in_path.metadata = {'url': '/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}'}
+    array_csv_in_path.metadata = {'url': '/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}'}  # type: ignore
 
     @distributed_trace
     def unix_time_url(
@@ -1256,7 +1256,7 @@ class PathsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.unix_time_url.metadata['url']
+        url = self.unix_time_url.metadata['url']  # type: ignore
         path_format_arguments = {
             'unixTimeUrlPath': self._serialize.url("unix_time_url_path", unix_time_url_path, 'unix-time'),
         }
@@ -1281,4 +1281,4 @@ class PathsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    unix_time_url.metadata = {'url': '/paths/int/1460505600/{unixTimeUrlPath}'}
+    unix_time_url.metadata = {'url': '/paths/int/1460505600/{unixTimeUrlPath}'}  # type: ignore
