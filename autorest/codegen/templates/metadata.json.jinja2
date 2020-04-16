@@ -51,14 +51,18 @@
     "operation_mixins": {
         {% for operation in mixin_operations %}
         {{ operation.name | tojson }} : {
+            "sync": {
+                {% set sync_operation_name = "begin_" + operation.name if is_lro(operation) else operation.name %}
+                "operation_name": {{ sync_operation_name | tojson }},
+                "signature": {{ op_tools.method_signature(operation, sync_operation_name, False, False) | tojson }}
+            },
+            "async": {
+                "operation_name": {{ operation.name | tojson }},
+                {% set coroutine = False if is_paging(operation) else True %}
+                "signature": {{ op_tools.method_signature(operation, operation.name, True, coroutine) | tojson }},
+                "coroutine": {{ coroutine | tojson }}
+            },
             "doc": {{ op_tools.operation_docstring(operation) | tojson }},
-            {% set sync_operation_name = "begin_" + operation.name if is_lro(operation) else operation.name %}
-            "sync_operation_name": {{ sync_operation_name | tojson }},
-            "async_operation_name": {{ operation.name | tojson }},
-            "sync_signature": {{ op_tools.method_signature(operation, sync_operation_name, False, False) | tojson }},
-            {% set coroutine = False if is_paging(operation) else True %}
-            "async_signature": {{ op_tools.method_signature(operation, operation.name, True, coroutine) | tojson }},
-            "coroutine": {{ coroutine | tojson }},
             "call": {{ operation.parameters.method | map(attribute="serialized_name") | join(', ') | tojson }}
         }{{ "," if not loop.last else "" }}
         {% endfor %}
