@@ -58,4 +58,4 @@ class MultiapiServiceClientConfiguration(Configuration):
         if not self.credential_scopes and not self.authentication_policy:
             raise ValueError("You must provide either credential_scopes or authentication_policy as kwargs")
         if self.credential and not self.authentication_policy:
-            self.authentication_policy = policies.AsyncBearerTokenCredentialPolicy(self.credential, **kwargs)
+            self.authentication_policy = policies.AsyncBearerTokenCredentialPolicy(self.credential, *self.credential_scopes, **kwargs)

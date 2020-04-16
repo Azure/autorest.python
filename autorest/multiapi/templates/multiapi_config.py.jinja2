@@ -94,5 +94,5 @@ class {{ client_name }}Configuration(Configuration):
             raise ValueError("You must provide either credential_scopes or authentication_policy as kwargs")
         {% endif %}
         if self.credential and not self.authentication_policy:
-            self.authentication_policy = policies.BearerTokenCredentialPolicy(self.credential, {{ "*self.credential_scopes, " if config["credential_scopes"] else "" }}**kwargs)
+            self.authentication_policy = policies.BearerTokenCredentialPolicy(self.credential, {{ "*self.credential_scopes, " if config["credential_scopes"] is not none else "" }}**kwargs)
         {% endif %}
