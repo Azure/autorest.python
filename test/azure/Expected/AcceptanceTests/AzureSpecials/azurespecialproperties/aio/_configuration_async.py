@@ -46,6 +46,7 @@ class AutoRestAzureSpecialParametersTestClientConfiguration(Configuration):
         self.subscription_id = subscription_id
         self.api_version = "2015-07-01-preview"
         self.credential_scopes = ['https://management.azure.com/.default']
+        self.credential_scopes.extend(kwargs.pop('credential_scopes', []))
         kwargs.setdefault('sdk_moniker', 'autorestazurespecialparameterstestclient/{}'.format(VERSION))
         self._configure(**kwargs)
 
