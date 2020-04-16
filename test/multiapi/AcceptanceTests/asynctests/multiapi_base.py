@@ -177,3 +177,17 @@ class NotTested(object):
 
             with pytest.raises(AttributeError):
                 response = await client.operation_group_two.test_five()
+
+        @pytest.mark.parametrize('api_version', ["1.0.0"])
+        @pytest.mark.asyncio
+        async def test_lro(self, client, namespace_models):
+            product = await client.test_lro(namespace_models.Product())
+            assert product.id == 100
+
+        @pytest.mark.asyncio
+        async def test_paging(self, default_client, namespace_models):
+            pages = default_client.test_paging()
+            items = [i async for i in pages]
+            assert len(items) == 1
+            assert isinstance(items[0], namespace_models.ModelThree)
+            assert items[0].optional_property == "paged"
