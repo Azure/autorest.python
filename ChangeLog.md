@@ -1,6 +1,6 @@
 # Change Log
 
-### Unreleased
+### 2020-04-16 - 5.0.0-preview.1
 
 **Breaking Changes**
 
