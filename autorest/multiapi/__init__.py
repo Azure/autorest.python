@@ -173,19 +173,22 @@ class MultiAPI:
 
                 mixin_operations.setdefault(func_name, {}).setdefault('sync', {})
                 mixin_operations.setdefault(func_name, {}).setdefault('async', {})
-                mixin_operations[func_name]['sync'] = {
+                mixin_operations[func_name]['sync'].update({
                     "signature": func['sync']['signature'],
                     "operation_name": func['sync']['operation_name'],
                     "doc": func['doc'],
                     "call": func['call']
-                }
-                mixin_operations[func_name]['async'] = {
+                })
+                mixin_operations[func_name]['async'].update({
                     "signature": func['async']['signature'],
                     "operation_name": func['async']['operation_name'],
                     "coroutine": func['async']['coroutine'],
                     "doc": func['doc'],
                     "call": func['call']
-                }
+                })
+                mixin_operations.setdefault(func_name, {}).setdefault(
+                    "available_apis", []
+                ).append(version_path.name)
                 mixin_operations[func_name]['sync'].setdefault(
                     "available_apis", []
                 ).append(version_path.name)
