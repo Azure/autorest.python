@@ -137,6 +137,7 @@ class MultiapiServiceClientOperationsMixin(object):
         :keyword polling: True for ARMPolling, False for no polling, or a
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.PollingMethod
+        :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
         :return: An instance of LROPoller that returns Product
         :rtype: ~azure.core.polling.LROPoller[~multiapiwithsubmodule.submodule.v1.models.Product]
 
@@ -144,6 +145,10 @@ class MultiapiServiceClientOperationsMixin(object):
         """
         polling = kwargs.pop('polling', False)  # type: Union[bool, PollingMethod]
         cls = kwargs.pop('cls', None)  # type: ClsType["models.Product"]
+        lro_delay = kwargs.pop(
+            'polling_interval',
+            self._config.polling_interval
+        )
         raw_result = self._test_lro_initial(
             product=product,
             cls=lambda x,y,z: x,
@@ -157,10 +162,6 @@ class MultiapiServiceClientOperationsMixin(object):
                 return cls(pipeline_response, deserialized, {})
             return deserialized
 
-        lro_delay = kwargs.get(
-            'polling_interval',
-            self._config.polling_interval
-        )
         if polling is True: polling_method = LROBasePolling(lro_delay,  **kwargs)
         elif polling is False: polling_method = NoPolling()
         else: polling_method = polling

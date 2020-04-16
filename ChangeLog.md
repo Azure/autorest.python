@@ -9,6 +9,7 @@
 **New features**
 
 - Support non-ARM polling by default (azure-core 1.4.0)
+- Adding multiple inheritance  #567
 - Accept polling_interval keyword passed to LRO operations  #571
 
 ### 2020-04-09 - 5.0.0-dev.20200409.1
@@ -22,6 +23,7 @@ Modelerfour version: 4.12.301
 **New Features**
 
 - Client side validation is now disabled by default  #558
+- We now also generate an async multiapi client when running multiapiscript  # 480
 
 ### 2020-04-06 - 5.0.0-dev.20200406.1
 Modelerfour version: 4.12.294

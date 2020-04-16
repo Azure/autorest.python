@@ -9,6 +9,11 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from typing import Optional, Union
 
 
 class MultiapiServiceClientOperationsMixin(object):
@@ -27,7 +32,6 @@ class MultiapiServiceClientOperationsMixin(object):
         :rtype: ~multiapiwithsubmodule.submodule.v1.models.Product or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
         api_version = self._get_api_version('begin_test_lro')
         if api_version == '1.0.0':
             from .v1.operations import MultiapiServiceClientOperationsMixin as OperationClass
@@ -38,7 +42,6 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._config = self._config
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        mixin_instance.api_version = api_version
         return mixin_instance.begin_test_lro(product, **kwargs)
 
     def test_one(
@@ -58,7 +61,6 @@ class MultiapiServiceClientOperationsMixin(object):
         :rtype: ~multiapiwithsubmodule.submodule.v2.models.ModelTwo
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
         api_version = self._get_api_version('test_one')
         if api_version == '1.0.0':
             from .v1.operations import MultiapiServiceClientOperationsMixin as OperationClass
@@ -71,7 +73,6 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._config = self._config
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        mixin_instance.api_version = api_version
         return mixin_instance.test_one(id, message, **kwargs)
 
     def test_paging(
@@ -85,7 +86,6 @@ class MultiapiServiceClientOperationsMixin(object):
         :rtype: ~multiapiwithsubmodule.submodule.v3.models.PagingResult
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-
         api_version = self._get_api_version('test_paging')
         if api_version == '3.0.0':
             from .v3.operations import MultiapiServiceClientOperationsMixin as OperationClass
@@ -96,5 +96,4 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._config = self._config
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        mixin_instance.api_version = api_version
         return mixin_instance.test_paging(**kwargs)

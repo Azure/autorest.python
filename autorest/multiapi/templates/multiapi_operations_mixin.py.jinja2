@@ -9,18 +9,23 @@
 # regenerated.
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
+{% set imports = async_imports if async_mode else sync_imports %}
+{% if imports %}
+{{ imports }}
+{% endif %}
 
 
 class {{ client_name }}OperationsMixin(object):
 {% for _, metadata in mixin_operations|dictsort %}
 
-    {{ metadata['signature'] | indent }}    {{ metadata['doc'] | indent | wordwrap(width=95, break_long_words=False, wrapstring='\n    ') }}
-
-        api_version = self._get_api_version('{{ metadata['sync_operation_name'] }}')
+    {% set signature = "async_signature" if async_mode else "sync_signature" %}
+    {{ metadata[signature] | indent }}    {{ metadata['doc'] | indent | wordwrap(width=95, break_long_words=False, wrapstring='\n    ') }}
+        {% set operation_name = metadata['async_operation_name'] if async_mode else metadata['sync_operation_name'] %}
+        api_version = self._get_api_version('{{ operation_name }}')
         {% for api in metadata['available_apis']|sort %}
         {% set if_statement = "if" if loop.first else "elif" %}
         {{ if_statement }} api_version == '{{ mod_to_api_version[api] }}':
-            from .{{ api }}.operations import {{ client_name }}OperationsMixin as OperationClass
+            from {{ ".." if async_mode else "." }}{{ api }}{{ ".aio" if async_mode else "" }}.operations{{ "_async" if async_mode else "" }} import {{ client_name }}OperationsMixin as OperationClass
         {% endfor %}
         else:
             raise NotImplementedError("APIVersion {} is not available".format(api_version))
@@ -29,6 +34,5 @@ class {{ client_name }}OperationsMixin(object):
         mixin_instance._config = self._config
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        mixin_instance.api_version = api_version
-        return mixin_instance.{{ metadata['sync_operation_name'] }}({{ metadata['call'] }}{{ ", **kwargs" if metadata['call'] else "**kwargs" }})
+        return {{ "await " if async_mode and metadata['coroutine'] else "" }}mixin_instance.{{ operation_name }}({{ metadata['call'] }}{{ ", **kwargs" if metadata['call'] else "**kwargs" }})
 {% endfor %}

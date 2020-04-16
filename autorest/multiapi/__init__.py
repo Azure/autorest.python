@@ -171,9 +171,12 @@ class MultiAPI:
                     "available_apis", []
                 ).append(version_path.name)
                 mixin_operations[func_name]['doc'] = func['doc']
-                mixin_operations[func_name]['signature'] = func['signature']
+                mixin_operations[func_name]['sync_signature'] = func['sync_signature']
+                mixin_operations[func_name]['async_signature'] = func['async_signature']
+                mixin_operations[func_name]['coroutine'] = func['coroutine']
                 mixin_operations[func_name]['call'] = func['call']
                 mixin_operations[func_name]['sync_operation_name'] = func['sync_operation_name']
+                mixin_operations[func_name]['async_operation_name'] = func['async_operation_name']
         return mixin_operations
 
     def _build_operation_meta(
@@ -261,9 +264,6 @@ class MultiAPI:
         shutil.rmtree(str(self.output_folder / "operations"), ignore_errors=True)
         shutil.rmtree(str(self.output_folder / "models"), ignore_errors=True)
 
-        init_content = self._autorestapi.read_file(Path(last_api_version) / "__init__.py")
-        self._autorestapi.write_file("__init__.py", init_content)
-
         # Detect if this client is using an operation mixin (Network)
         # Operation mixins are available since Autorest.Python 4.x
         mixin_operations = self._build_operation_mixin_meta(paths_to_versions)
@@ -303,7 +303,6 @@ class MultiAPI:
         conf = {
             "client_name": metadata_json["client"]["name"],
             "package_name": self.output_package_name,
-            "has_subscription_id": metadata_json["client"]["has_subscription_id"],
             "module_name": module_name,
             "operations": versioned_operations_dict,
             "mixin_operations": mixin_operations,
@@ -315,49 +314,27 @@ class MultiAPI:
                 {last_api_version} | {versions for _, versions in last_rt_list.items()}
             ),
             "config": metadata_json["config"],
-            "global_parameters": metadata_json["global_parameters"]
+            "global_parameters": metadata_json["global_parameters"],
+            "sync_imports": metadata_json["sync_imports"],
+            "async_imports": metadata_json["async_imports"]
         }
-        multiapi_serializer = MultiAPISerializer(conf=conf)
 
-        self._autorestapi.write_file(
-            Path(metadata_json["client"]["filename"] + ".py"),
-            multiapi_serializer.serialize_multiapi_client()
+        multiapi_serializer = MultiAPISerializer(
+            conf=conf,
+            async_mode=False,
+            autorestapi=self._autorestapi,
+            service_client_filename=metadata_json["client"]["filename"]
         )
+        multiapi_serializer.serialize()
 
-        self._autorestapi.write_file(
-            Path("_configuration.py"),
-            multiapi_serializer.serialize_multiapi_config()
+        async_multiapi_serializer = MultiAPISerializer(
+            conf=conf,
+            async_mode=True,
+            autorestapi=self._autorestapi,
+            service_client_filename=metadata_json["client"]["filename"]
         )
+        async_multiapi_serializer.serialize()
 
-        self._autorestapi.write_file(
-            Path("models.py"),
-            multiapi_serializer.serialize_multiapi_models()
-        )
-
-        # write the empty py.typed file
-        self._autorestapi.write_file("py.typed", "# Marker file for PEP 561.")
-
-        if mixin_operations:
-            self._autorestapi.write_file(
-                Path("_operations_mixin.py"),
-                multiapi_serializer.serialize_multiapi_operation_mixins()
-            )
-
-        if self._autorestapi.read_file("_version.py"):
-            self._autorestapi.write_file(
-                "_version.py",
-                self._autorestapi.read_file("_version.py")
-            )
-        elif self._autorestapi.read_file("version.py"):
-            self._autorestapi.write_file(
-                "_version.py",
-                self._autorestapi.read_file("version.py")
-            )
-        else:
-            self._autorestapi.write_file(
-                Path("_version.py"),
-                multiapi_serializer.serialize_multiapi_version()
-            )
 
         # don't erase patch file
         if self._autorestapi.read_file("_patch.py"):
