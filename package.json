@@ -1,6 +1,6 @@
 {
   "name": "@autorest/python",
-  "version": "5.0.0-preview.1",
+  "version": "5.0.0-preview.2",
   "description": "The Python extension for generators in AutoRest.",
   "scripts": {
     "prepare": "python prepare.py",
