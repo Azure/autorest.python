@@ -39,6 +39,7 @@ class AutoRestLongRunningOperationTestServiceConfiguration(Configuration):
 
         self.credential = credential
         self.credential_scopes = ['https://management.azure.com/.default']
+        self.credential_scopes.extend(kwargs.pop('credential_scopes', []))
         kwargs.setdefault('sdk_moniker', 'autorestlongrunningoperationtestservice/{}'.format(VERSION))
         self._configure(**kwargs)
 

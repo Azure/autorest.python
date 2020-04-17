@@ -29,7 +29,7 @@
     },
     "config": {
         "credential": true,
-        "credential_scopes": null
+        "credential_scopes": []
     },
     "operation_groups": {
         "operation_group_one": "OperationGroupOneOperations",

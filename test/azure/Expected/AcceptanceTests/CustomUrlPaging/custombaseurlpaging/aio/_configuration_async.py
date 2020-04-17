@@ -45,6 +45,7 @@ class AutoRestParameterizedHostTestPagingClientConfiguration(Configuration):
         self.credential = credential
         self.host = host
         self.credential_scopes = ['https://management.azure.com/.default']
+        self.credential_scopes.extend(kwargs.pop('credential_scopes', []))
         kwargs.setdefault('sdk_moniker', 'autorestparameterizedhosttestpagingclient/{}'.format(VERSION))
         self._configure(**kwargs)
 
