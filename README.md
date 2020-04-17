@@ -35,6 +35,7 @@ modelerfour:
   flatten-payloads: true
   resolve-schema-name-collisons: true
   always-create-content-type-parameter: true
+  multiple-request-parameter-flattening: false
   naming:
     parameter: snakecase
     property: snakecase

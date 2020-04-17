@@ -15,7 +15,6 @@ from ..models import (
     CredentialSchema,
     ParameterList
 )
-from ..models.imports import FileImport
 from .import_serializer import FileImportSerializer
 
 def _correct_credential_parameter(global_parameters: ParameterList, async_mode: bool) -> None:

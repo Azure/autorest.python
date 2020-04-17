@@ -186,9 +186,6 @@ class MultiAPI:
                     "doc": func['doc'],
                     "call": func['call']
                 })
-                mixin_operations.setdefault(func_name, {}).setdefault(
-                    "available_apis", []
-                ).append(version_path.name)
                 mixin_operations[func_name]['sync'].setdefault(
                     "available_apis", []
                 ).append(version_path.name)
