@@ -26,7 +26,7 @@ class MultiapiServiceClientOperationsMixin(object):
         **kwargs
     ) -> "models.Product":
         """Put in whatever shape of Product you want, will return a Product with id equal to 100.
-    
+
         :param product: Product to put.
         :type product: ~multiapi.v1.models.Product
         :keyword callable cls: A custom type or function that will be passed the direct response
@@ -53,7 +53,7 @@ class MultiapiServiceClientOperationsMixin(object):
         **kwargs
     ) -> "models.ModelTwo":
         """TestOne should be in an SecondVersionOperationsMixin. Returns ModelTwo.
-    
+
         :param id: An int parameter.
         :type id: int
         :param message: An optional string parameter.
@@ -82,7 +82,7 @@ class MultiapiServiceClientOperationsMixin(object):
         **kwargs
     ) -> AsyncItemPaged["models.PagingResult"]:
         """Returns ModelThree with optionalProperty 'paged'.
-    
+
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: PagingResult or the result of cls(response)
         :rtype: ~multiapi.v3.models.PagingResult
