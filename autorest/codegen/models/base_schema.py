@@ -23,6 +23,7 @@ class BaseSchema(BaseModel, ABC):
         self.default_value = yaml_data.get("defaultValue", None)
         self.xml_metadata = yaml_data.get("serialization", {}).get("xml", {})
         self.api_versions = set(value_dict["version"] for value_dict in yaml_data.get("apiVersions", []))
+        self.nullable = yaml_data.get("extensions", {}).get("x-nullable")
 
     @classmethod
     def from_yaml(
@@ -117,7 +118,12 @@ class BaseSchema(BaseModel, ABC):
 
     @property
     def validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:  # pylint: disable=no-self-use
-        return None
+        validation_map = {}
+        if self.nullable:
+            validation_map = {
+                "nullable": self.nullable
+            }
+        return validation_map
 
     @property
     def serialization_constraints(self) -> Optional[List[str]]:  # pylint: disable=no-self-use

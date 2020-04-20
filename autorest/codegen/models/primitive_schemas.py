@@ -80,7 +80,7 @@ class NumberSchema(PrimitiveSchema):
 
     @property
     def validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
-        validation_map: Dict[str, Union[bool, int, str]] = {}
+        validation_map = super().validation_map
         if self.maximum is not None:
             if self.exclusive_maximum:
                 validation_map["maximum_ex"] = self.maximum
@@ -140,7 +140,7 @@ class StringSchema(PrimitiveSchema):
 
     @property
     def validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
-        validation_map: Dict[str, Union[bool, int, str]] = {}
+        validation_map = super().validation_map
         if self.max_length is not None:
             validation_map["max_length"] = self.max_length
         if self.min_length is not None:

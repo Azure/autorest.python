@@ -43,7 +43,7 @@ class ListSchema(BaseSchema):
 
     @property
     def validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
-        validation_map: Dict[str, Union[bool, int, str]] = {}
+        validation_map = super().validation_map
         if self.max_items:
             validation_map["max_items"] = self.max_items
             validation_map["min_items"] = self.min_items or 0
