@@ -24,12 +24,12 @@ class MultiApiScriptPlugin(Plugin):
         input_package_name: str = self._autorestapi.get_value("package-name")
         output_folder: str = self._autorestapi.get_value("output-folder")
         default_api: str = self._autorestapi.get_value("default-api")
-        no_async: bool = self._autorestapi.get_boolean_value("no-async")
+        no_async = self._autorestapi.get_boolean_value("no-async")
         generator = MultiAPI(
             input_package_name,
             output_folder,
-            no_async,
             self._autorestapi,
+            no_async,
             default_api
         )
         return generator.process()
@@ -125,8 +125,8 @@ class MultiAPI:
         self,
         input_package_name: str,
         output_folder: str,
-        no_async: bool,
         autorestapi: AutorestAPI,
+        no_async: Optional[bool] = False,
         default_api: Optional[str] = None
     ) -> None:
         if input_package_name is None:
