@@ -68,7 +68,7 @@ class PathsOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_empty.metadata['url']
+        url = self.get_empty.metadata['url']  # type: ignore
         path_format_arguments = {
             'vault': self._serialize.url("vault", vault, 'str', skip_quote=True),
             'secret': self._serialize.url("secret", secret, 'str', skip_quote=True),
@@ -99,4 +99,4 @@ class PathsOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_empty.metadata = {'url': '/customuri/{subscriptionId}/{keyName}'}
+    get_empty.metadata = {'url': '/customuri/{subscriptionId}/{keyName}'}  # type: ignore

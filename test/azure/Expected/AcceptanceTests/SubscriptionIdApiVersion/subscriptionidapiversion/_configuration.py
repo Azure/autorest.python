@@ -49,6 +49,7 @@ class MicrosoftAzureTestUrlConfiguration(Configuration):
         self.subscription_id = subscription_id
         self.api_version = "2014-04-01-preview"
         self.credential_scopes = ['https://management.azure.com/.default']
+        self.credential_scopes.extend(kwargs.pop('credential_scopes', []))
         kwargs.setdefault('sdk_moniker', 'microsoftazuretesturl/{}'.format(VERSION))
         self._configure(**kwargs)
 

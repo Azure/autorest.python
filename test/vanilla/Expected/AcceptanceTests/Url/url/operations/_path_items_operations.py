@@ -74,7 +74,7 @@ class PathItemsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_all_with_values.metadata['url']
+        url = self.get_all_with_values.metadata['url']  # type: ignore
         path_format_arguments = {
             'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
             'globalStringPath': self._serialize.url("self._config.global_string_path", self._config.global_string_path, 'str'),
@@ -107,7 +107,7 @@ class PathItemsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_all_with_values.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery'}
+    get_all_with_values.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery'}  # type: ignore
 
     @distributed_trace
     def get_global_query_null(
@@ -139,7 +139,7 @@ class PathItemsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_global_query_null.metadata['url']
+        url = self.get_global_query_null.metadata['url']  # type: ignore
         path_format_arguments = {
             'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
             'globalStringPath': self._serialize.url("self._config.global_string_path", self._config.global_string_path, 'str'),
@@ -172,7 +172,7 @@ class PathItemsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_global_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery'}
+    get_global_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery'}  # type: ignore
 
     @distributed_trace
     def get_global_and_local_query_null(
@@ -204,7 +204,7 @@ class PathItemsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_global_and_local_query_null.metadata['url']
+        url = self.get_global_and_local_query_null.metadata['url']  # type: ignore
         path_format_arguments = {
             'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
             'globalStringPath': self._serialize.url("self._config.global_string_path", self._config.global_string_path, 'str'),
@@ -237,7 +237,7 @@ class PathItemsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_global_and_local_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null'}
+    get_global_and_local_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null'}  # type: ignore
 
     @distributed_trace
     def get_local_path_item_query_null(
@@ -268,7 +268,7 @@ class PathItemsOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_local_path_item_query_null.metadata['url']
+        url = self.get_local_path_item_query_null.metadata['url']  # type: ignore
         path_format_arguments = {
             'pathItemStringPath': self._serialize.url("path_item_string_path", path_item_string_path, 'str'),
             'globalStringPath': self._serialize.url("self._config.global_string_path", self._config.global_string_path, 'str'),
@@ -301,4 +301,4 @@ class PathItemsOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get_local_path_item_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null'}
+    get_local_path_item_query_null.metadata = {'url': '/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null'}  # type: ignore

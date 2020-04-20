@@ -65,7 +65,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.param_existing_key.metadata['url']
+        url = self.param_existing_key.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -87,7 +87,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    param_existing_key.metadata = {'url': '/header/param/existingkey'}
+    param_existing_key.metadata = {'url': '/header/param/existingkey'}  # type: ignore
 
     @distributed_trace
     def response_existing_key(
@@ -106,7 +106,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.response_existing_key.metadata['url']
+        url = self.response_existing_key.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -130,7 +130,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    response_existing_key.metadata = {'url': '/header/response/existingkey'}
+    response_existing_key.metadata = {'url': '/header/response/existingkey'}  # type: ignore
 
     @distributed_trace
     def param_protected_key(
@@ -152,7 +152,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.param_protected_key.metadata['url']
+        url = self.param_protected_key.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -174,7 +174,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    param_protected_key.metadata = {'url': '/header/param/protectedkey'}
+    param_protected_key.metadata = {'url': '/header/param/protectedkey'}  # type: ignore
 
     @distributed_trace
     def response_protected_key(
@@ -193,7 +193,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.response_protected_key.metadata['url']
+        url = self.response_protected_key.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -217,7 +217,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    response_protected_key.metadata = {'url': '/header/response/protectedkey'}
+    response_protected_key.metadata = {'url': '/header/response/protectedkey'}  # type: ignore
 
     @distributed_trace
     def param_integer(
@@ -242,7 +242,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.param_integer.metadata['url']
+        url = self.param_integer.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -265,7 +265,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    param_integer.metadata = {'url': '/header/param/prim/integer'}
+    param_integer.metadata = {'url': '/header/param/prim/integer'}  # type: ignore
 
     @distributed_trace
     def response_integer(
@@ -287,7 +287,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.response_integer.metadata['url']
+        url = self.response_integer.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -312,7 +312,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    response_integer.metadata = {'url': '/header/response/prim/integer'}
+    response_integer.metadata = {'url': '/header/response/prim/integer'}  # type: ignore
 
     @distributed_trace
     def param_long(
@@ -337,7 +337,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.param_long.metadata['url']
+        url = self.param_long.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -360,7 +360,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    param_long.metadata = {'url': '/header/param/prim/long'}
+    param_long.metadata = {'url': '/header/param/prim/long'}  # type: ignore
 
     @distributed_trace
     def response_long(
@@ -382,7 +382,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.response_long.metadata['url']
+        url = self.response_long.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -407,7 +407,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    response_long.metadata = {'url': '/header/response/prim/long'}
+    response_long.metadata = {'url': '/header/response/prim/long'}  # type: ignore
 
     @distributed_trace
     def param_float(
@@ -432,7 +432,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.param_float.metadata['url']
+        url = self.param_float.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -455,7 +455,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    param_float.metadata = {'url': '/header/param/prim/float'}
+    param_float.metadata = {'url': '/header/param/prim/float'}  # type: ignore
 
     @distributed_trace
     def response_float(
@@ -477,7 +477,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.response_float.metadata['url']
+        url = self.response_float.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -502,7 +502,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    response_float.metadata = {'url': '/header/response/prim/float'}
+    response_float.metadata = {'url': '/header/response/prim/float'}  # type: ignore
 
     @distributed_trace
     def param_double(
@@ -527,7 +527,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.param_double.metadata['url']
+        url = self.param_double.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -550,7 +550,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    param_double.metadata = {'url': '/header/param/prim/double'}
+    param_double.metadata = {'url': '/header/param/prim/double'}  # type: ignore
 
     @distributed_trace
     def response_double(
@@ -572,7 +572,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.response_double.metadata['url']
+        url = self.response_double.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -597,7 +597,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    response_double.metadata = {'url': '/header/response/prim/double'}
+    response_double.metadata = {'url': '/header/response/prim/double'}  # type: ignore
 
     @distributed_trace
     def param_bool(
@@ -622,7 +622,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.param_bool.metadata['url']
+        url = self.param_bool.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -645,7 +645,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    param_bool.metadata = {'url': '/header/param/prim/bool'}
+    param_bool.metadata = {'url': '/header/param/prim/bool'}  # type: ignore
 
     @distributed_trace
     def response_bool(
@@ -667,7 +667,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.response_bool.metadata['url']
+        url = self.response_bool.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -692,7 +692,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    response_bool.metadata = {'url': '/header/response/prim/bool'}
+    response_bool.metadata = {'url': '/header/response/prim/bool'}  # type: ignore
 
     @distributed_trace
     def param_string(
@@ -719,7 +719,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.param_string.metadata['url']
+        url = self.param_string.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -743,7 +743,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    param_string.metadata = {'url': '/header/param/prim/string'}
+    param_string.metadata = {'url': '/header/param/prim/string'}  # type: ignore
 
     @distributed_trace
     def response_string(
@@ -766,7 +766,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.response_string.metadata['url']
+        url = self.response_string.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -791,7 +791,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    response_string.metadata = {'url': '/header/response/prim/string'}
+    response_string.metadata = {'url': '/header/response/prim/string'}  # type: ignore
 
     @distributed_trace
     def param_date(
@@ -816,7 +816,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.param_date.metadata['url']
+        url = self.param_date.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -839,7 +839,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    param_date.metadata = {'url': '/header/param/prim/date'}
+    param_date.metadata = {'url': '/header/param/prim/date'}  # type: ignore
 
     @distributed_trace
     def response_date(
@@ -861,7 +861,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.response_date.metadata['url']
+        url = self.response_date.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -886,7 +886,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    response_date.metadata = {'url': '/header/response/prim/date'}
+    response_date.metadata = {'url': '/header/response/prim/date'}  # type: ignore
 
     @distributed_trace
     def param_datetime(
@@ -912,7 +912,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.param_datetime.metadata['url']
+        url = self.param_datetime.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -935,7 +935,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    param_datetime.metadata = {'url': '/header/param/prim/datetime'}
+    param_datetime.metadata = {'url': '/header/param/prim/datetime'}  # type: ignore
 
     @distributed_trace
     def response_datetime(
@@ -957,7 +957,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.response_datetime.metadata['url']
+        url = self.response_datetime.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -982,7 +982,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    response_datetime.metadata = {'url': '/header/response/prim/datetime'}
+    response_datetime.metadata = {'url': '/header/response/prim/datetime'}  # type: ignore
 
     @distributed_trace
     def param_datetime_rfc1123(
@@ -1008,7 +1008,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.param_datetime_rfc1123.metadata['url']
+        url = self.param_datetime_rfc1123.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1032,7 +1032,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    param_datetime_rfc1123.metadata = {'url': '/header/param/prim/datetimerfc1123'}
+    param_datetime_rfc1123.metadata = {'url': '/header/param/prim/datetimerfc1123'}  # type: ignore
 
     @distributed_trace
     def response_datetime_rfc1123(
@@ -1054,7 +1054,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.response_datetime_rfc1123.metadata['url']
+        url = self.response_datetime_rfc1123.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1079,7 +1079,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    response_datetime_rfc1123.metadata = {'url': '/header/response/prim/datetimerfc1123'}
+    response_datetime_rfc1123.metadata = {'url': '/header/response/prim/datetimerfc1123'}  # type: ignore
 
     @distributed_trace
     def param_duration(
@@ -1104,7 +1104,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.param_duration.metadata['url']
+        url = self.param_duration.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1127,7 +1127,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    param_duration.metadata = {'url': '/header/param/prim/duration'}
+    param_duration.metadata = {'url': '/header/param/prim/duration'}  # type: ignore
 
     @distributed_trace
     def response_duration(
@@ -1149,7 +1149,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.response_duration.metadata['url']
+        url = self.response_duration.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1174,7 +1174,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    response_duration.metadata = {'url': '/header/response/prim/duration'}
+    response_duration.metadata = {'url': '/header/response/prim/duration'}  # type: ignore
 
     @distributed_trace
     def param_byte(
@@ -1199,7 +1199,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.param_byte.metadata['url']
+        url = self.param_byte.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1222,7 +1222,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    param_byte.metadata = {'url': '/header/param/prim/byte'}
+    param_byte.metadata = {'url': '/header/param/prim/byte'}  # type: ignore
 
     @distributed_trace
     def response_byte(
@@ -1244,7 +1244,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.response_byte.metadata['url']
+        url = self.response_byte.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1269,7 +1269,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    response_byte.metadata = {'url': '/header/response/prim/byte'}
+    response_byte.metadata = {'url': '/header/response/prim/byte'}  # type: ignore
 
     @distributed_trace
     def param_enum(
@@ -1295,7 +1295,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.param_enum.metadata['url']
+        url = self.param_enum.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1319,7 +1319,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    param_enum.metadata = {'url': '/header/param/prim/enum'}
+    param_enum.metadata = {'url': '/header/param/prim/enum'}  # type: ignore
 
     @distributed_trace
     def response_enum(
@@ -1342,7 +1342,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.response_enum.metadata['url']
+        url = self.response_enum.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1367,7 +1367,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    response_enum.metadata = {'url': '/header/response/prim/enum'}
+    response_enum.metadata = {'url': '/header/response/prim/enum'}  # type: ignore
 
     @distributed_trace
     def custom_request_id(
@@ -1386,7 +1386,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.custom_request_id.metadata['url']
+        url = self.custom_request_id.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1407,4 +1407,4 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    custom_request_id.metadata = {'url': '/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'}
+    custom_request_id.metadata = {'url': '/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'}  # type: ignore

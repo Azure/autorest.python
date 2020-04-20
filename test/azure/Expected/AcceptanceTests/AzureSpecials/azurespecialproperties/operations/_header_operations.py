@@ -65,7 +65,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.custom_named_request_id.metadata['url']
+        url = self.custom_named_request_id.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -90,7 +90,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    custom_named_request_id.metadata = {'url': '/azurespecials/customNamedRequestId'}
+    custom_named_request_id.metadata = {'url': '/azurespecials/customNamedRequestId'}  # type: ignore
 
     @distributed_trace
     def custom_named_request_id_param_grouping(
@@ -116,7 +116,7 @@ class HeaderOperations(object):
             _foo_client_request_id = header_custom_named_request_id_param_grouping_parameters.foo_client_request_id
 
         # Construct URL
-        url = self.custom_named_request_id_param_grouping.metadata['url']
+        url = self.custom_named_request_id_param_grouping.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -141,7 +141,7 @@ class HeaderOperations(object):
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    custom_named_request_id_param_grouping.metadata = {'url': '/azurespecials/customNamedRequestIdParamGrouping'}
+    custom_named_request_id_param_grouping.metadata = {'url': '/azurespecials/customNamedRequestIdParamGrouping'}  # type: ignore
 
     @distributed_trace
     def custom_named_request_id_head(
@@ -163,7 +163,7 @@ class HeaderOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.custom_named_request_id_head.metadata['url']
+        url = self.custom_named_request_id_head.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -190,4 +190,4 @@ class HeaderOperations(object):
           return cls(pipeline_response, None, response_headers)
 
         return 200 <= response.status_code <= 299
-    custom_named_request_id_head.metadata = {'url': '/azurespecials/customNamedRequestIdHead'}
+    custom_named_request_id_head.metadata = {'url': '/azurespecials/customNamedRequestIdHead'}  # type: ignore

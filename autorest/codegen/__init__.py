@@ -121,9 +121,30 @@ class CodeGenerator(Plugin):
         """Build en options dict from the user input while running autorest.
         """
         azure_arm = self._autorestapi.get_boolean_value("azure-arm", False)
-        credential_scopes = self._autorestapi.get_value("credential-scopes")
-        if not credential_scopes and azure_arm:
-            credential_scopes = "https://management.azure.com/.default"
+        credential = (
+            self._autorestapi.get_boolean_value("add-credentials", False) or
+            self._autorestapi.get_boolean_value("add-credential", False)
+        )
+
+        credential_scopes_temp = self._autorestapi.get_value("credential-scopes")
+        credential_scopes = credential_scopes_temp.split(",") if credential_scopes_temp else None
+        if credential_scopes and not credential:
+            raise ValueError("--credential-scopes must be used with the --add-credential flag")
+
+
+        if not credential_scopes:
+            if azure_arm:
+                credential_scopes = ["https://management.azure.com/.default"]
+            elif credential:
+                # If add-credential is specified, we still want to add a credential_scopes variable.
+                # Will make it an empty list so we can differentiate between this case and None
+                _LOGGER.warning(
+                    "You have used the --add-credential flag but not the --credential-scopes flag. "
+                    "This is not recommend because it forces the customer to pass credential scopes "
+                    "through kwargs if they want to authenticate."
+                )
+                credential_scopes = []
+
 
         license_header = self._autorestapi.get_value("header-text")
         if license_header:
@@ -135,11 +156,8 @@ class CodeGenerator(Plugin):
 
         options: Dict[str, Any] = {
             "azure_arm": azure_arm,
-            "credential": (
-                self._autorestapi.get_boolean_value("add-credentials", False)
-                or self._autorestapi.get_boolean_value("add-credential", False)
-            ),
-            "credential_scopes": credential_scopes.split(",") if credential_scopes else None,
+            "credential": credential,
+            "credential_scopes": credential_scopes,
             "head_as_boolean": self._autorestapi.get_boolean_value("head-as-boolean", False),
             "license_header": license_header,
             "keep_version_file": self._autorestapi.get_boolean_value("keep-version-file", False),

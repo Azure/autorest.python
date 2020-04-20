@@ -2,10 +2,25 @@
 
 ### Unreleased
 
+**New Features**
+
+- User can now pass in credential scopes through kwargs  #575
+
+### 2020-04-16 - 5.0.0-preview.1
+
+**Breaking Changes**
+
+- If the user would like to add a patch file, they now must name the file `_patch.py`  #573
+
 **New features**
 
 - Support non-ARM polling by default (azure-core 1.4.0)
+- Adding multiple inheritance  #567
 - Accept polling_interval keyword passed to LRO operations  #571
+
+**Bug Fixes**
+
+- Fixed some generated typing hints (such as LROPoller) #507
 
 ### 2020-04-09 - 5.0.0-dev.20200409.1
 Modelerfour version: 4.12.301
@@ -18,6 +33,7 @@ Modelerfour version: 4.12.301
 **New Features**
 
 - Client side validation is now disabled by default  #558
+- We now also generate an async multiapi client when running multiapiscript  # 480
 
 ### 2020-04-06 - 5.0.0-dev.20200406.1
 Modelerfour version: 4.12.294

@@ -46,7 +46,7 @@ class AutoRestReportServiceOperationsMixin(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_report.metadata['url']
+        url = self.get_report.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -73,7 +73,7 @@ class AutoRestReportServiceOperationsMixin(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_report.metadata = {'url': '/report'}
+    get_report.metadata = {'url': '/report'}  # type: ignore
 
     @distributed_trace
     def get_optional_report(
@@ -97,7 +97,7 @@ class AutoRestReportServiceOperationsMixin(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_optional_report.metadata['url']
+        url = self.get_optional_report.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -124,4 +124,4 @@ class AutoRestReportServiceOperationsMixin(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_optional_report.metadata = {'url': '/report/optional'}
+    get_optional_report.metadata = {'url': '/report/optional'}  # type: ignore

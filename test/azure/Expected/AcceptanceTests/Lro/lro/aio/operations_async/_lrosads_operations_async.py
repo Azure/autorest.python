@@ -53,7 +53,7 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self._put_non_retry400_initial.metadata['url']
+        url = self._put_non_retry400_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -90,7 +90,7 @@ class LROSADsOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    _put_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/put/400'}
+    _put_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/put/400'}  # type: ignore
 
     @distributed_trace_async
     async def put_non_retry400(
@@ -107,9 +107,8 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
-        :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
-
+        :return: Product
+        :rtype: ~lro.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -135,7 +134,7 @@ class LROSADsOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_non_retry400.metadata = {'url': '/lro/nonretryerror/put/400'}
+    put_non_retry400.metadata = {'url': '/lro/nonretryerror/put/400'}  # type: ignore
 
     async def _put_non_retry201_creating400_initial(
         self,
@@ -147,7 +146,7 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self._put_non_retry201_creating400_initial.metadata['url']
+        url = self._put_non_retry201_creating400_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -184,7 +183,7 @@ class LROSADsOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    _put_non_retry201_creating400_initial.metadata = {'url': '/lro/nonretryerror/put/201/creating/400'}
+    _put_non_retry201_creating400_initial.metadata = {'url': '/lro/nonretryerror/put/201/creating/400'}  # type: ignore
 
     @distributed_trace_async
     async def put_non_retry201_creating400(
@@ -201,9 +200,8 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
-        :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
-
+        :return: Product
+        :rtype: ~lro.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -229,7 +227,7 @@ class LROSADsOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_non_retry201_creating400.metadata = {'url': '/lro/nonretryerror/put/201/creating/400'}
+    put_non_retry201_creating400.metadata = {'url': '/lro/nonretryerror/put/201/creating/400'}  # type: ignore
 
     async def _put_non_retry201_creating400_invalid_json_initial(
         self,
@@ -241,7 +239,7 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self._put_non_retry201_creating400_invalid_json_initial.metadata['url']
+        url = self._put_non_retry201_creating400_invalid_json_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -278,7 +276,7 @@ class LROSADsOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    _put_non_retry201_creating400_invalid_json_initial.metadata = {'url': '/lro/nonretryerror/put/201/creating/400/invalidjson'}
+    _put_non_retry201_creating400_invalid_json_initial.metadata = {'url': '/lro/nonretryerror/put/201/creating/400/invalidjson'}  # type: ignore
 
     @distributed_trace_async
     async def put_non_retry201_creating400_invalid_json(
@@ -295,9 +293,8 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
-        :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
-
+        :return: Product
+        :rtype: ~lro.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -323,7 +320,7 @@ class LROSADsOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_non_retry201_creating400_invalid_json.metadata = {'url': '/lro/nonretryerror/put/201/creating/400/invalidjson'}
+    put_non_retry201_creating400_invalid_json.metadata = {'url': '/lro/nonretryerror/put/201/creating/400/invalidjson'}  # type: ignore
 
     async def _put_async_relative_retry400_initial(
         self,
@@ -335,7 +332,7 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self._put_async_relative_retry400_initial.metadata['url']
+        url = self._put_async_relative_retry400_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -371,7 +368,7 @@ class LROSADsOperations:
           return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-    _put_async_relative_retry400_initial.metadata = {'url': '/lro/nonretryerror/putasync/retry/400'}
+    _put_async_relative_retry400_initial.metadata = {'url': '/lro/nonretryerror/putasync/retry/400'}  # type: ignore
 
     @distributed_trace_async
     async def put_async_relative_retry400(
@@ -388,9 +385,8 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
-        :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
-
+        :return: Product
+        :rtype: ~lro.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -421,7 +417,7 @@ class LROSADsOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_relative_retry400.metadata = {'url': '/lro/nonretryerror/putasync/retry/400'}
+    put_async_relative_retry400.metadata = {'url': '/lro/nonretryerror/putasync/retry/400'}  # type: ignore
 
     async def _delete_non_retry400_initial(
         self,
@@ -431,7 +427,7 @@ class LROSADsOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._delete_non_retry400_initial.metadata['url']
+        url = self._delete_non_retry400_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -455,7 +451,7 @@ class LROSADsOperations:
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _delete_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/delete/400'}
+    _delete_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/delete/400'}  # type: ignore
 
     @distributed_trace_async
     async def delete_non_retry400(
@@ -469,9 +465,8 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
-
+        :return: None
+        :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -493,7 +488,7 @@ class LROSADsOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_non_retry400.metadata = {'url': '/lro/nonretryerror/delete/400'}
+    delete_non_retry400.metadata = {'url': '/lro/nonretryerror/delete/400'}  # type: ignore
 
     async def _delete202_non_retry400_initial(
         self,
@@ -503,7 +498,7 @@ class LROSADsOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._delete202_non_retry400_initial.metadata['url']
+        url = self._delete202_non_retry400_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -527,7 +522,7 @@ class LROSADsOperations:
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _delete202_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/delete/202/retry/400'}
+    _delete202_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/delete/202/retry/400'}  # type: ignore
 
     @distributed_trace_async
     async def delete202_non_retry400(
@@ -541,9 +536,8 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
-
+        :return: None
+        :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -565,7 +559,7 @@ class LROSADsOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete202_non_retry400.metadata = {'url': '/lro/nonretryerror/delete/202/retry/400'}
+    delete202_non_retry400.metadata = {'url': '/lro/nonretryerror/delete/202/retry/400'}  # type: ignore
 
     async def _delete_async_relative_retry400_initial(
         self,
@@ -575,7 +569,7 @@ class LROSADsOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._delete_async_relative_retry400_initial.metadata['url']
+        url = self._delete_async_relative_retry400_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -600,7 +594,7 @@ class LROSADsOperations:
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _delete_async_relative_retry400_initial.metadata = {'url': '/lro/nonretryerror/deleteasync/retry/400'}
+    _delete_async_relative_retry400_initial.metadata = {'url': '/lro/nonretryerror/deleteasync/retry/400'}  # type: ignore
 
     @distributed_trace_async
     async def delete_async_relative_retry400(
@@ -614,9 +608,8 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
-
+        :return: None
+        :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -638,7 +631,7 @@ class LROSADsOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_async_relative_retry400.metadata = {'url': '/lro/nonretryerror/deleteasync/retry/400'}
+    delete_async_relative_retry400.metadata = {'url': '/lro/nonretryerror/deleteasync/retry/400'}  # type: ignore
 
     async def _post_non_retry400_initial(
         self,
@@ -650,7 +643,7 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self._post_non_retry400_initial.metadata['url']
+        url = self._post_non_retry400_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -682,7 +675,7 @@ class LROSADsOperations:
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _post_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/post/400'}
+    _post_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/post/400'}  # type: ignore
 
     @distributed_trace_async
     async def post_non_retry400(
@@ -699,9 +692,8 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
-
+        :return: None
+        :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -724,7 +716,7 @@ class LROSADsOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post_non_retry400.metadata = {'url': '/lro/nonretryerror/post/400'}
+    post_non_retry400.metadata = {'url': '/lro/nonretryerror/post/400'}  # type: ignore
 
     async def _post202_non_retry400_initial(
         self,
@@ -736,7 +728,7 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self._post202_non_retry400_initial.metadata['url']
+        url = self._post202_non_retry400_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -768,7 +760,7 @@ class LROSADsOperations:
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _post202_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/post/202/retry/400'}
+    _post202_non_retry400_initial.metadata = {'url': '/lro/nonretryerror/post/202/retry/400'}  # type: ignore
 
     @distributed_trace_async
     async def post202_non_retry400(
@@ -785,9 +777,8 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
-
+        :return: None
+        :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -810,7 +801,7 @@ class LROSADsOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post202_non_retry400.metadata = {'url': '/lro/nonretryerror/post/202/retry/400'}
+    post202_non_retry400.metadata = {'url': '/lro/nonretryerror/post/202/retry/400'}  # type: ignore
 
     async def _post_async_relative_retry400_initial(
         self,
@@ -822,7 +813,7 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self._post_async_relative_retry400_initial.metadata['url']
+        url = self._post_async_relative_retry400_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -855,7 +846,7 @@ class LROSADsOperations:
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _post_async_relative_retry400_initial.metadata = {'url': '/lro/nonretryerror/postasync/retry/400'}
+    _post_async_relative_retry400_initial.metadata = {'url': '/lro/nonretryerror/postasync/retry/400'}  # type: ignore
 
     @distributed_trace_async
     async def post_async_relative_retry400(
@@ -872,9 +863,8 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
-
+        :return: None
+        :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -897,7 +887,7 @@ class LROSADsOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post_async_relative_retry400.metadata = {'url': '/lro/nonretryerror/postasync/retry/400'}
+    post_async_relative_retry400.metadata = {'url': '/lro/nonretryerror/postasync/retry/400'}  # type: ignore
 
     async def _put_error201_no_provisioning_state_payload_initial(
         self,
@@ -909,7 +899,7 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self._put_error201_no_provisioning_state_payload_initial.metadata['url']
+        url = self._put_error201_no_provisioning_state_payload_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -946,7 +936,7 @@ class LROSADsOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    _put_error201_no_provisioning_state_payload_initial.metadata = {'url': '/lro/error/put/201/noprovisioningstatepayload'}
+    _put_error201_no_provisioning_state_payload_initial.metadata = {'url': '/lro/error/put/201/noprovisioningstatepayload'}  # type: ignore
 
     @distributed_trace_async
     async def put_error201_no_provisioning_state_payload(
@@ -963,9 +953,8 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
-        :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
-
+        :return: Product
+        :rtype: ~lro.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -991,7 +980,7 @@ class LROSADsOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_error201_no_provisioning_state_payload.metadata = {'url': '/lro/error/put/201/noprovisioningstatepayload'}
+    put_error201_no_provisioning_state_payload.metadata = {'url': '/lro/error/put/201/noprovisioningstatepayload'}  # type: ignore
 
     async def _put_async_relative_retry_no_status_initial(
         self,
@@ -1003,7 +992,7 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self._put_async_relative_retry_no_status_initial.metadata['url']
+        url = self._put_async_relative_retry_no_status_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1039,7 +1028,7 @@ class LROSADsOperations:
           return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-    _put_async_relative_retry_no_status_initial.metadata = {'url': '/lro/error/putasync/retry/nostatus'}
+    _put_async_relative_retry_no_status_initial.metadata = {'url': '/lro/error/putasync/retry/nostatus'}  # type: ignore
 
     @distributed_trace_async
     async def put_async_relative_retry_no_status(
@@ -1056,9 +1045,8 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
-        :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
-
+        :return: Product
+        :rtype: ~lro.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -1089,7 +1077,7 @@ class LROSADsOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_relative_retry_no_status.metadata = {'url': '/lro/error/putasync/retry/nostatus'}
+    put_async_relative_retry_no_status.metadata = {'url': '/lro/error/putasync/retry/nostatus'}  # type: ignore
 
     async def _put_async_relative_retry_no_status_payload_initial(
         self,
@@ -1101,7 +1089,7 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self._put_async_relative_retry_no_status_payload_initial.metadata['url']
+        url = self._put_async_relative_retry_no_status_payload_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1137,7 +1125,7 @@ class LROSADsOperations:
           return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-    _put_async_relative_retry_no_status_payload_initial.metadata = {'url': '/lro/error/putasync/retry/nostatuspayload'}
+    _put_async_relative_retry_no_status_payload_initial.metadata = {'url': '/lro/error/putasync/retry/nostatuspayload'}  # type: ignore
 
     @distributed_trace_async
     async def put_async_relative_retry_no_status_payload(
@@ -1154,9 +1142,8 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
-        :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
-
+        :return: Product
+        :rtype: ~lro.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -1187,7 +1174,7 @@ class LROSADsOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_relative_retry_no_status_payload.metadata = {'url': '/lro/error/putasync/retry/nostatuspayload'}
+    put_async_relative_retry_no_status_payload.metadata = {'url': '/lro/error/putasync/retry/nostatuspayload'}  # type: ignore
 
     async def _delete204_succeeded_initial(
         self,
@@ -1197,7 +1184,7 @@ class LROSADsOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._delete204_succeeded_initial.metadata['url']
+        url = self._delete204_succeeded_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1217,7 +1204,7 @@ class LROSADsOperations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    _delete204_succeeded_initial.metadata = {'url': '/lro/error/delete/204/nolocation'}
+    _delete204_succeeded_initial.metadata = {'url': '/lro/error/delete/204/nolocation'}  # type: ignore
 
     @distributed_trace_async
     async def delete204_succeeded(
@@ -1231,9 +1218,8 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
-
+        :return: None
+        :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -1255,7 +1241,7 @@ class LROSADsOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete204_succeeded.metadata = {'url': '/lro/error/delete/204/nolocation'}
+    delete204_succeeded.metadata = {'url': '/lro/error/delete/204/nolocation'}  # type: ignore
 
     async def _delete_async_relative_retry_no_status_initial(
         self,
@@ -1265,7 +1251,7 @@ class LROSADsOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._delete_async_relative_retry_no_status_initial.metadata['url']
+        url = self._delete_async_relative_retry_no_status_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1290,7 +1276,7 @@ class LROSADsOperations:
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _delete_async_relative_retry_no_status_initial.metadata = {'url': '/lro/error/deleteasync/retry/nostatus'}
+    _delete_async_relative_retry_no_status_initial.metadata = {'url': '/lro/error/deleteasync/retry/nostatus'}  # type: ignore
 
     @distributed_trace_async
     async def delete_async_relative_retry_no_status(
@@ -1304,9 +1290,8 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
-
+        :return: None
+        :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -1328,7 +1313,7 @@ class LROSADsOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_async_relative_retry_no_status.metadata = {'url': '/lro/error/deleteasync/retry/nostatus'}
+    delete_async_relative_retry_no_status.metadata = {'url': '/lro/error/deleteasync/retry/nostatus'}  # type: ignore
 
     async def _post202_no_location_initial(
         self,
@@ -1340,7 +1325,7 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self._post202_no_location_initial.metadata['url']
+        url = self._post202_no_location_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1372,7 +1357,7 @@ class LROSADsOperations:
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _post202_no_location_initial.metadata = {'url': '/lro/error/post/202/nolocation'}
+    _post202_no_location_initial.metadata = {'url': '/lro/error/post/202/nolocation'}  # type: ignore
 
     @distributed_trace_async
     async def post202_no_location(
@@ -1389,9 +1374,8 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
-
+        :return: None
+        :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -1414,7 +1398,7 @@ class LROSADsOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post202_no_location.metadata = {'url': '/lro/error/post/202/nolocation'}
+    post202_no_location.metadata = {'url': '/lro/error/post/202/nolocation'}  # type: ignore
 
     async def _post_async_relative_retry_no_payload_initial(
         self,
@@ -1426,7 +1410,7 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self._post_async_relative_retry_no_payload_initial.metadata['url']
+        url = self._post_async_relative_retry_no_payload_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1459,7 +1443,7 @@ class LROSADsOperations:
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _post_async_relative_retry_no_payload_initial.metadata = {'url': '/lro/error/postasync/retry/nopayload'}
+    _post_async_relative_retry_no_payload_initial.metadata = {'url': '/lro/error/postasync/retry/nopayload'}  # type: ignore
 
     @distributed_trace_async
     async def post_async_relative_retry_no_payload(
@@ -1476,9 +1460,8 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
-
+        :return: None
+        :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -1501,7 +1484,7 @@ class LROSADsOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post_async_relative_retry_no_payload.metadata = {'url': '/lro/error/postasync/retry/nopayload'}
+    post_async_relative_retry_no_payload.metadata = {'url': '/lro/error/postasync/retry/nopayload'}  # type: ignore
 
     async def _put200_invalid_json_initial(
         self,
@@ -1513,7 +1496,7 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self._put200_invalid_json_initial.metadata['url']
+        url = self._put200_invalid_json_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1547,7 +1530,7 @@ class LROSADsOperations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    _put200_invalid_json_initial.metadata = {'url': '/lro/error/put/200/invalidjson'}
+    _put200_invalid_json_initial.metadata = {'url': '/lro/error/put/200/invalidjson'}  # type: ignore
 
     @distributed_trace_async
     async def put200_invalid_json(
@@ -1564,9 +1547,8 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
-        :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
-
+        :return: Product
+        :rtype: ~lro.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -1592,7 +1574,7 @@ class LROSADsOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put200_invalid_json.metadata = {'url': '/lro/error/put/200/invalidjson'}
+    put200_invalid_json.metadata = {'url': '/lro/error/put/200/invalidjson'}  # type: ignore
 
     async def _put_async_relative_retry_invalid_header_initial(
         self,
@@ -1604,7 +1586,7 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self._put_async_relative_retry_invalid_header_initial.metadata['url']
+        url = self._put_async_relative_retry_invalid_header_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1640,7 +1622,7 @@ class LROSADsOperations:
           return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-    _put_async_relative_retry_invalid_header_initial.metadata = {'url': '/lro/error/putasync/retry/invalidheader'}
+    _put_async_relative_retry_invalid_header_initial.metadata = {'url': '/lro/error/putasync/retry/invalidheader'}  # type: ignore
 
     @distributed_trace_async
     async def put_async_relative_retry_invalid_header(
@@ -1657,9 +1639,8 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
-        :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
-
+        :return: Product
+        :rtype: ~lro.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -1690,7 +1671,7 @@ class LROSADsOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_relative_retry_invalid_header.metadata = {'url': '/lro/error/putasync/retry/invalidheader'}
+    put_async_relative_retry_invalid_header.metadata = {'url': '/lro/error/putasync/retry/invalidheader'}  # type: ignore
 
     async def _put_async_relative_retry_invalid_json_polling_initial(
         self,
@@ -1702,7 +1683,7 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self._put_async_relative_retry_invalid_json_polling_initial.metadata['url']
+        url = self._put_async_relative_retry_invalid_json_polling_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1738,7 +1719,7 @@ class LROSADsOperations:
           return cls(pipeline_response, deserialized, response_headers)
 
         return deserialized
-    _put_async_relative_retry_invalid_json_polling_initial.metadata = {'url': '/lro/error/putasync/retry/invalidjsonpolling'}
+    _put_async_relative_retry_invalid_json_polling_initial.metadata = {'url': '/lro/error/putasync/retry/invalidjsonpolling'}  # type: ignore
 
     @distributed_trace_async
     async def put_async_relative_retry_invalid_json_polling(
@@ -1755,9 +1736,8 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns Product
-        :rtype: ~azure.core.polling.LROPoller[~lro.models.Product]
-
+        :return: Product
+        :rtype: ~lro.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -1788,7 +1768,7 @@ class LROSADsOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    put_async_relative_retry_invalid_json_polling.metadata = {'url': '/lro/error/putasync/retry/invalidjsonpolling'}
+    put_async_relative_retry_invalid_json_polling.metadata = {'url': '/lro/error/putasync/retry/invalidjsonpolling'}  # type: ignore
 
     async def _delete202_retry_invalid_header_initial(
         self,
@@ -1798,7 +1778,7 @@ class LROSADsOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._delete202_retry_invalid_header_initial.metadata['url']
+        url = self._delete202_retry_invalid_header_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1822,7 +1802,7 @@ class LROSADsOperations:
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _delete202_retry_invalid_header_initial.metadata = {'url': '/lro/error/delete/202/retry/invalidheader'}
+    _delete202_retry_invalid_header_initial.metadata = {'url': '/lro/error/delete/202/retry/invalidheader'}  # type: ignore
 
     @distributed_trace_async
     async def delete202_retry_invalid_header(
@@ -1836,9 +1816,8 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
-
+        :return: None
+        :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -1860,7 +1839,7 @@ class LROSADsOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete202_retry_invalid_header.metadata = {'url': '/lro/error/delete/202/retry/invalidheader'}
+    delete202_retry_invalid_header.metadata = {'url': '/lro/error/delete/202/retry/invalidheader'}  # type: ignore
 
     async def _delete_async_relative_retry_invalid_header_initial(
         self,
@@ -1870,7 +1849,7 @@ class LROSADsOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._delete_async_relative_retry_invalid_header_initial.metadata['url']
+        url = self._delete_async_relative_retry_invalid_header_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1895,7 +1874,7 @@ class LROSADsOperations:
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _delete_async_relative_retry_invalid_header_initial.metadata = {'url': '/lro/error/deleteasync/retry/invalidheader'}
+    _delete_async_relative_retry_invalid_header_initial.metadata = {'url': '/lro/error/deleteasync/retry/invalidheader'}  # type: ignore
 
     @distributed_trace_async
     async def delete_async_relative_retry_invalid_header(
@@ -1909,9 +1888,8 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
-
+        :return: None
+        :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -1933,7 +1911,7 @@ class LROSADsOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_async_relative_retry_invalid_header.metadata = {'url': '/lro/error/deleteasync/retry/invalidheader'}
+    delete_async_relative_retry_invalid_header.metadata = {'url': '/lro/error/deleteasync/retry/invalidheader'}  # type: ignore
 
     async def _delete_async_relative_retry_invalid_json_polling_initial(
         self,
@@ -1943,7 +1921,7 @@ class LROSADsOperations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self._delete_async_relative_retry_invalid_json_polling_initial.metadata['url']
+        url = self._delete_async_relative_retry_invalid_json_polling_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -1968,7 +1946,7 @@ class LROSADsOperations:
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _delete_async_relative_retry_invalid_json_polling_initial.metadata = {'url': '/lro/error/deleteasync/retry/invalidjsonpolling'}
+    _delete_async_relative_retry_invalid_json_polling_initial.metadata = {'url': '/lro/error/deleteasync/retry/invalidjsonpolling'}  # type: ignore
 
     @distributed_trace_async
     async def delete_async_relative_retry_invalid_json_polling(
@@ -1982,9 +1960,8 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
-
+        :return: None
+        :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -2006,7 +1983,7 @@ class LROSADsOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    delete_async_relative_retry_invalid_json_polling.metadata = {'url': '/lro/error/deleteasync/retry/invalidjsonpolling'}
+    delete_async_relative_retry_invalid_json_polling.metadata = {'url': '/lro/error/deleteasync/retry/invalidjsonpolling'}  # type: ignore
 
     async def _post202_retry_invalid_header_initial(
         self,
@@ -2018,7 +1995,7 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self._post202_retry_invalid_header_initial.metadata['url']
+        url = self._post202_retry_invalid_header_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2050,7 +2027,7 @@ class LROSADsOperations:
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _post202_retry_invalid_header_initial.metadata = {'url': '/lro/error/post/202/retry/invalidheader'}
+    _post202_retry_invalid_header_initial.metadata = {'url': '/lro/error/post/202/retry/invalidheader'}  # type: ignore
 
     @distributed_trace_async
     async def post202_retry_invalid_header(
@@ -2067,9 +2044,8 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
-
+        :return: None
+        :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -2092,7 +2068,7 @@ class LROSADsOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post202_retry_invalid_header.metadata = {'url': '/lro/error/post/202/retry/invalidheader'}
+    post202_retry_invalid_header.metadata = {'url': '/lro/error/post/202/retry/invalidheader'}  # type: ignore
 
     async def _post_async_relative_retry_invalid_header_initial(
         self,
@@ -2104,7 +2080,7 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self._post_async_relative_retry_invalid_header_initial.metadata['url']
+        url = self._post_async_relative_retry_invalid_header_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2137,7 +2113,7 @@ class LROSADsOperations:
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _post_async_relative_retry_invalid_header_initial.metadata = {'url': '/lro/error/postasync/retry/invalidheader'}
+    _post_async_relative_retry_invalid_header_initial.metadata = {'url': '/lro/error/postasync/retry/invalidheader'}  # type: ignore
 
     @distributed_trace_async
     async def post_async_relative_retry_invalid_header(
@@ -2154,9 +2130,8 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
-
+        :return: None
+        :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -2179,7 +2154,7 @@ class LROSADsOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post_async_relative_retry_invalid_header.metadata = {'url': '/lro/error/postasync/retry/invalidheader'}
+    post_async_relative_retry_invalid_header.metadata = {'url': '/lro/error/postasync/retry/invalidheader'}  # type: ignore
 
     async def _post_async_relative_retry_invalid_json_polling_initial(
         self,
@@ -2191,7 +2166,7 @@ class LROSADsOperations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self._post_async_relative_retry_invalid_json_polling_initial.metadata['url']
+        url = self._post_async_relative_retry_invalid_json_polling_initial.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -2224,7 +2199,7 @@ class LROSADsOperations:
         if cls:
           return cls(pipeline_response, None, response_headers)
 
-    _post_async_relative_retry_invalid_json_polling_initial.metadata = {'url': '/lro/error/postasync/retry/invalidjsonpolling'}
+    _post_async_relative_retry_invalid_json_polling_initial.metadata = {'url': '/lro/error/postasync/retry/invalidjsonpolling'}  # type: ignore
 
     @distributed_trace_async
     async def post_async_relative_retry_invalid_json_polling(
@@ -2241,9 +2216,8 @@ class LROSADsOperations:
          polling object for personal polling strategy
         :paramtype polling: bool or ~azure.core.polling.AsyncPollingMethod
         :keyword int polling_interval: Default waiting time between two polls for LRO operations if no Retry-After header is present.
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
-
+        :return: None
+        :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         polling = kwargs.pop('polling', True)  # type: Union[bool, AsyncPollingMethod]
@@ -2266,4 +2240,4 @@ class LROSADsOperations:
         elif polling is False: polling_method = AsyncNoPolling()
         else: polling_method = polling
         return await async_poller(self._client, raw_result, get_long_running_output, polling_method)
-    post_async_relative_retry_invalid_json_polling.metadata = {'url': '/lro/error/postasync/retry/invalidjsonpolling'}
+    post_async_relative_retry_invalid_json_polling.metadata = {'url': '/lro/error/postasync/retry/invalidjsonpolling'}  # type: ignore

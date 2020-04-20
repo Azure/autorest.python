@@ -21,6 +21,7 @@ from .operation import Operation
 from .property import Property
 from .operation_group import OperationGroup
 from .schema_response import SchemaResponse
+from .parameter_list import ParameterList
 
 
 __all__ = [
@@ -40,6 +41,7 @@ __all__ = [
     "Operation",
     "PagingOperation",
     "Parameter",
+    "ParameterList",
     "OperationGroup",
     "Property",
     "SchemaResponse"
@@ -73,7 +75,7 @@ def build_schema(yaml_data: Dict[str, Any], **kwargs) -> BaseSchema:
         code_model.primitives[yaml_id] = schema
 
     elif schema_type in ["choice", "sealed-choice"]:
-        schema = EnumSchema.from_yaml(namespace=namespace, yaml_data=yaml_data)
+        schema = EnumSchema.from_yaml(namespace=namespace, yaml_data=yaml_data, **kwargs)
         code_model.enums[yaml_id] = schema
 
     elif schema_type == "array":

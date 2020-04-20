@@ -61,7 +61,7 @@ class HttpRetryOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.head408.metadata['url']
+        url = self.head408.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -82,7 +82,7 @@ class HttpRetryOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    head408.metadata = {'url': '/http/retry/408'}
+    head408.metadata = {'url': '/http/retry/408'}  # type: ignore
 
     @distributed_trace
     def put500(
@@ -105,7 +105,7 @@ class HttpRetryOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put500.metadata['url']
+        url = self.put500.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -134,7 +134,7 @@ class HttpRetryOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put500.metadata = {'url': '/http/retry/500'}
+    put500.metadata = {'url': '/http/retry/500'}  # type: ignore
 
     @distributed_trace
     def patch500(
@@ -157,7 +157,7 @@ class HttpRetryOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.patch500.metadata['url']
+        url = self.patch500.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -186,7 +186,7 @@ class HttpRetryOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    patch500.metadata = {'url': '/http/retry/500'}
+    patch500.metadata = {'url': '/http/retry/500'}  # type: ignore
 
     @distributed_trace
     def get502(
@@ -205,7 +205,7 @@ class HttpRetryOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get502.metadata['url']
+        url = self.get502.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -226,7 +226,7 @@ class HttpRetryOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    get502.metadata = {'url': '/http/retry/502'}
+    get502.metadata = {'url': '/http/retry/502'}  # type: ignore
 
     @distributed_trace
     def options502(
@@ -245,7 +245,7 @@ class HttpRetryOperations(object):
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.options502.metadata['url']
+        url = self.options502.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -270,7 +270,7 @@ class HttpRetryOperations(object):
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    options502.metadata = {'url': '/http/retry/502'}
+    options502.metadata = {'url': '/http/retry/502'}  # type: ignore
 
     @distributed_trace
     def post503(
@@ -293,7 +293,7 @@ class HttpRetryOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.post503.metadata['url']
+        url = self.post503.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -322,7 +322,7 @@ class HttpRetryOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    post503.metadata = {'url': '/http/retry/503'}
+    post503.metadata = {'url': '/http/retry/503'}  # type: ignore
 
     @distributed_trace
     def delete503(
@@ -345,7 +345,7 @@ class HttpRetryOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.delete503.metadata['url']
+        url = self.delete503.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -374,7 +374,7 @@ class HttpRetryOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    delete503.metadata = {'url': '/http/retry/503'}
+    delete503.metadata = {'url': '/http/retry/503'}  # type: ignore
 
     @distributed_trace
     def put504(
@@ -397,7 +397,7 @@ class HttpRetryOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put504.metadata['url']
+        url = self.put504.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -426,7 +426,7 @@ class HttpRetryOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    put504.metadata = {'url': '/http/retry/504'}
+    put504.metadata = {'url': '/http/retry/504'}  # type: ignore
 
     @distributed_trace
     def patch504(
@@ -449,7 +449,7 @@ class HttpRetryOperations(object):
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.patch504.metadata['url']
+        url = self.patch504.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -478,4 +478,4 @@ class HttpRetryOperations(object):
         if cls:
           return cls(pipeline_response, None, {})
 
-    patch504.metadata = {'url': '/http/retry/504'}
+    patch504.metadata = {'url': '/http/retry/504'}  # type: ignore

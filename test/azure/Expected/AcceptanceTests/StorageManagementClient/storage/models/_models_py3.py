@@ -11,6 +11,8 @@ from typing import Dict, List, Optional, Union
 
 import msrest.serialization
 
+from ._storage_management_client_enums import *
+
 
 class Bar(msrest.serialization.Model):
     """The URIs that are used to perform a retrieval of a public blob, queue or table object.

@@ -57,7 +57,7 @@ class Datetimerfc1123Operations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_null.metadata['url']
+        url = self.get_null.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -82,7 +82,7 @@ class Datetimerfc1123Operations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_null.metadata = {'url': '/datetimerfc1123/null'}
+    get_null.metadata = {'url': '/datetimerfc1123/null'}  # type: ignore
 
     @distributed_trace_async
     async def get_invalid(
@@ -100,7 +100,7 @@ class Datetimerfc1123Operations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_invalid.metadata['url']
+        url = self.get_invalid.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -125,7 +125,7 @@ class Datetimerfc1123Operations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_invalid.metadata = {'url': '/datetimerfc1123/invalid'}
+    get_invalid.metadata = {'url': '/datetimerfc1123/invalid'}  # type: ignore
 
     @distributed_trace_async
     async def get_overflow(
@@ -143,7 +143,7 @@ class Datetimerfc1123Operations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_overflow.metadata['url']
+        url = self.get_overflow.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -168,7 +168,7 @@ class Datetimerfc1123Operations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_overflow.metadata = {'url': '/datetimerfc1123/overflow'}
+    get_overflow.metadata = {'url': '/datetimerfc1123/overflow'}  # type: ignore
 
     @distributed_trace_async
     async def get_underflow(
@@ -186,7 +186,7 @@ class Datetimerfc1123Operations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_underflow.metadata['url']
+        url = self.get_underflow.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -211,7 +211,7 @@ class Datetimerfc1123Operations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_underflow.metadata = {'url': '/datetimerfc1123/underflow'}
+    get_underflow.metadata = {'url': '/datetimerfc1123/underflow'}  # type: ignore
 
     @distributed_trace_async
     async def put_utc_max_date_time(
@@ -233,7 +233,7 @@ class Datetimerfc1123Operations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_utc_max_date_time.metadata['url']
+        url = self.put_utc_max_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -259,7 +259,7 @@ class Datetimerfc1123Operations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_utc_max_date_time.metadata = {'url': '/datetimerfc1123/max'}
+    put_utc_max_date_time.metadata = {'url': '/datetimerfc1123/max'}  # type: ignore
 
     @distributed_trace_async
     async def get_utc_lowercase_max_date_time(
@@ -277,7 +277,7 @@ class Datetimerfc1123Operations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_utc_lowercase_max_date_time.metadata['url']
+        url = self.get_utc_lowercase_max_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -302,7 +302,7 @@ class Datetimerfc1123Operations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_utc_lowercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/lowercase'}
+    get_utc_lowercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/lowercase'}  # type: ignore
 
     @distributed_trace_async
     async def get_utc_uppercase_max_date_time(
@@ -320,7 +320,7 @@ class Datetimerfc1123Operations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_utc_uppercase_max_date_time.metadata['url']
+        url = self.get_utc_uppercase_max_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -345,7 +345,7 @@ class Datetimerfc1123Operations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_utc_uppercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/uppercase'}
+    get_utc_uppercase_max_date_time.metadata = {'url': '/datetimerfc1123/max/uppercase'}  # type: ignore
 
     @distributed_trace_async
     async def put_utc_min_date_time(
@@ -367,7 +367,7 @@ class Datetimerfc1123Operations:
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
-        url = self.put_utc_min_date_time.metadata['url']
+        url = self.put_utc_min_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -393,7 +393,7 @@ class Datetimerfc1123Operations:
         if cls:
           return cls(pipeline_response, None, {})
 
-    put_utc_min_date_time.metadata = {'url': '/datetimerfc1123/min'}
+    put_utc_min_date_time.metadata = {'url': '/datetimerfc1123/min'}  # type: ignore
 
     @distributed_trace_async
     async def get_utc_min_date_time(
@@ -411,7 +411,7 @@ class Datetimerfc1123Operations:
         error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
 
         # Construct URL
-        url = self.get_utc_min_date_time.metadata['url']
+        url = self.get_utc_min_date_time.metadata['url']  # type: ignore
 
         # Construct parameters
         query_parameters = {}  # type: Dict[str, Any]
@@ -436,4 +436,4 @@ class Datetimerfc1123Operations:
           return cls(pipeline_response, deserialized, {})
 
         return deserialized
-    get_utc_min_date_time.metadata = {'url': '/datetimerfc1123/min'}
+    get_utc_min_date_time.metadata = {'url': '/datetimerfc1123/min'}  # type: ignore
