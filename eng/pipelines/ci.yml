@@ -53,6 +53,7 @@ jobs:
           npm install -g autorest
           npm install
         displayName: 'Prepare Environment for Generation'
+
       - script: |
           pylint autorest
         displayName: 'Pylint'
@@ -68,6 +69,12 @@ jobs:
       - script: |
           inv regenerate
         displayName: 'Regenerate Code'
+
+      - script: |
+          git add -A  # 'add' first so 'diff' includes untracked files
+          git diff --staged -w
+        displayName: 'Diff regeneration'
+
       - task: UsePythonVersion@0
         displayName: 'Use Python $(PythonVersion)'
         inputs:
@@ -76,6 +83,7 @@ jobs:
       - script: |
           pip install tox coverage==4.5.4
         displayName: 'Install Env Specific Reqs in Target PyVersion $(PythonVersion)'
+
       - script: |
           cd $(TestFolder)/azure
           tox -e ci

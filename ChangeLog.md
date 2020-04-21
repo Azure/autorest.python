@@ -6,6 +6,10 @@
 
 - User can now pass in credential scopes through kwargs  #575
 
+**Bug Fixes**
+
+- Not generating async multiapi client if `--no-async` flag is specified  #586
+
 ### 2020-04-16 - 5.0.0-preview.1
 
 **Breaking Changes**
