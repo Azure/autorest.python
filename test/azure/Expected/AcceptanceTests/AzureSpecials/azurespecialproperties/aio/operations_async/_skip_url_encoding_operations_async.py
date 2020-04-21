@@ -57,7 +57,8 @@ class SkipUrlEncodingOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
         url = self.get_method_path_valid.metadata['url']  # type: ignore
@@ -103,7 +104,8 @@ class SkipUrlEncodingOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
         url = self.get_path_valid.metadata['url']  # type: ignore
@@ -146,7 +148,8 @@ class SkipUrlEncodingOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         unencoded_path_param = "path1/path2/path3"
 
         # Construct URL
@@ -193,7 +196,8 @@ class SkipUrlEncodingOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
         url = self.get_method_query_valid.metadata['url']  # type: ignore
@@ -236,7 +240,8 @@ class SkipUrlEncodingOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
         url = self.get_method_query_null.metadata['url']  # type: ignore
@@ -280,7 +285,8 @@ class SkipUrlEncodingOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
         url = self.get_path_query_valid.metadata['url']  # type: ignore
@@ -320,7 +326,8 @@ class SkipUrlEncodingOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         q1 = "value1&q2=value2&q3=value3"
 
         # Construct URL

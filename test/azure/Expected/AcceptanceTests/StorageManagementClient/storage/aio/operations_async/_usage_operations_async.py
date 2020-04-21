@@ -54,7 +54,8 @@ class UsageOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.UsageListResult"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         api_version = "2015-05-01-preview"
 
         # Construct URL

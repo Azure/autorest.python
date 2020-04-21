@@ -23,7 +23,7 @@ class ObjectTypeClientOperationsMixin:
         self,
         **kwargs
     ) -> object:
-        """Basic get that returns an object.
+        """Basic get that returns an object. Returns object { 'message': 'An object was successfully returned' }.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: object or the result of cls(response)
@@ -31,7 +31,8 @@ class ObjectTypeClientOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[object]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
         url = self.get.metadata['url']  # type: ignore
@@ -67,9 +68,9 @@ class ObjectTypeClientOperationsMixin:
         put_object: object,
         **kwargs
     ) -> None:
-        """Basic put that puts an object.
+        """Basic put that puts an object. Pass in {'foo': 'bar'} to get a 200 and anything else to get an object error.
 
-        :param put_object:
+        :param put_object: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
         :type put_object: object
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
@@ -77,7 +78,8 @@ class ObjectTypeClientOperationsMixin:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL

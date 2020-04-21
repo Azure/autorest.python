@@ -53,7 +53,8 @@ class EnumOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[Union[str, "models.Colors"]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
         url = self.get_not_expandable.metadata['url']  # type: ignore
@@ -99,7 +100,8 @@ class EnumOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
@@ -144,7 +146,8 @@ class EnumOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[Union[str, "models.Colors"]]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
         url = self.get_referenced.metadata['url']  # type: ignore
@@ -190,7 +193,8 @@ class EnumOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
@@ -235,7 +239,8 @@ class EnumOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.RefColorConstant"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
         url = self.get_referenced_constant.metadata['url']  # type: ignore
@@ -281,7 +286,8 @@ class EnumOperations:
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         _enum_string_body = models.RefColorConstant(field1=field1)
         content_type = kwargs.pop("content_type", "application/json")

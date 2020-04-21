@@ -24,10 +24,12 @@ class MultiApiScriptPlugin(Plugin):
         input_package_name: str = self._autorestapi.get_value("package-name")
         output_folder: str = self._autorestapi.get_value("output-folder")
         default_api: str = self._autorestapi.get_value("default-api")
+        no_async = self._autorestapi.get_boolean_value("no-async")
         generator = MultiAPI(
             input_package_name,
             output_folder,
             self._autorestapi,
+            no_async,
             default_api
         )
         return generator.process()
@@ -124,6 +126,7 @@ class MultiAPI:
         input_package_name: str,
         output_folder: str,
         autorestapi: AutorestAPI,
+        no_async: Optional[bool] = False,
         default_api: Optional[str] = None
     ) -> None:
         if input_package_name is None:
@@ -134,6 +137,7 @@ class MultiAPI:
         self.output_folder = Path(output_folder).resolve()
         _LOGGER.debug("Received output-folder %s", output_folder)
         self.output_package_name: str = ""
+        self.no_async = no_async
         self._autorestapi = autorestapi
         self.default_api = default_api
 
@@ -325,13 +329,14 @@ class MultiAPI:
         )
         multiapi_serializer.serialize()
 
-        async_multiapi_serializer = MultiAPISerializer(
-            conf=conf,
-            async_mode=True,
-            autorestapi=self._autorestapi,
-            service_client_filename=metadata_json["client"]["filename"]
-        )
-        async_multiapi_serializer.serialize()
+        if not self.no_async:
+            async_multiapi_serializer = MultiAPISerializer(
+                conf=conf,
+                async_mode=True,
+                autorestapi=self._autorestapi,
+                service_client_filename=metadata_json["client"]["filename"]
+            )
+            async_multiapi_serializer.serialize()
 
 
         # don't erase patch file

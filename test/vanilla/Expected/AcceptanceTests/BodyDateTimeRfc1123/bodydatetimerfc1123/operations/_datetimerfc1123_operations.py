@@ -59,7 +59,8 @@ class Datetimerfc1123Operations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
         url = self.get_null.metadata['url']  # type: ignore
@@ -103,7 +104,8 @@ class Datetimerfc1123Operations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
         url = self.get_invalid.metadata['url']  # type: ignore
@@ -147,7 +149,8 @@ class Datetimerfc1123Operations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
         url = self.get_overflow.metadata['url']  # type: ignore
@@ -191,7 +194,8 @@ class Datetimerfc1123Operations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
         url = self.get_underflow.metadata['url']  # type: ignore
@@ -238,7 +242,8 @@ class Datetimerfc1123Operations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
@@ -284,7 +289,8 @@ class Datetimerfc1123Operations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
         url = self.get_utc_lowercase_max_date_time.metadata['url']  # type: ignore
@@ -328,7 +334,8 @@ class Datetimerfc1123Operations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
         url = self.get_utc_uppercase_max_date_time.metadata['url']  # type: ignore
@@ -375,7 +382,8 @@ class Datetimerfc1123Operations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[None]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         content_type = kwargs.pop("content_type", "application/json")
 
         # Construct URL
@@ -421,7 +429,8 @@ class Datetimerfc1123Operations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType[datetime.datetime]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         # Construct URL
         url = self.get_utc_min_date_time.metadata['url']  # type: ignore
