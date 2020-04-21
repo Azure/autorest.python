@@ -120,7 +120,7 @@ class BaseSchema(BaseModel, ABC):
         return self.get_declaration(self.default_value)
 
     @property
-    def validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:  # pylint: disable=no-self-use
+    def validation_map(self) -> Dict[str, Union[bool, int, str]]:  # pylint: disable=no-self-use
         validation_map = {}
         if self.nullable:
             validation_map = {

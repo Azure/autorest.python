@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from typing import cast, Any, Dict, Union, List, Optional
+from typing import Any, Dict, Union, List, Optional
 
 from .base_model import BaseModel
 from .constant_schema import ConstantSchema
@@ -47,9 +47,9 @@ class Property(BaseModel):
         if self.constant:
             validation_map["constant"] = True
         if self.schema.validation_map:
-            validation_map_from_schema = cast(Dict[str, Union[bool, int, str]], self.schema.validation_map)
+            validation_map_from_schema = self.schema.validation_map
             validation_map.update(validation_map_from_schema)
-        self.validation_map = validation_map or None
+        self.validation_map = validation_map
 
     @property
     def escaped_swagger_name(self) -> str:

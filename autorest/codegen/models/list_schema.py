@@ -46,7 +46,7 @@ class ListSchema(BaseSchema):
         return "list"
 
     @property
-    def validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
+    def validation_map(self) -> Dict[str, Union[bool, int, str]]:
         validation_map = super().validation_map
         if self.max_items:
             validation_map["max_items"] = self.max_items
@@ -55,7 +55,7 @@ class ListSchema(BaseSchema):
             validation_map["min_items"] = self.min_items
         if self.unique_items:
             validation_map["unique"] = True
-        return validation_map or None
+        return validation_map
 
     @property
     def has_xml_serialization_ctxt(self) -> bool:

@@ -6,7 +6,7 @@
 import logging
 import datetime
 from enum import Enum
-from typing import cast, Any, Dict, List, Optional, Union
+from typing import cast, Any, Dict, List, Union
 
 from .base_schema import BaseSchema
 from .imports import FileImport, ImportType
@@ -79,7 +79,7 @@ class NumberSchema(PrimitiveSchema):
         return [x for x in validation_constraints if x is not None]
 
     @property
-    def validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
+    def validation_map(self) -> Dict[str, Union[bool, int, str]]:
         validation_map = super().validation_map
         if self.maximum is not None:
             if self.exclusive_maximum:
@@ -93,7 +93,7 @@ class NumberSchema(PrimitiveSchema):
                 validation_map["minimum"] = self.minimum
         if self.multiple:
             validation_map["multiple"] = self.multiple
-        return validation_map or None
+        return validation_map
 
     @property
     def serialization_type(self) -> str:
@@ -139,7 +139,7 @@ class StringSchema(PrimitiveSchema):
         return [x for x in validation_constraints if x is not None]
 
     @property
-    def validation_map(self) -> Optional[Dict[str, Union[bool, int, str]]]:
+    def validation_map(self) -> Dict[str, Union[bool, int, str]]:
         validation_map = super().validation_map
         if self.max_length is not None:
             validation_map["max_length"] = self.max_length
@@ -148,7 +148,7 @@ class StringSchema(PrimitiveSchema):
         if self.pattern:
             # https://github.com/Azure/autorest.python/issues/407
             validation_map["pattern"] = RawString(self.pattern)  # type: ignore
-        return validation_map or None
+        return validation_map
 
     def get_declaration(self, value) -> str:
         return f'"{value}"'
