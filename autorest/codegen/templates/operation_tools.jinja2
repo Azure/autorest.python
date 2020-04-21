@@ -93,9 +93,10 @@ error_map = {
     {% endfor %}
 {% endfor %}
 }
-error_map.update(kwargs.pop('error_map', {}))
-{%- else -%}
-error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError}){%- endif -%}{%- endmacro -%}
+{% else %}
+error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+{% endif %}
+error_map.update(kwargs.pop('error_map', {})){%- endmacro -%}
 {% macro response_handling(response) %}
   {% if response.headers %}
     {% for response_header in response.headers %}
