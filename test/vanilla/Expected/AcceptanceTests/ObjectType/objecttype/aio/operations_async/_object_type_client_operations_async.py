@@ -23,7 +23,7 @@ class ObjectTypeClientOperationsMixin:
         self,
         **kwargs
     ) -> object:
-        """Basic get that returns an object.
+        """Basic get that returns an object. Returns object { 'message': 'An object was successfully returned' }.
 
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: object or the result of cls(response)
@@ -68,9 +68,9 @@ class ObjectTypeClientOperationsMixin:
         put_object: object,
         **kwargs
     ) -> None:
-        """Basic put that puts an object.
+        """Basic put that puts an object. Pass in {'foo': 'bar'} to get a 200 and anything else to get an object error.
 
-        :param put_object:
+        :param put_object: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
         :type put_object: object
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: None or the result of cls(response)
