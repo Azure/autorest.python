@@ -478,13 +478,13 @@ class StorageAccountsOperations:
                     'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+                query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
+
             else:
                 url = next_link
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-            query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
-
+                query_parameters = {}  # type: Dict[str, Any]
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
@@ -546,13 +546,13 @@ class StorageAccountsOperations:
                     'subscriptionId': self._serialize.url("self._config.subscription_id", self._config.subscription_id, 'str'),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+                query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
+
             else:
                 url = next_link
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-            query_parameters['api-version'] = self._serialize.query("api_version", api_version, 'str')
-
+                query_parameters = {}  # type: Dict[str, Any]
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
