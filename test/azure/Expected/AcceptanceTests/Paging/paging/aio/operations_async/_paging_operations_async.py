@@ -314,7 +314,6 @@ class PagingOperations:
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
-        content_type = "application/json"
         query_constant = True
 
         def prepare_request(next_link=None):
@@ -324,6 +323,7 @@ class PagingOperations:
                 # Construct parameters
                 query_parameters = {}  # type: Dict[str, Any]
                 query_parameters['requiredQueryParameter'] = self._serialize.query("required_query_parameter", required_query_parameter, 'int')
+                query_parameters['queryConstant'] = self._serialize.query("query_constant", query_constant, 'bool')
 
             else:
                 url = '/paging/multiple/nextOperationWithQueryParams'
@@ -333,15 +333,10 @@ class PagingOperations:
 
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
-            header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
             header_parameters['Accept'] = 'application/json'
 
             # Construct and send request
-            body_content_kwargs = {}  # type: Dict[str, Any]
-            body_content = self._serialize.body(query_constant, 'bool')
-            body_content_kwargs['content'] = body_content
-            request = self._client.get(url, query_parameters, header_parameters, **body_content_kwargs)
-
+            request = self._client.get(url, query_parameters, header_parameters)
             return request
 
         async def extract_data(pipeline_response):
