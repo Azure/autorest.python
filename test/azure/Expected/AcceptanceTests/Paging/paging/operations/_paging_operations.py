@@ -306,18 +306,14 @@ class PagingOperations(object):
     def get_with_query_params(
         self,
         required_query_parameter,  # type: int
-        optional_query_parameter=None,  # type: Optional[str]
         **kwargs  # type: Any
     ):
         # type: (...) -> Iterable["models.ProductResult"]
-        """A paging operation that includes a next operation. It has different query parameters than it's next operation nextOperationWithQueryParams has. Returns a ProductResult.
+        """A paging operation that includes a next operation. It has a different query parameter from it's next operation nextOperationWithQueryParams. Returns a ProductResult.
 
         :param required_query_parameter: A required integer query parameter. Put in value '100' to pass
      test.
         :type required_query_parameter: int
-        :param optional_query_parameter: An optional string query parameter. Put in 'optional' to pass
-     test.
-        :type optional_query_parameter: str
         :keyword callable cls: A custom type or function that will be passed the direct response
         :return: An iterator like instance of ProductResult or the result of cls(response)
         :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
@@ -327,7 +323,7 @@ class PagingOperations(object):
         error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
         error_map.update(kwargs.pop('error_map', {}))
         content_type = "application/json"
-        next = True
+        query_constant = True
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -336,14 +332,12 @@ class PagingOperations(object):
                 # Construct parameters
                 query_parameters = {}  # type: Dict[str, Any]
                 query_parameters['requiredQueryParameter'] = self._serialize.query("required_query_parameter", required_query_parameter, 'int')
-                if optional_query_parameter is not None:
-                    query_parameters['optionalQueryParameter'] = self._serialize.query("optional_query_parameter", optional_query_parameter, 'str')
 
             else:
                 url = '/paging/multiple/nextOperationWithQueryParams'
                 # Construct parameters
                 query_parameters = {}  # type: Dict[str, Any]
-                query_parameters['next'] = self._serialize.query("next", next, 'bool')
+                query_parameters['queryConstant'] = self._serialize.query("query_constant", query_constant, 'bool')
 
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
@@ -352,7 +346,7 @@ class PagingOperations(object):
 
             # Construct and send request
             body_content_kwargs = {}  # type: Dict[str, Any]
-            body_content = self._serialize.body(next, 'bool')
+            body_content = self._serialize.body(query_constant, 'bool')
             body_content_kwargs['content'] = body_content
             request = self._client.get(url, query_parameters, header_parameters, **body_content_kwargs)
 

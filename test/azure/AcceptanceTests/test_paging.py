@@ -89,7 +89,7 @@ def test_get_multiple_pages(client):
     assert len(items) == 10
 
 def test_query_params(client):
-	pages = client.paging.get_with_query_params(required_query_parameter='100', optional_query_parameter='optional')
+	pages = client.paging.get_with_query_params(required_query_parameter='100')
 	items = [i for i in pages]
 	assert len(items) == 2
 

@@ -112,11 +112,11 @@ async def test_get_multiple_pages(client):
 
 @pytest.mark.asyncio
 async def test_query_params(client):
-	pages = client.paging.get_with_query_params(required_query_parameter='100', optional_query_parameter='optional')
-	items = []
+    pages = client.paging.get_with_query_params(required_query_parameter='100')
+    items = []
     async for item in pages:
         items.append(item)
-	assert len(items) == 2
+    assert len(items) == 2
 
 @pytest.mark.asyncio
 async def test_get_odata_multiple_pages(client):
