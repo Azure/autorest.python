@@ -69,12 +69,12 @@ class PagingOperations(object):
             if not next_link:
                 # Construct URL
                 url = self.get_no_item_name_pages.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
             else:
                 url = next_link
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-
+                query_parameters = {}  # type: Dict[str, Any]
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
@@ -128,12 +128,12 @@ class PagingOperations(object):
             if not next_link:
                 # Construct URL
                 url = self.get_null_next_link_name_pages.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
             else:
                 url = next_link
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-
+                query_parameters = {}  # type: Dict[str, Any]
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
@@ -187,12 +187,12 @@ class PagingOperations(object):
             if not next_link:
                 # Construct URL
                 url = self.get_single_pages.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
             else:
                 url = next_link
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-
+                query_parameters = {}  # type: Dict[str, Any]
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
@@ -258,12 +258,12 @@ class PagingOperations(object):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
             else:
                 url = next_link
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-
+                query_parameters = {}  # type: Dict[str, Any]
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
             if client_request_id is not None:
@@ -335,12 +335,12 @@ class PagingOperations(object):
             if not next_link:
                 # Construct URL
                 url = self.get_odata_multiple_pages.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
             else:
                 url = next_link
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-
+                query_parameters = {}  # type: Dict[str, Any]
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
             if client_request_id is not None:
@@ -418,12 +418,12 @@ class PagingOperations(object):
                     'offset': self._serialize.url("offset", _offset, 'int'),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
             else:
                 url = next_link
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-
+                query_parameters = {}  # type: Dict[str, Any]
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
             if client_request_id is not None:
@@ -483,12 +483,12 @@ class PagingOperations(object):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages_retry_first.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
             else:
                 url = next_link
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-
+                query_parameters = {}  # type: Dict[str, Any]
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
@@ -542,12 +542,12 @@ class PagingOperations(object):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages_retry_second.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
             else:
                 url = next_link
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-
+                query_parameters = {}  # type: Dict[str, Any]
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
@@ -601,12 +601,12 @@ class PagingOperations(object):
             if not next_link:
                 # Construct URL
                 url = self.get_single_pages_failure.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
             else:
                 url = next_link
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-
+                query_parameters = {}  # type: Dict[str, Any]
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
@@ -660,12 +660,12 @@ class PagingOperations(object):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages_failure.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
             else:
                 url = next_link
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-
+                query_parameters = {}  # type: Dict[str, Any]
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
@@ -719,12 +719,12 @@ class PagingOperations(object):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages_failure_uri.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
             else:
                 url = next_link
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-
+                query_parameters = {}  # type: Dict[str, Any]
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
@@ -788,6 +788,10 @@ class PagingOperations(object):
                     'tenant': self._serialize.url("tenant", tenant, 'str'),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+                query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
+
             else:
                 url = '/paging/multiple/fragment/{tenant}/{nextLink}'
                 path_format_arguments = {
@@ -795,10 +799,9 @@ class PagingOperations(object):
                     'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-            query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+                query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
 
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
@@ -866,6 +869,10 @@ class PagingOperations(object):
                     'tenant': self._serialize.url("tenant", _tenant, 'str'),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+                query_parameters['api_version'] = self._serialize.query("api_version", _api_version, 'str')
+
             else:
                 url = '/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}'
                 path_format_arguments = {
@@ -873,10 +880,9 @@ class PagingOperations(object):
                     'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-            query_parameters['api_version'] = self._serialize.query("api_version", _api_version, 'str')
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+                query_parameters['api_version'] = self._serialize.query("api_version", _api_version, 'str')
 
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]

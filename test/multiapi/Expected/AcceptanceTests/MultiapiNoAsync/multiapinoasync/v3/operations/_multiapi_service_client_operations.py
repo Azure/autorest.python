@@ -44,12 +44,12 @@ class MultiapiServiceClientOperationsMixin(object):
             if not next_link:
                 # Construct URL
                 url = self.test_paging.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
             else:
                 url = next_link
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-
+                query_parameters = {}  # type: Dict[str, Any]
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
