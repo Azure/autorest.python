@@ -296,6 +296,85 @@ class PagingOperations:
     get_multiple_pages.metadata = {'url': '/paging/multiple'}  # type: ignore
 
     @distributed_trace
+    def get_with_query_params(
+        self,
+        required_query_parameter: int,
+        optional_query_parameter: Optional[str] = None,
+        **kwargs
+    ) -> AsyncIterable["models.ProductResult"]:
+        """A paging operation that includes a next operation. It has different query parameters than it's next operation nextOperationWithQueryParams has. Returns a ProductResult.
+
+        :param required_query_parameter: A required integer query parameter. Put in value '100' to pass
+     test.
+        :type required_query_parameter: int
+        :param optional_query_parameter: An optional string query parameter. Put in 'optional' to pass
+     test.
+        :type optional_query_parameter: str
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: An iterator like instance of ProductResult or the result of cls(response)
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~paging.models.ProductResult]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        content_type = "application/json"
+        next = True
+
+        def prepare_request(next_link=None):
+            if not next_link:
+                # Construct URL
+                url = self.get_with_query_params.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+                query_parameters['requiredQueryParameter'] = self._serialize.query("required_query_parameter", required_query_parameter, 'int')
+                if optional_query_parameter is not None:
+                    query_parameters['optionalQueryParameter'] = self._serialize.query("optional_query_parameter", optional_query_parameter, 'str')
+
+            else:
+                url = '/paging/multiple/nextOperationWithQueryParams'
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+                query_parameters['next'] = self._serialize.query("next", next, 'bool')
+
+            # Construct headers
+            header_parameters = {}  # type: Dict[str, Any]
+            header_parameters['Content-Type'] = self._serialize.header("content_type", content_type, 'str')
+            header_parameters['Accept'] = 'application/json'
+
+            # Construct and send request
+            body_content_kwargs = {}  # type: Dict[str, Any]
+            body_content = self._serialize.body(next, 'bool')
+            body_content_kwargs['content'] = body_content
+            request = self._client.get(url, query_parameters, header_parameters, **body_content_kwargs)
+
+            return request
+
+        async def extract_data(pipeline_response):
+            deserialized = self._deserialize('ProductResult', pipeline_response)
+            list_of_elem = deserialized.values
+            if cls:
+                list_of_elem = cls(list_of_elem)
+            return deserialized.next_link or None, AsyncList(list_of_elem)
+
+        async def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response = await self._client._pipeline.run(request, stream=False, **kwargs)
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+            return pipeline_response
+
+        return AsyncItemPaged(
+            get_next, extract_data
+        )
+    get_with_query_params.metadata = {'url': '/paging/multiple/getWithQueryParams'}  # type: ignore
+
+    @distributed_trace
     def get_odata_multiple_pages(
         self,
         client_request_id: Optional[str] = None,
