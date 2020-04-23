@@ -88,6 +88,11 @@ def test_get_multiple_pages(client):
     items = [i for i in pages]
     assert len(items) == 10
 
+def test_query_params(client):
+    pages = client.paging.get_with_query_params(required_query_parameter='100')
+    items = [i for i in pages]
+    assert len(items) == 2
+
 def test_get_odata_multiple_pages(client):
     pages = client.paging.get_odata_multiple_pages()
     items = [i for i in pages]

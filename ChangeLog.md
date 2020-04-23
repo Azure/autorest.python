@@ -1,6 +1,7 @@
 # Change Log
 
-### Unreleased
+### 2020-04-22 - 5.0.0-preview.2
+Modelerfour version: 4.12.301
 
 **New Features**
 
@@ -9,8 +10,11 @@
 **Bug Fixes**
 
 - Not generating async multiapi client if `--no-async` flag is specified  #586
+- Fixes query parameter handling in paging operations  #172
+- Fixes losing 404/409 default is user pass a user_map  #580
 
 ### 2020-04-16 - 5.0.0-preview.1
+Modelerfour version: 4.12.301
 
 **Breaking Changes**
 
