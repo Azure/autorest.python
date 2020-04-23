@@ -26,7 +26,7 @@
 import pytest
 import inspect
 import json
-from azure.profiles import KnownProfiles
+from azure.core.profiles import KnownProfiles
 from .multiapi_base import NotTested
 
 
