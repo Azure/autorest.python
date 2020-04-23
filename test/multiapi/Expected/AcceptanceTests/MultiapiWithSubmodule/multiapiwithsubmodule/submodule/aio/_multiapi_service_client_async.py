@@ -15,7 +15,7 @@ from msrest import Serializer, Deserializer
 from azure.core.profiles import KnownProfiles, ProfileDefinition, MultiApiClientMixin
 from ._configuration_async import MultiapiServiceClientConfiguration
 from ._operations_mixin_async import MultiapiServiceClientOperationsMixin
-class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClientMixin):
+class MultiapiServiceClient(MultiApiClientMixin, MultiapiServiceClientOperationsMixin):
     """Service client for multiapi client testing.
 
     This ready contains multiple API versions, to help you deal with all of the Azure clouds

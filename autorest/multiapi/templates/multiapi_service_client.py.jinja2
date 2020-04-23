@@ -43,7 +43,7 @@ from azure.core.profiles import KnownProfiles, ProfileDefinition, MultiApiClient
 from {{ config_import }} import {{ client_name }}Configuration
 {% if mixin_operations %}from {{ operations_mixin_import }} import {{ client_name }}OperationsMixin{% endif %}
 
-class {{ client_name }}({% if mixin_operations %}{{ client_name }}OperationsMixin, {% endif %}MultiApiClientMixin):
+class {{ client_name }}(MultiApiClientMixin{% if mixin_operations %}, {{ client_name }}OperationsMixin{% endif %}):
     """{{ client_doc }}
 
     This ready contains multiple API versions, to help you deal with all of the Azure clouds
