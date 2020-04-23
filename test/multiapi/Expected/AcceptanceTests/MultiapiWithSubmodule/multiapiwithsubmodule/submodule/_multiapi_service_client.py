@@ -12,18 +12,10 @@
 from azure.mgmt.core import ARMPipelineClient
 from msrest import Serializer, Deserializer
 
-from azure.profiles import KnownProfiles, ProfileDefinition
-from azure.profiles.multiapiclient import MultiApiClientMixin
+from azure.core.profiles import KnownProfiles, ProfileDefinition, MultiApiClientMixin
 from ._configuration import MultiapiServiceClientConfiguration
 from ._operations_mixin import MultiapiServiceClientOperationsMixin
-class _SDKClient(object):
-    def __init__(self, *args, **kwargs):
-        """This is a fake class to support current implemetation of MultiApiClientMixin."
-        Will be removed in final version of multiapi azure-core based client
-        """
-        pass
-
-class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClientMixin, _SDKClient):
+class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClientMixin):
     """Service client for multiapi client testing.
 
     This ready contains multiple API versions, to help you deal with all of the Azure clouds

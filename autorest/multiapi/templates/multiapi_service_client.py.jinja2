@@ -39,19 +39,11 @@ def __init__(
 from azure.mgmt.core import {{ pipeline_client }}
 from msrest import Serializer, Deserializer
 
-from azure.profiles import KnownProfiles, ProfileDefinition
-from azure.profiles.multiapiclient import MultiApiClientMixin
+from azure.core.profiles import KnownProfiles, ProfileDefinition, MultiApiClientMixin
 from {{ config_import }} import {{ client_name }}Configuration
 {% if mixin_operations %}from {{ operations_mixin_import }} import {{ client_name }}OperationsMixin{% endif %}
 
-class _SDKClient(object):
-    def __init__(self, *args, **kwargs):
-        """This is a fake class to support current implemetation of MultiApiClientMixin."
-        Will be removed in final version of multiapi azure-core based client
-        """
-        pass
-
-class {{ client_name }}({% if mixin_operations %}{{ client_name }}OperationsMixin, {% endif %}MultiApiClientMixin, _SDKClient):
+class {{ client_name }}({% if mixin_operations %}{{ client_name }}OperationsMixin, {% endif %}MultiApiClientMixin):
     """{{ client_doc }}
 
     This ready contains multiple API versions, to help you deal with all of the Azure clouds
