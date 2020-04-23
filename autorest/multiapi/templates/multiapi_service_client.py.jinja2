@@ -86,8 +86,6 @@ class {{ client_name }}(MultiApiClientMixin{% if mixin_operations %}, {{ client_
         self._config = {{ client_name }}Configuration({{ global_parameters["call"] }}, **kwargs)
         self._client = {{ pipeline_client }}(base_url=base_url, config=self._config, **kwargs)
         super({{ client_name }}, self).__init__(
-            credential,
-            self._config,
             api_version=api_version,
             profile=profile
         )
