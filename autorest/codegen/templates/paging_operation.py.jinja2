@@ -73,6 +73,7 @@
             }
             url = self._client.format_url(url, **path_format_arguments)
         {% endif %}
+            {{ op_tools.query_parameters(operation, async_mode)|indent(12) }}
         else:
 {% if operation.next_operation %}
             url = '{{ operation.next_operation.url }}'
@@ -84,8 +85,10 @@
             }
             url = self._client.format_url(url, **path_format_arguments)
         {% endif %}
+            {{ op_tools.query_parameters(operation.next_operation, async_mode)|indent(12) }}
 {% else %}
             url = next_link
+            query_parameters = {}  # type: Dict[str, Any]
         {% if operation.parameters.path and not code_model.base_url%}
             path_format_arguments = {
         {% for path_parameter in operation.parameters.path %}
@@ -95,8 +98,6 @@
             url = self._client.format_url(url, **path_format_arguments)
         {% endif %}
 {% endif %}
-
-        {{ op_tools.query_parameters(operation, async_mode)|indent(8) }}
         {{ op_tools.header_parameters(code_model, operation, async_mode)|indent(8) }}
         {{ op_tools.body_parameters(operation)|indent(8) }}
         return request

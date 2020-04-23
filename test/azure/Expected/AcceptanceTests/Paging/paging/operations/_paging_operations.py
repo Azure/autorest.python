@@ -62,18 +62,19 @@ class PagingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResultValue"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_no_item_name_pages.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
             else:
                 url = next_link
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-
+                query_parameters = {}  # type: Dict[str, Any]
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
@@ -120,18 +121,19 @@ class PagingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_null_next_link_name_pages.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
             else:
                 url = next_link
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-
+                query_parameters = {}  # type: Dict[str, Any]
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
@@ -178,18 +180,19 @@ class PagingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_single_pages.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
             else:
                 url = next_link
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-
+                query_parameters = {}  # type: Dict[str, Any]
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
@@ -242,7 +245,8 @@ class PagingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         
         _maxresults = None
         _timeout = None
@@ -254,12 +258,12 @@ class PagingOperations(object):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
             else:
                 url = next_link
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-
+                query_parameters = {}  # type: Dict[str, Any]
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
             if client_request_id is not None:
@@ -299,6 +303,75 @@ class PagingOperations(object):
     get_multiple_pages.metadata = {'url': '/paging/multiple'}  # type: ignore
 
     @distributed_trace
+    def get_with_query_params(
+        self,
+        required_query_parameter,  # type: int
+        **kwargs  # type: Any
+    ):
+        # type: (...) -> Iterable["models.ProductResult"]
+        """A paging operation that includes a next operation. It has a different query parameter from it's next operation nextOperationWithQueryParams. Returns a ProductResult.
+
+        :param required_query_parameter: A required integer query parameter. Put in value '100' to pass
+     test.
+        :type required_query_parameter: int
+        :keyword callable cls: A custom type or function that will be passed the direct response
+        :return: An iterator like instance of ProductResult or the result of cls(response)
+        :rtype: ~azure.core.paging.ItemPaged[~paging.models.ProductResult]
+        :raises: ~azure.core.exceptions.HttpResponseError
+        """
+        cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
+        query_constant = True
+
+        def prepare_request(next_link=None):
+            if not next_link:
+                # Construct URL
+                url = self.get_with_query_params.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+                query_parameters['requiredQueryParameter'] = self._serialize.query("required_query_parameter", required_query_parameter, 'int')
+                query_parameters['queryConstant'] = self._serialize.query("query_constant", query_constant, 'bool')
+
+            else:
+                url = '/paging/multiple/nextOperationWithQueryParams'
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+                query_parameters['queryConstant'] = self._serialize.query("query_constant", query_constant, 'bool')
+
+            # Construct headers
+            header_parameters = {}  # type: Dict[str, Any]
+            header_parameters['Accept'] = 'application/json'
+
+            # Construct and send request
+            request = self._client.get(url, query_parameters, header_parameters)
+            return request
+
+        def extract_data(pipeline_response):
+            deserialized = self._deserialize('ProductResult', pipeline_response)
+            list_of_elem = deserialized.values
+            if cls:
+                list_of_elem = cls(list_of_elem)
+            return deserialized.next_link or None, iter(list_of_elem)
+
+        def get_next(next_link=None):
+            request = prepare_request(next_link)
+
+            pipeline_response = self._client._pipeline.run(request, stream=False, **kwargs)
+            response = pipeline_response.http_response
+
+            if response.status_code not in [200]:
+                map_error(status_code=response.status_code, response=response, error_map=error_map)
+                raise HttpResponseError(response=response, error_format=ARMErrorFormat)
+
+            return pipeline_response
+
+        return ItemPaged(
+            get_next, extract_data
+        )
+    get_with_query_params.metadata = {'url': '/paging/multiple/getWithQueryParams'}  # type: ignore
+
+    @distributed_trace
     def get_odata_multiple_pages(
         self,
         client_request_id=None,  # type: Optional[str]
@@ -318,7 +391,8 @@ class PagingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         
         _maxresults = None
         _timeout = None
@@ -330,12 +404,12 @@ class PagingOperations(object):
             if not next_link:
                 # Construct URL
                 url = self.get_odata_multiple_pages.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
             else:
                 url = next_link
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-
+                query_parameters = {}  # type: Dict[str, Any]
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
             if client_request_id is not None:
@@ -394,7 +468,8 @@ class PagingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         
         _maxresults = None
         _offset = None
@@ -412,12 +487,12 @@ class PagingOperations(object):
                     'offset': self._serialize.url("offset", _offset, 'int'),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
             else:
                 url = next_link
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-
+                query_parameters = {}  # type: Dict[str, Any]
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
             if client_request_id is not None:
@@ -470,18 +545,19 @@ class PagingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages_retry_first.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
             else:
                 url = next_link
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-
+                query_parameters = {}  # type: Dict[str, Any]
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
@@ -528,18 +604,19 @@ class PagingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages_retry_second.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
             else:
                 url = next_link
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-
+                query_parameters = {}  # type: Dict[str, Any]
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
@@ -586,18 +663,19 @@ class PagingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_single_pages_failure.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
             else:
                 url = next_link
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-
+                query_parameters = {}  # type: Dict[str, Any]
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
@@ -644,18 +722,19 @@ class PagingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages_failure.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
             else:
                 url = next_link
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-
+                query_parameters = {}  # type: Dict[str, Any]
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
@@ -702,18 +781,19 @@ class PagingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         def prepare_request(next_link=None):
             if not next_link:
                 # Construct URL
                 url = self.get_multiple_pages_failure_uri.metadata['url']  # type: ignore
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
             else:
                 url = next_link
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-
+                query_parameters = {}  # type: Dict[str, Any]
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
@@ -766,7 +846,8 @@ class PagingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -776,6 +857,10 @@ class PagingOperations(object):
                     'tenant': self._serialize.url("tenant", tenant, 'str'),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+                query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
+
             else:
                 url = '/paging/multiple/fragment/{tenant}/{nextLink}'
                 path_format_arguments = {
@@ -783,10 +868,9 @@ class PagingOperations(object):
                     'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-            query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+                query_parameters['api_version'] = self._serialize.query("api_version", api_version, 'str')
 
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
@@ -837,7 +921,8 @@ class PagingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.OdataProductResult"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         
         _api_version = None
         _tenant = None
@@ -853,6 +938,10 @@ class PagingOperations(object):
                     'tenant': self._serialize.url("tenant", _tenant, 'str'),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+                query_parameters['api_version'] = self._serialize.query("api_version", _api_version, 'str')
+
             else:
                 url = '/paging/multiple/fragmentwithgrouping/{tenant}/{nextLink}'
                 path_format_arguments = {
@@ -860,10 +949,9 @@ class PagingOperations(object):
                     'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-            query_parameters['api_version'] = self._serialize.query("api_version", _api_version, 'str')
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+                query_parameters['api_version'] = self._serialize.query("api_version", _api_version, 'str')
 
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
@@ -905,7 +993,8 @@ class PagingOperations(object):
     ):
         # type: (...) -> "models.ProductResult"
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
         
         _maxresults = None
         _timeout = None

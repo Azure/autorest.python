@@ -63,7 +63,8 @@ class PagingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -74,17 +75,17 @@ class PagingOperations(object):
                     'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
             else:
                 url = next_link
+                query_parameters = {}  # type: Dict[str, Any]
                 path_format_arguments = {
                     'accountName': self._serialize.url("account_name", account_name, 'str', skip_quote=True),
                     'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
-
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
             header_parameters['Accept'] = 'application/json'
@@ -134,7 +135,8 @@ class PagingOperations(object):
         :raises: ~azure.core.exceptions.HttpResponseError
         """
         cls = kwargs.pop('cls', None)  # type: ClsType["models.ProductResult"]
-        error_map = kwargs.pop('error_map', {404: ResourceNotFoundError, 409: ResourceExistsError})
+        error_map = {404: ResourceNotFoundError, 409: ResourceExistsError}
+        error_map.update(kwargs.pop('error_map', {}))
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -145,6 +147,9 @@ class PagingOperations(object):
                     'host': self._serialize.url("self._config.host", self._config.host, 'str', skip_quote=True),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
+
             else:
                 url = '/paging/customurl/{nextLink}'
                 path_format_arguments = {
@@ -153,9 +158,8 @@ class PagingOperations(object):
                     'nextLink': self._serialize.url("next_link", next_link, 'str', skip_quote=True),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
-
-            # Construct parameters
-            query_parameters = {}  # type: Dict[str, Any]
+                # Construct parameters
+                query_parameters = {}  # type: Dict[str, Any]
 
             # Construct headers
             header_parameters = {}  # type: Dict[str, Any]
