@@ -1,5 +1,12 @@
 # Change Log
 
+### 2020-04-23 - 5.0.0-preview.3
+Modelerfour version: 4.12.301
+
+**Bug Fixes**
+
+- Fixed sync lro method naming in MultiAPI operation mixins  #572
+
 ### 2020-04-22 - 5.0.0-preview.2
 Modelerfour version: 4.12.301
 

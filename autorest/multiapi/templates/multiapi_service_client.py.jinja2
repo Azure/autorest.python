@@ -73,6 +73,7 @@ class {{ client_name }}(MultiApiClientMixin{% if mixin_operations %}, {{ client_
     LATEST_PROFILE = ProfileDefinition({
         _PROFILE_TAG: {
             None: DEFAULT_API_VERSION,
+{% set last_rt_list = last_rt_list_async if async_mode else last_rt_list_sync %}
 {% for rt_name, api_version in last_rt_list|dictsort %}
             '{{ rt_name }}': '{{ mod_to_api_version[api_version] }}',
 {% endfor %}
@@ -109,17 +110,17 @@ class {{ client_name }}(MultiApiClientMixin{% if mixin_operations %}, {{ client_
             return models
         {% endfor %}
         raise NotImplementedError("APIVersion {} is not available".format(api_version))
-    {% for operation_name, available_apis in operations|dictsort %}
+    {% for operation_group, available_apis in operations|dictsort %}
 
     @property
-    def {{ operation_name }}(self):
+    def {{ operation_group }}(self):
         """Instance depends on the API version:
 
         {% for api in available_apis | sort %}
            * {{ mod_to_api_version[api[0]] }}: :class:`{{ api[1] }}<{{ module_name }}.{{ api[0] }}{{ ".aio" if async_mode else "" }}.operations{{ "_async" if async_mode else "" }}.{{ api[1] }}>`
         {% endfor %}
         """
-        api_version = self._get_api_version('{{ operation_name }}')
+        api_version = self._get_api_version('{{ operation_group }}')
         {% for api in available_apis | sort %}
         {% set if_statement = "if" if loop.first else "elif" %}
         {{ if_statement }} api_version == '{{ mod_to_api_version[api[0]] }}':
