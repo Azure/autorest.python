@@ -200,6 +200,11 @@ class StorageAccountsOperations:
             **kwargs
         )
 
+        # Need to pop these because they were only meant for the call to _create_initial
+        kwargs.pop('cls', None)
+        kwargs.pop('error_map', None)
+        kwargs.pop('content_type', None)
+
         def get_long_running_output(pipeline_response):
             deserialized = self._deserialize('StorageAccount', pipeline_response)
 
