@@ -35,7 +35,7 @@ import os
 import time
 from os.path import dirname, pardir, join, realpath
 
-from azure.core.exceptions import DecodeError, HttpResponseError
+from azure.core.exceptions import DecodeError, HttpResponseError, ResourceNotFoundError
 from azure.core.polling import LROPoller
 from azure.core.pipeline.policies import ContentDecodePolicy, RetryPolicy, HeadersPolicy, RequestIdPolicy
 
@@ -442,3 +442,7 @@ class TestLro:
         one_second_polling_interval_duration = time.time() - one_second_polling_interval_start_time
         assert abs(one_second_polling_interval_duration - 1) < 0.1
         assert product1 == product2
+
+    def test_passing_kwargs(self, client, product):
+        process = self.lro_result(client.lros.begin_put200_succeeded, product, content_type="application/json")
+        assert "Succeeded" == process.provisioning_state
