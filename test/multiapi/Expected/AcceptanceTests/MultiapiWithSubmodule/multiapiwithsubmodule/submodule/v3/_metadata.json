@@ -37,13 +37,19 @@
     },
     "operation_mixins": {
         "test_paging" : {
+            "sync": {
+                "operation_name": "test_paging",
+                "signature": "def test_paging(\n    self,\n    **kwargs  # type: Any\n):\n"
+            },
+            "async": {
+                "operation_name": "test_paging",
+                "signature": "def test_paging(\n    self,\n    **kwargs\n) -\u003e AsyncItemPaged[\"models.PagingResult\"]:\n",
+                "coroutine": false
+            },
             "doc": "    \"\"\"Returns ModelThree with optionalProperty \u0027paged\u0027.\n\n:keyword callable cls: A custom type or function that will be passed the direct response\n:return: PagingResult or the result of cls(response)\n:rtype: ~multiapiwithsubmodule.submodule.v3.models.PagingResult\n:raises: ~azure.core.exceptions.HttpResponseError\n\"\"\"",
-            "sync_signature": "def test_paging(\n    self,\n    **kwargs  # type: Any\n):\n",
-            "async_signature": "def test_paging(\n    self,\n    **kwargs\n) -\u003e \"models.PagingResult\":\n",
-            "coroutine": false,
             "call": ""
         }
     },
-    "sync_imports": "from typing import TYPE_CHECKING\n\nif TYPE_CHECKING:\n    # pylint: disable=unused-import,ungrouped-imports\n    from typing import Optional, Union",
-    "async_imports": "from typing import Optional, TYPE_CHECKING, Union"
+    "sync_imports": "from typing import TYPE_CHECKING\nimport warnings\n\nfrom azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error\nfrom azure.core.paging import ItemPaged\nfrom azure.core.pipeline import PipelineResponse\nfrom azure.core.pipeline.transport import HttpRequest, HttpResponse\n\nif TYPE_CHECKING:\n    # pylint: disable=unused-import,ungrouped-imports\n    from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar",
+    "async_imports": "from typing import Any, AsyncIterable, Callable, Dict, Generic, Optional, TypeVar\nimport warnings\n\nfrom azure.core.async_paging import AsyncItemPaged, AsyncList\nfrom azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error\nfrom azure.core.pipeline import PipelineResponse\nfrom azure.core.pipeline.transport import AsyncHttpResponse, HttpRequest"
 }

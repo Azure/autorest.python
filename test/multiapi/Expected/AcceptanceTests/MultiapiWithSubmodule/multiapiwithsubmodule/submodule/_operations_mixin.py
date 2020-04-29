@@ -10,10 +10,16 @@
 # --------------------------------------------------------------------------
 from msrest import Serializer, Deserializer
 from typing import TYPE_CHECKING
+import warnings
+
+from azure.core.exceptions import HttpResponseError, ResourceExistsError, ResourceNotFoundError, map_error
+from azure.core.paging import ItemPaged
+from azure.core.pipeline import PipelineResponse
+from azure.core.pipeline.transport import HttpRequest, HttpResponse
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Optional, Union
+    from typing import Any, Callable, Dict, Generic, Iterable, Optional, TypeVar
 
 
 class MultiapiServiceClientOperationsMixin(object):
@@ -32,7 +38,7 @@ class MultiapiServiceClientOperationsMixin(object):
         :rtype: ~multiapiwithsubmodule.submodule.v1.models.Product or None
         :raises: ~azure.core.exceptions.HttpResponseError
         """
-        api_version = self._get_api_version('test_lro')
+        api_version = self._get_api_version('begin_test_lro')
         if api_version == '1.0.0':
             from .v1.operations import MultiapiServiceClientOperationsMixin as OperationClass
         else:
@@ -42,7 +48,7 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._config = self._config
         mixin_instance._serialize = Serializer(self._models_dict(api_version))
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
-        return mixin_instance.test_lro(product, **kwargs)
+        return mixin_instance.begin_test_lro(product, **kwargs)
 
     def test_one(
         self,
