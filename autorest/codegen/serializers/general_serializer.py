@@ -29,6 +29,12 @@ class GeneralSerializer:
         credential_param.schema = CredentialSchema(async_mode=self.async_mode)
 
     def serialize_service_client_file(self) -> str:
+        def _service_client_imports() -> FileImport:
+            file_import = self.code_model.service_client.imports(self.code_model, self.async_mode)
+            for gp in self.code_model.global_parameters:
+                file_import.merge(gp.imports())
+            return file_import
+
         template = self.env.get_template("service_client.py.jinja2")
 
         if self.code_model.options['credential']:
@@ -38,7 +44,7 @@ class GeneralSerializer:
             code_model=self.code_model,
             async_mode=self.async_mode,
             imports=FileImportSerializer(
-                self.code_model.service_client.imports(self.code_model, self.async_mode),
+                _service_client_imports(),
                 is_python_3_file=self.async_mode
             ),
         )
