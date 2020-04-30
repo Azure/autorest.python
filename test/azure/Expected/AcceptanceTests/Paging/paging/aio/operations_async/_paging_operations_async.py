@@ -1052,6 +1052,9 @@ class PagingOperations:
             **kwargs
         )
 
+        kwargs.pop('error_map', None)
+        kwargs.pop('content_type', None)
+
         def get_long_running_output(pipeline_response):
             deserialized = self._deserialize('ProductResult', pipeline_response)
 

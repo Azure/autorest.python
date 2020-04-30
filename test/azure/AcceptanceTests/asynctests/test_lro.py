@@ -490,3 +490,8 @@ class TestLro:
         one_second_polling_interval_duration = time.time() - one_second_polling_interval_start_time
         assert abs(one_second_polling_interval_duration - 1) < 0.1
         assert product1 == product2
+
+    @pytest.mark.asyncio
+    async def test_passing_kwargs(self, client, product):
+        process = await self.lro_result(client.lros.put200_succeeded, product, content_type="application/json")
+        assert "Succeeded" == process.provisioning_state

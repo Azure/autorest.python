@@ -3,7 +3,10 @@
 ### Unreleased
 Modelerfour version: 4.12.301
 
+**Bug Fixes**
+
 - Fixing `AsyncTokenCredential` typing import and adding to service client  #591
+- Can now pass `content_type` and `error_map` kwargs to LRO functions without error  #597
 
 ### 2020-04-23 - 5.0.0-preview.3
 Modelerfour version: 4.12.301
