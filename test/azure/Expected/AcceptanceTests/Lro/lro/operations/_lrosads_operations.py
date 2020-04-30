@@ -130,7 +130,6 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _put_non_retry400_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -230,7 +229,6 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _put_non_retry201_creating400_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -330,7 +328,6 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _put_non_retry201_creating400_invalid_json_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -429,7 +426,6 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _put_async_relative_retry400_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -515,7 +511,6 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _delete_non_retry400_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -593,7 +588,6 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _delete202_non_retry400_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -672,7 +666,6 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _delete_async_relative_retry400_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -764,7 +757,6 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _post_non_retry400_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -856,7 +848,6 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _post202_non_retry400_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -949,7 +940,6 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _post_async_relative_retry400_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -1046,7 +1036,6 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _put_error201_no_provisioning_state_payload_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -1145,7 +1134,6 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _put_async_relative_retry_no_status_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -1249,7 +1237,6 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _put_async_relative_retry_no_status_payload_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -1331,7 +1318,6 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _delete204_succeeded_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -1410,7 +1396,6 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _delete_async_relative_retry_no_status_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -1502,7 +1487,6 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _post202_no_location_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -1595,7 +1579,6 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _post_async_relative_retry_no_payload_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -1689,7 +1672,6 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _put200_invalid_json_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -1788,7 +1770,6 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _put_async_relative_retry_invalid_header_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -1892,7 +1873,6 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _put_async_relative_retry_invalid_json_polling_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -1978,7 +1958,6 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _delete202_retry_invalid_header_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -2057,7 +2036,6 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _delete_async_relative_retry_invalid_header_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -2136,7 +2114,6 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _delete_async_relative_retry_invalid_json_polling_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -2228,7 +2205,6 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _post202_retry_invalid_header_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -2321,7 +2297,6 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _post_async_relative_retry_invalid_header_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -2414,7 +2389,6 @@ class LROSADsOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _post_async_relative_retry_invalid_json_polling_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 

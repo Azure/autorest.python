@@ -124,7 +124,6 @@ class LRORetrysOperations:
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _put201_creating_succeeded200_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -221,7 +220,6 @@ class LRORetrysOperations:
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _put_async_relative_retry_succeeded_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -313,7 +311,6 @@ class LRORetrysOperations:
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _delete_provisioning202_accepted200_succeeded_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -396,7 +393,6 @@ class LRORetrysOperations:
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _delete202_retry200_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -473,7 +469,6 @@ class LRORetrysOperations:
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _delete_async_relative_retry_succeeded_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -563,7 +558,6 @@ class LRORetrysOperations:
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _post202_retry200_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -654,7 +648,6 @@ class LRORetrysOperations:
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _post_async_relative_retry_succeeded_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 

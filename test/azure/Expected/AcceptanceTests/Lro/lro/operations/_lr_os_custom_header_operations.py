@@ -129,7 +129,6 @@ class LROsCustomHeaderOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _put_async_retry_succeeded_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -234,7 +233,6 @@ class LROsCustomHeaderOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _put201_creating_succeeded200_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -329,7 +327,6 @@ class LROsCustomHeaderOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _post202_retry200_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
@@ -422,7 +419,6 @@ class LROsCustomHeaderOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _post_async_retry_succeeded_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 

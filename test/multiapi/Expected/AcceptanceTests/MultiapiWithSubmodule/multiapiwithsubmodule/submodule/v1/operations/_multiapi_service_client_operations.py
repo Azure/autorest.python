@@ -156,7 +156,6 @@ class MultiapiServiceClientOperationsMixin(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _test_lro_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 

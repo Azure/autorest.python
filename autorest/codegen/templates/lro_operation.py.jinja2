@@ -65,7 +65,6 @@ response_headers = {
         **kwargs
     )
 
-    # Need to pop these because they were only meant for the call to _{{ operation.name }}_initial
     kwargs.pop('error_map', None)
     kwargs.pop('content_type', None)
 

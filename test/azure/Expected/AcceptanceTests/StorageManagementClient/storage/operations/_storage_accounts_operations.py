@@ -206,7 +206,6 @@ class StorageAccountsOperations(object):
             **kwargs
         )
 
-        # Need to pop these because they were only meant for the call to _create_initial
         kwargs.pop('error_map', None)
         kwargs.pop('content_type', None)
 
